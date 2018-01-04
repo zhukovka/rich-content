@@ -22,7 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "link:local": "rm -rf ../editor/node_modules && npm link ../editor --only=production"
+    "link:local": "rm -rf ../rich-content-editor/node_modules && npm link ../rich-content-editor --only=production"
   },
   "devDependencies": {
     "webpack": "^3.6.0",

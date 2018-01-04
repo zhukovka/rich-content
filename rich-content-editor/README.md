@@ -1,8 +1,8 @@
-# wix-draft-js-text-editor
-This is the beginning of the new wix text editor.
-The text editor is based on draft-js and the draft-js-plugins projects
-Adaptations were made to fit wix environment with the styling and plugins that works well with wix platforms
-The plugin model simplifies the creation of plugins and hides the complexity of the text editor from the plugins
+# rich-content-editor repo
 
-To run the example, please read the follwing file: [readme](https://github.com/wix-private/wix-draft-js-text-editor/blob/master/example/README.md)
-
+The library is built on top of draft.js and adds a plugin model
+You can add any plugin to the texteditor and you can write your own
+When writing a plugin, you write a component that is rendered in the document
+The component automatically gets a toolbar if you list the buttons it has
+The communication between the toolbar and the component is done via pubsub when updating componentData and componentState
+When one of the parties updates componentData, it is serialized into the document and notifies the textEditor on a change that needs to be saved

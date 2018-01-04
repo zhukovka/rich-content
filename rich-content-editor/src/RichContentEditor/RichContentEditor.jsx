@@ -7,7 +7,7 @@ import isUndefined from 'lodash.isundefined';
 import isEmpty from 'lodash.isempty';
 import createPlugins from './Plugins';
 import createDecorators from './Decorators';
-import Styles from '~/Styles/editor.scss';
+import Styles from '~/Styles/rich-content-editor.scss';
 import 'draft-js/dist/Draft.css'
 
 export default class RichContentEditor extends Component {
