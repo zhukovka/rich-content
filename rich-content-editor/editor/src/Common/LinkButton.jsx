@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import LinkIcon from '~/Editor/Toolbars/icons/link.svg';
+import LinkIcon from '~/RichContentEditor/Toolbars/icons/link.svg';
 import buttonStyles from '~/Styles/text-toolbar-button.scss';
 
 class LinkButton extends Component {

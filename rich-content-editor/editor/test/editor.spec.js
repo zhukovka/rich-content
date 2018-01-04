@@ -5,7 +5,7 @@ import TestData from './TestData/initial-state'
 
 
 
-describe('Text Editor', () => {
+describe('RichContentEditor', () => {
   it('should render', () => {
     expect(shallow(<RichContentEditor/>).html()).toEqual(expect.stringContaining('class="DraftEditor-root"'));
   });
