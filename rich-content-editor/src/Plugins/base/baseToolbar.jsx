@@ -148,7 +148,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
         case BUTTONS.SEPARATOR:
           return <Separator className={toolbarStyles.separator} key={key} />;
         case BUTTONS.LINK:
-          return <BlockLinkButton className={toolbarStyles.separator} pubsub={pubsub} onOverrideContent={this.onOverrideContent} key={key} />;
+          return <BlockLinkButton className={toolbarStyles.separator} pubsub={pubsub} onExtendContent={this.onExtendContent} key={key} />;
         case BUTTONS.DELETE:
           return <DeleteButton onClick={this.deleteBlock} theme={buttonStyles} key={key}  />;
         default:

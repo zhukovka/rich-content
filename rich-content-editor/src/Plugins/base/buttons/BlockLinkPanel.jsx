@@ -16,7 +16,7 @@ class BlockLinkPanel extends Component {
   }
 
   hideLinkPanel = () => {
-    this.props.onOverrideContent(undefined);
+    this.props.onExtendContent(undefined);
   }
 
   render() {

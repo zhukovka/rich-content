@@ -4,12 +4,9 @@ import LinkButton from '~/Common/LinkButton';
 import BlockLinkPanel from './BlockLinkPanel';
 
 class BlockLinkButton extends Component {
-  state = {
-    isActive: false,
-  }
 
-  componentDidMount() {
-    this.setState({ isActive: !!this.props.pubsub.get('componentLink')});
+  get isActive() {
+    return !!this.props.pubsub.get('componentLink');
   }
 
   showLinkPanel = () => {
@@ -18,11 +15,11 @@ class BlockLinkButton extends Component {
       store: pubsub.store,
     }
     const BlockLinkPanelWithProps = decorateComponentWithProps(BlockLinkPanel, props);
-    this.props.onOverrideContent(BlockLinkPanelWithProps);
+    this.props.onExtendContent(BlockLinkPanelWithProps);
   }
 
   render() {
-    return <LinkButton onClick={this.showLinkPanel} isActive={this.state.isActive} />;
+    return <LinkButton onClick={this.showLinkPanel} isActive={this.isActive} />;
   }
 }
 
