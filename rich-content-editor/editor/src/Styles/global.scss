@@ -1,0 +1,81 @@
+@import "./palette";
+@import "./mixins";
+
+$innerSpacing: 40px;
+$textWidth: 740px;
+
+//*** BLOCK ***//
+.hasFocus {
+  @include block-select;
+}
+
+.overlay {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.pluginContainerReadOnly {
+}
+
+.pluginContainer {
+  &:hover {
+    @include block-select;
+  }
+}
+
+.alignLeft {
+  float: left;
+  z-index: 1;
+  margin-right: $innerSpacing;
+  margin-left: calc((100% - #{$textWidth}) / 2);
+}
+
+.alignCenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alignRight {
+  float: right;
+  z-index: 1;
+  margin-left: $innerSpacing;
+  margin-right: calc((100% - #{$textWidth}) / 2);
+}
+
+.sizeFullWidth {
+  width: 100%;
+}
+
+.sizeContent {
+  width: 740px;
+  margin: 0 auto;
+}
+
+.sizeSmall {
+  width: 350px;
+}
+
+.sizeSmallCenter {
+  width: 350px;
+  margin: 0 auto;
+}
+
+//*** MODAL ***//
+.modalContainer {
+  position: absolute;
+  display: flex;
+  padding: 10px;
+  background: $primary-color-light;
+  color: $secondary-text-color;
+  border-radius: 0 2px 2px;
+  box-shadow: rgb(220, 220, 220) 1px 1px 3px 1px;
+}

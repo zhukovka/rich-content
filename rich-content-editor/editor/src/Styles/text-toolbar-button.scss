@@ -1,0 +1,39 @@
+@import "./mixins";
+@import "./palette";
+
+.buttonWrapper {
+  display: inline-block;
+  padding: 10px 0;
+  margin-right: 10px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.button {
+  background: transparent;
+  color: $secondary-text-color;
+  padding: 5px;
+
+  &:hover, &:focus {
+    cursor: pointer;
+    outline: 0;
+    color: $accent-color;
+    svg {
+      fill: $accent-color;
+    }
+  }
+
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+    fill: $secondary-text-color;
+  }
+}
+
+.active {
+  color: $accent-color;
+  svg {
+    fill: $accent-color;
+  }
+}

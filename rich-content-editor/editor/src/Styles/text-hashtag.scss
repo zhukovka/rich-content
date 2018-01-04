@@ -1,0 +1,10 @@
+@import "../Styles/palette";
+
+.hashtag {
+  color: $accent-color;
+  text-decoration: none;
+}
+
+.hover:hover {
+  text-decoration: underline;
+}

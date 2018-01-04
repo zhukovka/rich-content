@@ -1,0 +1,32 @@
+
+@import "./palette";
+
+.toolbar {
+  min-height: 50px;
+  left: 50%;
+  transform: translate(-50%) scale(0);
+  position: absolute;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0px 1px 3px 0px rgba(220,220,220,1);
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.buttons {
+  display: flex;
+  padding: 0 19px;
+}
+
+.extend {
+  border-top: 1px solid rgba(117, 117, 117, 0.2);
+  padding: 10px 19px;
+}
+
+.separator {
+  display: inline-block;
+  border-right: 1px solid $secondary-text-color;
+  opacity: 0.2;
+  margin: 0 19px;
+}

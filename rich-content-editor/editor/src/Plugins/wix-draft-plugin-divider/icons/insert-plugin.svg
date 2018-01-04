@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="13" viewBox="0 0 15 13">
+    <defs>
+        <path id="divider-path" d="M3 7H2v5h1v3h3v1h7v-1h3v-3h1V7h-1V4h-3V3H6v1H3v3zM2 3h15v13H2V3zm3 6h9v1H5V9z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(-2 -3)">
+        <mask id="divider-mask" fill="#fff">
+            <use xlink:href="#divider-path"/>
+        </mask>
+        <use fill="#333" xlink:href="#divider-path"/>
+        <g fill="#333" mask="url(#divider-mask)">
+            <path d="M1 1h17v17H1z"/>
+        </g>
+    </g>
+</svg>

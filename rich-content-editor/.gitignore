@@ -1,0 +1,10 @@
+.DS_Store
+package-lock.json
+
+#Webstorm
+**/.idea/*
+
+#VSCode
+**/.vscode/*
+**/.project
+**/.settings/*
