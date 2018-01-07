@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 const TestData = {
   onlyText : {
     "entityMap": {},

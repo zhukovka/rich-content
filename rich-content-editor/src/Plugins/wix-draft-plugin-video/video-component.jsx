@@ -9,7 +9,7 @@ const DEFAULTS = {
   config: {
     size: 'content'
   }
-}
+};
 
 const MAX_WAIT_TIME = 5000;
 
@@ -54,7 +54,7 @@ class VideoComponent extends React.Component {
     return (
       <div className={Styles.overlay}>
         {isLoaded &&
-         <span>To play this video, view this post from your live site</span>
+        <span>To play this video, view this post from your live site</span>
         }
       </div>
     );
@@ -80,16 +80,15 @@ class VideoComponent extends React.Component {
     const {
       className,
       onClick,
-      style,
-     } = this.props;
-     const { isPlayable } = this.state;
-     const containerClassNames = classNames(Styles.container, className || '');
+    } = this.props;
+    const { isPlayable } = this.state;
+    const containerClassNames = classNames(Styles.container, className || '');
     return (
       <div onClick={onClick} className={containerClassNames}>
         {!isPlayable && this.renderOverlay()}
         {this.renderPlayer()}
       </div>
-    )
+    );
   }
 }
 
@@ -106,4 +105,4 @@ VideoComponent.propTypes = {
 export {
   VideoComponent as Component,
   DEFAULTS
- };
+};

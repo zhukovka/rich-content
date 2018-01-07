@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import isEmpty from 'lodash.isempty';
+import PropTypes from 'prop-types';
+import isEmpty from 'lodash/isempty';
 import LinkPanel from '~/Common/LinkPanel';
 
 class BlockLinkPanel extends Component {
@@ -8,8 +9,7 @@ class BlockLinkPanel extends Component {
     const { store } = this.props;
     if (!isEmpty(url)) {
       store.set('componentLink', { url, targetBlank });
-    }
-    else {
+    } else {
       store.set('componentLink', undefined);
     }
     this.hideLinkPanel();
@@ -32,5 +32,10 @@ class BlockLinkPanel extends Component {
     );
   }
 }
+
+BlockLinkPanel.propTypes = {
+  store: PropTypes.object.isRequired,
+  onExtendContent: PropTypes.func.isRequired,
+};
 
 export default BlockLinkPanel;

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import {AtomicBlockUtils, ContentState, EditorState, Modifier } from 'draft-js';
-import noop from 'lodash.noop';
-import cloneDeep from 'lodash.clonedeep';
+import PropTypes from 'prop-types';
+import { AtomicBlockUtils } from 'draft-js';
+import noop from 'lodash/noop';
+import cloneDeep from 'lodash/clonedeep';
 import classNames from 'classnames';
 import Tooltip from 'wix-style-react/dist/src/Tooltip';
 import Styles from '~/Styles/toolbar-button.scss';
-
-const toolbarOffset = 12;
 
 export default ({ blockType, button, pubsub }) => {
   class InsertPluginButton extends Component {
@@ -21,7 +20,9 @@ export default ({ blockType, button, pubsub }) => {
       );
       const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
       const newEditorState = AtomicBlockUtils.insertAtomicBlock(getEditorState(), entityKey, ' ');
-      if (hidePluginSelectPopup) hidePluginSelectPopup();
+      if (hidePluginSelectPopup) {
+        hidePluginSelectPopup();
+      }
       const recentlyCreatedKey = newEditorState.getSelection().getAnchorKey();
       //when adding atomic block, there is the atomic itself, and then there is a text block with one space,
       // so get the block before the space
@@ -39,10 +40,10 @@ export default ({ blockType, button, pubsub }) => {
 
     handleFileChange = event => {
       if (event.target.files.length > 0) {
-        const files=Array.from(event.target.files);
+        const files = Array.from(event.target.files);
         const recentlyCreated = this.addBlock(button.data);
-        const state = {userSelectedFiles: { files }};
-        pubsub.set('initialState_'+recentlyCreated.getKey(), state);
+        const state = { userSelectedFiles: { files } };
+        pubsub.set('initialState_' + recentlyCreated.getKey(), state);
 
         this.resetForm();
       }
@@ -58,7 +59,7 @@ export default ({ blockType, button, pubsub }) => {
       const { theme, hideName } = this.props;
       const { name, Icon, type } = button;
       const children = [
-        <Icon key="0" />,
+        <Icon key="0"/>,
         hideName ? null : <span key="1">{name}</span>
       ].filter(child => child);
       return (
@@ -67,8 +68,7 @@ export default ({ blockType, button, pubsub }) => {
           onClick={type !== 'file' ? this.onClick : noop}
           type="button"
           children={children}
-        >
-        </button>
+        />
       );
     };
 
@@ -84,12 +84,12 @@ export default ({ blockType, button, pubsub }) => {
             tabIndex="-1"
           />
         </form>
-      )
+      );
     };
 
     render() {
       const { theme } = this.props;
-      const { tooltipText, type } = button;
+      const { tooltipText } = button;
       return (
         <Tooltip
           content={tooltipText}
@@ -109,6 +109,15 @@ export default ({ blockType, button, pubsub }) => {
         </Tooltip>
       );
     }
+  }
+
+
+  InsertPluginButton.propTypes = {
+    getEditorState: PropTypes.func.isRequired,
+    setEditorState: PropTypes.func.isRequired,
+    hidePluginSelectPopup: PropTypes.func,
+    hideName: PropTypes.bool,
+    theme: PropTypes.object,
   };
 
   return InsertPluginButton;

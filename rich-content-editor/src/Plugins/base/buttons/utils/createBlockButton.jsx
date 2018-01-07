@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
-export default ({ content, onClick }) => (
+export default ({ content }) => (
   class BlockButton extends Component {
     static propTypes = {
       onClick: PropTypes.func.isRequired,
       theme: PropTypes.object,
     };
 
-    handleClick = () => this.props.onClick && this.props.onClick();
+    handleClick = () => {
+      const { onClick } = this.props;
+      onClick && onClick();
+    }
 
-    preventBubblingUp = event => { event.preventDefault(); }
+    preventBubblingUp = event => {
+      event.preventDefault();
+    }
 
     render() {
       const { theme } = this.props;

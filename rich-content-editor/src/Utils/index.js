@@ -4,4 +4,4 @@ export {
   removeLinksInSelection,
 } from './utils';
 export { default as hashtagRegexes } from './hashtagRegexes';
-export { default as Pubsub } from './simplePubsub';
+export { default as simplePubsub } from './simplePubsub';

@@ -3,17 +3,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Styles from '~/Styles//global.scss';
 
-const modalOffset = 12;
-
 export default class BaseModal extends Component {
 
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props.componentState);
-  };
+  }
 
-  stateFromProps = (componentState) => {
-    const {keyName, boundingRect, isActive} = componentState.activeButton || {};
+  stateFromProps = componentState => {
+    const { keyName, boundingRect, isActive } = componentState.activeButton || {};
     const style = ((keyName === this.props.keyName) && boundingRect && isActive) ? {
       top: boundingRect.height,
       left: 0,
@@ -21,10 +19,10 @@ export default class BaseModal extends Component {
     } : {
       transform: 'translate(-50%) scale(0)',
     };
-    return {style};
+    return { style };
   };
 
-  componentWillReceiveProps = (nextProps) => {
+  componentWillReceiveProps = nextProps => {
     this.setState(this.stateFromProps(nextProps.componentState));
   };
 

@@ -16,30 +16,30 @@ export { TextLinkButton };
 
 export const BoldButton = createTextInlineStyleButton({
   style: 'BOLD',
-  content: <BoldIcon />
+  content: <BoldIcon/>
 });
 
 export const ItalicButton = createTextInlineStyleButton({
   style: 'ITALIC',
-  content: <ItalicIcon />
+  content: <ItalicIcon/>
 });
 
 export const TitleButton = createTextBlockStyleButton({
   blockType: 'header-two',
-  content: <TitleIcon />
+  content: <TitleIcon/>
 });
 
 export const BlockquoteButton = createTextBlockStyleButton({
   blockType: 'blockquote',
-  content: <BlockquoteIcon />
+  content: <BlockquoteIcon/>
 });
 
 export const OrderedListButton = createTextBlockStyleButton({
   blockType: 'ordered-list-item',
-  content: <OrderedListIcon />
+  content: <OrderedListIcon/>
 });
 
 export const UnorderedListButton = createTextBlockStyleButton({
   blockType: 'unordered-list-item',
-  content: <UnorderedListIcon />
+  content: <UnorderedListIcon/>
 });

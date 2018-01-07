@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { EditorState, Modifier } from 'draft-js';
 import createTextAlignmentButton from './utils/createTextAlignmentButton';
 import AlignTextLeft from '../icons/align-text-left.svg';
@@ -6,14 +7,14 @@ import AlignTextCenter from '../icons/align-text-center.svg';
 import AlignTextRight from '../icons/align-text-right.svg';
 import AlignTextJustify from '../icons/align-text-justify.svg';
 
-class AlignmentPanel extends Component {
+export default class AlignmentPanel extends Component {
   constructor(props) {
     super(props);
     this.alignmentButtons = [
-      createTextAlignmentButton({alignment: 'left', content: <AlignTextLeft/>}),
-      createTextAlignmentButton({alignment: 'center', content: <AlignTextCenter/>}),
-      createTextAlignmentButton({alignment: 'right', content: <AlignTextRight/>}),
-      createTextAlignmentButton({alignment: 'justify', content: <AlignTextJustify/>}),
+      createTextAlignmentButton({ alignment: 'left', content: <AlignTextLeft/> }),
+      createTextAlignmentButton({ alignment: 'center', content: <AlignTextCenter/> }),
+      createTextAlignmentButton({ alignment: 'right', content: <AlignTextRight/> }),
+      createTextAlignmentButton({ alignment: 'justify', content: <AlignTextJustify/> }),
     ];
   }
 
@@ -22,7 +23,7 @@ class AlignmentPanel extends Component {
     const contentState = Modifier.mergeBlockData(
       editorState.getCurrentContent(),
       editorState.getSelection(),
-      {textAlignment}
+      { textAlignment }
     );
     const newEditorState = EditorState.push(editorState, contentState, 'change-block-data');
     this.props.setEditorState(newEditorState);
@@ -30,7 +31,9 @@ class AlignmentPanel extends Component {
 
 
   componentDidMount() {
-    setTimeout(() => { window.addEventListener('click', this.onWindowClick); });
+    setTimeout(() => {
+      window.addEventListener('click', this.onWindowClick);
+    });
   }
 
   componentWillUnmount() {
@@ -42,12 +45,17 @@ class AlignmentPanel extends Component {
   render() {
     return (
       <div>
-        {this.alignmentButtons.map((Button, i) => // eslint-disable-next-line
-          <Button key={i} onClick={this.onAlignmentChange} {...this.props} />
+        {this.alignmentButtons.map((Button, i) =>
+          <Button key={i} onClick={this.onAlignmentChange} {...this.props}/>
         )}
       </div>
     );
   }
 }
 
-export default AlignmentPanel;
+AlignmentPanel.propTypes = {
+  getEditorState: PropTypes.func.isRequired,
+  setEditorState: PropTypes.func.isRequired,
+  onOverrideContent: PropTypes.func.isRequired,
+  theme: PropTypes.object,
+};

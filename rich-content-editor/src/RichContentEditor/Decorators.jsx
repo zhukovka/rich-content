@@ -10,12 +10,12 @@ const DecoratorList = [
 const defaultDecorators = {
   list: DecoratorList,
   config: {}
-}
+};
 
-const createDecorators = ({list, config} = defaultDecorators) => {
+const createDecorators = ({ list, config } = defaultDecorators) => {
   const activeDecorators = [];
-  list.forEach(decorator_name => {
-    switch(decorator_name) {
+  list.forEach(decoratorName => {
+    switch (decoratorName) {
       case LinkDecorator.Name:
         activeDecorators.push({
           strategy: LinkDecorator.Strategy,
@@ -25,10 +25,10 @@ const createDecorators = ({list, config} = defaultDecorators) => {
       case HashtagDecorator.Name:
         activeDecorators.push({
           strategy: HashtagDecorator.Strategy,
-          component: config.Hashtag ? decorateComponentWithProps(HashtagDecorator.Component, {...config.Hashtag}) : HashtagDecorator.Component,
+          component: config.Hashtag ? decorateComponentWithProps(HashtagDecorator.Component, { ...config.Hashtag }) : HashtagDecorator.Component,
         });
         break;
-      default: console.warn(`Failed to load uknown decorator "${decorator_name}"`);
+      default: console.warn(`Failed to load uknown decorator "${decoratorName}"`); //eslint-disable-line no-console
         break;
     }
   });

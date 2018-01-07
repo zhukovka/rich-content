@@ -1,34 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AddIcon from '../icons/toolbar/icon-add.svg'
-import GridSmallIcon from '../icons/toolbar/layout/icon-grid-small.svg'
-import GridSmallIconActive from '../icons/toolbar/layout/icon-grid-small-active.svg'
-import GridMediumIcon from '../icons/toolbar/layout/icon-grid-medium.svg'
-import GridMediumIconActive from '../icons/toolbar/layout/icon-grid-medium-active.svg'
-import GridLargeIcon from '../icons/toolbar/layout/icon-grid-large.svg'
-import GridLargeIconActive from '../icons/toolbar/layout/icon-grid-large-active.svg'
-import { BUTTONS } from '~/Plugins/base/buttons'
+import AddIcon from '../icons/toolbar/icon-add.svg';
+import GridSmallIcon from '../icons/toolbar/layout/icon-grid-small.svg';
+import GridSmallIconActive from '../icons/toolbar/layout/icon-grid-small-active.svg';
+import GridMediumIcon from '../icons/toolbar/layout/icon-grid-medium.svg';
+import GridMediumIconActive from '../icons/toolbar/layout/icon-grid-medium-active.svg';
+import GridLargeIcon from '../icons/toolbar/layout/icon-grid-large.svg';
+import GridLargeIconActive from '../icons/toolbar/layout/icon-grid-large-active.svg';
+import { BUTTONS } from '~/Plugins/base/buttons';
 
-class LayoutModal  extends React.Component {
+class LayoutModal extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
-  };
+  }
 
   componentWillReceiveProps(nextProps) {
     this.setState(this.stateFromProps(nextProps));
   }
 
-  stateFromProps = (props) => {
+  stateFromProps = props => {
     return {
       layout: (props.componentData.config && props.componentData.config.layout) || 'small'
     };
   };
 
-  changeLayout = (layout) => {
-    console.log('changeLayout in modal', layout);
-    const componentData = {...this.props.componentData, config: {...this.props.componentData.config, layout}};
+  changeLayout = layout => {
+    const componentData = { ...this.props.componentData, config: { ...this.props.componentData.config, layout } };
     this.props.store.set('componentData', componentData);
   };
 
@@ -38,8 +37,7 @@ class LayoutModal  extends React.Component {
     return (
       <div>
         <div onClick={() => this.changeLayout('small')}>
-          {this.state.layout === 'small' ? <GridSmallIconActive/> :
-            <GridSmallIcon/>}
+          {this.state.layout === 'small' ? <GridSmallIconActive/> : <GridSmallIcon/>}
         </div>
         <div onClick={() => this.changeLayout('medium')}>
           {this.state.layout === 'medium' ? <GridMediumIconActive/> : <GridMediumIcon/>}
@@ -64,22 +62,21 @@ class SettingsModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
-  };
+  }
 
   componentWillReceiveProps(nextProps) {
     this.setState(this.stateFromProps(nextProps));
   }
 
-  stateFromProps = (props) => {
+  stateFromProps = props => {
     return {
       spacing: (props.componentData.config && props.componentData.config.spacing) || 0
     };
   };
 
-  changeSpacing = (event) => {
-    console.log('changeSpacing in modal', event.target.valueAsNumber);
+  changeSpacing = event => {
     const spacing = event.target.valueAsNumber;
-    const componentData = {...this.props.componentData, config: {...this.props.componentData.config, spacing}};
+    const componentData = { ...this.props.componentData, config: { ...this.props.componentData.config, spacing } };
     this.props.store.set('componentData', componentData);
   };
 
@@ -87,8 +84,10 @@ class SettingsModal extends React.Component {
     return (
       <div>
         <label htmlFor="spacing">Spacing</label>
-        <input type="range" min="0" max="100" value={this.state.spacing} id="spacing"
-               step="1" onChange={this.changeSpacing}/>
+        <input
+          type="range" min="0" max="100" value={this.state.spacing} id="spacing"
+          step="1" onChange={this.changeSpacing}
+        />
         <output htmlFor="spacing" id="spacingVal">{this.state.spacing}px</output>
       </div>
     );
@@ -103,15 +102,21 @@ SettingsModal.propTypes = {
 };
 
 const InlineButtons = [
-  {keyName: 'add', type: BUTTONS.FILES, icon: AddIcon, onClick: pubsub => console.log('*** click add *** '), onFilesSelected: (pubsub, files) => console.log('*** got files *** ', files)},
-  {type: BUTTONS.SEPARATOR},
-  {type: BUTTONS.SIZE_SMALL_LEFT},
-  {type: BUTTONS.SIZE_SMALL_CENTER},
-  {type: BUTTONS.SIZE_SMALL_RIGHT},
-  {type: BUTTONS.SIZE_CONTENT},
-  {type: BUTTONS.SIZE_FULL_WIDTH},
-  {type: BUTTONS.SEPARATOR},
-  {type: BUTTONS.DELETE},
+  {
+    keyName: 'add',
+    type: BUTTONS.FILES,
+    icon: AddIcon,
+    onClick: pubsub => console.log('*** click add *** '), //eslint-disable-line no-console, no-unused-vars,
+    onFilesSelected: (pubsub, files) => console.log('*** got files *** ', files), //eslint-disable-line no-console, no-unused-vars,
+  },
+  { type: BUTTONS.SEPARATOR },
+  { type: BUTTONS.SIZE_SMALL_LEFT },
+  { type: BUTTONS.SIZE_SMALL_CENTER },
+  { type: BUTTONS.SIZE_SMALL_RIGHT },
+  { type: BUTTONS.SIZE_CONTENT },
+  { type: BUTTONS.SIZE_FULL_WIDTH },
+  { type: BUTTONS.SEPARATOR },
+  { type: BUTTONS.DELETE },
 ];
 
 export default InlineButtons;

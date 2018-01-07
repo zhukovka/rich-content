@@ -1,8 +1,9 @@
-import React from 'react';
 import createToolbar from './toolbar';
 import Styles from './default-image-styles.scss';
 import createBasePlugin from '../base/basePlugin';
-import { Component } from './image-component';
+import {
+  Component
+} from './image-component';
 
 const IMAGE_TYPE = 'wix-draft-plugin-image';
 const IMAGE_TYPE_LEGACY = 'IMAGE';
@@ -16,11 +17,13 @@ const createImagePlugin = (config = {}) => {
 
   return createBasePlugin({
     component: Component,
-    decorator: decorator,
+    decorator,
     theme: theme || Styles,
     type: IMAGE_TYPE,
     legacyType: IMAGE_TYPE_LEGACY,
-    toolbar: createToolbar({ helpers }),
+    toolbar: createToolbar({
+      helpers
+    }),
     helpers,
   });
 };
@@ -28,4 +31,4 @@ const createImagePlugin = (config = {}) => {
 export {
   createImagePlugin,
   IMAGE_TYPE
-}
+};

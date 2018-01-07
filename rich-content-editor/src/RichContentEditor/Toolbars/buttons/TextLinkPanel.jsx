@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import isEmpty from 'lodash.isempty';
+import PropTypes from 'prop-types';
+import isEmpty from 'lodash/isempty';
 import { insertLink } from '~/Utils';
 import LinkPanel from '~/Common/LinkPanel';
 
-class TextLinkPanel extends Component {
+export default class TextLinkPanel extends Component {
 
   createLinkEntity = ({ url, targetBlank }) => {
     if (!isEmpty(url)) {
@@ -28,4 +29,9 @@ class TextLinkPanel extends Component {
   }
 }
 
-export default TextLinkPanel;
+TextLinkPanel.propTypes = {
+  getEditorState: PropTypes.func.isRequired,
+  setEditorState: PropTypes.func.isRequired,
+  onOverrideContent: PropTypes.func.isRequired,
+  theme: PropTypes.object,
+};

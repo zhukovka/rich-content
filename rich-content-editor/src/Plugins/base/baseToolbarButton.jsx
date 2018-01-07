@@ -1,3 +1,4 @@
+/* eslint-disable react/no-find-dom-node */
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
@@ -7,11 +8,7 @@ import Modal from './baseModal';
 import Styles from '~/Styles/plugin-toolbar-button.scss';
 
 class BaseToolbarButton extends React.Component {
-  state = {isActive: false};
-
-  constructor(props) {
-    super(props);
-  };
+  state = { isActive: false };
 
   componentDidMount() {
     this.props.pubsub.subscribe('componentState', this.onComponentStateChange);
@@ -35,8 +32,8 @@ class BaseToolbarButton extends React.Component {
 
   resetForm = () => this.form && this.form.reset();
 
-  getBoundingRectForModalButton = (isActive) => {
-    if(this.props.type === BUTTONS.MODAL && isActive) {
+  getBoundingRectForModalButton = isActive => {
+    if (this.props.type === BUTTONS.MODAL && isActive) {
       const blockNode = findDOMNode(this);
       return blockNode.getBoundingClientRect();
     } else {
@@ -46,41 +43,38 @@ class BaseToolbarButton extends React.Component {
 
   handleClick = event => {
     event.preventDefault();
-    const componentState = this.props.componentState;
-    const activeButton = componentState.activeButton || {keyName: this.props.keyName, isActive: false};
+    const { componentState, keyName, pubsub, onClick } = this.props;
+    const activeButton = componentState.activeButton || { keyName, isActive: false };
     const isToggleButton = !(this.props.type === BUTTONS.EXTERNAL_MODAL || this.props.type === BUTTONS.FILES);
-    const isActive = !isToggleButton ? (activeButton.keyName === this.props.keyName) : !(activeButton.keyName === this.props.keyName && activeButton.isActive);
-    componentState.activeButton = {...activeButton, keyName: this.props.keyName, isActive: isActive, boundingRect: this.getBoundingRectForModalButton(isActive)};
-    this.props.pubsub.set('componentState', componentState);
+    const isActive = !isToggleButton ? (activeButton.keyName === keyName) : !(activeButton.keyName === keyName && activeButton.isActive);
+    componentState.activeButton = { ...activeButton, keyName, isActive, boundingRect: this.getBoundingRectForModalButton(isActive) };
+    pubsub.set('componentState', componentState);
 
-    if(this.props.type === BUTTONS.EXTERNAL_MODAL && isActive) {
+    if (this.props.type === BUTTONS.EXTERNAL_MODAL && isActive) {
       const helpers = this.props.helpers;
-      if(helpers && helpers.openExternalModal) {
-        console.log('Opening external modal');
+      if (helpers && helpers.openExternalModal) {
+        //console.log('Opening external modal');
         const modalElement = this.props.modalElement;
-        const componentData=this.props.componentData;
-        const store = this.props.pubsub.store;
+        const componentData = this.props.componentData;
+        const store = pubsub.store;
         const keyName = BUTTONS.EXTERNAL_MODAL;
         const theme = Styles;
 
-        helpers.openExternalModal({modalElement, componentData, componentState, store, keyName, helpers, theme});
+        helpers.openExternalModal({ modalElement, componentData, componentState, store, keyName, helpers, theme });
       } else {
-        console.warn('Open external helper function is not defined for toolbar button with keyName ' + this.props.keyName);
+        //console.warn('Open external helper function is not defined for toolbar button with keyName ' + keyName);
       }
     }
-    if(this.props.onClick) {
-      this.props.onClick(this.props.pubsub);
-    }
+    onClick && onClick(pubsub);
   };
 
   onComponentStateChange = componentState => {
     if (componentState.activeButton) {
       const activeButton = componentState.activeButton;
       const isActive = activeButton.keyName === this.props.keyName && activeButton.isActive;
-      this.setState({isActive});
-    } else {
-      if (this.state.isActive)
-        this.setState({isActive: false});
+      this.setState({ isActive });
+    } else if (this.state.isActive) {
+      this.setState({ isActive: false });
     }
   }
 
@@ -92,19 +86,19 @@ class BaseToolbarButton extends React.Component {
 
   renderToggleButton = (buttonWrapperClassNames, buttonClassNames) => {
     return (
-    <div
-      className={buttonWrapperClassNames}
-      onMouseDown={this.preventBubblingUp}
-    >
-      <button
-        className={buttonClassNames}
-        type='button'
-        onMouseDown={this.handleClick}
-        children={this.props.children || [this.getIcon()]}
+      <div
+        className={buttonWrapperClassNames}
+        onMouseDown={this.preventBubblingUp}
+      >
+        <button
+          className={buttonClassNames}
+          type="button"
+          onMouseDown={this.handleClick}
+          children={this.props.children || [this.getIcon()]}
         >
           {this.getIcon()}
-      </button>
-    </div>
+        </button>
+      </div>
     );
   };
 
@@ -117,7 +111,7 @@ class BaseToolbarButton extends React.Component {
         >
           <button
             className={buttonClassNames}
-            type='button'
+            type="button"
             onMouseDown={this.handleClick}
             children={this.props.children || [this.getIcon()]}
           >
@@ -142,7 +136,7 @@ class BaseToolbarButton extends React.Component {
     return (
       <div className={fileButtonWrapperClassNames}>
         <button
-          type='button'
+          type="button"
           children={this.props.children}
         >
           {this.getIcon()}
@@ -172,7 +166,7 @@ class BaseToolbarButton extends React.Component {
     });
 
     let toolbarButton;
-    switch(this.props.type) {
+    switch (this.props.type) {
       case BUTTONS.FILES:
         toolbarButton = this.renderFilesButton();
         break;
@@ -199,6 +193,8 @@ BaseToolbarButton.propTypes = {
   onClick: PropTypes.func,
   onFileSelected: PropTypes.func,
   children: PropTypes.object,
+  iconActive: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
 };
 
 export default BaseToolbarButton;

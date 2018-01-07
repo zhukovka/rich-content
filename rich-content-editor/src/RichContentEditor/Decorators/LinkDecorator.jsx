@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Name = 'LinkDecorator';
 
 const findLinkEntities = (contentBlock, callback, contentState) => {
   contentBlock.findEntityRanges(
-    (character) => {
+    character => {
       const entityKey = character.getEntity();
       return (
         entityKey !== null &&
@@ -13,7 +14,7 @@ const findLinkEntities = (contentBlock, callback, contentState) => {
     },
     callback
   );
-}
+};
 
 const Link = ({ entityKey, contentState, children }) => {
   const { url, targetBlank } = contentState.getEntity(entityKey).getData();
@@ -23,6 +24,12 @@ const Link = ({ entityKey, contentState, children }) => {
       {children}
     </a>
   );
+};
+
+Link.propTypes = {
+  entityKey: PropTypes.string.isRequired,
+  contentState: PropTypes.object.isRequired,
+  children: PropTypes.arrayOf(PropTypes.element).isRequired
 };
 
 export {

@@ -1,7 +1,7 @@
 import { composeDecorators } from 'draft-js-plugins-editor';
-import FocusPlugin from 'draft-js-focus-plugin';
-import BlockDndPlugin from 'draft-js-drag-n-drop-plugin';
-import LinkifyPlugin from 'draft-js-linkify-plugin';
+import createFocusPlugin from 'draft-js-focus-plugin'; //eslint-disable-line no-unused-vars
+import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
+import createLinkifyPlugin from 'draft-js-linkify-plugin'; //eslint-disable-line no-unused-vars
 import createSideToolbar from './Toolbars/SideToolbar';
 import createStaticToolbar from './Toolbars/StaticToolbar';
 import createTextToolbar from './Toolbars/TextToolbar';
@@ -22,22 +22,23 @@ const PluginList = [
 ];
 
 const toolbars = (wixPlugins, sideToolbarOffset) => {
-  let insertPluginButtons = [];
-  for (const wixPlugin of wixPlugins) {
-    for (const insertPluginButton of wixPlugin.InsertPluginButtons) {
+  const insertPluginButtons = [];
+
+  wixPlugins.forEach(wixPlugin => {
+    wixPlugin.InsertPluginButtons.forEach(insertPluginButton => {
       insertPluginButtons.push(insertPluginButton);
-    }
-  }
+    });
+  });
   return {
     staticToolbarPlugin: createStaticToolbar({ insertPluginButtons }),
     sideToolbarPlugin: createSideToolbar({ insertPluginButtons, offset: sideToolbarOffset }),
-  }
-}
+  };
+};
 
 const activePlugins = (requestedPlugins = PluginList, config) => {
   const activePlugins = [];
-  requestedPlugins.forEach(plugin_type => {
-    switch(plugin_type) {
+  requestedPlugins.forEach(pluginType => {
+    switch (pluginType) {
       case DIVIDER_TYPE: activePlugins.push(createDividerPlugin(config));
         break;
       case GALLERY_TYPE: activePlugins.push(createGalleryPlugin(config));
@@ -48,14 +49,14 @@ const activePlugins = (requestedPlugins = PluginList, config) => {
         break;
       case VIDEO_TYPE: activePlugins.push(createVideoPlugin(config));
         break;
-      default: console.warn(`Failed to load uknown plugin "${plugin_type}"`);
+      default: console.warn(`Failed to load uknown plugin "${pluginType}"`); //eslint-disable-line no-console
         break;
     }
   });
   return activePlugins;
-}
+};
 
-const createPlugins = ({getEditorState, setEditorState, editorProps}) => {
+const createPlugins = ({ editorProps }) => {
   const {
     helpers,
     isMobile,
@@ -64,9 +65,9 @@ const createPlugins = ({getEditorState, setEditorState, editorProps}) => {
     textButtons
   } = editorProps;
   const textToolbar = createTextToolbar({ buttons: textButtons });
-  const linkifyPlugin = LinkifyPlugin({ theme: linkifyTheme });
-  const focusPlugin = FocusPlugin();
-  const dndPlugin = BlockDndPlugin();
+  const linkifyPlugin = createLinkifyPlugin({ theme: linkifyTheme });
+  const focusPlugin = createFocusPlugin();
+  const dndPlugin = createBlockDndPlugin();
 
   const wixPluginsDecorators = composeDecorators(
     focusPlugin.decorator,
@@ -83,11 +84,12 @@ const createPlugins = ({getEditorState, setEditorState, editorProps}) => {
     dndPlugin,
   ];
 
-  if (!isMobile)
+  if (!isMobile) {
     draftPlugins.unshift(staticToolbarPlugin);
+  }
 
   return [...draftPlugins, ...wixPlugins];
-}
+};
 
 export default createPlugins;
 export { PluginList };

@@ -6,12 +6,13 @@ export default ({ alignment, content }) => (
   class TextAlignmentButton extends Component {
     static propTypes = {
       alignment: PropTypes.string,
+      onClick: PropTypes.func,
       theme: PropTypes.object,
     };
 
     isActive = () => this.props.alignment === alignment;
 
-    handleClick = event => this.props.onClick && this.props.onClick(alignment);
+    handleClick = () => this.props.onClick && this.props.onClick(alignment);
 
     preventBubblingUp = event => event.preventDefault();
 

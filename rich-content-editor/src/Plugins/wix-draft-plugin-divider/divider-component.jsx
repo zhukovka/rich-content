@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import Divider1 from './dividers/divider1.svg';
 import Divider2 from './dividers/divider2.svg';
 import Divider3 from './dividers/divider3.svg';
@@ -12,42 +11,42 @@ const DEFAULTS = {
   config: {
     size: 'fullWidth'
   }
-}
+};
 
 class DividerComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
-  };
+  }
 
   componentWillReceiveProps(nextProps) {
     this.setState(this.stateFromProps(nextProps));
   }
 
-  stateFromProps = (props) => {
+  stateFromProps = props => {
     const type = props.componentData.type || DEFAULTS.type;
     const width = props.componentData.width || DEFAULTS.width;
-    return{
+    return {
       type,
       width
     };
   };
 
-  getComponent = (type) => {
+  getComponent = type => {
     let component = null;
     switch (type) {
       case 'divider1':
-      component = Divider1;
-      break;
+        component = Divider1;
+        break;
       case 'divider2':
-      component = Divider2;
-      break;
+        component = Divider2;
+        break;
       case 'divider3':
-      component = Divider3;
-      break;
-      case 'divider4':
-      component = Divider4;
-      break;
+        component = Divider3;
+        break;
+      default:
+        component = Divider4;
+        break;
     }
     return component;
   };
@@ -56,10 +55,10 @@ class DividerComponent extends React.Component {
     const { style } = this.props;
     const Divider = this.getComponent(this.state.type);
     return (
-      <div style={{width: this.state.width + '%', margin: 'auto', ...style}} onClick={this.props.onClick} className={this.props.className}>
-        <Divider style={{pointerEvents: 'none'}} width="100%" viewBox="0 0 500 46" preserveAspectRatio="none"  />
+      <div style={{ width: this.state.width + '%', margin: 'auto', ...style }} onClick={this.props.onClick} className={this.props.className}>
+        <Divider style={{ pointerEvents: 'none' }} width="100%" viewBox="0 0 500 46" preserveAspectRatio="none"/>
       </div>
-    )
+    );
   }
 }
 
@@ -68,12 +67,13 @@ DividerComponent.propTypes = {
   componentState: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
   blockProps: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired,
   className: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
+  style: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export {
   DividerComponent as Component,
   DEFAULTS
- };
+};

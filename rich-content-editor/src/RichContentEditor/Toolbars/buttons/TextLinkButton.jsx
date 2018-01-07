@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { EditorState } from 'draft-js';
 import { hasLinksInSelection, removeLinksInSelection } from '~/Utils';
 import LinkButton from '~/Common/LinkButton';
 import TextLinkPanel from './TextLinkPanel';
 
-class TextLinkButton extends Component {
+export default class TextLinkButton extends Component {
 
   onClick = () => {
     if (!this.isActive) {
@@ -31,8 +32,13 @@ class TextLinkButton extends Component {
   }
 
   render() {
-    return <LinkButton onClick={this.onClick} isActive={this.isActive} />;
+    return <LinkButton onClick={this.onClick} isActive={this.isActive}/>;
   }
 }
 
-export default TextLinkButton;
+TextLinkButton.propTypes = {
+  getEditorState: PropTypes.func.isRequired,
+  setEditorState: PropTypes.func.isRequired,
+  onOverrideContent: PropTypes.func.isRequired,
+  theme: PropTypes.object,
+};

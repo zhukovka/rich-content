@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import get from 'lodash.get';
+import get from 'lodash/get';
 import getWixMediaUrl from './get-wix-media-url';
 import Styles from './default-image-styles.scss';
 
@@ -17,7 +17,7 @@ const getDefault = () => ({
 
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-const ImageLoader = ({ theme, type }) => (
+const ImageLoader = ({ theme, type }) => ( //eslint-disable-line react/prop-types
   <div className={classNames(Styles.loaderOverlay, get(theme, 'loaderOverlay'))}>
     <div className={classNames(Styles.loader, get(theme, 'loader'), { [Styles[type]]: type })}/>
   </div>
@@ -26,15 +26,15 @@ const ImageLoader = ({ theme, type }) => (
 class ImageComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = Object.assign({isMounted: false} ,this.stateFromProps(props));
-  };
+    this.state = Object.assign({ isMounted: false }, this.stateFromProps(props));
+  }
 
   componentDidMount() {
-    this.state.isMounted = true;
+    this.state.isMounted = true; //eslint-disable-line react/no-direct-mutation-state
   }
 
   componentWillUnmount() {
-    this.state.isMounted = false;
+    this.state.isMounted = false; //eslint-disable-line react/no-direct-mutation-state
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,23 +44,33 @@ class ImageComponent extends React.Component {
   resetLoadingState = error => {
     //no upload function
     if (this.state.isMounted) {
-      this.setState({ isLoading: false, files: null, dataUrl: null, error: error });
+      this.setState({ isLoading: false, files: null, dataUrl: null, error });
     } else {
       //this is async and sometimes called before the component is mounted, so just place it on the state
-      this.state = Object.assign(this.state, { isLoading: false, files: null, dataUrl: null, fileError: error });
+      this.state = Object.assign(this.state, { //eslint-disable-line react/no-direct-mutation-state
+        isLoading: false,
+        files: null,
+        dataUrl: null,
+        fileError: error
+      });
     }
     //mark the external state as not loading
     this.props.store.update('componentState', { isLoading: false, userSelectedFiles: null });
   };
 
-  fileLoaded = (event) => {
+  fileLoaded = event => {
     const fileDataUrl = event.target.result;
     const files = Array.from(this.state.files);
-    if(this.state.isMounted) {
+    if (this.state.isMounted) {
       this.setState({ isLoading: true, files: null, dataUrl: fileDataUrl });
     } else {
       //this is async and sometimes called before the component is mounted, so just place it on the state
-      this.state = Object.assign(this.state, { isLoading: true, files: null, dataUrl: fileDataUrl, fileError: null });
+      this.state = Object.assign(this.state, { //eslint-disable-line react/no-direct-mutation-state
+        isLoading: true,
+        files: null,
+        dataUrl: fileDataUrl,
+        fileError: null
+      });
     }
     const { helpers } = this.props;
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
@@ -72,11 +82,11 @@ class ImageComponent extends React.Component {
         this.resetLoadingState(error);
       });
     } else {
-      this.resetLoadingState({msg: 'Missing upload function'});
+      this.resetLoadingState({ msg: 'Missing upload function' });
     }
   };
 
-  stateFromProps = (props) => {
+  stateFromProps = props => {
     const componentState = props.componentState || {};
 
     const state = {};
@@ -88,12 +98,12 @@ class ImageComponent extends React.Component {
           const reader = new FileReader();
           reader.onload = this.fileLoaded;
           reader.readAsDataURL(userSelectedFiles.files[0]);
-          Object.assign(state, { isLoading: true, files: userSelectedFiles.files, dataUrl: EMPTY_SMALL_PLACEHOLDER })
+          Object.assign(state, { isLoading: true, files: userSelectedFiles.files, dataUrl: EMPTY_SMALL_PLACEHOLDER });
         }
         setTimeout(() => {
           //needs to be async since this function is called during constructor and we do not want the update to call set state on other components
           this.props.store.update('componentState', { isLoading: true, userSelectedFiles: null });
-        },0)
+        }, 0);
       }
     }
 
@@ -101,41 +111,42 @@ class ImageComponent extends React.Component {
 
   };
 
-  getLoadingParams = (componentState) => {
+  getLoadingParams = componentState => {
     //check if the file upload is coming on the regular state
     const alreadyLoading = this.state && this.state.isLoading;
     const { isLoading, userSelectedFiles } = componentState;
-    return {alreadyLoading, isLoading,userSelectedFiles};
+    return { alreadyLoading, isLoading, userSelectedFiles };
   };
 
   getImageSrc(item) {
-    const { helpers } = this.props;
+    const { block, helpers } = this.props;
     let imageUrl;
-    if(this.state.dataUrl) {
+    if (this.state.dataUrl) {
       imageUrl = this.state.dataUrl;
-    }
-    else if (item.file_name) {
+    } else if (item.file_name) {
       if (item.source) {
         if (item.source === 'static') {
-          if (item.url)
+          if (item.url) {
             imageUrl = item.url;
-          else
-            console.error('must provide item url when using static image source!', item);
+          } else {
+            console.error('must provide item url when using static image source!', item); //eslint-disable-line no-console
+          }
+        } else if (item.source === 'custom') {
+          if (helpers.getImageUrl) {
+            imageUrl = helpers.getImageUrl({ file_name: item.file_name }); //eslint-disable-line camelcase
+          } else {
+            console.error('must provide getImageUrl helper when using custom image source!', item); //eslint-disable-line no-console
+          }
         }
-        else if (item.source === 'custom') {
-          if (helpers.getImageUrl)
-            imageUrl = helpers.getImageUrl({ file_name: item.file_name });
-          else
-            console.error('must provide getImageUrl helper when using custom image source!', item);
-        }
+      } else {
+        imageUrl = getWixMediaUrl({ file_name: item.file_name }); //eslint-disable-line camelcase
       }
-      else
-        imageUrl = getWixMediaUrl({ file_name: item.file_name });
     }
 
 
-    if (!imageUrl)
-      console.error(`image plugin '${this.props.block.getKey()}' mounted with invalid image source!`, item);
+    if (!imageUrl) {
+      console.error(`image plugin '${block.getKey()}' mounted with invalid image source!`, item); //eslint-disable-line no-console
+    }
 
     return imageUrl;
   }
@@ -144,7 +155,7 @@ class ImageComponent extends React.Component {
     if (!this.state.isLoading) {
       return null;
     }
-    return <ImageLoader />;
+    return <ImageLoader/>;
   }
 
   renderTitle(data, theme) {
@@ -158,14 +169,12 @@ class ImageComponent extends React.Component {
 
   render() {
     const {
-      blockProps,
       componentData,
       className,
       onClick,
-      selection,
       theme,
     } = this.props;
-    const data = componentData || DEFAULTS;
+    const data = componentData || getDefault();
 
     const itemClassName = classNames(
       Styles.container,
@@ -195,6 +204,7 @@ ImageComponent.propTypes = {
   componentState: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
   blockProps: PropTypes.object.isRequired,
+  block: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,

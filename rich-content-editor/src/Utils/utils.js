@@ -3,21 +3,20 @@ import {
   Modifier,
   RichUtils,
   SelectionState,
-  onvertFromRaw,
-  convertToRaw
 } from 'draft-js';
-import reduce from 'lodash.reduce';
-import flatMap from 'lodash.flatmap';
-import findIndex from 'lodash.findindex';
-import findLastIndex from 'lodash.findlastindex';
+import flatMap from 'lodash/flatmap';
+import findIndex from 'lodash/findindex';
+import findLastIndex from 'lodash/findlastindex';
 
-export function insertLink(editorState, {url, targetBlank}) {
+export function insertLink(editorState, {
+  url,
+  targetBlank
+}) {
   const selection = getSelection(editorState);
   const content = editorState.getCurrentContent();
   const contentStateWithEntity = content.createEntity(
     'LINK',
-    'MUTABLE',
-    {
+    'MUTABLE', {
       url,
       targetBlank
     }
@@ -65,7 +64,10 @@ export function hasLinksInSelection(editorState) {
 
 export function removeLinksInSelection(editorState) {
   return getSelectedLinks(editorState).reduce(
-    (prevState, { key, range }) => removeLink(prevState, key, range),
+    (prevState, {
+      key,
+      range
+    }) => removeLink(prevState, key, range),
     editorState
   );
 }

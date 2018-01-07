@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { ProGallery } from 'pro-gallery-renderer';
 
 const DEFAULTS = {
@@ -32,26 +31,26 @@ const DEFAULTS = {
     layout: 'small',
     spacing: 0,
   }
-}
+};
 
 class GalleryComponent extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
-  };
+  }
 
   componentWillReceiveProps(nextProps) {
     this.setState(this.stateFromProps(nextProps));
   }
 
-  stateFromProps = (props) => {
-    const {keyName, isActive} = props.componentState.activeButton || {};
+  stateFromProps = props => {
+    const { keyName, isActive } = props.componentState.activeButton || {};
     const inEditMode = keyName === 'edit' && isActive;
-    const items = props.componentData.items || DEFAULTS.items
+    const items = props.componentData.items || DEFAULTS.items;
     const layout = props.componentData.config && props.componentData.config.layout;
-    const layoutWidth = layout === 'large' ? 100 : layout === 'medium' ? 50 : 33
-    return{
+    const layoutWidth = layout === 'large' ? 100 : layout === 'medium' ? 50 : 33;
+    return {
       items,
       inEditMode,
       layoutWidth,
@@ -61,10 +60,10 @@ class GalleryComponent extends React.Component {
   render() {
     const { items } = this.state;
 
-    return <ProGallery
-            items={items}
-            galleryDataSrc={"manuallySetImages"}
-          />;
+    return (<ProGallery
+      items={items}
+      galleryDataSrc={'manuallySetImages'}
+    />);
   }
 }
 
@@ -81,4 +80,4 @@ GalleryComponent.propTypes = {
 export {
   GalleryComponent as Component,
   DEFAULTS
- };
+};

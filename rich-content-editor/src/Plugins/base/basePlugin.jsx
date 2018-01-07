@@ -1,12 +1,11 @@
-import React from 'react';
 import {
   SelectionState,
   EditorState,
   Modifier,
 } from 'draft-js';
-import includes from 'lodash.includes';
-import cloneDeep from 'lodash.clonedeep';
-import { Pubsub } from '~/Utils';
+import includes from 'lodash/includes';
+import cloneDeep from 'lodash/clonedeep';
+import { simplePubsub } from '~/Utils';
 import createBaseComponent from './baseComponent';
 import createToolbar from './baseToolbar';
 import createInsertPluginButton from './baseInsertPluginButton';
@@ -20,7 +19,7 @@ const updateEntityData = (contentBlock, { getEditorState, setEditorState }, getN
     const data = typeof getNewData === 'function' ? cloneDeep(getNewData(entityData)) : cloneDeep(getNewData);
     contentState.replaceEntityData(entityKey, data);
     data.config.key = contentBlock.getKey();
-    console.log('setData for ' + entityKey + ' key ' + contentBlock.getKey(), data);
+    //console.log('setData for ' + entityKey + ' key ' + contentBlock.getKey(), data);
 
     setEditorState(editorState);
     //Ronny: don't select the block after adding it
@@ -42,10 +41,10 @@ const getData = (contentBlock, { getEditorState }) => {
   return () => {
     const contentState = getEditorState().getCurrentContent();
     const entity = contentState.getEntity(contentBlock.getEntityAt(0));
-    const entityKey = contentBlock.getEntityAt(0);
+    //const entityKey = contentBlock.getEntityAt(0);
     // console.log('getData for ' + entityKey + ' key ' + contentBlock.getKey(), entity.getData());
     return entity.getData();
-  }
+  };
 };
 
 const deleteEntity = (contentBlock, { getEditorState, setEditorState }) => {
@@ -64,18 +63,18 @@ const deleteEntity = (contentBlock, { getEditorState, setEditorState }) => {
     const newContentState = Modifier.removeRange(contentState, selectionRange, 'forward');
     const newEditorState = EditorState.push(editorState, newContentState, 'remove-range');
     setEditorState(newEditorState);
-  }
+  };
 };
 
 const createBasePlugin = (config = {}) => {
-  const pubsub = Pubsub();
-  const helpers =  config.helpers || {};
+  const pubsub = simplePubsub();
+  const helpers = config.helpers || {};
   const theme = config.theme || {};
-  const Toolbar = createToolbar({buttons: config.toolbar.InlineButtons, theme, pubsub, helpers});
-  const InsertPluginButtons = config.toolbar.InsertButtons.map(button => createInsertPluginButton({ blockType: config.type, button, pubsub}));
+  const Toolbar = createToolbar({ buttons: config.toolbar.InlineButtons, theme, pubsub, helpers });
+  const InsertPluginButtons = config.toolbar.InsertButtons.map(button => createInsertPluginButton({ blockType: config.type, button, pubsub }));
   const PluginComponent = (config.decorator) ? config.decorator(config.component) : config.component;
 
-  const CompWithBase = createBaseComponent({PluginComponent, theme, pubsub, helpers});
+  const CompWithBase = createBaseComponent({ PluginComponent, theme, pubsub, helpers });
 
   return {
     blockRendererFn: (contentBlock, { getEditorState, setEditorState, getReadOnly }) => {

@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
 import decorateComponentWithProps from 'decorate-component-with-props';
-import classNames from 'classnames';
-import createInlineToolbarPlugin, {Separator} from 'draft-js-inline-toolbar-plugin';
+import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
 import {
   BoldButton,
   ItalicButton,
@@ -35,8 +33,8 @@ const TextButtonList = [
 
 const activeButtons = reqeustedButtons => {
   const buttons = [];
-  reqeustedButtons.forEach(button_name => {
-    switch(button_name) {
+  reqeustedButtons.forEach(buttonName => {
+    switch (buttonName) {
       case 'Bold': buttons.push(BoldButton);
         break;
       case 'Italic': buttons.push(ItalicButton);
@@ -48,14 +46,14 @@ const activeButtons = reqeustedButtons => {
       case 'Alignment': buttons.push(TextAlignmentButton);
         break;
       case 'OrderedList': buttons.push(OrderedListButton);
-          break;
+        break;
       case 'UnorderedList': buttons.push(UnorderedListButton);
         break;
       case 'Link': buttons.push(TextLinkButton);
         break;
       case 'Separator': buttons.push(StyledSeparator);
-          break;
-      default: console.warn(`Failed to load uknown text button "${button_name}"`);
+        break;
+      default: console.warn(`Failed to load uknown text button "${buttonName}"`); //eslint-disable-line no-console
         break;
 
     }
@@ -63,13 +61,13 @@ const activeButtons = reqeustedButtons => {
   return buttons;
 };
 
-const createTextToolbar = ({buttons = TextButtonList, theme = { buttonStyles, toolbarStyles }}) => {
+const createTextToolbar = ({ buttons = TextButtonList, theme = { buttonStyles, toolbarStyles } }) => {
   const structure = activeButtons(buttons);
   return createInlineToolbarPlugin({
     structure,
     theme
   });
-}
+};
 
 export default createTextToolbar;
 export { TextButtonList };

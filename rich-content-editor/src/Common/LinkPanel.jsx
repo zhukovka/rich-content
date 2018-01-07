@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class LinkPanel extends Component {
-
   constructor(props) {
     super(props);
     const { url, targetBlank } = props;
     this.state = {
       url: url || '',
-      targetBlank: targetBlank|| false
+      targetBlank: targetBlank || false
     };
   }
 
@@ -24,20 +24,26 @@ class LinkPanel extends Component {
     this.props.onDone && this.props.onDone({ url, targetBlank });
   }
 
-  onCancelClick = () => {
-    this.props.onCancel && this.props.onCancel();
-  }
+  onCancelClick = () => this.props.onCancel && this.props.onCancel();
 
   render() {
     return (
       <div>
-        <input type="text" onChange={this.handleURLChange} value={this.state.url} />
-        <input type="checkbox" onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank} />
+        <input type="text" onChange={this.handleURLChange} value={this.state.url}/>
+        <input type="checkbox" onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}/>
         <button onClick={this.onDoneClick}>Done</button>
         <button onClick={this.onCancelClick}>Cancel</button>
       </div>
     );
   }
 }
+
+LinkPanel.propTypes = {
+  onDone: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  url: PropTypes.string,
+  targetBlank: PropTypes.bool,
+};
+
 
 export default LinkPanel;

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
+import { EditorState, convertFromRaw } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import isUndefined from 'lodash.isundefined';
-import isEmpty from 'lodash.isempty';
+import isUndefined from 'lodash/isundefined';
 import createPlugins from './Plugins';
 import createDecorators from './Decorators';
 import Styles from '~/Styles/rich-content-editor.scss';
-import 'draft-js/dist/Draft.css'
+import 'draft-js/dist/Draft.css';
 
 export default class RichContentEditor extends Component {
 
@@ -16,11 +15,11 @@ export default class RichContentEditor extends Component {
     super(props);
     this.state = {
       editorState: this.getInitialEditorState(),
-      readOnly: this.props.readOnly || false,
+      readOnly: props.readOnly || false,
     };
     this.initializePlugins();
-    this.decorators = createDecorators(this.props.decorators);
-  };
+    this.decorators = createDecorators(props.decorators);
+  }
 
   getInitialEditorState() {
     const { editorState, initialState } = this.props;
@@ -29,8 +28,7 @@ export default class RichContentEditor extends Component {
     }
     if (initialState) {
       return EditorState.createWithContent(convertFromRaw(initialState));
-    }
-    else {
+    } else {
       return EditorState.createEmpty();
     }
   }
@@ -39,15 +37,15 @@ export default class RichContentEditor extends Component {
     const getEditorState = () => this.state.editorState;
     const setEditorState = editorState => this.setState({ editorState });
     const editorProps = this.props;
-    this.plugins = createPlugins({getEditorState, setEditorState, editorProps});
+    this.plugins = createPlugins({ getEditorState, setEditorState, editorProps });
   }
 
   componentWillReceiveProps(nextProps) {
     if (!isUndefined(nextProps.readOnly) && (this.props.readOnly !== nextProps.readOnly)) {
-      this.setState({ readOnly: nextProps.readOnly })
+      this.setState({ readOnly: nextProps.readOnly });
     }
     if (this.props.editorState !== nextProps.editorState) {
-      this.setState({ editorState: nextProps.editorState});
+      this.setState({ editorState: nextProps.editorState });
     }
   }
 
@@ -83,8 +81,8 @@ export default class RichContentEditor extends Component {
       default:
         classList.push(Styles.text);
     }
-    if(type !== 'atomic') {
-      classList.push(Styles[textAlignment])
+    if (type !== 'atomic') {
+      classList.push(Styles[textAlignment]);
     }
     return classNames(...classList);
   };
@@ -102,10 +100,10 @@ export default class RichContentEditor extends Component {
 
   renderToolbars = () => {
     if (!this.state.readOnly) {
-      const toolbars = this.plugins.map((plugin, index) => {
+      const toolbars = this.plugins.map((plugin, index) => { //eslint-disable-line array-callback-return
         const Toolbar = plugin.Toolbar || plugin.InlineToolbar || plugin.SideToolbar;
-        if(Toolbar) {
-          return (<Toolbar key={`k${index}`}/>)
+        if (Toolbar) {
+          return (<Toolbar key={`k${index}`}/>);
         }
       });
       return toolbars;
@@ -115,7 +113,7 @@ export default class RichContentEditor extends Component {
   renderEditor = () => {
     const { helpers, platform } = this.props;
     const { editorState, readOnly } = this.state;
-    return <Editor
+    return (<Editor
       ref={this.setEditor}
       editorState={editorState}
       onChange={this.updateEditorState}
@@ -125,8 +123,8 @@ export default class RichContentEditor extends Component {
       readOnly={!!readOnly}
       isMobile={platform}
       helpers={helpers}
-      spellCheck={true}
-    />;
+      spellCheck
+    />);
   };
 
   render() {
@@ -144,10 +142,13 @@ export default class RichContentEditor extends Component {
   }
 }
 
-RichContentEditor.PropTypes = {
+RichContentEditor.propTypes = {
+  editorState: PropTypes.instanceOf(EditorState),
+  decorators: PropTypes.object,
   initialState: PropTypes.object,
   onChange: PropTypes.func,
   isMobile: PropTypes.bool,
   readOnly: PropTypes.bool,
   helpers: PropTypes.object,
+  platform: PropTypes.string,
 };

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TextAlignmentPanel from './TextAlignmentPanel';
 import AlignTextLeft from '../icons/align-text-left.svg';
 import AlignTextCenter from '../icons/align-text-center.svg';
@@ -7,13 +8,11 @@ import AlignTextJustify from '../icons/align-text-justify.svg';
 import buttonStyles from '~/Styles/text-toolbar-button.scss';
 
 class TextAlignmentButton extends Component {
-  onClick = () =>
-    // A button can call `onOverrideContent` to replace the content
-    // of the toolbar. This can be useful for displaying sub
-    // menus or requesting additional information from the user.
-    this.props.onOverrideContent(TextAlignmentPanel);
+  onClick = () => this.props.onOverrideContent(TextAlignmentPanel);
 
-  preventBubblingUp = event => { event.preventDefault(); };
+  preventBubblingUp = event => {
+    event.preventDefault();
+  };
 
   getActiveIcon = () => {
     // if the button is rendered before the editor
@@ -26,8 +25,8 @@ class TextAlignmentButton extends Component {
     const contentBlock = editorState
       .getCurrentContent()
       .getBlockForKey(editorState.getSelection().getStartKey());
-    const { type, data: { textAlignment } } = contentBlock.toJS();
-    switch(textAlignment) {
+    const { data: { textAlignment } } = contentBlock.toJS();
+    switch (textAlignment) {
       case 'left':
         return <AlignTextLeft/>;
       case 'center':
@@ -43,8 +42,9 @@ class TextAlignmentButton extends Component {
 
   render() {
     return (
-      <div className={buttonStyles.buttonWrapper}
-           onMouseDown={this.preventBubblingUp}
+      <div
+        className={buttonStyles.buttonWrapper}
+        onMouseDown={this.preventBubblingUp}
       >
         <button onClick={this.onClick} className={buttonStyles.button}>
           {this.getActiveIcon()}
@@ -53,5 +53,11 @@ class TextAlignmentButton extends Component {
     );
   }
 }
+
+
+TextAlignmentButton.propTypes = {
+  getEditorState: PropTypes.func.isRequired,
+  onOverrideContent: PropTypes.func.isRequired,
+};
 
 export default TextAlignmentButton;

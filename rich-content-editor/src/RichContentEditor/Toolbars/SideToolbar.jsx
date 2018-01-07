@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
-import { Pubsub } from '~/Utils';
+import { simplePubsub } from '~/Utils';
 import AddPluginBlockSelect from './AddPluginBlockSelect';
 import toolbarStyles from '~/Styles/side-toolbar.scss';
 import buttonStyles from '~/Styles/toolbar-button.scss';
@@ -11,6 +12,13 @@ import 'draft-js-side-toolbar-plugin/lib/plugin.css';
 const toolbarOffset = 4;
 
 class SideToolbar extends Component {
+  static propTypes = {
+    pubsub: PropTypes.object.isRequired,
+    structure: PropTypes.array.isRequired,
+    offset: PropTypes.object,
+    theme: PropTypes.object
+  }
+
   state = {
     position: {
       transform: 'scale(0)',
@@ -46,7 +54,7 @@ class SideToolbar extends Component {
       const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
       const top = node.getBoundingClientRect().top;
       const parentTop = node.offsetParent.getBoundingClientRect().top;
-      const scrollY = window.scrollY == null ? window.pageYOffset : window.scrollY;
+      const scrollY = window.scrollY === null ? window.pageYOffset : window.scrollY;
       const { offset } = this.props;
       this.setState({
         position: {
@@ -82,13 +90,11 @@ class SideToolbar extends Component {
 const createSideToolbar = (config = {}) => {
   const defaultTheme = { buttonStyles, addPluginBlockSelectStyles, toolbarStyles };
 
-  const pubsub = Pubsub({ isVisible: false });
+  const pubsub = simplePubsub({ isVisible: false });
 
   const {
     theme = defaultTheme,
-    structure = [
-      DefaultBlockTypeSelect
-    ],
+    structure = [],
     offset = { x: 0, y: 0 },
   } = config;
 
@@ -104,7 +110,7 @@ const createSideToolbar = (config = {}) => {
       pubsub.set('getEditorState', getEditorState);
       pubsub.set('setEditorState', setEditorState);
     },
-    onChange: (editorState) => {
+    onChange: editorState => {
       pubsub.set('editorState', editorState);
       return editorState;
     },
@@ -115,7 +121,7 @@ const createSideToolbar = (config = {}) => {
 export default({ insertPluginButtons, offset }) => {
   return createSideToolbar({
     offset,
-    structure: [({ getEditorState, setEditorState, theme }) => (
+    structure: [({ getEditorState, setEditorState, theme }) => ( //eslint-disable-line react/prop-types
       <AddPluginBlockSelect
         getEditorState={getEditorState}
         setEditorState={setEditorState}
@@ -124,4 +130,4 @@ export default({ insertPluginButtons, offset }) => {
       />
     )]
   });
-}
+};

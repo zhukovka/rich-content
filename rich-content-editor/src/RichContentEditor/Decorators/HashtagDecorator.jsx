@@ -24,9 +24,9 @@ const findHashtagEntities = (contentBlock, callback) => {
   });
 
   tags.forEach(hashtag => callback(hashtag.indices[0], hashtag.indices[1]));
-}
+};
 
-const Hashtag = ({ children, decoratedText, createHref, target='_self', theme={} }) => {
+const Hashtag = ({ children, decoratedText, createHref, target = '_self', theme = {} }) => {
   const href = createHref ? createHref(decoratedText.slice(1)) : null;
   const Component = href ? 'a' : 'span';
   const className = classNames(

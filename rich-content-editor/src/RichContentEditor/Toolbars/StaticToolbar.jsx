@@ -10,4 +10,4 @@ export default({ insertPluginButtons }) => {
     theme: { buttonStyles, toolbarStyles },
     structure: buttons
   });
-}
+};

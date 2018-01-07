@@ -5,12 +5,18 @@ import classNames from 'classnames';
 
 export default ({ style, content }) => (
   class TextInlineStyleButton extends Component {
+    static propTypes = {
+      getEditorState: PropTypes.func.isRequired,
+      setEditorState: PropTypes.func.isRequired,
+      theme: PropTypes.object,
+    }
 
     toggleStyle = event => {
+      const { getEditorState, setEditorState } = this.props;
       event.preventDefault();
-      this.props.setEditorState(
+      setEditorState(
         RichUtils.toggleInlineStyle(
-          this.props.getEditorState(),
+          getEditorState(),
           style
         )
       );

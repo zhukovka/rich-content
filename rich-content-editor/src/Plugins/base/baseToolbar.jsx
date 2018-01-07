@@ -1,3 +1,4 @@
+/* eslint-disable react/no-find-dom-node */
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
@@ -25,13 +26,13 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
     constructor(props) {
       super(props);
       this.state = {
-        position: {transform: 'translate(-50%) scale(0)'},
+        position: { transform: 'translate(-50%) scale(0)' },
         componentData: {},
         componentState: {},
         overrideContent: undefined,
         extendContent: undefined,
       };
-    };
+    }
 
     componentDidMount() {
       pubsub.subscribe('visibleBlock', this.onVisibilityChanged);
@@ -53,12 +54,12 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
       pubsub.unsubscribe('componentSize', this.onComponentSizeChange);
     }
 
-    onComponentStateChanged = (contentState) => {
-      this.setState({contentState});
+    onComponentStateChanged = contentState => {
+      this.setState({ contentState });
     };
 
-    onComponentDataChanged = (componentData) => {
-      this.setState({componentData});
+    onComponentDataChanged = componentData => {
+      this.setState({ componentData });
     };
 
     setAlignment = alignment => {
@@ -66,12 +67,12 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
     }
 
     setAlignmentAndSize = (componentAlignment, componentSize) => {
-      pubsub.set({componentAlignment,componentSize});
+      pubsub.set({ componentAlignment, componentSize });
     }
 
     onComponentAlignmentChange = alignment => {
-      this.setState({alignment}, () => {
-        this.onVisibilityChanged(pubsub.get('visibleBlock'))
+      this.setState({ alignment }, () => {
+        this.onVisibilityChanged(pubsub.get('visibleBlock'));
       });
     }
 
@@ -80,7 +81,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
     }
 
     onComponentSizeChange = size => {
-      this.setState({size});
+      this.setState({ size });
     }
 
     deleteBlock = () => {
@@ -88,8 +89,8 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
       pubsub.get('deleteBlock')();
     }
 
-    onVisibilityChanged = (visibleBlock) => {
-      if(visibleBlock) {
+    onVisibilityChanged = visibleBlock => {
+      if (visibleBlock) {
         this.showToolbar();
       } else {
         this.hideToolbar();
@@ -131,26 +132,88 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
 
     renderButton = (button, key) => {
       const { alignment, size } = this.state;
-      const alignmentProps = {theme, alignment, setAlignment: this.setAlignment, key};
       switch (button.type) {
         case BUTTONS.SIZE_ORIGINAL_CENTER:
-          return <SizeOriginalCenterButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />;
+          return (
+            <SizeOriginalCenterButton
+              size={size}
+              alignment={alignment}
+              setAlignmentAndSize={this.setAlignmentAndSize}
+              theme={buttonStyles}
+              key={key}
+            />
+          );
         case BUTTONS.SIZE_SMALL_CENTER:
-          return <SizeSmallCenterButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />;
+          return (
+            <SizeSmallCenterButton
+              size={size}
+              alignment={alignment}
+              setAlignmentAndSize={this.setAlignmentAndSize}
+              theme={buttonStyles}
+              key={key}
+            />
+          );
         case BUTTONS.SIZE_SMALL_LEFT:
-          return <SizeSmallLeftButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />;
+          return (
+            <SizeSmallLeftButton
+              size={size}
+              alignment={alignment}
+              setAlignmentAndSize={this.setAlignmentAndSize}
+              theme={buttonStyles} key={key}
+            />
+          );
         case BUTTONS.SIZE_SMALL_RIGHT:
-          return <SizeSmallRightButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />;
+          return (
+            <SizeSmallRightButton
+              size={size} alignment={alignment}
+              setAlignmentAndSize={this.setAlignmentAndSize}
+              theme={buttonStyles}
+              key={key}
+            />
+          );
         case BUTTONS.SIZE_CONTENT:
-          return <SizeContentButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />;
+          return (
+            <SizeContentButton
+              size={size}
+              alignment={alignment}
+              setAlignmentAndSize={this.setAlignmentAndSize}
+              theme={buttonStyles}
+              key={key}
+            />
+          );
         case BUTTONS.SIZE_FULL_WIDTH:
-          return <SizeFulllWidthButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />;
+          return (
+            <SizeFulllWidthButton
+              size={size} alignment={alignment}
+              setAlignmentAndSize={this.setAlignmentAndSize}
+              theme={buttonStyles}
+              key={key}
+            />
+          );
         case BUTTONS.SEPARATOR:
-          return <Separator className={toolbarStyles.separator} key={key} />;
+          return (
+            <Separator
+              className={toolbarStyles.separator}
+              key={key}
+            />
+          );
         case BUTTONS.LINK:
-          return <BlockLinkButton className={toolbarStyles.separator} pubsub={pubsub} onExtendContent={this.onExtendContent} key={key} />;
+          return (
+            <BlockLinkButton
+              className={toolbarStyles.separator}
+              pubsub={pubsub}
+              onExtendContent={this.onExtendContent}
+              key={key}
+            />
+          );
         case BUTTONS.DELETE:
-          return <DeleteButton onClick={this.deleteBlock} theme={buttonStyles} key={key}  />;
+          return (
+            <DeleteButton
+              onClick={this.deleteBlock}
+              theme={buttonStyles}
+              key={key}
+            />
+          );
         default:
           return (
             <BaseToolbarButton
@@ -162,7 +225,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
               key={key}
               {...button}
             />
-          )
+          );
       }
     }
 
@@ -180,21 +243,21 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
       const extendProps = {
         theme: buttonStyles,
         onExtendContent: this.onExtendContent,
-      }
+      };
 
       return (
         <div style={this.state.position} className={containerClassNames}>
           <div className={buttonContainerClassnames}>
             {
-              OverrideContent
-              ? <OverrideContent {...overrideProps} />
-              : buttons.map((button, index) => this.renderButton(button, index))
+              OverrideContent ?
+                <OverrideContent {...overrideProps}/> :
+                buttons.map((button, index) => this.renderButton(button, index))
             }
           </div>
           {
             ExtendContent &&
             <div className={toolbarStyles.extend}>
-              <ExtendContent {...extendProps} />
+              <ExtendContent {...extendProps}/>
             </div>
           }
         </div>

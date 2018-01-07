@@ -7,14 +7,17 @@ export default ({ alignment, size, content }) => (
     static propTypes = {
       setAlignmentAndSize: PropTypes.func.isRequired,
       alignment: PropTypes.string,
+      size: PropTypes.string,
       theme: PropTypes.object,
     };
 
     isActive = () => (this.props.alignment === alignment && this.props.size === size);
 
-    handleClick = event => this.props.setAlignmentAndSize(alignment, size);
+    handleClick = () => this.props.setAlignmentAndSize(alignment, size);
 
-    preventBubblingUp = (event) => { event.preventDefault(); }
+    preventBubblingUp = event => {
+      event.preventDefault();
+    }
 
     render() {
       const { theme } = this.props;

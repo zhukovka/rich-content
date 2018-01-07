@@ -21,10 +21,6 @@ module.exports = {
           path.resolve(__dirname, 'src')
         ],
         loader: 'babel-loader',
-        options: {
-          presets: ['env', 'stage-0', 'react'],
-          plugins: ['transform-class-properties']
-        },
       },
       {
         test: /\.scss$/,
@@ -88,14 +84,11 @@ module.exports = {
       path.resolve(__dirname, 'src')
     ],
     extensions: ['.js', '.json', '.jsx', '.css'],
-    alias: {
-      '~': path.resolve(__dirname, 'src/'),
-    }
   },
   performance: {
     maxAssetSize: 200000,
     maxEntrypointSize: 400000,
-    assetFilter: function (assetFilename) {
+    assetFilter(assetFilename) {
       return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
     }
   },

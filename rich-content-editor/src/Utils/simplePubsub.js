@@ -1,6 +1,6 @@
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 
-const simplePubsub = (initialState) => {
+const simplePubsub = initialState => {
   let state = initialState || {};
   const listeners = {};
 
@@ -9,11 +9,11 @@ const simplePubsub = (initialState) => {
       throw ('Callback for key ' + key + ' is not a function');
     }
     listeners[key] = listeners[key] || [];
-    listeners[key].push(callback)
+    listeners[key].push(callback);
   };
 
   const unsubscribe = (key, callback) => {
-    listeners[key] = listeners[key].filter((listener) => listener !== callback)
+    listeners[key] = listeners[key].filter(listener => listener !== callback);
   };
 
   const update = (key, newData) => {
@@ -29,33 +29,38 @@ const simplePubsub = (initialState) => {
         [key]: item
       };
       if (listeners[key]) {
-        listeners[key].forEach((listener) => listener(state[key]))
+        listeners[key].forEach(listener => listener(state[key]));
       }
     };
 
-    const _setBatch = (updates) => {
+    const _setBatch = updates => {
       state = {
         ...state,
         ...updates
       };
-      Object.keys(updates).forEach((key) => {
+      Object.keys(updates).forEach(key => {
         if (listeners[key]) {
-          listeners[key].forEach((listener) => listener(state[key]))
+          listeners[key].forEach(listener => listener(state[key]));
         }
       });
     };
 
-    if (args.length == 1)
+    if (args.length === 1) {
       _setBatch(args[0]);
-    else if (args.length === 2)
+    } else if (args.length === 2) {
       _setSingle(args[0], args[1]);
-    else
-      console.error('pubsub set invalid args');
-  }
+    } else {
+      console.error('pubsub set invalid args'); // eslint-disable-line no-console
+    }
+  };
 
-  const get = (key) => state[key];
+  const get = key => state[key];
 
-  const store = { get, update, set }
+  const store = {
+    get,
+    update,
+    set
+  };
 
   return {
     subscribe,
@@ -64,7 +69,7 @@ const simplePubsub = (initialState) => {
     set,
     get,
     store,
-  }
+  };
 };
 
 export default simplePubsub;

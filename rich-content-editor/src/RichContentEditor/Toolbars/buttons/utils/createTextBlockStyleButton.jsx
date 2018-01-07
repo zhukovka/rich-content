@@ -5,12 +5,18 @@ import classNames from 'classnames';
 
 export default ({ blockType, content }) => (
   class TextBlockStyleButton extends Component {
+    static propTypes = {
+      getEditorState: PropTypes.func.isRequired,
+      setEditorState: PropTypes.func.isRequired,
+      theme: PropTypes.object,
+    }
 
     toggleStyle = event => {
+      const { getEditorState, setEditorState } = this.props;
       event.preventDefault();
-      this.props.setEditorState(
+      setEditorState(
         RichUtils.toggleBlockType(
-          this.props.getEditorState(),
+          getEditorState(),
           blockType
         )
       );
