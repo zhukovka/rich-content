@@ -6,7 +6,7 @@ import Styles from '~/Styles/global.scss';
 export default class BaseExternalModal extends Component {
   render = () => {
     const { element: Element, helpers, componentData, componentState, store, theme } = this.props;
-    const modalClasses = classNames(Styles.modalContainer, theme && theme.modalContainer);
+    const modalClasses = classNames(Styles.panelContainer, theme && theme.panelContainer);
     return (
       <div className={modalClasses}>
         <Element store={store} helpers={helpers} componentData={componentData} componentState={componentState} />

@@ -213,23 +213,23 @@ const InlineButtons = [
   // Edit - open a small dialog that has an option to add src for the iframe or code
   {
     keyName: 'edit',
-    type: BUTTONS.MODAL,
-    modalElement: EditModal,
+    type: BUTTONS.PANEL,
+    panelElement: EditModal,
     icon: EditIcon,
     onClick: pubsub => console.log('*** click edit *** '), //eslint-disable-line no-console, no-unused-vars,
   },
   { type: BUTTONS.SEPARATOR },
   {
     keyName: 'settings',
-    type: BUTTONS.MODAL,
-    modalElement: SettingsModal,
+    type: BUTTONS.PANEL,
+    panelElement: SettingsModal,
     icon: SettingsIcon,
     onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
   },
   {
     keyName: 'external_settings',
     type: BUTTONS.EXTERNAL_MODAL,
-    modalElement: ExternalSettingsModal,
+    panelElement: ExternalSettingsModal,
     icon: SettingsIcon,
     onClick: pubsub => console.log('*** click external settings *** '), //eslint-disable-line no-console, no-unused-vars,
   },

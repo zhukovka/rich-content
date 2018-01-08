@@ -108,8 +108,8 @@ class EditModal extends React.Component {
 const InlineButtons = [
   {
     keyName: 'edit',
-    type: BUTTONS.MODAL,
-    modalElement: EditModal,
+    type: BUTTONS.PANEL,
+    panelElement: EditModal,
     icon: EditIcon,
     onClick: pubsub => console.log('*** click edit *** '), //eslint-disable-line no-console, no-unused-vars
   },
@@ -122,8 +122,8 @@ const InlineButtons = [
   { type: BUTTONS.SEPARATOR },
   {
     keyName: 'settings',
-    type: BUTTONS.MODAL,
-    modalElement: SettingsModal,
+    type: BUTTONS.PANEL,
+    panelElement: SettingsModal,
     icon: SettingsIcon,
     onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
   },

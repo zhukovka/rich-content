@@ -13,7 +13,7 @@ import DeleteIcon from '../icons/trash.svg';
 export const BUTTONS = {
   FILES: 'file',
   TOGGLE: 'toggle',
-  MODAL: 'modal',
+  PANEL: 'panel',
   EXTERNAL_MODAL: 'external-modal',
   SEPARATOR: 'separator',
   SIZE_ORIGINAL_CENTER: 'size-original-center',
