@@ -17,8 +17,8 @@
     "watch": "webpack --watch --colors --progress",
     "release": "wnpm-release --no-shrinkwrap",
     "format": "prettier --list-different --write 'src/**/*.{js,jsx}'",
-    "prelint": "npm run format",
     "lint": "eslint 'src/**/*.{js,jsx}'",
+    "lint:fix": "npm run lint -- --fix",
     "pretest": "npm run lint",
     "test": "jest --verbose"
   },
@@ -67,6 +67,7 @@
     "eslint-config-wix": "^1.1.16",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-lodash": "^2.5.0",
+    "eslint-plugin-prettier": "^2.4.0",
     "eslint-plugin-react": "^7.5.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "jest": "^21.2.1",
