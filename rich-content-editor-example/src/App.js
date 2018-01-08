@@ -55,8 +55,8 @@ class App extends Component {
         setTimeout(() => updateEntity({data}), 1500);
       },
       openExternalModal: (data) => {
-        const {modalElement, ...elementProps} = data;
-        const ModalContent = decorateComponentWithProps(modalElement, elementProps)
+        const {panelElement, ...elementProps} = data;
+        const ModalContent = decorateComponentWithProps(panelElement, elementProps)
         this.setState({
           showModal: true,
           modalContent: <ModalContent />,
