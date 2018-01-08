@@ -11,15 +11,17 @@ const getDefault = () => ({
     alignment: 'center',
     size: 'content',
     showTitle: true,
-    showDescription: true
-  }
+    showDescription: true,
+  },
 });
 
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-const ImageLoader = ({ theme, type }) => ( //eslint-disable-line react/prop-types
+const ImageLoader = (
+  { theme, type } //eslint-disable-line react/prop-types
+) => (
   <div className={classNames(Styles.loaderOverlay, get(theme, 'loaderOverlay'))}>
-    <div className={classNames(Styles.loader, get(theme, 'loader'), { [Styles[type]]: type })}/>
+    <div className={classNames(Styles.loader, get(theme, 'loader'), { [Styles[type]]: type })} />
   </div>
 );
 
@@ -47,11 +49,12 @@ class ImageComponent extends React.Component {
       this.setState({ isLoading: false, files: null, dataUrl: null, error });
     } else {
       //this is async and sometimes called before the component is mounted, so just place it on the state
-      this.state = Object.assign(this.state, { //eslint-disable-line react/no-direct-mutation-state
+      //eslint-disable-next-line react/no-direct-mutation-state
+      this.state = Object.assign(this.state, {
         isLoading: false,
         files: null,
         dataUrl: null,
-        fileError: error
+        fileError: error,
       });
     }
     //mark the external state as not loading
@@ -65,11 +68,12 @@ class ImageComponent extends React.Component {
       this.setState({ isLoading: true, files: null, dataUrl: fileDataUrl });
     } else {
       //this is async and sometimes called before the component is mounted, so just place it on the state
-      this.state = Object.assign(this.state, { //eslint-disable-line react/no-direct-mutation-state
+      //eslint-disable-next-line react/no-direct-mutation-state
+      this.state = Object.assign(this.state, {
         isLoading: true,
         files: null,
         dataUrl: fileDataUrl,
-        fileError: null
+        fileError: null,
       });
     }
     const { helpers } = this.props;
@@ -108,7 +112,6 @@ class ImageComponent extends React.Component {
     }
 
     return state;
-
   };
 
   getLoadingParams = componentState => {
@@ -143,7 +146,6 @@ class ImageComponent extends React.Component {
       }
     }
 
-
     if (!imageUrl) {
       console.error(`image plugin '${block.getKey()}' mounted with invalid image source!`, item); //eslint-disable-line no-console
     }
@@ -155,41 +157,29 @@ class ImageComponent extends React.Component {
     if (!this.state.isLoading) {
       return null;
     }
-    return <ImageLoader/>;
+    return <ImageLoader />;
   }
 
   renderTitle(data, theme) {
     const config = data.config || {};
-    return (!!config.showTitle && <div className={theme.title}>{data.item.title || ''}</div>);
+    return !!config.showTitle && <div className={theme.title}>{data.item.title || ''}</div>;
   }
   renderDescription(data, theme) {
     const config = data.config || {};
-    return (!!config.showDescription && <div className={theme.description}>{data.item.description || ''}</div>);
+    return !!config.showDescription && <div className={theme.description}>{data.item.description || ''}</div>;
   }
 
   render() {
-    const {
-      componentData,
-      className,
-      onClick,
-      theme,
-    } = this.props;
+    const { componentData, className, onClick, theme } = this.props;
     const data = componentData || getDefault();
 
-    const itemClassName = classNames(
-      Styles.container,
-      className,
-      theme.container,
-    );
+    const itemClassName = classNames(Styles.container, className, theme.container);
     const imageClassName = classNames(Styles.image, theme.image);
     const imageSrc = this.getImageSrc(data.item);
     return (
       <div onClick={onClick} className={itemClassName}>
         <div>
-          <img
-            className={imageClassName}
-            src={imageSrc}
-          />
+          <img className={imageClassName} src={imageSrc} />
           {this.renderLoader()}
         </div>
         {this.renderTitle(data, theme)}
@@ -208,10 +198,7 @@ ImageComponent.propTypes = {
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
-  helpers: PropTypes.object.isRequired
+  helpers: PropTypes.object.isRequired,
 };
 
-export {
-  ImageComponent as Component,
-  getDefault
-};
+export { ImageComponent as Component, getDefault };

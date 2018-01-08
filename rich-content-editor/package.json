@@ -7,16 +7,19 @@
     "email": "jonathanb@wix.com"
   },
   "main": "dist/wix-rich-content-editor.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "clean": "rm -rf dist/",
     "start": "webpack-dev-server --open",
-    "build": "npm run clean && webpack --progress",
-    "watch": "npm run clean && webpack --watch --colors --progress",
+    "prebuild": "npm run clean",
+    "build": "webpack --progress",
+    "prewatch": "npm run clean",
+    "watch": "webpack --watch --colors --progress",
     "release": "wnpm-release --no-shrinkwrap",
-    "lint": "eslint \"src/**/*.{js,jsx}\"",
+    "format": "prettier --list-different --write 'src/**/*.{js,jsx}'",
+    "lint": "eslint 'src/**/*.{js,jsx}'",
+    "lint:fix": "npm run lint -- --fix",
+    "pretest": "npm run lint",
     "test": "jest --verbose"
   },
   "jest": {
@@ -64,11 +67,13 @@
     "eslint-config-wix": "^1.1.16",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-lodash": "^2.5.0",
+    "eslint-plugin-prettier": "^2.4.0",
     "eslint-plugin-react": "^7.5.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "jest": "^21.2.1",
     "loader-utils": "^1.1.0",
     "node-sass": "^4.5.3",
+    "prettier": "^1.9.2",
     "prop-types": "^15.5.10",
     "react": "15.5.4",
     "react-dom": "15.5.4",

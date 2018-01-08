@@ -4,10 +4,4 @@ import { PluginList } from '~/RichContentEditor/Plugins';
 import { DecoratorList } from '~/RichContentEditor/Decorators';
 import Modal from '~/Plugins/base/baseExternalModal';
 
-export {
-  EditorState,
-  Modal,
-  DecoratorList,
-  PluginList,
-  RichContentEditor,
-};
+export { EditorState, Modal, DecoratorList, PluginList, RichContentEditor };

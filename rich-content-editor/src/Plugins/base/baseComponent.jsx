@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import camelCase from 'lodash/camelcase';
-import upperFirst from 'lodash/upperfirst';
-import isUndefined from 'lodash/isundefined';
+import camelCase from 'lodash/camelCase';
+import upperFirst from 'lodash/upperFirst';
+import isUndefined from 'lodash/isUndefined';
 import merge from 'lodash/merge';
 import classNames from 'classnames';
 import createHocName from './createHocName';
@@ -13,7 +13,7 @@ import Styles from '~/Styles/global.scss';
 const DEFAULTS = {
   alignment: null,
   size: 'content',
-  url: undefined
+  url: undefined,
 };
 
 const alignmentClassName = alignment => {
@@ -55,7 +55,7 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
       return {
         componentData: getData() || { config: DEFAULTS },
         readOnly: !!readOnly,
-        componentState: initialState || {}
+        componentState: initialState || {},
       };
     }
 
@@ -86,7 +86,7 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
     isMe = () => {
       const { block } = this.props;
       const updatedVisibleBlock = pubsub.get('visibleBlock');
-      return (updatedVisibleBlock === block.getKey());
+      return updatedVisibleBlock === block.getKey();
     };
 
     onComponentDataChange = componentData => {
@@ -119,7 +119,7 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
       if (urlData && this.isMeAndIdle) {
         this.updateComponentData({ config: { url: { ...urlData } } });
       }
-    }
+    };
 
     updateComponent() {
       const { block, blockProps } = this.props;
@@ -140,7 +140,7 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
       this.setState({ componentData: newComponentData });
       const { setData } = blockProps;
       setData(newComponentData);
-    }
+    };
 
     getBoundingClientRectAsObject = element => {
       const { top, right, bottom, left, width, height, x, y } = element.getBoundingClientRect();
@@ -166,7 +166,6 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
         batchUpdates.deleteBlock = this.props.blockProps.deleteBlock;
         batchUpdates.visibleBlock = visibleBlock;
         pubsub.set(batchUpdates);
-
       } else {
         //maybe just the position has changed
         const blockNode = findDOMNode(this);
@@ -207,35 +206,34 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
         }
       );
 
-      const overlayClassNames = classNames(
-        Styles.overlay,
-        {
-          [Styles.hidden]: readOnly
-        }
-      );
+      const overlayClassNames = classNames(Styles.overlay, {
+        [Styles.hidden]: readOnly,
+      });
 
-      const component = (<PluginComponent
-        {...this.props}
-        store={pubsub.store}
-        theme={theme}
-        componentData={this.state.componentData}
-        componentState={this.state.componentState}
-        helpers={helpers}
-      />);
+      const component = (
+        <PluginComponent
+          {...this.props}
+          store={pubsub.store}
+          theme={theme}
+          componentData={this.state.componentData}
+          componentState={this.state.componentState}
+          helpers={helpers}
+        />
+      );
 
       return (
         <div style={{ position: 'relative' }} className={ContainerClassNames}>
-          {
-            !isUndefined(url) ?
-              <a href={url.url} target={url.targetBlank ? '_blank' : '_self'}>
-                {component}
-              </a> :
-              component
-          }
-          <div onClick={onClick} className={overlayClassNames}/>
+          {!isUndefined(url) ? (
+            <a href={url.url} target={url.targetBlank ? '_blank' : '_self'}>
+              {component}
+            </a>
+          ) : (
+            component
+          )}
+          <div onClick={onClick} className={overlayClassNames} />
         </div>
       );
-    }
+    };
   }
 
   WrappedComponent.propTypes = {
@@ -248,7 +246,5 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
 
   return WrappedComponent;
 };
-
-
 
 export default createBaseComponent;

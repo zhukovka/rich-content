@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default ({ content }) => (
+export default ({ content }) =>
   class BlockButton extends Component {
     static propTypes = {
       onClick: PropTypes.func.isRequired,
@@ -11,27 +11,18 @@ export default ({ content }) => (
     handleClick = () => {
       const { onClick } = this.props;
       onClick && onClick();
-    }
+    };
 
     preventBubblingUp = event => {
       event.preventDefault();
-    }
+    };
 
     render() {
       const { theme } = this.props;
       return (
-        <div
-          className={theme.buttonWrapper}
-          onMouseDown={this.preventBubblingUp}
-        >
-          <button
-            className={theme.button}
-            onClick={this.handleClick}
-            type="button"
-            children={content}
-          />
+        <div className={theme.buttonWrapper} onMouseDown={this.preventBubblingUp}>
+          <button className={theme.button} onClick={this.handleClick} type="button" children={content} />
         </div>
       );
     }
-  }
-);
+  };

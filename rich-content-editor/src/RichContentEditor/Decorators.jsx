@@ -2,14 +2,11 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 import * as LinkDecorator from './Decorators/LinkDecorator';
 import * as HashtagDecorator from './Decorators/HashtagDecorator';
 
-const DecoratorList = [
-  LinkDecorator.Name,
-  HashtagDecorator.Name
-];
+const DecoratorList = [LinkDecorator.Name, HashtagDecorator.Name];
 
 const defaultDecorators = {
   list: DecoratorList,
-  config: {}
+  config: {},
 };
 
 const createDecorators = ({ list, config } = defaultDecorators) => {
@@ -28,13 +25,13 @@ const createDecorators = ({ list, config } = defaultDecorators) => {
           component: config.Hashtag ? decorateComponentWithProps(HashtagDecorator.Component, { ...config.Hashtag }) : HashtagDecorator.Component,
         });
         break;
-      default: console.warn(`Failed to load uknown decorator "${decoratorName}"`); //eslint-disable-line no-console
+      default:
+        console.warn(`Failed to load uknown decorator "${decoratorName}"`); //eslint-disable-line no-console
         break;
     }
   });
   return activeDecorators;
 };
-
 
 export default createDecorators;
 export { DecoratorList, HashtagDecorator };

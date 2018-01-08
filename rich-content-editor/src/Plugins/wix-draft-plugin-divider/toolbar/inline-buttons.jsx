@@ -10,7 +10,7 @@ class SettingsModal extends React.Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -38,23 +38,21 @@ class SettingsModal extends React.Component {
       <div>
         <div>
           <label htmlFor="width">Width</label>
-          <input
-            type="range" min="10" max="100" value={this.state.width} id="width"
-            step="1" onChange={this.changeWidth}
-          />
-          <output htmlFor="width" id="widthVal">{this.state.width}%</output>
+          <input type="range" min="10" max="100" value={this.state.width} id="width" step="1" onChange={this.changeWidth} />
+          <output htmlFor="width" id="widthVal">
+            {this.state.width}%
+          </output>
         </div>
       </div>
     );
   };
 }
 
-
 class EditModal extends React.Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -79,42 +77,41 @@ class EditModal extends React.Component {
     });
   };
 
-render = () => {
-  return (
-    <div style={{ width: 90 + 'px' }}>
-      <div className={Styles.tabs}>
-        <div className={Styles.tab}>
-          <div>
-            <input type="radio" name="type" id="divider1" value="divider1" checked={this.state.type === 'divider1'} onChange={this.changeType}/>
-            <label htmlFor="divider1">Divider 1</label>
-          </div>
-          <div>
-            <input type="radio" name="type" id="divider2" value="divider2" checked={this.state.type === 'divider2'} onChange={this.changeType}/>
-            <label htmlFor="divider2">Divider 2</label>
-          </div>
-          <div>
-            <input type="radio" name="type" id="divider3" value="divider3" checked={this.state.type === 'divider3'} onChange={this.changeType}/>
-            <label htmlFor="divider3">Divider 3</label>
-          </div>
-          <div>
-            <input type="radio" name="type" id="divider4" value="divider4" checked={this.state.type === 'divider4'} onChange={this.changeType}/>
-            <label htmlFor="divider4">Divider 4</label>
+  render = () => {
+    return (
+      <div style={{ width: 90 + 'px' }}>
+        <div className={Styles.tabs}>
+          <div className={Styles.tab}>
+            <div>
+              <input type="radio" name="type" id="divider1" value="divider1" checked={this.state.type === 'divider1'} onChange={this.changeType} />
+              <label htmlFor="divider1">Divider 1</label>
+            </div>
+            <div>
+              <input type="radio" name="type" id="divider2" value="divider2" checked={this.state.type === 'divider2'} onChange={this.changeType} />
+              <label htmlFor="divider2">Divider 2</label>
+            </div>
+            <div>
+              <input type="radio" name="type" id="divider3" value="divider3" checked={this.state.type === 'divider3'} onChange={this.changeType} />
+              <label htmlFor="divider3">Divider 3</label>
+            </div>
+            <div>
+              <input type="radio" name="type" id="divider4" value="divider4" checked={this.state.type === 'divider4'} onChange={this.changeType} />
+              <label htmlFor="divider4">Divider 4</label>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 }
-
 
 const InlineButtons = [
   {
     keyName: 'edit',
-    type: BUTTONS.MODAL,
-    modalElement: EditModal,
+    type: BUTTONS.PANEL,
+    panelElement: EditModal,
     icon: EditIcon,
-    onClick: pubsub => console.log('*** click edit *** ') //eslint-disable-line no-console, no-unused-vars
+    onClick: pubsub => console.log('*** click edit *** '), //eslint-disable-line no-console, no-unused-vars
   },
   { type: BUTTONS.SEPARATOR },
   { type: BUTTONS.SIZE_SMALL_LEFT },
@@ -125,10 +122,10 @@ const InlineButtons = [
   { type: BUTTONS.SEPARATOR },
   {
     keyName: 'settings',
-    type: BUTTONS.MODAL,
-    modalElement: SettingsModal,
+    type: BUTTONS.PANEL,
+    panelElement: SettingsModal,
     icon: SettingsIcon,
-    onClick: pubsub => console.log('*** click settings *** ') //eslint-disable-line no-console, no-unused-vars,
+    onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
   },
   { type: BUTTONS.LINK },
   { type: BUTTONS.DELETE },

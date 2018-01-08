@@ -10,7 +10,6 @@ import GridLargeIconActive from '../icons/toolbar/layout/icon-grid-large-active.
 import { BUTTONS } from '~/Plugins/base/buttons';
 
 class LayoutModal extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
@@ -22,7 +21,7 @@ class LayoutModal extends React.Component {
 
   stateFromProps = props => {
     return {
-      layout: (props.componentData.config && props.componentData.config.layout) || 'small'
+      layout: (props.componentData.config && props.componentData.config.layout) || 'small',
     };
   };
 
@@ -31,20 +30,12 @@ class LayoutModal extends React.Component {
     this.props.store.set('componentData', componentData);
   };
 
-
-
   render = () => {
     return (
       <div>
-        <div onClick={() => this.changeLayout('small')}>
-          {this.state.layout === 'small' ? <GridSmallIconActive/> : <GridSmallIcon/>}
-        </div>
-        <div onClick={() => this.changeLayout('medium')}>
-          {this.state.layout === 'medium' ? <GridMediumIconActive/> : <GridMediumIcon/>}
-        </div>
-        <div onClick={() => this.changeLayout('large')}>
-          {this.state.layout === 'large' ? <GridLargeIconActive/> : <GridLargeIcon/>}
-        </div>
+        <div onClick={() => this.changeLayout('small')}>{this.state.layout === 'small' ? <GridSmallIconActive /> : <GridSmallIcon />}</div>
+        <div onClick={() => this.changeLayout('medium')}>{this.state.layout === 'medium' ? <GridMediumIconActive /> : <GridMediumIcon />}</div>
+        <div onClick={() => this.changeLayout('large')}>{this.state.layout === 'large' ? <GridLargeIconActive /> : <GridLargeIcon />}</div>
       </div>
     );
   };
@@ -58,7 +49,6 @@ LayoutModal.propTypes = {
 };
 
 class SettingsModal extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
@@ -70,7 +60,7 @@ class SettingsModal extends React.Component {
 
   stateFromProps = props => {
     return {
-      spacing: (props.componentData.config && props.componentData.config.spacing) || 0
+      spacing: (props.componentData.config && props.componentData.config.spacing) || 0,
     };
   };
 
@@ -84,11 +74,10 @@ class SettingsModal extends React.Component {
     return (
       <div>
         <label htmlFor="spacing">Spacing</label>
-        <input
-          type="range" min="0" max="100" value={this.state.spacing} id="spacing"
-          step="1" onChange={this.changeSpacing}
-        />
-        <output htmlFor="spacing" id="spacingVal">{this.state.spacing}px</output>
+        <input type="range" min="0" max="100" value={this.state.spacing} id="spacing" step="1" onChange={this.changeSpacing} />
+        <output htmlFor="spacing" id="spacingVal">
+          {this.state.spacing}px
+        </output>
       </div>
     );
   };

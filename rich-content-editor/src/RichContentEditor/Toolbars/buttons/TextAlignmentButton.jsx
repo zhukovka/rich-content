@@ -22,30 +22,25 @@ class TextAlignmentButton extends Component {
 
     const editorState = this.props.getEditorState();
 
-    const contentBlock = editorState
-      .getCurrentContent()
-      .getBlockForKey(editorState.getSelection().getStartKey());
+    const contentBlock = editorState.getCurrentContent().getBlockForKey(editorState.getSelection().getStartKey());
     const { data: { textAlignment } } = contentBlock.toJS();
     switch (textAlignment) {
       case 'left':
-        return <AlignTextLeft/>;
+        return <AlignTextLeft />;
       case 'center':
-        return <AlignTextCenter/>;
+        return <AlignTextCenter />;
       case 'right':
-        return <AlignTextRight/>;
+        return <AlignTextRight />;
       case 'justify':
-        return <AlignTextJustify/>;
+        return <AlignTextJustify />;
       default:
-        return <AlignTextLeft/>;
+        return <AlignTextLeft />;
     }
   };
 
   render() {
     return (
-      <div
-        className={buttonStyles.buttonWrapper}
-        onMouseDown={this.preventBubblingUp}
-      >
+      <div className={buttonStyles.buttonWrapper} onMouseDown={this.preventBubblingUp}>
         <button onClick={this.onClick} className={buttonStyles.button}>
           {this.getActiveIcon()}
         </button>
@@ -53,7 +48,6 @@ class TextAlignmentButton extends Component {
     );
   }
 }
-
 
 TextAlignmentButton.propTypes = {
   getEditorState: PropTypes.func.isRequired,

@@ -12,14 +12,7 @@ import { createImagePlugin, IMAGE_TYPE } from '~/Plugins/wix-draft-plugin-image'
 import { createVideoPlugin, VIDEO_TYPE } from '~/Plugins/wix-draft-plugin-video';
 import linkifyTheme from '~/Styles/text-linkify.scss';
 
-
-const PluginList = [
-  DIVIDER_TYPE,
-  GALLERY_TYPE,
-  HTML_TYPE,
-  IMAGE_TYPE,
-  VIDEO_TYPE
-];
+const PluginList = [DIVIDER_TYPE, GALLERY_TYPE, HTML_TYPE, IMAGE_TYPE, VIDEO_TYPE];
 
 const toolbars = (wixPlugins, sideToolbarOffset) => {
   const insertPluginButtons = [];
@@ -39,17 +32,23 @@ const activePlugins = (requestedPlugins = PluginList, config) => {
   const activePlugins = [];
   requestedPlugins.forEach(pluginType => {
     switch (pluginType) {
-      case DIVIDER_TYPE: activePlugins.push(createDividerPlugin(config));
+      case DIVIDER_TYPE:
+        activePlugins.push(createDividerPlugin(config));
         break;
-      case GALLERY_TYPE: activePlugins.push(createGalleryPlugin(config));
+      case GALLERY_TYPE:
+        activePlugins.push(createGalleryPlugin(config));
         break;
-      case HTML_TYPE: activePlugins.push(createHtmlPlugin(config));
+      case HTML_TYPE:
+        activePlugins.push(createHtmlPlugin(config));
         break;
-      case IMAGE_TYPE: activePlugins.push(createImagePlugin(config));
+      case IMAGE_TYPE:
+        activePlugins.push(createImagePlugin(config));
         break;
-      case VIDEO_TYPE: activePlugins.push(createVideoPlugin(config));
+      case VIDEO_TYPE:
+        activePlugins.push(createVideoPlugin(config));
         break;
-      default: console.warn(`Failed to load uknown plugin "${pluginType}"`); //eslint-disable-line no-console
+      default:
+        console.warn(`Failed to load uknown plugin "${pluginType}"`); //eslint-disable-line no-console
         break;
     }
   });
@@ -57,32 +56,17 @@ const activePlugins = (requestedPlugins = PluginList, config) => {
 };
 
 const createPlugins = ({ editorProps }) => {
-  const {
-    helpers,
-    isMobile,
-    plugins,
-    sideToolbarOffset,
-    textButtons
-  } = editorProps;
+  const { helpers, isMobile, plugins, sideToolbarOffset, textButtons } = editorProps;
   const textToolbar = createTextToolbar({ buttons: textButtons });
   const linkifyPlugin = createLinkifyPlugin({ theme: linkifyTheme });
   const focusPlugin = createFocusPlugin();
   const dndPlugin = createBlockDndPlugin();
 
-  const wixPluginsDecorators = composeDecorators(
-    focusPlugin.decorator,
-    dndPlugin.decorator,
-  );
+  const wixPluginsDecorators = composeDecorators(focusPlugin.decorator, dndPlugin.decorator);
 
   const wixPlugins = activePlugins(plugins, { decorator: wixPluginsDecorators, helpers });
   const { staticToolbarPlugin, sideToolbarPlugin } = toolbars(wixPlugins, sideToolbarOffset);
-  const draftPlugins = [
-    sideToolbarPlugin,
-    textToolbar,
-    linkifyPlugin,
-    focusPlugin,
-    dndPlugin,
-  ];
+  const draftPlugins = [sideToolbarPlugin, textToolbar, linkifyPlugin, focusPlugin, dndPlugin];
 
   if (!isMobile) {
     draftPlugins.unshift(staticToolbarPlugin);

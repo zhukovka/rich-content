@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { EditorState, convertFromRaw } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import isUndefined from 'lodash/isundefined';
+import isUndefined from 'lodash/isUndefined';
 import createPlugins from './Plugins';
 import createDecorators from './Decorators';
 import Styles from '~/Styles/rich-content-editor.scss';
 import 'draft-js/dist/Draft.css';
 
 export default class RichContentEditor extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -37,11 +36,15 @@ export default class RichContentEditor extends Component {
     const getEditorState = () => this.state.editorState;
     const setEditorState = editorState => this.setState({ editorState });
     const editorProps = this.props;
-    this.plugins = createPlugins({ getEditorState, setEditorState, editorProps });
+    this.plugins = createPlugins({
+      getEditorState,
+      setEditorState,
+      editorProps,
+    });
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!isUndefined(nextProps.readOnly) && (this.props.readOnly !== nextProps.readOnly)) {
+    if (!isUndefined(nextProps.readOnly) && this.props.readOnly !== nextProps.readOnly) {
       this.setState({ readOnly: nextProps.readOnly });
     }
     if (this.props.editorState !== nextProps.editorState) {
@@ -96,14 +99,15 @@ export default class RichContentEditor extends Component {
 
   focus = () => this.editor.focus();
 
-  setEditor = ref => this.editor = ref;
+  setEditor = ref => (this.editor = ref);
 
   renderToolbars = () => {
     if (!this.state.readOnly) {
-      const toolbars = this.plugins.map((plugin, index) => { //eslint-disable-line array-callback-return
+      //eslint-disable-next-line array-callback-return
+      const toolbars = this.plugins.map((plugin, index) => {
         const Toolbar = plugin.Toolbar || plugin.InlineToolbar || plugin.SideToolbar;
         if (Toolbar) {
-          return (<Toolbar key={`k${index}`}/>);
+          return <Toolbar key={`k${index}`} />;
         }
       });
       return toolbars;
@@ -113,23 +117,25 @@ export default class RichContentEditor extends Component {
   renderEditor = () => {
     const { helpers, platform } = this.props;
     const { editorState, readOnly } = this.state;
-    return (<Editor
-      ref={this.setEditor}
-      editorState={editorState}
-      onChange={this.updateEditorState}
-      plugins={this.plugins}
-      decorators={this.decorators}
-      blockStyleFn={this.blockStyleFn}
-      readOnly={!!readOnly}
-      isMobile={platform}
-      helpers={helpers}
-      spellCheck
-    />);
+    return (
+      <Editor
+        ref={this.setEditor}
+        editorState={editorState}
+        onChange={this.updateEditorState}
+        plugins={this.plugins}
+        decorators={this.decorators}
+        blockStyleFn={this.blockStyleFn}
+        readOnly={!!readOnly}
+        isMobile={platform}
+        helpers={helpers}
+        spellCheck
+      />
+    );
   };
 
   render() {
     const wrapperClassName = classNames(Styles.wrapper, {
-      [Styles.desktop]: !this.props.platform || this.props.platform === 'desktop'
+      [Styles.desktop]: !this.props.platform || this.props.platform === 'desktop',
     });
     return (
       <div className={wrapperClassName}>

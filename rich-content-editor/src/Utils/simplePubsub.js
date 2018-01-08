@@ -6,7 +6,7 @@ const simplePubsub = initialState => {
 
   const subscribe = (key, callback) => {
     if (typeof callback !== 'function') {
-      throw ('Callback for key ' + key + ' is not a function');
+      throw 'Callback for key ' + key + ' is not a function';
     }
     listeners[key] = listeners[key] || [];
     listeners[key].push(callback);
@@ -26,7 +26,7 @@ const simplePubsub = initialState => {
     const _setSingle = (key, item) => {
       state = {
         ...state,
-        [key]: item
+        [key]: item,
       };
       if (listeners[key]) {
         listeners[key].forEach(listener => listener(state[key]));
@@ -36,7 +36,7 @@ const simplePubsub = initialState => {
     const _setBatch = updates => {
       state = {
         ...state,
-        ...updates
+        ...updates,
       };
       Object.keys(updates).forEach(key => {
         if (listeners[key]) {
@@ -59,7 +59,7 @@ const simplePubsub = initialState => {
   const store = {
     get,
     update,
-    set
+    set,
   };
 
   return {

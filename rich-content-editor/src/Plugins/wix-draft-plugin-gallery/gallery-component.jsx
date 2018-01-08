@@ -10,31 +10,32 @@ const DEFAULTS = {
         width: 1920,
       },
       itemId: '8b72558253b2502b401bb46e5599f22a',
-      url: '8bb438_1b73a6b067b24175bd087e86613bd00c.jpg'
-    }, {
+      url: '8bb438_1b73a6b067b24175bd087e86613bd00c.jpg',
+    },
+    {
       metadata: {
         height: 5600,
-        width: 3737
+        width: 3737,
       },
       itemId: '2d3b675ea857dc41158bad3b28300824',
-      url: '8bb438_78ff5e32500d48cdaa22a3f446d68216.jpg'
-    }, {
+      url: '8bb438_78ff5e32500d48cdaa22a3f446d68216.jpg',
+    },
+    {
       metadata: {
         height: 3737,
-        width: 5600
+        width: 5600,
       },
       itemId: '860df034014674abd7a2e73abe0b851b',
-      url: '8bb438_ff062a651e174cf5926fe5c088be1099.jpg'
-    }
+      url: '8bb438_ff062a651e174cf5926fe5c088be1099.jpg',
+    },
   ],
   config: {
     layout: 'small',
     spacing: 0,
-  }
+  },
 };
 
 class GalleryComponent extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
@@ -60,10 +61,7 @@ class GalleryComponent extends React.Component {
   render() {
     const { items } = this.state;
 
-    return (<ProGallery
-      items={items}
-      galleryDataSrc={'manuallySetImages'}
-    />);
+    return <ProGallery items={items} galleryDataSrc={'manuallySetImages'} />;
   }
 }
 
@@ -77,7 +75,4 @@ GalleryComponent.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export {
-  GalleryComponent as Component,
-  DEFAULTS
-};
+export { GalleryComponent as Component, DEFAULTS };

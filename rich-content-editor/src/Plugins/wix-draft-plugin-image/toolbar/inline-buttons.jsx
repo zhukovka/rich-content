@@ -8,7 +8,6 @@ import TextOnImageIconActive from '../icons/toolbar/layout/icon-text-on-image-la
 import { BUTTONS } from '~/Plugins/base/buttons';
 
 class LayoutModal extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
@@ -20,7 +19,7 @@ class LayoutModal extends React.Component {
 
   stateFromProps = props => {
     return {
-      layout: (props.componentData.config && props.componentData.config.layout) || 'classic'
+      layout: (props.componentData.config && props.componentData.config.layout) || 'classic',
     };
   };
 
@@ -33,11 +32,10 @@ class LayoutModal extends React.Component {
     return (
       <div>
         <div onClick={() => this.changeLayout('classic')}>
-          {this.state.layout === 'classic' ?
-            <ClassicLayoutIconActive/> : <ClassicLayoutIcon/>}
+          {this.state.layout === 'classic' ? <ClassicLayoutIconActive /> : <ClassicLayoutIcon />}
         </div>
         <div onClick={() => this.changeLayout('textOnImage')}>
-          {this.state.layout === 'textOnImage' ? <TextOnImageIconActive/> : <TextOnImageIcon/>}
+          {this.state.layout === 'textOnImage' ? <TextOnImageIconActive /> : <TextOnImageIcon />}
         </div>
       </div>
     );
@@ -52,7 +50,6 @@ LayoutModal.propTypes = {
 };
 
 class SettingsModal extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
@@ -80,18 +77,26 @@ class SettingsModal extends React.Component {
         <div>
           <label htmlFor="showTitle">Display title</label>
           <input
-            type="checkbox" checked={this.state.showTitle} id="showTitle"
+            type="checkbox"
+            checked={this.state.showTitle}
+            id="showTitle"
             onChange={event => this.changeConfig('showTitle', event.target.checked)}
           />
-          <output htmlFor="showTitle" id="showTitleVal">{this.state.showTitle}</output>
+          <output htmlFor="showTitle" id="showTitleVal">
+            {this.state.showTitle}
+          </output>
         </div>
         <div>
           <label htmlFor="showDescription">Display description</label>
           <input
-            type="checkbox" checked={this.state.showDescription} id="showDescription"
+            type="checkbox"
+            checked={this.state.showDescription}
+            id="showDescription"
             onChange={event => this.changeConfig('showDescription', event.target.checked)}
           />
-          <output htmlFor="showDescription" id="showDescriptionVal">{this.state.showDescription}</output>
+          <output htmlFor="showDescription" id="showDescriptionVal">
+            {this.state.showDescription}
+          </output>
         </div>
       </div>
     );
@@ -105,7 +110,6 @@ SettingsModal.propTypes = {
   componentState: PropTypes.object.isRequired,
 };
 
-
 const InlineButtons = [
   { type: BUTTONS.SIZE_ORIGINAL_CENTER },
   { type: BUTTONS.SIZE_SMALL_CENTER },
@@ -118,7 +122,7 @@ const InlineButtons = [
   {
     keyName: 'replace',
     type: BUTTONS.FILES,
-    icon: MediaReplaceIcon
+    icon: MediaReplaceIcon,
   },
   { type: BUTTONS.LINK },
   { type: BUTTONS.DELETE },

@@ -4,7 +4,7 @@ import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { BUTTONS } from './buttons';
-import Modal from './baseModal';
+import Panel from './basePanel';
 import Styles from '~/Styles/plugin-toolbar-button.scss';
 
 class BaseToolbarButton extends React.Component {
@@ -28,12 +28,12 @@ class BaseToolbarButton extends React.Component {
     this.resetForm();
   };
 
-  setForm = form => this.form = form;
+  setForm = form => (this.form = form);
 
   resetForm = () => this.form && this.form.reset();
 
   getBoundingRectForModalButton = isActive => {
-    if (this.props.type === BUTTONS.MODAL && isActive) {
+    if (this.props.type === BUTTONS.PANEL && isActive) {
       const blockNode = findDOMNode(this);
       return blockNode.getBoundingClientRect();
     } else {
@@ -46,7 +46,7 @@ class BaseToolbarButton extends React.Component {
     const { componentState, keyName, pubsub, onClick } = this.props;
     const activeButton = componentState.activeButton || { keyName, isActive: false };
     const isToggleButton = !(this.props.type === BUTTONS.EXTERNAL_MODAL || this.props.type === BUTTONS.FILES);
-    const isActive = !isToggleButton ? (activeButton.keyName === keyName) : !(activeButton.keyName === keyName && activeButton.isActive);
+    const isActive = !isToggleButton ? activeButton.keyName === keyName : !(activeButton.keyName === keyName && activeButton.isActive);
     componentState.activeButton = { ...activeButton, keyName, isActive, boundingRect: this.getBoundingRectForModalButton(isActive) };
     pubsub.set('componentState', componentState);
 
@@ -54,13 +54,13 @@ class BaseToolbarButton extends React.Component {
       const helpers = this.props.helpers;
       if (helpers && helpers.openExternalModal) {
         //console.log('Opening external modal');
-        const modalElement = this.props.modalElement;
+        const panelElement = this.props.panelElement;
         const componentData = this.props.componentData;
         const store = pubsub.store;
         const keyName = BUTTONS.EXTERNAL_MODAL;
         const theme = Styles;
 
-        helpers.openExternalModal({ modalElement, componentData, componentState, store, keyName, helpers, theme });
+        helpers.openExternalModal({ panelElement, componentData, componentState, store, keyName, helpers, theme });
       } else {
         //console.warn('Open external helper function is not defined for toolbar button with keyName ' + keyName);
       }
@@ -76,50 +76,34 @@ class BaseToolbarButton extends React.Component {
     } else if (this.state.isActive) {
       this.setState({ isActive: false });
     }
-  }
+  };
 
   getIcon = () => {
     const ActiveIcon = this.props.iconActive || this.props.icon;
     const Icon = this.props.icon;
-    return this.state.isActive ? <ActiveIcon/> : <Icon/>;
+    return this.state.isActive ? <ActiveIcon /> : <Icon />;
   };
 
   renderToggleButton = (buttonWrapperClassNames, buttonClassNames) => {
     return (
-      <div
-        className={buttonWrapperClassNames}
-        onMouseDown={this.preventBubblingUp}
-      >
-        <button
-          className={buttonClassNames}
-          type="button"
-          onMouseDown={this.handleClick}
-          children={this.props.children || [this.getIcon()]}
-        >
+      <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
+        <button className={buttonClassNames} type="button" onMouseDown={this.handleClick} children={this.props.children || [this.getIcon()]}>
           {this.getIcon()}
         </button>
       </div>
     );
   };
 
-  renderModalButton = (buttonWrapperClassNames, buttonClassNames) => {
+  renderPanelButton = (buttonWrapperClassNames, buttonClassNames) => {
     return (
       <div>
-        <div
-          className={buttonWrapperClassNames}
-          onMouseDown={this.preventBubblingUp}
-        >
-          <button
-            className={buttonClassNames}
-            type="button"
-            onMouseDown={this.handleClick}
-            children={this.props.children || [this.getIcon()]}
-          >
+        <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
+          <button className={buttonClassNames} type="button" onMouseDown={this.handleClick} children={this.props.children || [this.getIcon()]}>
             {this.getIcon()}
           </button>
         </div>
-        <Modal
-          element={this.props.modalElement}
+        <Panel
+          element={this.props.panelElement}
           theme={this.props.theme}
           keyName={this.props.keyName}
           store={this.props.pubsub.store}
@@ -135,20 +119,11 @@ class BaseToolbarButton extends React.Component {
     const fileButtonWrapperClassNames = classNames(Styles.fileButtonWrapper, this.props.theme.fileButtonWrapper);
     return (
       <div className={fileButtonWrapperClassNames}>
-        <button
-          type="button"
-          children={this.props.children}
-        >
+        <button type="button" children={this.props.children}>
           {this.getIcon()}
         </button>
         <form ref={this.setForm}>
-          <input
-            name="file"
-            type="file"
-            onChange={this.handleFileChange}
-            accept="image/*"
-            tabIndex="-1"
-          />
+          <input name="file" type="file" onChange={this.handleFileChange} accept="image/*" tabIndex="-1" />
         </form>
       </div>
     );
@@ -170,21 +145,21 @@ class BaseToolbarButton extends React.Component {
       case BUTTONS.FILES:
         toolbarButton = this.renderFilesButton();
         break;
-      case BUTTONS.MODAL:
-        toolbarButton = this.renderModalButton(buttonWrapperClassNames, buttonClassNames);
+      case BUTTONS.PANEL:
+        toolbarButton = this.renderPanelButton(buttonWrapperClassNames, buttonClassNames);
         break;
       default:
         toolbarButton = this.renderToggleButton(buttonWrapperClassNames, buttonClassNames);
         break;
     }
     return toolbarButton;
-  }
+  };
 }
 
 BaseToolbarButton.propTypes = {
   type: PropTypes.string,
   keyName: PropTypes.string.isRequired,
-  modalElement: PropTypes.func,
+  panelElement: PropTypes.func,
   theme: PropTypes.object,
   pubsub: PropTypes.object.isRequired,
   componentData: PropTypes.object.isRequired,

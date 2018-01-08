@@ -1,18 +1,12 @@
 import createToolbar from './toolbar';
 import Styles from './default-html-styles.scss';
 import createBasePlugin from '../base/basePlugin';
-import {
-  Component
-} from './html-component';
+import { Component } from './html-component';
 
 const HTML_TYPE = 'wix-draft-plugin-html';
 
 const createHtmlPlugin = (config = {}) => {
-  const {
-    decorator,
-    helpers,
-    theme
-  } = config;
+  const { decorator, helpers, theme } = config;
 
   return createBasePlugin({
     component: Component,
@@ -20,13 +14,10 @@ const createHtmlPlugin = (config = {}) => {
     theme: theme || Styles,
     type: HTML_TYPE,
     toolbar: createToolbar({
-      helpers
+      helpers,
     }),
     helpers,
   });
 };
 
-export {
-  createHtmlPlugin,
-  HTML_TYPE
-};
+export { createHtmlPlugin, HTML_TYPE };

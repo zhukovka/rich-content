@@ -7,8 +7,8 @@ import Styles from './default-video-styles.scss';
 const DEFAULTS = {
   src: 'https://www.youtube.com/watch?v=YIywpvHewc0',
   config: {
-    size: 'content'
-  }
+    size: 'content',
+  },
 };
 
 const MAX_WAIT_TIME = 5000;
@@ -19,7 +19,7 @@ class VideoComponent extends React.Component {
     this.state = {
       isLoading: false,
       isLoaded: false,
-      isPlayable: props.blockProps.readOnly === true
+      isPlayable: props.blockProps.readOnly === true,
     };
   }
 
@@ -51,14 +51,8 @@ class VideoComponent extends React.Component {
 
   renderOverlay = () => {
     const { isLoaded } = this.state;
-    return (
-      <div className={Styles.overlay}>
-        {isLoaded &&
-        <span>To play this video, view this post from your live site</span>
-        }
-      </div>
-    );
-  }
+    return <div className={Styles.overlay}>{isLoaded && <span>To play this video, view this post from your live site</span>}</div>;
+  };
 
   renderPlayer = () => {
     const { componentData } = this.props;
@@ -74,13 +68,10 @@ class VideoComponent extends React.Component {
         controls
       />
     );
-  }
+  };
 
   render() {
-    const {
-      className,
-      onClick,
-    } = this.props;
+    const { className, onClick } = this.props;
     const { isPlayable } = this.state;
     const containerClassNames = classNames(Styles.container, className || '');
     return (
@@ -102,7 +93,4 @@ VideoComponent.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export {
-  VideoComponent as Component,
-  DEFAULTS
-};
+export { VideoComponent as Component, DEFAULTS };

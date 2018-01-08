@@ -10,12 +10,11 @@ const DEFAULTS = {
     width: 200,
     height: 200,
     safe: true,
-    isSrc: true
-  }
+    isSrc: true,
+  },
 };
 
 class HtmlComponent extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
@@ -32,10 +31,9 @@ class HtmlComponent extends React.Component {
     const { keyName, isActive } = props.componentState.activeButton || {};
     const inEditMode = keyName === 'edit' && isActive;
     return {
-      inEditMode
+      inEditMode,
     };
   };
-
 
   fillIframeContent = data => {
     if (this.iframeRef) {
@@ -53,14 +51,17 @@ class HtmlComponent extends React.Component {
   };
 
   baseIframeContent = origin => {
-    return '<html><head><script>window.addEventListener(\'message\', function(event) {if (event.origin.indexOf(\'' + origin + '\')>=0) {document.body.innerHTML = event.data;}});</script></head><body></body></html>'; //eslint-disable-line max-len
+    return (
+      /* eslint-disable quotes */
+      "<html><head><script>window.addEventListener('message', function(event) {if (event.origin.indexOf('" +
+      origin +
+      "')>=0) {document.body.innerHTML = event.data;}});</script></head><body></body></html>"
+      /* eslint-disable quotes */
+    );
   };
 
   render() {
-    const {
-      blockProps,
-      selection
-    } = this.props;
+    const { blockProps, selection } = this.props;
     const isEditorFocused = selection.getHasFocus();
     const { isFocused, readOnly } = blockProps;
     const data = this.props.componentData;
@@ -75,21 +76,26 @@ class HtmlComponent extends React.Component {
 
     const HTMLOverlay = decorateComponentWithProps(Overlay, { isVisible: readOnly, width, height });
 
-    if (data.src && (data.config.isSrc)) {
+    if (data.src && data.config.isSrc) {
       return (
         <div
-          style={{ width: (width) + 'px', height: height + 'px', position: 'relative', margin: 'auto' }}
+          style={{ width: width + 'px', height: height + 'px', position: 'relative', margin: 'auto' }}
           className={classNames(this.props.className, itemClassName)}
         >
           <iframe
-            src={data.src} allowTransparency scrolling="no" frameBorder="0" sandbox="allow-presentation allow-forms allow-same-origin allow-scripts"
-            width={width} height={height}
+            src={data.src}
+            allowTransparency
+            scrolling="no"
+            frameBorder="0"
+            sandbox="allow-presentation allow-forms allow-same-origin allow-scripts"
+            width={width}
+            height={height}
             style={{ border: 'none', overflow: 'hidden', position: 'absolute', top: '0', left: '0' }}
           />
-          <HTMLOverlay/>
+          <HTMLOverlay />
         </div>
       );
-    } else if (data.content && !(data.config.isSrc)) {
+    } else if (data.content && !data.config.isSrc) {
       //draw content after iframe is loaded
       return (
         <div
@@ -101,18 +107,19 @@ class HtmlComponent extends React.Component {
             onLoad={this.handleIframeLoad}
             srcDoc={this.baseIframeContent(window.origin)}
             sandbox="allow-presentation allow-forms allow-scripts"
-            allowTransparency scrolling="no" frameBorder="0"
-            width={width} height={height}
+            allowTransparency
+            scrolling="no"
+            frameBorder="0"
+            width={width}
+            height={height}
             style={{ border: 'none', overflow: 'hidden', position: 'absolute', top: '0', left: '0' }}
           />
-          <HTMLOverlay/>
-        </div>);
+          <HTMLOverlay />
+        </div>
+      );
     } else {
       return (
-        <div
-          onClick={this.props.onClick}
-          className={classNames(this.props.className, this.props.theme.invalidGalleryItems)}
-        >
+        <div onClick={this.props.onClick} className={classNames(this.props.className, this.props.theme.invalidGalleryItems)}>
           Please select an iframe source
         </div>
       );
@@ -130,7 +137,4 @@ HtmlComponent.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export {
-  HtmlComponent as Component,
-  DEFAULTS
-};
+export { HtmlComponent as Component, DEFAULTS };
