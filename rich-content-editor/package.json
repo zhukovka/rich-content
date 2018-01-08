@@ -7,9 +7,7 @@
     "email": "jonathanb@wix.com"
   },
   "main": "dist/wix-rich-content-editor.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "clean": "rm -rf dist/",
     "start": "webpack-dev-server --open",
@@ -52,9 +50,7 @@
     "wnpm-ci": "latest"
   },
   "peerDependencies": {
-    "pro-gallery-renderer": "^1.0.59",
-    "react": "15.5.4",
-    "react-dom": "15.5.4"
+    "pro-gallery-renderer": "^1.0.59"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -81,6 +77,8 @@
     "node-sass": "^4.5.3",
     "prettier": "^1.9.2",
     "prop-types": "^15.5.10",
+    "react": "15.5.4",
+    "react-dom": "15.5.4",
     "react-svg-loader": "^1.1.1",
     "react-test-renderer": "^15.6.1",
     "sass-loader": "^6.0.6",
