@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AtomicBlockUtils } from 'draft-js';
 import noop from 'lodash/noop';
-import cloneDeep from 'lodash/clonedeep';
+import cloneDeep from 'lodash/cloneDeep';
 import classNames from 'classnames';
 import Tooltip from 'wix-style-react/dist/src/Tooltip';
 import Styles from '~/Styles/toolbar-button.scss';

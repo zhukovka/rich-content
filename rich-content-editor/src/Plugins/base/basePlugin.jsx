@@ -1,6 +1,6 @@
 import { SelectionState, EditorState, Modifier } from 'draft-js';
 import includes from 'lodash/includes';
-import cloneDeep from 'lodash/clonedeep';
+import cloneDeep from 'lodash/cloneDeep';
 import { simplePubsub } from '~/Utils';
 import createBaseComponent from './baseComponent';
 import createToolbar from './baseToolbar';
