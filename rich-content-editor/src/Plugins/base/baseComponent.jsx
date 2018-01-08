@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import camelCase from 'lodash/camelcase';
-import upperFirst from 'lodash/upperfirst';
-import isUndefined from 'lodash/isundefined';
+import camelCase from 'lodash/camelCase';
+import upperFirst from 'lodash/upperFirst';
+import isUndefined from 'lodash/isUndefined';
 import merge from 'lodash/merge';
 import classNames from 'classnames';
 import createHocName from './createHocName';
