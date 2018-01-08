@@ -10,7 +10,7 @@ const Overlay = ({ isVisible, onClick, width, height }) => (
       height: `${height}px`,
       position: 'absolute',
       top: '0',
-      left: '0'
+      left: '0',
     }}
   />
 );

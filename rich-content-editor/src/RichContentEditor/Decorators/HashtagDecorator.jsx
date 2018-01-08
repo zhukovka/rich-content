@@ -29,20 +29,13 @@ const findHashtagEntities = (contentBlock, callback) => {
 const Hashtag = ({ children, decoratedText, createHref, target = '_self', theme = {} }) => {
   const href = createHref ? createHref(decoratedText.slice(1)) : null;
   const Component = href ? 'a' : 'span';
-  const className = classNames(
-    Styles.hashtag,
-    {
-      [theme.hashtag]: !!theme.hashtag,
-      [Styles.hover]: !!href,
-    }
-  );
+  const className = classNames(Styles.hashtag, {
+    [theme.hashtag]: !!theme.hashtag,
+    [Styles.hover]: !!href,
+  });
   const props = href ? { className, href, target } : { className };
 
-  return (
-    <Component {...props}>
-      {children}
-    </Component>
-  );
+  return <Component {...props}>{children}</Component>;
 };
 
 Hashtag.propTypes = {
@@ -53,9 +46,4 @@ Hashtag.propTypes = {
   theme: PropTypes.string,
 };
 
-
-export {
-  Name,
-  findHashtagEntities as Strategy,
-  Hashtag as Component
-};
+export { Name, findHashtagEntities as Strategy, Hashtag as Component };

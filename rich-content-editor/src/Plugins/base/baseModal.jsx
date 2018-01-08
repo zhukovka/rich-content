@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import Styles from '~/Styles//global.scss';
 
 export default class BaseModal extends Component {
-
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props.componentState);
@@ -12,14 +11,21 @@ export default class BaseModal extends Component {
 
   stateFromProps = componentState => {
     const { keyName, boundingRect, isActive } = componentState.activeButton || {};
-    const style = ((keyName === this.props.keyName) && boundingRect && isActive) ? {
-      top: boundingRect.height,
-      left: 0,
-      transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-    } : {
-      transform: 'translate(-50%) scale(0)',
-    };
-    return { style };
+    if (keyName === this.props.keyName && boundingRect && isActive) {
+      return {
+        style: {
+          top: boundingRect.height,
+          left: 0,
+          transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
+        },
+      };
+    } else {
+      return {
+        style: {
+          transform: 'translate(-50%) scale(0)',
+        },
+      };
+    }
   };
 
   componentWillReceiveProps = nextProps => {

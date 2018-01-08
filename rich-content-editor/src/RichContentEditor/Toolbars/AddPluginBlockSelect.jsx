@@ -4,19 +4,18 @@ import PlusIcon from './icons/plus-default.svg';
 import PlusActiveIcon from './icons/plus-active.svg';
 
 export default class AddPluginBlockSelect extends Component {
-
   state = {
     style: {
       isActive: false,
       transform: 'translate(-50%) scale(0)',
-    }
-  }
+    },
+  };
 
   onMouseDown = event => {
     event.preventDefault();
     event.stopPropagation();
     this.togglePopup();
-  }
+  };
 
   togglePopup = () => {
     if (this.state.isActive) {
@@ -24,7 +23,7 @@ export default class AddPluginBlockSelect extends Component {
     } else {
       this.showPopup();
     }
-  }
+  };
 
   showPopup = () => {
     this.setState({
@@ -35,7 +34,7 @@ export default class AddPluginBlockSelect extends Component {
         transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
       },
     });
-  }
+  };
 
   hidePopup = () => {
     this.setState({
@@ -44,7 +43,7 @@ export default class AddPluginBlockSelect extends Component {
         transform: 'translate(-50%) scale(0)',
       },
     });
-  }
+  };
 
   getPopupOffset = () => {
     if (!this.popupOffset) {
@@ -53,26 +52,16 @@ export default class AddPluginBlockSelect extends Component {
       }
     }
     return this.popupOffset;
-  }
+  };
 
   render() {
     const { theme, getEditorState, setEditorState } = this.props;
     return (
-      <div
-        className={theme.addPluginBlockSelectStyles.addBlockWrapper}
-      >
-        <div
-          className={theme.addPluginBlockSelectStyles.blockType}
-          onMouseDown={this.onMouseDown}
-          ref={el => this.selectButton = el}
-        >
-          { !this.state.isActive ? <PlusIcon/> : <PlusActiveIcon/> }
+      <div className={theme.addPluginBlockSelectStyles.addBlockWrapper}>
+        <div className={theme.addPluginBlockSelectStyles.blockType} onMouseDown={this.onMouseDown} ref={el => (this.selectButton = el)}>
+          {!this.state.isActive ? <PlusIcon /> : <PlusActiveIcon />}
         </div>
-        <div
-          className={theme.addPluginBlockSelectStyles.popup}
-          style={this.state.style}
-          ref={el => this.popup = el}
-        >
+        <div className={theme.addPluginBlockSelectStyles.popup} style={this.state.style} ref={el => (this.popup = el)}>
           {this.props.structure.map((Component, index) => (
             <Component
               key={index}

@@ -9,7 +9,7 @@ class SettingsModal extends React.Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -44,19 +44,17 @@ class SettingsModal extends React.Component {
       <div>
         <div>
           <label htmlFor="width">Width</label>
-          <input
-            type="range" min="10" max="1000" value={this.state.width} id="width"
-            step="10" onChange={this.changeWidth}
-          />
-          <output htmlFor="width" id="widthVal">{this.state.width}px</output>
+          <input type="range" min="10" max="1000" value={this.state.width} id="width" step="10" onChange={this.changeWidth} />
+          <output htmlFor="width" id="widthVal">
+            {this.state.width}px
+          </output>
         </div>
         <div>
           <label htmlFor="height">Height</label>
-          <input
-            type="range" min="10" max="1000" value={this.state.height} id="height"
-            step="10" onChange={this.changeHeight}
-          />
-          <output htmlFor="height" id="widthVal">{this.state.height}px</output>
+          <input type="range" min="10" max="1000" value={this.state.height} id="height" step="10" onChange={this.changeHeight} />
+          <output htmlFor="height" id="widthVal">
+            {this.state.height}px
+          </output>
         </div>
       </div>
     );
@@ -67,7 +65,7 @@ class ExternalSettingsModal extends React.Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -104,19 +102,17 @@ class ExternalSettingsModal extends React.Component {
       <div>
         <div>
           <label htmlFor="width">Width</label>
-          <input
-            type="range" min="10" max="1000" value={this.state.width} id="width"
-            step="10" onChange={this.changeWidth}
-          />
-          <output htmlFor="width" id="widthVal">{this.state.width}px</output>
+          <input type="range" min="10" max="1000" value={this.state.width} id="width" step="10" onChange={this.changeWidth} />
+          <output htmlFor="width" id="widthVal">
+            {this.state.width}px
+          </output>
         </div>
         <div>
           <label htmlFor="height">Height</label>
-          <input
-            type="range" min="10" max="1000" value={this.state.height} id="height"
-            step="10" onChange={this.changeHeight}
-          />
-          <output htmlFor="height" id="widthVal">{this.state.height}px</output>
+          <input type="range" min="10" max="1000" value={this.state.height} id="height" step="10" onChange={this.changeHeight} />
+          <output htmlFor="height" id="widthVal">
+            {this.state.height}px
+          </output>
         </div>
       </div>
     );
@@ -127,7 +123,7 @@ class EditModal extends React.Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -147,7 +143,7 @@ class EditModal extends React.Component {
   };
 
   changeIsSrc = event => {
-    const isSrc = (event.target.value !== 'false');
+    const isSrc = event.target.value !== 'false';
     this.setState({ isSrc });
   };
 
@@ -179,33 +175,26 @@ class EditModal extends React.Component {
     return (
       <div>
         <div className={Styles.tabs}>
-
           <div className={Styles.tab}>
-            <input type="radio" id="tab-1" name="tab-group-1" checked={this.state.isSrc} onChange={this.changeIsSrc}/>
+            <input type="radio" id="tab-1" name="tab-group-1" checked={this.state.isSrc} onChange={this.changeIsSrc} />
             <label htmlFor="tab-1">Source</label>
 
             <div className={Styles.content}>
-              <input
-                type="text" value={this.state.src} id="src"
-                onChange={this.changeSrc}
-              />
+              <input type="text" value={this.state.src} id="src" onChange={this.changeSrc} />
             </div>
           </div>
 
           <div className={Styles.tab}>
-            <input type="radio" id="tab-2" name="tab-group-1" checked={!(this.state.isSrc)} onChange={this.changeIsContent}/>
+            <input type="radio" id="tab-2" name="tab-group-1" checked={!this.state.isSrc} onChange={this.changeIsContent} />
             <label htmlFor="tab-2">Code</label>
 
             <div className={Styles.content}>
-              <textarea
-                value={this.state.content} id="content"
-                onChange={this.changeContent}
-              />
+              <textarea value={this.state.content} id="content" onChange={this.changeContent} />
             </div>
           </div>
         </div>
         <div>
-          <input type="button" onClick={this.updateContent} value="Update"/>
+          <input type="button" onClick={this.updateContent} value="Update" />
         </div>
       </div>
     );
@@ -219,7 +208,6 @@ EditModal.propTypes = {
   componentState: PropTypes.object.isRequired,
 };
 
-
 const InlineButtons = [
   //the icons in the toolbar are the following:
   // Edit - open a small dialog that has an option to add src for the iframe or code
@@ -228,7 +216,7 @@ const InlineButtons = [
     type: BUTTONS.MODAL,
     modalElement: EditModal,
     icon: EditIcon,
-    onClick: pubsub => console.log('*** click edit *** ') //eslint-disable-line no-console, no-unused-vars,
+    onClick: pubsub => console.log('*** click edit *** '), //eslint-disable-line no-console, no-unused-vars,
   },
   { type: BUTTONS.SEPARATOR },
   {
@@ -236,14 +224,14 @@ const InlineButtons = [
     type: BUTTONS.MODAL,
     modalElement: SettingsModal,
     icon: SettingsIcon,
-    onClick: pubsub => console.log('*** click settings *** ') //eslint-disable-line no-console, no-unused-vars,
+    onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
   },
   {
     keyName: 'external_settings',
     type: BUTTONS.EXTERNAL_MODAL,
     modalElement: ExternalSettingsModal,
     icon: SettingsIcon,
-    onClick: pubsub => console.log('*** click external settings *** ') //eslint-disable-line no-console, no-unused-vars,
+    onClick: pubsub => console.log('*** click external settings *** '), //eslint-disable-line no-console, no-unused-vars,
   },
   { type: BUTTONS.DELETE },
 ];

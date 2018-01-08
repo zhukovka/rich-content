@@ -6,14 +6,13 @@ import LinkButton from '~/Common/LinkButton';
 import TextLinkPanel from './TextLinkPanel';
 
 export default class TextLinkButton extends Component {
-
   onClick = () => {
     if (!this.isActive) {
       this.showLinkPanel();
     } else {
       this.removeLinks();
     }
-  }
+  };
 
   showLinkPanel() {
     this.props.onOverrideContent(TextLinkPanel);
@@ -32,7 +31,7 @@ export default class TextLinkButton extends Component {
   }
 
   render() {
-    return <LinkButton onClick={this.onClick} isActive={this.isActive}/>;
+    return <LinkButton onClick={this.onClick} isActive={this.isActive} />;
   }
 }
 

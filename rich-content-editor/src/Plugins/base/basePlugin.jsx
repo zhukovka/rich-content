@@ -1,8 +1,4 @@
-import {
-  SelectionState,
-  EditorState,
-  Modifier,
-} from 'draft-js';
+import { SelectionState, EditorState, Modifier } from 'draft-js';
 import includes from 'lodash/includes';
 import cloneDeep from 'lodash/clonedeep';
 import { simplePubsub } from '~/Utils';
@@ -72,7 +68,7 @@ const createBasePlugin = (config = {}) => {
   const theme = config.theme || {};
   const Toolbar = createToolbar({ buttons: config.toolbar.InlineButtons, theme, pubsub, helpers });
   const InsertPluginButtons = config.toolbar.InsertButtons.map(button => createInsertPluginButton({ blockType: config.type, button, pubsub }));
-  const PluginComponent = (config.decorator) ? config.decorator(config.component) : config.component;
+  const PluginComponent = config.decorator ? config.decorator(config.component) : config.component;
 
   const CompWithBase = createBaseComponent({ PluginComponent, theme, pubsub, helpers });
 
@@ -95,7 +91,7 @@ const createBasePlugin = (config = {}) => {
                 setData: setData(contentBlock, { getEditorState, setEditorState }),
                 deleteBlock: deleteEntity(contentBlock, { getEditorState, setEditorState }),
                 readOnly: getReadOnly(),
-              }
+              },
             };
           }
         }
@@ -103,9 +99,8 @@ const createBasePlugin = (config = {}) => {
       return null;
     },
     Toolbar,
-    InsertPluginButtons
+    InsertPluginButtons,
   };
 };
-
 
 export default createBasePlugin;

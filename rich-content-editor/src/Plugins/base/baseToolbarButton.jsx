@@ -28,7 +28,7 @@ class BaseToolbarButton extends React.Component {
     this.resetForm();
   };
 
-  setForm = form => this.form = form;
+  setForm = form => (this.form = form);
 
   resetForm = () => this.form && this.form.reset();
 
@@ -46,7 +46,7 @@ class BaseToolbarButton extends React.Component {
     const { componentState, keyName, pubsub, onClick } = this.props;
     const activeButton = componentState.activeButton || { keyName, isActive: false };
     const isToggleButton = !(this.props.type === BUTTONS.EXTERNAL_MODAL || this.props.type === BUTTONS.FILES);
-    const isActive = !isToggleButton ? (activeButton.keyName === keyName) : !(activeButton.keyName === keyName && activeButton.isActive);
+    const isActive = !isToggleButton ? activeButton.keyName === keyName : !(activeButton.keyName === keyName && activeButton.isActive);
     componentState.activeButton = { ...activeButton, keyName, isActive, boundingRect: this.getBoundingRectForModalButton(isActive) };
     pubsub.set('componentState', componentState);
 
@@ -76,26 +76,18 @@ class BaseToolbarButton extends React.Component {
     } else if (this.state.isActive) {
       this.setState({ isActive: false });
     }
-  }
+  };
 
   getIcon = () => {
     const ActiveIcon = this.props.iconActive || this.props.icon;
     const Icon = this.props.icon;
-    return this.state.isActive ? <ActiveIcon/> : <Icon/>;
+    return this.state.isActive ? <ActiveIcon /> : <Icon />;
   };
 
   renderToggleButton = (buttonWrapperClassNames, buttonClassNames) => {
     return (
-      <div
-        className={buttonWrapperClassNames}
-        onMouseDown={this.preventBubblingUp}
-      >
-        <button
-          className={buttonClassNames}
-          type="button"
-          onMouseDown={this.handleClick}
-          children={this.props.children || [this.getIcon()]}
-        >
+      <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
+        <button className={buttonClassNames} type="button" onMouseDown={this.handleClick} children={this.props.children || [this.getIcon()]}>
           {this.getIcon()}
         </button>
       </div>
@@ -105,16 +97,8 @@ class BaseToolbarButton extends React.Component {
   renderModalButton = (buttonWrapperClassNames, buttonClassNames) => {
     return (
       <div>
-        <div
-          className={buttonWrapperClassNames}
-          onMouseDown={this.preventBubblingUp}
-        >
-          <button
-            className={buttonClassNames}
-            type="button"
-            onMouseDown={this.handleClick}
-            children={this.props.children || [this.getIcon()]}
-          >
+        <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
+          <button className={buttonClassNames} type="button" onMouseDown={this.handleClick} children={this.props.children || [this.getIcon()]}>
             {this.getIcon()}
           </button>
         </div>
@@ -135,20 +119,11 @@ class BaseToolbarButton extends React.Component {
     const fileButtonWrapperClassNames = classNames(Styles.fileButtonWrapper, this.props.theme.fileButtonWrapper);
     return (
       <div className={fileButtonWrapperClassNames}>
-        <button
-          type="button"
-          children={this.props.children}
-        >
+        <button type="button" children={this.props.children}>
           {this.getIcon()}
         </button>
         <form ref={this.setForm}>
-          <input
-            name="file"
-            type="file"
-            onChange={this.handleFileChange}
-            accept="image/*"
-            tabIndex="-1"
-          />
+          <input name="file" type="file" onChange={this.handleFileChange} accept="image/*" tabIndex="-1" />
         </form>
       </div>
     );
@@ -178,7 +153,7 @@ class BaseToolbarButton extends React.Component {
         break;
     }
     return toolbarButton;
-  }
+  };
 }
 
 BaseToolbarButton.propTypes = {

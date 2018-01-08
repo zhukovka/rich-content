@@ -1,26 +1,15 @@
-import {
-  EditorState,
-  Modifier,
-  RichUtils,
-  SelectionState,
-} from 'draft-js';
+import { EditorState, Modifier, RichUtils, SelectionState } from 'draft-js';
 import flatMap from 'lodash/flatmap';
 import findIndex from 'lodash/findindex';
 import findLastIndex from 'lodash/findlastindex';
 
-export function insertLink(editorState, {
-  url,
-  targetBlank
-}) {
+export function insertLink(editorState, { url, targetBlank }) {
   const selection = getSelection(editorState);
   const content = editorState.getCurrentContent();
-  const contentStateWithEntity = content.createEntity(
-    'LINK',
-    'MUTABLE', {
-      url,
-      targetBlank
-    }
-  );
+  const contentStateWithEntity = content.createEntity('LINK', 'MUTABLE', {
+    url,
+    targetBlank,
+  });
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
   let newSelection = selection;
@@ -41,11 +30,7 @@ export function insertLink(editorState, {
 
     const content = editorState.getCurrentContent();
     const newContent = Modifier.insertText(content, selection, url);
-    newEditorState = RichUtils.toggleLink(
-      EditorState.push(editorState, newContent, 'insert-characters'),
-      linkRange,
-      entityKey
-    );
+    newEditorState = RichUtils.toggleLink(EditorState.push(editorState, newContent, 'insert-characters'), linkRange, entityKey);
 
     newSelection = new SelectionState({
       anchorOffset: focusOffset,
@@ -63,13 +48,7 @@ export function hasLinksInSelection(editorState) {
 }
 
 export function removeLinksInSelection(editorState) {
-  return getSelectedLinks(editorState).reduce(
-    (prevState, {
-      key,
-      range
-    }) => removeLink(prevState, key, range),
-    editorState
-  );
+  return getSelectedLinks(editorState).reduce((prevState, { key, range }) => removeLink(prevState, key, range), editorState);
 }
 
 function getSelectedLinks(editorState) {

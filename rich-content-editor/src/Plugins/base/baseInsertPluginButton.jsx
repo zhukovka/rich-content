@@ -9,15 +9,10 @@ import Styles from '~/Styles/toolbar-button.scss';
 
 export default ({ blockType, button, pubsub }) => {
   class InsertPluginButton extends Component {
-
     addBlock = data => {
       const { getEditorState, setEditorState, hidePluginSelectPopup } = this.props;
       const contentState = getEditorState().getCurrentContent();
-      const contentStateWithEntity = contentState.createEntity(
-        blockType,
-        'IMMUTABLE',
-        cloneDeep(data)
-      );
+      const contentStateWithEntity = contentState.createEntity(blockType, 'IMMUTABLE', cloneDeep(data));
       const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
       const newEditorState = AtomicBlockUtils.insertAtomicBlock(getEditorState(), entityKey, ' ');
       if (hidePluginSelectPopup) {
@@ -49,7 +44,7 @@ export default ({ blockType, button, pubsub }) => {
       }
     };
 
-    setForm = form => this.form = form;
+    setForm = form => (this.form = form);
 
     resetForm = () => this.form && this.form.reset();
 
@@ -58,10 +53,7 @@ export default ({ blockType, button, pubsub }) => {
     renderButton = () => {
       const { theme, hideName } = this.props;
       const { name, Icon, type } = button;
-      const children = [
-        <Icon key="0"/>,
-        hideName ? null : <span key="1">{name}</span>
-      ].filter(child => child);
+      const children = [<Icon key="0" />, hideName ? null : <span key="1">{name}</span>].filter(child => child);
       return (
         <button
           className={classNames(Styles.button, theme.button)}
@@ -75,14 +67,7 @@ export default ({ blockType, button, pubsub }) => {
     renderUploadForm = () => {
       return (
         <form ref={this.setForm}>
-          <input
-            name="file"
-            type="file"
-            className={Styles.fileInput}
-            onChange={this.handleFileChange}
-            accept="image/*"
-            tabIndex="-1"
-          />
+          <input name="file" type="file" className={Styles.fileInput} onChange={this.handleFileChange} accept="image/*" tabIndex="-1" />
         </form>
       );
     };
@@ -91,18 +76,8 @@ export default ({ blockType, button, pubsub }) => {
       const { theme } = this.props;
       const { tooltipText } = button;
       return (
-        <Tooltip
-          content={tooltipText}
-          textAlign="center"
-          maxWidth=""
-          moveBy={{ x: -8 }}
-          shouldCloseOnClickOutside
-          theme="dark"
-        >
-          <div
-            className={classNames(Styles.buttonWrapper, theme.buttonWrapper)}
-            onMouseDown={this.preventBubblingUp}
-          >
+        <Tooltip content={tooltipText} textAlign="center" maxWidth="" moveBy={{ x: -8 }} shouldCloseOnClickOutside theme="dark">
+          <div className={classNames(Styles.buttonWrapper, theme.buttonWrapper)} onMouseDown={this.preventBubblingUp}>
             {this.renderButton()}
             {button.type === 'file' && this.renderUploadForm()}
           </div>
@@ -110,7 +85,6 @@ export default ({ blockType, button, pubsub }) => {
       );
     }
   }
-
 
   InsertPluginButton.propTypes = {
     getEditorState: PropTypes.func.isRequired,

@@ -22,7 +22,6 @@ const toolbarOffset = 12;
 
 export default function createToolbar({ buttons, theme, pubsub, helpers }) {
   class BaseToolbar extends Component {
-
     constructor(props) {
       super(props);
       this.state = {
@@ -64,30 +63,30 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
 
     setAlignment = alignment => {
       pubsub.set('componentAlignment', alignment);
-    }
+    };
 
     setAlignmentAndSize = (componentAlignment, componentSize) => {
       pubsub.set({ componentAlignment, componentSize });
-    }
+    };
 
     onComponentAlignmentChange = alignment => {
       this.setState({ alignment }, () => {
         this.onVisibilityChanged(pubsub.get('visibleBlock'));
       });
-    }
+    };
 
     setSize = size => {
       pubsub.set('componentSize', size);
-    }
+    };
 
     onComponentSizeChange = size => {
       this.setState({ size });
-    }
+    };
 
     deleteBlock = () => {
       pubsub.set('visibleBlock', null);
       pubsub.get('deleteBlock')();
-    }
+    };
 
     onVisibilityChanged = visibleBlock => {
       if (visibleBlock) {
@@ -104,7 +103,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
       this.setState({
         position,
         componentData: {},
-        componentState: {}
+        componentState: {},
       });
     };
 
@@ -116,8 +115,8 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
 
       const boundingRect = pubsub.get('boundingRect');
       const position = {
-        top: (boundingRect.top + window.scrollY) - toolbarHeight - toolbarOffset - offsetParentTop,
-        left: boundingRect.left + window.scrollX + (boundingRect.width / 2) - offsetParentLeft,
+        top: boundingRect.top + window.scrollY - toolbarHeight - toolbarOffset - offsetParentTop,
+        left: boundingRect.left + window.scrollX + boundingRect.width / 2 - offsetParentLeft,
         transform: 'translate(-50%) scale(1)',
         transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
       };
@@ -126,7 +125,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
       this.setState({
         position,
         componentData,
-        componentState
+        componentState,
       });
     };
 
@@ -145,75 +144,30 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
           );
         case BUTTONS.SIZE_SMALL_CENTER:
           return (
-            <SizeSmallCenterButton
-              size={size}
-              alignment={alignment}
-              setAlignmentAndSize={this.setAlignmentAndSize}
-              theme={buttonStyles}
-              key={key}
-            />
+            <SizeSmallCenterButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />
           );
         case BUTTONS.SIZE_SMALL_LEFT:
           return (
-            <SizeSmallLeftButton
-              size={size}
-              alignment={alignment}
-              setAlignmentAndSize={this.setAlignmentAndSize}
-              theme={buttonStyles} key={key}
-            />
+            <SizeSmallLeftButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />
           );
         case BUTTONS.SIZE_SMALL_RIGHT:
           return (
-            <SizeSmallRightButton
-              size={size} alignment={alignment}
-              setAlignmentAndSize={this.setAlignmentAndSize}
-              theme={buttonStyles}
-              key={key}
-            />
+            <SizeSmallRightButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />
           );
         case BUTTONS.SIZE_CONTENT:
           return (
-            <SizeContentButton
-              size={size}
-              alignment={alignment}
-              setAlignmentAndSize={this.setAlignmentAndSize}
-              theme={buttonStyles}
-              key={key}
-            />
+            <SizeContentButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />
           );
         case BUTTONS.SIZE_FULL_WIDTH:
           return (
-            <SizeFulllWidthButton
-              size={size} alignment={alignment}
-              setAlignmentAndSize={this.setAlignmentAndSize}
-              theme={buttonStyles}
-              key={key}
-            />
+            <SizeFulllWidthButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />
           );
         case BUTTONS.SEPARATOR:
-          return (
-            <Separator
-              className={toolbarStyles.separator}
-              key={key}
-            />
-          );
+          return <Separator className={toolbarStyles.separator} key={key} />;
         case BUTTONS.LINK:
-          return (
-            <BlockLinkButton
-              className={toolbarStyles.separator}
-              pubsub={pubsub}
-              onExtendContent={this.onExtendContent}
-              key={key}
-            />
-          );
+          return <BlockLinkButton className={toolbarStyles.separator} pubsub={pubsub} onExtendContent={this.onExtendContent} key={key} />;
         case BUTTONS.DELETE:
-          return (
-            <DeleteButton
-              onClick={this.deleteBlock}
-              theme={buttonStyles}
-              key={key}
-            />
-          );
+          return <DeleteButton onClick={this.deleteBlock} theme={buttonStyles} key={key} />;
         default:
           return (
             <BaseToolbarButton
@@ -227,15 +181,12 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
             />
           );
       }
-    }
+    };
 
     render = () => {
       const containerClassNames = classNames(toolbarStyles.toolbar, theme.toolbar);
       const buttonContainerClassnames = classNames(toolbarStyles.buttons, theme.buttons);
-      const {
-        overrideContent: OverrideContent,
-        extendContent: ExtendContent,
-      } = this.state;
+      const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
       const overrideProps = {
         theme: buttonStyles,
         onOverrideContent: this.onOverrideContent,
@@ -248,22 +199,16 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
       return (
         <div style={this.state.position} className={containerClassNames}>
           <div className={buttonContainerClassnames}>
-            {
-              OverrideContent ?
-                <OverrideContent {...overrideProps}/> :
-                buttons.map((button, index) => this.renderButton(button, index))
-            }
+            {OverrideContent ? <OverrideContent {...overrideProps} /> : buttons.map((button, index) => this.renderButton(button, index))}
           </div>
-          {
-            ExtendContent &&
+          {ExtendContent && (
             <div className={toolbarStyles.extend}>
-              <ExtendContent {...extendProps}/>
+              <ExtendContent {...extendProps} />
             </div>
-          }
+          )}
         </div>
       );
     };
   }
   return BaseToolbar;
 }
-

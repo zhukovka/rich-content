@@ -9,8 +9,8 @@ const DEFAULTS = {
   type: 'divider3',
   width: 50,
   config: {
-    size: 'fullWidth'
-  }
+    size: 'fullWidth',
+  },
 };
 
 class DividerComponent extends React.Component {
@@ -28,7 +28,7 @@ class DividerComponent extends React.Component {
     const width = props.componentData.width || DEFAULTS.width;
     return {
       type,
-      width
+      width,
     };
   };
 
@@ -56,7 +56,7 @@ class DividerComponent extends React.Component {
     const Divider = this.getComponent(this.state.type);
     return (
       <div style={{ width: this.state.width + '%', margin: 'auto', ...style }} onClick={this.props.onClick} className={this.props.className}>
-        <Divider style={{ pointerEvents: 'none' }} width="100%" viewBox="0 0 500 46" preserveAspectRatio="none"/>
+        <Divider style={{ pointerEvents: 'none' }} width="100%" viewBox="0 0 500 46" preserveAspectRatio="none" />
       </div>
     );
   }
@@ -73,7 +73,4 @@ DividerComponent.propTypes = {
   onClick: PropTypes.func,
 };
 
-export {
-  DividerComponent as Component,
-  DEFAULTS
-};
+export { DividerComponent as Component, DEFAULTS };

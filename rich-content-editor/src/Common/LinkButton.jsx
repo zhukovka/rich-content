@@ -11,7 +11,6 @@ export default class LinkButton extends Component {
     theme: PropTypes.object,
   };
 
-
   handleClick = () => this.props.onClick && this.props.onClick();
 
   preventBubblingUp = event => event.preventDefault();
@@ -19,19 +18,13 @@ export default class LinkButton extends Component {
   render() {
     const { isActive } = this.props;
 
-    const buttonClassNames = classNames(
-      buttonStyles.button,
-      {
-        [buttonStyles.active]: isActive,
-      }
-    );
+    const buttonClassNames = classNames(buttonStyles.button, {
+      [buttonStyles.active]: isActive,
+    });
     return (
-      <div
-        className={buttonStyles.buttonWrapper}
-        onMouseDown={this.preventBubblingUp}
-      >
+      <div className={buttonStyles.buttonWrapper} onMouseDown={this.preventBubblingUp}>
         <button onClick={this.handleClick} className={buttonClassNames}>
-          <LinkIcon/>
+          <LinkIcon />
         </button>
       </div>
     );

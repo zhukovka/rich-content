@@ -5,7 +5,6 @@ import { insertLink } from '~/Utils';
 import LinkPanel from '~/Common/LinkPanel';
 
 export default class TextLinkPanel extends Component {
-
   createLinkEntity = ({ url, targetBlank }) => {
     if (!isEmpty(url)) {
       const { getEditorState, setEditorState } = this.props;
@@ -13,19 +12,14 @@ export default class TextLinkPanel extends Component {
       setEditorState(newEditorState);
     }
     this.hideLinkPanel();
-  }
+  };
 
   hideLinkPanel = () => {
     this.props.onOverrideContent(undefined);
-  }
+  };
 
   render() {
-    return (
-      <LinkPanel
-        onDone={this.createLinkEntity}
-        onCancel={this.hideLinkPanel}
-      />
-    );
+    return <LinkPanel onDone={this.createLinkEntity} onCancel={this.hideLinkPanel} />;
   }
 }
 

@@ -7,16 +7,17 @@
     "email": "jonathanb@wix.com"
   },
   "main": "dist/wix-rich-content-editor.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "clean": "rm -rf dist/",
     "start": "webpack-dev-server --open",
     "build": "npm run clean && webpack --progress",
     "watch": "npm run clean && webpack --watch --colors --progress",
     "release": "wnpm-release --no-shrinkwrap",
-    "lint": "eslint \"src/**/*.{js,jsx}\"",
+    "format": "prettier --list-different --write 'src/**/*.{js,jsx}'",
+    "prelint": "npm run format",
+    "lint": "eslint 'src/**/*.{js,jsx}'",
+    "pretest": "npm run lint",
     "test": "jest --verbose"
   },
   "jest": {
@@ -69,6 +70,7 @@
     "jest": "^21.2.1",
     "loader-utils": "^1.1.0",
     "node-sass": "^4.5.3",
+    "prettier": "^1.9.2",
     "prop-types": "^15.5.10",
     "react": "15.5.4",
     "react-dom": "15.5.4",

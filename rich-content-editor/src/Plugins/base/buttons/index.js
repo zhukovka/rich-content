@@ -31,41 +31,41 @@ export { BlockLinkButton };
 export const SizeOriginalCenterButton = createBlockAlignmentAndSizeButton({
   size: 'original',
   alignment: 'center',
-  content: <SizeOriginalIcon/>,
+  content: <SizeOriginalIcon />,
 });
 
 export const SizeSmallCenterButton = createBlockAlignmentAndSizeButton({
   size: 'small',
   alignment: 'center',
-  content: <SizeSmallCenterIcon/>,
+  content: <SizeSmallCenterIcon />,
 });
 
 export const SizeSmallLeftButton = createBlockAlignmentAndSizeButton({
   size: 'small',
   alignment: 'left',
-  content: <SizeSmallLeftIcon/>,
+  content: <SizeSmallLeftIcon />,
 });
 
 export const SizeSmallRightButton = createBlockAlignmentAndSizeButton({
   size: 'small',
   alignment: 'right',
-  content: <SizeSmallRightIcon/>,
+  content: <SizeSmallRightIcon />,
 });
 
 export const SizeContentButton = createBlockAlignmentAndSizeButton({
   size: 'content',
   alignment: 'center',
-  content: <SizeContentIcon/>,
+  content: <SizeContentIcon />,
 });
 
 export const SizeFulllWidthButton = createBlockAlignmentAndSizeButton({
   size: 'fullWidth',
   alignment: 'center',
-  content: <SizeFulllWidthIcon/>,
+  content: <SizeFulllWidthIcon />,
 });
 
 export const DeleteButton = createBlockButton({
-  content: <DeleteIcon/>,
+  content: <DeleteIcon />,
 });
 
 export default {

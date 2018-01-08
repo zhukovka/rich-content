@@ -7,11 +7,16 @@
   "plugins": ["lodash", "fp"],
   "rules": {
     "semi": "error",
-    "quotes": ["error", "single", {
-      "allowTemplateLiterals": true
-    }],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
     "react/jsx-closing-tag-location": "error",
     "react/jsx-closing-bracket-location": [1, "line-aligned"],
+    "react/jsx-space-before-closing": "off",
     "react/jsx-tag-spacing": {
       "closingSlash": "never",
       "beforeSelfClosing": [1, "always"],

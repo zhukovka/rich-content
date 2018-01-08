@@ -16,14 +16,14 @@ class SideToolbar extends Component {
     pubsub: PropTypes.object.isRequired,
     structure: PropTypes.array.isRequired,
     offset: PropTypes.object,
-    theme: PropTypes.object
-  }
+    theme: PropTypes.object,
+  };
 
   state = {
     position: {
       transform: 'scale(0)',
-    }
-  }
+    },
+  };
 
   componentDidMount() {
     this.props.pubsub.subscribe('editorState', this.onEditorStateChange);
@@ -58,29 +58,21 @@ class SideToolbar extends Component {
       const { offset } = this.props;
       this.setState({
         position: {
-          top: (top + scrollY) - parentTop - toolbarOffset + offset.y,
+          top: top + scrollY - parentTop - toolbarOffset + offset.y,
           left: offset.x,
           transform: 'scale(1)',
           transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-        }
+        },
       });
     });
-  }
+  };
 
   render() {
     const { theme, pubsub } = this.props;
     return (
-      <div
-        className={theme.toolbarStyles.wrapper}
-        style={this.state.position}
-      >
+      <div className={theme.toolbarStyles.wrapper} style={this.state.position}>
         {this.props.structure.map((Component, index) => (
-          <Component
-            key={index}
-            getEditorState={pubsub.get('getEditorState')}
-            setEditorState={pubsub.get('setEditorState')}
-            theme={theme}
-          />
+          <Component key={index} getEditorState={pubsub.get('getEditorState')} setEditorState={pubsub.get('setEditorState')} theme={theme} />
         ))}
       </div>
     );
@@ -92,17 +84,13 @@ const createSideToolbar = (config = {}) => {
 
   const pubsub = simplePubsub({ isVisible: false });
 
-  const {
-    theme = defaultTheme,
-    structure = [],
-    offset = { x: 0, y: 0 },
-  } = config;
+  const { theme = defaultTheme, structure = [], offset = { x: 0, y: 0 } } = config;
 
   const toolbarProps = {
     pubsub,
     structure,
     theme,
-    offset
+    offset,
   };
 
   return {
@@ -118,16 +106,13 @@ const createSideToolbar = (config = {}) => {
   };
 };
 
-export default({ insertPluginButtons, offset }) => {
+export default ({ insertPluginButtons, offset }) => {
   return createSideToolbar({
     offset,
-    structure: [({ getEditorState, setEditorState, theme }) => ( //eslint-disable-line react/prop-types
-      <AddPluginBlockSelect
-        getEditorState={getEditorState}
-        setEditorState={setEditorState}
-        theme={theme}
-        structure={insertPluginButtons}
-      />
-    )]
+    structure: [
+      (
+        { getEditorState, setEditorState, theme } //eslint-disable-line react/prop-types
+      ) => <AddPluginBlockSelect getEditorState={getEditorState} setEditorState={setEditorState} theme={theme} structure={insertPluginButtons} />,
+    ],
   });
 };
