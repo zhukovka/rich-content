@@ -7,7 +7,9 @@
     "email": "jonathanb@wix.com"
   },
   "main": "dist/wix-rich-content-editor.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "clean": "rm -rf dist/",
     "start": "webpack-dev-server --open",
@@ -43,12 +45,16 @@
     "draft-js-static-toolbar-plugin": "^2.0.1",
     "immutable": "^3.8.1",
     "lodash": "^4.17.4",
-    "pro-gallery-renderer": "^1.0.50",
     "react-player": "^0.25.3",
     "react-sortable-hoc": "^0.6.5",
     "url-loader": "^0.6.2",
     "wix-style-react": "^1.2.3",
     "wnpm-ci": "latest"
+  },
+  "peerDependencies": {
+    "pro-gallery-renderer": "^1.0.59",
+    "react": "15.5.4",
+    "react-dom": "15.5.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -75,8 +81,6 @@
     "node-sass": "^4.5.3",
     "prettier": "^1.9.2",
     "prop-types": "^15.5.10",
-    "react": "15.5.4",
-    "react-dom": "15.5.4",
     "react-svg-loader": "^1.1.1",
     "react-test-renderer": "^15.6.1",
     "sass-loader": "^6.0.6",

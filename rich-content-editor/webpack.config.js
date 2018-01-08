@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const FILE_NAME = 'wix-rich-content-editor';
@@ -17,72 +16,51 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        include: [
-          path.resolve(__dirname, 'src')
-        ],
+        include: [path.resolve(__dirname, 'src')],
         loader: 'babel-loader',
       },
       {
         test: /\.scss$/,
-        include: [
-          path.join(__dirname, 'node_modules/wix-style-react'),
-          fs.realpathSync('./node_modules/pro-gallery-renderer'), //must use realpath to resolve symlink directory
-          path.resolve(__dirname, 'src')
-        ],
+        include: [path.join(__dirname, 'node_modules/wix-style-react'), path.resolve(__dirname, 'src')],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [
-            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-            'sass-loader'
-          ],
-        })
+          use: ['css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'sass-loader'],
+        }),
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader'],
-        })
+        }),
       },
       {
         test: /\.svg$/,
-        include: [
-          path.resolve(__dirname, 'src')
-        ],
+        include: [path.resolve(__dirname, 'src')],
         loaders: [
           {
             loader: 'babel-loader',
-            query: 'presets=react'
+            query: 'presets=react',
           },
           {
             loader: 'react-svg-loader',
             query: JSON.stringify({
               jsx: true,
               svgo: {
-                plugins: [{
-                  cleanupIDs: false
-                }],
+                plugins: [
+                  {
+                    cleanupIDs: false,
+                  },
+                ],
               },
             }),
-          }
-        ]
-      },
-      {
-        test: /\.(svg|woff|woff2|ttf|eot)$/,
-        include: [
-          fs.realpathSync('./node_modules/pro-gallery-renderer'), //must use realpath to resolve symlink directory
+          },
         ],
-        loaders: [
-          'url-loader'
-        ]
       },
     ],
   },
   resolve: {
-    modules: [
-      'node_modules',
-      path.resolve(__dirname, 'src')
-    ],
+    modules: ['node_modules', path.resolve(__dirname, 'src')],
     extensions: ['.js', '.json', '.jsx', '.css'],
   },
   performance: {
@@ -90,12 +68,13 @@ module.exports = {
     maxEntrypointSize: 400000,
     assetFilter(assetFilename) {
       return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
-    }
+    },
   },
   devtool: 'eval-source-map',
   context: __dirname,
   target: 'web',
   externals: {
+    'pro-gallery-renderer': 'pro-gallery-renderer',
     react: {
       root: 'React',
       commonjs2: 'react',
@@ -112,7 +91,5 @@ module.exports = {
     },
   },
   stats: 'errors-only',
-  plugins: [
-    new ExtractTextPlugin(`${FILE_NAME}.css`),
-  ]
+  plugins: [new ExtractTextPlugin(`${FILE_NAME}.css`)],
 };
