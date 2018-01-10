@@ -9,7 +9,7 @@ import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 
 ReactModal.setAppElement('#root');
 
-const modalStyles = {
+const modalStyleDefaults = {
   content : {
     top                   : '50%',
     left                  : '50%',
@@ -55,11 +55,12 @@ class App extends Component {
         setTimeout(() => updateEntity({data}), 1500);
       },
       openExternalModal: (data) => {
-        const {panelElement, ...elementProps} = data;
+        const {panelElement, modalStyles, ...elementProps} = data;
         const ModalContent = decorateComponentWithProps(panelElement, elementProps)
         this.setState({
           showModal: true,
           modalContent: <ModalContent />,
+          modalStyles
         })
       }
     }
@@ -111,7 +112,7 @@ class App extends Component {
             <ReactModal
               isOpen={this.state.showModal}
               contentLabel="External Modal Example"
-              style={modalStyles}
+              style={this.state.modalStyles || modalStyleDefaults}
               onRequestClose={this.closeModal}
             >
               {this.state.modalContent}

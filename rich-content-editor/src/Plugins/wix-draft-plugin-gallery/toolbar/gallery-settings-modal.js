@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 
+import styles from '~/Styles/gallery-settings.scss';
+
 export class GallerySettingsModal extends Component {
   render() {
-    return <div style={{ border: '2px red solid', padding: '10px' }}>Gallery Settings</div>;
+    return (
+      <div className={styles['gallery-settings']}>
+        <h3>Gallery Settings</h3>
+      </div>
+    );
   }
 }
 
