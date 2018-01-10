@@ -7,11 +7,14 @@
     "email": "jonathanb@wix.com"
   },
   "main": "dist/wix-rich-content-editor.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "clean": "rm -rf dist/",
     "prebuild": "npm run clean",
     "build": "webpack --config webpack.prod.js",
+    "build:style": "stc --srcDir=src --outDir=lib --diagnostics",
     "prewatch": "npm run clean",
     "watch": "webpack --config webpack.dev.js --watch --colors --progress",
     "release": "wnpm-release --no-shrinkwrap",
@@ -44,6 +47,7 @@
     "lodash": "^4.17.4",
     "react-player": "^0.25.3",
     "react-sortable-hoc": "^0.6.5",
+    "stylable-components": "^0.4.0",
     "url-loader": "^0.6.2",
     "wix-style-react": "^1.2.3",
     "wnpm-ci": "latest"
@@ -81,6 +85,8 @@
     "react-svg-loader": "^1.1.1",
     "react-test-renderer": "^15.6.1",
     "sass-loader": "^6.0.6",
+    "stylable": "^4.0.26",
+    "stylable-integration": "^6.0.2",
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "^3.6.0",
