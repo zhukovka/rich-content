@@ -7,8 +7,6 @@ import * as WixRichContentEditor from 'wix-rich-content-editor';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 //import TestData from './TestData/initialState';
 
-ReactModal.setAppElement('#root');
-
 const modalStyleDefaults = {
   content : {
     top                   : '50%',
