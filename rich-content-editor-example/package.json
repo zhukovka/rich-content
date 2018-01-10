@@ -9,7 +9,6 @@
   "homepage": "https://github.com/wix-private/photography/wix-rich-content-editor-example",
   "dependencies": {
     "decorate-component-with-props": "^1.1.0",
-    "gh-pages": "^1.1.0",
     "pro-gallery-renderer": "1.0.40",
     "react": "15.3.2",
     "react-dom": "15.3.2",
@@ -18,8 +17,6 @@
     "wix-rich-content-editor": "^1.0.1"
   },
   "scripts": {
-    "predeploy": "npm run link:local && npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
