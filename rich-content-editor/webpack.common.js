@@ -73,7 +73,6 @@ module.exports = {
       return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
     },
   },
-  devtool: 'eval-source-map',
   context: __dirname,
   target: 'web',
   externals: {
