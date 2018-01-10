@@ -1,12 +1,12 @@
 {
-  "name": "wix-rich-content-editor-consumer-example",
+  "name": "wix-rich-content-editor-consumer",
   "version": "0.1.0",
   "private": true,
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
   },
-  "homepage": "https://github.com/wix-private/photography/wix-rich-content-editor",
+  "homepage": "https://github.com/wix-private/photography/wix-rich-content-editor-example",
   "dependencies": {
     "decorate-component-with-props": "^1.1.0",
     "gh-pages": "^1.1.0",
@@ -14,7 +14,8 @@
     "react": "15.3.2",
     "react-dom": "15.3.2",
     "react-modal": "^3.1.8",
-    "react-scripts": "^1.0.13"
+    "react-scripts": "^1.0.13",
+    "wix-rich-content-editor": "^1.0.1"
   },
   "scripts": {
     "predeploy": "npm run link:local && npm run build",
@@ -23,7 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "link:local": "rm -rf ../rich-content-editor/node_modules && npm link ../rich-content-editor --only=production"
+    "link": "npm link wix-rich-content-editor --only=production"
   },
   "devDependencies": {
     "webpack": "^3.6.0",
