@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'stylable-components';
 import styles from '~/Styles/gallery-settings.scss';
-import { WixThemeProvier } from '../../../Common/wix-theme-provider';
+import { WixThemeProvider } from '../../../Common/wix-theme-provider';
 
 class ManageMediaSection extends Component {
   render() {
@@ -21,7 +21,7 @@ export class GallerySettingsModal extends Component {
     return (
       <div className={styles['gallery-settings']}>
         <h3>Gallery Settings</h3>
-        <WixThemeProvier>
+        <WixThemeProvider>
           <Tabs value={activeTab}>
             <Tab label={'Manage Media'} value={'manage_media'}>
               <ManageMediaSection />
@@ -30,7 +30,7 @@ export class GallerySettingsModal extends Component {
               <AdvancedSettingsSection />
             </Tab>
           </Tabs>
-        </WixThemeProvier>
+        </WixThemeProvider>
       </div>
     );
   }
