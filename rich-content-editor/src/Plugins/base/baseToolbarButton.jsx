@@ -54,13 +54,11 @@ class BaseToolbarButton extends React.Component {
       const helpers = this.props.helpers;
       if (helpers && helpers.openExternalModal) {
         //console.log('Opening external modal');
-        const panelElement = this.props.panelElement;
-        const componentData = this.props.componentData;
         const store = pubsub.store;
         const keyName = BUTTONS.EXTERNAL_MODAL;
         const theme = Styles;
 
-        helpers.openExternalModal({ panelElement, componentData, componentState, store, keyName, helpers, theme });
+        helpers.openExternalModal({ ...this.props, componentState, store, keyName, helpers, theme });
       } else {
         //console.warn('Open external helper function is not defined for toolbar button with keyName ' + keyName);
       }
@@ -170,6 +168,7 @@ BaseToolbarButton.propTypes = {
   children: PropTypes.object,
   iconActive: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
+  modalStyles: PropTypes.object,
 };
 
 export default BaseToolbarButton;

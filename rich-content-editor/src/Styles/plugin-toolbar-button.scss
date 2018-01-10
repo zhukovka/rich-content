@@ -1,5 +1,5 @@
-@import "./mixins";
-@import "./palette";
+@import './mixins';
+@import './palette';
 
 $toolbar-btn-width: 36px;
 $toolbar-border-radius: 2px;
@@ -27,7 +27,9 @@ $toolbar-border-radius: 2px;
     @include svg-fill($accent-color);
   }
 
-  form, input, button {
+  form,
+  input,
+  button {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -39,6 +41,7 @@ $toolbar-border-radius: 2px;
   button {
     background: transparent;
     padding: 5px;
+    border: 0 none;
 
     @include svg-fill($secondary-text-color);
     svg {
@@ -47,9 +50,9 @@ $toolbar-border-radius: 2px;
       left: 8px;
     }
   }
-  form   {
+  form {
     opacity: 0;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
     filter: alpha(opacity=0);
     input {
       cursor: pointer;
@@ -62,10 +65,12 @@ $toolbar-border-radius: 2px;
   background: transparent;
   color: $secondary-text-color;
   padding: 5px;
+  border: 0 none;
 
   @include svg-fill($secondary-text-color);
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     cursor: pointer;
     outline: 0; /* reset for :focus */
     @include svg-fill($accent-color);

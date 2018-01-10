@@ -62,6 +62,9 @@ module.exports = {
   resolve: {
     modules: ['node_modules', path.resolve(__dirname, 'src')],
     extensions: ['.js', '.json', '.jsx', '.css'],
+    alias: {
+      'draft-js': path.resolve(__dirname, 'node_modules', '@wix', 'draft-js'),
+    },
   },
   performance: {
     maxAssetSize: 200000,
@@ -70,7 +73,6 @@ module.exports = {
       return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
     },
   },
-  devtool: 'eval-source-map',
   context: __dirname,
   target: 'web',
   externals: {
