@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AddIcon from '../icons/toolbar/icon-add.svg';
+import SettingsIcon from '../../base/icons/block-settings.svg';
 import GridSmallIcon from '../icons/toolbar/layout/icon-grid-small.svg';
 import GridSmallIconActive from '../icons/toolbar/layout/icon-grid-small-active.svg';
 import GridMediumIcon from '../icons/toolbar/layout/icon-grid-medium.svg';
 import GridMediumIconActive from '../icons/toolbar/layout/icon-grid-medium-active.svg';
 import GridLargeIcon from '../icons/toolbar/layout/icon-grid-large.svg';
 import GridLargeIconActive from '../icons/toolbar/layout/icon-grid-large-active.svg';
+import GallerySettingsModal from './gallery-settings-modal';
 import { BUTTONS } from '~/Plugins/base/buttons';
 
 class LayoutModal extends React.Component {
@@ -104,6 +106,14 @@ const InlineButtons = [
   { type: BUTTONS.SIZE_SMALL_RIGHT },
   { type: BUTTONS.SIZE_CONTENT },
   { type: BUTTONS.SIZE_FULL_WIDTH },
+  { type: BUTTONS.SEPARATOR },
+  {
+    keyName: 'gallery_settings',
+    type: BUTTONS.EXTERNAL_MODAL,
+    icon: SettingsIcon,
+    panelElement: GallerySettingsModal,
+    onClick: pubsub => console.log('*** click gallery settings *** '),
+  },
   { type: BUTTONS.SEPARATOR },
   { type: BUTTONS.DELETE },
 ];
