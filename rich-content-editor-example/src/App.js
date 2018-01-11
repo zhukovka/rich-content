@@ -8,7 +8,7 @@ import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 //import TestData from './TestData/initialState';
 
 const modalStyleDefaults = {
-  content : {
+  content :{
     top                   : '50%',
     left                  : '50%',
     right                 : 'auto',
