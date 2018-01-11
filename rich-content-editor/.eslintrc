@@ -29,6 +29,7 @@
     "no-console": "error",
     "no-use-before-define": "off",
     "no-mixed-operators": "off",
+    "space-before-function-paren": "off",
     "object-curly-spacing": ["error", "always"],
     "max-len": [
       "error",

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { EditorState } from 'draft-js';
+import { EditorState } from '@wix/draft-js';
 import { hasLinksInSelection, removeLinksInSelection } from '~/Utils';
 import LinkButton from '~/Common/LinkButton';
 import TextLinkPanel from './TextLinkPanel';

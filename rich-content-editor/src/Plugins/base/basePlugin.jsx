@@ -1,4 +1,4 @@
-import { SelectionState, EditorState, Modifier } from 'draft-js';
+import { SelectionState, EditorState, Modifier } from '@wix/draft-js';
 import includes from 'lodash/includes';
 import cloneDeep from 'lodash/cloneDeep';
 import { simplePubsub } from '~/Utils';

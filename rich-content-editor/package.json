@@ -7,13 +7,18 @@
     "email": "jonathanb@wix.com"
   },
   "main": "dist/wix-rich-content-editor.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "clean": "rm -rf dist/",
     "prebuild": "npm run clean",
     "build": "webpack --config webpack.prod.js",
+    "build:analyze": "npm run build -- --progress --env.analyzeBundle",
+    "build:dev": "webpack --config webpack.dev.js --colors --progress",
+    "build:style": "stc --srcDir=src --outDir=lib --diagnostics",
     "prewatch": "npm run clean",
-    "watch": "webpack --config webpack.dev.js --watch --colors --progress",
+    "watch": "npm run build:dev -- --watch",
     "release": "wnpm-release --no-shrinkwrap",
     "format": "prettier --list-different --write 'src/**/*.{js,jsx}'",
     "lint": "eslint 'src/**/*.{js,jsx}'",
@@ -28,8 +33,6 @@
     }
   },
   "dependencies": {
-    "@wix/draft-js": "^0.10.4",
-    "axios": "^0.16.2",
     "babel-runtime": "^6.22.0",
     "classnames": "^2.2.5",
     "decorate-component-with-props": "^1.0.2",
@@ -40,16 +43,18 @@
     "draft-js-plugins-editor": "^2.0.1",
     "draft-js-side-toolbar-plugin": "^2.0.1",
     "draft-js-static-toolbar-plugin": "^2.0.1",
-    "immutable": "^3.8.1",
     "lodash": "^4.17.4",
     "react-player": "^0.25.3",
-    "react-sortable-hoc": "^0.6.5",
-    "url-loader": "^0.6.2",
+    "stylable-components": "^0.4.0",
     "wix-style-react": "^1.2.3",
     "wnpm-ci": "latest"
   },
   "peerDependencies": {
-    "pro-gallery-renderer": "^1.0.60"
+    "@wix/draft-js": "^0.10.4",
+    "pro-gallery-renderer": "^1.0.60",
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "immutable": "^3.8.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -81,11 +86,14 @@
     "react-svg-loader": "^1.1.1",
     "react-test-renderer": "^15.6.1",
     "sass-loader": "^6.0.6",
+    "stylable": "^4.0.26",
+    "stylable-integration": "^6.0.2",
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "^3.6.0",
+    "webpack-bundle-analyzer": "^2.9.2",
     "webpack-merge": "^4.1.1",
-    "webpack-visualizer-plugin": "^0.1.11"
+    "@wix/draft-js": "^0.10.4"
   },
   "eslintConfig": {
     "extends": "wix/react"

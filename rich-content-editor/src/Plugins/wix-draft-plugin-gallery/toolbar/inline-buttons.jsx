@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AddIcon from '../icons/toolbar/icon-add.svg';
-import SettingsIcon from '../../base/icons/block-settings.svg';
+import ManageMediaIcon from '../icons/insert-plugin.svg';
+import AdvancedSettingsIcon from '../../base/icons/block-settings.svg';
 import GridSmallIcon from '../icons/toolbar/layout/icon-grid-small.svg';
 import GridSmallIconActive from '../icons/toolbar/layout/icon-grid-small-active.svg';
 import GridMediumIcon from '../icons/toolbar/layout/icon-grid-medium.svg';
@@ -92,6 +93,35 @@ SettingsModal.propTypes = {
   componentState: PropTypes.object.isRequired,
 };
 
+const modalStyles = {
+  overlay: {
+    top: 0,
+    left: 0,
+    position: 'absolute',
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    zIndex: 100,
+  },
+  content: {
+    position: 'absolute',
+    top: 0,
+    left: 'auto',
+    right: 0,
+    bottom: 0,
+    border: 'none',
+    background: '#fff',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    borderRadius: 0,
+    outline: 'none',
+    padding: 0,
+    height: '100vh',
+    width: '33vw',
+    zIndex: 101,
+  },
+};
+
 const InlineButtons = [
   {
     keyName: 'add',
@@ -108,40 +138,21 @@ const InlineButtons = [
   { type: BUTTONS.SIZE_FULL_WIDTH },
   { type: BUTTONS.SEPARATOR },
   {
-    keyName: 'gallery_settings',
+    keyName: 'manage_media',
     type: BUTTONS.EXTERNAL_MODAL,
-    icon: SettingsIcon,
+    icon: ManageMediaIcon,
     panelElement: GallerySettingsModal,
-    modalStyles: {
-      overlay: {
-        top: 0,
-        left: 0,
-        position: 'absolute',
-        width: '100vw',
-        height: '100vh',
-        backgroundColor: 'rgba(0, 0, 0, 0.75)',
-        zIndex: 100,
-      },
-      content: {
-        position: 'absolute',
-        top: 0,
-        left: 'auto',
-        right: 0,
-        bottom: 0,
-        border: 'none',
-        background: '#fff',
-        overflow: 'auto',
-        WebkitOverflowScrolling: 'touch',
-        borderRadius: 0,
-        outline: 'none',
-        padding: 0,
-        height: '100vh',
-        width: '33vw',
-        zIndex: 101,
-      },
-    },
+    activeTab: 'manage_media',
+    modalStyles,
   },
-  { type: BUTTONS.SEPARATOR },
+  {
+    keyName: 'advanced_settings',
+    type: BUTTONS.EXTERNAL_MODAL,
+    icon: AdvancedSettingsIcon,
+    panelElement: GallerySettingsModal,
+    activeTab: 'advanced_settings',
+    modalStyles,
+  },
   { type: BUTTONS.DELETE },
 ];
 
