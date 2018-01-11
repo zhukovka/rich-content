@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Tabs, Tab } from 'stylable-components';
+import { Tabs, Tab } from 'stylable-components/dist/src/components/tabs';
 import styles from '~/Styles/gallery-settings.scss';
 import { WixThemeProvider } from '../../../Common/wix-theme-provider';
 
