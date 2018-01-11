@@ -1,0 +1,15 @@
+.layouts-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 100px 100px;
+}
+
+.layout-tile {
+  text-align: center;
+  margin: 0 auto 0 auto;
+
+  div {
+    margin-top: 25%;
+  }
+}
