@@ -30,6 +30,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
+        exclude: [path.join(__dirname, 'node_modules/stylable-components')],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader'],
