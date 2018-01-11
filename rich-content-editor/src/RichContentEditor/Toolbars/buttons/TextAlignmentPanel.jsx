@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { EditorState, Modifier } from 'draft-js';
+import { EditorState, Modifier } from '@wix/draft-js';
 import createTextAlignmentButton from './utils/createTextAlignmentButton';
 import AlignTextLeft from '../icons/align-text-left.svg';
 import AlignTextCenter from '../icons/align-text-center.svg';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AtomicBlockUtils } from 'draft-js';
+import { AtomicBlockUtils } from '@wix/draft-js';
 import noop from 'lodash/noop';
 import cloneDeep from 'lodash/cloneDeep';
 import classNames from 'classnames';
