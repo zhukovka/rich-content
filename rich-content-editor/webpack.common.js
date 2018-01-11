@@ -79,6 +79,7 @@ module.exports = {
   target: 'web',
   externals: {
     'pro-gallery-renderer': 'pro-gallery-renderer',
+    immutable: 'immutable',
     react: {
       root: 'React',
       commonjs2: 'react',
