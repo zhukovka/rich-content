@@ -1,3 +1,9 @@
+:global {
+  .ReactModal__Body--open {
+    overflow-y: hidden;
+  }
+}
+
 .section {
   label + * {
     margin-top: 10px;
