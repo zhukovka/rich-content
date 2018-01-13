@@ -4,8 +4,6 @@ import { SelectionList, SelectionListOption } from 'stylable-components/dist/src
 
 import style from './layout-selector.scss';
 class LayoutSelector extends Component {
-  state = { value: this.props.initLayout };
-
   dataSource = [
     { icon: '🐍', name: 'Grid' },
     { icon: '🐋', name: 'Masonry' },
@@ -31,22 +29,23 @@ class LayoutSelector extends Component {
   handleChange = value => this.setState({ value });
 
   render() {
+    const { value, onChange } = this.props;
     return (
       <SelectionList
         className={style['layouts-grid']}
         dataSource={this.dataSource}
         dataMapper={this.dataMapper}
         renderItem={this.renderOption}
-        value={this.state.value}
-        onChange={this.handleChange}
+        value={value}
+        onChange={onChange}
       />
     );
   }
 }
 
 LayoutSelector.propTypes = {
-  data: PropTypes.object.isRequired,
-  initLayout: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
 
 LayoutSelector.defaultProps = {

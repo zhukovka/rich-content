@@ -1,0 +1,64 @@
+.image-ratio-selector {
+  label {
+    display: block;
+  }
+}
+
+.ratios-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 100%;
+}
+
+.layout-tile {
+  text-align: center;
+  margin: 0 auto 0 auto;
+  width: 25px;
+  height: 50px;
+  background-color: #aaa;
+
+  &:focus, &:active {
+    border: 1px solid #fff;
+    background-color: #4990e2;
+  }
+
+  div + div {
+    margin-top: 25%;
+  }
+}
+
+%ratio-icon {
+  content: '';
+  border: 1px solid #000;
+
+  &:focus {
+    border: 1px solid #fff;
+  }
+}
+
+._16-9 {
+  @extend %ratio-icon;
+  width: 16px;
+  height: 9px;
+}
+._4-3 {
+  @extend %ratio-icon;
+  width: 16px;
+  height: 12px;
+}
+._1-1 {
+  @extend %ratio-icon;
+  width: 16px;
+  height: 16px;
+}
+._3-4 {
+  @extend %ratio-icon;
+  width: 12px;
+  height: 16px;
+}
+._9-16 {
+  @extend %ratio-icon;
+  width: 9px;
+  height: 16px;
+}
