@@ -23,8 +23,6 @@ class ImageRatioSelector extends Component {
     </SelectionListOption>
   );
 
-  handleChange = value => this.setState({ value });
-
   render() {
     const { value, onChange } = this.props;
     return (

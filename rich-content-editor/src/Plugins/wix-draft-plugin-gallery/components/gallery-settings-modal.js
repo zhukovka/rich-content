@@ -10,6 +10,7 @@ import GallerySettingsFooter from './gallery-controls/gallery-settings-footer';
 import { ThumbnailResize, TitleButtonPlacement } from './gallery-controls/radio-groups';
 import ImageRatioSelector from './gallery-controls/image-ratio-selector';
 import LoadMoreToggle from './gallery-controls/toggles';
+import ThumbnailPlacementSelector from './gallery-controls/thumbnail-placement-selector';
 
 class ManageMediaSection extends Component {
   render() {
@@ -39,19 +40,23 @@ class AdvancedSettingsSection extends Component {
           <hr />
         </div>
         <div className={style.section}>
-          <ThumbnailResize onChange={() => {}} value={'Fit'} />
+          <ThumbnailResize onChange={() => {}} value={'0'} />
           <hr />
         </div>
         <div className={style.section}>
-          <TitleButtonPlacement onChange={() => {}} value={'Hover'} />
+          <TitleButtonPlacement onChange={() => {}} value={'On Hover'} />
           <hr />
         </div>
         <div className={style.section}>
-          <ImageRatioSelector value={'16:9'} />
+          <ImageRatioSelector value={'1:1'} />
           <hr />
         </div>
         <div className={style.section}>
           <LoadMoreToggle value onChange={() => {}} />
+          <hr />
+        </div>
+        <div className={style.section}>
+          <ThumbnailPlacementSelector value={'_0'} onChange={() => {}} />
           <hr />
         </div>
       </div>

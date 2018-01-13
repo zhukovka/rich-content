@@ -5,28 +5,26 @@ import { SelectionList, SelectionListOption } from 'stylable-components/dist/src
 import style from './layout-selector.scss';
 class LayoutSelector extends Component {
   dataSource = [
-    { icon: '🐍', name: 'Grid' },
-    { icon: '🐋', name: 'Masonry' },
-    { icon: '🐊', name: 'Collage' },
-    { icon: '🐘', name: 'Thumbnails' },
-    { icon: '🐇', name: 'Slideshow' },
-    { icon: '🐝', name: 'Panorama' },
-    { icon: '🐵', name: 'Columns' },
-    { icon: '🐕', name: 'Slides' },
+    { name: 'Grid' },
+    { name: 'Masonry' },
+    { name: 'Collage' },
+    { name: 'Thumbnails' },
+    { name: 'Slideshow' },
+    { name: 'Panorama' },
+    { name: 'Columns' },
+    { name: 'Slides' },
   ];
 
-  dataMapper = ({ icon, name }) => ({ value: name, label: name });
+  dataMapper = ({ name }) => ({ value: name, label: name });
 
-  renderOption = ({ icon, name }, { value, label }, { id, selected, focused }) => (
+  renderOption = ({ name }, { value, label }, { id, selected, focused }) => (
     <SelectionListOption id={id} value={value} selected={selected} focused={focused}>
       <div className={style['layout-tile']}>
-        <div>{icon}</div>
+        <div className={style[selected ? `${value.toLowerCase()}_selected` : value.toLowerCase()]} />
         <div>{label}</div>
       </div>
     </SelectionListOption>
   );
-
-  handleChange = value => this.setState({ value });
 
   render() {
     const { value, onChange } = this.props;
