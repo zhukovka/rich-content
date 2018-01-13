@@ -117,6 +117,7 @@ const modalStyles = {
     outline: 'none',
     padding: 0,
     height: '100vh',
+    width: '522px',
   },
 };
 
