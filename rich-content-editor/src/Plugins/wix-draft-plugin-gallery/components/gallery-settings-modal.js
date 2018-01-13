@@ -5,13 +5,9 @@ import { Tabs, Tab } from 'stylable-components/dist/src/components/tabs';
 import { WixThemeProvider } from '../../../Common/wix-theme-provider';
 import LayoutSelector from './gallery-controls/layouts-selector';
 import style from './gallery-settings-modal.scss';
-import { ItemsPerRow, Spacing } from './gallery-controls/sliders';
 import GallerySettingsFooter from './gallery-controls/gallery-settings-footer';
-import { ThumbnailResize, TitleButtonPlacement } from './gallery-controls/radio-groups';
-import ImageRatioSelector from './gallery-controls/image-ratio-selector';
-import LoadMoreToggle from './gallery-controls/toggles';
-import ThumbnailPlacementSelector from './gallery-controls/thumbnail-placement-selector';
-
+import LayoutControlsSection from './layout-controls-section';
+import { SettingsSection } from './gallery-controls/settings-section';
 class ManageMediaSection extends Component {
   render() {
     return <div>Organize Media</div>;
@@ -19,46 +15,29 @@ class ManageMediaSection extends Component {
 }
 
 class AdvancedSettingsSection extends Component {
+  state = { layout: 'grid' };
+
   applyGallerySetting = setting => {
     const { data, store } = this.props;
     const componentData = { ...data, config: Object.assign({}, data.config, setting) };
     store.set('componentData', componentData);
   };
 
+  switchLayout = layout => {
+    this.setState({ layout });
+    this.applyGallerySetting({ layout });
+  };
+
   render() {
-    const { data } = this.props;
+    const { data, store } = this.props;
     return (
       <div>
-        <div className={style.section}>
+        <SettingsSection>
           <label>Layouts</label>
-          <LayoutSelector value={'Grid'} onChange={layout => this.applyGallerySetting({ layout })} />
+          <LayoutSelector value={this.state.layout} onChange={layout => this.switchLayout(layout.value)} />
           <hr />
-        </div>
-        <div className={style.section}>
-          <ItemsPerRow value={3} onChange={() => {}} />
-          <Spacing value={data.config.spacing} onChange={event => this.applyGallerySetting({ spacing: event.value })} />
-          <hr />
-        </div>
-        <div className={style.section}>
-          <ThumbnailResize onChange={() => {}} value={'0'} />
-          <hr />
-        </div>
-        <div className={style.section}>
-          <TitleButtonPlacement onChange={() => {}} value={'On Hover'} />
-          <hr />
-        </div>
-        <div className={style.section}>
-          <ImageRatioSelector value={'1:1'} />
-          <hr />
-        </div>
-        <div className={style.section}>
-          <LoadMoreToggle value onChange={() => {}} />
-          <hr />
-        </div>
-        <div className={style.section}>
-          <ThumbnailPlacementSelector value={'_0'} onChange={() => {}} />
-          <hr />
-        </div>
+        </SettingsSection>
+        <LayoutControlsSection layout={this.state.layout} data={data} store={store} />
       </div>
     );
   }
@@ -74,7 +53,7 @@ export class GallerySettingsModal extends Component {
     const { activeTab, componentData, store, helpers } = this.props;
     return (
       <WixThemeProvider>
-        <h3>Gallery Settings</h3>
+        <h3 className={style.title}>Gallery Settings</h3>
         <Tabs value={activeTab}>
           <Tab label={'Organize Media'} value={'manage_media'}>
             <ManageMediaSection />

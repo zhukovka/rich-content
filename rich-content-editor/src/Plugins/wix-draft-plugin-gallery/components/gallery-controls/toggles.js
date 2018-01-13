@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ToggleWithLabel from '../stylable-base/toggle-with-label';
 
-class LoadMoreToggle extends Component {
-  render() {
-    return <ToggleWithLabel label={'Load More Button'} value={this.props.value} />;
-  }
-}
-
-LoadMoreToggle.propTypes = {
+const propTypes = {
   value: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
 };
 
-export default LoadMoreToggle;
+export const LoadMoreToggle = props => <ToggleWithLabel label={'Load More Button'} {...props} />;
+LoadMoreToggle.propTypes = propTypes;

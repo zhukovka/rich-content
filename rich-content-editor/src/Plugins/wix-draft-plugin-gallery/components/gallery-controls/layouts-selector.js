@@ -15,12 +15,12 @@ class LayoutSelector extends Component {
     { name: 'Slides' },
   ];
 
-  dataMapper = ({ name }) => ({ value: name, label: name });
+  dataMapper = ({ name }) => ({ value: name.toLowerCase(), label: name });
 
   renderOption = ({ name }, { value, label }, { id, selected, focused }) => (
     <SelectionListOption id={id} value={value} selected={selected} focused={focused}>
       <div className={style['layout-tile']}>
-        <div className={style[selected ? `${value.toLowerCase()}_selected` : value.toLowerCase()]} />
+        <div className={style[selected ? `${value}_selected` : value]} />
         <div>{label}</div>
       </div>
     </SelectionListOption>
@@ -42,12 +42,8 @@ class LayoutSelector extends Component {
 }
 
 LayoutSelector.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-};
-
-LayoutSelector.defaultProps = {
-  initLayout: 'Grid',
 };
 
 export default LayoutSelector;
