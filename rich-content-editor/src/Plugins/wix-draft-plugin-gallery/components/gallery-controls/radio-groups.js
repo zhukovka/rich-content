@@ -4,7 +4,7 @@ import RadioGroupHorizontal from '../stylable-base/radio-group-horizontal';
 
 const propTypes = {
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.any,
+  value: PropTypes.string.isRequired,
 };
 
 export const ThumbnailResize = props => (

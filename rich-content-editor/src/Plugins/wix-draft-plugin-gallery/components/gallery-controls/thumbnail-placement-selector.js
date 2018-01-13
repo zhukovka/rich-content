@@ -34,12 +34,8 @@ class ThumbnailPlacementSelector extends Component {
 }
 
 ThumbnailPlacementSelector.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-};
-
-ThumbnailPlacementSelector.defaultProps = {
-  value: '_0',
 };
 
 export default ThumbnailPlacementSelector;

@@ -62,6 +62,9 @@ export class GallerySettingsModal extends Component {
             <AdvancedSettingsSection data={componentData} store={store} />
           </Tab>
         </Tabs>
+        <SettingsSection>
+          <hr />
+        </SettingsSection>
         <GallerySettingsFooter cancel={() => helpers.closeExternalModal()} save={() => {}} />
       </WixThemeProvider>
     );

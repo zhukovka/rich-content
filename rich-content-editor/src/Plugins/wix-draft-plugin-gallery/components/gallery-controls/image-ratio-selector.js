@@ -42,7 +42,7 @@ class ImageRatioSelector extends Component {
 }
 
 ImageRatioSelector.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
