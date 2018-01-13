@@ -12,7 +12,7 @@ class SliderWithInput extends Component {
       <div className={style['slider-with-input']}>
         {label ? <label>{label}</label> : null}
         <div>
-          <Slider value={value} onDragStop={onChange} min={min} max={max} style={{ width: '80%' }} />
+          <Slider value={value} onChange={onChange} min={min} max={max} style={{ width: '80%' }} />
           <input value={value} onChange={onChange} />
         </div>
       </div>
