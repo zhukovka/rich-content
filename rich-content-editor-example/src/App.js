@@ -60,6 +60,11 @@ class App extends Component {
           modalContent: <ModalContent />,
           modalStyles
         })
+      },
+      closeExternalModal: (data) => {
+        this.setState({
+          showModal: false,
+        })
       }
     }
   }
