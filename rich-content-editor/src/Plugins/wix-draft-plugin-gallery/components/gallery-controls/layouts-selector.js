@@ -5,22 +5,22 @@ import { SelectionList, SelectionListOption } from 'stylable-components/dist/src
 import style from './layout-selector.scss';
 class LayoutSelector extends Component {
   dataSource = [
-    { name: 'Grid' },
-    { name: 'Masonry' },
-    { name: 'Collage' },
-    { name: 'Thumbnails' },
-    { name: 'Slideshow' },
-    { name: 'Panorama' },
-    { name: 'Columns' },
-    { name: 'Slides' },
+    { layoutId: 0, name: 'Collage' },
+    { layoutId: 1, name: 'Masonry' },
+    { layoutId: 2, name: 'Grid' },
+    { layoutId: 3, name: 'Thumbnails' },
+    { layoutId: 4, name: 'Slides' },
+    { layoutId: 5, name: 'Slideshow' },
+    { layoutId: 6, name: 'Panorama' },
+    { layoutId: 7, name: 'Columns' },
   ];
 
-  dataMapper = ({ name }) => ({ value: name.toLowerCase(), label: name });
+  dataMapper = ({ layoutId, name }) => ({ value: layoutId, label: name });
 
-  renderOption = ({ name }, { value, label }, { id, selected, focused }) => (
-    <SelectionListOption id={id} value={value} selected={selected} focused={focused}>
+  renderOption = ({ layoutId }, { label }, { id, selected, focused }) => (
+    <SelectionListOption id={id} value={layoutId} selected={selected} focused={focused}>
       <div className={style['layout-tile']}>
-        <div className={style[selected ? `${value}_selected` : value]} />
+        <div className={style[selected ? `${label.toLowerCase()}_selected` : label.toLowerCase()]} />
         <div>{label}</div>
       </div>
     </SelectionListOption>
