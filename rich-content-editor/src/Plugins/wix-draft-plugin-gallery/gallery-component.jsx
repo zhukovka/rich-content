@@ -29,6 +29,17 @@ const DEFAULTS = {
       url: '8bb438_ff062a651e174cf5926fe5c088be1099.jpg',
     },
   ],
+  styles: {
+    galleryLayout: 1,
+    scrollDirection: 0,
+    galleryImageRatio: 2,
+    galleryThumbnailsAlignment: 0,
+    isVertical: 0, // imageOrientation
+    thumbnailSpacings: 0,
+    numberOfImagesPerRow: 3,
+    imageMargin: 10, // spacing
+    imageResize: 0, // crop/fit
+  },
   config: {
     layout: 'small',
     spacing: 0,
@@ -49,19 +60,21 @@ class GalleryComponent extends React.Component {
     const { keyName, isActive } = props.componentState.activeButton || {};
     const inEditMode = keyName === 'edit' && isActive;
     const items = props.componentData.items || DEFAULTS.items;
+    const styles = props.componentData.styles || DEFAULTS.styles;
     const layout = props.componentData.config && props.componentData.config.layout;
     const layoutWidth = layout === 'large' ? 100 : layout === 'medium' ? 50 : 33;
     return {
       items,
       inEditMode,
       layoutWidth,
+      styles,
     };
   };
 
   render() {
-    const { items } = this.state;
+    const { items, styles } = this.state;
 
-    return <ProGallery items={items} galleryDataSrc={'manuallySetImages'} />;
+    return <ProGallery styles={styles} items={items} galleryDataSrc={'manuallySetImages'} />;
   }
 }
 
