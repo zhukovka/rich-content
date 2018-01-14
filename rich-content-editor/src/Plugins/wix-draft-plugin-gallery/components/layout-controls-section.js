@@ -12,8 +12,11 @@ import { SettingsSection } from './gallery-controls/settings-section';
 const Separator = () => <hr />;
 
 class LayoutControlsSection extends Component {
-  controlsByLayout = {
-    grid: [
+  // NB: index sensitive!
+  controlsByLayout = [
+    ['itemsPerRow', 'spacing', 'separator', 'thumbnailResize', 'separator', 'scrollDirection'],
+    ['itemsPerRow', 'spacing', 'separator', 'imageOrientation'],
+    [
       'itemsPerRow',
       'spacing',
       'separator',
@@ -25,20 +28,18 @@ class LayoutControlsSection extends Component {
       'separator',
       'loadMoreButton',
     ],
-    masonry: ['itemsPerRow', 'spacing', 'separator', 'imageOrientation'],
-    collage: ['itemsPerRow', 'spacing', 'separator', 'thumbnailResize', 'separator', 'scrollDirection'],
-    thumbnails: ['thumbnailPlacement', 'separator', 'spacing'],
-    slideshow: [],
-    panorama: ['spacing'],
-    columns: ['spacing'],
-    slides: ['spacing', 'separator', 'titleButtonPlacement', 'separator', 'imageRatio'],
-  };
+    ['thumbnailPlacement', 'separator', 'spacing'],
+    ['spacing', 'separator', 'titleButtonPlacement', 'separator', 'imageRatio'],
+    [],
+    ['spacing'],
+    ['spacing'],
+  ];
 
-  getValueFromDataConfig = name => this.props.data.config[name];
+  getValueFromComponentStyles = name => this.props.data.styles[name];
 
   applyGallerySetting = setting => {
     const { data, store } = this.props;
-    const componentData = { ...data, config: Object.assign({}, data.config, setting) };
+    const componentData = { ...data, styles: Object.assign({}, data.styles, setting) };
     store.set('componentData', componentData);
   };
 
@@ -46,65 +47,65 @@ class LayoutControlsSection extends Component {
     itemsPerRow: {
       component: ItemsPerRow,
       props: {
-        onChange: event => this.applyGallerySetting({ itemsPerRow: event.value }),
-        value: this.getValueFromDataConfig('itemsPerRow'),
+        onChange: event => this.applyGallerySetting({ numberOfImagesPerRow: event.value }),
+        value: this.getValueFromComponentStyles('numberOfImagesPerRow'),
       },
     },
     spacing: {
       component: Spacing,
       props: {
-        onChange: event => this.applyGallerySetting({ spacing: event.value }),
-        value: this.getValueFromDataConfig('spacing'),
+        onChange: event => this.applyGallerySetting({ imageMargin: event.value }),
+        value: this.getValueFromComponentStyles('imageMargin'),
       },
     },
     separator: { component: Separator, props: {} },
     thumbnailResize: {
       component: ThumbnailResize,
       props: {
-        onChange: event => this.applyGallerySetting({ thumbnailResize: event.value }),
-        value: this.getValueFromDataConfig('thumbnailResize'),
+        onChange: event => this.applyGallerySetting({ imageResize: event.value }),
+        value: this.getValueFromComponentStyles('imageResize'),
       },
     },
     titleButtonPlacement: {
       component: TitleButtonPlacement,
       props: {
         onChange: event => this.applyGallerySetting({ titleButtonPlacement: event.value }),
-        value: this.getValueFromDataConfig('titleButtonPlacement'),
+        value: this.getValueFromComponentStyles('titleButtonPlacement'),
       },
     },
     imageRatio: {
       component: ImageRatioSelector,
       props: {
-        onChange: event => this.applyGallerySetting({ imageRatio: event.value }),
-        value: this.getValueFromDataConfig('imageRatio'),
+        onChange: event => this.applyGallerySetting({ galleryImageRatio: event.value }),
+        value: this.getValueFromComponentStyles('galleryImageRatio'),
       },
     },
     loadMoreButton: {
       component: LoadMoreToggle,
       props: {
         onChange: event => this.applyGallerySetting({ loadMore: event.value }),
-        value: this.getValueFromDataConfig('loadMore'),
+        value: this.getValueFromComponentStyles('loadMore'),
       },
     },
     imageOrientation: {
       component: ImageOrientation,
       props: {
-        onChange: event => this.applyGallerySetting({ imageOrientation: event.value }),
-        value: this.getValueFromDataConfig('imageOrientation'),
+        onChange: event => this.applyGallerySetting({ isVertical: event.value }),
+        value: this.getValueFromComponentStyles('isVertical'),
       },
     },
     scrollDirection: {
       component: ScrollDirection,
       props: {
         onChange: event => this.applyGallerySetting({ scrollDirection: event.value }),
-        value: this.getValueFromDataConfig('scrollDirection'),
+        value: this.getValueFromComponentStyles('scrollDirection'),
       },
     },
     thumbnailPlacement: {
       component: ThumbnailPlacementSelector,
       props: {
-        onChange: event => this.applyGallerySetting({ thumbnailPlacement: event.value }),
-        value: this.getValueFromDataConfig('thumbnailPlacement'),
+        onChange: event => this.applyGallerySetting({ galleryThumbnailsAlignment: event.value }),
+        value: this.getValueFromComponentStyles('galleryThumbnailsAlignment'),
       },
     },
   };
