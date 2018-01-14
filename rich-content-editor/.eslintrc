@@ -4,7 +4,7 @@
     "browser": true,
     "node": true
   },
-  "plugins": ["lodash", "fp", "prettier"],
+  "plugins": ["lodash", "fp"],
   "rules": {
     "semi": "error",
     "quotes": [
@@ -45,8 +45,6 @@
     "mocha/no-exclusive-tests": "error",
     "mocha/no-skipped-tests": "error",
     "mocha/no-pending-tests": "error",
-    "no-param-reassign": "error",
-
-    "prettier/prettier": ["error"]
+    "no-param-reassign": "error"
   }
 }
