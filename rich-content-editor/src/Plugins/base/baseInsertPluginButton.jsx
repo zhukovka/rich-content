@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AtomicBlockUtils } from '@wix/draft-js';
-import noop from 'lodash/noop';
 import cloneDeep from 'lodash/cloneDeep';
 import classNames from 'classnames';
 import Tooltip from 'wix-style-react/dist/src/Tooltip';
 import Styles from '~/Styles/toolbar-button.scss';
+import { VideoUploadModal } from '../wix-draft-plugin-video/videoUploadModal';
 
 export default ({ blockType, button, pubsub }) => {
   class InsertPluginButton extends Component {
+    constructor() {
+      super();
+      this.state = {};
+    }
+
     addBlock = data => {
       const { getEditorState, setEditorState, hidePluginSelectPopup } = this.props;
       const contentState = getEditorState().getCurrentContent();
@@ -29,8 +34,20 @@ export default ({ blockType, button, pubsub }) => {
 
     onClick = event => {
       event.preventDefault();
-      const data = button.data || {};
-      this.addBlock(data);
+      switch (button.type) {
+        case 'file':
+          break;
+        case 'video':
+          this.openVideoUploadModal();
+          break;
+        default:
+          this.addBlock(button.data || {});
+      }
+    };
+
+    addVideoBlock = url => {
+      this.closeVideoUploadModal();
+      this.addBlock({ ...button.data, src: url });
     };
 
     handleFileChange = event => {
@@ -52,19 +69,22 @@ export default ({ blockType, button, pubsub }) => {
 
     renderButton = () => {
       const { theme, hideName } = this.props;
-      const { name, Icon, type } = button;
+      const { name, Icon } = button;
       const children = [<Icon key="0" />, hideName ? null : <span key="1">{name}</span>].filter(child => child);
-      return (
-        <button
-          className={classNames(Styles.button, theme.button)}
-          onClick={type !== 'file' ? this.onClick : noop}
-          type="button"
-          children={children}
-        />
-      );
+      return <button className={classNames(Styles.button, theme.button)} onClick={this.onClick} type="button" children={children} />;
     };
 
-    renderUploadForm = () => {
+    openVideoUploadModal = () => {
+      this.setState({ isVideoUploadModalOpen: true });
+    };
+
+    closeVideoUploadModal = () => {
+      this.setState({ isVideoUploadModalOpen: false });
+    };
+
+    renderVideoUploadForm = show => (show ? <VideoUploadModal isOpen onConfirm={this.addVideoBlock} onCancel={this.closeVideoUploadModal} /> : null);
+
+    renderFileUploadForm = () => {
       return (
         <form ref={this.setForm}>
           <input name="file" type="file" className={Styles.fileInput} onChange={this.handleFileChange} accept="image/*" tabIndex="-1" />
@@ -79,7 +99,8 @@ export default ({ blockType, button, pubsub }) => {
         <Tooltip content={tooltipText} textAlign="center" maxWidth="" moveBy={{ x: -8 }} shouldCloseOnClickOutside theme="dark">
           <div className={classNames(Styles.buttonWrapper, theme.buttonWrapper)} onMouseDown={this.preventBubblingUp}>
             {this.renderButton()}
-            {button.type === 'file' && this.renderUploadForm()}
+            {button.type === 'file' && this.renderFileUploadForm()}
+            {button.type === 'video' && this.renderVideoUploadForm(this.state.isVideoUploadModalOpen)}
           </div>
         </Tooltip>
       );
