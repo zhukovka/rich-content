@@ -1,8 +1,12 @@
 import * as React from 'react';
-import { stylable } from 'wix-react-tools';
+import PropTypes from 'prop-types';
 
-import theme from 'stylable-components/dist/src/themes/default/theme.st.css.js';
+import theme from 'stylable-components/dist/src/themes/default/theme.st.css';
 
-export const WixThemeProvider = stylable(theme)(props => <div children={props.children} />);
+export const WixThemeProvider = props => <div {...theme('root')}>{props.children}</div>;
+
+WixThemeProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 Object.defineProperty(WixThemeProvider, 'name', { value: 'WixThemeProvider' });

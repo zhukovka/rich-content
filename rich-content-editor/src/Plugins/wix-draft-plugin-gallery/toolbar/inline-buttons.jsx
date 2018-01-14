@@ -9,7 +9,7 @@ import GridMediumIcon from '../icons/toolbar/layout/icon-grid-medium.svg';
 import GridMediumIconActive from '../icons/toolbar/layout/icon-grid-medium-active.svg';
 import GridLargeIcon from '../icons/toolbar/layout/icon-grid-large.svg';
 import GridLargeIconActive from '../icons/toolbar/layout/icon-grid-large-active.svg';
-import GallerySettingsModal from './gallery-settings-modal';
+import GallerySettingsModal from '../components/gallery-settings-modal';
 import { BUTTONS } from '~/Plugins/base/buttons';
 
 class LayoutModal extends React.Component {
@@ -117,8 +117,7 @@ const modalStyles = {
     outline: 'none',
     padding: 0,
     height: '100vh',
-    width: '33vw',
-    zIndex: 101,
+    width: '522px',
   },
 };
 

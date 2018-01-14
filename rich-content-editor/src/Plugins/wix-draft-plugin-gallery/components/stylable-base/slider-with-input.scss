@@ -1,0 +1,14 @@
+.slider-with-input {
+  label {
+    display: block;
+  }
+  div {
+    display: flex;
+    flex-basis: auto;
+    justify-content: space-between;
+
+    input {
+      width: 50px;
+    }
+  }
+}

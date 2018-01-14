@@ -1,0 +1,54 @@
+@mixin thumbnail_icon($rotation, $icon) {
+  background: url('./icons/layout_' + $icon + '.png') center no-repeat;
+  transform: rotateZ($rotation + deg);
+}
+
+.thumbnail-placement-selector {
+  label {
+    display: block;
+  }
+}
+
+.thumbnails-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 100%;
+}
+
+.thumbnail-tile {
+  width: 46px;
+  height: 46px;
+}
+
+._0 {
+  @include thumbnail_icon(0, 'thumbnails');
+}
+
+._0_selected {
+  @include thumbnail_icon(0, 'thumbnails_selected');
+}
+
+._90 {
+  @include thumbnail_icon(90, 'thumbnails');
+}
+
+._90_selected {
+  @include thumbnail_icon(90, 'thumbnails_selected');
+}
+
+._180 {
+  @include thumbnail_icon(180, 'thumbnails');
+}
+
+._180_selected {
+  @include thumbnail_icon(180, 'thumbnails_selected');
+}
+
+._270 {
+  @include thumbnail_icon(270, 'thumbnails');
+}
+
+._270_selected {
+  @include thumbnail_icon(270, 'thumbnails_selected');
+}
