@@ -14,7 +14,7 @@
     "react-dom": "15.3.2",
     "react-modal": "^3.1.8",
     "react-scripts": "^1.0.13",
-    "wix-rich-content-editor": "^1.0.1"
+    "wix-rich-content-editor": "^1.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
