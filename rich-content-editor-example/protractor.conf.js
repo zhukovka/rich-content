@@ -1,4 +1,4 @@
-const {start} = require('./test/dev/server');
+const { start } = require('./test/dev/server');
 
 module.exports.config = {
   framework: 'mocha',
@@ -7,5 +7,5 @@ module.exports.config = {
   onPrepare() {
     browser.ignoreSynchronization = true;
     start(3100);
-  }
+  },
 };

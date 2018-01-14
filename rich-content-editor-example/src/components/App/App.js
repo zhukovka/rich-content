@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import ReactModal from "react-modal";
-import { translate } from "react-i18next";
-import decorateComponentWithProps from "decorate-component-with-props";
-import logo from "./logo.svg";
-import * as WixRichContentEditor from "wix-rich-content-editor";
-import styles from "./App.scss";
-import "./RichContentEditor.global.scss";
+import React, { Component } from 'react';
+import ReactModal from 'react-modal';
+import { translate } from 'react-i18next';
+import decorateComponentWithProps from 'decorate-component-with-props';
+import logo from './logo.svg';
+import * as WixRichContentEditor from 'wix-rich-content-editor';
+import styles from './App.scss';
+import './RichContentEditor.global.scss';
 //import TestData from './TestData/initialState';
 
 const modalStyleDefaults = {
   content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)"
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
   }
 };
 
@@ -37,20 +37,20 @@ class App extends Component {
       config: {
         Hashtag: {
           createHref: decoratedText =>
-            `/search/posts?query=${encodeURIComponent("#")}${decoratedText}`
+            `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`
         }
       }
     };
     this.textButtons = WixRichContentEditor.TextButtonList;
     this.helpers = {
       onFilesChange: (files, updateEntity) => {
-        console.log("[consumer] files changed!", files);
+        console.log('[consumer] files changed!', files); //eslint-disable-line no-console
         //mock upload
         const data = {
-          original_file_name:
-            "a27d24_e1ac8887d0e04dd5b98fb4c263af1180~mv2_d_4915_3277_s_4_2.jpg",
-          file_name:
-            "a27d24_e1ac8887d0e04dd5b98fb4c263af1180~mv2_d_4915_3277_s_4_2.jpg",
+          original_file_name: //eslint-disable-line camelcase
+            'a27d24_e1ac8887d0e04dd5b98fb4c263af1180~mv2_d_4915_3277_s_4_2.jpg',
+          file_name: //eslint-disable-line camelcase
+            'a27d24_e1ac8887d0e04dd5b98fb4c263af1180~mv2_d_4915_3277_s_4_2.jpg',
           width: 4915,
           height: 3277
         };
@@ -68,7 +68,7 @@ class App extends Component {
           modalStyles
         });
       },
-      closeExternalModal: data => {
+      closeExternalModal: () => {
         this.setState({
           showModal: false
         });
@@ -83,7 +83,7 @@ class App extends Component {
   onChange = editorState => {
     this.setState({
       lastSave: new Date(),
-      editorState: editorState
+      editorState
     });
   };
 
