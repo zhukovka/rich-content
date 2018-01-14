@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'stylable-components/dist/src/components/tabs';
 
-import { WixThemeProvider } from '../../../Common/wix-theme-provider';
+import { ThemeProvider } from '../../../Common/theme-provider';
 import LayoutSelector from './gallery-controls/layouts-selector';
 import style from './gallery-settings-modal.scss';
 import GallerySettingsFooter from './gallery-controls/gallery-settings-footer';
@@ -15,18 +15,13 @@ class ManageMediaSection extends Component {
 }
 
 class AdvancedSettingsSection extends Component {
-  state = { layout: 'grid' };
-
   applyGallerySetting = setting => {
     const { data, store } = this.props;
-    const componentData = { ...data, config: Object.assign({}, data.config, setting) };
+    const componentData = { ...data, styles: Object.assign({}, data.styles, setting) };
     store.set('componentData', componentData);
   };
 
-  switchLayout = layout => {
-    this.setState({ layout });
-    this.applyGallerySetting({ layout });
-  };
+  getValueFromComponentStyles = name => this.props.data.styles[name];
 
   render() {
     const { data, store } = this.props;
@@ -34,10 +29,13 @@ class AdvancedSettingsSection extends Component {
       <div>
         <SettingsSection>
           <label>Layouts</label>
-          <LayoutSelector value={this.state.layout} onChange={layout => this.switchLayout(layout.value)} />
+          <LayoutSelector
+            value={this.getValueFromComponentStyles('galleryLayout')}
+            onChange={event => this.applyGallerySetting({ galleryLayout: event.value })}
+          />
           <hr />
         </SettingsSection>
-        <LayoutControlsSection layout={this.state.layout} data={data} store={store} />
+        <LayoutControlsSection layout={this.getValueFromComponentStyles('galleryLayout')} data={data} store={store} />
       </div>
     );
   }
@@ -49,24 +47,35 @@ AdvancedSettingsSection.propTypes = {
 };
 
 export class GallerySettingsModal extends Component {
+  componentDidMount() {
+    this.props.pubsub.subscribe('componentData', this.onComponentUpdate);
+  }
+
+  componentWillUnmount() {
+    this.props.pubsub.unsubscribe('componentData', this.onComponentUpdate);
+  }
+
+  onComponentUpdate = () => this.forceUpdate();
+
   render() {
-    const { activeTab, componentData, store, helpers } = this.props;
+    const { activeTab, pubsub, helpers } = this.props;
+    const componentData = pubsub.get('componentData');
     return (
-      <WixThemeProvider>
+      <ThemeProvider theme={'default'}>
         <h3 className={style.title}>Gallery Settings</h3>
         <Tabs value={activeTab}>
           <Tab label={'Organize Media'} value={'manage_media'}>
             <ManageMediaSection />
           </Tab>
           <Tab label={'Advanced Settings'} value={'advanced_settings'}>
-            <AdvancedSettingsSection data={componentData} store={store} />
+            <AdvancedSettingsSection data={componentData} store={pubsub.store} />
           </Tab>
         </Tabs>
         <SettingsSection>
           <hr />
         </SettingsSection>
         <GallerySettingsFooter cancel={() => helpers.closeExternalModal()} save={() => {}} />
-      </WixThemeProvider>
+      </ThemeProvider>
     );
   }
 }
@@ -76,6 +85,7 @@ GallerySettingsModal.propTypes = {
   componentData: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
   helpers: PropTypes.object.isRequired,
+  pubsub: PropTypes.any.isRequired,
 };
 
 export default GallerySettingsModal;

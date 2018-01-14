@@ -12,9 +12,9 @@ class ImageRatioSelector extends Component {
     { ratioClass: style['_9-16'], name: '9:16' },
   ];
 
-  dataMapper = ({ ratioClass, name }) => ({ value: name, label: name });
+  dataMapper = ({ name }) => ({ value: name, label: name });
 
-  renderOption = ({ ratioClass, name }, { value, label }, { id, selected, focused }) => (
+  renderOption = ({ ratioClass }, { value, label }, { id, selected, focused }) => (
     <SelectionListOption id={id} value={value} selected={selected} focused={focused}>
       <div className={style['ratio-tile']}>
         <div className={ratioClass} />
