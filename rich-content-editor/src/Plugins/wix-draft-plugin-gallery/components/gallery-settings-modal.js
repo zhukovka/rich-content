@@ -116,10 +116,11 @@ AdvancedSettingsSection.propTypes = {
 };
 
 export class GallerySettingsModal extends Component {
-  state = { activePanel: 'tabs' };
+  state = { activePanel: 'tabs', initComponentData: null };
 
   componentDidMount() {
     this.props.pubsub.subscribe('componentData', this.onComponentUpdate);
+    this.setState({ initComponentData: this.props.pubsub.get('componentData') });
   }
 
   componentWillUnmount() {
@@ -131,6 +132,15 @@ export class GallerySettingsModal extends Component {
   });
 
   onComponentUpdate = () => this.forceUpdate();
+
+  revertComponentData = () => {
+    const { pubsub, helpers } = this.props;
+    if (this.state.initComponentData) {
+      pubsub.set('componentData', this.state.initComponentData);
+    }
+
+    helpers.closeExternalModal();
+  };
 
   render() {
     const { activeTab, pubsub, helpers } = this.props;
@@ -150,7 +160,7 @@ export class GallerySettingsModal extends Component {
         <SettingsSection>
           <hr />
         </SettingsSection>
-        <GallerySettingsFooter cancel={() => helpers.closeExternalModal()} save={() => this.toggleImageSettings()} />
+        <GallerySettingsFooter cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} />
         <ImageSettings {...this.props} visible={this.state.activePanel === 'image'} onVisibilityToggle={() => this.toggleImageSettings()}/>
       </ThemeProvider>
     );
