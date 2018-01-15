@@ -12,3 +12,9 @@ maven
 #VSCode
 **/.project
 **/.settings/*
+
+/.history
+/dist
+/target
+/maven
+
