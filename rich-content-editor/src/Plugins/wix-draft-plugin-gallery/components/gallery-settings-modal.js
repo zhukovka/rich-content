@@ -8,6 +8,7 @@ import style from './gallery-settings-modal.scss';
 import GallerySettingsFooter from './gallery-controls/gallery-settings-footer';
 import LayoutControlsSection from './layout-controls-section';
 import { SettingsSection } from './gallery-controls/settings-section';
+import layoutData from '../layout-data-provider';
 class ManageMediaSection extends Component {
   render() {
     return <div>Organize Media</div>;
@@ -21,6 +22,11 @@ class AdvancedSettingsSection extends Component {
     store.set('componentData', componentData);
   };
 
+  switchLayout = layout => {
+    const layoutStyles = Object.assign({}, layout, layoutData[layout.galleryLayout]);
+    this.applyGallerySetting(layoutStyles);
+  };
+
   getValueFromComponentStyles = name => this.props.data.styles[name];
 
   render() {
@@ -31,7 +37,7 @@ class AdvancedSettingsSection extends Component {
           <label>Layouts</label>
           <LayoutSelector
             value={this.getValueFromComponentStyles('galleryLayout')}
-            onChange={event => this.applyGallerySetting({ galleryLayout: event.value })}
+            onChange={event => this.switchLayout({ galleryLayout: event.value })}
           />
           <hr />
         </SettingsSection>
