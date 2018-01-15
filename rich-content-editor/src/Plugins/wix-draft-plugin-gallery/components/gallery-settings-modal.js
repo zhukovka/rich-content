@@ -8,11 +8,27 @@ import style from './gallery-settings-modal.scss';
 import GallerySettingsFooter from './gallery-controls/gallery-settings-footer';
 import LayoutControlsSection from './layout-controls-section';
 import { SettingsSection } from './gallery-controls/settings-section';
+import { SortableComponent } from './gallery-controls/gallery-items-sortable';
 class ManageMediaSection extends Component {
+  applyItemsOrder = items => {
+    const { data, store } = this.props;
+    const componentData = { ...data, items };
+    store.set('componentData', componentData);
+  };
+
   render() {
-    return <div>Organize Media</div>;
+    return (
+    <div>
+      <SortableComponent items={this.props.data.items} onSortEnd={this.applyItemsOrder} />
+    </div>
+    );
   }
 }
+
+ManageMediaSection.propTypes = {
+  data: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired,
+};
 
 class AdvancedSettingsSection extends Component {
   applyGallerySetting = setting => {
@@ -66,7 +82,7 @@ export class GallerySettingsModal extends Component {
         <h3 className={style.title}>Gallery Settings</h3>
         <Tabs value={activeTab}>
           <Tab label={'Organize Media'} value={'manage_media'}>
-            <ManageMediaSection />
+            <ManageMediaSection data={componentData} store={pubsub.store} />
           </Tab>
           <Tab label={'Advanced Settings'} value={'advanced_settings'}>
             <AdvancedSettingsSection data={componentData} store={pubsub.store} />

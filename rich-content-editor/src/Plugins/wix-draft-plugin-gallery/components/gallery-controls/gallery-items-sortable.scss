@@ -1,0 +1,25 @@
+:global {
+  .sortableHelper {
+    z-index: 10000 !important;
+  }
+}
+
+.itemsSortable {
+}
+.itemContainer {
+  width: 80px;
+  height: 80px;
+  border: 3px solid #459fed;
+  border-radius: 2px;
+  display: inline-block;
+  margin: 2px;
+}
+.itemImage {
+  width: 80px;
+  height: 80px;
+  cursor: -webkit-grab;
+
+  &:active {
+    cursor: -webkit-grabbing;
+  }
+}

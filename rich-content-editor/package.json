@@ -43,6 +43,7 @@
     "draft-js-plugins-editor": "^2.0.1",
     "draft-js-side-toolbar-plugin": "^2.0.1",
     "draft-js-static-toolbar-plugin": "^2.0.1",
+    "image-client-api": "^1.58.0",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
     "react-modal": "^3.1.10",
