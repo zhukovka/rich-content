@@ -1,64 +1,32 @@
 {
   "name": "rich-content-editor-example",
-  "version": "1.0.0",
-  "license": "UNLICENSED",
+  "version": "0.1.0",
   "private": true,
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
   },
+  "dependencies": {
+    "decorate-component-with-props": "^1.1.0",
+    "pro-gallery-renderer": "^1.0.63",
+    "react": "15.3.2",
+    "react-dom": "15.3.2",
+    "react-scripts": "1.1.0",
+    "wix-rich-content-editor": "^1.0.6"
+  },
   "scripts": {
-    "start": "haste start",
-    "precommit": "haste lint",
-    "pretest": "haste build",
-    "test": "haste test",
-    "posttest": "haste lint",
-    "release": "haste release"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "link": "npm link wix-rich-content-editor --only=production"
   },
   "devDependencies": {
-    "chai": "~4.1.0",
-    "enzyme": "~2.9.0",
     "eslint": "^4.15.0",
     "eslint-config-wix": "^1.1.16",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-lodash": "^2.5.0",
-    "eslint-plugin-react": "^7.5.1",
-    "express": "~4.15.0",
-    "express-session": "~1.15.0",
-    "haste-preset-yoshi": "latest",
-    "husky": "~0.14.0",
-    "jsdom": "~11.2.0",
-    "jsdom-global": "~3.0.0",
-    "react-test-renderer": "~15.6.0",
-    "velocity": "~0.7.0"
-  },
-  "dependencies": {
-    "axios": "~0.16.0",
-    "decorate-component-with-props": "^1.1.0",
-    "i18next": "~8.4.0",
-    "i18next-xhr-backend": "~1.4.0",
-    "pro-gallery-renderer": "^1.0.40",
-    "prop-types": "~15.6.0",
-    "react": "15.6.1",
-    "react-dom": "15.6.1",
-    "react-i18next": "~4.8.0",
-    "regenerator-runtime": "^0.11.0",
-    "wix-axios-config": "latest",
-    "wix-rich-content-editor": "^1.0.4"
-  },
-  "haste": {
-    "preset": "yoshi"
-  },
-  "yoshi": {
-    "externals": {
-      "react": "React",
-      "react-dom": "ReactDOM"
-    }
-  },
-  "babel": {
-    "presets": [
-      "wix"
-    ]
+    "eslint-plugin-react": "^7.5.1"
   },
   "eslintConfig": {
     "extends": "wix/react"

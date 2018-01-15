@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
-import { translate } from 'react-i18next';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import logo from './logo.svg';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
-import styles from './App.scss';
-import './RichContentEditor.global.scss';
+import './App.css';
+import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 //import TestData from './TestData/initialState';
 
 const modalStyleDefaults = {
@@ -98,9 +97,9 @@ class App extends Component {
     const sideToolbarOffset = { x: -40, y: 0 };
     const { RichContentEditor } = WixRichContentEditor;
     return (
-      <div className={styles.wrapper}>
-        <div className={styles.header}>
-          <img src={logo} className={styles.logo} alt="logo" />
+      <div className="wrapper">
+        <div className="header">
+          <img src={logo} className="logo" alt="logo" />
           <h2>Welcome to WixDraftJs</h2>
           <div>
             <label htmlFor="readOnlyToggle">Read Only</label>
@@ -111,11 +110,11 @@ class App extends Component {
               defaultChecked={this.state.readOnly}
             />
           </div>
-          <span className={styles.intro}>
+          <span className="intro">
             Last saved on {this.state.lastSave.toTimeString()}
           </span>
         </div>
-        <div className={styles.content}>
+        <div className="content">
           <RichContentEditor
             onChange={this.onChange}
             helpers={this.helpers}
@@ -140,4 +139,4 @@ class App extends Component {
   }
 }
 
-export default translate(null, { wait: true })(App);
+export default App;
