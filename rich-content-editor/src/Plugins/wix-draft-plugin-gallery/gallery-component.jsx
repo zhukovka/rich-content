@@ -28,17 +28,43 @@ const DEFAULTS = {
       itemId: '860df034014674abd7a2e73abe0b851b',
       url: '8bb438_ff062a651e174cf5926fe5c088be1099.jpg',
     },
+    // {
+    //   metadata: {
+    //     height: 500,
+    //     width: 960,
+    //   },
+    //   itemId: '8b72558253b2502b401bb46e5599f22b',
+    //   url: '8bb438_1b73a6b067b24175bd087e86613bd00c.jpg',
+    // },
+    // {
+    //   metadata: {
+    //     height: 560,
+    //     width: 374,
+    //   },
+    //   itemId: '2d3b675ea857dc41158bad3b28300825',
+    //   url: '8bb438_78ff5e32500d48cdaa22a3f446d68216.jpg',
+    // },
+    // {
+    //   metadata: {
+    //     height: 374,
+    //     width: 560,
+    //   },
+    //   itemId: '860df034014674abd7a2e73abe0b851c',
+    //   url: '8bb438_ff062a651e174cf5926fe5c088be1099.jpg',
+    // },
   ],
   styles: {
-    galleryLayout: 1,
-    scrollDirection: 0,
-    galleryImageRatio: 2,
-    galleryThumbnailsAlignment: 0,
-    isVertical: 0, // imageOrientation
-    thumbnailSpacings: 0,
-    numberOfImagesPerRow: 3,
-    imageMargin: 10, // spacing
-    imageResize: 0, // crop/fit
+    galleryLayout: 0, // OK
+    oneRow: false, // scrollDirection OK?
+    cubeRatio: 1, // NB: galleryContainer overwrites this while trying to set wixStyle!
+    galleryThumbnailsAlignment: 'bottom', // OK
+    isVertical: false, // imageOrientation - OK
+    numberOfImagesPerRow: 3, // sets fixed columns?
+    gridStyle: 1, // for numberOfImagesPerRow
+    imageMargin: 5, // spacing - OK
+    cubeType: 'fill', // resize: crop/fit - OK
+    enableInfiniteScroll: true, // load more button - ?
+    titlePlacement: 'SHOW_ON_HOVER' // NB: galleryContainer overwrites this while trying to set wixStyle value!
   },
   config: {
     layout: 'small',

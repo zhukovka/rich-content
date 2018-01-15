@@ -5,13 +5,14 @@ import { SelectionList, SelectionListOption } from 'stylable-components/dist/src
 
 import style from './thumbnail-placement-selector.scss';
 class ThumbnailPlacementSelector extends Component {
-  dataSource = [{ thumbnailClass: '_0' }, { thumbnailClass: '_90' }, { thumbnailClass: '_180' }, { thumbnailClass: '_270' }];
 
-  dataMapper = ({ thumbnailClass }) => ({ value: thumbnailClass });
+  dataSource = [{ alignment: 'bottom' }, { alignment: 'left' }, { alignment: 'top' }, { alignment: 'right' }];
 
-  renderOption = ({ thumbnailClass }, { value }, { id, selected, focused }) => (
+  dataMapper = ({ alignment }) => ({ value: alignment });
+
+  renderOption = ({ alignment }, { value }, { id, selected, focused }) => (
     <SelectionListOption id={id} value={value} selected={selected} focused={focused}>
-      <div className={classNames(style['thumbnail-tile'], style[selected ? `${thumbnailClass}_selected` : thumbnailClass])} />
+      <div className={classNames(style['thumbnail-tile'], style[selected ? `${alignment}_selected` : alignment])} />
     </SelectionListOption>
   );
 
@@ -34,7 +35,7 @@ class ThumbnailPlacementSelector extends Component {
 }
 
 ThumbnailPlacementSelector.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOf(['bottom', 'left', 'top', 'right']),
   onChange: PropTypes.func.isRequired,
 };
 
