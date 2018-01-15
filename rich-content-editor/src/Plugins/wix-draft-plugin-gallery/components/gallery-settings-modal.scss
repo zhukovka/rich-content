@@ -8,3 +8,25 @@
   padding-left: 18px;
 }
 
+.back-button {
+  cursor: pointer;
+}
+
+.image-settings-section {
+  padding: 20px 25px 0 25px;
+}
+
+.image-settings {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+  z-index: 102;
+
+  .image {
+    width: 100%;
+  }
+}
+
