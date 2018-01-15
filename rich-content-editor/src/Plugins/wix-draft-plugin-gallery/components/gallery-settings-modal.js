@@ -60,7 +60,7 @@ export class GallerySettingsModal extends Component {
   render() {
     const { activeTab, pubsub, helpers } = this.props;
     const componentData = pubsub.get('componentData');
-    console.log('MODAL_RENDER: ', componentData);
+    // console.log('MODAL_RENDER: ', componentData);
     return (
       <ThemeProvider theme={'default'}>
         <h3 className={style.title}>Gallery Settings</h3>
