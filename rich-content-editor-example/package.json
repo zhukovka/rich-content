@@ -27,7 +27,8 @@
     "eslint-config-wix": "^1.1.16",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-lodash": "^2.5.0",
-    "eslint-plugin-react": "^7.5.1"
+    "eslint-plugin-react": "^7.5.1",
+    "wix-statics-parent": "^1.0.577"
   },
   "eslintConfig": {
     "extends": "wix/react"
