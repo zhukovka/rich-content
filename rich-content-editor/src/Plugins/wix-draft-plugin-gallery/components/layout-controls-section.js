@@ -43,7 +43,7 @@ class LayoutControlsSection extends Component {
     store.set('componentData', componentData);
   };
 
-  controlData = {
+  getControlData = () => ({
     itemsPerRow: {
       component: ItemsPerRow,
       props: {
@@ -62,43 +62,43 @@ class LayoutControlsSection extends Component {
     thumbnailResize: {
       component: ThumbnailResize,
       props: {
-        onChange: event => this.applyGallerySetting({ imageResize: event.value }),
-        value: this.getValueFromComponentStyles('imageResize'),
+        onChange: event => this.applyGallerySetting({ cubeType: event.value }),
+        value: this.getValueFromComponentStyles('cubeType'),
       },
     },
     titleButtonPlacement: {
       component: TitleButtonPlacement,
       props: {
-        onChange: event => this.applyGallerySetting({ titleButtonPlacement: event.value }),
-        value: this.getValueFromComponentStyles('titleButtonPlacement'),
+        onChange: event => this.applyGallerySetting({ titlePlacement: event.value }),
+        value: this.getValueFromComponentStyles('titlePlacement'),
       },
     },
     imageRatio: {
       component: ImageRatioSelector,
       props: {
-        onChange: event => this.applyGallerySetting({ galleryImageRatio: event.value }),
-        value: this.getValueFromComponentStyles('galleryImageRatio'),
+        onChange: event => this.applyGallerySetting({ cubeRatio: event.value }),
+        value: this.getValueFromComponentStyles('cubeRatio'),
       },
     },
     loadMoreButton: {
       component: LoadMoreToggle,
       props: {
-        onChange: event => this.applyGallerySetting({ loadMore: event.value }),
-        value: this.getValueFromComponentStyles('loadMore'),
+        onChange: event => this.applyGallerySetting({ enableInfiniteScroll: event.value }),
+        value: this.getValueFromComponentStyles('enableInfiniteScroll'),
       },
     },
     imageOrientation: {
       component: ImageOrientation,
       props: {
-        onChange: event => this.applyGallerySetting({ isVertical: event.value }),
-        value: this.getValueFromComponentStyles('isVertical'),
+        onChange: event => this.applyGallerySetting({ isVertical: event.value === '1' }),
+        value: this.getValueFromComponentStyles('isVertical') ? '1' : '0',
       },
     },
     scrollDirection: {
       component: ScrollDirection,
       props: {
-        onChange: event => this.applyGallerySetting({ scrollDirection: event.value }),
-        value: this.getValueFromComponentStyles('scrollDirection'),
+        onChange: event => this.applyGallerySetting({ oneRow: event.value === 'horizontal' }),
+        value: this.getValueFromComponentStyles('oneRow') ? 'horizontal' : 'vertical',
       },
     },
     thumbnailPlacement: {
@@ -108,14 +108,15 @@ class LayoutControlsSection extends Component {
         value: this.getValueFromComponentStyles('galleryThumbnailsAlignment'),
       },
     },
-  };
+  });
 
   render() {
+    const controls = this.getControlData();
     return (
       <div>
         {this.controlsByLayout[this.props.layout].map((name, i) => (
           <SettingsSection key={i}>
-            {React.createElement(decorateComponentWithProps(this.controlData[name].component, this.controlData[name].props))}
+            {React.createElement(decorateComponentWithProps(controls[name].component, controls[name].props))}
           </SettingsSection>
         ))}
       </div>
@@ -124,7 +125,7 @@ class LayoutControlsSection extends Component {
 }
 
 LayoutControlsSection.propTypes = {
-  layout: PropTypes.string.isRequired,
+  layout: PropTypes.number.isRequired,
   store: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
 };

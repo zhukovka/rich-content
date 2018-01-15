@@ -1,14 +1,22 @@
-node_modules
-dist
-target
-coverage
-typings
-maven
-velocity.private.data.js
-test/e2e/screenshots
-package-lock.json
-*npm-debug.log
-.history
-.idea
-*.iml
-.yo-rc.json
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pacakge-lock.json

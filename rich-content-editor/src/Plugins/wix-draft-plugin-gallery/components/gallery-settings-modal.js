@@ -60,6 +60,7 @@ export class GallerySettingsModal extends Component {
   render() {
     const { activeTab, pubsub, helpers } = this.props;
     const componentData = pubsub.get('componentData');
+    // console.log('MODAL_RENDER: ', componentData);
     return (
       <ThemeProvider theme={'default'}>
         <h3 className={style.title}>Gallery Settings</h3>
@@ -83,7 +84,6 @@ export class GallerySettingsModal extends Component {
 GallerySettingsModal.propTypes = {
   activeTab: PropTypes.oneOf(['manage_media', 'advanced_settings']),
   componentData: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired,
   helpers: PropTypes.object.isRequired,
   pubsub: PropTypes.any.isRequired,
 };

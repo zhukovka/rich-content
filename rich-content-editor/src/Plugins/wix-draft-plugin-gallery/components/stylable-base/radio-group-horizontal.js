@@ -20,7 +20,7 @@ RadioGroupHorizontal.propTypes = {
   label: PropTypes.string,
   dataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
 };
 
 export default RadioGroupHorizontal;

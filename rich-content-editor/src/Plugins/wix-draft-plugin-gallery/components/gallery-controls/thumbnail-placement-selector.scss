@@ -11,7 +11,7 @@
 
 .thumbnails-grid {
   width: 100%;
-  display: grid;
+  display: grid !important;
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 100%;
 }
@@ -21,34 +21,34 @@
   height: 46px;
 }
 
-._0 {
+.bottom {
   @include thumbnail_icon(0, 'thumbnails');
 }
 
-._0_selected {
+.bottom_selected {
   @include thumbnail_icon(0, 'thumbnails_selected');
 }
 
-._90 {
+.left {
   @include thumbnail_icon(90, 'thumbnails');
 }
 
-._90_selected {
+.left_selected {
   @include thumbnail_icon(90, 'thumbnails_selected');
 }
 
-._180 {
+.top {
   @include thumbnail_icon(180, 'thumbnails');
 }
 
-._180_selected {
+.top_selected {
   @include thumbnail_icon(180, 'thumbnails_selected');
 }
 
-._270 {
+.right {
   @include thumbnail_icon(270, 'thumbnails');
 }
 
-._270_selected {
+.right_selected {
   @include thumbnail_icon(270, 'thumbnails_selected');
 }

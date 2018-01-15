@@ -6,7 +6,7 @@
 
 .layouts-grid {
   width: 100%;
-  display: grid;
+  display: grid !important;
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 100px 100px;
 }
