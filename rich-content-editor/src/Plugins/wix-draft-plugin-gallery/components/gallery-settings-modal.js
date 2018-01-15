@@ -12,7 +12,8 @@ import { SortableComponent } from './gallery-controls/gallery-items-sortable';
 import layoutData from '../layout-data-provider';
 
 class ManageMediaSection extends Component {
-  applyItemsOrder = items => {
+
+  applyItems = items => {
     const { data, store } = this.props;
     const componentData = { ...data, items };
     store.set('componentData', componentData);
@@ -21,7 +22,7 @@ class ManageMediaSection extends Component {
   render() {
     return (
     <div>
-      <SortableComponent items={this.props.data.items} onSortEnd={this.applyItemsOrder} />
+      <SortableComponent items={this.props.data.items} onItemsChange={this.applyItems} />
     </div>
     );
   }
