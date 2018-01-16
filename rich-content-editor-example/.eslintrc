@@ -17,11 +17,7 @@
     "react/jsx-closing-tag-location": "error",
     "react/jsx-closing-bracket-location": [1, "line-aligned"],
     "react/jsx-space-before-closing": "off",
-    "react/jsx-tag-spacing": {
-      "closingSlash": "never",
-      "beforeSelfClosing": [1, "always"],
-      "afterOpening": "never"
-    },
+    "react/jsx-tag-spacing": "error",
     "react/style-prop-object": "off",
     "react/jsx-handler-names": "off",
     "camelcase": "warn",

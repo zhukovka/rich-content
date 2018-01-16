@@ -19,4 +19,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pacakge-lock.json
+package-lock.json
+
+/.history
+/dist
+/target
+/maven
+
