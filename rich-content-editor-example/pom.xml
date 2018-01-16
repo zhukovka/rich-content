@@ -13,10 +13,11 @@
     </organization>
 
     <parent>
-        <groupId>com.wixpress.common</groupId>
-        <artifactId>wix-master-parent</artifactId>
-        <version>100.0.0-SNAPSHOT</version>
+        <groupId>com.wixpress</groupId>
+        <artifactId>wix-statics-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
+
 
     <developers>
         <developer>
@@ -34,4 +35,13 @@
             </roles>
         </developer>
     </developers>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

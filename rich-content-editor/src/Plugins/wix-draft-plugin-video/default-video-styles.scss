@@ -2,10 +2,11 @@
 
 .container {
   position: relative;
-  height: auto;
   overflow: hidden;
   min-width: 350px;
-  padding-bottom: 25%;
+  padding-bottom: 56.25%;
+  padding-top: 25px;
+  height: 0;
 
   .player {
     position: absolute;

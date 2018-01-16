@@ -12,6 +12,7 @@ import DeleteIcon from '../icons/trash.svg';
 
 export const BUTTONS = {
   FILES: 'file',
+  VIDEO_REPLACE: 'video-replace',
   TOGGLE: 'toggle',
   PANEL: 'modal',
   EXTERNAL_MODAL: 'external-modal',

@@ -100,7 +100,7 @@ class App extends Component {
       <div className="wrapper">
         <div className="header">
           <img src={logo} className="logo" alt="logo" />
-          <h2>Welcome to WixDraftJs</h2>
+          <h2>Wix Rich Content Editor</h2>
           <div>
             <label htmlFor="readOnlyToggle">Read Only</label>
             <input
