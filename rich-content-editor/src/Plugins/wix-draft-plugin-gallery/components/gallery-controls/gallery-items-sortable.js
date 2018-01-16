@@ -35,12 +35,14 @@ const SortableList = sortableContainer(({ items, clickAction }) => {
 const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems }) => {
   const hasSelectedItems = items.some(item => item.selected);
   const hasUnselectedItems = items.some(item => !item.selected);
+  const selectedItems = items.filter(item => item.selected);
 
   return (
     <div className={style.topBar}>
       {hasUnselectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', true)}>Select All</a> : null}
       {hasSelectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', false)}>Deselect All</a> : null}
       {hasSelectedItems ? <a className={style.topBarLink} onClick={() => deleteSelectedItems()}>Delete Selected</a> : null}
+      {(selectedItems.length === 1) ? <a className={style.topBarLink} onClick={() => whatever(selectedItems[0])}>Item Settings</a> : null}
     </div>
   );
 };
