@@ -33,6 +33,7 @@
     }
   },
   "dependencies": {
+    "@wix/draft-js": "^0.10.4",
     "babel-runtime": "^6.22.0",
     "classnames": "^2.2.5",
     "decorate-component-with-props": "^1.0.2",
@@ -44,6 +45,7 @@
     "draft-js-side-toolbar-plugin": "^2.0.1",
     "draft-js-static-toolbar-plugin": "^2.0.1",
     "image-client-api": "^1.58.0",
+    "immutable": "^3.8.1",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
     "react-modal": "^3.1.10",
@@ -54,11 +56,9 @@
     "wnpm-ci": "latest"
   },
   "peerDependencies": {
-    "@wix/draft-js": "^0.10.4",
     "pro-gallery-renderer": "^1.0.60",
     "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0",
-    "immutable": "^3.8.1"
+    "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
