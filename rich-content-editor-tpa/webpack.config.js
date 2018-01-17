@@ -12,6 +12,7 @@ module.exports = {
     filename: '[name].bundle.js',
   },
   externals: {
+    'pro-gallery-renderer': 'pro-gallery-renderer',
     react: 'React',
     'react-dom': 'ReactDOM',
     'wix-rich-content-editor': 'WixRichContentEditor',
