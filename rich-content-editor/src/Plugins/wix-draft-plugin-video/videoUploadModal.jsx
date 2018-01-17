@@ -25,7 +25,8 @@ export class VideoUploadModal extends Component {
 
   afterOpenModal = () => this.input.focus();
 
-  onConfirm = () => {
+  onConfirm = e => {
+    e.stopPropagation();
     const { videoUrl } = this.state;
     if (isVideoUrl(videoUrl)) {
       this.props.onConfirm(videoUrl);
@@ -34,6 +35,11 @@ export class VideoUploadModal extends Component {
     }
   };
 
+  onCancel = e => {
+    e.stopPropagation();
+    this.props.onCancel();
+  }
+
   handleKeyPress = e => {
     if (e.charCode === 13) {
       this.onConfirm();
@@ -41,21 +47,22 @@ export class VideoUploadModal extends Component {
   };
 
   render() {
-    const { onCancel, isOpen } = this.props;
+    const { isOpen } = this.props;
     return (
       <Modal
+        ariaHideApp={false}
         isOpen={isOpen}
         onAfterOpen={this.afterOpenModal}
-        onRequestClose={onCancel}
+        onRequestClose={this.onCancel}
         shouldCloseOnOverlayClick
         shouldFocusAfterRender
-        contentLabel="Example Modal"
+        contentLabel="Video Upload"
         parentSelector={() => document.querySelector('.DraftEditor-root')}
         className={s.modal}
         overlayClassName={s.overlay}
       >
         <div onKeyPress={this.handleKeyPress}>
-          <CloseIcon className={s.closeIcon} onClick={onCancel} />
+          <CloseIcon className={s.closeIcon} onClick={this.onCancel} />
           <div className={s.header}>
             <CameraIcon />Add a video from YouTube or Vimeo
           </div>
@@ -85,7 +92,7 @@ export class VideoUploadModal extends Component {
             )}
           </div>
           <div className={s.btns}>
-            <button className={s.btnCancel} onClick={onCancel}>
+            <button className={s.btnCancel} onClick={this.onCancel}>
               Cancel
             </button>
             <button className={s.btnConfirm} onClick={this.onConfirm}>

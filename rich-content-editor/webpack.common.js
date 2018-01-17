@@ -9,7 +9,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: `${FILE_NAME}.js`,
     publicPath: '/assets/',
-    library: 'WixDraftJs',
+    library: 'WixRichContentEditor',
     libraryTarget: 'umd',
   },
   module: {
@@ -90,7 +90,6 @@ module.exports = {
   target: 'web',
   externals: {
     'pro-gallery-renderer': 'pro-gallery-renderer',
-    immutable: 'immutable',
     react: {
       root: 'React',
       commonjs2: 'react',
