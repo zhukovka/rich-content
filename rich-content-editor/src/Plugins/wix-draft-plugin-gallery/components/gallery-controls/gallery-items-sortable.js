@@ -33,7 +33,7 @@ const SortableList = sortableContainer(({ items, clickAction }) => {
   );
 });
 
-const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, editItem }) => {
+const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageSettings }) => {
   const hasSelectedItems = items.some(item => item.selected);
   const hasUnselectedItems = items.some(item => !item.selected);
   const selectedItems = items.filter(item => item.selected);
@@ -43,7 +43,7 @@ const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, editItem }) 
       {hasUnselectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', true)}>Select All</a> : null}
       {hasSelectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', false)}>Deselect All</a> : null}
       {hasSelectedItems ? <a className={style.topBarLink} onClick={() => deleteSelectedItems()}>Delete Selected</a> : null}
-      {(selectedItems.length === 1) ? <a className={style.topBarLink} onClick={() => editItem(selectedItems[0])}>Item Settings</a> : null}
+      {(selectedItems.length === 1) ? <a className={style.topBarLink} onClick={() => toggleImageSettings(true)}>Item Settings</a> : null}
     </div>
   );
 };
@@ -52,7 +52,7 @@ TopBarMenu.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
   setAllItemsValue: PropTypes.func,
   deleteSelectedItems: PropTypes.func,
-  editItem: PropTypes.func.isRequired,
+  toggleImageSettings: PropTypes.func.isRequired,
 };
 
 export class SortableComponent extends Component {
@@ -71,8 +71,10 @@ export class SortableComponent extends Component {
     const { items } = this.state;
     const item = items[itemIdx];
     item.selected = !item.selected;
+    const selectedItems = items.filter(i => i.selected);
     this.setState({
-      items
+      items,
+      editedImage: selectedItems.length ? selectedItems[0] : null
     });
   }
 
@@ -87,14 +89,7 @@ export class SortableComponent extends Component {
     });
   }
 
-  editItem = item => this.setState({
-    editedImage: item,
-    imageSettingsVisible: true
-  });
-
-  closeImageSettings = () => this.setState({
-    imageSettingsVisible: false
-  });
+  toggleImageSettings = visible => this.setState({ imageSettingsVisible: visible });
 
   deleteSelectedItems() {
     const { items } = this.state;
@@ -107,7 +102,7 @@ export class SortableComponent extends Component {
 
   propsToState(props) {
     return {
-      items: props.items,
+      items: props.items
     };
   }
 
@@ -122,7 +117,7 @@ export class SortableComponent extends Component {
           items={this.state.items}
           setAllItemsValue={this.setAllItemsValue.bind(this)}
           deleteSelectedItems={this.deleteSelectedItems.bind(this)}
-          editItem={this.editItem.bind(this)}
+          toggleImageSettings={this.toggleImageSettings.bind(this)}
         />
         <SortableList
           items={this.state.items}
@@ -133,12 +128,17 @@ export class SortableComponent extends Component {
           helperClass="sortableHelper"
           transitionDuration={50}
         />
-        <ImageSettings visible={this.state.imageSettingsVisible} image={this.state.editedImage} onVisibilityToggle={() => this.closeImageSettings()}/>
+        <ImageSettings
+          visible={this.state.imageSettingsVisible}
+          images={this.state.items}
+          selectedImage={this.state.editedImage}
+          onVisibilityToggle={() => this.toggleImageSettings(false)}
+        />
       </div>);
   }
 }
 
 SortableComponent.propTypes = {
   onItemsChange: PropTypes.func,
-  editItem: PropTypes.func.isRequired,
+  toggleImageSettings: PropTypes.func.isRequired,
 };
