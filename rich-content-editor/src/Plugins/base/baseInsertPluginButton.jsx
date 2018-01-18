@@ -87,7 +87,7 @@ export default ({ blockType, button, pubsub }) => {
     renderFileUploadForm = () => {
       return (
         <form ref={this.setForm}>
-          <input name="file" type="file" className={Styles.fileInput} onChange={this.handleFileChange} accept="image/*" tabIndex="-1" />
+          <input name="file" type="file" className={Styles.fileInput} onChange={this.handleFileChange} accept="image/*" tabIndex="-1" multiple={button.multi}/>
         </form>
       );
     };

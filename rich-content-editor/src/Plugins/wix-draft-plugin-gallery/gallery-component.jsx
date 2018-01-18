@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { ProGallery } from 'pro-gallery-renderer/dist/statics/main.bundle.min.js';
 import 'pro-gallery-renderer/dist/statics/main.min.css';
 
+const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
 const DEFAULTS = {
   items: [
     {
@@ -84,18 +86,84 @@ class GalleryComponent extends React.Component {
   }
 
   stateFromProps = props => {
+    const componentState = props.componentState || {};
+
     const { keyName, isActive } = props.componentState.activeButton || {};
     const inEditMode = keyName === 'edit' && isActive;
-    const items = props.componentData.items || DEFAULTS.items;
+    const items = props.componentData.items || [];// || DEFAULTS.items;
     const styles = props.componentData.styles || DEFAULTS.styles;
     const layout = props.componentData.config && props.componentData.config.layout;
     const layoutWidth = layout === 'large' ? 100 : layout === 'medium' ? 50 : 33;
-    return {
+
+    const state = {
       items,
       inEditMode,
       layoutWidth,
       styles,
     };
+
+    const { alreadyLoading, isLoading, userSelectedFiles } = this.getLoadingParams(componentState);
+    if (!alreadyLoading) {
+      if (isLoading !== true && userSelectedFiles) {
+        //lets continue the uploading process
+        console.log('userSelectedFiles', userSelectedFiles);
+        if (userSelectedFiles.files && userSelectedFiles.files.length > 0) {
+          const reader = new FileReader();
+          reader.onload = (e) => this.fileLoaded(e, userSelectedFiles.files[0]);
+          reader.readAsDataURL(userSelectedFiles.files[0]);
+          console.log('2 userSelectedFiles', userSelectedFiles);
+          Object.assign(state, { isLoading: true, files: userSelectedFiles.files, dataUrl: EMPTY_SMALL_PLACEHOLDER });
+        }
+        setTimeout(() => {
+          //needs to be async since this function is called during constructor and we do not want the update to call set state on other components
+          this.props.store.update('componentState', { isLoading: true, userSelectedFiles: null });
+        }, 0);
+      }
+    }
+
+    return state;
+  };
+
+  imageLoaded = (event) => {
+    const img = event.target;
+    let {items} = this.state;
+    items.push({
+      metadata: {
+        height: img.height,
+        width: img.width,
+      },
+      itemId: event.timestamp,
+      url: img.src,
+    });
+    this.setState({ isLoading: true, files: null, items });
+  }
+
+  fileLoaded = (event, file) => {
+
+    const img = new Image();
+    img.onload = this.imageLoaded;
+    img.src = event.target.result;
+
+    // const files = Array.from(this.state.files);
+    // const { helpers } = this.props;
+    // const hasFileChangeHelper = helpers && helpers.onFilesChange;
+    // if (hasFileChangeHelper) {
+    //   helpers.onFilesChange(files, ({ data, error }) => {
+    //     const { setData } = this.props.blockProps;
+    //     this.props.componentData.item = data;
+    //     setData(this.props.componentData);
+    //     this.resetLoadingState(error);
+    //   });
+    // } else {
+    //   this.resetLoadingState({ msg: 'Missing upload function' });
+    // }
+  };
+
+  getLoadingParams = componentState => {
+    //check if the file upload is coming on the regular state
+    const alreadyLoading = this.state && this.state.isLoading;
+    const { isLoading, userSelectedFiles } = componentState;
+    return { alreadyLoading, isLoading, userSelectedFiles };
   };
 
   render() {
