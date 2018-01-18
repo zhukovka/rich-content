@@ -88,23 +88,11 @@ module.exports = {
   },
   context: __dirname,
   target: 'web',
-  externals: {
-    'pro-gallery-renderer': 'pro-gallery-renderer',
-    react: {
-      root: 'React',
-      commonjs2: 'react',
-      commonjs: 'react',
-      amd: 'react',
-      umd: 'react',
-    },
-    'react-dom': {
-      root: 'ReactDOM',
-      commonjs2: 'react-dom',
-      commonjs: 'react-dom',
-      amd: 'reactDOM',
-      umd: 'react-dom',
-    },
-  },
+  externals: [
+    /^pro-gallery-renderer.*$/,
+    'react',
+    'react-dom',
+  ],
   stats: 'errors-only',
   plugins: [new ExtractTextPlugin(`${FILE_NAME}.css`), new StylablePlugin({ injectBundleCss: true, filename: 'stylable.css', nsDelimiter: '--' })],
 };
