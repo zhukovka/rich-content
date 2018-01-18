@@ -15,7 +15,8 @@ class ImageSettings extends Component {
   propsToState(props) {
     return {
       selectedIndex: props.selectedImage ?
-        findIndex(props.images, i => props.selectedImage.url === i.url) : -1
+        findIndex(props.images, i => props.selectedImage.url === i.url) : -1,
+      images: props.images
     };
   }
 
@@ -25,54 +26,75 @@ class ImageSettings extends Component {
     }
   }
 
+  imageMetadataUpdated = (image, value) => {
+    console.log(value);
+    image.metadata = Object.assign({}, image.metadata, value);
+    this.setState({ images: this.state.images });
+
+  };
+
   render() {
-    const { visible, onVisibilityToggle, images } = this.props;
+    const { images, onSave, onCancel } = this.props;
     const selectedImage = images[this.state.selectedIndex];
-    if (visible) {
-      return (
-        <div className={style['image-settings']}>
-          <h3 className={classnames(style.title, style['back-button'])} onClick={() => onVisibilityToggle()}>← Image Settings</h3>
-          <SettingsSection>
-            <Image resizeMode={'cover'} className={style.image} src={`https://static.wixstatic.com/${selectedImage.url}`} />
-            <div className={style['image-nav']}>
-              <i
-                className={classnames(style.previous, this.state.selectedIndex === 0 ? style.hidden : '')}
-                onClick={() => this.setState({ selectedIndex: this.state.selectedIndex - 1 })}
-              />
-              <i
-                className={classnames(style.next, this.state.selectedIndex === images.length - 1 ? style.hidden : '')}
-                onClick={() => this.setState({ selectedIndex: this.state.selectedIndex + 1 })}
-              />
-            </div>
-          </SettingsSection>
-          <div className={style['manage-image-grid']}>
-            <button />
-            <button />
+    console.log('render image', selectedImage);
+
+    return (
+      <div className={style['image-settings']}>
+        <h3 className={classnames(style.title, style['back-button'])} onClick={() => onCancel()}>← Image Settings</h3>
+        <SettingsSection>
+          <Image resizeMode={'cover'} className={style.image} src={`https://static.wixstatic.com/${selectedImage.url}`} />
+          <div className={style['image-nav']}>
+            <i
+              className={classnames(style.previous, this.state.selectedIndex === 0 ? style.hidden : '')}
+              onClick={() => this.setState({ selectedIndex: this.state.selectedIndex - 1 })}
+            />
+            <i
+              className={classnames(style.next, this.state.selectedIndex === images.length - 1 ? style.hidden : '')}
+              onClick={() => this.setState({ selectedIndex: this.state.selectedIndex + 1 })}
+            />
           </div>
-          <SettingsSection className={style['image-settings-section']}>
-            <InputWithLabel label={'Title'} placeholder={'Add image title'} value={selectedImage.title}/>
-          </SettingsSection>
-          <SettingsSection className={style['image-settings-section']}>
-            <InputWithLabel label={'Description'} placeholder={'Describe your image'} value={selectedImage.description}/>
-          </SettingsSection>
-          <SettingsSection className={style['image-settings-section']}>
-            <InputWithLabel label={'Link'} placeholder={'Add a link'} value={selectedImage.link}/>
-          </SettingsSection>
-          <SettingsSection>
-            <hr />
-          </SettingsSection>
-          <GallerySettingsFooter cancel={() => {}} save={() => onVisibilityToggle()} />
+        </SettingsSection>
+        <div className={style['manage-image-grid']}>
+          <button />
+          <button />
         </div>
-      );
-    }
-    return null;
+        <SettingsSection className={style['image-settings-section']}>
+          <InputWithLabel
+            label={'Title'}
+            placeholder={'Add image title'}
+            value={selectedImage.metadata.title}
+            onChange={event => this.imageMetadataUpdated(selectedImage, { title: event.target.value })}
+          />
+        </SettingsSection>
+        <SettingsSection className={style['image-settings-section']}>
+          <InputWithLabel
+            label={'Description'}
+            placeholder={'Describe your image'}
+            value={selectedImage.metadata.description}
+            onChange={event => this.imageMetadataUpdated(selectedImage, { description: event.target.value })}
+          />
+        </SettingsSection>
+        <SettingsSection className={style['image-settings-section']}>
+          <InputWithLabel
+            label={'Link'}
+            placeholder={'Add a link'}
+            value={selectedImage.metadata.link}
+            onChange={event => this.imageMetadataUpdated(selectedImage, { link: event.target.value })}
+          />
+        </SettingsSection>
+        <SettingsSection>
+          <hr />
+        </SettingsSection>
+        <GallerySettingsFooter cancel={() => onCancel()} save={() => onSave(this.state.images)} />
+      </div>
+    );
   }
 }
 ImageSettings.propTypes = {
   selectedImage: PropTypes.any.isRequired,
   images: PropTypes.arrayOf(PropTypes.object).isRequired,
-  visible: PropTypes.bool.isRequired,
-  onVisibilityToggle: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
 };
 
 export default ImageSettings;

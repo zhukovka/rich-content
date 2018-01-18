@@ -43,7 +43,7 @@ const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageS
       {hasUnselectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', true)}>Select All</a> : null}
       {hasSelectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', false)}>Deselect All</a> : null}
       {hasSelectedItems ? <a className={style.topBarLink} onClick={() => deleteSelectedItems()}>Delete Selected</a> : null}
-      {(selectedItems.length === 1) ? <a className={style.topBarLink} onClick={() => toggleImageSettings(true)}>Item Settings</a> : null}
+      {(selectedItems.length === 1) ? <a className={style.topBarLink} onClick={() => toggleImageSettings()}>Item Settings</a> : null}
     </div>
   );
 };
@@ -110,6 +110,11 @@ export class SortableComponent extends Component {
     this.setState(this.propsToState(props));
   }
 
+  onSaveImageSettings(items) {
+    this.props.onItemsChange(items);
+    this.toggleImageSettings(false);
+  }
+
   render() {
     return (
       <div>
@@ -117,7 +122,7 @@ export class SortableComponent extends Component {
           items={this.state.items}
           setAllItemsValue={this.setAllItemsValue.bind(this)}
           deleteSelectedItems={this.deleteSelectedItems.bind(this)}
-          toggleImageSettings={this.toggleImageSettings.bind(this)}
+          toggleImageSettings={() => this.toggleImageSettings(true)}
         />
         <SortableList
           items={this.state.items}
@@ -128,12 +133,12 @@ export class SortableComponent extends Component {
           helperClass="sortableHelper"
           transitionDuration={50}
         />
-        <ImageSettings
-          visible={this.state.imageSettingsVisible}
+        {this.state.imageSettingsVisible ? <ImageSettings
           images={this.state.items}
           selectedImage={this.state.editedImage}
-          onVisibilityToggle={() => this.toggleImageSettings(false)}
-        />
+          onCancel={() => this.toggleImageSettings(false)}
+          onSave={items => this.onSaveImageSettings(items)}
+        /> : null}
       </div>);
   }
 }
