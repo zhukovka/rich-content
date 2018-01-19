@@ -37,7 +37,8 @@ module.exports = {
         }),
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|svg)$/,
+        issuer: /\.(s)?css$/,
         use: [
           {
             loader: 'url-loader',
@@ -49,6 +50,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
+        issuer: /\.js(x)?$/,
         include: [path.resolve(__dirname, 'src')],
         loaders: [
           {
