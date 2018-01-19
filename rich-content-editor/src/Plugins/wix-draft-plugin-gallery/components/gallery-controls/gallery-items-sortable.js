@@ -67,6 +67,10 @@ export class SortableComponent extends Component {
     });
   };
 
+  componentDidMount() {
+    this.props.items.forEach(i => i.selected = false);
+  }
+
   clickAction = itemIdx => {
     const { items } = this.state;
     const item = items[itemIdx];
@@ -146,4 +150,5 @@ export class SortableComponent extends Component {
 SortableComponent.propTypes = {
   onItemsChange: PropTypes.func,
   toggleImageSettings: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

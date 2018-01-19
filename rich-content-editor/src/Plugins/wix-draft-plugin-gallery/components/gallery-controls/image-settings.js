@@ -62,7 +62,7 @@ class ImageSettings extends Component {
           <InputWithLabel
             label={'Title'}
             placeholder={'Add image title'}
-            value={selectedImage.metadata.title}
+            value={selectedImage.metadata.title || ''}
             onChange={event => this.imageMetadataUpdated(selectedImage, { title: event.target.value })}
           />
         </SettingsSection>
@@ -70,7 +70,7 @@ class ImageSettings extends Component {
           <InputWithLabel
             label={'Description'}
             placeholder={'Describe your image'}
-            value={selectedImage.metadata.description}
+            value={selectedImage.metadata.description || ''}
             onChange={event => this.imageMetadataUpdated(selectedImage, { description: event.target.value })}
           />
         </SettingsSection>
@@ -78,7 +78,7 @@ class ImageSettings extends Component {
           <InputWithLabel
             label={'Link'}
             placeholder={'Add a link'}
-            value={selectedImage.metadata.link}
+            value={selectedImage.metadata.link || ''}
             onChange={event => this.imageMetadataUpdated(selectedImage, { link: event.target.value })}
           />
         </SettingsSection>
