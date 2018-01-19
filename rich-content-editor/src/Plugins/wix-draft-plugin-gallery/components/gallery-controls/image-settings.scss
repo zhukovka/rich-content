@@ -10,6 +10,51 @@
   padding: 20px 25px 0 25px;
 }
 
+@mixin image-management-button($icon) {
+  content: '';
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: 8px;
+  width: 19px;
+  height: 19px;
+  background: url('./icons/' + $icon + '.svg') center no-repeat;
+}
+
+.manage-image-grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
+  height: 50px;
+  width: 100%;
+
+  button {
+    border-bottom: 1px #ededed solid;
+    outline: none;
+    display: flex;
+    justify-content: center;
+
+    &::focus, &::active {
+      outline: none;
+    }
+
+    &.replace {
+      border-right: 1px #ededed solid;
+
+      span::before {
+        @include image-management-button('replace');
+      }
+    }
+
+    &.delete {
+
+      span::before {
+        @include image-management-button('delete');
+      }
+    }
+  }
+
+}
+
 .image-settings {
   position: absolute;
   left: 0;
@@ -22,12 +67,12 @@
 
 .image {
   width: 100%;
-  max-height: 300px;
+  max-height: 240px;
 }
 
 .image-nav {
   width: 100%;
-  height: 300px;
+  height: 240px;
   position: absolute;
   top: 58px;
   display: flex;

@@ -26,21 +26,22 @@ class ImageSettings extends Component {
     }
   }
 
+  componentDidMount() {
+    this.initialImageState = this.props.images.map(i => ({ ...i }));
+  }
+
   imageMetadataUpdated = (image, value) => {
-    console.log(value);
     image.metadata = Object.assign({}, image.metadata, value);
     this.setState({ images: this.state.images });
-
   };
 
   render() {
     const { images, onSave, onCancel } = this.props;
     const selectedImage = images[this.state.selectedIndex];
-    console.log('render image', selectedImage);
 
     return (
       <div className={style['image-settings']}>
-        <h3 className={classnames(style.title, style['back-button'])} onClick={() => onCancel()}>← Image Settings</h3>
+        <h3 className={classnames(style.title, style['back-button'])} onClick={() => onCancel(this.initialImageState)}>← Image Settings</h3>
         <SettingsSection>
           <Image resizeMode={'cover'} className={style.image} src={`https://static.wixstatic.com/${selectedImage.url}`} />
           <div className={style['image-nav']}>
@@ -55,8 +56,12 @@ class ImageSettings extends Component {
           </div>
         </SettingsSection>
         <div className={style['manage-image-grid']}>
-          <button />
-          <button />
+          <button className={style.replace}>
+            <span>{'Replace'}</span>
+          </button>
+          <button className={style.delete}>
+            <span>{'Delete'}</span>
+          </button>
         </div>
         <SettingsSection className={style['image-settings-section']}>
           <InputWithLabel
@@ -85,7 +90,7 @@ class ImageSettings extends Component {
         <SettingsSection>
           <hr />
         </SettingsSection>
-        <GallerySettingsFooter cancel={() => onCancel()} save={() => onSave(this.state.images)} />
+        <GallerySettingsFooter cancel={() => onCancel(this.initialImageState)} save={() => onSave(this.state.images)} />
       </div>
     );
   }

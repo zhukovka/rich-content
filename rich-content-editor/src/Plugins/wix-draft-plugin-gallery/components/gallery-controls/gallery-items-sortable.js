@@ -114,7 +114,7 @@ export class SortableComponent extends Component {
     this.setState(this.propsToState(props));
   }
 
-  onSaveImageSettings(items) {
+  saveImageSettings(items) {
     this.props.onItemsChange(items);
     this.toggleImageSettings(false);
   }
@@ -140,8 +140,8 @@ export class SortableComponent extends Component {
         {this.state.imageSettingsVisible ? <ImageSettings
           images={this.state.items}
           selectedImage={this.state.editedImage}
-          onCancel={() => this.toggleImageSettings(false)}
-          onSave={items => this.onSaveImageSettings(items)}
+          onCancel={items => this.saveImageSettings(items)}
+          onSave={items => this.saveImageSettings(items)}
         /> : null}
       </div>);
   }
