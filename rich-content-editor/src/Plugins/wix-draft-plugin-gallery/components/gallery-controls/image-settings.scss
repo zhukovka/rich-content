@@ -40,7 +40,6 @@
   border: rgba(0, 0, 0, 0.75) 1px solid;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.75);
-  color: #fff;
   width: 25px;
   height: 25px;
   font-size: 24px;
@@ -53,19 +52,15 @@
 .next {
   @extend %nav;
   right: 0;
-  &::before {
-    content: '\276F';
-  }
-  // background: rgba(0, 0, 0, 0.75) url('./icons/next.svg') center no-repeat;
+  transform: rotateZ(90deg);
+  background: rgba(0, 0, 0, 0.75) url('./icons/next.svg') center no-repeat;
 }
 
 .previous {
   @extend %nav;
   left: 0;
-  &::before {
-    content: '\276E';
-  }
-  // background: rgba(0, 0, 0, 0.75) url('./icons/previous.svg') center no-repeat;
+  transform: rotateZ(90deg);
+  background: rgba(0, 0, 0, 0.75) url('./icons/previous.svg') center no-repeat;
 }
 
 .hidden {

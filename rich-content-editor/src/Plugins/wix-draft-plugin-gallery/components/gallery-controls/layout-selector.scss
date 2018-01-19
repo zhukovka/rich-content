@@ -1,7 +1,7 @@
 @mixin layout_icon($icon) {
   width: 46px;
   height: 46px;
-  background: url('./icons/layout_' + $icon + '.png') center no-repeat;
+  background: url('./icons/layout_' + $icon + '.svg') center no-repeat;
 }
 
 .layouts-grid {
