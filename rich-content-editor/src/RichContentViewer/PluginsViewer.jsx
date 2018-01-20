@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import * as Image from '../Plugins/wix-draft-plugin-image/image-component';
 import { IMAGE_TYPE_LEGACY, IMAGE_TYPE } from '../Plugins/wix-draft-plugin-image/types';

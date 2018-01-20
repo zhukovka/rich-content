@@ -29,6 +29,7 @@ const inline = {
 };
 
 
+/* eslint-disable react/jsx-key */
 const addBreaklines = children => children.map(child => [child, <br />]);
 
 const getList = ordered =>
@@ -80,7 +81,7 @@ const Preview = ({ raw }) => {
   window.redraft = redraft;
   return (
     <div className="Preview">
-      {isEmpty && <div className="Preview-empty">There's nothing to render...</div>}
+      {isEmpty && <div className="Preview-empty">There is nothing to render...</div>}
       {!isEmpty && redraft(raw, { inline, blocks, entities }, options)}
     </div>
   );
