@@ -57,7 +57,7 @@
     "wnpm-ci": "latest"
   },
   "peerDependencies": {
-    "pro-gallery-renderer": "^1.0.60",
+    "pro-gallery-renderer": "^1.0.64",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0"
   },
@@ -96,7 +96,8 @@
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.2",
     "webpack-merge": "^4.1.1",
-    "@wix/draft-js": "^0.10.4"
+    "@wix/draft-js": "^0.10.4",
+    "pro-gallery-renderer": "^1.0.64"
   },
   "eslintConfig": {
     "extends": "wix/react"
