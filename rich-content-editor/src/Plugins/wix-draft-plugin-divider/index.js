@@ -2,8 +2,7 @@ import createBasePlugin from '../base/basePlugin';
 import createToolbar from './toolbar';
 import Styles from './default-divider-styles.scss';
 import { Component } from './divider-component';
-
-const DIVIDER_TYPE = 'wix-draft-plugin-divider';
+import { DIVIDER_TYPE } from './types';
 
 const createDividerPlugin = (config = {}) => {
   const { decorator, helpers, theme } = config;

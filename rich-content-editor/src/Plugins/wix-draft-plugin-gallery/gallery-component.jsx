@@ -84,7 +84,7 @@ class GalleryComponent extends React.Component {
   }
 
   stateFromProps = props => {
-    const { keyName, isActive } = props.componentState.activeButton || {};
+    const { keyName, isActive } = (props.componentState && props.componentState.activeButton) || {};
     const inEditMode = keyName === 'edit' && isActive;
     const items = props.componentData.items || DEFAULTS.items;
     const styles = props.componentData.styles || DEFAULTS.styles;

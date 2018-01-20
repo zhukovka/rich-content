@@ -40,7 +40,6 @@ class App extends Component {
         }
       }
     };
-    this.textButtons = WixRichContentEditor.TextButtonList;
     this.helpers = {
       onFilesChange: (files, updateEntity) => {
         console.log('[consumer] files changed!', files); //eslint-disable-line no-console
@@ -120,7 +119,6 @@ class App extends Component {
             helpers={this.helpers}
             plugins={this.plugins}
             decorators={this.decorators}
-            textButtons={this.textButtons}
             editorState={this.state.editorState}
             readOnly={this.state.readOnly}
             sideToolbarOffset={sideToolbarOffset}
