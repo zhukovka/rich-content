@@ -82,6 +82,21 @@ class GalleryComponent extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState(this.stateFromProps(nextProps));
   }
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions.bind(this));
+    this.updateDimensions();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions.bind(this));
+  }
+
+  updateDimensions() {
+    if (this.container && this.container.clientWidth) {
+      const width = this.container.clientWidth;
+      const height = width * 3 / 4;
+      this.setState({ size: { width, height } });
+    }
+  }
 
   stateFromProps = props => {
     const { keyName, isActive } = (props.componentState && props.componentState.activeButton) || {};
@@ -101,7 +116,10 @@ class GalleryComponent extends React.Component {
   render() {
     const { items, styles } = this.state;
 
-    return <ProGallery styles={styles} items={items} galleryDataSrc={'manuallySetImages'} />;
+    return (
+      <div ref={elem => this.container = elem}>
+        <ProGallery styles={styles} items={items} galleryDataSrc={'manuallySetImages'} container={this.state.size} />
+      </div>);
   }
 }
 
