@@ -93,13 +93,22 @@ module.exports = {
   externals: [
     /^pro-gallery-renderer.*$/,
     {
+      immutable: {
+        root: 'Immutable',
+        commonjs2: 'immutable',
+        commonjs: 'immutable',
+        amd: 'immutable',
+        umd: 'immutable',
+      }
+    },
+    {
       react: {
         root: 'React',
         commonjs2: 'react',
         commonjs: 'react',
         amd: 'react',
         umd: 'react',
-      },
+      }
     },
     {
       'react-dom': {
@@ -108,7 +117,7 @@ module.exports = {
         commonjs: 'react-dom',
         amd: 'reactDOM',
         umd: 'react-dom',
-      },
+      }
     }
   ],
   stats: 'errors-only',
