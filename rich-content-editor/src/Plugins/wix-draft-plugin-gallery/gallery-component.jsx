@@ -79,6 +79,8 @@ class GalleryComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
+
+    this.props.store.set('handleFilesSelected', this.handleFilesSelected.bind(this));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -109,11 +111,7 @@ class GalleryComponent extends React.Component {
       //lets continue the uploading process
       if (userSelectedFiles.files && userSelectedFiles.files.length > 0) {
         Object.assign(state, { isLoading: userSelectedFiles.files.length });
-        for (let file, i = 0; file = userSelectedFiles.files[i]; i++) {
-          const reader = new FileReader();
-          reader.onload = e => this.fileLoaded(e, userSelectedFiles.files[i]);
-          reader.readAsDataURL(userSelectedFiles.files[i]);
-        }
+        this.handleFilesSelected(userSelectedFiles.files);
       }
       setTimeout(() => {
         //needs to be async since this function is called during constructor and we do not want the update to call set state on other components
@@ -143,6 +141,13 @@ class GalleryComponent extends React.Component {
     return itemIdx;
   }
 
+  handleFilesSelected = (files) => {
+    for (let file, i = 0; file = files[i]; i++) {
+      const reader = new FileReader();
+      reader.onload = e => this.fileLoaded(e, files[i]);
+      reader.readAsDataURL(files[i]);
+    }
+  }
   imageLoaded = (event, file) => {
     const img = event.target;
     const item = {
