@@ -21,9 +21,18 @@ class BaseToolbarButton extends React.Component {
 
   handleFileChange = event => {
     if (event.target.files && event.target.files.length > 0) {
-      const files = Array.from(event.target.files);
-      const state = { userSelectedFiles: { files } };
-      this.props.pubsub.update('componentState', state);
+      const { helpers, handleFileSelection } = this.props;
+      if (handleFileSelection && helpers && helpers.handleFileSelection) {
+        // const keyName = BUTTONS.EXTERNAL_MODAL;
+        // const theme = Styles;
+
+        // helpers.handleFileSelection({ ...this.props, componentState, keyName, helpers, theme, pubsub });
+        helpers.handleFileSelection();
+      } else {
+        const files = Array.from(event.target.files);
+        const state = { userSelectedFiles: { files } };
+        this.props.pubsub.update('componentState', state);
+      }
     }
 
     this.resetForm();
@@ -177,6 +186,7 @@ BaseToolbarButton.propTypes = {
   iconActive: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
   modalStyles: PropTypes.object,
+  handleFileSelection: PropTypes.bool,
 };
 
 export default BaseToolbarButton;
