@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AtomicBlockUtils } from '@wix/draft-js';
+import { AtomicBlockUtils, EditorState, SelectionState } from '@wix/draft-js';
 import cloneDeep from 'lodash/cloneDeep';
 import classNames from 'classnames';
 import Tooltip from 'wix-style-react/dist/src/Tooltip';
@@ -27,8 +27,14 @@ export default ({ blockType, button, pubsub }) => {
       //when adding atomic block, there is the atomic itself, and then there is a text block with one space,
       // so get the block before the space
       const newBlock = newEditorState.getCurrentContent().getBlockBefore(recentlyCreatedKey);
-      setEditorState(newEditorState);
 
+      const newSelection = new SelectionState({
+        anchorKey: newBlock.getKey(),
+        anchorOffset: 0,
+        focusKey: newBlock.getKey(),
+        focusOffset: 0,
+      });
+      setEditorState(EditorState.forceSelection(newEditorState, newSelection));
       return newBlock;
     };
 
