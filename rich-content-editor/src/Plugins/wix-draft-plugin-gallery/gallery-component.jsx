@@ -122,40 +122,66 @@ class GalleryComponent extends React.Component {
     }
 
     return state;
-  };
+  }
 
-  imageLoaded = event => {
+  setItemInGallery = (item, pos) => {
+    const shouldAdd = (typeof pos === 'undefined');
+    let {items} = this.state;
+    let itemIdx;
+    if (shouldAdd) {
+      itemIdx = items.length;
+      items = [...items, item];
+    } else {
+      itemIdx = pos;
+      items = [...items];
+      items[pos] = item;
+    }
+    console.log('New items loaded', items);
+    this.setState({items});
+    this.props.store.update('componentData', {items});
+
+    return itemIdx;
+  }
+
+  imageLoaded = (event, file) => {
     const img = event.target;
-    let {items, isLoading} = this.state;
-    items = [...items, {
+    const item = {
       metadata: {
         height: img.height,
         width: img.width,
       },
       itemId: String(event.timeStamp),
       url: img.src,
-    }];
-    console.log('New items loaded', items);
-    this.setState({ isLoading: (isLoading - 1), items });
-    this.props.store.update('componentData', {items});
+    };
+
+    const itemIdx = this.setItemInGallery(item);
+    const { helpers } = this.props;
+    const hasFileChangeHelper = helpers && helpers.onFilesChange;
+
+    if (hasFileChangeHelper) {
+      helpers.onFilesChange(file, ({ item, error }) => {
+        console.log('onFilesChanged happend', item, error);
+        const galleryItem = {
+          metadata: {
+            height: item.height,
+            width: item.width,
+          },
+          itemId: String(item.id),
+          url: item.file_name,
+        };
+        this.setItemInGallery(galleryItem, itemIdx);
+      });
+    } else {
+      console.warn('Missing upload function');
+    }
   }
 
   fileLoaded = (event, file) => {
 
     const img = new Image();
-    img.onload = this.imageLoaded;
+    img.onload = (e) => this.imageLoaded(e, file);
     img.src = event.target.result;
 
-    // const files = Array.from(this.state.files);
-    const { helpers } = this.props;
-    const hasFileChangeHelper = helpers && helpers.onFilesChange;
-    if (hasFileChangeHelper) {
-      helpers.onFilesChange(files, ({ data, error }) => {
-        console.log('onFilesChanged happend', data, error);
-      });
-    } else {
-      console.warn('Missing upload function');
-    }
   };
 
   getLoadingParams = componentState => {

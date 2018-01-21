@@ -42,10 +42,11 @@ class App extends Component {
     };
     this.textButtons = WixRichContentEditor.TextButtonList;
     this.helpers = {
-      onFilesChange: (files, updateEntity) => {
-        console.log('[consumer] files changed!', files); //eslint-disable-line no-console
+      onFilesChange: (file, updateEntity) => {
+        console.log('[consumer] file changed!', file); //eslint-disable-line no-console
         //mock upload
-        const data = {
+        const item = {
+          id: String(Math.random()),
           original_file_name: //eslint-disable-line camelcase
             'a27d24_e1ac8887d0e04dd5b98fb4c263af1180~mv2_d_4915_3277_s_4_2.jpg',
           file_name: //eslint-disable-line camelcase
@@ -53,7 +54,7 @@ class App extends Component {
           width: 4915,
           height: 3277
         };
-        setTimeout(() => updateEntity({ data }), 1500);
+        setTimeout(() => updateEntity({ item }), 1500);
       },
       openExternalModal: data => {
         const { panelElement, modalStyles, ...elementProps } = data;
@@ -114,7 +115,7 @@ class App extends Component {
         <div className="content">
           <RichContentEditor
             onChange={this.onChange}
-            helpers={helpers}
+            helpers={this.helpers}
             plugins={this.plugins}
             decorators={this.decorators}
             textButtons={this.textButtons}
