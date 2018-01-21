@@ -1,0 +1,121 @@
+@import './palette';
+
+.overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+
+  * {
+    outline: none;
+  }
+}
+
+.modal {
+  position: relative;
+  background-color: white;
+  width: 460px;
+  height: 262px;
+  padding: 54px 60px;
+}
+
+.closeIcon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+
+  font-size: 16px;
+  font-family: PlayfairDisplay;
+
+  svg {
+    margin-right: 11px;
+  }
+}
+
+.textInput {
+  margin: 18px 0 24px 0;
+  position: relative;
+
+  input {
+    font-family: Lato;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.5;
+    color: $modal-input-color;
+    width: 100%;
+    height: 42px;
+    border: 1px solid;
+    padding-left: 18px;
+
+    &.invalid {
+      border-color: red;
+    }
+  }
+
+  svg {
+    position: absolute;
+    right: 12px;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+  }
+}
+
+.errorIcon {
+
+}
+
+$c1: $modal-btn-confirm-primary-color;
+$c2: $modal-btn-confirm-secondary-color;
+
+.btns {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    font-family: Lato;
+    font-size: 14px;
+    border: 1px solid;
+    height: 40px;
+    padding: 9px 24px;
+    cursor: pointer;
+  }
+}
+
+.btnConfirm {
+  margin-left: 24px;
+  color: $c1;
+  background-color: $c2;
+  border-color: $c2;
+
+  &:hover {
+    color: $c1;
+    background: $c2;
+  }
+}
+
+.btnCancel {
+  color: $c2;
+  background-color: $c1;
+  border-color: $c2;
+
+  &:hover {
+    color: $c2;
+    background: $c1;
+  }
+}
+
+

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { RichUtils } from 'draft-js';
+import { RichUtils } from '@wix/draft-js';
 import classNames from 'classnames';
 
 export default ({ blockType, content }) =>

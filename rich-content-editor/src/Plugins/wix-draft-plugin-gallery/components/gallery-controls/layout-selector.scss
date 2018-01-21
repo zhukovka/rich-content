@@ -1,0 +1,85 @@
+@mixin layout_icon($icon) {
+  width: 46px;
+  height: 46px;
+  background: url('./icons/layout_' + $icon + '.png') center no-repeat;
+}
+
+.layouts-grid {
+  width: 100%;
+  display: grid !important;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 100px 100px;
+}
+
+.layout-tile {
+  text-align: center;
+  margin: 0 auto 0 auto;
+
+  div {
+    margin: 10% auto 0 auto;
+  }
+}
+
+.grid {
+  @include layout_icon('grid');
+}
+
+.masonry {
+  @include layout_icon('masonry');
+}
+
+.collage {
+  @include layout_icon('collage');
+}
+
+.thumbnails {
+  @include layout_icon('thumbnails');
+}
+
+.slideshow {
+  @include layout_icon('slideshow');
+}
+
+.panorama {
+  @include layout_icon('panorama');
+}
+
+.columns {
+  @include layout_icon('columns');
+}
+
+.slides {
+  @include layout_icon('slides');
+}
+
+.grid_selected {
+  @include layout_icon('grid_selected');
+}
+
+.masonry_selected {
+  @include layout_icon('masonry_selected');
+}
+
+.collage_selected {
+  @include layout_icon('collage_selected');
+}
+
+.thumbnails_selected {
+  @include layout_icon('thumbnails_selected');
+}
+
+.slideshow_selected {
+  @include layout_icon('slideshow_selected');
+}
+
+.panorama_selected {
+  @include layout_icon('panorama_selected');
+}
+
+.columns_selected {
+  @include layout_icon('columns_selected');
+}
+
+.slides_selected {
+  @include layout_icon('slides_selected');
+}

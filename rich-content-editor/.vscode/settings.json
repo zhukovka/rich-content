@@ -23,6 +23,7 @@
   "files.insertFinalNewline": true,
   "html.format.indentInnerHtml": true,
   "html.format.extraLiners": "",
+  "editor.formatOnSave": false,
   "eslint.enable": true,
   "eslint.autoFixOnSave": true,
 }

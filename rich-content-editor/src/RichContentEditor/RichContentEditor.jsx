@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { EditorState, convertFromRaw } from 'draft-js';
+import { EditorState, convertFromRaw } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
-import isUndefined from 'lodash/isundefined';
+import isUndefined from 'lodash/isUndefined';
 import createPlugins from './Plugins';
 import createDecorators from './Decorators';
+import 'draft-js/dist/Draft.css'; // must import before custom styles
 import Styles from '~/Styles/rich-content-editor.scss';
-import 'draft-js/dist/Draft.css';
+import 'normalize.css';
 
 export default class RichContentEditor extends Component {
   constructor(props) {

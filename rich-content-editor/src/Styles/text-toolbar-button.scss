@@ -1,5 +1,5 @@
-@import "./mixins";
-@import "./palette";
+@import './mixins';
+@import './palette';
 
 .buttonWrapper {
   display: inline-block;
@@ -14,8 +14,10 @@
   background: transparent;
   color: $secondary-text-color;
   padding: 5px;
+  border: 0 none;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     cursor: pointer;
     outline: 0;
     color: $accent-color;

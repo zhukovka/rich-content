@@ -4,8 +4,8 @@
     <groupId>com.wixpress.npm</groupId>
     <artifactId>wix-rich-content-editor</artifactId>
     <packaging>pom</packaging>
-    <name>wix-rich-content-editor</name>
-    <description>wix-rich-content-editor</description>
+    <name>Wix Rich Content Editor</name>
+    <description>Wix Rich Content Editor</description>
     <version>1.0.0-SNAPSHOT</version>
 
     <parent>

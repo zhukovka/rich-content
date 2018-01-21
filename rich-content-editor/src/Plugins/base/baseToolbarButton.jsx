@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { BUTTONS } from './buttons';
 import Panel from './basePanel';
 import Styles from '~/Styles/plugin-toolbar-button.scss';
+import { VideoReplaceButton } from './VideoReplaceButton';
 
 class BaseToolbarButton extends React.Component {
   state = { isActive: false };
@@ -54,13 +55,10 @@ class BaseToolbarButton extends React.Component {
       const helpers = this.props.helpers;
       if (helpers && helpers.openExternalModal) {
         //console.log('Opening external modal');
-        const panelElement = this.props.panelElement;
-        const componentData = this.props.componentData;
-        const store = pubsub.store;
         const keyName = BUTTONS.EXTERNAL_MODAL;
         const theme = Styles;
 
-        helpers.openExternalModal({ panelElement, componentData, componentState, store, keyName, helpers, theme });
+        helpers.openExternalModal({ ...this.props, componentState, keyName, helpers, theme, pubsub });
       } else {
         //console.warn('Open external helper function is not defined for toolbar button with keyName ' + keyName);
       }
@@ -116,17 +114,22 @@ class BaseToolbarButton extends React.Component {
   };
 
   renderFilesButton = () => {
-    const fileButtonWrapperClassNames = classNames(Styles.fileButtonWrapper, this.props.theme.fileButtonWrapper);
+    const replaceButtonWrapperClassNames = classNames(Styles.replaceButtonWrapper, this.props.theme.fileButtonWrapper);
     return (
-      <div className={fileButtonWrapperClassNames}>
-        <button type="button" children={this.props.children}>
-          {this.getIcon()}
-        </button>
+      <div className={replaceButtonWrapperClassNames}>
         <form ref={this.setForm}>
           <input name="file" type="file" onChange={this.handleFileChange} accept="image/*" tabIndex="-1" />
         </form>
+        <button type="button" children={this.props.children}>
+          {this.getIcon()}
+        </button>
       </div>
     );
+  };
+
+  renderReplaceVideoButton = () => {
+    const replaceButtonWrapperClassNames = classNames(Styles.replaceButtonWrapper, this.props.theme.fileButtonWrapper);
+    return <VideoReplaceButton className={replaceButtonWrapperClassNames} icon={this.getIcon()} pubsub={this.props.pubsub} />;
   };
 
   render = () => {
@@ -144,6 +147,9 @@ class BaseToolbarButton extends React.Component {
     switch (this.props.type) {
       case BUTTONS.FILES:
         toolbarButton = this.renderFilesButton();
+        break;
+      case BUTTONS.VIDEO_REPLACE:
+        toolbarButton = this.renderReplaceVideoButton();
         break;
       case BUTTONS.PANEL:
         toolbarButton = this.renderPanelButton(buttonWrapperClassNames, buttonClassNames);
@@ -170,6 +176,7 @@ BaseToolbarButton.propTypes = {
   children: PropTypes.object,
   iconActive: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
+  modalStyles: PropTypes.object,
 };
 
 export default BaseToolbarButton;

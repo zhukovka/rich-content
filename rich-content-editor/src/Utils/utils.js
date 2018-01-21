@@ -1,7 +1,7 @@
-import { EditorState, Modifier, RichUtils, SelectionState } from 'draft-js';
-import flatMap from 'lodash/flatmap';
-import findIndex from 'lodash/findindex';
-import findLastIndex from 'lodash/findlastindex';
+import { EditorState, Modifier, RichUtils, SelectionState } from '@wix/draft-js';
+import flatMap from 'lodash/flatMap';
+import findIndex from 'lodash/findIndex';
+import findLastIndex from 'lodash/findLastIndex';
 
 export function insertLink(editorState, { url, targetBlank }) {
   const selection = getSelection(editorState);

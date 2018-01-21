@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AddIcon from '../icons/toolbar/icon-add.svg';
+import ManageMediaIcon from '../icons/insert-plugin.svg';
+import AdvancedSettingsIcon from '../../base/icons/block-settings.svg';
 import GridSmallIcon from '../icons/toolbar/layout/icon-grid-small.svg';
 import GridSmallIconActive from '../icons/toolbar/layout/icon-grid-small-active.svg';
 import GridMediumIcon from '../icons/toolbar/layout/icon-grid-medium.svg';
 import GridMediumIconActive from '../icons/toolbar/layout/icon-grid-medium-active.svg';
 import GridLargeIcon from '../icons/toolbar/layout/icon-grid-large.svg';
 import GridLargeIconActive from '../icons/toolbar/layout/icon-grid-large-active.svg';
+import GallerySettingsModal from '../components/gallery-settings-modal';
 import { BUTTONS } from '~/Plugins/base/buttons';
 
 class LayoutModal extends React.Component {
@@ -90,6 +93,34 @@ SettingsModal.propTypes = {
   componentState: PropTypes.object.isRequired,
 };
 
+const modalStyles = {
+  overlay: {
+    top: 0,
+    left: 0,
+    position: 'absolute',
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    zIndex: 100,
+  },
+  content: {
+    position: 'absolute',
+    top: 0,
+    left: 'auto',
+    right: 0,
+    bottom: 0,
+    border: 'none',
+    background: '#fff',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    borderRadius: 0,
+    outline: 'none',
+    padding: 0,
+    height: '100vh',
+    width: '522px',
+  },
+};
+
 const InlineButtons = [
   {
     keyName: 'add',
@@ -105,6 +136,22 @@ const InlineButtons = [
   { type: BUTTONS.SIZE_CONTENT },
   { type: BUTTONS.SIZE_FULL_WIDTH },
   { type: BUTTONS.SEPARATOR },
+  {
+    keyName: 'manage_media',
+    type: BUTTONS.EXTERNAL_MODAL,
+    icon: ManageMediaIcon,
+    panelElement: GallerySettingsModal,
+    activeTab: 'manage_media',
+    modalStyles,
+  },
+  {
+    keyName: 'advanced_settings',
+    type: BUTTONS.EXTERNAL_MODAL,
+    icon: AdvancedSettingsIcon,
+    panelElement: GallerySettingsModal,
+    activeTab: 'advanced_settings',
+    modalStyles,
+  },
   { type: BUTTONS.DELETE },
 ];
 

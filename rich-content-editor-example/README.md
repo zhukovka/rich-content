@@ -1,9 +1,9 @@
-# To run example follow these simple test
-1. cd  photography
-2. cd rich-content-editor
+# To run follow these steps
+1. cd rich-content-editor
 2. run `npm install`
-3. run `npm run build` (you can also do `npm run watch` to rebuild on changes here)
-4. cd ../rich-content-editor-example
-5. run `npm install`
-6. run `npm run link:local` to link the modules (this will remove installed devDependencies in editor so you will need reinstall there)
-7. run `npm start` in example
+3. run `npm link`
+4. run `npm run build` (you can also do `npm run watch` to rebuild on changes here)
+5. cd ../rich-content-editor-example
+6. run `npm install`
+7. run `npm run link` to link the modules
+8. run `npm start` in example
