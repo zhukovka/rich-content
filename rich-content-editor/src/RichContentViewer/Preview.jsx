@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import redraft from 'redraft';
+// import createDecorators from '../RichContentEditor/Decorators';
 import getPluginsViewer from './PluginsViewer';
 import List from './List';
 
@@ -76,13 +77,15 @@ const options = {
   },
 };
 
+const decorators = undefined;// = createDecorators();
+
 const Preview = ({ raw }) => {
   const isEmpty = isEmptyRaw(raw);
   window.redraft = redraft;
   return (
     <div className="Preview">
       {isEmpty && <div className="Preview-empty">There is nothing to render...</div>}
-      {!isEmpty && redraft(raw, { inline, blocks, entities }, options)}
+      {!isEmpty && redraft(raw, { inline, blocks, entities, decorators }, options)}
     </div>
   );
 };

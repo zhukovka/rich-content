@@ -68,6 +68,8 @@ const DEFAULTS = {
     showArrows: false,
   },
   config: {
+    alignment: 'center',
+    size: 'content',
     layout: 'small',
     spacing: 0,
   },
@@ -81,6 +83,7 @@ class GalleryComponent extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState(this.stateFromProps(nextProps));
+    this.updateDimensions();
   }
   componentDidMount() {
     window.addEventListener('resize', this.updateDimensions.bind(this));
