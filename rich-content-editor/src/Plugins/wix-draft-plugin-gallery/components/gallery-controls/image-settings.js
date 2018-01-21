@@ -30,6 +30,18 @@ class ImageSettings extends Component {
     this.initialImageState = this.props.images.map(i => ({ ...i }));
   }
 
+  deleteImage(selectedImage) {
+    const images = this.state.images.filter(i => i.url !== selectedImage.url);
+    this.setState({
+      images,
+      selectedIndex: Math.min(this.state.selectedIndex, images.length - 1)
+    });
+  }
+
+  repalceImage() {
+    // TODO: upload
+  }
+
   imageMetadataUpdated = (image, value) => {
     image.metadata = Object.assign({}, image.metadata, value);
     this.setState({ images: this.state.images });
@@ -42,7 +54,8 @@ class ImageSettings extends Component {
   }
 
   render() {
-    const { images, onSave, onCancel } = this.props;
+    const { onSave, onCancel } = this.props;
+    const { images } = this.state;
     const selectedImage = images[this.state.selectedIndex];
 
     return (
@@ -68,7 +81,7 @@ class ImageSettings extends Component {
             </form>
             <span>{'Replace'}</span>
           </button>
-          <button className={style.delete}>
+          <button className={style.delete} onClick={() => this.deleteImage(selectedImage)}>
             <span>{'Delete'}</span>
           </button>
         </div>
