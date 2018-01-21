@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import TestData from './TestData/initialState';
-import {RichContentEditor} from 'wix-rich-content-editor';
-import {ReactHeight} from 'react-height';
+import { RichContentEditor } from 'wix-rich-content-editor';
+import { ReactHeight } from 'react-height';
 import Styles from './App.scss';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state={lastSave: new Date(), readOnly: false}
+    this.state = { lastSave: new Date(), readOnly: false }
   }
-  setEditor = editor => this.editor=editor;
+  setEditor = editor => this.editor = editor;
 
   onChange = (editorState) => {
     //TODO: this is the place where we want to auto-save
-    this.setState({lastSave: new Date()});
+    this.setState({ lastSave: new Date() });
   };
 
   componentWillReceiveProps(nextProps) {
-    if(typeof nextProps.readOnly !== 'undefined') {
+    if (typeof nextProps.readOnly !== 'undefined') {
       this.setState(this.setState({ readOnly: nextProps.readOnly }));
     }
   }
@@ -67,10 +67,10 @@ class App extends Component {
         width: 1920,
         height: 1080
       }];
-      setTimeout(() => updateEntity({data: data[this.nextPhoto++ % 2]}), 4500);
+      setTimeout(() => updateEntity({ data: data[this.nextPhoto++ % 2] }), 4500);
     },
     openExternalModal: (modalProps) => {
-      window.Wix.openModal(window.document.location.origin + '/modal.html', 500, 500, ()=>console.log('closing'));
+      window.Wix.openModal(window.document.location.origin + '/modal.html', 500, 500, () => console.log('closing'));
       window.Wix.PubSub.subscribe("externalModal", (event) => {
         if (event.origin !== window.Wix.Utils.getCompId()) {
           console.log('externalModal in main app', event);
@@ -109,17 +109,17 @@ class App extends Component {
             <div>
               <label htmlFor="readOnly">read only mode</label>
               <input type="checkbox" checked={this.state.readOnly} id="readOnly"
-                     onChange={(event) => this.setState({readOnly: event.target.checked})}/>
+                onChange={(event) => this.setState({ readOnly: event.target.checked })} />
               <output htmlFor="readOnly" id="readOnlyVal">{this.state.readOnly}</output>
             </div>
           </div>
           <div className={Styles.appIntro}>
             <RichContentEditor
-            ref={this.setEditor}
-            initialState={TestData}
-            onChange={this.onChange}
-            helpers={this.helpers}
-            readOnly={this.state.readOnly}
+              ref={this.setEditor}
+              initialState={TestData}
+              onChange={this.onChange}
+              helpers={this.helpers}
+              readOnly={this.state.readOnly}
             />
           </div>
         </div>

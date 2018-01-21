@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ProGallery } from 'pro-gallery-renderer/dist/statics/main.bundle.min.js';
+import { ProGallery } from 'pro-gallery-renderer';
 import 'pro-gallery-renderer/dist/statics/main.min.css';
 
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
@@ -78,6 +78,7 @@ const DEFAULTS = {
 class GalleryComponent extends React.Component {
   constructor(props) {
     super(props);
+    console.error('GALLERY COMPONENT!');
     this.state = this.stateFromProps(props);
   }
 
