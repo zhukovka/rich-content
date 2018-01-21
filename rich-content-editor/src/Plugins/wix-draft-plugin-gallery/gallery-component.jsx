@@ -78,7 +78,6 @@ const DEFAULTS = {
 class GalleryComponent extends React.Component {
   constructor(props) {
     super(props);
-    console.error('GALLERY COMPONENT!');
     this.state = this.stateFromProps(props);
   }
 
@@ -107,12 +106,12 @@ class GalleryComponent extends React.Component {
     if (!alreadyLoading) {
       if (isLoading !== true && userSelectedFiles) {
         //lets continue the uploading process
-        console.log('userSelectedFiles', userSelectedFiles);
+        console.log('userSelectedFiles', userSelectedFiles); //eslint-disable-line no-console
         if (userSelectedFiles.files && userSelectedFiles.files.length > 0) {
           const reader = new FileReader();
-          reader.onload = (e) => this.fileLoaded(e, userSelectedFiles.files[0]);
+          reader.onload = e => this.fileLoaded(e, userSelectedFiles.files[0]);
           reader.readAsDataURL(userSelectedFiles.files[0]);
-          console.log('2 userSelectedFiles', userSelectedFiles);
+          console.log('2 userSelectedFiles', userSelectedFiles); //eslint-disable-line no-console
           Object.assign(state, { isLoading: true, files: userSelectedFiles.files, dataUrl: EMPTY_SMALL_PLACEHOLDER });
         }
         setTimeout(() => {
@@ -125,9 +124,9 @@ class GalleryComponent extends React.Component {
     return state;
   };
 
-  imageLoaded = (event) => {
+  imageLoaded = event => {
     const img = event.target;
-    let {items} = this.state;
+    const { items } = this.state;
     items.push({
       metadata: {
         height: img.height,
@@ -139,7 +138,7 @@ class GalleryComponent extends React.Component {
     this.setState({ isLoading: true, files: null, items });
   }
 
-  fileLoaded = (event, file) => {
+  fileLoaded = event => {
 
     const img = new Image();
     img.onload = this.imageLoaded;
