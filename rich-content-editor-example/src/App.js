@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import decorateComponentWithProps from 'decorate-component-with-props';
 import ReactModal from 'react-modal';
 import logo from './logo.svg';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
-import * as helpers from './helpers';
 import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 //import TestData from './TestData/initialState';
@@ -41,6 +41,35 @@ class App extends Component {
       }
     };
     this.textButtons = WixRichContentEditor.TextButtonList;
+    this.helpers = {
+      onFilesChange: (files, updateEntity) => {
+        console.log('[consumer] files changed!', files); //eslint-disable-line no-console
+        //mock upload
+        const data = {
+          original_file_name: //eslint-disable-line camelcase
+            'a27d24_e1ac8887d0e04dd5b98fb4c263af1180~mv2_d_4915_3277_s_4_2.jpg',
+          file_name: //eslint-disable-line camelcase
+            'a27d24_e1ac8887d0e04dd5b98fb4c263af1180~mv2_d_4915_3277_s_4_2.jpg',
+          width: 4915,
+          height: 3277
+        };
+        setTimeout(() => updateEntity({ data }), 1500);
+      },
+      openExternalModal: data => {
+        const { panelElement, modalStyles, ...elementProps } = data;
+        const ModalContent = decorateComponentWithProps(panelElement, elementProps);
+        this.setState({
+          showModal: true,
+          modalContent: <ModalContent />,
+          modalStyles
+        });
+      },
+      closeExternalModal: () => {
+        this.setState({
+          showModal: false
+        });
+      }
+    };
   }
 
   onReadOnlyChange = event => {
