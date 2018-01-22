@@ -2,8 +2,7 @@ import createBasePlugin from '../base/basePlugin';
 import createToolbar from './toolbar';
 import Styles from './default-gallery-styles.scss';
 import { Component } from './gallery-component';
-
-const GALLERY_TYPE = 'wix-draft-plugin-gallery';
+import { GALLERY_TYPE } from './types';
 
 const createGalleryPlugin = (config = {}) => {
   const { decorator, helpers, theme } = config;

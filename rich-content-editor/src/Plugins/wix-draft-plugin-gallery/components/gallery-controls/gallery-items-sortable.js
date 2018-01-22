@@ -7,11 +7,13 @@ import { getScaleToFillImageURL } from 'image-client-api/dist/imageClientSDK';
 
 import ImageSettings from './image-settings';
 
+//eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, handleFileChange }) => {
   const imageSize = 100;
   if (isMock) {
+    /* eslint-disable max-len */
     return (
       <div className={classNames(style.itemContainer, style.filesItemWrapper)}>
         <form>
@@ -22,6 +24,7 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, hand
         </svg>
       </div>
     );
+    /* eslint-enable max-len */
   } else {
     if (item.url.indexOf('/') < 0) {
       item.url = 'media/' + item.url;
@@ -45,8 +48,9 @@ const SortableList = sortableContainer(({ items, clickAction, handleFileChange }
       {items.map((item, itemIdx) => (
         <SortableItem key={`item-${itemIdx}`} itemIdx={itemIdx} index={itemIdx} item={item} clickAction={clickAction}/>
       ))}
-      <SortableItem key={`item-upload-mock`} itemIdx={items.length} index={items.length} disabled={true} isMock={true}
-          handleFileChange={handleFileChange}
+      <SortableItem
+        key={`item-upload-mock`} itemIdx={items.length} index={items.length} disabled isMock
+        handleFileChange={handleFileChange}
       />
     </div>
   );
@@ -64,7 +68,7 @@ const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageS
       </form>
       <button type="button" >Add Items</button>
     </div>
-  )
+  );
   return (
     <div className={style.topBar}>
       {hasUnselectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', true)}>Select All</a> : null}
@@ -81,6 +85,7 @@ TopBarMenu.propTypes = {
   setAllItemsValue: PropTypes.func,
   deleteSelectedItems: PropTypes.func,
   toggleImageSettings: PropTypes.func.isRequired,
+  handleFileChange: PropTypes.func,
 };
 
 export class SortableComponent extends Component {
@@ -182,4 +187,5 @@ SortableComponent.propTypes = {
   addItems: PropTypes.func.isRequired,
   toggleImageSettings: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleFileChange: PropTypes.func.isRequired
 };

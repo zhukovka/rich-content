@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { ProGallery } from 'pro-gallery-renderer';
 import 'pro-gallery-renderer/dist/statics/main.min.css';
 
+//eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 const DEFAULTS = {
@@ -70,6 +71,8 @@ const DEFAULTS = {
     showArrows: false,
   },
   config: {
+    alignment: 'center',
+    size: 'content',
     layout: 'small',
     spacing: 0,
   },
@@ -85,12 +88,26 @@ class GalleryComponent extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState(this.stateFromProps(nextProps));
+    this.updateDimensions();
+  }
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions.bind(this));
+    this.updateDimensions();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions.bind(this));
+  }
+
+  updateDimensions() {
+    if (this.container && this.container.clientWidth) {
+      const width = this.container.clientWidth;
+      const height = width * 3 / 4;
+      this.setState({ size: { width, height } });
+    }
   }
 
   stateFromProps = props => {
-    const componentState = props.componentState || {};
-
-    const { keyName, isActive } = props.componentState.activeButton || {};
+    const { keyName, isActive } = (props.componentState && props.componentState.activeButton) || {};
     const inEditMode = keyName === 'edit' && isActive;
     const items = props.componentData.items || [];// || DEFAULTS.items;
     const styles = props.componentData.styles || DEFAULTS.styles;
@@ -106,7 +123,7 @@ class GalleryComponent extends React.Component {
       isLoading
     };
 
-    const { userSelectedFiles } = componentState;
+    const { userSelectedFiles } = props.componentState;
     if (isLoading <= 0 && userSelectedFiles) {
       //lets continue the uploading process
       if (userSelectedFiles.files && userSelectedFiles.files.length > 0) {
@@ -124,7 +141,7 @@ class GalleryComponent extends React.Component {
 
   setItemInGallery = (item, pos) => {
     const shouldAdd = (typeof pos === 'undefined');
-    let {items} = this.state;
+    let { items } = this.state;
     let itemIdx;
     if (shouldAdd) {
       itemIdx = items.length;
@@ -134,19 +151,19 @@ class GalleryComponent extends React.Component {
       items = [...items];
       items[pos] = item;
     }
-    console.log('New items loaded', items);
-    this.setState({items});
-    this.props.store.update('componentData', {items});
+    console.log('New items loaded', items); //eslint-disable-line no-console
+    this.setState({ items });
+    this.props.store.update('componentData', { items });
 
     return itemIdx;
   }
 
-  handleFilesSelected = (files) => {
-    for (let file, i = 0; file = files[i]; i++) {
+  handleFilesSelected = files => {
+    files.forEach(file => {
       const reader = new FileReader();
-      reader.onload = e => this.fileLoaded(e, files[i]);
-      reader.readAsDataURL(files[i]);
-    }
+      reader.onload = e => this.fileLoaded(e, file);
+      reader.readAsDataURL(file);
+    });
   }
   imageLoaded = (event, file) => {
     const img = event.target;
@@ -165,7 +182,7 @@ class GalleryComponent extends React.Component {
 
     if (hasFileChangeHelper) {
       helpers.onFilesChange(file, ({ item, error }) => {
-        console.log('onFilesChanged happend', item, error);
+        console.log('onFilesChanged happend', item, error); //eslint-disable-line no-console
         const galleryItem = {
           metadata: {
             height: item.height,
@@ -177,14 +194,14 @@ class GalleryComponent extends React.Component {
         this.setItemInGallery(galleryItem, itemIdx);
       });
     } else {
-      console.warn('Missing upload function');
+      console.warn('Missing upload function'); //eslint-disable-line no-console
     }
   }
 
   fileLoaded = (event, file) => {
 
     const img = new Image();
-    img.onload = (e) => this.imageLoaded(e, file);
+    img.onload = e => this.imageLoaded(e, file);
     img.src = event.target.result;
 
   };
@@ -199,7 +216,10 @@ class GalleryComponent extends React.Component {
   render() {
     const { items, styles } = this.state;
 
-    return <ProGallery styles={styles} items={items} galleryDataSrc={'manuallySetImages'} />;
+    return (
+      <div ref={elem => this.container = elem}>
+        <ProGallery styles={styles} items={items} galleryDataSrc={'manuallySetImages'} container={this.state.size} />
+      </div>);
   }
 }
 
@@ -211,6 +231,7 @@ GalleryComponent.propTypes = {
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
+  helpers: PropTypes.object.isRequired
 };
 
 export { GalleryComponent as Component, DEFAULTS };
