@@ -177,6 +177,7 @@ export class SortableComponent extends Component {
           selectedImage={this.state.editedImage}
           onCancel={items => this.saveImageSettings(items)}
           onSave={items => this.saveImageSettings(items)}
+          handleFileChange={this.props.handleFileChange}
         /> : null}
       </div>);
   }

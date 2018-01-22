@@ -40,6 +40,12 @@
     &.replace {
       border-right: 1px #ededed solid;
 
+      form {
+        position: absolute;
+        font-size: 100px;
+        opacity: 0;
+      }
+
       span::before {
         @include image-management-button('replace');
       }

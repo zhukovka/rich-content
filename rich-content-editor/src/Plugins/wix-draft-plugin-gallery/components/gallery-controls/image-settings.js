@@ -35,6 +35,12 @@ class ImageSettings extends Component {
     this.setState({ images: this.state.images });
   };
 
+  replaceItem(event) {
+    const { handleFileChange } = this.props;
+    const itemIdx = this.state.selectedIndex;
+    handleFileChange(event, itemIdx);
+  }
+
   render() {
     const { images, onSave, onCancel } = this.props;
     const selectedImage = images[this.state.selectedIndex];
@@ -43,7 +49,7 @@ class ImageSettings extends Component {
       <div className={style['image-settings']}>
         <h3 className={classnames(style.title, style['back-button'])} onClick={() => onCancel(this.initialImageState)}>← Image Settings</h3>
         <SettingsSection>
-          <Image resizeMode={'cover'} className={style.image} src={`https://static.wixstatic.com/${selectedImage.url}`} />
+          <Image resizeMode={'contain'} className={style.image} src={`https://static.wixstatic.com/${selectedImage.url}`} />
           <div className={style['image-nav']}>
             <i
               className={classnames(style.previous, this.state.selectedIndex === 0 ? style.hidden : '')}
@@ -57,6 +63,9 @@ class ImageSettings extends Component {
         </SettingsSection>
         <div className={style['manage-image-grid']}>
           <button className={style.replace}>
+            <form>
+              <input name="file" type="file" onChange={this.replaceItem.bind(this)} accept="image/*" tabIndex="-1" />
+            </form>
             <span>{'Replace'}</span>
           </button>
           <button className={style.delete}>
@@ -100,6 +109,7 @@ ImageSettings.propTypes = {
   images: PropTypes.arrayOf(PropTypes.object).isRequired,
   onCancel: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
+  handleFileChange: PropTypes.func.isRequired
 };
 
 export default ImageSettings;

@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
 import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
-//import TestData from './TestData/initialState';
+import { testImages } from './images-mock';
 
 const modalStyleDefaults = {
   content: {
@@ -44,16 +44,15 @@ class App extends Component {
       onFilesChange: (file, updateEntity) => {
         console.log('[consumer] file changed!', file); //eslint-disable-line no-console
         //mock upload
-        const item = {
-          id: String(Math.random()),
-          original_file_name: //eslint-disable-line camelcase
-            'a27d24_e1ac8887d0e04dd5b98fb4c263af1180~mv2_d_4915_3277_s_4_2.jpg',
-          file_name: //eslint-disable-line camelcase
-            'a27d24_e1ac8887d0e04dd5b98fb4c263af1180~mv2_d_4915_3277_s_4_2.jpg',
-          width: 4915,
-          height: 3277
+        const testItem = testImages[Math.floor(Math.random() * testImages.length)];
+        const data = {
+          id: testItem.photoId,
+          original_file_name: testItem.url,
+          file_name: testItem.url,
+          width: testItem.metadata.width,
+          height: testItem.metadata.height
         };
-        setTimeout(() => updateEntity({ item }), 1500);
+        setTimeout(() => updateEntity({ data }), (Math.floor(Math.random() * 2000) + 1000));
       },
       openExternalModal: data => {
         const { panelElement, modalStyles, ...elementProps } = data;

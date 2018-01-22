@@ -21,10 +21,10 @@ class ManageMediaSection extends Component {
     store.set('componentData', componentData);
   };
 
-  handleFileChange = event => {
+  handleFileChange = (event, itemPos) => {
     if (event.target.files.length > 0) {
       const handleFilesSelected = this.props.store.get('handleFilesSelected');
-      handleFilesSelected(event.target.files);
+      handleFilesSelected(event.target.files, itemPos);
     }
     event.target.value = ''; //reset the input
   };
