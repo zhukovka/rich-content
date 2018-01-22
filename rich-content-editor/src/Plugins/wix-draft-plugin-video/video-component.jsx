@@ -16,10 +16,11 @@ const MAX_WAIT_TIME = 5000;
 class VideoComponent extends React.Component {
   constructor(props) {
     super(props);
+    const isPlayable = !props.blockProps || props.blockProps.readOnly === true;
     this.state = {
       isLoading: false,
       isLoaded: false,
-      isPlayable: props.blockProps.readOnly === true,
+      isPlayable,
     };
   }
 

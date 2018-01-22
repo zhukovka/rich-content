@@ -28,7 +28,7 @@ class HtmlComponent extends React.Component {
   }
 
   stateFromProps = props => {
-    const { keyName, isActive } = props.componentState.activeButton || {};
+    const { keyName, isActive } = (props.componentState && props.componentState.activeButton) || {};
     const inEditMode = keyName === 'edit' && isActive;
     return {
       inEditMode,
@@ -62,8 +62,8 @@ class HtmlComponent extends React.Component {
 
   render() {
     const { blockProps, selection } = this.props;
-    const isEditorFocused = selection.getHasFocus();
-    const { isFocused, readOnly } = blockProps;
+    const isEditorFocused = selection && selection.getHasFocus();
+    const { isFocused, readOnly } = blockProps || { readOnly: true };
     const data = this.props.componentData;
     data.config = data.config || {};
 

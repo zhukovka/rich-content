@@ -70,6 +70,8 @@ const DEFAULTS = {
     showArrows: false,
   },
   config: {
+    alignment: 'center',
+    size: 'content',
     layout: 'small',
     spacing: 0,
   },
@@ -85,12 +87,26 @@ class GalleryComponent extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState(this.stateFromProps(nextProps));
+    this.updateDimensions();
+  }
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions.bind(this));
+    this.updateDimensions();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions.bind(this));
+  }
+
+  updateDimensions() {
+    if (this.container && this.container.clientWidth) {
+      const width = this.container.clientWidth;
+      const height = width * 3 / 4;
+      this.setState({ size: { width, height } });
+    }
   }
 
   stateFromProps = props => {
-    const componentState = props.componentState || {};
-
-    const { keyName, isActive } = props.componentState.activeButton || {};
+    const { keyName, isActive } = (props.componentState && props.componentState.activeButton) || {};
     const inEditMode = keyName === 'edit' && isActive;
     const items = props.componentData.items || [];// || DEFAULTS.items;
     const styles = props.componentData.styles || DEFAULTS.styles;
@@ -199,7 +215,10 @@ class GalleryComponent extends React.Component {
   render() {
     const { items, styles } = this.state;
 
-    return <ProGallery styles={styles} items={items} galleryDataSrc={'manuallySetImages'} />;
+    return (
+      <div ref={elem => this.container = elem}>
+        <ProGallery styles={styles} items={items} galleryDataSrc={'manuallySetImages'} container={this.state.size} />
+      </div>);
   }
 }
 

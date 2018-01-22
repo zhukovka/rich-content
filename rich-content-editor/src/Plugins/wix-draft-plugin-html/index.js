@@ -2,8 +2,7 @@ import createToolbar from './toolbar';
 import Styles from './default-html-styles.scss';
 import createBasePlugin from '../base/basePlugin';
 import { Component } from './html-component';
-
-const HTML_TYPE = 'wix-draft-plugin-html';
+import { HTML_TYPE } from './types';
 
 const createHtmlPlugin = (config = {}) => {
   const { decorator, helpers, theme } = config;
