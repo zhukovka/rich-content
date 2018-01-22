@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { ProGallery } from 'pro-gallery-renderer';
 import 'pro-gallery-renderer/dist/statics/main.min.css';
 
+//eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 const DEFAULTS = {
@@ -150,7 +151,7 @@ class GalleryComponent extends React.Component {
       items = [...items];
       items[pos] = item;
     }
-    console.log('New items loaded', items);
+    console.log('New items loaded', items); //eslint-disable-line no-console
     this.setState({ items });
     this.props.store.update('componentData', { items });
 
@@ -158,11 +159,11 @@ class GalleryComponent extends React.Component {
   }
 
   handleFilesSelected = files => {
-    for (let file, i = 0; file = files[i]; i++) {
+    files.forEach(file => {
       const reader = new FileReader();
-      reader.onload = e => this.fileLoaded(e, files[i]);
-      reader.readAsDataURL(files[i]);
-    }
+      reader.onload = e => this.fileLoaded(e, file);
+      reader.readAsDataURL(file);
+    });
   }
   imageLoaded = (event, file) => {
     const img = event.target;
@@ -181,7 +182,7 @@ class GalleryComponent extends React.Component {
 
     if (hasFileChangeHelper) {
       helpers.onFilesChange(file, ({ item, error }) => {
-        console.log('onFilesChanged happend', item, error);
+        console.log('onFilesChanged happend', item, error); //eslint-disable-line no-console
         const galleryItem = {
           metadata: {
             height: item.height,
@@ -193,7 +194,7 @@ class GalleryComponent extends React.Component {
         this.setItemInGallery(galleryItem, itemIdx);
       });
     } else {
-      console.warn('Missing upload function');
+      console.warn('Missing upload function'); //eslint-disable-line no-console
     }
   }
 
@@ -230,6 +231,7 @@ GalleryComponent.propTypes = {
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
+  helpers: PropTypes.object.isRequired
 };
 
 export { GalleryComponent as Component, DEFAULTS };
