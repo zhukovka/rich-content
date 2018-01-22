@@ -23,7 +23,6 @@ class ManageMediaSection extends Component {
 
   handleFileChange = event => {
     if (event.target.files.length > 0) {
-      const files = Array.from(event.target.files);
       const handleFilesSelected = this.props.store.get('handleFilesSelected');
       handleFilesSelected(event.target.files);
     }
