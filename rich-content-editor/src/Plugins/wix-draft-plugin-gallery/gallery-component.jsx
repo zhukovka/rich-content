@@ -122,7 +122,7 @@ class GalleryComponent extends React.Component {
       isLoading
     };
 
-    const { userSelectedFiles } = componentState;
+    const { userSelectedFiles } = props.componentState;
     if (isLoading <= 0 && userSelectedFiles) {
       //lets continue the uploading process
       if (userSelectedFiles.files && userSelectedFiles.files.length > 0) {
@@ -140,7 +140,7 @@ class GalleryComponent extends React.Component {
 
   setItemInGallery = (item, pos) => {
     const shouldAdd = (typeof pos === 'undefined');
-    let {items} = this.state;
+    let { items } = this.state;
     let itemIdx;
     if (shouldAdd) {
       itemIdx = items.length;
@@ -151,13 +151,13 @@ class GalleryComponent extends React.Component {
       items[pos] = item;
     }
     console.log('New items loaded', items);
-    this.setState({items});
-    this.props.store.update('componentData', {items});
+    this.setState({ items });
+    this.props.store.update('componentData', { items });
 
     return itemIdx;
   }
 
-  handleFilesSelected = (files) => {
+  handleFilesSelected = files => {
     for (let file, i = 0; file = files[i]; i++) {
       const reader = new FileReader();
       reader.onload = e => this.fileLoaded(e, files[i]);
@@ -200,7 +200,7 @@ class GalleryComponent extends React.Component {
   fileLoaded = (event, file) => {
 
     const img = new Image();
-    img.onload = (e) => this.imageLoaded(e, file);
+    img.onload = e => this.imageLoaded(e, file);
     img.src = event.target.result;
 
   };
