@@ -20,7 +20,6 @@
     "prewatch": "npm run clean",
     "watch": "npm run build:dev -- --watch",
     "release": "wnpm-release --no-shrinkwrap",
-    "format": "prettier --list-different --write 'src/**/*.{js,jsx}'",
     "lint": "eslint 'src/**/*.{js,jsx}'",
     "lint:fix": "npm run lint -- --fix",
     "pretest": "npm run lint",
@@ -33,7 +32,6 @@
     }
   },
   "dependencies": {
-    "@wix/draft-js": "^0.10.4",
     "babel-runtime": "^6.22.0",
     "classnames": "^2.2.5",
     "decorate-component-with-props": "^1.0.2",
@@ -44,8 +42,7 @@
     "draft-js-plugins-editor": "^2.0.1",
     "draft-js-side-toolbar-plugin": "^2.0.1",
     "draft-js-static-toolbar-plugin": "^2.0.1",
-    "image-client-api": "^1.58.0",
-    "immutable": "^3.8.1",
+    "image-client-api": "1.51.0",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
     "react-modal": "^3.1.10",
@@ -57,7 +54,8 @@
     "wnpm-ci": "latest"
   },
   "peerDependencies": {
-    "pro-gallery-renderer": "^1.0.64",
+    "pro-gallery-renderer": "^1.0.60",
+    "immutable": "^3.8.1",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0"
   },
@@ -72,7 +70,6 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.7",
-    "draft-js": "^0.10.4",
     "enzyme": "^2.9.1",
     "eslint": "^4.15.0",
     "eslint-config-wix": "^1.1.16",

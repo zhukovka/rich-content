@@ -37,7 +37,8 @@ module.exports = {
         }),
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|svg)$/,
+        issuer: /\.(s)?css$/,
         use: [
           {
             loader: 'url-loader',
@@ -49,6 +50,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
+        issuer: /\.js(x)?$/,
         include: [path.resolve(__dirname, 'src')],
         loaders: [
           {
@@ -90,8 +92,33 @@ module.exports = {
   target: 'web',
   externals: [
     /^pro-gallery-renderer.*$/,
-    'react',
-    'react-dom',
+    {
+      immutable: {
+        root: 'Immutable',
+        commonjs2: 'immutable',
+        commonjs: 'immutable',
+        amd: 'immutable',
+        umd: 'immutable',
+      }
+    },
+    {
+      react: {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react',
+        umd: 'react',
+      }
+    },
+    {
+      'react-dom': {
+        root: 'ReactDOM',
+        commonjs2: 'react-dom',
+        commonjs: 'react-dom',
+        amd: 'reactDOM',
+        umd: 'react-dom',
+      }
+    }
   ],
   stats: 'errors-only',
   plugins: [new ExtractTextPlugin(`${FILE_NAME}.css`), new StylablePlugin({ injectBundleCss: true, filename: 'stylable.css', nsDelimiter: '--' })],

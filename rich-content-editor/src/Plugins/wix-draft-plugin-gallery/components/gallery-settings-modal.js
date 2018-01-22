@@ -21,10 +21,23 @@ class ManageMediaSection extends Component {
     store.set('componentData', componentData);
   };
 
+  handleFileChange = event => {
+    if (event.target.files.length > 0) {
+      const files = Array.from(event.target.files);
+      const handleFilesSelected = this.props.store.get('handleFilesSelected');
+      handleFilesSelected(event.target.files);
+    }
+    event.target.value = ''; //reset the input
+  };
+
   render() {
     return (
       <div>
-        <SortableComponent items={this.props.data.items} onItemsChange={this.applyItems} />
+        <SortableComponent
+          items={this.props.data.items}
+          onItemsChange={this.applyItems}
+          handleFileChange={this.handleFileChange}
+        />
       </div>
     );
   }
