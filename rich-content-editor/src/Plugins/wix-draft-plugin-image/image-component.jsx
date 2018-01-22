@@ -79,10 +79,8 @@ class ImageComponent extends React.Component {
     const { helpers } = this.props;
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
     if (hasFileChangeHelper) {
-      helpers.onFilesChange(files, ({ data, error }) => {
-        const { setData } = this.props.blockProps;
-        this.props.componentData.item = data;
-        setData(this.props.componentData);
+      helpers.onFilesChange(files, ({ item, error }) => {
+        this.props.store.update('componentData', { item });
         this.resetLoadingState(error);
       });
     } else {
