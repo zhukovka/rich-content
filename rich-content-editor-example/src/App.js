@@ -120,6 +120,7 @@ class App extends Component {
             editorState={this.state.editorState}
             readOnly={this.state.readOnly}
             sideToolbarOffset={sideToolbarOffset}
+            theme={this.state.theme}
           />
           <ReactModal
             isOpen={this.state.showModal}
