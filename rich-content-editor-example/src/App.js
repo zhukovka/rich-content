@@ -51,9 +51,16 @@ class App extends Component {
           file_name: //eslint-disable-line camelcase
             'a27d24_e1ac8887d0e04dd5b98fb4c263af1180~mv2_d_4915_3277_s_4_2.jpg',
           width: 4915,
-          height: 3277
+          height: 3277,
+          metadata: {
+            altText: 'This is a altText',
+            caption: 'This is a caption'
+          }
         };
-        setTimeout(() => updateEntity({ item }), 1500);
+        setTimeout(() => {
+          updateEntity({ item });
+        }, 1500);
+
       },
       openExternalModal: data => {
         const { panelElement, modalStyles, ...elementProps } = data;
