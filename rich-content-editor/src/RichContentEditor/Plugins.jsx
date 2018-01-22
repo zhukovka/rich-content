@@ -55,7 +55,7 @@ const activePlugins = (requestedPlugins = PluginList, config) => {
   return activePlugins;
 };
 
-const createPlugins = ({ editorProps }) => {
+const createPlugins = ({ editorProps }, { theme }) => {
   const { helpers, isMobile, plugins, sideToolbarOffset, textButtons } = editorProps;
   const textToolbar = createTextToolbar({ buttons: textButtons });
   const linkifyPlugin = createLinkifyPlugin({ theme: linkifyTheme });
@@ -64,7 +64,7 @@ const createPlugins = ({ editorProps }) => {
 
   const wixPluginsDecorators = composeDecorators(focusPlugin.decorator, dndPlugin.decorator);
 
-  const wixPlugins = activePlugins(plugins, { decorator: wixPluginsDecorators, helpers });
+  const wixPlugins = activePlugins(plugins, { decorator: wixPluginsDecorators, helpers, theme });
   const { staticToolbarPlugin, sideToolbarPlugin } = toolbars(wixPlugins, sideToolbarOffset);
   const draftPlugins = [sideToolbarPlugin, textToolbar, linkifyPlugin, focusPlugin, dndPlugin];
 
