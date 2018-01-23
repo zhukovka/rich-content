@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ProGallery } from 'pro-gallery-renderer';
-import 'pro-gallery-renderer/dist/statics/main.min.css';
+//import 'pro-gallery-renderer/dist/statics/main.min.css';
 
 //eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
@@ -72,7 +72,8 @@ const DEFAULTS = {
     gridStyle: 1,
     loveButton: false,
     allowSocial: false,
-    allowDownload: false
+    allowDownload: false,
+    itemClick: 'nothing'
   },
   config: {
     alignment: 'center',

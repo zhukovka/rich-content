@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
-import { Separator } from 'draft-js-inline-toolbar-plugin';
+import Separator from '~/Common/Separator';
 import BaseToolbarButton from './baseToolbarButton';
 import {
   BUTTONS,
