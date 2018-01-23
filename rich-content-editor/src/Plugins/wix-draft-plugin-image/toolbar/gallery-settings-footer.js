@@ -12,7 +12,7 @@ class GallerySettingsFooter extends Component {
         <Button onClick={() => cancel()} className={style.cancel}>
           {'Cancel'}
         </Button>
-        <Button onClick={() => save()}>{'Save'}</Button>
+        <Button onClick={() => save()}>{'Done'}</Button>
       </div>
     );
   }

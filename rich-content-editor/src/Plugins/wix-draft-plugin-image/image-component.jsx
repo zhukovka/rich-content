@@ -6,7 +6,7 @@ import getImageSrc from './get-image-source';
 import Styles from './default-image-styles.scss';
 
 const getDefault = () => ({
-  item: {},
+  data: {},
   config: {
     alignment: 'center',
     size: 'content',
@@ -79,8 +79,8 @@ class ImageComponent extends React.Component {
     const { helpers } = this.props;
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
     if (hasFileChangeHelper) {
-      helpers.onFilesChange(files, ({ item, error }) => {
-        this.props.store.update('componentData', { item });
+      helpers.onFilesChange(files, ({ data, error }) => {
+        this.props.store.update('componentData', { data });
         this.resetLoadingState(error);
       });
     } else {
@@ -125,7 +125,7 @@ class ImageComponent extends React.Component {
     if (this.state.dataUrl) {
       imageUrl = this.state.dataUrl;
     } else {
-      imageUrl = getImageSrc(item, helpers);
+      imageUrl = getImageSrc(item.data, helpers);
     }
 
     if (!imageUrl) {
@@ -144,11 +144,11 @@ class ImageComponent extends React.Component {
 
   renderTitle(data, theme) {
     const config = data.config || {};
-    return !!config.showTitle && <div className={theme.title}>{(data.item && data.item.title) || ''}</div>;
+    return !!config.showTitle && <div className={theme.title}>{(data && data.title) || ''}</div>;
   }
   renderDescription(data, theme) {
     const config = data.config || {};
-    return !!config.showDescription && <div className={theme.description}>{(data.item && data.item.description) || ''}</div>;
+    return !!config.showDescription && <div className={theme.description}>{(data && data.description) || ''}</div>;
   }
 
   render() {
@@ -157,7 +157,7 @@ class ImageComponent extends React.Component {
 
     const itemClassName = classNames(Styles.container, className, theme.container);
     const imageClassName = classNames(Styles.image, theme.image);
-    const imageSrc = this.getImageSrc(data.item);
+    const imageSrc = this.getImageSrc(data);
     return (
       <div onClick={onClick} className={itemClassName}>
         <div>

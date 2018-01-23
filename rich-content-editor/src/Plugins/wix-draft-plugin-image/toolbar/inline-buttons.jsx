@@ -156,11 +156,10 @@ const InlineButtons = [
   //   onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
   // },
   {
-    keyName: 'advanced_settings',
+    keyName: 'settings',
     type: BUTTONS.EXTERNAL_MODAL,
     icon: SettingsIcon,
     panelElement: ImageSettings,
-    activeTab: 'advanced_settings',
     modalStyles,
   },
   {
