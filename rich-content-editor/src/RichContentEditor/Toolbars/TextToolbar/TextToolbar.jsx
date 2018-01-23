@@ -15,7 +15,7 @@ const getRelativeParent = element => {
   return getRelativeParent(element.parentElement);
 };
 
-export default class Toolbar extends React.Component {
+export default class InlineToolbar extends React.Component {
   static propTypes = {
     pubsub: PropTypes.object.isRequired,
     structure: PropTypes.array.isRequired,
@@ -25,7 +25,8 @@ export default class Toolbar extends React.Component {
   state = {
     isVisible: false,
     position: undefined,
-    overrideContent: undefined
+    overrideContent: undefined,
+    extendContent: undefined,
   }
 
   componentWillMount() {
@@ -36,9 +37,9 @@ export default class Toolbar extends React.Component {
     this.props.pubsub.unsubscribe('selection', this.onSelectionChanged);
   }
 
-  onOverrideContent = overrideContent => {
-    this.setState({ overrideContent });
-  }
+  onOverrideContent = overrideContent => this.setState({ overrideContent });
+
+  onExtendContent = extendContent => this.setState({ extendContent });
 
   onSelectionChanged = () => {
     // need to wait a tick for window.getSelection() to be accurate
@@ -71,7 +72,10 @@ export default class Toolbar extends React.Component {
     const selection = pubsub.get('getEditorState')().getSelection();
     // overrideContent could for example contain a text input, hence we always show overrideContent
     // TODO: Test readonly mode and possibly set isVisible to false if the editor is readonly
-    const isVisible = (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent;
+
+    //TODO: RESTORE!
+    //const isVisible = (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent;
+    const isVisible = true;
     const style = { ...position };
 
     if (isVisible) {
@@ -92,12 +96,13 @@ export default class Toolbar extends React.Component {
 
   render() {
     const { theme, pubsub, structure } = this.props;
-    const { overrideContent: OverrideContent } = this.state;
+    const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
     const childrenProps = {
       theme: theme.buttonStyles,
       getEditorState: pubsub.get('getEditorState'),
       setEditorState: pubsub.get('setEditorState'),
-      onOverrideContent: this.onOverrideContent
+      onOverrideContent: this.onOverrideContent,
+      onExtendContent: this.onExtendContent,
     };
 
     return (
@@ -106,10 +111,14 @@ export default class Toolbar extends React.Component {
         style={this.getStyle()}
         ref={this.handleToolbarRef}
       >
-        {OverrideContent ?
-          <OverrideContent {...childrenProps} /> :
-          structure.map((Component, index) =>
-            <Component key={index} {...childrenProps} />)}
+        <div className={theme.toolbarStyles.buttons}>
+          {OverrideContent ? <OverrideContent {...childrenProps} /> : structure.map((Button, index) => <Button key={index} {...childrenProps} />)}
+        </div>
+        {ExtendContent && (
+          <div className={theme.toolbarStyles.extend}>
+            <ExtendContent {...childrenProps} />
+          </div>
+        )}
       </div>
     );
   }
