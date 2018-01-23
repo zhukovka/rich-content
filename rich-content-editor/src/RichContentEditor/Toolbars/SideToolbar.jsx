@@ -7,7 +7,6 @@ import AddPluginBlockSelect from './AddPluginBlockSelect';
 import toolbarStyles from '~/Styles/side-toolbar.scss';
 import buttonStyles from '~/Styles/toolbar-button.scss';
 import addPluginBlockSelectStyles from '~/Styles/add-plugin-block-select.scss';
-import 'draft-js-side-toolbar-plugin/lib/plugin.css';
 
 const toolbarOffset = 4;
 
