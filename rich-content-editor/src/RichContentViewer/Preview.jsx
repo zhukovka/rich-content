@@ -4,6 +4,7 @@ import redraft from 'redraft';
 // import createDecorators from '../RichContentEditor/Decorators';
 import getPluginsViewer from './PluginsViewer';
 import List from './List';
+import * as HashtagDecorator from '../RichContentEditor/Decorators/HashtagDecorator';
 
 // import './Preview.css';
 
@@ -77,7 +78,7 @@ const options = {
   },
 };
 
-const decorators = undefined;// = createDecorators();
+const decorators = [{strategy: HashtagDecorator.Strategy, component: HashtagDecorator.Component}];// createDecorators();
 
 const Preview = ({ raw }) => {
   const isEmpty = isEmptyRaw(raw);

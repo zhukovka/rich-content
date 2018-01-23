@@ -83,7 +83,9 @@ class GalleryComponent extends React.Component {
     super(props);
     this.state = this.stateFromProps(props);
 
-    this.props.store.set('handleFilesSelected', this.handleFilesSelected.bind(this));
+    if (this.props.store) {
+      this.props.store.set('handleFilesSelected', this.handleFilesSelected.bind(this));
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -113,7 +115,7 @@ class GalleryComponent extends React.Component {
     const styles = props.componentData.styles || DEFAULTS.styles;
     const layout = props.componentData.config && props.componentData.config.layout;
     const layoutWidth = layout === 'large' ? 100 : layout === 'medium' ? 50 : 33;
-    const isLoading = props.componentState.isLoading || 0;
+    const isLoading = (props.componentState && props.componentState.isLoading) || 0;
 
     const state = {
       items,
@@ -123,17 +125,21 @@ class GalleryComponent extends React.Component {
       isLoading
     };
 
-    const { userSelectedFiles } = props.componentState;
-    if (isLoading <= 0 && userSelectedFiles) {
-      //lets continue the uploading process
-      if (userSelectedFiles.files && userSelectedFiles.files.length > 0) {
-        Object.assign(state, { isLoading: userSelectedFiles.files.length });
-        this.handleFilesSelected(userSelectedFiles.files);
+    if (props.componentState) {
+      const { userSelectedFiles } = props.componentState;
+      if (isLoading <= 0 && userSelectedFiles) {
+        //lets continue the uploading process
+        if (userSelectedFiles.files && userSelectedFiles.files.length > 0) {
+          Object.assign(state, { isLoading: userSelectedFiles.files.length });
+          this.handleFilesSelected(userSelectedFiles.files);
+        }
+        if (this.props.store) {
+          setTimeout(() => {
+            //needs to be async since this function is called during constructor and we do not want the update to call set state on other components
+            this.props.store.update('componentState', { isLoading: true, userSelectedFiles: null });
+          }, 0);
+        }
       }
-      setTimeout(() => {
-        //needs to be async since this function is called during constructor and we do not want the update to call set state on other components
-        this.props.store.update('componentState', { isLoading: true, userSelectedFiles: null });
-      }, 0);
     }
 
     return state;
@@ -153,7 +159,9 @@ class GalleryComponent extends React.Component {
     }
     console.log('New items loaded', items); //eslint-disable-line no-console
     this.setState({ items });
-    this.props.store.update('componentData', { items });
+    if (this.props.store) {
+      this.props.store.update('componentData', { items });
+    }
 
     return itemIdx;
   }
