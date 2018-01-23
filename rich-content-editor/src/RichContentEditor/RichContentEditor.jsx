@@ -116,7 +116,7 @@ export default class RichContentEditor extends Component {
   };
 
   renderEditor = () => {
-    const { helpers, platform } = this.props;
+    const { helpers, isMobile } = this.props;
     const { editorState, readOnly } = this.state;
     return (
       <Editor
@@ -127,7 +127,7 @@ export default class RichContentEditor extends Component {
         decorators={this.decorators}
         blockStyleFn={this.blockStyleFn}
         readOnly={!!readOnly}
-        isMobile={platform}
+        isMobile={isMobile}
         helpers={helpers}
         spellCheck
       />

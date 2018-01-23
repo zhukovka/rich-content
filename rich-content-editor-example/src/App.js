@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import ReactModal from 'react-modal';
+import MobileDetect from 'mobile-detect';
 import logo from './logo.svg';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
 import './App.css';
@@ -26,6 +27,7 @@ class App extends Component {
       editorState: WixRichContentEditor.EditorState.createEmpty(),
       readOnly: false
     };
+    this.md = window ? new MobileDetect(window.navigator.userAgent) : null;
     this.initEditorProps();
   }
 
@@ -93,6 +95,10 @@ class App extends Component {
     });
   };
 
+  isMobile = () => {
+    return this.md && this.md.mobile() !== null;
+  }
+
   render() {
     const sideToolbarOffset = { x: -40, y: 0 };
     const { RichContentEditor } = WixRichContentEditor;
@@ -123,6 +129,7 @@ class App extends Component {
             editorState={this.state.editorState}
             readOnly={this.state.readOnly}
             sideToolbarOffset={sideToolbarOffset}
+            isMobile={this.isMobile()}
           />
           <ReactModal
             isOpen={this.state.showModal}

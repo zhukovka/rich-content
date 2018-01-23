@@ -35,3 +35,10 @@
     transform: rotate(360deg);
   }
 }
+
+/*** MOBILE ***/
+@media only screen and (max-width: 768px) {
+  .content {
+    padding: 18px;
+  }
+}

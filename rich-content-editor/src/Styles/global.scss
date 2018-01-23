@@ -3,6 +3,7 @@
 
 $innerSpacing: 40px;
 $textWidth: 740px;
+$textMobileWidth: 90%;
 
 //*** BLOCK ***//
 .hasFocus {
@@ -78,4 +79,15 @@ $textWidth: 740px;
   color: $secondary-text-color;
   border-radius: 0 2px 2px;
   box-shadow: rgb(220, 220, 220) 1px 1px 3px 1px;
+}
+
+//*** MOBILE ***//
+@media only screen and (max-width: 768px) {
+  .alignLeft {
+    margin-left: calc((100% - #{$textMobileWidth}) / 2);
+  }
+
+  .alignRight {
+    margin-right: calc((100% - #{$textMobileWidth}) / 2);
+  }
 }
