@@ -17,6 +17,7 @@ class SideToolbar extends Component {
     structure: PropTypes.array.isRequired,
     offset: PropTypes.object,
     theme: PropTypes.object,
+    isMobile: PropTypes.bool
   };
 
   state = {
@@ -51,6 +52,7 @@ class SideToolbar extends Component {
     const offsetKey = DraftOffsetKey.encode(currentBlock.getKey(), 0, 0);
     // Note: need to wait on tick to make sure the DOM node has been create by Draft.js
     setTimeout(() => {
+      const { isMobile } = this.props;
       const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
       const top = node.getBoundingClientRect().top;
       const parentTop = node.offsetParent.getBoundingClientRect().top;
@@ -59,7 +61,7 @@ class SideToolbar extends Component {
       this.setState({
         position: {
           top: top + scrollY - parentTop - toolbarOffset + offset.y,
-          left: offset.x,
+          [!isMobile ? 'left' : 'right']: offset.x,
           transform: 'scale(1)',
           transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
         },
@@ -84,13 +86,22 @@ const createSideToolbar = (config = {}) => {
 
   const pubsub = simplePubsub({ isVisible: false });
 
-  const { theme = defaultTheme, structure = [], offset = { x: 0, y: 0 } } = config;
+  const {
+    theme = defaultTheme,
+    structure = [],
+    offset = {
+      desktop: { x: 0, y: 0 },
+      mobile: { x: 0, y: 0 },
+    },
+    isMobile,
+  } = config;
 
   const toolbarProps = {
     pubsub,
     structure,
     theme,
-    offset,
+    isMobile,
+    offset: offset[!isMobile ? 'desktop' : 'mobile'],
   };
 
   return {
@@ -106,9 +117,10 @@ const createSideToolbar = (config = {}) => {
   };
 };
 
-export default ({ pluginButtons, offset }) => {
+export default ({ pluginButtons, offset, isMobile }) => {
   return createSideToolbar({
     offset,
+    isMobile,
     structure: [
       ({ getEditorState, setEditorState, theme }) => //eslint-disable-line react/prop-types
         (<AddPluginBlockSelect
@@ -116,6 +128,7 @@ export default ({ pluginButtons, offset }) => {
           setEditorState={setEditorState}
           theme={theme}
           structure={pluginButtons}
+          isMobile={isMobile}
         />),
     ],
   });
