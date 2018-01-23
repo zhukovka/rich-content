@@ -72,7 +72,8 @@ const DEFAULTS = {
     gridStyle: 1,
     loveButton: false,
     allowSocial: false,
-    allowDownload: false
+    allowDownload: false,
+    itemClick: 'nothing'
   },
   config: {
     alignment: 'center',
