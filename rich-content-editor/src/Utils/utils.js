@@ -3,12 +3,13 @@ import flatMap from 'lodash/flatMap';
 import findIndex from 'lodash/findIndex';
 import findLastIndex from 'lodash/findLastIndex';
 
-export function insertLink(editorState, { url, targetBlank }) {
+export function insertLink(editorState, { url, targetBlank, nofollow }) {
   const selection = getSelection(editorState);
   const content = editorState.getCurrentContent();
   const contentStateWithEntity = content.createEntity('LINK', 'MUTABLE', {
     url,
     targetBlank,
+    nofollow
   });
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 

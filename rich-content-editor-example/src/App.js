@@ -21,6 +21,11 @@ const modalStyleDefaults = {
   }
 };
 
+const sideToolbarOffset = {
+  desktop: { x: -40, y: 0 },
+  mobile: { x: 0, y: 0 }
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -51,16 +56,10 @@ class App extends Component {
         const testItem = testImages[Math.floor(Math.random() * testImages.length)];
         const data = {
           id: testItem.photoId,
-          // eslint-disable-next-line camelcase
-          original_file_name: testItem.url,
-          // eslint-disable-next-line camelcase
-          file_name: testItem.url,
+          original_file_name: testItem.url, // eslint-disable-line camelcase
+          file_name: testItem.url, // eslint-disable-line camelcase
           width: testItem.metadata.width,
           height: testItem.metadata.height,
-          metadata: {
-            altText: 'This is a altText',
-            caption: 'This is a caption'
-          }
         };
         setTimeout(() => updateEntity({ data }), (Math.floor(Math.random() * 2000) + 1000));
       },
@@ -104,7 +103,6 @@ class App extends Component {
   }
 
   render() {
-    const sideToolbarOffset = { x: -40, y: 0 };
     const { RichContentEditor } = WixRichContentEditor;
     return (
       <div className="wrapper">

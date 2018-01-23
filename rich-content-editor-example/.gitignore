@@ -26,5 +26,4 @@ package-lock.json
 /.vscode
 /dist
 /target
-/maven
 

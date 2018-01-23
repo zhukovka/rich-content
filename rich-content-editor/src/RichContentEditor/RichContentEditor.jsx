@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { EditorState, convertFromRaw } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
 import isUndefined from 'lodash/isUndefined';
+import createToolbars from './Toolbars';
 import createPlugins from './Plugins';
 import createDecorators from './Decorators';
 import 'draft-js/dist/Draft.css'; // must import before custom styles
@@ -18,7 +19,9 @@ export default class RichContentEditor extends Component {
       readOnly: props.readOnly || false,
       theme: props.theme || {}
     };
-    this.initializePlugins(this.state.theme);
+    const { plugins, pluginButtons } = createPlugins({ ...props, theme: this.state.theme });
+    this.toolbars = createToolbars({ ...props, pluginButtons, theme: this.state.theme });
+    this.plugins = [...plugins, ...Object.values(this.toolbars)];
     this.decorators = createDecorators(props.decorators);
   }
 
@@ -32,18 +35,6 @@ export default class RichContentEditor extends Component {
     } else {
       return EditorState.createEmpty();
     }
-  }
-
-  initializePlugins(theme) {
-    const getEditorState = () => this.state.editorState;
-    const setEditorState = editorState => this.setState({ editorState });
-    const editorProps = this.props;
-    this.plugins = createPlugins({
-      getEditorState,
-      setEditorState,
-      editorProps,
-      theme
-    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -171,10 +162,10 @@ RichContentEditor.propTypes = {
   editorState: PropTypes.instanceOf(EditorState),
   decorators: PropTypes.object,
   initialState: PropTypes.object,
+  theme: PropTypes.object,
   onChange: PropTypes.func,
   isMobile: PropTypes.bool,
   readOnly: PropTypes.bool,
   helpers: PropTypes.object,
-  platform: PropTypes.string,
-  theme: PropTypes.object,
+  platform: PropTypes.string
 };

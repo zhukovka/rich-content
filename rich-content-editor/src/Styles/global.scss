@@ -37,6 +37,9 @@ $textMobileWidth: 90%;
   z-index: 1;
   margin-right: $innerSpacing;
   margin-left: calc((100% - #{$textWidth}) / 2);
+  @include phone {
+    margin-left: calc((100% - #{$textMobileWidth}) / 2);
+  }
 }
 
 .alignCenter {
@@ -50,6 +53,9 @@ $textMobileWidth: 90%;
   z-index: 1;
   margin-left: $innerSpacing;
   margin-right: calc((100% - #{$textWidth}) / 2);
+  @include phone {
+    margin-right: calc((100% - #{$textMobileWidth}) / 2);
+  }
 }
 
 .sizeFullWidth {
@@ -79,15 +85,4 @@ $textMobileWidth: 90%;
   color: $secondary-text-color;
   border-radius: 0 2px 2px;
   box-shadow: rgb(220, 220, 220) 1px 1px 3px 1px;
-}
-
-//*** MOBILE ***//
-@media only screen and (max-width: 768px) {
-  .alignLeft {
-    margin-left: calc((100% - #{$textMobileWidth}) / 2);
-  }
-
-  .alignRight {
-    margin-right: calc((100% - #{$textMobileWidth}) / 2);
-  }
 }

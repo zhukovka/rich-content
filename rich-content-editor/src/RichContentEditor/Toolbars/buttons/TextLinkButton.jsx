@@ -15,7 +15,7 @@ export default class TextLinkButton extends Component {
   };
 
   showLinkPanel() {
-    this.props.onOverrideContent(TextLinkPanel);
+    this.props.onExtendContent(TextLinkPanel);
   }
 
   removeLinks = () => {
@@ -38,6 +38,6 @@ export default class TextLinkButton extends Component {
 TextLinkButton.propTypes = {
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
-  onOverrideContent: PropTypes.func.isRequired,
+  onExtendContent: PropTypes.func.isRequired,
   theme: PropTypes.object,
 };
