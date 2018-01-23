@@ -74,7 +74,7 @@
 .blockStyleSpacing {
   margin: 15px calc((18px + (100% - #{$textWidth}) /2));
   @include phone {
-    margin: 15px scalc((18px + (100% - #{$textMobileWidth}) /2));
+    margin: 15px calc((18px + (100% - #{$textMobileWidth}) /2));
   }
 }
 
