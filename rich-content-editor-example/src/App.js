@@ -51,7 +51,9 @@ class App extends Component {
         const testItem = testImages[Math.floor(Math.random() * testImages.length)];
         const data = {
           id: testItem.photoId,
+          // eslint-disable-next-line camelcase
           original_file_name: testItem.url,
+          // eslint-disable-next-line camelcase
           file_name: testItem.url,
           width: testItem.metadata.width,
           height: testItem.metadata.height,

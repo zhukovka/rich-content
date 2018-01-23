@@ -85,7 +85,7 @@ AdvancedSettingsSection.propTypes = {
 };
 
 export class GallerySettingsModal extends Component {
-  state = { activePanel: 'tabs', initComponentData: null };
+  state = { initComponentData: null };
 
   componentDidMount() {
     this.props.pubsub.subscribe('componentData', this.onComponentUpdate);
@@ -95,10 +95,6 @@ export class GallerySettingsModal extends Component {
   componentWillUnmount() {
     this.props.pubsub.unsubscribe('componentData', this.onComponentUpdate);
   }
-
-  toggleImageSettings = () => this.setState({
-    activePanel: this.state.activePanel === 'tabs' ? 'image' : 'tabs'
-  });
 
   onComponentUpdate = () => this.forceUpdate();
 
