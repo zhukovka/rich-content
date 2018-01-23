@@ -156,7 +156,7 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
         const batchUpdates = {};
         const blockNode = findDOMNode(this);
         const componentData = this.state.componentData;
-        const config = componentData.config;
+        const config = componentData.config || {};
         const boundingRect = this.getBoundingClientRectAsObject(blockNode);
         batchUpdates.boundingRect = boundingRect;
         batchUpdates.componentData = componentData;
@@ -230,7 +230,10 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
           ) : (
             component
           )}
-          <div onClick={onClick} className={overlayClassNames} />
+          { !this.state.readOnly && (
+            <div onClick={onClick} className={overlayClassNames} />
+          )
+          }
         </div>
       );
     };

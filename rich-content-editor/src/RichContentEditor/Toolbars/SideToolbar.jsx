@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import decorateComponentWithProps from 'decorate-component-with-props';
-import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
+import DraftOffsetKey from '@wix/draft-js/lib/DraftOffsetKey';
 import { simplePubsub } from '~/Utils';
 import AddPluginBlockSelect from './AddPluginBlockSelect';
 import toolbarStyles from '~/Styles/side-toolbar.scss';
