@@ -1,6 +1,6 @@
 import React from 'react';
 import { RichContentEditor, Modal } from '../src/index';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import TestData from './TestData/initial-state';
 
 describe('RichContentEditor', () => {
@@ -41,8 +41,8 @@ describe('RichContentEditor', () => {
     expect(wrapper.html()).toEqual(expect.stringContaining('youtube'));
   });
   it('should render divider', () => {
-    const wrapper = shallow(<RichContentEditor initialState={TestData.divider} readOnly />);
-    expect(wrapper.html()).toEqual(expect.stringContaining('viewBox="0 0 500 46"'));
+    const wrapper = mount(<RichContentEditor initialState={TestData.divider} readOnly theme={TestData.theme}/>);
+    expect(wrapper.html()).toEqual(expect.stringContaining('<div class=\"draftJsFocusPlugin__focused__3Mksn theme_divider1_class\" style=\"width: 50%; margin: auto;\"></div>'));
   });
   it('should render gallery', () => {
     const wrapper = shallow(<RichContentEditor initialState={TestData.gallery} readOnly />);
