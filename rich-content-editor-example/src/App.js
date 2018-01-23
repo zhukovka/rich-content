@@ -55,10 +55,6 @@ class App extends Component {
           file_name: testItem.url, // eslint-disable-line camelcase
           width: testItem.metadata.width,
           height: testItem.metadata.height,
-          metadata: {
-            altText: 'This is a altText',
-            caption: 'This is a caption'
-          }
         };
         setTimeout(() => updateEntity({ data }), (Math.floor(Math.random() * 2000) + 1000));
       },
