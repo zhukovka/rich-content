@@ -176,5 +176,5 @@ RichContentEditor.propTypes = {
   readOnly: PropTypes.bool,
   helpers: PropTypes.object,
   platform: PropTypes.string,
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.object,
 };
