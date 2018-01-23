@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import Styles from './default-divider-styles.scss';
 
 const DEFAULTS = {
@@ -33,13 +34,11 @@ class DividerComponent extends React.Component {
   render() {
     const { style, theme } = this.props;
 
-    const appliedStyles = theme || Styles;
-
     return (
       <div
         style={{ width: this.state.width + '%', margin: 'auto', ...style }}
         onClick={this.props.onClick}
-        className={classnames(this.props.className, appliedStyles[this.state.type])}
+        className={classnames(this.props.className, Styles[this.state.type], theme[this.state.type])}
       />
     );
   }

@@ -51,16 +51,20 @@ class VideoComponent extends React.Component {
   };
 
   renderOverlay = () => {
+    const { theme } = this.props;
     const { isLoaded } = this.state;
-    return <div className={Styles.overlay}>{isLoaded && <span>To play this video, view this post from your live site</span>}</div>;
+    return (
+      <div className={classNames(Styles.videoOverlay, theme.videoOverlay)}>
+        {isLoaded && <span>To play this video, view this post from your live site</span>}
+      </div>);
   };
 
   renderPlayer = () => {
-    const { componentData } = this.props;
+    const { componentData, theme } = this.props;
     return (
       <ReactPlayer
         ref={this.setPlayer}
-        className={Styles.player}
+        className={classNames(Styles.player, theme.player)}
         width="100%"
         height="100%"
         url={componentData.src}
@@ -72,9 +76,9 @@ class VideoComponent extends React.Component {
   };
 
   render() {
-    const { className, onClick } = this.props;
+    const { className, onClick, theme } = this.props;
     const { isPlayable } = this.state;
-    const containerClassNames = classNames(Styles.container, className || '');
+    const containerClassNames = classNames(Styles.videoContainer, theme.videoContainer, className || '');
     return (
       <div onClick={onClick} className={containerClassNames}>
         {!isPlayable && this.renderOverlay()}

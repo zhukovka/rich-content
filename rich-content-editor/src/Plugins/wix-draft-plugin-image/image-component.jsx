@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import get from 'lodash/get';
 import getImageSrc from './get-image-source';
 import Styles from './default-image-styles.scss';
 
@@ -18,12 +17,21 @@ const getDefault = () => ({
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 const ImageLoader = (
-  { theme, type } //eslint-disable-line react/prop-types
+  { theme, type }
 ) => (
-  <div className={classNames(Styles.loaderOverlay, get(theme, 'loaderOverlay'))}>
-    <div className={classNames(Styles.loader, get(theme, 'loader'), { [Styles[type]]: type })} />
+  <div className={classNames(Styles.loaderOverlay, theme.loaderOverlay)}>
+    <div className={classNames(Styles.loader, theme.loader, { [Styles[type]]: type })} />
   </div>
 );
+
+ImageLoader.propTypes = {
+  theme: PropTypes.object.isRequired,
+  type: PropTypes.string,
+};
+
+ImageLoader.defaultProps = {
+  type: 'mini'
+};
 
 class ImageComponent extends React.Component {
   constructor(props) {
@@ -135,34 +143,37 @@ class ImageComponent extends React.Component {
     return imageUrl;
   }
 
-  renderLoader() {
+  renderLoader(theme) {
     if (!this.state.isLoading) {
       return null;
     }
-    return <ImageLoader />;
+    return <ImageLoader theme={theme} type={'mini'}/>;
   }
 
   renderTitle(data, theme) {
     const config = data.config || {};
-    return !!config.showTitle && <div className={theme.title}>{(data && data.title) || ''}</div>;
+    return !!config.showTitle && <div className={classNames(Styles.imageTitle, theme.imageTitle)}>{(data && data.title) || ''}</div>;
   }
   renderDescription(data, theme) {
     const config = data.config || {};
-    return !!config.showDescription && <div className={theme.description}>{(data && data.description) || ''}</div>;
+    return !!config.showDescription &&
+      <div className={classNames(Styles.imageDescription, theme.imageDescription)}>
+        {(data && data.description) || ''}
+      </div>;
   }
 
   render() {
     const { componentData, className, onClick, theme } = this.props;
     const data = componentData || getDefault();
 
-    const itemClassName = classNames(Styles.container, className, theme.container);
+    const itemClassName = classNames(Styles.imageContainer, className, theme.imageContainer);
     const imageClassName = classNames(Styles.image, theme.image);
     const imageSrc = this.getImageSrc(data);
     return (
       <div onClick={onClick} className={itemClassName}>
         <div>
           <img className={imageClassName} src={imageSrc} />
-          {this.renderLoader()}
+          {this.renderLoader(theme)}
         </div>
         {this.renderTitle(data, theme)}
         {this.renderDescription(data, theme)}
