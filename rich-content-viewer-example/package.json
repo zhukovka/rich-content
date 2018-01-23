@@ -41,7 +41,7 @@
     "immutable": "^3.8.1",
     "@wix/draft-js": "^0.10.4",
     "pro-gallery-renderer": "^1.0.60",
-    "wix-rich-content-editor": "^1.0.6"
+    "wix-rich-content-editor": "^1.0.20"
   },
   "peerDependencies": {
     "immutable": "^3.8.1",

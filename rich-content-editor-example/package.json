@@ -46,7 +46,7 @@
     "webpack-manifest-plugin": "1.3.2",
     "whatwg-fetch": "2.0.3",
     "@wix/draft-js": "^0.10.4",
-    "wix-rich-content-editor": "^1.0.17"
+    "wix-rich-content-editor": "^1.0.20"
   },
   "scripts": {
     "start": "node scripts/start.js",
