@@ -1,6 +1,7 @@
 import RichContentEditorTheme from './rich-content-editor.theme.scss';
 import LinkifyTheme from './text-linkify.theme.scss';
 import CommonStyles from './global.theme.scss';
+import DividerTheme from './divider.theme.scss';
 
 const {
   quote,
@@ -22,6 +23,8 @@ const { link } = LinkifyTheme;
 
 const { hasFocus } = CommonStyles;
 
+const { divider1, divider2, divider3, divider4 } = DividerTheme;
+
 const theme = {
   quote,
   headerOne,
@@ -37,7 +40,11 @@ const theme = {
   editor,
   desktop,
   link,
-  hasFocus
+  hasFocus,
+  divider1,
+  divider2,
+  divider3,
+  divider4
 };
 
 export default theme;

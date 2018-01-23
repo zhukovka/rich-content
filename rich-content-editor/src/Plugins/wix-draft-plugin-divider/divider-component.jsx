@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Divider1 from './dividers/divider1.svg';
-import Divider2 from './dividers/divider2.svg';
-import Divider3 from './dividers/divider3.svg';
-import Divider4 from './dividers/divider4.svg';
+import classnames from 'classnames';
+import Styles from './default-divider-styles.scss';
 
 const DEFAULTS = {
   type: 'divider3',
@@ -32,32 +30,17 @@ class DividerComponent extends React.Component {
     };
   };
 
-  getComponent = type => {
-    let component = null;
-    switch (type) {
-      case 'divider1':
-        component = Divider1;
-        break;
-      case 'divider2':
-        component = Divider2;
-        break;
-      case 'divider3':
-        component = Divider3;
-        break;
-      default:
-        component = Divider4;
-        break;
-    }
-    return component;
-  };
-
   render() {
-    const { style } = this.props;
-    const Divider = this.getComponent(this.state.type);
+    const { style, theme } = this.props;
+
+    const appliedStyles = theme || Styles;
+
     return (
-      <div style={{ width: this.state.width + '%', margin: 'auto', ...style }} onClick={this.props.onClick} className={this.props.className}>
-        <Divider style={{ pointerEvents: 'none' }} width="100%" viewBox="0 0 500 46" preserveAspectRatio="none" />
-      </div>
+      <div
+        style={{ width: this.state.width + '%', margin: 'auto', ...style }}
+        onClick={this.props.onClick}
+        className={classnames(this.props.className, appliedStyles[this.state.type])}
+      />
     );
   }
 }
