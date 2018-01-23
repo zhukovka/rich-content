@@ -21,6 +21,11 @@ const modalStyleDefaults = {
   }
 };
 
+const sideToolbarOffset = {
+  desktop: { x: -40, y: 0 },
+  mobile: { x: 0, y: 0 }
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -98,7 +103,6 @@ class App extends Component {
   }
 
   render() {
-    const sideToolbarOffset = { x: -40, y: 0 };
     const { RichContentEditor } = WixRichContentEditor;
     return (
       <div className="wrapper">
