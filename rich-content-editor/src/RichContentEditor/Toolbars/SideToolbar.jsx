@@ -110,9 +110,13 @@ export default ({ pluginButtons, offset }) => {
   return createSideToolbar({
     offset,
     structure: [
-      (
-        { getEditorState, setEditorState, theme } //eslint-disable-line react/prop-types
-      ) => <AddPluginBlockSelect getEditorState={getEditorState} setEditorState={setEditorState} theme={theme} structure={insertPluginButtons} />,
+      ({ getEditorState, setEditorState, theme }) => //eslint-disable-line react/prop-types
+        (<AddPluginBlockSelect
+          getEditorState={getEditorState}
+          setEditorState={setEditorState}
+          theme={theme}
+          structure={pluginButtons}
+        />),
     ],
   });
 };
