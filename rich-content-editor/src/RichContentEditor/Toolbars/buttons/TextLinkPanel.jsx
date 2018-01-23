@@ -15,7 +15,7 @@ export default class TextLinkPanel extends Component {
   };
 
   hideLinkPanel = () => {
-    this.props.onOverrideContent(undefined);
+    this.props.onExtendContent(undefined);
   };
 
   render() {
@@ -26,6 +26,6 @@ export default class TextLinkPanel extends Component {
 TextLinkPanel.propTypes = {
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
-  onOverrideContent: PropTypes.func.isRequired,
+  onExtendContent: PropTypes.func.isRequired,
   theme: PropTypes.object,
 };
