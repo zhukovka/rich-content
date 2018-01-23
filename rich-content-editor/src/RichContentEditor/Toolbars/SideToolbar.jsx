@@ -106,7 +106,7 @@ const createSideToolbar = (config = {}) => {
   };
 };
 
-export default ({ insertPluginButtons, offset }) => {
+export default ({ pluginButtons, offset }) => {
   return createSideToolbar({
     offset,
     structure: [
