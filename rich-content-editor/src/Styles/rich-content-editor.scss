@@ -66,12 +66,16 @@
 
 .elementSpacing {
   margin: 0 calc((100% - #{$textWidth}) /2);
-
+  @include phone {
+    margin: 0;
+  }
 }
 
 .blockStyleSpacing {
   margin: 15px calc((18px + (100% - #{$textWidth}) /2));
-
+  @include phone {
+    margin: 15px scalc((18px + (100% - #{$textMobileWidth}) /2));
+  }
 }
 
 .text {
@@ -150,9 +154,15 @@
 
 :global(.public-DraftStyleDefault-ul) {
   margin: 0 calc((100% - #{$textWidth}) /2);
+  @include phone {
+    margin: 0;
+  }
 }
 :global(.public-DraftStyleDefault-ol) {
   margin: 0 calc((100% - #{$textWidth}) /2);
+  @include phone {
+    margin: 0;
+  }
 }
 
 .code, .codeBlock {
@@ -163,23 +173,4 @@
   line-height: 26px;
   padding: 2px 25px;
   white-space: pre-wrap;
-}
-
-//*** MOBILE ***//
-@media only screen and (max-width: 768px) {
-  :global(.public-DraftStyleDefault-ul) {
-    margin: 0;
-  }
-  :global(.public-DraftStyleDefault-ol) {
-    margin: 0;
-  }
-
-  .elementSpacing {
-    margin: 0;
-
-  }
-
-  .blockStyleSpacing {
-    margin: 15px scalc((18px + (100% - #{$textMobileWidth}) /2));
-  }
 }
