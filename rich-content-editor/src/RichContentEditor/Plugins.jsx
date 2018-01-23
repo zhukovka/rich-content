@@ -55,7 +55,7 @@ const activePlugins = (requestedPlugins = PluginList, config) => {
   return activePlugins;
 };
 
-const createPlugins = ({ editorProps }, { theme }) => {
+const createPlugins = ({ editorProps, theme }) => {
   const { helpers, isMobile, plugins, sideToolbarOffset, textButtons } = editorProps;
   const textToolbar = createTextToolbar({ buttons: textButtons });
   const linkifyPlugin = createLinkifyPlugin({ theme: linkifyTheme });

@@ -18,7 +18,7 @@ export default class RichContentEditor extends Component {
       readOnly: props.readOnly || false,
       theme: props.theme || {}
     };
-    this.initializePlugins(this.state.theme);
+    this.plugins = createPlugins({ editorProps: props, theme: this.state.theme });
     this.decorators = createDecorators(props.decorators);
   }
 
@@ -32,18 +32,6 @@ export default class RichContentEditor extends Component {
     } else {
       return EditorState.createEmpty();
     }
-  }
-
-  initializePlugins(theme) {
-    const getEditorState = () => this.state.editorState;
-    const setEditorState = editorState => this.setState({ editorState });
-    const editorProps = this.props;
-    this.plugins = createPlugins({
-      getEditorState,
-      setEditorState,
-      editorProps,
-      theme
-    });
   }
 
   componentWillReceiveProps(nextProps) {
