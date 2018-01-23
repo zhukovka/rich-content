@@ -7,7 +7,7 @@ import * as WixRichContentEditor from 'wix-rich-content-editor';
 import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 import { testImages } from './images-mock';
-import theme from './theme';
+import theme from './theme/theme';
 //import TestData from './TestData/initialState';
 
 const modalStyleDefaults = {
