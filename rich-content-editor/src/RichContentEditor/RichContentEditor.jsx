@@ -16,8 +16,9 @@ export default class RichContentEditor extends Component {
     this.state = {
       editorState: this.getInitialEditorState(),
       readOnly: props.readOnly || false,
+      theme: props.theme || {}
     };
-    this.initializePlugins({ theme: props.theme });
+    this.plugins = createPlugins({ editorProps: props, theme: this.state.theme });
     this.decorators = createDecorators(props.decorators);
   }
 
@@ -33,17 +34,6 @@ export default class RichContentEditor extends Component {
     }
   }
 
-  initializePlugins({ theme }) {
-    const getEditorState = () => this.state.editorState;
-    const setEditorState = editorState => this.setState({ editorState });
-    const editorProps = this.props;
-    this.plugins = createPlugins({
-      getEditorState,
-      setEditorState,
-      editorProps,
-    }, { theme });
-  }
-
   componentWillReceiveProps(nextProps) {
     if (!isUndefined(nextProps.readOnly) && this.props.readOnly !== nextProps.readOnly) {
       this.setState({ readOnly: nextProps.readOnly });
@@ -51,41 +41,55 @@ export default class RichContentEditor extends Component {
     if (this.props.editorState !== nextProps.editorState) {
       this.setState({ editorState: nextProps.editorState });
     }
+    if (this.props.theme !== nextProps.theme) {
+      this.setState({ theme: nextProps.theme });
+    }
   }
 
   blockStyleFn = contentBlock => {
     const { type, data: { textAlignment } } = contentBlock.toJS();
     const classList = [];
+    const { theme } = this.state;
 
     switch (type) {
       case 'blockquote':
+        classList.push(theme.quote);
         classList.push(Styles.quote);
         break;
       case 'header-one':
+        classList.push(theme.headerOne);
         classList.push(Styles.headerOne);
         break;
       case 'header-two':
+        classList.push(theme.headerTwo);
         classList.push(Styles.headerTwo);
         break;
       case 'header-three':
+        classList.push(theme.headerThree);
         classList.push(Styles.headerThree);
         break;
       case 'ordered-list-item':
+        classList.push(theme.orderedList);
         classList.push(Styles.orderedList);
         break;
       case 'unordered-list-item':
+        classList.push(theme.unorderedList);
         classList.push(Styles.unorderedList);
         break;
       case 'atomic':
+        classList.push(theme.atomic);
         classList.push(Styles.atomic);
         break;
       case 'code-block':
+        classList.push(theme.codeBlock);
         classList.push(Styles.codeBlock);
         break;
       default:
+        classList.push(theme.text);
         classList.push(Styles.text);
     }
     if (type !== 'atomic') {
+      classList.push(theme[textAlignment]);
       classList.push(Styles[textAlignment]);
     }
     return classNames(...classList);
@@ -116,7 +120,7 @@ export default class RichContentEditor extends Component {
   };
 
   renderEditor = () => {
-    const { helpers, platform } = this.props;
+    const { helpers, isMobile } = this.props;
     const { editorState, readOnly } = this.state;
     return (
       <Editor
@@ -127,7 +131,7 @@ export default class RichContentEditor extends Component {
         decorators={this.decorators}
         blockStyleFn={this.blockStyleFn}
         readOnly={!!readOnly}
-        isMobile={platform}
+        isMobile={isMobile}
         helpers={helpers}
         spellCheck
       />
@@ -135,12 +139,14 @@ export default class RichContentEditor extends Component {
   };
 
   render() {
-    const wrapperClassName = classNames(Styles.wrapper, {
+    const { theme } = this.state;
+    const wrapperClassName = classNames(theme.wrapper, Styles.wrapper, {
+      [theme.desktop]: !this.props.platform || this.props.platform === 'desktop',
       [Styles.desktop]: !this.props.platform || this.props.platform === 'desktop',
     });
     return (
       <div className={wrapperClassName}>
-        <div className={Styles.editor}>
+        <div className={classNames(theme.editor, Styles.editor)}>
           {this.renderEditor()}
           {this.renderToolbars()}
         </div>
@@ -158,5 +164,5 @@ RichContentEditor.propTypes = {
   isMobile: PropTypes.bool,
   readOnly: PropTypes.bool,
   helpers: PropTypes.object,
-  platform: PropTypes.string,
+  platform: PropTypes.string
 };

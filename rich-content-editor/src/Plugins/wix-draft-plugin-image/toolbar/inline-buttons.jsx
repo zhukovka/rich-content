@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MediaReplaceIcon from '../icons/toolbar/media-replace.svg';
+import SettingsIcon from '../../base/icons/block-settings.svg';
 import ClassicLayoutIcon from '../icons/toolbar/layout/icon-classic-layout.svg';
 import ClassicLayoutIconActive from '../icons/toolbar/layout/icon-classic-layout-active.svg';
 import TextOnImageIcon from '../icons/toolbar/layout/icon-text-on-image-layout.svg';
 import TextOnImageIconActive from '../icons/toolbar/layout/icon-text-on-image-layout-active.svg';
+import ImageSettings from './image-settings';
 import { BUTTONS } from '~/Plugins/base/buttons';
 
 class LayoutModal extends React.Component {
@@ -110,6 +112,34 @@ SettingsModal.propTypes = {
   componentState: PropTypes.object.isRequired,
 };
 
+const modalStyles = {
+  overlay: {
+    top: 0,
+    left: 0,
+    position: 'absolute',
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    zIndex: 100,
+  },
+  content: {
+    position: 'absolute',
+    top: 0,
+    left: 'auto',
+    right: 0,
+    bottom: 0,
+    border: 'none',
+    background: '#fff',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    borderRadius: 0,
+    outline: 'none',
+    padding: 0,
+    height: '100vh',
+    width: '522px',
+  },
+};
+
 const InlineButtons = [
   { type: BUTTONS.SIZE_ORIGINAL_CENTER },
   { type: BUTTONS.SIZE_SMALL_LEFT },
@@ -118,12 +148,25 @@ const InlineButtons = [
   { type: BUTTONS.SIZE_CONTENT },
   { type: BUTTONS.SIZE_FULL_WIDTH },
   { type: BUTTONS.SEPARATOR },
+  // {
+  //   keyName: 'settings',
+  //   type: BUTTONS.PANEL,
+  //   panelElement: SettingsModal,
+  //   icon: SettingsIcon,
+  //   onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
+  // },
+  {
+    keyName: 'settings',
+    type: BUTTONS.EXTERNAL_MODAL,
+    icon: SettingsIcon,
+    panelElement: ImageSettings,
+    modalStyles,
+  },
   {
     keyName: 'replace',
     type: BUTTONS.FILES,
     icon: MediaReplaceIcon,
   },
-  { type: BUTTONS.LINK },
   { type: BUTTONS.DELETE },
 ];
 

@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import get from 'lodash/get';
-import getWixMediaUrl from './get-wix-media-url';
+import getImageSrc from './get-image-source';
 import Styles from './default-image-styles.scss';
 
 const getDefault = () => ({
-  item: {},
+  data: {},
   config: {
     alignment: 'center',
     size: 'content',
@@ -79,10 +79,8 @@ class ImageComponent extends React.Component {
     const { helpers } = this.props;
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
     if (hasFileChangeHelper) {
-      helpers.onFilesChange(files, ({ data, error }) => {
-        const { setData } = this.props.blockProps;
-        this.props.componentData.item = data;
-        setData(this.props.componentData);
+      helpers.onFilesChange(files, ({ item, error }) => {
+        this.props.store.update('componentData', { item });
         this.resetLoadingState(error);
       });
     } else {
@@ -126,24 +124,8 @@ class ImageComponent extends React.Component {
     let imageUrl;
     if (this.state.dataUrl) {
       imageUrl = this.state.dataUrl;
-    } else if (item.file_name) {
-      if (item.source) {
-        if (item.source === 'static') {
-          if (item.url) {
-            imageUrl = item.url;
-          } else {
-            console.error('must provide item url when using static image source!', item); //eslint-disable-line no-console
-          }
-        } else if (item.source === 'custom') {
-          if (helpers.getImageUrl) {
-            imageUrl = helpers.getImageUrl({ file_name: item.file_name }); //eslint-disable-line camelcase
-          } else {
-            console.error('must provide getImageUrl helper when using custom image source!', item); //eslint-disable-line no-console
-          }
-        }
-      } else {
-        imageUrl = getWixMediaUrl({ file_name: item.file_name }); //eslint-disable-line camelcase
-      }
+    } else {
+      imageUrl = getImageSrc(item.data, helpers);
     }
 
     if (!imageUrl) {
@@ -162,11 +144,11 @@ class ImageComponent extends React.Component {
 
   renderTitle(data, theme) {
     const config = data.config || {};
-    return !!config.showTitle && <div className={theme.title}>{data.item.title || ''}</div>;
+    return !!config.showTitle && <div className={theme.title}>{(data && data.title) || ''}</div>;
   }
   renderDescription(data, theme) {
     const config = data.config || {};
-    return !!config.showDescription && <div className={theme.description}>{data.item.description || ''}</div>;
+    return !!config.showDescription && <div className={theme.description}>{(data && data.description) || ''}</div>;
   }
 
   render() {
@@ -175,7 +157,7 @@ class ImageComponent extends React.Component {
 
     const itemClassName = classNames(Styles.container, className, theme.container);
     const imageClassName = classNames(Styles.image, theme.image);
-    const imageSrc = this.getImageSrc(data.item);
+    const imageSrc = this.getImageSrc(data);
     return (
       <div onClick={onClick} className={itemClassName}>
         <div>

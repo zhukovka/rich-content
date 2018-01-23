@@ -145,17 +145,17 @@ class GalleryComponent extends React.Component {
     return state;
   }
 
-  setItemInGallery = (item, pos) => {
-    const shouldAdd = (typeof pos === 'undefined');
+  setItemInGallery = (item, itemPos) => {
+    const shouldAdd = (typeof itemPos === 'undefined');
     let { items } = this.state;
     let itemIdx;
     if (shouldAdd) {
       itemIdx = items.length;
       items = [...items, item];
     } else {
-      itemIdx = pos;
+      itemIdx = itemPos;
       items = [...items];
-      items[pos] = item;
+      items[itemPos] = item;
     }
     console.log('New items loaded', items); //eslint-disable-line no-console
     this.setState({ items });
@@ -166,14 +166,14 @@ class GalleryComponent extends React.Component {
     return itemIdx;
   }
 
-  handleFilesSelected = files => {
-    files.forEach(file => {
+  handleFilesSelected = (files, itemPos) => {
+    Array(...files).forEach(file => {
       const reader = new FileReader();
-      reader.onload = e => this.fileLoaded(e, file);
+      reader.onload = e => this.fileLoaded(e, file, itemPos);
       reader.readAsDataURL(file);
     });
   }
-  imageLoaded = (event, file) => {
+  imageLoaded = (event, file, itemPos) => {
     const img = event.target;
     const item = {
       metadata: {
@@ -184,20 +184,20 @@ class GalleryComponent extends React.Component {
       url: img.src,
     };
 
-    const itemIdx = this.setItemInGallery(item);
+    const itemIdx = this.setItemInGallery(item, itemPos);
     const { helpers } = this.props;
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
 
     if (hasFileChangeHelper) {
-      helpers.onFilesChange(file, ({ item, error }) => {
-        console.log('onFilesChanged happend', item, error); //eslint-disable-line no-console
+      helpers.onFilesChange(file, ({ data, error }) => {
+        console.log('onFilesChanged happend', data, error); //eslint-disable-line no-console
         const galleryItem = {
           metadata: {
-            height: item.height,
-            width: item.width,
+            height: data.height,
+            width: data.width,
           },
-          itemId: String(item.id),
-          url: item.file_name,
+          itemId: String(data.id),
+          url: data.file_name,
         };
         this.setItemInGallery(galleryItem, itemIdx);
       });
@@ -206,10 +206,10 @@ class GalleryComponent extends React.Component {
     }
   }
 
-  fileLoaded = (event, file) => {
+  fileLoaded = (event, file, itemPos) => {
 
     const img = new Image();
-    img.onload = e => this.imageLoaded(e, file);
+    img.onload = e => this.imageLoaded(e, file, itemPos);
     img.src = event.target.result;
 
   };

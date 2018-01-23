@@ -30,20 +30,39 @@ class ImageSettings extends Component {
     this.initialImageState = this.props.images.map(i => ({ ...i }));
   }
 
+  deleteImage(selectedImage) {
+    const images = this.state.images.filter(i => i.url !== selectedImage.url);
+    this.setState({
+      images,
+      selectedIndex: Math.min(this.state.selectedIndex, images.length - 1)
+    });
+  }
+
+  repalceImage() {
+    // TODO: upload
+  }
+
   imageMetadataUpdated = (image, value) => {
     image.metadata = Object.assign({}, image.metadata, value);
     this.setState({ images: this.state.images });
   };
 
+  replaceItem(event) {
+    const { handleFileChange } = this.props;
+    const itemIdx = this.state.selectedIndex;
+    handleFileChange(event, itemIdx);
+  }
+
   render() {
-    const { images, onSave, onCancel } = this.props;
+    const { onSave, onCancel } = this.props;
+    const { images } = this.state;
     const selectedImage = images[this.state.selectedIndex];
 
     return (
       <div className={style['image-settings']}>
         <h3 className={classnames(style.title, style['back-button'])} onClick={() => onCancel(this.initialImageState)}>← Image Settings</h3>
         <SettingsSection>
-          <Image resizeMode={'cover'} className={style.image} src={`https://static.wixstatic.com/${selectedImage.url}`} />
+          <Image resizeMode={'contain'} className={style.image} src={`https://static.wixstatic.com/${selectedImage.url}`} />
           <div className={style['image-nav']}>
             <i
               className={classnames(style.previous, this.state.selectedIndex === 0 ? style.hidden : '')}
@@ -57,9 +76,12 @@ class ImageSettings extends Component {
         </SettingsSection>
         <div className={style['manage-image-grid']}>
           <button className={style.replace}>
+            <form>
+              <input name="file" type="file" onChange={this.replaceItem.bind(this)} accept="image/*" tabIndex="-1" />
+            </form>
             <span>{'Replace'}</span>
           </button>
-          <button className={style.delete}>
+          <button className={style.delete} onClick={() => this.deleteImage(selectedImage)}>
             <span>{'Delete'}</span>
           </button>
         </div>
@@ -100,6 +122,7 @@ ImageSettings.propTypes = {
   images: PropTypes.arrayOf(PropTypes.object).isRequired,
   onCancel: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
+  handleFileChange: PropTypes.func.isRequired
 };
 
 export default ImageSettings;
