@@ -78,7 +78,7 @@ const options = {
   },
 };
 
-const decorators = [{strategy: HashtagDecorator.Strategy, component: HashtagDecorator.Component}];// createDecorators();
+const decorators = [{ strategy: HashtagDecorator.Strategy, component: HashtagDecorator.Component }];// createDecorators();
 
 const Preview = ({ raw }) => {
   const isEmpty = isEmptyRaw(raw);
