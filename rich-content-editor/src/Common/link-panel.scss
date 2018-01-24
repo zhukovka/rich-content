@@ -22,7 +22,8 @@
   position: relative;
   background-color: white;
   width: 399px;
-  height: 179px;
+  // height: 179px; // this is the right margin - once radio buttons would be added back
+  height: 148px;
   padding: 15px 24px;
   font-family: Lato;
   font-size: 14px;
@@ -36,7 +37,8 @@
 }
 
 .textInput {
-  margin: 16px 0 14px 0;
+  // margin: 16px 0 14px 0; // this is the right margin - once radio buttons would be added back
+  margin: 5px 0 14px 0;
   position: relative;
 
   input {

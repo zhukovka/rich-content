@@ -18,8 +18,8 @@ const LinkType = props => (
 );
 
 LinkType.propTypes = {
-  onChange: PropTypes.func,
-  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 class LinkPanel extends Component {
@@ -82,9 +82,9 @@ class LinkPanel extends Component {
     return (
       <ThemeProvider theme={'default'}>
         <div className={Styles.modal}>
-          <LinkType
+          {/*<LinkType
             value="url"
-          />
+          />*/}
           <div onKeyPress={this.handleKeyPress}>
             <div className={Styles.textInput}>
               <input
