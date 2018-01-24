@@ -41,7 +41,6 @@
     "draft-js-focus-plugin": "^2.0.1",
     "draft-js-linkify-plugin": "^2.0.1",
     "draft-js-plugins-editor": "^2.0.1",
-    "draft-js-static-toolbar-plugin": "^2.0.1",
     "image-client-api": "1.51.0",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",

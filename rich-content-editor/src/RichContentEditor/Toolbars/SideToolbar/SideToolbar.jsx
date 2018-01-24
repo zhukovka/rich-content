@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
+import DraftOffsetKey from '@wix/draft-js/lib/DraftOffsetKey';
 
 const toolbarOffset = 4;
 

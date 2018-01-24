@@ -1,6 +1,6 @@
 import { createSideToolbar } from './SideToolbar';
-import { createStaticToolbar } from './StaticToolbar';
-import { createTextToolbar } from './TextToolbar';
+import { createFooterToolbar } from './StaticToolbar';
+import { createTextToolbar } from './InlineToolbar';
 
 const createToolbars = ({ pluginButtons, textButtons, sideToolbarOffset, isMobile }) => {
   const toolbars = {
@@ -9,7 +9,7 @@ const createToolbars = ({ pluginButtons, textButtons, sideToolbarOffset, isMobil
   };
 
   if (!isMobile) {
-    toolbars.static = createStaticToolbar({ pluginButtons });
+    toolbars.static = createFooterToolbar({ pluginButtons });
   }
 
   return toolbars;
