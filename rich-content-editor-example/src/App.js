@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import ReactModal from 'react-modal';
 import decorateComponentWithProps from 'decorate-component-with-props';
+import ReactModal from 'react-modal';
+import MobileDetect from 'mobile-detect';
 import logo from './logo.svg';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
 import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
+import { testImages } from './images-mock';
+import theme from './theme/theme';
 //import TestData from './TestData/initialState';
 
 const modalStyleDefaults = {
@@ -18,6 +21,11 @@ const modalStyleDefaults = {
   }
 };
 
+const sideToolbarOffset = {
+  desktop: { x: -40, y: 0 },
+  mobile: { x: 0, y: 0 }
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +34,7 @@ class App extends Component {
       editorState: WixRichContentEditor.EditorState.createEmpty(),
       readOnly: false
     };
+    this.md = window ? new MobileDetect(window.navigator.userAgent) : null;
     this.initEditorProps();
   }
 
@@ -41,25 +50,22 @@ class App extends Component {
       }
     };
     this.helpers = {
-      onFilesChange: (files, updateEntity) => {
-        console.log('[consumer] files changed!', files); //eslint-disable-line no-console
+      onFilesChange: (file, updateEntity) => {
+        console.log('[consumer] file changed!', file); //eslint-disable-line no-console
         //mock upload
+        const testItem = testImages[Math.floor(Math.random() * testImages.length)];
         const data = {
-          original_file_name: //eslint-disable-line camelcase
-            'a27d24_e1ac8887d0e04dd5b98fb4c263af1180~mv2_d_4915_3277_s_4_2.jpg',
-          file_name: //eslint-disable-line camelcase
-            'a27d24_e1ac8887d0e04dd5b98fb4c263af1180~mv2_d_4915_3277_s_4_2.jpg',
-          width: 4915,
-          height: 3277
+          id: testItem.photoId,
+          original_file_name: testItem.url, // eslint-disable-line camelcase
+          file_name: testItem.url, // eslint-disable-line camelcase
+          width: testItem.metadata.width,
+          height: testItem.metadata.height,
         };
-        setTimeout(() => updateEntity({ data }), 1500);
+        setTimeout(() => updateEntity({ data }), (Math.floor(Math.random() * 2000) + 1000));
       },
       openExternalModal: data => {
         const { panelElement, modalStyles, ...elementProps } = data;
-        const ModalContent = decorateComponentWithProps(
-          panelElement,
-          elementProps
-        );
+        const ModalContent = decorateComponentWithProps(panelElement, elementProps);
         this.setState({
           showModal: true,
           modalContent: <ModalContent />,
@@ -92,8 +98,11 @@ class App extends Component {
     });
   };
 
+  isMobile = () => {
+    return this.md && this.md.mobile() !== null;
+  }
+
   render() {
-    const sideToolbarOffset = { x: -40, y: 0 };
     const { RichContentEditor } = WixRichContentEditor;
     return (
       <div className="wrapper">
@@ -122,6 +131,8 @@ class App extends Component {
             editorState={this.state.editorState}
             readOnly={this.state.readOnly}
             sideToolbarOffset={sideToolbarOffset}
+            isMobile={this.isMobile()}
+            theme={theme}
           />
           <ReactModal
             isOpen={this.state.showModal}

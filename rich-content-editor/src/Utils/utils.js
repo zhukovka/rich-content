@@ -3,12 +3,13 @@ import flatMap from 'lodash/flatMap';
 import findIndex from 'lodash/findIndex';
 import findLastIndex from 'lodash/findLastIndex';
 
-export function insertLink(editorState, { url, targetBlank }) {
+export function insertLink(editorState, { url, targetBlank, nofollow }) {
   const selection = getSelection(editorState);
   const content = editorState.getCurrentContent();
   const contentStateWithEntity = content.createEntity('LINK', 'MUTABLE', {
     url,
     targetBlank,
+    nofollow
   });
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
@@ -135,3 +136,23 @@ function getSelection(editorState) {
 
   return selection;
 }
+
+// function handleFileChange(event, isInsertButton) {
+//   if (event.target.files && event.target.files.length > 0) {
+//     const helpers = this.props.helpers;
+//     if (helpers && helpers.handleFileSelection) {
+//       helpers.handleFileSelection();
+//     } else {
+//       if (isInsertButton) {
+//         const files = Array.from(event.target.files);
+//         this.props.pubsub.update('componentState', state);
+//       } else {
+//         const recentlyCreated = this.addBlock(button.data);
+//         pubsub.set('initialState_' + recentlyCreated.getKey(), state);
+//       }
+//       const state = { userSelectedFiles: { files } };
+//     }
+//   }
+
+//   this.resetForm();
+// }

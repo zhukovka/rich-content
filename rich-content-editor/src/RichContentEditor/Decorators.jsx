@@ -1,6 +1,6 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
-import * as LinkDecorator from './Decorators/LinkDecorator';
-import * as HashtagDecorator from './Decorators/HashtagDecorator';
+import * as LinkDecorator from '../Decorators/LinkDecorator';
+import * as HashtagDecorator from '../Decorators/HashtagDecorator';
 
 const DecoratorList = [LinkDecorator.Name, HashtagDecorator.Name];
 
@@ -34,4 +34,4 @@ const createDecorators = ({ list, config } = defaultDecorators) => {
 };
 
 export default createDecorators;
-export { DecoratorList, HashtagDecorator };
+export { DecoratorList };

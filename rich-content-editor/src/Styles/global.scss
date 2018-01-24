@@ -3,6 +3,7 @@
 
 $innerSpacing: 40px;
 $textWidth: 740px;
+$textMobileWidth: 90%;
 
 //*** BLOCK ***//
 .hasFocus {
@@ -36,6 +37,9 @@ $textWidth: 740px;
   z-index: 1;
   margin-right: $innerSpacing;
   margin-left: calc((100% - #{$textWidth}) / 2);
+  @include phone {
+    margin-left: calc((100% - #{$textMobileWidth}) / 2);
+  }
 }
 
 .alignCenter {
@@ -49,6 +53,9 @@ $textWidth: 740px;
   z-index: 1;
   margin-left: $innerSpacing;
   margin-right: calc((100% - #{$textWidth}) / 2);
+  @include phone {
+    margin-right: calc((100% - #{$textMobileWidth}) / 2);
+  }
 }
 
 .sizeFullWidth {
@@ -56,7 +63,7 @@ $textWidth: 740px;
 }
 
 .sizeContent {
-  width: 740px;
+  max-width: 740px;
   margin: 0 auto;
 }
 

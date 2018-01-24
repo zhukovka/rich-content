@@ -1,3 +1,5 @@
+@import "./mixins";
+
 .toolbar {
   position: relative;
   bottom: 50px;
@@ -11,4 +13,7 @@
   width: 740px;
   margin-right: auto;
   margin-left: auto;
+  @include phone {
+    width: 100%;
+  }
 }

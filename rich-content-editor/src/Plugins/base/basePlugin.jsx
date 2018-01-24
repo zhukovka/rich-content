@@ -16,16 +16,7 @@ const updateEntityData = (contentBlock, { getEditorState, setEditorState }, getN
     contentState.replaceEntityData(entityKey, data);
     data.config.key = contentBlock.getKey();
     //console.log('setData for ' + entityKey + ' key ' + contentBlock.getKey(), data);
-
     setEditorState(editorState);
-    //Ronny: don't select the block after adding it
-    // const newSelection = new SelectionState({
-    //   anchorKey: contentBlock.key,
-    //   anchorOffset: 0,
-    //   focusKey: contentBlock.key,
-    //   focusOffset: 0,
-    // });
-    // setEditorState(EditorState.forceSelection(editorState, newSelection));
   }
 };
 

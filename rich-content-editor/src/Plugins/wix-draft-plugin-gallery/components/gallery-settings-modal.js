@@ -21,10 +21,22 @@ class ManageMediaSection extends Component {
     store.set('componentData', componentData);
   };
 
+  handleFileChange = (event, itemPos) => {
+    if (event.target.files.length > 0) {
+      const handleFilesSelected = this.props.store.get('handleFilesSelected');
+      handleFilesSelected(event.target.files, itemPos);
+    }
+    event.target.value = ''; //reset the input
+  };
+
   render() {
     return (
       <div>
-        <SortableComponent items={this.props.data.items} onItemsChange={this.applyItems} />
+        <SortableComponent
+          items={this.props.data.items}
+          onItemsChange={this.applyItems}
+          handleFileChange={this.handleFileChange}
+        />
       </div>
     );
   }
@@ -73,7 +85,7 @@ AdvancedSettingsSection.propTypes = {
 };
 
 export class GallerySettingsModal extends Component {
-  state = { activePanel: 'tabs', initComponentData: null };
+  state = { initComponentData: null };
 
   componentDidMount() {
     this.props.pubsub.subscribe('componentData', this.onComponentUpdate);
@@ -83,10 +95,6 @@ export class GallerySettingsModal extends Component {
   componentWillUnmount() {
     this.props.pubsub.unsubscribe('componentData', this.onComponentUpdate);
   }
-
-  toggleImageSettings = () => this.setState({
-    activePanel: this.state.activePanel === 'tabs' ? 'image' : 'tabs'
-  });
 
   onComponentUpdate = () => this.forceUpdate();
 

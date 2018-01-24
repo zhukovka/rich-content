@@ -1,32 +1,15 @@
 import { composeDecorators } from 'draft-js-plugins-editor';
-import createFocusPlugin from 'draft-js-focus-plugin'; //eslint-disable-line no-unused-vars
+import createFocusPlugin from 'draft-js-focus-plugin';
 import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
-import createLinkifyPlugin from 'draft-js-linkify-plugin'; //eslint-disable-line no-unused-vars
-import createSideToolbar from './Toolbars/SideToolbar';
-import createStaticToolbar from './Toolbars/StaticToolbar';
-import createTextToolbar from './Toolbars/TextToolbar';
+import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import { createDividerPlugin, DIVIDER_TYPE } from '~/Plugins/wix-draft-plugin-divider';
 import { createGalleryPlugin, GALLERY_TYPE } from '~/Plugins/wix-draft-plugin-gallery';
 import { createHtmlPlugin, HTML_TYPE } from '~/Plugins/wix-draft-plugin-html';
 import { createImagePlugin, IMAGE_TYPE } from '~/Plugins/wix-draft-plugin-image';
 import { createVideoPlugin, VIDEO_TYPE } from '~/Plugins/wix-draft-plugin-video';
-import linkifyTheme from '~/Styles/text-linkify.scss';
+import Styles from '~/Styles/text-linkify.scss';
 
 const PluginList = [DIVIDER_TYPE, GALLERY_TYPE, HTML_TYPE, IMAGE_TYPE, VIDEO_TYPE];
-
-const toolbars = (wixPlugins, sideToolbarOffset) => {
-  const insertPluginButtons = [];
-
-  wixPlugins.forEach(wixPlugin => {
-    wixPlugin.InsertPluginButtons.forEach(insertPluginButton => {
-      insertPluginButtons.push(insertPluginButton);
-    });
-  });
-  return {
-    staticToolbarPlugin: createStaticToolbar({ insertPluginButtons }),
-    sideToolbarPlugin: createSideToolbar({ insertPluginButtons, offset: sideToolbarOffset }),
-  };
-};
 
 const activePlugins = (requestedPlugins = PluginList, config) => {
   const activePlugins = [];
@@ -55,24 +38,32 @@ const activePlugins = (requestedPlugins = PluginList, config) => {
   return activePlugins;
 };
 
-const createPlugins = ({ editorProps }) => {
-  const { helpers, isMobile, plugins, sideToolbarOffset, textButtons } = editorProps;
-  const textToolbar = createTextToolbar({ buttons: textButtons });
-  const linkifyPlugin = createLinkifyPlugin({ theme: linkifyTheme });
+const createPlugins = ({ plugins, helpers, theme }) => {
+  const linkifyPlugin = createLinkifyPlugin({ theme: theme || Styles });
   const focusPlugin = createFocusPlugin();
   const dndPlugin = createBlockDndPlugin();
 
   const wixPluginsDecorators = composeDecorators(focusPlugin.decorator, dndPlugin.decorator);
+  const wixPlugins = activePlugins(plugins, { decorator: wixPluginsDecorators, helpers, theme });
 
-  const wixPlugins = activePlugins(plugins, { decorator: wixPluginsDecorators, helpers });
-  const { staticToolbarPlugin, sideToolbarPlugin } = toolbars(wixPlugins, sideToolbarOffset);
-  const draftPlugins = [sideToolbarPlugin, textToolbar, linkifyPlugin, focusPlugin, dndPlugin];
+  const pluginButtons = [];
+  wixPlugins.forEach(wixPlugin => {
+    wixPlugin.InsertPluginButtons.forEach(insertPluginButton => {
+      pluginButtons.push(insertPluginButton);
+    });
+  });
 
-  if (!isMobile) {
-    draftPlugins.unshift(staticToolbarPlugin);
-  }
+  const pluginInstances = [
+    linkifyPlugin,
+    focusPlugin,
+    dndPlugin,
+    ...wixPlugins,
+  ];
 
-  return [...draftPlugins, ...wixPlugins];
+  return {
+    plugins: pluginInstances,
+    pluginButtons
+  };
 };
 
 export default createPlugins;

@@ -20,8 +20,8 @@ class BlockLinkPanel extends Component {
 
   render() {
     const componentLink = this.props.store.get('componentLink') || {};
-    const { url, targetBlank } = componentLink;
-    return <LinkPanel url={url} targetBlank={targetBlank} onDone={this.wrapBlockInLink} onCancel={this.hideLinkPanel} />;
+    const { url, targetBlank, nofollow } = componentLink;
+    return <LinkPanel url={url} targetBlank={targetBlank} nofollow={nofollow} onDone={this.wrapBlockInLink} onCancel={this.hideLinkPanel} />;
   }
 }
 

@@ -39,6 +39,7 @@ $toolbar-border-radius: 2px;
     background: transparent;
     padding: 5px;
     border: 0 none;
+    z-index: 1;
 
     @include svg-fill($secondary-text-color);
 
@@ -50,6 +51,7 @@ $toolbar-border-radius: 2px;
   }
 
   form {
+    z-index: 2;
     opacity: 0;
     -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
     filter: alpha(opacity=0);

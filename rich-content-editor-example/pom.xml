@@ -2,20 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.wixpress.exposure</groupId>
-    <artifactId>wix-rich-content-editor-consumer</artifactId>
+    <artifactId>wix-rich-content-editor-example</artifactId>
     <packaging>pom</packaging>
-    <name>Wix Rich Content Editor Consumer</name>
-    <description>Wix Rich Content Editor Consumer</description>
+    <name>Wix Rich Content Editor Example</name>
+    <description>Wix Rich Content Editor Example</description>
     <version>1.0.0-SNAPSHOT</version>
-
     <organization>
         <name>com.wixpress</name>
     </organization>
 
     <parent>
-        <groupId>com.wixpress</groupId>
-        <artifactId>wix-statics-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>com.wixpress.common</groupId>
+        <artifactId>wix-master-parent</artifactId>
+        <version>100.0.0-SNAPSHOT</version>
     </parent>
 
 
@@ -41,8 +40,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>3.1.0</version>
                 <configuration>
+                    <tarLongFileMode>posix</tarLongFileMode>
                     <descriptors>
                         <descriptor>maven/assembly/tar.gz.xml</descriptor>
                     </descriptors>

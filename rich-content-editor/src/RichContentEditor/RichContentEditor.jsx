@@ -4,9 +4,10 @@ import classNames from 'classnames';
 import { EditorState, convertFromRaw } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
 import isUndefined from 'lodash/isUndefined';
+import createToolbars from './Toolbars';
 import createPlugins from './Plugins';
 import createDecorators from './Decorators';
-import 'draft-js/dist/Draft.css'; // must import before custom styles
+import '@wix/draft-js/dist/Draft.css'; // must import before custom styles
 import Styles from '~/Styles/rich-content-editor.scss';
 import 'normalize.css';
 
@@ -16,8 +17,11 @@ export default class RichContentEditor extends Component {
     this.state = {
       editorState: this.getInitialEditorState(),
       readOnly: props.readOnly || false,
+      theme: props.theme || {}
     };
-    this.initializePlugins();
+    const { plugins, pluginButtons } = createPlugins({ ...props, theme: this.state.theme });
+    this.toolbars = createToolbars({ ...props, pluginButtons, theme: this.state.theme });
+    this.plugins = [...plugins, ...Object.values(this.toolbars)];
     this.decorators = createDecorators(props.decorators);
   }
 
@@ -33,17 +37,6 @@ export default class RichContentEditor extends Component {
     }
   }
 
-  initializePlugins() {
-    const getEditorState = () => this.state.editorState;
-    const setEditorState = editorState => this.setState({ editorState });
-    const editorProps = this.props;
-    this.plugins = createPlugins({
-      getEditorState,
-      setEditorState,
-      editorProps,
-    });
-  }
-
   componentWillReceiveProps(nextProps) {
     if (!isUndefined(nextProps.readOnly) && this.props.readOnly !== nextProps.readOnly) {
       this.setState({ readOnly: nextProps.readOnly });
@@ -51,42 +44,56 @@ export default class RichContentEditor extends Component {
     if (this.props.editorState !== nextProps.editorState) {
       this.setState({ editorState: nextProps.editorState });
     }
+    if (this.props.theme !== nextProps.theme) {
+      this.setState({ theme: nextProps.theme });
+    }
   }
 
   blockStyleFn = contentBlock => {
     const { type, data: { textAlignment } } = contentBlock.toJS();
     const classList = [];
+    const { theme } = this.state;
 
     switch (type) {
       case 'blockquote':
         classList.push(Styles.quote);
+        classList.push(theme.quote);
         break;
       case 'header-one':
         classList.push(Styles.headerOne);
+        classList.push(theme.headerOne);
         break;
       case 'header-two':
         classList.push(Styles.headerTwo);
+        classList.push(theme.headerTwo);
         break;
       case 'header-three':
         classList.push(Styles.headerThree);
+        classList.push(theme.headerThree);
         break;
       case 'ordered-list-item':
         classList.push(Styles.orderedList);
+        classList.push(theme.orderedList);
         break;
       case 'unordered-list-item':
         classList.push(Styles.unorderedList);
+        classList.push(theme.unorderedList);
         break;
       case 'atomic':
         classList.push(Styles.atomic);
+        classList.push(theme.atomic);
         break;
       case 'code-block':
         classList.push(Styles.codeBlock);
+        classList.push(theme.codeBlock);
         break;
       default:
         classList.push(Styles.text);
+        classList.push(theme.text);
     }
     if (type !== 'atomic') {
       classList.push(Styles[textAlignment]);
+      classList.push(theme[textAlignment]);
     }
     return classNames(...classList);
   };
@@ -116,7 +123,7 @@ export default class RichContentEditor extends Component {
   };
 
   renderEditor = () => {
-    const { helpers, platform } = this.props;
+    const { helpers, isMobile } = this.props;
     const { editorState, readOnly } = this.state;
     return (
       <Editor
@@ -127,7 +134,7 @@ export default class RichContentEditor extends Component {
         decorators={this.decorators}
         blockStyleFn={this.blockStyleFn}
         readOnly={!!readOnly}
-        isMobile={platform}
+        isMobile={isMobile}
         helpers={helpers}
         spellCheck
       />
@@ -135,12 +142,14 @@ export default class RichContentEditor extends Component {
   };
 
   render() {
-    const wrapperClassName = classNames(Styles.wrapper, {
+    const { theme } = this.state;
+    const wrapperClassName = classNames(Styles.wrapper, theme.wrapper, {
       [Styles.desktop]: !this.props.platform || this.props.platform === 'desktop',
+      [theme.desktop]: !this.props.platform || this.props.platform === 'desktop',
     });
     return (
       <div className={wrapperClassName}>
-        <div className={Styles.editor}>
+        <div className={classNames(Styles.editor, theme.editor)}>
           {this.renderEditor()}
           {this.renderToolbars()}
         </div>
@@ -150,12 +159,13 @@ export default class RichContentEditor extends Component {
 }
 
 RichContentEditor.propTypes = {
-  editorState: PropTypes.instanceOf(EditorState),
+  editorState: PropTypes.object,
   decorators: PropTypes.object,
   initialState: PropTypes.object,
+  theme: PropTypes.object,
   onChange: PropTypes.func,
   isMobile: PropTypes.bool,
   readOnly: PropTypes.bool,
   helpers: PropTypes.object,
-  platform: PropTypes.string,
+  platform: PropTypes.string
 };

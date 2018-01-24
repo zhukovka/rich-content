@@ -1,5 +1,5 @@
 @mixin thumbnail_icon($rotation, $icon) {
-  background: url('./icons/layout_' + $icon + '.png') center no-repeat;
+  background: url('./icons/layout_' + $icon + '.svg') center no-repeat;
   transform: rotateZ($rotation + deg);
 }
 

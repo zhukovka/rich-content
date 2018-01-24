@@ -1,0 +1,23 @@
+@mixin divider($type) {
+  width: 100%;
+  height: 120px;
+  background: url('./icons/' + $type + '.svg') center repeat-x;
+  background-size: 100%;
+}
+
+.divider1 {
+  @include divider('divider1');
+}
+
+.divider2 {
+  @include divider('divider2');
+}
+
+.divider3 {
+  @include divider('divider3');
+}
+
+.divider4 {
+  @include divider('divider4');
+  height: 400px;
+}
