@@ -7,7 +7,7 @@ import isUndefined from 'lodash/isUndefined';
 import createToolbars from './Toolbars';
 import createPlugins from './Plugins';
 import createDecorators from './Decorators';
-import 'draft-js/dist/Draft.css'; // must import before custom styles
+import '@wix/draft-js/dist/Draft.css'; // must import before custom styles
 import Styles from '~/Styles/rich-content-editor.scss';
 import 'normalize.css';
 
@@ -159,7 +159,7 @@ export default class RichContentEditor extends Component {
 }
 
 RichContentEditor.propTypes = {
-  editorState: PropTypes.instanceOf(EditorState),
+  editorState: PropTypes.object,
   decorators: PropTypes.object,
   initialState: PropTypes.object,
   theme: PropTypes.object,
