@@ -18,8 +18,8 @@ const LinkType = props => (
 );
 
 LinkType.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
+  value: PropTypes.string,
 };
 
 class LinkPanel extends Component {
