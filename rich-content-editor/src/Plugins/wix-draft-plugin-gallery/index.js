@@ -1,6 +1,5 @@
 import createBasePlugin from '../base/basePlugin';
 import createToolbar from './toolbar';
-import Styles from './default-gallery-styles.scss';
 import { Component } from './gallery-component';
 import { GALLERY_TYPE } from './types';
 
@@ -10,7 +9,7 @@ const createGalleryPlugin = (config = {}) => {
   return createBasePlugin({
     component: Component,
     decorator,
-    theme: theme || Styles,
+    theme,
     type: GALLERY_TYPE,
     toolbar: createToolbar({
       helpers,

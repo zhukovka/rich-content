@@ -5,10 +5,10 @@ import { insertLink } from '~/Utils';
 import LinkPanel from '~/Common/LinkPanel';
 
 export default class TextLinkPanel extends Component {
-  createLinkEntity = ({ url, targetBlank }) => {
+  createLinkEntity = ({ url, targetBlank, nofollow }) => {
     if (!isEmpty(url)) {
       const { getEditorState, setEditorState } = this.props;
-      const newEditorState = insertLink(getEditorState(), { url, targetBlank });
+      const newEditorState = insertLink(getEditorState(), { url, targetBlank, nofollow });
       setEditorState(newEditorState);
     }
     this.hideLinkPanel();

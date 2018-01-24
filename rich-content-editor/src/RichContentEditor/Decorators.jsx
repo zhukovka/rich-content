@@ -34,4 +34,4 @@ const createDecorators = ({ list, config } = defaultDecorators) => {
 };
 
 export default createDecorators;
-export { DecoratorList, HashtagDecorator };
+export { DecoratorList };

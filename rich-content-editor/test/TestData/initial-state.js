@@ -542,6 +542,9 @@ const TestData = {
       "entityRanges": [],
       "data": {}
     }]
+  },
+  theme: {
+    divider1: 'theme_divider1_class'
   }
 };
 

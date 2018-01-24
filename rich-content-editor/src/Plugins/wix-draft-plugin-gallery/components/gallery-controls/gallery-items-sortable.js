@@ -186,7 +186,6 @@ export class SortableComponent extends Component {
 SortableComponent.propTypes = {
   onItemsChange: PropTypes.func.isRequired,
   addItems: PropTypes.func.isRequired,
-  toggleImageSettings: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleFileChange: PropTypes.func.isRequired
 };

@@ -1,5 +1,4 @@
 import createToolbar from './toolbar';
-import Styles from './default-html-styles.scss';
 import createBasePlugin from '../base/basePlugin';
 import { Component } from './html-component';
 import { HTML_TYPE } from './types';
@@ -10,7 +9,7 @@ const createHtmlPlugin = (config = {}) => {
   return createBasePlugin({
     component: Component,
     decorator,
-    theme: theme || Styles,
+    theme,
     type: HTML_TYPE,
     toolbar: createToolbar({
       helpers,

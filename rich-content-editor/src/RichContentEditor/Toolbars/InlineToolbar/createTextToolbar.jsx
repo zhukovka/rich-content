@@ -1,4 +1,5 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
+import createInlineToolbar from './createInlineToolbar';
 import {
   BoldButton,
   ItalicButton,
@@ -10,49 +11,24 @@ import {
   TextLinkButton,
 } from '../buttons';
 import Separator from '~/Common/Separator';
-import TextToolbar from './TextToolbar';
-import { simplePubsub } from '~/Utils';
-import toolbarStyles from '~/Styles/text-toolbar.scss';
-import buttonStyles from '~/Styles/text-toolbar-button.scss';
 
 const TextButtonList = ['Bold', 'Italic', 'Title', 'Blockquote', 'Separator', 'Alignment', 'OrderedList', 'UnorderedList', 'Separator', 'Link'];
 
-const createInlineToolbar = (config = {}) => {
-  const defaultTheme = { buttonStyles, toolbarStyles };
-
-  const {
-    pubsub = simplePubsub(),
-    theme = defaultTheme,
-    structure = []
-  } = config;
-
-  const toolbarProps = {
-    pubsub,
-    structure,
-    theme,
-  };
-
-  return {
-    initialize: ({ getEditorState, setEditorState }) => {
-      pubsub.set('getEditorState', getEditorState);
-      pubsub.set('setEditorState', setEditorState);
-    },
-    // Re-Render the text-toolbar on selection change
-    onChange: editorState => {
-      pubsub.set('selection', editorState.getSelection());
-      return editorState;
-    },
-    InlineToolbar: decorateComponentWithProps(TextToolbar, toolbarProps),
-  };
+const createThemedSeparator = theme => {
+  const separatorProps = { name: 'Separator' };
+  if (theme && theme.separator) {
+    separatorProps.className = theme.separator;
+  }
+  return decorateComponentWithProps(Separator, separatorProps);
 };
 
-export default ({ buttons = TextButtonList, theme }) => {
+const createTextToolbar = ({ buttons = TextButtonList, theme }) => {
   const structure = [];
   const separatorProps = { name: 'Separator' };
   if (theme && theme.separator) {
     separatorProps.className = theme.separator;
   }
-  const StyledSeparator = decorateComponentWithProps(Separator, separatorProps);
+  const ThemedSeparator = createThemedSeparator(theme);
   buttons.forEach(buttonName => {
     switch (buttonName) {
       case 'Bold':
@@ -80,7 +56,7 @@ export default ({ buttons = TextButtonList, theme }) => {
         structure.push(TextLinkButton);
         break;
       case 'Separator':
-        structure.push(StyledSeparator);
+        structure.push(ThemedSeparator);
         break;
       default:
         console.warn(`Failed to load uknown text button "${buttonName}"`); //eslint-disable-line no-console
@@ -93,4 +69,5 @@ export default ({ buttons = TextButtonList, theme }) => {
   });
 };
 
+export default createTextToolbar;
 export { TextButtonList };

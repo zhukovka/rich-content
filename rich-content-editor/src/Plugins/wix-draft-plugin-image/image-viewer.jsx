@@ -23,6 +23,16 @@ const ImageLoader = (
   </div>
 );
 
+ImageLoader.propTypes = {
+  theme: PropTypes.object.isRequired,
+  type: PropTypes.string,
+};
+
+ImageLoader.defaultProps = {
+  type: 'mini'
+};
+
+
 class ImageViewer extends React.Component {
 
   getImageSrc(item) {
