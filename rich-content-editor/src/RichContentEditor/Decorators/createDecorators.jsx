@@ -1,15 +1,14 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
-import * as LinkDecorator from './Decorators/LinkDecorator';
-import * as HashtagDecorator from './Decorators/HashtagDecorator';
-
-const DecoratorList = [LinkDecorator.Name, HashtagDecorator.Name];
+import * as LinkDecorator from './LinkDecorator';
+import * as HashtagDecorator from './HashtagDecorator';
+import DecoratorList from './index';
 
 const defaultDecorators = {
   list: DecoratorList,
   config: {},
 };
 
-const createDecorators = ({ list, config } = defaultDecorators) => {
+export default ({ list, config } = defaultDecorators) => {
   const activeDecorators = [];
   list.forEach(decoratorName => {
     switch (decoratorName) {
@@ -32,6 +31,3 @@ const createDecorators = ({ list, config } = defaultDecorators) => {
   });
   return activeDecorators;
 };
-
-export default createDecorators;
-export { DecoratorList, HashtagDecorator };
