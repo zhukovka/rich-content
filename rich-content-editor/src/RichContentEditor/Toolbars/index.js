@@ -1,6 +1,6 @@
-import createSideToolbar from './SideToolbar';
-import createStaticToolbar from './StaticToolbar';
-import createTextToolbar from './TextToolbar';
+import { createSideToolbar } from './SideToolbar';
+import { createStaticToolbar } from './StaticToolbar';
+import { createTextToolbar } from './TextToolbar';
 
 const createToolbars = ({ pluginButtons, textButtons, sideToolbarOffset, isMobile }) => {
   const toolbars = {

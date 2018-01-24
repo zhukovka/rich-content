@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getVisibleSelectionRect } from '@wix/draft-js';
 
@@ -15,7 +15,7 @@ const getRelativeParent = element => {
   return getRelativeParent(element.parentElement);
 };
 
-export default class InlineToolbar extends React.Component {
+export default class InlineToolbar extends Component {
   static propTypes = {
     pubsub: PropTypes.object.isRequired,
     structure: PropTypes.array.isRequired,
