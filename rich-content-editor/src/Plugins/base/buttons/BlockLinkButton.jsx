@@ -5,21 +5,35 @@ import LinkButton from '~/Common/LinkButton';
 import BlockLinkPanel from './BlockLinkPanel';
 
 class BlockLinkButton extends Component {
+  state = {
+    isOpen: false,
+  }
+
   get isActive() {
     return !!this.props.pubsub.get('componentLink');
   }
 
-  showLinkPanel = () => {
-    const { pubsub } = this.props;
-    const props = {
-      store: pubsub.store,
-    };
-    const BlockLinkPanelWithProps = decorateComponentWithProps(BlockLinkPanel, props);
-    this.props.onExtendContent(BlockLinkPanelWithProps);
-  };
+  setLinkPanel = linkPanel => this.linkPanel = linkPanel;
+
+  toggleLinkPanel = () => {
+    if (this.state.isOpen) {
+      this.linkPanel.onCloseRequested();
+      this.props.onExtendContent(undefined);
+      this.setState({ isOpen: false });
+    } else {
+      const { pubsub } = this.props;
+      const props = {
+        pubsub,
+        ref: this.setLinkPanel,
+      };
+      const BlockLinkPanelWithProps = decorateComponentWithProps(BlockLinkPanel, props);
+      this.props.onExtendContent(BlockLinkPanelWithProps);
+      this.setState({ isOpen: true });
+    }
+  }
 
   render() {
-    return <LinkButton onClick={this.showLinkPanel} isActive={this.isActive} />;
+    return <LinkButton onClick={this.toggleLinkPanel} isActive={this.isActive} />;
   }
 }
 
