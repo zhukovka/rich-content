@@ -19,7 +19,7 @@ class RadioGroupHorizontal extends Component {
 RadioGroupHorizontal.propTypes = {
   label: PropTypes.string,
   dataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   value: PropTypes.string.isRequired,
 };
 
