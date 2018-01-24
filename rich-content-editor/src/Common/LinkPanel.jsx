@@ -7,7 +7,7 @@ import Tooltip from 'wix-style-react/dist/src/Tooltip';
 import { ThemeProvider } from '../Common/theme-provider';
 import { isValidUrl } from './url-validator';
 import ErrorIcon from './icons/error.svg';
-import style from './link-panel.scss';
+import Styles from './link-panel.scss';
 import RadioGroupHorizontal from './stylable-base/radio-group-horizontal';
 
 const LinkType = props => (
@@ -27,6 +27,7 @@ class LinkPanel extends Component {
     super(props);
     const { url, targetBlank, nofollow } = props;
     this.state = {
+      intermediateUrl: url || '',
       url: url || '',
       isValidUrl: true,
       targetBlank: targetBlank || true,
@@ -34,8 +35,13 @@ class LinkPanel extends Component {
     };
   }
 
-  handleURLChange = event => {
-    this.setState({ url: event.target.value });
+  handleIntermediateUrlChange = event => {
+    this.setState({ intermediateUrl: event.target.value });
+  };
+
+  handleUrlChange = () => {
+    const { intermediateUrl } = this.state;
+    this.setState({ url: intermediateUrl });
   };
 
   handleTargetChange = event => {
@@ -48,10 +54,10 @@ class LinkPanel extends Component {
 
   onBlur = e => {
     e.stopPropagation();
-    const { url } = this.state;
-    if (isValidUrl(url)) {
-      //TODO: should I do anything?
-      // this.onDoneClick();
+    const { intermediateUrl } = this.state;
+    if (isValidUrl(intermediateUrl)) {
+      this.handleUrlChange();
+      this.setState({ isValidUrl: true });
     } else {
       this.setState({ isValidUrl: false });
     }
@@ -75,19 +81,19 @@ class LinkPanel extends Component {
     const secondCheckboxText = 'Add rel="nofollow" to link';
     return (
       <ThemeProvider theme={'default'}>
-        <div className={style.modal}>
+        <div className={Styles.modal}>
           <LinkType
             value="url"
           />
           <div onKeyPress={this.handleKeyPress}>
-            <div className={style['text-input']}>
+            <div className={Styles.textInput}>
               <input
                 ref={ref => (this.input = ref)}
-                className={classNames({ [style.invalid]: !this.state.isValidUrl })}
+                className={classNames({ [Styles.invalid]: !this.state.isValidUrl })}
                 placeholder="e.g. www.wix.com"
-                onChange={this.handleURLChange}
+                onChange={this.handleIntermediateUrlChange}
                 onBlur={this.onBlur}
-                value={this.state.url}
+                value={this.state.intermediateUrl}
               />
               {this.state.isValidUrl ? null : (
                 <Tooltip
@@ -97,21 +103,19 @@ class LinkPanel extends Component {
                   shouldCloseOnClickOutside
                   theme="dark"
                 >
-                  <ErrorIcon className={style.errorIcon} />
+                  <ErrorIcon className={Styles.errorIcon} />
                 </Tooltip>
               )}
             </div>
           </div>
-          <div className={style['checkbox-container']}>
+          <div className={Styles.checkboxContainer}>
             <input type="checkbox" onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}/>
             <label>{firstCheckboxText}</label>
           </div>
-          <div className={style['checkbox-container']}>
+          <div className={Styles.checkboxContainer}>
             <input type="checkbox" onChange={this.handleNofollowChange} defaultChecked={this.state.nofollow}/>
             <label>{secondCheckboxText}</label>
           </div>
-          {/*<button onClick={this.onDoneClick}>Done</button>
-        <button onClick={this.onCancelClick}>Cancel</button>*/}
         </div>
       </ThemeProvider>
     );
