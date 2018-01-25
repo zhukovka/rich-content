@@ -9,6 +9,20 @@ class BlockLinkButton extends Component {
     isOpen: false,
   }
 
+  componentDidMount() {
+    this.props.pubsub.subscribe('visibleBlock', this.onVisibilityChanged);
+  }
+
+  componentWillUnmount() {
+    this.props.pubsub.unsubscribe('visibleBlock', this.onVisibilityChanged);
+  }
+
+  onVisibilityChanged = visibleBlock => {
+    if (!visibleBlock && this.state.isOpen) {
+      this.toggleLinkPanel();
+    }
+  };
+
   get isActive() {
     return !!this.props.pubsub.get('componentLink');
   }
