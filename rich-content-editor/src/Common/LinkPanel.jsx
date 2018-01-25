@@ -55,7 +55,7 @@ class LinkPanel extends Component {
   onBlur = e => {
     e.stopPropagation();
     const { intermediateUrl } = this.state;
-    if (isValidUrl(intermediateUrl)) {
+    if (isValidUrl(intermediateUrl) || (intermediateUrl === '')) {
       this.handleUrlChange();
       this.setState({ isValidUrl: true });
     } else {

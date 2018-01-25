@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import LinkPanel from '~/Common/LinkPanel';
 
@@ -19,10 +18,8 @@ class BlockLinkPanel extends Component {
   };
 
   onCloseRequested = () => {
-    if (get(this, 'linkPanel.state.url', undefined)) {
-      const { url, targetBlank, nofollow } = this.linkPanel.state;
-      this.wrapBlockInLink({ url, targetBlank, nofollow });
-    }
+    const { url, targetBlank, nofollow } = this.linkPanel.state;
+    this.wrapBlockInLink({ url, targetBlank, nofollow });
   }
 
 
