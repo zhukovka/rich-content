@@ -1,10 +1,11 @@
 import createStaticToolbar from './createStaticToolbar';
 import { TextButtonList } from '../buttons';
 import { getTextButtonsFromList } from '../buttons/utils';
+import toolbarStyles from '~/Styles/mobile-toolbar.scss';
 import buttonStyles from '~/Styles/mobile-toolbar-button.scss';
 
 export default ({ buttons }) => {
-  const theme = { buttonStyles };
+  const theme = { buttonStyles, toolbarStyles };
   let structure;
 
   if (buttons) {
