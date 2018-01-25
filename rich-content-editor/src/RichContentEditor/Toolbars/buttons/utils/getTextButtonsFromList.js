@@ -12,45 +12,40 @@ import {
 } from '../index';
 import createThemedSeparator from './createThemedSeparator';
 
-export default ({ buttons = TextButtonList, theme, isMobile = false }) => {
+export default ({ buttons = TextButtonList, theme }) => {
   const ThemedSeparator = createThemedSeparator({ theme });
   const structure = [];
-  const addToStructure = (button, ButtonComponent) => {
-    if (!isMobile || isMobile && button.showOnMobile) {
-      structure.push(ButtonComponent);
-    }
-  };
-  buttons.forEach(button => {
-    switch (button.name) {
+  buttons.forEach(buttonName => {
+    switch (buttonName) {
       case 'Bold':
-        addToStructure(button, BoldButton);
+        structure.push(BoldButton);
         break;
       case 'Italic':
-        addToStructure(button, ItalicButton);
+        structure.push(ItalicButton);
         break;
       case 'Title':
-        addToStructure(button, TitleButton);
+        structure.push(TitleButton);
         break;
       case 'Blockquote':
-        addToStructure(button, BlockquoteButton);
+        structure.push(BlockquoteButton);
         break;
       case 'Alignment':
-        addToStructure(button, TextAlignmentButton);
+        structure.push(TextAlignmentButton);
         break;
       case 'OrderedList':
-        addToStructure(button, OrderedListButton);
+        structure.push(OrderedListButton);
         break;
       case 'UnorderedList':
-        addToStructure(button, UnorderedListButton);
+        structure.push(UnorderedListButton);
         break;
       case 'Link':
-        addToStructure(button, TextLinkButton);
+        structure.push(TextLinkButton);
         break;
       case 'Separator':
-        addToStructure(button, ThemedSeparator);
+        structure.push(ThemedSeparator);
         break;
       default:
-        console.warn(`Failed to load uknown text button "${button.name}"`); //eslint-disable-line no-console
+        console.warn(`Failed to load uknown text button "${buttonName}"`); //eslint-disable-line no-console
         break;
     }
   });

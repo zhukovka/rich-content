@@ -80,6 +80,12 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    this.mobileComponents = this.editor.getMobileComponents();
+  }
+
+  setEditor = editor => this.editor = editor;
+
   onReadOnlyChange = event => {
     this.setState({ readOnly: event.target.checked });
   };
@@ -104,6 +110,7 @@ class App extends Component {
 
   render() {
     const { RichContentEditor } = WixRichContentEditor;
+    const { Toolbar: MobileToolbar } = this.mobileComponents || {};
     return (
       <div className="wrapper">
         <div className="header">
@@ -122,8 +129,10 @@ class App extends Component {
             Last saved on {this.state.lastSave.toTimeString()}
           </span>
         </div>
+        {MobileToolbar && <MobileToolbar />}
         <div className="content">
           <RichContentEditor
+            ref={this.setEditor}
             onChange={this.onChange}
             helpers={this.helpers}
             plugins={this.plugins}

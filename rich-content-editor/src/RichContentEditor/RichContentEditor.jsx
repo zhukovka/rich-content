@@ -25,6 +25,17 @@ export default class RichContentEditor extends Component {
     this.decorators = createDecorators(props.decorators);
   }
 
+  getMobileComponents = () => {
+    const { isMobile } = this.props;
+    if (isMobile) {
+      return {
+        Toolbar: this.toolbars.mobile.Toolbar,
+      };
+    } else {
+      return {};
+    }
+  }
+
   getInitialEditorState() {
     const { editorState, initialState } = this.props;
     if (editorState) {
@@ -111,11 +122,12 @@ export default class RichContentEditor extends Component {
 
   renderToolbars = () => {
     if (!this.state.readOnly) {
-      const pluginsToRender = this.plugins.filter(plugin => {
-        return !plugin.name || plugin.name && plugin.name.toLowerCase().indexOf('mobile') === -1;
+      const toolbarsToRender = this.plugins.filter(plugin => {
+        return !plugin.name ||
+          plugin.name.toLowerCase().indexOf('mobile') === -1;
       });
       //eslint-disable-next-line array-callback-return
-      const toolbars = pluginsToRender.map((plugin, index) => {
+      const toolbars = toolbarsToRender.map((plugin, index) => {
         const Toolbar = plugin.Toolbar || plugin.InlineToolbar || plugin.SideToolbar;
         if (Toolbar) {
           return <Toolbar key={`k${index}`} />;
