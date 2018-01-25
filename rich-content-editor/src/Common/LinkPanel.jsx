@@ -109,12 +109,12 @@ class LinkPanel extends Component {
             </div>
           </div>
           <div className={Styles.checkboxContainer}>
-            <input type="checkbox" onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}/>
-            <label>{firstCheckboxText}</label>
+            <input type="checkbox" id="firstCheckboxLinkPanel" onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}/>
+            <label htmlFor="firstCheckboxLinkPanel">{firstCheckboxText}</label>
           </div>
           <div className={Styles.checkboxContainer}>
-            <input type="checkbox" onChange={this.handleNofollowChange} defaultChecked={this.state.nofollow}/>
-            <label>{secondCheckboxText}</label>
+            <input type="checkbox" id="secondCheckboxLinkPanel" onChange={this.handleNofollowChange} defaultChecked={this.state.nofollow}/>
+            <label htmlFor="secondCheckboxLinkPanel">{secondCheckboxText}</label>
           </div>
         </div>
       </ThemeProvider>
