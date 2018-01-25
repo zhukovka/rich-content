@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { RichUtils } from '@wix/draft-js';
 import classNames from 'classnames';
+import Styles from '~/Styles/inline-toolbar-button.scss';
 
 export default ({ blockType, content }) =>
   class TextBlockStyleButton extends Component {
@@ -34,10 +35,14 @@ export default ({ blockType, content }) =>
 
     render() {
       const { theme } = this.props;
-      const className = this.blockTypeIsActive() ? classNames(theme.button, theme.active) : theme.button;
+      const buttonWrapperClassNames = classNames(Styles.buttonWrapper, theme && theme.buttonWrapper);
+      const idleButtonClassNames = classNames(Styles.button, theme && theme.button);
+      const activeButtonClassNames = classNames(idleButtonClassNames, Styles.active, theme && theme.active);
+      const buttonClassNames = this.blockTypeIsActive() ? activeButtonClassNames : idleButtonClassNames;
+
       return (
-        <div className={theme.buttonWrapper} onMouseDown={this.preventBubblingUp}>
-          <button className={className} onClick={this.toggleStyle} type="button" children={content} />
+        <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
+          <button className={buttonClassNames} onClick={this.toggleStyle} type="button" children={content} />
         </div>
       );
     }

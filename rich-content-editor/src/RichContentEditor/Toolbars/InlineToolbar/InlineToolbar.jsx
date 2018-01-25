@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { getVisibleSelectionRect } from '@wix/draft-js';
+import Styles from '~/Styles/inline-toolbar.scss';
 
 const getRelativeParent = element => {
   if (!element) {
@@ -94,8 +96,12 @@ export default class InlineToolbar extends Component {
   render() {
     const { theme, pubsub, structure } = this.props;
     const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
+    const { buttonStyles, toolbarStyles } = theme || {};
+    const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.wrapper);
+    const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons);
+    const extendClassNames = classNames(Styles.extend, toolbarStyles && toolbarStyles.extend);
     const childrenProps = {
-      theme: theme.buttonStyles,
+      theme: buttonStyles,
       getEditorState: pubsub.get('getEditorState'),
       setEditorState: pubsub.get('setEditorState'),
       onOverrideContent: this.onOverrideContent,
@@ -104,15 +110,15 @@ export default class InlineToolbar extends Component {
 
     return (
       <div
-        className={theme.toolbarStyles.toolbar}
+        className={toolbarClassNames}
         style={this.getStyle()}
         ref={this.handleToolbarRef}
       >
-        <div className={theme.toolbarStyles.buttons}>
+        <div className={buttonClassNames}>
           {OverrideContent ? <OverrideContent {...childrenProps} /> : structure.map((Button, index) => <Button key={index} {...childrenProps} />)}
         </div>
         {ExtendContent && (
-          <div className={theme.toolbarStyles.extend}>
+          <div className={extendClassNames}>
             <ExtendContent {...childrenProps} />
           </div>
         )}

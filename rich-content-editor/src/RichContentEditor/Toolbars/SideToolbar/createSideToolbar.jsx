@@ -3,18 +3,12 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 import SideToolbar from './SideToolbar';
 import AddPluginBlockSelect from './AddPluginBlockSelect';
 import { simplePubsub } from '~/Utils';
-import toolbarStyles from '~/Styles/side-toolbar.scss';
-import buttonStyles from '~/Styles/toolbar-button.scss';
-import addPluginBlockSelectStyles from '~/Styles/add-plugin-block-select.scss';
 
 const createSideToolbar = (config = {}) => {
-  const defaultTheme = { buttonStyles, addPluginBlockSelectStyles, toolbarStyles };
-
-  const pubsub = simplePubsub({ isVisible: false });
-
   const {
     name = 'SideToolbar',
-    theme = defaultTheme,
+    pubsub = simplePubsub({ isVisible: false }),
+    theme,
     structure = [],
     offset = {
       desktop: { x: 0, y: 0 },

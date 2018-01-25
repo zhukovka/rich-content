@@ -1,17 +1,13 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
 import StaticToolbar from './StaticToolbar';
 import { simplePubsub } from '~/Utils';
-import toolbarStyles from '~/Styles/static-toolbar.scss';
-import buttonStyles from '~/Styles/toolbar-button.scss';
 
 export default (config = {}) => {
-  const defaultTheme = { buttonStyles, toolbarStyles };
-
   const pubsub = simplePubsub();
 
   const {
     name = 'StaticToolbar',
-    theme = defaultTheme,
+    theme,
     structure = []
   } = config;
 

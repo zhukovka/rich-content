@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import LinkIcon from '~/RichContentEditor/Toolbars/icons/link.svg';
-import buttonStyles from '~/Styles/text-toolbar-button.scss';
+import buttonStyles from '~/Styles/inline-toolbar-button.scss';
 
 export default class LinkButton extends Component {
   static propTypes = {

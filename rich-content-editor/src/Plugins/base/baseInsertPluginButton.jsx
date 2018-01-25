@@ -76,8 +76,9 @@ export default ({ blockType, button, pubsub }) => {
     renderButton = () => {
       const { theme, hideName } = this.props;
       const { name, Icon } = button;
+      const buttonClassNames = classNames(Styles.button, theme && theme.button);
       const children = [<Icon key="0" />, hideName ? null : <span key="1">{name}</span>].filter(child => child);
-      return <button className={classNames(Styles.button, theme.button)} onClick={this.onClick} type="button" children={children} />;
+      return <button className={buttonClassNames} onClick={this.onClick} type="button" children={children} />;
     };
 
     openVideoUploadModal = () => {
@@ -109,9 +110,10 @@ export default ({ blockType, button, pubsub }) => {
     render() {
       const { theme } = this.props;
       const { tooltipText } = button;
+      const buttonWrapperClassNames = classNames(Styles.buttonWrapper, theme && theme.buttonWrapper);
       return (
         <Tooltip content={tooltipText} textAlign="center" maxWidth="" moveBy={{ x: -8 }} shouldCloseOnClickOutside theme="dark">
-          <div className={classNames(Styles.buttonWrapper, theme.buttonWrapper)} onMouseDown={this.preventBubblingUp}>
+          <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
             {this.renderButton()}
             {button.type === 'file' && this.renderFileUploadForm()}
             {button.type === 'video' && this.renderVideoUploadForm(this.state.isVideoUploadModalOpen)}

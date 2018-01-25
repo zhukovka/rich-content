@@ -1,16 +1,12 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
 import InlineToolbar from './InlineToolbar';
 import { simplePubsub } from '~/Utils';
-import toolbarStyles from '~/Styles/text-toolbar.scss';
-import buttonStyles from '~/Styles/text-toolbar-button.scss';
 
 const createInlineToolbar = (config = {}) => {
-  const defaultTheme = { buttonStyles, toolbarStyles };
-
   const {
     name = 'InlineToolbar',
     pubsub = simplePubsub(),
-    theme = defaultTheme,
+    theme,
     structure = []
   } = config;
 

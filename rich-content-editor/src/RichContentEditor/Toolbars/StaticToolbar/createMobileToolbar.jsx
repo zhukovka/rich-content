@@ -7,6 +7,7 @@ export default ({ buttons }) => {
   const structure = getTextButtonsFromList({ buttons, theme, isMobile: true });
   return createStaticToolbar({
     name: 'MobileToolbar',
+    theme,
     structure,
   });
 };

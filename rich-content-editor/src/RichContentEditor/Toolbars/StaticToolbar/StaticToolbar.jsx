@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import Styles from '~/Styles/static-toolbar.scss';
 
 export default class StaticToolbar extends React.Component {
   static propTypes = {
@@ -18,8 +20,10 @@ export default class StaticToolbar extends React.Component {
   render() {
     const { theme, pubsub, structure } = this.props;
     const { overrideContent: OverrideContent } = this.state;
+    const { buttonStyles, toolbarStyles } = theme || {};
+    const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
     const childrenProps = {
-      theme: theme.buttonStyles,
+      theme: buttonStyles,
       getEditorState: pubsub.get('getEditorState'),
       setEditorState: pubsub.get('setEditorState'),
       onOverrideContent: this.onOverrideContent
@@ -27,7 +31,7 @@ export default class StaticToolbar extends React.Component {
 
     return (
       <div
-        className={theme.toolbarStyles.toolbar}
+        className={toolbarClassNames}
       >
         {OverrideContent ?
           <OverrideContent {...childrenProps} /> :

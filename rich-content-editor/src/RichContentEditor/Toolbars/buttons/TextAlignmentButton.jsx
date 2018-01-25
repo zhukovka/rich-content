@@ -5,7 +5,7 @@ import AlignTextLeft from '../icons/align-text-left.svg';
 import AlignTextCenter from '../icons/align-text-center.svg';
 import AlignTextRight from '../icons/align-text-right.svg';
 import AlignTextJustify from '../icons/align-text-justify.svg';
-import buttonStyles from '~/Styles/text-toolbar-button.scss';
+import buttonStyles from '~/Styles/inline-toolbar-button.scss';
 
 class TextAlignmentButton extends Component {
   onClick = () => this.props.onOverrideContent(TextAlignmentPanel);
