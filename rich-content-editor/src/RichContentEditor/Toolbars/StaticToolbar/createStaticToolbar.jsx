@@ -10,6 +10,7 @@ export default (config = {}) => {
   const pubsub = simplePubsub();
 
   const {
+    name = 'StaticToolbar',
     theme = defaultTheme,
     structure = []
   } = config;
@@ -21,11 +22,11 @@ export default (config = {}) => {
   };
 
   return {
+    name,
     initialize: ({ getEditorState, setEditorState }) => {
       pubsub.set('getEditorState', getEditorState);
       pubsub.set('setEditorState', setEditorState);
     },
-
     // Re-Render the text-toolbar on selection change
     onChange: editorState => {
       pubsub.set('selection', editorState.getSelection());

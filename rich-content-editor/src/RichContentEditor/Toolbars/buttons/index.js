@@ -10,6 +10,19 @@ import UnorderedListIcon from '../icons/unordered-list.svg';
 import createTextInlineStyleButton from './utils/createTextInlineStyleButton';
 import createTextBlockStyleButton from './utils/createTextBlockStyleButton';
 
+export const TextButtonList = [
+  { name: 'Bold', showOnMobile: true },
+  { name: 'Italic', showOnMobile: true },
+  { name: 'Title', showOnMobile: true },
+  { name: 'Blockquote', showOnMobile: true },
+  { name: 'Separator', showOnMobile: false },
+  { name: 'Alignment', showOnMobile: true },
+  { name: 'OrderedList', showOnMobile: true },
+  { name: 'UnorderedList', showOnMobile: true },
+  { name: 'Separator', showOnMobile: false },
+  { name: 'Link', showOnMobile: true },
+];
+
 export { TextAlignmentButton };
 
 export { TextLinkButton };

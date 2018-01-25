@@ -8,6 +8,7 @@ const createInlineToolbar = (config = {}) => {
   const defaultTheme = { buttonStyles, toolbarStyles };
 
   const {
+    name = 'InlineToolbar',
     pubsub = simplePubsub(),
     theme = defaultTheme,
     structure = []
@@ -20,6 +21,7 @@ const createInlineToolbar = (config = {}) => {
   };
 
   return {
+    name,
     initialize: ({ getEditorState, setEditorState }) => {
       pubsub.set('getEditorState', getEditorState);
       pubsub.set('setEditorState', setEditorState);

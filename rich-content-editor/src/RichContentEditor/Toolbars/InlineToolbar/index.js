@@ -1,2 +1,2 @@
 export { default as createInlineToolbar } from './createInlineToolbar';
-export { default as createTextToolbar, TextButtonList } from './createTextToolbar';
+export { default as createTextToolbar } from './createTextToolbar';

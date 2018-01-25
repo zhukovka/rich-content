@@ -13,6 +13,7 @@ const createSideToolbar = (config = {}) => {
   const pubsub = simplePubsub({ isVisible: false });
 
   const {
+    name = 'SideToolbar',
     theme = defaultTheme,
     structure = [],
     offset = {
@@ -31,6 +32,7 @@ const createSideToolbar = (config = {}) => {
   };
 
   return {
+    name,
     initialize: ({ setEditorState, getEditorState }) => {
       pubsub.set('getEditorState', getEditorState);
       pubsub.set('setEditorState', setEditorState);
@@ -45,7 +47,7 @@ const createSideToolbar = (config = {}) => {
 
 
 
-export default ({ pluginButtons, offset, isMobile }) => {
+export default ({ buttons, offset, isMobile }) => {
   return createSideToolbar({
     offset,
     isMobile,
@@ -55,7 +57,7 @@ export default ({ pluginButtons, offset, isMobile }) => {
           getEditorState={getEditorState}
           setEditorState={setEditorState}
           theme={theme}
-          structure={pluginButtons}
+          structure={buttons}
           isMobile={isMobile}
         />),
     ],
