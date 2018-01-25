@@ -47,13 +47,19 @@ class BlockLinkButton extends Component {
   }
 
   render() {
-    return <LinkButton onClick={this.toggleLinkPanel} isActive={this.isActive} />;
+    const { theme } = this.props;
+    return (<LinkButton
+      onClick={this.toggleLinkPanel}
+      isActive={this.isActive}
+      theme={theme}
+    />);
   }
 }
 
 BlockLinkButton.propTypes = {
   pubsub: PropTypes.object.isRequired,
   onExtendContent: PropTypes.func.isRequired,
+  theme: PropTypes.object,
 };
 
 export default BlockLinkButton;

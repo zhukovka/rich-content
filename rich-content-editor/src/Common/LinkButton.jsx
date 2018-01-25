@@ -18,12 +18,13 @@ export default class LinkButton extends Component {
   render() {
     const { theme, isActive } = this.props;
 
+    const buttonWrapperClassNames = classNames(Styles.buttonWrapper, theme && theme.buttonWrapper);
     const buttonClassNames = classNames(Styles.button, theme && theme.button, {
       [Styles.active]: isActive,
     });
     const iconClassNames = classNames(Styles.icon, theme && theme.icon);
     return (
-      <div className={Styles.buttonWrapper} onMouseDown={this.preventBubblingUp}>
+      <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
         <button onClick={this.handleClick} className={buttonClassNames}>
           <div className={iconClassNames}>
             <LinkIcon />

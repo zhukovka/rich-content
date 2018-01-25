@@ -1,4 +1,3 @@
-import React from 'react';
 import TextAlignmentButton from './TextAlignmentButton';
 import TextLinkButton from './TextLinkButton';
 import BoldIcon from '../icons/bold.svg';
