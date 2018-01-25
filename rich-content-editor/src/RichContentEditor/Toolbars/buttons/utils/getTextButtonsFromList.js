@@ -9,6 +9,7 @@ import {
   UnorderedListButton,
   OrderedListButton,
   TextLinkButton,
+  AddPluginButton,
 } from '../index';
 import createThemedSeparator from './createThemedSeparator';
 
@@ -40,6 +41,9 @@ export default ({ buttons = TextButtonList, theme }) => {
         break;
       case 'Link':
         structure.push(TextLinkButton);
+        break;
+      case 'AddPlugin':
+        structure.push(AddPluginButton);
         break;
       case 'Separator':
         structure.push(ThemedSeparator);

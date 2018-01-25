@@ -1,10 +1,11 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
 import Separator from '~/Common/Separator';
 
-export default ({ theme }) => {
+export default ({ theme = {} }) => {
   const separatorProps = { name: 'Separator' };
-  if (theme && theme.separator) {
-    separatorProps.className = theme.separator;
+  const { separatorStyles } = theme;
+  if (separatorStyles && separatorStyles.separator) {
+    separatorProps.className = separatorStyles.separator;
   }
   return decorateComponentWithProps(Separator, separatorProps);
 };

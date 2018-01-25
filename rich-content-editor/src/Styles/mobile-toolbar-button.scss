@@ -7,40 +7,10 @@
   margin-right: 0;
 
   .button {
-    width: 60%;
+    width: 75%;
   }
 
   .icon {
     width: 100%;
   }
 }
-
-// .button {
-//   background: transparent;
-//   color: $secondary-text-color;
-//   padding: 5px;
-//   border: 0 none;
-
-//   &:hover,
-//   &:focus {
-//     cursor: pointer;
-//     outline: 0;
-//     color: $accent-color;
-//     svg {
-//       fill: $accent-color;
-//     }
-//   }
-
-//   svg {
-//     display: inline-block;
-//     vertical-align: middle;
-//     fill: $secondary-text-color;
-//   }
-// }
-
-// .active {
-//   color: $accent-color;
-//   svg {
-//     fill: $accent-color;
-//   }
-// }

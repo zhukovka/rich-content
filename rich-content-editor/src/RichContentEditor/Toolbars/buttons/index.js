@@ -1,5 +1,3 @@
-import TextAlignmentButton from './TextAlignmentButton';
-import TextLinkButton from './TextLinkButton';
 import BoldIcon from '../icons/bold.svg';
 import ItalicIcon from '../icons/italic.svg';
 import TitleIcon from '../icons/title.svg';
@@ -22,9 +20,9 @@ export const TextButtonList = [
   'Link',
 ];
 
-export { TextAlignmentButton };
-
-export { TextLinkButton };
+export { default as TextAlignmentButton } from './TextAlignmentButton';
+export { default as TextLinkButton } from './TextLinkButton';
+export { default as AddPluginButton } from './AddPluginButton';
 
 export const BoldButton = createTextInlineStyleButton({
   style: 'BOLD',

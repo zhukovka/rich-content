@@ -11,38 +11,6 @@
     margin-right: 0;
   }
 
-  .button {
-    background: transparent;
-    color: $secondary-text-color;
-    border: 0;
-    padding-top: 5px;
-    vertical-align: bottom;
-    height: 100%;
-
-    .icon {
-      display: inline-block;
-      width: $icon-width;
-      vertical-align: middle;
-      @include svg-fill($secondary-text-color);
-      &:hover {
-        @include svg-fill($accent-color);
-      }
-    }
-
-    span {
-      font-size: 12px;
-      margin-left: 8px;
-      vertical-align: middle;
-    }
-
-    &:hover, &:focus {
-      cursor: pointer;
-      outline: 0;
-      color: $accent-color;
-      @include svg-fill($accent-color);
-    }
-  }
-
   form {
     .fileInput {
       position: absolute;
@@ -53,5 +21,37 @@
       opacity: 0;
       cursor: pointer;
     }
+  }
+}
+
+.button {
+  background: transparent;
+  color: $secondary-text-color;
+  border: 0;
+  padding-top: 5px;
+  vertical-align: bottom;
+  height: 100%;
+
+  .icon {
+    display: inline-block;
+    width: $icon-width;
+    vertical-align: middle;
+    @include svg-fill($secondary-text-color);
+    &:hover {
+      @include svg-fill($accent-color);
+    }
+  }
+
+  span {
+    font-size: 12px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  &:hover, &:focus {
+    cursor: pointer;
+    outline: 0;
+    color: $accent-color;
+    @include svg-fill($accent-color);
   }
 }
