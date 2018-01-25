@@ -29,30 +29,30 @@ export { TextLinkButton };
 
 export const BoldButton = createTextInlineStyleButton({
   style: 'BOLD',
-  content: <BoldIcon />,
+  Icon: BoldIcon,
 });
 
 export const ItalicButton = createTextInlineStyleButton({
   style: 'ITALIC',
-  content: <ItalicIcon />,
+  Icon: ItalicIcon,
 });
 
 export const TitleButton = createTextBlockStyleButton({
   blockType: 'header-two',
-  content: <TitleIcon />,
+  Icon: TitleIcon,
 });
 
 export const BlockquoteButton = createTextBlockStyleButton({
   blockType: 'blockquote',
-  content: <BlockquoteIcon />,
+  Icon: BlockquoteIcon,
 });
 
 export const OrderedListButton = createTextBlockStyleButton({
   blockType: 'ordered-list-item',
-  content: <OrderedListIcon />,
+  Icon: OrderedListIcon,
 });
 
 export const UnorderedListButton = createTextBlockStyleButton({
   blockType: 'unordered-list-item',
-  content: <UnorderedListIcon />,
+  Icon: UnorderedListIcon,
 });

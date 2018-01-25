@@ -4,7 +4,7 @@ import { RichUtils } from '@wix/draft-js';
 import classNames from 'classnames';
 import Styles from '~/Styles/inline-toolbar-button.scss';
 
-export default ({ blockType, content }) =>
+export default ({ blockType, Icon }) =>
   class TextBlockStyleButton extends Component {
     static propTypes = {
       getEditorState: PropTypes.func.isRequired,
@@ -39,10 +39,15 @@ export default ({ blockType, content }) =>
       const idleButtonClassNames = classNames(Styles.button, theme && theme.button);
       const activeButtonClassNames = classNames(idleButtonClassNames, Styles.active, theme && theme.active);
       const buttonClassNames = this.blockTypeIsActive() ? activeButtonClassNames : idleButtonClassNames;
+      const iconClassNames = classNames(Styles.icon, theme && theme.icon);
 
       return (
         <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
-          <button className={buttonClassNames} onClick={this.toggleStyle} type="button" children={content} />
+          <button className={buttonClassNames} onClick={this.toggleStyle}>
+            <div className={iconClassNames}>
+              <Icon />
+            </div>
+          </button>
         </div>
       );
     }

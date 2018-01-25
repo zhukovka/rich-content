@@ -1,5 +1,6 @@
 @import "./mixins";
 @import "./palette";
+@import './consts';
 
 .buttonWrapper {
   position: relative;
@@ -17,10 +18,15 @@
     padding-top: 5px;
     vertical-align: bottom;
     height: 100%;
-    @include svg-fill($secondary-text-color);
-    svg {
+
+    .icon {
       display: inline-block;
+      width: $icon-width;
       vertical-align: middle;
+      @include svg-fill($secondary-text-color);
+      &:hover {
+        @include svg-fill($accent-color);
+      }
     }
 
     span {

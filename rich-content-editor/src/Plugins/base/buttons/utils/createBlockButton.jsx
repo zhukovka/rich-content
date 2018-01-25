@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default ({ content }) =>
+export default ({ Icon }) =>
   class BlockButton extends Component {
     static propTypes = {
       onClick: PropTypes.func.isRequired,
@@ -21,7 +21,11 @@ export default ({ content }) =>
       const { theme } = this.props;
       return (
         <div className={theme.buttonWrapper} onMouseDown={this.preventBubblingUp}>
-          <button className={theme.button} onClick={this.handleClick} type="button" children={content} />
+          <button className={theme.button} onClick={this.handleClick} type="button">
+            <div className={theme.icon}>
+              <Icon />
+            </div>
+          </button>
         </div>
       );
     }

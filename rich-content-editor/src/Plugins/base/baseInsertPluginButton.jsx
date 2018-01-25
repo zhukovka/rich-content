@@ -77,8 +77,15 @@ export default ({ blockType, button, pubsub }) => {
       const { theme, hideName } = this.props;
       const { name, Icon } = button;
       const buttonClassNames = classNames(Styles.button, theme && theme.button);
-      const children = [<Icon key="0" />, hideName ? null : <span key="1">{name}</span>].filter(child => child);
-      return <button className={buttonClassNames} onClick={this.onClick} type="button" children={children} />;
+      const iconClassNames = classNames(Styles.icon, theme && theme.icon);
+      return (
+        <button className={buttonClassNames} onClick={this.onClick}>
+          <div className={iconClassNames}>
+            <Icon key="0" />
+          </div>
+          {!hideName && <span key="1">{name}</span>}
+        </button>
+      );
     };
 
     openVideoUploadModal = () => {

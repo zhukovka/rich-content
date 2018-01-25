@@ -63,9 +63,9 @@ module.exports = {
               jsx: true,
               svgo: {
                 plugins: [
-                  {
-                    cleanupIDs: false,
-                  },
+                  { cleanupIDs: false },
+                  { removeViewBox: false },
+                  { removeDimensions: true },
                 ],
               },
             }),
