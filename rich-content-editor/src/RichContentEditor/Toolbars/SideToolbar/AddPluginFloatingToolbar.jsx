@@ -5,7 +5,7 @@ import PlusIcon from '../icons/plus-default.svg';
 import PlusActiveIcon from '../icons/plus-active.svg';
 import Styles from '~/Styles/side-toolbar.scss';
 
-export default class AddPluginBlockSelect extends Component {
+export default class AddPluginFloatingToolbar extends Component {
   state = {
     style: {
       isActive: false,
@@ -16,7 +16,11 @@ export default class AddPluginBlockSelect extends Component {
   onMouseDown = event => {
     event.preventDefault();
     event.stopPropagation();
-    this.togglePopup();
+    const { isMobile } = this.props;
+    this.setState({ isActive: !this.state.isActive });
+    if (!isMobile) {
+      this.togglePopup();
+    }
   };
 
   togglePopup = () => {
@@ -29,7 +33,6 @@ export default class AddPluginBlockSelect extends Component {
 
   showPopup = () => {
     this.setState({
-      isActive: true,
       style: {
         left: this.getPopupOffset(),
         transform: 'translate(-50%) scale(1)',
@@ -40,7 +43,6 @@ export default class AddPluginBlockSelect extends Component {
 
   hidePopup = () => {
     this.setState({
-      isActive: false,
       style: {
         transform: 'translate(-50%) scale(0)',
       },
@@ -83,9 +85,10 @@ export default class AddPluginBlockSelect extends Component {
   }
 }
 
-AddPluginBlockSelect.propTypes = {
+AddPluginFloatingToolbar.propTypes = {
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
   structure: PropTypes.array.isRequired,
   theme: PropTypes.object,
+  isMobile: PropTypes.bool
 };

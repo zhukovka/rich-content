@@ -1,7 +1,7 @@
 import React from 'react';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import SideToolbar from './SideToolbar';
-import AddPluginBlockSelect from './AddPluginBlockSelect';
+import AddPluginFloatingToolbar from './AddPluginFloatingToolbar';
 import { simplePubsub } from '~/Utils';
 
 const createSideToolbar = (config = {}) => {
@@ -47,7 +47,7 @@ export default ({ buttons, offset, isMobile }) => {
     isMobile,
     structure: [
       ({ getEditorState, setEditorState, theme }) => //eslint-disable-line react/prop-types
-        (<AddPluginBlockSelect
+        (<AddPluginFloatingToolbar
           getEditorState={getEditorState}
           setEditorState={setEditorState}
           theme={theme}
