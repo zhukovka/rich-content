@@ -12,3 +12,6 @@ ItemsPerRow.propTypes = propTypes;
 
 export const Spacing = props => <SliderWithInput label={'Spacing between items:'} {...props} />;
 Spacing.propTypes = propTypes;
+
+export const ThumbnailSize = props => <SliderWithInput label={'Thumbnail Size'} {...props} />;
+ThumbnailSize.propTypes = propTypes;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import decorateComponentWithProps from 'decorate-component-with-props';
 
-import { Spacing, ItemsPerRow } from './gallery-controls/sliders';
+import { Spacing, ItemsPerRow, ThumbnailSize } from './gallery-controls/sliders';
 import { ThumbnailResize, TitleButtonPlacement, ImageOrientation, ScrollDirection } from './gallery-controls/radio-groups';
 import ImageRatioSelector from './gallery-controls/image-ratio-selector';
 import { LoadMoreToggle } from './gallery-controls/toggles';
@@ -13,27 +13,16 @@ const Separator = () => <hr />;
 
 class LayoutControlsSection extends Component {
   // NB: index sensitive!
-  controlsByLayout = [
-    ['itemsPerRow', 'spacing', 'separator', 'thumbnailResize', 'separator', 'scrollDirection'],
-    ['itemsPerRow', 'spacing', 'separator', 'imageOrientation'],
-    [
-      'itemsPerRow',
-      'spacing',
-      'separator',
-      'thumbnailResize',
-      'separator',
-      'titleButtonPlacement',
-      'separator',
-      'imageRatio',
-      'separator',
-      'loadMoreButton',
-    ],
-    ['thumbnailPlacement', 'separator', 'spacing'],
-    ['spacing', 'separator', 'titleButtonPlacement', 'separator', 'imageRatio'],
-    [],
-    ['spacing'],
-    ['spacing'],
-  ];
+  controlsByLayout = {
+    grid: ['itemsPerRow', 'spacing', '|', 'thumbnailResize', '|', 'titleButtonPlacement', '|', 'imageRatio', '|', 'scrollDirection'],
+    masonry: ['thumbnailSize', 'spacing', '|', 'imageOrientation'],
+    collage: ['thumbnailSize', 'spacing', '|', 'imageOrientation', '|', 'scrollDirection'],
+    thumbnails: ['thumbnailPlacement', '|', 'thumbnailSpacing'],
+    panorama: ['spacing'],
+    slideshow: [],
+    columns: ['spacing'],
+    slides: ['spacing', '|', 'titleButtonPlacement', '|', 'imageRatio'],
+  };
 
   getValueFromComponentStyles = name => this.props.data.styles[name];
 
@@ -44,11 +33,19 @@ class LayoutControlsSection extends Component {
   };
 
   getControlData = () => ({
+    '|': { component: Separator, props: {} }, //separator
     itemsPerRow: {
       component: ItemsPerRow,
       props: {
         onChange: event => this.applyGallerySetting({ numberOfImagesPerRow: event.value }),
         value: this.getValueFromComponentStyles('numberOfImagesPerRow'),
+      },
+    },
+    thumbnailSize: {
+      component: ThumbnailSize,
+      props: {
+        onChange: event => this.applyGallerySetting({ thumbnailSize: event.value }),
+        value: this.getValueFromComponentStyles('thumbnailSize'),
       },
     },
     spacing: {
@@ -58,7 +55,13 @@ class LayoutControlsSection extends Component {
         value: this.getValueFromComponentStyles('imageMargin'),
       },
     },
-    separator: { component: Separator, props: {} },
+    thumbnailSpacing: {
+      component: Spacing,
+      props: {
+        onChange: event => this.applyGallerySetting({ thumbnailSpacings: event.value }),
+        value: this.getValueFromComponentStyles('thumbnailSpacings'),
+      },
+    },
     thumbnailResize: {
       component: ThumbnailResize,
       props: {
@@ -112,9 +115,10 @@ class LayoutControlsSection extends Component {
 
   render() {
     const controls = this.getControlData();
+    const layoutControls = this.controlsByLayout[this.props.layoutsOrder.sidebar[this.props.layout]];
     return (
       <div>
-        {this.controlsByLayout[this.props.layout].map((name, i) => (
+        {layoutControls.map((name, i) => (
           <SettingsSection key={i}>
             {React.createElement(decorateComponentWithProps(controls[name].component, controls[name].props))}
           </SettingsSection>
@@ -126,6 +130,7 @@ class LayoutControlsSection extends Component {
 
 LayoutControlsSection.propTypes = {
   layout: PropTypes.number.isRequired,
+  layoutsOrder: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
 };

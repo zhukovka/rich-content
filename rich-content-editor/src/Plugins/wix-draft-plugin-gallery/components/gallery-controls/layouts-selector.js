@@ -4,16 +4,23 @@ import { SelectionList, SelectionListOption } from 'stylable-components/dist/src
 
 import style from './layout-selector.scss';
 class LayoutSelector extends Component {
-  dataSource = [
-    { layoutId: 0, name: 'Collage' },
+  layouts = [
+    { layoutId: 0, name: 'Grid' },
     { layoutId: 1, name: 'Masonry' },
-    { layoutId: 2, name: 'Grid' },
+    { layoutId: 2, name: 'Collage' },
     { layoutId: 3, name: 'Thumbnails' },
-    { layoutId: 4, name: 'Slides' },
-    { layoutId: 5, name: 'Slideshow' },
-    { layoutId: 6, name: 'Panorama' },
-    { layoutId: 7, name: 'Columns' },
+    { layoutId: 4, name: 'Slideshow' },
+    { layoutId: 5, name: 'Panorama' },
+    { layoutId: 6, name: 'Columns' },
+    { layoutId: 7, name: 'Slides' },
   ];
+
+  layoutsMapper = sidebarLayoutId => {
+    const { sidebar, original } = this.props.layoutsOrder;
+    const sidebarLayoutName = sidebar[sidebarLayoutId];
+    const originalLayoutId = original.indexOf(sidebarLayoutName);
+    return originalLayoutId;
+  }
 
   dataMapper = ({ layoutId, name }) => ({ value: layoutId, label: name });
 
@@ -26,16 +33,21 @@ class LayoutSelector extends Component {
     </SelectionListOption>
   );
 
+  onLayoutChange = ({ value }) => {
+    const originalLayoutId = this.layoutsMapper(value);
+    this.props.onChange(originalLayoutId);
+  }
+
   render() {
-    const { value, onChange } = this.props;
+    const { value } = this.props;
     return (
       <SelectionList
         className={style['layouts-grid']}
-        dataSource={this.dataSource}
+        dataSource={this.layouts}
         dataMapper={this.dataMapper}
         renderItem={this.renderOption}
         value={value}
-        onChange={onChange}
+        onChange={this.onLayoutChange}
       />
     );
   }
@@ -44,6 +56,7 @@ class LayoutSelector extends Component {
 LayoutSelector.propTypes = {
   value: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
+  layoutsOrder: PropTypes.object.isRequired,
 };
 
 export default LayoutSelector;
