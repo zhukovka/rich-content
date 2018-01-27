@@ -50,7 +50,7 @@ class GalleryComponent extends React.Component {
 
   setItemInGallery = (item, itemPos) => {
     const shouldAdd = (typeof itemPos === 'undefined');
-    let { items } = this.state;
+    let { items, styles } = this.state;
     let itemIdx;
     if (shouldAdd) {
       itemIdx = items.length;
@@ -63,7 +63,7 @@ class GalleryComponent extends React.Component {
     console.log('New items loaded', items); //eslint-disable-line no-console
     this.setState({ items });
     if (this.props.store) {
-      this.props.store.update('componentData', { items });
+      this.props.store.update('componentData', { items, styles, config: {} });
     }
 
     return itemIdx;
