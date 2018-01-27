@@ -75,12 +75,17 @@ class ImageSettings extends Component {
           </div>
         </SettingsSection>
         <div className={style['manage-image-grid']}>
-          <button className={style.replace}>
-            <form>
-              <input name="file" type="file" onChange={this.replaceItem.bind(this)} accept="image/*" tabIndex="-1" />
-            </form>
+          <label className={style.replace} htmlFor={'replace-file'}>
             <span>{'Replace'}</span>
-          </button>
+            <input
+              className={style.hiddenInput}
+              id={'replace-file'}
+              type={'file'}
+              onChange={this.replaceItem.bind(this)}
+              accept={'image/*'}
+              tabIndex={'-1'}
+            />
+          </label>
           <button className={style.delete} onClick={() => this.deleteImage(selectedImage)}>
             <span>{'Delete'}</span>
           </button>

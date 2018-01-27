@@ -27,11 +27,13 @@
   height: 50px;
   width: 100%;
 
-  button {
+  button, label {
     border-bottom: 1px #ededed solid;
     outline: none;
     display: flex;
     justify-content: center;
+    align-items: center;
+    cursor: pointer;
 
     &::focus, &::active {
       outline: none;
@@ -39,12 +41,6 @@
 
     &.replace {
       border-right: 1px #ededed solid;
-
-      form {
-        position: absolute;
-        font-size: 100px;
-        opacity: 0;
-      }
 
       span::before {
         @include image-management-button('replace');
@@ -116,4 +112,11 @@
 
 .hidden {
   visibility: hidden;
+}
+
+.hiddenInput {
+  width: 0.1px;
+	height: 0.1px;
+	overflow: hidden;
+	position: absolute;
 }
