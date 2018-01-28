@@ -24,7 +24,7 @@ const {
 
 const { link } = LinkifyTheme;
 
-const { hasFocus } = CommonStyles;
+const { hasFocus, overlay, pluginContainerReadOnly, pluginContainer, panelContainer } = CommonStyles;
 
 const { divider1, divider2, divider3, divider4 } = DividerTheme;
 
@@ -42,7 +42,7 @@ const theme = {
   text, textAlignment,
   wrapper, editor, desktop,
   link,
-  hasFocus,
+  hasFocus, overlay, pluginContainerReadOnly, pluginContainer, panelContainer,
   divider1, divider2, divider3, divider4,
   inChange, itemsContainer, invalidGalleryItems,
   loader, loaderOverlay, imageContainer, imageTitle, imageDescription,

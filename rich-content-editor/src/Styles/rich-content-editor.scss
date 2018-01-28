@@ -1,7 +1,9 @@
 @import "../Styles/palette";
 @import "../Styles/global.scss";
+@import "./fonts.scss";
 
 .wrapper {
+  @extend .fontElementMap;
   position: relative;
   height: 100%;
   box-sizing: border-box;
