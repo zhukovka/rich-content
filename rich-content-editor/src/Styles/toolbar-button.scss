@@ -55,3 +55,28 @@
     @include svg-fill($accent-color);
   }
 }
+
+.mobile {
+  &.buttonWrapper {
+    height: 100%;
+  }
+  .button {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 15px 0;
+
+    .icon {
+      display: block;
+      width: 25px;
+      margin: 0 auto;
+    }
+
+    span {
+      display: block;
+      font-size: 18px;
+      line-height: 21px;
+      margin: 6px 0 0;
+    }
+  }
+}

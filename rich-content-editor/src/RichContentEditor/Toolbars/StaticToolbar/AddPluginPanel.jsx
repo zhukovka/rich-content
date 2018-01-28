@@ -39,8 +39,9 @@ export default class AddPluginPanel extends Component {
                 key={index}
                 getEditorState={getEditorState}
                 setEditorState={setEditorState}
-                theme={buttonStyles}
                 hidePluginSelectPopup={this.hidePopup}
+                theme={buttonStyles}
+                isMobile
               />
             </li>
           ))}

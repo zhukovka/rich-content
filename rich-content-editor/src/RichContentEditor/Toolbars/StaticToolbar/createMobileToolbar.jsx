@@ -26,5 +26,6 @@ export default ({ buttons, pubsub }) => {
     name: 'MobileToolbar',
     theme,
     structure,
+    isMobile: true
   });
 };
