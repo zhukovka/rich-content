@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ProGallery } from 'pro-gallery-renderer';
+//import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils'; [for dev only]
+
 //import 'pro-gallery-renderer/dist/statics/main.min.css';
 
 //eslint-disable-next-line no-unused-vars
@@ -83,7 +85,7 @@ const DEFAULTS = {
   },
 };
 
-class GalleryComponent extends React.Component {
+class GalleryComponent extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
@@ -94,6 +96,7 @@ class GalleryComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    //console.log('Gallery Props Changed!', baseUtils.printableObjectsDiff(this.props, nextProps)); [for dev only]
     this.setState(this.stateFromProps(nextProps));
     this.updateDimensions();
   }
@@ -221,7 +224,7 @@ class GalleryComponent extends React.Component {
 
   render() {
     const { items, styles } = this.state;
-
+    //console.log('Rendering ProGallery', styles);
     return (
       <div ref={elem => this.container = elem}>
         <ProGallery styles={styles} items={items} galleryDataSrc={'manuallySetImages'} container={this.state.size} />

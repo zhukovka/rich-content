@@ -55,6 +55,8 @@
 .filesItemWrapper {
   position: relative;
   cursor: pointer;
+  border: 1px dashed rgba(51, 51, 51, 0.2);;
+  box-sizing: border-box;
 
   form,
   input,
@@ -86,25 +88,23 @@
 }
 
 .itemContainer {
-  width: 100px;
-  height: 100px;
-  border: 3px solid lightgray;
-  border-radius: 2px;
+  width: 104px;
+  height: 104px;
   display: inline-block;
-  margin: 4px;
+  margin: 12px;
   float: none;
+  outline: none;
 }
 .itemContainerSelected {
-  width: 100px;
-  height: 100px;
-  border: 3px solid #4990e2;
-  border-radius: 2px;
+  width: 104px;
+  height: 104px;
+  box-shadow: 0 0 0 3px #0261ff;
   display: inline-block;
-  margin: 4px;
+  margin: 12px;
 }
 .itemImage {
-  width: 100px;
-  height: 100px;
+  width: 104px;
+  height: 104px;
   cursor: -webkit-grab;
 
   &:active {

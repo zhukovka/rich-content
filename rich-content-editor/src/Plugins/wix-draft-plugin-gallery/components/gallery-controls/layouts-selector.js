@@ -15,11 +15,18 @@ class LayoutSelector extends Component {
     { layoutId: 7, name: 'Slides' },
   ];
 
-  layoutsMapper = sidebarLayoutId => {
+  sidebarToOriginalLayoutMapper = sidebarLayoutId => {
     const { sidebar, original } = this.props.layoutsOrder;
     const sidebarLayoutName = sidebar[sidebarLayoutId];
     const originalLayoutId = original.indexOf(sidebarLayoutName);
     return originalLayoutId;
+  }
+
+  originalToSidebarLayoutMapper = originalLayoutId => {
+    const { sidebar, original } = this.props.layoutsOrder;
+    const originalLayoutName = original[originalLayoutId];
+    const sidebarLayoutId = sidebar.indexOf(originalLayoutName);
+    return sidebarLayoutId;
   }
 
   dataMapper = ({ layoutId, name }) => ({ value: layoutId, label: name });
@@ -34,9 +41,10 @@ class LayoutSelector extends Component {
   );
 
   onLayoutChange = ({ value }) => {
-    const originalLayoutId = this.layoutsMapper(value);
-    this.props.onChange(originalLayoutId);
+    const originalLayoutId = this.sidebarToOriginalLayoutMapper(value);
+    this.props.onChange({ value: originalLayoutId });
   }
+
 
   render() {
     const { value } = this.props;
@@ -46,7 +54,7 @@ class LayoutSelector extends Component {
         dataSource={this.layouts}
         dataMapper={this.dataMapper}
         renderItem={this.renderOption}
-        value={value}
+        value={this.originalToSidebarLayoutMapper(value)}
         onChange={this.onLayoutChange}
       />
     );

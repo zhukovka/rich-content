@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+
 :global {
   .ReactModal__Body--open {
     overflow-y: hidden;
+  }
+  .ReactModal__Content {
+    font-family: 'Lato', Helvetica, sans-serif;
+    font-weight: 300;
   }
 }
 

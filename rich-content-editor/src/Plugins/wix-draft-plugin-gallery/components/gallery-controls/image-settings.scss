@@ -39,11 +39,15 @@
 
     &.replace {
       border-right: 1px #ededed solid;
+      overflow: hidden;
+      position: relative;
 
       form {
         position: absolute;
         font-size: 100px;
         opacity: 0;
+        top: 0;
+        left: 0;
       }
 
       span::before {

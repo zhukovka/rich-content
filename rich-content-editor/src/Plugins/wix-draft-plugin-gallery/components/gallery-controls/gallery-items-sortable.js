@@ -10,8 +10,8 @@ import ImageSettings from './image-settings';
 //eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, handleFileChange }) => {
-  const imageSize = 100;
+const SortableItem = sortableElement(({ item, itemIdx, clickAction, dblClickAction, isMock, handleFileChange }) => {
+  const imageSize = 104;
   if (isMock) {
     /* eslint-disable max-len */
     return (
@@ -34,6 +34,7 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, hand
       <div
         className={item.selected ? style.itemContainerSelected : style.itemContainer}
         onClick={() => clickAction(itemIdx)}
+        onDblClick={() => dblClickAction(itemIdx)}
       >
         <img className={style.itemImage} src={resizedUrl} />
       </div>
@@ -42,11 +43,11 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, hand
 }
 );
 
-const SortableList = sortableContainer(({ items, clickAction, handleFileChange }) => {
+const SortableList = sortableContainer(({ items, clickAction, dblClickAction, handleFileChange }) => {
   return (
     <div>
       {items.map((item, itemIdx) => (
-        <SortableItem key={`item-${itemIdx}`} itemIdx={itemIdx} index={itemIdx} item={item} clickAction={clickAction}/>
+        <SortableItem key={`item-${itemIdx}`} itemIdx={itemIdx} index={itemIdx} item={item} clickAction={clickAction} dblClickAction={dblClickAction}/>
       ))}
       <SortableItem
         key={`item-upload-mock`} itemIdx={items.length} index={items.length} disabled isMock
@@ -126,7 +127,18 @@ export class SortableComponent extends Component {
     });
   }
 
-  toggleImageSettings = visible => this.setState({ imageSettingsVisible: visible });
+  toggleImageSettings = (imageSettingsVisible, itemIdx) => {
+    const { items } = this.state;
+
+    if (itemIdx >= 0) {
+      items.map((item, idx) => {
+        item.selected = (idx === itemIdx);
+        return item;
+      });
+    }
+
+    this.setState({ items, imageSettingsVisible });
+  }
 
   deleteSelectedItems() {
     const { items } = this.state;
@@ -165,7 +177,8 @@ export class SortableComponent extends Component {
         <SortableList
           items={this.state.items}
           onSortEnd={this.onSortEnd}
-          clickAction={this.clickAction}
+          clickAction={this.toggleImageSettings}
+          dblClickAction={this.clickAction}
           hideSortableGhost={false}
           axis="xy"
           helperClass="sortableHelper"

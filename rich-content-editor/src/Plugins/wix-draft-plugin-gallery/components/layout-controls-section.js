@@ -14,14 +14,14 @@ const Separator = () => <hr />;
 class LayoutControlsSection extends Component {
   // NB: index sensitive!
   controlsByLayout = {
-    grid: ['itemsPerRow', 'spacing', '|', 'thumbnailResize', '|', 'titleButtonPlacement', '|', 'imageRatio', '|', 'scrollDirection'],
+    grid: ['itemsPerRow', 'spacing', '|', 'thumbnailResize', '|', 'scrollDirection', '|', 'titleButtonPlacement', '|', 'imageRatio'],
     masonry: ['thumbnailSize', 'spacing', '|', 'imageOrientation'],
     collage: ['thumbnailSize', 'spacing', '|', 'imageOrientation', '|', 'scrollDirection'],
     thumbnails: ['thumbnailPlacement', '|', 'thumbnailSpacing'],
     panorama: ['spacing'],
     slideshow: [],
     columns: ['spacing'],
-    slides: ['spacing', '|', 'titleButtonPlacement', '|', 'imageRatio'],
+    slides: ['spacing', '|', 'thumbnailResize', '|', 'imageRatio'],
   };
 
   getValueFromComponentStyles = name => this.props.data.styles[name];
@@ -115,7 +115,7 @@ class LayoutControlsSection extends Component {
 
   render() {
     const controls = this.getControlData();
-    const layoutControls = this.controlsByLayout[this.props.layoutsOrder.sidebar[this.props.layout]];
+    const layoutControls = this.controlsByLayout[this.props.layoutsOrder.original[this.props.layout]];
     return (
       <div>
         {layoutControls.map((name, i) => (
