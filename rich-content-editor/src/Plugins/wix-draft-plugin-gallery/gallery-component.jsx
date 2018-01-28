@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ProGallery } from 'pro-gallery-renderer';
-import 'pro-gallery-renderer/dist/statics/main.min.css';
+//import 'pro-gallery-renderer/dist/statics/main.min.css';
 
 //eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
@@ -58,17 +58,22 @@ const DEFAULTS = {
   //   },
   // ],
   styles: {
-    galleryLayout: 0, // OK
-    oneRow: false, // scrollDirection OK?
-    cubeRatio: 1, // NB: galleryContainer overwrites this while trying to set wixStyle!
-    galleryThumbnailsAlignment: 'bottom', // OK
-    isVertical: false, // imageOrientation - OK
-    numberOfImagesPerRow: 3, // sets fixed columns?
-    imageMargin: 5, // spacing - OK
-    cubeType: 'fill', // resize: crop/fit - OK
-    enableInfiniteScroll: true, // load more button - ?
-    titlePlacement: 'SHOW_ON_HOVER', // NB: galleryContainer overwrites this while trying to set wixStyle value!
+    galleryLayout: 0,
+    oneRow: false,
+    cubeRatio: 1,
+    galleryThumbnailsAlignment: 'bottom',
+    isVertical: false,
+    numberOfImagesPerRow: 3,
+    imageMargin: 5,
+    cubeType: 'fill',
+    enableInfiniteScroll: true,
+    titlePlacement: 'SHOW_ON_HOVER',
     showArrows: false,
+    gridStyle: 1,
+    loveButton: false,
+    allowSocial: false,
+    allowDownload: false,
+    itemClick: 'nothing'
   },
   config: {
     alignment: 'center',
@@ -112,7 +117,7 @@ class GalleryComponent extends React.Component {
     const { keyName, isActive } = (props.componentState && props.componentState.activeButton) || {};
     const inEditMode = keyName === 'edit' && isActive;
     const items = props.componentData.items || [];// || DEFAULTS.items;
-    const styles = props.componentData.styles || DEFAULTS.styles;
+    const styles = Object.assign(DEFAULTS.styles, props.componentData.styles || {});
     const layout = props.componentData.config && props.componentData.config.layout;
     const layoutWidth = layout === 'large' ? 100 : layout === 'medium' ? 50 : 33;
     const isLoading = (props.componentState && props.componentState.isLoading) || 0;
@@ -212,13 +217,6 @@ class GalleryComponent extends React.Component {
     img.onload = e => this.imageLoaded(e, file, itemPos);
     img.src = event.target.result;
 
-  };
-
-  getLoadingParams = componentState => {
-    //check if the file upload is coming on the regular state
-    const alreadyLoading = this.state && this.state.isLoading;
-    const { isLoading, userSelectedFiles } = componentState;
-    return { alreadyLoading, isLoading, userSelectedFiles };
   };
 
   render() {

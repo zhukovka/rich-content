@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { EditorState, convertFromRaw } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
 import isUndefined from 'lodash/isUndefined';
+import createToolbars from './Toolbars';
 import createPlugins from './Plugins';
 import createDecorators from './Decorators';
 import 'draft-js/dist/Draft.css'; // must import before custom styles
@@ -18,7 +19,9 @@ export default class RichContentEditor extends Component {
       readOnly: props.readOnly || false,
       theme: props.theme || {}
     };
-    this.plugins = createPlugins({ editorProps: props, theme: this.state.theme });
+    const { plugins, pluginButtons } = createPlugins({ ...props, theme: this.state.theme });
+    this.toolbars = createToolbars({ ...props, pluginButtons, theme: this.state.theme });
+    this.plugins = [...plugins, ...Object.values(this.toolbars)];
     this.decorators = createDecorators(props.decorators);
   }
 

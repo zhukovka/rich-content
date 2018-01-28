@@ -1,19 +1,27 @@
 @mixin svg-fill($fill) {
   svg {
-      polygon,
-      line,
-      polyline,
-      path,
-      mesh,
-      rect,
-      circle,
-      ellipse {
-          fill: $fill;
-      }
+    polygon,
+    line,
+    polyline,
+    path,
+    mesh,
+    rect,
+    circle,
+    ellipse {
+      fill: $fill;
+    }
   }
 }
 
 @mixin block-select {
-    cursor: default;
-    box-shadow: 0 0 0 3px $accent-color;
+  cursor: default;
+  box-shadow: 0 0 0 3px $accent-color;
+}
+
+$phone: 640px;
+
+@mixin phone {
+  @media (max-width: $phone) {
+    @content;
+  }
 }
