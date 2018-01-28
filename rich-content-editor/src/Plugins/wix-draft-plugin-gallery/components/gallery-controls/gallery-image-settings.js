@@ -6,7 +6,7 @@ import { Image } from 'stylable-components/dist/src/components/image';
 
 import { SettingsSection } from './settings-section';
 import InputWithLabel from '../stylable-base/input-with-label';
-import style from './image-settings.scss';
+import style from './gallery-image-settings.scss';
 import GallerySettingsFooter from './gallery-settings-footer';
 import FileInput from '../stylable-base/file-input';
 
@@ -37,10 +37,6 @@ class ImageSettings extends Component {
       images,
       selectedIndex: Math.min(this.state.selectedIndex, images.length - 1)
     });
-  }
-
-  repalceImage() {
-    // TODO: upload
   }
 
   imageMetadataUpdated = (image, value) => {

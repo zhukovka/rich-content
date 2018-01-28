@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import get from 'lodash/get';
 import getImageSrc from './get-image-source';
 import Styles from './default-image-styles.scss';
+import ImageLoader from '~/Common/image-loader';
 
 const getDefault = () => ({
   data: {},
@@ -14,24 +14,6 @@ const getDefault = () => ({
     showDescription: true,
   },
 });
-
-const ImageLoader = (
-  { theme, type } //eslint-disable-line react/prop-types
-) => (
-  <div className={classNames(Styles.loaderOverlay, get(theme, 'loaderOverlay'))}>
-    <div className={classNames(Styles.loader, get(theme, 'loader'), { [Styles[type]]: type })} />
-  </div>
-);
-
-ImageLoader.propTypes = {
-  theme: PropTypes.object.isRequired,
-  type: PropTypes.string,
-};
-
-ImageLoader.defaultProps = {
-  type: 'mini'
-};
-
 
 class ImageViewer extends React.Component {
 
@@ -60,18 +42,19 @@ class ImageViewer extends React.Component {
 
   renderTitle(data, theme) {
     const config = data.config || {};
-    return !!config.showTitle && <div className={theme.title}>{(data && data.title) || ''}</div>;
+    return !!config.showTitle && <div className={classNames(Styles.imageTitle, theme.imageTitle)}>{(data && data.title) || ''}</div>;
   }
   renderDescription(data, theme) {
     const config = data.config || {};
-    return !!config.showDescription && <div className={theme.description}>{(data && data.description) || ''}</div>;
+    return !!config.showDescription &&
+      <div className={classNames(Styles.imageDescription, theme.imageDescription)}>{(data && data.description) || ''}</div>;
   }
 
   render() {
     const { componentData, className, onClick, theme } = this.props;
     const data = componentData || getDefault();
 
-    const itemClassName = classNames(Styles.container, className, theme.container);
+    const itemClassName = classNames(Styles.imageContainer, className, theme.imageContainer);
     const imageClassName = classNames(Styles.image, theme.image);
     const imageSrc = this.getImageSrc(data.item);
     return (

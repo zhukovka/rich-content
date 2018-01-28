@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { SortableContainer as sortableContainer, SortableElement as sortableElement, arrayMove } from 'react-sortable-hoc';
-import style from './gallery-items-sortable.scss';
 import classNames from 'classnames';
 import { getScaleToFillImageURL } from 'image-client-api/dist/imageClientSDK';
 
-import ImageSettings from './image-settings';
+import style from './gallery-items-sortable.scss';
+import LoaderStyles from './gallery-image-loader.scss';
+import ImageSettings from './gallery-image-settings';
 import FileInput from '../stylable-base/file-input';
+import ImageLoader from '~/Common/image-loader';
 
 //eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
@@ -27,13 +29,18 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, hand
     if (item.url.indexOf('/') < 0) {
       item.url = 'media/' + item.url;
     }
-    const resizedUrl = getScaleToFillImageURL(item.url, item.metadata.width, item.metadata.height, imageSize, imageSize);
+
+    let url;
+    if (item.metadata.processedByConsumer) {
+      url = getScaleToFillImageURL(item.url, item.metadata.width, item.metadata.height, imageSize, imageSize);
+    }
+
     return (
       <div
         className={item.selected ? style.itemContainerSelected : style.itemContainer}
         onClick={() => clickAction(itemIdx)}
       >
-        <img className={style.itemImage} src={resizedUrl} />
+        {url ? <img className={style.itemImage} src={url} /> : <ImageLoader overlayClassName={LoaderStyles.loaderOverlay} loaderClassName={LoaderStyles.loader}/>}
       </div>
     );
   }

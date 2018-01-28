@@ -80,6 +80,7 @@ class GalleryComponent extends React.PureComponent {
       reader.readAsDataURL(file);
     });
   };
+
   imageLoaded = (event, file, itemPos) => {
     const img = event.target;
     const item = {
@@ -102,6 +103,7 @@ class GalleryComponent extends React.PureComponent {
           metadata: {
             height: data.height,
             width: data.width,
+            // processedByConsumer: true
           },
           itemId: String(data.id),
           url: data.file_name,
