@@ -1,7 +1,10 @@
 @import "./palette.scss";
 
 .toolbar {
-  background: #fff;
-  display: flex;
   border-bottom: 1px solid rgba($secondary-text-color, 0.2);
+}
+
+.buttons {
+  display: flex;
+  padding: 0 19px;
 }
