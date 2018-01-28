@@ -159,7 +159,7 @@ const InlineButtons = [
     keyName: 'settings',
     type: BUTTONS.EXTERNAL_MODAL,
     icon: SettingsIcon,
-    panelElement: ImageSettings,
+    modalElement: ImageSettings,
     modalStyles,
   },
   {

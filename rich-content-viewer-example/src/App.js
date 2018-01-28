@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import ReactModal from 'react-modal';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import logo from './logo.svg';
-import { RichContentViewer } from 'wix-rich-content-editor';
+import {
+  RichContentViewer
+} from 'wix-rich-content-editor';
 import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 import TestData from './TestData/initial-state';
@@ -21,7 +25,9 @@ const modalStyleDefaults = {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { raw: TestData.onlyText };
+    this.state = {
+      raw: TestData.onlyText
+    };
     this.initViewerProps();
   }
 
@@ -38,14 +44,18 @@ class App extends Component {
     // };
     this.helpers = {
       openExternalModal: data => {
-        const { panelElement, modalStyles, ...elementProps } = data;
+        const {
+          modalElement,
+          modalStyles,
+          ...elementProps
+        } = data;
         const ModalContent = decorateComponentWithProps(
-          panelElement,
+          modalElement,
           elementProps
         );
         this.setState({
           showModal: true,
-          modalContent: <ModalContent />,
+          modalContent: < ModalContent / > ,
           modalStyles
         });
       },
@@ -67,41 +77,73 @@ class App extends Component {
   /* eslint-disable no-console */
   handleContentChange = () => {
     const value = document.getElementById('testData').value;
-    this.setState({ raw: TestData[value] });
+    this.setState({
+      raw: TestData[value]
+    });
     //console.log('on change are', TestData[value]);
   };
 
   render() {
     const contentOptions = Object.keys(TestData).map(key =>
-      <option value={key} key={key}>{key}</option>
+      <
+      option value = {
+        key
+      }
+      key = {
+        key
+      } > {
+        key
+      } < /option>
     );
 
-    return (
-      <div className="wrapper">
-        <div className="header">
-          <img src={logo} className="logo" alt="logo" />
-          <h2>Wix Rich Content Viewer</h2>
-          <select id="testData" name="testData" onChange={() => this.handleContentChange(this)}>
-            {contentOptions}
-          </select>
-        </div>
-        <div className="content">
-          <RichContentViewer
-            helpers={this.helpers}
-            // plugins={this.plugins}
-            // decorators={this.decorators}
-            initialState={this.state.raw}
-          />
-          <ReactModal
-            isOpen={this.state.showModal}
-            contentLabel="External Modal Example"
-            style={this.state.modalStyles || modalStyleDefaults}
-            onRequestClose={this.closeModal}
-          >
-            {this.state.modalContent}
-          </ReactModal>
-        </div>
-      </div>
+    return ( <
+      div className = "wrapper" >
+      <
+      div className = "header" >
+      <
+      img src = {
+        logo
+      }
+      className = "logo"
+      alt = "logo" / >
+      <
+      h2 > Wix Rich Content Viewer < /h2> <
+      select id = "testData"
+      name = "testData"
+      onChange = {
+        () => this.handleContentChange(this)
+      } > {
+        contentOptions
+      } <
+      /select> <
+      /div> <
+      div className = "content" >
+      <
+      RichContentViewer helpers = {
+        this.helpers
+      }
+      // plugins={this.plugins}
+      // decorators={this.decorators}
+      initialState = {
+        this.state.raw
+      }
+      /> <
+      ReactModal isOpen = {
+        this.state.showModal
+      }
+      contentLabel = "External Modal Example"
+      style = {
+        this.state.modalStyles || modalStyleDefaults
+      }
+      onRequestClose = {
+        this.closeModal
+      } >
+      {
+        this.state.modalContent
+      } <
+      /ReactModal> <
+      /div> <
+      /div>
     );
   }
 }
