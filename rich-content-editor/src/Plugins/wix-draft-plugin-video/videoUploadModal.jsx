@@ -64,7 +64,7 @@ export class VideoUploadModal extends Component {
         <div onKeyPress={this.handleKeyPress}>
           <CloseIcon className={s.closeIcon} onClick={this.onCancel} />
           <div className={s.header}>
-            <CameraIcon />Add a video from YouTube or Vimeo
+            <CameraIcon className={s.cameraIcon} />Add a video from YouTube or Vimeo
           </div>
           <div className={s.textInput}>
             <input
