@@ -10,7 +10,7 @@ import ImageSettings from './image-settings';
 //eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-const SortableItem = sortableElement(({ item, itemIdx, clickAction, dblClickAction, isMock, handleFileChange }) => {
+const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, handleFileChange }) => {
   const imageSize = 104;
   if (isMock) {
     /* eslint-disable max-len */
@@ -34,7 +34,6 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, dblClickActi
       <div
         className={item.selected ? style.itemContainerSelected : style.itemContainer}
         onClick={() => clickAction(itemIdx)}
-        onDblClick={() => dblClickAction(itemIdx)}
       >
         <img className={style.itemImage} src={resizedUrl} />
       </div>
@@ -43,11 +42,11 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, dblClickActi
 }
 );
 
-const SortableList = sortableContainer(({ items, clickAction, dblClickAction, handleFileChange }) => {
+const SortableList = sortableContainer(({ items, clickAction, handleFileChange }) => {
   return (
     <div>
       {items.map((item, itemIdx) => (
-        <SortableItem key={`item-${itemIdx}`} itemIdx={itemIdx} index={itemIdx} item={item} clickAction={clickAction} dblClickAction={dblClickAction}/>
+        <SortableItem key={`item-${itemIdx}`} itemIdx={itemIdx} index={itemIdx} item={item} clickAction={clickAction} />
       ))}
       <SortableItem
         key={`item-upload-mock`} itemIdx={items.length} index={items.length} disabled isMock
@@ -75,7 +74,7 @@ const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageS
       {hasUnselectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', true)}>Select All</a> : null}
       {hasSelectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', false)}>Deselect All</a> : null}
       {hasSelectedItems ? <a className={style.topBarLink} onClick={() => deleteSelectedItems()}>Delete Selected</a> : null}
-      {(selectedItems.length === 1) ? <a className={style.topBarLink} onClick={() => toggleImageSettings()}>Item Settings</a> : null}
+      {(selectedItems.length === 1) ? <a className={style.topBarLink} onClick={() => toggleImageSettings(true)}>Item Settings</a> : null}
       {addItemButton}
     </div>
   );
@@ -106,6 +105,22 @@ export class SortableComponent extends Component {
   }
 
   clickAction = itemIdx => {
+    if (this.clickedOnce) {
+      this.toggleImageSettings(true, itemIdx);
+      this.clickedOnce = false;
+      clearInterval(this.doubleClickTimer);
+    } else {
+      this.clickedOnce = true;
+      this.doubleClickTimer = setTimeout(() => {
+        if (this.clickedOnce) {
+          this.selectItem(itemIdx);
+        }
+        this.clickedOnce = false;
+      }, 200);
+    }
+  }
+
+  selectItem = itemIdx => {
     const { items } = this.state;
     const item = items[itemIdx];
     item.selected = !item.selected;
@@ -129,15 +144,23 @@ export class SortableComponent extends Component {
 
   toggleImageSettings = (imageSettingsVisible, itemIdx) => {
     const { items } = this.state;
+    let editedImage;
 
     if (itemIdx >= 0) {
       items.map((item, idx) => {
         item.selected = (idx === itemIdx);
         return item;
       });
+      editedImage = this.state.items[itemIdx];
+    } else {
+      editedImage = this.state.editedImage;
     }
 
-    this.setState({ items, imageSettingsVisible });
+    this.setState({
+      items,
+      imageSettingsVisible,
+      editedImage
+    });
   }
 
   deleteSelectedItems() {
@@ -177,8 +200,7 @@ export class SortableComponent extends Component {
         <SortableList
           items={this.state.items}
           onSortEnd={this.onSortEnd}
-          clickAction={this.toggleImageSettings}
-          dblClickAction={this.clickAction}
+          clickAction={this.clickAction}
           hideSortableGhost={false}
           axis="xy"
           helperClass="sortableHelper"

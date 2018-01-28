@@ -57,6 +57,7 @@
   cursor: pointer;
   border: 1px dashed rgba(51, 51, 51, 0.2);;
   box-sizing: border-box;
+  overflow: hidden;
 
   form,
   input,
@@ -94,6 +95,8 @@
   margin: 12px;
   float: none;
   outline: none;
+  overflow: hidden;
+  position: relative;
 }
 .itemContainerSelected {
   width: 104px;
@@ -101,6 +104,10 @@
   box-shadow: 0 0 0 3px #0261ff;
   display: inline-block;
   margin: 12px;
+  float: none;
+  outline: none;
+  overflow: hidden;
+  position: relative;
 }
 .itemImage {
   width: 104px;
