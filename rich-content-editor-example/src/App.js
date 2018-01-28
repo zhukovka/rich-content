@@ -110,48 +110,51 @@ class App extends Component {
 
   render() {
     const { RichContentEditor } = WixRichContentEditor;
-    const { Toolbar: MobileToolbar } = this.mobileComponents || {};
+    const { Toolbar: MobileToolbar, Panel: MobileAddPluginPanel } = this.mobileComponents || {};
     return (
       <div className="wrapper">
-        <div className="header">
-          <img src={logo} className="logo" alt="logo" />
-          <h2>Wix Rich Content Editor</h2>
-          <div>
-            <label htmlFor="readOnlyToggle">Read Only</label>
-            <input
-              type="checkbox"
-              name="readOnlyToggle"
-              onChange={this.onReadOnlyChange}
-              defaultChecked={this.state.readOnly}
-            />
+        <div className="container">
+          <div className="header">
+            <img src={logo} className="logo" alt="logo" />
+            <h2>Wix Rich Content Editor</h2>
+            <div>
+              <label htmlFor="readOnlyToggle">Read Only</label>
+              <input
+                type="checkbox"
+                name="readOnlyToggle"
+                onChange={this.onReadOnlyChange}
+                defaultChecked={this.state.readOnly}
+              />
+            </div>
+            <span className="intro">
+              Last saved on {this.state.lastSave.toTimeString()}
+            </span>
           </div>
-          <span className="intro">
-            Last saved on {this.state.lastSave.toTimeString()}
-          </span>
+          {MobileToolbar && <MobileToolbar />}
+          <div className="content">
+            <RichContentEditor
+              ref={this.setEditor}
+              onChange={this.onChange}
+              helpers={this.helpers}
+              plugins={this.plugins}
+              decorators={this.decorators}
+              editorState={this.state.editorState}
+              readOnly={this.state.readOnly}
+              sideToolbarOffset={sideToolbarOffset}
+              isMobile={this.isMobile()}
+              theme={theme}
+            />
+            <ReactModal
+              isOpen={this.state.showModal}
+              contentLabel="External Modal Example"
+              style={this.state.modalStyles || modalStyleDefaults}
+              onRequestClose={this.closeModal}
+            >
+              {this.state.modalContent}
+            </ReactModal>
+          </div>
         </div>
-        {MobileToolbar && <MobileToolbar />}
-        <div className="content">
-          <RichContentEditor
-            ref={this.setEditor}
-            onChange={this.onChange}
-            helpers={this.helpers}
-            plugins={this.plugins}
-            decorators={this.decorators}
-            editorState={this.state.editorState}
-            readOnly={this.state.readOnly}
-            sideToolbarOffset={sideToolbarOffset}
-            isMobile={this.isMobile()}
-            theme={theme}
-          />
-          <ReactModal
-            isOpen={this.state.showModal}
-            contentLabel="External Modal Example"
-            style={this.state.modalStyles || modalStyleDefaults}
-            onRequestClose={this.closeModal}
-          >
-            {this.state.modalContent}
-          </ReactModal>
-        </div>
+        {MobileAddPluginPanel && <MobileAddPluginPanel />}
       </div>
     );
   }

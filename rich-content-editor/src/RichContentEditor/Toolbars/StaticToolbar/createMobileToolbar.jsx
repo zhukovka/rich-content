@@ -5,12 +5,12 @@ import toolbarStyles from '~/Styles/mobile-toolbar.scss';
 import buttonStyles from '~/Styles/mobile-toolbar-button.scss';
 import separatorStyles from '~/Styles/mobile-toolbar-separator.scss';
 
-export default ({ buttons }) => {
+export default ({ buttons, pubsub }) => {
   const theme = { buttonStyles, toolbarStyles, separatorStyles };
   let structure;
 
   if (buttons) {
-    structure = getTextButtonsFromList({ buttons, theme });
+    structure = getTextButtonsFromList({ buttons, pubsub, theme });
   } else {
     structure = getTextButtonsFromList({
       buttons: [
@@ -18,6 +18,7 @@ export default ({ buttons }) => {
         'Separator',
         'AddPlugin'
       ],
+      pubsub,
       theme
     });
   }

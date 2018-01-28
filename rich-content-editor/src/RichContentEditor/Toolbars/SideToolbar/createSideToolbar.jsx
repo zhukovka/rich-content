@@ -41,7 +41,7 @@ const createSideToolbar = (config = {}) => {
 
 
 
-export default ({ buttons, offset, isMobile }) => {
+export default ({ buttons, offset, pubsub, isMobile }) => {
   return createSideToolbar({
     offset,
     isMobile,
@@ -52,6 +52,7 @@ export default ({ buttons, offset, isMobile }) => {
           setEditorState={setEditorState}
           theme={theme}
           structure={buttons}
+          pubsub={pubsub}
           isMobile={isMobile}
         />),
     ],

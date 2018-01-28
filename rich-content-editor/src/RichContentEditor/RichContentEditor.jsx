@@ -19,6 +19,7 @@ export default class RichContentEditor extends Component {
       readOnly: props.readOnly || false,
       theme: props.theme || {}
     };
+
     const { plugins, pluginButtons } = createPlugins({ ...props, theme: this.state.theme });
     this.toolbars = createToolbars({ ...props, pluginButtons, theme: this.state.theme });
     this.plugins = [...plugins, ...Object.values(this.toolbars)];
@@ -30,6 +31,7 @@ export default class RichContentEditor extends Component {
     if (isMobile) {
       return {
         Toolbar: this.toolbars.mobile.Toolbar,
+        Panel: this.toolbars.mobileAddPanel.Panel
       };
     } else {
       return {};

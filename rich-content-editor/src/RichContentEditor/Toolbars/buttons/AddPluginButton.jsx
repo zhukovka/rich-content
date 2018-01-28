@@ -6,12 +6,15 @@ import Styles from '~/Styles/toolbar-button.scss';
 
 export default class AddPluginButton extends Component {
     static propTypes = {
-      onClick: PropTypes.func,
+      pubsub: PropTypes.object.isRequired,
       theme: PropTypes.object,
-      Icon: PropTypes.element
     };
 
-    isActive = () => false;
+    handleClick = () => {
+      this.props.pubsub.set('addPluginPanelVisible', !this.isActive());
+    }
+
+    isActive = () => this.props.pubsub.get('addPluginPanelVisible');
 
     preventBubblingUp = event => event.preventDefault();
 
