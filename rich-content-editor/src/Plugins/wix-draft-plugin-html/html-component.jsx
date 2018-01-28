@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import Overlay from './overlay';
+import Styles from './default-html-styles.scss';
 
 const DEFAULTS = {
   src: null,
@@ -61,14 +62,15 @@ class HtmlComponent extends React.Component {
   };
 
   render() {
-    const { blockProps, selection } = this.props;
+    const { blockProps, selection, theme } = this.props;
     const isEditorFocused = selection && selection.getHasFocus();
     const { isFocused, readOnly } = blockProps || { readOnly: true };
     const data = this.props.componentData;
     data.config = data.config || {};
 
-    const itemClassName = classNames(this.props.className, this.props.theme.itemContainer, {
-      [this.props.theme.inChange]: this.state.inEditMode && isFocused && isEditorFocused,
+    const itemClassName = classNames(this.props.className, Styles.itemContainer, theme.itemContainer, {
+      [Styles.inChange]: this.state.inEditMode && isFocused && isEditorFocused,
+      [theme.inChange]: this.state.inEditMode && isFocused && isEditorFocused,
     });
 
     const width = data.config.width || DEFAULTS.config.width;
@@ -119,7 +121,7 @@ class HtmlComponent extends React.Component {
       );
     } else {
       return (
-        <div onClick={this.props.onClick} className={classNames(this.props.className, this.props.theme.invalidGalleryItems)}>
+        <div onClick={this.props.onClick} className={classNames(this.props.className, Styles.invalidGalleryItems, theme.invalidGalleryItems)}>
           Please select an iframe source
         </div>
       );

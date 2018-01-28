@@ -7,7 +7,6 @@
     <name>Wix Rich Content Editor Example</name>
     <description>Wix Rich Content Editor Example</description>
     <version>1.0.0-SNAPSHOT</version>
-
     <organization>
         <name>com.wixpress</name>
     </organization>
@@ -17,7 +16,6 @@
         <artifactId>wix-master-parent</artifactId>
         <version>100.0.0-SNAPSHOT</version>
     </parent>
-
 
     <developers>
         <developer>

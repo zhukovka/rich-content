@@ -1,0 +1,12 @@
+.radio-group-horizontal {
+  label {
+    display: block;
+    font-size: 14px;
+  }
+
+  .radio-group {
+    display: grid !important;
+    grid-template-columns: 57% 43%;
+    grid-template-rows: 100%;
+  }
+}

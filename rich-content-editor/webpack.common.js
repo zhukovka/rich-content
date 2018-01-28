@@ -92,6 +92,9 @@ module.exports = {
   target: 'web',
   externals: [
     /^pro-gallery-renderer.*$/,
+    /^wix-style-react.*$/,
+    /^@wix.*/,
+    'mobx',
     {
       immutable: {
         root: 'Immutable',

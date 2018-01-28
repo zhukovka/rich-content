@@ -7,7 +7,7 @@ import isUndefined from 'lodash/isUndefined';
 import createToolbars from './Toolbars';
 import createPlugins from './Plugins';
 import createDecorators from './Decorators';
-import 'draft-js/dist/Draft.css'; // must import before custom styles
+import '@wix/draft-js/dist/Draft.css'; // must import before custom styles
 import Styles from '~/Styles/rich-content-editor.scss';
 import 'normalize.css';
 
@@ -56,44 +56,44 @@ export default class RichContentEditor extends Component {
 
     switch (type) {
       case 'blockquote':
-        classList.push(theme.quote);
         classList.push(Styles.quote);
+        classList.push(theme.quote);
         break;
       case 'header-one':
-        classList.push(theme.headerOne);
         classList.push(Styles.headerOne);
+        classList.push(theme.headerOne);
         break;
       case 'header-two':
-        classList.push(theme.headerTwo);
         classList.push(Styles.headerTwo);
+        classList.push(theme.headerTwo);
         break;
       case 'header-three':
-        classList.push(theme.headerThree);
         classList.push(Styles.headerThree);
+        classList.push(theme.headerThree);
         break;
       case 'ordered-list-item':
-        classList.push(theme.orderedList);
         classList.push(Styles.orderedList);
+        classList.push(theme.orderedList);
         break;
       case 'unordered-list-item':
-        classList.push(theme.unorderedList);
         classList.push(Styles.unorderedList);
+        classList.push(theme.unorderedList);
         break;
       case 'atomic':
-        classList.push(theme.atomic);
         classList.push(Styles.atomic);
+        classList.push(theme.atomic);
         break;
       case 'code-block':
-        classList.push(theme.codeBlock);
         classList.push(Styles.codeBlock);
+        classList.push(theme.codeBlock);
         break;
       default:
-        classList.push(theme.text);
         classList.push(Styles.text);
+        classList.push(theme.text);
     }
     if (type !== 'atomic') {
-      classList.push(theme[textAlignment]);
       classList.push(Styles[textAlignment]);
+      classList.push(theme[textAlignment]);
     }
     return classNames(...classList);
   };
@@ -143,13 +143,13 @@ export default class RichContentEditor extends Component {
 
   render() {
     const { theme } = this.state;
-    const wrapperClassName = classNames(theme.wrapper, Styles.wrapper, {
-      [theme.desktop]: !this.props.platform || this.props.platform === 'desktop',
+    const wrapperClassName = classNames(Styles.wrapper, theme.wrapper, {
       [Styles.desktop]: !this.props.platform || this.props.platform === 'desktop',
+      [theme.desktop]: !this.props.platform || this.props.platform === 'desktop',
     });
     return (
       <div className={wrapperClassName}>
-        <div className={classNames(theme.editor, Styles.editor)}>
+        <div className={classNames(Styles.editor, theme.editor)}>
           {this.renderEditor()}
           {this.renderToolbars()}
         </div>
@@ -159,7 +159,7 @@ export default class RichContentEditor extends Component {
 }
 
 RichContentEditor.propTypes = {
-  editorState: PropTypes.instanceOf(EditorState),
+  editorState: PropTypes.object,
   decorators: PropTypes.object,
   initialState: PropTypes.object,
   theme: PropTypes.object,

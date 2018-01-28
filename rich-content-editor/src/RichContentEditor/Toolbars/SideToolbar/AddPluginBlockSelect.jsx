@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import PlusIcon from './icons/plus-default.svg';
-import PlusActiveIcon from './icons/plus-active.svg';
+import PlusIcon from '../icons/plus-default.svg';
+import PlusActiveIcon from '../icons/plus-active.svg';
 
 export default class AddPluginBlockSelect extends Component {
   state = {

@@ -1,6 +1,6 @@
 @import "../../Styles/palette";
 
-.container {
+.videoContainer {
   position: relative;
   overflow: hidden;
   min-width: 350px;
@@ -18,7 +18,7 @@
     z-index: 1;
   }
 
-  .overlay {
+  .videoOverlay {
     position: absolute;
     top: 0;
     bottom: 0;

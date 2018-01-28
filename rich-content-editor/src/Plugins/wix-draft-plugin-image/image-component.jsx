@@ -1,29 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import get from 'lodash/get';
-import getImageSrc from './get-image-source';
-import Styles from './default-image-styles.scss';
+import { ImageViewer, getDefault } from './image-viewer';
 
-const getDefault = () => ({
-  data: {},
-  config: {
-    alignment: 'center',
-    size: 'content',
-    showTitle: true,
-    showDescription: true,
-  },
-});
 
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-
-const ImageLoader = (
-  { theme, type } //eslint-disable-line react/prop-types
-) => (
-  <div className={classNames(Styles.loaderOverlay, get(theme, 'loaderOverlay'))}>
-    <div className={classNames(Styles.loader, get(theme, 'loader'), { [Styles[type]]: type })} />
-  </div>
-);
 
 class ImageComponent extends React.Component {
   constructor(props) {
@@ -79,8 +59,8 @@ class ImageComponent extends React.Component {
     const { helpers } = this.props;
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
     if (hasFileChangeHelper) {
-      helpers.onFilesChange(files, ({ item, error }) => {
-        this.props.store.update('componentData', { item });
+      helpers.onFilesChange(files, ({ data, error }) => {
+        this.props.store.update('componentData', { item: data });
         this.resetLoadingState(error);
       });
     } else {
@@ -119,54 +99,18 @@ class ImageComponent extends React.Component {
     return { alreadyLoading, isLoading, userSelectedFiles };
   };
 
-  getImageSrc(item) {
-    const { block, helpers } = this.props;
-    let imageUrl;
-    if (this.state.dataUrl) {
-      imageUrl = this.state.dataUrl;
-    } else {
-      imageUrl = getImageSrc(item.data, helpers);
-    }
-
-    if (!imageUrl) {
-      console.error(`image plugin '${block.getKey()}' mounted with invalid image source!`, item); //eslint-disable-line no-console
-    }
-
-    return imageUrl;
-  }
-
-  renderLoader() {
-    if (!this.state.isLoading) {
-      return null;
-    }
-    return <ImageLoader />;
-  }
-
-  renderTitle(data, theme) {
-    const config = data.config || {};
-    return !!config.showTitle && <div className={theme.title}>{(data && data.title) || ''}</div>;
-  }
-  renderDescription(data, theme) {
-    const config = data.config || {};
-    return !!config.showDescription && <div className={theme.description}>{(data && data.description) || ''}</div>;
-  }
-
   render() {
-    const { componentData, className, onClick, theme } = this.props;
-    const data = componentData || getDefault();
 
-    const itemClassName = classNames(Styles.container, className, theme.container);
-    const imageClassName = classNames(Styles.image, theme.image);
-    const imageSrc = this.getImageSrc(data);
     return (
-      <div onClick={onClick} className={itemClassName}>
-        <div>
-          <img className={imageClassName} src={imageSrc} />
-          {this.renderLoader()}
-        </div>
-        {this.renderTitle(data, theme)}
-        {this.renderDescription(data, theme)}
-      </div>
+      <ImageViewer
+        componentData={this.props.componentData}
+        onClick={this.props.onClick}
+        className={this.props.className}
+        theme={this.props.theme}
+        helpers={this.props.helpers}
+        isLoading={this.state.isLoading}
+        dataUrl={this.state.dataUrl}
+      />
     );
   }
 }
