@@ -12,17 +12,20 @@ class FileInput extends Component {
   }
 
   render() {
+    const { onChange, accept, multiple, className, children } = this.props;
+    const hasMultiple = multiple ? { multiple } : {};
     return (
-      <label className={this.props.className} htmlFor={this.id}>
+      <label className={className} htmlFor={this.id}>
         <input
           className={style.hiddenInput}
           id={this.id}
           type={'file'}
-          onChange={this.props.onChange}
-          accept={this.props.accept}
+          onChange={onChange}
+          accept={accept}
           tabIndex={'-1'}
+          {...hasMultiple}
         />
-        {this.props.children}
+        {children}
       </label>);
   }
 }
@@ -32,10 +35,12 @@ FileInput.propTypes = {
   className: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   children: PropTypes.node,
+  multiple: PropTypes.bool,
 };
 
 FileInput.defaultProps = {
-  accept: 'image/*'
+  accept: 'image/*',
+  multiple: false
 };
 
 export default FileInput;
