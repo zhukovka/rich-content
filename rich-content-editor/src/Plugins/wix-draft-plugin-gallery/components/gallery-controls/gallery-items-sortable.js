@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import { getScaleToFillImageURL } from 'image-client-api/dist/imageClientSDK';
 
 import style from './gallery-items-sortable.scss';
-import LoaderStyles from './gallery-image-loader.scss';
 import ImageSettings from './gallery-image-settings';
 import FileInput from '../stylable-base/file-input';
 import ImageLoader from '~/Common/image-loader';
@@ -40,7 +39,7 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, hand
         className={item.selected ? style.itemContainerSelected : style.itemContainer}
         onClick={() => clickAction(itemIdx)}
       >
-        {url ? <img className={style.itemImage} src={url} /> : <ImageLoader overlayClassName={LoaderStyles.loaderOverlay} loaderClassName={LoaderStyles.loader}/>}
+        {url ? <img className={style.itemImage} src={url} /> : <ImageLoader/>}
       </div>
     );
   }
