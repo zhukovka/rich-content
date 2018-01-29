@@ -33,6 +33,10 @@
           clear: both;
         }
       }
+
+      :global(.public-DraftEditorPlaceholder-root) {
+        margin: 0 calc((100% - #{$textWidth}) /2);
+      }
     }
   }
 }
