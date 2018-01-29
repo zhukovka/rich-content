@@ -49,6 +49,15 @@ module.exports = {
         ],
       },
       {
+        test: /\.(woff|eot|ttf|woff2)$/,
+        issuer: /\.(s)?css$/,
+        use: [
+          {
+            loader: 'url-loader',
+          },
+        ],
+      },
+      {
         test: /\.svg$/,
         issuer: /\.js(x)?$/,
         include: [path.resolve(__dirname, 'src')],
