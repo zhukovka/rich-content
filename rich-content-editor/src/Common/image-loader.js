@@ -4,9 +4,9 @@ import classNames from 'classnames';
 import get from 'lodash/get';
 import LoaderStyles from '~/Styles/loaders.scss';
 
-const ImageLoader = ({ theme, type, overlayClassName, loaderClassName }) => (
-  <div className={classNames(overlayClassName, get(theme, 'loaderOverlay'))}>
-    <div className={classNames(loaderClassName, get(theme, 'loader'), { [LoaderStyles[type]]: type })} />
+const ImageLoader = ({ theme, type }) => (
+  <div className={classNames(LoaderStyles.loaderOverlay, get(theme, 'loaderOverlay'))}>
+    <div className={classNames(LoaderStyles.loader, get(theme, 'loader'), { [LoaderStyles[type]]: type })} />
   </div>
 );
 
@@ -18,9 +18,7 @@ ImageLoader.propTypes = {
 };
 
 ImageLoader.defaultProps = {
-  type: 'mini',
-  overlayClassName: LoaderStyles.loaderOverlay,
-  loaderClassName: LoaderStyles.loader
+  type: 'mini'
 };
 
 export default ImageLoader;
