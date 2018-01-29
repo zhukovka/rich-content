@@ -1,5 +1,5 @@
-@import "../Styles/palette";
-@import "../Styles/global.scss";
+@import "./palette.scss";
+@import "./global.scss";
 @import "./fonts.scss";
 
 .wrapper {
@@ -151,7 +151,6 @@
 
 .orderedList {
   composes: elementSpacing;
-  display: grid;
 }
 
 .unorderedList {
