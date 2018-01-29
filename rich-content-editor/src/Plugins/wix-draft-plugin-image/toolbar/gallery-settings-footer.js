@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
+
 import { Button } from 'stylable-components/dist/src/components/button';
 
-import style from './gallery-settings-footer.scss';
+import styles from './gallery-settings-footer.scss';
 
 class GallerySettingsFooter extends Component {
   render() {
     const { save, cancel } = this.props;
     return (
-      <div className={style.footer}>
-        <Button onClick={() => cancel()} className={style.cancel}>
+      <div className={styles.footer}>
+        <Button onClick={() => cancel()} className={classnames(styles.sidebarButton, styles.cancel)}>
           {'Cancel'}
         </Button>
-        <Button onClick={() => save()}>{'Done'}</Button>
+        <Button className={styles.sidebarButton} onClick={() => save()}>{'Done'}</Button>
       </div>
     );
   }

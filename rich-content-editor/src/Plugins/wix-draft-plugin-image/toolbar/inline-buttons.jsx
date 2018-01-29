@@ -120,7 +120,7 @@ const modalStyles = {
     width: '100vw',
     height: '100vh',
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    zIndex: 100,
+    zIndex: 5,
   },
   content: {
     position: 'absolute',
