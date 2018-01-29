@@ -103,7 +103,7 @@ class GalleryComponent extends React.PureComponent {
           metadata: {
             height: data.height,
             width: data.width,
-            // processedByConsumer: true
+            processedByConsumer: true
           },
           itemId: String(data.id),
           url: data.file_name,
