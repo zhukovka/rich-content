@@ -5,7 +5,7 @@ import { Image } from 'stylable-components/dist/src/components/image';
 import { SettingsSection } from './settings-section';
 import getImageSrc from '../get-image-source';
 import InputWithLabel from '../stylable-base/input-with-label';
-import GallerySettingsFooter from './gallery-settings-footer';
+import ImageSettingsFooter from './image-settings-footer';
 import Styles from './image-settings.scss';
 
 class ImageSettings extends Component {
@@ -89,7 +89,7 @@ class ImageSettings extends Component {
               />
             </SettingsSection>
           </div>
-          <GallerySettingsFooter cancel={() => onCancel(this.initialImageState)} save={() => onSave(this.state.item)} />
+          <ImageSettingsFooter cancel={() => onCancel(this.initialImageState)} save={() => onSave(this.state.item)} />
         </div>
       </ThemeProvider>
     );
