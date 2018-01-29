@@ -37,7 +37,7 @@ class ImageViewer extends React.Component {
     if (!this.props.isLoading) {
       return null;
     }
-    return <ImageLoader />;
+    return <div className={Styles.overlay}><ImageLoader type={'medium'}/></div>;
   }
 
   renderTitle(data, theme) {
