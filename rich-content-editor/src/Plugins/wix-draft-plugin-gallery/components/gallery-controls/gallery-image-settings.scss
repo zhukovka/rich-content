@@ -35,7 +35,7 @@
     align-items: center;
     cursor: pointer;
 
-    &::focus, &::active {
+    &:focus, &:active {
       outline: none;
     }
 
@@ -44,27 +44,17 @@
       overflow: hidden;
       position: relative;
 
-      form {
-        position: absolute;
-        font-size: 100px;
-        opacity: 0;
-        top: 0;
-        left: 0;
-      }
-
       span::before {
         @include image-management-button('replace');
       }
     }
 
     &.delete {
-
       span::before {
         @include image-management-button('delete');
       }
     }
   }
-
 }
 
 .image-settings {
@@ -79,7 +69,7 @@
 
 .image {
   width: 100%;
-  max-height: 240px;
+  height: 240px;
 }
 
 .image-nav {
