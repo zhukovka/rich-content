@@ -80,7 +80,7 @@ class LinkPanel extends Component {
     const firstCheckboxText = 'Open Link in New Window / Tab';
     const secondCheckboxText = 'Add rel="nofollow" to link';
     return (
-      <ThemeProvider theme={'default'}>
+      <ThemeProvider theme={'rce'}>
         <div className={Styles.modal}>
           {/*<LinkType
             value="url"

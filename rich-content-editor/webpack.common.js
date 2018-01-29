@@ -29,8 +29,8 @@ module.exports = {
         }),
       },
       {
-        test: /\.css$/,
-        exclude: [path.join(__dirname, 'node_modules/stylable-components')],
+        // .css but not .st.css
+        test: /^((?!\.st\.css).)*\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader'],
