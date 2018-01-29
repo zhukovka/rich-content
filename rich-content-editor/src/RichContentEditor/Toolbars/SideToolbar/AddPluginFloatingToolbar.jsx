@@ -16,9 +16,8 @@ export default class AddPluginFloatingToolbar extends Component {
   onMouseDown = event => {
     event.preventDefault();
     event.stopPropagation();
-    this.setState({ isActive: !this.state.isActive }, () => {
-      this.togglePopup();
-    });
+    this.togglePopup();
+    this.setState({ isActive: !this.state.isActive });
   };
 
   togglePopup = () => {
