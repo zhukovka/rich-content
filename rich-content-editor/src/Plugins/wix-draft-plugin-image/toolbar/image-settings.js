@@ -52,7 +52,7 @@ class ImageSettings extends Component {
       <ThemeProvider theme={'default'}>
         <div className={Styles.imageSettings}>
           <div className={Styles.content}>
-            <div className={Styles.title} onClick={() => onCancel(this.initialImageState)}>Image Settings</div>
+            <h3 className={Styles.title} onClick={() => onCancel(this.initialImageState)}>Image Settings</h3>
             <SettingsSection>
               <Image resizeMode={'cover'} className={Styles.image} src={getImageSrc(item, helpers)} />
             </SettingsSection>
