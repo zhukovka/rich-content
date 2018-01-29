@@ -41,9 +41,10 @@ const createSideToolbar = (config = {}) => {
 
 
 
-export default ({ buttons, offset, pubsub, isMobile }) => {
+export default ({ buttons, offset, pubsub, theme, isMobile }) => {
   return createSideToolbar({
     offset,
+    theme,
     isMobile,
     structure: [
       ({ getEditorState, setEditorState, theme }) => //eslint-disable-line react/prop-types

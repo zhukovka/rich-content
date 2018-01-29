@@ -25,13 +25,14 @@
     color: $accent-color;
   }
 
-  .icon {
-    width: $icon-width;
-    vertical-align: middle;
-    @include svg-fill($secondary-text-color);
-    &:hover {
-      @include svg-fill($accent-color);
-    }
+}
+
+.icon {
+  width: $icon-width;
+  vertical-align: middle;
+  @include svg-fill($secondary-text-color);
+  &:hover {
+    @include svg-fill($accent-color);
   }
 }
 

@@ -2,7 +2,7 @@
 
 .separator {
   display: inline-block;
-  border-right: 1px solid $secondary-text-color;
-  opacity: 0.2;
+  width: 1px;
+  background: rgba($secondary-text-color, 0.2);
   margin: 0 19px;
 }

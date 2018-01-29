@@ -79,12 +79,13 @@ export default ({ blockType, button, pubsub }) => {
       const { name, Icon } = button;
       const buttonClassNames = classNames(Styles.button, theme && theme.button);
       const iconClassNames = classNames(Styles.icon, theme && theme.icon);
+      const labelClassNames = classNames(Styles.label, theme && theme.label);
       return (
         <button className={buttonClassNames} onClick={this.onClick}>
           <div className={iconClassNames}>
             <Icon key="0" />
           </div>
-          {!hideName && <span key="1">{name}</span>}
+          {!hideName && <span key="1" className={labelClassNames}>{name}</span>}
         </button>
       );
     };

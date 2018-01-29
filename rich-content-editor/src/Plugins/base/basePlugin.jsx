@@ -58,7 +58,9 @@ const createBasePlugin = (config = {}) => {
   const helpers = config.helpers || {};
   const theme = config.theme || {};
   const Toolbar = createToolbar({ buttons: config.toolbar.InlineButtons, theme, pubsub, helpers });
-  const InsertPluginButtons = config.toolbar.InsertButtons.map(button => createInsertPluginButton({ blockType: config.type, button, pubsub }));
+  const InsertPluginButtons = config.toolbar.InsertButtons.map(button => (
+    createInsertPluginButton({ blockType: config.type, button, pubsub })
+  ));
   const PluginComponent = config.decorator ? config.decorator(config.component) : config.component;
 
   const CompWithBase = createBaseComponent({ PluginComponent, theme, pubsub, helpers });

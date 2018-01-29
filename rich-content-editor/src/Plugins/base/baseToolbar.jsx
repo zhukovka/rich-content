@@ -129,7 +129,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
       });
     };
 
-    renderButton = (button, key) => {
+    renderButton = (button, key, themedStyle, separatorClassNames) => {
       const { alignment, size } = this.state;
       switch (button.type) {
         case BUTTONS.SIZE_ORIGINAL_CENTER:
@@ -138,40 +138,40 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
               size={size}
               alignment={alignment}
               setAlignmentAndSize={this.setAlignmentAndSize}
-              theme={buttonStyles}
+              theme={themedStyle}
               key={key}
             />
           );
         case BUTTONS.SIZE_SMALL_CENTER:
           return (
-            <SizeSmallCenterButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />
+            <SizeSmallCenterButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} />
           );
         case BUTTONS.SIZE_SMALL_LEFT:
           return (
-            <SizeSmallLeftButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />
+            <SizeSmallLeftButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} />
           );
         case BUTTONS.SIZE_SMALL_RIGHT:
           return (
-            <SizeSmallRightButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />
+            <SizeSmallRightButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} />
           );
         case BUTTONS.SIZE_CONTENT:
           return (
-            <SizeContentButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />
+            <SizeContentButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} />
           );
         case BUTTONS.SIZE_FULL_WIDTH:
           return (
-            <SizeFulllWidthButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={buttonStyles} key={key} />
+            <SizeFulllWidthButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} />
           );
         case BUTTONS.SEPARATOR:
-          return <Separator className={toolbarStyles.separator} key={key} />;
+          return <Separator className={separatorClassNames} key={key} />;
         case BUTTONS.LINK:
-          return <BlockLinkButton className={toolbarStyles.separator} pubsub={pubsub} onExtendContent={this.onExtendContent} key={key} />;
+          return <BlockLinkButton pubsub={pubsub} onExtendContent={this.onExtendContent} theme={themedStyle} key={key} />;
         case BUTTONS.DELETE:
-          return <DeleteButton onClick={this.deleteBlock} theme={buttonStyles} key={key} />;
+          return <DeleteButton onClick={this.deleteBlock} theme={themedStyle} key={key} />;
         default:
           return (
             <BaseToolbarButton
-              theme={theme}
+              theme={themedStyle}
               componentData={this.state.componentData}
               componentState={this.state.componentState}
               pubsub={pubsub}
@@ -184,22 +184,30 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
     };
 
     render = () => {
-      const containerClassNames = classNames(toolbarStyles.toolbar, theme.toolbar);
-      const buttonContainerClassnames = classNames(toolbarStyles.buttons, theme.buttons);
+      const { toolbarStyles: toolbarTheme } = theme || {};
+      const { buttonStyles: buttonTheme, separatorStyles: separatorTheme } = theme || {};
+      const containerClassNames = classNames(toolbarStyles.toolbar, toolbarTheme && toolbarTheme.toolbar);
+      const buttonContainerClassnames = classNames(toolbarStyles.buttons, toolbarTheme && toolbarTheme.buttons);
+      const themedButtonStyle = {
+        buttonWrapper: classNames(buttonStyles.buttonWrapper, buttonTheme && buttonTheme.buttonWrapper),
+        button: classNames(buttonStyles.button, buttonTheme && buttonTheme.button),
+        icon: classNames(buttonStyles.icon, buttonTheme && buttonTheme.icon),
+        active: classNames(buttonStyles.active, buttonTheme && buttonTheme.active),
+      };
+      const separatorClassNames = classNames(toolbarStyles.separator, separatorTheme && separatorTheme.separator);
       const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
-      const overrideProps = {
-        theme: buttonStyles,
-        onOverrideContent: this.onOverrideContent,
-      };
-      const extendProps = {
-        theme: buttonStyles,
-        onExtendContent: this.onExtendContent,
-      };
+      const overrideProps = { onOverrideContent: this.onOverrideContent };
+      const extendProps = { onExtendContent: this.onExtendContent };
 
       return (
         <div style={this.state.position} className={containerClassNames}>
           <div className={buttonContainerClassnames}>
-            {OverrideContent ? <OverrideContent {...overrideProps} /> : buttons.map((button, index) => this.renderButton(button, index))}
+            {OverrideContent ?
+              <OverrideContent {...overrideProps} /> :
+              buttons.map((button, index) => (
+                this.renderButton(button, index, themedButtonStyle, separatorClassNames)
+              ))
+            }
           </div>
           {ExtendContent && (
             <div className={toolbarStyles.extend}>

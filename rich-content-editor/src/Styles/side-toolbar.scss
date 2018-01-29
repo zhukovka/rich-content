@@ -1,11 +1,11 @@
 @import "./mixins";
 @import "./palette";
 
-.wrapper {
+.floatingContainer {
   position: relative;
 }
 
-.blockType {
+.floatingIcon {
   box-sizing: border-box;
   padding: 2px;
   cursor: pointer;
@@ -25,7 +25,7 @@
   }
 }
 
-.popup {
+.toolbar {
   position: absolute;
   top: -7px;
   transform: translate(-50%);

@@ -21,7 +21,7 @@ export default class RichContentEditor extends Component {
     };
 
     const { plugins, pluginButtons } = createPlugins({ ...props, theme: this.state.theme });
-    this.toolbars = createToolbars({ ...props, pluginButtons, theme: this.state.theme });
+    this.toolbars = createToolbars({ ...props, pluginButtons, theme: this.state.theme.toolbars });
     this.plugins = [...plugins, ...Object.values(this.toolbars)];
     this.decorators = createDecorators(props.decorators);
   }

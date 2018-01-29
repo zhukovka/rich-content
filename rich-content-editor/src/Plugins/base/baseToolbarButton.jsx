@@ -128,14 +128,14 @@ class BaseToolbarButton extends React.Component {
     );
   };
 
-  renderFilesButton = () => {
+  renderFilesButton = buttonClassNames => {
     const replaceButtonWrapperClassNames = classNames(Styles.replaceButtonWrapper, this.props.theme.fileButtonWrapper);
     return (
       <div className={replaceButtonWrapperClassNames}>
         <form ref={this.setForm}>
           <input name="file" type="file" onChange={this.handleFileChange} accept="image/*" tabIndex="-1" />
         </form>
-        <button children={this.props.children}>
+        <button className={buttonClassNames} children={this.props.children}>
           {this.getIcon()}
         </button>
       </div>
@@ -161,7 +161,7 @@ class BaseToolbarButton extends React.Component {
     let toolbarButton;
     switch (this.props.type) {
       case BUTTONS.FILES:
-        toolbarButton = this.renderFilesButton();
+        toolbarButton = this.renderFilesButton(buttonClassNames);
         break;
       case BUTTONS.VIDEO_REPLACE:
         toolbarButton = this.renderReplaceVideoButton();

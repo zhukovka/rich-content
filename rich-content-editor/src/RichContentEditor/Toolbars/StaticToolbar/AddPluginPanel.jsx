@@ -28,7 +28,7 @@ export default class AddPluginPanel extends Component {
     const setEditorState = pubsub.get('setEditorState');
     const { panelStyles, buttonStyles } = theme || {};
     const wrapperClassNames = classNames(Styles.wrapper, panelStyles && panelStyles.wrapper);
-    const tileClassNames = classNames(Styles.tile, panelStyles && panelStyles.tiles);
+    const tileClassNames = classNames(Styles.tile, panelStyles && panelStyles.tile);
     const placeHolderCount = 6 - structure.length;
     return (
       <div className={wrapperClassNames}>

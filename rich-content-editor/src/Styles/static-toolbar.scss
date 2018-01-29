@@ -1,3 +1,16 @@
+@import "./mixins";
+
 .toolbar {
+  width: 740px;
   background: #fff;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-radius: 2px;
+  z-index: 2;
+  box-sizing: border-box;
+  margin-right: auto;
+  margin-left: auto;
+  @include phone {
+    width: 100%;
+  }
 }

@@ -32,22 +32,6 @@
   vertical-align: bottom;
   height: 100%;
 
-  .icon {
-    display: inline-block;
-    width: $icon-width;
-    vertical-align: middle;
-    @include svg-fill($secondary-text-color);
-    &:hover {
-      @include svg-fill($accent-color);
-    }
-  }
-
-  span {
-    font-size: 12px;
-    margin-left: 8px;
-    vertical-align: middle;
-  }
-
   &:hover, &:focus {
     cursor: pointer;
     outline: 0;
@@ -56,27 +40,44 @@
   }
 }
 
+.icon {
+  display: inline-block;
+  width: $icon-width;
+  vertical-align: middle;
+  @include svg-fill($secondary-text-color);
+  &:hover {
+    @include svg-fill($accent-color);
+  }
+}
+
+.label {
+  font-size: 12px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
 .mobile {
   &.buttonWrapper {
     height: 100%;
   }
+
   .button {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
     padding: 15px 0;
+  }
 
-    .icon {
-      display: block;
-      width: 25px;
-      margin: 0 auto;
-    }
+  .icon {
+    display: block;
+    width: 25px;
+    margin: 0 auto;
+  }
 
-    span {
-      display: block;
-      font-size: 18px;
-      line-height: 21px;
-      margin: 6px 0 0;
-    }
+  .label {
+    display: block;
+    font-size: 18px;
+    line-height: 21px;
+    margin: 6px 0 0;
   }
 }

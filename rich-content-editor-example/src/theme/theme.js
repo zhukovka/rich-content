@@ -5,6 +5,7 @@ import DividerTheme from './divider.theme.scss';
 import HtmlTheme from './html.theme.scss';
 import ImageTheme from './image.theme.scss';
 import VideoTheme from './video.theme.scss';
+import toolbars from './toolbars';
 
 const {
   quote,
@@ -46,7 +47,8 @@ const theme = {
   divider1, divider2, divider3, divider4,
   inChange, itemsContainer, invalidGalleryItems,
   loader, loaderOverlay, imageContainer, imageTitle, imageDescription,
-  videoOverlay, player, videoContainer
+  videoOverlay, player, videoContainer,
+  toolbars
 };
 
 export default theme;

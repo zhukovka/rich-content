@@ -1,11 +1,12 @@
 @import "./palette.scss";
+@import "./consts.scss";
 @import "./global.scss";
 @import "./fonts.scss";
 
 .wrapper {
   @extend .fontElementMap;
   position: relative;
-  height: 100%;
+  height: calc(100% - #{$footer-toolbar-height});
   box-sizing: border-box;
 
   -webkit-font-smoothing: antialiased;
