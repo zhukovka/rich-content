@@ -58,8 +58,9 @@
   display: flex;
   align-items: center;
 
-  font-size: 16px;
-  font-family: PlayfairDisplay;
+  h3 {
+    font-size: 16px;
+  }
 
   svg {
     margin-right: 11px;
@@ -71,7 +72,6 @@
   position: relative;
 
   input {
-    font-family: Lato;
     font-weight: 300;
     font-size: 14px;
     line-height: 1.5;
@@ -107,7 +107,6 @@ $c2: $modal-btn-confirm-secondary-color;
   justify-content: flex-end;
 
   button {
-    font-family: Lato;
     font-size: 14px;
     border: 1px solid;
     height: 40px;

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import { isVideoUrl } from './videoUrlValidators';
-import s from '~/Styles/video-upload-modal.scss';
+import Styles from '~/Styles/video-upload-modal.scss';
 import CameraIcon from './icons/video-camera.svg';
 import CloseIcon from './icons/x-icon.svg';
 import ErrorIcon from './icons/error.svg';
@@ -58,18 +58,18 @@ export class VideoUploadModal extends Component {
         shouldFocusAfterRender
         contentLabel="Video Upload"
         parentSelector={() => document.querySelector('.DraftEditor-root')}
-        className={s.modal}
-        overlayClassName={s.overlay}
+        className={Styles.modal}
+        overlayClassName={Styles.overlay}
       >
         <div onKeyPress={this.handleKeyPress}>
-          <CloseIcon className={s.closeIcon} onClick={this.onCancel} />
-          <div className={s.header}>
-            <CameraIcon className={s.cameraIcon} />Add a video from YouTube or Vimeo
+          <CloseIcon className={Styles.closeIcon} onClick={this.onCancel} />
+          <div className={classNames(Styles.header)}>
+            <CameraIcon className={Styles.cameraIcon} /><h3>Add a video from YouTube or Vimeo</h3>
           </div>
-          <div className={s.textInput}>
+          <div className={Styles.textInput}>
             <input
               ref={ref => (this.input = ref)}
-              className={classNames({ [s.invalid]: !this.state.isValidUrl })}
+              className={classNames({ [Styles.invalid]: !this.state.isValidUrl })}
               placeholder="e.g. https://youtu.be/6sx-xGiFIjk"
               onChange={this.onUrlChange}
               value={this.state.videoUrl}
@@ -87,15 +87,15 @@ export class VideoUploadModal extends Component {
                 shouldCloseOnClickOutside
                 theme="dark"
               >
-                <ErrorIcon className={s.errorIcon} />
+                <ErrorIcon className={Styles.errorIcon} />
               </Tooltip>
             )}
           </div>
-          <div className={s.btns}>
-            <button className={s.btnCancel} onClick={this.onCancel}>
+          <div className={Styles.btns}>
+            <button className={Styles.btnCancel} onClick={this.onCancel}>
               Cancel
             </button>
-            <button className={s.btnConfirm} onClick={this.onConfirm}>
+            <button className={Styles.btnConfirm} onClick={this.onConfirm}>
               Add Now
             </button>
           </div>
