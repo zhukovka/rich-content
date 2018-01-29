@@ -1,8 +1,7 @@
 @import './mixins';
 @import './palette';
+@import './consts';
 
-$toolbar-btn-width: 36px;
-$toolbar-border-radius: 2px;
 
 .buttonWrapper {
   display: inline-block;
@@ -15,7 +14,7 @@ $toolbar-border-radius: 2px;
 
 .replaceButtonWrapper {
   position: relative;
-  width: $toolbar-btn-width;
+  width: 27px;
   margin-right: 10px;
 
   &:last-child {
@@ -42,6 +41,9 @@ $toolbar-border-radius: 2px;
     z-index: 1;
 
     @include svg-fill($secondary-text-color);
+    .icon {
+      width: $icon-width;
+    }
 
     &:hover,
     &:focus {
@@ -69,15 +71,15 @@ $toolbar-border-radius: 2px;
   cursor: pointer;
 
   @include svg-fill($secondary-text-color);
+  .icon {
+    width: $icon-width;
+  }
 
   &:hover,
-  &:focus {
+  &:focus,
+  &.active {
     outline: 0; /* reset for :focus */
+    color: $accent-color;
     @include svg-fill($accent-color);
   }
-}
-
-.active {
-  color: $accent-color;
-  @include svg-fill($accent-color);
 }

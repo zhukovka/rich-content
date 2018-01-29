@@ -1,5 +1,4 @@
 import createToolbar from './toolbar';
-import Styles from './default-video-styles.scss';
 import createBasePlugin from '../base/basePlugin';
 import { Component } from './video-component';
 import { VIDEO_TYPE, VIDEO_TYPE_LEGACY } from './types';
@@ -10,7 +9,7 @@ const createVideoPlugin = (config = {}) => {
   return createBasePlugin({
     component: Component,
     decorator,
-    theme: theme || Styles,
+    theme,
     type: VIDEO_TYPE,
     legacyType: VIDEO_TYPE_LEGACY,
     toolbar: createToolbar({

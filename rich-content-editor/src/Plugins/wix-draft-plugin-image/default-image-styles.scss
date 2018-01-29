@@ -1,6 +1,6 @@
 @import "../../Styles/palette";
 
-.container {
+.imageContainer {
   display: block;
   position: relative;
 }
@@ -46,6 +46,12 @@
 
 .loader.mini {
   font-size: 20px;
+}
+
+.imageDescription {
+}
+
+.imageTitle {
 }
 
 @-webkit-keyframes load6 {

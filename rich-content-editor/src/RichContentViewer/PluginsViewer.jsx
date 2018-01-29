@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as Image from '../Plugins/wix-draft-plugin-image/image-component';
+import { ImageViewer } from '../Plugins/wix-draft-plugin-image/image-viewer';
 import { IMAGE_TYPE_LEGACY, IMAGE_TYPE } from '../Plugins/wix-draft-plugin-image/types';
 import * as Video from '../Plugins/wix-draft-plugin-video/video-component';
 import { VIDEO_TYPE_LEGACY, VIDEO_TYPE } from '../Plugins/wix-draft-plugin-video/types';
@@ -8,17 +8,17 @@ import * as Html from '../Plugins/wix-draft-plugin-html/html-component';
 import { HTML_TYPE } from '../Plugins/wix-draft-plugin-html/types';
 import * as Divider from '../Plugins/wix-draft-plugin-divider/divider-component';
 import { DIVIDER_TYPE } from '../Plugins/wix-draft-plugin-divider/types';
-import * as Gallery from '../Plugins/wix-draft-plugin-gallery/gallery-component';
+import { GalleryViewer } from '../Plugins/wix-draft-plugin-gallery/gallery-viewer';
 import { GALLERY_TYPE } from '../Plugins/wix-draft-plugin-gallery/types';
 
 const typeMap = {
-  [IMAGE_TYPE_LEGACY]: Image.Component,
-  [IMAGE_TYPE]: Image.Component,
+  [IMAGE_TYPE_LEGACY]: ImageViewer,
+  [IMAGE_TYPE]: ImageViewer,
   [VIDEO_TYPE]: Video.Component,
   [VIDEO_TYPE_LEGACY]: Video.Component,
   [HTML_TYPE]: Html.Component,
   [DIVIDER_TYPE]: Divider.Component,
-  [GALLERY_TYPE]: Gallery.Component,
+  [GALLERY_TYPE]: GalleryViewer,
 };
 
 

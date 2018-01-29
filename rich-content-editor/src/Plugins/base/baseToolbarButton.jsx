@@ -86,9 +86,15 @@ class BaseToolbarButton extends React.Component {
   };
 
   getIcon = () => {
-    const ActiveIcon = this.props.iconActive || this.props.icon;
-    const Icon = this.props.icon;
-    return this.state.isActive ? <ActiveIcon /> : <Icon />;
+    const { iconActive, icon, theme } = this.props;
+    const ActiveIcon = iconActive || icon;
+    const Icon = icon;
+    const iconClassNames = classNames(Styles.icon, theme && theme.icon);
+    return (
+      <div className={iconClassNames}>
+        {this.state.isActive ? <ActiveIcon /> : <Icon />}
+      </div>
+    );
   };
 
   renderToggleButton = (buttonWrapperClassNames, buttonClassNames) => {
@@ -129,7 +135,7 @@ class BaseToolbarButton extends React.Component {
         <form ref={this.setForm}>
           <input name="file" type="file" onChange={this.handleFileChange} accept="image/*" tabIndex="-1" />
         </form>
-        <button type="button" children={this.props.children}>
+        <button children={this.props.children}>
           {this.getIcon()}
         </button>
       </div>

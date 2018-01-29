@@ -136,7 +136,7 @@ const modalStyles = {
     outline: 'none',
     padding: 0,
     height: '100vh',
-    width: '522px',
+    width: '420px',
   },
 };
 
@@ -159,7 +159,7 @@ const InlineButtons = [
     keyName: 'settings',
     type: BUTTONS.EXTERNAL_MODAL,
     icon: SettingsIcon,
-    panelElement: ImageSettings,
+    modalElement: ImageSettings,
     modalStyles,
   },
   {

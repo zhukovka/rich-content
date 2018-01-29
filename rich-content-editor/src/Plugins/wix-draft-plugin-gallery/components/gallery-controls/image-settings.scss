@@ -27,11 +27,13 @@
   height: 50px;
   width: 100%;
 
-  button {
+  button, label {
     border-bottom: 1px #ededed solid;
     outline: none;
     display: flex;
     justify-content: center;
+    align-items: center;
+    cursor: pointer;
 
     &::focus, &::active {
       outline: none;
@@ -72,7 +74,7 @@
   bottom: 0;
   right: 0;
   background: #fff;
-  z-index: 102;
+  z-index: 5;
 }
 
 .image {

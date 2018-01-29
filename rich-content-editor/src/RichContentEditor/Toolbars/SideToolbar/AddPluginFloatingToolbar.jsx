@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import PlusIcon from './icons/plus-default.svg';
-import PlusActiveIcon from './icons/plus-active.svg';
+import classNames from 'classnames';
+import PlusIcon from '../icons/plus-default.svg';
+import PlusActiveIcon from '../icons/plus-active.svg';
+import Styles from '~/Styles/side-toolbar.scss';
 
-export default class AddPluginBlockSelect extends Component {
+export default class AddPluginFloatingToolbar extends Component {
   state = {
     style: {
       isActive: false,
@@ -14,20 +16,26 @@ export default class AddPluginBlockSelect extends Component {
   onMouseDown = event => {
     event.preventDefault();
     event.stopPropagation();
-    this.togglePopup();
+    this.setState({ isActive: !this.state.isActive }, () => {
+      this.togglePopup();
+    });
   };
 
   togglePopup = () => {
-    if (this.state.isActive) {
-      this.hidePopup();
+    const { isMobile } = this.props;
+    if (!isMobile) {
+      if (this.state.isActive) {
+        this.hidePopup();
+      } else {
+        this.showPopup();
+      }
     } else {
-      this.showPopup();
+      this.props.pubsub.set('addPluginPanelVisible', this.state.isActive);
     }
   };
 
   showPopup = () => {
     this.setState({
-      isActive: true,
       style: {
         left: this.getPopupOffset(),
         transform: 'translate(-50%) scale(1)',
@@ -38,7 +46,6 @@ export default class AddPluginBlockSelect extends Component {
 
   hidePopup = () => {
     this.setState({
-      isActive: false,
       style: {
         transform: 'translate(-50%) scale(0)',
       },
@@ -56,18 +63,22 @@ export default class AddPluginBlockSelect extends Component {
 
   render() {
     const { theme, getEditorState, setEditorState } = this.props;
+    const { buttonStyles, toolbarStyles } = theme || {};
+    const wrapperClassNames = classNames(Styles.wrapper, toolbarStyles && toolbarStyles.wrapper);
+    const blockTypeClassNames = classNames(Styles.blockType, toolbarStyles && toolbarStyles.blockType);
+    const popoupClassNames = classNames(Styles.popup, theme && theme.popup);
     return (
-      <div className={theme.addPluginBlockSelectStyles.addBlockWrapper}>
-        <div className={theme.addPluginBlockSelectStyles.blockType} onMouseDown={this.onMouseDown} ref={el => (this.selectButton = el)}>
+      <div className={wrapperClassNames}>
+        <div className={blockTypeClassNames} onMouseDown={this.onMouseDown} ref={el => (this.selectButton = el)}>
           {!this.state.isActive ? <PlusIcon /> : <PlusActiveIcon />}
         </div>
-        <div className={theme.addPluginBlockSelectStyles.popup} style={this.state.style} ref={el => (this.popup = el)}>
+        <div className={popoupClassNames} style={this.state.style} ref={el => (this.popup = el)}>
           {this.props.structure.map((Component, index) => (
             <Component
               key={index}
               getEditorState={getEditorState}
               setEditorState={setEditorState}
-              theme={theme.buttonStyles}
+              theme={buttonStyles}
               hidePluginSelectPopup={this.hidePopup}
             />
           ))}
@@ -77,9 +88,11 @@ export default class AddPluginBlockSelect extends Component {
   }
 }
 
-AddPluginBlockSelect.propTypes = {
+AddPluginFloatingToolbar.propTypes = {
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
   structure: PropTypes.array.isRequired,
+  pubsub: PropTypes.object.isRequired,
   theme: PropTypes.object,
+  isMobile: PropTypes.bool
 };

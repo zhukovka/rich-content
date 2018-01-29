@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default ({ alignment, size, content }) =>
+export default ({ alignment, size, Icon }) =>
   class BlockAlignmentAndSizeButton extends Component {
     static propTypes = {
       setAlignmentAndSize: PropTypes.func.isRequired,
@@ -24,7 +24,11 @@ export default ({ alignment, size, content }) =>
       const className = this.isActive() ? classNames(theme.button, theme.active) : theme.button;
       return (
         <div className={theme.buttonWrapper} onMouseDown={this.preventBubblingUp}>
-          <button className={className} onClick={this.handleClick} type="button" children={content} />
+          <button className={className} onClick={this.handleClick}>
+            <div className={theme.icon}>
+              <Icon />
+            </div>
+          </button>
         </div>
       );
     }

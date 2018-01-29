@@ -4,7 +4,7 @@
   }
 }
 
-.filesButtonWrapper {
+.filesButton {
   position: relative;
   width: 70px;
   height: 30px;
@@ -13,46 +13,16 @@
   overflow: visible;
   white-space: nowrap;
   text-align: right;
+  font-size: 12px;
+  line-height: 40px;
 
   &:hover {
     cursor: pointer;
     color: #4990e2;
   }
-
-  form,
-  input,
-  button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-  }
-
-  button {
-    font-size: 12px;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    line-height: 40px;
-    pointer-events: none;
-    z-index: 0;
-    cursor: pointer;
-  }
-
-  form {
-    opacity: 0;
-    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
-    filter: alpha(opacity=0);
-    input {
-      font-size: 100px;
-      z-index: 1;
-    }
-  }
 }
 
-.filesItemWrapper {
+.filesItem {
   position: relative;
   cursor: pointer;
   border: 1px dashed rgba(51, 51, 51, 0.2);;

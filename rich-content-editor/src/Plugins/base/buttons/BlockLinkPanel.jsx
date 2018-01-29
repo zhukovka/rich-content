@@ -4,29 +4,47 @@ import isEmpty from 'lodash/isEmpty';
 import LinkPanel from '~/Common/LinkPanel';
 
 class BlockLinkPanel extends Component {
-  wrapBlockInLink = ({ url, targetBlank }) => {
-    const { store } = this.props;
+
+  setLinkPanel = linkPanel => this.linkPanel = linkPanel;
+
+  wrapBlockInLink = ({ url, targetBlank, nofollow }) => {
+    const { pubsub } = this.props;
     if (!isEmpty(url)) {
-      store.set('componentLink', { url, targetBlank });
+      pubsub.set('componentLink', { url, targetBlank, nofollow });
     } else {
-      store.set('componentLink', undefined);
+      pubsub.set('componentLink', undefined);
     }
     this.hideLinkPanel();
   };
+
+  onCloseRequested = () => {
+    const { url, targetBlank, nofollow } = this.linkPanel.state;
+    this.wrapBlockInLink({ url, targetBlank, nofollow });
+  }
+
 
   hideLinkPanel = () => {
     this.props.onExtendContent(undefined);
   };
 
   render() {
-    const componentLink = this.props.store.get('componentLink') || {};
-    const { url, targetBlank } = componentLink;
-    return <LinkPanel url={url} targetBlank={targetBlank} onDone={this.wrapBlockInLink} onCancel={this.hideLinkPanel} />;
+    const componentLink = this.props.pubsub.get('componentLink') || {};
+    const { url, targetBlank, nofollow } = componentLink;
+    return (
+      <LinkPanel
+        ref={this.setLinkPanel}
+        url={url}
+        targetBlank={targetBlank}
+        nofollow={nofollow}
+        onDone={this.wrapBlockInLink}
+        onCancel={this.hideLinkPanel}
+      />
+    );
   }
 }
 
 BlockLinkPanel.propTypes = {
-  store: PropTypes.object.isRequired,
+  pubsub: PropTypes.object.isRequired,
   onExtendContent: PropTypes.func.isRequired,
 };
 

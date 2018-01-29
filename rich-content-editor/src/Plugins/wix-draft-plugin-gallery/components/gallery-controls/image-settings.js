@@ -8,6 +8,7 @@ import { SettingsSection } from './settings-section';
 import InputWithLabel from '../stylable-base/input-with-label';
 import style from './image-settings.scss';
 import GallerySettingsFooter from './gallery-settings-footer';
+import FileInput from '../stylable-base/file-input';
 
 class ImageSettings extends Component {
   state = this.propsToState(this.props);
@@ -75,12 +76,9 @@ class ImageSettings extends Component {
           </div>
         </SettingsSection>
         <div className={style['manage-image-grid']}>
-          <button className={style.replace}>
-            <form>
-              <input name="file" type="file" onChange={this.replaceItem.bind(this)} accept="image/*" tabIndex="-1" />
-            </form>
+          <FileInput className={style.replace} onChange={this.replaceItem.bind(this)}>
             <span>{'Replace'}</span>
-          </button>
+          </FileInput>
           <button className={style.delete} onClick={() => this.deleteImage(selectedImage)}>
             <span>{'Delete'}</span>
           </button>

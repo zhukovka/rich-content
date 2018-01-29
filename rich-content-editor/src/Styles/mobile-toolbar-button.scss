@@ -1,0 +1,16 @@
+@import './mixins';
+@import './palette';
+
+.buttonWrapper {
+  flex: 1;
+  text-align: center;
+  margin-right: 0;
+
+  .button {
+    width: 75%;
+  }
+
+  .icon {
+    width: 100%;
+  }
+}

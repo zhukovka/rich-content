@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AtomicBlockUtils, EditorState, SelectionState } from '@wix/draft-js';
 import cloneDeep from 'lodash/cloneDeep';
+import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
 import Tooltip from 'wix-style-react/dist/src/Tooltip';
 import Styles from '~/Styles/toolbar-button.scss';
@@ -76,8 +77,16 @@ export default ({ blockType, button, pubsub }) => {
     renderButton = () => {
       const { theme, hideName } = this.props;
       const { name, Icon } = button;
-      const children = [<Icon key="0" />, hideName ? null : <span key="1">{name}</span>].filter(child => child);
-      return <button className={classNames(Styles.button, theme.button)} onClick={this.onClick} type="button" children={children} />;
+      const buttonClassNames = classNames(Styles.button, theme && theme.button);
+      const iconClassNames = classNames(Styles.icon, theme && theme.icon);
+      return (
+        <button className={buttonClassNames} onClick={this.onClick}>
+          <div className={iconClassNames}>
+            <Icon key="0" />
+          </div>
+          {!hideName && <span key="1">{name}</span>}
+        </button>
+      );
     };
 
     openVideoUploadModal = () => {
@@ -107,17 +116,40 @@ export default ({ blockType, button, pubsub }) => {
     };
 
     render() {
-      const { theme } = this.props;
+      const { theme, isMobile } = this.props;
       const { tooltipText } = button;
-      return (
-        <Tooltip content={tooltipText} textAlign="center" maxWidth="" moveBy={{ x: -8 }} shouldCloseOnClickOutside theme="dark">
-          <div className={classNames(Styles.buttonWrapper, theme.buttonWrapper)} onMouseDown={this.preventBubblingUp}>
-            {this.renderButton()}
-            {button.type === 'file' && this.renderFileUploadForm()}
-            {button.type === 'video' && this.renderVideoUploadForm(this.state.isVideoUploadModalOpen)}
-          </div>
-        </Tooltip>
+      const showTooltip = !isMobile && !isEmpty(tooltipText);
+      const buttonWrapperClassNames = classNames(
+        Styles.buttonWrapper,
+        {
+          [Styles.mobile]: isMobile,
+        },
+        theme && theme.buttonWrapper
       );
+
+      const Button = (
+        <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
+          {this.renderButton()}
+          {button.type === 'file' && this.renderFileUploadForm()}
+          {button.type === 'video' && this.renderVideoUploadForm(this.state.isVideoUploadModalOpen)}
+        </div>
+      );
+
+      if (showTooltip) {
+        return (
+          <Tooltip
+            content={tooltipText}
+            textAlign="center"
+            maxWidth=""
+            moveBy={{ x: -8 }}
+            shouldCloseOnClickOutside theme="dark"
+          >
+            {Button}
+          </Tooltip>
+        );
+      } else {
+        return Button;
+      }
     }
   }
 
@@ -127,6 +159,7 @@ export default ({ blockType, button, pubsub }) => {
     hidePluginSelectPopup: PropTypes.func,
     hideName: PropTypes.bool,
     theme: PropTypes.object,
+    isMobile: PropTypes.bool,
   };
 
   return InsertPluginButton;

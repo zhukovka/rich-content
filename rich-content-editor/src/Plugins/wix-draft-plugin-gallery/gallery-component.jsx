@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ProGallery } from 'pro-gallery-renderer';
+import { GalleryViewer, getDefault } from './gallery-viewer';
 //import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils'; [for dev only]
 
 //import 'pro-gallery-renderer/dist/statics/main.min.css';
@@ -98,37 +98,15 @@ class GalleryComponent extends React.PureComponent {
   componentWillReceiveProps(nextProps) {
     //console.log('Gallery Props Changed!', baseUtils.printableObjectsDiff(this.props, nextProps)); [for dev only]
     this.setState(this.stateFromProps(nextProps));
-    this.updateDimensions();
-  }
-  componentDidMount() {
-    window.addEventListener('resize', this.updateDimensions.bind(this));
-    this.updateDimensions();
-  }
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions.bind(this));
-  }
-
-  updateDimensions() {
-    if (this.container && this.container.clientWidth) {
-      const width = this.container.clientWidth;
-      const height = width * 3 / 4;
-      this.setState({ size: { width, height } });
-    }
   }
 
   stateFromProps = props => {
-    const { keyName, isActive } = (props.componentState && props.componentState.activeButton) || {};
-    const inEditMode = keyName === 'edit' && isActive;
     const items = props.componentData.items || [];// || DEFAULTS.items;
-    const styles = Object.assign(DEFAULTS.styles, props.componentData.styles || {});
-    const layout = props.componentData.config && props.componentData.config.layout;
-    const layoutWidth = layout === 'large' ? 100 : layout === 'medium' ? 50 : 33;
+    const defaults = getDefault();
+    const styles = Object.assign(defaults.styles, props.componentData.styles || {});
     const isLoading = (props.componentState && props.componentState.isLoading) || 0;
-
     const state = {
       items,
-      inEditMode,
-      layoutWidth,
       styles,
       isLoading
     };
@@ -151,11 +129,11 @@ class GalleryComponent extends React.PureComponent {
     }
 
     return state;
-  }
+  };
 
   setItemInGallery = (item, itemPos) => {
     const shouldAdd = (typeof itemPos === 'undefined');
-    let { items } = this.state;
+    let { items, styles } = this.state;
     let itemIdx;
     if (shouldAdd) {
       itemIdx = items.length;
@@ -168,11 +146,11 @@ class GalleryComponent extends React.PureComponent {
     console.log('New items loaded', items); //eslint-disable-line no-console
     this.setState({ items });
     if (this.props.store) {
-      this.props.store.update('componentData', { items });
+      this.props.store.update('componentData', { items, styles, config: {} });
     }
 
     return itemIdx;
-  }
+  };
 
   handleFilesSelected = (files, itemPos) => {
     Array(...files).forEach(file => {
@@ -180,7 +158,7 @@ class GalleryComponent extends React.PureComponent {
       reader.onload = e => this.fileLoaded(e, file, itemPos);
       reader.readAsDataURL(file);
     });
-  }
+  };
   imageLoaded = (event, file, itemPos) => {
     const img = event.target;
     const item = {
@@ -212,7 +190,7 @@ class GalleryComponent extends React.PureComponent {
     } else {
       console.warn('Missing upload function'); //eslint-disable-line no-console
     }
-  }
+  };
 
   fileLoaded = (event, file, itemPos) => {
 
@@ -223,12 +201,15 @@ class GalleryComponent extends React.PureComponent {
   };
 
   render() {
-    const { items, styles } = this.state;
     //console.log('Rendering ProGallery', styles);
     return (
-      <div ref={elem => this.container = elem}>
-        <ProGallery styles={styles} items={items} galleryDataSrc={'manuallySetImages'} container={this.state.size} />
-      </div>);
+      <GalleryViewer
+        componentData={this.props.componentData}
+        onClick={this.props.onClick}
+        className={this.props.className}
+        theme={this.props.theme}
+        helpers={this.props.helpers}
+      />);
   }
 }
 
@@ -243,4 +224,4 @@ GalleryComponent.propTypes = {
   helpers: PropTypes.object.isRequired
 };
 
-export { GalleryComponent as Component, DEFAULTS };
+export { GalleryComponent as Component, getDefault };

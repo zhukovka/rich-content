@@ -156,7 +156,7 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
         const batchUpdates = {};
         const blockNode = findDOMNode(this);
         const componentData = this.state.componentData;
-        const config = componentData.config;
+        const config = componentData.config || {};
         const boundingRect = this.getBoundingClientRectAsObject(blockNode);
         batchUpdates.boundingRect = boundingRect;
         batchUpdates.componentData = componentData;
@@ -223,14 +223,24 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
 
       return (
         <div style={{ position: 'relative' }} className={ContainerClassNames}>
-          {!isUndefined(url) ? (
-            <a href={url.url} target={url.targetBlank ? '_blank' : '_self'}>
-              {component}
-            </a>
-          ) : (
-            component
-          )}
-          <div onClick={onClick} className={overlayClassNames} />
+          {!isUndefined(url) ?
+            url.nofollow ?
+              (
+                <a href={url.url} target={url.targetBlank ? '_blank' : '_self'} rel="nofolow">
+                  {component}
+                </a>
+              ) :
+              (
+                <a href={url.url} target={url.targetBlank ? '_blank' : '_self'}>
+                  {component}
+                </a>
+              ) : (
+              component
+            )}
+          { !this.state.readOnly && (
+            <div onClick={onClick} className={overlayClassNames} />
+          )
+          }
         </div>
       );
     };

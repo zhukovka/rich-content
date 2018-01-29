@@ -30,7 +30,8 @@
       "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js",
       "^draft-js$": "<rootDir>/node_modules/@wix/draft-js/dist/Draft.min.js",
-      "^draft-js\/.*$": "<rootDir>/node_modules/@wix/draft-js/dist/Draft.min.js"
+      "^draft-js/.*$": "<rootDir>/node_modules/@wix/draft-js/dist/Draft.min.js",
+      "^@wix/draft-js$": "<rootDir>/node_modules/@wix/draft-js/dist/Draft.min.js"
     }
   },
   "dependencies": {
@@ -39,11 +40,8 @@
     "decorate-component-with-props": "^1.0.2",
     "draft-js-drag-n-drop-plugin": "^2.0.1",
     "draft-js-focus-plugin": "^2.0.1",
-    "draft-js-inline-toolbar-plugin": "^2.0.1",
     "draft-js-linkify-plugin": "^2.0.1",
     "draft-js-plugins-editor": "^2.0.1",
-    "draft-js-side-toolbar-plugin": "^2.0.1",
-    "draft-js-static-toolbar-plugin": "^2.0.1",
     "image-client-api": "1.51.0",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
@@ -52,12 +50,13 @@
     "react-sortable-hoc": "^0.6.8",
     "redraft": "^0.9.0",
     "stylable-components": "^0.4.0",
+    "wnpm-ci": "latest",
     "wix-style-react": "^1.2.3",
-    "wnpm-ci": "latest"
+    "@wix/draft-js": "^0.10.4",
+    "immutable": "^3.8.1",
+    "pro-gallery-renderer": "^1.0.60"
   },
   "peerDependencies": {
-    "pro-gallery-renderer": "^1.0.60",
-    "immutable": "^3.8.1",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0"
   },
@@ -94,9 +93,7 @@
     "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.2",
-    "webpack-merge": "^4.1.1",
-    "@wix/draft-js": "^0.10.4",
-    "pro-gallery-renderer": "^1.0.64"
+    "webpack-merge": "^4.1.1"
   },
   "eslintConfig": {
     "extends": "wix/react"

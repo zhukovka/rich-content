@@ -63,9 +63,9 @@ module.exports = {
               jsx: true,
               svgo: {
                 plugins: [
-                  {
-                    cleanupIDs: false,
-                  },
+                  { cleanupIDs: false },
+                  { removeViewBox: false },
+                  { removeDimensions: true },
                 ],
               },
             }),
@@ -92,6 +92,9 @@ module.exports = {
   target: 'web',
   externals: [
     /^pro-gallery-renderer.*$/,
+    /^wix-style-react.*$/,
+    /^@wix.*/,
+    'mobx',
     {
       immutable: {
         root: 'Immutable',

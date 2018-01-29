@@ -5,17 +5,17 @@ import { insertLink } from '~/Utils';
 import LinkPanel from '~/Common/LinkPanel';
 
 export default class TextLinkPanel extends Component {
-  createLinkEntity = ({ url, targetBlank }) => {
+  createLinkEntity = ({ url, targetBlank, nofollow }) => {
     if (!isEmpty(url)) {
       const { getEditorState, setEditorState } = this.props;
-      const newEditorState = insertLink(getEditorState(), { url, targetBlank });
+      const newEditorState = insertLink(getEditorState(), { url, targetBlank, nofollow });
       setEditorState(newEditorState);
     }
     this.hideLinkPanel();
   };
 
   hideLinkPanel = () => {
-    this.props.onOverrideContent(undefined);
+    this.props.onExtendContent(undefined);
   };
 
   render() {
@@ -26,6 +26,6 @@ export default class TextLinkPanel extends Component {
 TextLinkPanel.propTypes = {
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
-  onOverrideContent: PropTypes.func.isRequired,
+  onExtendContent: PropTypes.func.isRequired,
   theme: PropTypes.object,
 };
