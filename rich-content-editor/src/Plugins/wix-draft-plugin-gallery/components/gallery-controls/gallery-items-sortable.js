@@ -6,7 +6,7 @@ import { getScaleToFillImageURL } from 'image-client-api/dist/imageClientSDK';
 
 import style from './gallery-items-sortable.scss';
 import ImageSettings from './gallery-image-settings';
-import FileInput from '../stylable-base/file-input';
+import FileInput from '~/Common/file-input';
 import ImageLoader from '~/Common/image-loader';
 
 //eslint-disable-next-line no-unused-vars

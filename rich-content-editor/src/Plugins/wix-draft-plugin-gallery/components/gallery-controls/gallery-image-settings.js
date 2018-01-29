@@ -8,7 +8,7 @@ import { SettingsSection } from './settings-section';
 import InputWithLabel from '../stylable-base/input-with-label';
 import style from './gallery-image-settings.scss';
 import GallerySettingsFooter from './gallery-settings-footer';
-import FileInput from '../stylable-base/file-input';
+import FileInput from '~/Common/file-input';
 
 class ImageSettings extends Component {
   state = this.propsToState(this.props);
