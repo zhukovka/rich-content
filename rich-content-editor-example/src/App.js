@@ -7,8 +7,7 @@ import * as WixRichContentEditor from 'wix-rich-content-editor';
 import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 import { testImages } from './images-mock';
-// import theme from './theme/theme';
-//import TestData from './TestData/initialState';
+import theme from './theme/theme';
 
 const modalStyleDefaults = {
   content: {
@@ -142,7 +141,7 @@ class App extends Component {
               readOnly={this.state.readOnly}
               sideToolbarOffset={sideToolbarOffset}
               isMobile={this.isMobile()}
-              theme={{}}
+              theme={theme}
             />
             <ReactModal
               isOpen={this.state.showModal}

@@ -1,7 +1,7 @@
 @import './fonts.theme.scss';
 
 .wrapper {
-  @extend .fontElementMap;
+  @extend .fontElementMap !optional;
 }
 
 .editor {

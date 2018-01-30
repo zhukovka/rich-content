@@ -21,39 +21,39 @@
 }
 
 .regularText {
-  font-family: '2dumbregular';
+  // font-family: '2dumbregular';
 }
 
 .headerText {
-  font-family: '3dumbregular';
+  // font-family: '3dumbregular';
 }
 
 .fontElementMap {
   * {
-    @extend .regularText;
+    @extend .regularText !optional;
   }
 
   h1,h2,h3,h4,h5,h6 {
-    @extend .headerText;
+    @extend .headerText !optional;
   }
 }
 
 :global {
   .glob_regularText {
-    font-family: '2dumbregular';
+    // font-family: '2dumbregular';
   }
 
   .glob_headerText {
-    font-family: '3dumbregular';
+    // font-family: '3dumbregular';
   }
 
   .glob_fontElementMap {
     * {
-      @extend .glob_regularText;
+      @extend .glob_regularText !optional;
     }
 
     h1,h2,h3,h4,h5,h6 {
-      @extend .glob_headerText;
+      @extend .glob_headerText !optional;
     }
   }
 }

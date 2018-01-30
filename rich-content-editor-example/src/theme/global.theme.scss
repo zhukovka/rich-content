@@ -9,19 +9,19 @@
 }
 
 .pluginContainerReadOnly {
-  @extend .fontElementMap;
+  @extend .fontElementMap !optional;
 }
 
 .pluginContainer {
-  @extend .fontElementMap;
+  @extend .fontElementMap !optional;
 }
 
 .panelContainer {
-  @extend .fontElementMap;
+  @extend .fontElementMap !optional;
 }
 
 :global {
   .ReactModalPortal {
-    @extend .glob_fontElementMap;
+    @extend .glob_fontElementMap !optional;
   }
 }
