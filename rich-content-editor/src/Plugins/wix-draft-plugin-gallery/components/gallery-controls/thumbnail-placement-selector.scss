@@ -3,6 +3,22 @@
   transform: rotateZ($rotation + deg);
 }
 
+.thumbnail-placement-selector {
+  label {
+    display: block;
+  }
+}
+
+.thumbnails-grid {
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 100%;
+}
+
+.thumbnail-tile {
+  width: 46px;
+  height: 46px;
+}
+
 .bottom {
   @include thumbnail_icon(0, 'thumbnails');
 }

@@ -4,6 +4,17 @@
   background: url('./icons/layout_' + $icon + '.svg') center no-repeat;
 }
 
+.layouts-grid {
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 100px 100px;
+}
+
+.layout-tile {
+  div {
+    margin: 10% auto 0 auto;
+  }
+}
+
 .grid {
   @include layout_icon('grid');
 }

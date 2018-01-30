@@ -37,6 +37,8 @@ List {
 
 List Option {
   font-size: 14px;
+  text-align: center;
+  margin: 0 auto 0 auto;
 }
 
 List Option:selected,
@@ -153,6 +155,3 @@ hr {
 label {
   font-size: 14px;
 }
-
-/* SPECIFIC COMPONENT CLASSES */
-
