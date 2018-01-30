@@ -108,8 +108,6 @@ Slider:x::handle {
   border-radius: 50%;
   background-color: #fff;
   border: solid 1px #ededed;
-  position: relative;
-  top: -5px;
 }
 
 Slider:x::handle::before {

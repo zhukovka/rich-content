@@ -1,9 +1,4 @@
-.section {
-  label + * {
-    margin-top: 9px;
-  }
 
-  hr {
-    margin: 10px auto 10px auto;
-  }
+.section + .section {
+    margin-top: 13px;
 }
