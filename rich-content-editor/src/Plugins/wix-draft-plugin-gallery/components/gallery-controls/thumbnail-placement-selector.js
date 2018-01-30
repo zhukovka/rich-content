@@ -1,28 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { SelectionList, SelectionListOption } from 'stylable-components/dist/src/components/selection-list';
+import { stylable } from 'wix-react-tools';
 
-import style from './thumbnail-placement-selector.scss';
-class ThumbnailPlacementSelector extends Component {
+import Styles from './thumbnail-placement-selector.scss';
+import stylableStyles from './thumbnail-placement-selector.st.css';
+
+const ThumbnailPlacementSelector = stylable(stylableStyles)(class ThumbnailPlacementSelector extends Component {
+
+  static propTypes = {
+    value: PropTypes.oneOf(['bottom', 'left', 'top', 'right']),
+    onChange: PropTypes.func.isRequired,
+  };
 
   dataSource = [{ alignment: 'bottom' }, { alignment: 'left' }, { alignment: 'top' }, { alignment: 'right' }];
 
   dataMapper = ({ alignment }) => ({ value: alignment });
 
-  renderOption = ({ alignment }, { value }, { id, selected, focused }) => (
-    <SelectionListOption id={id} value={value} selected={selected} focused={focused}>
-      <div className={classNames(style['thumbnail-tile'], style[selected ? `${alignment}_selected` : alignment])} />
+  renderOption = ({ alignment }, { value }, { id, selected }) => (
+    <SelectionListOption id={id} value={value} selected={selected}>
+      <div className={Styles[selected ? `${alignment}_selected` : alignment]}/>
     </SelectionListOption>
   );
 
   render() {
     const { value, onChange } = this.props;
     return (
-      <div className={style['thumbnail-placement-selector']}>
+      <div>
         <label>Thumbnail Placement</label>
         <SelectionList
-          className={style['thumbnails-grid']}
           dataSource={this.dataSource}
           dataMapper={this.dataMapper}
           renderItem={this.renderOption}
@@ -32,11 +38,6 @@ class ThumbnailPlacementSelector extends Component {
       </div>
     );
   }
-}
-
-ThumbnailPlacementSelector.propTypes = {
-  value: PropTypes.oneOf(['bottom', 'left', 'top', 'right']),
-  onChange: PropTypes.func.isRequired,
-};
+});
 
 export default ThumbnailPlacementSelector;
