@@ -6,11 +6,16 @@ import style from './radio-group-horizontal.scss';
 
 class RadioGroupHorizontal extends Component {
   render() {
-    const { label, ...props } = this.props;
+    const { label, readOnly, ...props } = this.props;
     return (
-      <div className={style['radio-group-horizontal']}>
+      <div
+        className={style['radio-group-horizontal']}
+        style={{
+          opacity: readOnly ? 0.5 : 1
+        }}
+      >
         {label ? <label>{label}</label> : null}
-        <RadioGroup {...props} className={style['radio-group']} />
+        <RadioGroup {...props} readOnly={readOnly} className={style['radio-group']} />
       </div>
     );
   }
@@ -19,6 +24,8 @@ class RadioGroupHorizontal extends Component {
 RadioGroupHorizontal.propTypes = {
   label: PropTypes.string,
   dataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
+  readOnly: PropTypes.bool,
+  disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
 };
