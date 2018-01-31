@@ -6,12 +6,20 @@
 
 .layouts-grid {
   grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 100px 100px;
+  grid-template-rows: 92px 73px;
 }
 
 .layout-tile {
   div {
-    margin: 10% auto 0 auto;
+    margin: 0 auto 0 auto;
+
+    & + label {
+      margin-top: 6px;
+    }
+  }
+  label {
+    line-height: 1.5;
+    display: block;
   }
 }
 

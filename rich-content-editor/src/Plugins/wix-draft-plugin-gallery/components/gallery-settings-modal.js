@@ -134,9 +134,6 @@ export class GallerySettingsModal extends Component {
               <AdvancedSettingsSection data={componentData} store={pubsub.store} />
             </Tab>
           </Tabs>
-          <SettingsSection>
-            <hr />
-          </SettingsSection>
         </div>
         <GallerySettingsFooter cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} />
       </ThemeProvider>

@@ -35,7 +35,7 @@ class LayoutSelector extends Component {
     <SelectionListOption id={id} value={layoutId} selected={selected} focused={focused}>
       <div className={style['layout-tile']}>
         <div className={style[selected ? `${label.toLowerCase()}_selected` : label.toLowerCase()]} />
-        <div>{label}</div>
+        <label>{label}</label>
       </div>
     </SelectionListOption>
   );
