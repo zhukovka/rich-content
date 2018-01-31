@@ -8,7 +8,7 @@ import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 import { testImages } from './images-mock';
 import theme from './theme/theme';
-import testData from './testData/initialState';
+//import testData from './testData/initialState';
 
 const modalStyleDefaults = {
   content: {
@@ -148,7 +148,7 @@ class App extends Component {
               helpers={this.helpers}
               plugins={this.plugins}
               decorators={this.decorators}
-              initialState={testData}
+              editorState={this.state.editorState}
               readOnly={this.state.readOnly}
               sideToolbarOffset={sideToolbarOffset}
               isMobile={this.isMobile()}

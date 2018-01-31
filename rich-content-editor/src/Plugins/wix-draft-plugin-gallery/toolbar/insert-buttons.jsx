@@ -1,4 +1,4 @@
-import { DEFAULTS } from './../gallery-component';
+import { getDefault } from './../gallery-component';
 import InsertPluginIcon from './../icons/insert-plugin.svg';
 
 export default ({ helpers }) => {
@@ -9,7 +9,7 @@ export default ({ helpers }) => {
       name: 'Gallery',
       tooltipText: 'Add a Gallery (add files)',
       Icon: InsertPluginIcon,
-      data: DEFAULTS,
+      data: getDefault(),
       helpers,
     },
   ];
