@@ -117,18 +117,14 @@ module.exports = {
         commonjs: 'immutable',
         amd: 'immutable',
         umd: 'immutable',
-      }
-    },
-    {
+      },
       react: {
         root: 'React',
         commonjs2: 'react',
         commonjs: 'react',
         amd: 'react',
         umd: 'react',
-      }
-    },
-    {
+      },
       'react-dom': {
         root: 'ReactDOM',
         commonjs2: 'react-dom',
@@ -136,7 +132,7 @@ module.exports = {
         amd: 'reactDOM',
         umd: 'react-dom',
       }
-    }
+    },
   ],
   stats: 'errors-only',
   plugins: [new ExtractTextPlugin(`${FILE_NAME}.css`), new StylablePlugin({ injectBundleCss: true, filename: 'stylable.css', nsDelimiter: '--' })],

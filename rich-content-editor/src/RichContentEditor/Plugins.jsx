@@ -9,7 +9,7 @@ import { createImagePlugin, IMAGE_TYPE } from '~/Plugins/wix-draft-plugin-image'
 import { createVideoPlugin, VIDEO_TYPE } from '~/Plugins/wix-draft-plugin-video';
 import Styles from '~/Styles/text-linkify.scss';
 
-const PluginList = [DIVIDER_TYPE, GALLERY_TYPE, HTML_TYPE, IMAGE_TYPE, VIDEO_TYPE];
+const PluginList = [IMAGE_TYPE, GALLERY_TYPE, VIDEO_TYPE, HTML_TYPE, DIVIDER_TYPE];
 
 const activePlugins = (requestedPlugins = PluginList, config) => {
   const { theme } = config || {};
