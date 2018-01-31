@@ -44,8 +44,8 @@ class LayoutControlsSection extends Component {
     thumbnailSize: {
       component: ThumbnailSize,
       props: {
-        onChange: event => this.applyGallerySetting({ thumbnailSize: event.value }),
-        value: this.getValueFromComponentStyles('thumbnailSize'),
+        onChange: event => this.applyGallerySetting({ gallerySize: event.value }),
+        value: this.getValueFromComponentStyles('gallerySize'),
       },
     },
     spacing: {

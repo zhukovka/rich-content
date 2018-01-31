@@ -124,7 +124,6 @@ class GalleryComponent extends React.PureComponent {
   };
 
   render() {
-    //console.log('Rendering ProGallery', styles);
     return (
       <GalleryViewer
         componentData={this.props.componentData}

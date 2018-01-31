@@ -6,6 +6,7 @@ const getDefault = () => ({
   items: [],
   styles: {
     galleryLayout: 0,
+    gallerySize: 300,
     oneRow: false,
     cubeRatio: 1,
     galleryThumbnailsAlignment: 'bottom',
@@ -68,6 +69,8 @@ class GalleryViewer extends React.Component {
 
   render() {
     const { items, styles, size } = this.state;
+
+    // console.log('Rendering ProGallery', styles);
 
     return (
       <div ref={elem => this.container = elem}>

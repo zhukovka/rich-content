@@ -13,7 +13,7 @@ class SliderWithInput extends Component {
         {label ? <label>{label}</label> : null}
         <div>
           <Slider value={value} onChange={onChange} min={min} max={max} className={style.slider} />
-          <input value={value} onChange={onChange} className={style.input}/>
+          <input value={Math.floor(value)} onChange={onChange} className={style.input}/>
         </div>
       </div>
     );
