@@ -23,7 +23,7 @@ class ImageRatioSelector extends Component {
         <div className={classNames(style.ratioButton, selected ? style.selected : '')}>
           <div className={classNames(ratioClass, selected ? style.selected : '')} />
         </div>
-        <div className={style.ratioLabel}>{label}</div>
+        <label className={style.ratioLabel}>{label}</label>
       </div>
     </SelectionListOption>
   );

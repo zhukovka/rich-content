@@ -71,13 +71,11 @@ class AdvancedSettingsSection extends Component {
     return (
       <div>
         <SettingsSection>
-          <label>Layouts</label>
           <LayoutSelector
             value={this.getValueFromComponentStyles('galleryLayout')}
             onChange={event => this.switchLayout({ galleryLayout: event.value })}
             layoutsOrder={this.layoutsOrder}
           />
-          <hr />
         </SettingsSection>
         <LayoutControlsSection
           layout={this.getValueFromComponentStyles('galleryLayout')}

@@ -4,6 +4,13 @@
   background: url('./icons/layout_' + $icon + '.svg') center no-repeat;
 }
 
+.layouts-selector {
+  label {
+    display: block;
+    margin-bottom: 13px;
+  }
+}
+
 .layouts-grid {
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 92px 73px;

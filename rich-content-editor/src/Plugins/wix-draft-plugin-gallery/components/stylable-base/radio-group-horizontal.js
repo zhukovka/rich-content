@@ -8,13 +8,8 @@ class RadioGroupHorizontal extends Component {
   render() {
     const { label, readOnly, ...props } = this.props;
     return (
-      <div
-        className={style['radio-group-horizontal']}
-        style={{
-          opacity: readOnly ? 0.5 : 1
-        }}
-      >
-        {label ? <label>{label}</label> : null}
+      <div className={classnames(style['radio-group-horizontal'], readonly ? style.readOnly : '')}>
+        {label ? <label className={style.titleLabel}>{label}</label> : null}
         <RadioGroup {...props} readOnly={readOnly} className={style['radio-group']} />
       </div>
     );
