@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import DraftOffsetKey from '@wix/draft-js/lib/DraftOffsetKey';
+import Styles from '~/Styles/side-toolbar-wrapper.scss';
 
 const toolbarOffset = 4;
 
@@ -64,10 +66,17 @@ export default class SideToolbar extends Component {
 
   render() {
     const { theme, pubsub } = this.props;
+    const { wrapperStyles } = theme || {};
+    const wrapperClassNames = classNames(Styles.wrapper, wrapperStyles && wrapperStyles.wrapper);
     return (
-      <div className={theme.toolbarStyles.wrapper} style={this.state.position}>
+      <div className={wrapperClassNames} style={this.state.position}>
         {this.props.structure.map((Component, index) => (
-          <Component key={index} getEditorState={pubsub.get('getEditorState')} setEditorState={pubsub.get('setEditorState')} theme={theme} />
+          <Component
+            key={index}
+            getEditorState={pubsub.get('getEditorState')}
+            setEditorState={pubsub.get('setEditorState')}
+            theme={theme}
+          />
         ))}
       </div>
     );

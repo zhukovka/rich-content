@@ -1,0 +1,158 @@
+/* IMPORT DECLARATIONS */
+:import {
+    -st-from: '../../node_modules/stylable-components/dist/src/components/selection-list/selection-list.st.css';
+    -st-default: List;
+}
+
+:import {
+    -st-from: '../../node_modules/stylable-components/dist/src/components/selection-list/option.st.css';
+    -st-default: Option;
+}
+
+:import {
+    -st-from: '../../node_modules/stylable-components/dist/src/components/tabs/tabs.st.css';
+    -st-default: Tabs;
+}
+
+:import {
+    -st-from: '../../node_modules/stylable-components/dist/src/components/button/button.st.css';
+    -st-default: Button;
+}
+
+:import {
+    -st-from: '../../node_modules/stylable-components/dist/src/components/slider/slider.st.css';
+    -st-default: Slider;
+}
+
+:import {
+	-st-from: "../../node_modules/stylable-components/dist/src/components/radio-group/radio-button.st.css";
+	-st-default: RadioButton;
+}
+
+/* STYLABLE-BASE CUSTOMIZATIONS -- APPLY TO ALL STYLABLE COMPONENTS!!! */
+List {
+  width: 100%;
+  display: grid;
+}
+
+List Option {
+  font-size: 14px;
+}
+
+List Option:selected,
+List Option:active,
+List Option:focused {
+  background-color: #fff;
+  color: #0261ff;
+}
+
+Tabs {
+  width: 100%;
+}
+
+Tabs::tabList {
+  justify-content: space-around;
+  height: 50px;
+  border-bottom: solid 1px #ededed;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+Tabs::tabList Option {
+  width: 50%;
+  padding: 1em;
+  text-align: center;
+}
+
+Tabs::tabList Option + Option {
+  border-left: solid 1px #ededed;
+}
+
+Tabs::tabPanel {
+  padding: 24px 30px 30px 30px;
+}
+
+Tabs::tabList Option:selected:hover:not(:disabled),
+Tabs::tabList:focused Option:selected:hover:not(:disabled),
+Tabs::tabList Option:selected:not(:disabled),
+Tabs::tabList:focused Option:selected:not(:disabled){
+  border-bottom: solid 3px #0261ff;
+}
+
+Button {
+  font-size: 14px;
+  color: #fff;
+  background-color: #0261ff;
+  padding: 10px 24px;
+}
+
+Button,
+Button:active,
+Button:focus {
+  outline: none;
+  border: none;
+}
+
+Slider:x::bar {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background-color: #0261ff;
+}
+
+Slider:x::handle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: solid 1px #ededed;
+  position: relative;
+  top: -5px;
+}
+
+Slider:x::handle::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background-color: #0261ff;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+
+Slider:x::handle,
+Slider:x::handle:active,
+Slider:x::handle:focus {
+  outline: none;
+}
+
+input {
+  font-family : inherit;
+  font-size: 14px;
+  border-radius: 3px;
+  border: solid 1px #ededed;
+  height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0.1em;
+  text-align: center;
+}
+
+input:active,
+input:focus {
+  outline: none;
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid #ededed;
+}
+
+label {
+  font-size: 14px;
+}
+
+/* SPECIFIC COMPONENT CLASSES */
+

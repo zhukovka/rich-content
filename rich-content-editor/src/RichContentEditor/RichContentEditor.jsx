@@ -19,10 +19,23 @@ export default class RichContentEditor extends Component {
       readOnly: props.readOnly || false,
       theme: props.theme || {}
     };
+
     const { plugins, pluginButtons } = createPlugins({ ...props, theme: this.state.theme });
-    this.toolbars = createToolbars({ ...props, pluginButtons, theme: this.state.theme });
+    this.toolbars = createToolbars({ ...props, pluginButtons, theme: this.state.theme.toolbars });
     this.plugins = [...plugins, ...Object.values(this.toolbars)];
     this.decorators = createDecorators(props.decorators);
+  }
+
+  getMobileComponents = () => {
+    const { isMobile } = this.props;
+    if (isMobile) {
+      return {
+        Toolbar: this.toolbars.mobile.Toolbar,
+        Panel: this.toolbars.mobileAddPanel.Panel
+      };
+    } else {
+      return {};
+    }
   }
 
   getInitialEditorState() {
@@ -111,8 +124,12 @@ export default class RichContentEditor extends Component {
 
   renderToolbars = () => {
     if (!this.state.readOnly) {
+      const toolbarsToRender = this.plugins.filter(plugin => {
+        return !plugin.name ||
+          plugin.name.toLowerCase().indexOf('mobile') === -1;
+      });
       //eslint-disable-next-line array-callback-return
-      const toolbars = this.plugins.map((plugin, index) => {
+      const toolbars = toolbarsToRender.map((plugin, index) => {
         const Toolbar = plugin.Toolbar || plugin.InlineToolbar || plugin.SideToolbar;
         if (Toolbar) {
           return <Toolbar key={`k${index}`} />;
@@ -123,7 +140,7 @@ export default class RichContentEditor extends Component {
   };
 
   renderEditor = () => {
-    const { helpers, isMobile } = this.props;
+    const { helpers, placeholder, isMobile } = this.props;
     const { editorState, readOnly } = this.state;
     return (
       <Editor
@@ -133,6 +150,7 @@ export default class RichContentEditor extends Component {
         plugins={this.plugins}
         decorators={this.decorators}
         blockStyleFn={this.blockStyleFn}
+        placeholder={placeholder || ''}
         readOnly={!!readOnly}
         isMobile={isMobile}
         helpers={helpers}
@@ -144,8 +162,8 @@ export default class RichContentEditor extends Component {
   render() {
     const { theme } = this.state;
     const wrapperClassName = classNames(Styles.wrapper, theme.wrapper, {
-      [Styles.desktop]: !this.props.platform || this.props.platform === 'desktop',
-      [theme.desktop]: !this.props.platform || this.props.platform === 'desktop',
+      [Styles.desktop]: !this.props.isMobile,
+      [theme.desktop]: !this.props.isMobile,
     });
     return (
       <div className={wrapperClassName}>
@@ -167,5 +185,5 @@ RichContentEditor.propTypes = {
   isMobile: PropTypes.bool,
   readOnly: PropTypes.bool,
   helpers: PropTypes.object,
-  platform: PropTypes.string
+  placeholder: PropTypes.string,
 };

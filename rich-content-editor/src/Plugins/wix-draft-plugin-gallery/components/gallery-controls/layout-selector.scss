@@ -4,22 +4,6 @@
   background: url('./icons/layout_' + $icon + '.svg') center no-repeat;
 }
 
-.layouts-grid {
-  width: 100%;
-  display: grid !important;
-  grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 100px 100px;
-}
-
-.layout-tile {
-  text-align: center;
-  margin: 0 auto 0 auto;
-
-  div {
-    margin: 10% auto 0 auto;
-  }
-}
-
 .grid {
   @include layout_icon('grid');
 }

@@ -12,7 +12,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1000;
+  z-index: 5;
 
   * {
     outline: none;
@@ -42,15 +42,25 @@
   position: absolute;
   right: 20px;
   top: 20px;
+  width: 18px;
   cursor: pointer;
+}
+
+.cameraIcon {
+  width: 18px;
+}
+
+.errorIcon {
+  width: 13px;
 }
 
 .header {
   display: flex;
   align-items: center;
 
-  font-size: 16px;
-  font-family: PlayfairDisplay;
+  h3 {
+    font-size: 16px;
+  }
 
   svg {
     margin-right: 11px;
@@ -62,7 +72,6 @@
   position: relative;
 
   input {
-    font-family: Lato;
     font-weight: 300;
     font-size: 14px;
     line-height: 1.5;
@@ -98,7 +107,6 @@ $c2: $modal-btn-confirm-secondary-color;
   justify-content: flex-end;
 
   button {
-    font-family: Lato;
     font-size: 14px;
     border: 1px solid;
     height: 40px;

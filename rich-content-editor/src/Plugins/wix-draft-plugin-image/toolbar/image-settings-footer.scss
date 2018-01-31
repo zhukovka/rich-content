@@ -1,0 +1,32 @@
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 30px 42px 30px;
+  border-top: solid 1px #ededed;
+
+  button {
+    &.sidebarButton {
+      padding: 8.5px 21.5px;
+      font-size: 14px;
+
+      &.cancel {
+        padding: 8.5px 23px;
+        border: 1px solid #4990e2 !important;
+        background: #fff !important;
+        color: #4990e2 !important;
+        &:hover {
+          color: #fff !important;
+          background: #5cb4ff !important;
+        }
+        &:active {
+          background: #4990e2 !important;
+          color: #fff !important;
+        }
+      }
+    }
+  }
+
+  button + button {
+    margin-left: 24px;
+  }
+}

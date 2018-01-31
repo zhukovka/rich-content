@@ -29,8 +29,8 @@ module.exports = {
         }),
       },
       {
-        test: /\.css$/,
-        exclude: [path.join(__dirname, 'node_modules/stylable-components')],
+        // .css but not .st.css
+        test: /^((?!\.st\.css).)*\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader'],
@@ -49,6 +49,15 @@ module.exports = {
         ],
       },
       {
+        test: /\.(woff|eot|ttf|woff2)$/,
+        issuer: /\.(s)?css$/,
+        use: [
+          {
+            loader: 'url-loader',
+          },
+        ],
+      },
+      {
         test: /\.svg$/,
         issuer: /\.js(x)?$/,
         include: [path.resolve(__dirname, 'src')],
@@ -63,9 +72,9 @@ module.exports = {
               jsx: true,
               svgo: {
                 plugins: [
-                  {
-                    cleanupIDs: false,
-                  },
+                  { cleanupIDs: false },
+                  { removeViewBox: false },
+                  { removeDimensions: true },
                 ],
               },
             }),

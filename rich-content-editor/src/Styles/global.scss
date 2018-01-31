@@ -1,5 +1,6 @@
 @import './palette';
 @import './mixins';
+@import './fonts.scss';
 
 $innerSpacing: 40px;
 $textWidth: 740px;
@@ -24,9 +25,12 @@ $textMobileWidth: 90%;
 }
 
 .pluginContainerReadOnly {
+  @extend .fontElementMap;
 }
 
 .pluginContainer {
+  @extend .fontElementMap;
+
   &:hover {
     @include block-select;
   }
@@ -78,6 +82,7 @@ $textMobileWidth: 90%;
 
 //*** PANEL ***//
 .panelContainer {
+  @extend .fontElementMap;
   position: absolute;
   display: flex;
   padding: 10px;
@@ -85,4 +90,14 @@ $textMobileWidth: 90%;
   color: $secondary-text-color;
   border-radius: 0 2px 2px;
   box-shadow: rgb(220, 220, 220) 1px 1px 3px 1px;
+}
+
+:global {
+  .ReactModal__Body--open {
+    overflow-y: hidden;
+  }
+
+  .ReactModalPortal {
+    @extend .glob_fontElementMap;
+  }
 }

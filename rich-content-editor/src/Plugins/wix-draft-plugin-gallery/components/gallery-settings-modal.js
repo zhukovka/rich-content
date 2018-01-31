@@ -123,7 +123,7 @@ export class GallerySettingsModal extends Component {
     const componentData = pubsub.get('componentData');
     // console.log('MODAL_RENDER: ', componentData);
     return (
-      <ThemeProvider theme={'default'}>
+      <ThemeProvider theme={'rce'}>
         <h3 className={style.title}>Gallery Settings</h3>
         <Tabs value={activeTab}>
           <Tab label={'Organize Media'} value={'manage_media'}>

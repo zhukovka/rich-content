@@ -1,5 +1,6 @@
 @import './mixins';
 @import './palette';
+@import './consts';
 
 .buttonWrapper {
   display: inline-block;
@@ -15,27 +16,29 @@
   color: $secondary-text-color;
   padding: 5px;
   border: 0 none;
+  cursor: pointer;
+
 
   &:hover,
   &:focus {
-    cursor: pointer;
     outline: 0;
     color: $accent-color;
-    svg {
-      fill: $accent-color;
-    }
   }
 
-  svg {
-    display: inline-block;
-    vertical-align: middle;
-    fill: $secondary-text-color;
+}
+
+.icon {
+  width: $icon-width;
+  vertical-align: middle;
+  @include svg-fill($secondary-text-color);
+  &:hover {
+    @include svg-fill($accent-color);
   }
 }
 
 .active {
-  color: $accent-color;
-  svg {
-    fill: $accent-color;
+  .icon {
+    color: $accent-color;
+    @include svg-fill($accent-color);
   }
 }

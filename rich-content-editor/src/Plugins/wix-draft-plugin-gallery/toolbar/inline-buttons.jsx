@@ -117,7 +117,7 @@ const modalStyles = {
     outline: 'none',
     padding: 0,
     height: '100vh',
-    width: '522px',
+    width: '420px',
   },
 };
 
@@ -140,7 +140,7 @@ const InlineButtons = [
     keyName: 'manage_media',
     type: BUTTONS.EXTERNAL_MODAL,
     icon: ManageMediaIcon,
-    panelElement: GallerySettingsModal,
+    modalElement: GallerySettingsModal,
     activeTab: 'manage_media',
     modalStyles,
   },
@@ -148,7 +148,7 @@ const InlineButtons = [
     keyName: 'advanced_settings',
     type: BUTTONS.EXTERNAL_MODAL,
     icon: AdvancedSettingsIcon,
-    panelElement: GallerySettingsModal,
+    modalElement: GallerySettingsModal,
     activeTab: 'advanced_settings',
     modalStyles,
   },

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ProGallery } from 'pro-gallery-renderer';
-import 'pro-gallery-renderer/dist/statics/main.min.css';
 
 const getDefault = () => ({
   items: [],
