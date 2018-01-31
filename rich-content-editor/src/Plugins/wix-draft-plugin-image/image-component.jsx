@@ -9,6 +9,10 @@ class ImageComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = Object.assign({ isMounted: false }, this.stateFromProps(props));
+
+    if (this.props.store) {
+      this.props.store.set('handleFilesSelected', this.handleFilesSelected.bind(this));
+    }
   }
 
   componentDidMount() {
@@ -22,6 +26,27 @@ class ImageComponent extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState(this.stateFromProps(nextProps));
   }
+
+  stateFromProps = props => {
+    const componentState = props.componentState || {};
+
+    let state = {};
+    const { alreadyLoading, isLoading, userSelectedFiles } = this.getLoadingParams(componentState);
+    if (!alreadyLoading) {
+      if (isLoading !== true && userSelectedFiles) {
+        //lets continue the uploading process
+        if (userSelectedFiles.files && userSelectedFiles.files.length > 0) {
+          state = this.handleFilesSelected(userSelectedFiles.files);
+        }
+        setTimeout(() => {
+          //needs to be async since this function is called during constructor and we do not want the update to call set state on other components
+          this.props.store.update('componentState', { isLoading: true, userSelectedFiles: null });
+        }, 0);
+      }
+    }
+
+    return state;
+  };
 
   resetLoadingState = error => {
     //no upload function
@@ -41,9 +66,8 @@ class ImageComponent extends React.Component {
     this.props.store.update('componentState', { isLoading: false, userSelectedFiles: null });
   };
 
-  fileLoaded = event => {
+  fileLoaded = (event, files) => {
     const fileDataUrl = event.target.result;
-    const files = Array.from(this.state.files);
     if (this.state.isMounted) {
       this.setState({ isLoading: true, files: null, dataUrl: fileDataUrl });
     } else {
@@ -60,6 +84,7 @@ class ImageComponent extends React.Component {
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
     if (hasFileChangeHelper) {
       helpers.onFilesChange(files, ({ data, error }) => {
+        this.setState({ files });
         this.props.store.update('componentData', { item: data });
         this.resetLoadingState(error);
       });
@@ -68,26 +93,12 @@ class ImageComponent extends React.Component {
     }
   };
 
-  stateFromProps = props => {
-    const componentState = props.componentState || {};
-
+  handleFilesSelected = files => {
     const state = {};
-    const { alreadyLoading, isLoading, userSelectedFiles } = this.getLoadingParams(componentState);
-    if (!alreadyLoading) {
-      if (isLoading !== true && userSelectedFiles) {
-        //lets continue the uploading process
-        if (userSelectedFiles.files && userSelectedFiles.files.length > 0) {
-          const reader = new FileReader();
-          reader.onload = this.fileLoaded;
-          reader.readAsDataURL(userSelectedFiles.files[0]);
-          Object.assign(state, { isLoading: true, files: userSelectedFiles.files, dataUrl: EMPTY_SMALL_PLACEHOLDER });
-        }
-        setTimeout(() => {
-          //needs to be async since this function is called during constructor and we do not want the update to call set state on other components
-          this.props.store.update('componentState', { isLoading: true, userSelectedFiles: null });
-        }, 0);
-      }
-    }
+    const reader = new FileReader();
+    reader.onload = e => this.fileLoaded(e, files);
+    reader.readAsDataURL(files[0]);
+    Object.assign(state, { isLoading: true, files, dataUrl: EMPTY_SMALL_PLACEHOLDER });
 
     return state;
   };
@@ -100,7 +111,6 @@ class ImageComponent extends React.Component {
   };
 
   render() {
-
     return (
       <ImageViewer
         componentData={this.props.componentData}
