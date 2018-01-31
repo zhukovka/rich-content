@@ -8,6 +8,7 @@ import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 import { testImages } from './images-mock';
 import theme from './theme/theme';
+import testData from './testData/initialState';
 
 const modalStyleDefaults = {
   content: {
@@ -65,6 +66,11 @@ class App extends Component {
       openExternalModal: data => {
         const { modalElement, modalStyles, ...elementProps } = data;
         const ModalContent = decorateComponentWithProps(modalElement, elementProps);
+        try {
+          document.body.style.overflow = document.head.style.overflow = 'hidden';
+        } catch (e) {
+          console.warn('Cannot change document styles', e); //eslint-disable-line
+        }
         this.setState({
           showModal: true,
           modalContent: <ModalContent />,
@@ -72,6 +78,11 @@ class App extends Component {
         });
       },
       closeExternalModal: () => {
+        try {
+          document.body.style.overflow = document.head.style.overflow = 'auto';
+        } catch (e) {
+          console.warn('Cannot change document styles', e); //eslint-disable-line
+        }
         this.setState({
           showModal: false
         });
@@ -137,7 +148,7 @@ class App extends Component {
               helpers={this.helpers}
               plugins={this.plugins}
               decorators={this.decorators}
-              editorState={this.state.editorState}
+              initialState={testData}
               readOnly={this.state.readOnly}
               sideToolbarOffset={sideToolbarOffset}
               isMobile={this.isMobile()}

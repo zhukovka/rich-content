@@ -58,6 +58,10 @@
   }
 }
 
+.sortableContainer {
+  margin: 0 -12px;
+}
+
 .itemContainer {
   width: 104px;
   height: 104px;
@@ -69,15 +73,7 @@
   position: relative;
 }
 .itemContainerSelected {
-  width: 104px;
-  height: 104px;
   box-shadow: 0 0 0 3px #0261ff;
-  display: inline-block;
-  margin: 12px;
-  float: none;
-  outline: none;
-  overflow: hidden;
-  position: relative;
 }
 .itemImage {
   width: 104px;

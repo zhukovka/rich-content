@@ -6,9 +6,12 @@
   bottom: 0;
   right: 0;
   border-top: solid 1px #ededed;
-  width: 420px;
+  width: 100%;
+  max-width: 419px;
   height: 100px;
   box-sizing: border-box;
+  background: #fff;
+  z-index: 5;
 
   button + button {
     margin-left: 20px;

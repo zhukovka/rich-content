@@ -36,7 +36,7 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, hand
 
     return (
       <div
-        className={item.selected ? style.itemContainerSelected : style.itemContainer}
+        className={item.selected ? classNames(style.itemContiner, style.itemContainerSelected) : style.itemContainer}
         onClick={() => clickAction(itemIdx)}
       >
         {url ? <img className={style.itemImage} src={url} /> : <ImageLoader/>}
@@ -48,7 +48,7 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, hand
 
 const SortableList = sortableContainer(({ items, clickAction, handleFileChange }) => {
   return (
-    <div>
+    <div className={style.sortableContainer} >
       {items.map((item, itemIdx) => (
         <SortableItem key={`item-${itemIdx}`} itemIdx={itemIdx} index={itemIdx} item={item} clickAction={clickAction} />
       ))}

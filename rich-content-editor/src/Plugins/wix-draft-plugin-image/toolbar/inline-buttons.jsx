@@ -115,19 +115,21 @@ SettingsModal.propTypes = {
 const modalStyles = {
   overlay: {
     top: 0,
-    left: 0,
-    position: 'absolute',
-    width: '100vw',
-    height: '100vh',
+    left: 'auto',
+    right: 0,
+    bottom: 'auto',
+    position: 'fixed',
+    width: '100%',
+    height: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
     zIndex: 5,
   },
   content: {
-    position: 'absolute',
+    position: 'fixed',
     top: 0,
     left: 'auto',
     right: 0,
-    bottom: 0,
+    bottom: 'auto',
     border: 'none',
     background: '#fff',
     overflow: 'auto',
@@ -135,8 +137,9 @@ const modalStyles = {
     borderRadius: 0,
     outline: 'none',
     padding: 0,
-    height: '100vh',
-    width: '420px',
+    height: '100%',
+    width: '100%',
+    maxWidth: '420px'
   },
 };
 
