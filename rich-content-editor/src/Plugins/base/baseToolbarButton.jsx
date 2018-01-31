@@ -86,9 +86,15 @@ class BaseToolbarButton extends React.Component {
   };
 
   getIcon = () => {
-    const ActiveIcon = this.props.iconActive || this.props.icon;
-    const Icon = this.props.icon;
-    return this.state.isActive ? <ActiveIcon /> : <Icon />;
+    const { iconActive, icon, theme } = this.props;
+    const ActiveIcon = iconActive || icon;
+    const Icon = icon;
+    const iconClassNames = classNames(Styles.icon, theme && theme.icon);
+    return (
+      <div className={iconClassNames}>
+        {this.state.isActive ? <ActiveIcon /> : <Icon />}
+      </div>
+    );
   };
 
   renderToggleButton = (buttonWrapperClassNames, buttonClassNames) => {
@@ -122,14 +128,14 @@ class BaseToolbarButton extends React.Component {
     );
   };
 
-  renderFilesButton = () => {
+  renderFilesButton = buttonClassNames => {
     const replaceButtonWrapperClassNames = classNames(Styles.replaceButtonWrapper, this.props.theme.fileButtonWrapper);
     return (
       <div className={replaceButtonWrapperClassNames}>
         <form ref={this.setForm}>
           <input name="file" type="file" onChange={this.handleFileChange} accept="image/*" tabIndex="-1" />
         </form>
-        <button type="button" children={this.props.children}>
+        <button className={buttonClassNames} children={this.props.children}>
           {this.getIcon()}
         </button>
       </div>
@@ -155,7 +161,7 @@ class BaseToolbarButton extends React.Component {
     let toolbarButton;
     switch (this.props.type) {
       case BUTTONS.FILES:
-        toolbarButton = this.renderFilesButton();
+        toolbarButton = this.renderFilesButton(buttonClassNames);
         break;
       case BUTTONS.VIDEO_REPLACE:
         toolbarButton = this.renderReplaceVideoButton();

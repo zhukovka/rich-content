@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import Styles from '~/Styles/static-toolbar.scss';
 
 export default class StaticToolbar extends React.Component {
   static propTypes = {
@@ -10,29 +12,39 @@ export default class StaticToolbar extends React.Component {
   };
 
   state = {
-    overrideContent: undefined
+    overrideContent: undefined,
+    extendContent: undefined,
   }
 
   onOverrideContent = overrideContent => this.setState({ overrideContent });
 
+  onExtendContent = extendContent => this.setState({ extendContent });
+
   render() {
     const { theme, pubsub, structure } = this.props;
-    const { overrideContent: OverrideContent } = this.state;
+    const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
+    const { buttonStyles, toolbarStyles } = theme || {};
+    const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
+    const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons);
+    const extendClassNames = classNames(Styles.extend, toolbarStyles && toolbarStyles.extend);
     const childrenProps = {
-      theme: theme.buttonStyles,
+      theme: buttonStyles,
       getEditorState: pubsub.get('getEditorState'),
       setEditorState: pubsub.get('setEditorState'),
-      onOverrideContent: this.onOverrideContent
+      onOverrideContent: this.onOverrideContent,
+      onExtendContent: this.onExtendContent,
     };
 
     return (
-      <div
-        className={theme.toolbarStyles.toolbar}
-      >
-        {OverrideContent ?
-          <OverrideContent {...childrenProps} /> :
-          structure.map((Component, index) => <Component key={index} {...childrenProps} />)
-        }
+      <div className={toolbarClassNames}>
+        <div className={buttonClassNames}>
+          {OverrideContent ? <OverrideContent {...childrenProps} /> : structure.map((Button, index) => <Button key={index} {...childrenProps} />)}
+        </div>
+        {ExtendContent && (
+          <div className={extendClassNames}>
+            <ExtendContent {...childrenProps} />
+          </div>
+        )}
       </div>
     );
   }

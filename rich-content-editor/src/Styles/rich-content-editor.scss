@@ -1,9 +1,12 @@
-@import "../Styles/palette";
-@import "../Styles/global.scss";
+@import "./palette.scss";
+@import "./consts.scss";
+@import "./global.scss";
+@import "./fonts.scss";
 
 .wrapper {
+  @extend .fontElementMap;
   position: relative;
-  height: 100%;
+  height: calc(100% - #{$footer-toolbar-height});
   box-sizing: border-box;
 
   -webkit-font-smoothing: antialiased;
@@ -30,6 +33,10 @@
           display: table;
           clear: both;
         }
+      }
+
+      :global(.public-DraftEditorPlaceholder-root) {
+        margin: 0 calc((100% - #{$textWidth}) /2);
       }
     }
   }
@@ -145,7 +152,6 @@
 
 .orderedList {
   composes: elementSpacing;
-  display: grid;
 }
 
 .unorderedList {

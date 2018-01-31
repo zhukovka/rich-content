@@ -31,7 +31,12 @@ export default class TextLinkButton extends Component {
   }
 
   render() {
-    return <LinkButton onClick={this.onClick} isActive={this.isActive} />;
+    const { theme } = this.props;
+    return (<LinkButton
+      onClick={this.onClick}
+      isActive={this.isActive}
+      theme={theme}
+    />);
   }
 }
 

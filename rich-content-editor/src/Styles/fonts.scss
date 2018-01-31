@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'latolight';
+  src: url('../Fonts/lato-light-webfont.woff2') format('woff2'),
+        url('../Fonts/lato-light-webfont.woff') format('woff'),
+        url('../Fonts/lato-light-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'playfair_displayregular';
+    src: url('../Fonts/playfairdisplay-regular-webfont.woff2') format('woff2'),
+         url('../Fonts/playfairdisplay-regular-webfont.woff') format('woff'),
+         url('../Fonts/playfairdisplay-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.regularText {
+  font-family: 'latolight';
+}
+
+.headerText {
+  font-family: 'playfair_displayregular';
+}
+
+.fontElementMap {
+  * {
+    @extend .regularText;
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    @extend .headerText;
+  }
+}
+
+:global {
+  .glob_regularText {
+    font-family: 'latolight';
+  }
+
+  .glob_headerText {
+    font-family: 'playfair_displayregular';
+  }
+
+  .glob_fontElementMap {
+    * {
+      @extend .glob_regularText;
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+      @extend .glob_headerText;
+    }
+  }
+}

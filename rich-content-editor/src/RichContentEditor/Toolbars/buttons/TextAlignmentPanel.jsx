@@ -11,10 +11,10 @@ export default class AlignmentPanel extends Component {
   constructor(props) {
     super(props);
     this.alignmentButtons = [
-      createTextAlignmentButton({ alignment: 'left', content: <AlignTextLeft /> }),
-      createTextAlignmentButton({ alignment: 'center', content: <AlignTextCenter /> }),
-      createTextAlignmentButton({ alignment: 'right', content: <AlignTextRight /> }),
-      createTextAlignmentButton({ alignment: 'justify', content: <AlignTextJustify /> }),
+      createTextAlignmentButton({ alignment: 'left', Icon: AlignTextLeft }),
+      createTextAlignmentButton({ alignment: 'center', Icon: AlignTextCenter }),
+      createTextAlignmentButton({ alignment: 'right', Icon: AlignTextRight }),
+      createTextAlignmentButton({ alignment: 'justify', Icon: AlignTextJustify }),
     ];
   }
 

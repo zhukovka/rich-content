@@ -5,6 +5,7 @@ import DividerTheme from './divider.theme.scss';
 import HtmlTheme from './html.theme.scss';
 import ImageTheme from './image.theme.scss';
 import VideoTheme from './video.theme.scss';
+import toolbars from './toolbars';
 
 const {
   quote,
@@ -24,7 +25,7 @@ const {
 
 const { link } = LinkifyTheme;
 
-const { hasFocus } = CommonStyles;
+const { hasFocus, overlay, pluginContainerReadOnly, pluginContainer, panelContainer } = CommonStyles;
 
 const { divider1, divider2, divider3, divider4 } = DividerTheme;
 
@@ -42,11 +43,12 @@ const theme = {
   text, textAlignment,
   wrapper, editor, desktop,
   link,
-  hasFocus,
+  hasFocus, overlay, pluginContainerReadOnly, pluginContainer, panelContainer,
   divider1, divider2, divider3, divider4,
   inChange, itemsContainer, invalidGalleryItems,
   loader, loaderOverlay, imageContainer, imageTitle, imageDescription,
-  videoOverlay, player, videoContainer
+  videoOverlay, player, videoContainer,
+  toolbars
 };
 
 export default theme;

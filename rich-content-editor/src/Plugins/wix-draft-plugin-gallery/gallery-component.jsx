@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GalleryViewer, getDefault } from './gallery-viewer';
-//import 'pro-gallery-renderer/dist/statics/main.min.css';
+//import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils'; [for dev only]
 
-class GalleryComponent extends React.Component {
+//eslint-disable-next-line no-unused-vars
+const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+class GalleryComponent extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
@@ -14,6 +17,7 @@ class GalleryComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    //console.log('Gallery Props Changed!', baseUtils.printableObjectsDiff(this.props, nextProps)); [for dev only]
     this.setState(this.stateFromProps(nextProps));
   }
 
@@ -50,7 +54,7 @@ class GalleryComponent extends React.Component {
 
   setItemInGallery = (item, itemPos) => {
     const shouldAdd = (typeof itemPos === 'undefined');
-    let { items } = this.state;
+    let { items, styles } = this.state;
     let itemIdx;
     if (shouldAdd) {
       itemIdx = items.length;
@@ -63,7 +67,7 @@ class GalleryComponent extends React.Component {
     console.log('New items loaded', items); //eslint-disable-line no-console
     this.setState({ items });
     if (this.props.store) {
-      this.props.store.update('componentData', { items });
+      this.props.store.update('componentData', { items, styles, config: {} });
     }
 
     return itemIdx;
@@ -76,6 +80,7 @@ class GalleryComponent extends React.Component {
       reader.readAsDataURL(file);
     });
   };
+
   imageLoaded = (event, file, itemPos) => {
     const img = event.target;
     const item = {
@@ -98,6 +103,7 @@ class GalleryComponent extends React.Component {
           metadata: {
             height: data.height,
             width: data.width,
+            processedByConsumer: true
           },
           itemId: String(data.id),
           url: data.file_name,
@@ -118,7 +124,7 @@ class GalleryComponent extends React.Component {
   };
 
   render() {
-
+    //console.log('Rendering ProGallery', styles);
     return (
       <GalleryViewer
         componentData={this.props.componentData}

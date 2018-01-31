@@ -229,7 +229,7 @@ const InlineButtons = [
   {
     keyName: 'external_settings',
     type: BUTTONS.EXTERNAL_MODAL,
-    panelElement: ExternalSettingsModal,
+    modalElement: ExternalSettingsModal,
     icon: SettingsIcon,
     onClick: pubsub => console.log('*** click external settings *** '), //eslint-disable-line no-console, no-unused-vars,
   },

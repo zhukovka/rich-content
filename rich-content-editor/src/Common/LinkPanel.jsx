@@ -18,8 +18,8 @@ const LinkType = props => (
 );
 
 LinkType.propTypes = {
-  onChange: PropTypes.func,
-  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 class LinkPanel extends Component {
@@ -55,7 +55,7 @@ class LinkPanel extends Component {
   onBlur = e => {
     e.stopPropagation();
     const { intermediateUrl } = this.state;
-    if (isValidUrl(intermediateUrl)) {
+    if (isValidUrl(intermediateUrl) || (intermediateUrl === '')) {
       this.handleUrlChange();
       this.setState({ isValidUrl: true });
     } else {
@@ -80,11 +80,11 @@ class LinkPanel extends Component {
     const firstCheckboxText = 'Open Link in New Window / Tab';
     const secondCheckboxText = 'Add rel="nofollow" to link';
     return (
-      <ThemeProvider theme={'default'}>
+      <ThemeProvider theme={'rce'}>
         <div className={Styles.modal}>
-          <LinkType
+          {/*<LinkType
             value="url"
-          />
+          />*/}
           <div onKeyPress={this.handleKeyPress}>
             <div className={Styles.textInput}>
               <input
@@ -109,12 +109,12 @@ class LinkPanel extends Component {
             </div>
           </div>
           <div className={Styles.checkboxContainer}>
-            <input type="checkbox" onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}/>
-            <label>{firstCheckboxText}</label>
+            <input type="checkbox" id="firstCheckboxLinkPanel" onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}/>
+            <label htmlFor="firstCheckboxLinkPanel">{firstCheckboxText}</label>
           </div>
           <div className={Styles.checkboxContainer}>
-            <input type="checkbox" onChange={this.handleNofollowChange} defaultChecked={this.state.nofollow}/>
-            <label>{secondCheckboxText}</label>
+            <input type="checkbox" id="secondCheckboxLinkPanel" onChange={this.handleNofollowChange} defaultChecked={this.state.nofollow}/>
+            <label htmlFor="secondCheckboxLinkPanel">{secondCheckboxText}</label>
           </div>
         </div>
       </ThemeProvider>

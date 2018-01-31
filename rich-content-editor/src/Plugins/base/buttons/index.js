@@ -1,4 +1,3 @@
-import React from 'react';
 import BlockLinkButton from './BlockLinkButton';
 import createBlockButton from './utils/createBlockButton';
 import createBlockAlignmentAndSizeButton from './utils/createBlockAlignmentAndSizeButton';
@@ -31,41 +30,41 @@ export { BlockLinkButton };
 export const SizeOriginalCenterButton = createBlockAlignmentAndSizeButton({
   size: 'original',
   alignment: 'center',
-  content: <SizeOriginalIcon />,
+  Icon: SizeOriginalIcon,
 });
 
 export const SizeSmallCenterButton = createBlockAlignmentAndSizeButton({
   size: 'small',
   alignment: 'center',
-  content: <SizeSmallCenterIcon />,
+  Icon: SizeSmallCenterIcon,
 });
 
 export const SizeSmallLeftButton = createBlockAlignmentAndSizeButton({
   size: 'small',
   alignment: 'left',
-  content: <SizeSmallLeftIcon />,
+  Icon: SizeSmallLeftIcon,
 });
 
 export const SizeSmallRightButton = createBlockAlignmentAndSizeButton({
   size: 'small',
   alignment: 'right',
-  content: <SizeSmallRightIcon />,
+  Icon: SizeSmallRightIcon,
 });
 
 export const SizeContentButton = createBlockAlignmentAndSizeButton({
   size: 'content',
   alignment: 'center',
-  content: <SizeContentIcon />,
+  Icon: SizeContentIcon,
 });
 
 export const SizeFulllWidthButton = createBlockAlignmentAndSizeButton({
   size: 'fullWidth',
   alignment: 'center',
-  content: <SizeFulllWidthIcon />,
+  Icon: SizeFulllWidthIcon,
 });
 
 export const DeleteButton = createBlockButton({
-  content: <DeleteIcon />,
+  Icon: DeleteIcon,
 });
 
 export default {

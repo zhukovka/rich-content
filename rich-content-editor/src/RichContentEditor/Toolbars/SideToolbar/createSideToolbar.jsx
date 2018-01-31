@@ -1,19 +1,14 @@
 import React from 'react';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import SideToolbar from './SideToolbar';
-import AddPluginBlockSelect from './AddPluginBlockSelect';
+import AddPluginFloatingToolbar from './AddPluginFloatingToolbar';
 import { simplePubsub } from '~/Utils';
-import toolbarStyles from '~/Styles/side-toolbar.scss';
-import buttonStyles from '~/Styles/toolbar-button.scss';
-import addPluginBlockSelectStyles from '~/Styles/add-plugin-block-select.scss';
 
 const createSideToolbar = (config = {}) => {
-  const defaultTheme = { buttonStyles, addPluginBlockSelectStyles, toolbarStyles };
-
-  const pubsub = simplePubsub({ isVisible: false });
-
   const {
-    theme = defaultTheme,
+    name = 'SideToolbar',
+    pubsub = simplePubsub({ isVisible: false }),
+    theme,
     structure = [],
     offset = {
       desktop: { x: 0, y: 0 },
@@ -31,6 +26,7 @@ const createSideToolbar = (config = {}) => {
   };
 
   return {
+    name,
     initialize: ({ setEditorState, getEditorState }) => {
       pubsub.set('getEditorState', getEditorState);
       pubsub.set('setEditorState', setEditorState);
@@ -45,17 +41,19 @@ const createSideToolbar = (config = {}) => {
 
 
 
-export default ({ pluginButtons, offset, isMobile }) => {
+export default ({ buttons, offset, pubsub, theme, isMobile }) => {
   return createSideToolbar({
     offset,
+    theme,
     isMobile,
     structure: [
       ({ getEditorState, setEditorState, theme }) => //eslint-disable-line react/prop-types
-        (<AddPluginBlockSelect
+        (<AddPluginFloatingToolbar
           getEditorState={getEditorState}
           setEditorState={setEditorState}
           theme={theme}
-          structure={pluginButtons}
+          structure={buttons}
+          pubsub={pubsub}
           isMobile={isMobile}
         />),
     ],
