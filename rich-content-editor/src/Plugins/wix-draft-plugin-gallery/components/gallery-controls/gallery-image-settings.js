@@ -59,54 +59,53 @@ class ImageSettings extends Component {
       <div className={Styles.imageSettings}>
         <div className={Styles.content}>
           <h3 className={classnames(Styles.backButton, Styles.title)} onClick={() => onCancel(this.initialImageState)}>← Image Settings</h3>
-          <SettingsSection>
-            <Image resizeMode={'contain'} className={Styles.image} src={`https://static.wixstatic.com/${selectedImage.url}`} />
-            <div className={Styles['image-nav']}>
-              <i
-                className={classnames(Styles.previous, this.state.selectedIndex === 0 ? Styles.hidden : '')}
-                onClick={() => this.setState({ selectedIndex: this.state.selectedIndex - 1 })}
-              />
-              <i
-                className={classnames(Styles.next, this.state.selectedIndex === images.length - 1 ? Styles.hidden : '')}
-                onClick={() => this.setState({ selectedIndex: this.state.selectedIndex + 1 })}
-              />
+          <div className={Styles.scrollContainer}>
+            <SettingsSection>
+              <Image resizeMode={'contain'} className={Styles.image} src={`https://static.wixstatic.com/${selectedImage.url}`} />
+              <div className={Styles['image-nav']}>
+                <i
+                  className={classnames(Styles.previous, this.state.selectedIndex === 0 ? Styles.hidden : '')}
+                  onClick={() => this.setState({ selectedIndex: this.state.selectedIndex - 1 })}
+                />
+                <i
+                  className={classnames(Styles.next, this.state.selectedIndex === images.length - 1 ? Styles.hidden : '')}
+                  onClick={() => this.setState({ selectedIndex: this.state.selectedIndex + 1 })}
+                />
+              </div>
+            </SettingsSection>
+            <div className={Styles.manageImageGrid}>
+              <FileInput className={Styles.replace} onChange={this.replaceItem.bind(this)}>
+                <span>{'Replace'}</span>
+              </FileInput>
+              <button className={Styles.delete} onClick={() => this.deleteImage(selectedImage)}>
+                <span>{'Delete'}</span>
+              </button>
             </div>
-          </SettingsSection>
-          <div className={Styles.manageImageGrid}>
-            <FileInput className={Styles.replace} onChange={this.replaceItem.bind(this)}>
-              <span>{'Replace'}</span>
-            </FileInput>
-            <button className={Styles.delete} onClick={() => this.deleteImage(selectedImage)}>
-              <span>{'Delete'}</span>
-            </button>
+            <SettingsSection className={Styles['image-settings-section']}>
+              <InputWithLabel
+                label={'Title'}
+                placeholder={'Add image title'}
+                value={selectedImage.metadata.title || ''}
+                onChange={event => this.imageMetadataUpdated(selectedImage, { title: event.target.value })}
+              />
+            </SettingsSection>
+            <SettingsSection className={Styles['image-settings-section']}>
+              <InputWithLabel
+                label={'Description'}
+                placeholder={'Describe your image'}
+                value={selectedImage.metadata.description || ''}
+                onChange={event => this.imageMetadataUpdated(selectedImage, { description: event.target.value })}
+              />
+            </SettingsSection>
+            <SettingsSection className={Styles['image-settings-section']}>
+              <InputWithLabel
+                label={'Link'}
+                placeholder={'Add a link'}
+                value={selectedImage.metadata.link || ''}
+                onChange={event => this.imageMetadataUpdated(selectedImage, { link: event.target.value })}
+              />
+            </SettingsSection>
           </div>
-          <SettingsSection className={Styles['image-settings-section']}>
-            <InputWithLabel
-              label={'Title'}
-              placeholder={'Add image title'}
-              value={selectedImage.metadata.title || ''}
-              onChange={event => this.imageMetadataUpdated(selectedImage, { title: event.target.value })}
-            />
-          </SettingsSection>
-          <SettingsSection className={Styles['image-settings-section']}>
-            <InputWithLabel
-              label={'Description'}
-              placeholder={'Describe your image'}
-              value={selectedImage.metadata.description || ''}
-              onChange={event => this.imageMetadataUpdated(selectedImage, { description: event.target.value })}
-            />
-          </SettingsSection>
-          <SettingsSection className={Styles['image-settings-section']}>
-            <InputWithLabel
-              label={'Link'}
-              placeholder={'Add a link'}
-              value={selectedImage.metadata.link || ''}
-              onChange={event => this.imageMetadataUpdated(selectedImage, { link: event.target.value })}
-            />
-          </SettingsSection>
-          <SettingsSection>
-            <hr />
-          </SettingsSection>
         </div>
         <GallerySettingsFooter cancel={() => onCancel(this.initialImageState)} save={() => onSave(this.state.images)} />
       </div>

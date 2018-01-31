@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { RadioGroup } from 'stylable-components/dist/src/components/radio-group';
+import classnames from 'classnames';
 
 import style from './radio-group-horizontal.scss';
 
@@ -8,7 +9,7 @@ class RadioGroupHorizontal extends Component {
   render() {
     const { label, readOnly, ...props } = this.props;
     return (
-      <div className={classnames(style['radio-group-horizontal'], readonly ? style.readOnly : '')}>
+      <div className={classnames(style['radio-group-horizontal'], readOnly ? style.readOnly : '')}>
         {label ? <label className={style.titleLabel}>{label}</label> : null}
         <RadioGroup {...props} readOnly={readOnly} className={style['radio-group']} />
       </div>
