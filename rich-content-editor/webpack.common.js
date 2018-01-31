@@ -102,9 +102,15 @@ module.exports = {
   externals: [
     /^pro-gallery-renderer.*$/,
     /^wix-style-react.*$/,
-    /^@wix.*/,
     'mobx',
     {
+      '@wix/draft-js': {
+        root: 'Draft',
+        commonjs2: '@wix/draft-js',
+        commonjs: '@wix/draft-js',
+        amd: '@wix/draft-js',
+        umd: '@wix/draft-js',
+      },
       immutable: {
         root: 'Immutable',
         commonjs2: 'immutable',
