@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { SelectionList, SelectionListOption } from 'stylable-components/dist/src/components/selection-list';
-import { stylable } from 'wix-react-tools';
 
-import stylableStyles from './layout-selector.st.css';
 import style from './layout-selector.scss';
-
-const LayoutSelector = stylable(stylableStyles)(class LayoutSelector extends Component {
-  static propTypes = {
-    value: PropTypes.number.isRequired,
-    onChange: PropTypes.func.isRequired,
-    layoutsOrder: PropTypes.object.isRequired,
-  };
-
+class LayoutSelector extends Component {
   layouts = [
     { layoutId: 0, name: 'Grid' },
     { layoutId: 1, name: 'Masonry' },
@@ -42,7 +33,7 @@ const LayoutSelector = stylable(stylableStyles)(class LayoutSelector extends Com
 
   renderOption = ({ layoutId }, { label }, { id, selected, focused }) => (
     <SelectionListOption id={id} value={layoutId} selected={selected} focused={focused}>
-      <div>
+      <div className={style['layout-tile']}>
         <div className={style[selected ? `${label.toLowerCase()}_selected` : label.toLowerCase()]} />
         <div>{label}</div>
       </div>
@@ -59,6 +50,7 @@ const LayoutSelector = stylable(stylableStyles)(class LayoutSelector extends Com
     const { value } = this.props;
     return (
       <SelectionList
+        className={style['layouts-grid']}
         dataSource={this.layouts}
         dataMapper={this.dataMapper}
         renderItem={this.renderOption}
@@ -67,6 +59,12 @@ const LayoutSelector = stylable(stylableStyles)(class LayoutSelector extends Com
       />
     );
   }
-});
+}
+
+LayoutSelector.propTypes = {
+  value: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+  layoutsOrder: PropTypes.object.isRequired,
+};
 
 export default LayoutSelector;

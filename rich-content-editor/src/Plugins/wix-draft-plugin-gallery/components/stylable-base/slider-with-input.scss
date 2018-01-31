@@ -1,3 +1,6 @@
+$SLIDER_INPUT_MARGIN: 18px;
+$INPUT_WIDTH: 50px;
+
 .slider-with-input {
   label {
     display: block;
@@ -6,9 +9,18 @@
     display: flex;
     flex-basis: auto;
     justify-content: space-between;
-
-    input {
-      width: 50px;
-    }
+    align-items: center;
   }
+}
+
+.slider {
+  width: calc(100% - $SLIDER_INPUT_MARGIN - $INPUT_WIDTH);
+}
+
+.input {
+  width: $INPUT_WIDTH;
+}
+
+.slider + .input {
+  margin-left: $SLIDER_INPUT_MARGIN;
 }

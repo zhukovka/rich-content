@@ -6,9 +6,10 @@ import Styles from './default-divider-styles.scss';
 
 const DEFAULTS = {
   type: 'divider3',
-  width: 50,
+  width: 100,
   config: {
-    size: 'fullWidth',
+    size: 'content',
+    alignment: 'center',
   },
 };
 

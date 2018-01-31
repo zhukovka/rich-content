@@ -5,50 +5,66 @@
 }
 
 .ratios-grid {
-  width: 100%;
-  display: grid !important;
-  grid-template-columns: 20% 20% 20% 20% 20%;
-  grid-template-rows: 100%;
+  grid-template-columns: 56px 56px 56px 56px 56px;
+  grid-template-rows: 56px;
 }
 
-.ratio-tile {
-  text-align: center;
+.ratioTile {
+  margin-right: 24px;
+}
 
-  div {
-    margin: 10% auto 0 auto;
-  }
+.ratioButton {
+  width: 32px;
+  height: 32px;
+  background-color:rgba(51, 51, 51, 0.1);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.ratioButton.selected {
+  background-color: #0261ff;
+}
+
+.ratioLabel {
+  margin-top: 7px;
 }
 
 %ratio-icon {
   border: 1px solid #000;
+  margin: auto;
 
   &:focus {
+    border: 1px solid #fff;
+  }
+
+  &.selected {
     border: 1px solid #fff;
   }
 }
 
 ._16-9 {
   @extend %ratio-icon;
-  width: 16px;
-  height: 9px;
+  width: 22px;
+  height: 12px;
 }
 ._4-3 {
   @extend %ratio-icon;
-  width: 16px;
-  height: 12px;
+  width: 20px;
+  height: 14px;
 }
 ._1-1 {
   @extend %ratio-icon;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
 }
 ._3-4 {
   @extend %ratio-icon;
-  width: 12px;
-  height: 16px;
+  width: 14px;
+  height: 20px;
 }
 ._9-16 {
   @extend %ratio-icon;
-  width: 9px;
-  height: 16px;
+  width: 12px;
+  height: 22px;
 }

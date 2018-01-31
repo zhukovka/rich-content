@@ -37,6 +37,8 @@ List {
 
 List Option {
   font-size: 14px;
+  text-align: center;
+  margin: 0 auto 0 auto;
 }
 
 List Option:selected,
@@ -106,8 +108,6 @@ Slider:x::handle {
   border-radius: 50%;
   background-color: #fff;
   border: solid 1px #ededed;
-  position: relative;
-  top: -5px;
 }
 
 Slider:x::handle::before {
@@ -125,6 +125,33 @@ Slider:x::handle,
 Slider:x::handle:active,
 Slider:x::handle:focus {
   outline: none;
+}
+
+RadioButton::button {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 1px solid #0261ff;
+  background: #fff;
+}
+
+RadioButton::button::after {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+RadioButton:checked:not(:disabled)::button {
+  border-color: #0261ff;
+}
+
+RadioButton:checked:not(:disabled)::button::after {
+    background-color: #0261ff;
+}
+
+RadioButton span + label {
+  margin-left: 12px;
 }
 
 input {
@@ -153,6 +180,3 @@ hr {
 label {
   font-size: 14px;
 }
-
-/* SPECIFIC COMPONENT CLASSES */
-
