@@ -50,6 +50,7 @@ List Option:focused {
 
 Tabs {
   width: 100%;
+  overflow-y: scroll;
 }
 
 Tabs::tabList {
@@ -152,31 +153,4 @@ RadioButton:checked:not(:disabled)::button::after {
 
 RadioButton span + label {
   margin-left: 12px;
-}
-
-input {
-  font-family : inherit;
-  font-size: 14px;
-  border-radius: 3px;
-  border: solid 1px #ededed;
-  height: 30px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 0.1em;
-  text-align: center;
-}
-
-input:active,
-input:focus {
-  outline: none;
-}
-
-hr {
-  border: none;
-  border-bottom: 1px solid #ededed;
-}
-
-label {
-  font-size: 14px;
 }
