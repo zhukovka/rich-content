@@ -15,8 +15,8 @@ class LayoutControlsSection extends Component {
   // NB: index sensitive!
   controlsByLayout = {
     grid: ['itemsPerRow', 'spacing', '|', 'thumbnailResize', '|', 'scrollDirection', '|', 'titleButtonPlacement', '|', 'imageRatio'],
-    masonry: ['thumbnailSize', 'spacing', '|', 'imageOrientation'],
-    collage: ['thumbnailSize', 'spacing', '|', 'imageOrientation', '|', 'scrollDirection'],
+    masonry: ['imageOrientation', '|', 'thumbnailSize', 'spacing'],
+    collage: ['imageOrientation', '|', 'thumbnailSize', 'spacing', '|', 'scrollDirection'],
     thumbnails: ['thumbnailPlacement', '|', 'thumbnailSpacing'],
     panorama: ['spacing'],
     slideshow: [],
@@ -46,6 +46,9 @@ class LayoutControlsSection extends Component {
       props: {
         onChange: event => this.applyGallerySetting({ gallerySize: event.value }),
         value: this.getValueFromComponentStyles('gallerySize'),
+        options: {
+          isVertical: this.getValueFromComponentStyles('isVertical')
+        }
       },
     },
     spacing: {
