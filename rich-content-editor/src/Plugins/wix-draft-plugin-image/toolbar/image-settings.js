@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '../../../Common/theme-provider';
 import { Image } from 'stylable-components/dist/src/components/image';
-import { SettingsSection } from './settings-section';
+import SettingsSection from '~/Common/settings-section';
 import getImageSrc from '../get-image-source';
 import InputWithLabel from '../stylable-base/input-with-label';
 import ImageSettingsFooter from './image-settings-footer';

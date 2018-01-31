@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import findIndex from 'lodash/findIndex';
 import { Image } from 'stylable-components/dist/src/components/image';
 
-import { SettingsSection } from './settings-section';
+import SettingsSection from '~/Common/settings-section';
 import InputWithLabel from '../stylable-base/input-with-label';
 import GallerySettingsFooter from './gallery-settings-footer';
 import FileInput from '~/Common/file-input';
