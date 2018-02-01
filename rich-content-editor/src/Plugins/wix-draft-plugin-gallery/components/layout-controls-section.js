@@ -7,21 +7,21 @@ import { ThumbnailResize, TitleButtonPlacement, ImageOrientation, ScrollDirectio
 import ImageRatioSelector from './gallery-controls/image-ratio-selector';
 import { LoadMoreToggle } from './gallery-controls/toggles';
 import ThumbnailPlacementSelector from './gallery-controls/thumbnail-placement-selector';
-import { SettingsSection } from './gallery-controls/settings-section';
+import SettingsSection from '~/Common/settings-section';
 
 const Separator = () => <hr />;
 
 class LayoutControlsSection extends Component {
-  // NB: index sensitive!
+
   controlsByLayout = {
-    grid: ['itemsPerRow', 'spacing', '|', 'thumbnailResize', '|', 'scrollDirection', '|', 'titleButtonPlacement', '|', 'imageRatio'],
-    masonry: ['thumbnailSize', 'spacing', '|', 'imageOrientation'],
-    collage: ['thumbnailSize', 'spacing', '|', 'imageOrientation', '|', 'scrollDirection'],
-    thumbnails: ['thumbnailPlacement', '|', 'thumbnailSpacing'],
-    panorama: ['spacing'],
+    grid: ['|', 'itemsPerRow', 'spacing', '|', 'thumbnailResize', '|', 'scrollDirection', '|', 'titleButtonPlacement', '|', 'imageRatio'],
+    masonry: ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing'],
+    collage: ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing', '|', 'scrollDirection'],
+    thumbnails: ['|', 'thumbnailPlacement', '|', 'thumbnailSpacing'],
+    panorama: ['|', 'spacing'],
     slideshow: [],
-    columns: ['spacing'],
-    slides: ['spacing', '|', 'thumbnailResize', '|', 'imageRatio'],
+    columns: ['|', 'spacing'],
+    slides: ['|', 'spacing', '|', 'thumbnailResize', '|', 'imageRatio'],
   };
 
   getValueFromComponentStyles = name => this.props.data.styles[name];
@@ -44,8 +44,11 @@ class LayoutControlsSection extends Component {
     thumbnailSize: {
       component: ThumbnailSize,
       props: {
-        onChange: event => this.applyGallerySetting({ thumbnailSize: event.value }),
-        value: this.getValueFromComponentStyles('thumbnailSize'),
+        onChange: event => this.applyGallerySetting({ gallerySize: event.value }),
+        value: this.getValueFromComponentStyles('gallerySize'),
+        options: {
+          isVertical: this.getValueFromComponentStyles('isVertical')
+        }
       },
     },
     spacing: {
@@ -95,12 +98,17 @@ class LayoutControlsSection extends Component {
       props: {
         onChange: event => this.applyGallerySetting({ isVertical: event.value === '1' }),
         value: this.getValueFromComponentStyles('isVertical') ? '1' : '0',
+        options: {
+          oneRow: this.getValueFromComponentStyles('oneRow')
+        }
       },
     },
     scrollDirection: {
       component: ScrollDirection,
       props: {
-        onChange: event => this.applyGallerySetting({ oneRow: event.value === 'horizontal' }),
+        onChange: event => {
+          return this.applyGallerySetting({ oneRow: event.value === 'horizontal', isVertical: false });
+        },
         value: this.getValueFromComponentStyles('oneRow') ? 'horizontal' : 'vertical',
       },
     },

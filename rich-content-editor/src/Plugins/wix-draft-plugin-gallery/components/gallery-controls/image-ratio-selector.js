@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { SelectionList, SelectionListOption } from 'stylable-components/dist/src/components/selection-list';
-
+import classNames from 'classnames';
 import style from './image-ratio-selector.scss';
 class ImageRatioSelector extends Component {
 
@@ -19,9 +19,11 @@ class ImageRatioSelector extends Component {
 
   renderOption = ({ ratioClass }, { value, label }, { id, selected, focused }) => (
     <SelectionListOption id={id} value={value} selected={selected} focused={focused}>
-      <div className={style['ratio-tile']}>
-        <div className={ratioClass} />
-        <div>{label}</div>
+      <div className={style.ratioTile}>
+        <div className={classNames(style.ratioButton, selected ? style.selected : '')}>
+          <div className={classNames(ratioClass, selected ? style.selected : '')} />
+        </div>
+        <label className={style.ratioLabel}>{label}</label>
       </div>
     </SelectionListOption>
   );

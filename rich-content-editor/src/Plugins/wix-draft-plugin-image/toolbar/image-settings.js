@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '../../../Common/theme-provider';
 import { Image } from 'stylable-components/dist/src/components/image';
-import { SettingsSection } from './settings-section';
+import SettingsSection from '~/Common/settings-section';
 import getImageSrc from '../get-image-source';
 import InputWithLabel from '../stylable-base/input-with-label';
 import ImageSettingsFooter from './image-settings-footer';
+import FileInput from '~/Common/file-input';
 import Styles from './image-settings.scss';
 
 class ImageSettings extends Component {
@@ -15,19 +16,37 @@ class ImageSettings extends Component {
   }
 
   propsToState(props) {
+    const initialImageState = { ...props.componentData.item };
     return {
       item: props.componentData.item,
+      initialImageState,
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props !== nextProps) {
-      this.setState(this.propsToState(nextProps));
-    }
+  componentDidMount() {
+    this.props.pubsub.subscribe('componentData', this.onComponentUpdate);
   }
 
-  componentDidMount() {
-    this.initialImageState = this.props.componentData.item;
+  componentWillUnmount() {
+    this.props.pubsub.unsubscribe('componentData', this.onComponentUpdate);
+  }
+
+  onComponentUpdate = () => this.forceUpdate();
+
+  componentWillReceiveProps(nextProps) {
+    this.setState(this.stateFromProps(nextProps));
+  }
+
+  revertComponentData () {
+    const { componentData, helpers, pubsub } = this.props;
+    const { initialImageState } = this.state;
+    if (initialImageState) {
+      componentData.item = initialImageState;
+      pubsub.set('componentData', componentData);
+    }
+    this.setState({ item: initialImageState });
+
+    helpers.closeExternalModal();
   }
 
   imageMetadataUpdated = (image, value) => {
@@ -35,16 +54,28 @@ class ImageSettings extends Component {
     this.setState({ item: this.state.item });
   };
 
-  onReplace () {
-    console.error('On replace!!!!'); //eslint-disable-line no-console
+  handleFileChange = event => {
+    if (event.target.files.length > 0) {
+      const handleFilesSelected = this.props.pubsub.get('handleFilesSelected');
+      handleFilesSelected(event.target.files);
+    }
+  };
+
+  replaceImage(event) {
+    this.handleFileChange(event);
   }
 
-  onDelete () {
-    console.error('On delete!!!!'); //eslint-disable-line no-console
+  deleteImage() {
+    const { componentData, helpers, pubsub } = this.props;
+    componentData.item = {};
+    pubsub.set('componentData', componentData);
+    this.setState({ item: {} });
+
+    helpers.closeExternalModal();
   }
 
   render() {
-    const { componentData, onSave, onCancel, helpers } = this.props;
+    const { componentData, helpers } = this.props;
     const { item } = componentData;
     const { metadata = {} } = item;
 
@@ -52,15 +83,15 @@ class ImageSettings extends Component {
       <ThemeProvider theme={'default'}>
         <div className={Styles.imageSettings}>
           <div className={Styles.content}>
-            <h3 className={Styles.title} onClick={() => onCancel(this.initialImageState)}>Image Settings</h3>
+            <h3 className={Styles.title}>Image Settings</h3>
             <SettingsSection>
-              <Image resizeMode={'cover'} className={Styles.image} src={getImageSrc(item, helpers)} />
+              <Image resizeMode={'contain'} className={Styles.image} src={getImageSrc(item, helpers)} />
             </SettingsSection>
             <div className={Styles.manageImageGrid}>
-              <button className={Styles.replace} onClick={() => this.onReplace()}>
+              <FileInput className={Styles.replace} onChange={event => this.replaceImage(event)}>
                 <span>{'Replace'}</span>
-              </button>
-              <button className={Styles.delete} onClick={() => this.onDelete()}>
+              </FileInput>
+              <button className={Styles.delete} onClick={() => this.deleteImage()}>
                 <span>{'Delete'}</span>
               </button>
             </div>
@@ -89,7 +120,7 @@ class ImageSettings extends Component {
               />
             </SettingsSection>
           </div>
-          <ImageSettingsFooter cancel={() => onCancel(this.initialImageState)} save={() => onSave(this.state.item)} />
+          <ImageSettingsFooter cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()}/>
         </div>
       </ThemeProvider>
     );
@@ -97,9 +128,8 @@ class ImageSettings extends Component {
 }
 ImageSettings.propTypes = {
   componentData: PropTypes.any.isRequired,
-  onCancel: PropTypes.func.isRequired,
-  onSave: PropTypes.func.isRequired,
-  helpers: PropTypes.object
+  helpers: PropTypes.object,
+  pubsub: PropTypes.any,
 };
 
 export default ImageSettings;

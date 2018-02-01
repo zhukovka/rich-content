@@ -6,6 +6,7 @@ const getDefault = () => ({
   items: [],
   styles: {
     galleryLayout: 0,
+    gallerySize: 300,
     oneRow: false,
     cubeRatio: 1,
     galleryThumbnailsAlignment: 'bottom',
@@ -23,7 +24,7 @@ const getDefault = () => ({
   },
   config: {
     alignment: 'center',
-    size: 'content',
+    size: 'fullWidth',
     layout: 'small',
     spacing: 0,
   },
@@ -56,8 +57,8 @@ class GalleryViewer extends React.Component {
   }
 
   stateFromProps = props => {
-    const items = props.componentData.items || [];// || DEFAULTS.items;
     const defaults = getDefault();
+    const items = props.componentData.items || defaults.items;
     const styles = Object.assign(defaults.styles, props.componentData.styles || {});
 
     return {
@@ -68,6 +69,8 @@ class GalleryViewer extends React.Component {
 
   render() {
     const { items, styles, size } = this.state;
+
+    // console.log('Rendering ProGallery', styles);
 
     return (
       <div ref={elem => this.container = elem}>

@@ -9,7 +9,7 @@ import style from './gallery-settings-modal.scss';
 
 import GallerySettingsFooter from './gallery-controls/gallery-settings-footer';
 import LayoutControlsSection from './layout-controls-section';
-import { SettingsSection } from './gallery-controls/settings-section';
+import SettingsSection from '~/Common/settings-section';
 import { SortableComponent } from './gallery-controls/gallery-items-sortable';
 import layoutData from '../layout-data-provider';
 
@@ -71,13 +71,11 @@ class AdvancedSettingsSection extends Component {
     return (
       <div>
         <SettingsSection>
-          <label>Layouts</label>
           <LayoutSelector
             value={this.getValueFromComponentStyles('galleryLayout')}
             onChange={event => this.switchLayout({ galleryLayout: event.value })}
             layoutsOrder={this.layoutsOrder}
           />
-          <hr />
         </SettingsSection>
         <LayoutControlsSection
           layout={this.getValueFromComponentStyles('galleryLayout')}
@@ -125,17 +123,16 @@ export class GallerySettingsModal extends Component {
     return (
       <ThemeProvider theme={'rce'}>
         <h3 className={style.title}>Gallery Settings</h3>
-        <Tabs value={activeTab}>
-          <Tab label={'Organize Media'} value={'manage_media'}>
-            <ManageMediaSection data={componentData} store={pubsub.store} />
-          </Tab>
-          <Tab label={'Advanced Settings'} value={'advanced_settings'}>
-            <AdvancedSettingsSection data={componentData} store={pubsub.store} />
-          </Tab>
-        </Tabs>
-        <SettingsSection>
-          <hr />
-        </SettingsSection>
+        <div className={style.gallerySettings}>
+          <Tabs value={activeTab}>
+            <Tab label={'Organize Media'} value={'manage_media'}>
+              <ManageMediaSection data={componentData} store={pubsub.store} />
+            </Tab>
+            <Tab label={'Advanced Settings'} value={'advanced_settings'}>
+              <AdvancedSettingsSection data={componentData} store={pubsub.store} />
+            </Tab>
+          </Tabs>
+        </div>
         <GallerySettingsFooter cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} />
       </ThemeProvider>
     );

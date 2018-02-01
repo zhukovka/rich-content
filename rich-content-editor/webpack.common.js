@@ -101,28 +101,42 @@ module.exports = {
   target: 'web',
   externals: [
     /^pro-gallery-renderer.*$/,
-    /^wix-style-react.*$/,
-    /^@wix.*/,
     'mobx',
+    function(context, request, callback) {
+      const submodule = (/^wix-style-react\/dist\/src\/(.*$)/.exec(request) || [])[1];
+      if (submodule) {
+        return callback(null, {
+          root: ['wix-style-react', submodule],
+          commonjs2: request,
+          commonjs: request,
+          amd: request,
+          umd: request,
+        });
+      }
+      callback();
+    },
     {
+      '@wix/draft-js': {
+        root: 'Draft',
+        commonjs2: '@wix/draft-js',
+        commonjs: '@wix/draft-js',
+        amd: '@wix/draft-js',
+        umd: '@wix/draft-js',
+      },
       immutable: {
         root: 'Immutable',
         commonjs2: 'immutable',
         commonjs: 'immutable',
         amd: 'immutable',
         umd: 'immutable',
-      }
-    },
-    {
+      },
       react: {
         root: 'React',
         commonjs2: 'react',
         commonjs: 'react',
         amd: 'react',
         umd: 'react',
-      }
-    },
-    {
+      },
       'react-dom': {
         root: 'ReactDOM',
         commonjs2: 'react-dom',
@@ -130,7 +144,7 @@ module.exports = {
         amd: 'reactDOM',
         umd: 'react-dom',
       }
-    }
+    },
   ],
   stats: 'errors-only',
   plugins: [new ExtractTextPlugin(`${FILE_NAME}.css`), new StylablePlugin({ injectBundleCss: true, filename: 'stylable.css', nsDelimiter: '--' })],

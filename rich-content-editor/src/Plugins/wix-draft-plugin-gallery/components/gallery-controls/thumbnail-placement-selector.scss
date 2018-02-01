@@ -6,12 +6,11 @@
 .thumbnail-placement-selector {
   label {
     display: block;
+    margin-bottom: 13px;
   }
 }
 
 .thumbnails-grid {
-  width: 100%;
-  display: grid !important;
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 100%;
 }

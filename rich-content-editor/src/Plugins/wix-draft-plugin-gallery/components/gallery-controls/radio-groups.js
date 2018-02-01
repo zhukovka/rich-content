@@ -5,6 +5,7 @@ import RadioGroupHorizontal from '../stylable-base/radio-group-horizontal';
 const propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
+  options: PropTypes.object
 };
 
 export const ThumbnailResize = props => (
@@ -28,6 +29,7 @@ TitleButtonPlacement.propTypes = propTypes;
 export const ImageOrientation = props => (
   <RadioGroupHorizontal
     label={'Image Orientation'}
+    readOnly={props.options.oneRow}
     dataSource={[{ value: '1', labelText: 'Vertical' }, { value: '0', labelText: 'Horizontal' }]}
     {...props}
   />

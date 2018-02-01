@@ -51,16 +51,14 @@
     "redraft": "^0.9.0",
     "stylable-components": "^0.4.0",
     "wnpm-ci": "latest",
-    "wix-style-react": "^1.2.3",
-    "@wix/draft-js": "^0.10.4",
-    "immutable": "^3.8.1",
-    "pro-gallery-renderer": "^1.0.60"
+    "wix-style-react": "^1.2.3"
   },
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
+    "@wix/draft-js": "^0.10.13",
     "babel-core": "^6.26.0",
     "babel-jest": "^21.2.0",
     "babel-loader": "^7.1.2",
