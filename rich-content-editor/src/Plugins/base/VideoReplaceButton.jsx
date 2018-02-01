@@ -18,7 +18,8 @@ export class VideoReplaceButton extends Component {
   };
 
   openVideoUploadModal = () => {
-    this.setState({ isVideoUploadModalOpen: true });
+    const { src } = this.props.pubsub.get('componentData');
+    this.setState({ isVideoUploadModalOpen: true, src });
   };
 
   closeVideoUploadModal = () => {
@@ -32,7 +33,12 @@ export class VideoReplaceButton extends Component {
         <button type="button" onClick={this.openVideoUploadModal}>
           {icon}
         </button>
-        <VideoUploadModal isOpen={this.state.isVideoUploadModalOpen} onConfirm={this.handleVideoReplace} onCancel={this.closeVideoUploadModal} />
+        <VideoUploadModal
+          isOpen={this.state.isVideoUploadModalOpen}
+          onConfirm={this.handleVideoReplace}
+          onCancel={this.closeVideoUploadModal}
+          url={this.state.src}
+        />
       </div>
     );
   }
