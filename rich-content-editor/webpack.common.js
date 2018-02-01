@@ -101,8 +101,20 @@ module.exports = {
   target: 'web',
   externals: [
     /^pro-gallery-renderer.*$/,
-    /^wix-style-react.*$/,
     'mobx',
+    function(context, request, callback) {
+      const submodule = (/^wix-style-react\/dist\/src\/(.*$)/.exec(request) || [])[1];
+      if (submodule) {
+        return callback(null, {
+          root: ['wix-style-react', submodule],
+          commonjs2: request,
+          commonjs: request,
+          amd: request,
+          umd: request,
+        });
+      }
+      callback();
+    },
     {
       '@wix/draft-js': {
         root: 'Draft',
