@@ -7,8 +7,9 @@ import { BUTTONS } from './buttons';
 import Panel from './basePanel';
 import Styles from '~/Styles/plugin-toolbar-button.scss';
 import { VideoReplaceButton } from './VideoReplaceButton';
+import Themable from '~/Common/themable';
 
-class BaseToolbarButton extends React.Component {
+class BaseToolbarButton extends Themable {
   state = { isActive: false };
 
   componentDidMount() {
@@ -128,8 +129,9 @@ class BaseToolbarButton extends React.Component {
     );
   };
 
-  renderFilesButton = buttonClassNames => {
-    const replaceButtonWrapperClassNames = classNames(Styles.replaceButtonWrapper, this.props.theme.fileButtonWrapper);
+  renderFilesButton = (buttonClassNames, styles) => {
+    // TODO: in theme, change fileButtonWrapper => replaceButtonWrapper
+    const replaceButtonWrapperClassNames = classNames(styles.replaceButtonWrapper);
     return (
       <div className={replaceButtonWrapperClassNames}>
         <form ref={this.setForm}>
@@ -142,29 +144,35 @@ class BaseToolbarButton extends React.Component {
     );
   };
 
-  renderReplaceVideoButton = () => {
-    const replaceButtonWrapperClassNames = classNames(Styles.replaceButtonWrapper, this.props.theme.fileButtonWrapper);
+  getDefaultStyles() {
+    return Styles;
+  }
+
+  getTheme() {
+    return this.props.theme;
+  }
+
+  renderReplaceVideoButton = styles => {
+    // TODO: in theme, change fileButtonWrapper => replaceButtonWrapper
+    const replaceButtonWrapperClassNames = classNames(styles.replaceButtonWrapper);
     return <VideoReplaceButton className={replaceButtonWrapperClassNames} icon={this.getIcon()} pubsub={this.props.pubsub} />;
   };
 
-  render = () => {
-    const { theme } = this.props;
+  renderDesktop = styles => {
     const { isActive } = this.state;
-    const buttonWrapperClassNames = classNames(Styles.buttonWrapper, theme.buttonWrapper);
+    const buttonWrapperClassNames = classNames(styles.buttonWrapper);
     const buttonClassNames = classNames({
-      [Styles.button]: true,
-      [theme.button]: true,
-      [Styles.active]: isActive,
-      [theme.active]: isActive,
+      [styles.button]: true,
+      [styles.active]: isActive
     });
 
     let toolbarButton;
     switch (this.props.type) {
       case BUTTONS.FILES:
-        toolbarButton = this.renderFilesButton(buttonClassNames);
+        toolbarButton = this.renderFilesButton(buttonClassNames, styles);
         break;
       case BUTTONS.VIDEO_REPLACE:
-        toolbarButton = this.renderReplaceVideoButton();
+        toolbarButton = this.renderReplaceVideoButton(styles);
         break;
       case BUTTONS.PANEL:
         toolbarButton = this.renderPanelButton(buttonWrapperClassNames, buttonClassNames);

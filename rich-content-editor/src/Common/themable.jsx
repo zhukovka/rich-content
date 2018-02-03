@@ -9,7 +9,7 @@ class Themable extends PureComponent {
     `${defaultStyleClassName} ${themeClassName}`;
 
   render() {
-    const defaultStyles = this.getDefaultStyles();
+    const defaultStyles = { ...this.getDefaultStyles() };
     const theme = this.getTheme();
     const themeStylesToMerge = pickBy(theme, (value, key) => has(defaultStyles, key));
     const mergedStyles = mergeWith(defaultStyles, themeStylesToMerge, this.classMerger);
