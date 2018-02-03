@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GalleryViewer, getDefault } from './gallery-viewer';
+import Themable from '~/Common/themable';
+import Styles from './default-gallery-styles.scss';
 //import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils'; [for dev only]
 
 //eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-class GalleryComponent extends React.PureComponent {
+class GalleryComponent extends Themable {
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
@@ -123,7 +125,15 @@ class GalleryComponent extends React.PureComponent {
 
   };
 
-  render() {
+  getDefaultStyles() {
+    return Styles;
+  }
+
+  getTheme() {
+    return this.props.theme;
+  }
+
+  renderDesktop() {
     return (
       <GalleryViewer
         componentData={this.props.componentData}

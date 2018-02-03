@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import getImageSrc from './get-image-source';
 import Styles from './default-image-styles.scss';
 import ImageLoader from '~/Common/image-loader';
+import Themable from '~/Common/themable';
 
 const getDefault = () => ({
   data: {},
@@ -15,7 +16,7 @@ const getDefault = () => ({
   },
 });
 
-class ImageViewer extends React.Component {
+class ImageViewer extends Themable {
 
   getImageSrc(item) {
     const { helpers } = this.props;
@@ -40,22 +41,30 @@ class ImageViewer extends React.Component {
     return <div className={Styles.overlay}><ImageLoader type={'medium'}/></div>;
   }
 
-  renderTitle(data, theme) {
+  renderTitle(data, styles) {
     const config = data.config || {};
-    return !!config.showTitle && <div className={classNames(Styles.imageTitle, theme.imageTitle)}>{(data && data.title) || ''}</div>;
+    return !!config.showTitle && <div className={classNames(styles.imageTitle)}>{(data && data.title) || ''}</div>;
   }
-  renderDescription(data, theme) {
+  renderDescription(data, styles) {
     const config = data.config || {};
     return !!config.showDescription &&
-      <div className={classNames(Styles.imageDescription, theme.imageDescription)}>{(data && data.description) || ''}</div>;
+      <div className={classNames(styles.imageDescription)}>{(data && data.description) || ''}</div>;
   }
 
-  render() {
-    const { componentData, className, onClick, theme } = this.props;
+  getDefaultStyles() {
+    return Styles;
+  }
+
+  getTheme() {
+    return this.props.theme;
+  }
+
+  renderDesktop(styles) {
+    const { componentData, className, onClick } = this.props;
     const data = componentData || getDefault();
 
-    const itemClassName = classNames(Styles.imageContainer, className, theme.imageContainer);
-    const imageClassName = classNames(Styles.image, theme.image);
+    const itemClassName = classNames(styles.imageContainer, className);
+    const imageClassName = classNames(styles.image);
     const imageSrc = this.getImageSrc(data.item);
     return (
       <div onClick={onClick} className={itemClassName}>
@@ -63,8 +72,8 @@ class ImageViewer extends React.Component {
           <img className={imageClassName} src={imageSrc} />
           {this.renderLoader()}
         </div>
-        {this.renderTitle(data, theme)}
-        {this.renderDescription(data, theme)}
+        {this.renderTitle(data, styles)}
+        {this.renderDescription(data, styles)}
       </div>
     );
   }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Styles from './default-divider-styles.scss';
+import Themable from '~/Common/themable';
 
 const DEFAULTS = {
   type: 'divider3',
@@ -13,7 +14,7 @@ const DEFAULTS = {
   },
 };
 
-class DividerComponent extends React.Component {
+class DividerComponent extends Themable {
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
@@ -32,14 +33,22 @@ class DividerComponent extends React.Component {
     };
   };
 
-  render() {
-    const { style, theme } = this.props;
+  getDefaultStyles() {
+    return Styles;
+  }
+
+  getTheme() {
+    return this.props.theme;
+  }
+
+  renderDesktop(styles) {
+    const { style } = this.props;
 
     return (
       <div
         style={{ width: this.state.width + '%', margin: 'auto', ...style }}
         onClick={this.props.onClick}
-        className={classnames(this.props.className, Styles[this.state.type], theme[this.state.type])}
+        className={classnames(this.props.className, styles[this.state.type])}
       />
     );
   }

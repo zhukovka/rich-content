@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import decorateComponentWithProps from 'decorate-component-with-props';
+
 import Overlay from './overlay';
 import Styles from './default-html-styles.scss';
+import Themable from '~/Common/themable';
 
 const DEFAULTS = {
   src: null,
@@ -15,7 +17,7 @@ const DEFAULTS = {
   },
 };
 
-class HtmlComponent extends React.Component {
+class HtmlComponent extends Themable {
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
@@ -61,16 +63,23 @@ class HtmlComponent extends React.Component {
     );
   };
 
-  render() {
-    const { blockProps, selection, theme } = this.props;
+  getDefaultStyles() {
+    return Styles;
+  }
+
+  getTheme() {
+    return this.props.theme;
+  }
+
+  renderDesktop(styles) {
+    const { blockProps, selection } = this.props;
     const isEditorFocused = selection && selection.getHasFocus();
     const { isFocused, readOnly } = blockProps || { readOnly: true };
     const data = this.props.componentData;
     data.config = data.config || {};
 
-    const itemClassName = classNames(this.props.className, Styles.itemContainer, theme.itemContainer, {
-      [Styles.inChange]: this.state.inEditMode && isFocused && isEditorFocused,
-      [theme.inChange]: this.state.inEditMode && isFocused && isEditorFocused,
+    const itemClassName = classNames(this.props.className, styles.itemContainer, {
+      [styles.inChange]: this.state.inEditMode && isFocused && isEditorFocused,
     });
 
     const width = data.config.width || DEFAULTS.config.width;
@@ -121,7 +130,7 @@ class HtmlComponent extends React.Component {
       );
     } else {
       return (
-        <div onClick={this.props.onClick} className={classNames(this.props.className, Styles.invalidGalleryItems, theme.invalidGalleryItems)}>
+        <div onClick={this.props.onClick} className={classNames(this.props.className, styles.invalidGalleryItems)}>
           Please select an iframe source
         </div>
       );
