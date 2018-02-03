@@ -12,12 +12,7 @@ import Styles from '~/Styles/text-linkify.scss';
 const PluginList = [IMAGE_TYPE, GALLERY_TYPE, VIDEO_TYPE, HTML_TYPE, DIVIDER_TYPE];
 
 const activePlugins = (requestedPlugins = PluginList, config) => {
-  const { theme } = config || {};
-  if (theme.toolbars && theme.toolbars.plugin) {
-    config.theme = {
-      ...theme.toolbars.plugin,
-    };
-  }
+
   const activePlugins = [];
   requestedPlugins.forEach(pluginType => {
     switch (pluginType) {
