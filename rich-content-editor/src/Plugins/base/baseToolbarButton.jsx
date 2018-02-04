@@ -66,9 +66,8 @@ class BaseToolbarButton extends Themable {
       if (helpers && helpers.openExternalModal) {
         //console.log('Opening external modal');
         const keyName = BUTTONS.EXTERNAL_MODAL;
-        const theme = Styles;
 
-        helpers.openExternalModal({ ...this.props, componentState, keyName, helpers, theme, pubsub });
+        helpers.openExternalModal({ ...this.props, componentState, keyName, helpers, pubsub, theme: this.props.theme.modal || {} });
       } else {
         //console.warn('Open external helper function is not defined for toolbar button with keyName ' + keyName);
       }

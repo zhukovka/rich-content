@@ -188,11 +188,13 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
       const { buttonStyles: buttonTheme, separatorStyles: separatorTheme } = theme || {};
       const containerClassNames = classNames(toolbarStyles.toolbar, toolbarTheme && toolbarTheme.toolbar);
       const buttonContainerClassnames = classNames(toolbarStyles.buttons, toolbarTheme && toolbarTheme.buttons);
+      const modal = theme.modal ? { modal: { ...theme.modal } } : {};
       const themedButtonStyle = {
         buttonWrapper: classNames(buttonStyles.buttonWrapper, buttonTheme && buttonTheme.buttonWrapper),
         button: classNames(buttonStyles.button, buttonTheme && buttonTheme.button),
         icon: classNames(buttonStyles.icon, buttonTheme && buttonTheme.icon),
         active: classNames(buttonStyles.active, buttonTheme && buttonTheme.active),
+        ...modal
       };
       const separatorClassNames = classNames(toolbarStyles.separator, separatorTheme && separatorTheme.separator);
       const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;

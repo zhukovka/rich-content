@@ -6,6 +6,7 @@ import HtmlTheme from './html.theme.scss';
 import ImageTheme from './image.theme.scss';
 import VideoTheme from './video.theme.scss';
 import toolbars from './toolbars';
+import modals from './toolbars/modals';
 
 const {
   quote,
@@ -48,7 +49,8 @@ const theme = {
   inChange, itemsContainer, invalidGalleryItems,
   loader, loaderOverlay, imageContainer, imageTitle, imageDescription,
   videoOverlay, player, videoContainer,
-  toolbars
+  toolbars,
+  modals
 };
 
 export default theme;

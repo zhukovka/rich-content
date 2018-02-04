@@ -5,13 +5,14 @@ import { Tabs, Tab } from 'stylable-components/dist/src/components/tabs';
 import { ThemeProvider } from '../../../Common/theme-provider';
 import LayoutSelector from './gallery-controls/layouts-selector';
 
-import style from './gallery-settings-modal.scss';
+import Styles from './gallery-settings-modal.scss';
 
 import GallerySettingsFooter from './gallery-controls/gallery-settings-footer';
 import LayoutControlsSection from './layout-controls-section';
 import SettingsSection from '~/Common/settings-section';
 import { SortableComponent } from './gallery-controls/gallery-items-sortable';
 import layoutData from '../layout-data-provider';
+import Themable from '../../../Common/themable';
 
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 
@@ -121,7 +122,7 @@ AdvancedSettingsSection.propTypes = {
   store: PropTypes.object.isRequired
 };
 
-class GallerySettingsModal extends Component {
+export class GallerySettingsModal extends Themable {
   state = { initComponentData: null };
 
   componentDidMount() {
@@ -146,7 +147,15 @@ class GallerySettingsModal extends Component {
     helpers.closeExternalModal();
   };
 
-  render() {
+  getDefaultStyles() {
+    return Styles;
+  }
+
+  getTheme() {
+    return this.props.theme;
+  }
+
+  renderDesktop(styles) {
     const { activeTab, pubsub, helpers } = this.props;
     const componentData = pubsub.get('componentData');
     // console.log('MODAL_RENDER: ', componentData);
@@ -164,8 +173,8 @@ class GallerySettingsModal extends Component {
     } else {
       return (
         <ThemeProvider theme={'rce'}>
-          <h3 className={style.title}>Gallery Settings</h3>
-          <div className={style.gallerySettings}>
+          <h3 className={styles.title}>Gallery Settings</h3>
+          <div className={styles.gallerySettings}>
             <Tabs value={activeTab}>
               <Tab label={'Organize Media'} value={'manage_media'}>
                 <ManageMediaSection data={componentData} store={pubsub.store} />
