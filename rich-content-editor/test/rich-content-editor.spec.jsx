@@ -42,8 +42,11 @@ describe('RichContentEditor', () => {
   });
   it('should render divider', () => {
     const wrapper = mount(<RichContentEditor initialState={TestData.divider} readOnly theme={TestData.theme}/>);
-    expect(wrapper.html()).toEqual(expect.stringContaining('<div class=\"draftJsFocusPlugin__focused__3Mksn theme_divider1_class\" style=\"width: 100%; margin: auto;\"></div>'));
+    /* eslint-disable no-useless-escape */
+    expect(wrapper.html()).toEqual(
+      expect.stringContaining('<div class=\"draftJsFocusPlugin__focused__3Mksn\" style=\"width: 100%; margin: auto;\"></div>'));
   });
+  /* eslint-enable no-useless-escape */
   it('should render gallery', () => {
     const wrapper = shallow(<RichContentEditor initialState={TestData.gallery} readOnly />);
     expect(wrapper.html()).toEqual(expect.stringContaining('class="pro-gallery"'));
