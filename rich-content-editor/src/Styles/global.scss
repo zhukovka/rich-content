@@ -97,6 +97,10 @@ $textMobileWidth: 90%;
     overflow-y: hidden;
   }
 
+  .ReactModal__Content {
+    font-weight: 300;
+  }
+
   .ReactModalPortal {
     @extend .glob_fontElementMap;
   }

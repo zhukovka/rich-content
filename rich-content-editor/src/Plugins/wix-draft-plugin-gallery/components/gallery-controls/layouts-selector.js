@@ -35,7 +35,7 @@ class LayoutSelector extends Component {
     <SelectionListOption id={id} value={layoutId} selected={selected} focused={focused}>
       <div className={style['layout-tile']}>
         <div className={style[selected ? `${label.toLowerCase()}_selected` : label.toLowerCase()]} />
-        <div>{label}</div>
+        <label>{label}</label>
       </div>
     </SelectionListOption>
   );
@@ -49,14 +49,17 @@ class LayoutSelector extends Component {
   render() {
     const { value } = this.props;
     return (
-      <SelectionList
-        className={style['layouts-grid']}
-        dataSource={this.layouts}
-        dataMapper={this.dataMapper}
-        renderItem={this.renderOption}
-        value={this.originalToSidebarLayoutMapper(value)}
-        onChange={this.onLayoutChange}
-      />
+      <div className={style['layouts-selector']}>
+        <label>Layouts</label>
+        <SelectionList
+          className={style['layouts-grid']}
+          dataSource={this.layouts}
+          dataMapper={this.dataMapper}
+          renderItem={this.renderOption}
+          value={this.originalToSidebarLayoutMapper(value)}
+          onChange={this.onLayoutChange}
+        />
+      </div>
     );
   }
 }

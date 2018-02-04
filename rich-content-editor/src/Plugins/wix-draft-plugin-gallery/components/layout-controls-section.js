@@ -7,21 +7,21 @@ import { ThumbnailResize, TitleButtonPlacement, ImageOrientation, ScrollDirectio
 import ImageRatioSelector from './gallery-controls/image-ratio-selector';
 import { LoadMoreToggle } from './gallery-controls/toggles';
 import ThumbnailPlacementSelector from './gallery-controls/thumbnail-placement-selector';
-import { SettingsSection } from './gallery-controls/settings-section';
+import SettingsSection from '~/Common/settings-section';
 
 const Separator = () => <hr />;
 
 class LayoutControlsSection extends Component {
-  // NB: index sensitive!
+
   controlsByLayout = {
-    grid: ['itemsPerRow', 'spacing', '|', 'thumbnailResize', '|', 'scrollDirection', '|', 'titleButtonPlacement', '|', 'imageRatio'],
-    masonry: ['imageOrientation', '|', 'thumbnailSize', '|', 'spacing'],
-    collage: ['imageOrientation', '|', 'thumbnailSize', '|', 'spacing', '|', 'scrollDirection'],
-    thumbnails: ['thumbnailPlacement', '|', 'thumbnailSpacing'],
-    panorama: ['spacing'],
+    grid: ['|', 'itemsPerRow', 'spacing', '|', 'thumbnailResize', '|', 'scrollDirection', '|', 'titleButtonPlacement', '|', 'imageRatio'],
+    masonry: ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing'],
+    collage: ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing', '|', 'scrollDirection'],
+    thumbnails: ['|', 'thumbnailPlacement', '|', 'thumbnailSpacing'],
+    panorama: ['|', 'spacing'],
     slideshow: [],
-    columns: ['spacing'],
-    slides: ['spacing', '|', 'thumbnailResize', '|', 'imageRatio'],
+    columns: ['|', 'spacing'],
+    slides: ['|', 'spacing', '|', 'thumbnailResize', '|', 'imageRatio'],
   };
 
   getValueFromComponentStyles = name => this.props.data.styles[name];

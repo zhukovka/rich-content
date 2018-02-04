@@ -1,23 +1,50 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
-
-:global {
-  .ReactModal__Body--open {
-    overflow-y: hidden;
-  }
-  .ReactModal__Content {
-    font-family: 'Lato', Helvetica, sans-serif;
-    font-weight: 300;
-  }
-}
+$TITLE_HEIGHT: 100px;
+$FOOTER_HEIGHT: 100px;
 
 .title {
-  font-family: 'Playfair Display', Helvetica, sans-serif;
   font-size: 18px;
+  width: 100%;
   color: #333333;
   line-height: 30px;
-  padding: 42px 30px 24px;
+  padding: 45px 30px 24px;
   margin:0;
   border-bottom: 1px solid #EDEDED;
+  position: fixed;
+  top: 0;
+  background-color: #fff;
+  z-index: 5;
+}
+
+.gallerySettings {
+  height: calc(100% - $FOOTER_HEIGHT);
+  margin: $TITLE_HEIGHT auto $FOOTER_HEIGHT auto;
+
+  input {
+    font-family : inherit;
+    font-size: 14px;
+    border-radius: 3px;
+    border: solid 1px #ededed;
+    height: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0.1em;
+    text-align: center;
+  }
+
+  input:active,
+  input:focus {
+    outline: none;
+  }
+
+  hr {
+    border: none;
+    border-bottom: 1px solid #ededed;
+    margin: 18px auto;
+  }
+
+  label {
+    font-size: 14px;
+  }
 }
 

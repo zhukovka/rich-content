@@ -18,18 +18,28 @@ export class VideoUploadModal extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isOpen && !this.props.isOpen) {
+      this.onOpen(nextProps);
+    }
+  }
+
+  onOpen = props => {
+    this.setState({ url: props.url, isValidUrl: true });
+  }
+
   onUrlChange = e => {
     const url = e.target.value;
-    this.setState({ videoUrl: url, isValidUrl: true });
+    this.setState({ url, isValidUrl: true });
   };
 
   afterOpenModal = () => this.input.focus();
 
   onConfirm = e => {
     e.stopPropagation();
-    const { videoUrl } = this.state;
-    if (isVideoUrl(videoUrl)) {
-      this.props.onConfirm(videoUrl);
+    const { url } = this.state;
+    if (isVideoUrl(url)) {
+      this.props.onConfirm(url);
     } else {
       this.setState({ isValidUrl: false });
     }
@@ -38,7 +48,7 @@ export class VideoUploadModal extends Component {
   onCancel = e => {
     e.stopPropagation();
     this.props.onCancel();
-  }
+  };
 
   handleKeyPress = e => {
     if (e.charCode === 13) {
@@ -47,7 +57,7 @@ export class VideoUploadModal extends Component {
   };
 
   render() {
-    const { isOpen } = this.props;
+    const { isOpen, url } = this.props;
     return (
       <Modal
         ariaHideApp={false}
@@ -64,7 +74,8 @@ export class VideoUploadModal extends Component {
         <div onKeyPress={this.handleKeyPress}>
           <CloseIcon className={Styles.closeIcon} onClick={this.onCancel} />
           <div className={classNames(Styles.header)}>
-            <CameraIcon className={Styles.cameraIcon} /><h3>Add a video from YouTube or Vimeo</h3>
+            <CameraIcon className={Styles.cameraIcon} />
+            <h3>Add a video from YouTube or Vimeo</h3>
           </div>
           <div className={Styles.textInput}>
             <input
@@ -72,10 +83,10 @@ export class VideoUploadModal extends Component {
               className={classNames({ [Styles.invalid]: !this.state.isValidUrl })}
               placeholder="e.g. https://youtu.be/6sx-xGiFIjk"
               onChange={this.onUrlChange}
-              value={this.state.videoUrl}
+              value={this.state.url || url}
               onDoubleClick={() =>
                 this.setState({
-                  videoUrl: 'https://www.youtube.com/watch?v=_OBlgSz8sSM',
+                  url: 'https://www.youtube.com/watch?v=_OBlgSz8sSM',
                 })
               }
             />
@@ -109,4 +120,5 @@ VideoUploadModal.propTypes = {
   onCancel: PropTypes.any.isRequired,
   onConfirm: PropTypes.any.isRequired,
   isOpen: PropTypes.any.isRequired,
+  url: PropTypes.string,
 };

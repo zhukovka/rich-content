@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '../../../Common/theme-provider';
 import { Image } from 'stylable-components/dist/src/components/image';
-import { SettingsSection } from './settings-section';
+import SettingsSection from '~/Common/settings-section';
 import getImageSrc from '../get-image-source';
 import InputWithLabel from '../stylable-base/input-with-label';
 import ImageSettingsFooter from './image-settings-footer';
@@ -23,6 +23,20 @@ class ImageSettings extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.pubsub.subscribe('componentData', this.onComponentUpdate);
+  }
+
+  componentWillUnmount() {
+    this.props.pubsub.unsubscribe('componentData', this.onComponentUpdate);
+  }
+
+  onComponentUpdate = () => this.forceUpdate();
+
+  componentWillReceiveProps(nextProps) {
+    this.setState(this.stateFromProps(nextProps));
+  }
+
   revertComponentData () {
     const { componentData, helpers, pubsub } = this.props;
     const { initialImageState } = this.state;
@@ -40,29 +54,25 @@ class ImageSettings extends Component {
     this.setState({ item: this.state.item });
   };
 
-  onReplace () {
-    console.error('On replace!!!!'); //eslint-disable-line no-console
-  }
-
   handleFileChange = event => {
     if (event.target.files.length > 0) {
-      // const handleFilesSelected = this.props.store.get('handleFilesSelected');
-      // handleFilesSelected(event.target.files);
-      window.console.log('asdfasdfadsf');
-
+      const handleFilesSelected = this.props.pubsub.get('handleFilesSelected');
+      handleFilesSelected(event.target.files);
     }
-    event.target.value = ''; //reset the input
   };
 
-  replaceItem(event) {
+  replaceImage(event) {
     this.handleFileChange(event);
   }
 
-  // deleteImage() {
-  //   this.setState({
-  //     item: null,
-  //   });
-  // }
+  deleteImage() {
+    const { componentData, helpers, pubsub } = this.props;
+    componentData.item = {};
+    pubsub.set('componentData', componentData);
+    this.setState({ item: {} });
+
+    helpers.closeExternalModal();
+  }
 
   render() {
     const { componentData, helpers } = this.props;
@@ -78,7 +88,7 @@ class ImageSettings extends Component {
               <Image resizeMode={'contain'} className={Styles.image} src={getImageSrc(item, helpers)} />
             </SettingsSection>
             <div className={Styles.manageImageGrid}>
-              <FileInput className={Styles.replace} onChange={this.replaceItem.bind(this)}>
+              <FileInput className={Styles.replace} onChange={event => this.replaceImage(event)}>
                 <span>{'Replace'}</span>
               </FileInput>
               <button className={Styles.delete} onClick={() => this.deleteImage()}>
