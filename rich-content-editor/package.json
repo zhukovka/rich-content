@@ -45,13 +45,14 @@
     "image-client-api": "1.51.0",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
+    "photography-client-lib": "^1.0.69",
     "react-modal": "^3.1.10",
     "react-player": "^0.25.3",
     "react-sortable-hoc": "^0.6.8",
     "redraft": "^0.9.0",
     "stylable-components": "^0.4.0",
-    "wnpm-ci": "latest",
-    "wix-style-react": "^1.2.3"
+    "wix-style-react": "^1.2.3",
+    "wnpm-ci": "latest"
   },
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0",
