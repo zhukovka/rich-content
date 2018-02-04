@@ -13,6 +13,8 @@ import { SettingsSection } from './gallery-controls/settings-section';
 import { SortableComponent } from './gallery-controls/gallery-items-sortable';
 import layoutData from '../layout-data-provider';
 
+import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
+
 class ManageMediaSection extends Component {
 
   applyItems = items => {
@@ -122,23 +124,33 @@ export class GallerySettingsModal extends Component {
     const { activeTab, pubsub, helpers } = this.props;
     const componentData = pubsub.get('componentData');
     // console.log('MODAL_RENDER: ', componentData);
-    return (
-      <ThemeProvider theme={'rce'}>
-        <h3 className={style.title}>Gallery Settings</h3>
-        <Tabs value={activeTab}>
-          <Tab label={'Organize Media'} value={'manage_media'}>
-            <ManageMediaSection data={componentData} store={pubsub.store} />
-          </Tab>
-          <Tab label={'Advanced Settings'} value={'advanced_settings'}>
-            <AdvancedSettingsSection data={componentData} store={pubsub.store} />
-          </Tab>
-        </Tabs>
-        <SettingsSection>
-          <hr />
-        </SettingsSection>
-        <GallerySettingsFooter cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} />
-      </ThemeProvider>
-    );
+
+    if (baseUtils.isMobile()) {
+      return (
+        <ThemeProvider theme={'rce'}>
+          <GallerySettingsFooter cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} />
+          <ManageMediaSection data={componentData} store={pubsub.store} />
+        </ThemeProvider>
+      );
+    } else {
+      return (
+        <ThemeProvider theme={'rce'}>
+          <h3 className={style.title}>Gallery Settings</h3>
+          <Tabs value={activeTab}>
+            <Tab label={'Organize Media'} value={'manage_media'}>
+              <ManageMediaSection data={componentData} store={pubsub.store} />
+            </Tab>
+            <Tab label={'Advanced Settings'} value={'advanced_settings'}>
+              <AdvancedSettingsSection data={componentData} store={pubsub.store} />
+            </Tab>
+          </Tabs>
+          <SettingsSection>
+            <hr />
+          </SettingsSection>
+          <GallerySettingsFooter cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} />
+        </ThemeProvider>
+      );
+    }
   }
 }
 

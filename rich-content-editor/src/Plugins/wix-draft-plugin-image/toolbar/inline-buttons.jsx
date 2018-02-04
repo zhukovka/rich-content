@@ -8,6 +8,7 @@ import TextOnImageIcon from '../icons/toolbar/layout/icon-text-on-image-layout.s
 import TextOnImageIconActive from '../icons/toolbar/layout/icon-text-on-image-layout-active.svg';
 import ImageSettings from './image-settings';
 import { BUTTONS } from '~/Plugins/base/buttons';
+import { getModalStyles } from '../../../Common/defaultModalStyles';
 
 class LayoutModal extends React.Component {
   constructor(props) {
@@ -112,36 +113,7 @@ SettingsModal.propTypes = {
   componentState: PropTypes.object.isRequired,
 };
 
-const modalStyles = {
-  overlay: {
-    top: 0,
-    left: 'auto',
-    right: 0,
-    bottom: 'auto',
-    position: 'fixed',
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    zIndex: 5,
-  },
-  content: {
-    position: 'fixed',
-    top: 0,
-    left: 'auto',
-    right: 0,
-    bottom: 'auto',
-    border: 'none',
-    background: '#fff',
-    overflow: 'auto',
-    WebkitOverflowScrolling: 'touch',
-    borderRadius: 0,
-    outline: 'none',
-    padding: 0,
-    height: '100%',
-    width: '100%',
-    maxWidth: '420px'
-  },
-};
+const modalStyles = getModalStyles();
 
 const InlineButtons = [
   { type: BUTTONS.SIZE_ORIGINAL_CENTER },

@@ -11,6 +11,7 @@ import GridLargeIcon from '../icons/toolbar/layout/icon-grid-large.svg';
 import GridLargeIconActive from '../icons/toolbar/layout/icon-grid-large-active.svg';
 import GallerySettingsModal from '../components/gallery-settings-modal';
 import { BUTTONS } from '~/Plugins/base/buttons';
+import { getModalStyles } from '../../../Common/defaultModalStyles';
 
 class LayoutModal extends React.Component {
   constructor(props) {
@@ -93,36 +94,7 @@ SettingsModal.propTypes = {
   componentState: PropTypes.object.isRequired,
 };
 
-const modalStyles = {
-  overlay: {
-    top: 0,
-    left: 'auto',
-    right: 0,
-    bottom: 'auto',
-    position: 'fixed',
-    width: '100%',
-    height: 'calc(100% + 85px)',
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    zIndex: 5,
-  },
-  content: {
-    position: 'fixed',
-    top: 0,
-    left: 'auto',
-    right: 0,
-    bottom: 'auto',
-    border: 'none',
-    background: '#fff',
-    overflow: 'auto',
-    WebkitOverflowScrolling: 'touch',
-    borderRadius: 0,
-    outline: 'none',
-    padding: 0,
-    height: '100%',
-    width: '100%',
-    maxWidth: '420px'
-  },
-};
+const modalStyles = getModalStyles();
 
 const InlineButtons = [
   {
