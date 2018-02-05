@@ -91,7 +91,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.mobileComponents = this.editor.getMobileComponents();
+    ReactModal.setAppElement('body');
+    this.setState({ MobileToolbar: this.editor.getMobileToolbar() });
   }
 
   setEditor = editor => this.editor = editor;
@@ -120,7 +121,7 @@ class App extends Component {
 
   render() {
     const { RichContentEditor } = WixRichContentEditor;
-    const { Toolbar: MobileToolbar, Panel: MobileAddPluginPanel } = this.mobileComponents || {};
+    const { MobileToolbar } = this.state;
     return (
       <div className="wrapper">
         <div className="container">
@@ -164,7 +165,6 @@ class App extends Component {
             </ReactModal>
           </div>
         </div>
-        {MobileAddPluginPanel && <MobileAddPluginPanel />}
       </div>
     );
   }

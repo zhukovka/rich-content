@@ -16,13 +16,13 @@ export default ({ blockType, button, pubsub }) => {
     }
 
     addBlock = data => {
-      const { getEditorState, setEditorState, hidePluginSelectPopup } = this.props;
+      const { getEditorState, setEditorState, hidePopup } = this.props;
       const contentState = getEditorState().getCurrentContent();
       const contentStateWithEntity = contentState.createEntity(blockType, 'IMMUTABLE', cloneDeep(data));
       const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
       const newEditorState = AtomicBlockUtils.insertAtomicBlock(getEditorState(), entityKey, ' ');
-      if (hidePluginSelectPopup) {
-        hidePluginSelectPopup();
+      if (hidePopup) {
+        hidePopup();
       }
       const recentlyCreatedKey = newEditorState.getSelection().getAnchorKey();
       //when adding atomic block, there is the atomic itself, and then there is a text block with one space,
@@ -157,7 +157,7 @@ export default ({ blockType, button, pubsub }) => {
   InsertPluginButton.propTypes = {
     getEditorState: PropTypes.func.isRequired,
     setEditorState: PropTypes.func.isRequired,
-    hidePluginSelectPopup: PropTypes.func,
+    hidePopup: PropTypes.func,
     hideName: PropTypes.bool,
     theme: PropTypes.object,
     isMobile: PropTypes.bool,

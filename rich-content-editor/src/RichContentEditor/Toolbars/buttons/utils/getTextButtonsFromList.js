@@ -1,4 +1,3 @@
-import decorateComponentWithProps from 'decorate-component-with-props';
 import {
   TextButtonList,
   BoldButton,
@@ -9,11 +8,10 @@ import {
   UnorderedListButton,
   OrderedListButton,
   TextLinkButton,
-  AddPluginButton,
 } from '../index';
 import createThemedSeparator from './createThemedSeparator';
 
-export default ({ buttons = TextButtonList, pubsub, theme }) => {
+export default ({ buttons = TextButtonList, theme }) => {
   const ThemedSeparator = createThemedSeparator({ theme });
   const structure = [];
   buttons.forEach(buttonName => {
@@ -41,9 +39,6 @@ export default ({ buttons = TextButtonList, pubsub, theme }) => {
         break;
       case 'Link':
         structure.push(TextLinkButton);
-        break;
-      case 'AddPlugin':
-        structure.push(decorateComponentWithProps(AddPluginButton, { pubsub }));
         break;
       case 'Separator':
         structure.push(ThemedSeparator);

@@ -19,24 +19,44 @@ export default class RichContentEditor extends Component {
       readOnly: props.readOnly || false,
       theme: props.theme || {}
     };
-
-    const { plugins, pluginButtons } = createPlugins({ ...props, theme: this.state.theme });
-    this.toolbars = createToolbars({ ...props, pluginButtons, theme: this.state.theme.toolbars });
-    this.plugins = [...plugins, ...Object.values(this.toolbars)];
-    this.decorators = createDecorators(props.decorators);
+    this.initPlugins();
   }
 
-  getMobileComponents = () => {
-    const { isMobile } = this.props;
-    if (isMobile) {
-      return {
-        Toolbar: this.toolbars.mobile.Toolbar,
-        Panel: this.toolbars.mobileAddPanel.Panel
-      };
-    } else {
-      return {};
-    }
+  initPlugins() {
+    const {
+      decorators,
+      helpers,
+      plugins,
+    } = this.props;
+    const { theme } = this.state;
+    const { pluginInstances, pluginButtons } = createPlugins({ plugins, helpers, theme });
+    this.initToolbars(pluginButtons);
+    this.plugins = [...pluginInstances, ...Object.values(this.toolbars)];
+    this.decorators = createDecorators(decorators);
   }
+
+  initToolbars(pluginButtons) {
+    const {
+      helpers,
+      sideToolbarOffset,
+      textButtons,
+      isMobile,
+      theme,
+    } = this.props;
+    const buttons = { textButtons, pluginButtons };
+
+    this.toolbars = createToolbars({
+      buttons,
+      helpers,
+      isMobile,
+      sideToolbarOffset,
+      theme: theme.toolbars,
+      getEditorState: () => this.state.editorState,
+      setEditorState: editorState => this.setState({ editorState }),
+    });
+  }
+
+  getMobileToolbar = () => this.props.isMobile ? this.toolbars.mobile.Toolbar : null;
 
   getInitialEditorState() {
     const { editorState, initialState } = this.props;
@@ -186,4 +206,7 @@ RichContentEditor.propTypes = {
   readOnly: PropTypes.bool,
   helpers: PropTypes.object,
   placeholder: PropTypes.string,
+  sideToolbarOffset: PropTypes.object,
+  textButtons: PropTypes.arrayOf(PropTypes.string),
+  plugins: PropTypes.arrayOf(PropTypes.string),
 };

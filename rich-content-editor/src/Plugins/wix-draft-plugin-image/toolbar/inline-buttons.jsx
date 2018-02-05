@@ -8,7 +8,7 @@ import TextOnImageIcon from '../icons/toolbar/layout/icon-text-on-image-layout.s
 import TextOnImageIconActive from '../icons/toolbar/layout/icon-text-on-image-layout-active.svg';
 import ImageSettings from './image-settings';
 import { BUTTONS } from '~/Plugins/base/buttons';
-import { getModalStyles } from '../../../Common/defaultModalStyles';
+import { getModalStyles } from '~/Utils/getModalStyles';
 
 class LayoutModal extends React.Component {
   constructor(props) {

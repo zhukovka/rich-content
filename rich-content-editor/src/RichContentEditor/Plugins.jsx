@@ -62,7 +62,7 @@ const createPlugins = ({ plugins, helpers, theme }) => {
   ];
 
   return {
-    plugins: pluginInstances,
+    pluginInstances,
     pluginButtons
   };
 };
