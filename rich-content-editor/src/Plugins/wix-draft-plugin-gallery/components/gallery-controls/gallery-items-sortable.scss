@@ -1,3 +1,4 @@
+
 :global {
   .sortableHelper {
     z-index: 10000 !important;
@@ -57,6 +58,18 @@
       z-index: 1;
     }
   }
+
+  &:after {
+    display: none !important;
+  }
+
+  svg {
+    width: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -17px;
+  }
 }
 
 .sortableContainer {
@@ -76,14 +89,36 @@
   position: relative;
   box-sizing: border-box;
 
+  &.itemContainerSelected {
+    box-shadow: 0 0 0 3px #0261ff;
+  }
+
   &.mobile {
     margin: 2.5px;
+
+    &:after {
+      content: ' ';
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 16px;
+      border: 1px solid white;
+      background: rgba(255,255,255,0.2)
+    }
+
+    &.itemContainerSelectedMobile {
+      &:after {
+        content: url(../../icons/more.svg);
+        background: #0261ff;
+        border-color: #0261ff;
+      }
+    }
+
   }
 }
 
-.itemContainerSelected {
-  box-shadow: 0 0 0 3px #0261ff;
-}
 
 .itemImage {
   cursor: -webkit-grab;
@@ -98,13 +133,13 @@
   &.mobile {
     box-sizing: border-box;
     position: fixed;
-    bottom: 50px;
+    bottom: 0;
     width: 100vw;
     margin: 0;
     padding: 0 10px;
     top: auto;
     left: 0;
-    height: 50px;
+    height: 42px;
   }
 }
 .topBarLink {

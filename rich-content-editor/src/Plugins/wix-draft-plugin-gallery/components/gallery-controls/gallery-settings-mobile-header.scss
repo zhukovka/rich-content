@@ -29,6 +29,15 @@
 
 .menu {
   float: right;
+
+  svg {
+    width: 20px;
+    margin: 6px 0 -6px 0;
+
+    path {
+      fill: #fff;
+    }
+  }
 }
 
 .done {
