@@ -1,2 +1,1 @@
-const DIVIDER_TYPE = 'wix-draft-plugin-divider';
-export { DIVIDER_TYPE };
+export const DIVIDER_TYPE = 'wix-draft-plugin-divider';

@@ -27,15 +27,16 @@ export default class RichContentEditor extends Component {
       decorators,
       helpers,
       plugins,
+      isMobile,
     } = this.props;
     const { theme } = this.state;
-    const { pluginInstances, pluginButtons } = createPlugins({ plugins, helpers, theme });
-    this.initToolbars(pluginButtons);
+    const { pluginInstances, pluginButtons } = createPlugins({ plugins, helpers, theme, isMobile });
+    this.initEditorToolbars(pluginButtons);
     this.plugins = [...pluginInstances, ...Object.values(this.toolbars)];
     this.decorators = createDecorators(decorators);
   }
 
-  initToolbars(pluginButtons) {
+  initEditorToolbars(pluginButtons) {
     const {
       helpers,
       sideToolbarOffset,
@@ -160,7 +161,7 @@ export default class RichContentEditor extends Component {
   };
 
   renderEditor = () => {
-    const { helpers, placeholder, isMobile } = this.props;
+    const { helpers, placeholder } = this.props;
     const { editorState, readOnly } = this.state;
     return (
       <Editor
@@ -172,7 +173,6 @@ export default class RichContentEditor extends Component {
         blockStyleFn={this.blockStyleFn}
         placeholder={placeholder || ''}
         readOnly={!!readOnly}
-        isMobile={isMobile}
         helpers={helpers}
         spellCheck
       />
@@ -180,10 +180,11 @@ export default class RichContentEditor extends Component {
   };
 
   render() {
+    const { isMobile } = this.props;
     const { theme } = this.state;
     const wrapperClassName = classNames(Styles.wrapper, theme.wrapper, {
-      [Styles.desktop]: !this.props.isMobile,
-      [theme.desktop]: !this.props.isMobile,
+      [Styles.desktop]: !isMobile,
+      [theme.desktop]: !isMobile,
     });
     return (
       <div className={wrapperClassName}>

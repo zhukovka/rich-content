@@ -20,7 +20,7 @@ import buttonStyles from '~/Styles/plugin-toolbar-button.scss';
 
 const toolbarOffset = 12;
 
-export default function createToolbar({ buttons, theme, pubsub, helpers }) {
+export default function createToolbar({ buttons, theme, pubsub, helpers, isMobile }) {
   class BaseToolbar extends Component {
     constructor(props) {
       super(props);
@@ -177,6 +177,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
               pubsub={pubsub}
               helpers={helpers}
               key={key}
+              isMobile={isMobile}
               {...button}
             />
           );

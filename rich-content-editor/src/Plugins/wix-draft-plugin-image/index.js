@@ -4,7 +4,7 @@ import { Component } from './image-component';
 import { IMAGE_TYPE, IMAGE_TYPE_LEGACY } from './types';
 
 const createImagePlugin = (config = {}) => {
-  const { decorator, helpers, theme } = config;
+  const { decorator, helpers, theme, isMobile } = config;
 
   return createBasePlugin({
     component: Component,
@@ -16,6 +16,7 @@ const createImagePlugin = (config = {}) => {
       helpers,
     }),
     helpers,
+    isMobile,
   });
 };
 

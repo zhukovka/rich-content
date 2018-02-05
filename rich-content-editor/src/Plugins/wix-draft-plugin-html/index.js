@@ -4,7 +4,7 @@ import { Component } from './html-component';
 import { HTML_TYPE } from './types';
 
 const createHtmlPlugin = (config = {}) => {
-  const { decorator, helpers, theme } = config;
+  const { decorator, helpers, theme, isMobile } = config;
 
   return createBasePlugin({
     component: Component,
@@ -15,6 +15,7 @@ const createHtmlPlugin = (config = {}) => {
       helpers,
     }),
     helpers,
+    isMobile,
   });
 };
 

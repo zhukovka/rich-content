@@ -54,7 +54,7 @@ class BaseToolbarButton extends Themable {
 
   handleClick = event => {
     event.preventDefault();
-    const { componentState, keyName, pubsub, onClick } = this.props;
+    const { componentState, keyName, helpers, pubsub, theme, onClick, ...otherProps } = this.props;
     const activeButton = componentState.activeButton || { keyName, isActive: false };
     const isToggleButton = !(this.props.type === BUTTONS.EXTERNAL_MODAL || this.props.type === BUTTONS.FILES);
     const isActive = !isToggleButton ? activeButton.keyName === keyName : !(activeButton.keyName === keyName && activeButton.isActive);
@@ -62,14 +62,19 @@ class BaseToolbarButton extends Themable {
     pubsub.set('componentState', componentState);
 
     if (this.props.type === BUTTONS.EXTERNAL_MODAL && isActive) {
-      const helpers = this.props.helpers;
       if (helpers && helpers.openExternalModal) {
-        //console.log('Opening external modal');
         const keyName = BUTTONS.EXTERNAL_MODAL;
-
-        helpers.openExternalModal({ ...this.props, componentState, keyName, helpers, pubsub, theme: this.props.theme.modal || {} });
+        const modalProps = {
+          componentState,
+          keyName,
+          helpers,
+          pubsub,
+          theme: theme.modal || {},
+          ...otherProps,
+        };
+        helpers.openExternalModal(modalProps);
       } else {
-        //console.warn('Open external helper function is not defined for toolbar button with keyName ' + keyName);
+        console.error('Open external helper function is not defined for toolbar button with keyName ' + keyName); //eslint-disable-line no-console
       }
     }
     onClick && onClick(pubsub);
@@ -200,6 +205,7 @@ BaseToolbarButton.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
   modalStyles: PropTypes.object,
   handleFileSelection: PropTypes.bool,
+  isMobile: PropTypes.bool,
 };
 
 export default BaseToolbarButton;
