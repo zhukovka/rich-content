@@ -5,12 +5,17 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { BUTTONS } from './buttons';
 import Panel from './basePanel';
-import Styles from '~/Styles/plugin-toolbar-button.scss';
+import { mergeStyles } from '~/Utils';
+import styles from '~/Styles/plugin-toolbar-button.scss';
 import { VideoReplaceButton } from './VideoReplaceButton';
-import Themable from '~/Components/Themable';
 
-class BaseToolbarButton extends Themable {
-  state = { isActive: false };
+class BaseToolbarButton extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.styles = mergeStyles({ styles, theme: props.theme });
+    this.state = { isActive: false };
+  }
 
   componentDidMount() {
     this.props.pubsub.subscribe('componentState', this.onComponentStateChange);
@@ -134,7 +139,6 @@ class BaseToolbarButton extends Themable {
   };
 
   renderFilesButton = (buttonClassNames, styles) => {
-    // TODO: in theme, change fileButtonWrapper => replaceButtonWrapper
     const replaceButtonWrapperClassNames = classNames(styles.replaceButtonWrapper);
     return (
       <div className={replaceButtonWrapperClassNames}>
@@ -148,21 +152,14 @@ class BaseToolbarButton extends Themable {
     );
   };
 
-  getDefaultStyles() {
-    return Styles;
-  }
-
-  getTheme() {
-    return this.props.theme;
-  }
-
   renderReplaceVideoButton = styles => {
     // TODO: in theme, change fileButtonWrapper => replaceButtonWrapper
     const replaceButtonWrapperClassNames = classNames(styles.replaceButtonWrapper);
     return <VideoReplaceButton className={replaceButtonWrapperClassNames} icon={this.getIcon()} pubsub={this.props.pubsub} />;
   };
 
-  renderDesktop = styles => {
+  render = () => {
+    const { styles } = this;
     const { isActive } = this.state;
     const buttonWrapperClassNames = classNames(styles.buttonWrapper);
     const buttonClassNames = classNames({
