@@ -42,8 +42,8 @@ export default class RichContentEditor extends Component {
       sideToolbarOffset,
       textButtons,
       isMobile,
-      theme,
     } = this.props;
+    const { theme } = this.state;
     const buttons = { textButtons, pluginButtons };
 
     this.toolbars = createToolbars({
