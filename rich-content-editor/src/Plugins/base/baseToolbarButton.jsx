@@ -96,12 +96,11 @@ class BaseToolbarButton extends React.Component {
   };
 
   getIcon = () => {
-    const { iconActive, icon, theme } = this.props;
+    const { iconActive, icon } = this.props;
     const ActiveIcon = iconActive || icon;
     const Icon = icon;
-    const iconClassNames = classNames(Styles.icon, theme && theme.icon);
     return (
-      <div className={iconClassNames}>
+      <div className={this.styles.icon}>
         {this.state.isActive ? <ActiveIcon /> : <Icon />}
       </div>
     );

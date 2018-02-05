@@ -123,7 +123,7 @@ class GalleryComponent extends React.PureComponent {
 
   };
 
-  renderDesktop() {
+  render() {
     return (
       <GalleryViewer
         componentData={this.props.componentData}

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { RadioGroup } from 'stylable-components/dist/src/components/radio-group';
-import classnames from 'classnames';
 import { mergeStyles } from '~/Utils';
 import styles from './radio-group-horizontal.scss';
 
