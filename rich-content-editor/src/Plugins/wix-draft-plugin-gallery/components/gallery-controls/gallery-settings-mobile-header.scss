@@ -1,0 +1,40 @@
+.header {
+  display: block;
+  padding: 0 9px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  line-height: 50px;
+  box-sizing: border-box;
+  background: #4990e2;
+  z-index: 5;
+
+}
+
+.headerPlaceholder {
+  display: block;
+  position: relative;
+  width: 100vw;
+  height: 50px;
+  background: transparent;
+}
+
+.button {
+  color: #fff;
+  font-size: 14px;
+  line-height: 50px;
+  padding: 0 9px;
+}
+
+.menu {
+  float: right;
+}
+
+.done {
+  float: right;
+}
+
+.cancel {
+  float: left;
+}

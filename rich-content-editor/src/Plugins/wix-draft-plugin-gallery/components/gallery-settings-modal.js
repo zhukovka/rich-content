@@ -14,7 +14,7 @@ import { SortableComponent } from './gallery-controls/gallery-items-sortable';
 import layoutData from '../layout-data-provider';
 import Themable from '~/Components/Themable';
 
-import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
+import GallerySettingsMobileHeader from './gallery-controls/gallery-settings-mobile-header';
 
 class ManageMediaSection extends Component {
   applyItems = items => {
@@ -38,6 +38,7 @@ class ManageMediaSection extends Component {
           items={this.props.data.items}
           onItemsChange={this.applyItems}
           handleFileChange={this.handleFileChange}
+          isMobile={this.props.isMobile}
         />
       </div>
     );
@@ -46,7 +47,8 @@ class ManageMediaSection extends Component {
 
 ManageMediaSection.propTypes = {
   data: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired,
+  isMobile: PropTypes.bool
 };
 
 class AdvancedSettingsSection extends Component {
@@ -94,7 +96,7 @@ class AdvancedSettingsSection extends Component {
   };
 
   render() {
-    const { data, store } = this.props;
+    const { data, store, isMobile } = this.props;
     return (
       <div>
         <SettingsSection>
@@ -104,13 +106,15 @@ class AdvancedSettingsSection extends Component {
               this.switchLayout({ galleryLayout: event.value })
             }
             layoutsOrder={this.layoutsOrder}
-          />
+            isMobile={isMobile}
+            />
         </SettingsSection>
         <LayoutControlsSection
           layout={this.getValueFromComponentStyles('galleryLayout')}
           layoutsOrder={this.layoutsOrder}
           data={data}
           store={store}
+          isMobile={isMobile}
         />
       </div>
     );
@@ -119,7 +123,8 @@ class AdvancedSettingsSection extends Component {
 
 AdvancedSettingsSection.propTypes = {
   data: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired,
+  isMobile: PropTypes.bool
 };
 
 export class GallerySettingsModal extends Themable {
@@ -156,18 +161,19 @@ export class GallerySettingsModal extends Themable {
   }
 
   renderDesktop(styles) {
-    const { activeTab, pubsub, helpers } = this.props;
+    const { activeTab, pubsub, helpers, isMobile } = this.props;
     const componentData = pubsub.get('componentData');
     // console.log('MODAL_RENDER: ', componentData);
 
-    if (baseUtils.isMobile()) {
+    if (isMobile) {
+      // console.log('Rendering mobile settings');
       return (
         <ThemeProvider theme={'rce'}>
-          <GallerySettingsFooter
+          <GallerySettingsMobileHeader
             cancel={() => this.revertComponentData()}
             save={() => helpers.closeExternalModal()}
           />
-          <ManageMediaSection data={componentData} store={pubsub.store} />
+          <ManageMediaSection data={componentData} store={pubsub.store} isMobile />
         </ThemeProvider>
       );
     } else {
@@ -177,7 +183,7 @@ export class GallerySettingsModal extends Themable {
           <div className={styles.gallerySettings}>
             <Tabs value={activeTab}>
               <Tab label={'Organize Media'} value={'manage_media'}>
-                <ManageMediaSection data={componentData} store={pubsub.store} />
+                <ManageMediaSection data={componentData} store={pubsub.store} isMobile={false} />
               </Tab>
               <Tab label={'Advanced Settings'} value={'advanced_settings'}>
                 <AdvancedSettingsSection
@@ -201,7 +207,8 @@ GallerySettingsModal.propTypes = {
   activeTab: PropTypes.oneOf(['manage_media', 'advanced_settings']),
   componentData: PropTypes.object.isRequired,
   helpers: PropTypes.object.isRequired,
-  pubsub: PropTypes.any.isRequired
+  pubsub: PropTypes.any.isRequired,
+  isMobile: PropTypes.bool
 };
 
 export default GallerySettingsModal;

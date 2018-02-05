@@ -34,13 +34,24 @@ const mobileModalStyles = {
 };
 
 const mobileFullScreenOverrideStyles = {
+  overlay: {
+    top: 0,
+    left: 0,
+    right: 'auto',
+    bottom: 'auto',
+    height: '100vh',
+    width: '100vw',
+    margin: 0
+  },
   content: {
     top: 0,
-    left: 'auto',
+    left: 0,
+    right: 'auto',
     bottom: 'auto',
     backgroundColor: '#fff',
-    height: '100%',
-    width: '100%',
+    height: '100vh',
+    width: '100vw',
+    margin: 0
   }
 };
 

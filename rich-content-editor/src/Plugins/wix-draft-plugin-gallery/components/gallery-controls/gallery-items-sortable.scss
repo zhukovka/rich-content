@@ -15,6 +15,7 @@
   text-align: right;
   font-size: 12px;
   line-height: 40px;
+  padding: 0 5px;
 
   &:hover {
     cursor: pointer;
@@ -60,24 +61,31 @@
 
 .sortableContainer {
   margin: 0 -12px;
+  box-sizing: border-box;
+
+  &.mobile {
+    margin: 2.5px;
+  }
 }
 
 .itemContainer {
-  width: 104px;
-  height: 104px;
-  display: inline-block;
   margin: 12px;
-  float: none;
+  float: left;
   outline: none;
   overflow: hidden;
   position: relative;
+  box-sizing: border-box;
+
+  &.mobile {
+    margin: 2.5px;
+  }
 }
+
 .itemContainerSelected {
   box-shadow: 0 0 0 3px #0261ff;
 }
+
 .itemImage {
-  width: 104px;
-  height: 104px;
   cursor: -webkit-grab;
 
   &:active {
@@ -86,6 +94,18 @@
 }
 .topBar {
   height: 40px;
+
+  &.mobile {
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 50px;
+    width: 100vw;
+    margin: 0;
+    padding: 0 10px;
+    top: auto;
+    left: 0;
+    height: 50px;
+  }
 }
 .topBarLink {
   font-size: 12px;
