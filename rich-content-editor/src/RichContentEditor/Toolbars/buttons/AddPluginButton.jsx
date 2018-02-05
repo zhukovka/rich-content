@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { getModalStyles } from '~/Utils/getModalStyles';
+import { getModalStyles } from '~/Utils';
 import AddPluginModal from '../AddPluginModal';
 import PlusIcon from '../icons/plus-default.svg';
 import Styles from '~/Styles/toolbar-button.scss';

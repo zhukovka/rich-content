@@ -3,7 +3,7 @@ import ManageMediaIcon from '../icons/insert-plugin.svg';
 import AdvancedSettingsIcon from '../../base/icons/block-settings.svg';
 import GallerySettingsModal from '../components/gallery-settings-modal';
 import { BUTTONS } from '~/Plugins/base/buttons';
-import { getModalStyles } from '~/Utils/getModalStyles';
+import { getModalStyles } from '~/Utils';
 
 const modalStyles = getModalStyles();
 
