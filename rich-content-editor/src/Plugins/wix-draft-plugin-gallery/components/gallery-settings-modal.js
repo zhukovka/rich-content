@@ -107,7 +107,7 @@ class AdvancedSettingsSection extends Component {
             }
             layoutsOrder={this.layoutsOrder}
             isMobile={isMobile}
-            />
+          />
         </SettingsSection>
         <LayoutControlsSection
           layout={this.getValueFromComponentStyles('galleryLayout')}

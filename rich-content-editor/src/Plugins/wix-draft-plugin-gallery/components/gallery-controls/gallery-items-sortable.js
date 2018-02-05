@@ -19,7 +19,7 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, hand
   if (isMock) {
     /* eslint-disable max-len */
     return (
-      <FileInput className={classNames(style.itemContainer, style.filesItem, {[style.mobile] : isMobile})} onChange={handleFileChange} multiple style={{ width: imageSize + 'px', height: imageSize + 'px' }} >
+      <FileInput className={classNames(style.itemContainer, style.filesItem, { [style.mobile]: isMobile })} onChange={handleFileChange} multiple style={{ width: imageSize + 'px', height: imageSize + 'px' }} >
         <UploadIcon/>
       </FileInput>
     );
@@ -37,9 +37,9 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, hand
     return (
       <div
         className={classNames(style.itemContainer, {
-          [style.itemContainerSelected] : item.selected && !isMobile,
-          [style.itemContainerSelectedMobile] : item.selected && isMobile,
-          [style.mobile] : isMobile
+          [style.itemContainerSelected]: item.selected && !isMobile,
+          [style.itemContainerSelectedMobile]: item.selected && isMobile,
+          [style.mobile]: isMobile
         })}
         onClick={() => clickAction(itemIdx)}
         style={{
@@ -84,7 +84,7 @@ const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageS
 
   const addItemButton = <FileInput className={style.filesButton} onChange={handleFileChange} multiple>Add Items</FileInput>;
   return (
-    <div className={classNames(style.topBar, {[style.mobile]: isMobile})}>
+    <div className={classNames(style.topBar, { [style.mobile]: isMobile })}>
       {hasUnselectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', true)}>Select All</a> : null}
       {hasSelectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', false)}>Deselect All</a> : null}
       {hasSelectedItems ? <a className={style.topBarLink} onClick={() => deleteSelectedItems()}>Delete Selected</a> : null}
@@ -100,6 +100,7 @@ TopBarMenu.propTypes = {
   deleteSelectedItems: PropTypes.func,
   toggleImageSettings: PropTypes.func.isRequired,
   handleFileChange: PropTypes.func,
+  isMobile: PropTypes.bool
 };
 
 export class SortableComponent extends Component {
