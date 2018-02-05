@@ -4,6 +4,7 @@ import RadioGroupHorizontal from '../stylable-base/radio-group-horizontal';
 
 const propTypes = {
   onChange: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
   value: PropTypes.string.isRequired,
   options: PropTypes.object
 };

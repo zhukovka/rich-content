@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ToggleWithLabel from '../stylable-base/toggle-with-label';
 
 const propTypes = {
+  theme: PropTypes.object.isRequired,
   value: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
 };

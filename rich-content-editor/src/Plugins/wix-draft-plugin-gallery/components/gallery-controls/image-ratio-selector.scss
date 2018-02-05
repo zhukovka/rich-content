@@ -1,70 +1,73 @@
 .imageRatioSelector_label {
-  display: block;
-  margin-bottom: 13px;
+    display: block;
+    margin-bottom: 13px;
 }
 
 .imageRatioSelector_grid {
-  grid-template-columns: 56px 56px 56px 56px 56px;
-  grid-template-rows: 56px;
+    grid-template-columns: 56px 56px 56px 56px 56px;
+    grid-template-rows: 56px;
 }
 
 .imageRatioSelector_tile {
-  margin-right: 24px;
+    margin-right: 24px;
 }
 
 .imageRatioSelector_ratioButton {
-  width: 32px;
-  height: 32px;
-  background-color:rgba(51, 51, 51, 0.1);
-  display: flex;
-  justify-content: center;
-  align-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: rgba(51, 51, 51, 0.1);
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 
 .imageRatioSelector_ratioButton_selected {
-  background-color: #0261ff;
+    background-color: #0261ff;
 }
 
 .imageRatioSelector_ratioLabel {
-  margin-top: 7px;
-  display: block;
+    margin-top: 7px;
+    display: block;
 }
 
 %ratio-icon {
-  border: 1px solid #000;
-  margin: auto;
+    border: 1px solid #000;
+    margin: auto;
+    &:focus {
+        border: 1px solid #fff;
+    }
+}
 
-  &:focus {
+.imageRatioSelector_ratioIcon_selected {
     border: 1px solid #fff;
-  }
-
-  &.imageRatioSelector_ratioIcon_selected {
-    border: 1px solid #fff;
-  }
 }
 
 .imageRatioSelector_16_9 {
-  @extend %ratio-icon;
-  width: 22px;
-  height: 12px;
+    @extend %ratio-icon;
+    width: 22px;
+    height: 12px;
 }
+
 .imageRatioSelector_4_3 {
-  @extend %ratio-icon;
-  width: 20px;
-  height: 14px;
+    @extend %ratio-icon;
+    width: 20px;
+    height: 14px;
 }
+
 .imageRatioSelector_1_1 {
-  @extend %ratio-icon;
-  width: 20px;
-  height: 20px;
+    @extend %ratio-icon;
+    width: 20px;
+    height: 20px;
 }
+
 .imageRatioSelector_3_4 {
-  @extend %ratio-icon;
-  width: 14px;
-  height: 20px;
+    @extend %ratio-icon;
+    width: 14px;
+    height: 20px;
 }
+
 .imageRatioSelector_9_16 {
-  @extend %ratio-icon;
-  width: 12px;
-  height: 22px;
+    @extend %ratio-icon;
+    width: 12px;
+    height: 22px;
 }

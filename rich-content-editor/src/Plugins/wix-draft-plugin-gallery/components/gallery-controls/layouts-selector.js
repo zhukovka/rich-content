@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { SelectionList, SelectionListOption } from 'stylable-components/dist/src/components/selection-list';
 
-import style from './layout-selector.scss';
+import { mergeStyles } from '~/Utils';
+import styles from './layout-selector.scss';
 class LayoutSelector extends Component {
+
+  constructor(props) {
+    super(props);
+    this.styles = mergeStyles({ styles, theme: props.theme });
+  }
+
   layouts = [
     { layoutId: 0, name: 'Grid' },
     { layoutId: 1, name: 'Masonry' },
@@ -33,9 +41,13 @@ class LayoutSelector extends Component {
 
   renderOption = ({ layoutId }, { label }, { id, selected, focused }) => (
     <SelectionListOption id={id} value={layoutId} selected={selected} focused={focused}>
-      <div className={style['layout-tile']}>
-        <div className={style[selected ? `${label.toLowerCase()}_selected` : label.toLowerCase()]} />
-        <label>{label}</label>
+      <div className={this.styles.layoutsSelector_tile}>
+        <div
+          className={classnames(this.styles[selected ?
+            `layoutsSelector_icon_${label.toLowerCase()}_selected` : `layoutsSelector_icon_${label.toLowerCase()}`],
+          this.styles.layoutsSelector_tile)}
+        />
+        <label className={this.styles.layoutsSelector_tile_label}>{label}</label>
       </div>
     </SelectionListOption>
   );
@@ -47,12 +59,13 @@ class LayoutSelector extends Component {
 
 
   render() {
+    const styles = this.styles;
     const { value } = this.props;
     return (
-      <div className={style['layouts-selector']}>
-        <label>Layouts</label>
+      <div>
+        <label className={styles.layoutsSelector_label}>Layouts</label>
         <SelectionList
-          className={style['layouts-grid']}
+          className={styles.layoutsSelector_grid}
           dataSource={this.layouts}
           dataMapper={this.dataMapper}
           renderItem={this.renderOption}
@@ -68,6 +81,7 @@ LayoutSelector.propTypes = {
   value: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   layoutsOrder: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 export default LayoutSelector;

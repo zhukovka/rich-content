@@ -2,40 +2,45 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { SelectionList, SelectionListOption } from 'stylable-components/dist/src/components/selection-list';
 import classNames from 'classnames';
-import style from './image-ratio-selector.scss';
+
+import { mergeStyles } from '~/Utils';
+import styles from './image-ratio-selector.scss';
 class ImageRatioSelector extends Component {
 
-  ratioClasses = [style['_16-9'], style['_4-3'], style['_1-1'], style['_3-4'], style['_9-16']];
-
-  dataSource = [
-    { ratio: 16 / 9, name: '16:9', ratioClass: style['_16-9'] },
-    { ratio: 4 / 3, name: '4:3', ratioClass: style['_4-3'] },
-    { ratio: 1, name: '1:1', ratioClass: style['_1-1'] },
-    { ratio: 3 / 4, name: '3:4', ratioClass: style['_3-4'] },
-    { ratio: 9 / 16, name: '9:16', ratioClass: style['_9-16'] },
-  ];
+  constructor(props) {
+    super(props);
+    this.styles = mergeStyles({ styles, theme: props.theme });
+  }
 
   dataMapper = ({ ratio, name }) => ({ value: ratio, label: name });
 
   renderOption = ({ ratioClass }, { value, label }, { id, selected, focused }) => (
     <SelectionListOption id={id} value={value} selected={selected} focused={focused}>
-      <div className={style.ratioTile}>
-        <div className={classNames(style.ratioButton, selected ? style.selected : '')}>
-          <div className={classNames(ratioClass, selected ? style.selected : '')} />
+      <div className={this.styles.imageRatioSelector_tile}>
+        <div className={classNames(this.styles.imageRatioSelector_ratioButton, selected ? this.styles.imageRatioSelector_ratioButton_selected : '')}>
+          <div className={classNames(ratioClass, selected ? this.styles.imageRatioSelector_ratioIcon_selected : '')} />
         </div>
-        <label className={style.ratioLabel}>{label}</label>
+        <label className={this.styles.imageRatioSelector_ratioLabel}>{label}</label>
       </div>
     </SelectionListOption>
   );
 
   render() {
+    const dataSource = [
+      { ratio: 16 / 9, name: '16:9', ratioClass: this.styles.imageRatioSelector_16_9 },
+      { ratio: 4 / 3, name: '4:3', ratioClass: this.styles.imageRatioSelector_4_3 },
+      { ratio: 1, name: '1:1', ratioClass: this.styles.imageRatioSelector_1_1 },
+      { ratio: 3 / 4, name: '3:4', ratioClass: this.styles.imageRatioSelector_3_4 },
+      { ratio: 9 / 16, name: '9:16', ratioClass: this.styles.imageRatioSelector_9_16 },
+    ];
+    const { styles } = this;
     const { value, onChange } = this.props;
     return (
-      <div className={style['image-ratio-selector']}>
-        <label>Image Ratio:</label>
+      <div>
+        <label className={styles.imageRatioSelector_label}>Image Ratio:</label>
         <SelectionList
-          className={style['ratios-grid']}
-          dataSource={this.dataSource}
+          className={styles.imageRatioSelector_grid}
+          dataSource={dataSource}
           dataMapper={this.dataMapper}
           renderItem={this.renderOption}
           value={value}
@@ -48,6 +53,7 @@ class ImageRatioSelector extends Component {
 
 ImageRatioSelector.propTypes = {
   value: PropTypes.number.isRequired,
+  theme: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

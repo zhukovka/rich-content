@@ -1,7 +1,7 @@
 $TITLE_HEIGHT: 100px;
 $FOOTER_HEIGHT: 100px;
 
-.title {
+.gallerySettings_title {
   font-size: 18px;
   width: 100%;
   color: #333333;
@@ -18,33 +18,14 @@ $FOOTER_HEIGHT: 100px;
 .gallerySettings {
   height: calc(100% - $FOOTER_HEIGHT);
   margin: $TITLE_HEIGHT auto $FOOTER_HEIGHT auto;
-
-  input {
-    font-family : inherit;
-    font-size: 14px;
-    border-radius: 3px;
-    border: solid 1px #ededed;
-    height: 30px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 0.1em;
-    text-align: center;
-  }
-
-  input:active,
-  input:focus {
-    outline: none;
-  }
-
-  hr {
-    border: none;
-    border-bottom: 1px solid #ededed;
-    margin: 18px auto;
-  }
-
-  label {
-    font-size: 14px;
-  }
 }
 
+.gallerySettings_divider {
+  border: none;
+  border-bottom: 1px solid #ededed;
+  margin: 18px auto;
+}
+
+.gallerySettings_label {
+  font-size: 14px;
+}

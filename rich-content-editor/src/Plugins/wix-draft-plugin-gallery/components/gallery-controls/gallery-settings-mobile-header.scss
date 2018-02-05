@@ -1,4 +1,4 @@
-.header {
+.gallerySettingsMobileHeader_header {
   display: block;
   padding: 0 9px;
   position: fixed;
@@ -9,10 +9,9 @@
   box-sizing: border-box;
   background: #4990e2;
   z-index: 5;
-
 }
 
-.headerPlaceholder {
+.gallerySettingsMobileHeader_headerPlaceholder {
   display: block;
   position: relative;
   width: 100vw;
@@ -20,14 +19,14 @@
   background: transparent;
 }
 
-.button {
+.gallerySettingsMobileHeader_button {
   color: #fff;
   font-size: 14px;
   line-height: 50px;
   padding: 0 9px;
 }
 
-.menu {
+.gallerySettingsMobileHeader_menu {
   float: right;
 
   svg {
@@ -40,10 +39,10 @@
   }
 }
 
-.done {
+.gallerySettingsMobileHeader_done {
   float: right;
 }
 
-.cancel {
+.gallerySettingsMobileHeader_cancel {
   float: left;
 }

@@ -3,51 +3,49 @@
   transform: rotateZ($rotation + deg);
 }
 
-.thumbnail-placement-selector {
-  label {
+.thumbnailPlacementSelector_label {
     display: block;
     margin-bottom: 13px;
   }
-}
 
-.thumbnails-grid {
+.thumbnailPlacementSelector_grid {
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 100%;
 }
 
-.thumbnail-tile {
+.thumbnailPlacementSelector_tile {
   width: 46px;
   height: 46px;
 }
 
-.bottom {
+.thumbnailPlacementSelector_bottom {
   @include thumbnail_icon(0, 'thumbnails');
 }
 
-.bottom_selected {
+.thumbnailPlacementSelector_bottom_selected {
   @include thumbnail_icon(0, 'thumbnails_selected');
 }
 
-.left {
+.thumbnailPlacementSelector_left {
   @include thumbnail_icon(90, 'thumbnails');
 }
 
-.left_selected {
+.thumbnailPlacementSelector_left_selected {
   @include thumbnail_icon(90, 'thumbnails_selected');
 }
 
-.top {
+.thumbnailPlacementSelector_top {
   @include thumbnail_icon(180, 'thumbnails');
 }
 
-.top_selected {
+.thumbnailPlacementSelector_top_selected {
   @include thumbnail_icon(180, 'thumbnails_selected');
 }
 
-.right {
+.thumbnailPlacementSelector_right {
   @include thumbnail_icon(270, 'thumbnails');
 }
 
-.right_selected {
+.thumbnailPlacementSelector_right_selected {
   @include thumbnail_icon(270, 'thumbnails_selected');
 }
