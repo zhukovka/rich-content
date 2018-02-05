@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import decorateComponentWithProps from 'decorate-component-with-props';
 
 import Overlay from './overlay';
-import Styles from './default-html-styles.scss';
-import Themable from '~/Components/Themable';
+import styles from './default-html-styles.scss';
+import { mergeStyles } from '../../Utils/index';
 
 const DEFAULTS = {
   src: null,
@@ -17,10 +17,11 @@ const DEFAULTS = {
   },
 };
 
-class HtmlComponent extends Themable {
+class HtmlComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.stateFromProps(props);
+    this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -63,23 +64,16 @@ class HtmlComponent extends Themable {
     );
   };
 
-  getDefaultStyles() {
-    return Styles;
-  }
-
-  getTheme() {
-    return this.props.theme;
-  }
-
-  renderDesktop(styles) {
+  render() {
+    const { styles } = this;
     const { blockProps, selection } = this.props;
     const isEditorFocused = selection && selection.getHasFocus();
     const { isFocused, readOnly } = blockProps || { readOnly: true };
     const data = this.props.componentData;
     data.config = data.config || {};
 
-    const itemClassName = classNames(this.props.className, styles.itemContainer, {
-      [styles.inChange]: this.state.inEditMode && isFocused && isEditorFocused,
+    const itemClassName = classNames(this.props.className, styles.html_itemContainer, {
+      [styles.html_inChange]: this.state.inEditMode && isFocused && isEditorFocused,
     });
 
     const width = data.config.width || DEFAULTS.config.width;
@@ -130,7 +124,7 @@ class HtmlComponent extends Themable {
       );
     } else {
       return (
-        <div onClick={this.props.onClick} className={classNames(this.props.className, styles.invalidGalleryItems)}>
+        <div onClick={this.props.onClick} className={classNames(this.props.className, styles.html_invalidGalleryItems)}>
           Please select an iframe source
         </div>
       );

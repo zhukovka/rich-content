@@ -1,14 +1,14 @@
-.imageContainer {
+.imageComponent_container {
   display: block;
   position: relative;
 }
 
-.image {
+.imageComponent_image {
   display: block;
   width: 100%;
 }
 
-.overlay {
+.imageComponent_overlay {
   position: absolute;
   left: 0;
   right: 0;
@@ -16,8 +16,8 @@
   bottom: 0;
 }
 
-.imageDescription {
+.imageComponent_description {
 }
 
-.imageTitle {
+.imageComponent_title {
 }

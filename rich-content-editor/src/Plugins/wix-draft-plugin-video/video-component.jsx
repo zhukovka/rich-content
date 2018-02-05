@@ -2,9 +2,9 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Styles from './default-video-styles.scss';
 
-import Themable from '~/Components/Themable';
+import { mergeStyles } from '~/Utils';
+import styles from './default-video-styles.scss';
 
 const DEFAULTS = {
   src: 'https://www.youtube.com/watch?v=YIywpvHewc0',
@@ -16,7 +16,7 @@ const DEFAULTS = {
 
 const MAX_WAIT_TIME = 5000;
 
-class VideoComponent extends Themable {
+class VideoComponent extends React.Component {
   constructor(props) {
     super(props);
     const isPlayable = !props.blockProps || props.blockProps.readOnly === true;
@@ -25,6 +25,7 @@ class VideoComponent extends Themable {
       isLoaded: false,
       isPlayable,
     };
+    this.styles = mergeStyles({ styles, theme: this.props.theme });
   }
 
   setPlayer = player => {
@@ -56,8 +57,8 @@ class VideoComponent extends Themable {
   renderOverlay = styles => {
     const { isLoaded } = this.state;
     return (
-      <div className={classNames(styles.videoOverlay)}>
-        {isLoaded && <span>To play this video, view this post from your live site</span>}
+      <div className={classNames(styles.video_overlay)}>
+        {isLoaded && <span className={styles.video_overlay_message}>To play this video, view this post from your live site</span>}
       </div>);
   };
 
@@ -66,7 +67,7 @@ class VideoComponent extends Themable {
     return (
       <ReactPlayer
         ref={this.setPlayer}
-        className={classNames(styles.player)}
+        className={classNames(styles.video_player)}
         width="100%"
         height="100%"
         url={componentData.src}
@@ -77,18 +78,11 @@ class VideoComponent extends Themable {
     );
   };
 
-  getDefaultStyles() {
-    return Styles;
-  }
-
-  getTheme() {
-    return this.props.theme;
-  }
-
-  renderDesktop(styles) {
+  render() {
+    const { styles } = this;
     const { className, onClick } = this.props;
     const { isPlayable } = this.state;
-    const containerClassNames = classNames(styles.videoContainer, className || '');
+    const containerClassNames = classNames(styles.video_container, className || '');
     return (
       <div onClick={onClick} className={containerClassNames}>
         {!isPlayable && this.renderOverlay(styles)}
