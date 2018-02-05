@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'stylable-components/dist/src/components/tabs';
 
-import { ThemeProvider } from '../../../Common/theme-provider';
+import { ThemeProvider } from '~/Components/ThemeProvider';
 import LayoutSelector from './gallery-controls/layouts-selector';
 
 import Styles from './gallery-settings-modal.scss';
 
 import GallerySettingsFooter from './gallery-controls/gallery-settings-footer';
 import LayoutControlsSection from './layout-controls-section';
-import SettingsSection from '~/Common/settings-section';
+import SettingsSection from '~/Components/SettingsSection';
 import { SortableComponent } from './gallery-controls/gallery-items-sortable';
 import layoutData from '../layout-data-provider';
-import Themable from '../../../Common/themable';
+import Themable from '~/Components/Themable';
 
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 

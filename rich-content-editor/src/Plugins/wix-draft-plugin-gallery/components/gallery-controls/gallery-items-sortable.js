@@ -6,8 +6,8 @@ import { getScaleToFillImageURL } from 'image-client-api/dist/imageClientSDK';
 
 import style from './gallery-items-sortable.scss';
 import ImageSettings from './gallery-image-settings';
-import FileInput from '~/Common/file-input';
-import ImageLoader from '~/Common/image-loader';
+import FileInput from '~/Components/FileInput';
+import ImageLoader from '~/Components/ImageLoader';
 
 //eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';

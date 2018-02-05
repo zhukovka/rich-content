@@ -4,10 +4,10 @@ import classnames from 'classnames';
 import findIndex from 'lodash/findIndex';
 import { Image } from 'stylable-components/dist/src/components/image';
 
-import SettingsSection from '~/Common/settings-section';
+import SettingsSection from '~/Components/SettingsSection';
 import InputWithLabel from '../stylable-base/input-with-label';
 import GallerySettingsFooter from './gallery-settings-footer';
-import FileInput from '~/Common/file-input';
+import FileInput from '~/Components/FileInput';
 import Styles from './gallery-image-settings.scss';
 
 class ImageSettings extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import decorateComponentWithProps from 'decorate-component-with-props';
-import LinkButton from '~/Common/LinkButton';
+import LinkButton from '~/Components/LinkButton';
 import BlockLinkPanel from './BlockLinkPanel';
 
 class BlockLinkButton extends Component {

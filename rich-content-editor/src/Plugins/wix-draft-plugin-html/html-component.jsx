@@ -5,7 +5,7 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 
 import Overlay from './overlay';
 import Styles from './default-html-styles.scss';
-import Themable from '~/Common/themable';
+import Themable from '~/Components/Themable';
 
 const DEFAULTS = {
   src: null,

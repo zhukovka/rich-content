@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
-import LinkPanel from '~/Common/LinkPanel';
+import LinkPanel from '~/Components/LinkPanel';
 
 class BlockLinkPanel extends Component {
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Styles from './default-divider-styles.scss';
-import Themable from '~/Common/themable';
+import Themable from '~/Components/Themable';
 
 const DEFAULTS = {
   type: 'divider3',

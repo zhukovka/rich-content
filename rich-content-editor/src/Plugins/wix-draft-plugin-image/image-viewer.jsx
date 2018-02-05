@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import getImageSrc from './get-image-source';
 import Styles from './default-image-styles.scss';
-import ImageLoader from '~/Common/image-loader';
-import Themable from '~/Common/themable';
+import ImageLoader from '~/Components/ImageLoader';
+import Themable from '~/Components/Themable';
 
 const getDefault = () => ({
   data: {},

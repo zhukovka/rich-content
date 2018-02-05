@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GalleryViewer, getDefault } from './gallery-viewer';
-import Themable from '~/Common/themable';
+import Themable from '~/Components/Themable';
 import Styles from './default-gallery-styles.scss';
 //import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils'; [for dev only]
 

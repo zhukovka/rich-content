@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Styles from './default-video-styles.scss';
 
-import Themable from '~/Common/themable';
+import Themable from '~/Components/Themable';
 
 const DEFAULTS = {
   src: 'https://www.youtube.com/watch?v=YIywpvHewc0',

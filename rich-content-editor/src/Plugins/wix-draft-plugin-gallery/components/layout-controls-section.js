@@ -7,7 +7,7 @@ import { ThumbnailResize, TitleButtonPlacement, ImageOrientation, ScrollDirectio
 import ImageRatioSelector from './gallery-controls/image-ratio-selector';
 import { LoadMoreToggle } from './gallery-controls/toggles';
 import ThumbnailPlacementSelector from './gallery-controls/thumbnail-placement-selector';
-import SettingsSection from '~/Common/settings-section';
+import SettingsSection from '~/Components/SettingsSection';
 
 const Separator = () => <hr />;
 

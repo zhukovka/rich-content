@@ -7,7 +7,7 @@ import { BUTTONS } from './buttons';
 import Panel from './basePanel';
 import Styles from '~/Styles/plugin-toolbar-button.scss';
 import { VideoReplaceButton } from './VideoReplaceButton';
-import Themable from '~/Common/themable';
+import Themable from '~/Components/Themable';
 
 class BaseToolbarButton extends Themable {
   state = { isActive: false };

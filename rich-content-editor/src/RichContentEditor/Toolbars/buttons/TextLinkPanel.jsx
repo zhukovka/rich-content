@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 import { insertLink } from '~/Utils';
-import LinkPanel from '~/Common/LinkPanel';
+import LinkPanel from '~/Components/LinkPanel';
 
 export default class TextLinkPanel extends Component {
   createLinkEntity = ({ url, targetBlank, nofollow }) => {

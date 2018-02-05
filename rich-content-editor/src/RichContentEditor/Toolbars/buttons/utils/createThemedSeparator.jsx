@@ -1,5 +1,5 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
-import Separator from '~/Common/Separator';
+import Separator from '~/Components/Separator';
 
 export default ({ theme = {} }) => {
   const separatorProps = { name: 'Separator' };

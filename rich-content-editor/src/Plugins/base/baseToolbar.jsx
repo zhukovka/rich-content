@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
-import Separator from '~/Common/Separator';
+import Separator from '~/Components/Separator';
 import BaseToolbarButton from './baseToolbarButton';
 import {
   BUTTONS,

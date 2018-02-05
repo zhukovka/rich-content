@@ -4,11 +4,11 @@ import classNames from 'classnames';
 
 import Tooltip from 'wix-style-react/dist/src/Tooltip';
 
-import { ThemeProvider } from '../Common/theme-provider';
-import { isValidUrl } from './url-validator';
+import { ThemeProvider } from '../Components/ThemeProvider';
+import { isValidUrl } from '~/Utils/urlValidators';
 import ErrorIcon from './icons/error.svg';
-import Styles from './link-panel.scss';
-import RadioGroupHorizontal from './stylable-base/radio-group-horizontal';
+import Styles from '~/Styles/link-panel.scss';
+import RadioGroupHorizontal from './RadioGroupHorizontal';
 
 const LinkType = props => (
   <RadioGroupHorizontal

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { EditorState } from '@wix/draft-js';
 import { hasLinksInSelection, removeLinksInSelection } from '~/Utils';
-import LinkButton from '~/Common/LinkButton';
+import LinkButton from '~/Components/LinkButton';
 import TextLinkPanel from './TextLinkPanel';
 
 export default class TextLinkButton extends Component {
