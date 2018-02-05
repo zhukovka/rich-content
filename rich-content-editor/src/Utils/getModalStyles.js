@@ -12,8 +12,7 @@ const mobileModalStyles = {
     position: 'fixed',
     width: '100%',
     height: 'calc(100% + 5px)',
-    backgroundColor: '#000',
-    opacity: 0.7,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
     zIndex: 5
   },
   content: {
@@ -39,7 +38,7 @@ const mobileFullScreenOverrideStyles = {
     top: 0,
     left: 'auto',
     bottom: 'auto',
-    backgroundColor: '#111',
+    backgroundColor: '#fff',
     height: '100%',
     width: '100%',
   }
