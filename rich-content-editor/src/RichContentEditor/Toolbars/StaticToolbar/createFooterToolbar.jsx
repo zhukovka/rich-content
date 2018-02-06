@@ -1,4 +1,3 @@
-import decorateComponentWithProps from 'decorate-component-with-props';
 import classNames from 'classnames';
 import createStaticToolbar from './createStaticToolbar';
 import Styles from '~/Styles/footer-toolbar.scss';
@@ -15,11 +14,9 @@ export default ({ buttons, theme }) => {
     separatorStyles
   };
 
-  const structure = buttons.map(button => decorateComponentWithProps(button, { hideName: true }));
-
   return createStaticToolbar({
     name: 'FooterToolbar',
     theme: footerTheme,
-    structure,
+    structure: buttons
   });
 };

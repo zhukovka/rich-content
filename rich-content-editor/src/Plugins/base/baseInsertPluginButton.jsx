@@ -75,17 +75,15 @@ export default ({ blockType, button, pubsub }) => {
     preventBubblingUp = event => event.preventDefault();
 
     renderButton = () => {
-      const { theme, hideName } = this.props;
-      const { name, Icon } = button;
+      const { theme } = this.props;
+      const { Icon } = button;
       const buttonClassNames = classNames(Styles.button, theme && theme.button);
       const iconClassNames = classNames(Styles.icon, theme && theme.icon);
-      const labelClassNames = classNames(Styles.label, theme && theme.label);
       return (
         <button className={buttonClassNames} onClick={this.onClick}>
           <div className={iconClassNames}>
             <Icon key="0" />
           </div>
-          {!hideName && <span key="1" className={labelClassNames}>{name}</span>}
         </button>
       );
     };
@@ -158,7 +156,6 @@ export default ({ blockType, button, pubsub }) => {
     getEditorState: PropTypes.func.isRequired,
     setEditorState: PropTypes.func.isRequired,
     hidePopup: PropTypes.func,
-    hideName: PropTypes.bool,
     theme: PropTypes.object,
     isMobile: PropTypes.bool,
   };
