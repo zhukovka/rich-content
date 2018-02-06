@@ -18,11 +18,11 @@
   }
 }
 
-.modal {
+.linkPanelModal {
   position: relative;
   // height: 179px; // this is the right margin - once radio buttons would be added back
   height: 203px;
-  padding: 19px 24px;
+  padding-top: 19px;
   font-size: 14px;
   font-weight: 300;
   font-style: normal;
@@ -44,6 +44,7 @@
   width: 19px;
   height: 19px;
   object-fit: contain;
+  padding-right: 40px;
   cursor: pointer;
 }
 
@@ -51,11 +52,16 @@
   display: inline-block;
   width: 1px;
   background: rgba(117, 117, 117, 0.2);
-  margin: 0 25px 0 21px;
+  margin-right: 25px;
 }
 
 .linkHeaderText {
   font-size: 14px;
+}
+
+.linkPanelContent {
+  margin: 0 24px;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.1);
 }
 
 .textInput {
@@ -109,15 +115,32 @@
   }
 }
 
-.actionsContainer{
+.linkPanelFooter{
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid rgba(51, 51, 51, 0.1);
-  padding-top: 15px;
+}
+
+.linkPanelFooterCancelButton {
+  width: 86px;
+  height: 57px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 24px;
+}
+
+.linkPanelFooterDoneButton {
+  width: 86px;
+  height: 57px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 18px;
 }
 
 .disabled {
   opacity: 0.4;
+  cursor: default;
 }
 
 .enabled {

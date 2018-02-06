@@ -97,47 +97,49 @@ class LinkPanel extends Component {
     const secondCheckboxText = 'Add rel="nofollow" to link';
     return (
       <ThemeProvider theme={'rce'}>
-        <div className={Styles.modal}>
+        <div className={Styles.linkPanelModal}>
           {/*<LinkType
             value="url"
           />*/}
-          <div onKeyPress={this.handleKeyPress}>
-            <div className={Styles.textInput}>
-              <input
-                ref={ref => (this.input = ref)}
-                className={classNames({ [Styles.invalid]: !this.state.isValidUrl })}
-                placeholder="e.g. www.wix.com"
-                onChange={this.handleIntermediateUrlChange}
-                onBlur={this.onBlur}
-                value={this.state.intermediateUrl}
-              />
-              {this.state.isValidUrl ? null : (
-                <Tooltip
-                  content={'Invalid URL. Try Again'}
-                  textAlign="center"
-                  maxWidth=""
-                  shouldCloseOnClickOutside
-                  theme="dark"
-                >
-                  <ErrorIcon className={Styles.errorIcon} />
-                </Tooltip>
-              )}
+          <div className={Styles.linkPanelContent}>
+            <div onKeyPress={this.handleKeyPress}>
+              <div className={Styles.textInput}>
+                <input
+                  ref={ref => (this.input = ref)}
+                  className={classNames({ [Styles.invalid]: !this.state.isValidUrl })}
+                  placeholder="e.g. www.wix.com"
+                  onChange={this.handleIntermediateUrlChange}
+                  onBlur={this.onBlur}
+                  value={this.state.intermediateUrl}
+                />
+                {this.state.isValidUrl ? null : (
+                  <Tooltip
+                    content={'Invalid URL. Try Again'}
+                    textAlign="center"
+                    maxWidth=""
+                    shouldCloseOnClickOutside
+                    theme="dark"
+                  >
+                    <ErrorIcon className={Styles.errorIcon} />
+                  </Tooltip>
+                )}
+              </div>
             </div>
+            <checkboxWrapper>
+              <div className={Styles.checkboxContainer}>
+                <input type="checkbox" id="firstCheckboxLinkPanel" onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}/>
+                <label htmlFor="firstCheckboxLinkPanel">{firstCheckboxText}</label>
+              </div>
+              <div className={Styles.checkboxContainer}>
+                <input type="checkbox" id="secondCheckboxLinkPanel" onChange={this.handleNofollowChange} defaultChecked={this.state.nofollow}/>
+                <label htmlFor="secondCheckboxLinkPanel">{secondCheckboxText}</label>
+              </div>
+            </checkboxWrapper>
           </div>
-          <checkboxWrapper>
-            <div className={Styles.checkboxContainer}>
-              <input type="checkbox" id="firstCheckboxLinkPanel" onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}/>
-              <label htmlFor="firstCheckboxLinkPanel">{firstCheckboxText}</label>
-            </div>
-            <div className={Styles.checkboxContainer}>
-              <input type="checkbox" id="secondCheckboxLinkPanel" onChange={this.handleNofollowChange} defaultChecked={this.state.nofollow}/>
-              <label htmlFor="secondCheckboxLinkPanel">{secondCheckboxText}</label>
-            </div>
-          </checkboxWrapper>
-          <div className={Styles.actionsContainer}>
-            <div onClick={this.onCancelClick}>Cancel</div>
+          <div className={Styles.linkPanelFooter}>
+            <div className={Styles.linkPanelFooterCancelButton} onClick={this.onCancelClick}>Cancel</div>
             <div
-              className={classNames({ [Styles.enabled]: this.isDoneEnabled(), [Styles.disabled]: !this.isDoneEnabled() })}
+              className={classNames(Styles.linkPanelFooterDoneButton, { [Styles.enabled]: this.isDoneEnabled(), [Styles.disabled]: !this.isDoneEnabled() })}
               onClick={this.onDoneClick}
             >Update
             </div>
