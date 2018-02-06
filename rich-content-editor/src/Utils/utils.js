@@ -52,6 +52,14 @@ export function removeLinksInSelection(editorState) {
   return getSelectedLinks(editorState).reduce((prevState, { key, range }) => removeLink(prevState, key, range), editorState);
 }
 
+export function getTextAlignment(editorState) {
+  const selection = getSelection(editorState);
+  const currentContent = editorState.getCurrentContent();
+  const contentBlock = currentContent.getBlockForKey(selection.getStartKey());
+  const { data: { textAlignment } } = contentBlock.toJS();
+  return textAlignment || 'left';
+}
+
 function getSelectedLinks(editorState) {
   return flatMap(getSelectedBlocks(editorState), block => getSelectedLinksInBlock(block, editorState));
 }

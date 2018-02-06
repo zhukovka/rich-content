@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { getTextAlignment } from '~/Utils';
 import TextAlignmentPanel from './TextAlignmentPanel';
 import AlignTextLeft from '../icons/align-text-left.svg';
 import AlignTextCenter from '../icons/align-text-center.svg';
@@ -16,24 +17,21 @@ class TextAlignmentButton extends Component {
   };
 
   getActiveIcon = () => {
+    const { getEditorState } = this.props;
     // if the button is rendered before the editor
-    if (!this.props.getEditorState) {
+    if (!getEditorState) {
       return false;
     }
 
-    const editorState = this.props.getEditorState();
-
-    const contentBlock = editorState.getCurrentContent().getBlockForKey(editorState.getSelection().getStartKey());
-    const { data: { textAlignment } } = contentBlock.toJS();
+    const textAlignment = getTextAlignment(getEditorState());
     switch (textAlignment) {
-      case 'left':
-        return <AlignTextLeft />;
       case 'center':
         return <AlignTextCenter />;
       case 'right':
         return <AlignTextRight />;
       case 'justify':
         return <AlignTextJustify />;
+      case 'left':
       default:
         return <AlignTextLeft />;
     }
