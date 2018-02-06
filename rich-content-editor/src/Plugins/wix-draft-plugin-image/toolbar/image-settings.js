@@ -4,15 +4,17 @@ import { ThemeProvider } from '~/Components/ThemeProvider';
 import { Image } from 'stylable-components/dist/src/components/image';
 import SettingsSection from '~/Components/SettingsSection';
 import getImageSrc from '../get-image-source';
-import InputWithLabel from '../stylable-base/input-with-label';
+import InputWithLabel from '~/Components/InputWithLabel';
 import ImageSettingsFooter from './image-settings-footer';
 import FileInput from '~/Components/FileInput';
-import Styles from './image-settings.scss';
+import styles from './image-settings.scss';
+import { mergeStyles } from '~/Utils/mergeStyles';
 
 class ImageSettings extends Component {
   constructor(props) {
     super(props);
     this.state = this.propsToState(props);
+    this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
   propsToState(props) {
@@ -80,39 +82,42 @@ class ImageSettings extends Component {
     const { metadata = {} } = item;
 
     return (
-      <ThemeProvider theme={'default'}>
-        <div className={Styles.imageSettings}>
-          <div className={Styles.content}>
-            <h3 className={Styles.title}>Image Settings</h3>
-            <SettingsSection>
-              <Image resizeMode={'contain'} className={Styles.image} src={getImageSrc(item, helpers)} />
+      <ThemeProvider theme={'rce'}>
+        <div className={this.styles.imageSettings}>
+          <div className={this.styles.content}>
+            <h3 className={this.styles.title}>Image Settings</h3>
+            <SettingsSection theme={this.props.theme}>
+              <Image resizeMode={'contain'} className={this.styles.image} src={getImageSrc(item, helpers)} />
             </SettingsSection>
-            <div className={Styles.manageImageGrid}>
-              <FileInput className={Styles.replace} onChange={event => this.replaceImage(event)}>
+            <div className={this.styles.manageImageGrid}>
+              <FileInput className={this.styles.replace} onChange={event => this.replaceImage(event)}>
                 <span>{'Replace'}</span>
               </FileInput>
-              <button className={Styles.delete} onClick={() => this.deleteImage()}>
+              <button className={this.styles.delete} onClick={() => this.deleteImage()}>
                 <span>{'Delete'}</span>
               </button>
             </div>
-            <SettingsSection className={Styles.imageSettingsSection}>
+            <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
               <InputWithLabel
+                theme={this.props.theme}
                 label={'Alt Text'}
                 placeholder={'Add image Alt Text'}
                 value={metadata.altText || ''}
                 onChange={event => this.imageMetadataUpdated(item, { altText: event.target.value })}
               />
             </SettingsSection>
-            <SettingsSection className={Styles.imageSettingsSection}>
+            <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
               <InputWithLabel
+                theme={this.props.theme}
                 label={'Caption'}
                 placeholder={'Enter your image caption (optional)'}
                 value={metadata.caption || ''}
                 onChange={event => this.imageMetadataUpdated(item, { caption: event.target.value })}
               />
-            </SettingsSection>
-            <SettingsSection className={Styles.imageSettingsSection}>
+            </SettingsSection >
+            <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
               <InputWithLabel
+                theme={this.props.theme}
                 label={'Link'}
                 placeholder={'Add a link'}
                 value={metadata.link || ''}
@@ -120,7 +125,7 @@ class ImageSettings extends Component {
               />
             </SettingsSection>
           </div>
-          <ImageSettingsFooter cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()}/>
+          <ImageSettingsFooter theme={this.props.theme} cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} />
         </div>
       </ThemeProvider>
     );
@@ -129,6 +134,7 @@ class ImageSettings extends Component {
 ImageSettings.propTypes = {
   componentData: PropTypes.any.isRequired,
   helpers: PropTypes.object,
+  theme: PropTypes.object.isRequired,
   pubsub: PropTypes.any,
 };
 

@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { input } from 'stylable-components/dist/src/components/input';
 
-import { mergeStyles } from '~/Utils';
-import styles from './input-with-label.scss';
+import styles from '~/Styles/input-with-label.scss';
+import { mergeStyles } from '~/Utils/mergeStyles';
 
 class InputWithLabel extends Component {
-
   constructor(props) {
     super(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
