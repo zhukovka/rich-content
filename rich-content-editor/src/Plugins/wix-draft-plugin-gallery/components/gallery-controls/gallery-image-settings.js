@@ -130,7 +130,7 @@ class ImageSettings extends Component {
             </SettingsSection>
           </div>
         </div>
-        {isMobile ? null : <GallerySettingsFooter
+        {isMobile ? null : <SettingsPanelFooter
           theme={theme}
           className={styles.imageSettings_footer}
           cancel={() => onCancel(this.initialImageState)}

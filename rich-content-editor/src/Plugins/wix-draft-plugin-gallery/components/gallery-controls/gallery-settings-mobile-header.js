@@ -15,7 +15,7 @@ class GallerySettingsMobileHeader extends Component {
     };
   }
   render() {
-    const { save, cancel, saveName, cancelName, switchTab, activeTab } = this.props;
+    const { hide, save, cancel, saveName, cancelName, switchTab, activeTab } = this.props;
     return (
       <div>
         <div className={this.styles.gallerySettingsMobileHeader_headerPlaceholder} />
@@ -57,6 +57,7 @@ class GallerySettingsMobileHeader extends Component {
 }
 
 GallerySettingsMobileHeader.propTypes = {
+  hide: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   cancel: PropTypes.func.isRequired,
