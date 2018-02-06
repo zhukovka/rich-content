@@ -21,6 +21,7 @@ export default class AddPluginModal extends Component {
               setEditorState={setEditorState}
               hidePopup={this.hidePopup}
               theme={buttonStyles}
+              showName
               isMobile
             />
           </li>
