@@ -128,7 +128,7 @@ class LayoutControlsSection extends Component {
     thumbnailPlacement: {
       component: ThumbnailPlacementSelector,
       props: {
-        onChange: event => this.applyGallerySetting({ galleryThumbnailsAlignment: event.value }),
+        onChange: value => this.applyGallerySetting({ galleryThumbnailsAlignment: value }),
         value: this.getValueFromComponentStyles('galleryThumbnailsAlignment'),
       },
     },

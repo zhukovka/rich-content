@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { SelectionList, SelectionListOption } from 'stylable-components/dist/src/components/selection-list';
+import { SelectionList } from '~/Components/SelectionList';
 
 import { mergeStyles } from '~/Utils';
 import styles from './thumbnail-placement-selector.scss';
@@ -16,14 +16,15 @@ class ThumbnailPlacementSelector extends Component {
 
   dataMapper = ({ alignment }) => ({ value: alignment });
 
-  renderOption = ({ alignment }, { value }, { id, selected, focused }) => (
-    <SelectionListOption id={id} value={value} selected={selected} focused={focused}>
+  renderOption({ item, selected }) {
+    return (
       <div
         className={classNames(this.styles.thumbnailPlacementSelector_tile,
-          this.styles[selected ? `thumbnailPlacementSelector_${alignment}_selected` : `thumbnailPlacementSelector_${alignment}`])}
+          this.styles[selected ?
+            `thumbnailPlacementSelector_${item.alignment}_selected` : `thumbnailPlacementSelector_${item.alignment}`])}
       />
-    </SelectionListOption>
-  );
+    );
+  }
 
   render() {
     const { value, onChange } = this.props;
@@ -31,10 +32,11 @@ class ThumbnailPlacementSelector extends Component {
       <div>
         <label className={this.styles.thumbnailPlacementSelector_label}>Thumbnail Placement</label>
         <SelectionList
+          theme={this.props.theme}
           className={this.styles.thumbnailPlacementSelector_grid}
           dataSource={this.dataSource}
           dataMapper={this.dataMapper}
-          renderItem={this.renderOption}
+          renderItem={data => this.renderOption(data)}
           value={value}
           onChange={onChange}
         />
