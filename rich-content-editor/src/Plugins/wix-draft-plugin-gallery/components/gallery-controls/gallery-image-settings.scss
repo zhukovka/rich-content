@@ -1,5 +1,7 @@
 $TITLE_HEIGHT: 100px;
 $FOOTER_HEIGHT: 100px;
+$MOBILE_HEADER_HEIGHT: 50px;
+
 @mixin image-management-button($icon) {
     content: '';
     display: inline-block;
@@ -74,7 +76,9 @@ $FOOTER_HEIGHT: 100px;
 
 .imageSettings_replace {
     @extend %manage_button;
-    padding: 12px 65px;
+    padding: 12px 15px;
+    text-align: center;
+    display: block;
 }
 
 .imageSettings_replace_text::before {
@@ -83,7 +87,9 @@ $FOOTER_HEIGHT: 100px;
 
 .imageSettings_delete {
     @extend %manage_button;
-    padding-left: 66px;
+    padding: 12px 15px;
+    text-align: center;
+    display: block;
     border-left: 1px #ededed solid;
 }
 
@@ -99,6 +105,10 @@ $FOOTER_HEIGHT: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    &.mobile {
+        top: $MOBILE_HEADER_HEIGHT;
+    }
 }
 
 %nav {
@@ -141,6 +151,10 @@ $FOOTER_HEIGHT: 100px;
     height: calc(100% - $FOOTER_HEIGHT);
     margin: $TITLE_HEIGHT auto $FOOTER_HEIGHT auto;
     width: 100%;
+
+    &.mobile {
+        margin: 0 auto;
+    }
 }
 
 .imageSettings_footer {

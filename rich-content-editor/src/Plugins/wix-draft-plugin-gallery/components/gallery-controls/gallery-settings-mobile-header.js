@@ -15,7 +15,7 @@ class GallerySettingsMobileHeader extends Component {
     };
   }
   render() {
-    const { save, cancel, switchTab, activeTab } = this.props;
+    const { save, cancel, saveName, cancelName, switchTab, activeTab } = this.props;
     return (
       <div>
         <div className={this.styles.gallerySettingsMobileHeader_headerPlaceholder} />
@@ -23,16 +23,18 @@ class GallerySettingsMobileHeader extends Component {
           <a
             onClick={() => cancel()} className={classNames(this.styles.gallerySettingsMobileHeader_button,
               this.styles.gallerySettingsMobileHeader_cancel)}
-          >{'Cancel'}
+          >{cancelName || 'Cancel'}
           </a>
-          <a
-            onClick={() => this.setState({ showMenu: !this.state.showMenu })} className={classNames(this.styles.gallerySettingsMobileHeader_button, this.styles.gallerySettingsMobileHeader_menuIcon)}
-          ><MoreIcon/>
-          </a>
+          {activeTab ?
+            <a
+              onClick={() => this.setState({ showMenu: !this.state.showMenu })}
+              className={classNames(this.styles.gallerySettingsMobileHeader_button, this.styles.gallerySettingsMobileHeader_menuIcon)}
+            ><MoreIcon/>
+            </a> : null}
           <a
             onClick={() => save()} className={classNames(this.styles.gallerySettingsMobileHeader_button,
               this.styles.gallerySettingsMobileHeader_done)}
-          >{'Save'}
+          >{saveName || 'Save'}
           </a>
         </div>
         {this.state.showMenu ? (
@@ -58,7 +60,10 @@ GallerySettingsMobileHeader.propTypes = {
   save: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   cancel: PropTypes.func.isRequired,
-  switchTab: PropTypes.func.isRequired,
+  switchTab: PropTypes.func,
+  activeTab: PropTypes.string,
+  saveName: PropTypes.string,
+  cancelName: PropTypes.string,
 };
 
 export default GallerySettingsMobileHeader;

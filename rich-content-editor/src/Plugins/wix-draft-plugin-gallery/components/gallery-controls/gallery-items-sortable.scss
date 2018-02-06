@@ -142,6 +142,9 @@
     top: auto;
     left: 0;
     height: 42px;
+    background: white;
+    z-index: 5;
+    border-top: 1px solid #ededed;
   }
 }
 .topBarLink {

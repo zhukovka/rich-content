@@ -1,6 +1,14 @@
 $TITLE_HEIGHT: 100px;
 $FOOTER_HEIGHT: 100px;
 
+.gallerySettings_settingsContainer {
+  padding: 0;
+}
+
+.gallerySettings_settingsContainerMobile {
+  padding: 18px;
+}
+
 .gallerySettings_title {
   font-size: 18px;
   width: 100%;

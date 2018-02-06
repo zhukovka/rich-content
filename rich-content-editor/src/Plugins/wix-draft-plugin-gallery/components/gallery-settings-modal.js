@@ -98,7 +98,7 @@ class AdvancedSettingsSection extends Component {
   render() {
     const { data, store, isMobile, theme } = this.props;
     return (
-      <div>
+      <div className={isMobile ? styles.gallerySettings_settingsContainerMobile : styles.gallerySettings_settingsContainer}>
         <SettingsSection theme={theme}>
           <LayoutSelector
             theme={theme}
@@ -189,6 +189,7 @@ export class GallerySettingsModal extends Component {
 
     if (isMobile) {
       // console.log('Rendering mobile settings');
+      /* eslint-disable max-len */
       return (
         <ThemeProvider theme={'rce'}>
           <GallerySettingsMobileHeader
@@ -199,7 +200,7 @@ export class GallerySettingsModal extends Component {
             activeTab={this.tabName(this.otherTab())}
           />
           {activeTab === 'manage_media' ? <ManageMediaSection data={componentData} store={pubsub.store} isMobile theme={this.props.theme}/> : null }
-          {activeTab === 'advanced_settings' ? <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store}/> : null }
+          {activeTab === 'advanced_settings' ? <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store} isMobile/> : null }
         </ThemeProvider>
       );
     } else {
@@ -209,7 +210,7 @@ export class GallerySettingsModal extends Component {
           <div className={styles.gallerySettings}>
             <Tabs value={activeTab}>
               <Tab label={this.tabName('manage_media')} value={'manage_media'}>
-                <ManageMediaSection data={componentData} store={pubsub.store} isMobile={false} theme={this.props.theme}/>
+                <ManageMediaSection data={componentData} store={pubsub.store} theme={this.props.theme}/>
               </Tab>
               <Tab label={this.tabName('advanced_settings')} value={'advanced_settings'}>
                 <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store}/>

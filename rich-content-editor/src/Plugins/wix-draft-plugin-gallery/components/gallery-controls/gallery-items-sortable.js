@@ -79,17 +79,35 @@ const SortableList = sortableContainer(({ items, clickAction, handleFileChange, 
 });
 
 const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageSettings, handleFileChange, isMobile }) => {
-  const hasSelectedItems = items.some(item => item.selected);
   const hasUnselectedItems = items.some(item => !item.selected);
+  const hasSelectedItems = items.some(item => item.selected);
   const selectedItems = items.filter(item => item.selected);
-
+  //eslint-disable-next-line max-len
   const addItemButton = <FileInput className={style.filesButton} onChange={handleFileChange} multiple>{(isMobile ? <Fab className={style.fab} /> : 'Add Items')}</FileInput>;
+
+  const separator = '·';
+  const buttons = [];
+
+  if (hasUnselectedItems) {
+    buttons.push(<a className={style.topBarLink} onClick={() => setAllItemsValue('selected', true)}>Select All</a>);
+    buttons.push(separator);
+  }
+  if (hasSelectedItems) {
+    buttons.push(<a className={style.topBarLink} onClick={() => setAllItemsValue('selected', false)}>Deselect All</a>);
+    buttons.push(separator);
+    buttons.push(<a className={style.topBarLink} onClick={() => deleteSelectedItems()}>Delete Selected</a>);
+    buttons.push(separator);
+  }
+  if (selectedItems.length === 1) {
+    buttons.push(<a className={style.topBarLink} onClick={() => toggleImageSettings(true)}>Item Settings</a>);
+    buttons.push(separator);
+  }
+
+  buttons.splice(buttons.length - 1, 1);
+
   return (
     <div className={classNames(style.topBar, { [style.mobile]: isMobile })}>
-      {hasUnselectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', true)}>Select All</a> : null}
-      {hasSelectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', false)}>Deselect All</a> : null}
-      {hasSelectedItems ? <a className={style.topBarLink} onClick={() => deleteSelectedItems()}>Delete Selected</a> : null}
-      {(selectedItems.length === 1) ? <a className={style.topBarLink} onClick={() => toggleImageSettings(true)}>Item Settings</a> : null}
+      {buttons}
       {hasSelectedItems ? null : addItemButton}
     </div>
   );
@@ -204,7 +222,7 @@ export class SortableComponent extends Component {
   }
 
   render() {
-    return (
+    return !!this.state.items && (
       <div>
         <TopBarMenu
           items={this.state.items}
@@ -231,6 +249,7 @@ export class SortableComponent extends Component {
           onCancel={items => this.saveImageSettings(items)}
           onSave={items => this.saveImageSettings(items)}
           handleFileChange={this.props.handleFileChange}
+          isMobile={this.props.isMobile}
         /> : null}
       </div>);
   }

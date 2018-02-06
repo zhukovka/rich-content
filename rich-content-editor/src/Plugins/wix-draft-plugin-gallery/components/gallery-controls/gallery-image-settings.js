@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import classNames from 'classNames';
 import findIndex from 'lodash/findIndex';
 import { Image } from 'stylable-components/dist/src/components/image';
 
@@ -10,6 +10,7 @@ import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
 import FileInput from '~/Components/FileInput';
 import { mergeStyles } from '~/Utils';
 import styles from './gallery-image-settings.scss';
+import GallerySettingsMobileHeader from './gallery-settings-mobile-header';
 
 class ImageSettings extends Component {
 
@@ -58,28 +59,36 @@ class ImageSettings extends Component {
 
   render() {
     const styles = this.styles;
-    const { onSave, onCancel, theme } = this.props;
+    const { onSave, onCancel, theme, isMobile } = this.props;
     const { images } = this.state;
     const selectedImage = images[this.state.selectedIndex];
 
     return (
       <div className={styles.imageSettings}>
         <div className={styles.imageSettings_content}>
-          <h3
-            className={classnames(styles.imageSettings_backButton, styles.imageSettings_title)}
-            onClick={() => onCancel(this.initialImageState)}
-          >← Image Settings
-          </h3>
-          <div className={styles.imageSettings_scrollContainer}>
+          { isMobile ?
+            <GallerySettingsMobileHeader
+              theme={theme}
+              cancel={() => onCancel(this.initialImageState)}
+              save={() => onSave(this.state.images)}
+              saveName="Update"
+            /> :
+            <h3
+              className={classNames(styles.imageSettings_backButton, styles.imageSettings_title)}
+              onClick={() => onCancel(this.initialImageState)}
+            >← Image Settings
+            </h3>
+          }
+          <div className={classNames(styles.imageSettings_scrollContainer, { [styles.mobile]: isMobile })}>
             <SettingsSection theme={theme}>
               <Image resizeMode={'contain'} className={styles.imageSettings_image} src={`https://static.wixstatic.com/${selectedImage.url}`} />
-              <div className={styles.imageSettings_nav}>
+              <div className={classNames(styles.imageSettings_nav, { [styles.mobile]: isMobile })}>
                 <i
-                  className={classnames(styles.imageSettings_previous, this.state.selectedIndex === 0 ? styles.imageSettings_hidden : '')}
+                  className={classNames(styles.imageSettings_previous, this.state.selectedIndex === 0 ? styles.imageSettings_hidden : '')}
                   onClick={() => this.setState({ selectedIndex: this.state.selectedIndex - 1 })}
                 />
                 <i
-                  className={classnames(styles.imageSettings_next, this.state.selectedIndex === images.length - 1 ? styles.imageSettings_hidden : '')}
+                  className={classNames(styles.imageSettings_next, this.state.selectedIndex === images.length - 1 ? styles.imageSettings_hidden : '')}
                   onClick={() => this.setState({ selectedIndex: this.state.selectedIndex + 1 })}
                 />
               </div>
@@ -121,9 +130,13 @@ class ImageSettings extends Component {
             </SettingsSection>
           </div>
         </div>
-        <SettingsPanelFooter
-          theme={theme} className={styles.imageSettings_footer} cancel={() => onCancel(this.initialImageState)} save={() => onSave(this.state.images)}
+        {isMobile ? null : <GallerySettingsFooter
+          theme={theme}
+          className={styles.imageSettings_footer}
+          cancel={() => onCancel(this.initialImageState)}
+          save={() => onSave(this.state.images)}
         />
+        }
       </div>
     );
   }
@@ -134,7 +147,8 @@ ImageSettings.propTypes = {
   onCancel: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
-  handleFileChange: PropTypes.func.isRequired
+  handleFileChange: PropTypes.func.isRequired,
+  isMobile: PropTypes.bool
 };
 
 export default ImageSettings;
