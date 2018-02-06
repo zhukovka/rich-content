@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Button } from 'stylable-components/dist/src/components/button';
 
 import { mergeStyles } from '~/Utils';
-import styles from './gallery-settings-footer.scss';
+import styles from '~/Styles/settings-panel-footer.scss';
 
-class GallerySettingsFooter extends Component {
+class SettingsPanelFooter extends Component {
   constructor(props) {
     super(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
@@ -14,20 +14,20 @@ class GallerySettingsFooter extends Component {
   render() {
     const { save, cancel } = this.props;
     return (
-      <div className={this.styles.gallerySettings_footer}>
-        <Button onClick={() => cancel()} className={this.styles.gallerySettings_cancel}>
+      <div className={this.styles.settingsPanel_footer}>
+        <Button onClick={() => cancel()} className={this.styles.settingsPanel_cancel}>
           {'Cancel'}
         </Button>
-        <Button className={this.styles.gallerySettings_save} onClick={() => save()}>{'Save'}</Button>
+        <Button className={this.styles.settingsPanel_save} onClick={() => save()}>{'Done'}</Button>
       </div>
     );
   }
 }
 
-GallerySettingsFooter.propTypes = {
+SettingsPanelFooter.propTypes = {
   save: PropTypes.func.isRequired,
   cancel: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default GallerySettingsFooter;
+export default SettingsPanelFooter;

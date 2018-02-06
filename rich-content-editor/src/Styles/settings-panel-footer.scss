@@ -1,24 +1,36 @@
-.gallerySettings_footer {
+.settingsPanel_footer {
     display: flex;
     justify-content: flex-end;
-    padding: 28px;
+    padding: 30px 42px 30px;
+    border-top: solid 1px #ededed;
     position: fixed;
     bottom: 0;
     right: 0;
-    border-top: solid 1px #ededed;
     width: 100%;
     max-width: 419px;
     height: 100px;
     box-sizing: border-box;
     background: #fff;
     z-index: 5;
+    font-size: 14px;
 }
 
-.gallerySettings_cancel+.gallerySettings_save {
-    margin-left: 20px;
+%panel_button {
+    padding: 8.5px auto;
 }
 
-.gallerySettings_cancel {
+.settingsPanel_save {
+    @extend %panel_button;
+}
+
+.settingsPanel_cancel+.settingsPanel_save {
+    margin-left: 24px;
+}
+
+.settingsPanel_cancel {
+    @extend %panel_button;
+    padding-left: 23px;
+    padding-right: 23px;
     border: 1px solid #4990e2 !important;
     background: #fff !important;
     color: #4990e2 !important;

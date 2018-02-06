@@ -6,7 +6,7 @@ import { Image } from 'stylable-components/dist/src/components/image';
 
 import SettingsSection from '~/Components/SettingsSection';
 import InputWithLabel from '~/Components/InputWithLabel';
-import GallerySettingsFooter from './gallery-settings-footer';
+import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
 import FileInput from '~/Components/FileInput';
 import { mergeStyles } from '~/Utils';
 import styles from './gallery-image-settings.scss';
@@ -121,7 +121,9 @@ class ImageSettings extends Component {
             </SettingsSection>
           </div>
         </div>
-        <GallerySettingsFooter theme={theme} cancel={() => onCancel(this.initialImageState)} save={() => onSave(this.state.images)} />
+        <SettingsPanelFooter
+          theme={theme} className={styles.imageSettings_footer} cancel={() => onCancel(this.initialImageState)} save={() => onSave(this.state.images)}
+        />
       </div>
     );
   }

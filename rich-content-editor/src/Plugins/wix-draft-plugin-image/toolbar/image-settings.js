@@ -5,7 +5,7 @@ import { Image } from 'stylable-components/dist/src/components/image';
 import SettingsSection from '~/Components/SettingsSection';
 import getImageSrc from '../get-image-source';
 import InputWithLabel from '~/Components/InputWithLabel';
-import ImageSettingsFooter from './image-settings-footer';
+import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
 import FileInput from '~/Components/FileInput';
 import styles from './image-settings.scss';
 import { mergeStyles } from '~/Utils/mergeStyles';
@@ -125,7 +125,7 @@ class ImageSettings extends Component {
               />
             </SettingsSection>
           </div>
-          <ImageSettingsFooter theme={this.props.theme} cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} />
+          <SettingsPanelFooter theme={this.props.theme} cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} />
         </div>
       </ThemeProvider>
     );

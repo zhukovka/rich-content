@@ -6,7 +6,7 @@ import { mergeStyles } from '~/Utils';
 import { ThemeProvider } from '~/Components/ThemeProvider';
 import LayoutSelector from './gallery-controls/layouts-selector';
 import styles from './gallery-settings-modal.scss';
-import GallerySettingsFooter from './gallery-controls/gallery-settings-footer';
+import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
 import LayoutControlsSection from './layout-controls-section';
 import SettingsSection from '~/Components/SettingsSection';
 import { SortableComponent } from './gallery-controls/gallery-items-sortable';
@@ -216,7 +216,7 @@ export class GallerySettingsModal extends Component {
               </Tab>
             </Tabs>
           </div>
-          <GallerySettingsFooter cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} theme={this.props.theme}/>
+          <SettingsPanelFooter cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} theme={this.props.theme}/>
         </ThemeProvider>
       );
     }
