@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { RichUtils } from '@wix/draft-js';
-import classNames from 'classnames';
-import Styles from '~/Styles/inline-toolbar-button.scss';
+import TextButton from '../TextButton';
 
 export default ({ blockType, Icon }) =>
   class TextBlockStyleButton extends Component {
@@ -18,14 +17,13 @@ export default ({ blockType, Icon }) =>
       setEditorState(RichUtils.toggleBlockType(getEditorState(), blockType));
     };
 
-    preventBubblingUp = event => event.preventDefault();
-
     blockTypeIsActive = () => {
-      if (!this.props.getEditorState) {
+      const { getEditorState } = this.props;
+      if (!getEditorState) {
         return false;
       }
 
-      const editorState = this.props.getEditorState();
+      const editorState = getEditorState();
       const type = editorState
         .getCurrentContent()
         .getBlockForKey(editorState.getSelection().getStartKey())
@@ -35,20 +33,13 @@ export default ({ blockType, Icon }) =>
 
     render() {
       const { theme } = this.props;
-      const buttonWrapperClassNames = classNames(Styles.buttonWrapper, theme && theme.buttonWrapper);
-      const idleButtonClassNames = classNames(Styles.button, theme && theme.button);
-      const activeButtonClassNames = classNames(idleButtonClassNames, Styles.active, theme && theme.active);
-      const buttonClassNames = this.blockTypeIsActive() ? activeButtonClassNames : idleButtonClassNames;
-      const iconClassNames = classNames(Styles.icon, theme && theme.icon);
-
       return (
-        <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
-          <button className={buttonClassNames} onClick={this.toggleStyle}>
-            <div className={iconClassNames}>
-              <Icon />
-            </div>
-          </button>
-        </div>
+        <TextButton
+          icon={Icon}
+          theme={theme}
+          isActive={this.blockTypeIsActive}
+          onClick={this.toggleStyle}
+        />
       );
     }
   };

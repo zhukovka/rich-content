@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { getModalStyles } from '~/Utils';
 import AddPluginModal from '../AddPluginModal';
 import PlusIcon from '../icons/plus-default.svg';
-import Styles from '~/Styles/toolbar-button.scss';
+import TextButton from './TextButton';
 
 export default class AddPluginButton extends Component {
   constructor(props) {
@@ -34,21 +33,14 @@ export default class AddPluginButton extends Component {
     });
   }
 
-  preventBubblingUp = event => event.preventDefault();
-
   render() {
     const { theme } = this.props;
-    const buttonWrapperClassNames = classNames(Styles.buttonWrapper, theme && theme.buttonWrapper);
-    const buttonClassNames = classNames(Styles.button, theme && theme.button);
-    const iconClassNames = classNames(Styles.icon, theme && theme.icon);
     return (
-      <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
-        <button className={buttonClassNames} onClick={this.handleClick}>
-          <div className={iconClassNames}>
-            <PlusIcon />
-          </div>
-        </button>
-      </div>
+      <TextButton
+        icon={PlusIcon}
+        theme={theme}
+        onClick={this.handleClick}
+      />
     );
   }
 }

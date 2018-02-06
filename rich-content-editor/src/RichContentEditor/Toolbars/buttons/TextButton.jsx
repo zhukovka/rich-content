@@ -7,16 +7,18 @@ export default class TextButton extends Component {
   static propTypes = {
     icon: PropTypes.func.isRequired,
     onClick: PropTypes.func.isRequired,
-    isActive: PropTypes.bool,
+    isActive: PropTypes.func,
     theme: PropTypes.object,
-    value: PropTypes.any
   };
 
-  isActive = () => this.props.isActive;
+  isActive = () => {
+    const { isActive } = this.props;
+    return isActive ? isActive() : false;
+  }
 
-  handleClick = () => {
-    const { onClick, value } = this.props;
-    onClick && onClick(value);
+  handleClick = event => {
+    const { onClick } = this.props;
+    onClick && onClick(event);
   }
 
   preventBubblingUp = event => event.preventDefault();
