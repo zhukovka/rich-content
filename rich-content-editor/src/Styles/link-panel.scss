@@ -21,8 +21,8 @@
 .modal {
   position: relative;
   // height: 179px; // this is the right margin - once radio buttons would be added back
-  height: 148px;
-  padding: 15px 24px;
+  height: 203px;
+  padding: 19px 24px;
   font-size: 14px;
   font-weight: 300;
   font-style: normal;
@@ -33,9 +33,34 @@
   color: #333333;
 }
 
+.linkHeaderContainer {
+  width: 321px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.linkHeaderBackIcon {
+  width: 19px;
+  height: 19px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.linkHeaderSeperator {
+  display: inline-block;
+  width: 1px;
+  background: rgba(117, 117, 117, 0.2);
+  margin: 0 25px 0 21px;
+}
+
+.linkHeaderText {
+  font-size: 14px;
+}
+
 .textInput {
   // margin: 16px 0 14px 0; // this is the right margin - once radio buttons would be added back
-  margin: 5px 0 14px 0;
+  margin: 5px 0 13px 0;
   position: relative;
 
   input {
@@ -49,7 +74,6 @@
     &.invalid {
       border-color: red;
     }
-
   }
 
   .errorIcon {
@@ -65,17 +89,37 @@
   }
 }
 
+.checkboxWrapper {
+  margin-bottom: 3px;
+}
+
 .checkboxContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 11px;
+  margin-bottom: 12px;
 
   input {
     width: 14px;
     height: 14px;
   }
+
   label {
-    margin-left: 10px;
+    margin-left: 13px;
   }
+}
+
+.actionsContainer{
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(51, 51, 51, 0.1);
+  padding-top: 15px;
+}
+
+.disabled {
+  opacity: 0.4;
+}
+
+.enabled {
+  color: #0261ff;
 }

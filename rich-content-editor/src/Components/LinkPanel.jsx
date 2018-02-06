@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import decorateComponentWithProps from 'decorate-component-with-props';
 import Tooltip from 'wix-style-react/dist/src/Tooltip';
 
+import LinkHeader from './LinkHeader';
 import { ThemeProvider } from '../Components/ThemeProvider';
 import { isValidUrl } from '~/Utils/urlValidators';
 import ErrorIcon from './icons/error.svg';
@@ -35,6 +36,15 @@ class LinkPanel extends Component {
     };
   }
 
+  componentDidMount() {
+    const linkHeaderProps = {
+      onBack: this.props.onCancel,
+    };
+
+    const LinkHeaderWithProps = decorateComponentWithProps(LinkHeader, linkHeaderProps);
+    this.props.onOverrideContent(LinkHeaderWithProps);
+  }
+
   handleIntermediateUrlChange = event => {
     this.setState({ intermediateUrl: event.target.value });
   };
@@ -55,7 +65,7 @@ class LinkPanel extends Component {
   onBlur = e => {
     e.stopPropagation();
     const { intermediateUrl } = this.state;
-    if (isValidUrl(intermediateUrl) || (intermediateUrl === '')) {
+    if (isValidUrl(intermediateUrl)) {
       this.handleUrlChange();
       this.setState({ isValidUrl: true });
     } else {
@@ -65,16 +75,22 @@ class LinkPanel extends Component {
 
   handleKeyPress = e => {
     if (e.charCode === 13) {
-      this.onBlur();
+      this.onBlur(e);
     }
   };
 
   onDoneClick = () => {
-    const { url, targetBlank, nofollow } = this.state;
-    this.props.onDone && this.props.onDone({ url, targetBlank, nofollow });
+    if (this.isDoneEnabled()) {
+      const { url, targetBlank, nofollow } = this.state;
+      this.props.onDone && this.props.onDone({ url, targetBlank, nofollow });
+    }
   };
 
   onCancelClick = () => this.props.onCancel && this.props.onCancel();
+
+  isDoneEnabled = () => {
+    return !!(this.state.isValidUrl && this.state.url);
+  }
 
   render() {
     const firstCheckboxText = 'Open Link in New Window / Tab';
@@ -108,13 +124,23 @@ class LinkPanel extends Component {
               )}
             </div>
           </div>
-          <div className={Styles.checkboxContainer}>
-            <input type="checkbox" id="firstCheckboxLinkPanel" onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}/>
-            <label htmlFor="firstCheckboxLinkPanel">{firstCheckboxText}</label>
-          </div>
-          <div className={Styles.checkboxContainer}>
-            <input type="checkbox" id="secondCheckboxLinkPanel" onChange={this.handleNofollowChange} defaultChecked={this.state.nofollow}/>
-            <label htmlFor="secondCheckboxLinkPanel">{secondCheckboxText}</label>
+          <checkboxWrapper>
+            <div className={Styles.checkboxContainer}>
+              <input type="checkbox" id="firstCheckboxLinkPanel" onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}/>
+              <label htmlFor="firstCheckboxLinkPanel">{firstCheckboxText}</label>
+            </div>
+            <div className={Styles.checkboxContainer}>
+              <input type="checkbox" id="secondCheckboxLinkPanel" onChange={this.handleNofollowChange} defaultChecked={this.state.nofollow}/>
+              <label htmlFor="secondCheckboxLinkPanel">{secondCheckboxText}</label>
+            </div>
+          </checkboxWrapper>
+          <div className={Styles.actionsContainer}>
+            <div onClick={this.onCancelClick}>Cancel</div>
+            <div
+              className={classNames({ [Styles.enabled]: this.isDoneEnabled(), [Styles.disabled]: !this.isDoneEnabled() })}
+              onClick={this.onDoneClick}
+            >Update
+            </div>
           </div>
         </div>
       </ThemeProvider>
@@ -128,6 +154,7 @@ LinkPanel.propTypes = {
   url: PropTypes.string,
   targetBlank: PropTypes.bool,
   nofollow: PropTypes.bool,
+  onOverrideContent: PropTypes.func.isRequired,
 };
 
 export default LinkPanel;

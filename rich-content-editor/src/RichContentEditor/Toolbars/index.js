@@ -21,6 +21,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
     toolbars.text = createTextToolbar({
       buttons: textButtons,
       theme: theme.text,
+      pubsub,
     });
     toolbars.footer = createFooterToolbar({
       buttons: pluginButtons,

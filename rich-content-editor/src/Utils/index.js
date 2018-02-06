@@ -6,6 +6,7 @@ export { isValidUrl, isVideoUrl } from './urlValidators';
 export {
   insertLink,
   hasLinksInSelection,
+  getLinkDataInSelection,
   removeLinksInSelection,
   getTextAlignment
 } from './utils';

@@ -48,6 +48,16 @@ export function hasLinksInSelection(editorState) {
   return !!getSelectedLinks(editorState).length;
 }
 
+export function getLinkDataInSelection(editorState) {
+  const contentState = editorState.getCurrentContent();
+  const selection = getSelection(editorState);
+  const startKey = selection.getStartKey();
+  const startOffset = selection.getStartOffset();
+  const blockWithLinkAtBeginning = contentState.getBlockForKey(startKey);
+  const linkKey = blockWithLinkAtBeginning.getEntityAt(startOffset);
+  return linkKey ? contentState.getEntity(linkKey).getData() : {};
+}
+
 export function removeLinksInSelection(editorState) {
   return getSelectedLinks(editorState).reduce((prevState, { key, range }) => removeLink(prevState, key, range), editorState);
 }

@@ -165,7 +165,13 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
         case BUTTONS.SEPARATOR:
           return <Separator className={separatorClassNames} key={key} />;
         case BUTTONS.LINK:
-          return <BlockLinkButton pubsub={pubsub} onExtendContent={this.onExtendContent} theme={themedStyle} key={key} />;
+          return (<BlockLinkButton
+            pubsub={pubsub}
+            onExtendContent={this.onExtendContent}
+            onOverrideContent={this.onOverrideContent}
+            theme={themedStyle}
+            key={key}
+          />);
         case BUTTONS.DELETE:
           return <DeleteButton onClick={this.deleteBlock} theme={themedStyle} key={key} />;
         default:
