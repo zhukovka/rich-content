@@ -10,6 +10,7 @@ import FileInput from '~/Components/FileInput';
 import ImageLoader from '~/Components/ImageLoader';
 
 import UploadIcon from '../../icons/upload.svg';
+import Fab from '../../icons/fab.svg';
 
 //eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
@@ -82,14 +83,14 @@ const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageS
   const hasUnselectedItems = items.some(item => !item.selected);
   const selectedItems = items.filter(item => item.selected);
 
-  const addItemButton = <FileInput className={style.filesButton} onChange={handleFileChange} multiple>Add Items</FileInput>;
+  const addItemButton = <FileInput className={style.filesButton} onChange={handleFileChange} multiple>{(isMobile ? <Fab className={style.fab} /> : 'Add Items')}</FileInput>;
   return (
     <div className={classNames(style.topBar, { [style.mobile]: isMobile })}>
       {hasUnselectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', true)}>Select All</a> : null}
       {hasSelectedItems ? <a className={style.topBarLink} onClick={() => setAllItemsValue('selected', false)}>Deselect All</a> : null}
       {hasSelectedItems ? <a className={style.topBarLink} onClick={() => deleteSelectedItems()}>Delete Selected</a> : null}
       {(selectedItems.length === 1) ? <a className={style.topBarLink} onClick={() => toggleImageSettings(true)}>Item Settings</a> : null}
-      {addItemButton}
+      {hasSelectedItems ? null : addItemButton}
     </div>
   );
 };

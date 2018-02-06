@@ -4,14 +4,18 @@ import classNames from 'classNames';
 import { mergeStyles } from '~/Utils';
 import styles from './gallery-settings-mobile-header.scss';
 import MoreIcon from '../../icons/more.svg';
+import { SelectionList } from 'stylable-components/dist/src/components/selection-list';
 
 class GallerySettingsMobileHeader extends Component {
   constructor(props) {
     super(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
+    this.state = {
+      showMenu: false
+    };
   }
   render() {
-    const { save, cancel } = this.props;
+    const { save, cancel, switchTab, activeTab } = this.props;
     return (
       <div>
         <div className={this.styles.gallerySettingsMobileHeader_headerPlaceholder} />
@@ -22,8 +26,7 @@ class GallerySettingsMobileHeader extends Component {
           >{'Cancel'}
           </a>
           <a
-            onClick={() => {}} className={classNames(this.styles.gallerySettingsMobileHeader_button,
-              this.styles.gallerySettingsMobileHeader_menu)}
+            onClick={() => this.setState({ showMenu: !this.state.showMenu })} className={classNames(this.styles.gallerySettingsMobileHeader_button, this.styles.gallerySettingsMobileHeader_menuIcon)}
           ><MoreIcon/>
           </a>
           <a
@@ -32,6 +35,20 @@ class GallerySettingsMobileHeader extends Component {
           >{'Save'}
           </a>
         </div>
+        {this.state.showMenu ? (
+          <div className={this.styles.gallerySettingsMobileHeader_menu}>
+            <SelectionList
+              dataSource={[
+                activeTab,
+              ]}
+              value={''}
+              onChange={() => {
+                this.setState({ showMenu: false });
+                switchTab();
+              }}
+            />
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -41,6 +58,7 @@ GallerySettingsMobileHeader.propTypes = {
   save: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   cancel: PropTypes.func.isRequired,
+  switchTab: PropTypes.func.isRequired,
 };
 
 export default GallerySettingsMobileHeader;

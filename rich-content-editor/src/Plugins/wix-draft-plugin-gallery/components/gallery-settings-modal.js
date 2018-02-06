@@ -134,7 +134,11 @@ export class GallerySettingsModal extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      activeTab: this.props.activeTab
+    };
     this.styles = mergeStyles({ styles, theme: props.theme });
+    this.switchTab = this.switchTab.bind(this);
   }
 
   componentDidMount() {
@@ -159,9 +163,27 @@ export class GallerySettingsModal extends Component {
     helpers.closeExternalModal();
   };
 
+  otherTab() {
+    return this.state.activeTab === 'manage_media' ? 'advanced_settings' : 'manage_media';
+  }
+
+  switchTab() {
+    const otherTab = this.otherTab();
+    this.setState({ activeTab: otherTab });
+  }
+
+  tabName(tab) {
+    /* eslint-disable camelcase */
+    return {
+      manage_media: 'Organize Media',
+      advanced_settings: 'Advanced Settings',
+    }[tab];
+  }
+
   render() {
     const styles = this.styles;
-    const { activeTab, pubsub, helpers, isMobile } = this.props;
+    const { pubsub, helpers, isMobile } = this.props;
+    const { activeTab } = this.state;
     const componentData = pubsub.get('componentData');
     // console.log('MODAL_RENDER: ', componentData);
 
@@ -173,8 +195,11 @@ export class GallerySettingsModal extends Component {
             theme={this.props.theme}
             cancel={() => this.revertComponentData()}
             save={() => helpers.closeExternalModal()}
+            switchTab={this.switchTab}
+            activeTab={this.tabName(this.otherTab())}
           />
-          <ManageMediaSection data={componentData} store={pubsub.store} isMobile theme={this.props.theme}/>
+          {activeTab === 'manage_media' ? <ManageMediaSection data={componentData} store={pubsub.store} isMobile theme={this.props.theme}/> : null }
+          {activeTab === 'advanced_settings' ? <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store}/> : null }
         </ThemeProvider>
       );
     } else {
@@ -183,10 +208,10 @@ export class GallerySettingsModal extends Component {
           <h3 className={styles.gallerySettings_title}>Gallery Settings</h3>
           <div className={styles.gallerySettings}>
             <Tabs value={activeTab}>
-              <Tab label={'Organize Media'} value={'manage_media'}>
+              <Tab label={this.tabName('manage_media')} value={'manage_media'}>
                 <ManageMediaSection data={componentData} store={pubsub.store} isMobile={false} theme={this.props.theme}/>
               </Tab>
-              <Tab label={'Advanced Settings'} value={'advanced_settings'}>
+              <Tab label={this.tabName('advanced_settings')} value={'advanced_settings'}>
                 <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store}/>
               </Tab>
             </Tabs>

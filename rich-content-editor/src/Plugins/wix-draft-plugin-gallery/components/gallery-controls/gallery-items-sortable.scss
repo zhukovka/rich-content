@@ -97,28 +97,30 @@
     margin: 2.5px;
 
     &:after {
-      content: ' ';
+      content: url(../../icons/mobile-image-default.svg);
       position: absolute;
       top: 6px;
       right: 6px;
       width: 16px;
       height: 16px;
-      border-radius: 16px;
-      border: 1px solid white;
-      background: rgba(255,255,255,0.2)
     }
 
     &.itemContainerSelectedMobile {
       &:after {
-        content: url(../../icons/more.svg);
-        background: #0261ff;
-        border-color: #0261ff;
+        content: url(../../icons/mobile-image-selected.svg);
       }
     }
 
   }
 }
 
+.fab {
+  position: absolute;
+  bottom: -8px;
+  right: 4px;
+  width: 66px;
+  height: 66px;
+}
 
 .itemImage {
   cursor: -webkit-grab;
