@@ -16,13 +16,13 @@ export default ({ blockType, button, pubsub }) => {
     }
 
     addBlock = data => {
-      const { getEditorState, setEditorState, hidePluginSelectPopup } = this.props;
+      const { getEditorState, setEditorState, hidePopup } = this.props;
       const contentState = getEditorState().getCurrentContent();
       const contentStateWithEntity = contentState.createEntity(blockType, 'IMMUTABLE', cloneDeep(data));
       const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
       const newEditorState = AtomicBlockUtils.insertAtomicBlock(getEditorState(), entityKey, ' ');
-      if (hidePluginSelectPopup) {
-        hidePluginSelectPopup();
+      if (hidePopup) {
+        hidePopup();
       }
       const recentlyCreatedKey = newEditorState.getSelection().getAnchorKey();
       //when adding atomic block, there is the atomic itself, and then there is a text block with one space,
@@ -75,7 +75,7 @@ export default ({ blockType, button, pubsub }) => {
     preventBubblingUp = event => event.preventDefault();
 
     renderButton = () => {
-      const { theme, hideName } = this.props;
+      const { showName, theme } = this.props;
       const { name, Icon } = button;
       const buttonClassNames = classNames(Styles.button, theme && theme.button);
       const iconClassNames = classNames(Styles.icon, theme && theme.icon);
@@ -85,7 +85,7 @@ export default ({ blockType, button, pubsub }) => {
           <div className={iconClassNames}>
             <Icon key="0" />
           </div>
-          {!hideName && <span key="1" className={labelClassNames}>{name}</span>}
+          {showName && <span key="1" className={labelClassNames}>{name}</span>}
         </button>
       );
     };
@@ -157,8 +157,8 @@ export default ({ blockType, button, pubsub }) => {
   InsertPluginButton.propTypes = {
     getEditorState: PropTypes.func.isRequired,
     setEditorState: PropTypes.func.isRequired,
-    hidePluginSelectPopup: PropTypes.func,
-    hideName: PropTypes.bool,
+    hidePopup: PropTypes.func,
+    showName: PropTypes.bool,
     theme: PropTypes.object,
     isMobile: PropTypes.bool,
   };

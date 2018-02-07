@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-
-import Styles from './default-divider-styles.scss';
+import { mergeStyles } from '~/Utils';
+import styles from './default-divider-styles.scss';
 
 const DEFAULTS = {
   type: 'divider3',
@@ -13,9 +13,10 @@ const DEFAULTS = {
   },
 };
 
-class DividerComponent extends React.Component {
+class DividerComponent extends PureComponent {
   constructor(props) {
     super(props);
+    this.styles = mergeStyles({ styles, theme: props.theme });
     this.state = this.stateFromProps(props);
   }
 
@@ -33,13 +34,13 @@ class DividerComponent extends React.Component {
   };
 
   render() {
-    const { style, theme } = this.props;
+    const { className, style } = this.props;
 
     return (
       <div
         style={{ width: this.state.width + '%', margin: 'auto', ...style }}
         onClick={this.props.onClick}
-        className={classnames(this.props.className, Styles[this.state.type], theme[this.state.type])}
+        className={classnames(className, this.styles[this.state.type])}
       />
     );
   }

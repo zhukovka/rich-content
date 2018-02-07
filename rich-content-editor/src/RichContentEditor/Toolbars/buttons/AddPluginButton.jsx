@@ -1,38 +1,56 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import AddIcon from '../icons/add.svg';
-import Styles from '~/Styles/toolbar-button.scss';
+import { getModalStyles } from '~/Utils';
+import AddPluginModal from '../AddPluginModal';
+import PlusIcon from '../icons/plus-default.svg';
+import TextButton from './TextButton';
 
 export default class AddPluginButton extends Component {
-    static propTypes = {
-      pubsub: PropTypes.object.isRequired,
-      theme: PropTypes.object,
+  constructor(props) {
+    super(props);
+    props.pubsub.set('openAddPluginModal', this.openAddPluginModal);
+  }
+
+  handleClick = () => this.openAddPluginModal();
+
+  openAddPluginModal = () => {
+    const { getEditorState, setEditorState, pluginButtons, pubsub, theme } = this.props;
+    const customStyles = {
+      content: {
+        height: '200px',
+        top: 'calc(50% - 100px)',
+      }
     };
+    this.props.openExternalModal({
+      modalElement: AddPluginModal,
+      modalStyles: getModalStyles({ customStyles, fullScreen: false }),
+      structure: pluginButtons,
+      theme: theme.mobileAddPlugin,
+      hidePopup: this.props.closeExternalModal,
+      getEditorState,
+      setEditorState,
+      pubsub
+    });
+  }
 
-    handleClick = () => {
-      this.props.pubsub.set('addPluginPanelVisible', !this.isActive());
-    }
-
-    isActive = () => this.props.pubsub.get('addPluginPanelVisible');
-
-    preventBubblingUp = event => event.preventDefault();
-
-    render() {
-      const { theme } = this.props;
-      const buttonWrapperClassNames = classNames(Styles.buttonWrapper, theme && theme.buttonWrapper);
-      const idleButtonClassNames = classNames(Styles.button, theme && theme.button);
-      const activeButtonClassNames = classNames(idleButtonClassNames, Styles.active, theme && theme.active);
-      const buttonClassNames = this.isActive() ? activeButtonClassNames : idleButtonClassNames;
-      const iconClassNames = classNames(Styles.icon, theme && theme.icon);
-      return (
-        <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
-          <button className={buttonClassNames} onClick={this.handleClick}>
-            <div className={iconClassNames}>
-              <AddIcon />
-            </div>
-          </button>
-        </div>
-      );
-    }
+  render() {
+    const { theme } = this.props;
+    return (
+      <TextButton
+        icon={PlusIcon}
+        theme={theme}
+        onClick={this.handleClick}
+      />
+    );
+  }
 }
+
+AddPluginButton.propTypes = {
+  pubsub: PropTypes.object.isRequired,
+  openExternalModal: PropTypes.func.isRequired,
+  closeExternalModal: PropTypes.func.isRequired,
+  getEditorState: PropTypes.func.isRequired,
+  setEditorState: PropTypes.func.isRequired,
+  pluginButtons: PropTypes.array,
+  theme: PropTypes.object,
+};

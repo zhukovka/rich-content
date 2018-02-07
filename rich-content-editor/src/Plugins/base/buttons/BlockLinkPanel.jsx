@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
-import LinkPanel from '~/Common/LinkPanel';
+import LinkPanel from '~/Components/LinkPanel';
 
 class BlockLinkPanel extends Component {
-
-  setLinkPanel = linkPanel => this.linkPanel = linkPanel;
-
   wrapBlockInLink = ({ url, targetBlank, nofollow }) => {
     const { pubsub } = this.props;
     if (!isEmpty(url)) {
@@ -17,14 +14,9 @@ class BlockLinkPanel extends Component {
     this.hideLinkPanel();
   };
 
-  onCloseRequested = () => {
-    const { url, targetBlank, nofollow } = this.linkPanel.state;
-    this.wrapBlockInLink({ url, targetBlank, nofollow });
-  }
-
-
   hideLinkPanel = () => {
     this.props.onExtendContent(undefined);
+    this.props.onOverrideContent(undefined);
   };
 
   render() {
@@ -32,12 +24,12 @@ class BlockLinkPanel extends Component {
     const { url, targetBlank, nofollow } = componentLink;
     return (
       <LinkPanel
-        ref={this.setLinkPanel}
         url={url}
         targetBlank={targetBlank}
         nofollow={nofollow}
         onDone={this.wrapBlockInLink}
         onCancel={this.hideLinkPanel}
+        onOverrideContent={this.props.onOverrideContent}
       />
     );
   }
@@ -46,6 +38,7 @@ class BlockLinkPanel extends Component {
 BlockLinkPanel.propTypes = {
   pubsub: PropTypes.object.isRequired,
   onExtendContent: PropTypes.func.isRequired,
+  onOverrideContent: PropTypes.func.isRequired,
 };
 
 export default BlockLinkPanel;

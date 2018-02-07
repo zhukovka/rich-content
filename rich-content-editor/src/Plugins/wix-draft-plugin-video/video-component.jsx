@@ -2,7 +2,9 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Styles from './default-video-styles.scss';
+
+import { mergeStyles } from '~/Utils';
+import styles from './default-video-styles.scss';
 
 const DEFAULTS = {
   src: 'https://www.youtube.com/watch?v=YIywpvHewc0',
@@ -23,6 +25,7 @@ class VideoComponent extends React.Component {
       isLoaded: false,
       isPlayable,
     };
+    this.styles = mergeStyles({ styles, theme: this.props.theme });
   }
 
   setPlayer = player => {
@@ -51,21 +54,20 @@ class VideoComponent extends React.Component {
     }
   };
 
-  renderOverlay = () => {
-    const { theme } = this.props;
+  renderOverlay = styles => {
     const { isLoaded } = this.state;
     return (
-      <div className={classNames(Styles.videoOverlay, theme.videoOverlay)}>
-        {isLoaded && <span>To play this video, view this post from your live site</span>}
+      <div className={classNames(styles.video_overlay)}>
+        {isLoaded && <span className={styles.video_overlay_message}>To play this video, view this post from your live site</span>}
       </div>);
   };
 
-  renderPlayer = () => {
-    const { componentData, theme } = this.props;
+  renderPlayer = styles => {
+    const { componentData } = this.props;
     return (
       <ReactPlayer
         ref={this.setPlayer}
-        className={classNames(Styles.player, theme.player)}
+        className={classNames(styles.video_player)}
         width="100%"
         height="100%"
         url={componentData.src}
@@ -77,13 +79,14 @@ class VideoComponent extends React.Component {
   };
 
   render() {
-    const { className, onClick, theme } = this.props;
+    const { styles } = this;
+    const { className, onClick } = this.props;
     const { isPlayable } = this.state;
-    const containerClassNames = classNames(Styles.videoContainer, theme.videoContainer, className || '');
+    const containerClassNames = classNames(styles.video_container, className || '');
     return (
       <div onClick={onClick} className={containerClassNames}>
-        {!isPlayable && this.renderOverlay()}
-        {this.renderPlayer()}
+        {!isPlayable && this.renderOverlay(styles)}
+        {this.renderPlayer(styles)}
       </div>
     );
   }

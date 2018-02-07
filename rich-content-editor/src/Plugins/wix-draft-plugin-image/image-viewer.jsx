@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
+import { mergeStyles } from '~/Utils';
 import getImageSrc from './get-image-source';
-import Styles from './default-image-styles.scss';
-import ImageLoader from '~/Common/image-loader';
+import styles from './default-image-styles.scss';
+import ImageLoader from '~/Components/ImageLoader';
 
 const getDefault = () => ({
   data: {},
@@ -16,6 +18,11 @@ const getDefault = () => ({
 });
 
 class ImageViewer extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.styles = mergeStyles({ styles, theme: props.theme });
+  }
 
   getImageSrc(item) {
     const { helpers } = this.props;
@@ -37,25 +44,26 @@ class ImageViewer extends React.Component {
     if (!this.props.isLoading) {
       return null;
     }
-    return <div className={Styles.overlay}><ImageLoader type={'medium'}/></div>;
+    return <div className={this.styles.imageComponent_overlay}><ImageLoader type={'medium'} theme={this.props.theme}/></div>;
   }
 
-  renderTitle(data, theme) {
+  renderTitle(data, styles) {
     const config = data.config || {};
-    return !!config.showTitle && <div className={classNames(Styles.imageTitle, theme.imageTitle)}>{(data && data.title) || ''}</div>;
+    return !!config.showTitle && <div className={classNames(styles.imageComponent_title)}>{(data && data.title) || ''}</div>;
   }
-  renderDescription(data, theme) {
+  renderDescription(data, styles) {
     const config = data.config || {};
     return !!config.showDescription &&
-      <div className={classNames(Styles.imageDescription, theme.imageDescription)}>{(data && data.description) || ''}</div>;
+      <div className={classNames(styles.imageComponent_description)}>{(data && data.description) || ''}</div>;
   }
 
   render() {
-    const { componentData, className, onClick, theme } = this.props;
+    const { styles } = this;
+    const { componentData, className, onClick } = this.props;
     const data = componentData || getDefault();
 
-    const itemClassName = classNames(Styles.imageContainer, className, theme.imageContainer);
-    const imageClassName = classNames(Styles.image, theme.image);
+    const itemClassName = classNames(styles.imageComponent_container, className);
+    const imageClassName = classNames(styles.imageComponent_image);
     const imageSrc = this.getImageSrc(data.item);
     return (
       <div onClick={onClick} className={itemClassName}>
@@ -63,8 +71,8 @@ class ImageViewer extends React.Component {
           <img className={imageClassName} src={imageSrc} />
           {this.renderLoader()}
         </div>
-        {this.renderTitle(data, theme)}
-        {this.renderDescription(data, theme)}
+        {this.renderTitle(data, styles)}
+        {this.renderDescription(data, styles)}
       </div>
     );
   }

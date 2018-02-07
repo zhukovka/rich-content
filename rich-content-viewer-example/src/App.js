@@ -55,7 +55,7 @@ class App extends Component {
         );
         this.setState({
           showModal: true,
-          modalContent: < ModalContent / > ,
+          modalContent: <ModalContent />,
           modalStyles
         });
       },
@@ -85,66 +85,35 @@ class App extends Component {
 
   render() {
     const contentOptions = Object.keys(TestData).map(key =>
-      <
-      option value = {
-        key
-      }
-      key = {
-        key
-      } > {
-        key
-      } < /option>
+      (<option value={key} key={key}> { key }</option>)
     );
 
-    return ( <
-      div className = "wrapper" >
-      <
-      div className = "header" >
-      <
-      img src = {
-        logo
-      }
-      className = "logo"
-      alt = "logo" / >
-      <
-      h2 > Wix Rich Content Viewer < /h2> <
-      select id = "testData"
-      name = "testData"
-      onChange = {
-        () => this.handleContentChange(this)
-      } > {
-        contentOptions
-      } <
-      /select> <
-      /div> <
-      div className = "content" >
-      <
-      RichContentViewer helpers = {
-        this.helpers
-      }
-      // plugins={this.plugins}
-      // decorators={this.decorators}
-      initialState = {
-        this.state.raw
-      }
-      /> <
-      ReactModal isOpen = {
-        this.state.showModal
-      }
-      contentLabel = "External Modal Example"
-      style = {
-        this.state.modalStyles || modalStyleDefaults
-      }
-      onRequestClose = {
-        this.closeModal
-      } >
-      {
-        this.state.modalContent
-      } <
-      /ReactModal> <
-      /div> <
-      /div>
-    );
+    return (
+      <div className="wrapper">
+        <div className="header">
+          <img src={logo} className="logo" alt="logo" />
+          <h2>Wix Rich Content Viewer</h2>
+          <select id="testData" name="testData" onChange={() => this.handleContentChange(this)} >
+            {contentOptions}
+          </select>
+        </div>
+        <div className="content">
+          <RichContentViewer
+            helpers={this.helpers}
+            // plugins={this.plugins}
+            // decorators={this.decorators}
+            initialState={this.state.raw}
+          />
+          <ReactModal
+            isOpen={this.state.showModal}
+            contentLabel="External Modal Example"
+            style={this.state.modalStyles || modalStyleDefaults}
+            onRequestClose={this.closeModal}
+          >
+            {this.state.modalContent}
+          </ReactModal>
+        </div>
+      </div>);
   }
 }
 

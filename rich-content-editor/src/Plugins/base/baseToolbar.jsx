@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
-import Separator from '~/Common/Separator';
+import Separator from '~/Components/Separator';
 import BaseToolbarButton from './baseToolbarButton';
 import {
   BUTTONS,
@@ -20,7 +20,7 @@ import buttonStyles from '~/Styles/plugin-toolbar-button.scss';
 
 const toolbarOffset = 12;
 
-export default function createToolbar({ buttons, theme, pubsub, helpers }) {
+export default function createToolbar({ buttons, theme, pubsub, helpers, isMobile }) {
   class BaseToolbar extends Component {
     constructor(props) {
       super(props);
@@ -165,7 +165,13 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
         case BUTTONS.SEPARATOR:
           return <Separator className={separatorClassNames} key={key} />;
         case BUTTONS.LINK:
-          return <BlockLinkButton pubsub={pubsub} onExtendContent={this.onExtendContent} theme={themedStyle} key={key} />;
+          return (<BlockLinkButton
+            pubsub={pubsub}
+            onExtendContent={this.onExtendContent}
+            onOverrideContent={this.onOverrideContent}
+            theme={themedStyle}
+            key={key}
+          />);
         case BUTTONS.DELETE:
           return <DeleteButton onClick={this.deleteBlock} theme={themedStyle} key={key} />;
         default:
@@ -177,6 +183,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
               pubsub={pubsub}
               helpers={helpers}
               key={key}
+              isMobile={isMobile}
               {...button}
             />
           );
@@ -188,11 +195,13 @@ export default function createToolbar({ buttons, theme, pubsub, helpers }) {
       const { buttonStyles: buttonTheme, separatorStyles: separatorTheme } = theme || {};
       const containerClassNames = classNames(toolbarStyles.toolbar, toolbarTheme && toolbarTheme.toolbar);
       const buttonContainerClassnames = classNames(toolbarStyles.buttons, toolbarTheme && toolbarTheme.buttons);
+      const modal = theme.modal ? { modal: { ...theme.modal } } : {};
       const themedButtonStyle = {
         buttonWrapper: classNames(buttonStyles.buttonWrapper, buttonTheme && buttonTheme.buttonWrapper),
         button: classNames(buttonStyles.button, buttonTheme && buttonTheme.button),
         icon: classNames(buttonStyles.icon, buttonTheme && buttonTheme.icon),
         active: classNames(buttonStyles.active, buttonTheme && buttonTheme.active),
+        ...modal
       };
       const separatorClassNames = classNames(toolbarStyles.separator, separatorTheme && separatorTheme.separator);
       const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;

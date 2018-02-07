@@ -6,6 +6,11 @@ $innerSpacing: 40px;
 $textWidth: 740px;
 $textMobileWidth: 90%;
 
+//*** GENERIC ***//
+.flex {
+  display: flex;
+}
+
 //*** BLOCK ***//
 .hasFocus {
   @include block-select;

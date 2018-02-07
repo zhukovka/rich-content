@@ -100,7 +100,10 @@ module.exports = {
   context: __dirname,
   target: 'web',
   externals: [
-    /^pro-gallery-renderer.*$/,
+    /draft-js/,
+    {
+      'pro-gallery-renderer': 'pro-gallery-renderer'
+    },
     'mobx',
     function(context, request, callback) {
       const submodule = (/^wix-style-react\/dist\/src\/(.*$)/.exec(request) || [])[1];
@@ -116,13 +119,6 @@ module.exports = {
       callback();
     },
     {
-      '@wix/draft-js': {
-        root: 'Draft',
-        commonjs2: '@wix/draft-js',
-        commonjs: '@wix/draft-js',
-        amd: '@wix/draft-js',
-        umd: '@wix/draft-js',
-      },
       immutable: {
         root: 'Immutable',
         commonjs2: 'immutable',
@@ -130,6 +126,8 @@ module.exports = {
         amd: 'immutable',
         umd: 'immutable',
       },
+    },
+    {
       react: {
         root: 'React',
         commonjs2: 'react',
@@ -137,6 +135,8 @@ module.exports = {
         amd: 'react',
         umd: 'react',
       },
+    },
+    {
       'react-dom': {
         root: 'ReactDOM',
         commonjs2: 'react-dom',

@@ -4,6 +4,7 @@ import SliderWithInput from '../stylable-base/slider-with-input';
 
 const propTypes = {
   value: PropTypes.number.isRequired,
+  theme: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.object,
 };

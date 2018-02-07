@@ -1,8 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
-    <g fill="none" fill-rule="evenodd" transform="translate(-2 -2)">
-        <path fill="#000" d="M3 6h13a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm.5 1a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h12a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-12z"/>
-        <rect width="13" height="1" x="3" y="4" fill="#000" rx=".5"/>
-        <rect width="11" height="1" x="4" y="2" fill="#000" rx=".5"/>
-        <path fill="#000" fill-rule="nonzero" d="M6 11a1.001 1.001 0 0 0 0-2 1.001 1.001 0 0 0 0 2z"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 19 19">
+    <defs>
+        <path id="gallery-plugin-insert-path" d="M3 3h7a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm0 1v4h7V4H3zm10-1h3a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm0 1v4h3V4h-3zM3 10h3a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1zm0 1v4h3v-4H3zm6-1h7a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1zm0 1v4h7v-4H9z"/>
+    </defs>
+    <g fill-rule="evenodd">
+        <mask id="gallery-plugin-insert-mask">
+            <use xlink:href="#gallery-plugin-insert-path"/>
+        </mask>
+        <use fill-rule="nonzero" xlink:href="#gallery-plugin-insert-path"/>
+        <g mask="url(#gallery-plugin-insert-mask)">
+            <path d="M1 1h17v17H1z"/>
+        </g>
     </g>
 </svg>

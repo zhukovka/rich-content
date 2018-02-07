@@ -1,5 +1,13 @@
-.toggle-with-label {
+.toggleWithLabel {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+.toggleWithLabel_label {
+  content: '';
+}
+
+.toggleWithLabel_toggle {
+  content: '';
 }

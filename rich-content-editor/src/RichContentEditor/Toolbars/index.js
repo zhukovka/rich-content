@@ -1,9 +1,10 @@
 import { createSideToolbar } from './SideToolbar';
-import { createAddPluginPanel, createMobileToolbar, createFooterToolbar } from './StaticToolbar';
+import { createMobileToolbar, createFooterToolbar } from './StaticToolbar';
 import { createTextToolbar } from './InlineToolbar';
 import { simplePubsub } from '~/Utils';
 
-const createToolbars = ({ pluginButtons, textButtons, sideToolbarOffset, isMobile, theme = {} }) => {
+const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, getEditorState, setEditorState }) => {
+  const { pluginButtons, textButtons } = buttons;
   const pubsub = simplePubsub();
 
   const toolbars = {
@@ -20,6 +21,7 @@ const createToolbars = ({ pluginButtons, textButtons, sideToolbarOffset, isMobil
     toolbars.text = createTextToolbar({
       buttons: textButtons,
       theme: theme.text,
+      pubsub,
     });
     toolbars.footer = createFooterToolbar({
       buttons: pluginButtons,
@@ -27,15 +29,12 @@ const createToolbars = ({ pluginButtons, textButtons, sideToolbarOffset, isMobil
     });
   } else {
     toolbars.mobile = createMobileToolbar({
-      buttons: textButtons,
-      theme: theme.mobile,
+      buttons,
+      helpers,
       pubsub,
-
-    });
-    toolbars.mobileAddPanel = createAddPluginPanel({
-      buttons: pluginButtons,
-      theme: theme.mobileAddPanel,
-      pubsub
+      getEditorState,
+      setEditorState,
+      theme: theme.mobile,
     });
   }
 

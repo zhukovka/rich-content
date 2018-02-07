@@ -352,12 +352,22 @@ module.exports = {
     child_process: 'empty',
   },
   externals: [
-    /^wix-style-react.*$/,
     /^@wix.*/,
-    'draft-js',
-    'mobx',
     {
       'pro-gallery-renderer': '\'pro-gallery-renderer\''
+    },
+    function(context, request, callback) {
+      const submodule = (/^wix-style-react\/dist\/src\/(.*$)/.exec(request) || [])[1];
+      if (submodule) {
+        return callback(null, {
+          root: ['wix-style-react', submodule],
+          commonjs2: request,
+          commonjs: request,
+          amd: request,
+          umd: request,
+        });
+      }
+      callback();
     },
     {
       'wix-rich-content-editor': 'WixRichContentEditor'

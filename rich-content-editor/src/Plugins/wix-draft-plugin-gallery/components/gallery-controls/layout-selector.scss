@@ -4,92 +4,87 @@
   background: url('./icons/layout_' + $icon + '.svg') center no-repeat;
 }
 
-.layouts-selector {
-  label {
-    display: block;
-    margin-bottom: 13px;
-  }
+.layoutsSelector_label {
+  display: block;
+  margin-bottom: 13px;
 }
 
-.layouts-grid {
+.layoutsSelector_grid {
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 92px 73px;
 }
 
-.layout-tile {
-  div {
-    margin: 0 auto 0 auto;
-
-    & + label {
-      margin-top: 6px;
-    }
-  }
-  label {
-    line-height: 1.5;
-    display: block;
-  }
+.layoutsSelector_tile {
+  margin: 0 auto 0 auto;
 }
 
-.grid {
+.layoutsSelector_tile_label {
+  margin-top: 6px;
+  line-height: 1.5;
+  display: block;
+}
+
+
+.layoutsSelector_icon_grid {
   @include layout_icon('grid');
 }
 
-.masonry {
+.layoutsSelector_icon_masonry {
   @include layout_icon('masonry');
 }
 
-.collage {
+.layoutsSelector_icon_collage {
   @include layout_icon('collage');
 }
 
-.thumbnails {
+.layoutsSelector_icon_thumbnails {
   @include layout_icon('thumbnails');
 }
 
-.slideshow {
+.layoutsSelector_icon_slideshow {
   @include layout_icon('slideshow');
 }
 
-.panorama {
+.layoutsSelector_icon_panorama {
   @include layout_icon('panorama');
 }
 
-.columns {
+.layoutsSelector_icon_columns {
   @include layout_icon('columns');
 }
 
-.slides {
+.layoutsSelector_icon_slides {
   @include layout_icon('slides');
 }
 
-.grid_selected {
+.layoutsSelector_icon_grid_selected {
   @include layout_icon('grid_selected');
 }
 
-.masonry_selected {
+.layoutsSelector_icon_masonry_selected {
   @include layout_icon('masonry_selected');
 }
 
-.collage_selected {
+.layoutsSelector_icon_collage_selected {
   @include layout_icon('collage_selected');
 }
 
-.thumbnails_selected {
+.layoutsSelector_icon_thumbnails_selected {
   @include layout_icon('thumbnails_selected');
 }
 
-.slideshow_selected {
+.layoutsSelector_icon_slideshow_selected {
   @include layout_icon('slideshow_selected');
 }
 
-.panorama_selected {
+.layoutsSelector_icon_panorama_selected {
   @include layout_icon('panorama_selected');
 }
 
-.columns_selected {
+.layoutsSelector_icon_columns_selected {
   @include layout_icon('columns_selected');
 }
 
-.slides_selected {
+.layoutsSelector_icon_slides_selected {
   @include layout_icon('slides_selected');
 }

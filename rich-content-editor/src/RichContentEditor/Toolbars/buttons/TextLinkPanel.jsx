@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
-import { insertLink } from '~/Utils';
-import LinkPanel from '~/Common/LinkPanel';
+import { insertLink, getLinkDataInSelection } from '~/Utils';
+import LinkPanel from '~/Components/LinkPanel';
 
 export default class TextLinkPanel extends Component {
   createLinkEntity = ({ url, targetBlank, nofollow }) => {
@@ -16,10 +16,21 @@ export default class TextLinkPanel extends Component {
 
   hideLinkPanel = () => {
     this.props.onExtendContent(undefined);
+    this.props.onOverrideContent(undefined);
   };
 
   render() {
-    return <LinkPanel onDone={this.createLinkEntity} onCancel={this.hideLinkPanel} />;
+    const { getEditorState } = this.props;
+    const link = getLinkDataInSelection(getEditorState()) || {};
+    const { url, targetBlank, nofollow } = link;
+    return (<LinkPanel
+      url={url}
+      targetBlank={targetBlank}
+      nofollow={nofollow}
+      onDone={this.createLinkEntity}
+      onCancel={this.hideLinkPanel}
+      onOverrideContent={this.props.onOverrideContent}
+    />);
   }
 }
 
@@ -27,5 +38,6 @@ TextLinkPanel.propTypes = {
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
   onExtendContent: PropTypes.func.isRequired,
+  onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object,
 };

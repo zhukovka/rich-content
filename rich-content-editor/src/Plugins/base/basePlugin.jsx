@@ -56,14 +56,18 @@ const deleteEntity = (contentBlock, { getEditorState, setEditorState }) => {
 const createBasePlugin = (config = {}) => {
   const pubsub = simplePubsub();
   const helpers = config.helpers || {};
-  const theme = config.theme || {};
-  const Toolbar = createToolbar({ buttons: config.toolbar.InlineButtons, theme, pubsub, helpers });
+  const isMobile = config.isMobile || false;
+  const modalTheme = config.theme.modals && config.theme.modals[config.type] ?
+    { modal: { ...config.theme.modals[config.type] } } : {};
+
+  const toolbarTheme = (config.theme.toolbars && config.theme.toolbars.plugin) ? { ...config.theme.toolbars.plugin } : {};
+  const Toolbar = createToolbar({ buttons: config.toolbar.InlineButtons, theme: { ...toolbarTheme, ...modalTheme }, pubsub, helpers, isMobile });
   const InsertPluginButtons = config.toolbar.InsertButtons.map(button => (
     createInsertPluginButton({ blockType: config.type, button, pubsub })
   ));
   const PluginComponent = config.decorator ? config.decorator(config.component) : config.component;
 
-  const CompWithBase = createBaseComponent({ PluginComponent, theme, pubsub, helpers });
+  const CompWithBase = createBaseComponent({ PluginComponent, theme: config.theme, pubsub, helpers });
 
   return {
     blockRendererFn: (contentBlock, { getEditorState, setEditorState, getReadOnly }) => {

@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import decorateComponentWithProps from 'decorate-component-with-props';
+
 import { EditorState } from '@wix/draft-js';
 import { hasLinksInSelection, removeLinksInSelection } from '~/Utils';
-import LinkButton from '~/Common/LinkButton';
+import LinkButton from '~/Components/LinkButton';
 import TextLinkPanel from './TextLinkPanel';
 
 export default class TextLinkButton extends Component {
-  onClick = () => {
-    if (!this.isActive) {
-      this.showLinkPanel();
-    } else {
-      this.removeLinks();
-    }
-  };
-
-  showLinkPanel() {
-    this.props.onExtendContent(TextLinkPanel);
+  showLinkPanel = () => {
+    const { onExtendContent, onOverrideContent } = this.props;
+    const linkPanelProps = {
+      onExtendContent,
+      onOverrideContent,
+    };
+    const TextLinkPanelWithProps = decorateComponentWithProps(TextLinkPanel, linkPanelProps);
+    onExtendContent(TextLinkPanelWithProps);
   }
 
   removeLinks = () => {
@@ -33,7 +33,7 @@ export default class TextLinkButton extends Component {
   render() {
     const { theme } = this.props;
     return (<LinkButton
-      onClick={this.onClick}
+      onClick={this.showLinkPanel}
       isActive={this.isActive}
       theme={theme}
     />);
@@ -44,5 +44,6 @@ TextLinkButton.propTypes = {
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
   onExtendContent: PropTypes.func.isRequired,
+  onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object,
 };

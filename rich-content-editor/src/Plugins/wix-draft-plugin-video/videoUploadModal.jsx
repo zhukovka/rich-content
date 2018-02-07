@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Modal from 'react-modal';
-import { isVideoUrl } from './videoUrlValidators';
+import { isVideoUrl } from '~/Utils/urlValidators';
 import Styles from '~/Styles/video-upload-modal.scss';
 import CameraIcon from './icons/video-camera.svg';
 import CloseIcon from './icons/x-icon.svg';

@@ -1,3 +1,4 @@
+
 :global {
   .sortableHelper {
     z-index: 10000 !important;
@@ -15,6 +16,7 @@
   text-align: right;
   font-size: 12px;
   line-height: 40px;
+  padding: 0 5px;
 
   &:hover {
     cursor: pointer;
@@ -56,28 +58,71 @@
       z-index: 1;
     }
   }
+
+  &:after {
+    display: none !important;
+  }
+
+  svg {
+    width: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -17px;
+  }
 }
 
 .sortableContainer {
   margin: 0 -12px;
+  box-sizing: border-box;
+
+  &.mobile {
+    margin: 2.5px;
+  }
 }
 
 .itemContainer {
-  width: 104px;
-  height: 104px;
-  display: inline-block;
   margin: 12px;
-  float: none;
+  float: left;
   outline: none;
   overflow: hidden;
   position: relative;
+  box-sizing: border-box;
+
+  &.itemContainerSelected {
+    box-shadow: 0 0 0 3px #0261ff;
+  }
+
+  &.mobile {
+    margin: 2.5px;
+
+    &:after {
+      content: url(../../icons/mobile-image-default.svg);
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 16px;
+      height: 16px;
+    }
+
+    &.itemContainerSelectedMobile {
+      &:after {
+        content: url(../../icons/mobile-image-selected.svg);
+      }
+    }
+
+  }
 }
-.itemContainerSelected {
-  box-shadow: 0 0 0 3px #0261ff;
+
+.fab {
+  position: absolute;
+  bottom: -8px;
+  right: 4px;
+  width: 66px;
+  height: 66px;
 }
+
 .itemImage {
-  width: 104px;
-  height: 104px;
   cursor: -webkit-grab;
 
   &:active {
@@ -86,6 +131,21 @@
 }
 .topBar {
   height: 40px;
+
+  &.mobile {
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    margin: 0;
+    padding: 0 10px;
+    top: auto;
+    left: 0;
+    height: 42px;
+    background: white;
+    z-index: 5;
+    border-top: 1px solid #ededed;
+  }
 }
 .topBarLink {
   font-size: 12px;

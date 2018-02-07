@@ -2,27 +2,39 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import decorateComponentWithProps from 'decorate-component-with-props';
 
+import { mergeStyles } from '~/Utils';
+import styles from './gallery-settings-modal.scss';
 import { Spacing, ItemsPerRow, ThumbnailSize } from './gallery-controls/sliders';
 import { ThumbnailResize, TitleButtonPlacement, ImageOrientation, ScrollDirection } from './gallery-controls/radio-groups';
 import ImageRatioSelector from './gallery-controls/image-ratio-selector';
 import { LoadMoreToggle } from './gallery-controls/toggles';
 import ThumbnailPlacementSelector from './gallery-controls/thumbnail-placement-selector';
-import SettingsSection from '~/Common/settings-section';
+import SettingsSection from '~/Components/SettingsSection';
 
-const Separator = () => <hr />;
+class Separator extends Component {
+  static propTypes = {
+    theme: PropTypes.object.isRequired,
+  };
+
+  constructor(props) {
+    super(props);
+    this.styles = mergeStyles({ styles, theme: props.theme });
+  }
+
+  render = () => <hr className={this.styles.gallerySettings_divider}/>
+}
 
 class LayoutControlsSection extends Component {
-
-  controlsByLayout = {
-    grid: ['|', 'itemsPerRow', 'spacing', '|', 'thumbnailResize', '|', 'scrollDirection', '|', 'titleButtonPlacement', '|', 'imageRatio'],
-    masonry: ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing'],
-    collage: ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing', '|', 'scrollDirection'],
-    thumbnails: ['|', 'thumbnailPlacement', '|', 'thumbnailSpacing'],
-    panorama: ['|', 'spacing'],
-    slideshow: [],
-    columns: ['|', 'spacing'],
-    slides: ['|', 'spacing', '|', 'thumbnailResize', '|', 'imageRatio'],
-  };
+  controlsByLayout = [
+    ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing', '|', 'scrollDirection'], // collage
+    ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing'], // masonry
+    ['|', 'itemsPerRow', 'spacing', '|', 'thumbnailResize', '|', 'scrollDirection', '|', 'titleButtonPlacement', '|', 'imageRatio'], // grid
+    ['|', 'thumbnailPlacement', '|', 'thumbnailSpacing'], // thumbnails
+    ['|', 'spacing', '|', 'thumbnailResize', '|', 'imageRatio'], // slides
+    [], // slideshow
+    ['|', 'spacing'], // panorama
+    ['|', 'spacing'], // columns
+  ];
 
   getValueFromComponentStyles = name => this.props.data.styles[name];
 
@@ -82,7 +94,7 @@ class LayoutControlsSection extends Component {
     imageRatio: {
       component: ImageRatioSelector,
       props: {
-        onChange: event => this.applyGallerySetting({ cubeRatio: event.value }),
+        onChange: value => this.applyGallerySetting({ cubeRatio: value }),
         value: this.getValueFromComponentStyles('cubeRatio'),
       },
     },
@@ -115,7 +127,7 @@ class LayoutControlsSection extends Component {
     thumbnailPlacement: {
       component: ThumbnailPlacementSelector,
       props: {
-        onChange: event => this.applyGallerySetting({ galleryThumbnailsAlignment: event.value }),
+        onChange: value => this.applyGallerySetting({ galleryThumbnailsAlignment: value }),
         value: this.getValueFromComponentStyles('galleryThumbnailsAlignment'),
       },
     },
@@ -123,12 +135,12 @@ class LayoutControlsSection extends Component {
 
   render() {
     const controls = this.getControlData();
-    const layoutControls = this.controlsByLayout[this.props.layoutsOrder.original[this.props.layout]];
+    const layoutControls = this.controlsByLayout[this.props.layout];
     return (
       <div>
         {layoutControls.map((name, i) => (
-          <SettingsSection key={i}>
-            {React.createElement(decorateComponentWithProps(controls[name].component, controls[name].props))}
+          <SettingsSection theme={this.props.theme} key={i}>
+            {React.createElement(decorateComponentWithProps(controls[name].component, { ...controls[name].props, theme: this.props.theme }))}
           </SettingsSection>
         ))}
       </div>
@@ -138,7 +150,7 @@ class LayoutControlsSection extends Component {
 
 LayoutControlsSection.propTypes = {
   layout: PropTypes.number.isRequired,
-  layoutsOrder: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
 };

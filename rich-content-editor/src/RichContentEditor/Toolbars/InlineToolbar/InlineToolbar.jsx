@@ -52,6 +52,7 @@ export default class InlineToolbar extends Component {
       }
 
       const relativeParent = getRelativeParent(this.toolbar.parentElement);
+      const halfToolbarWidth = this.toolbar.clientWidth / 2;
       const toolbarHeight = this.toolbar.clientHeight;
       const relativeRect = (relativeParent || document.body).getBoundingClientRect();
       const selectionRect = getVisibleSelectionRect(window);
@@ -60,11 +61,17 @@ export default class InlineToolbar extends Component {
         return;
       }
 
-      const position = {
-        top: (selectionRect.top - relativeRect.top) - toolbarHeight,
-        left: (selectionRect.left - relativeRect.left) + (selectionRect.width / 2),
-      };
-      this.setState({ position });
+      const top = (selectionRect.top - relativeRect.top) - toolbarHeight;
+      let left = (selectionRect.left - relativeRect.left) + (selectionRect.width / 2);
+
+      // make sure we're not out of bounds, adjust position if we are
+      if (left < halfToolbarWidth) {
+        left = halfToolbarWidth;
+      } else if ((left + halfToolbarWidth) > relativeRect.width) {
+        left = relativeRect.width - halfToolbarWidth;
+      }
+
+      this.setState({ position: { top, left } });
     });
   };
 

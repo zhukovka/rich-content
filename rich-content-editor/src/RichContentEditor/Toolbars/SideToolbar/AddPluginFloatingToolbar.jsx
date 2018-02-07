@@ -16,20 +16,20 @@ export default class AddPluginFloatingToolbar extends Component {
   onMouseDown = event => {
     event.preventDefault();
     event.stopPropagation();
-    this.togglePopup();
-    this.setState({ isActive: !this.state.isActive });
+    const { isMobile, pubsub } = this.props;
+    if (!isMobile) {
+      this.togglePopup();
+      this.setState({ isActive: !this.state.isActive });
+    } else {
+      pubsub.get('openAddPluginModal')();
+    }
   };
 
   togglePopup = () => {
-    const { isMobile } = this.props;
-    if (!isMobile) {
-      if (this.state.isActive) {
-        this.hidePopup();
-      } else {
-        this.showPopup();
-      }
+    if (this.state.isActive) {
+      this.hidePopup();
     } else {
-      this.props.pubsub.set('addPluginPanelVisible', this.state.isActive);
+      this.showPopup();
     }
   };
 
@@ -78,7 +78,7 @@ export default class AddPluginFloatingToolbar extends Component {
               getEditorState={getEditorState}
               setEditorState={setEditorState}
               theme={buttonStyles}
-              hidePluginSelectPopup={this.hidePopup}
+              hidePopup={this.hidePopup}
             />
           ))}
         </div>

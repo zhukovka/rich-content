@@ -3,7 +3,7 @@ import SideToolbarTheme from './side-toolbar.theme.scss';
 import PluginToolbarTheme from './plugin-toolbar.theme.scss';
 import FooterToolbarTheme from './footer-toolbar.theme.scss';
 import MobileToolbarTheme from './mobile-toolbar.theme.scss';
-import MobileAddPanelTheme from './mobile-add-panel.theme.scss';
+import MobileAddModalTheme from './mobile-add-modal.theme.scss';
 
 const textToolbarTheme = () => {
   const {
@@ -69,11 +69,11 @@ const mobileToolbarTheme = () => {
   };
 };
 
-const mobileAddPanelTheme = () => {
+const mobileAddModalTheme = () => {
   const {
     wrapper, tile,
     buttonWrapper, button, icon, label
-  } = MobileAddPanelTheme;
+  } = MobileAddModalTheme;
   return {
     panelStyles: { wrapper, tile },
     buttonStyles: { buttonWrapper, button, icon, label },
@@ -85,5 +85,5 @@ export default {
   plugin: pluginToolbarTheme(),
   footer: footerToolbarTheme(),
   mobile: mobileToolbarTheme(),
-  mobileAddPanel: mobileAddPanelTheme(),
+  mobileAddModal: mobileAddModalTheme(),
 };

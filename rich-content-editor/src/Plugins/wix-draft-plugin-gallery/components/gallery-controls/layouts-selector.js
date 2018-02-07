@@ -1,63 +1,55 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { SelectionList, SelectionListOption } from 'stylable-components/dist/src/components/selection-list';
+import classnames from 'classnames';
+import SelectionList from '~/Components/SelectionList';
 
-import style from './layout-selector.scss';
+import { mergeStyles } from '~/Utils/mergeStyles';
+import styles from './layout-selector.scss';
 class LayoutSelector extends Component {
+
+  constructor(props) {
+    super(props);
+    this.styles = mergeStyles({ styles, theme: props.theme });
+  }
+
   layouts = [
-    { layoutId: 0, name: 'Grid' },
+    { layoutId: 2, name: 'Grid' },
     { layoutId: 1, name: 'Masonry' },
-    { layoutId: 2, name: 'Collage' },
+    { layoutId: 0, name: 'Collage' },
     { layoutId: 3, name: 'Thumbnails' },
-    { layoutId: 4, name: 'Slideshow' },
-    { layoutId: 5, name: 'Panorama' },
-    { layoutId: 6, name: 'Columns' },
-    { layoutId: 7, name: 'Slides' },
+    { layoutId: 5, name: 'Slideshow' },
+    { layoutId: 6, name: 'Panorama' },
+    { layoutId: 7, name: 'Columns' },
+    { layoutId: 4, name: 'Slides' },
   ];
 
-  sidebarToOriginalLayoutMapper = sidebarLayoutId => {
-    const { sidebar, original } = this.props.layoutsOrder;
-    const sidebarLayoutName = sidebar[sidebarLayoutId];
-    const originalLayoutId = original.indexOf(sidebarLayoutName);
-    return originalLayoutId;
-  }
+  dataMapper = ({ layoutId }) => ({ value: layoutId });
 
-  originalToSidebarLayoutMapper = originalLayoutId => {
-    const { sidebar, original } = this.props.layoutsOrder;
-    const originalLayoutName = original[originalLayoutId];
-    const sidebarLayoutId = sidebar.indexOf(originalLayoutName);
-    return sidebarLayoutId;
-  }
-
-  dataMapper = ({ layoutId, name }) => ({ value: layoutId, label: name });
-
-  renderOption = ({ layoutId }, { label }, { id, selected, focused }) => (
-    <SelectionListOption id={id} value={layoutId} selected={selected} focused={focused}>
-      <div className={style['layout-tile']}>
-        <div className={style[selected ? `${label.toLowerCase()}_selected` : label.toLowerCase()]} />
-        <label>{label}</label>
-      </div>
-    </SelectionListOption>
+  renderOption = ({ item, selected }) => (
+    <div className={this.styles.layoutsSelector_tile}>
+      <div
+        className={classnames(this.styles[selected ?
+          `layoutsSelector_icon_${item.name.toLowerCase()}_selected` : `layoutsSelector_icon_${item.name.toLowerCase()}`],
+        this.styles.layoutsSelector_tile)}
+      />
+      <label className={this.styles.layoutsSelector_tile_label}>{item.name}</label>
+    </div>
   );
 
-  onLayoutChange = ({ value }) => {
-    const originalLayoutId = this.sidebarToOriginalLayoutMapper(value);
-    this.props.onChange({ value: originalLayoutId });
-  }
-
-
   render() {
-    const { value } = this.props;
+    const styles = this.styles;
+    const { value, theme, onChange } = this.props;
     return (
-      <div className={style['layouts-selector']}>
-        <label>Layouts</label>
+      <div>
+        <label className={styles.layoutsSelector_label}>Layouts</label>
         <SelectionList
-          className={style['layouts-grid']}
+          theme={theme}
+          className={styles.layoutsSelector_grid}
           dataSource={this.layouts}
           dataMapper={this.dataMapper}
           renderItem={this.renderOption}
-          value={this.originalToSidebarLayoutMapper(value)}
-          onChange={this.onLayoutChange}
+          value={value}
+          onChange={value => onChange(value)}
         />
       </div>
     );
@@ -66,8 +58,8 @@ class LayoutSelector extends Component {
 
 LayoutSelector.propTypes = {
   value: PropTypes.number.isRequired,
+  theme: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
-  layoutsOrder: PropTypes.object.isRequired,
 };
 
 export default LayoutSelector;

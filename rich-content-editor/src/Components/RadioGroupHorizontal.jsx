@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { RadioGroup } from 'stylable-components/dist/src/components/radio-group';
 
-import style from './radio-group-horizontal.scss';
+import style from '~/Styles/radio-group-horizontal.scss';
 
 class RadioGroupHorizontal extends Component {
   render() {

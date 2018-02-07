@@ -5,11 +5,17 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { BUTTONS } from './buttons';
 import Panel from './basePanel';
-import Styles from '~/Styles/plugin-toolbar-button.scss';
+import { mergeStyles } from '~/Utils';
+import styles from '~/Styles/plugin-toolbar-button.scss';
 import { VideoReplaceButton } from './VideoReplaceButton';
 
 class BaseToolbarButton extends React.Component {
-  state = { isActive: false };
+
+  constructor(props) {
+    super(props);
+    this.styles = mergeStyles({ styles, theme: props.theme });
+    this.state = { isActive: false };
+  }
 
   componentDidMount() {
     this.props.pubsub.subscribe('componentState', this.onComponentStateChange);
@@ -53,7 +59,7 @@ class BaseToolbarButton extends React.Component {
 
   handleClick = event => {
     event.preventDefault();
-    const { componentState, keyName, pubsub, onClick } = this.props;
+    const { componentState, keyName, helpers, pubsub, theme, onClick, ...otherProps } = this.props;
     const activeButton = componentState.activeButton || { keyName, isActive: false };
     const isToggleButton = !(this.props.type === BUTTONS.EXTERNAL_MODAL || this.props.type === BUTTONS.FILES);
     const isActive = !isToggleButton ? activeButton.keyName === keyName : !(activeButton.keyName === keyName && activeButton.isActive);
@@ -61,15 +67,19 @@ class BaseToolbarButton extends React.Component {
     pubsub.set('componentState', componentState);
 
     if (this.props.type === BUTTONS.EXTERNAL_MODAL && isActive) {
-      const helpers = this.props.helpers;
       if (helpers && helpers.openExternalModal) {
-        //console.log('Opening external modal');
         const keyName = BUTTONS.EXTERNAL_MODAL;
-        const theme = Styles;
-
-        helpers.openExternalModal({ ...this.props, componentState, keyName, helpers, theme, pubsub });
+        const modalProps = {
+          componentState,
+          keyName,
+          helpers,
+          pubsub,
+          theme: theme.modal || {},
+          ...otherProps,
+        };
+        helpers.openExternalModal(modalProps);
       } else {
-        //console.warn('Open external helper function is not defined for toolbar button with keyName ' + keyName);
+        console.error('Open external helper function is not defined for toolbar button with keyName ' + keyName); //eslint-disable-line no-console
       }
     }
     onClick && onClick(pubsub);
@@ -86,12 +96,11 @@ class BaseToolbarButton extends React.Component {
   };
 
   getIcon = () => {
-    const { iconActive, icon, theme } = this.props;
+    const { iconActive, icon } = this.props;
     const ActiveIcon = iconActive || icon;
     const Icon = icon;
-    const iconClassNames = classNames(Styles.icon, theme && theme.icon);
     return (
-      <div className={iconClassNames}>
+      <div className={this.styles.icon}>
         {this.state.isActive ? <ActiveIcon /> : <Icon />}
       </div>
     );
@@ -128,8 +137,8 @@ class BaseToolbarButton extends React.Component {
     );
   };
 
-  renderFilesButton = buttonClassNames => {
-    const replaceButtonWrapperClassNames = classNames(Styles.replaceButtonWrapper, this.props.theme.fileButtonWrapper);
+  renderFilesButton = (buttonClassNames, styles) => {
+    const replaceButtonWrapperClassNames = classNames(styles.replaceButtonWrapper);
     return (
       <div className={replaceButtonWrapperClassNames}>
         <form ref={this.setForm}>
@@ -142,29 +151,28 @@ class BaseToolbarButton extends React.Component {
     );
   };
 
-  renderReplaceVideoButton = () => {
-    const replaceButtonWrapperClassNames = classNames(Styles.replaceButtonWrapper, this.props.theme.fileButtonWrapper);
+  renderReplaceVideoButton = styles => {
+    // TODO: in theme, change fileButtonWrapper => replaceButtonWrapper
+    const replaceButtonWrapperClassNames = classNames(styles.replaceButtonWrapper);
     return <VideoReplaceButton className={replaceButtonWrapperClassNames} icon={this.getIcon()} pubsub={this.props.pubsub} />;
   };
 
   render = () => {
-    const { theme } = this.props;
+    const { styles } = this;
     const { isActive } = this.state;
-    const buttonWrapperClassNames = classNames(Styles.buttonWrapper, theme.buttonWrapper);
+    const buttonWrapperClassNames = classNames(styles.buttonWrapper);
     const buttonClassNames = classNames({
-      [Styles.button]: true,
-      [theme.button]: true,
-      [Styles.active]: isActive,
-      [theme.active]: isActive,
+      [styles.button]: true,
+      [styles.active]: isActive
     });
 
     let toolbarButton;
     switch (this.props.type) {
       case BUTTONS.FILES:
-        toolbarButton = this.renderFilesButton(buttonClassNames);
+        toolbarButton = this.renderFilesButton(buttonClassNames, styles);
         break;
       case BUTTONS.VIDEO_REPLACE:
-        toolbarButton = this.renderReplaceVideoButton();
+        toolbarButton = this.renderReplaceVideoButton(styles);
         break;
       case BUTTONS.PANEL:
         toolbarButton = this.renderPanelButton(buttonWrapperClassNames, buttonClassNames);
@@ -193,6 +201,7 @@ BaseToolbarButton.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
   modalStyles: PropTypes.object,
   handleFileSelection: PropTypes.bool,
+  isMobile: PropTypes.bool,
 };
 
 export default BaseToolbarButton;

@@ -1,12 +1,5 @@
 @import "./palette";
 
-.wrapper {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  z-index: 6;
-}
-
 .list {
   margin: 0;
   padding: 0;
@@ -14,13 +7,17 @@
 
 .tile {
   list-style: none;
-  display: inline-block;
-  width: 33.2%;
+  float: left;
+  box-sizing: border-box;
+  width: calc(100% / 3);
   height: 100px;
   text-align: center;
   vertical-align: middle;
-  border-top: 1px solid rgba($secondary-text-color, 0.2);
   border-right: 1px solid rgba($secondary-text-color, 0.2);
+
+  &:nth-child(n+4) {
+    border-top: 1px solid rgba($secondary-text-color, 0.2);
+  }
 
   &:nth-child(3n+0) {
     border-right: 0 none;
