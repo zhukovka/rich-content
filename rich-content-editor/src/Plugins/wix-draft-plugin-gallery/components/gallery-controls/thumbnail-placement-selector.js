@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { SelectionList } from '~/Components/SelectionList';
+import SelectionList from '~/Components/SelectionList';
 
 import { mergeStyles } from '~/Utils';
 import styles from './thumbnail-placement-selector.scss';

@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { mergeStyles } from '../Utils/mergeStyles';
 import styles from '~/Styles/selection-list.scss';
 
-export class SelectionList extends Component {
+class SelectionList extends Component {
 
   constructor(props) {
     super(props);
@@ -59,7 +59,6 @@ class SelectionListOption extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-
   render() {
     const { selected, onChange, children, value } = this.props;
     return (
@@ -71,3 +70,5 @@ class SelectionListOption extends Component {
       </div>);
   }
 }
+
+export default SelectionList;

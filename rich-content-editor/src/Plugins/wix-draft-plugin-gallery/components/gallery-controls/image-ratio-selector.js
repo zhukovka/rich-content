@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { SelectionList, SelectionListOption } from 'stylable-components/dist/src/components/selection-list';
+import SelectionList from '~/Components/SelectionList';
 import classNames from 'classnames';
 
 import { mergeStyles } from '~/Utils';
@@ -12,17 +12,15 @@ class ImageRatioSelector extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-  dataMapper = ({ ratio, name }) => ({ value: ratio, label: name });
+  dataMapper = ({ ratio }) => ({ value: ratio });
 
-  renderOption = ({ ratioClass }, { value, label }, { id, selected, focused }) => (
-    <SelectionListOption id={id} value={value} selected={selected} focused={focused}>
-      <div className={this.styles.imageRatioSelector_tile}>
-        <div className={classNames(this.styles.imageRatioSelector_ratioButton, selected ? this.styles.imageRatioSelector_ratioButton_selected : '')}>
-          <div className={classNames(ratioClass, selected ? this.styles.imageRatioSelector_ratioIcon_selected : '')} />
-        </div>
-        <label className={this.styles.imageRatioSelector_ratioLabel}>{label}</label>
+  renderOption = ({ item, selected }) => (
+    <div className={this.styles.imageRatioSelector_tile}>
+      <div className={classNames(this.styles.imageRatioSelector_ratioButton, selected ? this.styles.imageRatioSelector_ratioButton_selected : '')}>
+        <div className={classNames(item.ratioClass, selected ? this.styles.imageRatioSelector_ratioIcon_selected : '')} />
       </div>
-    </SelectionListOption>
+      <label className={this.styles.imageRatioSelector_ratioLabel}>{item.name}</label>
+    </div>
   );
 
   render() {
@@ -34,11 +32,12 @@ class ImageRatioSelector extends Component {
       { ratio: 9 / 16, name: '9:16', ratioClass: this.styles.imageRatioSelector_9_16 },
     ];
     const { styles } = this;
-    const { value, onChange } = this.props;
+    const { value, onChange, theme } = this.props;
     return (
       <div>
         <label className={styles.imageRatioSelector_label}>Image Ratio:</label>
         <SelectionList
+          theme={theme}
           className={styles.imageRatioSelector_grid}
           dataSource={dataSource}
           dataMapper={this.dataMapper}

@@ -72,29 +72,6 @@ class AdvancedSettingsSection extends Component {
 
   getValueFromComponentStyles = name => this.props.data.styles[name];
 
-  layoutsOrder = {
-    sidebar: [
-      'grid',
-      'masonry',
-      'collage',
-      'thumbnails',
-      'slideshow',
-      'panorama',
-      'columns',
-      'slides'
-    ],
-    original: [
-      'collage',
-      'masonry',
-      'grid',
-      'thumbnails',
-      'slides',
-      'slideshow',
-      'panorama',
-      'columns'
-    ]
-  };
-
   render() {
     const { data, store, isMobile, theme } = this.props;
     return (
@@ -103,17 +80,13 @@ class AdvancedSettingsSection extends Component {
           <LayoutSelector
             theme={theme}
             value={this.getValueFromComponentStyles('galleryLayout')}
-            onChange={event =>
-              this.switchLayout({ galleryLayout: event.value })
-            }
-            layoutsOrder={this.layoutsOrder}
+            onChange={value => this.switchLayout({ galleryLayout: value })}
             isMobile={isMobile}
           />
         </SettingsSection>
         <LayoutControlsSection
           theme={theme}
           layout={this.getValueFromComponentStyles('galleryLayout')}
-          layoutsOrder={this.layoutsOrder}
           data={data}
           store={store}
           isMobile={isMobile}

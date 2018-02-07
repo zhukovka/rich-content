@@ -25,17 +25,16 @@ class Separator extends Component {
 }
 
 class LayoutControlsSection extends Component {
-
-  controlsByLayout = {
-    grid: ['|', 'itemsPerRow', 'spacing', '|', 'thumbnailResize', '|', 'scrollDirection', '|', 'titleButtonPlacement', '|', 'imageRatio'],
-    masonry: ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing'],
-    collage: ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing', '|', 'scrollDirection'],
-    thumbnails: ['|', 'thumbnailPlacement', '|', 'thumbnailSpacing'],
-    panorama: ['|', 'spacing'],
-    slideshow: [],
-    columns: ['|', 'spacing'],
-    slides: ['|', 'spacing', '|', 'thumbnailResize', '|', 'imageRatio'],
-  };
+  controlsByLayout = [
+    ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing', '|', 'scrollDirection'], // collage
+    ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing'], // masonry
+    ['|', 'itemsPerRow', 'spacing', '|', 'thumbnailResize', '|', 'scrollDirection', '|', 'titleButtonPlacement', '|', 'imageRatio'], // grid
+    ['|', 'thumbnailPlacement', '|', 'thumbnailSpacing'], // thumbnails
+    ['|', 'spacing', '|', 'thumbnailResize', '|', 'imageRatio'], // slides
+    [], // slideshow
+    ['|', 'spacing'], // panorama
+    ['|', 'spacing'], // columns
+  ];
 
   getValueFromComponentStyles = name => this.props.data.styles[name];
 
@@ -95,7 +94,7 @@ class LayoutControlsSection extends Component {
     imageRatio: {
       component: ImageRatioSelector,
       props: {
-        onChange: event => this.applyGallerySetting({ cubeRatio: event.value }),
+        onChange: value => this.applyGallerySetting({ cubeRatio: value }),
         value: this.getValueFromComponentStyles('cubeRatio'),
       },
     },
@@ -136,7 +135,7 @@ class LayoutControlsSection extends Component {
 
   render() {
     const controls = this.getControlData();
-    const layoutControls = this.controlsByLayout[this.props.layoutsOrder.original[this.props.layout]];
+    const layoutControls = this.controlsByLayout[this.props.layout];
     return (
       <div>
         {layoutControls.map((name, i) => (
@@ -151,7 +150,6 @@ class LayoutControlsSection extends Component {
 
 LayoutControlsSection.propTypes = {
   layout: PropTypes.number.isRequired,
-  layoutsOrder: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
