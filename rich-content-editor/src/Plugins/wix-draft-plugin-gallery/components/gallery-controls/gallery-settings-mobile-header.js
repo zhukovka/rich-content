@@ -15,7 +15,7 @@ class GallerySettingsMobileHeader extends Component {
     };
   }
   render() {
-    const { save, cancel, saveName, cancelName, switchTab, activeTab } = this.props;
+    const { save, cancel, saveName, cancelName, switchTab, otherTab } = this.props;
     return (
       <div>
         <div className={this.styles.gallerySettingsMobileHeader_headerPlaceholder} />
@@ -25,7 +25,7 @@ class GallerySettingsMobileHeader extends Component {
               this.styles.gallerySettingsMobileHeader_cancel)}
           >{cancelName || 'Cancel'}
           </a>
-          {activeTab ?
+          {otherTab ?
             <a
               onClick={() => this.setState({ showMenu: !this.state.showMenu })}
               className={classNames(this.styles.gallerySettingsMobileHeader_button, this.styles.gallerySettingsMobileHeader_menuIcon)}
@@ -41,7 +41,7 @@ class GallerySettingsMobileHeader extends Component {
           <div className={this.styles.gallerySettingsMobileHeader_menu}>
             <SelectionList
               dataSource={[
-                activeTab,
+                otherTab,
               ]}
               value={''}
               onChange={() => {
@@ -62,7 +62,7 @@ GallerySettingsMobileHeader.propTypes = {
   theme: PropTypes.object.isRequired,
   cancel: PropTypes.func.isRequired,
   switchTab: PropTypes.func,
-  activeTab: PropTypes.string,
+  otherTab: PropTypes.string,
   saveName: PropTypes.string,
   cancelName: PropTypes.string,
 };

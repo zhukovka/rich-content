@@ -170,7 +170,7 @@ export class GallerySettingsModal extends Component {
             cancel={() => this.revertComponentData()}
             save={() => helpers.closeExternalModal()}
             switchTab={this.switchTab}
-            activeTab={this.tabName(this.otherTab())}
+            otherTab={this.tabName(this.otherTab())}
           />
           {activeTab === 'manage_media' ? <ManageMediaSection data={componentData} store={pubsub.store} isMobile theme={this.props.theme}/> : null }
           {activeTab === 'advanced_settings' ? <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store} isMobile/> : null }
