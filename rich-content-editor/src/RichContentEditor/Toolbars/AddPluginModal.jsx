@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Styles from '~/Styles/add-plugin-panel.scss';
+import Styles from '~/Styles/add-plugin-modal.scss';
 
 export default class AddPluginModal extends Component {
   hidePopup = () => this.props.hidePopup();
