@@ -49,14 +49,14 @@ class LayoutControlsSection extends Component {
     itemsPerRow: {
       component: ItemsPerRow,
       props: {
-        onChange: event => this.applyGallerySetting({ numberOfImagesPerRow: event.value }),
+        onChange: value => this.applyGallerySetting({ numberOfImagesPerRow: value }),
         value: this.getValueFromComponentStyles('numberOfImagesPerRow'),
       },
     },
     thumbnailSize: {
       component: ThumbnailSize,
       props: {
-        onChange: event => this.applyGallerySetting({ gallerySize: event.value }),
+        onChange: value => this.applyGallerySetting({ gallerySize: value }),
         value: this.getValueFromComponentStyles('gallerySize'),
         options: {
           isVertical: this.getValueFromComponentStyles('isVertical')
@@ -66,14 +66,14 @@ class LayoutControlsSection extends Component {
     spacing: {
       component: Spacing,
       props: {
-        onChange: event => this.applyGallerySetting({ imageMargin: event.value }),
+        onChange: value => this.applyGallerySetting({ imageMargin: value }),
         value: this.getValueFromComponentStyles('imageMargin'),
       },
     },
     thumbnailSpacing: {
       component: Spacing,
       props: {
-        onChange: event => this.applyGallerySetting({ thumbnailSpacings: event.value }),
+        onChange: value => this.applyGallerySetting({ thumbnailSpacings: value }),
         value: this.getValueFromComponentStyles('thumbnailSpacings'),
       },
     },
