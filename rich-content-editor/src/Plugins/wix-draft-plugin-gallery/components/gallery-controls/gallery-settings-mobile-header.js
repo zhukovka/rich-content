@@ -15,7 +15,7 @@ class GallerySettingsMobileHeader extends Component {
     };
   }
   render() {
-    const { hide, save, cancel, saveName, cancelName, switchTab, activeTab } = this.props;
+    const { save, cancel, saveName, cancelName, switchTab, activeTab } = this.props;
     return (
       <div>
         <div className={this.styles.gallerySettingsMobileHeader_headerPlaceholder} />

@@ -95,6 +95,12 @@ class LinkPanel extends Component {
   render() {
     const firstCheckboxText = 'Open Link in New Window / Tab';
     const secondCheckboxText = 'Add rel="nofollow" to link';
+    const doneButtonClassName = classNames(Styles.linkPanelFooterDoneButton,
+      {
+        [Styles.enabled]: this.isDoneEnabled(),
+        [Styles.disabled]: !this.isDoneEnabled()
+      }
+    );
     return (
       <ThemeProvider theme={'rce'}>
         <div className={Styles.linkPanelModal}>
@@ -138,11 +144,7 @@ class LinkPanel extends Component {
           </div>
           <div className={Styles.linkPanelFooter}>
             <div className={Styles.linkPanelFooterCancelButton} onClick={this.onCancelClick}>Cancel</div>
-            <div
-              className={classNames(Styles.linkPanelFooterDoneButton, { [Styles.enabled]: this.isDoneEnabled(), [Styles.disabled]: !this.isDoneEnabled() })}
-              onClick={this.onDoneClick}
-            >Update
-            </div>
+            <div className={doneButtonClassName} onClick={this.onDoneClick}>Update</div>
           </div>
         </div>
       </ThemeProvider>
