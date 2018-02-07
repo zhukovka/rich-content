@@ -7,19 +7,31 @@ import Trash from './icons/trash.svg';
 import Styles from '~/Styles/link-panel.scss';
 
 export default class LinkHeader extends Component {
+
+  handleDelete = () => {
+    const { onBack, onDelete } = this.props;
+    onDelete();
+    onBack();
+  }
+
   render() {
+    const { isActive, onBack } = this.props;
     return (
       <ThemeProvider theme={'rce'}>
         <div className={Styles.linkHeaderContainer}>
-          <div className={Styles.linkHeaderBackArrowContainer} onClick={this.props.onBack} >
+          <div className={Styles.linkHeaderBackArrowContainer} onClick={onBack} >
             <BackArrow className={Styles.linkHeaderBackIcon} />
           </div>
           <Divider className={Styles.linkHeaderDivider}/>
           <div className={Styles.linkHeaderText}>Add a Link</div>
-          <Divider className={Styles.linkHeaderDivider}/>
-          <div className={Styles.linkHeaderTrashContainer} onClick={this.props.onBack} >
-            <Trash className={Styles.linkHeaderTrashIcon} />
-          </div>
+          {isActive &&
+            <div className={Styles.linkHeaderDelete}>
+              <Divider className={Styles.linkHeaderDivider}/>
+              <div className={Styles.linkHeaderTrashContainer} onClick={this.handleDelete} >
+                <Trash className={Styles.linkHeaderTrashIcon} />
+              </div>
+            </div>
+          }
         </div>
       </ThemeProvider>
     );
@@ -27,6 +39,8 @@ export default class LinkHeader extends Component {
 }
 
 LinkHeader.propTypes = {
+  isActive: PropTypes.bool.isRequired,
   onBack: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 

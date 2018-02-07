@@ -66,13 +66,19 @@
   font-size: 14px;
 }
 
-.linkHeaderTrashContainer {
+.linkHeaderDelete {
   height: 100%;
   display: flex;
   align-items: center;
   padding-right: 0;
   padding-left: 25px;
+  vertical-align: middle;
+  line-height: 10px;
+}
+
+.linkHeaderTrashContainer {
   cursor: pointer;
+  padding-left: 20px;
 }
 
 .linkHeaderTrashIcon {

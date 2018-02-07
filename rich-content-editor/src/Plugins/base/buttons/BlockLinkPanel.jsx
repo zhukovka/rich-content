@@ -14,21 +14,27 @@ class BlockLinkPanel extends Component {
     this.hideLinkPanel();
   };
 
+  deleteLink = () => {
+    this.props.pubsub.set('componentLink', undefined);
+  }
+
   hideLinkPanel = () => {
     this.props.onExtendContent(undefined);
     this.props.onOverrideContent(undefined);
   };
 
   render() {
-    const componentLink = this.props.pubsub.get('componentLink') || {};
-    const { url, targetBlank, nofollow } = componentLink;
+    const componentLink = this.props.pubsub.get('componentLink');
+    const { url, targetBlank, nofollow } = componentLink || {};
     return (
       <LinkPanel
         url={url}
         targetBlank={targetBlank}
         nofollow={nofollow}
+        isActive={!!componentLink}
         onDone={this.wrapBlockInLink}
         onCancel={this.hideLinkPanel}
+        onDelete={this.deleteLink}
         onOverrideContent={this.props.onOverrideContent}
       />
     );

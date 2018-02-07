@@ -38,7 +38,9 @@ class LinkPanel extends Component {
 
   componentDidMount() {
     const linkHeaderProps = {
+      isActive: this.props.isActive,
       onBack: this.props.onCancel,
+      onDelete: this.props.onDelete,
     };
 
     const LinkHeaderWithProps = decorateComponentWithProps(LinkHeader, linkHeaderProps);
@@ -155,9 +157,11 @@ class LinkPanel extends Component {
 LinkPanel.propTypes = {
   onDone: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
   url: PropTypes.string,
   targetBlank: PropTypes.bool,
   nofollow: PropTypes.bool,
+  isActive: PropTypes.bool,
   onOverrideContent: PropTypes.func.isRequired,
 };
 
