@@ -78,6 +78,8 @@
 
   &.mobile {
     margin: 2.5px;
+    height: calc(100vh - 95px);
+    overflow: scroll;
   }
 }
 
