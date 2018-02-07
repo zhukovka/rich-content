@@ -2,6 +2,7 @@ import {
   TextButtonList,
   BoldButton,
   ItalicButton,
+  UnderlineButton,
   TitleButton,
   BlockquoteButton,
   TextAlignmentButton,
@@ -21,6 +22,9 @@ export default ({ buttons = TextButtonList, theme }) => {
         break;
       case 'Italic':
         structure.push(ItalicButton);
+        break;
+      case 'Underline':
+        structure.push(UnderlineButton);
         break;
       case 'Title':
         structure.push(TitleButton);

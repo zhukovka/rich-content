@@ -1,5 +1,6 @@
 import BoldIcon from '../icons/bold.svg';
 import ItalicIcon from '../icons/italic.svg';
+import UnderlineIcon from '../icons/underline.svg';
 import TitleIcon from '../icons/title.svg';
 import BlockquoteIcon from '../icons/block-quote.svg';
 import OrderedListIcon from '../icons/ordered-list.svg';
@@ -10,6 +11,7 @@ import createTextBlockStyleButton from './utils/createTextBlockStyleButton';
 export const TextButtonList = [
   'Bold',
   'Italic',
+  'Underline',
   'Title',
   'Blockquote',
   'Separator',
@@ -32,6 +34,11 @@ export const BoldButton = createTextInlineStyleButton({
 export const ItalicButton = createTextInlineStyleButton({
   style: 'ITALIC',
   Icon: ItalicIcon,
+});
+
+export const UnderlineButton = createTextInlineStyleButton({
+  style: 'UNDERLINE',
+  Icon: UnderlineIcon,
 });
 
 export const TitleButton = createTextBlockStyleButton({
