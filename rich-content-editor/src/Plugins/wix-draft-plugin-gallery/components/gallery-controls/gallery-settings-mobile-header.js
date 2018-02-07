@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import { mergeStyles } from '~/Utils';
 import styles from './gallery-settings-mobile-header.scss';
 import MoreIcon from '../../icons/more.svg';
