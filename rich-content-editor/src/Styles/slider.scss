@@ -93,6 +93,7 @@ $contrast: 0 !default;
 
   &::-moz-range-thumb {
     @include thumb;
+    box-sizing: border-box;
   }
 
   &::-ms-track {
