@@ -15,7 +15,7 @@ import Fab from '../../icons/fab.svg';
 //eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, handleFileChange, isMobile }) => {
+const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, handleFileChange, isMobile, isMobileSorting }) => {
   const imageSize = (isMobile && window) ? ((window.outerWidth - 20) / 3) : 104;
   if (isMock) {
     /* eslint-disable max-len */
@@ -40,7 +40,8 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, hand
         className={classNames(style.itemContainer, {
           [style.itemContainerSelected]: item.selected && !isMobile,
           [style.itemContainerSelectedMobile]: item.selected && isMobile,
-          [style.mobile]: isMobile
+          [style.mobile]: isMobile,
+          [style.sorting]: isMobileSorting
         })}
         onClick={() => clickAction(itemIdx)}
         style={{
@@ -62,23 +63,26 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, hand
 }
 );
 
-const SortableList = sortableContainer(({ items, clickAction, handleFileChange, isMobile }) => {
+const SortableList = sortableContainer(({ items, clickAction, handleFileChange, isMobile, isMobileSorting }) => {
   return (
     <div
       className={classNames(style.sortableContainer, { [style.mobile]: isMobile })}
     >
       {items.map((item, itemIdx) => (
-        <SortableItem key={`item-${itemIdx}`} itemIdx={itemIdx} index={itemIdx} item={item} clickAction={clickAction} isMobile={isMobile} />
+        //eslint-disable-next-line
+        <SortableItem key={`item-${itemIdx}`} itemIdx={itemIdx} index={itemIdx} item={item} clickAction={clickAction} isMobile={isMobile} isMobileSorting={isMobileSorting} disabled={isMobile && !isMobileSorting} />
       ))}
-      <SortableItem
+      {isMobileSorting ? null : <SortableItem
         key={`item-upload-mock`} itemIdx={items.length} index={items.length} disabled isMock isMobile={isMobile}
         handleFileChange={handleFileChange}
       />
+      }
     </div>
   );
 });
 
-const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageSettings, handleFileChange, isMobile }) => {
+//eslint-disable-next-line
+const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageSettings, handleFileChange, toggleSorting, isMobileSorting, isMobile }) => {
   const hasUnselectedItems = items.some(item => !item.selected);
   const hasSelectedItems = items.some(item => item.selected);
   const selectedItems = items.filter(item => item.selected);
@@ -88,27 +92,33 @@ const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageS
   const separator = '·';
   const buttons = [];
 
-  if (hasUnselectedItems) {
-    buttons.push(<a className={style.topBarLink} onClick={() => setAllItemsValue('selected', true)}>Select All</a>);
-    buttons.push(separator);
-  }
-  if (hasSelectedItems) {
-    buttons.push(<a className={style.topBarLink} onClick={() => setAllItemsValue('selected', false)}>Deselect All</a>);
-    buttons.push(separator);
-    buttons.push(<a className={style.topBarLink} onClick={() => deleteSelectedItems()}>Delete Selected</a>);
-    buttons.push(separator);
-  }
-  if (selectedItems.length === 1) {
-    buttons.push(<a className={style.topBarLink} onClick={() => toggleImageSettings(true)}>Item Settings</a>);
-    buttons.push(separator);
-  }
 
+  if (isMobile && selectedItems.length === 0) {
+    buttons.push(<a className={style.topBarLink} onClick={toggleSorting}>{isMobileSorting ? 'Finish Sorting' : 'Sort Items'}</a>);
+    buttons.push(separator);
+  }
+  if (!isMobileSorting) {
+    if (hasUnselectedItems) {
+      buttons.push(<a className={style.topBarLink} onClick={() => setAllItemsValue('selected', true)}>Select All</a>);
+      buttons.push(separator);
+    }
+    if (hasSelectedItems) {
+      buttons.push(<a className={style.topBarLink} onClick={() => setAllItemsValue('selected', false)}>Deselect All</a>);
+      buttons.push(separator);
+      buttons.push(<a className={style.topBarLink} onClick={() => deleteSelectedItems()}>Delete Selected</a>);
+      buttons.push(separator);
+    }
+    if (selectedItems.length === 1) {
+      buttons.push(<a className={style.topBarLink} onClick={() => toggleImageSettings(true)}>Item Settings</a>);
+      buttons.push(separator);
+    }
+  }
   buttons.splice(buttons.length - 1, 1);
 
   return (
     <div className={classNames(style.topBar, { [style.mobile]: isMobile })}>
       {buttons}
-      {hasSelectedItems ? null : addItemButton}
+      {(hasSelectedItems || isMobileSorting) ? null : addItemButton}
     </div>
   );
 };
@@ -119,6 +129,8 @@ TopBarMenu.propTypes = {
   deleteSelectedItems: PropTypes.func,
   toggleImageSettings: PropTypes.func.isRequired,
   handleFileChange: PropTypes.func,
+  toggleSorting: PropTypes.func,
+  isMobileSorting: PropTypes.bool,
   isMobile: PropTypes.bool
 };
 
@@ -139,6 +151,9 @@ export class SortableComponent extends Component {
   }
 
   clickAction = itemIdx => {
+    if (this.state.isMobileSorting) {
+      return;
+    }
     if (this.clickedOnce) {
       this.toggleImageSettings(true, itemIdx);
       this.clickedOnce = false;
@@ -197,6 +212,10 @@ export class SortableComponent extends Component {
     });
   }
 
+  toggleSorting = () => {
+    this.setState({ isMobileSorting: !this.state.isMobileSorting });
+  }
+
   deleteSelectedItems() {
     const { items } = this.state;
     this.setState({
@@ -230,6 +249,8 @@ export class SortableComponent extends Component {
           deleteSelectedItems={this.deleteSelectedItems.bind(this)}
           toggleImageSettings={() => this.toggleImageSettings(true)}
           handleFileChange={this.props.handleFileChange}
+          toggleSorting={this.toggleSorting}
+          isMobileSorting={this.state.isMobileSorting}
           isMobile={this.props.isMobile}
         />
         <SortableList
@@ -241,6 +262,7 @@ export class SortableComponent extends Component {
           helperClass="sortableHelper"
           transitionDuration={50}
           handleFileChange={this.props.handleFileChange}
+          isMobileSorting={this.state.isMobileSorting}
           isMobile={this.props.isMobile}
         />
         {this.state.imageSettingsVisible ? <ImageSettings
