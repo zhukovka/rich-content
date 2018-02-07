@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
-import LinkPanel from '~/Components/LinkPanel';
+import LinkPanelContainer from '~/Components/LinkPanelContainer';
 
 class BlockLinkPanel extends Component {
   wrapBlockInLink = ({ url, targetBlank, nofollow }) => {
@@ -27,7 +27,7 @@ class BlockLinkPanel extends Component {
     const componentLink = this.props.pubsub.get('componentLink');
     const { url, targetBlank, nofollow } = componentLink || {};
     return (
-      <LinkPanel
+      <LinkPanelContainer
         url={url}
         targetBlank={targetBlank}
         nofollow={nofollow}
