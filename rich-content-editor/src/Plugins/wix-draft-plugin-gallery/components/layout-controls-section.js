@@ -80,14 +80,14 @@ class LayoutControlsSection extends Component {
     thumbnailResize: {
       component: ThumbnailResize,
       props: {
-        onChange: event => this.applyGallerySetting({ cubeType: event.value }),
+        onChange: value => this.applyGallerySetting({ cubeType: value }),
         value: this.getValueFromComponentStyles('cubeType'),
       },
     },
     titleButtonPlacement: {
       component: TitleButtonPlacement,
       props: {
-        onChange: event => this.applyGallerySetting({ titlePlacement: event.value }),
+        onChange: value => this.applyGallerySetting({ titlePlacement: value }),
         value: this.getValueFromComponentStyles('titlePlacement'),
       },
     },
@@ -108,7 +108,7 @@ class LayoutControlsSection extends Component {
     imageOrientation: {
       component: ImageOrientation,
       props: {
-        onChange: event => this.applyGallerySetting({ isVertical: event.value === '1' }),
+        onChange: value => this.applyGallerySetting({ isVertical: value === '1' }),
         value: this.getValueFromComponentStyles('isVertical') ? '1' : '0',
         options: {
           oneRow: this.getValueFromComponentStyles('oneRow')
@@ -118,8 +118,8 @@ class LayoutControlsSection extends Component {
     scrollDirection: {
       component: ScrollDirection,
       props: {
-        onChange: event => {
-          return this.applyGallerySetting({ oneRow: event.value === 'horizontal', isVertical: false });
+        onChange: value => {
+          return this.applyGallerySetting({ oneRow: value === 'horizontal', isVertical: false });
         },
         value: this.getValueFromComponentStyles('oneRow') ? 'horizontal' : 'vertical',
       },

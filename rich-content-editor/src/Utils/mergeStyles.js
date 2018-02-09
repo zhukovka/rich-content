@@ -6,5 +6,5 @@ const cssClassMerger = (defaultStyleClassName, themeClassName) => `${defaultStyl
 
 export const mergeStyles = ({ styles, theme }) => {
   const themeStylesToMerge = pickBy(theme, (value, key) => has(styles, key));
-  return mergeWith({}, styles, themeStylesToMerge, cssClassMerger);
+  return mergeWith({ ...styles }, themeStylesToMerge, cssClassMerger);
 };

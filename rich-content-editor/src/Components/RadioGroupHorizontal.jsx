@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { RadioGroup } from 'stylable-components/dist/src/components/radio-group';
-
-import style from '~/Styles/radio-group-horizontal.scss';
+import RadioGroup from '~/Components/RadioGroup';
+import { mergeStyles } from '~/Utils';
+import styles from '~/Styles/radio-group-horizontal.scss';
 
 class RadioGroupHorizontal extends Component {
+
+  constructor(props) {
+    super(props);
+    this.styles = mergeStyles({ styles, theme: props.theme });
+  }
+
   render() {
-    const { label, ...props } = this.props;
+    const { label, readOnly, ...props } = this.props;
     return (
-      <div className={style['radio-group-horizontal']}>
-        {label ? <label>{label}</label> : null}
-        <RadioGroup {...props} className={style['radio-group']} />
+      <div className={readOnly ? this.styles.radioGroupHorizontal_readOnly : ''}>
+        {label ? <label className={this.styles.radioGroupHorizontal_title}>{label}</label> : null}
+        <RadioGroup {...props} readOnly={readOnly} className={this.styles.radioGroupHorizontal_group} />
       </div>
     );
   }
@@ -19,6 +25,9 @@ class RadioGroupHorizontal extends Component {
 RadioGroupHorizontal.propTypes = {
   label: PropTypes.string,
   dataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
+  readOnly: PropTypes.bool,
+  disabled: PropTypes.bool,
+  theme: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
 };

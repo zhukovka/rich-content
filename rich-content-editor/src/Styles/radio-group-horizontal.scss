@@ -1,12 +1,14 @@
-.radio-group-horizontal {
-  label {
-    display: block;
-    font-size: 14px;
-  }
+.radioGroupHorizontal_title {
+  display: block;
+  margin-bottom: 9px;
+}
 
-  .radio-group {
-    display: grid !important;
-    grid-template-columns: 57% 43%;
-    grid-template-rows: 100%;
-  }
+.radioGroupHorizontal_group {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
+}
+
+.radioGroupHorizontal_readOnly {
+  opacity: 0.5;
 }
