@@ -41,12 +41,13 @@ class LinkPanel extends Component {
   onBlur = e => {
     e.stopPropagation();
     const { intermediateUrl } = this.state;
+    const { updateParentIfNecessary } = this.props;
     const isValidUrlConst = isValidUrl(intermediateUrl);
     if (isValidUrlConst) {
       this.handleUrlChange();
     }
     this.setState({ isValidUrl: isValidUrlConst });
-    this.props.updateParentIfNecessary(!!(isValidUrlConst && this.state.url));
+    updateParentIfNecessary ? updateParentIfNecessary(!!(isValidUrlConst && this.state.url)) : false;
   };
 
   handleKeyPress = e => {

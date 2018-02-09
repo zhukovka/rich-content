@@ -74,6 +74,7 @@ class LinkPanelContainer extends Component {
             nofollow={nofollow}
             updateParentIfNecessary={this.updateParentIfNecessary}
           />
+          <div className={Styles.actionsDivider} />
           <div className={Styles.linkPanelFooter}>
             <div className={Styles.linkPanelFooterCancelButton} onClick={this.onCancelClick}>Cancel</div>
             <div className={doneButtonClassName} onClick={this.onDoneClick}>Update</div>
