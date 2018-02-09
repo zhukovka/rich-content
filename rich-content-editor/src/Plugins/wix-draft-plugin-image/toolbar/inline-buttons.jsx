@@ -137,6 +137,7 @@ const InlineButtons = [
     modalElement: ImageSettings,
     modalStyles,
   },
+  { type: BUTTONS.LINK },
   {
     keyName: 'replace',
     type: BUTTONS.FILES,
