@@ -5,7 +5,6 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 
 import LinkHeader from './LinkHeader';
 import LinkPanel from './LinkPanel';
-import { ThemeProvider } from '../Components/ThemeProvider';
 import Styles from '~/Styles/link-panel.scss';
 import RadioGroupHorizontal from './RadioGroupHorizontal';
 
@@ -62,25 +61,23 @@ class LinkPanelContainer extends Component {
       }
     );
     return (
-      <ThemeProvider theme={'rce'}>
-        <div className={Styles.linkPanelModal}>
-          {/*<LinkType
+      <div className={Styles.linkPanelModal}>
+        {/*<LinkType
             value="url"
           />*/}
-          <LinkPanel
-            ref={this.setLinkPanel}
-            url={url}
-            targetBlank={targetBlank}
-            nofollow={nofollow}
-            updateParentIfNecessary={this.updateParentIfNecessary}
-          />
-          <div className={Styles.actionsDivider} />
-          <div className={Styles.linkPanelFooter}>
-            <div className={Styles.linkPanelFooterCancelButton} onClick={this.onCancelClick}>Cancel</div>
-            <div className={doneButtonClassName} onClick={this.onDoneClick}>Update</div>
-          </div>
+        <LinkPanel
+          ref={this.setLinkPanel}
+          url={url}
+          targetBlank={targetBlank}
+          nofollow={nofollow}
+          updateParentIfNecessary={this.updateParentIfNecessary}
+        />
+        <div className={Styles.actionsDivider} />
+        <div className={Styles.linkPanelFooter}>
+          <div className={Styles.linkPanelFooterCancelButton} onClick={this.onCancelClick}>Cancel</div>
+          <div className={doneButtonClassName} onClick={this.onDoneClick}>Update</div>
         </div>
-      </ThemeProvider>
+      </div>
     );
   }
 }

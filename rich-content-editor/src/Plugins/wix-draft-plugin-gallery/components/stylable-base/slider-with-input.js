@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Slider from '~/Components/Slider';
-import { input } from 'stylable-components/dist/src/components/input';
 
 import { mergeStyles } from '~/Utils';
 import styles from './slider-with-input.scss';

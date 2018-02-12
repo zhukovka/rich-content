@@ -7,7 +7,6 @@ import styles from './gallery-settings-modal.scss';
 import { Spacing, ItemsPerRow, ThumbnailSize } from './gallery-controls/sliders';
 import { ThumbnailResize, TitleButtonPlacement, ImageOrientation, ScrollDirection } from './gallery-controls/radio-groups';
 import ImageRatioSelector from './gallery-controls/image-ratio-selector';
-import { LoadMoreToggle } from './gallery-controls/toggles';
 import ThumbnailPlacementSelector from './gallery-controls/thumbnail-placement-selector';
 import SettingsSection from '~/Components/SettingsSection';
 
@@ -96,13 +95,6 @@ class LayoutControlsSection extends Component {
       props: {
         onChange: value => this.applyGallerySetting({ cubeRatio: value }),
         value: this.getValueFromComponentStyles('cubeRatio'),
-      },
-    },
-    loadMoreButton: {
-      component: LoadMoreToggle,
-      props: {
-        onChange: event => this.applyGallerySetting({ enableInfiniteScroll: event.value }),
-        value: this.getValueFromComponentStyles('enableInfiniteScroll'),
       },
     },
     imageOrientation: {

@@ -177,7 +177,7 @@ export class GallerySettingsModal extends Component {
       );
     } else {
       return (
-        <ThemeProvider theme={'rce'}>
+        <div>
           <h3 className={styles.gallerySettings_title}>Gallery Settings</h3>
           <div className={styles.gallerySettings}>
             <Tabs value={activeTab} theme={this.props.theme}>
@@ -190,7 +190,7 @@ export class GallerySettingsModal extends Component {
             </Tabs>
           </div>
           <SettingsPanelFooter cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} theme={this.props.theme}/>
-        </ThemeProvider>
+        </div>
       );
     }
   }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { input } from 'stylable-components/dist/src/components/input';
 
 import styles from '~/Styles/input-with-label.scss';
 import { mergeStyles } from '~/Utils/mergeStyles';
@@ -16,7 +15,11 @@ class InputWithLabel extends Component {
       <div>
         {label ? <label className={this.styles.inputWithLabel_label} htmlFor={`${label}_input`}>{label}</label> : null}
         <input
-          className={this.styles.inputWithLabel_input} placeholder={placeholder} id={label ? `${label}_input` : ''} value={value} onChange={onChange}
+          className={this.styles.inputWithLabel_input}
+          placeholder={placeholder}
+          id={label ? `${label}_input` : ''}
+          value={value}
+          onChange={onChange}
         />
       </div>
     );
