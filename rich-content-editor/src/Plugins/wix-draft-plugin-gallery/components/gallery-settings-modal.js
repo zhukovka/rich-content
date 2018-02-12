@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Tabs, Tab } from 'stylable-components/dist/src/components/tabs';
-
+import { Tabs, Tab } from '~/Components/Tabs';
 import { mergeStyles } from '~/Utils';
 import { ThemeProvider } from '~/Components/ThemeProvider';
 import LayoutSelector from './gallery-controls/layouts-selector';
@@ -181,11 +180,11 @@ export class GallerySettingsModal extends Component {
         <ThemeProvider theme={'rce'}>
           <h3 className={styles.gallerySettings_title}>Gallery Settings</h3>
           <div className={styles.gallerySettings}>
-            <Tabs value={activeTab}>
-              <Tab label={this.tabName('manage_media')} value={'manage_media'}>
+            <Tabs value={activeTab} theme={this.props.theme}>
+              <Tab label={this.tabName('manage_media')} value={'manage_media'} theme={this.props.theme}>
                 <ManageMediaSection data={componentData} store={pubsub.store} theme={this.props.theme}/>
               </Tab>
-              <Tab label={this.tabName('advanced_settings')} value={'advanced_settings'}>
+              <Tab label={this.tabName('advanced_settings')} value={'advanced_settings'} theme={this.props.theme}>
                 <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store}/>
               </Tab>
             </Tabs>
