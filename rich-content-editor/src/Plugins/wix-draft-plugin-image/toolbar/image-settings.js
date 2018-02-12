@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '~/Components/ThemeProvider';
-import { Image } from 'stylable-components/dist/src/components/image';
+import Image from '~/Components/Image';
 import SettingsSection from '~/Components/SettingsSection';
 import getImageSrc from '../get-image-source';
 import InputWithLabel from '~/Components/InputWithLabel';
