@@ -64,7 +64,7 @@ export class Tabs extends Component {
               <label
                 name={`tabs`}
                 key={value}
-                className={styles.tabs_headers_option}
+                className={classnames(styles.tabs_headers_option, value === this.props.value ? styles.tabs_headers_option_selected : '')}
                 onClick={() => this.setState({ activeTab: value })}
               >
                 <input className={this.styles.tabs_headers_option_input} type={'radio'} {...checked}/>
