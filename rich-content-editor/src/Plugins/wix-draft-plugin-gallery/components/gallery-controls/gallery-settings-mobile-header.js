@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { mergeStyles } from '~/Utils';
 import styles from './gallery-settings-mobile-header.scss';
 import MoreIcon from '../../icons/more.svg';
-import { SelectionList } from 'stylable-components/dist/src/components/selection-list';
+import SelectionList from '~/Components/SelectionList';
 
 class GallerySettingsMobileHeader extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class GallerySettingsMobileHeader extends Component {
     };
   }
   render() {
-    const { save, cancel, saveName, cancelName, switchTab, otherTab } = this.props;
+    const { save, cancel, saveName, cancelName, switchTab, otherTab, theme } = this.props;
     return (
       <div>
         <div className={this.styles.gallerySettingsMobileHeader_headerPlaceholder} />
@@ -40,6 +40,7 @@ class GallerySettingsMobileHeader extends Component {
         {this.state.showMenu ? (
           <div className={this.styles.gallerySettingsMobileHeader_menu}>
             <SelectionList
+              theme={theme}
               dataSource={[
                 otherTab,
               ]}

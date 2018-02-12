@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from '~/Components/Tabs';
 import { mergeStyles } from '~/Utils';
-import { ThemeProvider } from '~/Components/ThemeProvider';
 import LayoutSelector from './gallery-controls/layouts-selector';
 import styles from './gallery-settings-modal.scss';
 import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
@@ -163,7 +162,7 @@ export class GallerySettingsModal extends Component {
       // console.log('Rendering mobile settings');
       /* eslint-disable max-len */
       return (
-        <ThemeProvider theme={'rce'}>
+        <div>
           <GallerySettingsMobileHeader
             theme={this.props.theme}
             cancel={() => this.revertComponentData()}
@@ -173,7 +172,7 @@ export class GallerySettingsModal extends Component {
           />
           {activeTab === 'manage_media' ? <ManageMediaSection data={componentData} store={pubsub.store} isMobile theme={this.props.theme}/> : null }
           {activeTab === 'advanced_settings' ? <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store} isMobile/> : null }
-        </ThemeProvider>
+        </div>
       );
     } else {
       return (
