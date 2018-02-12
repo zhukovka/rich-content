@@ -13,7 +13,7 @@ import {
 import createThemedSeparator from './createThemedSeparator';
 
 export default ({ buttons = TextButtonList, theme }) => {
-  const ThemedSeparator = createThemedSeparator({ theme });
+  const themedSeparator = horizontal => createThemedSeparator({ theme, horizontal });
   const structure = [];
   buttons.forEach(buttonName => {
     switch (buttonName) {
@@ -45,7 +45,10 @@ export default ({ buttons = TextButtonList, theme }) => {
         structure.push(TextLinkButton);
         break;
       case 'Separator':
-        structure.push(ThemedSeparator);
+        structure.push(themedSeparator(false));
+        break;
+      case 'HorizontalSeparator':
+        structure.push(themedSeparator(true));
         break;
       default:
         console.warn(`Failed to load uknown text button "${buttonName}"`); //eslint-disable-line no-console

@@ -164,6 +164,8 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
           );
         case BUTTONS.SEPARATOR:
           return <Separator className={separatorClassNames} key={key} />;
+        case BUTTONS.HORIZONTAL_SEPARATOR:
+          return <Separator className={separatorClassNames} horizontal key={key} />;
         case BUTTONS.LINK:
           return (<BlockLinkButton
             pubsub={pubsub}
