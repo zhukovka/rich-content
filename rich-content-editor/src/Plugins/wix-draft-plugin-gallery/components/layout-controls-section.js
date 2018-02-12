@@ -33,6 +33,8 @@ class LayoutControlsSection extends Component {
     [], // slideshow
     ['|', 'spacing'], // panorama
     ['|', 'spacing'], // columns
+    [], // magic
+    [], // fullsize
   ];
 
   getValueFromComponentStyles = name => this.props.data.styles[name];

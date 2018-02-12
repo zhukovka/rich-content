@@ -7,7 +7,7 @@ export default ({ helpers }) => {
       type: 'file',
       multi: true,
       name: 'Gallery',
-      tooltipText: 'Add a Gallery (add files)',
+      tooltipText: 'Add a Gallery',
       Icon: InsertPluginIcon,
       data: getDefault(),
       helpers,
