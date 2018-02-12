@@ -128,6 +128,7 @@ class ImageSettings extends Component {
                 targetBlank={targetBlank}
                 nofollow={nofollow}
                 updateParentIfNecessary={this.updateParentIfNecessary}
+                isImageSettings
               />
             </div>
           </div>

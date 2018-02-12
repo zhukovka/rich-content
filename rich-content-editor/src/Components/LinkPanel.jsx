@@ -57,16 +57,24 @@ class LinkPanel extends Component {
   };
 
   render() {
+    const { isImageSettings } = this.props;
     const firstCheckboxText = 'Open Link in New Window / Tab';
     const secondCheckboxText = 'Add rel="nofollow" to link';
+    const inputPlaceholder = isImageSettings ? 'Add a link' : 'e.g. www.wix.com';
+    const textInputClassName = classNames(Styles.textInput,
+      {
+        [Styles.invalid]: !this.state.isValidUrl,
+        [Styles.imageSettings]: isImageSettings
+      }
+    );
     return (
       <div className={Styles.linkPanelContent}>
         <div onKeyPress={this.handleKeyPress}>
-          <div className={Styles.textInput}>
+          <div className={Styles.linkPanelInput}>
             <input
               ref={ref => (this.input = ref)}
-              className={classNames({ [Styles.invalid]: !this.state.isValidUrl })}
-              placeholder="e.g. www.wix.com"
+              className={textInputClassName}
+              placeholder={inputPlaceholder}
               onChange={this.handleIntermediateUrlChange}
               onBlur={this.onBlur}
               value={this.state.intermediateUrl}
@@ -86,12 +94,18 @@ class LinkPanel extends Component {
         </div>
         <checkboxWrapper>
           <div className={Styles.checkboxContainer}>
-            <input type="checkbox" id="firstCheckboxLinkPanel" onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}/>
-            <label htmlFor="firstCheckboxLinkPanel">{firstCheckboxText}</label>
+            <input
+              className={Styles.checkboxContainerInput} type="checkbox" id="firstCheckboxLinkPanel"
+              onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}
+            />
+            <label className={Styles.checkboxContainerLabel} htmlFor="firstCheckboxLinkPanel">{firstCheckboxText}</label>
           </div>
           <div className={Styles.checkboxContainer}>
-            <input type="checkbox" id="secondCheckboxLinkPanel" onChange={this.handleNofollowChange} defaultChecked={this.state.nofollow}/>
-            <label htmlFor="secondCheckboxLinkPanel">{secondCheckboxText}</label>
+            <input
+              className={Styles.checkboxContainerInput} type="checkbox"
+              id="secondCheckboxLinkPanel" onChange={this.handleNofollowChange} defaultChecked={this.state.nofollow}
+            />
+            <label className={Styles.checkboxContainerLabel} htmlFor="secondCheckboxLinkPanel">{secondCheckboxText}</label>
           </div>
         </checkboxWrapper>
       </div>
@@ -104,5 +118,6 @@ LinkPanel.propTypes = {
   targetBlank: PropTypes.bool,
   nofollow: PropTypes.bool,
   updateParentIfNecessary: PropTypes.func,
+  isImageSettings: PropTypes.bool,
 };
 export default LinkPanel;
