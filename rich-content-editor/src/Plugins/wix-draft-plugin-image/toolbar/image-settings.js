@@ -6,7 +6,7 @@ import SettingsSection from '~/Components/SettingsSection';
 import getImageSrc from '../get-image-source';
 import InputWithLabel from '~/Components/InputWithLabel';
 import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
-import FileInput from '~/Components/FileInput';
+import LinkPanel from '../../../Components/LinkPanel';
 import styles from './image-settings.scss';
 import { mergeStyles } from '~/Utils/mergeStyles';
 
@@ -38,6 +38,8 @@ class ImageSettings extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState(this.stateFromProps(nextProps));
   }
+
+  setLinkPanel = linkPanel => this.linkPanel = linkPanel;
 
   revertComponentData () {
     const { componentData, helpers, pubsub } = this.props;
@@ -80,32 +82,15 @@ class ImageSettings extends Component {
     const { componentData, helpers } = this.props;
     const { item } = componentData;
     const { metadata = {} } = item;
+    // const { url, targetBlank, nofollow } = metadata.link;
+    const { url, targetBlank, nofollow } = {};
 
     return (
       <ThemeProvider theme={'rce'}>
         <div className={this.styles.imageSettings}>
-          <div className={this.styles.content}>
-            <h3 className={this.styles.title}>Image Settings</h3>
-            <SettingsSection theme={this.props.theme}>
-              <Image resizeMode={'contain'} className={this.styles.image} src={getImageSrc(item, helpers)} />
-            </SettingsSection>
-            <div className={this.styles.manageImageGrid}>
-              <FileInput className={this.styles.replace} onChange={event => this.replaceImage(event)}>
-                <span>{'Replace'}</span>
-              </FileInput>
-              <button className={this.styles.delete} onClick={() => this.deleteImage()}>
-                <span>{'Delete'}</span>
-              </button>
-            </div>
-            <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
-              <InputWithLabel
-                theme={this.props.theme}
-                label={'Alt Text'}
-                placeholder={'Add image Alt Text'}
-                value={metadata.altText || ''}
-                onChange={event => this.imageMetadataUpdated(item, { altText: event.target.value })}
-              />
-            </SettingsSection>
+          <div className={this.styles.imageSettingsContent}>
+            <h3 className={this.styles.imageSettingsTitle}>Image Settings</h3>
+            <Image resizeMode={'contain'} className={this.styles.imageSettingsImage} src={getImageSrc(item, helpers)} />
             <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
               <InputWithLabel
                 theme={this.props.theme}
@@ -118,12 +103,34 @@ class ImageSettings extends Component {
             <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
               <InputWithLabel
                 theme={this.props.theme}
+                label={'Alt Text'}
+                placeholder={'Add image Alt Text'}
+                value={metadata.altText || ''}
+                onChange={event => this.imageMetadataUpdated(item, { altText: event.target.value })}
+              />
+            </SettingsSection>
+            {/*<SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
+              <InputWithLabel
+                theme={this.props.theme}
                 label={'Link'}
                 placeholder={'Add a link'}
                 value={metadata.link || ''}
                 onChange={event => this.imageMetadataUpdated(item, { link: event.target.value })}
               />
+            </SettingsSection>*/}
+            <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
+              <label className={this.styles.inputWithLabel_label}>Link</label>
             </SettingsSection>
+            <div className={this.styles.imageSettingsLinkContainer}>
+              <LinkPanel
+                ref={this.setLinkPanel}
+                url={url}
+                targetBlank={targetBlank}
+                nofollow={nofollow}
+                updateParentIfNecessary={this.updateParentIfNecessary}
+                isImageSettings
+              />
+            </div>
           </div>
           <SettingsPanelFooter theme={this.props.theme} cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} />
         </div>
