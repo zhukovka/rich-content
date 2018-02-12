@@ -8,7 +8,7 @@
         </mask>
         <use xlink:href="#trash-icon-path"/>
         <g mask="url(#trash-icon-mask)">
-            <path d="M1 1h17v17H1z"/>
+            <!-- <path d="M1 1h17v17H1z"/> -->
         </g>
     </g>
 </svg>

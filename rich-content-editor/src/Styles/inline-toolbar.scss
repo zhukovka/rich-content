@@ -5,10 +5,10 @@
   left: 50%;
   transform: translate(-50%) scale(0);
   position: absolute;
-  border: 1px solid #ddd;
+  border: 1px solid $toolbar-border-color;
   background: #fff;
   border-radius: 6px;
-  box-shadow: 0px 1px 3px 0px rgba(220,220,220,1);
+  box-shadow: 0px 1px 5px 0px rgba(220,220,220,0.4);
   z-index: 4;
   box-sizing: border-box;
 }
@@ -19,6 +19,6 @@
 }
 
 .extend {
-  border-top: 1px solid rgba(117, 117, 117, 0.2);
+  border-top: 1px solid $toolbar-border-color;
   // padding: 10px 19px;
 }

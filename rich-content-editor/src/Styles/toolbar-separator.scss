@@ -3,6 +3,6 @@
 .separator {
   display: inline-block;
   width: 1px;
-  background: rgba($secondary-text-color, 0.2);
-  margin: 0 14px;
+  background: $toolbar-border-color;
+  margin: 0px 19px 0 9px;
 }

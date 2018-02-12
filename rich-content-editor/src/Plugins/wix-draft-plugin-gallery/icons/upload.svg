@@ -8,7 +8,7 @@
         </mask>
         <use fill="#000" fill-rule="nonzero" xlink:href="#upload_path"/>
         <g fill="#333" mask="url(#upload_mask)">
-            <path d="M1 1h17v17H1z"/>
+            <!-- <path d="M1 1h17v17H1z"/> -->
         </g>
     </g>
 </svg>

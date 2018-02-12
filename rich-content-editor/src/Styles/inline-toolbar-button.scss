@@ -4,7 +4,7 @@
 
 .buttonWrapper {
   display: inline-block;
-  padding: 10px 0;
+  padding: 10px 0 6px;
   margin-right: 10px;
   &:last-child {
     margin-right: 0;
@@ -13,7 +13,7 @@
 
 .button {
   background: transparent;
-  color: $secondary-text-color;
+  color: $toolbar-font-color;
   padding: 5px;
   border: 0 none;
   cursor: pointer;
@@ -30,7 +30,7 @@
 .icon {
   width: $icon-width;
   vertical-align: middle;
-  @include svg-fill($secondary-text-color);
+  @include svg-fill($toolbar-font-color);
   &:hover {
     @include svg-fill($accent-color);
   }
