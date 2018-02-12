@@ -16,7 +16,6 @@
     "build": "webpack --config webpack.prod.js",
     "build:analyze": "npm run build -- --progress --env.analyzeBundle",
     "build:dev": "webpack --config webpack.dev.js --colors --progress",
-    "build:style": "stc --srcDir=src --outDir=lib --diagnostics",
     "prewatch": "npm run clean",
     "watch": "npm run build:dev -- --watch",
     "release": "wnpm-release --no-shrinkwrap",
@@ -50,7 +49,6 @@
     "react-player": "^0.25.3",
     "react-sortable-hoc": "^0.6.8",
     "redraft": "^0.9.0",
-    "stylable-components": "^0.4.0",
     "wix-style-react": "^1.2.3",
     "wnpm-ci": "latest"
   },
@@ -87,7 +85,6 @@
     "react-test-renderer": "^15.6.1",
     "sass-loader": "^6.0.6",
     "stylable": "^4.0.26",
-    "stylable-integration": "^6.0.2",
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "^3.6.0",
