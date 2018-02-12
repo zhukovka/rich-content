@@ -31,18 +31,6 @@
 
 .tabs_panel {
   padding: 24px 30px 30px 30px;
-  z-index: -1;
-  position: relative;
-}
-
-.tabs_panel_selected {
-  z-index: 1;
-}
-
-.tabs_headers_option_input {
-  opacity: 0;
-  width: 0.1px;
-  height: 0.1px;
 }
 
 .tabs_headers_option_label {

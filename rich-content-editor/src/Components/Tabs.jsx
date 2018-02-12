@@ -4,7 +4,6 @@ import classnames from 'classnames';
 
 import styles from '~/Styles/tabs.scss';
 import { mergeStyles } from '~/Utils/mergeStyles';
-import RadioGroup from './RadioGroup';
 
 const tabPropTypes = {
   theme: PropTypes.object.isRequired,
@@ -25,14 +24,12 @@ export class Tab extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-  render() {
-    const { styles, props } = this;
-    return (
-      <div
-        className={classnames(styles.tabs_tabPanel, props.selected ? styles.tabs_tabPanel_selected : '')}
-      >{props.children}
-      </div>);
-  }
+  render = () => this.props.selected &&
+    <div
+      key={this.props.value}
+      className={this.styles.tabs_panel}
+    >{this.props.children}
+    </div>;
 }
 
 export class Tabs extends Component {
@@ -47,8 +44,7 @@ export class Tabs extends Component {
   getTabHeaders = tabs => React.Children.map(tabs, tab => ({ label: tab.props.label, value: tab.props.value }));
 
   renderTabs = () => React.Children.map(this.props.children, tab => React.cloneElement(tab, {
-    selected: this.props.value === tab.value,
-    key: tab.value
+    selected: this.state.activeTab === tab.props.value,
   }));
 
   render() {
@@ -59,15 +55,16 @@ export class Tabs extends Component {
       <div className={styles.tabs}>
         <div className={styles.tabs_headers}>
           {headers.map(({ label, value }) => {
-            const checked = value === this.props.value ? { checked: 'checked' } : {};
             return (
               <label
                 name={`tabs`}
                 key={value}
-                className={classnames(styles.tabs_headers_option, value === this.props.value ? styles.tabs_headers_option_selected : '')}
-                onClick={() => this.setState({ activeTab: value })}
+                className={classnames(styles.tabs_headers_option, value === this.state.activeTab ? styles.tabs_headers_option_selected : '')}
+                onClick={() => {
+                  this.setState({ activeTab: value });
+                  this.renderTabs();
+                }}
               >
-                <input className={this.styles.tabs_headers_option_input} type={'radio'} {...checked}/>
                 <span className={this.styles.tabs_headers_option_label}>{label}</span>
               </label>);
           })}
