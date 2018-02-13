@@ -104,6 +104,10 @@ export default class RichContentEditor extends Component {
         classList.push(Styles.headerThree);
         classList.push(theme.headerThree);
         break;
+      case 'indent':
+        classList.push(Styles.indent);
+        classList.push(theme.indent);
+        break;
       case 'ordered-list-item':
         classList.push(Styles.orderedList);
         classList.push(theme.orderedList);

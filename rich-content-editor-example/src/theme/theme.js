@@ -13,6 +13,7 @@ const {
   headerOne,
   headerTwo,
   headerThree,
+  indent,
   orderedList,
   unorderedList,
   atomic,
@@ -39,6 +40,7 @@ const { videoOverlay, player, videoContainer } = VideoTheme;
 const theme = {
   quote,
   headerOne, headerTwo, headerThree,
+  indent,
   orderedList, unorderedList,
   atomic, codeBlock,
   text, textAlignment,

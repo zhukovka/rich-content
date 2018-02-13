@@ -144,6 +144,11 @@
   line-height: 26px;
 }
 
+.indent {
+  composes: elementSpacing;
+  text-indent: 50px;
+}
+
 .orderedList {
   composes: elementSpacing;
 }
