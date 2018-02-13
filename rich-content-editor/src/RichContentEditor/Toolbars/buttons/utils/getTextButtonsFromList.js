@@ -4,7 +4,6 @@ import {
   ItalicButton,
   UnderlineButton,
   IndentButton,
-  ParagraphButton,
   TitleButton,
   BlockquoteButton,
   TextAlignmentButton,
