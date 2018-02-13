@@ -16,7 +16,7 @@
 }
 
 %panel_button {
-    padding: 8.5px auto;
+    padding: 8.5px 24px;
 }
 
 .settingsPanel_save {
@@ -29,17 +29,4 @@
 
 .settingsPanel_cancel {
     @extend %panel_button;
-    padding-left: 23px;
-    padding-right: 23px;
-    border: 1px solid #4990e2 !important;
-    background: #fff !important;
-    color: #4990e2 !important;
-    &:hover {
-        color: #fff !important;
-        background: #5cb4ff !important;
-    }
-    &:active {
-        background: #4990e2 !important;
-        color: #fff !important;
-    }
 }

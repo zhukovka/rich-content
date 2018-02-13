@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import decorateComponentWithProps from 'decorate-component-with-props';
-
-import { EditorState } from '@wix/draft-js';
-import { hasLinksInSelection, removeLinksInSelection } from '~/Utils';
+import { hasLinksInSelection } from '~/Utils';
 import LinkButton from '~/Components/LinkButton';
 import TextLinkPanel from './TextLinkPanel';
 
@@ -17,14 +15,6 @@ export default class TextLinkButton extends Component {
     const TextLinkPanelWithProps = decorateComponentWithProps(TextLinkPanel, linkPanelProps);
     onExtendContent(TextLinkPanelWithProps);
   }
-
-  removeLinks = () => {
-    const { getEditorState, setEditorState } = this.props;
-    const editorState = getEditorState();
-    const selection = editorState.getSelection();
-    const newEditorState = removeLinksInSelection(editorState);
-    setEditorState(EditorState.acceptSelection(newEditorState, selection));
-  };
 
   get isActive() {
     return hasLinksInSelection(this.props.getEditorState());

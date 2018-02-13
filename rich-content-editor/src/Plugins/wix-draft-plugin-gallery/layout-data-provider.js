@@ -150,6 +150,30 @@ const layouts = [
     isSlideshow: false,
     cropOnlyFill: false
   },
+  {}, //magic layout ???
+  {
+    showArrows: true,
+    cubeImages: true,
+    smartCrop: false,
+    cubeType: 'fill',
+    cubeRatio: 1,
+    isVertical: false,
+    galleryType: 'Strips',
+    groupSize: 1,
+    groupTypes: '1',
+    oneRow: true,
+    hasThumbnails: false,
+    galleryThumbnailsAlignment: 'none',
+    enableScroll: false,
+    isGrid: false,
+    isSlider: false,
+    isColumns: false,
+    isSlideshow: false,
+    cropOnlyFill: false,
+    floatingImages: 0,
+    galleryMargin: 0,
+    imageMargin: 0
+  }
 ];
 
 export default layouts;

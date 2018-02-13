@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import findIndex from 'lodash/findIndex';
-import { Image } from 'stylable-components/dist/src/components/image';
+import Image from '~/Components/Image';
 
 import SettingsSection from '~/Components/SettingsSection';
 import InputWithLabel from '~/Components/InputWithLabel';

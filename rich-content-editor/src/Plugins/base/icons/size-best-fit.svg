@@ -8,7 +8,7 @@
         </mask>
         <use fill-rule="nonzero" xlink:href="#best-fit-path"/>
         <g mask="url(#best-fit-mask)">
-            <path d="M1 1h17v17H1z"/>
+            <!-- <path d="M1 1h17v17H1z"/> -->
         </g>
     </g>
 </svg>

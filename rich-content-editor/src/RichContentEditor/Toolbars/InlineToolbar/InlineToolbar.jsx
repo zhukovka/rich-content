@@ -47,7 +47,7 @@ export default class InlineToolbar extends Component {
     // need to wait a tick for window.getSelection() to be accurate
     // when focusing editor with already present selection
     setTimeout(() => {
-      if (!this.toolbar) {
+      if (!this.toolbar || this.state.extendContent) {
         return;
       }
 

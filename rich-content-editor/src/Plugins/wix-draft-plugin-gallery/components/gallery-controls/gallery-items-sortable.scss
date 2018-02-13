@@ -78,12 +78,15 @@
 
   &.mobile {
     margin: 2.5px;
+    height: calc(100vh - 95px);
+    overflow: scroll;
   }
 }
 
 .itemContainer {
   margin: 12px;
-  float: left;
+  display: inline-block;
+  vertical-align: top;
   outline: none;
   overflow: hidden;
   position: relative;
@@ -108,6 +111,12 @@
     &.itemContainerSelectedMobile {
       &:after {
         content: url(../../icons/mobile-image-selected.svg);
+      }
+    }
+
+    &.sorting {
+      &:after {
+        display: none !important;
       }
     }
 

@@ -7,7 +7,6 @@ import styles from './gallery-settings-modal.scss';
 import { Spacing, ItemsPerRow, ThumbnailSize } from './gallery-controls/sliders';
 import { ThumbnailResize, TitleButtonPlacement, ImageOrientation, ScrollDirection } from './gallery-controls/radio-groups';
 import ImageRatioSelector from './gallery-controls/image-ratio-selector';
-import { LoadMoreToggle } from './gallery-controls/toggles';
 import ThumbnailPlacementSelector from './gallery-controls/thumbnail-placement-selector';
 import SettingsSection from '~/Components/SettingsSection';
 
@@ -34,6 +33,8 @@ class LayoutControlsSection extends Component {
     [], // slideshow
     ['|', 'spacing'], // panorama
     ['|', 'spacing'], // columns
+    [], // magic
+    [], // fullsize
   ];
 
   getValueFromComponentStyles = name => this.props.data.styles[name];
@@ -49,14 +50,14 @@ class LayoutControlsSection extends Component {
     itemsPerRow: {
       component: ItemsPerRow,
       props: {
-        onChange: event => this.applyGallerySetting({ numberOfImagesPerRow: event.value }),
+        onChange: value => this.applyGallerySetting({ numberOfImagesPerRow: value }),
         value: this.getValueFromComponentStyles('numberOfImagesPerRow'),
       },
     },
     thumbnailSize: {
       component: ThumbnailSize,
       props: {
-        onChange: event => this.applyGallerySetting({ gallerySize: event.value }),
+        onChange: value => this.applyGallerySetting({ gallerySize: value }),
         value: this.getValueFromComponentStyles('gallerySize'),
         options: {
           isVertical: this.getValueFromComponentStyles('isVertical')
@@ -66,28 +67,28 @@ class LayoutControlsSection extends Component {
     spacing: {
       component: Spacing,
       props: {
-        onChange: event => this.applyGallerySetting({ imageMargin: event.value }),
+        onChange: value => this.applyGallerySetting({ imageMargin: value }),
         value: this.getValueFromComponentStyles('imageMargin'),
       },
     },
     thumbnailSpacing: {
       component: Spacing,
       props: {
-        onChange: event => this.applyGallerySetting({ thumbnailSpacings: event.value }),
+        onChange: value => this.applyGallerySetting({ thumbnailSpacings: value }),
         value: this.getValueFromComponentStyles('thumbnailSpacings'),
       },
     },
     thumbnailResize: {
       component: ThumbnailResize,
       props: {
-        onChange: event => this.applyGallerySetting({ cubeType: event.value }),
+        onChange: value => this.applyGallerySetting({ cubeType: value }),
         value: this.getValueFromComponentStyles('cubeType'),
       },
     },
     titleButtonPlacement: {
       component: TitleButtonPlacement,
       props: {
-        onChange: event => this.applyGallerySetting({ titlePlacement: event.value }),
+        onChange: value => this.applyGallerySetting({ titlePlacement: value }),
         value: this.getValueFromComponentStyles('titlePlacement'),
       },
     },
@@ -98,17 +99,10 @@ class LayoutControlsSection extends Component {
         value: this.getValueFromComponentStyles('cubeRatio'),
       },
     },
-    loadMoreButton: {
-      component: LoadMoreToggle,
-      props: {
-        onChange: event => this.applyGallerySetting({ enableInfiniteScroll: event.value }),
-        value: this.getValueFromComponentStyles('enableInfiniteScroll'),
-      },
-    },
     imageOrientation: {
       component: ImageOrientation,
       props: {
-        onChange: event => this.applyGallerySetting({ isVertical: event.value === '1' }),
+        onChange: value => this.applyGallerySetting({ isVertical: value === '1' }),
         value: this.getValueFromComponentStyles('isVertical') ? '1' : '0',
         options: {
           oneRow: this.getValueFromComponentStyles('oneRow')
@@ -118,8 +112,8 @@ class LayoutControlsSection extends Component {
     scrollDirection: {
       component: ScrollDirection,
       props: {
-        onChange: event => {
-          return this.applyGallerySetting({ oneRow: event.value === 'horizontal', isVertical: false });
+        onChange: value => {
+          return this.applyGallerySetting({ oneRow: value === 'horizontal', isVertical: false });
         },
         value: this.getValueFromComponentStyles('oneRow') ? 'horizontal' : 'vertical',
       },

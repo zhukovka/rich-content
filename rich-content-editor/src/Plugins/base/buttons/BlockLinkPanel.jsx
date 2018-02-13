@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
-import LinkPanel from '~/Components/LinkPanel';
+import LinkPanelContainer from '~/Components/LinkPanelContainer';
 
 class BlockLinkPanel extends Component {
   wrapBlockInLink = ({ url, targetBlank, nofollow }) => {
@@ -14,21 +14,27 @@ class BlockLinkPanel extends Component {
     this.hideLinkPanel();
   };
 
+  deleteLink = () => {
+    this.props.pubsub.set('componentLink', undefined);
+  }
+
   hideLinkPanel = () => {
     this.props.onExtendContent(undefined);
     this.props.onOverrideContent(undefined);
   };
 
   render() {
-    const componentLink = this.props.pubsub.get('componentLink') || {};
-    const { url, targetBlank, nofollow } = componentLink;
+    const componentLink = this.props.pubsub.get('componentLink');
+    const { url, targetBlank, nofollow } = componentLink || {};
     return (
-      <LinkPanel
+      <LinkPanelContainer
         url={url}
         targetBlank={targetBlank}
         nofollow={nofollow}
+        isActive={!!componentLink}
         onDone={this.wrapBlockInLink}
         onCancel={this.hideLinkPanel}
+        onDelete={this.deleteLink}
         onOverrideContent={this.props.onOverrideContent}
       />
     );

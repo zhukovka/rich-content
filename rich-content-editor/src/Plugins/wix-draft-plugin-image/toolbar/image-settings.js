@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from '~/Components/ThemeProvider';
-import { Image } from 'stylable-components/dist/src/components/image';
+import Image from '~/Components/Image';
 import SettingsSection from '~/Components/SettingsSection';
 import getImageSrc from '../get-image-source';
 import InputWithLabel from '~/Components/InputWithLabel';
 import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
-import FileInput from '~/Components/FileInput';
+import LinkPanel from '../../../Components/LinkPanel';
 import styles from './image-settings.scss';
 import { mergeStyles } from '~/Utils/mergeStyles';
 
@@ -38,6 +37,8 @@ class ImageSettings extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState(this.stateFromProps(nextProps));
   }
+
+  setLinkPanel = linkPanel => this.linkPanel = linkPanel;
 
   revertComponentData () {
     const { componentData, helpers, pubsub } = this.props;
@@ -77,45 +78,36 @@ class ImageSettings extends Component {
   }
 
   render() {
-    const { componentData, helpers } = this.props;
+    const { componentData, helpers, theme } = this.props;
     const { item } = componentData;
     const { metadata = {} } = item;
+    // const { url, targetBlank, nofollow } = metadata.link;
+    const { url, targetBlank, nofollow } = {};
 
     return (
-      <ThemeProvider theme={'rce'}>
-        <div className={this.styles.imageSettings}>
-          <div className={this.styles.content}>
-            <h3 className={this.styles.title}>Image Settings</h3>
-            <SettingsSection theme={this.props.theme}>
-              <Image resizeMode={'contain'} className={this.styles.image} src={getImageSrc(item, helpers)} />
-            </SettingsSection>
-            <div className={this.styles.manageImageGrid}>
-              <FileInput className={this.styles.replace} onChange={event => this.replaceImage(event)}>
-                <span>{'Replace'}</span>
-              </FileInput>
-              <button className={this.styles.delete} onClick={() => this.deleteImage()}>
-                <span>{'Delete'}</span>
-              </button>
-            </div>
-            <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
-              <InputWithLabel
-                theme={this.props.theme}
-                label={'Alt Text'}
-                placeholder={'Add image Alt Text'}
-                value={metadata.altText || ''}
-                onChange={event => this.imageMetadataUpdated(item, { altText: event.target.value })}
-              />
-            </SettingsSection>
-            <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
-              <InputWithLabel
-                theme={this.props.theme}
-                label={'Caption'}
-                placeholder={'Enter your image caption (optional)'}
-                value={metadata.caption || ''}
-                onChange={event => this.imageMetadataUpdated(item, { caption: event.target.value })}
-              />
-            </SettingsSection >
-            <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
+      <div className={this.styles.imageSettings}>
+        <div className={this.styles.imageSettingsContent}>
+          <h3 className={this.styles.imageSettingsTitle}>Image Settings</h3>
+          <Image resizeMode={'contain'} className={this.styles.imageSettingsImage} src={getImageSrc(item, helpers)} theme={theme}/>
+          <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
+            <InputWithLabel
+              theme={this.props.theme}
+              label={'Caption'}
+              placeholder={'Enter your image caption (optional)'}
+              value={metadata.caption || ''}
+              onChange={event => this.imageMetadataUpdated(item, { caption: event.target.value })}
+            />
+          </SettingsSection >
+          <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
+            <InputWithLabel
+              theme={this.props.theme}
+              label={'Alt Text'}
+              placeholder={'Add image Alt Text'}
+              value={metadata.altText || ''}
+              onChange={event => this.imageMetadataUpdated(item, { altText: event.target.value })}
+            />
+          </SettingsSection>
+          {/*<SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
               <InputWithLabel
                 theme={this.props.theme}
                 label={'Link'}
@@ -123,11 +115,23 @@ class ImageSettings extends Component {
                 value={metadata.link || ''}
                 onChange={event => this.imageMetadataUpdated(item, { link: event.target.value })}
               />
-            </SettingsSection>
+            </SettingsSection>*/}
+          <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
+            <label className={this.styles.inputWithLabel_label}>Link</label>
+          </SettingsSection>
+          <div className={this.styles.imageSettingsLinkContainer}>
+            <LinkPanel
+              ref={this.setLinkPanel}
+              url={url}
+              targetBlank={targetBlank}
+              nofollow={nofollow}
+              updateParentIfNecessary={this.updateParentIfNecessary}
+              isImageSettings
+            />
           </div>
-          <SettingsPanelFooter theme={this.props.theme} cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} />
         </div>
-      </ThemeProvider>
+        <SettingsPanelFooter theme={this.props.theme} cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} />
+      </div>
     );
   }
 }

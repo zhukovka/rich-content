@@ -1,6 +1,5 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const StylablePlugin = require('stylable-integration/webpack-plugin');
 const FILE_NAME = 'wix-rich-content-editor';
 
 module.exports = {
@@ -14,7 +13,6 @@ module.exports = {
   },
   module: {
     rules: [
-      StylablePlugin.rule(),
       {
         test: /\.jsx?$/,
         include: [path.resolve(__dirname, 'src')],
@@ -29,8 +27,7 @@ module.exports = {
         }),
       },
       {
-        // .css but not .st.css
-        test: /^((?!\.st\.css).)*\.css$/,
+        test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader'],
@@ -100,10 +97,7 @@ module.exports = {
   context: __dirname,
   target: 'web',
   externals: [
-    /draft-js/,
-    {
-      'pro-gallery-renderer': 'pro-gallery-renderer'
-    },
+    /^pro-gallery-renderer.*$/,
     'mobx',
     function(context, request, callback) {
       const submodule = (/^wix-style-react\/dist\/src\/(.*$)/.exec(request) || [])[1];
@@ -119,6 +113,13 @@ module.exports = {
       callback();
     },
     {
+      '@wix/draft-js': {
+        root: 'Draft',
+        commonjs2: '@wix/draft-js',
+        commonjs: '@wix/draft-js',
+        amd: '@wix/draft-js',
+        umd: '@wix/draft-js',
+      },
       immutable: {
         root: 'Immutable',
         commonjs2: 'immutable',
@@ -126,8 +127,6 @@ module.exports = {
         amd: 'immutable',
         umd: 'immutable',
       },
-    },
-    {
       react: {
         root: 'React',
         commonjs2: 'react',
@@ -135,8 +134,6 @@ module.exports = {
         amd: 'react',
         umd: 'react',
       },
-    },
-    {
       'react-dom': {
         root: 'ReactDOM',
         commonjs2: 'react-dom',
@@ -147,5 +144,5 @@ module.exports = {
     },
   ],
   stats: 'errors-only',
-  plugins: [new ExtractTextPlugin(`${FILE_NAME}.css`), new StylablePlugin({ injectBundleCss: true, filename: 'stylable.css', nsDelimiter: '--' })],
+  plugins: [new ExtractTextPlugin(`${FILE_NAME}.css`)],
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RadioGroupHorizontal from '../stylable-base/radio-group-horizontal';
+import RadioGroupHorizontal from '~/Components/RadioGroupHorizontal';
 
 const propTypes = {
   onChange: PropTypes.func.isRequired,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'stylable-components/dist/src/components/button';
 
+import Button from '~/Components/Button';
 import { mergeStyles } from '~/Utils';
 import styles from '~/Styles/settings-panel-footer.scss';
 
@@ -12,13 +12,13 @@ class SettingsPanelFooter extends Component {
   }
 
   render() {
-    const { save, cancel } = this.props;
+    const { save, cancel, theme } = this.props;
     return (
       <div className={this.styles.settingsPanel_footer}>
-        <Button onClick={() => cancel()} className={this.styles.settingsPanel_cancel}>
+        <Button theme={theme} onClick={() => cancel()} className={this.styles.settingsPanel_cancel} type={'secondary'}>
           {'Cancel'}
         </Button>
-        <Button className={this.styles.settingsPanel_save} onClick={() => save()}>{'Done'}</Button>
+        <Button theme={theme} className={this.styles.settingsPanel_save} onClick={() => save()}>{'Done'}</Button>
       </div>
     );
   }

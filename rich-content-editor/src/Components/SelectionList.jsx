@@ -5,6 +5,26 @@ import classnames from 'classnames';
 import { mergeStyles } from '../Utils/mergeStyles';
 import styles from '~/Styles/selection-list.scss';
 
+function defaultDataMapper(item) {
+  switch (typeof item) {
+    case 'number':
+      return { value: item, label: item.toString() };
+    case 'string':
+      return { value: item, label: item };
+    case 'object':
+      return item;
+    default:
+      return {};
+  }
+}
+
+function defaultRenderItem({ option, selected }) {
+  return option && option.value && (
+    <SelectionListOption selected={selected} value={option.value} theme={{}} onChange={() => {}}>
+      {option.value}
+    </SelectionListOption>);
+}
+
 class SelectionList extends Component {
 
   constructor(props) {
@@ -13,13 +33,18 @@ class SelectionList extends Component {
   }
 
   static propTypes = {
-    dataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
-    dataMapper: PropTypes.func.isRequired,
-    renderItem: PropTypes.func.isRequired,
+    dataSource: PropTypes.array.isRequired,
+    dataMapper: PropTypes.func,
+    renderItem: PropTypes.func,
     theme: PropTypes.object.isRequired,
     className: PropTypes.string,
     value: PropTypes.any.isRequired,
     onChange: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    dataMapper: defaultDataMapper,
+    renderItem: defaultRenderItem
   };
 
   mapItemToOptionData(item) {

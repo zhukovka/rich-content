@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { EditorState } from '@wix/draft-js';
 import isEmpty from 'lodash/isEmpty';
-import { insertLink, getLinkDataInSelection } from '~/Utils';
-import LinkPanel from '~/Components/LinkPanel';
+import { insertLink, getLinkDataInSelection, removeLinksInSelection } from '~/Utils';
+import LinkPanelContainer from '~/Components/LinkPanelContainer';
 
 export default class TextLinkPanel extends Component {
   createLinkEntity = ({ url, targetBlank, nofollow }) => {
@@ -14,6 +15,14 @@ export default class TextLinkPanel extends Component {
     this.hideLinkPanel();
   };
 
+  deleteLink = () => {
+    const { getEditorState, setEditorState } = this.props;
+    const editorState = getEditorState();
+    const selection = editorState.getSelection();
+    const newEditorState = removeLinksInSelection(editorState);
+    setEditorState(EditorState.acceptSelection(newEditorState, selection));
+  }
+
   hideLinkPanel = () => {
     this.props.onExtendContent(undefined);
     this.props.onOverrideContent(undefined);
@@ -21,14 +30,16 @@ export default class TextLinkPanel extends Component {
 
   render() {
     const { getEditorState } = this.props;
-    const link = getLinkDataInSelection(getEditorState()) || {};
-    const { url, targetBlank, nofollow } = link;
-    return (<LinkPanel
+    const linkData = getLinkDataInSelection(getEditorState()) || {};
+    const { url, targetBlank, nofollow } = linkData;
+    return (<LinkPanelContainer
       url={url}
       targetBlank={targetBlank}
       nofollow={nofollow}
+      isActive={!isEmpty(linkData)}
       onDone={this.createLinkEntity}
       onCancel={this.hideLinkPanel}
+      onDelete={this.deleteLink}
       onOverrideContent={this.props.onOverrideContent}
     />);
   }

@@ -116,13 +116,13 @@ SettingsModal.propTypes = {
 const modalStyles = getModalStyles();
 
 const InlineButtons = [
-  { type: BUTTONS.SIZE_ORIGINAL_CENTER },
-  { type: BUTTONS.SIZE_SMALL_LEFT },
-  { type: BUTTONS.SIZE_SMALL_CENTER },
-  { type: BUTTONS.SIZE_SMALL_RIGHT },
-  { type: BUTTONS.SIZE_CONTENT },
-  { type: BUTTONS.SIZE_FULL_WIDTH },
-  { type: BUTTONS.SEPARATOR },
+  { type: BUTTONS.SIZE_ORIGINAL_CENTER, mobile: true },
+  { type: BUTTONS.SIZE_SMALL_LEFT, mobile: true },
+  { type: BUTTONS.SIZE_SMALL_CENTER, mobile: true },
+  { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: true },
+  { type: BUTTONS.SIZE_CONTENT, mobile: true },
+  { type: BUTTONS.SIZE_FULL_WIDTH, mobile: true },
+  { type: BUTTONS.SEPARATOR, mobile: true },
   // {
   //   keyName: 'settings',
   //   type: BUTTONS.PANEL,
@@ -136,13 +136,16 @@ const InlineButtons = [
     icon: SettingsIcon,
     modalElement: ImageSettings,
     modalStyles,
+    mobile: true,
   },
+  { type: BUTTONS.LINK, mobile: true },
   {
     keyName: 'replace',
     type: BUTTONS.FILES,
     icon: MediaReplaceIcon,
+    mobile: true,
   },
-  { type: BUTTONS.DELETE },
+  { type: BUTTONS.DELETE, mobile: true },
 ];
 
 export default InlineButtons;

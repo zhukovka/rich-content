@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Tabs, Tab } from 'stylable-components/dist/src/components/tabs';
-
+import { Tabs, Tab } from '~/Components/Tabs';
 import { mergeStyles } from '~/Utils';
-import { ThemeProvider } from '~/Components/ThemeProvider';
 import LayoutSelector from './gallery-controls/layouts-selector';
 import styles from './gallery-settings-modal.scss';
 import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
@@ -164,34 +162,34 @@ export class GallerySettingsModal extends Component {
       // console.log('Rendering mobile settings');
       /* eslint-disable max-len */
       return (
-        <ThemeProvider theme={'rce'}>
+        <div>
           <GallerySettingsMobileHeader
             theme={this.props.theme}
             cancel={() => this.revertComponentData()}
             save={() => helpers.closeExternalModal()}
             switchTab={this.switchTab}
-            activeTab={this.tabName(this.otherTab())}
+            otherTab={this.tabName(this.otherTab())}
           />
           {activeTab === 'manage_media' ? <ManageMediaSection data={componentData} store={pubsub.store} isMobile theme={this.props.theme}/> : null }
           {activeTab === 'advanced_settings' ? <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store} isMobile/> : null }
-        </ThemeProvider>
+        </div>
       );
     } else {
       return (
-        <ThemeProvider theme={'rce'}>
+        <div>
           <h3 className={styles.gallerySettings_title}>Gallery Settings</h3>
           <div className={styles.gallerySettings}>
-            <Tabs value={activeTab}>
-              <Tab label={this.tabName('manage_media')} value={'manage_media'}>
+            <Tabs value={activeTab} theme={this.props.theme}>
+              <Tab label={this.tabName('manage_media')} value={'manage_media'} theme={this.props.theme}>
                 <ManageMediaSection data={componentData} store={pubsub.store} theme={this.props.theme}/>
               </Tab>
-              <Tab label={this.tabName('advanced_settings')} value={'advanced_settings'}>
+              <Tab label={this.tabName('advanced_settings')} value={'advanced_settings'} theme={this.props.theme}>
                 <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store}/>
               </Tab>
             </Tabs>
           </div>
           <SettingsPanelFooter cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} theme={this.props.theme}/>
-        </ThemeProvider>
+        </div>
       );
     }
   }

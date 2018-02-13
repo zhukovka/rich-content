@@ -17,7 +17,7 @@ class LayoutSelector extends Component {
     { layoutId: 1, name: 'Masonry' },
     { layoutId: 0, name: 'Collage' },
     { layoutId: 3, name: 'Thumbnails' },
-    { layoutId: 5, name: 'Slideshow' },
+    { layoutId: 9, name: 'Slideshow' },
     { layoutId: 6, name: 'Panorama' },
     { layoutId: 7, name: 'Columns' },
     { layoutId: 4, name: 'Slides' },

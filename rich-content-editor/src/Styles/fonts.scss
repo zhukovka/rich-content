@@ -1,27 +1,9 @@
-@font-face {
-  font-family: 'latolight';
-  src: url('../Fonts/lato-light-webfont.woff2') format('woff2'),
-        url('../Fonts/lato-light-webfont.woff') format('woff'),
-        url('../Fonts/lato-light-webfont.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'playfair_displayregular';
-    src: url('../Fonts/playfairdisplay-regular-webfont.woff2') format('woff2'),
-         url('../Fonts/playfairdisplay-regular-webfont.woff') format('woff'),
-         url('../Fonts/playfairdisplay-regular-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 .regularText {
-  font-family: 'latolight';
+  font-family: Helvetica;
 }
 
 .headerText {
-  font-family: 'playfair_displayregular';
+  font-family: Helvetica;
 }
 
 .fontElementMap {
@@ -36,11 +18,11 @@
 
 :global {
   .glob_regularText {
-    font-family: 'latolight';
+    font-family: Helvetica;
   }
 
   .glob_headerText {
-    font-family: 'playfair_displayregular';
+    font-family: Helvetica;
   }
 
   .glob_fontElementMap {
