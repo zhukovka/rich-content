@@ -55,7 +55,11 @@ class App extends Component {
         );
         this.setState({
           showModal: true,
+<<<<<<< HEAD:rich-content-viewer-example/src/App.jsx
           modalContent: < ModalContent />,
+=======
+          modalContent: <ModalContent />,
+>>>>>>> rce-develop:rich-content-viewer-example/src/App.jsx
           modalStyles
         });
       },
