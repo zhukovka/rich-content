@@ -209,13 +209,14 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
       const overrideProps = { onOverrideContent: this.onOverrideContent };
       const extendProps = { onExtendContent: this.onExtendContent };
+      const structure = isMobile ? buttons.filter(button => button.mobile) : buttons;
 
       return (
         <div style={this.state.position} className={containerClassNames}>
           <div className={buttonContainerClassnames}>
             {OverrideContent ?
               <OverrideContent {...overrideProps} /> :
-              buttons.map((button, index) => (
+              structure.map((button, index) => (
                 this.renderButton(button, index, themedButtonStyle, separatorClassNames)
               ))
             }
