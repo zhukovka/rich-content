@@ -20,7 +20,7 @@
 $phone: 640px;
 
 @mixin phone {
-  @media (max-width: $phone) {
+  @media only screen and (max-width: $phone) {
     @content;
   }
 }

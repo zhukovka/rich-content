@@ -1,4 +1,5 @@
 @import "./palette.scss";
+@import "./mixins.scss";
 
 .separator {
   display: inline-block;
@@ -12,7 +13,7 @@
   display: none;
 }
 
-@media only screen and (max-width: 500px) {
+@include phone {
   .horizontalSeparator {
     display: block;
     width: auto;
