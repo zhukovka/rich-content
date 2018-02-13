@@ -87,7 +87,6 @@
     "react-svg-loader": "^1.1.1",
     "react-test-renderer": "^15.6.1",
     "sass-loader": "^6.0.6",
-    "stylable": "^4.0.26",
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^1.1.6",
     "url-loader": "^0.6.2",
