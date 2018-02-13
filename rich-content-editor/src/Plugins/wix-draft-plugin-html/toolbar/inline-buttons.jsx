@@ -217,6 +217,7 @@ const InlineButtons = [
     panelElement: EditModal,
     icon: EditIcon,
     onClick: pubsub => console.log('*** click edit *** '), //eslint-disable-line no-console, no-unused-vars,
+    mobile: true,
   },
   { type: BUTTONS.SEPARATOR },
   {
@@ -225,6 +226,7 @@ const InlineButtons = [
     panelElement: SettingsModal,
     icon: SettingsIcon,
     onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
+    mobile: true,
   },
   {
     keyName: 'external_settings',
@@ -232,6 +234,7 @@ const InlineButtons = [
     modalElement: ExternalSettingsModal,
     icon: SettingsIcon,
     onClick: pubsub => console.log('*** click external settings *** '), //eslint-disable-line no-console, no-unused-vars,
+    mobile: true,
   },
   { type: BUTTONS.DELETE },
 ];
