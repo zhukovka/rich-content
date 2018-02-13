@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
 import { isValidUrl } from '~/Utils/urlValidators';
 
-import Tooltip from 'wix-style-react/dist/src/Tooltip';
+import Tooltip from '~/Components/Tooltip';
 import ErrorIcon from './icons/error.svg';
 
 import Styles from '~/Styles/link-panel.scss';
