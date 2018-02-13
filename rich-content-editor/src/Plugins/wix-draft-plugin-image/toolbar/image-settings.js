@@ -59,26 +59,6 @@ class ImageSettings extends Component {
     this.setState({ item: this.state.item });
   };
 
-  // handleFileChange = event => {
-  //   if (event.target.files.length > 0) {
-  //     const handleFilesSelected = this.props.pubsub.get('handleFilesSelected');
-  //     handleFilesSelected(event.target.files);
-  //   }
-  // };
-
-  // replaceImage(event) {
-  //   this.handleFileChange(event);
-  // }
-
-  // deleteImage() {
-  //   const { componentData, helpers, pubsub } = this.props;
-  //   componentData.item = {};
-  //   pubsub.set('componentData', componentData);
-  //   this.setState({ item: {} });
-
-  //   helpers.closeExternalModal();
-  // }
-
   wrapBlockInLink = ({ url, targetBlank, nofollow }) => {
     const { pubsub } = this.props;
     if (!isEmpty(url)) {
@@ -95,10 +75,7 @@ class ImageSettings extends Component {
   onDoneClick = () => {
     const { helpers } = this.props;
     if (this.state.isDoneEnabled) {
-      // const { item } = this.state;
       const { url, targetBlank, nofollow } = this.linkPanel.state;
-      // item.metadata = Object.assign({}, item.metadata, { link: { url, targetBlank, nofollow } });
-      this.setState({ item: this.state.item });
       this.wrapBlockInLink({ url, targetBlank, nofollow });
     }
     helpers.closeExternalModal();
@@ -137,15 +114,6 @@ class ImageSettings extends Component {
               onChange={event => this.imageMetadataUpdated(item, { altText: event.target.value })}
             />
           </SettingsSection>
-          {/*<SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
-              <InputWithLabel
-                theme={this.props.theme}
-                label={'Link'}
-                placeholder={'Add a link'}
-                value={metadata.link || ''}
-                onChange={event => this.imageMetadataUpdated(item, { link: event.target.value })}
-              />
-            </SettingsSection>*/}
           <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
             <label className={this.styles.inputWithLabel_label}>Link</label>
           </SettingsSection>
