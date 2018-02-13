@@ -55,7 +55,7 @@ class App extends Component {
         );
         this.setState({
           showModal: true,
-          modalContent: < ModalContent />,
+          modalContent: <ModalContent />,
           modalStyles
         });
       },
