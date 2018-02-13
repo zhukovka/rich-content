@@ -4,11 +4,11 @@ import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
 import logo from './logo.svg';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
+import { testImages } from './images-mock';
+import theme from './theme/theme';
+//import testData from './testData/initialState';
 import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
-import { testImages } from './images-mock';
-// import theme from './theme/theme';
-//import testData from './testData/initialState';
 
 const modalStyleDefaults = {
   content: {
@@ -153,7 +153,7 @@ class App extends Component {
               readOnly={this.state.readOnly}
               sideToolbarOffset={sideToolbarOffset}
               isMobile={this.isMobile()}
-              theme={{}}
+              theme={theme}
             />
             <ReactModal
               isOpen={this.state.showModal}
