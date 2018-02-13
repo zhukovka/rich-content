@@ -56,7 +56,7 @@ class LinkPanelContainer extends Component {
 
   render() {
     const { url, targetBlank, nofollow } = this.props;
-    const doneButtonClassName = classNames(Styles.linkPanelFooterDoneButton,
+    const doneButtonClassName = classNames(Styles.linkPanelFooterButton,
       {
         [Styles.enabled]: this.state.isDoneEnabled,
         [Styles.disabled]: !this.state.isDoneEnabled
@@ -76,7 +76,7 @@ class LinkPanelContainer extends Component {
         />
         <div className={Styles.actionsDivider} />
         <div className={Styles.linkPanelFooter}>
-          <div className={Styles.linkPanelFooterCancelButton} onClick={this.onCancelClick}>Cancel</div>
+          <div className={Styles.linkPanelFooterButton} onClick={this.onCancelClick}>Cancel</div>
           <div className={doneButtonClassName} onClick={this.onDoneClick}>Update</div>
         </div>
       </div>
