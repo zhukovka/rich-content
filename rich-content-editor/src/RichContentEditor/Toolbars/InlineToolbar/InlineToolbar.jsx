@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import { getVisibleSelectionRect } from '@wix/draft-js';
 import Styles from '~/Styles/inline-toolbar.scss';
 
+const toolbarOffset = 5;
+
 const getRelativeParent = element => {
   if (!element) {
     return null;
@@ -22,6 +24,7 @@ export default class InlineToolbar extends Component {
     pubsub: PropTypes.object.isRequired,
     structure: PropTypes.array.isRequired,
     theme: PropTypes.object,
+    isMobile: PropTypes.bool,
   };
 
   state = {
@@ -61,9 +64,14 @@ export default class InlineToolbar extends Component {
         return;
       }
 
-      const top = (selectionRect.top - relativeRect.top) - toolbarHeight;
-      let left = (selectionRect.left - relativeRect.left) + (selectionRect.width / 2);
+      let top;
+      if (!this.props.isMobile) {
+        top = ((selectionRect.top - relativeRect.top) - toolbarHeight) - toolbarOffset;
+      } else {
+        top = (selectionRect.bottom - relativeRect.top) + toolbarOffset;
+      }
 
+      let left = (selectionRect.left - relativeRect.left) + (selectionRect.width / 2);
       // make sure we're not out of bounds, adjust position if we are
       if (left < halfToolbarWidth) {
         left = halfToolbarWidth;
