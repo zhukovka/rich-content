@@ -1,3 +1,4 @@
+import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import { createSideToolbar } from './SideToolbar';
 import { createMobileToolbar, createFooterToolbar } from './StaticToolbar';
 import { createTextToolbar } from './InlineToolbar';
@@ -6,6 +7,7 @@ import { simplePubsub } from '~/Utils';
 const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, getEditorState, setEditorState }) => {
   const { pluginButtons, textButtons } = buttons;
   const pubsub = simplePubsub();
+  const shouldCreateTextToolbar = !isMobile || baseUtils.isiOS();
 
   const toolbars = {
     side: createSideToolbar({
@@ -14,15 +16,19 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
       theme: theme.side,
       pubsub,
       isMobile
-    })
+    }),
   };
 
-  if (!isMobile) {
+  if (shouldCreateTextToolbar) {
     toolbars.text = createTextToolbar({
       buttons: textButtons,
       theme: theme.text,
       pubsub,
+      isMobile,
     });
+  }
+
+  if (!isMobile) {
     toolbars.footer = createFooterToolbar({
       buttons: pluginButtons,
       theme: theme.footer,

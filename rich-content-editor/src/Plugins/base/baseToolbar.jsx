@@ -39,6 +39,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       pubsub.subscribe('componentData', this.onComponentDataChanged);
       pubsub.subscribe('componentAlignment', this.onComponentAlignmentChange);
       pubsub.subscribe('componentSize', this.onComponentSizeChange);
+      pubsub.subscribe('componentLink', this.onComponentLinkChange);
     }
 
     onOverrideContent = overrideContent => this.setState({ overrideContent });
@@ -51,6 +52,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       pubsub.unsubscribe('componentData', this.onComponentDataChanged);
       pubsub.unsubscribe('componentAlignment', this.onComponentAlignmentChange);
       pubsub.unsubscribe('componentSize', this.onComponentSizeChange);
+      pubsub.unsubscribe('componentLink', this.onComponentLinkChange);
     }
 
     onComponentStateChanged = contentState => {
@@ -59,6 +61,12 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
 
     onComponentDataChanged = componentData => {
       this.setState({ componentData });
+    };
+
+    onComponentLinkChange = link => {
+      if (link) {
+        pubsub.update('componentData', { config: { link } });
+      }
     };
 
     setAlignment = alignment => {

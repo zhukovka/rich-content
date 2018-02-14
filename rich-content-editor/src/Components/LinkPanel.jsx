@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import isUndefined from 'lodash/isUndefined';
 import { isValidUrl } from '~/Utils/urlValidators';
 
-import Tooltip from 'wix-style-react/dist/src/Tooltip';
+import Tooltip from '~/Components/Tooltip';
 import ErrorIcon from './icons/error.svg';
 
 import Styles from '~/Styles/link-panel.scss';
@@ -12,13 +13,22 @@ class LinkPanel extends Component {
   constructor(props) {
     super(props);
     const { url, targetBlank, nofollow } = props;
+    const intermediateUrl = url || '';
     this.state = {
-      intermediateUrl: url || '',
+      intermediateUrl,
       url: url || '',
       isValidUrl: true,
-      targetBlank: targetBlank || true,
-      nofollow: nofollow || false,
+      targetBlank: isUndefined(targetBlank) ? true : targetBlank,
+      nofollow: isUndefined(nofollow) ? false : nofollow,
     };
+
+  }
+
+  componentDidMount() {
+    const { url, updateParentIfNecessary } = this.props;
+    const intermediateUrl = url || '';
+    const isValidUrlConst = isValidUrl(intermediateUrl);
+    updateParentIfNecessary && updateParentIfNecessary(!!(isValidUrlConst));
   }
 
   handleIntermediateUrlChange = event => {
@@ -47,7 +57,7 @@ class LinkPanel extends Component {
       this.handleUrlChange();
     }
     this.setState({ isValidUrl: isValidUrlConst });
-    updateParentIfNecessary ? updateParentIfNecessary(!!(isValidUrlConst && this.state.url)) : false;
+    updateParentIfNecessary && updateParentIfNecessary(!!(isValidUrlConst));
   };
 
   handleKeyPress = e => {
@@ -82,10 +92,7 @@ class LinkPanel extends Component {
             {this.state.isValidUrl ? null : (
               <Tooltip
                 content={'Invalid URL. Try Again'}
-                textAlign="center"
-                maxWidth=""
-                shouldCloseOnClickOutside
-                theme="dark"
+                moveBy={{ x: -23, y: -5 }}
               >
                 <ErrorIcon className={Styles.errorIcon} />
               </Tooltip>

@@ -4,7 +4,7 @@ import { AtomicBlockUtils, EditorState, SelectionState } from '@wix/draft-js';
 import cloneDeep from 'lodash/cloneDeep';
 import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
-import Tooltip from 'wix-style-react/dist/src/Tooltip';
+import Tooltip from '~/Components/Tooltip';
 import Styles from '~/Styles/toolbar-button.scss';
 import { VideoUploadModal } from '../wix-draft-plugin-video/videoUploadModal';
 
@@ -140,10 +140,8 @@ export default ({ blockType, button, pubsub }) => {
         return (
           <Tooltip
             content={tooltipText}
-            textAlign="center"
-            maxWidth=""
-            moveBy={{ x: -8 }}
-            shouldCloseOnClickOutside theme="dark"
+            moveBy={{ x: 10 }}
+            theme={theme}
           >
             {Button}
           </Tooltip>

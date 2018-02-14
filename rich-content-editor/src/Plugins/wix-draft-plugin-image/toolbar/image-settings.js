@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import isEmpty from 'lodash/isEmpty';
 import Image from '~/Components/Image';
 import SettingsSection from '~/Components/SettingsSection';
 import getImageSrc from '../get-image-source';
@@ -21,6 +22,7 @@ class ImageSettings extends Component {
     return {
       item: props.componentData.item,
       initialImageState,
+      isDoneEnabled: false,
     };
   }
 
@@ -57,32 +59,50 @@ class ImageSettings extends Component {
     this.setState({ item: this.state.item });
   };
 
-  handleFileChange = event => {
-    if (event.target.files.length > 0) {
-      const handleFilesSelected = this.props.pubsub.get('handleFilesSelected');
-      handleFilesSelected(event.target.files);
+  wrapBlockInLink = ({ url, targetBlank, nofollow }) => {
+    const { pubsub } = this.props;
+    if (!isEmpty(url)) {
+      pubsub.set('componentLink', { url, targetBlank, nofollow });
+    } else {
+      pubsub.set('componentLink', undefined);
     }
   };
 
-  replaceImage(event) {
-    this.handleFileChange(event);
+  addMetadataToBlock = () => {
+    const { pubsub } = this.props;
+    const { alt, caption } = this.state.item.metadata || {};
+    const metadata = {
+      alt: alt || undefined,
+      caption: caption || undefined,
+    };
+    pubsub.update('componentData', { item: { metadata } });
+  };
+
+  deleteLink = () => {
+    this.props.pubsub.set('componentLink', undefined);
   }
 
-  deleteImage() {
-    const { componentData, helpers, pubsub } = this.props;
-    componentData.item = {};
-    pubsub.set('componentData', componentData);
-    this.setState({ item: {} });
-
+  onDoneClick = () => {
+    const { helpers } = this.props;
+    if (this.state.isDoneEnabled) {
+      const { url, targetBlank, nofollow } = this.linkPanel.state;
+      this.wrapBlockInLink({ url, targetBlank, nofollow });
+    }
+    if (this.state.item.metadata) {
+      this.addMetadataToBlock();
+    }
     helpers.closeExternalModal();
+  };
+
+  updateParentIfNecessary = shouldUpdate => {
+    this.setState({ isDoneEnabled: shouldUpdate });
   }
 
   render() {
     const { componentData, helpers, theme } = this.props;
     const { item } = componentData;
     const { metadata = {} } = item;
-    // const { url, targetBlank, nofollow } = metadata.link;
-    const { url, targetBlank, nofollow } = {};
+    const { url, targetBlank, nofollow } = (!isEmpty(componentData.config.link) ? componentData.config.link : {});
 
     return (
       <div className={this.styles.imageSettings}>
@@ -103,19 +123,10 @@ class ImageSettings extends Component {
               theme={this.props.theme}
               label={'Alt Text'}
               placeholder={'Add image Alt Text'}
-              value={metadata.altText || ''}
-              onChange={event => this.imageMetadataUpdated(item, { altText: event.target.value })}
+              value={metadata.alt || ''}
+              onChange={event => this.imageMetadataUpdated(item, { alt: event.target.value })}
             />
           </SettingsSection>
-          {/*<SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
-              <InputWithLabel
-                theme={this.props.theme}
-                label={'Link'}
-                placeholder={'Add a link'}
-                value={metadata.link || ''}
-                onChange={event => this.imageMetadataUpdated(item, { link: event.target.value })}
-              />
-            </SettingsSection>*/}
           <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>
             <label className={this.styles.inputWithLabel_label}>Link</label>
           </SettingsSection>
@@ -129,8 +140,8 @@ class ImageSettings extends Component {
               isImageSettings
             />
           </div>
+          <SettingsPanelFooter theme={this.props.theme} cancel={() => this.revertComponentData()} save={() => this.onDoneClick()} />
         </div>
-        <SettingsPanelFooter theme={this.props.theme} cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} />
       </div>
     );
   }
