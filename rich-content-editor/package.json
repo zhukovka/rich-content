@@ -51,7 +51,6 @@
     "react-player": "^0.25.3",
     "react-sortable-hoc": "^0.6.8",
     "redraft": "^0.9.0",
-    "wix-style-react": "^1.2.3",
     "wnpm-ci": "latest"
   },
   "peerDependencies": {
