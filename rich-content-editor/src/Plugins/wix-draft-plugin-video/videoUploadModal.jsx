@@ -7,7 +7,7 @@ import CameraIcon from './icons/video-camera.svg';
 import CloseIcon from './icons/x-icon.svg';
 import ErrorIcon from './icons/error.svg';
 import classNames from 'classnames';
-import Tooltip from 'wix-style-react/dist/src/Tooltip';
+import Tooltip from '~/Components/Tooltip';
 
 export class VideoUploadModal extends Component {
   constructor() {
@@ -95,6 +95,7 @@ export class VideoUploadModal extends Component {
                 content={'Invalid URL'}
                 textAlign="center"
                 maxWidth=""
+                moveBy={{ x: 15 }}
                 shouldCloseOnClickOutside
                 theme="dark"
               >

@@ -142,7 +142,7 @@ export default ({ blockType, button, pubsub }) => {
             content={tooltipText}
             textAlign="center"
             maxWidth=""
-            moveBy={{ x: -8 }}
+            moveBy={{ x: 10 }}
             shouldCloseOnClickOutside theme="dark"
           >
             {Button}

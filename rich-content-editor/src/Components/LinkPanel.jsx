@@ -96,6 +96,7 @@ class LinkPanel extends Component {
                 maxWidth=""
                 shouldCloseOnClickOutside
                 theme="dark"
+                moveBy={{ x: 12 }}
               >
                 <ErrorIcon className={Styles.errorIcon} />
               </Tooltip>

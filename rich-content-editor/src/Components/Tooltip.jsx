@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import CustomProperties from 'react-custom-properties';
 
 import styles from '~/Styles/tooltip.scss';
 import { mergeStyles } from '~/Utils';
@@ -31,15 +32,20 @@ class Tooltip extends Component {
     const { styles } = this;
 
     return (
-      <div
-        className={styles.tooltip}
-        data-content={content}
-        data-move-by-x={moveBy.x}
-        data-move-by-y={moveBy.y}
-        data-text-align={textAlign}
-        data-max-width={maxWidth}
-      >
-        {children}
+      <div className={styles.tooltip_container}>
+        <CustomProperties
+          properties={{
+            '--content': `'${content}'`,
+            '--moveByX': `${moveBy.x || 0}px`,
+            '--moveByY': `${moveBy.y || 0}px`,
+            '--textAlign': textAlign,
+            '--maxWidth': maxWidth ? `${maxWidth}px` : '100%'
+          }}
+        >
+          <div className={styles.tooltip}>
+            {children}
+          </div>
+        </CustomProperties>
       </div>);
   }
 }
