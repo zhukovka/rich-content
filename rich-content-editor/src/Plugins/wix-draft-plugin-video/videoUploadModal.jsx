@@ -95,7 +95,7 @@ export class VideoUploadModal extends Component {
                 content={'Invalid URL'}
                 moveBy={{ x: -23, y: -5 }}
               >
-                <ErrorIcon className={Styles.errorIcon} />
+                <span><ErrorIcon className={Styles.errorIcon} /></span>
               </Tooltip>
             )}
           </div>

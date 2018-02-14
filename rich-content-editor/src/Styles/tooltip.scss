@@ -1,14 +1,5 @@
-.tooltip_container {
-    display: inline-block;
-    position: relative;
-
-    & > div {
-        display: inline-block;
-    }
-}
-
 .tooltip {
-    display: inline-block;
+    position: relative;
 
     &:hover::before {
         content: var(--content);
