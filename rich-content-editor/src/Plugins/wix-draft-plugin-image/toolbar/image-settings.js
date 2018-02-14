@@ -68,6 +68,16 @@ class ImageSettings extends Component {
     }
   };
 
+  addMetadataToBlock = () => {
+    const { pubsub } = this.props;
+    const { alt, caption } = this.state.item.metadata || {};
+    const metadata = {
+      alt: alt || undefined,
+      caption: caption || undefined,
+    };
+    pubsub.update('componentData', { item: { metadata } });
+  };
+
   deleteLink = () => {
     this.props.pubsub.set('componentLink', undefined);
   }
@@ -77,6 +87,9 @@ class ImageSettings extends Component {
     if (this.state.isDoneEnabled) {
       const { url, targetBlank, nofollow } = this.linkPanel.state;
       this.wrapBlockInLink({ url, targetBlank, nofollow });
+    }
+    if (this.state.item.metadata) {
+      this.addMetadataToBlock();
     }
     helpers.closeExternalModal();
   };
@@ -110,8 +123,8 @@ class ImageSettings extends Component {
               theme={this.props.theme}
               label={'Alt Text'}
               placeholder={'Add image Alt Text'}
-              value={metadata.altText || ''}
-              onChange={event => this.imageMetadataUpdated(item, { altText: event.target.value })}
+              value={metadata.alt || ''}
+              onChange={event => this.imageMetadataUpdated(item, { alt: event.target.value })}
             />
           </SettingsSection>
           <SettingsSection theme={this.props.theme} className={this.styles.imageSettingsSection}>

@@ -57,7 +57,7 @@ class LinkPanel extends Component {
       this.handleUrlChange();
     }
     this.setState({ isValidUrl: isValidUrlConst });
-    updateParentIfNecessary ? updateParentIfNecessary(!!(isValidUrlConst)) : false;
+    updateParentIfNecessary && updateParentIfNecessary(!!(isValidUrlConst));
   };
 
   handleKeyPress = e => {
