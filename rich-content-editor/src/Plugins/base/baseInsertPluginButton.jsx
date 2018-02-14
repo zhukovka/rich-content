@@ -140,10 +140,8 @@ export default ({ blockType, button, pubsub }) => {
         return (
           <Tooltip
             content={tooltipText}
-            textAlign="center"
-            maxWidth=""
             moveBy={{ x: 10 }}
-            shouldCloseOnClickOutside theme="dark"
+            theme={theme}
           >
             {Button}
           </Tooltip>

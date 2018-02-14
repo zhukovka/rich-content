@@ -93,11 +93,7 @@ export class VideoUploadModal extends Component {
             {this.state.isValidUrl ? null : (
               <Tooltip
                 content={'Invalid URL'}
-                textAlign="center"
-                maxWidth=""
                 moveBy={{ x: -23, y: -5 }}
-                shouldCloseOnClickOutside
-                theme="dark"
               >
                 <ErrorIcon className={Styles.errorIcon} />
               </Tooltip>

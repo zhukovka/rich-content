@@ -92,10 +92,6 @@ class LinkPanel extends Component {
             {this.state.isValidUrl ? null : (
               <Tooltip
                 content={'Invalid URL. Try Again'}
-                textAlign="center"
-                maxWidth=""
-                shouldCloseOnClickOutside
-                theme="dark"
                 moveBy={{ x: -23, y: -5 }}
               >
                 <ErrorIcon className={Styles.errorIcon} />
