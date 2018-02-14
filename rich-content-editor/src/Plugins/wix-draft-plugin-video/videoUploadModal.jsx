@@ -95,7 +95,7 @@ export class VideoUploadModal extends Component {
                 content={'Invalid URL'}
                 textAlign="center"
                 maxWidth=""
-                moveBy={{ x: 15 }}
+                moveBy={{ x: -23, y: -5 }}
                 shouldCloseOnClickOutside
                 theme="dark"
               >

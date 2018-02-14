@@ -40,7 +40,7 @@
         content: '';
         position: absolute;
         top: var(--moveByY);
-        right: var(--moveByX);
+        left: var(--moveByX);
         z-index: 1999;
         height: 10px;
         width: 10px;
