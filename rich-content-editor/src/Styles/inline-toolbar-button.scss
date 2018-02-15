@@ -2,7 +2,7 @@
 @import './palette';
 @import './consts';
 
-.inlineToolbarButton_wrapper {
+.buttonWrapper {
     display: inline-block;
     padding: 10px 0 6px;
     margin-right: 10px;
@@ -11,7 +11,7 @@
     }
 }
 
-.inlineToolbarButton {
+.button {
     background: transparent;
     color: $toolbar-font-color;
     padding: 5px;
@@ -24,7 +24,7 @@
     }
 }
 
-.inlineToolbarButton_icon {
+.icon {
     width: $icon-width;
     vertical-align: middle;
     @include svg-fill($toolbar-font-color);
@@ -33,7 +33,9 @@
     }
 }
 
-.inlineToolbarButton_icon_active {
-    color: $accent-color;
-    @include svg-fill($accent-color);
+.active {
+    .icon {
+        color: $accent-color;
+        @include svg-fill($accent-color);
+    }
 }

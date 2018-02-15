@@ -26,10 +26,10 @@ export default class LinkButton extends Component {
     const { isActive } = this.props;
     const { styles } = this;
 
-    const iconClassNames = isActive ? styles.inlineToolbarButton_icon_active : styles.inlineToolbarButton_icon;
+    const iconClassNames = isActive ? styles.active : styles.icon;
     return (
-      <div className={styles.inlineToolbarButton_wrapper} onMouseDown={this.preventBubblingUp}>
-        <button onClick={this.handleClick} className={styles.inlineToolbarButton}>
+      <div className={styles.buttonWrapper} onMouseDown={this.preventBubblingUp}>
+        <button onClick={this.handleClick} className={styles.button}>
           <div className={iconClassNames}>
             <LinkIcon />
           </div>
