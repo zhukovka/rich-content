@@ -32,7 +32,13 @@ const getMobileTheme = theme => {
 };
 
 const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme }) => {
-  const textButtons = buttons && buttons.textButtons ? buttons.textButtons : TextButtonList.filter(buttonName => buttonName.indexOf('Separator') === -1);
+  let textButtons;
+  if (buttons && buttons.textButtons) {
+    textButtons = buttons.textButtons;
+  } else {
+    TextButtonList.filter(buttonName => buttonName.indexOf('Separator') === -1);
+  }
+
   const structure = getTextButtonsFromList({
     buttons: textButtons,
     theme: mobileTheme
