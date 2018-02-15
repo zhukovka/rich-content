@@ -52,25 +52,25 @@ class ImageViewer extends React.Component {
     if (!this.props.isLoading) {
       return null;
     }
-    return <div className={this.styles.imageComponent_overlay}><ImageLoader type={'medium'} theme={this.props.theme}/></div>;
+    return <div className={this.styles.imageOverlay}><ImageLoader type={'medium'} theme={this.props.theme}/></div>;
   }
 
   renderTitle(data, styles) {
     const config = data.config || {};
-    return !!config.showTitle && <div className={classNames(styles.imageComponent_title)}>{(data && data.title) || ''}</div>;
+    return !!config.showTitle && <div className={classNames(styles.imageTitle)}>{(data && data.title) || ''}</div>;
   }
 
   renderDescription(data, styles) {
     const config = data.config || {};
     return !!config.showDescription &&
-      <div className={classNames(styles.imageComponent_description)}>{(data && data.description) || ''}</div>;
+      <div className={classNames(styles.imageDescription)}>{(data && data.description) || ''}</div>;
   }
 
-  renderCaption(caption, isFocused) {
+  renderCaption(caption, isFocused, styles) {
     return (
       caption ?
-        <div className={styles.imageComponent_caption}>{caption}</div> :
-        isFocused && <div className={styles.imageComponent_caption}>Enter image caption (optional)</div>
+        <div className={styles.imageCaption}>{caption}</div> :
+        isFocused && <div className={styles.imageCaption}>Enter image caption (optional)</div>
     );
   }
 
@@ -81,8 +81,8 @@ class ImageViewer extends React.Component {
     const { item = {} } = componentData;
     const { metadata = {} } = item;
 
-    const itemClassName = classNames(styles.imageComponent_container, className);
-    const imageClassName = classNames(styles.imageComponent_image);
+    const itemClassName = classNames(styles.imageContainer, className);
+    const imageClassName = classNames(styles.image);
     const imageSrc = this.getImageSrc(data.item);
     return (
       <div onClick={onClick} className={itemClassName}>
@@ -92,7 +92,7 @@ class ImageViewer extends React.Component {
         </div>
         {this.renderTitle(data, styles)}
         {this.renderDescription(data, styles)}
-        {this.renderCaption(metadata.caption, isFocused)}
+        {this.renderCaption(metadata.caption, isFocused, styles)}
       </div>
     );
   }
