@@ -138,6 +138,7 @@ class ImageSettings extends Component {
               nofollow={nofollow}
               updateParentIfNecessary={this.updateParentIfNecessary}
               isImageSettings
+              theme={theme}
             />
           </div>
           <SettingsPanelFooter theme={this.props.theme} cancel={() => this.revertComponentData()} save={() => this.onDoneClick()} />

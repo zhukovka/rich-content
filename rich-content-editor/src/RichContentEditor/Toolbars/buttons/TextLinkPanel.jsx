@@ -29,7 +29,7 @@ export default class TextLinkPanel extends Component {
   };
 
   render() {
-    const { getEditorState } = this.props;
+    const { getEditorState, theme } = this.props;
     const linkData = getLinkDataInSelection(getEditorState()) || {};
     const { url, targetBlank, nofollow } = linkData;
     return (<LinkPanelContainer
@@ -41,6 +41,7 @@ export default class TextLinkPanel extends Component {
       onCancel={this.hideLinkPanel}
       onDelete={this.deleteLink}
       onOverrideContent={this.props.onOverrideContent}
+      theme={theme}
     />);
   }
 }

@@ -24,6 +24,7 @@ class BlockLinkPanel extends Component {
   };
 
   render() {
+    const { theme } = this.props;
     const componentLink = this.props.pubsub.get('componentLink');
     const { url, targetBlank, nofollow } = componentLink || {};
     return (
@@ -36,6 +37,7 @@ class BlockLinkPanel extends Component {
         onCancel={this.hideLinkPanel}
         onDelete={this.deleteLink}
         onOverrideContent={this.props.onOverrideContent}
+        theme={theme}
       />
     );
   }
@@ -45,6 +47,8 @@ BlockLinkPanel.propTypes = {
   pubsub: PropTypes.object.isRequired,
   onExtendContent: PropTypes.func.isRequired,
   onOverrideContent: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
+
 };
 
 export default BlockLinkPanel;

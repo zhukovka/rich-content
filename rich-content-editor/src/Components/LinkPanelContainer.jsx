@@ -5,7 +5,9 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 
 import LinkHeader from './LinkHeader';
 import LinkPanel from './LinkPanel';
-import Styles from '~/Styles/link-panel.scss';
+
+import { mergeStyles } from '~/Utils';
+import styles from '~/Styles/link-panel.scss';
 import RadioGroupHorizontal from './RadioGroupHorizontal';
 
 const LinkType = props => (
@@ -26,6 +28,7 @@ class LinkPanelContainer extends Component {
     this.state = {
       isDoneEnabled: false,
     };
+    this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
   setLinkPanel = linkPanel => this.linkPanel = linkPanel;
@@ -35,6 +38,7 @@ class LinkPanelContainer extends Component {
       isActive: this.props.isActive,
       onBack: this.props.onCancel,
       onDelete: this.props.onDelete,
+      theme: this.props.theme
     };
 
     const LinkHeaderWithProps = decorateComponentWithProps(LinkHeader, linkHeaderProps);
@@ -55,28 +59,30 @@ class LinkPanelContainer extends Component {
   }
 
   render() {
-    const { url, targetBlank, nofollow } = this.props;
-    const doneButtonClassName = classNames(Styles.linkPanelFooterButton,
+    const { styles } = this;
+    const { url, targetBlank, nofollow, theme } = this.props;
+    const doneButtonClassName = classNames(styles.linkPanel_FooterButton,
       {
-        [Styles.enabled]: this.state.isDoneEnabled,
-        [Styles.disabled]: !this.state.isDoneEnabled
+        [styles.linkPanel_enabled]: this.state.isDoneEnabled,
+        [styles.linkPanel_disabled]: !this.state.isDoneEnabled
       }
     );
     return (
-      <div className={Styles.linkPanelModal}>
+      <div className={styles.linkPanel_modal}>
         {/*<LinkType
             value="url"
           />*/}
         <LinkPanel
           ref={this.setLinkPanel}
+          theme={theme}
           url={url}
           targetBlank={targetBlank}
           nofollow={nofollow}
           updateParentIfNecessary={this.updateParentIfNecessary}
         />
-        <div className={Styles.actionsDivider} />
-        <div className={Styles.linkPanelFooter}>
-          <div className={Styles.linkPanelFooterButton} onClick={this.onCancelClick}>Cancel</div>
+        <div className={styles.linkPanel_actionsDivider} />
+        <div className={styles.linkPanel_Footer}>
+          <div className={styles.linkPanel_FooterButton} onClick={this.onCancelClick}>Cancel</div>
           <div className={doneButtonClassName} onClick={this.onDoneClick}>Update</div>
         </div>
       </div>
@@ -93,6 +99,7 @@ LinkPanelContainer.propTypes = {
   targetBlank: PropTypes.bool,
   nofollow: PropTypes.bool,
   onOverrideContent: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 export default LinkPanelContainer;

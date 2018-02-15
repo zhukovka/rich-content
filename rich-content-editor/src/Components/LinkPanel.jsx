@@ -6,8 +6,8 @@ import { isValidUrl } from '~/Utils/urlValidators';
 
 import Tooltip from '~/Components/Tooltip';
 import ErrorIcon from './icons/error.svg';
-
-import Styles from '~/Styles/link-panel.scss';
+import { mergeStyles } from '~/Utils';
+import styles from '~/Styles/link-panel.scss';
 
 class LinkPanel extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class LinkPanel extends Component {
       targetBlank: isUndefined(targetBlank) ? true : targetBlank,
       nofollow: isUndefined(nofollow) ? false : nofollow,
     };
-
+    this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
   componentDidMount() {
@@ -67,20 +67,21 @@ class LinkPanel extends Component {
   };
 
   render() {
+    const { styles } = this;
     const { isImageSettings } = this.props;
     const firstCheckboxText = 'Open Link in New Window / Tab';
     const secondCheckboxText = 'Add rel="nofollow" to link';
     const inputPlaceholder = isImageSettings ? 'Add a link' : 'e.g. www.wix.com';
-    const textInputClassName = classNames(Styles.textInput,
+    const textInputClassName = classNames(styles.linkPanel_textInput,
       {
-        [Styles.invalid]: !this.state.isValidUrl,
-        [Styles.imageSettings]: isImageSettings
+        [styles.linkPanel_textInput_invalid]: !this.state.isValidUrl,
+        [styles.linkPanel_imageSettings]: isImageSettings
       }
     );
     return (
-      <div className={Styles.linkPanelContent}>
+      <div className={styles.linkPanel_Content}>
         <div onKeyPress={this.handleKeyPress}>
-          <div className={Styles.linkPanelInput}>
+          <div className={styles.linkPanel_Input}>
             <input
               ref={ref => (this.input = ref)}
               className={textInputClassName}
@@ -94,25 +95,25 @@ class LinkPanel extends Component {
                 content={'Invalid URL. Try Again'}
                 moveBy={{ x: -23, y: -5 }}
               >
-                <span><ErrorIcon className={Styles.errorIcon} /></span>
+                <span><ErrorIcon className={styles.linkPanel_errorIcon} /></span>
               </Tooltip>
             )}
           </div>
         </div>
         <checkboxWrapper>
-          <div className={Styles.checkboxContainer}>
+          <div className={styles.linkPanel_checkboxContainer}>
             <input
-              className={Styles.checkboxContainerInput} type="checkbox" id="firstCheckboxLinkPanel"
+              className={styles.linkPanel_checkboxContainerInput} type="checkbox" id="firstCheckboxLinkPanel"
               onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}
             />
-            <label className={Styles.checkboxContainerLabel} htmlFor="firstCheckboxLinkPanel">{firstCheckboxText}</label>
+            <label className={styles.linkPanel_checkboxContainerLabel} htmlFor="firstCheckboxLinkPanel">{firstCheckboxText}</label>
           </div>
-          <div className={Styles.checkboxContainer}>
+          <div className={styles.linkPanel_checkboxContainer}>
             <input
-              className={Styles.checkboxContainerInput} type="checkbox"
+              className={styles.linkPanel_checkboxContainerInput} type="checkbox"
               id="secondCheckboxLinkPanel" onChange={this.handleNofollowChange} defaultChecked={this.state.nofollow}
             />
-            <label className={Styles.checkboxContainerLabel} htmlFor="secondCheckboxLinkPanel">{secondCheckboxText}</label>
+            <label className={styles.linkPanel_checkboxContainerLabel} htmlFor="secondCheckboxLinkPanel">{secondCheckboxText}</label>
           </div>
         </checkboxWrapper>
       </div>
@@ -126,5 +127,6 @@ LinkPanel.propTypes = {
   nofollow: PropTypes.bool,
   updateParentIfNecessary: PropTypes.func,
   isImageSettings: PropTypes.bool,
+  theme: PropTypes.object.isRequired,
 };
 export default LinkPanel;
