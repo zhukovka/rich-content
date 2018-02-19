@@ -266,6 +266,7 @@ export class SortableComponent extends Component {
           isMobile={this.props.isMobile}
         />
         {this.state.imageSettingsVisible ? <ImageSettings
+          theme={this.props.theme}
           images={this.state.items}
           selectedImage={this.state.editedImage}
           onCancel={items => this.saveImageSettings(items)}
@@ -282,5 +283,6 @@ SortableComponent.propTypes = {
   addItems: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleFileChange: PropTypes.func.isRequired,
-  isMobile: PropTypes.bool
+  isMobile: PropTypes.bool,
+  theme: PropTypes.object.isRequired,
 };

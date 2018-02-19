@@ -82,7 +82,12 @@ class ImageSettings extends Component {
           }
           <div className={classNames(styles.imageSettings_scrollContainer, { [styles.mobile]: isMobile })}>
             <SettingsSection theme={theme}>
-              <Image resizeMode={'contain'} className={styles.imageSettings_image} src={`https://static.wixstatic.com/${selectedImage.url}`} />
+              <Image
+                resizeMode={'contain'}
+                className={styles.imageSettings_image}
+                src={`https://static.wixstatic.com/${selectedImage.url}`}
+                theme={theme}
+              />
               <div className={classNames(styles.imageSettings_nav, { [styles.mobile]: isMobile })}>
                 <i
                   className={classNames(styles.imageSettings_previous, this.state.selectedIndex === 0 ? styles.imageSettings_hidden : '')}
