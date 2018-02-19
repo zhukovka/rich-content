@@ -7,7 +7,7 @@ export default ({ alignment, Icon }) =>
     static propTypes = {
       alignment: PropTypes.string,
       onClick: PropTypes.func,
-      theme: PropTypes.object,
+      theme: PropTypes.object.isRequired,
     };
 
     isActive = () => this.props.alignment === alignment;

@@ -69,5 +69,5 @@ AlignmentPanel.propTypes = {
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
   onOverrideContent: PropTypes.func.isRequired,
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
 };

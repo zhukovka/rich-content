@@ -52,5 +52,5 @@ AddPluginButton.propTypes = {
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
   pluginButtons: PropTypes.array,
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
 };

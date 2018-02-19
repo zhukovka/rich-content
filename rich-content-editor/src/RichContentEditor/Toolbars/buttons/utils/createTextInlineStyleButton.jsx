@@ -8,7 +8,7 @@ export default ({ style, Icon }) =>
     static propTypes = {
       getEditorState: PropTypes.func.isRequired,
       setEditorState: PropTypes.func.isRequired,
-      theme: PropTypes.object,
+      theme: PropTypes.object.isRequired,
     };
 
     toggleStyle = event => {

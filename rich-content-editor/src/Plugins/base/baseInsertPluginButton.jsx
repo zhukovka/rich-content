@@ -157,7 +157,7 @@ export default ({ blockType, button, pubsub }) => {
     setEditorState: PropTypes.func.isRequired,
     hidePopup: PropTypes.func,
     showName: PropTypes.bool,
-    theme: PropTypes.object,
+    theme: PropTypes.object.isRequired,
     isMobile: PropTypes.bool,
   };
 

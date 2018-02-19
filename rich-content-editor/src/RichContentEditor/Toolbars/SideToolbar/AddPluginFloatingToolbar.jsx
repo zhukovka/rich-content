@@ -117,6 +117,6 @@ AddPluginFloatingToolbar.propTypes = {
   setEditorState: PropTypes.func.isRequired,
   structure: PropTypes.array.isRequired,
   pubsub: PropTypes.object.isRequired,
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
   isMobile: PropTypes.bool
 };

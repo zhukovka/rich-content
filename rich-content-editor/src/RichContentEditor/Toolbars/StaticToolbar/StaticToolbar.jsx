@@ -7,7 +7,7 @@ export default class StaticToolbar extends React.Component {
   static propTypes = {
     pubsub: PropTypes.object.isRequired,
     structure: PropTypes.array.isRequired,
-    theme: PropTypes.object,
+    theme: PropTypes.object.isRequired,
     isMobile: PropTypes.bool
   };
 

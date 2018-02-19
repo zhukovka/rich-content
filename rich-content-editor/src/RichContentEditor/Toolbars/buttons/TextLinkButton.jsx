@@ -36,5 +36,5 @@ TextLinkButton.propTypes = {
   setEditorState: PropTypes.func.isRequired,
   onExtendContent: PropTypes.func.isRequired,
   onOverrideContent: PropTypes.func.isRequired,
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
 };

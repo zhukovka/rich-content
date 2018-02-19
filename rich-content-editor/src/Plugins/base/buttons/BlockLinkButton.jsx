@@ -35,7 +35,7 @@ BlockLinkButton.propTypes = {
   pubsub: PropTypes.object.isRequired,
   onExtendContent: PropTypes.func.isRequired,
   onOverrideContent: PropTypes.func.isRequired,
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
 };
 
 export default BlockLinkButton;

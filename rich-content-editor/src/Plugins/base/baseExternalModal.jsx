@@ -21,6 +21,6 @@ BaseExternalModal.propTypes = {
   store: PropTypes.object.isRequired,
   componentData: PropTypes.object.isRequired,
   componentState: PropTypes.object.isRequired,
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
   helpers: PropTypes.object,
 };
