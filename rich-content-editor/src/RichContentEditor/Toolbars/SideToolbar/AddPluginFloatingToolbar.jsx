@@ -14,6 +14,24 @@ export default class AddPluginFloatingToolbar extends Component {
     },
   };
 
+  componentDidMount() {
+    setTimeout(() => {
+      window.addEventListener('click', this.onWindowClick);
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this.onWindowClick);
+  }
+
+  onWindowClick = event => {
+    event.preventDefault();
+    if (this.state.isActive) {
+      this.setState({ isActive: false });
+      this.hidePopup();
+    }
+  }
+
   onMouseDown = event => {
     event.preventDefault();
     event.stopPropagation();
@@ -72,6 +90,7 @@ export default class AddPluginFloatingToolbar extends Component {
         <Tooltip
           content={'Insert Media'}
           moveBy={{ x: 7, y: -7 }}
+          theme={theme}
         >
           <div className={floatingIconClassNames} onMouseDown={this.onMouseDown} ref={el => (this.selectButton = el)}>
             {!this.state.isActive ? <PlusIcon /> : <PlusActiveIcon />}
