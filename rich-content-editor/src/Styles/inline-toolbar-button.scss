@@ -28,13 +28,8 @@
     width: $icon-width;
     vertical-align: middle;
     @include svg-fill($toolbar-font-color);
-    &:hover {
-        @include svg-fill($accent-color);
-    }
-}
 
-.active {
-    .icon {
+    &.active, &:hover {
         color: $accent-color;
         @include svg-fill($accent-color);
     }

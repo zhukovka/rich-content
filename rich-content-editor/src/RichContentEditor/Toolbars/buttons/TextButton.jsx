@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { mergeStyles } from '~/Utils';
 import styles from '~/Styles/inline-toolbar-button.scss';
@@ -33,7 +34,13 @@ export default class TextButton extends Component {
   render() {
     const { styles } = this;
     const { icon: Icon } = this.props;
-    const iconClassNames = this.isActive() ? styles.active : styles.icon;
+    const iconClassNames = classNames(
+      styles.icon,
+      {
+        [styles.active]: this.isActive(),
+      }
+    );
+
     return (
       <div className={styles.buttonWrapper} onMouseDown={this.preventBubblingUp}>
         <button className={styles.button} onClick={this.handleClick}>
