@@ -73,7 +73,7 @@ export default class AddPluginFloatingToolbar extends Component {
   getPopupOffset = () => {
     if (!this.popupOffset) {
       if (this.popup) {
-        this.popupOffset = this.popup.offsetWidth / 2 + 35;
+        this.popupOffset = this.popup.offsetWidth / 2 + 28;
       }
     }
     return this.popupOffset;
