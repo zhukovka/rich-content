@@ -20,17 +20,21 @@ import buttonStyles from '~/Styles/plugin-toolbar-button.scss';
 
 const toolbarOffset = 12;
 
+const getInitialState = () => (
+  {
+    position: { transform: 'translate(-50%) scale(0)' },
+    componentData: {},
+    componentState: {},
+    overrideContent: undefined,
+    extendContent: undefined,
+  }
+);
+
 export default function createToolbar({ buttons, theme, pubsub, helpers, isMobile }) {
   class BaseToolbar extends Component {
     constructor(props) {
       super(props);
-      this.state = {
-        position: { transform: 'translate(-50%) scale(0)' },
-        componentData: {},
-        componentState: {},
-        overrideContent: undefined,
-        extendContent: undefined,
-      };
+      this.state = getInitialState();
     }
 
     componentDidMount() {
@@ -42,9 +46,6 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       pubsub.subscribe('componentLink', this.onComponentLinkChange);
     }
 
-    onOverrideContent = overrideContent => this.setState({ overrideContent });
-
-    onExtendContent = extendContent => this.setState({ extendContent });
 
     componentWillUnmount() {
       pubsub.unsubscribe('visibleBlock', this.onVisibilityChanged);
@@ -54,6 +55,10 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       pubsub.unsubscribe('componentSize', this.onComponentSizeChange);
       pubsub.unsubscribe('componentLink', this.onComponentLinkChange);
     }
+
+    onOverrideContent = overrideContent => this.setState({ overrideContent });
+
+    onExtendContent = extendContent => this.setState({ extendContent });
 
     onComponentStateChanged = contentState => {
       this.setState({ contentState });
@@ -105,14 +110,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
     };
 
     hideToolbar = () => {
-      const position = {
-        transform: 'translate(-50%) scale(0)',
-      };
-      this.setState({
-        position,
-        componentData: {},
-        componentState: {},
-      });
+      this.setState(getInitialState());
     };
 
     showToolbar = () => {
