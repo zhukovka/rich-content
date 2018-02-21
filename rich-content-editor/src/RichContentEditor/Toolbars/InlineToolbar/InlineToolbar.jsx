@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import { getVisibleSelectionRect } from '@wix/draft-js';
 import Styles from '~/Styles/inline-toolbar.scss';
 
+const toolbarOffset = 5;
+
 const getRelativeParent = element => {
   if (!element) {
     return null;
@@ -22,6 +24,7 @@ export default class InlineToolbar extends Component {
     pubsub: PropTypes.object.isRequired,
     structure: PropTypes.array.isRequired,
     theme: PropTypes.object,
+    isMobile: PropTypes.bool,
   };
 
   state = {
@@ -47,7 +50,7 @@ export default class InlineToolbar extends Component {
     // need to wait a tick for window.getSelection() to be accurate
     // when focusing editor with already present selection
     setTimeout(() => {
-      if (!this.toolbar || this.state.extendContent) {
+      if (!this.toolbar || this.state.overrideContent || this.state.extendContent) {
         return;
       }
 
@@ -61,9 +64,14 @@ export default class InlineToolbar extends Component {
         return;
       }
 
-      const top = (selectionRect.top - relativeRect.top) - toolbarHeight;
-      let left = (selectionRect.left - relativeRect.left) + (selectionRect.width / 2);
+      let top;
+      if (!this.props.isMobile) {
+        top = ((selectionRect.top - relativeRect.top) - toolbarHeight) - toolbarOffset;
+      } else {
+        top = (selectionRect.bottom - relativeRect.top) + toolbarOffset;
+      }
 
+      let left = (selectionRect.left - relativeRect.left) + (selectionRect.width / 2);
       // make sure we're not out of bounds, adjust position if we are
       if (left < halfToolbarWidth) {
         left = halfToolbarWidth;
@@ -105,7 +113,9 @@ export default class InlineToolbar extends Component {
     const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
     const { buttonStyles, toolbarStyles } = theme || {};
     const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
-    const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons);
+    const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons, {
+      [Styles.overrideContent]: !!OverrideContent
+    });
     const extendClassNames = classNames(Styles.extend, toolbarStyles && toolbarStyles.extend);
     const childrenProps = {
       theme: buttonStyles,

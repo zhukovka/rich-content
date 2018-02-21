@@ -57,7 +57,7 @@ export default class AlignmentPanel extends Component {
     };
     return (
       <div className={styles.flex}>
-        <TextButton icon={BackArrowIcon} onClick={this.handleBackClick} />
+        <TextButton icon={BackArrowIcon} onClick={this.handleBackClick} theme={this.props.theme}/>
         <Separator />
         {this.alignmentButtons.map((Button, i) => <Button key={i} {...buttonProps} />)}
       </div>

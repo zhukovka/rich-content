@@ -33,7 +33,7 @@ const { divider1, divider2, divider3, divider4 } = DividerTheme;
 
 const { inChange, itemsContainer, invalidGalleryItems } = HtmlTheme;
 
-const { loader, loaderOverlay, imageContainer, imageTitle, imageDescription } = ImageTheme;
+const { loader, loaderOverlay, imageContainer, imageOverlay, image, imageTitle, imageDescription, imageCaption } = ImageTheme;
 
 const { videoOverlay, player, videoContainer } = VideoTheme;
 
@@ -49,7 +49,7 @@ const theme = {
   hasFocus, overlay, pluginContainerReadOnly, pluginContainer, panelContainer,
   divider1, divider2, divider3, divider4,
   inChange, itemsContainer, invalidGalleryItems,
-  loader, loaderOverlay, imageContainer, imageTitle, imageDescription,
+  loader, loaderOverlay, imageContainer, imageOverlay, image, imageTitle, imageDescription, imageCaption,
   videoOverlay, player, videoContainer,
   toolbars,
   modals

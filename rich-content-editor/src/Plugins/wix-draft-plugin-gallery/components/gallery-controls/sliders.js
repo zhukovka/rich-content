@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SliderWithInput from '../stylable-base/slider-with-input';
+import SliderWithInput from './slider-with-input';
 
 const propTypes = {
   value: PropTypes.number.isRequired,

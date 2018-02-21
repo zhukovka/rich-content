@@ -1,11 +1,32 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
+import decorateComponentWithProps from 'decorate-component-with-props';
 import { EditorState } from '@wix/draft-js';
 import isEmpty from 'lodash/isEmpty';
 import { insertLink, getLinkDataInSelection, removeLinksInSelection } from '~/Utils';
 import LinkPanelContainer from '~/Components/LinkPanelContainer';
 
 export default class TextLinkPanel extends Component {
+  componentDidMount() {
+    const { getEditorState, theme } = this.props;
+    const linkData = getLinkDataInSelection(getEditorState());
+    const { url, targetBlank, nofollow } = linkData || {};
+    const linkContainerProps = {
+      url,
+      targetBlank,
+      nofollow,
+      theme,
+      isActive: !isEmpty(linkData),
+      onDone: this.createLinkEntity,
+      onCancel: this.hideLinkPanel,
+      onDelete: this.deleteLink,
+      onOverrideContent: this.props.onOverrideContent,
+    };
+
+    const LinkHeaderWithProps = decorateComponentWithProps(LinkPanelContainer, linkContainerProps);
+    this.props.onOverrideContent(LinkHeaderWithProps);
+  }
+
   createLinkEntity = ({ url, targetBlank, nofollow }) => {
     if (!isEmpty(url)) {
       const { getEditorState, setEditorState } = this.props;
@@ -29,19 +50,7 @@ export default class TextLinkPanel extends Component {
   };
 
   render() {
-    const { getEditorState } = this.props;
-    const linkData = getLinkDataInSelection(getEditorState()) || {};
-    const { url, targetBlank, nofollow } = linkData;
-    return (<LinkPanelContainer
-      url={url}
-      targetBlank={targetBlank}
-      nofollow={nofollow}
-      isActive={!isEmpty(linkData)}
-      onDone={this.createLinkEntity}
-      onCancel={this.hideLinkPanel}
-      onDelete={this.deleteLink}
-      onOverrideContent={this.props.onOverrideContent}
-    />);
+    return false;
   }
 }
 

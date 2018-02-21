@@ -20,17 +20,21 @@ import buttonStyles from '~/Styles/plugin-toolbar-button.scss';
 
 const toolbarOffset = 12;
 
+const getInitialState = () => (
+  {
+    position: { transform: 'translate(-50%) scale(0)' },
+    componentData: {},
+    componentState: {},
+    overrideContent: undefined,
+    extendContent: undefined,
+  }
+);
+
 export default function createToolbar({ buttons, theme, pubsub, helpers, isMobile }) {
   class BaseToolbar extends Component {
     constructor(props) {
       super(props);
-      this.state = {
-        position: { transform: 'translate(-50%) scale(0)' },
-        componentData: {},
-        componentState: {},
-        overrideContent: undefined,
-        extendContent: undefined,
-      };
+      this.state = getInitialState();
     }
 
     componentDidMount() {
@@ -39,11 +43,9 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       pubsub.subscribe('componentData', this.onComponentDataChanged);
       pubsub.subscribe('componentAlignment', this.onComponentAlignmentChange);
       pubsub.subscribe('componentSize', this.onComponentSizeChange);
+      pubsub.subscribe('componentLink', this.onComponentLinkChange);
     }
 
-    onOverrideContent = overrideContent => this.setState({ overrideContent });
-
-    onExtendContent = extendContent => this.setState({ extendContent });
 
     componentWillUnmount() {
       pubsub.unsubscribe('visibleBlock', this.onVisibilityChanged);
@@ -51,7 +53,12 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       pubsub.unsubscribe('componentData', this.onComponentDataChanged);
       pubsub.unsubscribe('componentAlignment', this.onComponentAlignmentChange);
       pubsub.unsubscribe('componentSize', this.onComponentSizeChange);
+      pubsub.unsubscribe('componentLink', this.onComponentLinkChange);
     }
+
+    onOverrideContent = overrideContent => this.setState({ overrideContent });
+
+    onExtendContent = extendContent => this.setState({ extendContent });
 
     onComponentStateChanged = contentState => {
       this.setState({ contentState });
@@ -59,6 +66,12 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
 
     onComponentDataChanged = componentData => {
       this.setState({ componentData });
+    };
+
+    onComponentLinkChange = link => {
+      if (link) {
+        pubsub.update('componentData', { config: { link } });
+      }
     };
 
     setAlignment = alignment => {
@@ -97,14 +110,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
     };
 
     hideToolbar = () => {
-      const position = {
-        transform: 'translate(-50%) scale(0)',
-      };
-      this.setState({
-        position,
-        componentData: {},
-        componentState: {},
-      });
+      this.setState(getInitialState());
     };
 
     showToolbar = () => {
@@ -193,10 +199,13 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
     };
 
     render = () => {
+      const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
       const { toolbarStyles: toolbarTheme } = theme || {};
       const { buttonStyles: buttonTheme, separatorStyles: separatorTheme } = theme || {};
       const containerClassNames = classNames(toolbarStyles.toolbar, toolbarTheme && toolbarTheme.toolbar);
-      const buttonContainerClassnames = classNames(toolbarStyles.buttons, toolbarTheme && toolbarTheme.buttons);
+      const buttonContainerClassnames = classNames(toolbarStyles.buttons, toolbarTheme && toolbarTheme.buttons, {
+        [toolbarStyles.overrideContent]: !!OverrideContent
+      });
       const modal = theme.modal ? { modal: { ...theme.modal } } : {};
       const themedButtonStyle = {
         buttonWrapper: classNames(buttonStyles.buttonWrapper, buttonTheme && buttonTheme.buttonWrapper),
@@ -206,7 +215,6 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
         ...modal
       };
       const separatorClassNames = classNames(toolbarStyles.separator, separatorTheme && separatorTheme.separator);
-      const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
       const overrideProps = { onOverrideContent: this.onOverrideContent };
       const extendProps = { onExtendContent: this.onExtendContent };
       const structure = isMobile ? buttons.filter(button => button.mobile) : buttons;

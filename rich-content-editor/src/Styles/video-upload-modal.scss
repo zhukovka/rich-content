@@ -80,6 +80,7 @@
     height: 42px;
     border: 1px solid;
     padding-left: 18px;
+    box-sizing: border-box;
 
     &.invalid {
       border-color: red;
@@ -92,6 +93,7 @@
     bottom: 0;
     top: 0;
     margin: auto;
+    width: 13px;
   }
 }
 

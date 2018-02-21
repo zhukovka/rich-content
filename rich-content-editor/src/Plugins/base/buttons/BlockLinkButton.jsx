@@ -10,11 +10,12 @@ class BlockLinkButton extends Component {
   }
 
   showLinkPanel = () => {
-    const { pubsub, onExtendContent, onOverrideContent } = this.props;
+    const { pubsub, onExtendContent, onOverrideContent, theme } = this.props;
     const linkPanelProps = {
       pubsub,
       onExtendContent,
       onOverrideContent,
+      theme
     };
     const BlockLinkPanelWithProps = decorateComponentWithProps(BlockLinkPanel, linkPanelProps);
     onExtendContent(BlockLinkPanelWithProps);

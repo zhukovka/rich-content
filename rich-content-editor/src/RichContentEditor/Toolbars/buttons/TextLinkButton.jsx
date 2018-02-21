@@ -7,10 +7,11 @@ import TextLinkPanel from './TextLinkPanel';
 
 export default class TextLinkButton extends Component {
   showLinkPanel = () => {
-    const { onExtendContent, onOverrideContent } = this.props;
+    const { onExtendContent, onOverrideContent, theme } = this.props;
     const linkPanelProps = {
       onExtendContent,
       onOverrideContent,
+      theme
     };
     const TextLinkPanelWithProps = decorateComponentWithProps(TextLinkPanel, linkPanelProps);
     onExtendContent(TextLinkPanelWithProps);

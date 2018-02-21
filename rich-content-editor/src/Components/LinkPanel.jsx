@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import isUndefined from 'lodash/isUndefined';
 import { isValidUrl } from '~/Utils/urlValidators';
 
-import Tooltip from 'wix-style-react/dist/src/Tooltip';
+import Tooltip from '~/Components/Tooltip';
 import ErrorIcon from './icons/error.svg';
-
-import Styles from '~/Styles/link-panel.scss';
+import { mergeStyles } from '~/Utils';
+import styles from '~/Styles/link-panel.scss';
 
 class LinkPanel extends Component {
   constructor(props) {
     super(props);
     const { url, targetBlank, nofollow } = props;
+    const intermediateUrl = url || '';
     this.state = {
-      intermediateUrl: url || '',
+      intermediateUrl,
       url: url || '',
       isValidUrl: true,
-      targetBlank: targetBlank || true,
-      nofollow: nofollow || false,
+      targetBlank: isUndefined(targetBlank) ? true : targetBlank,
+      nofollow: isUndefined(nofollow) ? false : nofollow,
     };
+    this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
   handleIntermediateUrlChange = event => {
@@ -38,74 +41,69 @@ class LinkPanel extends Component {
     this.setState({ nofollow: event.target.checked });
   };
 
-  onBlur = e => {
-    e.stopPropagation();
+  validateUrl = () => {
     const { intermediateUrl } = this.state;
-    const { updateParentIfNecessary } = this.props;
     const isValidUrlConst = isValidUrl(intermediateUrl);
     if (isValidUrlConst) {
       this.handleUrlChange();
     }
     this.setState({ isValidUrl: isValidUrlConst });
-    updateParentIfNecessary ? updateParentIfNecessary(!!(isValidUrlConst && this.state.url)) : false;
   };
 
   handleKeyPress = e => {
     if (e.charCode === 13) {
-      this.onBlur(e);
+      this.validateUrl(e);
     }
   };
 
   render() {
+    const { styles } = this;
     const { isImageSettings } = this.props;
     const firstCheckboxText = 'Open Link in New Window / Tab';
     const secondCheckboxText = 'Add rel="nofollow" to link';
     const inputPlaceholder = isImageSettings ? 'Add a link' : 'e.g. www.wix.com';
-    const textInputClassName = classNames(Styles.textInput,
+    const textInputClassName = classNames(styles.linkPanel_textInput,
       {
-        [Styles.invalid]: !this.state.isValidUrl,
-        [Styles.imageSettings]: isImageSettings
+        [styles.linkPanel_textInput_invalid]: !this.state.isValidUrl,
+        [styles.linkPanel_imageSettings]: isImageSettings
       }
     );
     return (
-      <div className={Styles.linkPanelContent}>
+      <div className={styles.linkPanel_Content}>
         <div onKeyPress={this.handleKeyPress}>
-          <div className={Styles.linkPanelInput}>
+          <div className={styles.linkPanel_Input}>
             <input
               ref={ref => (this.input = ref)}
               className={textInputClassName}
               placeholder={inputPlaceholder}
               onChange={this.handleIntermediateUrlChange}
-              onBlur={this.onBlur}
+              onBlur={this.validateUrl}
               value={this.state.intermediateUrl}
             />
             {this.state.isValidUrl ? null : (
               <Tooltip
                 content={'Invalid URL. Try Again'}
-                textAlign="center"
-                maxWidth=""
-                shouldCloseOnClickOutside
-                theme="dark"
+                moveBy={{ x: -23, y: -5 }}
               >
-                <ErrorIcon className={Styles.errorIcon} />
+                <span><ErrorIcon className={styles.linkPanel_errorIcon} /></span>
               </Tooltip>
             )}
           </div>
         </div>
         <checkboxWrapper>
-          <div className={Styles.checkboxContainer}>
+          <div className={styles.linkPanel_checkboxContainer}>
             <input
-              className={Styles.checkboxContainerInput} type="checkbox" id="firstCheckboxLinkPanel"
+              className={styles.linkPanel_checkboxContainerInput} type="checkbox" id="firstCheckboxLinkPanel"
               onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}
             />
-            <label className={Styles.checkboxContainerLabel} htmlFor="firstCheckboxLinkPanel">{firstCheckboxText}</label>
+            <label className={styles.linkPanel_checkboxContainerLabel} htmlFor="firstCheckboxLinkPanel">{firstCheckboxText}</label>
           </div>
-          <div className={Styles.checkboxContainer}>
+          <div className={styles.linkPanel_checkboxContainer}>
             <input
-              className={Styles.checkboxContainerInput} type="checkbox"
+              className={styles.linkPanel_checkboxContainerInput} type="checkbox"
               id="secondCheckboxLinkPanel" onChange={this.handleNofollowChange} defaultChecked={this.state.nofollow}
             />
-            <label className={Styles.checkboxContainerLabel} htmlFor="secondCheckboxLinkPanel">{secondCheckboxText}</label>
+            <label className={styles.linkPanel_checkboxContainerLabel} htmlFor="secondCheckboxLinkPanel">{secondCheckboxText}</label>
           </div>
         </checkboxWrapper>
       </div>
@@ -117,7 +115,7 @@ LinkPanel.propTypes = {
   url: PropTypes.string,
   targetBlank: PropTypes.bool,
   nofollow: PropTypes.bool,
-  updateParentIfNecessary: PropTypes.func,
   isImageSettings: PropTypes.bool,
+  theme: PropTypes.object.isRequired,
 };
 export default LinkPanel;

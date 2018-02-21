@@ -4,8 +4,6 @@ import classNames from 'classnames';
 import DraftOffsetKey from '@wix/draft-js/lib/DraftOffsetKey';
 import Styles from '~/Styles/side-toolbar-wrapper.scss';
 
-const toolbarOffset = 4;
-
 export default class SideToolbar extends Component {
   static propTypes = {
     pubsub: PropTypes.object.isRequired,
@@ -55,7 +53,7 @@ export default class SideToolbar extends Component {
       const { offset } = this.props;
       this.setState({
         position: {
-          top: top + scrollY - parentTop - toolbarOffset + offset.y,
+          top: top + scrollY - parentTop + offset.y,
           [!isMobile ? 'left' : 'right']: offset.x,
           transform: 'scale(1)',
           transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
