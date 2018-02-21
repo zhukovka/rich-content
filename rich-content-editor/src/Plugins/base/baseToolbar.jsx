@@ -199,10 +199,13 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
     };
 
     render = () => {
+      const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
       const { toolbarStyles: toolbarTheme } = theme || {};
       const { buttonStyles: buttonTheme, separatorStyles: separatorTheme } = theme || {};
       const containerClassNames = classNames(toolbarStyles.toolbar, toolbarTheme && toolbarTheme.toolbar);
-      const buttonContainerClassnames = classNames(toolbarStyles.buttons, toolbarTheme && toolbarTheme.buttons);
+      const buttonContainerClassnames = classNames(toolbarStyles.buttons, toolbarTheme && toolbarTheme.buttons, {
+        [toolbarStyles.overrideContent]: !!OverrideContent
+      });
       const modal = theme.modal ? { modal: { ...theme.modal } } : {};
       const themedButtonStyle = {
         buttonWrapper: classNames(buttonStyles.buttonWrapper, buttonTheme && buttonTheme.buttonWrapper),
@@ -212,7 +215,6 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
         ...modal
       };
       const separatorClassNames = classNames(toolbarStyles.separator, separatorTheme && separatorTheme.separator);
-      const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
       const overrideProps = { onOverrideContent: this.onOverrideContent };
       const extendProps = { onExtendContent: this.onExtendContent };
       const structure = isMobile ? buttons.filter(button => button.mobile) : buttons;

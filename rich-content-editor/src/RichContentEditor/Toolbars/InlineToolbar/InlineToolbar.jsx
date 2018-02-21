@@ -113,7 +113,9 @@ export default class InlineToolbar extends Component {
     const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
     const { buttonStyles, toolbarStyles } = theme || {};
     const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
-    const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons);
+    const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons, {
+      [Styles.overrideContent]: !!OverrideContent
+    });
     const extendClassNames = classNames(Styles.extend, toolbarStyles && toolbarStyles.extend);
     const childrenProps = {
       theme: buttonStyles,
