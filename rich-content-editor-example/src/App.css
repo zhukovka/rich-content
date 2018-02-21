@@ -45,6 +45,8 @@
 /*** MOBILE ***/
 @media only screen and (max-width: 640px) {
   .content {
+    width: auto;
+    margin: 0;
     padding: 18px;
   }
 }
