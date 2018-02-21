@@ -7,6 +7,7 @@ import Image from '~/Components/Image';
 import SettingsSection from '~/Components/SettingsSection';
 import InputWithLabel from '~/Components/InputWithLabel';
 import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
+import LinkPanel from '../../../../Components/LinkPanel.jsx';
 import FileInput from '~/Components/FileInput';
 import { mergeStyles } from '~/Utils';
 import styles from './gallery-image-settings.scss';
@@ -119,7 +120,7 @@ class ImageSettings extends Component {
                 onChange={event => this.imageMetadataUpdated(selectedImage, { description: event.target.value })}
               />
             </SettingsSection>
-            <SettingsSection theme={theme} className={styles.imageSettings_section}>
+            {/*<SettingsSection theme={theme} className={styles.imageSettings_section}>
               <InputWithLabel
                 theme={theme}
                 label={'Link'}
@@ -127,16 +128,27 @@ class ImageSettings extends Component {
                 value={selectedImage.metadata.link || ''}
                 onChange={event => this.imageMetadataUpdated(selectedImage, { link: event.target.value })}
               />
-            </SettingsSection>
+            </SettingsSection>*/}
+            <div className={this.styles.imageSettingsLinkContainer}>
+              <LinkPanel
+                ref={this.setLinkPanel}
+                // url={url}
+                // targetBlank={targetBlank}
+                // nofollow={nofollow}
+                updateParentIfNecessary={this.updateParentIfNecessary}
+                isImageSettings
+                theme={theme}
+              />
+            </div>
           </div>
+          {isMobile ? null : <SettingsPanelFooter
+            theme={theme}
+            className={styles.imageSettings_footer}
+            cancel={() => onCancel(this.initialImageState)}
+            save={() => onSave(this.state.images)}
+          />
+          }
         </div>
-        {isMobile ? null : <SettingsPanelFooter
-          theme={theme}
-          className={styles.imageSettings_footer}
-          cancel={() => onCancel(this.initialImageState)}
-          save={() => onSave(this.state.images)}
-        />
-        }
       </div>
     );
   }

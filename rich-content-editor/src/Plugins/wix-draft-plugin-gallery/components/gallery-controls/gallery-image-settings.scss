@@ -147,6 +147,10 @@ $MOBILE_HEADER_HEIGHT: 50px;
     padding: 20px 25px 0 25px;
 }
 
+.imageSettingsLinkContainer {
+  padding: 4px 26px 0 6px;
+}
+
 .imageSettings_scrollContainer {
     height: calc(100% - $FOOTER_HEIGHT);
     margin: $TITLE_HEIGHT auto $FOOTER_HEIGHT auto;
