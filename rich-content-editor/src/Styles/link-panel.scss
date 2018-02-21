@@ -20,11 +20,16 @@
 
 .linkPanel_modal {
   position: relative;
-  padding-top: 19px;
+  min-width: 359px;
+  margin-top: 18px;
   font-size: 14px;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
+}
+
+.linkPanel_content {
+  padding: 0 23px;
 }
 
 .linkPanel_linkHeaderContainer {
@@ -81,8 +86,8 @@
 }
 
 .linkPanel_Content {
-  margin: 0 24px;
-  padding-bottom: 9px;
+  margin: 0px 1px;
+  padding-bottom: 6px;
   font-size: 14px;
   font-weight: 300;
   font-style: normal;
@@ -154,10 +159,10 @@
 }
 
 .linkPanel_checkboxContainerLabel {
-  margin-left: 13px;
+  margin-left: 9px;
 }
 .linkPanel_actionsDivider {
-  margin: 0 24px;
+  margin: 0 4px;
   border-bottom: 1px solid rgba(51, 51, 51, 0.1);
 }
 
@@ -166,11 +171,25 @@
   justify-content: space-between;
 }
 
+.linkPanel_LeftActions, .linkPanel_RemoveContainer {
+  display: flex;
+}
+
 .linkPanel_FooterButton {
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 12px 24px;
+  padding: 12px 23px 14px 18px;
+}
+
+.linkPanel_Cancel {
+  padding: 12px 19px 14px 23px;
+}
+
+.linkPanel_VerticalDivider{
+  height: 22px;
+  margin: 13px 0;
+  border-right: 1px solid rgba(51, 51, 51, 0.1);
 }
 
 .linkPanel_disabled {

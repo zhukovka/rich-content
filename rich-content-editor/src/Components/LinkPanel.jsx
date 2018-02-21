@@ -24,13 +24,6 @@ class LinkPanel extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-  componentDidMount() {
-    const { url, updateParentIfNecessary } = this.props;
-    const intermediateUrl = url || '';
-    const isValidUrlConst = isValidUrl(intermediateUrl);
-    updateParentIfNecessary && updateParentIfNecessary(!!(isValidUrlConst));
-  }
-
   handleIntermediateUrlChange = event => {
     this.setState({ intermediateUrl: event.target.value });
   };
@@ -48,21 +41,18 @@ class LinkPanel extends Component {
     this.setState({ nofollow: event.target.checked });
   };
 
-  onBlur = e => {
-    e.stopPropagation();
+  validateUrl = () => {
     const { intermediateUrl } = this.state;
-    const { updateParentIfNecessary } = this.props;
     const isValidUrlConst = isValidUrl(intermediateUrl);
     if (isValidUrlConst) {
       this.handleUrlChange();
     }
     this.setState({ isValidUrl: isValidUrlConst });
-    updateParentIfNecessary && updateParentIfNecessary(!!(isValidUrlConst));
   };
 
   handleKeyPress = e => {
     if (e.charCode === 13) {
-      this.onBlur(e);
+      this.validateUrl(e);
     }
   };
 
@@ -87,7 +77,7 @@ class LinkPanel extends Component {
               className={textInputClassName}
               placeholder={inputPlaceholder}
               onChange={this.handleIntermediateUrlChange}
-              onBlur={this.onBlur}
+              onBlur={this.validateUrl}
               value={this.state.intermediateUrl}
             />
             {this.state.isValidUrl ? null : (
@@ -125,7 +115,6 @@ LinkPanel.propTypes = {
   url: PropTypes.string,
   targetBlank: PropTypes.bool,
   nofollow: PropTypes.bool,
-  updateParentIfNecessary: PropTypes.func,
   isImageSettings: PropTypes.bool,
   theme: PropTypes.object.isRequired,
 };

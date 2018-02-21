@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import decorateComponentWithProps from 'decorate-component-with-props';
-
-import LinkHeader from './LinkHeader';
 import LinkPanel from './LinkPanel';
 
 import { mergeStyles } from '~/Utils';
@@ -25,64 +22,55 @@ LinkType.propTypes = {
 class LinkPanelContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isDoneEnabled: false,
-    };
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
   setLinkPanel = linkPanel => this.linkPanel = linkPanel;
 
-  componentDidMount() {
-    const linkHeaderProps = {
-      isActive: this.props.isActive,
-      onBack: this.props.onCancel,
-      onDelete: this.props.onDelete,
-      theme: this.props.theme
-    };
-
-    const LinkHeaderWithProps = decorateComponentWithProps(LinkHeader, linkHeaderProps);
-    this.props.onOverrideContent(LinkHeaderWithProps);
-  }
-
   onDoneClick = () => {
-    if (this.state.isDoneEnabled) {
+    if (this.linkPanel.state.isValidUrl && this.linkPanel.state.url) {
       const { url, targetBlank, nofollow } = this.linkPanel.state;
       this.props.onDone && this.props.onDone({ url, targetBlank, nofollow });
+    } else {
+      this.linkPanel.validateUrl();
     }
   };
 
   onCancelClick = () => this.props.onCancel && this.props.onCancel();
 
-  updateParentIfNecessary = shouldUpdate => {
-    this.setState({ isDoneEnabled: shouldUpdate });
+  onDeleteClick = () => {
+    const { onCancel, onDelete } = this.props;
+    onDelete();
+    onCancel();
   }
 
   render() {
     const { styles } = this;
-    const { url, targetBlank, nofollow, theme } = this.props;
-    const doneButtonClassName = classNames(styles.linkPanel_FooterButton,
-      {
-        [styles.linkPanel_enabled]: this.state.isDoneEnabled,
-        [styles.linkPanel_disabled]: !this.state.isDoneEnabled
-      }
-    );
+    const { url, targetBlank, nofollow, theme, isActive } = this.props;
+    const doneButtonClassName = classNames(styles.linkPanel_FooterButton, styles.linkPanel_enabled);
+    const cancelButtonClassName = classNames(styles.linkPanel_FooterButton, styles.linkPanel_Cancel);
     return (
       <div className={styles.linkPanel_modal}>
-        {/*<LinkType
-            value="url"
-          />*/}
-        <LinkPanel
-          ref={this.setLinkPanel}
-          theme={theme}
-          url={url}
-          targetBlank={targetBlank}
-          nofollow={nofollow}
-          updateParentIfNecessary={this.updateParentIfNecessary}
-        />
-        <div className={styles.linkPanel_actionsDivider} />
+        <div className={styles.linkPanel_content}>
+          <LinkPanel
+            ref={this.setLinkPanel}
+            theme={theme}
+            url={url}
+            targetBlank={targetBlank}
+            nofollow={nofollow}
+          />
+          <div className={styles.linkPanel_actionsDivider} />
+        </div>
         <div className={styles.linkPanel_Footer}>
-          <div className={styles.linkPanel_FooterButton} onClick={this.onCancelClick}>Cancel</div>
+          <div className={styles.linkPanel_LeftActions}>
+            <div className={cancelButtonClassName} onClick={this.onCancelClick}>Cancel</div>
+            {isActive &&
+            <div className={styles.linkPanel_RemoveContainer}>
+              <div className={styles.linkPanel_VerticalDivider} />
+              <div className={styles.linkPanel_FooterButton} onClick={this.onDeleteClick}>Remove Link</div>
+            </div>
+            }
+          </div>
           <div className={doneButtonClassName} onClick={this.onDoneClick}>Update</div>
         </div>
       </div>
