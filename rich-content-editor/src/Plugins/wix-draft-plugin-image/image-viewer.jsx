@@ -40,39 +40,59 @@ class ImageViewer extends React.Component {
     return imageUrl;
   }
 
+  renderImage(imageClassName, imageSrc, alt) {
+    return (
+      alt ?
+        <img className={imageClassName} src={imageSrc} alt={alt} /> :
+        <img className={imageClassName} src={imageSrc} />
+    );
+  }
+
   renderLoader() {
     if (!this.props.isLoading) {
       return null;
     }
-    return <div className={this.styles.imageComponent_overlay}><ImageLoader type={'medium'} theme={this.props.theme}/></div>;
+    return <div className={this.styles.imageOverlay}><ImageLoader type={'medium'} theme={this.props.theme}/></div>;
   }
 
   renderTitle(data, styles) {
     const config = data.config || {};
-    return !!config.showTitle && <div className={classNames(styles.imageComponent_title)}>{(data && data.title) || ''}</div>;
+    return !!config.showTitle && <div className={classNames(styles.imageTitle)}>{(data && data.title) || ''}</div>;
   }
+
   renderDescription(data, styles) {
     const config = data.config || {};
     return !!config.showDescription &&
-      <div className={classNames(styles.imageComponent_description)}>{(data && data.description) || ''}</div>;
+      <div className={classNames(styles.imageDescription)}>{(data && data.description) || ''}</div>;
+  }
+
+  renderCaption(caption, isFocused, styles) {
+    return (
+      caption ?
+        <div className={styles.imageCaption}>{caption}</div> :
+        isFocused && <div className={styles.imageCaption}>Enter image caption (optional)</div>
+    );
   }
 
   render() {
     const { styles } = this;
-    const { componentData, className, onClick } = this.props;
+    const { componentData, className, onClick, isFocused } = this.props;
     const data = componentData || getDefault();
+    const { item = {} } = componentData;
+    const { metadata = {} } = item;
 
-    const itemClassName = classNames(styles.imageComponent_container, className);
-    const imageClassName = classNames(styles.imageComponent_image);
+    const itemClassName = classNames(styles.imageContainer, className);
+    const imageClassName = classNames(styles.image);
     const imageSrc = this.getImageSrc(data.item);
     return (
       <div onClick={onClick} className={itemClassName}>
         <div>
-          <img className={imageClassName} src={imageSrc} />
+          {this.renderImage(imageClassName, imageSrc, metadata.alt)}
           {this.renderLoader()}
         </div>
         {this.renderTitle(data, styles)}
         {this.renderDescription(data, styles)}
+        {this.renderCaption(metadata.caption, isFocused, styles)}
       </div>
     );
   }
@@ -85,7 +105,8 @@ ImageViewer.propTypes = {
   theme: PropTypes.object.isRequired,
   helpers: PropTypes.object.isRequired,
   isLoading: PropTypes.bool,
-  dataUrl: PropTypes.string
+  dataUrl: PropTypes.string,
+  isFocused: PropTypes.bool,
 };
 
 export { ImageViewer, getDefault };

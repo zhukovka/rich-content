@@ -115,9 +115,9 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
       }
     };
 
-    onComponentLinkChange = urlData => {
-      if (urlData && this.isMeAndIdle) {
-        this.updateComponentData({ config: { url: { ...urlData } } });
+    onComponentLinkChange = link => {
+      if (link && this.isMeAndIdle) {
+        this.updateComponentData({ config: { link } });
       }
     };
 
@@ -187,7 +187,7 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
     render = () => {
       const { blockProps, className, onClick, selection } = this.props;
       const { componentData, readOnly } = this.state;
-      const { alignment, size, url } = componentData.config || {};
+      const { alignment, size, link } = componentData.config || {};
       const isEditorFocused = selection.getHasFocus();
       const { isFocused } = blockProps;
       const isActive = isFocused && isEditorFocused && !readOnly;
@@ -221,17 +221,18 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
         />
       );
 
+      const target = !isUndefined(link) ? link.targetBlank ? '_blank' : '_self' : false;
       return (
         <div style={{ position: 'relative' }} className={ContainerClassNames}>
-          {!isUndefined(url) ?
-            url.nofollow ?
+          {!isUndefined(link) ?
+            link.nofollow ?
               (
-                <a href={url.url} target={url.targetBlank ? '_blank' : '_self'} rel="nofolow">
+                <a href={link.url} target={target} rel="nofolow">
                   {component}
                 </a>
               ) :
               (
-                <a href={url.url} target={url.targetBlank ? '_blank' : '_self'}>
+                <a href={link.url} target={target}>
                   {component}
                 </a>
               ) : (

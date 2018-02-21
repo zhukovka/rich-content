@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Styles from '~/Styles/inline-toolbar-button.scss';
+
+import { mergeStyles } from '~/Utils';
+import styles from '~/Styles/inline-toolbar-button.scss';
 
 export default class TextButton extends Component {
+
+  constructor(props) {
+    super(props);
+    this.styles = mergeStyles({ styles, theme: props.theme });
+  }
+
   static propTypes = {
     icon: PropTypes.func.isRequired,
     onClick: PropTypes.func.isRequired,
     isActive: PropTypes.func,
-    theme: PropTypes.object,
+    theme: PropTypes.object.isRequired,
   };
 
   isActive = () => {
@@ -24,15 +32,18 @@ export default class TextButton extends Component {
   preventBubblingUp = event => event.preventDefault();
 
   render() {
-    const { icon: Icon, theme } = this.props;
-    const buttonWrapperClassNames = classNames(Styles.buttonWrapper, theme && theme.buttonWrapper);
-    const idleButtonClassNames = classNames(Styles.button, theme && theme.button);
-    const activeButtonClassNames = classNames(idleButtonClassNames, Styles.active, theme && theme.active);
-    const buttonClassNames = this.isActive() ? activeButtonClassNames : idleButtonClassNames;
-    const iconClassNames = classNames(Styles.icon, theme && theme.icon);
+    const { styles } = this;
+    const { icon: Icon } = this.props;
+    const iconClassNames = classNames(
+      styles.icon,
+      {
+        [styles.active]: this.isActive(),
+      }
+    );
+
     return (
-      <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
-        <button className={buttonClassNames} onClick={this.handleClick}>
+      <div className={styles.buttonWrapper} onMouseDown={this.preventBubblingUp}>
+        <button className={styles.button} onClick={this.handleClick}>
           <div className={iconClassNames}>
             <Icon />
           </div>

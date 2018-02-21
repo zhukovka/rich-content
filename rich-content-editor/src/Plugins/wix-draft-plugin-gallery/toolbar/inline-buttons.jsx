@@ -1,4 +1,4 @@
-import AddIcon from '../icons/toolbar/icon-add.svg';
+// import AddIcon from '../icons/toolbar/icon-add.svg';
 import ManageMediaIcon from '../icons/insert-plugin.svg';
 import AdvancedSettingsIcon from '../../base/icons/block-settings.svg';
 import GallerySettingsModal from '../components/gallery-settings-modal';
@@ -8,15 +8,15 @@ import { getModalStyles } from '~/Utils';
 const modalStyles = getModalStyles();
 
 const InlineButtons = [
-  {
-    keyName: 'add',
-    type: BUTTONS.FILES,
-    icon: AddIcon,
-    onClick: pubsub => console.log('*** click add *** '), //eslint-disable-line no-console, no-unused-vars,
-    onFilesSelected: (pubsub, files) => console.log('*** got files *** ', files), //eslint-disable-line no-console, no-unused-vars,
-    mobile: true,
-  },
-  { type: BUTTONS.SEPARATOR, mobile: true },
+  // {
+  //   keyName: 'add',
+  //   type: BUTTONS.FILES,
+  //   icon: AddIcon,
+  //   onClick: pubsub => console.log('*** click add *** '), //eslint-disable-line no-console, no-unused-vars,
+  //   onFilesSelected: (pubsub, files) => console.log('*** got files *** ', files), //eslint-disable-line no-console, no-unused-vars,
+  //   mobile: true,
+  // },
+  // { type: BUTTONS.SEPARATOR, mobile: true },
   { type: BUTTONS.SIZE_SMALL_LEFT, mobile: true },
   { type: BUTTONS.SIZE_SMALL_CENTER, mobile: true },
   { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: true },

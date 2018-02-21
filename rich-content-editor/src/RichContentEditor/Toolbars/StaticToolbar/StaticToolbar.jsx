@@ -38,7 +38,11 @@ export default class StaticToolbar extends React.Component {
     return (
       <div className={toolbarClassNames}>
         <div className={buttonClassNames}>
-          {OverrideContent ? <OverrideContent {...childrenProps} /> : structure.map((Button, index) => <Button key={index} {...childrenProps} />)}
+          {
+            OverrideContent ?
+              <OverrideContent {...childrenProps} /> :
+              structure.map((Button, index) => <Button key={index} {...childrenProps} />)
+          }
         </div>
         {ExtendContent && (
           <div className={extendClassNames}>

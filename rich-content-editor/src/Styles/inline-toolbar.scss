@@ -17,6 +17,10 @@
 .buttons {
   display: flex;
   padding: 0 19px;
+
+  &.overrideContent {
+    padding: 0;
+  }
 }
 
 .extend {

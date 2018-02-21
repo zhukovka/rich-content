@@ -20,7 +20,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: [path.join(__dirname, 'node_modules/wix-style-react'), path.resolve(__dirname, 'src')],
+        include: [path.resolve(__dirname, 'src')],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'sass-loader'],
@@ -99,19 +99,6 @@ module.exports = {
   externals: [
     /^pro-gallery-renderer.*$/,
     'mobx',
-    function(context, request, callback) {
-      const submodule = (/^wix-style-react\/dist\/src\/(.*$)/.exec(request) || [])[1];
-      if (submodule) {
-        return callback(null, {
-          root: ['wix-style-react', submodule],
-          commonjs2: request,
-          commonjs: request,
-          amd: request,
-          umd: request,
-        });
-      }
-      callback();
-    },
     {
       '@wix/draft-js': {
         root: 'Draft',

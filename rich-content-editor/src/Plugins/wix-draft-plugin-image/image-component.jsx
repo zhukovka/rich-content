@@ -120,6 +120,7 @@ class ImageComponent extends React.Component {
         helpers={this.props.helpers}
         isLoading={this.state.isLoading}
         dataUrl={this.state.dataUrl}
+        isFocused={this.props.blockProps.isFocused}
       />
     );
   }

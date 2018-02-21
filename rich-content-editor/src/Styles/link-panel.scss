@@ -1,6 +1,6 @@
 @import '../Styles/palette';
 
-.overlay {
+.linkPanel_overlay {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,22 +18,27 @@
   }
 }
 
-.linkPanelModal {
+.linkPanel_modal {
   position: relative;
-  padding-top: 19px;
+  min-width: 359px;
+  margin-top: 18px;
   font-size: 14px;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
 }
 
-.linkHeaderContainer {
+.linkPanel_content {
+  padding: 0 23px;
+}
+
+.linkPanel_linkHeaderContainer {
   min-width: 320px;
   display: flex;
   align-items: center;
 }
 
-.linkHeaderBackArrowContainer {
+.linkPanel_linkHeaderBackArrowContainer {
   height: 100%;
   display: flex;
   align-items: center;
@@ -42,24 +47,24 @@
   cursor: pointer;
 }
 
-.linkHeaderBackIcon {
+.linkPanel_linkHeaderBackIcon {
   width: 19px;
   height: 19px;
 }
 
-.linkHeaderDivider {
+.linkPanel_linkHeaderDivider {
   width: 1px;
   height: 48px;
   border-right: solid 1px #ededed;
 }
 
-.linkHeaderText {
+.linkPanel_linkHeaderText {
   width: 202px;
   margin-left: 25px;
   font-size: 14px;
 }
 
-.linkHeaderDelete {
+.linkPanel_linkHeaderDelete {
   height: 100%;
   display: flex;
   align-items: center;
@@ -69,20 +74,20 @@
   line-height: 10px;
 }
 
-.linkHeaderTrashContainer {
+.linkPanel_linkHeaderTrashContainer {
   cursor: pointer;
   padding-left: 20px;
 }
 
-.linkHeaderTrashIcon {
+.linkPanel_linkHeaderTrashIcon {
   width: 19px;
   height: 19px;
   cursor: pointer;
 }
 
-.linkPanelContent {
-  margin: 0 24px;
-  padding-bottom: 9px;
+.linkPanel_Content {
+  margin: 0px 1px;
+  padding-bottom: 6px;
   font-size: 14px;
   font-weight: 300;
   font-style: normal;
@@ -92,13 +97,13 @@
   text-align: left;
 }
 
-.linkPanelInput {
+.linkPanel_Input {
   // margin: 16px 0 14px 0; // this is the right margin - once radio buttons would be added back
   margin: 5px 0 13px 0;
   position: relative;
 }
 
-.textInput {
+.linkPanel_textInput {
   color: $modal-input-color;
   width: 100%;
   height: 42px;
@@ -108,12 +113,13 @@
   text-align: left;
   box-sizing: border-box;
 
-  &.invalid {
-    border-color: red;
-  }
 }
 
-.imageSettings {
+.linkPanel_textInput_invalid {
+  border-color: red;
+}
+
+.linkPanel_imageSettings {
   width: 100%;
   height: 42px;
   padding: 0 17px;
@@ -126,7 +132,7 @@
   }
 }
 
-.errorIcon {
+.linkPanel_errorIcon {
   position: absolute;
   right: 12px;
   bottom: 0;
@@ -135,11 +141,11 @@
   width: 13px;
 }
 
-.checkboxWrapper {
+.linkPanel_checkboxWrapper {
   margin-bottom: 3px;
 }
 
-.checkboxContainer {
+.linkPanel_checkboxContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -147,36 +153,50 @@
 
 }
 
-.checkboxContainerInput {
+.linkPanel_checkboxContainerInput {
   width: 14px;
   height: 14px;
 }
 
-.checkboxContainerLabel {
-  margin-left: 13px;
+.linkPanel_checkboxContainerLabel {
+  margin-left: 9px;
 }
-.actionsDivider {
-  margin: 0 24px;
+.linkPanel_actionsDivider {
+  margin: 0 4px;
   border-bottom: 1px solid rgba(51, 51, 51, 0.1);
 }
 
-.linkPanelFooter{
+.linkPanel_Footer{
   display: flex;
   justify-content: space-between;
 }
 
-.linkPanelFooterButton {
+.linkPanel_LeftActions, .linkPanel_RemoveContainer {
+  display: flex;
+}
+
+.linkPanel_FooterButton {
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 12px 24px;
+  padding: 12px 23px 14px 18px;
 }
 
-.disabled {
+.linkPanel_Cancel {
+  padding: 12px 19px 14px 23px;
+}
+
+.linkPanel_VerticalDivider{
+  height: 22px;
+  margin: 13px 0;
+  border-right: 1px solid rgba(51, 51, 51, 0.1);
+}
+
+.linkPanel_disabled {
   opacity: 0.4;
   cursor: default;
 }
 
-.enabled {
+.linkPanel_enabled {
   color: #0261ff;
 }
