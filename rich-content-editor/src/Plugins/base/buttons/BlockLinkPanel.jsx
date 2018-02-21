@@ -5,7 +5,6 @@ import isEmpty from 'lodash/isEmpty';
 import LinkPanelContainer from '~/Components/LinkPanelContainer';
 
 class BlockLinkPanel extends Component {
-
   componentDidMount() {
     const { theme } = this.props;
     const componentLink = this.props.pubsub.get('componentLink');
@@ -25,6 +24,7 @@ class BlockLinkPanel extends Component {
     const LinkHeaderWithProps = decorateComponentWithProps(LinkPanelContainer, linkContainerProps);
     this.props.onOverrideContent(LinkHeaderWithProps);
   }
+
   wrapBlockInLink = ({ url, targetBlank, nofollow }) => {
     const { pubsub } = this.props;
     if (!isEmpty(url)) {
