@@ -24,9 +24,8 @@ export default class AddPluginFloatingToolbar extends Component {
     window.removeEventListener('click', this.onWindowClick);
   }
 
-  onWindowClick = event => {
+  onWindowClick = () => {
     if (this.state.isActive) {
-      event.preventDefault();
       this.setState({ isActive: false });
       this.hidePopup();
     }
