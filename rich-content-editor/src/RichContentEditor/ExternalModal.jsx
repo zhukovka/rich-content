@@ -19,8 +19,8 @@ const Modals = {
   [KEYS.MOBILE_ADD_PLUGIN]: MobileAddPluginModal,
 };
 
-const ExternalModal = ({ modalName, ...modalProps }) => {
-  const ModalElement = Modals[modalName];
+const ExternalModal = ({ modalName, modalElement, ...modalProps }) => {
+  const ModalElement = Modals[modalName] || modalElement;
   if (!ModalElement) {
     console.error(`Attempted to open unknown external modal '${modalName}'`); //eslint-disable-line no-console
     return null;
@@ -31,6 +31,7 @@ const ExternalModal = ({ modalName, ...modalProps }) => {
 ExternalModal.propTypes = {
   modalName: PropTypes.string.isRequired,
   modalProps: PropTypes.object,
+  modalElement: PropTypes.element,
 };
 
 export default ExternalModal;
