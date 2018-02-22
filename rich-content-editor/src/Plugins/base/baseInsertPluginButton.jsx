@@ -6,7 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
 import Tooltip from '~/Components/Tooltip';
 import Styles from '~/Styles/toolbar-button.scss';
-import { VideoUploadModal } from '../wix-draft-plugin-video/videoUploadModal';
+import { VideoUploadModal } from '../wix-draft-plugin-video/toolbar/videoUploadModal';
 
 export default ({ blockType, button, pubsub }) => {
   class InsertPluginButton extends Component {
@@ -98,7 +98,7 @@ export default ({ blockType, button, pubsub }) => {
       this.setState({ isVideoUploadModalOpen: false });
     };
 
-    renderVideoUploadForm = show => (show ? <VideoUploadModal isOpen onConfirm={this.addVideoBlock} onCancel={this.closeVideoUploadModal} /> : null);
+    renderVideoUploadForm = show => (show ? <VideoUploadModal isOpen onConfirm={this.addVideoBlock} onCancel={this.closeVideoUploadModal}/> : null);
 
     renderFileUploadForm = () => {
       return (

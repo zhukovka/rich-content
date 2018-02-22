@@ -1,5 +1,5 @@
 import { BUTTONS } from '~/Plugins/base/buttons';
-import MediaReplaceIcon from '../icons/media-replace.svg';
+import MediaReplaceIcon from './icons/media-replace.svg';
 
 const InlineButtons = [
   { type: BUTTONS.SIZE_SMALL_LEFT, mobile: true },

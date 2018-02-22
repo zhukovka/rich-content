@@ -118,7 +118,7 @@ class ImageSettings extends Component {
             /> :
             <h3 className={this.styles.imageSettingsTitle}>Image Settings</h3>
           }
-          <div className={classNames(styles.imageSettings_scrollContainer, { [styles.mobile]: isMobile })}>
+          <div className={classNames(styles.imageSettings_scrollContainer, { [styles.imageSettings_mobile]: isMobile })}>
             <SettingsSection theme={theme}>
               <Image resizeMode={'contain'} className={this.styles.imageSettingsImage} src={getImageSrc(item, helpers)} />
             </SettingsSection>
@@ -156,6 +156,7 @@ class ImageSettings extends Component {
             </div>
           </div>
           {isMobile ? null : <SettingsPanelFooter
+            fixed
             theme={theme}
             cancel={() => this.revertComponentData()}
             save={() => this.onDoneClick()}

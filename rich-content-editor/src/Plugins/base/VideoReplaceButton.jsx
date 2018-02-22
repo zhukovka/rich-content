@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { VideoUploadModal } from '../wix-draft-plugin-video/videoUploadModal';
+import { VideoUploadModal } from '../wix-draft-plugin-video/toolbar/videoUploadModal';
 
 export class VideoReplaceButton extends Component {
   constructor() {
@@ -38,6 +38,7 @@ export class VideoReplaceButton extends Component {
           onConfirm={this.handleVideoReplace}
           onCancel={this.closeVideoUploadModal}
           url={this.state.src}
+          doneLabel={'Replace'}
         />
       </div>
     );

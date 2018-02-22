@@ -55,16 +55,16 @@ $MOBILE_HEADER_HEIGHT: 50px;
   height: calc(100% - $FOOTER_HEIGHT);
   margin: $TITLE_HEIGHT auto $FOOTER_HEIGHT auto;
   width: 100%;
+}
 
-  &.mobile {
-      margin: 0 auto;
-  }
+.imageSettings_mobile {
+  margin: 0 auto;
 }
 
 .imageSettings_footer {
   z-index: 6;
 }
 
-.hidden {
+.imageSettings_hidden {
   visibility: hidden;
 }
