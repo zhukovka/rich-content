@@ -70,7 +70,7 @@ class ImageViewer extends React.Component {
     return (
       caption ?
         <div className={styles.imageCaption}>{caption}</div> :
-        isFocused && <div className={styles.imageCaption}>Enter image caption (optional)</div>
+        isFocused && <div className={styles.imageCaption}>Go to settings to change Caption</div>
     );
   }
 
