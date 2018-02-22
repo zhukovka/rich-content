@@ -1,56 +1,45 @@
-import RichContentEditorTheme from './rich-content-editor.theme.scss';
-import LinkifyTheme from './text-linkify.theme.scss';
-import CommonStyles from './global.theme.scss';
-import DividerTheme from './divider.theme.scss';
-import HtmlTheme from './html.theme.scss';
-import ImageTheme from './image.theme.scss';
-import VideoTheme from './video.theme.scss';
+import richContentEditorTheme from './rich-content-editor.theme.scss';
+import linkifyTheme from './text-linkify.theme.scss';
+import dividerTheme from './divider.theme.scss';
+import htmlTheme from './html.theme.scss';
+import imageTheme from './image.theme.scss';
+import videoTheme from './video.theme.scss';
+import commonTheme from './global.theme.scss';
+import loaderTheme from './loader.theme.scss';
+import buttonTheme from './button.theme.scss';
+import imageComponentTheme from './image_component.theme.scss';
+import inputWithLabelTheme from './input-with-label.theme.scss';
+import radioGroupHorizontalTheme from './radio-group-horizontal.theme.scss';
+import radioGroupTheme from './radio-group.theme.scss';
+import settingsPanelFooterTheme from './settings-panel-footer.theme.scss';
+import settingsSectionTheme from './settings-section.theme.scss';
+import selectionListTheme from './selection-list.theme.scss';
+import sliderTheme from './slider.theme.scss';
+import tabsTheme from './tabs.theme.scss';
+import tooltipTheme from './tooltip.theme.scss';
 import toolbars from './toolbars';
 import modals from './toolbars/modals';
 
-const {
-  quote,
-  headerOne,
-  headerTwo,
-  headerThree,
-  indent,
-  orderedList,
-  unorderedList,
-  atomic,
-  codeBlock,
-  text,
-  textAlignment,
-  wrapper,
-  editor,
-  desktop
-} = RichContentEditorTheme;
-
-const { link } = LinkifyTheme;
-
-const { hasFocus, overlay, pluginContainerReadOnly, pluginContainer, panelContainer } = CommonStyles;
-
-const { divider1, divider2, divider3, divider4 } = DividerTheme;
-
-const { inChange, itemsContainer, invalidGalleryItems } = HtmlTheme;
-
-const { loader, loaderOverlay, imageContainer, imageOverlay, image, imageTitle, imageDescription, imageCaption } = ImageTheme;
-
-const { videoOverlay, player, videoContainer } = VideoTheme;
-
 const theme = {
-  quote,
-  headerOne, headerTwo, headerThree,
-  indent,
-  orderedList, unorderedList,
-  atomic, codeBlock,
-  text, textAlignment,
-  wrapper, editor, desktop,
-  link,
-  hasFocus, overlay, pluginContainerReadOnly, pluginContainer, panelContainer,
-  divider1, divider2, divider3, divider4,
-  inChange, itemsContainer, invalidGalleryItems,
-  loader, loaderOverlay, imageContainer, imageOverlay, image, imageTitle, imageDescription, imageCaption,
-  videoOverlay, player, videoContainer,
+  ...richContentEditorTheme,
+  ...linkifyTheme,
+  ...dividerTheme,
+  ...htmlTheme,
+  ...imageTheme,
+  ...videoTheme,
+  ...commonTheme,
+  ...buttonTheme,
+  ...loaderTheme,
+  ...imageComponentTheme,
+  ...inputWithLabelTheme,
+  ...radioGroupHorizontalTheme,
+  ...radioGroupTheme,
+  ...settingsPanelFooterTheme,
+  ...settingsSectionTheme,
+  ...selectionListTheme,
+  ...sliderTheme,
+  ...tabsTheme,
+  ...tooltipTheme,
   toolbars,
   modals
 };

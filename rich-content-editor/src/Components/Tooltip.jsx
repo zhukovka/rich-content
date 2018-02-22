@@ -58,11 +58,6 @@ class Tooltip extends React.Component {
     const { children } = this.props;
     const { styles } = this;
 
-    // return (
-    //   <div ref={e => this.componentRef(e)} className={styles.tooltip}>
-    //     {children}
-    //   </div>);
-
     return React.Children.map(children, child => React.cloneElement(child, {
       className: classnames(child.props.className, styles.tooltip),
       ref: e => this.components.push(e)

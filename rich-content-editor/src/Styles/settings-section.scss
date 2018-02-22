@@ -1,4 +1,5 @@
 
-// .section + .section {
-//     margin-top: 13px;
-// }
+.section {
+  // Non-empty style is required for theming to work
+  border: none;
+}

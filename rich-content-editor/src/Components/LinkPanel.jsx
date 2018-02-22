@@ -84,6 +84,7 @@ class LinkPanel extends Component {
               <Tooltip
                 content={'Invalid URL. Try Again'}
                 moveBy={{ x: -23, y: -5 }}
+                theme={this.props.theme}
               >
                 <span><ErrorIcon className={styles.linkPanel_errorIcon} /></span>
               </Tooltip>
