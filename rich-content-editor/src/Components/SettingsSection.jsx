@@ -2,12 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import style from '~/Styles/settings-section.scss';
+import styles from '~/Styles/settings-section.scss';
+import { mergeStyles } from '~/Utils/mergeStyles';
 
-const SettingsSection = props => <div className={classnames(style.section, props.className)}>{props.children}</div>;
+class SettingsSection extends React.Component {
+  constructor(props) {
+    super(props);
+    this.styles = mergeStyles({ styles, theme: props.theme });
+  }
+
+  render() {
+    const { styles } = this;
+    return <div className={classnames(styles.section, this.props.className)}>{this.props.children}</div>;
+  }
+}
+
 SettingsSection.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  theme: PropTypes.object.isRequired,
 };
 
 export default SettingsSection;

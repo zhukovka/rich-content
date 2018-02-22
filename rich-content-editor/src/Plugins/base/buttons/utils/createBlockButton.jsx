@@ -5,7 +5,7 @@ export default ({ Icon }) =>
   class BlockButton extends Component {
     static propTypes = {
       onClick: PropTypes.func.isRequired,
-      theme: PropTypes.object,
+      theme: PropTypes.object.isRequired,
     };
 
     handleClick = () => {

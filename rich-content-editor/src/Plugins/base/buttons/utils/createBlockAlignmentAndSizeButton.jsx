@@ -8,7 +8,7 @@ export default ({ alignment, size, Icon }) =>
       setAlignmentAndSize: PropTypes.func.isRequired,
       alignment: PropTypes.string,
       size: PropTypes.string,
-      theme: PropTypes.object,
+      theme: PropTypes.object.isRequired,
     };
 
     isActive = () => this.props.alignment === alignment && this.props.size === size;

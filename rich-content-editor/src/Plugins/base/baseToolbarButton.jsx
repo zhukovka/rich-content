@@ -189,7 +189,7 @@ BaseToolbarButton.propTypes = {
   type: PropTypes.string,
   keyName: PropTypes.string.isRequired,
   panelElement: PropTypes.func,
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
   pubsub: PropTypes.object.isRequired,
   componentData: PropTypes.object.isRequired,
   componentState: PropTypes.object.isRequired,

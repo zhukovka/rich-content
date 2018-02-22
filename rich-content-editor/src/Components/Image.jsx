@@ -23,6 +23,7 @@ class Image extends Component {
   }
 
   render() {
+    const { styles } = this;
     const { src, resizeMode, className } = this.props;
     const imageStyle = {
       backgroundImage: `url(${src})`,

@@ -55,10 +55,10 @@ describe('RichContentEditor', () => {
 
 describe('Modal', () => {
   it('should render', () => {
-    const Element = () => {
+    const ModalElement = () => {
       return <div id="someId" />;
     };
-    const wrapper = shallow(<Modal element={Element} keyName="someName" store={{}} componentData={{}} componentState={{}} />);
+    const wrapper = shallow(<Modal modalElement={ModalElement} keyName="someName" store={{}} componentData={{}} componentState={{}} />);
     expect(wrapper.html()).toEqual(expect.stringContaining('id="someId"'));
   });
 });

@@ -40,5 +40,5 @@ AddPluginModal.propTypes = {
   setEditorState: PropTypes.func.isRequired,
   structure: PropTypes.array.isRequired,
   hidePopup: PropTypes.func.isRequired,
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
 };

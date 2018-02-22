@@ -9,7 +9,7 @@ export default class SideToolbar extends Component {
     pubsub: PropTypes.object.isRequired,
     structure: PropTypes.array.isRequired,
     offset: PropTypes.object,
-    theme: PropTypes.object,
+    theme: PropTypes.object.isRequired,
     isMobile: PropTypes.bool
   };
 

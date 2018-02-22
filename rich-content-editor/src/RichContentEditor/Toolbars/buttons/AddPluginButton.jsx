@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getModalStyles } from '~/Utils';
-import AddPluginModal from '../AddPluginModal';
-import PlusIcon from '../icons/plus-default.svg';
 import TextButton from './TextButton';
+import { MODALS } from '~/RichContentEditor/ExternalModal';
+import { getModalStyles } from '~/Utils';
+import PlusIcon from '../icons/plus-default.svg';
 
 export default class AddPluginButton extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ export default class AddPluginButton extends Component {
       }
     };
     this.props.openExternalModal({
-      modalElement: AddPluginModal,
+      modalName: MODALS.MOBILE_ADD_PLUGIN,
       modalStyles: getModalStyles({ customStyles, fullScreen: false }),
       structure: pluginButtons,
       theme: theme.mobileAddPlugin,
@@ -52,5 +52,5 @@ AddPluginButton.propTypes = {
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
   pluginButtons: PropTypes.array,
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
 };

@@ -2,10 +2,10 @@ import React, {
   Component
 } from 'react';
 import ReactModal from 'react-modal';
-import decorateComponentWithProps from 'decorate-component-with-props';
 import logo from './logo.svg';
 import {
-  RichContentViewer
+  RichContentViewer,
+  Modal
 } from 'wix-rich-content-editor';
 import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
@@ -44,24 +44,18 @@ class App extends Component {
     // };
     this.helpers = {
       openExternalModal: data => {
-        const {
-          modalElement,
-          modalStyles,
-          ...elementProps
-        } = data;
-        const ModalContent = decorateComponentWithProps(
-          modalElement,
-          elementProps
-        );
+        const { modalStyles, ...modalProps } = data;
         this.setState({
           showModal: true,
-          modalContent: <ModalContent />,
-          modalStyles
+          modalProps,
+          modalStyles,
         });
       },
       closeExternalModal: () => {
         this.setState({
-          showModal: false
+          showModal: false,
+          modalProps: null,
+          modalStyles: null,
         });
       }
     };
@@ -110,7 +104,7 @@ class App extends Component {
             style={this.state.modalStyles || modalStyleDefaults}
             onRequestClose={this.closeModal}
           >
-            {this.state.modalContent}
+            {this.state.showModal && <Modal {...this.state.modalProps} />}
           </ReactModal>
         </div>
       </div>);

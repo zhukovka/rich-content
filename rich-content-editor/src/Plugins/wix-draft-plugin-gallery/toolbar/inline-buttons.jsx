@@ -1,8 +1,8 @@
 // import AddIcon from '../icons/toolbar/icon-add.svg';
 import ManageMediaIcon from '../icons/insert-plugin.svg';
-import AdvancedSettingsIcon from '../../base/icons/block-settings.svg';
-import GallerySettingsModal from '../components/gallery-settings-modal';
+import AdvancedSettingsIcon from '~/Plugins/base/icons/block-settings.svg';
 import { BUTTONS } from '~/Plugins/base/buttons';
+import { MODALS } from '~/RichContentEditor/ExternalModal';
 import { getModalStyles } from '~/Utils';
 
 const modalStyles = getModalStyles();
@@ -27,7 +27,7 @@ const InlineButtons = [
     keyName: 'manage_media',
     type: BUTTONS.EXTERNAL_MODAL,
     icon: ManageMediaIcon,
-    modalElement: GallerySettingsModal,
+    modalName: MODALS.GALLERY_SETTINGS,
     activeTab: 'manage_media',
     modalStyles,
     mobile: true,
@@ -36,7 +36,7 @@ const InlineButtons = [
     keyName: 'advanced_settings',
     type: BUTTONS.EXTERNAL_MODAL,
     icon: AdvancedSettingsIcon,
-    modalElement: GallerySettingsModal,
+    modalName: MODALS.GALLERY_SETTINGS,
     activeTab: 'advanced_settings',
     modalStyles,
     mobile: true,

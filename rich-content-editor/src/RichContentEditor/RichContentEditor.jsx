@@ -204,7 +204,7 @@ RichContentEditor.propTypes = {
   editorState: PropTypes.object,
   decorators: PropTypes.object,
   initialState: PropTypes.object,
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
   onChange: PropTypes.func,
   isMobile: PropTypes.bool,
   readOnly: PropTypes.bool,

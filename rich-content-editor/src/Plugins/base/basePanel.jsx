@@ -51,7 +51,7 @@ export default class BasePanel extends Component {
 BasePanel.propTypes = {
   element: PropTypes.func.isRequired,
   keyName: PropTypes.string.isRequired,
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
   componentData: PropTypes.object.isRequired,
   componentState: PropTypes.object.isRequired,
