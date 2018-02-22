@@ -24,7 +24,6 @@ class ImageSettings extends Component {
     return {
       item: props.componentData.item,
       initialImageState,
-      isDoneEnabled: false,
     };
   }
 
@@ -86,7 +85,7 @@ class ImageSettings extends Component {
 
   onDoneClick = () => {
     const { helpers } = this.props;
-    if (this.state.isDoneEnabled) {
+    if (this.linkPanel.state.isValidUrl && this.linkPanel.state.url) {
       const { url, targetBlank, nofollow } = this.linkPanel.state;
       this.wrapBlockInLink({ url, targetBlank, nofollow });
     }
@@ -95,10 +94,6 @@ class ImageSettings extends Component {
     }
     helpers.closeModal();
   };
-
-  updateParentIfNecessary = shouldUpdate => {
-    this.setState({ isDoneEnabled: shouldUpdate });
-  }
 
   render() {
     const { componentData, helpers, theme, isMobile } = this.props;
@@ -146,12 +141,11 @@ class ImageSettings extends Component {
             <div className={this.styles.imageSettingsLinkContainer}>
               <LinkPanel
                 ref={this.setLinkPanel}
+                theme={theme}
                 url={url}
                 targetBlank={targetBlank}
                 nofollow={nofollow}
-                updateParentIfNecessary={this.updateParentIfNecessary}
                 isImageSettings
-                theme={theme}
               />
             </div>
           </div>
