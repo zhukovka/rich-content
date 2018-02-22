@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import decorateComponentWithProps from 'decorate-component-with-props';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
 import logo from './logo.svg';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
 import { testImages } from './images-mock';
-//import testData from './testData/initialState';
+// import testData from './testData/initialState';
 import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 import theme from './theme/theme'; // must import after custom styles
@@ -64,8 +63,7 @@ class App extends Component {
         setTimeout(() => updateEntity({ data }), (Math.floor(Math.random() * 2000) + 1000));
       },
       openExternalModal: data => {
-        const { modalElement, modalStyles, ...elementProps } = data;
-        const ModalContent = decorateComponentWithProps(modalElement, elementProps);
+        const { modalStyles, ...modalProps } = data;
         try {
           document.body.style.overflow = document.head.style.overflow = 'hidden';
         } catch (e) {
@@ -73,8 +71,8 @@ class App extends Component {
         }
         this.setState({
           showModal: true,
-          modalContent: <ModalContent />,
-          modalStyles
+          modalProps,
+          modalStyles,
         });
       },
       closeExternalModal: () => {
@@ -84,7 +82,9 @@ class App extends Component {
           console.warn('Cannot change document styles', e); //eslint-disable-line
         }
         this.setState({
-          showModal: false
+          showModal: false,
+          modalProps: null,
+          modalStyles: null,
         });
       }
     };
@@ -161,7 +161,7 @@ class App extends Component {
               style={this.state.modalStyles || modalStyleDefaults}
               onRequestClose={this.closeModal}
             >
-              {this.state.modalContent}
+              {this.state.showModal && <WixRichContentEditor.Modal {...this.state.modalProps} />}
             </ReactModal>
           </div>
         </div>
