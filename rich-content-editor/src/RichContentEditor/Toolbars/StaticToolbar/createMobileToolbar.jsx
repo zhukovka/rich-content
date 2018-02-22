@@ -44,8 +44,8 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
     theme: mobileTheme
   });
   structure.push(decorateComponentWithProps(AddPluginButton, {
-    openExternalModal: helpers.openExternalModal,
-    closeExternalModal: helpers.closeExternalModal,
+    openModal: helpers.openModal,
+    closeModal: helpers.closeModal,
     pluginButtons: buttons.pluginButtons,
     getEditorState,
     setEditorState,

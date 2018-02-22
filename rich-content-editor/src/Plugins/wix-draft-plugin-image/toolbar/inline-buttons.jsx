@@ -1,5 +1,5 @@
 import { BUTTONS } from '~/Plugins/base/buttons';
-import { MODALS } from '~/RichContentEditor/ExternalModal';
+import { MODALS } from '~/RichContentEditor/RichContentModal';
 import { getModalStyles } from '~/Utils';
 import MediaReplaceIcon from '../icons/toolbar/media-replace.svg';
 import SettingsIcon from '~/Plugins/base/icons/block-settings.svg';

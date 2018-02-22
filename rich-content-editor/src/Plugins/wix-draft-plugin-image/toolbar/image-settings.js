@@ -53,7 +53,7 @@ class ImageSettings extends Component {
     }
     this.setState({ item: initialImageState });
 
-    helpers.closeExternalModal();
+    helpers.closeModal();
   }
 
   imageMetadataUpdated = (image, value) => {
@@ -93,7 +93,7 @@ class ImageSettings extends Component {
     if (this.state.item.metadata) {
       this.addMetadataToBlock();
     }
-    helpers.closeExternalModal();
+    helpers.closeModal();
   };
 
   updateParentIfNecessary = shouldUpdate => {

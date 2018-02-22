@@ -62,7 +62,7 @@ class App extends Component {
         };
         setTimeout(() => updateEntity({ data }), (Math.floor(Math.random() * 2000) + 1000));
       },
-      openExternalModal: data => {
+      openModal: data => {
         const { modalStyles, ...modalProps } = data;
         try {
           document.body.style.overflow = document.head.style.overflow = 'hidden';
@@ -75,7 +75,7 @@ class App extends Component {
           modalStyles,
         });
       },
-      closeExternalModal: () => {
+      closeModal: () => {
         try {
           document.body.style.overflow = document.head.style.overflow = 'auto';
         } catch (e) {
@@ -120,7 +120,10 @@ class App extends Component {
   }
 
   render() {
-    const { RichContentEditor } = WixRichContentEditor;
+    const {
+      RichContentEditor,
+      RichContentModal,
+    } = WixRichContentEditor;
     const { MobileToolbar } = this.state;
     return (
       <div className="wrapper">
@@ -161,7 +164,7 @@ class App extends Component {
               style={this.state.modalStyles || modalStyleDefaults}
               onRequestClose={this.closeModal}
             >
-              {this.state.showModal && <WixRichContentEditor.Modal {...this.state.modalProps} />}
+              {this.state.showModal && <RichContentModal {...this.state.modalProps} />}
             </ReactModal>
           </div>
         </div>

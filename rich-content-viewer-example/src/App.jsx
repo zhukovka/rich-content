@@ -5,7 +5,7 @@ import ReactModal from 'react-modal';
 import logo from './logo.svg';
 import {
   RichContentViewer,
-  Modal
+  RichContentModal
 } from 'wix-rich-content-editor';
 import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
@@ -43,7 +43,7 @@ class App extends Component {
     //   }
     // };
     this.helpers = {
-      openExternalModal: data => {
+      openModal: data => {
         const { modalStyles, ...modalProps } = data;
         this.setState({
           showModal: true,
@@ -51,7 +51,7 @@ class App extends Component {
           modalStyles,
         });
       },
-      closeExternalModal: () => {
+      closeModal: () => {
         this.setState({
           showModal: false,
           modalProps: null,
@@ -104,7 +104,7 @@ class App extends Component {
             style={this.state.modalStyles || modalStyleDefaults}
             onRequestClose={this.closeModal}
           >
-            {this.state.showModal && <Modal {...this.state.modalProps} />}
+            {this.state.showModal && <RichContentModal {...this.state.modalProps} />}
           </ReactModal>
         </div>
       </div>);
