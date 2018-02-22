@@ -2,7 +2,7 @@
 import ManageMediaIcon from '../icons/insert-plugin.svg';
 import AdvancedSettingsIcon from '~/Plugins/base/icons/block-settings.svg';
 import { BUTTONS } from '~/Plugins/base/buttons';
-import { MODALS } from '~/RichContentEditor/ExternalModal';
+import { MODALS } from '~/RichContentEditor/RichContentModal';
 import { getModalStyles } from '~/Utils';
 
 const modalStyles = getModalStyles();

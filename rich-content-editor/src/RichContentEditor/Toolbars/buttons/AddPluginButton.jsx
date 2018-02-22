@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextButton from './TextButton';
-import { MODALS } from '~/RichContentEditor/ExternalModal';
+import { MODALS } from '~/RichContentEditor/RichContentModal';
 import { getModalStyles } from '~/Utils';
 import PlusIcon from '../icons/plus-default.svg';
 
@@ -21,12 +21,12 @@ export default class AddPluginButton extends Component {
         top: 'calc(50% - 100px)',
       }
     };
-    this.props.openExternalModal({
+    this.props.openModal({
       modalName: MODALS.MOBILE_ADD_PLUGIN,
       modalStyles: getModalStyles({ customStyles, fullScreen: false }),
       structure: pluginButtons,
       theme: theme.mobileAddPlugin,
-      hidePopup: this.props.closeExternalModal,
+      hidePopup: this.props.closeModal,
       getEditorState,
       setEditorState,
       pubsub
@@ -47,8 +47,8 @@ export default class AddPluginButton extends Component {
 
 AddPluginButton.propTypes = {
   pubsub: PropTypes.object.isRequired,
-  openExternalModal: PropTypes.func.isRequired,
-  closeExternalModal: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
   pluginButtons: PropTypes.array,

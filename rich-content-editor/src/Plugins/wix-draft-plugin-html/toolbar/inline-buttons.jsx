@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SettingsIcon from '../../base/icons/block-settings.svg';
 import EditIcon from '../icons/icon-edit.svg';
 import { BUTTONS } from '~/Plugins/base/buttons';
-import { MODALS } from '~/RichContentEditor/ExternalModal';
+import { MODALS } from '~/RichContentEditor/RichContentModal';
 import Styles from '../default-html-styles.scss';
 
 class SettingsModal extends React.Component {

@@ -131,7 +131,7 @@ export class GallerySettingsModal extends Component {
       pubsub.set('componentData', this.state.initComponentData);
     }
 
-    helpers.closeExternalModal();
+    helpers.closeModal();
   };
 
   otherTab() {
@@ -166,7 +166,7 @@ export class GallerySettingsModal extends Component {
           <GallerySettingsMobileHeader
             theme={this.props.theme}
             cancel={() => this.revertComponentData()}
-            save={() => helpers.closeExternalModal()}
+            save={() => helpers.closeModal()}
             switchTab={this.switchTab}
             otherTab={this.tabName(this.otherTab())}
           />
@@ -188,7 +188,7 @@ export class GallerySettingsModal extends Component {
               </Tab>
             </Tabs>
           </div>
-          <SettingsPanelFooter cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} theme={this.props.theme}/>
+          <SettingsPanelFooter cancel={() => this.revertComponentData()} save={() => helpers.closeModal()} theme={this.props.theme}/>
         </div>
       );
     }
