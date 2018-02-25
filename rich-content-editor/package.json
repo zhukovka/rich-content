@@ -94,7 +94,11 @@
     "webpack-merge": "^4.1.1"
   },
   "eslintConfig": {
-    "extends": "wix/react"
+    "extends": "wix/react",
+    "rules": {
+      "no-console": "warning",
+      "no-debugger": "warning"
+    }
   },
   "unpkg": true,
   "publishConfig": {

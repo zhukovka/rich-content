@@ -8,6 +8,7 @@ import Panel from './basePanel';
 import { mergeStyles } from '~/Utils';
 import styles from '~/Styles/plugin-toolbar-button.scss';
 import { VideoReplaceButton } from './VideoReplaceButton';
+import Dropdown from '../../Components/Dropdown';
 
 class BaseToolbarButton extends React.Component {
 
@@ -27,8 +28,10 @@ class BaseToolbarButton extends React.Component {
 
   handleFileChange = event => {
     if (event.target.files && event.target.files.length > 0) {
-      const { helpers, handleFileSelection } = this.props;
-      if (handleFileSelection && helpers && helpers.handleFileSelection) {
+      const { helpers, handleFileSelection, onFilesSelected } = this.props;
+      if (onFilesSelected) {
+        onFilesSelected(this.props.pubsub, event.target.files);
+      } else if (handleFileSelection && helpers && helpers.handleFileSelection) {
         // const keyName = BUTTONS.EXTERNAL_MODAL;
         // const theme = Styles;
 
@@ -142,7 +145,7 @@ class BaseToolbarButton extends React.Component {
     return (
       <div className={replaceButtonWrapperClassNames}>
         <form ref={this.setForm}>
-          <input name="file" type="file" onChange={this.handleFileChange} accept="image/*" tabIndex="-1" />
+          <input name="file" type="file" onChange={this.handleFileChange} accept="image/*" tabIndex="-1" multiple={this.props.multiple} />
         </form>
         <button className={buttonClassNames} children={this.props.children}>
           {this.getIcon()}
@@ -155,6 +158,19 @@ class BaseToolbarButton extends React.Component {
     // TODO: in theme, change fileButtonWrapper => replaceButtonWrapper
     const replaceButtonWrapperClassNames = classNames(styles.replaceButtonWrapper);
     return <VideoReplaceButton className={replaceButtonWrapperClassNames} icon={this.getIcon()} pubsub={this.props.pubsub} />;
+  };
+
+  renderDropdownButton = (buttonWrapperClassNames, buttonClassNames) => {
+    const { pubsub, componentData, onChange, getValue, ...props } = this.props;
+
+    const decoratedOnChange = value => onChange(value, componentData, pubsub.store);
+    const decoratedGetValue = () => getValue(pubsub.store);
+
+    return (
+      <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
+        <Dropdown className={buttonClassNames} onChange={decoratedOnChange} getValue={decoratedGetValue} {...props} />
+      </div>
+    );
   };
 
   render = () => {
@@ -170,6 +186,9 @@ class BaseToolbarButton extends React.Component {
     switch (this.props.type) {
       case BUTTONS.FILES:
         toolbarButton = this.renderFilesButton(buttonClassNames, styles);
+        break;
+      case BUTTONS.DROPDOWN:
+        toolbarButton = this.renderDropdownButton(buttonClassNames, styles);
         break;
       case BUTTONS.VIDEO_REPLACE:
         toolbarButton = this.renderReplaceVideoButton(styles);
@@ -195,8 +214,11 @@ BaseToolbarButton.propTypes = {
   componentState: PropTypes.object.isRequired,
   helpers: PropTypes.object,
   onClick: PropTypes.func,
-  onFileSelected: PropTypes.func,
+  onFilesSelected: PropTypes.func,
+  onChange: PropTypes.func,
+  getValue: PropTypes.func,
   children: PropTypes.object,
+  multiple: PropTypes.bool,
   iconActive: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
   modalStyles: PropTypes.object,

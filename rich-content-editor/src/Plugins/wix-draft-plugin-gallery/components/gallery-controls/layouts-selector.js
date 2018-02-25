@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import SelectionList from '~/Components/SelectionList';
+import { galleryLayouts } from '../../helpers';
 
 import { mergeStyles } from '~/Utils/mergeStyles';
 import styles from './layout-selector.scss';
@@ -12,16 +13,9 @@ class LayoutSelector extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-  layouts = [
-    { layoutId: 2, name: 'Grid' },
-    { layoutId: 1, name: 'Masonry' },
-    { layoutId: 0, name: 'Collage' },
-    { layoutId: 3, name: 'Thumbnails' },
-    { layoutId: 9, name: 'Slideshow' },
-    { layoutId: 6, name: 'Panorama' },
-    { layoutId: 7, name: 'Columns' },
-    { layoutId: 4, name: 'Slides' },
-  ];
+  layouts = galleryLayouts.map(layout => {
+    return { layoutId: layout.value, name: layout.label };
+  });
 
   dataMapper = ({ layoutId }) => ({ value: layoutId });
 

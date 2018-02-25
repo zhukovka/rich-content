@@ -14,6 +14,7 @@ export const BUTTONS = {
   TOGGLE: 'toggle',
   PANEL: 'panel',
   EXTERNAL_MODAL: 'external-modal',
+  DROPDOWN: 'dropdown',
   SEPARATOR: 'separator',
   SIZE_ORIGINAL_CENTER: 'size-original-center',
   SIZE_SMALL_CENTER: 'size-small-center',
