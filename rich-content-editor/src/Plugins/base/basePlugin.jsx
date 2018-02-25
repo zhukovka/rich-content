@@ -57,8 +57,7 @@ const createBasePlugin = (config = {}) => {
   const pubsub = simplePubsub();
   const helpers = config.helpers || {};
   const isMobile = config.isMobile || false;
-  const modalTheme = config.theme.modals && config.theme.modals[config.type] ?
-    { modal: { ...config.theme.modals[config.type] } } : {};
+  const modalTheme = { modal: { ...config.theme } };
 
   const toolbarTheme = (config.theme.toolbars && config.theme.toolbars.plugin) ? { ...config.theme.toolbars.plugin } : {};
   const Toolbar = createToolbar({ buttons: config.toolbar.InlineButtons, theme: { ...toolbarTheme, ...modalTheme }, pubsub, helpers, isMobile });
