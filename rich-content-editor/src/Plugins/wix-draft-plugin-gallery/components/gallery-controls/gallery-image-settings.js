@@ -78,8 +78,8 @@ class ImageSettings extends Component {
     const { url, targetBlank, nofollow } = (!isEmpty(selectedImage.metadata.link) ? selectedImage.metadata.link : {});
 
     return (
-      <div className={styles.imageSettings}>
-        <div className={styles.imageSettings_content}>
+      <div className={styles.galleryImageSettings}>
+        <div className={styles.galleryImageSettings_content}>
           { isMobile ?
             <GallerySettingsMobileHeader
               theme={theme}
@@ -88,39 +88,41 @@ class ImageSettings extends Component {
               saveName="Update"
             /> :
             <h3
-              className={classNames(styles.imageSettings_backButton, styles.imageSettings_title)}
+              className={classNames(styles.galleryImageSettings_backButton, styles.galleryImageSettings_title)}
               onClick={() => onCancel(this.initialImageState)}
             >← Image Settings
             </h3>
           }
-          <div className={classNames(styles.imageSettings_scrollContainer, { [styles.mobile]: isMobile })}>
+          <div className={classNames(styles.galleryImageSettings_scrollContainer, { [styles.mobile]: isMobile })}>
             <SettingsSection theme={theme}>
               <Image
                 resizeMode={'contain'}
-                className={styles.imageSettings_image}
+                className={styles.galleryImageSettings_image}
                 src={`https://static.wixstatic.com/${selectedImage.url}`}
                 theme={theme}
               />
-              <div className={classNames(styles.imageSettings_nav, { [styles.mobile]: isMobile })}>
+              <div className={classNames(styles.galleryImageSettings_nav, { [styles.mobile]: isMobile })}>
                 <i
-                  className={classNames(styles.imageSettings_previous, this.state.selectedIndex === 0 ? styles.imageSettings_hidden : '')}
+                  className={classNames(styles.galleryImageSettings_previous,
+                    { [styles.galleryImageSettings_hidden]: this.state.selectedIndex === 0 })}
                   onClick={() => this.setState({ selectedIndex: this.state.selectedIndex - 1 })}
                 />
                 <i
-                  className={classNames(styles.imageSettings_next, this.state.selectedIndex === images.length - 1 ? styles.imageSettings_hidden : '')}
+                  className={classNames(styles.galleryImageSettings_next,
+                    { [styles.galleryImageSettings_hidden]: this.state.selectedIndex === images.length - 1 })}
                   onClick={() => this.setState({ selectedIndex: this.state.selectedIndex + 1 })}
                 />
               </div>
             </SettingsSection>
-            <div className={styles.imageSettings_manageImageGrid}>
-              <FileInput className={styles.imageSettings_replace} onChange={this.replaceItem.bind(this)}>
-                <span className={styles.imageSettings_replace_text}>{'Replace'}</span>
+            <div className={styles.galleryImageSettings_manageImageGrid}>
+              <FileInput className={styles.galleryImageSettings_replace} onChange={this.replaceItem.bind(this)}>
+                <span className={styles.galleryImageSettings_replace_text}>{'Replace'}</span>
               </FileInput>
-              <button className={styles.imageSettings_delete} onClick={() => this.deleteImage(selectedImage)}>
-                <span className={styles.imageSettings_delete_text}>{'Delete'}</span>
+              <button className={styles.galleryImageSettings_delete} onClick={() => this.deleteImage(selectedImage)}>
+                <span className={styles.galleryImageSettings_delete_text}>{'Delete'}</span>
               </button>
             </div>
-            <SettingsSection theme={theme} className={styles.imageSettings_section}>
+            <SettingsSection theme={theme} className={styles.galleryImageSettings_section}>
               <InputWithLabel
                 theme={theme}
                 label={'Title'}
@@ -129,7 +131,7 @@ class ImageSettings extends Component {
                 onChange={event => this.imageMetadataUpdated(selectedImage, { title: event.target.value })}
               />
             </SettingsSection>
-            <SettingsSection theme={theme} className={styles.imageSettings_section}>
+            <SettingsSection theme={theme} className={styles.galleryImageSettings_section}>
               <InputWithLabel
                 theme={theme}
                 label={'Description'}
@@ -138,10 +140,10 @@ class ImageSettings extends Component {
                 onChange={event => this.imageMetadataUpdated(selectedImage, { description: event.target.value })}
               />
             </SettingsSection>
-            <SettingsSection theme={theme} className={this.styles.imageSettings_section}>
+            <SettingsSection theme={theme} className={this.styles.galleryImageSettings_section}>
               <label className={this.styles.inputWithLabel_label}>Link</label>
             </SettingsSection>
-            <div className={this.styles.imageSettingsLinkContainer}>
+            <div className={this.styles.galleryImageSettingsLinkContainer}>
               <LinkPanel
                 ref={this.setLinkPanel}
                 theme={theme}
@@ -154,7 +156,7 @@ class ImageSettings extends Component {
           </div>
           {isMobile ? null : <SettingsPanelFooter
             theme={theme}
-            className={styles.imageSettings_footer}
+            className={styles.galleryImageSettings_footer}
             cancel={() => onCancel(this.initialImageState)}
             save={() => this.onDoneClick(selectedImage)}
           />
