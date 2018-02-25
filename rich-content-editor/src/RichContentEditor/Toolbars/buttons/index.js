@@ -20,7 +20,6 @@ export const TextButtonList = [
   'Alignment',
   'OrderedList',
   'UnorderedList',
-  'Indent',
   'Separator',
   'Link',
 ];
