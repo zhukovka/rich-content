@@ -160,7 +160,6 @@ class Dropdown extends Component {
     const selected = this.state.selected;
 
     const placeHolderValue = typeof selected === 'string' ? selected : (() => {
-      debugger; //eslint-disable-line
       const label = selected.label || '';
       const Icon = selected.icon || null;
 
