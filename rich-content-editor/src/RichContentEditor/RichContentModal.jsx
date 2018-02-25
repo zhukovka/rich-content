@@ -29,9 +29,9 @@ const RichContentModal = ({ modalName, modalElement, ...modalProps }) => {
 };
 
 RichContentModal.propTypes = {
-  modalName: PropTypes.string.isRequired,
+  modalName: PropTypes.string,
+  modalElement: PropTypes.func,
   modalProps: PropTypes.object,
-  modalElement: PropTypes.element,
 };
 
 export default RichContentModal;
