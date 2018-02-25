@@ -93,7 +93,10 @@ class ImageSettings extends Component {
             >← Image Settings
             </h3>
           }
-          <div className={classNames(styles.galleryImageSettings_scrollContainer, { [styles.mobile]: isMobile })}>
+          <div
+            className={classNames(styles.galleryImageSettings_scrollContainer,
+              { [styles.galleryImageSettings_scrollContainer_mobile]: isMobile })}
+          >
             <SettingsSection theme={theme}>
               <Image
                 resizeMode={'contain'}
@@ -101,7 +104,7 @@ class ImageSettings extends Component {
                 src={`https://static.wixstatic.com/${selectedImage.url}`}
                 theme={theme}
               />
-              <div className={classNames(styles.galleryImageSettings_nav, { [styles.mobile]: isMobile })}>
+              <div className={classNames(styles.galleryImageSettings_nav, { [styles.galleryImageSettings_nav_mobile]: isMobile })}>
                 <i
                   className={classNames(styles.galleryImageSettings_previous,
                     { [styles.galleryImageSettings_hidden]: this.state.selectedIndex === 0 })}
