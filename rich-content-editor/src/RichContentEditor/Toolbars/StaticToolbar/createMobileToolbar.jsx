@@ -1,5 +1,6 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
 import classNames from 'classnames';
+import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createStaticToolbar from './createStaticToolbar';
 import { AddPluginButton, TextButtonList } from '../buttons';
 import { getTextButtonsFromList } from '../buttons/utils';
@@ -16,7 +17,9 @@ const getMobileTheme = theme => {
 
   return {
     toolbarStyles: {
-      toolbar: classNames(toolbarStyles.toolbar, toolbarTheme && toolbarTheme.toolbar),
+      toolbar: classNames(toolbarStyles.toolbar, toolbarTheme && toolbarTheme.toolbar, {
+        [toolbarStyles.fixed]: !baseUtils.isiOS()
+      }),
       buttons: classNames(toolbarStyles.buttons, toolbarTheme && toolbarTheme.buttons),
       extend: classNames(toolbarStyles.extend, toolbarTheme && toolbarTheme.extend)
     },

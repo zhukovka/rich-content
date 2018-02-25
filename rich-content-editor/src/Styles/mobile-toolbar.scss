@@ -4,6 +4,11 @@
   border-bottom: 1px solid rgba($secondary-text-color, 0.2);
 }
 
+.fixed {
+  position: fixed;
+  top: 0;
+}
+
 .buttons {
   display: flex;
   padding: 0 19px;
