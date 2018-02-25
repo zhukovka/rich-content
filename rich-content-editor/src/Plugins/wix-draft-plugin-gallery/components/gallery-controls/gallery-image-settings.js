@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import isEmpty from 'lodash/isEmpty';
 import findIndex from 'lodash/findIndex';
 import Image from '~/Components/Image';
 
@@ -39,6 +40,8 @@ class ImageSettings extends Component {
     this.initialImageState = this.props.images.map(i => ({ ...i }));
   }
 
+  setLinkPanel = linkPanel => this.linkPanel = linkPanel;
+
   deleteImage(selectedImage) {
     const images = this.state.images.filter(i => i.url !== selectedImage.url);
     this.setState({
@@ -58,11 +61,21 @@ class ImageSettings extends Component {
     handleFileChange(event, itemIdx);
   }
 
+  onDoneClick = selectedImage => {
+    const { onSave } = this.props;
+    if (this.linkPanel.state.isValidUrl && this.linkPanel.state.url) {
+      const { url, targetBlank, nofollow } = this.linkPanel.state;
+      this.imageMetadataUpdated(selectedImage, { link: { url, targetBlank, nofollow } });
+    }
+    onSave(this.state.images);
+  }
+
   render() {
     const styles = this.styles;
-    const { onSave, onCancel, theme, isMobile } = this.props;
+    const { onCancel, theme, isMobile } = this.props;
     const { images } = this.state;
     const selectedImage = images[this.state.selectedIndex];
+    const { url, targetBlank, nofollow } = (!isEmpty(selectedImage.metadata.link) ? selectedImage.metadata.link : {});
 
     return (
       <div className={styles.imageSettings}>
@@ -71,7 +84,7 @@ class ImageSettings extends Component {
             <GallerySettingsMobileHeader
               theme={theme}
               cancel={() => onCancel(this.initialImageState)}
-              save={() => onSave(this.state.images)}
+              save={() => this.onDoneClick(selectedImage)}
               saveName="Update"
             /> :
             <h3
@@ -125,24 +138,17 @@ class ImageSettings extends Component {
                 onChange={event => this.imageMetadataUpdated(selectedImage, { description: event.target.value })}
               />
             </SettingsSection>
-            {/*<SettingsSection theme={theme} className={styles.imageSettings_section}>
-              <InputWithLabel
-                theme={theme}
-                label={'Link'}
-                placeholder={'Add a link'}
-                value={selectedImage.metadata.link || ''}
-                onChange={event => this.imageMetadataUpdated(selectedImage, { link: event.target.value })}
-              />
-            </SettingsSection>*/}
+            <SettingsSection theme={theme} className={this.styles.imageSettings_section}>
+              <label className={this.styles.inputWithLabel_label}>Link</label>
+            </SettingsSection>
             <div className={this.styles.imageSettingsLinkContainer}>
               <LinkPanel
                 ref={this.setLinkPanel}
-                // url={url}
-                // targetBlank={targetBlank}
-                // nofollow={nofollow}
-                updateParentIfNecessary={this.updateParentIfNecessary}
-                isImageSettings
                 theme={theme}
+                url={url}
+                targetBlank={targetBlank}
+                nofollow={nofollow}
+                isImageSettings
               />
             </div>
           </div>
@@ -150,7 +156,7 @@ class ImageSettings extends Component {
             theme={theme}
             className={styles.imageSettings_footer}
             cancel={() => onCancel(this.initialImageState)}
-            save={() => onSave(this.state.images)}
+            save={() => this.onDoneClick(selectedImage)}
           />
           }
         </div>
@@ -158,6 +164,7 @@ class ImageSettings extends Component {
     );
   }
 }
+
 ImageSettings.propTypes = {
   selectedImage: PropTypes.any.isRequired,
   images: PropTypes.arrayOf(PropTypes.object).isRequired,

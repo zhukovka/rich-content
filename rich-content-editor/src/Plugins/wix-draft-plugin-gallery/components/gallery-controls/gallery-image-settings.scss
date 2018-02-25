@@ -144,23 +144,24 @@ $MOBILE_HEADER_HEIGHT: 50px;
 }
 
 .imageSettings_section {
-    padding: 20px 25px 0 25px;
+  padding: 20px 50px 0 30px;
+  font-size: 14px;
 }
 
 .imageSettingsLinkContainer {
-  padding: 4px 26px 0 6px;
+  padding: 4px 49px 0 29px;
 }
 
 .imageSettings_scrollContainer {
-    height: calc(100% - $FOOTER_HEIGHT);
-    margin: $TITLE_HEIGHT auto $FOOTER_HEIGHT auto;
-    width: 100%;
+  height: calc(100% - $FOOTER_HEIGHT);
+  margin: $TITLE_HEIGHT auto $FOOTER_HEIGHT auto;
+  width: 100%;
 
-    &.mobile {
-        margin: 0 auto;
-    }
+  &.mobile {
+      margin: 0 auto;
+  }
 }
 
 .imageSettings_footer {
-    z-index: 6;
+  z-index: 6;
 }
