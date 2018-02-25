@@ -188,7 +188,7 @@ export class GallerySettingsModal extends Component {
               </Tab>
             </Tabs>
           </div>
-          <SettingsPanelFooter fixed cancel={() => this.revertComponentData()} save={() => helpers.closeExternalModal()} theme={this.props.theme}/>
+          <SettingsPanelFooter fixed cancel={() => this.revertComponentData()} save={() => helpers.closeModal()} theme={this.props.theme}/>
         </div>
       );
     }
