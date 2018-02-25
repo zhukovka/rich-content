@@ -10,19 +10,9 @@
 }
 
 .horizontalSeparator {
-  display: none;
-}
-
-@include phone {
-  .horizontalSeparator {
-    display: block;
-    width: auto;
-    background: $toolbar-border-color;
-    height: 1px;
-    margin: 0 -10px 0 -19px;
-  }
-
-  .separator {
-    display: none;
-  }
+  display: block;
+  width: auto;
+  background: $toolbar-border-color;
+  height: 1px;
+  margin: 0 -10px 0 -19px;
 }

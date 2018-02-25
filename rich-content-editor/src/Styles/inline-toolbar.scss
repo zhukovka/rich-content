@@ -21,6 +21,46 @@
   &.overrideContent {
     padding: 0;
   }
+
+  .responsiveArrow {
+    display: none;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 40px;
+    line-height: 48px;
+    text-align: center;
+    background: white;
+    font-size: 12px;
+    cursor: pointer;
+
+    > i {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border: 1px solid $toolbar-font-color;
+      border-width: 0 0 1px 1px;
+    }
+  }
+
+  .responsiveArrowLeft {
+    left: 0;
+    border-right: 1px solid $toolbar-border-color;
+
+    > i {
+      transform: rotate(45deg);
+    }
+  }
+
+  .responsiveArrowRight {
+    right: 0;
+    border-left: 1px solid $toolbar-border-color;
+
+    > i {
+      transform: rotate(225deg);
+    }
+  }
+
 }
 
 .extend {
@@ -29,9 +69,13 @@
 
 @include phone {
   .buttons {
-    display: block;
+    display: flex;
     width: auto;
-    min-width: 195px;
-    padding-right: 10px;
+    max-width: calc(90vw - 30px - 34px);
+    overflow-x: scroll;
+
+    .responsiveArrow {
+      display: block;
+    }
   }
 }

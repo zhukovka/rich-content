@@ -32,6 +32,8 @@ export default class InlineToolbar extends Component {
     position: undefined,
     overrideContent: undefined,
     extendContent: undefined,
+    showRightArrow: true,
+    showLeftArrow: false
   }
 
   componentWillMount() {
@@ -108,9 +110,41 @@ export default class InlineToolbar extends Component {
     this.toolbar = node;
   };
 
+  handleButtonsRef = node => {
+    this.buttons = node;
+    this.buttons.addEventListener('scroll', this.handleToolbarScroll);
+  };
+
+  scrollToolbar(direction) {
+    debugger; //eslint-disable-line
+    switch (direction) {
+      case 'right':
+        this.buttons.scrollLeft += 200;
+        break;
+      case 'left':
+        this.buttons.scrollLeft -= 200;
+        break;
+      default:
+        //
+    }
+  }
+
+  handleToolbarScroll = () => {
+    const spaceLeft = this.buttons.scrollLeft;
+    const eleWidth = this.buttons.clientWidth;
+    const fullWidth = this.buttons.scrollWidth;
+
+    const spaceRight = fullWidth - eleWidth - spaceLeft;
+
+    this.setState({
+      showLeftArrow: (spaceLeft > 0),
+      showRightArrow: (spaceRight > 0)
+    });
+  }
+
   render() {
     const { theme, pubsub, structure } = this.props;
-    const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
+    const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
     const { buttonStyles, toolbarStyles } = theme || {};
     const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
     const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons, {
@@ -131,8 +165,19 @@ export default class InlineToolbar extends Component {
         style={this.getStyle()}
         ref={this.handleToolbarRef}
       >
-        <div className={buttonClassNames}>
+        <div
+          className={buttonClassNames}
+          ref={this.handleButtonsRef}
+        >
+          {
+            showLeftArrow &&
+            <div className={classNames(Styles.responsiveArrow, Styles.responsiveArrowLeft)} onClick={() => this.scrollToolbar('left')}><i/></div>
+          }
           {OverrideContent ? <OverrideContent {...childrenProps} /> : structure.map((Button, index) => <Button key={index} {...childrenProps} />)}
+          {
+            showRightArrow &&
+            <div className={classNames(Styles.responsiveArrow, Styles.responsiveArrowRight)} onClick={() => this.scrollToolbar('right')}><i/></div>
+          }
         </div>
         {ExtendContent && (
           <div className={extendClassNames}>
