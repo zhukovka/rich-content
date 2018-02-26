@@ -46,6 +46,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       pubsub.subscribe('componentAlignment', this.onComponentAlignmentChange);
       pubsub.subscribe('componentSize', this.onComponentSizeChange);
       pubsub.subscribe('componentLink', this.onComponentLinkChange);
+      this.handleToolbarScroll();
     }
 
 

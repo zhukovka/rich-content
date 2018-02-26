@@ -45,6 +45,10 @@ export default class InlineToolbar extends Component {
     this.props.pubsub.unsubscribe('selection', this.onSelectionChanged);
   }
 
+  componentDidMount() {
+    this.handleToolbarScroll();
+  }
+
   onOverrideContent = overrideContent => this.setState({ overrideContent });
 
   onExtendContent = extendContent => this.setState({ extendContent });

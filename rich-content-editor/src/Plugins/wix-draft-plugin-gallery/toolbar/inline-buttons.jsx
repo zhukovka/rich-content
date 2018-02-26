@@ -1,5 +1,5 @@
 import AddIcon from '../icons/toolbar/icon-plus.svg';
-import ManageMediaIcon from '../icons/insert-plugin.svg';
+import ManageMediaIcon from '../icons/manageMedia.svg';
 import AdvancedSettingsIcon from '~/Plugins/base/icons/block-settings.svg';
 import { BUTTONS } from '~/Plugins/base/buttons';
 import { MODALS } from '~/RichContentEditor/RichContentModal';

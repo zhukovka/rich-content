@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="19px" height="19px" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Small / Masonry / Default</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M3,2 L10,2 C10.5522847,2 11,2.44771525 11,3 L11,8 C11,8.55228475 10.5522847,9 10,9 L3,9 C2.44771525,9 2,8.55228475 2,8 L2,3 C2,2.44771525 2.44771525,2 3,2 Z M3,3 L3,8 L10,8 L10,3 L3,3 Z M13,2 L16,2 C16.5522847,2 17,2.44771525 17,3 L17,8 C17,8.55228475 16.5522847,9 16,9 L13,9 C12.4477153,9 12,8.55228475 12,8 L12,3 C12,2.44771525 12.4477153,2 13,2 Z M13,3 L13,8 L16,8 L16,3 L13,3 Z M3,10 L6,10 C6.55228475,10 7,10.4477153 7,11 L7,16 C7,16.5522847 6.55228475,17 6,17 L3,17 C2.44771525,17 2,16.5522847 2,16 L2,11 C2,10.4477153 2.44771525,10 3,10 Z M3,11 L3,16 L6,16 L6,11 L3,11 Z M9,10 L16,10 C16.5522847,10 17,10.4477153 17,11 L17,16 C17,16.5522847 16.5522847,17 16,17 L9,17 C8.44771525,17 8,16.5522847 8,16 L8,11 C8,10.4477153 8.44771525,10 9,10 Z M9,11 L9,16 L16,16 L16,11 L9,11 Z" id="Masonry-path-1"></path>
+    </defs>
+    <g id="Masonry" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Small-/-Masonry-/-Default">
+            <mask id="Masonry-mask-2" fill="white">
+                <use xlink:href="#Masonry-path-1"></use>
+            </mask>
+            <use id="Masonry-masonry-a" fill="#000000" fill-rule="nonzero" xlink:href="#Masonry-path-1"></use>
+            <g id="Masonry-05" transform="translate(1.000000, 1.000000)"></g>
+        </g>
+    </g>
+</svg>

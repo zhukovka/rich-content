@@ -9,12 +9,18 @@ $dropdown-font-size: 14px;
   img,
   svg {
     display: inline-block;
-    width: 17px;
+    width: 19px;
+    height: 19px;
     vertical-align: middle;
     margin: -4px 12px 0 0;
     color: $dropdown-color;
 
-    path {
+    g {
+      stroke: $dropdown-color;
+    }
+
+    path,
+    use {
       fill: $dropdown-color;
     }
   }
@@ -28,8 +34,14 @@ $dropdown-font-size: 14px;
     img,
     svg {
       color: $dropdown-highlight;
-      path {
-        fill: $dropdown-highlight;
+
+      g {
+        stroke: $dropdown-color;
+      }
+
+      path,
+      use {
+          fill: $dropdown-highlight;
       }
     }
 
@@ -83,7 +95,7 @@ $dropdown-font-size: 14px;
     box-sizing: border-box;
     max-height: 200px;
     overflow-y: auto;
-    position: absolute;
+    position: fixed;
     top: 100%;
     width: auto;
     z-index: 1000;

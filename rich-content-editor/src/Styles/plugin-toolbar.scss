@@ -41,6 +41,7 @@ $borderRadius: 6px;
     background: white;
     font-size: 12px;
     cursor: pointer;
+    z-index: 9999;
 
     > i {
       display: inline-block;
@@ -82,7 +83,7 @@ $borderRadius: 6px;
   .buttons {
     display: flex;
     width: auto;
-    max-width: calc(90vw - 30px - 34px);
+    max-width: 100%;
     overflow-x: scroll;
 
     .responsiveArrow {
