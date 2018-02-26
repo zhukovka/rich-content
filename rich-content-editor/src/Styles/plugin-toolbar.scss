@@ -1,5 +1,8 @@
 
 @import "./palette";
+@import './mixins';
+
+$borderRadius: 6px;
 
 .toolbar {
   min-height: 50px;
@@ -8,7 +11,7 @@
   position: absolute;
   border: 1px solid #ddd;
   background: #fff;
-  border-radius: 6px;
+  border-radius: $borderRadius;
   box-shadow: 0px 1px 3px 0px rgba(220,220,220,1);
   z-index: 4;
   box-sizing: border-box;
@@ -19,11 +22,72 @@
   display: flex;
   padding: 0 19px;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   &.overrideContent {
     padding: 0;
+  }
+
+  .responsiveArrow {
+    display: none;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 40px;
+    line-height: 48px;
+    text-align: center;
+    background: white;
+    font-size: 12px;
+    cursor: pointer;
+
+    > i {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border: 1px solid $toolbar-font-color;
+      border-width: 0 0 1px 1px;
+    }
+  }
+
+  .responsiveArrowLeft {
+    left: 0;
+    border-right: 1px solid $toolbar-border-color;
+    border-radius: $borderRadius 0 0 $borderRadius;
+
+    > i {
+      margin-left: 3px;
+      transform: rotate(45deg);
+    }
+  }
+
+  .responsiveArrowRight {
+    right: 0;
+    border-left: 1px solid $toolbar-border-color;
+    border-radius: 0 $borderRadius $borderRadius 0;
+
+    > i {
+      margin-right: 3px;
+      transform: rotate(225deg);
+    }
   }
 }
 
 .extend {
   border-top: 1px solid rgba(117, 117, 117, 0.2);
+}
+
+@include phone {
+  .buttons {
+    display: flex;
+    width: auto;
+    max-width: calc(90vw - 30px - 34px);
+    overflow-x: scroll;
+
+    .responsiveArrow {
+      display: block;
+    }
+
+  }
 }

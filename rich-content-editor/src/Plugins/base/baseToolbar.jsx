@@ -23,6 +23,8 @@ const toolbarOffset = 12;
 const getInitialState = () => (
   {
     position: { transform: 'translate(-50%) scale(0)' },
+    showLeftArrow: false,
+    showRightArrow: true,
     componentData: {},
     componentState: {},
     overrideContent: undefined,
@@ -135,6 +137,39 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       });
     };
 
+    handleButtonsRef = node => {
+      this.buttons = node;
+      this.buttons.addEventListener('scroll', this.handleToolbarScroll);
+      window && window.addEventListener('resize', this.handleToolbarScroll);
+    };
+
+    scrollToolbar(event, direction) {
+      event.preventDefault();
+      switch (direction) {
+        case 'right':
+          this.buttons.scrollLeft += 200;
+          break;
+        case 'left':
+          this.buttons.scrollLeft -= 200;
+          break;
+        default:
+          break;
+      }
+    }
+
+    handleToolbarScroll = () => {
+      const spaceLeft = this.buttons.scrollLeft;
+      const eleWidth = this.buttons.clientWidth;
+      const fullWidth = this.buttons.scrollWidth;
+
+      const spaceRight = fullWidth - eleWidth - spaceLeft;
+
+      this.setState({
+        showLeftArrow: (spaceLeft > 0),
+        showRightArrow: (spaceRight > 0)
+      });
+    }
+
     renderButton = (button, key, themedStyle, separatorClassNames) => {
       const { alignment, size } = this.state;
       switch (button.type) {
@@ -199,7 +234,8 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
     };
 
     render = () => {
-      const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
+
+      const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
       const { toolbarStyles: toolbarTheme } = theme || {};
       const { buttonStyles: buttonTheme, separatorStyles: separatorTheme } = theme || {};
       const containerClassNames = classNames(toolbarStyles.toolbar, toolbarTheme && toolbarTheme.toolbar);
@@ -221,12 +257,33 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
 
       return (
         <div style={this.state.position} className={containerClassNames}>
-          <div className={buttonContainerClassnames}>
+          <div
+            className={buttonContainerClassnames}
+            ref={this.handleButtonsRef}
+          >
+            {
+              showLeftArrow &&
+              <div
+                className={classNames(toolbarStyles.responsiveArrow, toolbarStyles.responsiveArrowLeft)}
+                onMouseDown={e => this.scrollToolbar(e, 'left')}
+              >
+                <i/>
+              </div>
+            }
             {OverrideContent ?
               <OverrideContent {...overrideProps} /> :
               structure.map((button, index) => (
                 this.renderButton(button, index, themedButtonStyle, separatorClassNames)
               ))
+            }
+            {
+              showRightArrow &&
+              <div
+                className={classNames(toolbarStyles.responsiveArrow, toolbarStyles.responsiveArrowRight)}
+                onMouseDown={e => this.scrollToolbar(e, 'right')}
+              >
+                <i/>
+              </div>
             }
           </div>
           {ExtendContent && (

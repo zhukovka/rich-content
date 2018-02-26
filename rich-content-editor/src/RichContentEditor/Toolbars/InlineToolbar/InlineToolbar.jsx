@@ -172,12 +172,22 @@ export default class InlineToolbar extends Component {
         >
           {
             showLeftArrow &&
-            <div className={classNames(Styles.responsiveArrow, Styles.responsiveArrowLeft)} onMouseDown={e => this.scrollToolbar(e, 'left')}><i/></div>
+            <div
+              className={classNames(Styles.responsiveArrow, Styles.responsiveArrowLeft)}
+              onMouseDown={e => this.scrollToolbar(e, 'left')}
+            >
+              <i/>
+            </div>
           }
           {OverrideContent ? <OverrideContent {...childrenProps} /> : structure.map((Button, index) => <Button key={index} {...childrenProps} />)}
           {
             showRightArrow &&
-            <div className={classNames(Styles.responsiveArrow, Styles.responsiveArrowRight)} onMouseDown={e => this.scrollToolbar(e, 'right')}><i/></div>
+            <div
+              className={classNames(Styles.responsiveArrow, Styles.responsiveArrowRight)}
+              onMouseDown={e => this.scrollToolbar(e, 'right')}
+            >
+              <i/>
+            </div>
           }
         </div>
         {ExtendContent && (
