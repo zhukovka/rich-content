@@ -39,8 +39,8 @@
     padding: 5px;
     border: 0 none;
     z-index: 1;
-
-    @include svg-fill($secondary-text-color);
+    color: $secondary-text-color;
+    @include svg-fill;
     .icon {
       width: $icon-width;
     }
@@ -48,7 +48,8 @@
     &:hover,
     &:focus {
       outline: none;
-      @include svg-fill($accent-color);
+      color: $accent-color;
+      @include svg-fill;
     }
   }
 
@@ -70,7 +71,7 @@
   border: 0 none;
   cursor: pointer;
 
-  @include svg-fill($secondary-text-color);
+  @include svg-fill;
   .icon {
     width: $icon-width;
   }
@@ -80,6 +81,6 @@
   &.active {
     outline: 0; /* reset for :focus */
     color: $accent-color;
-    @include svg-fill($accent-color);
+    @include svg-fill;
   }
 }

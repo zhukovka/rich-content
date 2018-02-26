@@ -36,7 +36,7 @@
     cursor: pointer;
     outline: 0;
     color: $accent-color;
-    @include svg-fill($accent-color);
+    @include svg-fill;
   }
 }
 
@@ -44,9 +44,11 @@
   display: inline-block;
   width: $icon-width;
   vertical-align: middle;
-  @include svg-fill($secondary-text-color);
+  color: $secondary-text-color;
+  @include svg-fill;
   &:hover {
-    @include svg-fill($accent-color);
+    color: $accent-color;
+    @include svg-fill;
   }
 }
 

@@ -1,6 +1,6 @@
-@mixin svg-fill($fill) {
+@mixin svg-fill {
   svg {
-    fill: $fill;
+    fill: currentColor;
   }
 }
 
