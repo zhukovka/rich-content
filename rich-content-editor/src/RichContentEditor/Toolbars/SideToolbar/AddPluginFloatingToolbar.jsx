@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Tooltip from '~/Components/Tooltip';
 import PlusIcon from '../icons/plus-default.svg';
 import PlusActiveIcon from '../icons/plus-active.svg';
 import Styles from '~/Styles/side-toolbar.scss';
@@ -86,15 +85,9 @@ export default class AddPluginFloatingToolbar extends Component {
     const popoupClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
     return (
       <div className={floatingContainerClassNames}>
-        <Tooltip
-          content={'Insert Media'}
-          moveBy={{ x: 7, y: -7 }}
-          theme={theme}
-        >
-          <div className={floatingIconClassNames} onMouseDown={this.onMouseDown} ref={el => (this.selectButton = el)}>
-            {!this.state.isActive ? <PlusIcon /> : <PlusActiveIcon />}
-          </div>
-        </Tooltip>
+        <div className={floatingIconClassNames} onMouseDown={this.onMouseDown} ref={el => (this.selectButton = el)}>
+          {!this.state.isActive ? <PlusIcon /> : <PlusActiveIcon />}
+        </div>
         <div className={popoupClassNames} style={this.state.style} ref={el => (this.popup = el)}>
           {this.props.structure.map((Component, index) => (
             <Component
