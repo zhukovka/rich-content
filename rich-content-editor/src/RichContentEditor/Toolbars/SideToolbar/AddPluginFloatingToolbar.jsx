@@ -51,11 +51,13 @@ export default class AddPluginFloatingToolbar extends Component {
   };
 
   showPopup = () => {
+    const { toolbarStyle } = this.props;
     this.setState({
       style: {
         left: this.getPopupOffset(),
         transform: 'translate(-50%) scale(1)',
         transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
+        ...toolbarStyle,
       },
     });
   };
@@ -110,5 +112,6 @@ AddPluginFloatingToolbar.propTypes = {
   structure: PropTypes.array.isRequired,
   pubsub: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  toolbarStyle: PropTypes.object,
   isMobile: PropTypes.bool
 };

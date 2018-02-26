@@ -8,6 +8,7 @@ export default (config = {}) => {
   const {
     name = 'StaticToolbar',
     theme,
+    toolbarStyle,
     structure = []
   } = config;
 
@@ -15,6 +16,7 @@ export default (config = {}) => {
     pubsub,
     structure,
     theme,
+    toolbarStyle,
   };
 
   return {

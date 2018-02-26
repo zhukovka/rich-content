@@ -3,7 +3,7 @@ import createInlineToolbar from './createInlineToolbar';
 import { getTextButtonsFromList } from '../buttons/utils';
 
 
-export default ({ buttons, pubsub, theme, isMobile }) => {
+export default ({ buttons, pubsub, theme, toolbarStyle, isMobile }) => {
   const structure = getTextButtonsFromList({ buttons, pubsub, theme });
 
   return createInlineToolbar({
@@ -11,6 +11,7 @@ export default ({ buttons, pubsub, theme, isMobile }) => {
     structure,
     pubsub,
     theme,
+    toolbarStyle,
     isMobile
   });
 };

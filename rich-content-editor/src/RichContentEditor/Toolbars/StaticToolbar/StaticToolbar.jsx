@@ -8,6 +8,7 @@ export default class StaticToolbar extends React.Component {
     pubsub: PropTypes.object.isRequired,
     structure: PropTypes.array.isRequired,
     theme: PropTypes.object.isRequired,
+    toolbarStyle: PropTypes.object,
     isMobile: PropTypes.bool
   };
 
@@ -21,7 +22,7 @@ export default class StaticToolbar extends React.Component {
   onExtendContent = extendContent => this.setState({ extendContent });
 
   render() {
-    const { theme, pubsub, structure } = this.props;
+    const { theme, toolbarStyle, pubsub, structure } = this.props;
     const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
     const { buttonStyles, toolbarStyles } = theme || {};
     const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
@@ -36,7 +37,7 @@ export default class StaticToolbar extends React.Component {
     };
 
     return (
-      <div className={toolbarClassNames}>
+      <div className={toolbarClassNames} style={toolbarStyle}>
         <div className={buttonClassNames}>
           {
             OverrideContent ?
