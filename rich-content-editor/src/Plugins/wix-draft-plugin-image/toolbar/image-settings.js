@@ -88,6 +88,8 @@ class ImageSettings extends Component {
     if (this.linkPanel.state.isValidUrl && this.linkPanel.state.url) {
       const { url, targetBlank, nofollow } = this.linkPanel.state;
       this.wrapBlockInLink({ url, targetBlank, nofollow });
+    } else if (this.linkPanel.state.intermediateUrl === '') {
+      this.deleteLink();
     }
     if (this.state.item.metadata) {
       this.addMetadataToBlock();

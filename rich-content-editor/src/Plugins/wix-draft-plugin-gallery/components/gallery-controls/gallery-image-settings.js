@@ -66,6 +66,8 @@ class ImageSettings extends Component {
     if (this.linkPanel.state.isValidUrl && this.linkPanel.state.url) {
       const { url, targetBlank, nofollow } = this.linkPanel.state;
       this.imageMetadataUpdated(selectedImage, { link: { url, targetBlank, nofollow } });
+    } else if (this.linkPanel.state.intermediateUrl === '') {
+      this.imageMetadataUpdated(selectedImage, { link: {} });
     }
     onSave(this.state.images);
   }

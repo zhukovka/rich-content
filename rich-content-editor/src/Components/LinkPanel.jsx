@@ -43,7 +43,7 @@ class LinkPanel extends Component {
 
   validateUrl = () => {
     const { intermediateUrl } = this.state;
-    const isValidUrlConst = isValidUrl(intermediateUrl);
+    const isValidUrlConst = isValidUrl(intermediateUrl) || (intermediateUrl === '');
     if (isValidUrlConst) {
       this.handleUrlChange();
     }
