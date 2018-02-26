@@ -2,8 +2,7 @@
 @import "./mixins.scss";
 
 .separator {
-  display: inline-block;
-  width: 1px;
+  flex: 0 0 1px;
   background: $toolbar-border-color;
   margin: 0px 19px 0 9px;
 

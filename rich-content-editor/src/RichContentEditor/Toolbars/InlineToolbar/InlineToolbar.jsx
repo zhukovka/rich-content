@@ -113,10 +113,11 @@ export default class InlineToolbar extends Component {
   handleButtonsRef = node => {
     this.buttons = node;
     this.buttons.addEventListener('scroll', this.handleToolbarScroll);
+    window && window.addEventListener('resize', this.handleToolbarScroll);
   };
 
-  scrollToolbar(direction) {
-    debugger; //eslint-disable-line
+  scrollToolbar(event, direction) {
+    event.preventDefault();
     switch (direction) {
       case 'right':
         this.buttons.scrollLeft += 200;
@@ -125,7 +126,7 @@ export default class InlineToolbar extends Component {
         this.buttons.scrollLeft -= 200;
         break;
       default:
-        //
+        break;
     }
   }
 
@@ -171,12 +172,12 @@ export default class InlineToolbar extends Component {
         >
           {
             showLeftArrow &&
-            <div className={classNames(Styles.responsiveArrow, Styles.responsiveArrowLeft)} onClick={() => this.scrollToolbar('left')}><i/></div>
+            <div className={classNames(Styles.responsiveArrow, Styles.responsiveArrowLeft)} onMouseDown={e => this.scrollToolbar(e, 'left')}><i/></div>
           }
           {OverrideContent ? <OverrideContent {...childrenProps} /> : structure.map((Button, index) => <Button key={index} {...childrenProps} />)}
           {
             showRightArrow &&
-            <div className={classNames(Styles.responsiveArrow, Styles.responsiveArrowRight)} onClick={() => this.scrollToolbar('right')}><i/></div>
+            <div className={classNames(Styles.responsiveArrow, Styles.responsiveArrowRight)} onMouseDown={e => this.scrollToolbar(e, 'right')}><i/></div>
           }
         </div>
         {ExtendContent && (
