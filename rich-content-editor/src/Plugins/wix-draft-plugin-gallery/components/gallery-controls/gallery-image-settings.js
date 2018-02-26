@@ -10,6 +10,8 @@ import InputWithLabel from '~/Components/InputWithLabel';
 import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
 import LinkPanel from '../../../../Components/LinkPanel.jsx';
 import FileInput from '~/Components/FileInput';
+import BackIcon from './icons/back.svg';
+
 import { mergeStyles } from '~/Utils';
 import styles from './gallery-image-settings.scss';
 import GallerySettingsMobileHeader from './gallery-settings-mobile-header';
@@ -92,7 +94,8 @@ class ImageSettings extends Component {
             <h3
               className={classNames(styles.galleryImageSettings_backButton, styles.galleryImageSettings_title)}
               onClick={() => onCancel(this.initialImageState)}
-            >← Image Settings
+            >
+              <BackIcon className={styles.galleryImageSettings_backIcon} />Image Settings
             </h3>
           }
           <div
