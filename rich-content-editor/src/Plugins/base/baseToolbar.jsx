@@ -72,9 +72,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
     };
 
     onComponentLinkChange = link => {
-      if (link) {
-        pubsub.update('componentData', { config: { link } });
-      }
+      pubsub.update('componentData', { config: { link } });
     };
 
     setAlignment = alignment => {

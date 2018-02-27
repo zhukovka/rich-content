@@ -65,7 +65,7 @@ class ImageSettings extends Component {
     if (!isEmpty(url)) {
       pubsub.set('componentLink', { url, targetBlank, nofollow });
     } else {
-      pubsub.set('componentLink', undefined);
+      pubsub.set('componentLink', null);
     }
   };
 
@@ -80,7 +80,7 @@ class ImageSettings extends Component {
   };
 
   deleteLink = () => {
-    this.props.pubsub.set('componentLink', undefined);
+    this.props.pubsub.set('componentLink', null);
   }
 
   onDoneClick = () => {
