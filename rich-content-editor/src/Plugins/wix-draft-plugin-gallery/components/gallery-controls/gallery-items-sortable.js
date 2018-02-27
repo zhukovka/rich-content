@@ -153,10 +153,6 @@ export class SortableComponent extends Component {
     });
   };
 
-  componentDidMount() {
-    this.props.items.forEach(i => i.selected = false);
-  }
-
   clickAction = itemIdx => {
     if (this.state.isMobileSorting) {
       return;
@@ -236,6 +232,14 @@ export class SortableComponent extends Component {
     return {
       items: props.items
     };
+  }
+
+  componentDidMount() {
+    const newState = this.propsToState(this.props);
+    if (newState.items.length > 0) {
+      newState.items.forEach(i => i.selected = false);
+    }
+    this.setState(newState);
   }
 
   componentWillReceiveProps(props) {
