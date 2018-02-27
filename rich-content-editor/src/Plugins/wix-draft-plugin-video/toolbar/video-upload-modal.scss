@@ -3,6 +3,9 @@
 
 .container {
     padding: 50px 60px 60px;
+    @include phone {
+        padding: 24px 18px 30px;
+    }
 }
 
 .closeIcon {
