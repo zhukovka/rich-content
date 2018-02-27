@@ -146,6 +146,7 @@ class ImageSettings extends Component {
                 placeholder={'Describe your image'}
                 value={selectedImage.metadata.description || ''}
                 onChange={event => this.imageMetadataUpdated(selectedImage, { description: event.target.value })}
+                isTextArea
               />
             </SettingsSection>
             <SettingsSection theme={theme} className={this.styles.galleryImageSettings_section}>
