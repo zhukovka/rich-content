@@ -119,13 +119,14 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
     showToolbar = () => {
       const toolbarNode = findDOMNode(this);
       const toolbarHeight = toolbarNode.offsetHeight;
-      const offsetParentTop = toolbarNode.offsetParent.offsetTop;
-      const offsetParentLeft = toolbarNode.offsetParent.offsetLeft;
+      const offsetParentRect = toolbarNode.offsetParent.getBoundingClientRect();
+      const offsetParentTop = offsetParentRect.top;
+      const offsetParentLeft = offsetParentRect.left;
 
       const boundingRect = pubsub.get('boundingRect');
       const position = {
-        top: boundingRect.top + window.scrollY - toolbarHeight - toolbarOffset - offsetParentTop,
-        left: boundingRect.left + window.scrollX + boundingRect.width / 2 - offsetParentLeft,
+        top: boundingRect.top - toolbarHeight - toolbarOffset - offsetParentTop,
+        left: boundingRect.left + boundingRect.width / 2 - offsetParentLeft,
         transform: 'translate(-50%) scale(1)',
         transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
       };
