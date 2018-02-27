@@ -28,9 +28,13 @@ class LinkPanelContainer extends Component {
   setLinkPanel = linkPanel => this.linkPanel = linkPanel;
 
   onDoneClick = () => {
+    const { onCancel, onDelete } = this.props;
     if (this.linkPanel.state.isValidUrl && this.linkPanel.state.url) {
       const { url, targetBlank, nofollow } = this.linkPanel.state;
       this.props.onDone && this.props.onDone({ url, targetBlank, nofollow });
+    } else if (this.linkPanel.state.intermediateUrl === '') {
+      onDelete();
+      onCancel();
     } else {
       this.linkPanel.validateUrl();
     }

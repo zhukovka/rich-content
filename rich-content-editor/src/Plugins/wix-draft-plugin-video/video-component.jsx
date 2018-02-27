@@ -7,7 +7,6 @@ import { mergeStyles } from '~/Utils';
 import styles from './default-video-styles.scss';
 
 const DEFAULTS = {
-  src: 'https://www.youtube.com/watch?v=YIywpvHewc0',
   config: {
     size: 'content',
     alignment: 'center'

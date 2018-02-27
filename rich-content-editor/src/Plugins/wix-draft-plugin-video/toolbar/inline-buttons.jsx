@@ -1,5 +1,7 @@
 import { BUTTONS } from '~/Plugins/base/buttons';
-import MediaReplaceIcon from '../icons/media-replace.svg';
+import { MODALS } from '~/RichContentEditor/RichContentModal';
+import { getModalStyles } from '~/Utils';
+import MediaReplaceIcon from './icons/media-replace.svg';
 
 const InlineButtons = [
   { type: BUTTONS.SIZE_SMALL_LEFT, mobile: true },
@@ -10,8 +12,10 @@ const InlineButtons = [
   { type: BUTTONS.SEPARATOR, mobile: true },
   {
     keyName: 'replace',
-    type: BUTTONS.VIDEO_REPLACE,
+    type: BUTTONS.EXTERNAL_MODAL,
     icon: MediaReplaceIcon,
+    modalName: MODALS.VIDEO_URL_INPUT,
+    modalStyles: getModalStyles({ fullScreen: false }),
     mobile: true,
   },
   { type: BUTTONS.DELETE, mobile: true },

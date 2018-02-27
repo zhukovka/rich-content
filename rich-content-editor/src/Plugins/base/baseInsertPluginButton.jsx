@@ -5,14 +5,15 @@ import cloneDeep from 'lodash/cloneDeep';
 import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
 import Tooltip from '~/Components/Tooltip';
-import Styles from '~/Styles/toolbar-button.scss';
-import { VideoUploadModal } from '../wix-draft-plugin-video/videoUploadModal';
+import styles from '~/Styles/toolbar-button.scss';
+import { mergeStyles } from '~/Utils/mergeStyles';
 
-export default ({ blockType, button, pubsub }) => {
+export default ({ blockType, button, helpers, pubsub, theme }) => {
   class InsertPluginButton extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = {};
+      this.styles = mergeStyles({ styles, theme });
     }
 
     addBlock = data => {
@@ -44,17 +45,12 @@ export default ({ blockType, button, pubsub }) => {
       switch (button.type) {
         case 'file':
           break;
-        case 'video':
-          this.openVideoUploadModal();
+        case 'modal':
+          this.toggleButtonModal();
           break;
         default:
           this.addBlock(button.data || {});
       }
-    };
-
-    addVideoBlock = url => {
-      this.closeVideoUploadModal();
-      this.addBlock({ ...button.data, src: url });
     };
 
     handleFileChange = event => {
@@ -75,38 +71,40 @@ export default ({ blockType, button, pubsub }) => {
     preventBubblingUp = event => event.preventDefault();
 
     renderButton = () => {
-      const { showName, theme } = this.props;
+      const { styles } = this;
+      const { showName } = this.props;
       const { name, Icon } = button;
-      const buttonClassNames = classNames(Styles.button, theme && theme.button);
-      const iconClassNames = classNames(Styles.icon, theme && theme.icon);
-      const labelClassNames = classNames(Styles.label, theme && theme.label);
       return (
-        <button className={buttonClassNames} onClick={this.onClick}>
-          <div className={iconClassNames}>
+        <button className={styles.button} onClick={this.onClick}>
+          <div className={styles.icon}>
             <Icon key="0" />
           </div>
-          {showName && <span key="1" className={labelClassNames}>{name}</span>}
+          {showName && <span key="1" className={styles.label}>{name}</span>}
         </button>
       );
     };
 
-    openVideoUploadModal = () => {
-      this.setState({ isVideoUploadModalOpen: true });
-    };
-
-    closeVideoUploadModal = () => {
-      this.setState({ isVideoUploadModalOpen: false });
-    };
-
-    renderVideoUploadForm = show => (show ? <VideoUploadModal isOpen onConfirm={this.addVideoBlock} onCancel={this.closeVideoUploadModal} /> : null);
+    toggleButtonModal = () => {
+      if (helpers && helpers.openModal) {
+        helpers.openModal({
+          modalName: button.modalName,
+          modalStyles: button.modalStyles,
+          theme: theme.modal,
+          componentData: button.data,
+          onConfirm: this.addBlock,
+          helpers,
+        });
+      }
+    }
 
     renderFileUploadForm = () => {
+      const { styles } = this;
       return (
         <form ref={this.setForm}>
           <input
             name="file"
             type="file"
-            className={Styles.fileInput}
+            className={styles.fileInput}
             onChange={this.handleFileChange}
             accept="image/*"
             tabIndex="-1"
@@ -117,22 +115,17 @@ export default ({ blockType, button, pubsub }) => {
     };
 
     render() {
-      const { theme, isMobile } = this.props;
+      const { styles } = this;
+      const { isMobile } = this.props;
       const { tooltipText } = button;
       const showTooltip = !isMobile && !isEmpty(tooltipText);
       const buttonWrapperClassNames = classNames(
-        Styles.buttonWrapper,
-        {
-          [Styles.mobile]: isMobile,
-        },
-        theme && theme.buttonWrapper
-      );
+        styles.buttonWrapper, { [styles.mobile]: isMobile });
 
       const Button = (
         <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
           {this.renderButton()}
           {button.type === 'file' && this.renderFileUploadForm()}
-          {button.type === 'video' && this.renderVideoUploadForm(this.state.isVideoUploadModalOpen)}
         </div>
       );
 
@@ -157,7 +150,6 @@ export default ({ blockType, button, pubsub }) => {
     setEditorState: PropTypes.func.isRequired,
     hidePopup: PropTypes.func,
     showName: PropTypes.bool,
-    theme: PropTypes.object.isRequired,
     isMobile: PropTypes.bool,
   };
 

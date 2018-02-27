@@ -15,15 +15,9 @@ export default class AddPluginButton extends Component {
 
   openAddPluginModal = () => {
     const { getEditorState, setEditorState, pluginButtons, pubsub, theme } = this.props;
-    const customStyles = {
-      content: {
-        height: '200px',
-        top: 'calc(50% - 100px)',
-      }
-    };
     this.props.openModal({
       modalName: MODALS.MOBILE_ADD_PLUGIN,
-      modalStyles: getModalStyles({ customStyles, fullScreen: false }),
+      modalStyles: getModalStyles({ fullScreen: false }),
       structure: pluginButtons,
       theme: theme.mobileAddPlugin,
       hidePopup: this.props.closeModal,

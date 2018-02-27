@@ -27,10 +27,11 @@
 .icon {
     width: $icon-width;
     vertical-align: middle;
-    @include svg-fill($toolbar-font-color);
+    color: $toolbar-font-color;
+    @include svg-fill;
 
     &.active, &:hover {
         color: $accent-color;
-        @include svg-fill($accent-color);
+        @include svg-fill;
     }
 }

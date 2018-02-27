@@ -18,8 +18,10 @@ const mobileModalStyles = {
   content: {
     position: 'fixed',
     top: '50%',
+    transform: 'translateY(-50%)',
     right: 0,
     left: 0,
+    bottom: 'auto',
     border: 'none',
     backgroundColor: 'white',
     overflow: 'auto',
@@ -27,7 +29,6 @@ const mobileModalStyles = {
     borderRadius: 0,
     outline: 'none',
     padding: 0,
-    height: 'auto',
     width: 'calc(100% - 20px)',
     margin: '0 10px',
   }
@@ -51,11 +52,12 @@ const mobileFullScreenOverrideStyles = {
     backgroundColor: '#fff',
     height: '100vh',
     width: '100vw',
-    margin: 0
+    margin: 0,
+    transform: 'none',
   }
 };
 
-const desktopModalStyles = {
+const desktopSideBarStyles = {
   overlay: {
     top: 0,
     left: 'auto',
@@ -86,6 +88,20 @@ const desktopModalStyles = {
   }
 };
 
+const desktopModalOverrideStyles = {
+  overlay: {
+  },
+  content: {
+    top: 'calc(50%)',
+    transform: 'translateY(-50%)',
+    left: 0,
+    right: 0,
+    height: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+};
+
 export const getModalStyles = ({ customStyles = null, fullScreen = true } = {}) => {
   const overrideStyles = [];
   if (customStyles) {
@@ -98,6 +114,9 @@ export const getModalStyles = ({ customStyles = null, fullScreen = true } = {}) 
     }
     return merge({}, mobileModalStyles, ...overrideStyles);
   } else {
-    return merge({}, desktopModalStyles, ...overrideStyles);
+    if (!fullScreen) {
+      overrideStyles.push(desktopModalOverrideStyles);
+    }
+    return merge({}, desktopSideBarStyles, ...overrideStyles);
   }
 };

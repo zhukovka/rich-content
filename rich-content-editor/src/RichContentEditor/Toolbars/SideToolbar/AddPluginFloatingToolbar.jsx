@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Tooltip from '~/Components/Tooltip';
 import PlusIcon from '../icons/plus-default.svg';
 import PlusActiveIcon from '../icons/plus-active.svg';
 import Styles from '~/Styles/side-toolbar.scss';
@@ -52,11 +51,13 @@ export default class AddPluginFloatingToolbar extends Component {
   };
 
   showPopup = () => {
+    const { toolbarStyle } = this.props;
     this.setState({
       style: {
         left: this.getPopupOffset(),
         transform: 'translate(-50%) scale(1)',
         transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
+        ...toolbarStyle,
       },
     });
   };
@@ -72,7 +73,7 @@ export default class AddPluginFloatingToolbar extends Component {
   getPopupOffset = () => {
     if (!this.popupOffset) {
       if (this.popup) {
-        this.popupOffset = this.popup.offsetWidth / 2 + 28;
+        this.popupOffset = this.popup.offsetWidth / 2 + 30;
       }
     }
     return this.popupOffset;
@@ -86,15 +87,9 @@ export default class AddPluginFloatingToolbar extends Component {
     const popoupClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
     return (
       <div className={floatingContainerClassNames}>
-        <Tooltip
-          content={'Insert Media'}
-          moveBy={{ x: 7, y: -7 }}
-          theme={theme}
-        >
-          <div className={floatingIconClassNames} onMouseDown={this.onMouseDown} ref={el => (this.selectButton = el)}>
-            {!this.state.isActive ? <PlusIcon /> : <PlusActiveIcon />}
-          </div>
-        </Tooltip>
+        <div className={floatingIconClassNames} onMouseDown={this.onMouseDown} ref={el => (this.selectButton = el)}>
+          {!this.state.isActive ? <PlusIcon /> : <PlusActiveIcon />}
+        </div>
         <div className={popoupClassNames} style={this.state.style} ref={el => (this.popup = el)}>
           {this.props.structure.map((Component, index) => (
             <Component
@@ -117,5 +112,6 @@ AddPluginFloatingToolbar.propTypes = {
   structure: PropTypes.array.isRequired,
   pubsub: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  toolbarStyle: PropTypes.object,
   isMobile: PropTypes.bool
 };

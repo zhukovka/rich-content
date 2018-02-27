@@ -1,28 +1,42 @@
-// import AddIcon from '../icons/toolbar/icon-add.svg';
-import ManageMediaIcon from '../icons/insert-plugin.svg';
+import AddIcon from '../icons/toolbar/icon-plus.svg';
+import ManageMediaIcon from '../icons/manageMedia.svg';
 import AdvancedSettingsIcon from '~/Plugins/base/icons/block-settings.svg';
 import { BUTTONS } from '~/Plugins/base/buttons';
 import { MODALS } from '~/RichContentEditor/RichContentModal';
 import { getModalStyles } from '~/Utils';
+import { galleryLayouts, switchLayout, getCurrentLayout } from '../helpers';
 
 const modalStyles = getModalStyles();
-
 const InlineButtons = [
-  // {
-  //   keyName: 'add',
-  //   type: BUTTONS.FILES,
-  //   icon: AddIcon,
-  //   onClick: pubsub => console.log('*** click add *** '), //eslint-disable-line no-console, no-unused-vars,
-  //   onFilesSelected: (pubsub, files) => console.log('*** got files *** ', files), //eslint-disable-line no-console, no-unused-vars,
-  //   mobile: true,
-  // },
-  // { type: BUTTONS.SEPARATOR, mobile: true },
-  { type: BUTTONS.SIZE_SMALL_LEFT, mobile: true },
-  { type: BUTTONS.SIZE_SMALL_CENTER, mobile: true },
-  { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: true },
-  { type: BUTTONS.SIZE_CONTENT, mobile: true },
-  { type: BUTTONS.SIZE_FULL_WIDTH, mobile: true },
+  {
+    keyName: 'layout',
+    type: BUTTONS.DROPDOWN,
+    options: galleryLayouts,
+    onChange: switchLayout,
+    getValue: getCurrentLayout,
+    mobile: true,
+  },
+  { type: BUTTONS.SEPARATOR, mobile: false },
+  { type: BUTTONS.SIZE_SMALL_CENTER, mobile: false },
+  { type: BUTTONS.SIZE_CONTENT, mobile: false },
+  { type: BUTTONS.SIZE_FULL_WIDTH, mobile: false },
+  { type: BUTTONS.SEPARATOR, mobile: false },
+  { type: BUTTONS.SIZE_SMALL_LEFT, mobile: false },
+  { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: false },
   { type: BUTTONS.SEPARATOR, mobile: true },
+  {
+    keyName: 'add',
+    type: BUTTONS.FILES,
+    icon: AddIcon,
+    onFilesSelected: (pubsub, files) => {
+      if (files.length > 0) {
+        const handleFilesSelected = pubsub.store.get('handleFilesSelected');
+        handleFilesSelected(files);
+      }
+    },
+    mobile: false,
+    multiple: true,
+  },
   {
     keyName: 'manage_media',
     type: BUTTONS.EXTERNAL_MODAL,
@@ -39,8 +53,10 @@ const InlineButtons = [
     modalName: MODALS.GALLERY_SETTINGS,
     activeTab: 'advanced_settings',
     modalStyles,
-    mobile: true,
+    mobile: false,
+    switchLayout,
   },
+  { type: BUTTONS.SEPARATOR, mobile: true },
   { type: BUTTONS.DELETE, mobile: true },
 ];
 

@@ -1,7 +1,6 @@
 $TITLE_HEIGHT: 100px;
 $FOOTER_HEIGHT: 100px;
 $MOBILE_HEADER_HEIGHT: 50px;
-
 @mixin image-management-button($icon) {
     content: '';
     display: inline-block;
@@ -12,7 +11,7 @@ $MOBILE_HEADER_HEIGHT: 50px;
     background: url('./icons/' + $icon + '.svg') center no-repeat;
 }
 
-.imageSettings {
+.galleryImageSettings {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -23,38 +22,49 @@ $MOBILE_HEADER_HEIGHT: 50px;
     color: #333333;
     background: #fff;
     z-index: 6;
+
 }
 
-.imageSettings_content {
+.galleryImageSettings_content {
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;
 }
 
-.imageSettings_backButton {
-    cursor: pointer;
+.galleryImageSettings_backButton {
+  cursor: pointer;
 }
 
-.imageSettings_title {
-    font-size: 18px;
-    width: 100%;
-    color: #333333;
-    line-height: 30px;
-    padding: 45px 30px 24px;
-    margin: 0;
-    border-bottom: 1px solid #EDEDED;
+.galleryImageSettings_backIcon {
+  width: 19px;
+  height: 19px;
+  margin-right: 10px;
+}
+
+
+.galleryImageSettings_title {
     position: fixed;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 43px 28px 22px;
     top: 0;
+    margin: 0;
+    color: #333333;
     background-color: #fff;
+    line-height: 30px;
+    font-size: 18px;
+    border-bottom: 1px solid #EDEDED;
     z-index: 7;
 }
 
-.imageSettings_image {
+.galleryImageSettings_image {
     width: 100%;
     height: 240px;
+    background-color: rgba(51, 51, 51, 0.1);
 }
 
-.imageSettings_manageImageGrid {
+.galleryImageSettings_manageImageGrid {
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 100%;
@@ -74,18 +84,18 @@ $MOBILE_HEADER_HEIGHT: 50px;
     }
 }
 
-.imageSettings_replace {
+.galleryImageSettings_replace {
     @extend %manage_button;
     padding: 12px 15px;
     text-align: center;
     display: block;
 }
 
-.imageSettings_replace_text::before {
+.galleryImageSettings_replace_text::before {
     @include image-management-button('replace');
 }
 
-.imageSettings_delete {
+.galleryImageSettings_delete {
     @extend %manage_button;
     padding: 12px 15px;
     text-align: center;
@@ -93,11 +103,11 @@ $MOBILE_HEADER_HEIGHT: 50px;
     border-left: 1px #ededed solid;
 }
 
-.imageSettings_delete_text::before {
+.galleryImageSettings_delete_text::before {
     @include image-management-button('delete');
 }
 
-.imageSettings_nav {
+.galleryImageSettings_nav {
     width: 100%;
     height: 240px;
     position: absolute;
@@ -105,10 +115,10 @@ $MOBILE_HEADER_HEIGHT: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
 
-    &.mobile {
-        top: $MOBILE_HEADER_HEIGHT;
-    }
+.galleryImageSettings_nav_mobile {
+    top: $MOBILE_HEADER_HEIGHT;
 }
 
 %nav {
@@ -125,42 +135,43 @@ $MOBILE_HEADER_HEIGHT: 50px;
     cursor: pointer;
 }
 
-.imageSettings_next {
+.galleryImageSettings_next {
     @extend %nav;
     right: 0;
     transform: rotateZ(90deg);
     background: rgba(0, 0, 0, 0.75) url('./icons/next.svg') center no-repeat;
 }
 
-.imageSettings_previous {
+.galleryImageSettings_previous {
     @extend %nav;
     left: 0;
     transform: rotateZ(90deg);
     background: rgba(0, 0, 0, 0.75) url('./icons/previous.svg') center no-repeat;
 }
 
-.imageSettings_hidden {
+.galleryImageSettings_hidden {
     visibility: hidden;
 }
 
-.imageSettings_section {
-    padding: 20px 25px 0 25px;
+.galleryImageSettings_section {
+    padding: 20px 30px 0 30px;
+    font-size: 14px;
 }
 
-.imageSettingsLinkContainer {
-  padding: 4px 26px 0 6px;
+.galleryImageSettingsLinkContainer {
+  padding: 4px 29px 0 29px;
 }
 
-.imageSettings_scrollContainer {
+.galleryImageSettings_scrollContainer {
     height: calc(100% - $FOOTER_HEIGHT);
     margin: $TITLE_HEIGHT auto $FOOTER_HEIGHT auto;
     width: 100%;
-
-    &.mobile {
-        margin: 0 auto;
-    }
 }
 
-.imageSettings_footer {
+.galleryImageSettings_scrollContainer_mobile {
+    margin: 0 auto;
+}
+
+.galleryImageSettings_footer {
     z-index: 6;
 }

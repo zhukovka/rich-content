@@ -2,27 +2,16 @@
 @import "./mixins.scss";
 
 .separator {
-  display: inline-block;
-  width: 1px;
+  flex: 0 0 1px;
   background: $toolbar-border-color;
   margin: 0px 19px 0 9px;
 
 }
 
 .horizontalSeparator {
-  display: none;
-}
-
-@include phone {
-  .horizontalSeparator {
-    display: block;
-    width: auto;
-    background: $toolbar-border-color;
-    height: 1px;
-    margin: 0 -10px 0 -19px;
-  }
-
-  .separator {
-    display: none;
-  }
+  display: block;
+  width: auto;
+  background: $toolbar-border-color;
+  height: 1px;
+  margin: 0 -10px 0 -19px;
 }

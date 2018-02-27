@@ -30,13 +30,13 @@ class BlockLinkPanel extends Component {
     if (!isEmpty(url)) {
       pubsub.set('componentLink', { url, targetBlank, nofollow });
     } else {
-      pubsub.set('componentLink', undefined);
+      pubsub.set('componentLink', null);
     }
     this.hideLinkPanel();
   };
 
   deleteLink = () => {
-    this.props.pubsub.set('componentLink', undefined);
+    this.props.pubsub.set('componentLink', null);
   }
 
   hideLinkPanel = () => {

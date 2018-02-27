@@ -1,5 +1,7 @@
 import React from 'react';
 import decorateComponentWithProps from 'decorate-component-with-props';
+import get from 'lodash/get';
+import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import SideToolbar from './SideToolbar';
 import AddPluginFloatingToolbar from './AddPluginFloatingToolbar';
 import { simplePubsub } from '~/Utils';
@@ -11,18 +13,23 @@ const createSideToolbar = (config = {}) => {
     theme,
     structure = [],
     offset = {
-      desktop: { x: 0, y: 0 },
-      mobile: { x: 0, y: 0 },
+      desktop: { x: -40, y: 0 },
+      mobile: {
+        ios: { x: 0, y: 0 },
+        android: { x: 0, y: 50 },
+      }
     },
     isMobile,
   } = config;
+
+  const offsetPath = !isMobile ? 'desktop' : baseUtils.isiOS() ? 'mobile.ios' : 'mobile.android';
 
   const toolbarProps = {
     pubsub,
     structure,
     theme,
     isMobile,
-    offset: offset[!isMobile ? 'desktop' : 'mobile'],
+    offset: get(offset, offsetPath),
   };
 
   return {
@@ -41,7 +48,7 @@ const createSideToolbar = (config = {}) => {
 
 
 
-export default ({ buttons, offset, pubsub, theme, isMobile }) => {
+export default ({ buttons, offset, pubsub, theme, toolbarStyle, isMobile }) => {
   return createSideToolbar({
     offset,
     theme,
@@ -52,6 +59,7 @@ export default ({ buttons, offset, pubsub, theme, isMobile }) => {
           getEditorState={getEditorState}
           setEditorState={setEditorState}
           theme={theme}
+          toolbarStyle={toolbarStyle}
           structure={buttons}
           pubsub={pubsub}
           isMobile={isMobile}

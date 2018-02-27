@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import classnames from 'classnames';
 import Button from '~/Components/Button';
 import { mergeStyles } from '~/Utils';
 import styles from '~/Styles/settings-panel-footer.scss';
@@ -12,13 +12,13 @@ class SettingsPanelFooter extends Component {
   }
 
   render() {
-    const { save, cancel, theme } = this.props;
+    const { save, cancel, theme, cancelLabel, saveLabel, fixed, className } = this.props;
     return (
-      <div className={this.styles.settingsPanel_footer}>
+      <div className={classnames(this.styles.settingsPanel_footer, className, { [this.styles.settingsPanel_footer_fixed]: fixed })}>
         <Button theme={theme} onClick={() => cancel()} className={this.styles.settingsPanel_cancel} type={'secondary'}>
-          {'Cancel'}
+          {cancelLabel}
         </Button>
-        <Button theme={theme} className={this.styles.settingsPanel_save} onClick={() => save()}>{'Done'}</Button>
+        <Button theme={theme} className={this.styles.settingsPanel_save} onClick={() => save()}>{saveLabel}</Button>
       </div>
     );
   }
@@ -28,6 +28,16 @@ SettingsPanelFooter.propTypes = {
   save: PropTypes.func.isRequired,
   cancel: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
+  saveLabel: PropTypes.string,
+  cancelLabel: PropTypes.string,
+  fixed: PropTypes.bool,
+  className: PropTypes.string,
+};
+
+SettingsPanelFooter.defaultProps = {
+  saveLabel: 'Done',
+  cancelLabel: 'Cancel',
+  fixed: false
 };
 
 export default SettingsPanelFooter;

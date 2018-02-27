@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="19px" height="19px" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Small / Slideshow </title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M2,3 L17,3 C17.5522847,3 18,3.58202982 18,4.3 L18,14.7 C18,15.4179701 17.5522847,16 17,16 L2,16 C1.44771525,16 1,15.4179701 1,14.7 L1,4.3 C1,3.58202982 1.44771525,3 2,3 Z M2,4 L2,15 L17,15 L17,4 L2,4 Z" id="Slideshow-path-1"></path>
+    </defs>
+    <g id="Slideshow-Slideshow" stroke-width="0" fill="none" fill-rule="evenodd">
+        <g stroke-width="0" id="Slideshow-Small-/-Slideshow-">
+            <mask id="Slideshow-mask-2" fill="white">
+                <use xlink:href="#Slideshow-path-1"></use>
+            </mask>
+            <use id="Slideshow-thumbnails-a" fill="#333333" fill-rule="nonzero" xlink:href="#Slideshow-path-1"></use>
+            <rect id="Slideshow-Rectangle" fill="#333333" x="4" y="9" width="1" height="1"></rect>
+            <rect id="Slideshow-Rectangle" fill="#333333" x="5" y="8" width="1" height="1"></rect>
+            <rect id="Slideshow-Rectangle" fill="#333333" x="5" y="10" width="1" height="1"></rect>
+            <rect id="Slideshow-Rectangle" fill="#333333" x="14" y="9" width="1" height="1"></rect>
+            <rect id="Slideshow-Rectangle" fill="#333333" x="13" y="8" width="1" height="1"></rect>
+            <rect id="Slideshow-Rectangle" fill="#333333" x="13" y="10" width="1" height="1"></rect>
+        </g>
+    </g>
+</svg>

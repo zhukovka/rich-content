@@ -49,11 +49,10 @@ export default class SideToolbar extends Component {
       const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
       const top = node.getBoundingClientRect().top;
       const parentTop = node.offsetParent.getBoundingClientRect().top;
-      const scrollY = window.scrollY === null ? window.pageYOffset : window.scrollY;
       const { offset } = this.props;
       this.setState({
         position: {
-          top: top + scrollY - parentTop + offset.y,
+          top: top - parentTop + offset.y,
           [!isMobile ? 'left' : 'right']: offset.x,
           transform: 'scale(1)',
           transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',

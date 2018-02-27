@@ -24,7 +24,6 @@ class ImageSettings extends Component {
     return {
       item: props.componentData.item,
       initialImageState,
-      isDoneEnabled: false,
     };
   }
 
@@ -37,10 +36,6 @@ class ImageSettings extends Component {
   }
 
   onComponentUpdate = () => this.forceUpdate();
-
-  componentWillReceiveProps(nextProps) {
-    this.setState(this.stateFromProps(nextProps));
-  }
 
   setLinkPanel = linkPanel => this.linkPanel = linkPanel;
 
@@ -66,7 +61,7 @@ class ImageSettings extends Component {
     if (!isEmpty(url)) {
       pubsub.set('componentLink', { url, targetBlank, nofollow });
     } else {
-      pubsub.set('componentLink', undefined);
+      pubsub.set('componentLink', null);
     }
   };
 
@@ -81,14 +76,16 @@ class ImageSettings extends Component {
   };
 
   deleteLink = () => {
-    this.props.pubsub.set('componentLink', undefined);
+    this.props.pubsub.set('componentLink', null);
   }
 
   onDoneClick = () => {
     const { helpers } = this.props;
-    if (this.state.isDoneEnabled) {
+    if (this.linkPanel.state.isValidUrl && this.linkPanel.state.url) {
       const { url, targetBlank, nofollow } = this.linkPanel.state;
       this.wrapBlockInLink({ url, targetBlank, nofollow });
+    } else if (this.linkPanel.state.intermediateUrl === '') {
+      this.deleteLink();
     }
     if (this.state.item.metadata) {
       this.addMetadataToBlock();
@@ -96,13 +93,13 @@ class ImageSettings extends Component {
     helpers.closeModal();
   };
 
-  updateParentIfNecessary = shouldUpdate => {
-    this.setState({ isDoneEnabled: shouldUpdate });
-  }
-
   render() {
     const { componentData, helpers, theme, isMobile } = this.props;
     const { item } = componentData;
+    if (!item) {
+      return; //do not render until the item is passed
+    }
+
     const { metadata = {} } = item;
     const { url, targetBlank, nofollow } = (!isEmpty(componentData.config.link) ? componentData.config.link : {});
 
@@ -118,7 +115,7 @@ class ImageSettings extends Component {
             /> :
             <h3 className={this.styles.imageSettingsTitle}>Image Settings</h3>
           }
-          <div className={classNames(styles.imageSettings_scrollContainer, { [styles.mobile]: isMobile })}>
+          <div className={classNames(styles.imageSettings_scrollContainer, { [styles.imageSettings_mobile]: isMobile })}>
             <SettingsSection theme={theme}>
               <Image resizeMode={'contain'} className={this.styles.imageSettingsImage} src={getImageSrc(item, helpers)} />
             </SettingsSection>
@@ -146,16 +143,16 @@ class ImageSettings extends Component {
             <div className={this.styles.imageSettingsLinkContainer}>
               <LinkPanel
                 ref={this.setLinkPanel}
+                theme={theme}
                 url={url}
                 targetBlank={targetBlank}
                 nofollow={nofollow}
-                updateParentIfNecessary={this.updateParentIfNecessary}
                 isImageSettings
-                theme={theme}
               />
             </div>
           </div>
           {isMobile ? null : <SettingsPanelFooter
+            fixed
             theme={theme}
             cancel={() => this.revertComponentData()}
             save={() => this.onDoneClick()}

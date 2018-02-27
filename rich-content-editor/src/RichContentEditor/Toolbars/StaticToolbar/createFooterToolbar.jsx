@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import createStaticToolbar from './createStaticToolbar';
 import Styles from '~/Styles/footer-toolbar.scss';
 
-export default ({ buttons, theme }) => {
+export default ({ buttons, theme, toolbarStyle }) => {
   const { toolbarStyles, buttonStyles, separatorStyles } = theme || {};
   const footerTheme = {
     toolbarStyles: {
@@ -17,6 +17,7 @@ export default ({ buttons, theme }) => {
   return createStaticToolbar({
     name: 'FooterToolbar',
     theme: footerTheme,
+    toolbarStyle,
     structure: buttons
   });
 };

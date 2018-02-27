@@ -20,11 +20,6 @@ const modalStyleDefaults = {
   }
 };
 
-const sideToolbarOffset = {
-  desktop: { x: -40, y: 0 },
-  mobile: { x: 0, y: 0 }
-};
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -128,22 +123,24 @@ class App extends Component {
     return (
       <div className="wrapper">
         <div className="container">
-          <div className="header">
-            <img src={logo} className="logo" alt="logo" />
-            <h2>Wix Rich Content Editor</h2>
-            <div>
-              <label htmlFor="readOnlyToggle">Read Only</label>
-              <input
-                type="checkbox"
-                name="readOnlyToggle"
-                onChange={this.onReadOnlyChange}
-                defaultChecked={this.state.readOnly}
-              />
-            </div>
-            <span className="intro">
+          {!this.isMobile() &&
+            <div className="header">
+              <img src={logo} className="logo" alt="logo" />
+              <h2>Wix Rich Content Editor</h2>
+              <div>
+                <label htmlFor="readOnlyToggle">Read Only</label>
+                <input
+                  type="checkbox"
+                  name="readOnlyToggle"
+                  onChange={this.onReadOnlyChange}
+                  defaultChecked={this.state.readOnly}
+                />
+              </div>
+              <span className="intro">
               Last saved on {this.state.lastSave.toTimeString()}
-            </span>
-          </div>
+              </span>
+            </div>
+          }
           {MobileToolbar && <MobileToolbar />}
           <div className="content">
             <RichContentEditor
@@ -154,7 +151,6 @@ class App extends Component {
               decorators={this.decorators}
               editorState={this.state.editorState}
               readOnly={this.state.readOnly}
-              sideToolbarOffset={sideToolbarOffset}
               isMobile={this.isMobile()}
               theme={theme}
             />

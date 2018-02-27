@@ -8,7 +8,7 @@ import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
 import LayoutControlsSection from './layout-controls-section';
 import SettingsSection from '~/Components/SettingsSection';
 import { SortableComponent } from './gallery-controls/gallery-items-sortable';
-import layoutData from '../layout-data-provider';
+import layoutData from '../helpers/layout-data-provider';
 import GallerySettingsMobileHeader from './gallery-controls/gallery-settings-mobile-header';
 
 class ManageMediaSection extends Component {
@@ -188,7 +188,7 @@ export class GallerySettingsModal extends Component {
               </Tab>
             </Tabs>
           </div>
-          <SettingsPanelFooter cancel={() => this.revertComponentData()} save={() => helpers.closeModal()} theme={this.props.theme}/>
+          <SettingsPanelFooter fixed cancel={() => this.revertComponentData()} save={() => helpers.closeModal()} theme={this.props.theme}/>
         </div>
       );
     }

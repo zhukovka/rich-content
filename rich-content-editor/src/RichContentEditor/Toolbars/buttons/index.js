@@ -16,11 +16,9 @@ export const TextButtonList = [
   'Title',
   'Blockquote',
   'Separator',
-  'HorizontalSeparator',
   'Alignment',
   'OrderedList',
   'UnorderedList',
-  'Indent',
   'Separator',
   'Link',
 ];

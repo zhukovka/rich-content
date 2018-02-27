@@ -1,14 +1,6 @@
-@mixin svg-fill($fill) {
+@mixin svg-fill {
   svg {
-    polygon,
-    line,
-    polyline,
-    path,
-    mesh,
-    rect,
-    ellipse {
-      fill: $fill;
-    }
+    fill: currentColor;
   }
 }
 

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { EditorState, convertFromRaw } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
 import isUndefined from 'lodash/isUndefined';
+import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createToolbars from './Toolbars';
 import createPlugins from './Plugins';
 import createDecorators from './Decorators';
@@ -41,6 +42,7 @@ export default class RichContentEditor extends Component {
       sideToolbarOffset,
       textButtons,
       isMobile,
+      toolbarStyle,
     } = this.props;
     const { theme } = this.state;
     const buttons = { textButtons, pluginButtons };
@@ -51,6 +53,7 @@ export default class RichContentEditor extends Component {
       isMobile,
       sideToolbarOffset,
       theme: theme.toolbars || {},
+      toolbarStyle,
       getEditorState: () => this.state.editorState,
       setEditorState: editorState => this.setState({ editorState }),
     });
@@ -188,6 +191,7 @@ export default class RichContentEditor extends Component {
     const wrapperClassName = classNames(Styles.wrapper, theme.wrapper, {
       [Styles.desktop]: !isMobile,
       [theme.desktop]: !isMobile && theme && theme.desktop,
+      [Styles.android]: isMobile && !baseUtils.isiOS()
     });
     return (
       <div className={wrapperClassName}>
@@ -205,6 +209,7 @@ RichContentEditor.propTypes = {
   decorators: PropTypes.object,
   initialState: PropTypes.object,
   theme: PropTypes.object.isRequired,
+  toolbarStyle: PropTypes.object,
   onChange: PropTypes.func,
   isMobile: PropTypes.bool,
   readOnly: PropTypes.bool,

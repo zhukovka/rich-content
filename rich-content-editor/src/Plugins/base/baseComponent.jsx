@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
-import isUndefined from 'lodash/isUndefined';
+import isNil from 'lodash/isNil';
 import merge from 'lodash/merge';
 import classNames from 'classnames';
 import createHocName from './createHocName';
@@ -116,7 +116,7 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
     };
 
     onComponentLinkChange = link => {
-      if (link && this.isMeAndIdle) {
+      if (this.isMeAndIdle) {
         this.updateComponentData({ config: { link } });
       }
     };
@@ -221,10 +221,10 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
         />
       );
 
-      const target = !isUndefined(link) ? link.targetBlank ? '_blank' : '_self' : false;
+      const target = !isNil(link) ? link.targetBlank ? '_blank' : '_self' : false;
       return (
         <div style={{ position: 'relative' }} className={ContainerClassNames}>
-          {!isUndefined(link) ?
+          {!isNil(link) ?
             link.nofollow ?
               (
                 <a href={link.url} target={target} rel="nofolow">

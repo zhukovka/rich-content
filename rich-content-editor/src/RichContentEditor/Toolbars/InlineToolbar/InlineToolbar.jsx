@@ -24,6 +24,7 @@ export default class InlineToolbar extends Component {
     pubsub: PropTypes.object.isRequired,
     structure: PropTypes.array.isRequired,
     theme: PropTypes.object.isRequired,
+    toolbarStyle: PropTypes.object,
     isMobile: PropTypes.bool,
   };
 
@@ -32,6 +33,8 @@ export default class InlineToolbar extends Component {
     position: undefined,
     overrideContent: undefined,
     extendContent: undefined,
+    showRightArrow: true,
+    showLeftArrow: false
   }
 
   componentWillMount() {
@@ -40,6 +43,10 @@ export default class InlineToolbar extends Component {
 
   componentWillUnmount() {
     this.props.pubsub.unsubscribe('selection', this.onSelectionChanged);
+  }
+
+  componentDidMount() {
+    this.handleToolbarScroll();
   }
 
   onOverrideContent = overrideContent => this.setState({ overrideContent });
@@ -84,13 +91,13 @@ export default class InlineToolbar extends Component {
   };
 
   getStyle() {
-    const { pubsub } = this.props;
+    const { pubsub, toolbarStyle } = this.props;
     const { overrideContent, extendContent, position } = this.state;
     const selection = pubsub.get('getEditorState')().getSelection();
     // overrideContent could for example contain a text input, hence we always show overrideContent
     // TODO: Test readonly mode and possibly set isVisible to false if the editor is readonly
     const isVisible = (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent || extendContent;
-    const style = { ...position };
+    const style = { ...position, ...toolbarStyle };
 
     if (isVisible) {
       style.visibility = 'visible';
@@ -108,9 +115,42 @@ export default class InlineToolbar extends Component {
     this.toolbar = node;
   };
 
+  handleButtonsRef = node => {
+    this.buttons = node;
+    this.buttons.addEventListener('scroll', this.handleToolbarScroll);
+    window && window.addEventListener('resize', this.handleToolbarScroll);
+  };
+
+  scrollToolbar(event, direction) {
+    event.preventDefault();
+    switch (direction) {
+      case 'right':
+        this.buttons.scrollLeft += 200;
+        break;
+      case 'left':
+        this.buttons.scrollLeft -= 200;
+        break;
+      default:
+        break;
+    }
+  }
+
+  handleToolbarScroll = () => {
+    const spaceLeft = this.buttons.scrollLeft;
+    const eleWidth = this.buttons.clientWidth;
+    const fullWidth = this.buttons.scrollWidth;
+
+    const spaceRight = fullWidth - eleWidth - spaceLeft;
+
+    this.setState({
+      showLeftArrow: (spaceLeft > 0),
+      showRightArrow: (spaceRight > 0)
+    });
+  }
+
   render() {
     const { theme, pubsub, structure } = this.props;
-    const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
+    const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
     const { buttonStyles, toolbarStyles } = theme || {};
     const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
     const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons, {
@@ -131,8 +171,29 @@ export default class InlineToolbar extends Component {
         style={this.getStyle()}
         ref={this.handleToolbarRef}
       >
-        <div className={buttonClassNames}>
+        <div
+          className={buttonClassNames}
+          ref={this.handleButtonsRef}
+        >
+          {
+            showLeftArrow &&
+            <div
+              className={classNames(Styles.responsiveArrow, Styles.responsiveArrowLeft)}
+              onMouseDown={e => this.scrollToolbar(e, 'left')}
+            >
+              <i/>
+            </div>
+          }
           {OverrideContent ? <OverrideContent {...childrenProps} /> : structure.map((Button, index) => <Button key={index} {...childrenProps} />)}
+          {
+            showRightArrow &&
+            <div
+              className={classNames(Styles.responsiveArrow, Styles.responsiveArrowRight)}
+              onMouseDown={e => this.scrollToolbar(e, 'right')}
+            >
+              <i/>
+            </div>
+          }
         </div>
         {ExtendContent && (
           <div className={extendClassNames}>
