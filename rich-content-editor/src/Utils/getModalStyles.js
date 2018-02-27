@@ -55,7 +55,7 @@ const mobileFullScreenOverrideStyles = {
   }
 };
 
-const desktopModalStyles = {
+const desktopSideBarStyles = {
   overlay: {
     top: 0,
     left: 'auto',
@@ -86,6 +86,20 @@ const desktopModalStyles = {
   }
 };
 
+const desktopModalOverrideStyles = {
+  overlay: {
+  },
+  content: {
+    top: 'calc(50%)',
+    transform: 'translateY(-50%)',
+    left: 0,
+    right: 0,
+    height: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+};
+
 export const getModalStyles = ({ customStyles = null, fullScreen = true } = {}) => {
   const overrideStyles = [];
   if (customStyles) {
@@ -98,6 +112,9 @@ export const getModalStyles = ({ customStyles = null, fullScreen = true } = {}) 
     }
     return merge({}, mobileModalStyles, ...overrideStyles);
   } else {
-    return merge({}, desktopModalStyles, ...overrideStyles);
+    if (!fullScreen) {
+      overrideStyles.push(desktopModalOverrideStyles);
+    }
+    return merge({}, desktopSideBarStyles, ...overrideStyles);
   }
 };

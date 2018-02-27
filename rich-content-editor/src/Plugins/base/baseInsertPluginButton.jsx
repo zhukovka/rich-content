@@ -7,9 +7,8 @@ import classNames from 'classnames';
 import Tooltip from '~/Components/Tooltip';
 import styles from '~/Styles/toolbar-button.scss';
 import { mergeStyles } from '~/Utils/mergeStyles';
-import { VideoUploadModal } from '../wix-draft-plugin-video/toolbar/videoUploadModal';
 
-export default ({ blockType, button, pubsub, theme }) => {
+export default ({ blockType, button, helpers, pubsub, theme }) => {
   class InsertPluginButton extends Component {
     constructor(props) {
       super(props);
@@ -46,17 +45,12 @@ export default ({ blockType, button, pubsub, theme }) => {
       switch (button.type) {
         case 'file':
           break;
-        case 'video':
-          this.openVideoUploadModal();
+        case 'modal':
+          this.toggleButtonModal();
           break;
         default:
           this.addBlock(button.data || {});
       }
-    };
-
-    addVideoBlock = url => {
-      this.closeVideoUploadModal();
-      this.addBlock({ ...button.data, src: url });
     };
 
     handleFileChange = event => {
@@ -90,16 +84,18 @@ export default ({ blockType, button, pubsub, theme }) => {
       );
     };
 
-    openVideoUploadModal = () => {
-      this.setState({ isVideoUploadModalOpen: true });
-    };
-
-    closeVideoUploadModal = () => {
-      this.setState({ isVideoUploadModalOpen: false });
-    };
-
-    renderVideoUploadForm = show =>
-      (show && <VideoUploadModal theme={theme.modal} isOpen onConfirm={this.addVideoBlock} onCancel={this.closeVideoUploadModal}/>);
+    toggleButtonModal = () => {
+      if (helpers && helpers.openModal) {
+        helpers.openModal({
+          modalName: button.modalName,
+          modalStyles: button.modalStyles,
+          theme: theme.modal,
+          componentData: button.data,
+          onConfirm: this.addBlock,
+          helpers,
+        });
+      }
+    }
 
     renderFileUploadForm = () => {
       const { styles } = this;
@@ -130,7 +126,6 @@ export default ({ blockType, button, pubsub, theme }) => {
         <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
           {this.renderButton()}
           {button.type === 'file' && this.renderFileUploadForm()}
-          {button.type === 'video' && this.renderVideoUploadForm(this.state.isVideoUploadModalOpen)}
         </div>
       );
 

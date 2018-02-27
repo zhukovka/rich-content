@@ -7,7 +7,6 @@ import { BUTTONS } from './buttons';
 import Panel from './basePanel';
 import { mergeStyles } from '~/Utils';
 import styles from '~/Styles/plugin-toolbar-button.scss';
-import { VideoReplaceButton } from './VideoReplaceButton';
 import Dropdown from '../../Components/Dropdown';
 
 class BaseToolbarButton extends React.Component {
@@ -154,12 +153,6 @@ class BaseToolbarButton extends React.Component {
     );
   };
 
-  renderReplaceVideoButton = styles => {
-    // TODO: in theme, change fileButtonWrapper => replaceButtonWrapper
-    const replaceButtonWrapperClassNames = classNames(styles.replaceButtonWrapper);
-    return <VideoReplaceButton className={replaceButtonWrapperClassNames} icon={this.getIcon()} pubsub={this.props.pubsub} />;
-  };
-
   renderDropdownButton = (buttonWrapperClassNames, buttonClassNames) => {
     const { pubsub, componentData, onChange, getValue, ...props } = this.props;
 
@@ -189,9 +182,6 @@ class BaseToolbarButton extends React.Component {
         break;
       case BUTTONS.DROPDOWN:
         toolbarButton = this.renderDropdownButton(buttonClassNames, styles);
-        break;
-      case BUTTONS.VIDEO_REPLACE:
-        toolbarButton = this.renderReplaceVideoButton(styles);
         break;
       case BUTTONS.PANEL:
         toolbarButton = this.renderPanelButton(buttonWrapperClassNames, buttonClassNames);

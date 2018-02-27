@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import ImageSettingsModal from '~/Plugins/wix-draft-plugin-image/toolbar/image-settings';
 import GallerySettingsModal from '~/Plugins/wix-draft-plugin-gallery/components/gallery-settings-modal';
 import HTMLSettingsModal from '~/Plugins/wix-draft-plugin-html/toolbar/html-settings';
+import VideoURLInputModal from '~/Plugins/wix-draft-plugin-video/toolbar/videoUploadModal';
 import MobileAddPluginModal from './Toolbars/AddPluginModal';
 
 const KEYS = {
   IMAGE_SETTINGS: 'image-settings',
   GALLERY_SETTINGS: 'gallery-settings',
+  VIDEO_URL_INPUT: 'video-url-input',
   HTML_SETTINGS: 'html-settings',
   MOBILE_ADD_PLUGIN: 'mobile-add-plugin',
 };
@@ -15,6 +17,7 @@ const KEYS = {
 const Modals = {
   [KEYS.IMAGE_SETTINGS]: ImageSettingsModal,
   [KEYS.GALLERY_SETTINGS]: GallerySettingsModal,
+  [KEYS.VIDEO_URL_INPUT]: VideoURLInputModal,
   [KEYS.HTML_SETTINGS]: HTMLSettingsModal,
   [KEYS.MOBILE_ADD_PLUGIN]: MobileAddPluginModal,
 };
