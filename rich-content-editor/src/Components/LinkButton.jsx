@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { mergeStyles } from '~/Utils';
 import LinkIcon from '~/RichContentEditor/Toolbars/icons/link.svg';
@@ -26,7 +27,12 @@ export default class LinkButton extends Component {
     const { isActive } = this.props;
     const { styles } = this;
 
-    const iconClassNames = isActive ? styles.active : styles.icon;
+    const iconClassNames = classNames(styles.icon,
+      {
+        [styles.active]: isActive,
+      }
+    );
+
     return (
       <div className={styles.buttonWrapper} onMouseDown={this.preventBubblingUp}>
         <button onClick={this.handleClick} className={styles.button}>
