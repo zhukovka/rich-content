@@ -37,10 +37,6 @@ class ImageSettings extends Component {
 
   onComponentUpdate = () => this.forceUpdate();
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(this.stateFromProps(nextProps));
-  }
-
   setLinkPanel = linkPanel => this.linkPanel = linkPanel;
 
   revertComponentData () {
@@ -100,6 +96,10 @@ class ImageSettings extends Component {
   render() {
     const { componentData, helpers, theme, isMobile } = this.props;
     const { item } = componentData;
+    if (!item) {
+      return; //do not render until the item is passed
+    }
+
     const { metadata = {} } = item;
     const { url, targetBlank, nofollow } = (!isEmpty(componentData.config.link) ? componentData.config.link : {});
 

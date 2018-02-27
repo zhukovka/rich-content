@@ -22,6 +22,7 @@ $MOBILE_HEADER_HEIGHT: 50px;
     color: #333333;
     background: #fff;
     z-index: 6;
+
 }
 
 .galleryImageSettings_content {
@@ -60,6 +61,7 @@ $MOBILE_HEADER_HEIGHT: 50px;
 .galleryImageSettings_image {
     width: 100%;
     height: 240px;
+    background-color: rgba(51, 51, 51, 0.1);
 }
 
 .galleryImageSettings_manageImageGrid {
