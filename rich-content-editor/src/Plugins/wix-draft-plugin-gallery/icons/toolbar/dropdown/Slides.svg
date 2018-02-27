@@ -4,8 +4,8 @@
     <title>Small / Sides</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Slides" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Small-/-Sides" stroke="#333333">
+    <g id="Slides" stroke-width="0" fill="none" fill-rule="evenodd">
+        <g id="stroke" stroke="#333333" stroke-width="1">
             <rect id="Rectangle" x="2.5" y="2.5" width="2" height="14" rx="1"></rect>
             <rect id="Rectangle" x="15.5" y="2.5" width="2" height="14" rx="1"></rect>
             <rect id="Rectangle-24" x="6.5" y="2.5" width="7" height="14" rx="1"></rect>

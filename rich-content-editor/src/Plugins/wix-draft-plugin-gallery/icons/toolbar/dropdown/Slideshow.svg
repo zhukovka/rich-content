@@ -6,8 +6,8 @@
     <defs>
         <path d="M2,3 L17,3 C17.5522847,3 18,3.58202982 18,4.3 L18,14.7 C18,15.4179701 17.5522847,16 17,16 L2,16 C1.44771525,16 1,15.4179701 1,14.7 L1,4.3 C1,3.58202982 1.44771525,3 2,3 Z M2,4 L2,15 L17,15 L17,4 L2,4 Z" id="Slideshow-path-1"></path>
     </defs>
-    <g id="Slideshow-Slideshow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Slideshow-Small-/-Slideshow-">
+    <g id="Slideshow-Slideshow" stroke-width="0" fill="none" fill-rule="evenodd">
+        <g stroke-width="0" id="Slideshow-Small-/-Slideshow-">
             <mask id="Slideshow-mask-2" fill="white">
                 <use xlink:href="#Slideshow-path-1"></use>
             </mask>
