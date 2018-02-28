@@ -8,13 +8,56 @@ export default class StaticToolbar extends React.Component {
     pubsub: PropTypes.object.isRequired,
     structure: PropTypes.array.isRequired,
     theme: PropTypes.object.isRequired,
+    isMobile: PropTypes.bool.isRequired,
     toolbarStyle: PropTypes.object,
-    isMobile: PropTypes.bool
   };
 
-  state = {
-    overrideContent: undefined,
-    extendContent: undefined,
+  constructor(props) {
+    super(props);
+    const { isMobile, structure } = this.props;
+    this.state = {
+      overrideContent: undefined,
+      extendContent: undefined,
+      showRightArrow: isMobile && structure.length > 7,
+      showLeftArrow: false
+    };
+  }
+
+  componentDidMount() {
+    this.handleToolbarScroll();
+  }
+
+  handleButtonsRef = node => {
+    this.buttons = node;
+    this.buttons.addEventListener('scroll', this.handleToolbarScroll);
+    window && window.addEventListener('resize', this.handleToolbarScroll);
+  };
+
+  scrollToolbar(event, direction) {
+    event.preventDefault();
+    switch (direction) {
+      case 'right':
+        this.buttons.scrollLeft += 200;
+        break;
+      case 'left':
+        this.buttons.scrollLeft -= 200;
+        break;
+      default:
+        break;
+    }
+  }
+
+  handleToolbarScroll = () => {
+    const spaceLeft = this.buttons.scrollLeft;
+    const eleWidth = this.buttons.clientWidth;
+    const fullWidth = this.buttons.scrollWidth;
+
+    const spaceRight = fullWidth - eleWidth - spaceLeft;
+
+    this.setState({
+      showLeftArrow: (spaceLeft > 0),
+      showRightArrow: (spaceRight > 0)
+    });
   }
 
   onOverrideContent = overrideContent => this.setState({ overrideContent });
@@ -23,7 +66,7 @@ export default class StaticToolbar extends React.Component {
 
   render() {
     const { theme, toolbarStyle, pubsub, structure } = this.props;
-    const { overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
+    const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
     const { buttonStyles, toolbarStyles } = theme || {};
     const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
     const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons);
@@ -38,11 +81,32 @@ export default class StaticToolbar extends React.Component {
 
     return (
       <div className={toolbarClassNames} style={toolbarStyle}>
-        <div className={buttonClassNames}>
+        <div
+          className={buttonClassNames}
+          ref={this.handleButtonsRef}
+        >
+          {
+            showLeftArrow &&
+            <div
+              className={classNames(toolbarStyles.responsiveArrow, toolbarStyles.responsiveArrowLeft)}
+              onMouseDown={e => this.scrollToolbar(e, 'left')}
+            >
+              <i/>
+            </div>
+          }
           {
             OverrideContent ?
               <OverrideContent {...childrenProps} /> :
               structure.map((Button, index) => <Button key={index} {...childrenProps} />)
+          }
+          {
+            showRightArrow &&
+            <div
+              className={classNames(toolbarStyles.responsiveArrow, toolbarStyles.responsiveArrowRight)}
+              onMouseDown={e => this.scrollToolbar(e, 'right')}
+            >
+              <i/>
+            </div>
           }
         </div>
         {ExtendContent && (

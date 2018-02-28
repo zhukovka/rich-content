@@ -9,7 +9,8 @@ export default (config = {}) => {
     name = 'StaticToolbar',
     theme,
     toolbarStyle,
-    structure = []
+    structure = [],
+    isMobile = false,
   } = config;
 
   const toolbarProps = {
@@ -17,6 +18,7 @@ export default (config = {}) => {
     structure,
     theme,
     toolbarStyle,
+    isMobile
   };
 
   return {

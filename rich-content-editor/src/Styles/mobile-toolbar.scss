@@ -1,4 +1,5 @@
 @import "./palette.scss";
+@import "./mixins.scss";
 
 .toolbar {
   border-bottom: 1px solid rgba($secondary-text-color, 0.2);
@@ -11,5 +12,61 @@
 
 .buttons {
   display: flex;
-  padding: 0 19px;
+  height: 50px;
+  padding: 0 9px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .responsiveArrow {
+    display: block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 40px;
+    line-height: 48px;
+    text-align: center;
+    background: white;
+    font-size: 12px;
+    cursor: pointer;
+    z-index: 9999;
+
+    > i {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border: 1px solid $toolbar-font-color;
+      border-width: 0 0 1px 1px;
+    }
+  }
+
+  .responsiveArrowLeft {
+    left: 0;
+    border-right: 1px solid $toolbar-border-color;
+
+    > i {
+      margin-left: 3px;
+      transform: rotate(45deg);
+    }
+  }
+
+  .responsiveArrowRight {
+    right: 0;
+    border-left: 1px solid $toolbar-border-color;
+
+    > i {
+      margin-right: 3px;
+      transform: rotate(225deg);
+    }
+  }
+}
+
+@include phone {
+  .buttons {
+    display: flex;
+    width: auto;
+    max-width: 100%;
+    overflow-x: scroll;
+  }
 }
