@@ -1,3 +1,4 @@
+export { getToolbarTheme } from './getToolbarTheme';
 export { default as hashtagRegexes } from './hashtagRegexes';
 export { default as simplePubsub } from './simplePubsub';
 export { getModalStyles } from './getModalStyles';

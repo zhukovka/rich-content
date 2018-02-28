@@ -238,19 +238,22 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
       const { toolbarStyles: toolbarTheme } = theme || {};
       const { buttonStyles: buttonTheme, separatorStyles: separatorTheme } = theme || {};
-      const containerClassNames = classNames(toolbarStyles.toolbar, toolbarTheme && toolbarTheme.toolbar);
-      const buttonContainerClassnames = classNames(toolbarStyles.buttons, toolbarTheme && toolbarTheme.buttons, {
-        [toolbarStyles.overrideContent]: !!OverrideContent
+      const containerClassNames = classNames(toolbarStyles.pluginToolbar, toolbarTheme && toolbarTheme.pluginToolbar);
+      const buttonContainerClassnames = classNames(toolbarStyles.pluginToolbar_buttons, toolbarTheme && toolbarTheme.pluginToolbar_buttons, {
+        [toolbarStyles.pluginToolbar_overrideContent]: !!OverrideContent,
+        [toolbarTheme.pluginToolbar_overrideContent]: !!OverrideContent,
       });
       const modal = theme.modal ? { modal: { ...theme.modal } } : {};
       const themedButtonStyle = {
-        buttonWrapper: classNames(buttonStyles.buttonWrapper, buttonTheme && buttonTheme.buttonWrapper),
-        button: classNames(buttonStyles.button, buttonTheme && buttonTheme.button),
-        icon: classNames(buttonStyles.icon, buttonTheme && buttonTheme.icon),
-        active: classNames(buttonStyles.active, buttonTheme && buttonTheme.active),
+        buttonWrapper: classNames(buttonStyles.pluginToolbarButton_wrapper, buttonTheme && buttonTheme.pluginToolbarButton_wrapper),
+        replaceButtonWrapper: classNames(buttonStyles.pluginToolbarButton_replaceButtonWrapper,
+          buttonTheme && buttonTheme.pluginToolbarButton_replaceButtonWrapper),
+        button: classNames(buttonStyles.pluginToolbarButton, buttonTheme && buttonTheme.pluginToolbarButton),
+        icon: classNames(buttonStyles.pluginToolbarButton_icon, buttonTheme && buttonTheme.pluginToolbarButton_icon),
+        active: classNames(buttonStyles.pluginToolbarButton_active, buttonTheme && buttonTheme.pluginToolbarButton_active),
         ...modal
       };
-      const separatorClassNames = classNames(toolbarStyles.separator, separatorTheme && separatorTheme.separator);
+      const separatorClassNames = classNames(toolbarStyles.pluginToolbarSeparator, separatorTheme && separatorTheme.pluginToolbarSeparator);
       const overrideProps = { onOverrideContent: this.onOverrideContent };
       const extendProps = { onExtendContent: this.onExtendContent };
       const structure = isMobile ? buttons.filter(button => button.mobile) : buttons;
@@ -264,7 +267,8 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
             {
               showLeftArrow &&
               <div
-                className={classNames(toolbarStyles.responsiveArrow, toolbarStyles.responsiveArrowLeft)}
+                className={classNames(toolbarStyles.pluginToolbar_responsiveArrow, toolbarStyles.pluginToolbar_responsiveArrowLeft,
+                  toolbarTheme.pluginToolbar_responsiveArrow, toolbarTheme.pluginToolbar_responsiveArrowLeft)}
                 onMouseDown={e => this.scrollToolbar(e, 'left')}
               >
                 <i/>
@@ -279,7 +283,8 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
             {
               showRightArrow &&
               <div
-                className={classNames(toolbarStyles.responsiveArrow, toolbarStyles.responsiveArrowRight)}
+                className={classNames(toolbarStyles.pluginToolbar_responsiveArrow, toolbarStyles.pluginToolbar_responsiveArrowRight,
+                  toolbarTheme.pluginToolbar_responsiveArrow, toolbarTheme.pluginToolbar_responsiveArrowRight)}
                 onMouseDown={e => this.scrollToolbar(e, 'right')}
               >
                 <i/>
@@ -287,7 +292,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
             }
           </div>
           {ExtendContent && (
-            <div className={toolbarStyles.extend}>
+            <div className={classNames(toolbarStyles.pluginToolbar_extend, toolbarTheme.pluginToolbar_extend)}>
               <ExtendContent {...extendProps} />
             </div>
           )}

@@ -82,9 +82,10 @@ export default class AddPluginFloatingToolbar extends Component {
   render() {
     const { theme, getEditorState, setEditorState } = this.props;
     const { buttonStyles, toolbarStyles } = theme || {};
-    const floatingContainerClassNames = classNames(Styles.floatingContainer, toolbarStyles && toolbarStyles.floatingContainer);
-    const floatingIconClassNames = classNames(Styles.floatingIcon, toolbarStyles && toolbarStyles.floatingIcon);
-    const popoupClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
+    const floatingContainerClassNames = classNames(Styles.sideToolbar_floatingContainer,
+      toolbarStyles && toolbarStyles.sideToolbar_floatingContainer);
+    const floatingIconClassNames = classNames(Styles.sideToolbar_floatingIcon, toolbarStyles && toolbarStyles.sideToolbar_floatingIcon);
+    const popoupClassNames = classNames(Styles.sideToolbar, toolbarStyles && toolbarStyles.sideToolbar);
     return (
       <div className={floatingContainerClassNames}>
         <div className={floatingIconClassNames} onMouseDown={this.onMouseDown} ref={el => (this.selectButton = el)}>

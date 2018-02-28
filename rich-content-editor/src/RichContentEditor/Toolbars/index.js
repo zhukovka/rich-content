@@ -2,7 +2,7 @@ import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import { createSideToolbar } from './SideToolbar';
 import { createMobileToolbar, createFooterToolbar } from './StaticToolbar';
 import { createTextToolbar } from './InlineToolbar';
-import { simplePubsub } from '~/Utils';
+import { simplePubsub, getToolbarTheme } from '~/Utils';
 
 const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, toolbarStyle, getEditorState, setEditorState }) => {
   const { pluginButtons, textButtons } = buttons;
@@ -13,7 +13,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
     side: createSideToolbar({
       buttons: pluginButtons,
       offset: sideToolbarOffset,
-      theme: theme.side,
+      theme: getToolbarTheme(theme, 'side'),
       toolbarStyle,
       pubsub,
       isMobile
@@ -23,7 +23,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
   if (shouldCreateTextToolbar) {
     toolbars.text = createTextToolbar({
       buttons: textButtons,
-      theme: theme.text,
+      theme: getToolbarTheme(theme, 'inline'),
       toolbarStyle,
       pubsub,
       isMobile,
@@ -33,7 +33,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
   if (!isMobile) {
     toolbars.footer = createFooterToolbar({
       buttons: pluginButtons,
-      theme: theme.footer,
+      theme: getToolbarTheme(theme, 'footer'),
       toolbarStyle,
     });
   } else {
@@ -43,7 +43,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
       pubsub,
       getEditorState,
       setEditorState,
-      theme: theme.mobile,
+      theme: getToolbarTheme(theme, 'mobile'),
       toolbarStyle,
     });
   }

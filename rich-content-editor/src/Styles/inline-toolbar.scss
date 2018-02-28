@@ -3,7 +3,7 @@
 
 $borderRadius: 6px;
 
-.toolbar {
+.inlineToolbar {
   min-height: 50px;
   left: 50%;
   transform: translate(-50%) scale(0);
@@ -16,7 +16,7 @@ $borderRadius: 6px;
   box-sizing: border-box;
 }
 
-.buttons {
+.inlineToolbar_buttons {
   display: flex;
   padding: 0 19px;
 
@@ -24,11 +24,11 @@ $borderRadius: 6px;
     display: none;
   }
 
-  &.overrideContent {
+  &.inlineToolbar_overrideContent {
     padding: 0;
   }
 
-  .responsiveArrow {
+  .inlineToolbar_responsiveArrow {
     display: none;
     position: absolute;
     top: 0;
@@ -50,7 +50,7 @@ $borderRadius: 6px;
     }
   }
 
-  .responsiveArrowLeft {
+  .inlineToolbar_responsiveArrowLeft {
     left: 0;
     border-right: 1px solid $toolbar-border-color;
     border-radius: $borderRadius 0 0 $borderRadius;
@@ -61,7 +61,7 @@ $borderRadius: 6px;
     }
   }
 
-  .responsiveArrowRight {
+  .inlineToolbar_responsiveArrowRight {
     right: 0;
     border-left: 1px solid $toolbar-border-color;
     border-radius: 0 $borderRadius $borderRadius 0;
@@ -74,18 +74,18 @@ $borderRadius: 6px;
 
 }
 
-.extend {
+.inlineToolbar_extend {
   border-top: 1px solid $toolbar-border-color;
 }
 
 @include phone {
-  .buttons {
+  .inlineToolbar_buttons {
     display: flex;
     width: auto;
     max-width: 100%;
     overflow-x: scroll;
 
-    .responsiveArrow {
+    .inlineToolbar_responsiveArrow {
       display: block;
     }
   }

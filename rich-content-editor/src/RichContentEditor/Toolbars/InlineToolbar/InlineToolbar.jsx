@@ -152,11 +152,12 @@ export default class InlineToolbar extends Component {
     const { theme, pubsub, structure } = this.props;
     const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
     const { buttonStyles, toolbarStyles } = theme || {};
-    const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
-    const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons, {
-      [Styles.overrideContent]: !!OverrideContent
+    const toolbarClassNames = classNames(Styles.inlineToolbar, toolbarStyles && toolbarStyles.inlineToolbar);
+    const buttonClassNames = classNames(Styles.inlineToolbar_buttons, toolbarStyles && toolbarStyles.inlineToolbar_buttons, {
+      [Styles.inlineToolbar_overrideContent]: !!OverrideContent,
+      [toolbarStyles.inlineToolbar_overrideContent]: !!OverrideContent,
     });
-    const extendClassNames = classNames(Styles.extend, toolbarStyles && toolbarStyles.extend);
+    const extendClassNames = classNames(Styles.inlineToolbar_extend, toolbarStyles && toolbarStyles.inlineToolbar_extend);
     const childrenProps = {
       theme: buttonStyles,
       getEditorState: pubsub.get('getEditorState'),
@@ -178,7 +179,8 @@ export default class InlineToolbar extends Component {
           {
             showLeftArrow &&
             <div
-              className={classNames(Styles.responsiveArrow, Styles.responsiveArrowLeft)}
+              className={classNames(Styles.inlineToolbar_responsiveArrow, Styles.inlineToolbar_responsiveArrowLeft,
+                toolbarStyles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrowLeft)}
               onMouseDown={e => this.scrollToolbar(e, 'left')}
             >
               <i/>
@@ -188,7 +190,8 @@ export default class InlineToolbar extends Component {
           {
             showRightArrow &&
             <div
-              className={classNames(Styles.responsiveArrow, Styles.responsiveArrowRight)}
+              className={classNames(Styles.inlineToolbar_responsiveArrow, Styles.inlineToolbar_responsiveArrowRight,
+                toolbarStyles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrowRight)}
               onMouseDown={e => this.scrollToolbar(e, 'right')}
             >
               <i/>

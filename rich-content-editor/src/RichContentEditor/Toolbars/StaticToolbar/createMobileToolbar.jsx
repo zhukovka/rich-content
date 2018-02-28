@@ -5,7 +5,6 @@ import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createStaticToolbar from './createStaticToolbar';
 import { AddPluginButton, MobileTextButtonList } from '../buttons';
 import { getTextButtonsFromList } from '../buttons/utils';
-import { mergeStyles } from '~/Utils/mergeStyles';
 import toolbarStyles from '~/Styles/mobile-toolbar.scss';
 import buttonStyles from '~/Styles/mobile-toolbar-button.scss';
 import separatorStyles from '~/Styles/mobile-toolbar-separator.scss';
@@ -16,15 +15,26 @@ const getMobileTheme = theme => {
     buttonStyles: buttonTheme,
     separatorStyles: separatorTheme,
   } = theme || {};
-  const styles = {
-    toolbarStyles: mergeStyles({ styles: toolbarStyles, theme: toolbarTheme }),
-    buttonStyles: mergeStyles({ styles: buttonStyles, theme: buttonTheme }),
-    separatorStyles: mergeStyles({ styles: separatorStyles, theme: separatorTheme }),
+
+  // TODO: use mergeStyles again
+  return {
+    toolbarStyles: {
+      toolbar: classNames(toolbarStyles.mobileToolbar, toolbarTheme && toolbarTheme.mobileToolbar, {
+        [toolbarStyles.mobileToolbar_fixed]: !baseUtils.isiOS(),
+        [toolbarTheme.mobileToolbar_fixed]: !baseUtils.isiOS(),
+      }),
+      buttons: classNames(toolbarStyles.mobileToolbar_buttons, toolbarTheme && toolbarTheme.mobileToolbar_buttons),
+      extend: classNames(toolbarStyles.mobileToolbar_extend, toolbarTheme && toolbarTheme.mobileToolbar_extend)
+    },
+    buttonStyles: {
+      buttonWrapper: classNames(buttonStyles.mobileToolbarButton_wrapper, buttonTheme && buttonTheme.mobileToolbarButton_wrapper),
+      button: classNames(buttonStyles.mobileToolbarButton, buttonTheme && buttonTheme.mobileToolbarButton),
+      icon: classNames(buttonStyles.mobileToolbarButton_icon, buttonTheme && buttonTheme.mobileToolbarButton_icon),
+    },
+    separatorStyles: {
+      separator: classNames(separatorStyles.mobileToolbarSeparator, separatorTheme && separatorTheme.mobileToolbarSeparator),
+    }
   };
-  if (!baseUtils.isiOS()) {
-    styles.toolbarStyles.toolbar = classNames(styles.toolbarStyles.toolbar, toolbarStyles.fixed);
-  }
-  return styles;
 };
 
 const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme }) => {

@@ -35,15 +35,15 @@ export default class TextButton extends Component {
     const { styles } = this;
     const { icon: Icon } = this.props;
     const iconClassNames = classNames(
-      styles.icon,
+      styles.inlineToolbarButton_icon,
       {
-        [styles.active]: this.isActive(),
+        [styles.inlineToolbarButton_active]: this.isActive(),
       }
     );
 
     return (
-      <div className={styles.buttonWrapper} onMouseDown={this.preventBubblingUp}>
-        <button className={styles.button} onClick={this.handleClick}>
+      <div className={styles.inlineToolbarButton_wrapper} onMouseDown={this.preventBubblingUp}>
+        <button className={styles.inlineToolbarButton} onClick={this.handleClick}>
           <div className={iconClassNames}>
             <Icon />
           </div>

@@ -1,11 +1,11 @@
 @import "./mixins";
 @import "./palette";
 
-.floatingContainer {
+.sideToolbar_floatingContainer {
   position: relative;
 }
 
-.floatingIcon {
+.sideToolbar_floatingIcon {
   box-sizing: border-box;
   cursor: pointer;
   height: 25px;
@@ -24,7 +24,7 @@
   }
 }
 
-.toolbar {
+.sideToolbar {
   position: absolute;
   top: -15px;
   transform: translate(-50%);

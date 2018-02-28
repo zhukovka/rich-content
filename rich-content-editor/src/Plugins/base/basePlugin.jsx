@@ -1,7 +1,7 @@
 import { SelectionState, EditorState, Modifier } from '@wix/draft-js';
 import includes from 'lodash/includes';
 import cloneDeep from 'lodash/cloneDeep';
-import { simplePubsub } from '~/Utils';
+import { simplePubsub, getToolbarTheme } from '~/Utils';
 import createBaseComponent from './baseComponent';
 import createToolbar from './baseToolbar';
 import createInsertPluginButton from './baseInsertPluginButton';
@@ -59,7 +59,7 @@ const createBasePlugin = (config = {}) => {
   const isMobile = config.isMobile || false;
   const modalTheme = { modal: { ...config.theme } };
 
-  const toolbarTheme = (config.theme.toolbars && config.theme.toolbars.plugin) ? { ...config.theme.toolbars.plugin } : {};
+  const toolbarTheme = getToolbarTheme(config.theme, 'plugin');
   const Toolbar = createToolbar({ buttons: config.toolbar.InlineButtons, theme: { ...toolbarTheme, ...modalTheme }, pubsub, helpers, isMobile });
   const InsertPluginButtons = config.toolbar.InsertButtons.map(button => (
     createInsertPluginButton({ blockType: config.type, button, helpers, pubsub, theme: { ...toolbarTheme, ...modalTheme } })

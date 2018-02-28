@@ -52,7 +52,7 @@ export default class RichContentEditor extends Component {
       helpers,
       isMobile,
       sideToolbarOffset,
-      theme: theme.toolbars || {},
+      theme: theme || {},
       toolbarStyle,
       getEditorState: () => this.state.editorState,
       setEditorState: editorState => this.setState({ editorState }),

@@ -6,9 +6,9 @@ export default ({ buttons, theme, toolbarStyle }) => {
   const { toolbarStyles, buttonStyles, separatorStyles } = theme || {};
   const footerTheme = {
     toolbarStyles: {
-      toolbar: classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar),
-      buttons: classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons),
-      extend: classNames(Styles.extend, toolbarStyles && toolbarStyles.extend)
+      toolbar: classNames(Styles.footerToolbar, toolbarStyles && toolbarStyles.footerToolbar),
+      buttons: classNames(Styles.footerToolbar_buttons, toolbarStyles && toolbarStyles.footerToolbar_buttons),
+      extend: classNames(Styles.footerToolbar_extend, toolbarStyles && toolbarStyles.footerToolbar_extend)
     },
     buttonStyles,
     separatorStyles

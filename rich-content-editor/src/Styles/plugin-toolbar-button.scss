@@ -3,7 +3,7 @@
 @import './consts';
 
 
-.buttonWrapper {
+.pluginToolbarButton_wrapper {
   display: inline-block;
   padding: 10px 0;
   margin-right: 10px;
@@ -12,7 +12,7 @@
   }
 }
 
-.replaceButtonWrapper {
+.pluginToolbarButton_replaceButtonWrapper {
   position: relative;
   width: 27px;
   flex: 0 0 27px;
@@ -65,7 +65,7 @@
   }
 }
 
-.button {
+.pluginToolbarButton {
   background: transparent;
   color: $secondary-text-color;
   padding: 5px;
@@ -73,13 +73,13 @@
   cursor: pointer;
 
   @include svg-fill;
-  .icon {
+  .pluginToolbarButton_icon {
     width: $icon-width;
   }
 
   &:hover,
   &:focus,
-  &.active {
+  &.pluginToolbarButton_active {
     outline: 0; /* reset for :focus */
     color: $accent-color;
     @include svg-fill;
