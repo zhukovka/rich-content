@@ -4,11 +4,12 @@ import { EditorState, Modifier } from '@wix/draft-js';
 import Separator from '~/Components/Separator';
 import TextButton from './TextButton';
 import { getTextAlignment } from '~/Utils';
-import createTextAlignmentButton from './utils/createTextAlignmentButton';
-import AlignTextLeftIcon from '../icons/align-text-left.svg';
-import AlignTextCenterIcon from '../icons/align-text-center.svg';
-import AlignTextRightIcon from '../icons/align-text-right.svg';
-import AlignTextJustifyIcon from '../icons/align-text-justify.svg';
+import {
+  AlignTextLeftButton,
+  AlignTextCenterButton,
+  AlignTextRightButton,
+  AlignTextJustifyButton
+} from './index';
 import BackArrowIcon from '../icons/back-arrow.svg';
 import styles from '~/Styles/global.scss';
 
@@ -16,10 +17,10 @@ export default class AlignmentPanel extends Component {
   constructor(props) {
     super(props);
     this.alignmentButtons = [
-      createTextAlignmentButton({ alignment: 'left', Icon: AlignTextLeftIcon }),
-      createTextAlignmentButton({ alignment: 'center', Icon: AlignTextCenterIcon }),
-      createTextAlignmentButton({ alignment: 'right', Icon: AlignTextRightIcon }),
-      createTextAlignmentButton({ alignment: 'justify', Icon: AlignTextJustifyIcon }),
+      AlignTextLeftButton,
+      AlignTextCenterButton,
+      AlignTextRightButton,
+      AlignTextJustifyButton
     ];
   }
 

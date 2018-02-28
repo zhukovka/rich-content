@@ -4,12 +4,17 @@ import UnderlineIcon from '../icons/underline.svg';
 import IndentIcon from '../icons/indent.svg';
 import TitleIcon from '../icons/title.svg';
 import BlockquoteIcon from '../icons/block-quote.svg';
+import AlignTextLeftIcon from '../icons/align-text-left.svg';
+import AlignTextCenterIcon from '../icons/align-text-center.svg';
+import AlignTextRightIcon from '../icons/align-text-right.svg';
+import AlignTextJustifyIcon from '../icons/align-text-justify.svg';
 import OrderedListIcon from '../icons/ordered-list.svg';
 import UnorderedListIcon from '../icons/unordered-list.svg';
 import createTextInlineStyleButton from './utils/createTextInlineStyleButton';
 import createTextBlockStyleButton from './utils/createTextBlockStyleButton';
+import createTextAlignmentButton from './utils/createTextAlignmentButton';
 
-export const TextButtonList = [
+export const DesktopTextButtonList = [
   'Bold',
   'Italic',
   'Underline',
@@ -21,6 +26,22 @@ export const TextButtonList = [
   'UnorderedList',
   'Separator',
   'Link',
+];
+
+export const MobileTextButtonList = [
+  'Bold',
+  'Italic',
+  'Underline',
+  'Title',
+  'Blockquote',
+  'Link',
+  'AddPlugin',
+  'AlignLeft',
+  'AlignCenter',
+  'AlignRight',
+  'AlignJustify',
+  'OrderedList',
+  'UnorderedList',
 ];
 
 export { default as TextAlignmentButton } from './TextAlignmentButton';
@@ -55,6 +76,26 @@ export const TitleButton = createTextBlockStyleButton({
 export const BlockquoteButton = createTextBlockStyleButton({
   blockType: 'blockquote',
   Icon: BlockquoteIcon,
+});
+
+export const AlignTextLeftButton = createTextAlignmentButton({
+  alignment: 'left',
+  Icon: AlignTextLeftIcon
+});
+
+export const AlignTextCenterButton = createTextAlignmentButton({
+  alignment: 'center',
+  Icon: AlignTextCenterIcon
+});
+
+export const AlignTextRightButton = createTextAlignmentButton({
+  alignment: 'right',
+  Icon: AlignTextRightIcon
+});
+
+export const AlignTextJustifyButton = createTextAlignmentButton({
+  alignment: 'justify',
+  Icon: AlignTextJustifyIcon
 });
 
 export const OrderedListButton = createTextBlockStyleButton({

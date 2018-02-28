@@ -1,8 +1,9 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
 import classNames from 'classnames';
+import get from 'lodash/get';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createStaticToolbar from './createStaticToolbar';
-import { AddPluginButton, TextButtonList } from '../buttons';
+import { AddPluginButton, MobileTextButtonList } from '../buttons';
 import { getTextButtonsFromList } from '../buttons/utils';
 import toolbarStyles from '~/Styles/mobile-toolbar.scss';
 import buttonStyles from '~/Styles/mobile-toolbar-button.scss';
@@ -35,25 +36,27 @@ const getMobileTheme = theme => {
 };
 
 const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme }) => {
-  let textButtons;
-  if (buttons && buttons.textButtons) {
-    textButtons = buttons.textButtons;
-  } else {
-    textButtons = TextButtonList.filter(buttonName => buttonName.indexOf('Separator') === -1);
+  const textButtons = get(buttons, 'textButtons.mobile', MobileTextButtonList);
+  const addPluginIndex = textButtons.findIndex(b => b === 'AddPlugin');
+  if (addPluginIndex !== 1) {
+    textButtons.splice(addPluginIndex, 1);
   }
 
   const structure = getTextButtonsFromList({
     buttons: textButtons,
     theme: mobileTheme
   });
-  structure.push(decorateComponentWithProps(AddPluginButton, {
-    openModal: helpers.openModal,
-    closeModal: helpers.closeModal,
-    pluginButtons: buttons.pluginButtons,
-    getEditorState,
-    setEditorState,
-    pubsub,
-  }));
+
+  if (addPluginIndex !== -1) {
+    structure.splice(addPluginIndex, 0, decorateComponentWithProps(AddPluginButton, {
+      openModal: helpers.openModal,
+      closeModal: helpers.closeModal,
+      pluginButtons: buttons.pluginButtons,
+      getEditorState,
+      setEditorState,
+      pubsub,
+    }));
+  }
 
   return structure;
 };

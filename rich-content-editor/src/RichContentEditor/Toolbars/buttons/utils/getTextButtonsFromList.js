@@ -1,5 +1,4 @@
 import {
-  TextButtonList,
   BoldButton,
   ItalicButton,
   UnderlineButton,
@@ -7,13 +6,17 @@ import {
   TitleButton,
   BlockquoteButton,
   TextAlignmentButton,
+  AlignTextLeftButton,
+  AlignTextCenterButton,
+  AlignTextRightButton,
+  AlignTextJustifyButton,
   UnorderedListButton,
   OrderedListButton,
   TextLinkButton,
 } from '../index';
 import createThemedSeparator from './createThemedSeparator';
 
-export default ({ buttons = TextButtonList, theme }) => {
+export default ({ buttons, theme }) => {
   const themedSeparator = horizontal => createThemedSeparator({ theme, horizontal });
   const structure = [];
   buttons.forEach(buttonName => {
@@ -38,6 +41,18 @@ export default ({ buttons = TextButtonList, theme }) => {
         break;
       case 'Alignment':
         structure.push(TextAlignmentButton);
+        break;
+      case 'AlignLeft':
+        structure.push(AlignTextLeftButton);
+        break;
+      case 'AlignCenter':
+        structure.push(AlignTextCenterButton);
+        break;
+      case 'AlignRight':
+        structure.push(AlignTextRightButton);
+        break;
+      case 'AlignJustify':
+        structure.push(AlignTextJustifyButton);
         break;
       case 'OrderedList':
         structure.push(OrderedListButton);
