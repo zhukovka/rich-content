@@ -39,7 +39,7 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
     theme: mobileTheme
   });
 
-  if (addPluginIndex !== 1) {
+  if (addPluginIndex !== -1) {
     structure.splice(addPluginIndex, 0, decorateComponentWithProps(AddPluginButton, {
       openModal: helpers.openModal,
       closeModal: helpers.closeModal,
