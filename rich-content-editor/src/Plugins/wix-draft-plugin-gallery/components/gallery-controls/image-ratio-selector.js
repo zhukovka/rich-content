@@ -17,7 +17,10 @@ class ImageRatioSelector extends Component {
   renderOption = ({ item, selected }) => (
     <div className={this.styles.imageRatioSelector_tile}>
       <div className={classNames(this.styles.imageRatioSelector_ratioButton, selected ? this.styles.imageRatioSelector_ratioButton_selected : '')}>
-        <div className={classNames(item.ratioClass, selected ? this.styles.imageRatioSelector_ratioIcon_selected : '')} />
+        <div
+          className={classNames(this.styles.imageRatioSelector_ratioIcon,
+            item.ratioClass, { [this.styles.imageRatioSelector_ratioIcon_selected]: selected })}
+        />
       </div>
       <label className={this.styles.imageRatioSelector_ratioLabel}>{item.name}</label>
     </div>
