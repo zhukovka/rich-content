@@ -99,7 +99,7 @@ export default class VideoUploadModal extends Component {
 
 VideoUploadModal.propTypes = {
   onConfirm: PropTypes.func,
-  pubsub: PropTypes.object.isRequired,
+  pubsub: PropTypes.object,
   helpers: PropTypes.object.isRequired,
   componentData: PropTypes.object.isRequired,
   url: PropTypes.string,
