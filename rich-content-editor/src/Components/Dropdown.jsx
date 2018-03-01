@@ -104,9 +104,7 @@ class Dropdown extends Component {
       'is-selected': option === this.state.selected
     });
 
-    const value = option.value || -1;
-    const label = option.label || '';
-    const Icon = option.icon || null;
+    const { value, label, icon: Icon } = option;
 
     return (
       <div

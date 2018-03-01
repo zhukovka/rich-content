@@ -73,7 +73,7 @@ $borderRadius: 6px;
 }
 
 @include phone {
-    .buttons {
+    .pluginToolbar_buttons {
         display: flex;
         width: auto;
         max-width: 100%;
@@ -81,7 +81,7 @@ $borderRadius: 6px;
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
 
-        .responsiveArrow {
+        .pluginToolbar_responsiveArrow {
             display: block;
         }
     }
