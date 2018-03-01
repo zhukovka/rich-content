@@ -11,7 +11,7 @@ const getDefault = () => ({
     cubeRatio: 1,
     galleryThumbnailsAlignment: 'bottom',
     isVertical: false,
-    numberOfImagesPerRow: 3,
+    numberOfImagesPerRow: 0,
     imageMargin: 5,
     cubeType: 'fill',
     enableInfiniteScroll: true,
