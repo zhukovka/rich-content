@@ -19,7 +19,7 @@
     display: none;
   }
 
-  .responsiveArrow {
+  .mobileToolbar_responsiveArrow {
     display: block;
     position: absolute;
     top: 0;
@@ -41,7 +41,7 @@
     }
   }
 
-  .responsiveArrowLeft {
+  .mobileToolbar_responsiveArrowLeft {
     left: 0;
     border-right: 1px solid $toolbar-border-color;
 
@@ -51,7 +51,7 @@
     }
   }
 
-  .responsiveArrowRight {
+  .mobileToolbar_responsiveArrowRight {
     right: 0;
     border-left: 1px solid $toolbar-border-color;
 
@@ -63,7 +63,7 @@
 }
 
 @include phone {
-  .buttons {
+  .mobileToolbar_buttons {
     display: flex;
     width: auto;
     max-width: 100%;

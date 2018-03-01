@@ -35,12 +35,13 @@ export default class StaticToolbar extends React.Component {
 
   scrollToolbar(event, direction) {
     event.preventDefault();
+    const { scrollLeft, clientWidth, scrollWidth } = this.buttons;
     switch (direction) {
       case 'right':
-        this.buttons.scrollLeft += 200;
+        this.buttons.scrollLeft += scrollWidth - clientWidth - scrollLeft;
         break;
       case 'left':
-        this.buttons.scrollLeft -= 200;
+        this.buttons.scrollLeft -= scrollLeft;
         break;
       default:
         break;

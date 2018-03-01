@@ -16,7 +16,6 @@ const getMobileTheme = theme => {
     separatorStyles: separatorTheme,
   } = theme || {};
 
-  // TODO: use mergeStyles again
   return {
     toolbarStyles: {
       toolbar: classNames(toolbarStyles.mobileToolbar, toolbarTheme && toolbarTheme.mobileToolbar, {
@@ -24,12 +23,15 @@ const getMobileTheme = theme => {
         [toolbarTheme.mobileToolbar_fixed]: !baseUtils.isiOS(),
       }),
       buttons: classNames(toolbarStyles.mobileToolbar_buttons, toolbarTheme && toolbarTheme.mobileToolbar_buttons),
-      extend: classNames(toolbarStyles.mobileToolbar_extend, toolbarTheme && toolbarTheme.mobileToolbar_extend)
+      extend: classNames(toolbarStyles.mobileToolbar_extend, toolbarTheme && toolbarTheme.mobileToolbar_extend),
+      responsiveArrow: classNames(toolbarStyles.mobileToolbar_responsiveArrow, toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrow),
+      responsiveArrowLeft: classNames(toolbarStyles.mobileToolbar_responsiveArrowLeft, toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrowLeft),
+      responsiveArrowRight: classNames(toolbarStyles.mobileToolbar_responsiveArrowRight, toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrowRight),
     },
     buttonStyles: {
-      buttonWrapper: classNames(buttonStyles.mobileToolbarButton_wrapper, buttonTheme && buttonTheme.mobileToolbarButton_wrapper),
-      button: classNames(buttonStyles.mobileToolbarButton, buttonTheme && buttonTheme.mobileToolbarButton),
-      icon: classNames(buttonStyles.mobileToolbarButton_icon, buttonTheme && buttonTheme.mobileToolbarButton_icon),
+      inlineToolbarButton_wrapper: classNames(buttonStyles.mobileToolbarButton_wrapper, buttonTheme && buttonTheme.mobileToolbarButton_wrapper), //eslint-disable-line
+      inlineToolbarButton: classNames(buttonStyles.mobileToolbarButton, buttonTheme && buttonTheme.mobileToolbarButton),
+      inlineToolbarButton_icon: classNames(buttonStyles.mobileToolbarButton_icon, buttonTheme && buttonTheme.mobileToolbarButton_icon), //eslint-disable-line
     },
     separatorStyles: {
       separator: classNames(separatorStyles.mobileToolbarSeparator, separatorTheme && separatorTheme.mobileToolbarSeparator),
