@@ -2,6 +2,7 @@
 @import "./mixins.scss";
 
 .mobileToolbar {
+  position: relative;
   border-bottom: 1px solid rgba($secondary-text-color, 0.2);
 }
 
@@ -68,6 +69,8 @@
     width: auto;
     max-width: 100%;
     overflow-x: scroll;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
