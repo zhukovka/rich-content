@@ -57,6 +57,8 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       pubsub.unsubscribe('componentAlignment', this.onComponentAlignmentChange);
       pubsub.unsubscribe('componentSize', this.onComponentSizeChange);
       pubsub.unsubscribe('componentLink', this.onComponentLinkChange);
+      this.buttons && this.buttons.removeEventListener('srcoll', this.handleToolbarScroll);
+      window && window.removeEventListener('srcoll', this.handleToolbarScroll);
     }
 
     onOverrideContent = overrideContent => this.setState({ overrideContent });
@@ -139,8 +141,10 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
 
     handleButtonsRef = node => {
       this.buttons = node;
-      this.buttons.addEventListener('scroll', this.handleToolbarScroll);
-      window && window.addEventListener('resize', this.handleToolbarScroll);
+      if (this.buttons) {
+        this.buttons.addEventListener('scroll', this.handleToolbarScroll);
+        window && window.addEventListener('resize', this.handleToolbarScroll);
+      }
     };
 
     scrollToolbar(event, direction) {

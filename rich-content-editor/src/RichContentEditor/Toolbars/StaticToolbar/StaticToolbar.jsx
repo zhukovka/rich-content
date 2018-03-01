@@ -27,10 +27,17 @@ export default class StaticToolbar extends React.Component {
     this.handleToolbarScroll();
   }
 
+  componentWillUnmount() {
+    this.buttons && this.buttons.removeEventListener('srcoll', this.handleToolbarScroll);
+    window && window.removeEventListener('srcoll', this.handleToolbarScroll);
+  }
+
   handleButtonsRef = node => {
     this.buttons = node;
-    this.buttons.addEventListener('scroll', this.handleToolbarScroll);
-    window && window.addEventListener('resize', this.handleToolbarScroll);
+    if (this.buttons) {
+      this.buttons.addEventListener('scroll', this.handleToolbarScroll);
+      window && window.addEventListener('resize', this.handleToolbarScroll);
+    }
   };
 
   scrollToolbar(event, direction) {

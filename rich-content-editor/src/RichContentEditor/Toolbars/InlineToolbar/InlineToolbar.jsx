@@ -41,12 +41,14 @@ export default class InlineToolbar extends Component {
     this.props.pubsub.subscribe('selection', this.onSelectionChanged);
   }
 
-  componentWillUnmount() {
-    this.props.pubsub.unsubscribe('selection', this.onSelectionChanged);
-  }
-
   componentDidMount() {
     this.handleToolbarScroll();
+  }
+
+  componentWillUnmount() {
+    this.props.pubsub.unsubscribe('selection', this.onSelectionChanged);
+    this.buttons && this.buttons.removeEventListener('srcoll', this.handleToolbarScroll);
+    window && window.removeEventListener('srcoll', this.handleToolbarScroll);
   }
 
   onOverrideContent = overrideContent => this.setState({ overrideContent });
@@ -117,8 +119,10 @@ export default class InlineToolbar extends Component {
 
   handleButtonsRef = node => {
     this.buttons = node;
-    this.buttons.addEventListener('scroll', this.handleToolbarScroll);
-    window && window.addEventListener('resize', this.handleToolbarScroll);
+    if (this.buttons) {
+      this.buttons.addEventListener('scroll', this.handleToolbarScroll);
+      window && window.addEventListener('resize', this.handleToolbarScroll);
+    }
   };
 
   scrollToolbar(event, direction) {
