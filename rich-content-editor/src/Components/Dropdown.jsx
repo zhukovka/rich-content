@@ -11,13 +11,13 @@ class Dropdown extends Component {
 
   static propTypes = {
     options: PropTypes.array.isRequired,
-    value: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
     theme: PropTypes.object.isRequired,
+    value: PropTypes.number,
+    getValue: PropTypes.func,
     placeholder: PropTypes.string,
     onFocus: PropTypes.func,
-    disabled: PropTypes.bool,
-    className: PropTypes.string
+    disabled: PropTypes.bool
   };
 
   constructor (props) {
@@ -104,8 +104,8 @@ class Dropdown extends Component {
       'is-selected': option === this.state.selected
     });
 
-    const value = option.value || option.label || option;
-    const label = option.label || option.value || option;
+    const value = option.value || -1;
+    const label = option.label || '';
     const Icon = option.icon || null;
 
     return (
@@ -154,7 +154,6 @@ class Dropdown extends Component {
   }
 
   render () {
-    const { className } = this.props;
     const { styles } = this;
     const disabledClass = this.props.disabled ? 'Dropdown-disabled' : '';
     const selected = this.state.selected;
@@ -174,7 +173,6 @@ class Dropdown extends Component {
     const menu = this.state.isOpen ? <div className={styles['Dropdown-menu']}>{this.buildMenu()}</div> : null;
 
     const dropdownClass = classNames({
-      [className]: true,
       [styles['Dropdown-root']]: true,
       [styles['is-open']]: this.state.isOpen
     });
