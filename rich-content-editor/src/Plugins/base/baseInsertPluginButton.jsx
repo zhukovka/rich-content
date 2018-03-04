@@ -8,12 +8,13 @@ import Tooltip from '~/Components/Tooltip';
 import styles from '~/Styles/toolbar-button.scss';
 import { mergeStyles } from '~/Utils/mergeStyles';
 
-export default ({ blockType, button, helpers, pubsub, theme }) => {
+export default ({ blockType, button, helpers, pubsub }) => {
   class InsertPluginButton extends Component {
     constructor(props) {
       super(props);
+      const { theme } = props;
       this.state = {};
-      this.styles = mergeStyles({ styles, theme });
+      this.styles = theme ? mergeStyles({ styles, theme }) : {};
     }
 
     addBlock = data => {
@@ -85,6 +86,7 @@ export default ({ blockType, button, helpers, pubsub, theme }) => {
     };
 
     toggleButtonModal = () => {
+      const { theme } = this.props || {};
       if (helpers && helpers.openModal) {
         helpers.openModal({
           modalName: button.modalName,
@@ -116,7 +118,7 @@ export default ({ blockType, button, helpers, pubsub, theme }) => {
 
     render() {
       const { styles } = this;
-      const { isMobile } = this.props;
+      const { theme, isMobile } = this.props;
       const { tooltipText } = button;
       const showTooltip = !isMobile && !isEmpty(tooltipText);
       const buttonWrapperClassNames = classNames(
@@ -148,6 +150,7 @@ export default ({ blockType, button, helpers, pubsub, theme }) => {
   InsertPluginButton.propTypes = {
     getEditorState: PropTypes.func.isRequired,
     setEditorState: PropTypes.func.isRequired,
+    theme: PropTypes.object,
     hidePopup: PropTypes.func,
     showName: PropTypes.bool,
     isMobile: PropTypes.bool,
