@@ -96,7 +96,7 @@ class GalleryComponent extends React.PureComponent {
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
 
     if (hasFileChangeHelper) {
-      helpers.onFilesChange(file, ({ data, error }) => {
+      helpers.onFilesChange(file, ({ data }) => {
         const galleryItem = {
           metadata: {
             height: data.height,
