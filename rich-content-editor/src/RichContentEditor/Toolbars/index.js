@@ -13,7 +13,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
     side: createSideToolbar({
       buttons: pluginButtons,
       offset: sideToolbarOffset,
-      theme: getToolbarTheme(theme, 'side'),
+      theme: { ...getToolbarTheme(theme, 'side'), ...theme },
       toolbarStyle,
       pubsub,
       isMobile
@@ -23,7 +23,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
   if (shouldCreateTextToolbar) {
     toolbars.text = createTextToolbar({
       buttons: textButtons,
-      theme: getToolbarTheme(theme, 'inline'),
+      theme: { ...getToolbarTheme(theme, 'inline'), ...theme },
       toolbarStyle,
       pubsub,
       isMobile,
@@ -33,7 +33,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
   if (!isMobile) {
     toolbars.footer = createFooterToolbar({
       buttons: pluginButtons,
-      theme: getToolbarTheme(theme, 'footer'),
+      theme: { ...getToolbarTheme(theme, 'footer'), ...theme },
       toolbarStyle,
     });
   } else {
@@ -43,7 +43,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
       pubsub,
       getEditorState,
       setEditorState,
-      theme: getToolbarTheme(theme, 'mobile'),
+      theme: { ...getToolbarTheme(theme, 'mobile'), ...theme },
       toolbarStyle,
     });
   }

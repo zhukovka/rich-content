@@ -57,11 +57,10 @@ const createBasePlugin = (config = {}) => {
   const pubsub = simplePubsub();
   const helpers = config.helpers || {};
   const isMobile = config.isMobile || false;
-  const modalTheme = { modal: { ...config.theme } };
-  const toolbarTheme = getToolbarTheme(config.theme, 'plugin');
-  const Toolbar = createToolbar({ buttons: config.toolbar.InlineButtons, theme: { ...toolbarTheme, ...modalTheme }, pubsub, helpers, isMobile });
+  const toolbarTheme = { ...getToolbarTheme(config.theme, 'plugin'), ...config.theme };
+  const Toolbar = createToolbar({ buttons: config.toolbar.InlineButtons, theme: { ...toolbarTheme, ...config.theme }, pubsub, helpers, isMobile });
   const InsertPluginButtons = config.toolbar.InsertButtons.map(button => (
-    createInsertPluginButton({ blockType: config.type, button, helpers, pubsub })
+    createInsertPluginButton({ blockType: config.type, button, helpers, pubsub, theme: config.theme })
   ));
   const PluginComponent = config.decorator ? config.decorator(config.component) : config.component;
 

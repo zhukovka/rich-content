@@ -247,7 +247,6 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
         [toolbarStyles.pluginToolbar_overrideContent]: !!OverrideContent,
         [toolbarTheme.pluginToolbar_overrideContent]: !!OverrideContent,
       });
-      const modal = theme.modal ? { modal: { ...theme.modal } } : {};
       const themedButtonStyle = {
         buttonWrapper: classNames(buttonStyles.pluginToolbarButton_wrapper, buttonTheme && buttonTheme.pluginToolbarButton_wrapper),
         replaceButtonWrapper: classNames(buttonStyles.pluginToolbarButton_replaceButtonWrapper,
@@ -255,7 +254,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
         button: classNames(buttonStyles.pluginToolbarButton, buttonTheme && buttonTheme.pluginToolbarButton),
         icon: classNames(buttonStyles.pluginToolbarButton_icon, buttonTheme && buttonTheme.pluginToolbarButton_icon),
         active: classNames(buttonStyles.pluginToolbarButton_active, buttonTheme && buttonTheme.pluginToolbarButton_active),
-        ...modal
+        ...theme
       };
       const separatorClassNames = classNames(toolbarStyles.pluginToolbarSeparator, separatorTheme && separatorTheme.pluginToolbarSeparator);
       const overrideProps = { onOverrideContent: this.onOverrideContent };

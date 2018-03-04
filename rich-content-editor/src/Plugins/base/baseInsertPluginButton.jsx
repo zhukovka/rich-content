@@ -8,11 +8,10 @@ import Tooltip from '~/Components/Tooltip';
 import styles from '~/Styles/toolbar-button.scss';
 import { mergeStyles } from '~/Utils/mergeStyles';
 
-export default ({ blockType, button, helpers, pubsub }) => {
+export default ({ blockType, button, helpers, pubsub, theme }) => {
   class InsertPluginButton extends Component {
     constructor(props) {
       super(props);
-      const { theme } = props;
       this.state = {};
       this.styles = theme ? mergeStyles({ styles, theme }) : {};
     }
@@ -86,12 +85,11 @@ export default ({ blockType, button, helpers, pubsub }) => {
     };
 
     toggleButtonModal = () => {
-      const { theme } = this.props || {};
       if (helpers && helpers.openModal) {
         helpers.openModal({
           modalName: button.modalName,
           modalStyles: button.modalStyles,
-          theme: theme.modal,
+          theme,
           componentData: button.data,
           onConfirm: this.addBlock,
           helpers,
@@ -118,7 +116,7 @@ export default ({ blockType, button, helpers, pubsub }) => {
 
     render() {
       const { styles } = this;
-      const { theme, isMobile } = this.props;
+      const { isMobile } = this.props;
       const { tooltipText } = button;
       const showTooltip = !isMobile && !isEmpty(tooltipText);
       const buttonWrapperClassNames = classNames(
