@@ -3,6 +3,11 @@
     margin-bottom: 13px;
 }
 
+.imageRatioSelector_readOnly {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .imageRatioSelector_grid {
     grid-template-columns: 56px 56px 56px 56px 56px;
     grid-template-rows: 56px;

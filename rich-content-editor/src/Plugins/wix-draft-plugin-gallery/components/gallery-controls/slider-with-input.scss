@@ -4,6 +4,11 @@ $INPUT_WIDTH: 50px;
     display: block;
 }
 
+.sliderWithInput_readOnly {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .sliderWithInput_content {
     display: flex;
     flex-basis: auto;

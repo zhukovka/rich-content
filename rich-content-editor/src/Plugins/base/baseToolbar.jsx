@@ -169,8 +169,8 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       const spaceRight = fullWidth - eleWidth - spaceLeft;
 
       this.setState({
-        showLeftArrow: (spaceLeft > 0),
-        showRightArrow: (spaceRight > 0)
+        showLeftArrow: (spaceLeft > 1),
+        showRightArrow: (spaceRight > 1)
       });
     }
 

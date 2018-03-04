@@ -147,8 +147,8 @@ export default class InlineToolbar extends Component {
     const spaceRight = fullWidth - eleWidth - spaceLeft;
 
     this.setState({
-      showLeftArrow: (spaceLeft > 0),
-      showRightArrow: (spaceRight > 0)
+      showLeftArrow: (spaceLeft > 1),
+      showRightArrow: (spaceRight > 1)
     });
   }
 

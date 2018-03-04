@@ -17,7 +17,11 @@ Spacing.propTypes = propTypes;
 
 export const ThumbnailSize = props => (
   <SliderWithInput
-    label={props.options.isVertical ? 'Column Width' : 'Row Height'} min={10} max={1000} {...props}
+    min={10}
+    max={1000}
+    readOnly={props.options.readOnly}
+    label={props.options.label}
+    {...props}
   />
 );
 ThumbnailSize.propTypes = propTypes;

@@ -30,7 +30,7 @@ TitleButtonPlacement.propTypes = propTypes;
 export const ImageOrientation = props => (
   <RadioGroupHorizontal
     label={'Image Orientation'}
-    readOnly={props.options.oneRow}
+    readOnly={props.options.readOnly}
     dataSource={[{ value: '1', labelText: 'Vertical' }, { value: '0', labelText: 'Horizontal' }]}
     {...props}
   />

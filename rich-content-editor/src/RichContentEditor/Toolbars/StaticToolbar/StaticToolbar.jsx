@@ -63,8 +63,8 @@ export default class StaticToolbar extends React.Component {
     const spaceRight = fullWidth - eleWidth - spaceLeft;
 
     this.setState({
-      showLeftArrow: (spaceLeft > 0),
-      showRightArrow: (spaceRight > 0)
+      showLeftArrow: (spaceLeft > 1),
+      showRightArrow: (spaceRight > 1)
     });
   }
 
