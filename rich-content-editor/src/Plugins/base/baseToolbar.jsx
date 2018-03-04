@@ -57,8 +57,8 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       pubsub.unsubscribe('componentAlignment', this.onComponentAlignmentChange);
       pubsub.unsubscribe('componentSize', this.onComponentSizeChange);
       pubsub.unsubscribe('componentLink', this.onComponentLinkChange);
-      this.buttons && this.buttons.removeEventListener('srcoll', this.handleToolbarScroll);
-      window && window.removeEventListener('srcoll', this.handleToolbarScroll);
+      this.buttons && this.buttons.removeEventListener('scroll', this.handleToolbarScroll);
+      window && window.removeEventListener('scroll', this.handleToolbarScroll);
     }
 
     onOverrideContent = overrideContent => this.setState({ overrideContent });

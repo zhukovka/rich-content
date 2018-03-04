@@ -28,8 +28,8 @@ export default class StaticToolbar extends React.Component {
   }
 
   componentWillUnmount() {
-    this.buttons && this.buttons.removeEventListener('srcoll', this.handleToolbarScroll);
-    window && window.removeEventListener('srcoll', this.handleToolbarScroll);
+    this.buttons && this.buttons.removeEventListener('scroll', this.handleToolbarScroll);
+    window && window.removeEventListener('scroll', this.handleToolbarScroll);
   }
 
   handleButtonsRef = node => {
