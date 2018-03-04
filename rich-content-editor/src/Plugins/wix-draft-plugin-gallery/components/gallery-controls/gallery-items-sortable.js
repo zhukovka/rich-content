@@ -96,7 +96,7 @@ const ItemActionsMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleI
   //eslint-disable-next-line max-len
   const addItemButton = <FileInput className={styles.filesButton} onChange={handleFileChange} multiple>{(isMobile ? <Fab className={styles.fab} /> : '+ Add Media')}</FileInput>;
 
-  const separator = '·';
+  const separator = <span className={styles.seperator}>·</span>;
   const buttons = [];
 
   if (isMobile && selectedItems.length === 0) {

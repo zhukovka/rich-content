@@ -12,6 +12,7 @@ import SettingsSection from '~/Components/SettingsSection';
 
 class Separator extends Component {
   static propTypes = {
+    type: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
   };
 
@@ -20,14 +21,22 @@ class Separator extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-  render = () => <hr className={this.styles.gallerySettings_divider}/>
+  render = () => {
+    switch (this.props.type) {
+      case 'space':
+        return <div className={this.styles.gallerySettings_spacer} />;
+      case 'hr':
+      default:
+        return <hr className={this.styles.gallerySettings_divider}/>;
+    }
+  }
 }
 
 class LayoutControlsSection extends Component {
   controlsByLayout = [
     ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing', '|', 'scrollDirection'], // collage
     ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing'], // masonry
-    ['|', 'itemsPerRow', 'spacing', '|', 'thumbnailResize', '|', 'scrollDirection', '|', 'titleButtonPlacement', '|', 'imageRatio'], // grid
+    ['|', 'itemsPerRow', '_', 'spacing', '|', 'thumbnailResize', '|', 'scrollDirection', '|', 'titleButtonPlacement', '|', 'imageRatio'], // grid
     ['|', 'thumbnailPlacement', '|', 'thumbnailSpacing'], // thumbnails
     ['|', 'spacing', '|', 'thumbnailResize', '|', 'imageRatio'], // slides
     [], // slideshow
@@ -46,7 +55,8 @@ class LayoutControlsSection extends Component {
   };
 
   getControlData = () => ({
-    '|': { component: Separator, props: {} }, //separator
+    '|': { component: Separator, props: { type: 'hr' } }, //separator
+    _: { component: Separator, props: { type: 'space' } }, //separator
     itemsPerRow: {
       component: ItemsPerRow,
       props: {
