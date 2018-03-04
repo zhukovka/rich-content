@@ -64,18 +64,18 @@ export const UnderlineButton = createTextInlineStyleButton({
 });
 
 export const IndentButton = createTextBlockStyleButton({
-  blockType: 'indent',
-  Icon: IndentIcon,
+  blockTypes: ['indent'],
+  Icons: [IndentIcon],
 });
 
 export const TitleButton = createTextBlockStyleButton({
-  blockType: 'header-two',
-  Icon: TitleIcon,
+  blockTypes: ['header-one', 'header-two'],
+  Icons: [TitleIcon, TitleIcon],
 });
 
 export const BlockquoteButton = createTextBlockStyleButton({
-  blockType: 'blockquote',
-  Icon: BlockquoteIcon,
+  blockTypes: ['blockquote'],
+  Icons: [BlockquoteIcon],
 });
 
 export const AlignTextLeftButton = createTextAlignmentButton({
@@ -99,11 +99,11 @@ export const AlignTextJustifyButton = createTextAlignmentButton({
 });
 
 export const OrderedListButton = createTextBlockStyleButton({
-  blockType: 'ordered-list-item',
-  Icon: OrderedListIcon,
+  blockTypes: ['ordered-list-item'],
+  Icons: [OrderedListIcon],
 });
 
 export const UnorderedListButton = createTextBlockStyleButton({
-  blockType: 'unordered-list-item',
-  Icon: UnorderedListIcon,
+  blockTypes: ['unordered-list-item'],
+  Icons: [UnorderedListIcon],
 });

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { RichUtils } from '@wix/draft-js';
 import TextButton from '../TextButton';
 
-export default ({ blockType, Icon }) =>
+export default ({ blockTypes, Icons }) =>
   class TextBlockStyleButton extends Component {
     static propTypes = {
       getEditorState: PropTypes.func.isRequired,
@@ -11,10 +11,41 @@ export default ({ blockType, Icon }) =>
       theme: PropTypes.object.isRequired,
     };
 
-    toggleStyle = event => {
-      const { getEditorState, setEditorState } = this.props;
+    constructor(props) {
+      super(props);
+      this.state = {
+        blockTypeIndex: undefined,
+      };
+    }
+
+    get blockType() {
+      const { blockTypeIndex } = this.state;
+      return blockTypeIndex !== undefined ? blockTypes[blockTypeIndex] : undefined;
+    }
+
+
+    nextBlockTypeIndex = () => {
+      const blockType = this.blockType;
+      let nextBlockTypeIndex = 0;
+      if (blockType) {
+        const blockTypeIndex = blockTypes.findIndex(t => t === blockType);
+        if (blockTypeIndex + 1 < blockTypes.length) {
+          nextBlockTypeIndex = blockTypeIndex + 1;
+        } else {
+          nextBlockTypeIndex = -1;
+        }
+      }
+      return nextBlockTypeIndex > -1 ? nextBlockTypeIndex : undefined;
+    }
+
+    setBlockStyle = event => {
       event.preventDefault();
-      setEditorState(RichUtils.toggleBlockType(getEditorState(), blockType));
+      const { getEditorState, setEditorState } = this.props;
+      const blockTypeIndex = this.nextBlockTypeIndex();
+      this.setState({ blockTypeIndex }, () => {
+        const blockType = this.blockType;
+        setEditorState(RichUtils.toggleBlockType(getEditorState(), blockType));
+      });
     };
 
     blockTypeIsActive = () => {
@@ -28,17 +59,19 @@ export default ({ blockType, Icon }) =>
         .getCurrentContent()
         .getBlockForKey(editorState.getSelection().getStartKey())
         .getType();
-      return type === blockType;
+      return typeof type !== 'undefined' && type === this.blockType;
     };
 
     render() {
+      const { blockTypeIndex } = this.state;
       const { theme } = this.props;
+      const Icon = blockTypeIndex ? Icons[blockTypeIndex] : Icons[0];
       return (
         <TextButton
           icon={Icon}
           theme={theme}
           isActive={this.blockTypeIsActive}
-          onClick={this.toggleStyle}
+          onClick={this.setBlockStyle}
         />
       );
     }
