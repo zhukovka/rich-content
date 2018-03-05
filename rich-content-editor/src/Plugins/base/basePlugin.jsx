@@ -60,7 +60,7 @@ const createBasePlugin = (config = {}) => {
   const toolbarTheme = { ...getToolbarTheme(config.theme, 'plugin'), ...config.theme };
   const Toolbar = createToolbar({ buttons: config.toolbar.InlineButtons, theme: { ...toolbarTheme, ...config.theme }, pubsub, helpers, isMobile });
   const InsertPluginButtons = config.toolbar.InsertButtons.map(button => (
-    createInsertPluginButton({ blockType: config.type, button, helpers, pubsub, theme: config.theme })
+    createInsertPluginButton({ blockType: config.type, button, helpers, pubsub })
   ));
   const PluginComponent = config.decorator ? config.decorator(config.component) : config.component;
 
