@@ -47,8 +47,8 @@ export default class InlineToolbar extends Component {
 
   componentWillUnmount() {
     this.props.pubsub.unsubscribe('selection', this.onSelectionChanged);
-    this.buttons && this.buttons.removeEventListener('scroll', this.handleToolbarScroll);
-    window && window.removeEventListener('resize', this.handleToolbarScroll);
+    this.buttons && this.buttons.removeEventListener('srcoll', this.handleToolbarScroll);
+    window && window.removeEventListener('srcoll', this.handleToolbarScroll);
   }
 
   onOverrideContent = overrideContent => this.setState({ overrideContent });

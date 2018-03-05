@@ -3,6 +3,8 @@ import ItalicIcon from '../icons/italic.svg';
 import UnderlineIcon from '../icons/underline.svg';
 import IndentIcon from '../icons/indent.svg';
 import TitleIcon from '../icons/title.svg';
+import TitleOneIcon from '../icons/title-one.svg';
+import TitleTwoIcon from '../icons/title-two.svg';
 import BlockquoteIcon from '../icons/block-quote.svg';
 import AlignTextLeftIcon from '../icons/align-text-left.svg';
 import AlignTextCenterIcon from '../icons/align-text-center.svg';
@@ -70,7 +72,8 @@ export const IndentButton = createTextBlockStyleButton({
 
 export const TitleButton = createTextBlockStyleButton({
   blockTypes: ['header-one', 'header-two'],
-  Icons: [TitleIcon, TitleIcon],
+  Icons: [TitleOneIcon, TitleTwoIcon],
+  InactiveIcon: TitleIcon,
 });
 
 export const BlockquoteButton = createTextBlockStyleButton({
