@@ -49,12 +49,11 @@ const getFooterTheme = theme => {
   };
 };
 
-export default ({ buttons, theme, toolbarStyle }) => {
+export default ({ buttons, theme }) => {
   const footerTheme = getFooterTheme(theme);
   return createStaticToolbar({
     name: 'FooterToolbar',
     theme: footerTheme,
-    toolbarStyle,
     structure: buttons
   });
 };
