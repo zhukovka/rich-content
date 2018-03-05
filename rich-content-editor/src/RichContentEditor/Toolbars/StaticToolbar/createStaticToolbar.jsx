@@ -8,15 +8,15 @@ export default (config = {}) => {
   const {
     name = 'StaticToolbar',
     theme,
-    toolbarStyle,
-    structure = []
+    structure = [],
+    isMobile = false,
   } = config;
 
   const toolbarProps = {
     pubsub,
     structure,
     theme,
-    toolbarStyle,
+    isMobile
   };
 
   return {

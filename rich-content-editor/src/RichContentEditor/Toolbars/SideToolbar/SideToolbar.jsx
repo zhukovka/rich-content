@@ -64,7 +64,7 @@ export default class SideToolbar extends Component {
   render() {
     const { theme, pubsub } = this.props;
     const { wrapperStyles } = theme || {};
-    const wrapperClassNames = classNames(Styles.wrapper, wrapperStyles && wrapperStyles.wrapper);
+    const wrapperClassNames = classNames(Styles.sideToolbarWrapper, wrapperStyles && wrapperStyles.sideToolbarWrapper);
     return (
       <div className={wrapperClassNames} style={this.state.position}>
         {this.props.structure.map((Component, index) => (

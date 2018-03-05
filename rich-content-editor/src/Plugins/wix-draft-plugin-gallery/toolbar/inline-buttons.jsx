@@ -9,6 +9,20 @@ import { galleryLayouts, switchLayout, getCurrentLayout } from '../helpers';
 const modalStyles = getModalStyles();
 const InlineButtons = [
   {
+    keyName: 'add',
+    type: BUTTONS.FILES,
+    icon: AddIcon,
+    onFilesSelected: (pubsub, files) => {
+      if (files.length > 0) {
+        const handleFilesSelected = pubsub.store.get('handleFilesSelected');
+        handleFilesSelected(files);
+      }
+    },
+    mobile: false,
+    multiple: true,
+  },
+  { type: BUTTONS.SEPARATOR, mobile: false },
+  {
     keyName: 'layout',
     type: BUTTONS.DROPDOWN,
     options: galleryLayouts,
@@ -24,19 +38,6 @@ const InlineButtons = [
   { type: BUTTONS.SIZE_SMALL_LEFT, mobile: false },
   { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: false },
   { type: BUTTONS.SEPARATOR, mobile: true },
-  {
-    keyName: 'add',
-    type: BUTTONS.FILES,
-    icon: AddIcon,
-    onFilesSelected: (pubsub, files) => {
-      if (files.length > 0) {
-        const handleFilesSelected = pubsub.store.get('handleFilesSelected');
-        handleFilesSelected(files);
-      }
-    },
-    mobile: false,
-    multiple: true,
-  },
   {
     keyName: 'manage_media',
     type: BUTTONS.EXTERNAL_MODAL,

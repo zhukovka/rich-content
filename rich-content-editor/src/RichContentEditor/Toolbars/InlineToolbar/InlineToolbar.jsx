@@ -24,7 +24,6 @@ export default class InlineToolbar extends Component {
     pubsub: PropTypes.object.isRequired,
     structure: PropTypes.array.isRequired,
     theme: PropTypes.object.isRequired,
-    toolbarStyle: PropTypes.object,
     isMobile: PropTypes.bool,
   };
 
@@ -41,12 +40,14 @@ export default class InlineToolbar extends Component {
     this.props.pubsub.subscribe('selection', this.onSelectionChanged);
   }
 
-  componentWillUnmount() {
-    this.props.pubsub.unsubscribe('selection', this.onSelectionChanged);
-  }
-
   componentDidMount() {
     this.handleToolbarScroll();
+  }
+
+  componentWillUnmount() {
+    this.props.pubsub.unsubscribe('selection', this.onSelectionChanged);
+    this.buttons && this.buttons.removeEventListener('srcoll', this.handleToolbarScroll);
+    window && window.removeEventListener('srcoll', this.handleToolbarScroll);
   }
 
   onOverrideContent = overrideContent => this.setState({ overrideContent });
@@ -91,13 +92,13 @@ export default class InlineToolbar extends Component {
   };
 
   getStyle() {
-    const { pubsub, toolbarStyle } = this.props;
+    const { pubsub } = this.props;
     const { overrideContent, extendContent, position } = this.state;
     const selection = pubsub.get('getEditorState')().getSelection();
     // overrideContent could for example contain a text input, hence we always show overrideContent
     // TODO: Test readonly mode and possibly set isVisible to false if the editor is readonly
     const isVisible = (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent || extendContent;
-    const style = { ...position, ...toolbarStyle };
+    const style = { ...position };
 
     if (isVisible) {
       style.visibility = 'visible';
@@ -117,8 +118,10 @@ export default class InlineToolbar extends Component {
 
   handleButtonsRef = node => {
     this.buttons = node;
-    this.buttons.addEventListener('scroll', this.handleToolbarScroll);
-    window && window.addEventListener('resize', this.handleToolbarScroll);
+    if (this.buttons) {
+      this.buttons.addEventListener('scroll', this.handleToolbarScroll);
+      window && window.addEventListener('resize', this.handleToolbarScroll);
+    }
   };
 
   scrollToolbar(event, direction) {
@@ -143,8 +146,8 @@ export default class InlineToolbar extends Component {
     const spaceRight = fullWidth - eleWidth - spaceLeft;
 
     this.setState({
-      showLeftArrow: (spaceLeft > 0),
-      showRightArrow: (spaceRight > 0)
+      showLeftArrow: (spaceLeft > 1),
+      showRightArrow: (spaceRight > 1)
     });
   }
 
@@ -152,11 +155,12 @@ export default class InlineToolbar extends Component {
     const { theme, pubsub, structure } = this.props;
     const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
     const { buttonStyles, toolbarStyles } = theme || {};
-    const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
-    const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons, {
-      [Styles.overrideContent]: !!OverrideContent
+    const toolbarClassNames = classNames(Styles.inlineToolbar, toolbarStyles && toolbarStyles.inlineToolbar);
+    const buttonClassNames = classNames(Styles.inlineToolbar_buttons, toolbarStyles && toolbarStyles.inlineToolbar_buttons, {
+      [Styles.inlineToolbar_overrideContent]: !!OverrideContent,
+      [toolbarStyles.inlineToolbar_overrideContent]: !!OverrideContent,
     });
-    const extendClassNames = classNames(Styles.extend, toolbarStyles && toolbarStyles.extend);
+    const extendClassNames = classNames(Styles.inlineToolbar_extend, toolbarStyles && toolbarStyles.inlineToolbar_extend);
     const childrenProps = {
       theme: buttonStyles,
       getEditorState: pubsub.get('getEditorState'),
@@ -178,7 +182,8 @@ export default class InlineToolbar extends Component {
           {
             showLeftArrow &&
             <div
-              className={classNames(Styles.responsiveArrow, Styles.responsiveArrowLeft)}
+              className={classNames(Styles.inlineToolbar_responsiveArrow, Styles.inlineToolbar_responsiveArrowLeft,
+                toolbarStyles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrowLeft)}
               onMouseDown={e => this.scrollToolbar(e, 'left')}
             >
               <i/>
@@ -188,7 +193,8 @@ export default class InlineToolbar extends Component {
           {
             showRightArrow &&
             <div
-              className={classNames(Styles.responsiveArrow, Styles.responsiveArrowRight)}
+              className={classNames(Styles.inlineToolbar_responsiveArrow, Styles.inlineToolbar_responsiveArrowRight,
+                toolbarStyles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrowRight)}
               onMouseDown={e => this.scrollToolbar(e, 'right')}
             >
               <i/>

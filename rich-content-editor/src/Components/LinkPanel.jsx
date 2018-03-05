@@ -24,6 +24,10 @@ class LinkPanel extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
+  componentDidMount() {
+    this.input.focus();
+  }
+
   handleIntermediateUrlChange = event => {
     this.setState({ intermediateUrl: event.target.value });
   };
@@ -91,7 +95,7 @@ class LinkPanel extends Component {
             )}
           </div>
         </div>
-        <checkboxWrapper>
+        <div>
           <div className={styles.linkPanel_checkboxContainer}>
             <input
               className={styles.linkPanel_checkboxContainerInput} type="checkbox" id="firstCheckboxLinkPanel"
@@ -106,7 +110,7 @@ class LinkPanel extends Component {
             />
             <label className={styles.linkPanel_checkboxContainerLabel} htmlFor="secondCheckboxLinkPanel">{secondCheckboxText}</label>
           </div>
-        </checkboxWrapper>
+        </div>
       </div>
     );
   }

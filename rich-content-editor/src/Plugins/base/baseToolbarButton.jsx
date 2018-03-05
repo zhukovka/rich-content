@@ -5,15 +5,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { BUTTONS } from './buttons';
 import Panel from './basePanel';
-import { mergeStyles } from '~/Utils';
-import styles from '~/Styles/plugin-toolbar-button.scss';
 import Dropdown from '../../Components/Dropdown';
 
 class BaseToolbarButton extends React.Component {
 
   constructor(props) {
     super(props);
-    this.styles = mergeStyles({ styles, theme: props.theme });
     this.state = { isActive: false };
   }
 
@@ -76,7 +73,7 @@ class BaseToolbarButton extends React.Component {
           keyName,
           helpers,
           pubsub,
-          theme: theme.modal || {},
+          theme: theme || {},
           ...otherProps,
         };
         helpers.openModal(modalProps);
@@ -98,11 +95,11 @@ class BaseToolbarButton extends React.Component {
   };
 
   getIcon = () => {
-    const { iconActive, icon } = this.props;
+    const { iconActive, icon, theme } = this.props;
     const ActiveIcon = iconActive || icon;
     const Icon = icon;
     return (
-      <div className={this.styles.icon}>
+      <div className={theme.icon}>
         {this.state.isActive ? <ActiveIcon /> : <Icon />}
       </div>
     );
@@ -167,21 +164,21 @@ class BaseToolbarButton extends React.Component {
   };
 
   render = () => {
-    const { styles } = this;
+    const { theme: themedStyles } = this.props;
     const { isActive } = this.state;
-    const buttonWrapperClassNames = classNames(styles.buttonWrapper);
+    const buttonWrapperClassNames = classNames(themedStyles.buttonWrapper);
     const buttonClassNames = classNames({
-      [styles.button]: true,
-      [styles.active]: isActive
+      [themedStyles.button]: true,
+      [themedStyles.active]: isActive
     });
 
     let toolbarButton;
     switch (this.props.type) {
       case BUTTONS.FILES:
-        toolbarButton = this.renderFilesButton(buttonClassNames, styles);
+        toolbarButton = this.renderFilesButton(buttonClassNames, themedStyles);
         break;
       case BUTTONS.DROPDOWN:
-        toolbarButton = this.renderDropdownButton(buttonClassNames, styles);
+        toolbarButton = this.renderDropdownButton(buttonClassNames, themedStyles);
         break;
       case BUTTONS.PANEL:
         toolbarButton = this.renderPanelButton(buttonWrapperClassNames, buttonClassNames);

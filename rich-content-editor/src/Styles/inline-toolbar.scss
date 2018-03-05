@@ -3,7 +3,7 @@
 
 $borderRadius: 6px;
 
-.toolbar {
+.inlineToolbar {
   min-height: 50px;
   left: 50%;
   transform: translate(-50%) scale(0);
@@ -11,12 +11,13 @@ $borderRadius: 6px;
   border: 1px solid $toolbar-border-color;
   background: #fff;
   border-radius: $borderRadius;
-  box-shadow: 0px 1px 5px 0px rgba(220,220,220,0.4);
   z-index: 4;
   box-sizing: border-box;
+  max-width: 100%;
+  direction: ltr;
 }
 
-.buttons {
+.inlineToolbar_buttons {
   display: flex;
   padding: 0 19px;
 
@@ -24,11 +25,11 @@ $borderRadius: 6px;
     display: none;
   }
 
-  &.overrideContent {
+  &.inlineToolbar_overrideContent {
     padding: 0;
   }
 
-  .responsiveArrow {
+  .inlineToolbar_responsiveArrow {
     display: none;
     position: absolute;
     top: 0;
@@ -50,7 +51,7 @@ $borderRadius: 6px;
     }
   }
 
-  .responsiveArrowLeft {
+  .inlineToolbar_responsiveArrowLeft {
     left: 0;
     border-right: 1px solid $toolbar-border-color;
     border-radius: $borderRadius 0 0 $borderRadius;
@@ -61,7 +62,7 @@ $borderRadius: 6px;
     }
   }
 
-  .responsiveArrowRight {
+  .inlineToolbar_responsiveArrowRight {
     right: 0;
     border-left: 1px solid $toolbar-border-color;
     border-radius: 0 $borderRadius $borderRadius 0;
@@ -74,18 +75,20 @@ $borderRadius: 6px;
 
 }
 
-.extend {
+.inlineToolbar_extend {
   border-top: 1px solid $toolbar-border-color;
 }
 
 @include phone {
-  .buttons {
+  .inlineToolbar_buttons {
     display: flex;
     width: auto;
     max-width: 100%;
     overflow-x: scroll;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 
-    .responsiveArrow {
+    .inlineToolbar_responsiveArrow {
       display: block;
     }
   }

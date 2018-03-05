@@ -2,9 +2,9 @@ import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import { createSideToolbar } from './SideToolbar';
 import { createMobileToolbar, createFooterToolbar } from './StaticToolbar';
 import { createTextToolbar } from './InlineToolbar';
-import { simplePubsub } from '~/Utils';
+import { simplePubsub, getToolbarTheme } from '~/Utils';
 
-const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, toolbarStyle, getEditorState, setEditorState }) => {
+const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, getEditorState, setEditorState }) => {
   const { pluginButtons, textButtons } = buttons;
   const pubsub = simplePubsub();
   const shouldCreateTextToolbar = !isMobile || baseUtils.isiOS();
@@ -13,8 +13,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
     side: createSideToolbar({
       buttons: pluginButtons,
       offset: sideToolbarOffset,
-      theme: theme.side,
-      toolbarStyle,
+      theme: { ...getToolbarTheme(theme, 'side'), ...theme },
       pubsub,
       isMobile
     }),
@@ -23,8 +22,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
   if (shouldCreateTextToolbar) {
     toolbars.text = createTextToolbar({
       buttons: textButtons,
-      theme: theme.text,
-      toolbarStyle,
+      theme: { ...getToolbarTheme(theme, 'inline'), ...theme },
       pubsub,
       isMobile,
     });
@@ -33,8 +31,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
   if (!isMobile) {
     toolbars.footer = createFooterToolbar({
       buttons: pluginButtons,
-      theme: theme.footer,
-      toolbarStyle,
+      theme: { ...getToolbarTheme(theme, 'footer'), ...theme },
     });
   } else {
     toolbars.mobile = createMobileToolbar({
@@ -43,8 +40,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
       pubsub,
       getEditorState,
       setEditorState,
-      theme: theme.mobile,
-      toolbarStyle,
+      theme: { ...getToolbarTheme(theme, 'mobile'), ...theme },
     });
   }
 

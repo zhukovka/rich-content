@@ -8,11 +8,11 @@ export default class AddPluginModal extends Component {
 
   render() {
     const { getEditorState, setEditorState, structure, theme } = this.props;
-    const { panelStyles, buttonStyles } = theme || {};
-    const tileClassNames = classNames(Styles.tile, panelStyles && panelStyles.tile);
+    const { buttonStyles } = theme || {};
+    const tileClassNames = classNames(Styles.addPluginModal_tile, theme && theme.addPluginModal_tile);
     const placeHolderCount = 6 - structure.length;
     return (
-      <ul className={Styles.list}>
+      <ul className={classNames(Styles.addPluginModal_list, theme && theme.addPluginModal_list)}>
         {structure.map((Component, index) => (
           <li key={index} className={tileClassNames}>
             <Component

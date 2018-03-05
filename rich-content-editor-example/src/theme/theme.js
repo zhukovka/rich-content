@@ -1,9 +1,11 @@
 import richContentEditorTheme from './rich-content-editor.theme.scss';
 import linkifyTheme from './text-linkify.theme.scss';
+
 import dividerTheme from './divider.theme.scss';
 import htmlTheme from './html.theme.scss';
 import imageTheme from './image.theme.scss';
 import videoTheme from './video.theme.scss';
+
 import commonTheme from './global.theme.scss';
 import loaderTheme from './loader.theme.scss';
 import buttonTheme from './button.theme.scss';
@@ -17,7 +19,16 @@ import selectionListTheme from './selection-list.theme.scss';
 import sliderTheme from './slider.theme.scss';
 import tabsTheme from './tabs.theme.scss';
 import tooltipTheme from './tooltip.theme.scss';
-import toolbars from './toolbars';
+
+import inlineToolbarTheme from './toolbars/inline-toolbar.theme.scss';
+import sideToolbarTheme from './toolbars/side-toolbar.theme.scss';
+import pluginToolbarTheme from './toolbars/plugin-toolbar.theme.scss';
+import footerToolbarTheme from './toolbars/footer-toolbar.theme.scss';
+import mobileToolbarTheme from './toolbars/mobile-toolbar.theme.scss';
+import mobileAddModalTheme from './toolbars/mobile-add-modal.theme.scss';
+import toolbarSeparatorTheme from './toolbars/toolbar-separator.theme.scss';
+import addPluginModalTheme from './toolbars/add-plugin-modal.theme.scss';
+
 import gallerySettingsModalTheme from './toolbars/modals/gallery/gallery-settings-modal.theme.scss';
 import galleryItemsSortableTheme from './toolbars/modals/gallery/gallery-items-sortable.theme.scss';
 import galleryImageSettingsTheme from './toolbars/modals/gallery/gallery-image-settings.theme.scss';
@@ -67,8 +78,16 @@ const theme = {
   ...videoUploadTheme,
   ...imageSettingsTheme,
   ...imageSettingsMobileHeaderTheme,
+  ...addPluginModalTheme,
 
-  toolbars,
+  // toolbars
+  ...inlineToolbarTheme,
+  ...sideToolbarTheme,
+  ...pluginToolbarTheme,
+  ...footerToolbarTheme,
+  ...mobileToolbarTheme,
+  ...mobileAddModalTheme,
+  ...toolbarSeparatorTheme
 
 };
 

@@ -17,7 +17,10 @@ class ImageRatioSelector extends Component {
   renderOption = ({ item, selected }) => (
     <div className={this.styles.imageRatioSelector_tile}>
       <div className={classNames(this.styles.imageRatioSelector_ratioButton, selected ? this.styles.imageRatioSelector_ratioButton_selected : '')}>
-        <div className={classNames(item.ratioClass, selected ? this.styles.imageRatioSelector_ratioIcon_selected : '')} />
+        <div
+          className={classNames(this.styles.imageRatioSelector_ratioIcon,
+            item.ratioClass, { [this.styles.imageRatioSelector_ratioIcon_selected]: selected })}
+        />
       </div>
       <label className={this.styles.imageRatioSelector_ratioLabel}>{item.name}</label>
     </div>
@@ -32,9 +35,10 @@ class ImageRatioSelector extends Component {
       { ratio: 9 / 16, name: '9:16', ratioClass: this.styles.imageRatioSelector_9_16 },
     ];
     const { styles } = this;
-    const { value, onChange, theme } = this.props;
+    const { value, onChange, theme, options } = this.props;
+
     return (
-      <div>
+      <div className={options.readOnly ? styles.imageRatioSelector_readOnly : null}>
         <label className={styles.imageRatioSelector_label}>Image Ratio:</label>
         <SelectionList
           theme={theme}
@@ -54,6 +58,7 @@ ImageRatioSelector.propTypes = {
   value: PropTypes.number.isRequired,
   theme: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
+  options: PropTypes.object,
 };
 
 export default ImageRatioSelector;

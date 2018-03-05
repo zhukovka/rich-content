@@ -16,19 +16,19 @@ const DEFAULTS = {
   url: undefined,
 };
 
-const alignmentClassName = alignment => {
+const alignmentClassName = (alignment, theme) => {
   if (!alignment) {
     return '';
   } else {
-    return Styles[`align${upperFirst(alignment)}`];
+    return classNames(Styles[`align${upperFirst(alignment)}`], theme[`align${upperFirst(alignment)}`]);
   }
 };
 
-const sizeClassName = size => {
+const sizeClassName = (size, theme) => {
   if (!size) {
     return '';
   } else {
-    return Styles[`size${upperFirst(camelCase(size))}`];
+    return classNames(Styles[`size${upperFirst(camelCase(size))}`], theme[`size${upperFirst(camelCase(size))}`]);
   }
 };
 
@@ -196,9 +196,11 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
         {
           [Styles.pluginContainer]: !readOnly,
           [Styles.pluginContainerReadOnly]: readOnly,
+          [theme.pluginContainer]: !readOnly,
+          [theme.pluginContainerReadOnly]: readOnly,
         },
-        alignmentClassName(alignment),
-        sizeClassName(size),
+        alignmentClassName(alignment, theme),
+        sizeClassName(size, theme),
         className || '',
         {
           [Styles.hasFocus]: isActive,
@@ -206,8 +208,9 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
         }
       );
 
-      const overlayClassNames = classNames(Styles.overlay, {
+      const overlayClassNames = classNames(Styles.overlay, theme.overlay, {
         [Styles.hidden]: readOnly,
+        [theme.hidden]: readOnly,
       });
 
       const component = (

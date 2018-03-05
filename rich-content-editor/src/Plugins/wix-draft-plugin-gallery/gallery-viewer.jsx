@@ -5,7 +5,7 @@ import { ProGallery } from 'pro-gallery-renderer';
 const getDefault = () => ({
   items: [],
   styles: {
-    galleryLayout: 0,
+    galleryLayout: 2,
     gallerySize: 300,
     oneRow: false,
     cubeRatio: 1,

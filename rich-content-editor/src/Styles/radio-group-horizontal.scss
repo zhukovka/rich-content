@@ -7,8 +7,13 @@
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 100%;
+
+  span {
+    vertical-align: text-bottom;
+  }
 }
 
 .radioGroupHorizontal_readOnly {
   opacity: 0.5;
+  pointer-events: none;
 }

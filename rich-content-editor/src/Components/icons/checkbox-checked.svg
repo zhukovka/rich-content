@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+    <defs>
+        <rect id="checkbox-checked" width="16" height="16" rx="3"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <use fill="#0261FF" xlink:href="#checkbox-checked"/>
+        <rect width="15" height="15" x=".5" y=".5" stroke="#0261FF" rx="3"/>
+        <path fill="#FFF" d="M11.75 4L6.5 9.42 4.25 7.096 3 8.387 6.5 12 13 5.29z"/>
+    </g>
+</svg>

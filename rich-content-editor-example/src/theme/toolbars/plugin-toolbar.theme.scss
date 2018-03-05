@@ -1,23 +1,33 @@
 /* Toolbar */
-.toolbar {
+.pluginToolbar {
+  box-shadow: 0px 1px 3px 0px rgba(220, 220, 220, 1);
 }
 
-.buttons {
+.pluginToolbar_buttons {
+}
+
+.pluginToolbar_buttons_overrideContent {
+}
+
+.pluginToolbar_extend {
 }
 
 /* Button */
-.active {
+.pluginToolbarButton_active {
 }
 
-.button {
+.pluginToolbarButton {
 }
 
-.buttonWrapper {
+.pluginToolbarButton_wrapper {
 }
 
-.icon {
+.pluginToolbarButton_icon {
+}
+
+.pluginToolbarButton_replaceButtonWrapper {
 }
 
 /* Separator */
-.separator {
+.pluginToolbarSeparator {
 }

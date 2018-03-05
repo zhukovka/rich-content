@@ -14,9 +14,8 @@
   overflow: visible;
   white-space: nowrap;
   text-align: right;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 40px;
-  padding: 0 5px;
 
   &:hover {
     cursor: pointer;
@@ -129,8 +128,7 @@
   }
 }
 .topBarLink {
-  font-size: 12px;
-  margin: 0 5px;
+  font-size: 14px;
   line-height: 40px;
   color: #666;
 
@@ -138,5 +136,9 @@
     cursor: pointer;
     color: #4990e2;
   }
+}
+
+.seperator {
+  margin: 0 8px;
 }
 
