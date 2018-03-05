@@ -12,6 +12,7 @@ import SettingsSection from '~/Components/SettingsSection';
 
 class Separator extends Component {
   static propTypes = {
+    type: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
   };
 
@@ -20,14 +21,22 @@ class Separator extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-  render = () => <hr className={this.styles.gallerySettings_divider}/>
+  render = () => {
+    switch (this.props.type) {
+      case 'space':
+        return <div className={this.styles.gallerySettings_spacer} />;
+      case 'hr':
+      default:
+        return <hr className={this.styles.gallerySettings_divider}/>;
+    }
+  }
 }
 
 class LayoutControlsSection extends Component {
   controlsByLayout = [
     ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing', '|', 'scrollDirection'], // collage
     ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing'], // masonry
-    ['|', 'itemsPerRow', 'spacing', '|', 'thumbnailResize', '|', 'scrollDirection', '|', 'titleButtonPlacement', '|', 'imageRatio'], // grid
+    ['|', 'itemsPerRow', '_', 'spacing', '|', 'thumbnailResize', '|', 'titleButtonPlacement', '|', 'imageRatio'], // grid
     ['|', 'thumbnailPlacement', '|', 'thumbnailSpacing'], // thumbnails
     ['|', 'spacing', '|', 'thumbnailResize', '|', 'imageRatio'], // slides
     [], // slideshow
@@ -46,7 +55,8 @@ class LayoutControlsSection extends Component {
   };
 
   getControlData = () => ({
-    '|': { component: Separator, props: {} }, //separator
+    '|': { component: Separator, props: { type: 'hr' } }, //separator
+    _: { component: Separator, props: { type: 'space' } }, //separator
     itemsPerRow: {
       component: ItemsPerRow,
       props: {
@@ -60,7 +70,8 @@ class LayoutControlsSection extends Component {
         onChange: value => this.applyGallerySetting({ gallerySize: value }),
         value: this.getValueFromComponentStyles('gallerySize'),
         options: {
-          isVertical: this.getValueFromComponentStyles('isVertical')
+          label: this.getValueFromComponentStyles('isVertical') ? 'Column Width' : 'Row Height',
+          readOnly: this.getValueFromComponentStyles('oneRow')
         }
       },
     },
@@ -68,7 +79,7 @@ class LayoutControlsSection extends Component {
       component: Spacing,
       props: {
         onChange: value => this.applyGallerySetting({ imageMargin: value }),
-        value: this.getValueFromComponentStyles('imageMargin'),
+        value: this.getValueFromComponentStyles('imageMargin') * 2,
       },
     },
     thumbnailSpacing: {
@@ -97,6 +108,9 @@ class LayoutControlsSection extends Component {
       props: {
         onChange: value => this.applyGallerySetting({ cubeRatio: value }),
         value: this.getValueFromComponentStyles('cubeRatio'),
+        options: {
+          readOnly: this.getValueFromComponentStyles('cubeType') === 'fit'
+        }
       },
     },
     imageOrientation: {
@@ -105,7 +119,7 @@ class LayoutControlsSection extends Component {
         onChange: value => this.applyGallerySetting({ isVertical: value === '1' }),
         value: this.getValueFromComponentStyles('isVertical') ? '1' : '0',
         options: {
-          oneRow: this.getValueFromComponentStyles('oneRow')
+          readOnly: this.getValueFromComponentStyles('oneRow')
         }
       },
     },

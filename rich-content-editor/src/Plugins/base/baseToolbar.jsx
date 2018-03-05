@@ -57,8 +57,8 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       pubsub.unsubscribe('componentAlignment', this.onComponentAlignmentChange);
       pubsub.unsubscribe('componentSize', this.onComponentSizeChange);
       pubsub.unsubscribe('componentLink', this.onComponentLinkChange);
-      this.buttons && this.buttons.removeEventListener('srcoll', this.handleToolbarScroll);
-      window && window.removeEventListener('srcoll', this.handleToolbarScroll);
+      this.buttons && this.buttons.removeEventListener('scroll', this.handleToolbarScroll);
+      window && window.removeEventListener('resize', this.handleToolbarScroll);
     }
 
     onOverrideContent = overrideContent => this.setState({ overrideContent });
@@ -169,8 +169,8 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       const spaceRight = fullWidth - eleWidth - spaceLeft;
 
       this.setState({
-        showLeftArrow: (spaceLeft > 0),
-        showRightArrow: (spaceRight > 0)
+        showLeftArrow: (spaceLeft > 1),
+        showRightArrow: (spaceRight > 1)
       });
     }
 
@@ -251,7 +251,6 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
         [toolbarStyles.pluginToolbar_overrideContent]: !!OverrideContent,
         [toolbarTheme.pluginToolbar_overrideContent]: !!OverrideContent,
       });
-      const modal = theme.modal ? { modal: { ...theme.modal } } : {};
       const themedButtonStyle = {
         buttonWrapper: classNames(buttonStyles.pluginToolbarButton_wrapper, buttonTheme && buttonTheme.pluginToolbarButton_wrapper),
         replaceButtonWrapper: classNames(buttonStyles.pluginToolbarButton_replaceButtonWrapper,
@@ -259,7 +258,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
         button: classNames(buttonStyles.pluginToolbarButton, buttonTheme && buttonTheme.pluginToolbarButton),
         icon: classNames(buttonStyles.pluginToolbarButton_icon, buttonTheme && buttonTheme.pluginToolbarButton_icon),
         active: classNames(buttonStyles.pluginToolbarButton_active, buttonTheme && buttonTheme.pluginToolbarButton_active),
-        ...modal
+        ...theme
       };
       const separatorClassNames = classNames(toolbarStyles.pluginToolbarSeparator, separatorTheme && separatorTheme.pluginToolbarSeparator);
       const overrideProps = { onOverrideContent: this.onOverrideContent };

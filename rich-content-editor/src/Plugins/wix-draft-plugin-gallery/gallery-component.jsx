@@ -64,7 +64,6 @@ class GalleryComponent extends React.PureComponent {
       items = [...items];
       items[itemPos] = item;
     }
-    console.log('New items loaded', items); //eslint-disable-line no-console
     this.setState({ items });
     if (this.props.store) {
       this.props.store.update('componentData', { items, styles, config: {} });
@@ -97,8 +96,7 @@ class GalleryComponent extends React.PureComponent {
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
 
     if (hasFileChangeHelper) {
-      helpers.onFilesChange(file, ({ data, error }) => {
-        console.log('onFilesChanged happend', data, error); //eslint-disable-line no-console
+      helpers.onFilesChange(file, ({ data }) => {
         const galleryItem = {
           metadata: {
             height: data.height,

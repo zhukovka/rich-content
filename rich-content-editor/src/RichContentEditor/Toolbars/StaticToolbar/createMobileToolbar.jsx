@@ -14,6 +14,7 @@ const getMobileTheme = theme => {
     toolbarStyles: toolbarTheme,
     buttonStyles: buttonTheme,
     separatorStyles: separatorTheme,
+    ...rest
   } = theme || {};
 
   return {
@@ -66,7 +67,8 @@ const getMobileTheme = theme => {
         separatorStyles.mobileToolbarSeparator,
         separatorTheme && separatorTheme.mobileToolbarSeparator
       ),
-    }
+    },
+    ...rest
   };
 };
 
@@ -90,18 +92,18 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
       getEditorState,
       setEditorState,
       pubsub,
+      theme: mobileTheme
     }));
   }
 
   return structure;
 };
 
-export default ({ buttons, helpers, pubsub, getEditorState, setEditorState, theme, toolbarStyle }) => {
+export default ({ buttons, helpers, pubsub, getEditorState, setEditorState, theme }) => {
   const mobileTheme = getMobileTheme(theme);
   return createStaticToolbar({
     name: 'MobileToolbar',
     theme: mobileTheme,
-    toolbarStyle,
     structure: getMobileButtons({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme }),
     isMobile: true
   });

@@ -19,7 +19,7 @@ export default class AddPluginButton extends Component {
       modalName: MODALS.MOBILE_ADD_PLUGIN,
       modalStyles: getModalStyles({ fullScreen: false }),
       structure: pluginButtons,
-      theme: theme.mobileAddPlugin,
+      theme,
       hidePopup: this.props.closeModal,
       getEditorState,
       setEditorState,

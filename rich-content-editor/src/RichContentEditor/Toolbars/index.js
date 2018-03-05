@@ -4,7 +4,7 @@ import { createMobileToolbar, createFooterToolbar } from './StaticToolbar';
 import { createTextToolbar } from './InlineToolbar';
 import { simplePubsub, getToolbarTheme } from '~/Utils';
 
-const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, toolbarStyle, getEditorState, setEditorState }) => {
+const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, getEditorState, setEditorState }) => {
   const { pluginButtons, textButtons } = buttons;
   const pubsub = simplePubsub();
   const shouldCreateTextToolbar = !isMobile || baseUtils.isiOS();
@@ -13,8 +13,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
     side: createSideToolbar({
       buttons: pluginButtons,
       offset: sideToolbarOffset,
-      theme: getToolbarTheme(theme, 'side'),
-      toolbarStyle,
+      theme: { ...getToolbarTheme(theme, 'side'), ...theme },
       pubsub,
       isMobile
     }),
@@ -23,8 +22,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
   if (shouldCreateTextToolbar) {
     toolbars.text = createTextToolbar({
       buttons: textButtons,
-      theme: getToolbarTheme(theme, 'inline'),
-      toolbarStyle,
+      theme: { ...getToolbarTheme(theme, 'inline'), ...theme },
       pubsub,
       isMobile,
       helpers
@@ -34,8 +32,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
   if (!isMobile) {
     toolbars.footer = createFooterToolbar({
       buttons: pluginButtons,
-      theme: getToolbarTheme(theme, 'footer'),
-      toolbarStyle,
+      theme: { ...getToolbarTheme(theme, 'footer'), ...theme },
     });
   } else {
     toolbars.mobile = createMobileToolbar({
@@ -44,8 +41,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
       pubsub,
       getEditorState,
       setEditorState,
-      theme: getToolbarTheme(theme, 'mobile'),
-      toolbarStyle,
+      theme: { ...getToolbarTheme(theme, 'mobile'), ...theme },
     });
   }
 

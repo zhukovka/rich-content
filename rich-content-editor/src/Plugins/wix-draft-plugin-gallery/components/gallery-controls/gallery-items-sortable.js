@@ -61,7 +61,7 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, hand
             width: imageSize + 'px',
             height: imageSize + 'px',
           }}
-        /> : <ImageLoader/>}
+        /> : <ImageLoader theme={theme}/>}
       </div>
     );
   }
@@ -76,7 +76,7 @@ const SortableList = sortableContainer(({ items, clickAction, handleFileChange, 
     >
       {items.map((item, itemIdx) => (
         //eslint-disable-next-line
-        <SortableItem key={`item-${itemIdx}`} itemIdx={itemIdx} index={itemIdx} item={item} clickAction={clickAction} isMobile={isMobile} isMobileSorting={isMobileSorting} disabled={isMobile && !isMobileSorting} />
+        <SortableItem key={`item-${itemIdx}`} itemIdx={itemIdx} index={itemIdx} item={item} clickAction={clickAction} isMobile={isMobile} isMobileSorting={isMobileSorting} disabled={isMobile && !isMobileSorting} theme={theme}/>
       ))}
       {isMobileSorting ? null : <SortableItem
         key={`item-upload-mock`} itemIdx={items.length} index={items.length} disabled isMock isMobile={isMobile}
@@ -88,15 +88,15 @@ const SortableList = sortableContainer(({ items, clickAction, handleFileChange, 
 });
 
 //eslint-disable-next-line
-const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageSettings, handleFileChange, toggleSorting, isMobileSorting, isMobile, theme }) => {
+const ItemActionsMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageSettings, handleFileChange, toggleSorting, isMobileSorting, isMobile, theme }) => {
   const styles = mergeStyles({ styles: Styles, theme });
   const hasUnselectedItems = items.some(item => !item.selected);
   const hasSelectedItems = items.some(item => item.selected);
   const selectedItems = items.filter(item => item.selected);
   //eslint-disable-next-line max-len
-  const addItemButton = <FileInput className={styles.filesButton} onChange={handleFileChange} multiple>{(isMobile ? <Fab className={styles.fab} /> : 'Add Items')}</FileInput>;
+  const addItemButton = <FileInput className={styles.filesButton} onChange={handleFileChange} multiple>{(isMobile ? <Fab className={styles.fab} /> : '+ Add Media')}</FileInput>;
 
-  const separator = '·';
+  const separator = <span className={styles.seperator}>·</span>;
   const buttons = [];
 
   if (isMobile && selectedItems.length === 0) {
@@ -109,13 +109,13 @@ const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageS
       buttons.push(separator);
     }
     if (hasSelectedItems) {
-      buttons.push(<a className={styles.topBarLink} onClick={() => setAllItemsValue('selected', false)}>Deselect All</a>);
+      buttons.push(<a className={styles.topBarLink} onClick={() => setAllItemsValue('selected', false)}>Deselect</a>);
       buttons.push(separator);
-      buttons.push(<a className={styles.topBarLink} onClick={() => deleteSelectedItems()}>Delete Selected</a>);
+      buttons.push(<a className={styles.topBarLink} onClick={() => deleteSelectedItems()}>Delete</a>);
       buttons.push(separator);
     }
     if (selectedItems.length === 1) {
-      buttons.push(<a className={styles.topBarLink} onClick={() => toggleImageSettings(true)}>Item Settings</a>);
+      buttons.push(<a className={styles.topBarLink} onClick={() => toggleImageSettings(true)}>Image Settings</a>);
       buttons.push(separator);
     }
   }
@@ -129,7 +129,7 @@ const TopBarMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageS
   );
 };
 
-TopBarMenu.propTypes = {
+ItemActionsMenu.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
   setAllItemsValue: PropTypes.func,
   deleteSelectedItems: PropTypes.func,
@@ -255,7 +255,7 @@ export class SortableComponent extends Component {
     const { theme } = this.props;
     return !!this.state.items && (
       <div>
-        <TopBarMenu
+        <ItemActionsMenu
           items={this.state.items}
           setAllItemsValue={this.setAllItemsValue.bind(this)}
           deleteSelectedItems={this.deleteSelectedItems.bind(this)}

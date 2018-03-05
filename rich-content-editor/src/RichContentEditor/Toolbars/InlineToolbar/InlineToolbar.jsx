@@ -24,7 +24,6 @@ export default class InlineToolbar extends Component {
     pubsub: PropTypes.object.isRequired,
     structure: PropTypes.array.isRequired,
     theme: PropTypes.object.isRequired,
-    toolbarStyle: PropTypes.object,
     isMobile: PropTypes.bool,
     helpers: PropTypes.object,
   };
@@ -94,13 +93,13 @@ export default class InlineToolbar extends Component {
   };
 
   getStyle() {
-    const { pubsub, toolbarStyle } = this.props;
+    const { pubsub } = this.props;
     const { overrideContent, extendContent, position } = this.state;
     const selection = pubsub.get('getEditorState')().getSelection();
     // overrideContent could for example contain a text input, hence we always show overrideContent
     // TODO: Test readonly mode and possibly set isVisible to false if the editor is readonly
     const isVisible = (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent || extendContent;
-    const style = { ...position, ...toolbarStyle };
+    const style = { ...position };
 
     if (isVisible) {
       style.visibility = 'visible';
@@ -148,8 +147,8 @@ export default class InlineToolbar extends Component {
     const spaceRight = fullWidth - eleWidth - spaceLeft;
 
     this.setState({
-      showLeftArrow: (spaceLeft > 0),
-      showRightArrow: (spaceRight > 0)
+      showLeftArrow: (spaceLeft > 1),
+      showRightArrow: (spaceRight > 1)
     });
   }
 

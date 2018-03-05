@@ -9,7 +9,6 @@ export default class StaticToolbar extends React.Component {
     structure: PropTypes.array.isRequired,
     theme: PropTypes.object.isRequired,
     isMobile: PropTypes.bool.isRequired,
-    toolbarStyle: PropTypes.object,
   };
 
   constructor(props) {
@@ -28,8 +27,8 @@ export default class StaticToolbar extends React.Component {
   }
 
   componentWillUnmount() {
-    this.buttons && this.buttons.removeEventListener('srcoll', this.handleToolbarScroll);
-    window && window.removeEventListener('srcoll', this.handleToolbarScroll);
+    this.buttons && this.buttons.removeEventListener('scroll', this.handleToolbarScroll);
+    window && window.removeEventListener('resize', this.handleToolbarScroll);
   }
 
   handleButtonsRef = node => {
@@ -63,8 +62,8 @@ export default class StaticToolbar extends React.Component {
     const spaceRight = fullWidth - eleWidth - spaceLeft;
 
     this.setState({
-      showLeftArrow: (spaceLeft > 0),
-      showRightArrow: (spaceRight > 0)
+      showLeftArrow: (spaceLeft > 1),
+      showRightArrow: (spaceRight > 1)
     });
   }
 
@@ -73,14 +72,14 @@ export default class StaticToolbar extends React.Component {
   onExtendContent = extendContent => this.setState({ extendContent });
 
   render() {
-    const { theme, toolbarStyle, pubsub, structure } = this.props;
+    const { theme, pubsub, structure } = this.props;
     const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
-    const { buttonStyles, toolbarStyles } = theme || {};
+    const { toolbarStyles } = theme || {};
     const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
     const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons);
     const extendClassNames = classNames(Styles.extend, toolbarStyles && toolbarStyles.extend);
     const childrenProps = {
-      theme: buttonStyles,
+      theme,
       getEditorState: pubsub.get('getEditorState'),
       setEditorState: pubsub.get('setEditorState'),
       onOverrideContent: this.onOverrideContent,
@@ -88,7 +87,7 @@ export default class StaticToolbar extends React.Component {
     };
 
     return (
-      <div className={toolbarClassNames} style={toolbarStyle}>
+      <div className={toolbarClassNames}>
         <div
           className={buttonClassNames}
           ref={this.handleButtonsRef}

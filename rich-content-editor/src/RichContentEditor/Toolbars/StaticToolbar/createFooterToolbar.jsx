@@ -1,23 +1,59 @@
 import classNames from 'classnames';
 import createStaticToolbar from './createStaticToolbar';
-import Styles from '~/Styles/footer-toolbar.scss';
+import toolbarStyles from '~/Styles/footer-toolbar.scss';
 
-export default ({ buttons, theme, toolbarStyle }) => {
-  const { toolbarStyles, buttonStyles, separatorStyles } = theme || {};
-  const footerTheme = {
-    toolbarStyles: {
-      toolbar: classNames(Styles.footerToolbar, toolbarStyles && toolbarStyles.footerToolbar),
-      buttons: classNames(Styles.footerToolbar_buttons, toolbarStyles && toolbarStyles.footerToolbar_buttons),
-      extend: classNames(Styles.footerToolbar_extend, toolbarStyles && toolbarStyles.footerToolbar_extend)
-    },
+const getFooterTheme = theme => {
+  const {
+    toolbarStyles: toolbarTheme,
     buttonStyles,
-    separatorStyles
-  };
+    separatorStyles: separatorTheme,
+    ...rest
+  } = theme || {};
 
+  return {
+    toolbarStyles: {
+      toolbar: classNames(
+        toolbarStyles.footerToolbar,
+        toolbarTheme && toolbarTheme.footerToolbar,
+      ),
+      buttons: classNames(
+        toolbarStyles.footerToolbar_buttons,
+        toolbarTheme && toolbarTheme.footerToolbar_buttons
+      ),
+      extend: classNames(
+        toolbarStyles.footerToolbar_extend,
+        toolbarTheme && toolbarTheme.footerToolbar_extend
+      ),
+      responsiveArrow: classNames(
+        toolbarStyles.footerToolbar_responsiveArrow,
+        toolbarTheme && toolbarTheme.footerToolbar_responsiveArrow
+      ),
+      responsiveArrowLeft: classNames(
+        toolbarStyles.footerToolbar_responsiveArrowLeft,
+        toolbarTheme && toolbarTheme.footerToolbar_responsiveArrowLeft
+      ),
+      responsiveArrowRight: classNames(
+        toolbarStyles.footerToolbar_responsiveArrowRight,
+        toolbarTheme && toolbarTheme.footerToolbar_responsiveArrowRight
+      ),
+    },
+    buttonStyles: {
+      buttonWrapper: buttonStyles && buttonStyles.footerToolbarButton_wrapper,
+      button: buttonStyles && buttonStyles.footerToolbarButton,
+      icon: buttonStyles && buttonStyles.footerToolbarButton_icon,
+    },
+    separatorStyles: {
+      separator: separatorTheme && separatorTheme.footerToolbarSeparator
+    },
+    ...rest
+  };
+};
+
+export default ({ buttons, theme }) => {
+  const footerTheme = getFooterTheme(theme);
   return createStaticToolbar({
     name: 'FooterToolbar',
     theme: footerTheme,
-    toolbarStyle,
     structure: buttons
   });
 };

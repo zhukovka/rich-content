@@ -26,6 +26,8 @@ import pluginToolbarTheme from './toolbars/plugin-toolbar.theme.scss';
 import footerToolbarTheme from './toolbars/footer-toolbar.theme.scss';
 import mobileToolbarTheme from './toolbars/mobile-toolbar.theme.scss';
 import mobileAddModalTheme from './toolbars/mobile-add-modal.theme.scss';
+import toolbarSeparatorTheme from './toolbars/toolbar-separator.theme.scss';
+import addPluginModalTheme from './toolbars/add-plugin-modal.theme.scss';
 
 import gallerySettingsModalTheme from './toolbars/modals/gallery/gallery-settings-modal.theme.scss';
 import galleryItemsSortableTheme from './toolbars/modals/gallery/gallery-items-sortable.theme.scss';
@@ -76,6 +78,7 @@ const theme = {
   ...videoUploadTheme,
   ...imageSettingsTheme,
   ...imageSettingsMobileHeaderTheme,
+  ...addPluginModalTheme,
 
   // toolbars
   ...inlineToolbarTheme,
@@ -84,6 +87,7 @@ const theme = {
   ...footerToolbarTheme,
   ...mobileToolbarTheme,
   ...mobileAddModalTheme,
+  ...toolbarSeparatorTheme
 
 };
 

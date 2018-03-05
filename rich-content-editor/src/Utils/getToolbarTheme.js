@@ -1,16 +1,16 @@
 import pickBy from 'lodash/pickBy';
 
 export const getToolbarTheme = (theme, type) => ({
-  toolbarStyles: pickBy(theme, className =>
-    className.startsWith(`${type}Toolbar`)
+  toolbarStyles: pickBy(theme, (value, key) =>
+    key.startsWith(`${type}Toolbar`)
   ),
-  buttonStyles: pickBy(theme, className =>
-    className.startsWith(`${type}ToolbarButton`)
+  buttonStyles: pickBy(theme, (value, key) =>
+    key.startsWith(`${type}ToolbarButton`)
   ),
-  separatorStyles: pickBy(theme, className =>
-    className.startsWith(`${type}ToolbarSeparator`)
+  separatorStyles: pickBy(theme, (value, key) =>
+    key.startsWith(`${type}ToolbarSeparator`)
   ),
-  wrapperStyles: pickBy(theme, className =>
-    className.startsWith(`${type}ToolbarWrapper`)
+  wrapperStyles: pickBy(theme, (value, key) =>
+    key.startsWith(`${type}ToolbarWrapper`)
   )
 });

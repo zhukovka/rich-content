@@ -73,7 +73,7 @@ class BaseToolbarButton extends React.Component {
           keyName,
           helpers,
           pubsub,
-          theme: theme.modal || {},
+          theme: theme || {},
           ...otherProps,
         };
         helpers.openModal(modalProps);
