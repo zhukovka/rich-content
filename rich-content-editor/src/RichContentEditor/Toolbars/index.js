@@ -27,6 +27,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
       toolbarStyle,
       pubsub,
       isMobile,
+      helpers
     });
   }
 

@@ -6,7 +6,7 @@ import styles from '~/Styles/mobile-link-modal.scss';
 import LinkPanelContainer from '~/Components/LinkPanelContainer';
 
 
-export default class MobileLinkModal extends Component {
+export default class MobileBlockLinkModal extends Component {
   hidePopup = () => this.props.hidePopup();
 
   wrapBlockInLink = ({ url, targetBlank, nofollow }) => {
@@ -51,7 +51,7 @@ export default class MobileLinkModal extends Component {
   }
 }
 
-MobileLinkModal.propTypes = {
+MobileBlockLinkModal.propTypes = {
   pubsub: PropTypes.object.isRequired,
   hidePopup: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,

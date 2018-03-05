@@ -5,7 +5,7 @@ import { DesktopTextButtonList } from '../buttons/';
 import { getTextButtonsFromList } from '../buttons/utils';
 
 
-export default ({ buttons, pubsub, theme, toolbarStyle, isMobile }) => {
+export default ({ buttons, pubsub, theme, toolbarStyle, isMobile, helpers }) => {
   const textButtons = get(buttons, 'desktop', DesktopTextButtonList);
   const structure = getTextButtonsFromList({ buttons: textButtons, pubsub, theme });
 
@@ -15,6 +15,7 @@ export default ({ buttons, pubsub, theme, toolbarStyle, isMobile }) => {
     pubsub,
     theme,
     toolbarStyle,
-    isMobile
+    isMobile,
+    helpers
   });
 };
