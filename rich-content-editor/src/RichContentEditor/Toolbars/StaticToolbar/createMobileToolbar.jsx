@@ -72,7 +72,7 @@ const getMobileTheme = theme => {
   };
 };
 
-const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorState, theme }) => {
+const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme }) => {
   const textButtons = get(buttons, 'textButtons.mobile', MobileTextButtonList);
   const addPluginIndex = textButtons.findIndex(b => b === 'AddPlugin');
   if (addPluginIndex !== -1) {
@@ -81,7 +81,7 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
 
   const structure = getTextButtonsFromList({
     buttons: textButtons,
-    theme: getMobileTheme(theme)
+    theme: mobileTheme
   });
 
   if (addPluginIndex !== -1) {
@@ -92,7 +92,7 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
       getEditorState,
       setEditorState,
       pubsub,
-      theme
+      theme: mobileTheme
     }));
   }
 
