@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import decorateComponentWithProps from 'decorate-component-with-props';
+import { getModalStyles } from '~/Utils';
 import LinkButton from '~/Components/LinkButton';
 import BlockLinkPanel from './BlockLinkPanel';
 
@@ -10,15 +11,42 @@ class BlockLinkButton extends Component {
   }
 
   showLinkPanel = () => {
-    const { pubsub, onExtendContent, onOverrideContent, theme } = this.props;
-    const linkPanelProps = {
-      pubsub,
-      onExtendContent,
-      onOverrideContent,
-      theme
+    const customStyles = {
+      content: {
+        padding: '0',
+        width: 'calc(100% - 20px)',
+      }
     };
-    const BlockLinkPanelWithProps = decorateComponentWithProps(BlockLinkPanel, linkPanelProps);
-    onExtendContent(BlockLinkPanelWithProps);
+    const { pubsub, onExtendContent, onOverrideContent, theme, isMobile, helpers, keyName, componentState } = this.props;
+    const modalStyles = getModalStyles({ customStyles, fullScreen: false });
+    if (isMobile) {
+      if (helpers && helpers.openModal) {
+        const keyName = 'external-modal';
+        const modalProps = {
+          componentState,
+          keyName,
+          helpers,
+          pubsub,
+          modalStyles,
+          isMobile,
+          theme: theme.modal || {},
+          modalName: 'mobile-link-modal',
+          hidePopup: this.props.closeModal
+        };
+        helpers.openModal(modalProps);
+      } else {
+        console.error('Open external helper function is not defined for toolbar button with keyName ' + keyName); //eslint-disable-line no-console
+      }
+    } else {
+      const linkPanelProps = {
+        pubsub,
+        onExtendContent,
+        onOverrideContent,
+        theme
+      };
+      const BlockLinkPanelWithProps = decorateComponentWithProps(BlockLinkPanel, linkPanelProps);
+      onExtendContent(BlockLinkPanelWithProps);
+    }
   };
 
   render() {
@@ -36,6 +64,11 @@ BlockLinkButton.propTypes = {
   onExtendContent: PropTypes.func.isRequired,
   onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
+  isMobile: PropTypes.bool,
+  helpers: PropTypes.object,
+  keyName: PropTypes.string,
+  componentState: PropTypes.object,
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default BlockLinkButton;
