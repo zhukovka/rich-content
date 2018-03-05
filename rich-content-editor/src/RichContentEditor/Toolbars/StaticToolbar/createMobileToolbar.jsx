@@ -70,7 +70,7 @@ const getMobileTheme = theme => {
   };
 };
 
-const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme }) => {
+const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorState, theme }) => {
   const textButtons = get(buttons, 'textButtons.mobile', MobileTextButtonList);
   const addPluginIndex = textButtons.findIndex(b => b === 'AddPlugin');
   if (addPluginIndex !== -1) {
@@ -79,7 +79,7 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
 
   const structure = getTextButtonsFromList({
     buttons: textButtons,
-    theme: mobileTheme
+    theme: getMobileTheme(theme)
   });
 
   if (addPluginIndex !== -1) {
@@ -90,6 +90,7 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
       getEditorState,
       setEditorState,
       pubsub,
+      theme
     }));
   }
 
@@ -102,7 +103,7 @@ export default ({ buttons, helpers, pubsub, getEditorState, setEditorState, them
     name: 'MobileToolbar',
     theme: mobileTheme,
     toolbarStyle,
-    structure: getMobileButtons({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme }),
+    structure: getMobileButtons({ buttons, helpers, pubsub, getEditorState, setEditorState, theme }),
     isMobile: true
   });
 };

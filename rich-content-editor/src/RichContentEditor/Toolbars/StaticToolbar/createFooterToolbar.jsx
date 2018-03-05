@@ -6,7 +6,7 @@ const getFooterTheme = theme => {
   const {
     toolbarStyles: toolbarTheme,
     buttonStyles,
-    separatorStyles,
+    separatorStyles: separatorTheme,
     ...rest
   } = theme || {};
 
@@ -42,7 +42,9 @@ const getFooterTheme = theme => {
       button: buttonStyles && buttonStyles.footerToolbarButton,
       icon: buttonStyles && buttonStyles.footerToolbarButton_icon,
     },
-    separatorStyles,
+    separatorStyles: {
+      separator: separatorTheme && separatorTheme.footerToolbarSeparator
+    },
     ...rest
   };
 };
