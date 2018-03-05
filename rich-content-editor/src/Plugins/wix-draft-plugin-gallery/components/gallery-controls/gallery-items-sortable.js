@@ -61,7 +61,7 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, hand
             width: imageSize + 'px',
             height: imageSize + 'px',
           }}
-        /> : <ImageLoader/>}
+        /> : <ImageLoader theme={theme}/>}
       </div>
     );
   }
@@ -76,7 +76,7 @@ const SortableList = sortableContainer(({ items, clickAction, handleFileChange, 
     >
       {items.map((item, itemIdx) => (
         //eslint-disable-next-line
-        <SortableItem key={`item-${itemIdx}`} itemIdx={itemIdx} index={itemIdx} item={item} clickAction={clickAction} isMobile={isMobile} isMobileSorting={isMobileSorting} disabled={isMobile && !isMobileSorting} />
+        <SortableItem key={`item-${itemIdx}`} itemIdx={itemIdx} index={itemIdx} item={item} clickAction={clickAction} isMobile={isMobile} isMobileSorting={isMobileSorting} disabled={isMobile && !isMobileSorting} theme={theme}/>
       ))}
       {isMobileSorting ? null : <SortableItem
         key={`item-upload-mock`} itemIdx={items.length} index={items.length} disabled isMock isMobile={isMobile}
