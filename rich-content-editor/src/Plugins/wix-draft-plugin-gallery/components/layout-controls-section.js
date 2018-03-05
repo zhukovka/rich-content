@@ -34,7 +34,7 @@ class Separator extends Component {
 
 class LayoutControlsSection extends Component {
   controlsByLayout = [
-    ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing', '|', 'scrollDirection'], // collage
+    ['|', 'scrollDirection', '|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing'], // collage
     ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing'], // masonry
     ['|', 'itemsPerRow', '_', 'spacing', '|', 'thumbnailResize', '|', 'titleButtonPlacement', '|', 'imageRatio'], // grid
     ['|', 'thumbnailPlacement', '|', 'thumbnailSpacing'], // thumbnails
@@ -67,8 +67,8 @@ class LayoutControlsSection extends Component {
     thumbnailSize: {
       component: ThumbnailSize,
       props: {
-        onChange: value => this.applyGallerySetting({ gallerySize: value }),
-        value: this.getValueFromComponentStyles('gallerySize'),
+        onChange: value => this.applyGallerySetting({ gallerySizePx: value }),
+        value: this.getValueFromComponentStyles('gallerySizePx'),
         options: {
           label: this.getValueFromComponentStyles('isVertical') ? 'Column Width' : 'Row Height',
           readOnly: this.getValueFromComponentStyles('oneRow')
@@ -109,7 +109,7 @@ class LayoutControlsSection extends Component {
         onChange: value => this.applyGallerySetting({ cubeRatio: value }),
         value: this.getValueFromComponentStyles('cubeRatio'),
         options: {
-          readOnly: this.getValueFromComponentStyles('cubeType') === 'fit'
+          readOnly: (this.props.layout === 4 /*slides*/) && this.getValueFromComponentStyles('cubeType') === 'fit'
         }
       },
     },

@@ -21,6 +21,7 @@
     width: 32px;
     height: 32px;
     background-color: rgba(51, 51, 51, 0.1);
+    border-radius: 2px;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -36,7 +37,7 @@
 }
 
 .imageRatioSelector_ratioIcon {
-    border: 1px solid #000;
+    border: 1px solid #111;
     margin: auto;
     &:focus {
         border: 1px solid #fff;

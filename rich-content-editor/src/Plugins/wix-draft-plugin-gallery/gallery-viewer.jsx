@@ -6,7 +6,7 @@ const getDefault = () => ({
   items: [],
   styles: {
     galleryLayout: 2,
-    gallerySize: 300,
+    gallerySizePx: 300,
     oneRow: false,
     cubeRatio: 1,
     galleryThumbnailsAlignment: 'bottom',
