@@ -8,7 +8,6 @@ export default class AddPluginModal extends Component {
 
   render() {
     const { getEditorState, setEditorState, structure, theme } = this.props;
-    const { buttonStyles } = theme || {};
     const tileClassNames = classNames(Styles.addPluginModal_tile, theme && theme.addPluginModal_tile);
     const placeHolderCount = 6 - structure.length;
     return (
@@ -20,7 +19,7 @@ export default class AddPluginModal extends Component {
               getEditorState={getEditorState}
               setEditorState={setEditorState}
               hidePopup={this.hidePopup}
-              theme={buttonStyles}
+              theme={theme}
               showName
               isMobile
             />

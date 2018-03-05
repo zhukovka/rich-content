@@ -79,7 +79,7 @@ export default class AddPluginFloatingToolbar extends Component {
 
   render() {
     const { theme, getEditorState, setEditorState } = this.props;
-    const { buttonStyles, toolbarStyles } = theme || {};
+    const { toolbarStyles } = theme || {};
     const floatingContainerClassNames = classNames(Styles.sideToolbar_floatingContainer,
       toolbarStyles && toolbarStyles.sideToolbar_floatingContainer);
     const floatingIconClassNames = classNames(Styles.sideToolbar_floatingIcon, toolbarStyles && toolbarStyles.sideToolbar_floatingIcon);
@@ -95,7 +95,7 @@ export default class AddPluginFloatingToolbar extends Component {
               key={index}
               getEditorState={getEditorState}
               setEditorState={setEditorState}
-              theme={buttonStyles}
+              theme={theme}
               hidePopup={this.hidePopup}
             />
           ))}
