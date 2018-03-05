@@ -14,6 +14,7 @@ const getMobileTheme = theme => {
     toolbarStyles: toolbarTheme,
     buttonStyles: buttonTheme,
     separatorStyles: separatorTheme,
+    ...rest
   } = theme || {};
 
   return {
@@ -66,7 +67,8 @@ const getMobileTheme = theme => {
         separatorStyles.mobileToolbarSeparator,
         separatorTheme && separatorTheme.mobileToolbarSeparator
       ),
-    }
+    },
+    ...rest
   };
 };
 
