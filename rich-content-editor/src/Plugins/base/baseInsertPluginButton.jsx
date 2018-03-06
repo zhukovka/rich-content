@@ -12,9 +12,9 @@ export default ({ blockType, button, helpers, pubsub }) => {
   class InsertPluginButton extends Component {
     constructor(props) {
       super(props);
-      const { theme } = props;
       this.state = {};
-      this.styles = theme && theme.buttonStyles ? mergeStyles({ styles, theme: theme.buttonStyles }) : {};
+      const { buttonStyles } = props.theme || {};
+      this.styles = buttonStyles ? mergeStyles({ styles, theme: buttonStyles }) : {};
     }
 
     addBlock = data => {
