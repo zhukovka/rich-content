@@ -168,7 +168,6 @@ export default class InlineToolbar extends Component {
       setEditorState: pubsub.get('setEditorState'),
       onOverrideContent: this.onOverrideContent,
       onExtendContent: this.onExtendContent,
-      closeModal: helpers.closeModal,
       isMobile,
       helpers,
     };

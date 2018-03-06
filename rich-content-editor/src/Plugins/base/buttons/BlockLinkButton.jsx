@@ -12,14 +12,8 @@ class BlockLinkButton extends Component {
   }
 
   showLinkPanel = () => {
-    const customStyles = {
-      content: {
-        padding: '0',
-        width: 'calc(100% - 20px)',
-      }
-    };
-    const { pubsub, onExtendContent, onOverrideContent, theme, isMobile, helpers, keyName, componentState, closeModal } = this.props;
-    const modalStyles = getModalStyles({ customStyles, fullScreen: false });
+    const { pubsub, onExtendContent, onOverrideContent, theme, isMobile, helpers, keyName, componentState } = this.props;
+    const modalStyles = getModalStyles({ fullScreen: false });
     if (isMobile) {
       if (helpers && helpers.openModal) {
         const modalProps = {
@@ -30,7 +24,7 @@ class BlockLinkButton extends Component {
           isMobile,
           theme: theme.modal || {},
           modalName: MODALS.MOBILE_BLOCK_LINK_MODAL,
-          hidePopup: closeModal
+          hidePopup: helpers.closeModal
         };
         helpers.openModal(modalProps);
       } else {
@@ -63,7 +57,6 @@ BlockLinkButton.propTypes = {
   onExtendContent: PropTypes.func.isRequired,
   onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
-  closeModal: PropTypes.func.isRequired,
   isMobile: PropTypes.bool,
   helpers: PropTypes.object,
   keyName: PropTypes.string,

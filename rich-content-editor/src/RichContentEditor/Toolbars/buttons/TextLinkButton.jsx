@@ -8,14 +8,8 @@ import TextLinkPanel from './TextLinkPanel';
 
 export default class TextLinkButton extends Component {
   showLinkPanel = () => {
-    const customStyles = {
-      content: {
-        padding: '0',
-        width: 'calc(100% - 20px)',
-      }
-    };
-    const { onExtendContent, onOverrideContent, getEditorState, setEditorState, theme, isMobile, helpers, keyName, closeModal } = this.props;
-    const modalStyles = getModalStyles({ customStyles, fullScreen: false });
+    const { onExtendContent, onOverrideContent, getEditorState, setEditorState, theme, isMobile, helpers, keyName } = this.props;
+    const modalStyles = getModalStyles({ fullScreen: false });
     if (isMobile) {
       if (helpers && helpers.openModal) {
         const modalProps = {
@@ -26,7 +20,7 @@ export default class TextLinkButton extends Component {
           setEditorState,
           theme: theme.modal || {},
           modalName: MODALS.MOBILE_TEXT_LINK_MODAL,
-          hidePopup: closeModal
+          hidePopup: helpers.closeModal
         };
         helpers.openModal(modalProps);
       } else {
@@ -63,7 +57,6 @@ TextLinkButton.propTypes = {
   onExtendContent: PropTypes.func.isRequired,
   onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
-  closeModal: PropTypes.func,
   isMobile: PropTypes.bool,
   helpers: PropTypes.object,
   keyName: PropTypes.string,

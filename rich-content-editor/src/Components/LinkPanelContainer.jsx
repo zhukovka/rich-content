@@ -91,10 +91,10 @@ LinkPanelContainer.propTypes = {
   onCancel: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   url: PropTypes.string,
-  isActive: PropTypes.bool,
-  isMobile: PropTypes.bool,
   targetBlank: PropTypes.bool,
   nofollow: PropTypes.bool,
+  isActive: PropTypes.bool,
+  isMobile: PropTypes.bool,
   onOverrideContent: PropTypes.func,
   theme: PropTypes.object.isRequired,
 };

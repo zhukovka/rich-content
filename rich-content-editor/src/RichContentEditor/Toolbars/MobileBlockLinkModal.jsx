@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
-import LinkIcon from './icons/link.svg';
-import styles from '~/Styles/mobile-link-modal.scss';
-import LinkPanelContainer from '~/Components/LinkPanelContainer';
+import MobileLinkModal from './MobileLinkModal';
 
 
 export default class MobileBlockLinkModal extends Component {
@@ -28,25 +26,17 @@ export default class MobileBlockLinkModal extends Component {
     const componentLink = pubsub.get('componentLink');
     const { url, targetBlank, nofollow } = componentLink || {};
     return (
-      <div>
-        <div className={styles.mobileLinkModal_titleContainer}>
-          <div className={styles.mobileLinkModal_linkIconContainer} >
-            <LinkIcon />
-          </div>
-          <h3 className={styles.mobileLinkModal_title}>Add a link</h3>
-        </div>
-        <LinkPanelContainer
-          url={url}
-          targetBlank={targetBlank}
-          nofollow={nofollow}
-          theme={theme}
-          isActive={!!componentLink}
-          isMobile={isMobile}
-          onDone={this.wrapBlockInLink}
-          onCancel={this.hidePopup}
-          onDelete={this.deleteLink}
-        />
-      </div>
+      <MobileLinkModal
+        url={url}
+        targetBlank={targetBlank}
+        nofollow={nofollow}
+        theme={theme}
+        isActive={!!componentLink}
+        isMobile={isMobile}
+        onDone={this.wrapBlockInLink}
+        onCancel={this.hidePopup}
+        onDelete={this.deleteLink}
+      />
     );
   }
 }

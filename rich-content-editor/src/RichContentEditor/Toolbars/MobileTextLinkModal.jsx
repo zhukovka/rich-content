@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import { EditorState } from '@wix/draft-js';
 import isEmpty from 'lodash/isEmpty';
 import { insertLink, getLinkDataInSelection, removeLinksInSelection } from '~/Utils';
-
-import LinkIcon from './icons/link.svg';
-import styles from '~/Styles/mobile-link-modal.scss';
-import LinkPanelContainer from '~/Components/LinkPanelContainer';
+import MobileLinkModal from './MobileLinkModal';
 
 
 export default class MobileTextLinkModal extends Component {
@@ -34,25 +31,17 @@ export default class MobileTextLinkModal extends Component {
     const linkData = getLinkDataInSelection(getEditorState());
     const { url, targetBlank, nofollow } = linkData || {};
     return (
-      <div>
-        <div className={styles.mobileLinkModal_titleContainer}>
-          <div className={styles.mobileLinkModal_linkIconContainer} >
-            <LinkIcon />
-          </div>
-          <h3 className={styles.mobileLinkModal_title}>Add a link</h3>
-        </div>
-        <LinkPanelContainer
-          url={url}
-          targetBlank={targetBlank}
-          nofollow={nofollow}
-          theme={theme}
-          isActive={!isEmpty(linkData)}
-          isMobile={isMobile}
-          onDone={this.createLinkEntity}
-          onCancel={this.hidePopup}
-          onDelete={this.deleteLink}
-        />
-      </div>
+      <MobileLinkModal
+        url={url}
+        targetBlank={targetBlank}
+        nofollow={nofollow}
+        theme={theme}
+        isActive={!isEmpty(linkData)}
+        isMobile={isMobile}
+        onDone={this.createLinkEntity}
+        onCancel={this.hidePopup}
+        onDelete={this.deleteLink}
+      />
     );
   }
 }
