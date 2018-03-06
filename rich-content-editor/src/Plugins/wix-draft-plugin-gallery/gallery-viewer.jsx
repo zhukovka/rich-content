@@ -50,8 +50,8 @@ class GalleryViewer extends React.Component {
 
   updateDimensions() {
     if (this.container && this.container.clientWidth) {
-      const width = this.container.clientWidth;
-      const height = width * 3 / 4;
+      const width = Math.floor(this.container.clientWidth);
+      const height = Math.floor(width * 3 / 4);
       this.setState({ size: { width, height } });
     }
   }
@@ -68,6 +68,7 @@ class GalleryViewer extends React.Component {
   };
 
   render() {
+    debugger; //eslint-disable-line
     const { items, styles, size } = this.state;
 
     // console.log('Rendering ProGallery', styles);
