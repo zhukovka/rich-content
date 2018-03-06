@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { RichUtils } from '@wix/draft-js';
 import TextButton from '../TextButton';
 
-export default ({ blockTypes, Icons, InactiveIcon = null }) =>
+export default ({ blockTypes, Icons, InactiveIcon = null, tooltipText }) =>
   class TextBlockStyleButton extends Component {
     static propTypes = {
       getEditorState: PropTypes.func.isRequired,
@@ -77,6 +77,7 @@ export default ({ blockTypes, Icons, InactiveIcon = null }) =>
           theme={theme}
           isActive={this.blockTypeIsActive}
           onClick={this.setBlockStyle}
+          tooltipText={tooltipText}
         />
       );
     }
