@@ -155,7 +155,7 @@ export default class InlineToolbar extends Component {
   render() {
     const { theme, pubsub, structure, helpers, isMobile } = this.props;
     const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
-    const { buttonStyles, toolbarStyles } = theme || {};
+    const { toolbarStyles } = theme || {};
     const toolbarClassNames = classNames(Styles.inlineToolbar, toolbarStyles && toolbarStyles.inlineToolbar);
     const buttonClassNames = classNames(Styles.inlineToolbar_buttons, toolbarStyles && toolbarStyles.inlineToolbar_buttons, {
       [Styles.inlineToolbar_overrideContent]: !!OverrideContent,
@@ -163,7 +163,7 @@ export default class InlineToolbar extends Component {
     });
     const extendClassNames = classNames(Styles.inlineToolbar_extend, toolbarStyles && toolbarStyles.inlineToolbar_extend);
     const childrenProps = {
-      theme: buttonStyles,
+      theme,
       getEditorState: pubsub.get('getEditorState'),
       setEditorState: pubsub.get('setEditorState'),
       onOverrideContent: this.onOverrideContent,

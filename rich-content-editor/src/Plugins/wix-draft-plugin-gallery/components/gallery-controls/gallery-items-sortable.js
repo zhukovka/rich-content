@@ -16,15 +16,16 @@ import Fab from '../../icons/fab.svg';
 //eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-const SortableItem = sortableElement(({ item, itemIdx, clickAction, isMock, handleFileChange, isMobile, isMobileSorting, theme }) => {
+const SortableItem = sortableElement(({ item, itemIdx, clickAction, addItemsButton, handleFileChange, isMobile, isMobileSorting, theme }) => {
   const styles = mergeStyles({ styles: Styles, theme });
   const imageSize = (isMobile && window) ? ((window.outerWidth - 20) / 3) : 104;
-  if (isMock) {
+  if (addItemsButton) {
     return (
       <FileInput
         className={classNames(styles.itemContainer, styles.filesItem, { [styles.mobile]: isMobile })}
         onChange={handleFileChange}
         multiple
+        title="Upload Media"
         style={{ width: imageSize + 'px', height: imageSize + 'px' }}
       >
         <UploadIcon/>
@@ -79,7 +80,7 @@ const SortableList = sortableContainer(({ items, clickAction, handleFileChange, 
         <SortableItem key={`item-${itemIdx}`} itemIdx={itemIdx} index={itemIdx} item={item} clickAction={clickAction} isMobile={isMobile} isMobileSorting={isMobileSorting} disabled={isMobile && !isMobileSorting} theme={theme}/>
       ))}
       {isMobileSorting ? null : <SortableItem
-        key={`item-upload-mock`} itemIdx={items.length} index={items.length} disabled isMock isMobile={isMobile}
+        key={`item-upload-mock`} itemIdx={items.length} index={items.length} disabled addItemsButton isMobile={isMobile}
         handleFileChange={handleFileChange} theme={theme}
       />
       }
@@ -254,41 +255,47 @@ export class SortableComponent extends Component {
   render() {
     const { theme } = this.props;
     return !!this.state.items && (
-      <div>
-        <ItemActionsMenu
-          items={this.state.items}
-          setAllItemsValue={this.setAllItemsValue.bind(this)}
-          deleteSelectedItems={this.deleteSelectedItems.bind(this)}
-          toggleImageSettings={() => this.toggleImageSettings(true)}
-          handleFileChange={this.props.handleFileChange}
-          toggleSorting={this.toggleSorting}
-          isMobileSorting={this.state.isMobileSorting}
-          isMobile={this.props.isMobile}
-          theme={theme}
-        />
-        <SortableList
-          items={this.state.items}
-          onSortEnd={this.onSortEnd}
-          clickAction={this.clickAction}
-          hideSortableGhost={false}
-          axis="xy"
-          helperClass="sortableHelper"
-          transitionDuration={50}
-          handleFileChange={this.props.handleFileChange}
-          isMobileSorting={this.state.isMobileSorting}
-          theme={theme}
-          isMobile={this.props.isMobile}
-        />
-        {this.state.imageSettingsVisible ? <ImageSettings
-          theme={theme}
-          images={this.state.items}
-          selectedImage={this.state.editedImage}
-          onCancel={items => this.saveImageSettings(items)}
-          onSave={items => this.saveImageSettings(items)}
-          handleFileChange={this.props.handleFileChange}
-          isMobile={this.props.isMobile}
-        /> : null}
-      </div>);
+      !this.state.imageSettingsVisible ? (
+        <div>
+          <ItemActionsMenu
+            items={this.state.items}
+            setAllItemsValue={this.setAllItemsValue.bind(this)}
+            deleteSelectedItems={this.deleteSelectedItems.bind(this)}
+            toggleImageSettings={() => this.toggleImageSettings(true)}
+            handleFileChange={this.props.handleFileChange}
+            toggleSorting={this.toggleSorting}
+            isMobileSorting={this.state.isMobileSorting}
+            isMobile={this.props.isMobile}
+            theme={theme}
+          />
+          <SortableList
+            items={this.state.items}
+            onSortEnd={this.onSortEnd}
+            clickAction={this.clickAction}
+            hideSortableGhost={false}
+            axis="xy"
+            helperClass="sortableHelper"
+            transitionDuration={50}
+            handleFileChange={this.props.handleFileChange}
+            isMobileSorting={this.state.isMobileSorting}
+            theme={theme}
+            isMobile={this.props.isMobile}
+          />
+        </div>
+      ) : (
+        <div>
+          <ImageSettings
+            theme={theme}
+            images={this.state.items}
+            selectedImage={this.state.editedImage}
+            onCancel={items => this.saveImageSettings(items)}
+            onSave={items => this.saveImageSettings(items)}
+            handleFileChange={this.props.handleFileChange}
+            isMobile={this.props.isMobile}
+          />
+        </div>
+      )
+    );
   }
 }
 

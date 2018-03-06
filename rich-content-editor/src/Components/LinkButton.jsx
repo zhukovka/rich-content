@@ -10,7 +10,8 @@ export default class LinkButton extends Component {
 
   constructor(props) {
     super(props);
-    this.styles = mergeStyles({ styles, theme: props.theme });
+    const { buttonStyles } = props.theme || {};
+    this.styles = buttonStyles ? mergeStyles({ styles, theme: buttonStyles }) : {};
   }
 
   static propTypes = {

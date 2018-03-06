@@ -11,6 +11,7 @@ class InputWithLabel extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
   render() {
+    const { styles } = this;
     const { label, placeholder, value, onChange, isTextArea } = this.props;
     const inputClassName = classNames(styles.inputWithLabel_input,
       {

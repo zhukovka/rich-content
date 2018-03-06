@@ -176,9 +176,9 @@ export class GallerySettingsModal extends Component {
       );
     } else {
       return (
-        <div>
+        <div className={styles.gallerySettings}>
           <h3 className={styles.gallerySettings_title}>Gallery Settings</h3>
-          <div className={styles.gallerySettings}>
+          <div>
             <Tabs value={activeTab} theme={this.props.theme}>
               <Tab label={this.tabName('manage_media')} value={'manage_media'} theme={this.props.theme}>
                 <ManageMediaSection data={componentData} store={pubsub.store} theme={this.props.theme}/>
