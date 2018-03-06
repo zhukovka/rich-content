@@ -3,14 +3,22 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Styles from '~/Styles/add-plugin-modal.scss';
 
+const getPlaceHolderCount = buttonCount => {
+  const diff = buttonCount % 3;
+  if (diff > 0) {
+    return 3 - diff;
+  } else {
+    return diff;
+  }
+};
+
 export default class AddPluginModal extends Component {
   hidePopup = () => this.props.hidePopup();
 
   render() {
     const { getEditorState, setEditorState, structure, theme } = this.props;
-    const { buttonStyles } = theme || {};
     const tileClassNames = classNames(Styles.addPluginModal_tile, theme && theme.addPluginModal_tile);
-    const placeHolderCount = 6 - structure.length;
+    const placeHolderCount = getPlaceHolderCount(structure.length);
     return (
       <ul className={classNames(Styles.addPluginModal_list, theme && theme.addPluginModal_list)}>
         {structure.map((Component, index) => (
@@ -20,7 +28,7 @@ export default class AddPluginModal extends Component {
               getEditorState={getEditorState}
               setEditorState={setEditorState}
               hidePopup={this.hidePopup}
-              theme={buttonStyles}
+              theme={theme}
               showName
               isMobile
             />

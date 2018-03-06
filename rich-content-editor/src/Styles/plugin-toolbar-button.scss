@@ -40,7 +40,7 @@
     padding: 5px;
     border: 0 none;
     z-index: 1;
-    color: $secondary-text-color;
+    color: $toolbar-font-color;
     @include svg-fill;
     .icon {
       width: $icon-width;
@@ -61,13 +61,14 @@
     filter: alpha(opacity=0);
     input {
       z-index: -1;
+      cursor: pointer;
     }
   }
 }
 
 .pluginToolbarButton {
   background: transparent;
-  color: $secondary-text-color;
+  color: $toolbar-font-color;;
   padding: 5px;
   border: 0 none;
   cursor: pointer;

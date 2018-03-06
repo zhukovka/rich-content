@@ -25,6 +25,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
       theme: { ...getToolbarTheme(theme, 'inline'), ...theme },
       pubsub,
       isMobile,
+      helpers
     });
   }
 

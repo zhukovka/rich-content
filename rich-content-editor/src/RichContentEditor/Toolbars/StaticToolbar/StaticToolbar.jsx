@@ -74,12 +74,12 @@ export default class StaticToolbar extends React.Component {
   render() {
     const { theme, pubsub, structure } = this.props;
     const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
-    const { buttonStyles, toolbarStyles } = theme || {};
+    const { toolbarStyles } = theme || {};
     const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
     const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons);
     const extendClassNames = classNames(Styles.extend, toolbarStyles && toolbarStyles.extend);
     const childrenProps = {
-      theme: buttonStyles,
+      theme,
       getEditorState: pubsub.get('getEditorState'),
       setEditorState: pubsub.get('setEditorState'),
       onOverrideContent: this.onOverrideContent,

@@ -18,7 +18,7 @@
   }
 }
 
-.linkPanel_modal {
+.linkPanel_container {
   position: relative;
   min-width: 359px;
   margin-top: 18px;
@@ -26,6 +26,10 @@
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
+}
+
+.linkPanel_container_isMobile {
+  min-width: 0;
 }
 
 .linkPanel_content {

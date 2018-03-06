@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { BUTTONS } from './buttons';
 import Panel from './basePanel';
-import Dropdown from '../../Components/Dropdown';
+import Dropdown from '~/Components/Dropdown';
+import FileInput from '~/Components/FileInput';
 
 class BaseToolbarButton extends React.Component {
 
@@ -141,7 +142,7 @@ class BaseToolbarButton extends React.Component {
     return (
       <div className={replaceButtonWrapperClassNames}>
         <form ref={this.setForm}>
-          <input name="file" type="file" onChange={this.handleFileChange} accept="image/*" tabIndex="-1" multiple={this.props.multiple} />
+          <FileInput onChange={this.handleFileChange} accept="image/*" multiple={this.props.multiple} />
         </form>
         <button className={buttonClassNames} children={this.props.children}>
           {this.getIcon()}

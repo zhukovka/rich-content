@@ -218,6 +218,10 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
             onOverrideContent={this.onOverrideContent}
             theme={themedStyle}
             key={key}
+            helpers={helpers}
+            isMobile={isMobile}
+            componentState={this.state.componentState}
+            closeModal={helpers.closeModal}
           />);
         case BUTTONS.DELETE:
           return <DeleteButton onClick={this.deleteBlock} theme={themedStyle} key={key} />;

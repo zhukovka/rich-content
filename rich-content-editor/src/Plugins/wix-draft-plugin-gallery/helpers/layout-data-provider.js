@@ -96,7 +96,6 @@ const layouts = [
     cubeRatio: 1,
     cubeType: 'fill',
     isVertical: false,
-    gallerySize: 550,
     galleryType: 'Strips',
     groupSize: 1,
     groupTypes: '1',

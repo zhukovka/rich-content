@@ -5,6 +5,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
 import Tooltip from '~/Components/Tooltip';
+import FileInput from '~/Components/FileInput';
 import styles from '~/Styles/toolbar-button.scss';
 import { mergeStyles } from '~/Utils/mergeStyles';
 
@@ -12,9 +13,9 @@ export default ({ blockType, button, helpers, pubsub }) => {
   class InsertPluginButton extends Component {
     constructor(props) {
       super(props);
-      const { theme } = props;
       this.state = {};
-      this.styles = theme ? mergeStyles({ styles, theme }) : {};
+      const { buttonStyles } = props.theme || {};
+      this.styles = buttonStyles ? mergeStyles({ styles, theme: buttonStyles }) : {};
     }
 
     addBlock = data => {
@@ -60,8 +61,6 @@ export default ({ blockType, button, helpers, pubsub }) => {
         const recentlyCreated = this.addBlock(button.data);
         const state = { userSelectedFiles: { files } };
         pubsub.set('initialState_' + recentlyCreated.getKey(), state);
-
-        this.resetForm();
       }
     };
 
@@ -102,13 +101,10 @@ export default ({ blockType, button, helpers, pubsub }) => {
       const { styles } = this;
       return (
         <form ref={this.setForm}>
-          <input
-            name="file"
-            type="file"
+          <FileInput
             className={styles.fileInput}
             onChange={this.handleFileChange}
             accept="image/*"
-            tabIndex="-1"
             multiple={button.multi}
           />
         </form>

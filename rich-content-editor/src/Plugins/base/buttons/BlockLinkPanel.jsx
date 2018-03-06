@@ -54,7 +54,6 @@ BlockLinkPanel.propTypes = {
   onExtendContent: PropTypes.func.isRequired,
   onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
-
 };
 
 export default BlockLinkPanel;
