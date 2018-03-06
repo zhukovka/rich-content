@@ -5,6 +5,8 @@ import GallerySettingsModal from '~/Plugins/wix-draft-plugin-gallery/components/
 import HTMLSettingsModal from '~/Plugins/wix-draft-plugin-html/toolbar/html-settings';
 import VideoURLInputModal from '~/Plugins/wix-draft-plugin-video/toolbar/videoUploadModal';
 import MobileAddPluginModal from './Toolbars/AddPluginModal';
+import MobileBlockLinkModal from './Toolbars/MobileBlockLinkModal';
+import MobileTextLinkModal from './Toolbars/MobileTextLinkModal';
 
 const KEYS = {
   IMAGE_SETTINGS: 'image-settings',
@@ -12,6 +14,8 @@ const KEYS = {
   VIDEO_URL_INPUT: 'video-url-input',
   HTML_SETTINGS: 'html-settings',
   MOBILE_ADD_PLUGIN: 'mobile-add-plugin',
+  MOBILE_BLOCK_LINK_MODAL: 'mobile-block-link-modal',
+  MOBILE_TEXT_LINK_MODAL: 'mobile-text-link-modal',
 };
 
 const Modals = {
@@ -20,6 +24,8 @@ const Modals = {
   [KEYS.VIDEO_URL_INPUT]: VideoURLInputModal,
   [KEYS.HTML_SETTINGS]: HTMLSettingsModal,
   [KEYS.MOBILE_ADD_PLUGIN]: MobileAddPluginModal,
+  [KEYS.MOBILE_BLOCK_LINK_MODAL]: MobileBlockLinkModal,
+  [KEYS.MOBILE_TEXT_LINK_MODAL]: MobileTextLinkModal,
 };
 
 const RichContentModal = ({ modalName, modalElement, ...modalProps }) => {

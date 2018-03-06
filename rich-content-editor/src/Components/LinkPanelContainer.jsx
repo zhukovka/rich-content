@@ -50,11 +50,15 @@ class LinkPanelContainer extends Component {
 
   render() {
     const { styles } = this;
-    const { url, targetBlank, nofollow, theme, isActive } = this.props;
+    const { url, targetBlank, nofollow, theme, isActive, isMobile } = this.props;
     const doneButtonClassName = classNames(styles.linkPanel_FooterButton, styles.linkPanel_enabled);
     const cancelButtonClassName = classNames(styles.linkPanel_FooterButton, styles.linkPanel_Cancel);
+    const linkPanelContainerClassName = classNames(styles.linkPanel_container,
+      {
+        [styles.linkPanel_container_isMobile]: isMobile,
+      });
     return (
-      <div className={styles.linkPanel_modal}>
+      <div className={linkPanelContainerClassName}>
         <div className={styles.linkPanel_content}>
           <LinkPanel
             ref={this.setLinkPanel}
@@ -87,10 +91,11 @@ LinkPanelContainer.propTypes = {
   onCancel: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   url: PropTypes.string,
-  isActive: PropTypes.bool,
   targetBlank: PropTypes.bool,
   nofollow: PropTypes.bool,
-  onOverrideContent: PropTypes.func.isRequired,
+  isActive: PropTypes.bool,
+  isMobile: PropTypes.bool,
+  onOverrideContent: PropTypes.func,
   theme: PropTypes.object.isRequired,
 };
 
