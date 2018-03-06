@@ -23,11 +23,6 @@ $FOOTER_HEIGHT: 100px;
   z-index: 5;
 }
 
-.gallerySettings {
-  height: calc(100% - $FOOTER_HEIGHT);
-  margin: $TITLE_HEIGHT auto $FOOTER_HEIGHT auto;
-}
-
 .gallerySettings_divider {
   border: none;
   border-bottom: 1px solid #ededed;
@@ -41,4 +36,10 @@ $FOOTER_HEIGHT: 100px;
 
 .gallerySettings_label {
   font-size: 14px;
+}
+
+.gallerySettings {
+  height: calc(100% - #{$TITLE_HEIGHT} - #{$FOOTER_HEIGHT});
+  margin: $TITLE_HEIGHT auto $FOOTER_HEIGHT auto;
+  overflow: scroll;
 }
