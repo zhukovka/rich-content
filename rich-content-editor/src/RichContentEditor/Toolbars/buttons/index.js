@@ -26,7 +26,7 @@ export const DesktopTextButtonList = [
   'Alignment',
   'OrderedList',
   'UnorderedList',
-  'Indent',
+  // 'Indent',
   'Separator',
   'Link',
 ];
