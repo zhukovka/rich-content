@@ -12,7 +12,7 @@ const layouts = [
     isColumns: false,
     isSlideshow: false,
     cropOnlyFill: false
-  },
+  }, //Collage
   {
     showArrows: false,
     cubeImages: false,
@@ -27,7 +27,7 @@ const layouts = [
     isSlideshow: false,
     cropOnlyFill: false,
     oneRow: false,
-  },
+  }, // Masonry
   {
     showArrows: false,
     cubeImages: true,
@@ -47,8 +47,9 @@ const layouts = [
     isColumns: false,
     isGrid: true,
     isSlideshow: false,
-    minItemSize: 50
-  },
+    minItemSize: 50,
+    oneRow: false
+  }, // Grid
   {
     showArrows: true,
     cubeImages: true,
@@ -70,7 +71,7 @@ const layouts = [
     floatingImages: 0,
     galleryMargin: 0,
     imageMargin: 0
-  },
+  }, //Thumbnails
   {
     showArrows: true,
     cubeImages: true,
@@ -88,7 +89,7 @@ const layouts = [
     isColumns: false,
     isSlideshow: false,
     cropOnlyFill: true
-  },
+  }, // Slider
   {
     showArrows: true,
     cubeImages: true,
@@ -111,7 +112,7 @@ const layouts = [
     floatingImages: 0,
     galleryMargin: 0,
     imageMargin: 0
-  },
+  }, // Slideshow
   {
     showArrows: false,
     cubeImages: false,
@@ -128,7 +129,7 @@ const layouts = [
     isSlider: false,
     isSlideshow: false,
     cropOnlyFill: false
-  },
+  }, // Panorama
   {
     showArrows: true,
     cubeImages: true,
@@ -148,7 +149,7 @@ const layouts = [
     isSlider: false,
     isSlideshow: false,
     cropOnlyFill: false
-  },
+  }, // Columns
   {}, //magic layout ???
   {
     showArrows: true,
@@ -172,7 +173,7 @@ const layouts = [
     floatingImages: 0,
     galleryMargin: 0,
     imageMargin: 0
-  }
+  } //Fullsize
 ];
 
 export default layouts;
