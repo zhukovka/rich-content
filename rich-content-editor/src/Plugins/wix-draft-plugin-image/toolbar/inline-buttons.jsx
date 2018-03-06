@@ -8,12 +8,14 @@ const modalStyles = getModalStyles();
 
 const InlineButtons = [
   { type: BUTTONS.SIZE_ORIGINAL_CENTER, mobile: false },
-  { type: BUTTONS.SIZE_SMALL_LEFT, mobile: false },
   { type: BUTTONS.SIZE_SMALL_CENTER, mobile: false },
-  { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: false },
   { type: BUTTONS.SIZE_CONTENT, mobile: false },
   { type: BUTTONS.SIZE_FULL_WIDTH, mobile: false },
   { type: BUTTONS.SEPARATOR, mobile: false },
+  { type: BUTTONS.SIZE_SMALL_LEFT, mobile: false },
+  { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: false },
+  { type: BUTTONS.SEPARATOR, mobile: false },
+  { type: BUTTONS.LINK, mobile: false },
   {
     keyName: 'settings',
     type: BUTTONS.EXTERNAL_MODAL,
@@ -22,15 +24,12 @@ const InlineButtons = [
     modalStyles,
     mobile: true,
   },
-  // { type: BUTTONS.SEPARATOR, mobile: true },
-  { type: BUTTONS.LINK, mobile: false },
   {
     keyName: 'replace',
     type: BUTTONS.FILES,
     icon: MediaReplaceIcon,
     mobile: true,
   },
-  // { type: BUTTONS.SEPARATOR, mobile: true },
   { type: BUTTONS.DELETE, mobile: true },
 ];
 
