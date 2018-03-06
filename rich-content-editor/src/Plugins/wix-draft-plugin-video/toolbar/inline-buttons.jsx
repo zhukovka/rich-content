@@ -4,12 +4,13 @@ import { getModalStyles } from '~/Utils';
 import MediaReplaceIcon from './icons/media-replace.svg';
 
 const InlineButtons = [
-  { type: BUTTONS.SIZE_SMALL_LEFT, mobile: true },
-  { type: BUTTONS.SIZE_SMALL_CENTER, mobile: true },
-  { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: true },
-  { type: BUTTONS.SIZE_CONTENT, mobile: true },
-  { type: BUTTONS.SIZE_FULL_WIDTH, mobile: true },
-  { type: BUTTONS.SEPARATOR, mobile: true },
+  { type: BUTTONS.SIZE_SMALL_CENTER, mobile: false },
+  { type: BUTTONS.SIZE_CONTENT, mobile: false },
+  { type: BUTTONS.SIZE_FULL_WIDTH, mobile: false },
+  { type: BUTTONS.SEPARATOR, mobile: false },
+  { type: BUTTONS.SIZE_SMALL_LEFT, mobile: false },
+  { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: false },
+  { type: BUTTONS.SEPARATOR, mobile: false },
   {
     keyName: 'replace',
     type: BUTTONS.EXTERNAL_MODAL,
