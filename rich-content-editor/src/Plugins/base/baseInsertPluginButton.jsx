@@ -15,7 +15,7 @@ export default ({ blockType, button, helpers, pubsub }) => {
       super(props);
       this.state = {};
       const { buttonStyles } = props.theme || {};
-      this.styles = buttonStyles ? mergeStyles({ styles, theme: buttonStyles }) : {};
+      this.styles = mergeStyles({ styles, theme: buttonStyles });
     }
 
     addBlock = data => {
