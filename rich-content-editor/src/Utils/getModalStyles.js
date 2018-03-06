@@ -31,6 +31,7 @@ const mobileModalStyles = {
     padding: 0,
     width: 'calc(100% - 20px)',
     margin: '0 10px',
+    direction: 'ltr'
   }
 };
 
@@ -54,6 +55,7 @@ const mobileFullScreenOverrideStyles = {
     width: '100vw',
     margin: 0,
     transform: 'none',
+    direction: 'ltr'
   }
 };
 
@@ -84,7 +86,8 @@ const desktopSideBarStyles = {
     padding: 0,
     height: '100%',
     width: '100%',
-    maxWidth: '420px'
+    maxWidth: '420px',
+    direction: 'ltr'
   }
 };
 
@@ -99,6 +102,7 @@ const desktopModalOverrideStyles = {
     height: 'auto',
     marginLeft: 'auto',
     marginRight: 'auto',
+    direction: 'ltr'
   },
 };
 
