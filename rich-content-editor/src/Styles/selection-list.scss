@@ -10,8 +10,6 @@
   cursor: pointer;
 }
 
-.selectionListOption.selectionListOption_selected,
-.selectionListOption:active,
-.selectionListOption:focus {
+.selectionListOption_selected {
   color: #0261ff;
 }
