@@ -230,7 +230,7 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
           {!isNil(link) ?
             link.nofollow ?
               (
-                <a href={link.url} target={target} rel="nofolow">
+                <a href={link.url} target={target} rel="nofollow">
                   {component}
                 </a>
               ) :

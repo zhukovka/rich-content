@@ -16,7 +16,7 @@ const Link = ({ entityKey, contentState, children }) => {
   return (
     nofollow ?
       (
-        <a href={url} target={target} rel="nofolow">
+        <a href={url} target={target} rel="nofollow">
           {children}
         </a>
       ) :
