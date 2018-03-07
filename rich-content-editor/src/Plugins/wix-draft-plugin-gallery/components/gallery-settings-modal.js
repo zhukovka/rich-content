@@ -70,9 +70,14 @@ class AdvancedSettingsSection extends Component {
 
   getValueFromComponentStyles = name => this.props.data.styles[name];
 
+  shouldRender() {
+    const { data } = this.props;
+    return data && data.styles;
+  }
+
   render() {
     const { data, store, isMobile, theme } = this.props;
-    return (
+    return this.shouldRender() && (
       <div className={isMobile ? styles.gallerySettings_settingsContainerMobile : styles.gallerySettings_settingsContainer}>
         <SettingsSection theme={theme}>
           <LayoutSelector

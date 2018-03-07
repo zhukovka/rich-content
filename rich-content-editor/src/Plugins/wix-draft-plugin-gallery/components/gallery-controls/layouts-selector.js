@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import SelectionList from '~/Components/SelectionList';
 import { galleryLayouts } from '../../helpers';
-
 import { mergeStyles } from '~/Utils/mergeStyles';
 import styles from './layout-selector.scss';
+
 class LayoutSelector extends Component {
 
   constructor(props) {
@@ -14,7 +15,7 @@ class LayoutSelector extends Component {
   }
 
   layouts = galleryLayouts.map(layout => {
-    return { layoutId: layout.value, name: layout.label };
+    return { layoutId: layout.value, name: layout.label, icon: layout.icon };
   });
 
   dataMapper = ({ layoutId }) => ({ value: layoutId });
@@ -22,10 +23,9 @@ class LayoutSelector extends Component {
   renderOption = ({ item, selected }) => (
     <div className={this.styles.layoutsSelector_tile}>
       <div
-        className={classnames(this.styles[selected ?
-          `layoutsSelector_icon_${item.name.toLowerCase()}_selected` : `layoutsSelector_icon_${item.name.toLowerCase()}`],
-        this.styles.layoutsSelector_tile)}
+        className={this.styles.layoutsSelector_tile}
       />
+      <item.icon className={classnames(this.styles.layoutsSelector_icon, { [this.styles.layoutsSelector_icon_selected]: selected })}/>
       <label className={this.styles.layoutsSelector_tile_label}>{item.name}</label>
     </div>
   );

@@ -1,5 +1,4 @@
-@mixin thumbnail_icon($rotation, $icon) {
-  background: url('./icons/layout_' + $icon + '.svg') center no-repeat;
+@mixin thumbnail_icon($rotation) {
   transform: rotateZ($rotation + deg);
 }
 
@@ -18,34 +17,27 @@
   height: 46px;
 }
 
-.thumbnailPlacementSelector_bottom {
-  @include thumbnail_icon(0, 'thumbnails');
+.thumbnailPlacementSelector_icon {
+  width: 46px;
+  height: 46px;
 }
 
-.thumbnailPlacementSelector_bottom_selected {
-  @include thumbnail_icon(0, 'thumbnails_selected');
+.thumbnailPlacementSelector_icon_selected {
+  color: #0261ff;
+}
+
+.thumbnailPlacementSelector_bottom {
+  transform: rotateZ(0);
 }
 
 .thumbnailPlacementSelector_left {
-  @include thumbnail_icon(90, 'thumbnails');
-}
-
-.thumbnailPlacementSelector_left_selected {
-  @include thumbnail_icon(90, 'thumbnails_selected');
+  transform: rotateZ(90deg);
 }
 
 .thumbnailPlacementSelector_top {
-  @include thumbnail_icon(180, 'thumbnails');
-}
-
-.thumbnailPlacementSelector_top_selected {
-  @include thumbnail_icon(180, 'thumbnails_selected');
+  transform: rotateZ(180deg);
 }
 
 .thumbnailPlacementSelector_right {
-  @include thumbnail_icon(270, 'thumbnails');
-}
-
-.thumbnailPlacementSelector_right_selected {
-  @include thumbnail_icon(270, 'thumbnails_selected');
+  transform: rotateZ(270deg);
 }

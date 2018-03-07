@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextButton from '../TextButton';
 
-export default ({ alignment, Icon }) =>
+export default ({ alignment, Icon, tooltipText }) =>
   class TextAlignmentButton extends Component {
     static propTypes = {
       alignment: PropTypes.string,
@@ -22,6 +22,7 @@ export default ({ alignment, Icon }) =>
           theme={theme}
           isActive={this.isActive}
           onClick={this.handleClick}
+          tooltipText={tooltipText}
         />
       );
     }

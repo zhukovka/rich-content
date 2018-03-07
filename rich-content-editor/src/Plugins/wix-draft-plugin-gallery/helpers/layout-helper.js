@@ -1,12 +1,12 @@
 
-import GridIcon from '../icons/toolbar/dropdown/Grid.svg';
-import MasonryIcon from '../icons/toolbar/dropdown/Masonry.svg';
-import CollageIcon from '../icons/toolbar/dropdown/Collage.svg';
-import ThumbnailsIcon from '../icons/toolbar/dropdown/Thumbnails.svg';
-import SlideshowIcon from '../icons/toolbar/dropdown/Slideshow.svg';
-import PanoramaIcon from '../icons/toolbar/dropdown/Panorama.svg';
-import ColumnsIcon from '../icons/toolbar/dropdown/Columns.svg';
-import SlidesIcon from '../icons/toolbar/dropdown/Slides.svg';
+import GridIcon from '../components/gallery-controls/icons/layout_grid.svg';
+import MasonryIcon from '../components/gallery-controls/icons/layout_masonry.svg';
+import CollageIcon from '../components/gallery-controls/icons/layout_collage.svg';
+import ThumbnailsIcon from '../components/gallery-controls/icons/layout_thumbnails.svg';
+import SlideshowIcon from '../components/gallery-controls/icons/layout_slideshow.svg';
+import PanoramaIcon from '../components/gallery-controls/icons/layout_panorama.svg';
+import ColumnsIcon from '../components/gallery-controls/icons/layout_columns.svg';
+import SlidesIcon from '../components/gallery-controls/icons/layout_slides.svg';
 
 import layoutData from './layout-data-provider';
 

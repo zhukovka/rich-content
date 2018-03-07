@@ -49,9 +49,9 @@ class GalleryViewer extends React.Component {
   }
 
   updateDimensions() {
-    if (this.container && this.container.clientWidth) {
-      const width = this.container.clientWidth;
-      const height = width * 3 / 4;
+    if (this.container && this.container.getBoundingClientRect) {
+      const width = Math.floor(this.container.getBoundingClientRect().width);
+      const height = Math.floor(width * 3 / 4);
       this.setState({ size: { width, height } });
     }
   }

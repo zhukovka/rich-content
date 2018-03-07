@@ -54,60 +54,72 @@ export { default as AddPluginButton } from './AddPluginButton';
 export const BoldButton = createTextInlineStyleButton({
   style: 'BOLD',
   Icon: BoldIcon,
+  tooltipText: 'Bold',
 });
 
 export const ItalicButton = createTextInlineStyleButton({
   style: 'ITALIC',
   Icon: ItalicIcon,
+  tooltipText: 'Italic',
 });
 
 export const UnderlineButton = createTextInlineStyleButton({
   style: 'UNDERLINE',
   Icon: UnderlineIcon,
+  tooltipText: 'Underline',
 });
 
 export const IndentButton = createTextBlockStyleButton({
   blockTypes: ['indent'],
   Icons: [IndentIcon],
+  tooltipText: 'Indent',
 });
 
 export const TitleButton = createTextBlockStyleButton({
   blockTypes: ['header-one', 'header-two'],
   Icons: [TitleOneIcon, TitleTwoIcon],
   InactiveIcon: TitleIcon,
+  tooltipText: 'Title',
 });
 
 export const BlockquoteButton = createTextBlockStyleButton({
   blockTypes: ['blockquote'],
   Icons: [BlockquoteIcon],
+  tooltipText: 'Quote',
 });
 
 export const AlignTextLeftButton = createTextAlignmentButton({
   alignment: 'left',
-  Icon: AlignTextLeftIcon
+  Icon: AlignTextLeftIcon,
+  tooltipText: 'Align Left',
 });
 
 export const AlignTextCenterButton = createTextAlignmentButton({
   alignment: 'center',
-  Icon: AlignTextCenterIcon
+  Icon: AlignTextCenterIcon,
+  tooltipText: 'Center',
 });
 
 export const AlignTextRightButton = createTextAlignmentButton({
   alignment: 'right',
-  Icon: AlignTextRightIcon
+  Icon: AlignTextRightIcon,
+  tooltipText: 'Align Right',
 });
 
 export const AlignTextJustifyButton = createTextAlignmentButton({
   alignment: 'justify',
-  Icon: AlignTextJustifyIcon
+  Icon: AlignTextJustifyIcon,
+  tooltipText: 'Justify',
 });
 
 export const OrderedListButton = createTextBlockStyleButton({
   blockTypes: ['ordered-list-item'],
   Icons: [OrderedListIcon],
+  tooltipText: 'Numbering',
 });
 
 export const UnorderedListButton = createTextBlockStyleButton({
   blockTypes: ['unordered-list-item'],
   Icons: [UnorderedListIcon],
+  tooltipText: 'Bullets',
 });

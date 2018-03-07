@@ -42,11 +42,13 @@ export default class TextLinkButton extends Component {
   }
 
   render() {
-    const { theme } = this.props;
+    const { theme, isMobile } = this.props;
     return (<LinkButton
       onClick={this.showLinkPanel}
       isActive={this.isActive}
       theme={theme}
+      isMobile={isMobile}
+      tooltipText={'link'}
     />);
   }
 }

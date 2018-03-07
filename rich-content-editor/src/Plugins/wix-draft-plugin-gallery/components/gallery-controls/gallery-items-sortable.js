@@ -32,13 +32,14 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, addItemsButt
       </FileInput>
     );
   } else {
+    let prefix = '';
     if (item.url.indexOf('/') < 0) {
-      item.url = 'media/' + item.url;
+      prefix = 'media/';
     }
 
     let url;
     if (item.metadata.processedByConsumer) {
-      url = getScaleToFillImageURL(item.url, item.metadata.width, item.metadata.height, imageSize, imageSize);
+      url = getScaleToFillImageURL((prefix + item.url), item.metadata.width, item.metadata.height, imageSize, imageSize);
     }
 
     return (

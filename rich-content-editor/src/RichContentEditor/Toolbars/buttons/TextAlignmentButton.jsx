@@ -40,6 +40,7 @@ class TextAlignmentButton extends Component {
         icon={this.getActiveIcon}
         theme={theme}
         onClick={this.handleClick}
+        tooltipText={'Alignment'}
       />
     );
   }

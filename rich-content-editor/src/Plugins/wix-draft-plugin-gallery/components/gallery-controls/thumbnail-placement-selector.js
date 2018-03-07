@@ -5,6 +5,8 @@ import SelectionList from '~/Components/SelectionList';
 
 import { mergeStyles } from '~/Utils';
 import styles from './thumbnail-placement-selector.scss';
+
+import ThumbnailIcon from './icons/layout_thumbnails.svg';
 class ThumbnailPlacementSelector extends Component {
 
   constructor(props) {
@@ -18,11 +20,13 @@ class ThumbnailPlacementSelector extends Component {
 
   renderOption({ item, selected }) {
     return (
-      <div
-        className={classNames(this.styles.thumbnailPlacementSelector_tile,
-          this.styles[selected ?
-            `thumbnailPlacementSelector_${item.alignment}_selected` : `thumbnailPlacementSelector_${item.alignment}`])}
-      />
+      <div className={this.styles.thumbnailPlacementSelector_tile}>
+        <ThumbnailIcon
+          className={classNames(this.styles.thumbnailPlacementSelector_icon,
+            this.styles[`thumbnailPlacementSelector_${item.alignment}`],
+            { [this.styles.thumbnailPlacementSelector_icon_selected]: selected })}
+        />
+      </div>
     );
   }
 

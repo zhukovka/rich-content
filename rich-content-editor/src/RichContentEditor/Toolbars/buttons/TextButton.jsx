@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import isEmpty from 'lodash/isEmpty';
+import Tooltip from '~/Components/Tooltip';
 
 import { mergeStyles } from '~/Utils';
 import styles from '~/Styles/inline-toolbar-button.scss';
@@ -10,7 +12,7 @@ export default class TextButton extends Component {
   constructor(props) {
     super(props);
     const { buttonStyles } = props.theme || {};
-    this.styles = buttonStyles ? mergeStyles({ styles, theme: buttonStyles }) : {};
+    this.styles = mergeStyles({ styles, theme: buttonStyles });
   }
 
   static propTypes = {
@@ -18,6 +20,8 @@ export default class TextButton extends Component {
     onClick: PropTypes.func.isRequired,
     isActive: PropTypes.func,
     theme: PropTypes.object.isRequired,
+    isMobile: PropTypes.bool,
+    tooltipText: PropTypes.string,
   };
 
   isActive = () => {
@@ -34,7 +38,8 @@ export default class TextButton extends Component {
 
   render() {
     const { styles } = this;
-    const { icon: Icon } = this.props;
+    const { icon: Icon, theme, isMobile, tooltipText } = this.props;
+    const showTooltip = !isMobile && !isEmpty(tooltipText);
     const iconClassNames = classNames(
       styles.inlineToolbarButton_icon,
       {
@@ -42,7 +47,7 @@ export default class TextButton extends Component {
       }
     );
 
-    return (
+    const textButton = (
       <div className={styles.inlineToolbarButton_wrapper} onMouseDown={this.preventBubblingUp}>
         <button className={styles.inlineToolbarButton} onClick={this.handleClick}>
           <div className={iconClassNames}>
@@ -51,5 +56,19 @@ export default class TextButton extends Component {
         </button>
       </div>
     );
+
+    if (showTooltip) {
+      return (
+        <Tooltip
+          content={tooltipText}
+          moveBy={{ x: 10, y: 5 }}
+          theme={theme}
+        >
+          {textButton}
+        </Tooltip>
+      );
+    } else {
+      return textButton;
+    }
   }
 }

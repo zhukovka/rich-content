@@ -144,6 +144,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       if (this.buttons) {
         this.buttons.addEventListener('scroll', this.handleToolbarScroll);
         window && window.addEventListener('resize', this.handleToolbarScroll);
+        this.handleToolbarScroll();
       }
     };
 

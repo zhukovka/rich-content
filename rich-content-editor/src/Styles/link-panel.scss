@@ -173,6 +173,10 @@
   background: url('../Components/icons/checkbox-default.svg') left center no-repeat;
 }
 
+.linkPanel_checkboxContainerInput:hover + label {
+  background: url('../Components/icons/checkbox-hover.svg') left center no-repeat;
+}
+
 .linkPanel_checkboxContainerInput:checked + label {
   background: url('../Components/icons/checkbox-checked.svg') left center no-repeat;
 }
