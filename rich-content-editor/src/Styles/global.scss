@@ -111,3 +111,8 @@ $textMobileWidth: 90%;
     @extend .glob_fontElementMap;
   }
 }
+
+.isImage {
+  text-decoration: none;
+  color: #333333;
+}
