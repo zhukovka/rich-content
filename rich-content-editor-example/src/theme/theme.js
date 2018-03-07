@@ -7,6 +7,7 @@ import imageTheme from './image.theme.scss';
 import videoTheme from './video.theme.scss';
 
 import commonTheme from './global.theme.scss';
+import checkboxTheme from './checkbox.theme.scss';
 import loaderTheme from './loader.theme.scss';
 import buttonTheme from './button.theme.scss';
 import imageComponentTheme from './image_component.theme.scss';
@@ -53,6 +54,7 @@ const theme = {
 
   // common
   ...commonTheme,
+  ...checkboxTheme,
   ...buttonTheme,
   ...loaderTheme,
   ...imageComponentTheme,
