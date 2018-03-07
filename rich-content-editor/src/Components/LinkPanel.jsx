@@ -5,6 +5,7 @@ import isUndefined from 'lodash/isUndefined';
 import { isValidUrl } from '~/Utils/urlValidators';
 
 import Tooltip from '~/Components/Tooltip';
+import Checkbox from '~/Components/Checkbox';
 import ErrorIcon from './icons/error.svg';
 import { mergeStyles } from '~/Utils';
 import styles from '~/Styles/link-panel.scss';
@@ -62,7 +63,7 @@ class LinkPanel extends Component {
 
   render() {
     const { styles } = this;
-    const { isImageSettings } = this.props;
+    const { isImageSettings, theme } = this.props;
     const firstCheckboxText = 'Open Link in New Window / Tab';
     const secondCheckboxText = 'Add rel="nofollow" to link';
     const inputPlaceholder = isImageSettings ? 'Add a link' : 'e.g. www.wix.com';
@@ -88,7 +89,7 @@ class LinkPanel extends Component {
               <Tooltip
                 content={'Invalid URL. Try Again'}
                 moveBy={{ x: -23, y: -5 }}
-                theme={this.props.theme}
+                theme={theme}
               >
                 <span><ErrorIcon className={styles.linkPanel_errorIcon} /></span>
               </Tooltip>
@@ -96,20 +97,8 @@ class LinkPanel extends Component {
           </div>
         </div>
         <div>
-          <div className={styles.linkPanel_checkboxContainer}>
-            <input
-              className={styles.linkPanel_checkboxContainerInput} type="checkbox" id="firstCheckboxLinkPanel"
-              onChange={this.handleTargetChange} defaultChecked={this.state.targetBlank}
-            />
-            <label className={styles.linkPanel_checkboxContainerLabel} htmlFor="firstCheckboxLinkPanel">{firstCheckboxText}</label>
-          </div>
-          <div className={styles.linkPanel_checkboxContainer}>
-            <input
-              className={styles.linkPanel_checkboxContainerInput} type="checkbox"
-              id="secondCheckboxLinkPanel" onChange={this.handleNofollowChange} defaultChecked={this.state.nofollow}
-            />
-            <label className={styles.linkPanel_checkboxContainerLabel} htmlFor="secondCheckboxLinkPanel">{secondCheckboxText}</label>
-          </div>
+          <Checkbox label={firstCheckboxText} theme={theme} checked={this.state.targetBlank} onChange={this.handleTargetChange} />
+          <Checkbox label={secondCheckboxText} theme={theme} checked={this.state.nofollow} onChange={this.handleNofollowChange} />
         </div>
       </div>
     );
