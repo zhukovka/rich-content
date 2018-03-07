@@ -32,7 +32,7 @@ const sizeClassName = (size, theme) => {
   }
 };
 
-const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
+const createBaseComponent = ({ PluginComponent, theme, type, pubsub, helpers }) => {
   class WrappedComponent extends Component {
     static displayName = createHocName('BaseComponent', PluginComponent);
 
