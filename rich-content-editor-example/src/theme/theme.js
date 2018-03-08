@@ -42,7 +42,14 @@ import videoUploadTheme from './toolbars/modals/video/video-upload-modal.theme.s
 import imageSettingsTheme from './toolbars/modals/image/image-settings.theme.scss';
 import imageSettingsMobileHeaderTheme from './toolbars/modals/image/image-settings-mobile-header.theme.scss';
 
+const modalTheme = {
+  content: {
+    backgroundColor: 'fuchsia'
+  }
+};
+
 const theme = {
+  modalTheme,
   ...richContentEditorTheme,
   ...linkifyTheme,
 

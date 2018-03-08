@@ -119,6 +119,9 @@ class App extends Component {
       RichContentEditor,
       RichContentModal,
     } = WixRichContentEditor;
+    const modalStyles = { content:
+      Object.assign({}, (this.state.modalStyles || modalStyleDefaults).content, theme.modalTheme.content)
+    };
     const { MobileToolbar } = this.state;
     return (
       <div className="wrapper">
@@ -157,7 +160,7 @@ class App extends Component {
             <ReactModal
               isOpen={this.state.showModal}
               contentLabel="External Modal Example"
-              style={this.state.modalStyles || modalStyleDefaults}
+              style={modalStyles}
               onRequestClose={this.closeModal}
             >
               {this.state.showModal && <RichContentModal {...this.state.modalProps} />}
