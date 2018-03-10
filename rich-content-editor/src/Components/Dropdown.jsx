@@ -99,9 +99,10 @@ class Dropdown extends Component {
   }
 
   renderOption (option) {
+    const { styles } = this;
     const optionClass = classNames({
       [styles['Dropdown-option']]: true,
-      'is-selected': option === this.state.selected
+      [styles['Dropdown-option-selected']]: option === this.state.selected
     });
 
     const { value, label, icon: Icon } = option;
@@ -113,8 +114,8 @@ class Dropdown extends Component {
         onMouseDown={this.setValue.bind(this, value, label)}
         onClick={this.setValue.bind(this, value, label)}
       >
-        {Icon && <Icon/>}
-        <span>{label}</span>
+        {Icon && <Icon className={styles['Dropdown-option-icon']}/>}
+        <span className={styles['Dropdown-option-label']}>{label}</span>
       </div>
     );
   }
@@ -162,8 +163,8 @@ class Dropdown extends Component {
 
       return (
         <span>
-          {Icon ? <Icon/> : null}
-          <span>{label}</span>
+          {Icon ? <Icon className={styles['Dropdown-option-icon']}/> : null}
+          <span className={styles['Dropdown-option-label']}>{label}</span>
         </span>
       );
     })();
@@ -172,7 +173,7 @@ class Dropdown extends Component {
 
     const dropdownClass = classNames({
       [styles['Dropdown-root']]: true,
-      [styles['is-open']]: this.state.isOpen
+      [styles['Dropdown-root-isOpen']]: this.state.isOpen
     });
 
     return (
@@ -184,7 +185,7 @@ class Dropdown extends Component {
           {value}
           <span
             className={classNames(styles['Dropdown-arrow'], {
-              [styles['is-open']]: this.state.isOpen
+              [styles['Dropdown-arrow-isOpen']]: this.state.isOpen
             })}
           />
         </div>

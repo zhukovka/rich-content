@@ -9,6 +9,7 @@ import videoTheme from './video.theme.scss';
 import commonTheme from './global.theme.scss';
 import checkboxTheme from './checkbox.theme.scss';
 import loaderTheme from './loader.theme.scss';
+import dropdownTheme from './dropdown.theme.scss';
 import buttonTheme from './button.theme.scss';
 import imageComponentTheme from './image_component.theme.scss';
 import inputWithLabelTheme from './input-with-label.theme.scss';
@@ -62,6 +63,7 @@ const theme = {
   // common
   ...commonTheme,
   ...checkboxTheme,
+  ...dropdownTheme,
   ...buttonTheme,
   ...loaderTheme,
   ...imageComponentTheme,
