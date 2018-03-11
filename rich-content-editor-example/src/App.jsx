@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
@@ -44,14 +45,14 @@ class App extends Component {
       }
     };
     this.helpers = {
-      onFilesChange: (file, updateEntity) => {
-        console.log('[consumer] file changed!', file); //eslint-disable-line no-console
+      onFilesChange: (files, updateEntity) => {
+        console.log('[consumer] file changed!', file);
         //mock upload
         const testItem = testImages[Math.floor(Math.random() * testImages.length)];
         const data = {
           id: testItem.photoId,
-          original_file_name: testItem.url, // eslint-disable-line camelcase
-          file_name: testItem.url, // eslint-disable-line camelcase
+          original_file_name: testItem.url,
+          file_name: testItem.url,
           width: testItem.metadata.width,
           height: testItem.metadata.height,
         };
@@ -62,7 +63,7 @@ class App extends Component {
         try {
           document.body.style.overflow = document.head.style.overflow = 'hidden';
         } catch (e) {
-          console.warn('Cannot change document styles', e); //eslint-disable-line
+          console.warn('Cannot change document styles', e);
         }
         this.setState({
           showModal: true,
@@ -74,7 +75,7 @@ class App extends Component {
         try {
           document.body.style.overflow = document.head.style.overflow = 'auto';
         } catch (e) {
-          console.warn('Cannot change document styles', e); //eslint-disable-line
+          console.warn('Cannot change document styles', e);
         }
         this.setState({
           showModal: false,
