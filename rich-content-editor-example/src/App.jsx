@@ -45,7 +45,7 @@ class App extends Component {
       }
     };
     this.helpers = {
-      onFilesChange: (files, updateEntity) => {
+      onFilesChange: (file, updateEntity) => {
         console.log('[consumer] file changed!', file);
         //mock upload
         const testItem = testImages[Math.floor(Math.random() * testImages.length)];
