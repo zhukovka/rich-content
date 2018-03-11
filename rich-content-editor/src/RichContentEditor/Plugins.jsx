@@ -39,13 +39,13 @@ const activePlugins = (requestedPlugins = PluginList, config) => {
   return activePlugins;
 };
 
-const createPlugins = ({ plugins, helpers, theme, isMobile }) => {
+const createPlugins = ({ plugins, helpers, theme, t, isMobile }) => {
   const linkifyPlugin = createLinkifyPlugin({ theme: theme || Styles });
   const focusPlugin = createFocusPlugin();
   const dndPlugin = createBlockDndPlugin();
 
   const wixPluginsDecorators = composeDecorators(focusPlugin.decorator, dndPlugin.decorator);
-  const wixPlugins = activePlugins(plugins, { decorator: wixPluginsDecorators, helpers, theme, isMobile });
+  const wixPlugins = activePlugins(plugins, { decorator: wixPluginsDecorators, helpers, theme, t, isMobile });
 
   const pluginButtons = [];
   wixPlugins.forEach(wixPlugin => {

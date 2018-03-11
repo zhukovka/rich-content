@@ -156,6 +156,7 @@ class App extends Component {
               readOnly={this.state.readOnly}
               isMobile={this.isMobile()}
               theme={theme}
+              locale={'en'}
             />
             <ReactModal
               isOpen={this.state.showModal}
