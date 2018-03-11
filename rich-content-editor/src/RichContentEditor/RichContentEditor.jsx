@@ -186,10 +186,12 @@ export default class RichContentEditor extends Component {
   render() {
     const { isMobile } = this.props;
     const { theme } = this.state;
+    const isAndroid = isMobile && !baseUtils.isiOS();
     const wrapperClassName = classNames(Styles.wrapper, theme.wrapper, {
       [Styles.desktop]: !isMobile,
       [theme.desktop]: !isMobile && theme && theme.desktop,
-      [Styles.android]: isMobile && !baseUtils.isiOS()
+      [Styles.android]: isAndroid,
+      [theme.android]: isAndroid
     });
     return (
       <div className={wrapperClassName}>
