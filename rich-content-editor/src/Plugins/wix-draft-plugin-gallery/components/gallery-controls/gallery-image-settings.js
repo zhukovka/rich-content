@@ -139,16 +139,6 @@ class ImageSettings extends Component {
                 onChange={event => this.imageMetadataUpdated(selectedImage, { title: event.target.value })}
               />
             </SettingsSection>
-            <SettingsSection theme={theme} className={styles.galleryImageSettings_section}>
-              <InputWithLabel
-                theme={theme}
-                label={'Description'}
-                placeholder={'Describe your image'}
-                value={selectedImage.metadata.description || ''}
-                onChange={event => this.imageMetadataUpdated(selectedImage, { description: event.target.value })}
-                isTextArea
-              />
-            </SettingsSection>
             <SettingsSection theme={theme} className={this.styles.galleryImageSettings_section}>
               <label className={this.styles.inputWithLabel_label}>Link</label>
             </SettingsSection>

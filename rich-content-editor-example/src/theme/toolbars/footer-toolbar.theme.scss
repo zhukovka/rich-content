@@ -15,7 +15,8 @@
 .footerToolbarButton {
 }
 
-.footerToolbarButton_icon {
+.footerToolbarButton_wrapper:hover .footerToolbarButton_icon {
+  color: red;
 }
 
 /* Separator */

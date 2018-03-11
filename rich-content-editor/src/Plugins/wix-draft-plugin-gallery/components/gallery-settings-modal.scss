@@ -41,5 +41,6 @@ $FOOTER_HEIGHT: 100px;
 .gallerySettings {
   height: calc(100% - #{$TITLE_HEIGHT} - #{$FOOTER_HEIGHT});
   margin: $TITLE_HEIGHT auto $FOOTER_HEIGHT auto;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

@@ -12,19 +12,17 @@ const findLinkEntities = (contentBlock, callback, contentState) => {
 
 const Link = ({ entityKey, contentState, children }) => {
   const { url, targetBlank, nofollow } = contentState.getEntity(entityKey).getData();
-  const target = targetBlank ? '_blank' : '_self';
+  const anchorProps = {
+    href: url,
+    target: targetBlank ? '_blank' : '_self',
+    rel: nofollow ? 'nofollow' : null
+  };
   return (
-    nofollow ?
-      (
-        <a href={url} target={target} rel="nofolow">
-          {children}
-        </a>
-      ) :
-      (
-        <a href={url} target={target}>
-          {children}
-        </a>
-      )
+    <a
+      {...anchorProps}
+    >
+      {children}
+    </a>
   );
 };
 

@@ -1,37 +1,17 @@
-.regularText {
-  font-family: Helvetica;
-}
-
-.headerText {
+%regularText {
   font-family: Helvetica;
 }
 
 .fontElementMap {
-  * {
-    @extend .regularText;
-  }
-
-  h1,h2,h3,h4,h5,h6 {
-    @extend .headerText;
-  }
+  @extend %regularText;
 }
 
 :global {
-  .glob_regularText {
-    font-family: Helvetica;
-  }
-
-  .glob_headerText {
+  %glob_regularText {
     font-family: Helvetica;
   }
 
   .glob_fontElementMap {
-    * {
-      @extend .glob_regularText;
-    }
-
-    h1,h2,h3,h4,h5,h6 {
-      @extend .glob_headerText;
-    }
+      @extend %glob_regularText;
   }
 }

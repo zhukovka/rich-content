@@ -47,6 +47,14 @@ const getMobileTheme = theme => {
         toolbarStyles.mobileToolbar_responsiveArrowRight,
         toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrowRight
       ),
+      responsiveArrowLeft_icon: classNames( //eslint-disable-line camelcase
+        toolbarStyles.mobileToolbar_responsiveArrowLeft_icon,
+        toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrowLeft_icon
+      ),
+      responsiveArrowRight_icon: classNames( //eslint-disable-line camelcase
+        toolbarStyles.mobileToolbar_responsiveArrowRight_icon,
+        toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrowRight_icon
+      ),
     },
     buttonStyles: {
       inlineToolbarButton_wrapper: classNames( //eslint-disable-line camelcase
@@ -102,6 +110,7 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
 export default ({ buttons, helpers, pubsub, getEditorState, setEditorState, theme }) => {
   const mobileTheme = getMobileTheme(theme);
   return createStaticToolbar({
+    helpers,
     name: 'MobileToolbar',
     theme: mobileTheme,
     structure: getMobileButtons({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme }),

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { EditorState, convertFromRaw } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
 import isUndefined from 'lodash/isUndefined';
+import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createToolbars from './Toolbars';
 import createPlugins from './Plugins';
@@ -11,7 +12,7 @@ import createDecorators from './Decorators';
 import '@wix/draft-js/dist/Draft.css'; // must import before custom styles
 import Styles from '~/Styles/rich-content-editor.scss';
 
-export default class RichContentEditor extends Component {
+class RichContentEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,9 +29,10 @@ export default class RichContentEditor extends Component {
       helpers,
       plugins,
       isMobile,
+      t,
     } = this.props;
     const { theme } = this.state;
-    const { pluginInstances, pluginButtons } = createPlugins({ plugins, helpers, theme, isMobile });
+    const { pluginInstances, pluginButtons } = createPlugins({ plugins, helpers, theme, t, isMobile });
     this.initEditorToolbars(pluginButtons);
     this.plugins = [...pluginInstances, ...Object.values(this.toolbars)];
     this.decorators = createDecorators(decorators);
@@ -186,10 +188,12 @@ export default class RichContentEditor extends Component {
   render() {
     const { isMobile } = this.props;
     const { theme } = this.state;
+    const isAndroid = isMobile && !baseUtils.isiOS();
     const wrapperClassName = classNames(Styles.wrapper, theme.wrapper, {
       [Styles.desktop]: !isMobile,
       [theme.desktop]: !isMobile && theme && theme.desktop,
-      [Styles.android]: isMobile && !baseUtils.isiOS()
+      [Styles.android]: isAndroid,
+      [theme.android]: isAndroid
     });
     return (
       <div className={wrapperClassName}>
@@ -212,7 +216,15 @@ RichContentEditor.propTypes = {
   readOnly: PropTypes.bool,
   helpers: PropTypes.object,
   placeholder: PropTypes.string,
+  t: PropTypes.func,
   sideToolbarOffset: PropTypes.object,
   textButtons: PropTypes.arrayOf(PropTypes.string),
   plugins: PropTypes.arrayOf(PropTypes.string),
 };
+
+export default translate(null,
+  {
+    withRef: true,
+    wait: true,
+  }
+)(RichContentEditor);

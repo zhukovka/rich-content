@@ -7,7 +7,9 @@ import imageTheme from './image.theme.scss';
 import videoTheme from './video.theme.scss';
 
 import commonTheme from './global.theme.scss';
+import checkboxTheme from './checkbox.theme.scss';
 import loaderTheme from './loader.theme.scss';
+import dropdownTheme from './dropdown.theme.scss';
 import buttonTheme from './button.theme.scss';
 import imageComponentTheme from './image_component.theme.scss';
 import inputWithLabelTheme from './input-with-label.theme.scss';
@@ -41,7 +43,14 @@ import videoUploadTheme from './toolbars/modals/video/video-upload-modal.theme.s
 import imageSettingsTheme from './toolbars/modals/image/image-settings.theme.scss';
 import imageSettingsMobileHeaderTheme from './toolbars/modals/image/image-settings-mobile-header.theme.scss';
 
+const modalTheme = {
+  content: {
+    backgroundColor: 'fuchsia'
+  }
+};
+
 const theme = {
+  modalTheme,
   ...richContentEditorTheme,
   ...linkifyTheme,
 
@@ -53,6 +62,8 @@ const theme = {
 
   // common
   ...commonTheme,
+  ...checkboxTheme,
+  ...dropdownTheme,
   ...buttonTheme,
   ...loaderTheme,
   ...imageComponentTheme,

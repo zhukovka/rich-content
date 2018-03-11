@@ -6,8 +6,10 @@ import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
 import isNil from 'lodash/isNil';
 import merge from 'lodash/merge';
+import includes from 'lodash/includes';
 import classNames from 'classnames';
 import createHocName from './createHocName';
+import { IMAGE_TYPE, IMAGE_TYPE_LEGACY } from '../wix-draft-plugin-image/types';
 import Styles from '~/Styles/global.scss';
 
 const DEFAULTS = {
@@ -32,7 +34,7 @@ const sizeClassName = (size, theme) => {
   }
 };
 
-const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
+const createBaseComponent = ({ PluginComponent, theme, type, pubsub, helpers }) => {
   class WrappedComponent extends Component {
     static displayName = createHocName('BaseComponent', PluginComponent);
 
@@ -224,21 +226,30 @@ const createBaseComponent = ({ PluginComponent, theme, pubsub, helpers }) => {
         />
       );
 
-      const target = !isNil(link) ? link.targetBlank ? '_blank' : '_self' : false;
+      let anchorProps = {};
+      if (!isNil(link)) {
+        anchorProps = {
+          href: link.url,
+          target: link.targetBlank ? '_blank' : '_self',
+          rel: link.nofollow ? 'nofollow' : null
+        };
+      }
+      const anchorClass = classNames(
+        {
+          [Styles.isImage]: includes([IMAGE_TYPE, IMAGE_TYPE_LEGACY], type),
+        });
       return (
         <div style={{ position: 'relative' }} className={ContainerClassNames}>
           {!isNil(link) ?
-            link.nofollow ?
-              (
-                <a href={link.url} target={target} rel="nofolow">
-                  {component}
-                </a>
-              ) :
-              (
-                <a href={link.url} target={target}>
-                  {component}
-                </a>
-              ) : (
+            (
+              <a
+                className={anchorClass}
+                {...anchorProps}
+              >
+                {component}
+              </a>
+            ) :
+            (
               component
             )}
           { !this.state.readOnly && (

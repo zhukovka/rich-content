@@ -64,7 +64,7 @@ const createBasePlugin = (config = {}) => {
   ));
   const PluginComponent = config.decorator ? config.decorator(config.component) : config.component;
 
-  const CompWithBase = createBaseComponent({ PluginComponent, theme: config.theme, pubsub, helpers });
+  const CompWithBase = createBaseComponent({ PluginComponent, theme: config.theme, type: config.type, pubsub, helpers });
 
   return {
     blockRendererFn: (contentBlock, { getEditorState, setEditorState, getReadOnly }) => {

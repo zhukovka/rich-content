@@ -36,6 +36,14 @@ const getFooterTheme = theme => {
         toolbarStyles.footerToolbar_responsiveArrowRight,
         toolbarTheme && toolbarTheme.footerToolbar_responsiveArrowRight
       ),
+      responsiveArrowLeft_icon: classNames( //eslint-disable-line camelcase
+        toolbarStyles.footerToolbar_responsiveArrowLeft_icon,
+        toolbarTheme && toolbarTheme.footerToolbar_responsiveArrowLeft_icon
+      ),
+      responsiveArrowRight_icon: classNames( //eslint-disable-line camelcase
+        toolbarStyles.footerToolbar_responsiveArrowRight_icon,
+        toolbarTheme && toolbarTheme.footerToolbar_responsiveArrowRight_icon
+      ),
     },
     buttonStyles: {
       buttonWrapper: buttonStyles && buttonStyles.footerToolbarButton_wrapper,

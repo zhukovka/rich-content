@@ -105,60 +105,60 @@ class ImageSettings extends Component {
 
     return (
       <div className={this.styles.imageSettings}>
-        <div className={this.styles.imageSettingsContent}>
-          { isMobile ?
-            <ImageSettingsMobileHeader
-              theme={theme}
-              cancel={() => this.revertComponentData()}
-              save={() => this.onDoneClick()}
-              saveName="Update"
-            /> :
-            <h3 className={this.styles.imageSettingsTitle}>Image Settings</h3>
-          }
-          <div className={classNames(styles.imageSettings_scrollContainer, { [styles.imageSettings_mobile]: isMobile })}>
-            <SettingsSection theme={theme}>
-              <Image resizeMode={'contain'} className={this.styles.imageSettingsImage} src={getImageSrc(item, helpers)} />
-            </SettingsSection>
-            <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
-              <InputWithLabel
-                theme={theme}
-                label={'Caption'}
-                placeholder={'Enter your image caption (optional)'}
-                value={metadata.caption || ''}
-                onChange={event => this.imageMetadataUpdated(item, { caption: event.target.value })}
-              />
-            </SettingsSection >
-            <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
-              <InputWithLabel
-                theme={theme}
-                label={'Alt Text'}
-                placeholder={'Add image Alt Text'}
-                value={metadata.alt || ''}
-                onChange={event => this.imageMetadataUpdated(item, { alt: event.target.value })}
-              />
-            </SettingsSection>
-            <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
-              <label className={this.styles.inputWithLabel_label}>Link</label>
-            </SettingsSection>
-            <div className={this.styles.imageSettingsLinkContainer}>
-              <LinkPanel
-                ref={this.setLinkPanel}
-                theme={theme}
-                url={url}
-                targetBlank={targetBlank}
-                nofollow={nofollow}
-                isImageSettings
-              />
-            </div>
-          </div>
-          {isMobile ? null : <SettingsPanelFooter
-            fixed
+
+        { isMobile ?
+          <ImageSettingsMobileHeader
             theme={theme}
             cancel={() => this.revertComponentData()}
             save={() => this.onDoneClick()}
-          />
-          }
+            saveName="Update"
+          /> :
+          <h3 className={this.styles.imageSettingsTitle}>Image Settings</h3>
+        }
+        <div className={classNames(styles.imageSettings_scrollContainer, { [styles.imageSettings_mobile]: isMobile })}>
+          <SettingsSection theme={theme}>
+            <Image resizeMode={'contain'} className={this.styles.imageSettingsImage} src={getImageSrc(item, helpers)} />
+          </SettingsSection>
+          <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
+            <InputWithLabel
+              theme={theme}
+              label={'Caption'}
+              placeholder={'Enter your image caption (optional)'}
+              value={metadata.caption || ''}
+              onChange={event => this.imageMetadataUpdated(item, { caption: event.target.value })}
+            />
+          </SettingsSection >
+          <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
+            <InputWithLabel
+              theme={theme}
+              label={'Alt Text'}
+              placeholder={'Add image Alt Text'}
+              value={metadata.alt || ''}
+              onChange={event => this.imageMetadataUpdated(item, { alt: event.target.value })}
+            />
+          </SettingsSection>
+          <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
+            <label className={this.styles.inputWithLabel_label}>Link</label>
+          </SettingsSection>
+          <div className={this.styles.imageSettingsLinkContainer}>
+            <LinkPanel
+              ref={this.setLinkPanel}
+              theme={theme}
+              url={url}
+              targetBlank={targetBlank}
+              nofollow={nofollow}
+              isImageSettings
+            />
+          </div>
         </div>
+        {isMobile ? null : <SettingsPanelFooter
+          fixed
+          theme={theme}
+          cancel={() => this.revertComponentData()}
+          save={() => this.onDoneClick()}
+        />
+        }
+
       </div>
     );
   }

@@ -10,13 +10,15 @@ export default (config = {}) => {
     theme,
     structure = [],
     isMobile = false,
+    helpers
   } = config;
 
   const toolbarProps = {
     pubsub,
     structure,
     theme,
-    isMobile
+    isMobile,
+    helpers,
   };
 
   return {

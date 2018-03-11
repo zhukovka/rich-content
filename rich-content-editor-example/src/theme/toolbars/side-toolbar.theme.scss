@@ -18,9 +18,13 @@
 }
 
 .sideToolbarButton {
+  background-color: fuchsia;
 }
 
-.sideToolbarButton_icon {
+.sideToolbarButton_wrapper:hover .sideToolbarButton_icon {
+  svg {
+    fill: white;
+  }
 }
 
 .sideToolbarButton_label {

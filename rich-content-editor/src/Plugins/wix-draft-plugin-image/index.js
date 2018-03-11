@@ -4,7 +4,7 @@ import { Component } from './image-component';
 import { IMAGE_TYPE, IMAGE_TYPE_LEGACY } from './types';
 
 const createImagePlugin = (config = {}) => {
-  const { decorator, helpers, theme, isMobile } = config;
+  const { decorator, helpers, t, theme, isMobile } = config;
 
   return createBasePlugin({
     component: Component,
@@ -13,6 +13,7 @@ const createImagePlugin = (config = {}) => {
     type: IMAGE_TYPE,
     legacyType: IMAGE_TYPE_LEGACY,
     toolbar: createToolbar({
+      t,
       helpers,
     }),
     helpers,

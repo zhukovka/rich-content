@@ -46,19 +46,27 @@ const createSideToolbar = (config = {}) => {
   };
 };
 
-
-
 export default ({ buttons, offset, pubsub, theme, isMobile }) => {
+  const { buttonStyles, ...rest } = theme;
+  const toolbarButtonTheme = {
+    buttonStyles: {
+      button: buttonStyles.sideToolbarButton,
+      buttonWrapper: buttonStyles.sideToolbarButton_wrapper,
+      icon: buttonStyles.sideToolbarButton_icon,
+      label: buttonStyles.sideToolbarButton_label,
+    },
+    ...rest
+  };
   return createSideToolbar({
     offset,
     theme,
     isMobile,
     structure: [
-      ({ getEditorState, setEditorState, theme }) => //eslint-disable-line react/prop-types
+      ({ getEditorState, setEditorState, theme }) => //eslint-disable-line
         (<AddPluginFloatingToolbar
           getEditorState={getEditorState}
           setEditorState={setEditorState}
-          theme={theme}
+          theme={toolbarButtonTheme}
           structure={buttons}
           pubsub={pubsub}
           isMobile={isMobile}
