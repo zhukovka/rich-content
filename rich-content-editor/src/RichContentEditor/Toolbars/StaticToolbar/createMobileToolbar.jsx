@@ -47,11 +47,11 @@ const getMobileTheme = theme => {
         toolbarStyles.mobileToolbar_responsiveArrowRight,
         toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrowRight
       ),
-      responsiveArrowLeft_icon: classNames(
+      responsiveArrowLeft_icon: classNames( //eslint-disable-line camelcase
         toolbarStyles.mobileToolbar_responsiveArrowLeft_icon,
         toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrowLeft_icon
       ),
-      responsiveArrowRight_icon: classNames(
+      responsiveArrowRight_icon: classNames( //eslint-disable-line camelcase
         toolbarStyles.mobileToolbar_responsiveArrowRight_icon,
         toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrowRight_icon
       ),
