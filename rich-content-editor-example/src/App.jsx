@@ -119,9 +119,10 @@ class App extends Component {
       RichContentEditor,
       RichContentModal,
     } = WixRichContentEditor;
-    const modalStyles = { content:
-      Object.assign({}, (this.state.modalStyles || modalStyleDefaults).content, theme.modalTheme.content)
+    const modalStyles = {
+      content: Object.assign({}, (this.state.modalStyles || modalStyleDefaults).content, theme.modalTheme.content)
     };
+    modalStyles.overlay = { zIndex: 1 };
     const { MobileToolbar } = this.state;
     return (
       <div className="wrapper">
