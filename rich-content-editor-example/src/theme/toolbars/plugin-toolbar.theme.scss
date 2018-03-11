@@ -22,7 +22,8 @@
 .pluginToolbarButton_wrapper {
 }
 
-.pluginToolbarButton_icon {
+.pluginToolbarButton_wrapper:hover .pluginToolbarButton_icon {
+  color: fuchsia;
 }
 
 .pluginToolbarButton_replaceButtonWrapper {

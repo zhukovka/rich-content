@@ -18,7 +18,7 @@ export default class TextLinkButton extends Component {
           isMobile,
           getEditorState,
           setEditorState,
-          theme: theme.modal || {},
+          theme,
           modalName: MODALS.MOBILE_TEXT_LINK_MODAL,
           hidePopup: helpers.closeModal
         };
@@ -43,10 +43,16 @@ export default class TextLinkButton extends Component {
 
   render() {
     const { theme, isMobile } = this.props;
+    const buttonStyles = {
+      button: theme.inlineToolbarButton,
+      buttonWrapper: theme.inlineToolbarButton_wrapper,
+      icon: theme.inlineToolbarButton_icon,
+      active: theme.inlineToolbarButton_active,
+    };
     return (<LinkButton
       onClick={this.showLinkPanel}
       isActive={this.isActive}
-      theme={theme}
+      theme={{ ...theme, ...buttonStyles }}
       isMobile={isMobile}
       tooltipText={'link'}
     />);

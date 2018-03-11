@@ -12,8 +12,15 @@ export default class LinkButton extends Component {
 
   constructor(props) {
     super(props);
-    const { buttonStyles } = props.theme || {};
-    this.styles = mergeStyles({ styles, theme: buttonStyles });
+
+    const inlineButtonStyles = {
+      button: styles.inlineToolbarButton,
+      buttonWrapper: styles.inlineToolbarButton_wrapper,
+      icon: styles.inlineToolbarButton_icon,
+      active: styles.inlineToolbarButton_active,
+    };
+
+    this.styles = mergeStyles({ styles: inlineButtonStyles, theme: props.theme });
   }
 
   static propTypes = {
@@ -33,15 +40,15 @@ export default class LinkButton extends Component {
     const { styles } = this;
     const showTooltip = !isMobile && !isEmpty(tooltipText);
 
-    const iconClassNames = classNames(styles.inlineToolbarButton_icon,
+    const iconClassNames = classNames(styles.icon,
       {
-        [styles.inlineToolbarButton_active]: isActive,
+        [styles.active]: isActive,
       }
     );
 
     const linkButton = (
-      <div className={styles.inlineToolbarButton_wrapper} onMouseDown={this.preventBubblingUp}>
-        <button onClick={this.handleClick} className={styles.inlineToolbarButton}>
+      <div className={styles.buttonWrapper} onMouseDown={this.preventBubblingUp}>
+        <button onClick={this.handleClick} className={styles.button}>
           <div className={iconClassNames}>
             <LinkIcon />
           </div>
