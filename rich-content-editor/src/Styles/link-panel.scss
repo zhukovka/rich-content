@@ -36,59 +36,6 @@
   padding: 0 23px;
 }
 
-.linkPanel_linkHeaderContainer {
-  min-width: 320px;
-  display: flex;
-  align-items: center;
-}
-
-.linkPanel_linkHeaderBackArrowContainer {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding-right: 20px;
-  padding-left: 5px;
-  cursor: pointer;
-}
-
-.linkPanel_linkHeaderBackIcon {
-  width: 19px;
-  height: 19px;
-}
-
-.linkPanel_linkHeaderDivider {
-  width: 1px;
-  height: 48px;
-  border-right: solid 1px #ededed;
-}
-
-.linkPanel_linkHeaderText {
-  width: 202px;
-  margin-left: 25px;
-  font-size: 14px;
-}
-
-.linkPanel_linkHeaderDelete {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding-right: 0;
-  padding-left: 25px;
-  vertical-align: middle;
-  line-height: 10px;
-}
-
-.linkPanel_linkHeaderTrashContainer {
-  cursor: pointer;
-  padding-left: 20px;
-}
-
-.linkPanel_linkHeaderTrashIcon {
-  width: 19px;
-  height: 19px;
-  cursor: pointer;
-}
-
 .linkPanel_Content {
   margin: 0px 1px;
   padding-bottom: 6px;
