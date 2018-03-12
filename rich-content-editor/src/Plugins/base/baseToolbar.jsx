@@ -6,7 +6,7 @@ import Separator from '~/Components/Separator';
 import BaseToolbarButton from './baseToolbarButton';
 import {
   BUTTONS,
-  SizeOriginalCenterButton,
+  SizeOriginalButton,
   SizeSmallCenterButton,
   SizeSmallLeftButton,
   SizeSmallRightButton,
@@ -178,9 +178,9 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
     renderButton = (button, key, themedStyle, separatorClassNames) => {
       const { alignment, size } = this.state;
       switch (button.type) {
-        case BUTTONS.SIZE_ORIGINAL_CENTER:
+        case BUTTONS.SIZE_ORIGINAL:
           return (
-            <SizeOriginalCenterButton
+            <SizeOriginalButton
               size={size}
               alignment={alignment}
               setAlignmentAndSize={this.setAlignmentAndSize}

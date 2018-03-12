@@ -7,7 +7,7 @@ import SettingsIcon from '~/Plugins/base/icons/block-settings.svg';
 const modalStyles = getModalStyles();
 
 const InlineButtons = [
-  { type: BUTTONS.SIZE_ORIGINAL_CENTER, mobile: false },
+  { type: BUTTONS.SIZE_ORIGINAL, mobile: false },
   { type: BUTTONS.SIZE_SMALL_CENTER, mobile: false },
   { type: BUTTONS.SIZE_CONTENT, mobile: false },
   { type: BUTTONS.SIZE_FULL_WIDTH, mobile: false },

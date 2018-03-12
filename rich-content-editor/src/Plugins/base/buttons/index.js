@@ -16,7 +16,7 @@ export const BUTTONS = {
   EXTERNAL_MODAL: 'external-modal',
   DROPDOWN: 'dropdown',
   SEPARATOR: 'separator',
-  SIZE_ORIGINAL_CENTER: 'size-original-center',
+  SIZE_ORIGINAL: 'size-original',
   SIZE_SMALL_CENTER: 'size-small-center',
   SIZE_SMALL_LEFT: 'size-small-left',
   SIZE_SMALL_RIGHT: 'size-small-right',
@@ -28,9 +28,9 @@ export const BUTTONS = {
 
 export { BlockLinkButton };
 
-export const SizeOriginalCenterButton = createBlockAlignmentAndSizeButton({
+export const SizeOriginalButton = createBlockAlignmentAndSizeButton({
   size: 'original',
-  alignment: 'center',
+  alignment: 'left',
   Icon: SizeOriginalIcon,
 });
 
@@ -69,7 +69,7 @@ export const DeleteButton = createBlockButton({
 });
 
 export default {
-  [BUTTONS.SIZE_ORIGINAL_CENTER]: SizeOriginalCenterButton,
+  [BUTTONS.SIZE_ORIGINAL]: SizeOriginalButton,
   [BUTTONS.SIZE_SMALL_CENTER]: SizeSmallCenterButton,
   [BUTTONS.SIZE_SMALL_LEFT]: SizeSmallLeftButton,
   [BUTTONS.SIZE_SMALL_RIGHT]: SizeSmallRightButton,
