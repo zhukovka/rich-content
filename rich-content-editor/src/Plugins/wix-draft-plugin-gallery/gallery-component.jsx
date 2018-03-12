@@ -103,7 +103,7 @@ class GalleryComponent extends React.PureComponent {
     }
   };
 
-  handleFilesAdded = ({ data, itemIdx }) => {
+  handleFilesAdded = (data, itemIdx) => {
     const galleryItem = {
       metadata: {
         height: data.height,
