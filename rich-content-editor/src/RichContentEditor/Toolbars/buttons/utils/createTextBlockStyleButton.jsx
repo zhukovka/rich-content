@@ -9,6 +9,7 @@ export default ({ blockTypes, Icons, InactiveIcon = null, tooltipText }) =>
       getEditorState: PropTypes.func.isRequired,
       setEditorState: PropTypes.func.isRequired,
       theme: PropTypes.object.isRequired,
+      isMobile: PropTypes.bool
     };
 
     constructor(props) {
@@ -64,7 +65,7 @@ export default ({ blockTypes, Icons, InactiveIcon = null, tooltipText }) =>
 
     render() {
       const { blockTypeIndex } = this.state;
-      const { theme } = this.props;
+      const { theme, isMobile } = this.props;
       let Icon;
       if (blockTypeIndex !== undefined) {
         Icon = Icons[blockTypeIndex];
@@ -75,6 +76,7 @@ export default ({ blockTypes, Icons, InactiveIcon = null, tooltipText }) =>
         <TextButton
           icon={Icon}
           theme={theme}
+          isMobile={isMobile}
           isActive={this.blockTypeIsActive}
           onClick={this.setBlockStyle}
           tooltipText={tooltipText}

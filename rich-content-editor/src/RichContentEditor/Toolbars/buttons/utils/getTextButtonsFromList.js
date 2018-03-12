@@ -1,3 +1,4 @@
+import decorateComponentWithProps from 'decorate-component-with-props';
 import {
   BoldButton,
   ItalicButton,
@@ -16,7 +17,7 @@ import {
 } from '../index';
 import createThemedSeparator from './createThemedSeparator';
 
-export default ({ buttons, theme }) => {
+export default ({ buttons, theme, isMobile }) => {
   const themedSeparator = horizontal => createThemedSeparator({ theme, horizontal });
   const structure = [];
   buttons.forEach(buttonName => {
@@ -74,5 +75,10 @@ export default ({ buttons, theme }) => {
         break;
     }
   });
-  return structure;
+
+  if (isMobile) {
+    return structure.map(b => decorateComponentWithProps(b, { isMobile }));
+  } else {
+    return structure;
+  }
 };
