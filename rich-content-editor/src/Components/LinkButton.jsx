@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import Tooltip from '~/Components/Tooltip';
 
-import { mergeStyles } from '~/Utils';
 import LinkIcon from '~/RichContentEditor/Toolbars/icons/link.svg';
 import styles from '~/Styles/inline-toolbar-button.scss';
 
@@ -12,15 +11,24 @@ export default class LinkButton extends Component {
 
   constructor(props) {
     super(props);
+    const { buttonStyles } = props.theme;
 
-    const inlineButtonStyles = {
-      button: styles.inlineToolbarButton,
-      buttonWrapper: styles.inlineToolbarButton_wrapper,
-      icon: styles.inlineToolbarButton_icon,
-      active: styles.inlineToolbarButton_active,
+    this.styles = {
+      button: classNames(
+        styles.inlineToolbarButton,
+        buttonStyles && (buttonStyles.inlineToolbarButton || buttonStyles.pluginToolbarButton)
+      ),
+      buttonWrapper: classNames(
+        styles.inlineToolbarButton_wrapper,
+        buttonStyles && (buttonStyles.inlineToolbarButton_wrapper || buttonStyles.pluginToolbarButton_wrapper)
+      ),
+      icon: classNames(styles.inlineToolbarButton_icon,
+        buttonStyles && (buttonStyles.inlineToolbarButton_icon || buttonStyles.pluginToolbarButton_icon)
+      ),
+      active: classNames(styles.inlineToolbarButton_active,
+        buttonStyles && (buttonStyles.inlineToolbarButton_active || buttonStyles.pluginToolbarButton_active)
+      ),
     };
-
-    this.styles = mergeStyles({ styles: inlineButtonStyles, theme: props.theme });
   }
 
   static propTypes = {
