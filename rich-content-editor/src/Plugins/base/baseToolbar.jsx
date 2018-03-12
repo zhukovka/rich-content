@@ -254,8 +254,6 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       });
       const themedButtonStyle = {
         buttonWrapper: classNames(buttonStyles.pluginToolbarButton_wrapper, buttonTheme && buttonTheme.pluginToolbarButton_wrapper),
-        replaceButtonWrapper: classNames(buttonStyles.pluginToolbarButton_replaceButtonWrapper,
-          buttonTheme && buttonTheme.pluginToolbarButton_replaceButtonWrapper),
         button: classNames(buttonStyles.pluginToolbarButton, buttonTheme && buttonTheme.pluginToolbarButton),
         icon: classNames(buttonStyles.pluginToolbarButton_icon, buttonTheme && buttonTheme.pluginToolbarButton_icon),
         active: classNames(buttonStyles.pluginToolbarButton_active, buttonTheme && buttonTheme.pluginToolbarButton_active),

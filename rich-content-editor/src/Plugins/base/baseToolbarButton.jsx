@@ -40,13 +40,7 @@ class BaseToolbarButton extends React.Component {
         this.props.pubsub.update('componentState', state);
       }
     }
-
-    this.resetForm();
   };
-
-  setForm = form => (this.form = form);
-
-  resetForm = () => this.form && this.form.reset();
 
   getBoundingRectForModalButton = isActive => {
     if (this.props.type === BUTTONS.PANEL && isActive) {
@@ -138,15 +132,12 @@ class BaseToolbarButton extends React.Component {
   };
 
   renderFilesButton = (buttonClassNames, styles) => {
-    const replaceButtonWrapperClassNames = classNames(styles.replaceButtonWrapper);
+    const replaceButtonWrapperClassNames = classNames(styles.buttonWrapper);
     return (
       <div className={replaceButtonWrapperClassNames}>
-        <form ref={this.setForm}>
-          <FileInput onChange={this.handleFileChange} accept="image/*" multiple={this.props.multiple} />
-        </form>
-        <button className={buttonClassNames} children={this.props.children}>
+        <FileInput className={classNames(buttonClassNames)} onChange={this.handleFileChange} accept="image/*" multiple={this.props.multiple}>
           {this.getIcon()}
-        </button>
+        </FileInput>
       </div>
     );
   };
