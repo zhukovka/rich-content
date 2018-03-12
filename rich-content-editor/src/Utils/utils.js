@@ -154,23 +154,3 @@ function getSelection(editorState) {
 
   return selection;
 }
-
-// function handleFileChange(event, isInsertButton) {
-//   if (event.target.files && event.target.files.length > 0) {
-//     const helpers = this.props.helpers;
-//     if (helpers && helpers.handleFileSelection) {
-//       helpers.handleFileSelection();
-//     } else {
-//       if (isInsertButton) {
-//         const files = Array.from(event.target.files);
-//         this.props.pubsub.update('componentState', state);
-//       } else {
-//         const recentlyCreated = this.addBlock(button.data);
-//         pubsub.set('initialState_' + recentlyCreated.getKey(), state);
-//       }
-//       const state = { userSelectedFiles: { files } };
-//     }
-//   }
-
-//   this.resetForm();
-// }

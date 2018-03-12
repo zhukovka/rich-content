@@ -12,6 +12,7 @@ class ImageComponent extends React.Component {
 
     if (this.props.store) {
       this.props.store.set('handleFilesSelected', this.handleFilesSelected.bind(this));
+      this.props.store.set('handleFilesAdded', this.handleFilesAdded.bind(this));
     }
   }
 
@@ -83,11 +84,7 @@ class ImageComponent extends React.Component {
     const { helpers } = this.props;
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
     if (hasFileChangeHelper) {
-      helpers.onFilesChange(files, ({ data, error }) => {
-        this.setState({ files });
-        this.props.store.update('componentData', { item: data });
-        this.resetLoadingState(error);
-      });
+      helpers.onFilesChange(files, ({ data, error }) => this.handleFilesAdded({ files, data, error }));
     } else {
       this.resetLoadingState({ msg: 'Missing upload function' });
     }
@@ -102,6 +99,12 @@ class ImageComponent extends React.Component {
 
     return state;
   };
+
+  handleFilesAdded = ({ files, data, error }) => {
+    this.setState({ files });
+    this.props.store.update('componentData', { item: data });
+    this.resetLoadingState(error);
+  }
 
   getLoadingParams = componentState => {
     //check if the file upload is coming on the regular state
