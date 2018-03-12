@@ -1,5 +1,6 @@
-@import "./palette.scss";
-@import "./mixins.scss";
+@import "./palette";
+@import "./mixins";
+
 .mobileToolbar {
     position: relative;
     border-bottom: 1px solid rgba($secondary-text-color, 0.2);
@@ -12,6 +13,7 @@
 
 .mobileToolbar_buttons {
     display: flex;
+    align-items: center;
     height: 50px;
     padding: 0 9px;
     &::-webkit-scrollbar {
@@ -31,6 +33,10 @@
     font-size: 12px;
     cursor: pointer;
     z-index: 9999;
+
+    @include phone {
+        transform: translate3d(0,0,0);
+    }
 }
 
 .mobileToolbar_responsiveArrowLeft {
