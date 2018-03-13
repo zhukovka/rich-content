@@ -7,7 +7,7 @@ import { createGalleryPlugin, GALLERY_TYPE } from '~/Plugins/wix-draft-plugin-ga
 import { createHtmlPlugin, HTML_TYPE } from '~/Plugins/wix-draft-plugin-html';
 import { createImagePlugin, IMAGE_TYPE } from '~/Plugins/wix-draft-plugin-image';
 import { createVideoPlugin, VIDEO_TYPE } from '~/Plugins/wix-draft-plugin-video';
-import Styles from '~/Styles/text-linkify.scss';
+import linkifyStyles from '~/Styles/text-link.scss';
 
 const PluginList = [IMAGE_TYPE, GALLERY_TYPE, VIDEO_TYPE, HTML_TYPE, DIVIDER_TYPE];
 
@@ -40,7 +40,7 @@ const activePlugins = (requestedPlugins = PluginList, config) => {
 };
 
 const createPlugins = ({ plugins, helpers, theme, t, isMobile }) => {
-  const linkifyPlugin = createLinkifyPlugin({ theme: theme || Styles });
+  const linkifyPlugin = createLinkifyPlugin({ theme: theme || linkifyStyles });
   const focusPlugin = createFocusPlugin();
   const dndPlugin = createBlockDndPlugin();
 

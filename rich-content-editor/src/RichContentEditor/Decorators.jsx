@@ -9,22 +9,30 @@ const defaultDecorators = {
   config: {},
 };
 
-const createDecorators = ({ list, config } = defaultDecorators) => {
+const createDecorators = ({ list, config } = defaultDecorators, theme) => {
   const activeDecorators = [];
   list.forEach(decoratorName => {
     switch (decoratorName) {
-      case LinkDecorator.Name:
+      case LinkDecorator.Name: {
+        const { Strategy: strategy, Component } = LinkDecorator;
         activeDecorators.push({
-          strategy: LinkDecorator.Strategy,
-          component: LinkDecorator.Component,
+          strategy,
+          component: decorateComponentWithProps(Component, { className: theme.link }),
         });
         break;
-      case HashtagDecorator.Name:
+      }
+      case HashtagDecorator.Name: {
+        const { Strategy: strategy, Component } = HashtagDecorator;
+        const hashtagTheme = {
+          hashtag: theme && theme.hashtag,
+          hashtag_hover: theme && theme.hashtag_hover, //eslint-disable-line camelcase
+        };
         activeDecorators.push({
-          strategy: HashtagDecorator.Strategy,
-          component: config.Hashtag ? decorateComponentWithProps(HashtagDecorator.Component, { ...config.Hashtag }) : HashtagDecorator.Component,
+          strategy,
+          component: decorateComponentWithProps(Component, { ...config.Hashtag, theme: hashtagTheme }),
         });
         break;
+      }
       default:
         console.warn(`Failed to load uknown decorator "${decoratorName}"`); //eslint-disable-line no-console
         break;

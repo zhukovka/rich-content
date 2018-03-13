@@ -1,5 +1,6 @@
 import richContentEditorTheme from './rich-content-editor.theme.scss';
-import linkifyTheme from './text-linkify.theme.scss';
+import linkTheme from './text-link.theme.scss';
+import hashtagTheme from './text-hashtag.theme.scss';
 
 import dividerTheme from './divider.theme.scss';
 import htmlTheme from './html.theme.scss';
@@ -52,7 +53,8 @@ const modalTheme = {
 const theme = {
   modalTheme,
   ...richContentEditorTheme,
-  ...linkifyTheme,
+  ...linkTheme,
+  ...hashtagTheme,
 
   // plugin components
   ...dividerTheme,

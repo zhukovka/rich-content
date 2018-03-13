@@ -36,7 +36,7 @@ class RichContentEditor extends Component {
     const { pluginInstances, pluginButtons } = createPlugins({ plugins, helpers, theme, t, isMobile });
     this.initEditorToolbars(pluginButtons);
     this.plugins = [...pluginInstances, ...Object.values(this.toolbars)];
-    this.decorators = createDecorators(decorators);
+    this.decorators = createDecorators(decorators, theme);
   }
 
   initEditorToolbars(pluginButtons) {
