@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import SelectionList from '~/Components/SelectionList';
-import { galleryLayouts } from '../../helpers';
+import { galleryLayoutsSelector } from '../../helpers';
 import { mergeStyles } from '~/Utils/mergeStyles';
 import styles from './layout-selector.scss';
 
@@ -14,7 +14,7 @@ class LayoutSelector extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-  layouts = galleryLayouts.map(layout => {
+  layouts = galleryLayoutsSelector.map(layout => {
     return { layoutId: layout.value, name: layout.label, icon: layout.icon };
   });
 

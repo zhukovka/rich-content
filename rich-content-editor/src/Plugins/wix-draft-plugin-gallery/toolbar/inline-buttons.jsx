@@ -4,7 +4,7 @@ import AdvancedSettingsIcon from '~/Plugins/base/icons/block-settings.svg';
 import { BUTTONS } from '~/Plugins/base/buttons';
 import { MODALS } from '~/RichContentEditor/RichContentModal';
 import { getModalStyles } from '~/Utils';
-import { galleryLayouts, switchLayout, getCurrentLayout } from '../helpers';
+import { galleryLayoutsDropdown, switchLayout, getCurrentLayout } from '../helpers';
 
 const modalStyles = getModalStyles();
 const InlineButtons = [
@@ -25,7 +25,7 @@ const InlineButtons = [
   {
     keyName: 'layout',
     type: BUTTONS.DROPDOWN,
-    options: galleryLayouts,
+    options: galleryLayoutsDropdown,
     onChange: switchLayout,
     getValue: getCurrentLayout,
     mobile: true,
