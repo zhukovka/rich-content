@@ -27,7 +27,8 @@ class App extends Component {
     this.state = {
       lastSave: new Date(),
       editorState: WixRichContentEditor.EditorState.createEmpty(),
-      readOnly: false
+      readOnly: false,
+      mounted: true,
     };
     this.md = window ? new MobileDetect(window.navigator.userAgent) : null;
     this.initEditorProps();
@@ -94,9 +95,9 @@ class App extends Component {
 
   setEditor = editor => this.editor = editor;
 
-  onReadOnlyChange = event => {
-    this.setState({ readOnly: event.target.checked });
-  };
+  onMountedChange = event => this.setState({ mounted: event.target.checked });
+
+  onReadOnlyChange = event => this.setState({ readOnly: event.target.checked });
 
   onChange = editorState => {
     this.setState({
@@ -134,6 +135,15 @@ class App extends Component {
               <img src={logo} className="logo" alt="logo" />
               <h2>Wix Rich Content Editor</h2>
               <div>
+                <label htmlFor="mountedToggle">Mounted</label>
+                <input
+                  type="checkbox"
+                  name="mountedToggle"
+                  onChange={this.onMountedChange}
+                  defaultChecked={this.state.mounted}
+                />
+              </div>
+              <div>
                 <label htmlFor="readOnlyToggle">Read Only</label>
                 <input
                   type="checkbox"
@@ -149,18 +159,20 @@ class App extends Component {
           }
           {MobileToolbar && <MobileToolbar />}
           <div className="content">
-            <RichContentEditor
-              ref={this.setEditor}
-              onChange={this.onChange}
-              helpers={this.helpers}
-              plugins={this.plugins}
-              decorators={this.decorators}
-              editorState={this.state.editorState}
-              readOnly={this.state.readOnly}
-              isMobile={this.isMobile()}
-              theme={theme}
-              locale={'en'}
-            />
+            {this.state.mounted &&
+              <RichContentEditor
+                ref={this.setEditor}
+                onChange={this.onChange}
+                helpers={this.helpers}
+                plugins={this.plugins}
+                decorators={this.decorators}
+                editorState={this.state.editorState}
+                readOnly={this.state.readOnly}
+                isMobile={this.isMobile()}
+                theme={theme}
+                locale={'en'}
+              />
+            }
             <ReactModal
               isOpen={this.state.showModal}
               contentLabel="External Modal Example"
