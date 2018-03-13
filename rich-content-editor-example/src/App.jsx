@@ -64,8 +64,8 @@ class App extends Component {
         const { modalStyles, ...modalProps } = data;
         try {
           document.body.style.overflow = document.documentElement.style.overflow = 'hidden';
-          document.body.style.height = document.documentElement.style.height = '100%';
-          document.body.style.position = document.documentElement.style.position = 'relative';
+          document.documentElement.style.height = '100%';
+          document.documentElement.style.position = 'relative';
         } catch (e) {
           console.warn('Cannot change document styles', e);
         }
@@ -78,8 +78,8 @@ class App extends Component {
       closeModal: () => {
         try {
           document.body.style.overflow = document.documentElement.style.overflow = 'auto';
-          document.body.style.height = document.documentElement.style.height = 'initial';
-          document.body.style.position = document.documentElement.style.position = 'initial';
+          document.documentElement.style.height = 'initial';
+          document.documentElement.style.position = 'initial';
         } catch (e) {
           console.warn('Cannot change document styles', e);
         }

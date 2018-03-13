@@ -9,14 +9,14 @@ const mobileModalStyles = {
     left: 'auto',
     right: 0,
     bottom: 'auto',
-    position: 'fixed',
+    position: 'absolute',
     width: '100%',
     height: 'calc(100% + 5px)',
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
     zIndex: 5
   },
   content: {
-    position: 'fixed',
+    position: 'absolute',
     top: '50%',
     transform: 'translateY(-50%)',
     right: 0,
