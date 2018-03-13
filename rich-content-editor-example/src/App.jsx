@@ -63,7 +63,9 @@ class App extends Component {
       openModal: data => {
         const { modalStyles, ...modalProps } = data;
         try {
-          document.body.style.overflow = document.head.style.overflow = 'hidden';
+          document.body.style.overflow = document.documentElement.style.overflow = 'hidden';
+          document.body.style.height = document.documentElement.style.height = '100%';
+          document.body.style.position = document.documentElement.style.position = 'relative';
         } catch (e) {
           console.warn('Cannot change document styles', e);
         }
@@ -75,7 +77,9 @@ class App extends Component {
       },
       closeModal: () => {
         try {
-          document.body.style.overflow = document.head.style.overflow = 'auto';
+          document.body.style.overflow = document.documentElement.style.overflow = 'auto';
+          document.body.style.height = document.documentElement.style.height = 'initial';
+          document.body.style.position = document.documentElement.style.position = 'initial';
         } catch (e) {
           console.warn('Cannot change document styles', e);
         }
@@ -123,9 +127,10 @@ class App extends Component {
       RichContentModal,
     } = WixRichContentEditor;
     const modalStyles = {
-      content: Object.assign({}, (this.state.modalStyles || modalStyleDefaults).content, theme.modalTheme.content)
+      content: Object.assign({}, (this.state.modalStyles || modalStyleDefaults).content, theme.modalTheme.content),
+      overlay: Object.assign({}, (this.state.modalStyles || modalStyleDefaults).overlay, theme.modalTheme.overlay),
     };
-    modalStyles.overlay = { zIndex: 1 };
+
     const { MobileToolbar } = this.state;
     return (
       <div className="wrapper">

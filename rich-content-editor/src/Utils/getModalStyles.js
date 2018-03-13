@@ -31,7 +31,8 @@ const mobileModalStyles = {
     padding: 0,
     width: 'calc(100% - 20px)',
     margin: '0 10px',
-    direction: 'ltr'
+    direction: 'ltr',
+    zIndex: 6
   }
 };
 
@@ -43,7 +44,8 @@ const mobileFullScreenOverrideStyles = {
     bottom: 'auto',
     height: '100vh',
     width: '100vw',
-    margin: 0
+    margin: 0,
+    zIndex: 5
   },
   content: {
     top: 0,
@@ -55,7 +57,8 @@ const mobileFullScreenOverrideStyles = {
     width: '100vw',
     margin: 0,
     transform: 'none',
-    direction: 'ltr'
+    direction: 'ltr',
+    zIndex: 6
   }
 };
 
@@ -87,7 +90,8 @@ const desktopSideBarStyles = {
     height: '100%',
     width: '100%',
     maxWidth: '420px',
-    direction: 'ltr'
+    direction: 'ltr',
+    zIndex: 6
   }
 };
 
