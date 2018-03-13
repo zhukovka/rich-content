@@ -13,6 +13,7 @@ class GalleryComponent extends React.PureComponent {
 
     if (this.props.store) {
       this.props.store.set('handleFilesSelected', this.handleFilesSelected.bind(this));
+      this.props.store.set('handleFilesAdded', this.handleFilesAdded.bind(this));
     }
   }
 
@@ -96,22 +97,24 @@ class GalleryComponent extends React.PureComponent {
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
 
     if (hasFileChangeHelper) {
-      helpers.onFilesChange(file, ({ data }) => {
-        const galleryItem = {
-          metadata: {
-            height: data.height,
-            width: data.width,
-            processedByConsumer: true
-          },
-          itemId: String(data.id),
-          url: data.file_name,
-        };
-        this.setItemInGallery(galleryItem, itemIdx);
-      });
+      helpers.onFilesChange(file, ({ data }) => this.handleFilesAdded(data, itemIdx));
     } else {
       console.warn('Missing upload function'); //eslint-disable-line no-console
     }
   };
+
+  handleFilesAdded = (data, itemIdx) => {
+    const galleryItem = {
+      metadata: {
+        height: data.height,
+        width: data.width,
+        processedByConsumer: true
+      },
+      itemId: String(data.id),
+      url: data.file_name,
+    };
+    this.setItemInGallery(galleryItem, itemIdx);
+  }
 
   fileLoaded = (event, file, itemPos) => {
 

@@ -6,7 +6,7 @@ import Separator from '~/Components/Separator';
 import BaseToolbarButton from './baseToolbarButton';
 import {
   BUTTONS,
-  SizeOriginalCenterButton,
+  SizeOriginalButton,
   SizeSmallCenterButton,
   SizeSmallLeftButton,
   SizeSmallRightButton,
@@ -24,7 +24,7 @@ const getInitialState = () => (
   {
     position: { transform: 'translate(-50%) scale(0)' },
     showLeftArrow: false,
-    showRightArrow: true,
+    showRightArrow: false,
     componentData: {},
     componentState: {},
     overrideContent: undefined,
@@ -61,7 +61,11 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       window && window.removeEventListener('resize', this.handleToolbarScroll);
     }
 
-    onOverrideContent = overrideContent => this.setState({ overrideContent });
+    onOverrideContent = overrideContent => {
+      this.setState({ overrideContent }, () => {
+        this.handleToolbarScroll();
+      });
+    }
 
     onExtendContent = extendContent => this.setState({ extendContent });
 
@@ -163,6 +167,14 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
     }
 
     handleToolbarScroll = () => {
+      if (this.state.overrideContent) {
+        this.setState({
+          showLeftArrow: false,
+          showRightArrow: false
+        });
+        return;
+      }
+
       const spaceLeft = this.buttons.scrollLeft;
       const eleWidth = this.buttons.clientWidth;
       const fullWidth = this.buttons.scrollWidth;
@@ -170,17 +182,17 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       const spaceRight = fullWidth - eleWidth - spaceLeft;
 
       this.setState({
-        showLeftArrow: (spaceLeft > 1),
-        showRightArrow: (spaceRight > 1)
+        showLeftArrow: (spaceLeft > 2),
+        showRightArrow: (spaceRight > 2)
       });
     }
 
     renderButton = (button, key, themedStyle, separatorClassNames) => {
       const { alignment, size } = this.state;
       switch (button.type) {
-        case BUTTONS.SIZE_ORIGINAL_CENTER:
+        case BUTTONS.SIZE_ORIGINAL:
           return (
-            <SizeOriginalCenterButton
+            <SizeOriginalButton
               size={size}
               alignment={alignment}
               setAlignmentAndSize={this.setAlignmentAndSize}
@@ -243,8 +255,8 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
     };
 
     render = () => {
-
       const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
+      const hasArrow = showLeftArrow || showRightArrow;
       const { toolbarStyles: toolbarTheme } = theme || {};
       const { buttonStyles: buttonTheme, separatorStyles: separatorTheme } = theme || {};
       const containerClassNames = classNames(toolbarStyles.pluginToolbar, toolbarTheme && toolbarTheme.pluginToolbar);
@@ -254,8 +266,6 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       });
       const themedButtonStyle = {
         buttonWrapper: classNames(buttonStyles.pluginToolbarButton_wrapper, buttonTheme && buttonTheme.pluginToolbarButton_wrapper),
-        replaceButtonWrapper: classNames(buttonStyles.pluginToolbarButton_replaceButtonWrapper,
-          buttonTheme && buttonTheme.pluginToolbarButton_replaceButtonWrapper),
         button: classNames(buttonStyles.pluginToolbarButton, buttonTheme && buttonTheme.pluginToolbarButton),
         icon: classNames(buttonStyles.pluginToolbarButton_icon, buttonTheme && buttonTheme.pluginToolbarButton_icon),
         active: classNames(buttonStyles.pluginToolbarButton_active, buttonTheme && buttonTheme.pluginToolbarButton_active),
@@ -288,6 +298,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
                 this.renderButton(button, index, themedButtonStyle, separatorClassNames)
               ))
             }
+            {hasArrow && <div className={toolbarStyles.pluginToolbar_responsiveSpacer} />}
             {
               showRightArrow &&
               <div

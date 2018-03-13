@@ -13,7 +13,11 @@ class I18nRichContentEditor extends PureComponent {
     this.i18n = i18n({ locale, translations });
   }
 
-  setEditorRef = editor => this.editor = editor.getWrappedInstance();
+  setEditorRef = editor => {
+    if (editor) {
+      this.editor = editor.getWrappedInstance();
+    }
+  };
 
   getMobileToolbar = () => this.editor.getMobileToolbar();
 

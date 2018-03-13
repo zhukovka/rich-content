@@ -9,6 +9,7 @@ export default ({ style, Icon, tooltipText }) =>
       getEditorState: PropTypes.func.isRequired,
       setEditorState: PropTypes.func.isRequired,
       theme: PropTypes.object.isRequired,
+      isMobile: PropTypes.bool
     };
 
     toggleStyle = event => {
@@ -29,11 +30,12 @@ export default ({ style, Icon, tooltipText }) =>
     }
 
     render() {
-      const { theme } = this.props;
+      const { theme, isMobile } = this.props;
       return (
         <TextButton
           icon={Icon}
           theme={theme}
+          isMobile={isMobile}
           isActive={this.isActive}
           onClick={this.toggleStyle}
           tooltipText={tooltipText}

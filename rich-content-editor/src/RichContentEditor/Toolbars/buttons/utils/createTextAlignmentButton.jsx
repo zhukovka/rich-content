@@ -8,6 +8,7 @@ export default ({ alignment, Icon, tooltipText }) =>
       alignment: PropTypes.string,
       onClick: PropTypes.func,
       theme: PropTypes.object.isRequired,
+      isMobile: PropTypes.bool
     };
 
     isActive = () => this.props.alignment === alignment;
@@ -15,11 +16,12 @@ export default ({ alignment, Icon, tooltipText }) =>
     handleClick = () => this.props.onClick && this.props.onClick(alignment);
 
     render() {
-      const { theme } = this.props;
+      const { theme, isMobile } = this.props;
       return (
         <TextButton
           icon={Icon}
           theme={theme}
+          isMobile={isMobile}
           isActive={this.isActive}
           onClick={this.handleClick}
           tooltipText={tooltipText}

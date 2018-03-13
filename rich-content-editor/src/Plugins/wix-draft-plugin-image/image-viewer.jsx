@@ -26,6 +26,11 @@ class ImageViewer extends React.Component {
 
   getImageSrc(item) {
     const { helpers } = this.props;
+
+    if (!item && (helpers && helpers.handleFileSelection)) {
+      return null;
+    }
+
     let imageUrl;
     if (this.props.dataUrl) {
       imageUrl = this.props.dataUrl;

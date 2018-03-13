@@ -25,28 +25,19 @@ class BaseToolbarButton extends React.Component {
 
   handleFileChange = event => {
     if (event.target.files && event.target.files.length > 0) {
-      const { helpers, handleFileSelection, onFilesSelected } = this.props;
-      if (onFilesSelected) {
+      const { helpers, onFilesSelected } = this.props;
+      const { handleFileSelection } = helpers;
+      if (handleFileSelection) {
+        handleFileSelection({ ...this.props });
+      } else if (onFilesSelected) {
         onFilesSelected(this.props.pubsub, event.target.files);
-      } else if (handleFileSelection && helpers && helpers.handleFileSelection) {
-        // const keyName = BUTTONS.EXTERNAL_MODAL;
-        // const theme = Styles;
-
-        // helpers.handleFileSelection({ ...this.props, componentState, keyName, helpers, theme, pubsub });
-        helpers.handleFileSelection();
       } else {
         const files = Array.from(event.target.files);
         const state = { userSelectedFiles: { files } };
         this.props.pubsub.update('componentState', state);
       }
     }
-
-    this.resetForm();
   };
-
-  setForm = form => (this.form = form);
-
-  resetForm = () => this.form && this.form.reset();
 
   getBoundingRectForModalButton = isActive => {
     if (this.props.type === BUTTONS.PANEL && isActive) {
@@ -60,6 +51,14 @@ class BaseToolbarButton extends React.Component {
   handleClick = event => {
     event.preventDefault();
     const { componentState, keyName, helpers, pubsub, theme, onClick, ...otherProps } = this.props;
+
+    if (this.props.type === BUTTONS.FILES && helpers && helpers.handleFileSelection) {
+      const multiple = !!this.props.multiple;
+      const updateEntity = pubsub.get('handleFilesAdded');
+      helpers.handleFileSelection(multiple, updateEntity);
+      return;
+    }
+
     const activeButton = componentState.activeButton || { keyName, isActive: false };
     const isToggleButton = !(this.props.type === BUTTONS.EXTERNAL_MODAL || this.props.type === BUTTONS.FILES);
     const isActive = !isToggleButton ? activeButton.keyName === keyName : !(activeButton.keyName === keyName && activeButton.isActive);
@@ -138,15 +137,12 @@ class BaseToolbarButton extends React.Component {
   };
 
   renderFilesButton = (buttonClassNames, styles) => {
-    const replaceButtonWrapperClassNames = classNames(styles.replaceButtonWrapper);
+    const replaceButtonWrapperClassNames = classNames(styles.buttonWrapper);
     return (
       <div className={replaceButtonWrapperClassNames}>
-        <form ref={this.setForm}>
-          <FileInput onChange={this.handleFileChange} accept="image/*" multiple={this.props.multiple} />
-        </form>
-        <button className={buttonClassNames} children={this.props.children}>
+        <FileInput className={classNames(buttonClassNames)} onChange={this.handleFileChange} accept="image/*" multiple={this.props.multiple}>
           {this.getIcon()}
-        </button>
+        </FileInput>
       </div>
     );
   };
@@ -165,7 +161,7 @@ class BaseToolbarButton extends React.Component {
   };
 
   render = () => {
-    const { theme: themedStyles } = this.props;
+    const { helpers, theme: themedStyles } = this.props;
     const { isActive } = this.state;
     const buttonWrapperClassNames = classNames(themedStyles.buttonWrapper);
     const buttonClassNames = classNames({
@@ -176,7 +172,11 @@ class BaseToolbarButton extends React.Component {
     let toolbarButton;
     switch (this.props.type) {
       case BUTTONS.FILES:
-        toolbarButton = this.renderFilesButton(buttonClassNames, themedStyles);
+        if (helpers && helpers.handleFileSelection) {
+          toolbarButton = this.renderToggleButton(buttonWrapperClassNames, buttonClassNames);
+        } else {
+          toolbarButton = this.renderFilesButton(buttonClassNames, themedStyles);
+        }
         break;
       case BUTTONS.DROPDOWN:
         toolbarButton = this.renderDropdownButton(buttonClassNames, themedStyles);
@@ -210,7 +210,6 @@ BaseToolbarButton.propTypes = {
   iconActive: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
   modalStyles: PropTypes.object,
-  handleFileSelection: PropTypes.bool,
   isMobile: PropTypes.bool,
 };
 

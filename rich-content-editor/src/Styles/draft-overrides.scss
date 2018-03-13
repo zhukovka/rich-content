@@ -1,0 +1,28 @@
+@import "./consts";
+@import "./mixins";
+
+:global {
+  .wrapper {
+    .public-DraftStyleDefault-orderedListItem {
+      list-style-type: decimal;
+    }
+
+    .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-listLTR:before,
+    .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-listRTL:before,
+    .public-DraftStyleDefault-orderedListItem:before,
+    .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth1:before,
+    .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth2:before,
+    .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth3:before,
+    .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth4:before {
+      content: none;
+    }
+
+    .public-DraftStyleDefault-ol,
+    .public-DraftStyleDefault-ul {
+      margin: 0 calc((100% - #{$textWidth}) /2);
+      @include phone {
+        margin: 0;
+      }
+    }
+  }
+}

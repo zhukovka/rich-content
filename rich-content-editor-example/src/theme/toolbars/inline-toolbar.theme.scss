@@ -28,8 +28,13 @@
 .inlineToolbarButton {
 }
 
-.inlineToolbarButton_icon {
+.inlineToolbarButton_wrapper:hover .inlineToolbarButton_icon {
+  color: cyan;
 }
 
 .inlineToolbarButton_active {
+}
+
+.inlineToolbarSeparator {
+  background-color: chartreuse;
 }

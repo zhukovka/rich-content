@@ -89,7 +89,8 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
 
   const structure = getTextButtonsFromList({
     buttons: textButtons,
-    theme: mobileTheme
+    theme: mobileTheme,
+    isMobile: true,
   });
 
   if (addPluginIndex !== -1) {

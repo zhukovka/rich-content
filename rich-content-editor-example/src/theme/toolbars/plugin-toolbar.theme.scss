@@ -22,12 +22,11 @@
 .pluginToolbarButton_wrapper {
 }
 
-.pluginToolbarButton_icon {
-}
-
-.pluginToolbarButton_replaceButtonWrapper {
+.pluginToolbarButton_wrapper:hover .pluginToolbarButton_icon {
+  color: fuchsia;
 }
 
 /* Separator */
 .pluginToolbarSeparator {
+  background-color: fuchsia;
 }

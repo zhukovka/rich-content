@@ -1,5 +1,6 @@
-@import "./palette.scss";
-@import "./mixins.scss";
+@import "./palette";
+@import "./mixins";
+
 .mobileToolbar {
     position: relative;
     border-bottom: 1px solid rgba($secondary-text-color, 0.2);
@@ -12,6 +13,7 @@
 
 .mobileToolbar_buttons {
     display: flex;
+    align-items: center;
     height: 50px;
     padding: 0 9px;
     &::-webkit-scrollbar {
@@ -31,11 +33,16 @@
     font-size: 12px;
     cursor: pointer;
     z-index: 9999;
+
+    @include phone {
+        transform: translate3d(0,0,0);
+    }
 }
 
-.mobileToolbar_responsiveArrowLeft {
-    left: 0;
-    border-right: 1px solid $toolbar-border-color;
+.mobileToolbar_responsiveArrowLeft,
+.mobileToolbar_responsiveArrowRight {
+    right: 0;
+    border-left: 1px solid $toolbar-border-color;
 }
 
 .mobileToolbar_responsiveArrowLeft_icon {
@@ -44,13 +51,8 @@
     height: 6px;
     border: 1px solid $toolbar-font-color;
     border-width: 0 0 1px 1px;
-    margin-right: 3px;
+    margin-left: 3px;
     transform: rotate(45deg);
-}
-
-.mobileToolbar_responsiveArrowRight {
-    right: 0;
-    border-left: 1px solid $toolbar-border-color;
 }
 
 .mobileToolbar_responsiveArrowRight_icon {

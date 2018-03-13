@@ -51,7 +51,11 @@ export default class InlineToolbar extends Component {
     window && window.removeEventListener('srcoll', this.handleToolbarScroll);
   }
 
-  onOverrideContent = overrideContent => this.setState({ overrideContent });
+  onOverrideContent = overrideContent => {
+    this.setState({ overrideContent }, () => {
+      this.handleToolbarScroll();
+    });
+  }
 
   onExtendContent = extendContent => this.setState({ extendContent });
 
@@ -127,12 +131,13 @@ export default class InlineToolbar extends Component {
 
   scrollToolbar(event, direction) {
     event.preventDefault();
+    const { scrollLeft, clientWidth, scrollWidth } = this.buttons;
     switch (direction) {
       case 'right':
-        this.buttons.scrollLeft += 200;
+        this.buttons.scrollLeft += scrollWidth - clientWidth - scrollLeft;
         break;
       case 'left':
-        this.buttons.scrollLeft -= 200;
+        this.buttons.scrollLeft -= scrollLeft;
         break;
       default:
         break;
@@ -140,6 +145,14 @@ export default class InlineToolbar extends Component {
   }
 
   handleToolbarScroll = () => {
+    if (this.state.overrideContent) {
+      this.setState({
+        showLeftArrow: false,
+        showRightArrow: false
+      });
+      return;
+    }
+
     const spaceLeft = this.buttons.scrollLeft;
     const eleWidth = this.buttons.clientWidth;
     const fullWidth = this.buttons.scrollWidth;
@@ -147,14 +160,15 @@ export default class InlineToolbar extends Component {
     const spaceRight = fullWidth - eleWidth - spaceLeft;
 
     this.setState({
-      showLeftArrow: (spaceLeft > 1),
-      showRightArrow: (spaceRight > 1)
+      showLeftArrow: (spaceLeft > 2),
+      showRightArrow: (spaceRight > 26) // responsiveSpacer width + 2
     });
   }
 
   render() {
     const { theme, pubsub, structure, helpers, isMobile } = this.props;
     const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
+    const hasArrow = showLeftArrow || showRightArrow;
     const { toolbarStyles } = theme || {};
     const toolbarClassNames = classNames(Styles.inlineToolbar, toolbarStyles && toolbarStyles.inlineToolbar);
     const buttonClassNames = classNames(Styles.inlineToolbar_buttons, toolbarStyles && toolbarStyles.inlineToolbar_buttons, {
@@ -192,7 +206,13 @@ export default class InlineToolbar extends Component {
               <i/>
             </div>
           }
-          {OverrideContent ? <OverrideContent {...childrenProps} /> : structure.map((Button, index) => <Button key={index} {...childrenProps} />)}
+          {OverrideContent ?
+            <OverrideContent {...childrenProps} /> :
+            structure.map((Button, index) =>
+              <Button key={index} {...childrenProps} />
+            )
+          }
+          {hasArrow && <div className={Styles.inlineToolbar_responsiveSpacer} />}
           {
             showRightArrow &&
             <div

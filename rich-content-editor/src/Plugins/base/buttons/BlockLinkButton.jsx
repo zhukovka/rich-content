@@ -22,7 +22,7 @@ class BlockLinkButton extends Component {
           pubsub,
           modalStyles,
           isMobile,
-          theme: theme.modal || {},
+          theme,
           modalName: MODALS.MOBILE_BLOCK_LINK_MODAL,
           hidePopup: helpers.closeModal
         };

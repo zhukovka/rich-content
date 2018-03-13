@@ -14,19 +14,26 @@ $borderRadius: 6px;
   z-index: 4;
   box-sizing: border-box;
   max-width: 100%;
+  padding: 0 19px;
   direction: ltr;
 }
 
 .inlineToolbar_buttons {
   display: flex;
-  padding: 0 19px;
+  height: 48px;
 
   &::-webkit-scrollbar {
     display: none;
   }
 
   &.inlineToolbar_overrideContent {
+    height: auto;
     padding: 0;
+  }
+
+  .inlineToolbar_responsiveSpacer {
+    display: none;
+    flex: 0 0 24px;
   }
 
   .inlineToolbar_responsiveArrow {
@@ -52,12 +59,12 @@ $borderRadius: 6px;
   }
 
   .inlineToolbar_responsiveArrowLeft {
-    left: 0;
-    border-right: 1px solid $toolbar-border-color;
-    border-radius: $borderRadius 0 0 $borderRadius;
+    right: 0;
+    border-left: 1px solid $toolbar-border-color;
+    border-radius: 0 $borderRadius $borderRadius 0;
 
     > i {
-      margin-left: 3px;
+      margin-right: 3px;
       transform: rotate(45deg);
     }
   }
@@ -87,6 +94,10 @@ $borderRadius: 6px;
     overflow-x: scroll;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+
+    .inlineToolbar_responsiveSpacer {
+      display: block;
+    }
 
     .inlineToolbar_responsiveArrow {
       display: block;

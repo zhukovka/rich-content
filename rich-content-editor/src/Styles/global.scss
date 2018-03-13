@@ -1,10 +1,8 @@
-@import './palette';
+@import './consts';
 @import './mixins';
-@import './fonts.scss';
+@import './palette';
+@import './fonts';
 
-$innerSpacing: 40px;
-$textWidth: 740px;
-$textMobileWidth: 90%;
 
 //*** GENERIC ***//
 .flex {

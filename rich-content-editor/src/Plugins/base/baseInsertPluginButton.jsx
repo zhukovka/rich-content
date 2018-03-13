@@ -46,6 +46,7 @@ export default ({ blockType, button, helpers, pubsub }) => {
       event.preventDefault();
       switch (button.type) {
         case 'file':
+          this.toggleFileSelection();
           break;
         case 'modal':
           this.toggleButtonModal();
@@ -97,7 +98,23 @@ export default ({ blockType, button, helpers, pubsub }) => {
       }
     }
 
+    toggleFileSelection = () => {
+      const { handleFileSelection } = helpers || {};
+      if (handleFileSelection) {
+        this.addBlock(button.data || {});
+        setTimeout(() => {
+          const multiple = !!button.multi;
+          const updateEntity = pubsub.get('handleFilesAdded');
+          handleFileSelection(multiple, updateEntity);
+        });
+      }
+    }
+
     renderFileUploadForm = () => {
+      if (helpers && helpers.handleFileSelection) {
+        return null;
+      }
+
       const { styles } = this;
       return (
         <form ref={this.setForm}>

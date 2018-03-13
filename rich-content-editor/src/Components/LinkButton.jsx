@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import Tooltip from '~/Components/Tooltip';
 
-import { mergeStyles } from '~/Utils';
 import LinkIcon from '~/RichContentEditor/Toolbars/icons/link.svg';
 import styles from '~/Styles/inline-toolbar-button.scss';
 
@@ -12,8 +11,24 @@ export default class LinkButton extends Component {
 
   constructor(props) {
     super(props);
-    const { buttonStyles } = props.theme || {};
-    this.styles = mergeStyles({ styles, theme: buttonStyles });
+    const { buttonStyles } = props.theme;
+
+    this.styles = {
+      button: classNames(
+        styles.inlineToolbarButton,
+        buttonStyles && (buttonStyles.inlineToolbarButton || buttonStyles.pluginToolbarButton)
+      ),
+      buttonWrapper: classNames(
+        styles.inlineToolbarButton_wrapper,
+        buttonStyles && (buttonStyles.inlineToolbarButton_wrapper || buttonStyles.pluginToolbarButton_wrapper)
+      ),
+      icon: classNames(styles.inlineToolbarButton_icon,
+        buttonStyles && (buttonStyles.inlineToolbarButton_icon || buttonStyles.pluginToolbarButton_icon)
+      ),
+      active: classNames(styles.inlineToolbarButton_active,
+        buttonStyles && (buttonStyles.inlineToolbarButton_active || buttonStyles.pluginToolbarButton_active)
+      ),
+    };
   }
 
   static propTypes = {
@@ -33,15 +48,15 @@ export default class LinkButton extends Component {
     const { styles } = this;
     const showTooltip = !isMobile && !isEmpty(tooltipText);
 
-    const iconClassNames = classNames(styles.inlineToolbarButton_icon,
+    const iconClassNames = classNames(styles.icon,
       {
-        [styles.inlineToolbarButton_active]: isActive,
+        [styles.active]: isActive,
       }
     );
 
     const linkButton = (
-      <div className={styles.inlineToolbarButton_wrapper} onMouseDown={this.preventBubblingUp}>
-        <button onClick={this.handleClick} className={styles.inlineToolbarButton}>
+      <div className={styles.buttonWrapper} onMouseDown={this.preventBubblingUp}>
+        <button onClick={this.handleClick} className={styles.button}>
           <div className={iconClassNames}>
             <LinkIcon />
           </div>
