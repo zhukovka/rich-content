@@ -34,11 +34,12 @@ class TextAlignmentButton extends Component {
   };
 
   render() {
-    const { theme } = this.props;
+    const { theme, isMobile } = this.props;
     return (
       <TextButton
         icon={this.getActiveIcon}
         theme={theme}
+        isMobile={isMobile}
         onClick={this.handleClick}
         tooltipText={'Alignment'}
       />
@@ -49,7 +50,8 @@ class TextAlignmentButton extends Component {
 TextAlignmentButton.propTypes = {
   getEditorState: PropTypes.func.isRequired,
   onOverrideContent: PropTypes.func.isRequired,
-  theme: PropTypes.object
+  theme: PropTypes.object,
+  isMobile: PropTypes.bool
 };
 
 export default TextAlignmentButton;
