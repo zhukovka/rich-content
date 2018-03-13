@@ -59,6 +59,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       pubsub.unsubscribe('componentLink', this.onComponentLinkChange);
       this.buttons && this.buttons.removeEventListener('scroll', this.handleToolbarScroll);
       window && window.removeEventListener('resize', this.handleToolbarScroll);
+      window && window.removeEventListener('orientationchange', this.handleToolbarScroll);
     }
 
     onOverrideContent = overrideContent => {
@@ -148,6 +149,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       if (this.buttons) {
         this.buttons.addEventListener('scroll', this.handleToolbarScroll);
         window && window.addEventListener('resize', this.handleToolbarScroll);
+        window && window.addEventListener('orientationchange', this.handleToolbarScroll);
         this.handleToolbarScroll();
       }
     };

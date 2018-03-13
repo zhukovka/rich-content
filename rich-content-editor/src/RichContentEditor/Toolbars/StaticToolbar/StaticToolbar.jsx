@@ -30,6 +30,7 @@ export default class StaticToolbar extends React.Component {
   componentWillUnmount() {
     this.buttons && this.buttons.removeEventListener('scroll', this.handleToolbarScroll);
     window && window.removeEventListener('resize', this.handleToolbarScroll);
+    window && window.removeEventListener('orientationchange', this.handleToolbarScroll);
   }
 
   handleButtonsRef = node => {
@@ -37,6 +38,7 @@ export default class StaticToolbar extends React.Component {
     if (this.buttons) {
       this.buttons.addEventListener('scroll', this.handleToolbarScroll);
       window && window.addEventListener('resize', this.handleToolbarScroll);
+      window && window.addEventListener('orientationchange', this.handleToolbarScroll);
     }
   };
 
