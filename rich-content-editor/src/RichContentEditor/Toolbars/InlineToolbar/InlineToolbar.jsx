@@ -153,16 +153,18 @@ export default class InlineToolbar extends Component {
       return;
     }
 
-    const spaceLeft = this.buttons.scrollLeft;
-    const eleWidth = this.buttons.clientWidth;
-    const fullWidth = this.buttons.scrollWidth;
+    if (this.buttons) {
+      const spaceLeft = this.buttons.scrollLeft;
+      const eleWidth = this.buttons.clientWidth;
+      const fullWidth = this.buttons.scrollWidth;
 
-    const spaceRight = fullWidth - eleWidth - spaceLeft;
+      const spaceRight = fullWidth - eleWidth - spaceLeft;
 
-    this.setState({
-      showLeftArrow: (spaceLeft > 2),
-      showRightArrow: (spaceRight > 26) // responsiveSpacer width + 2
-    });
+      this.setState({
+        showLeftArrow: (spaceLeft > 2),
+        showRightArrow: (spaceRight > 26) // responsiveSpacer width + 2
+      });
+    }
   }
 
   render() {

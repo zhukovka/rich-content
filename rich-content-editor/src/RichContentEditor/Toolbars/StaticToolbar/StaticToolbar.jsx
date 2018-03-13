@@ -56,16 +56,18 @@ export default class StaticToolbar extends React.Component {
   }
 
   handleToolbarScroll = () => {
-    const spaceLeft = this.buttons.scrollLeft;
-    const eleWidth = this.buttons.clientWidth;
-    const fullWidth = this.buttons.scrollWidth;
+    if (this.buttons) {
+      const spaceLeft = this.buttons.scrollLeft;
+      const eleWidth = this.buttons.clientWidth;
+      const fullWidth = this.buttons.scrollWidth;
 
-    const spaceRight = fullWidth - eleWidth - spaceLeft;
+      const spaceRight = fullWidth - eleWidth - spaceLeft;
 
-    this.setState({
-      showLeftArrow: (spaceLeft > 1),
-      showRightArrow: (spaceRight > 1)
-    });
+      this.setState({
+        showLeftArrow: (spaceLeft > 1),
+        showRightArrow: (spaceRight > 1)
+      });
+    }
   }
 
   onOverrideContent = overrideContent => this.setState({ overrideContent });
