@@ -1,7 +1,7 @@
 @import "./mixins";
 
 .toolbar {
-  width: 740px;
+  width: 100%;
   background: #fff;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
@@ -10,7 +10,4 @@
   box-sizing: border-box;
   margin-right: auto;
   margin-left: auto;
-  @include phone {
-    width: 100%;
-  }
 }
