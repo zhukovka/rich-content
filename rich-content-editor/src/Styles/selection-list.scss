@@ -1,6 +1,6 @@
 .selectionList {
   width: 100%;
-  display: grid;
+  display: block;
 }
 
 .selectionListOption {
@@ -8,6 +8,8 @@
   text-align: center;
   margin: 0 auto 0 auto;
   cursor: pointer;
+  display: inline-block;
+  width: 25%;
 }
 
 .selectionListOption_selected {

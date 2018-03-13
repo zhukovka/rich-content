@@ -18,6 +18,7 @@ const getDefault = () => ({
     cubeType: 'fill',
     enableInfiniteScroll: true,
     titlePlacement: 'SHOW_ON_HOVER',
+    allowHover: false,
     showArrows: false,
     gridStyle: 1,
     loveButton: false,
