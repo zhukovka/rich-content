@@ -18,7 +18,7 @@ const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///
 
 const SortableItem = sortableElement(({ item, itemIdx, clickAction, addItemsButton, handleFileChange, isMobile, isMobileSorting, theme }) => {
   const styles = mergeStyles({ styles: Styles, theme });
-  const imageSize = (isMobile && window) ? ((window.screen.width - 20) / 3) : 104;
+  const imageSize = (isMobile && window && window.document) ? ((window.document.body.getBoundingClientRect().width - 20) / 3) : 104;
   if (addItemsButton) {
     return (
       <FileInput
