@@ -94,7 +94,7 @@ $borderRadius: 6px;
     max-width: 100%;
     overflow-x: scroll;
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
 
     .inlineToolbar_responsiveSpacer {
       display: block;

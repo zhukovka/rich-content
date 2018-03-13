@@ -16,6 +16,7 @@
     align-items: center;
     height: 50px;
     padding: 0 9px;
+
     &::-webkit-scrollbar {
         display: none;
         width: 0 !important;
@@ -78,7 +79,7 @@
         max-width: 100%;
         overflow-x: scroll;
         scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
+        -webkit-overflow-scrolling: auto;
     }
 }
 
