@@ -25,7 +25,8 @@ const santaConfig = {
         NODE_ENV: JSON.stringify("production"),
         SANTA: JSON.stringify(true),
       }
-    })
+    }),
+    new ExtractTextPlugin(`${FILE_NAME}-santa.css`)
   ]
 };
 
