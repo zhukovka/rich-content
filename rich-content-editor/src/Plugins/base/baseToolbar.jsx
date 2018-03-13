@@ -59,6 +59,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       pubsub.unsubscribe('componentLink', this.onComponentLinkChange);
       this.buttons && this.buttons.removeEventListener('scroll', this.handleToolbarScroll);
       window && window.removeEventListener('resize', this.handleToolbarScroll);
+      window && window.removeEventListener('orientationchange', this.handleToolbarScroll);
     }
 
     onOverrideContent = overrideContent => {
@@ -148,6 +149,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       if (this.buttons) {
         this.buttons.addEventListener('scroll', this.handleToolbarScroll);
         window && window.addEventListener('resize', this.handleToolbarScroll);
+        window && window.addEventListener('orientationchange', this.handleToolbarScroll);
         this.handleToolbarScroll();
       }
     };
@@ -175,16 +177,18 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
         return;
       }
 
-      const spaceLeft = this.buttons.scrollLeft;
-      const eleWidth = this.buttons.clientWidth;
-      const fullWidth = this.buttons.scrollWidth;
+      if (this.buttons) {
+        const spaceLeft = this.buttons.scrollLeft;
+        const eleWidth = this.buttons.clientWidth;
+        const fullWidth = this.buttons.scrollWidth;
 
-      const spaceRight = fullWidth - eleWidth - spaceLeft;
+        const spaceRight = fullWidth - eleWidth - spaceLeft;
 
-      this.setState({
-        showLeftArrow: (spaceLeft > 2),
-        showRightArrow: (spaceRight > 2)
-      });
+        this.setState({
+          showLeftArrow: (spaceLeft > 2),
+          showRightArrow: (spaceRight > 2)
+        });
+      }
     }
 
     renderButton = (button, key, themedStyle, separatorClassNames) => {
