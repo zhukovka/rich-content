@@ -21,6 +21,11 @@
     }
 }
 
+.mobileToolbar_responsiveSpacer {
+    flex: 0 0 48px;
+    height: 100%;
+}
+
 .mobileToolbar_responsiveArrow {
     display: block;
     position: absolute;

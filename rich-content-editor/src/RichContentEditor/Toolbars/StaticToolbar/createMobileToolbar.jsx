@@ -35,6 +35,7 @@ const getMobileTheme = theme => {
         toolbarStyles.mobileToolbar_extend,
         toolbarTheme && toolbarTheme.mobileToolbar_extend
       ),
+      responsiveSpacer: toolbarStyles.mobileToolbar_responsiveSpacer,
       responsiveArrow: classNames(
         toolbarStyles.mobileToolbar_responsiveArrow,
         toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrow

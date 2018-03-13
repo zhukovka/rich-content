@@ -111,6 +111,7 @@ export default class StaticToolbar extends React.Component {
               <OverrideContent {...childrenProps} /> :
               structure.map((Button, index) => <Button key={index} {...childrenProps} />)
           }
+          {isMobile && <div className={toolbarStyles.responsiveSpacer} />}
           {
             showRightArrow &&
             <div
