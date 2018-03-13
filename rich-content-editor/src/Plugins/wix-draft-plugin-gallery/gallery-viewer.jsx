@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ProGallery } from 'pro-gallery-renderer';
-
+let ProGallery;
+if (!process.env.SANTA) {
+  ProGallery = require('pro-gallery-renderer');
+}
 const getDefault = () => ({
   items: [],
   styles: {
