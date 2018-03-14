@@ -92,6 +92,7 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
     buttons: textButtons,
     theme: mobileTheme,
     isMobile: true,
+    t,
   });
 
   if (addPluginIndex !== -1) {
@@ -117,7 +118,7 @@ export default ({ buttons, helpers, pubsub, getEditorState, setEditorState, them
     t,
     name: 'MobileToolbar',
     theme: mobileTheme,
-    structure: getMobileButtons({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme }),
+    structure: getMobileButtons({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme, t }),
     isMobile: true
   });
 };

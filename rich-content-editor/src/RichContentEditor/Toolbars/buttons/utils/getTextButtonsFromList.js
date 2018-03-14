@@ -17,7 +17,7 @@ import {
 } from '../index';
 import createThemedSeparator from './createThemedSeparator';
 
-export default ({ buttons, theme, isMobile }) => {
+export default ({ buttons, theme, t, isMobile }) => {
   const themedSeparator = horizontal => createThemedSeparator({ theme, horizontal });
   const structure = [];
   buttons.forEach(buttonName => {
@@ -76,9 +76,5 @@ export default ({ buttons, theme, isMobile }) => {
     }
   });
 
-  if (isMobile) {
-    return structure.map(b => decorateComponentWithProps(b, { isMobile }));
-  } else {
-    return structure;
-  }
+  return structure.map(b => decorateComponentWithProps(b, { t, isMobile }));
 };

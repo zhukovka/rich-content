@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { RichUtils } from '@wix/draft-js';
-import { translate } from 'react-i18next';
 import TextButton from '../TextButton';
 
-export default ({ style, Icon, tooltipTextKey }) => {
+export default ({ style, Icon, tooltipTextKey }) =>
   class TextInlineStyleButton extends Component {
     static propTypes = {
       getEditorState: PropTypes.func.isRequired,
@@ -45,7 +44,4 @@ export default ({ style, Icon, tooltipTextKey }) => {
         />
       );
     }
-  }
-
-  return translate(null)(TextInlineStyleButton);
-};
+  };

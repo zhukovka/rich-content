@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import TextButton from '../TextButton';
 
-export default ({ alignment, Icon, tooltipTextKey }) => {
+export default ({ alignment, Icon, tooltipTextKey }) =>
   class TextAlignmentButton extends Component {
     static propTypes = {
       alignment: PropTypes.string,
@@ -32,8 +31,5 @@ export default ({ alignment, Icon, tooltipTextKey }) => {
         />
       );
     }
-  }
 
-  return translate(null)(TextAlignmentButton);
-
-};
+  };
