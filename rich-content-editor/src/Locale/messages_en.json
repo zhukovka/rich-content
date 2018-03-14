@@ -84,7 +84,7 @@
   "GallerySettings_Radios_Vertical" : "Vertical",
   "GallerySettings_Radios_Horizontal" : "Horizontal",
   "GallerySettings_Radios_Scroll_Direction" : "Scroll direction",
-  "GallerySettings_Image_Ratio" : "Image Ratio:",
+  "GallerySettings_Image_Ratio" : "Image ratio",
   "GallerySettings_Thumbnail_Placement" : "Thumbnail placement",
   "TextAlignmentButton_Tooltip" : "Alignment",
   "TextLinkButton_Tooltip" : "Link",
