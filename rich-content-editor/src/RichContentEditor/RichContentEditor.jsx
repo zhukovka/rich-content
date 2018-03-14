@@ -42,6 +42,7 @@ class RichContentEditor extends Component {
   initEditorToolbars(pluginButtons) {
     const {
       helpers,
+      hideFooterToolbar,
       sideToolbarOffset,
       textButtons,
       isMobile,
@@ -54,6 +55,7 @@ class RichContentEditor extends Component {
       buttons,
       helpers,
       isMobile,
+      hideFooterToolbar,
       sideToolbarOffset,
       theme: theme || {},
       getEditorState: () => this.state.editorState,
@@ -221,6 +223,7 @@ RichContentEditor.propTypes = {
   placeholder: PropTypes.string,
   t: PropTypes.func,
   sideToolbarOffset: PropTypes.object,
+  hideFooterToolbar: PropTypes.bool,
   textButtons: PropTypes.arrayOf(PropTypes.string),
   plugins: PropTypes.arrayOf(PropTypes.string),
 };
