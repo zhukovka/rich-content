@@ -1,5 +1,7 @@
+import linkifyIt from 'linkify-it';
+const linkify = linkifyIt();
+
 /* eslint-disable max-len, no-useless-escape */
-const validUrlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 const youtubeRegex = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})$/;
 const facebookRegex = /facebook\.com\/([^/?].+\/)?video(s|\.php)[/?].*$/;
 const vimeoRegex = /(?:www\.|player\.)?vimeo.com\/(?:(?:channels|ondemand)\/(?:\w+\/)?|groups\/([^/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/;
@@ -11,4 +13,6 @@ const isVimeo = url => vimeoRegex.test(url);
 
 export const isVideoUrl = url => [isYoutube, isFacebook, isVimeo].some(f => f(url));
 
-export const isValidUrl = url => validUrlRegex.test(url);
+export const isValidUrl = url => linkify.test(url);
+
+export const getNormalizedURL = url => (linkify.match(url) || [{}])[0].url;
