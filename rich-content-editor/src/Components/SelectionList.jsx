@@ -40,6 +40,7 @@ class SelectionList extends Component {
     className: PropTypes.string,
     value: PropTypes.any.isRequired,
     onChange: PropTypes.func.isRequired,
+    optionClassName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -57,12 +58,12 @@ class SelectionList extends Component {
   }
 
   render() {
-    const { dataSource, className, onChange, renderItem, theme } = this.props;
+    const { dataSource, className, onChange, renderItem, theme, optionClassName } = this.props;
     return (
       <div className={classnames(styles.selectionList, className)}>
         {dataSource.map(item => this.mapItemToOptionData(item))
           .map(({ item, option, selected }, i) => (
-            <SelectionListOption selected={selected} onChange={onChange} key={i} theme={theme} value={option.value}>
+            <SelectionListOption selected={selected} onChange={onChange} key={i} theme={theme} value={option.value} optionClassName={optionClassName}>
               {renderItem({ item, option, selected })}
             </SelectionListOption>)
           )}
@@ -77,6 +78,7 @@ class SelectionListOption extends Component {
     onChange: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
     value: PropTypes.any.isRequired,
+    optionClassName: PropTypes.string,
   };
 
   constructor(props) {
@@ -85,10 +87,11 @@ class SelectionListOption extends Component {
   }
 
   render() {
-    const { selected, onChange, children, value } = this.props;
+    const { selected, onChange, children, value, optionClassName } = this.props;
     return (
       <div
-        className={classnames(this.styles.selectionListOption, selected ? this.styles.selectionListOption_selected : '')}
+        className={classnames(this.styles.selectionListOption,
+          { [this.styles.selectionListOption_selected]: selected }, optionClassName)}
         onClick={() => onChange(value)}
       >
         {children}

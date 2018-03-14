@@ -7,14 +7,24 @@
     margin-bottom: 13px;
   }
 
-.thumbnailPlacementSelector_grid {
-  grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 100%;
+@supports (display: grid) {
+  .thumbnailPlacementSelector_grid {
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 100%;
+  }
+}
+
+@supports not (display: grid) {
+  .thumbnailPlacementSelector_option {
+    display: inline-block;
+    width: 25%;
+  }
 }
 
 .thumbnailPlacementSelector_tile {
   width: 46px;
   height: 46px;
+  display: inline-block;
 }
 
 .thumbnailPlacementSelector_icon {

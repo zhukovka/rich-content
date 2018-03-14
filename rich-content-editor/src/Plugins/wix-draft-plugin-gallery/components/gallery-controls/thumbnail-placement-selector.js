@@ -44,6 +44,7 @@ class ThumbnailPlacementSelector extends Component {
           renderItem={data => this.renderOption(data)}
           value={value}
           onChange={onChange}
+          optionClassName={styles.thumbnailPlacementSelector_option}
         />
       </div>
     );

@@ -50,6 +50,7 @@ class ImageRatioSelector extends Component {
           renderItem={this.renderOption}
           value={value}
           onChange={onChange}
+          optionClassName={styles.imageRatioSelector_option}
         />
       </div>
     );

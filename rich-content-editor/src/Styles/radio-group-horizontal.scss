@@ -4,9 +4,11 @@
 }
 
 .radioGroupHorizontal_group {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 100%;
+
+  label {
+    width: 50%;
+    display: inline-block;
+  }
 
   span {
     vertical-align: text-bottom;
