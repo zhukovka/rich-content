@@ -6,6 +6,7 @@ const getDefault = () => ({
   items: [],
   styles: {
     galleryLayout: 2,
+    gallerySizeType: 'px',
     gallerySizePx: 300,
     oneRow: false,
     cubeRatio: 1,
