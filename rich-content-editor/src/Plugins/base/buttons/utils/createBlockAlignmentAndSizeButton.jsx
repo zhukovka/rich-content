@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
-import Tooltip from '~/Components/Tooltip';
+import ToolbarButton from '~/Components/ToolbarButton';
 
 export default ({ alignment, size, Icon, tooltipTextKey }) =>
   class BlockAlignmentAndSizeButton extends Component {
@@ -40,18 +40,6 @@ export default ({ alignment, size, Icon, tooltipTextKey }) =>
         </div>
       );
 
-      if (showTooltip) {
-        return (
-          <Tooltip
-            content={tooltipText}
-            moveBy={{ x: 10, y: 5 }}
-            theme={theme}
-          >
-            {blockButton}
-          </Tooltip>
-        );
-      } else {
-        return blockButton;
-      }
+      return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={blockButton} />;
     }
   };

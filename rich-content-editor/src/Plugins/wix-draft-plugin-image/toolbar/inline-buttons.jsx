@@ -25,12 +25,15 @@ export default({ t }) => {
       modalStyles,
       t,
       mobile: true,
+      tooltipTextKey: 'SettingsButton_Tooltip',
     },
     {
       keyName: 'replace',
       type: BUTTONS.FILES,
       icon: MediaReplaceIcon,
       mobile: true,
+      tooltipTextKey: 'ReplaceImageButton_Tooltip',
+      t,
     },
     { type: BUTTONS.DELETE, mobile: true },
   ];

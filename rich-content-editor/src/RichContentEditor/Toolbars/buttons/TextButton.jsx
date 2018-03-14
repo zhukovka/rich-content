@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
-import Tooltip from '~/Components/Tooltip';
+import ToolbarButton from '~/Components/ToolbarButton';
 
 import { mergeStyles } from '~/Utils';
 import styles from '~/Styles/inline-toolbar-button.scss';
@@ -57,18 +57,6 @@ export default class TextButton extends Component {
       </div>
     );
 
-    if (showTooltip) {
-      return (
-        <Tooltip
-          content={tooltipText}
-          moveBy={{ x: 10, y: 5 }}
-          theme={theme}
-        >
-          {textButton}
-        </Tooltip>
-      );
-    } else {
-      return textButton;
-    }
+    return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={textButton} />;
   }
 }

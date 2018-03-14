@@ -4,7 +4,7 @@ import { AtomicBlockUtils, EditorState, SelectionState } from '@wix/draft-js';
 import cloneDeep from 'lodash/cloneDeep';
 import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
-import Tooltip from '~/Components/Tooltip';
+import ToolbarButton from '~/Components/ToolbarButton';
 import FileInput from '~/Components/FileInput';
 import styles from '~/Styles/toolbar-button.scss';
 import { mergeStyles } from '~/Utils/mergeStyles';
@@ -144,19 +144,7 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
         </div>
       );
 
-      if (showTooltip) {
-        return (
-          <Tooltip
-            content={tooltipText}
-            moveBy={{ x: 10 }}
-            theme={theme}
-          >
-            {Button}
-          </Tooltip>
-        );
-      } else {
-        return Button;
-      }
+      return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={Button} />;
     }
   }
 

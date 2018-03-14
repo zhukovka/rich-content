@@ -108,5 +108,10 @@
   "SizeFullWidthButton_Tooltip": "Size Full Width",
   "DeleteButton_Tooltip": "Delete",
   "EditButton_Tooltip": "Edit",
-  "SettingsButton_Tooltip": "Settings"
+  "SettingsButton_Tooltip": "Settings",
+  "UploadMediaButton_Tooltip": "Upload Media",
+  "ManageMediaButton_Tooltip": "Manage Media",
+  "ReplaceVideoButton_Tooltip" : "Replace Video",
+  "ReplaceImageButton_Tooltip" : "Replace Image"
+
 }

@@ -19,6 +19,7 @@ export default({ t }) => {
       modalName: MODALS.VIDEO_URL_INPUT,
       modalStyles: getModalStyles({ fullScreen: false }),
       mobile: true,
+      tooltipTextKey: 'ReplaceVideoButton_Tooltip',
       t,
     },
     { type: BUTTONS.DELETE, mobile: true },
