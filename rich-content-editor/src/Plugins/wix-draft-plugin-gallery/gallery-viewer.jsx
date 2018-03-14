@@ -14,6 +14,7 @@ const getDefault = () => ({
     isVertical: false,
     numberOfImagesPerRow: 3,
     imageMargin: 20,
+    thumbnailSpacings: 0,
     cubeType: 'fill',
     enableInfiniteScroll: true,
     titlePlacement: 'SHOW_ON_HOVER',

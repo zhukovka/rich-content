@@ -116,7 +116,7 @@ class LayoutControlsSection extends Component {
         onChange: value => this.applyGallerySetting({ cubeRatio: value }),
         value: this.getValueFromComponentStyles('cubeRatio'),
         options: {
-          readOnly: (this.props.layout === 4 /*slides*/) && this.getValueFromComponentStyles('cubeType') === 'fit'
+          readOnly: this.getValueFromComponentStyles('cubeType') === 'fit'
         },
         t,
       },
