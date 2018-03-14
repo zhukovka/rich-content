@@ -66,13 +66,19 @@ class ImageSettings extends Component {
   };
 
   addMetadataToBlock = () => {
-    const { pubsub } = this.props;
-    const { alt, caption } = this.state.src.metadata || {};
+    const { pubsub, componentData } = this.props;
+    const { alt, caption } = this.state.item.metadata || {};
     const metadata = {
       alt: alt || undefined,
       caption: caption || undefined,
     };
-    pubsub.update('componentData', { src: { metadata } });
+    pubsub.set('componentData', {
+      ...componentData,
+      item: {
+        ...componentData.item,
+        metadata,
+      }
+    });
   };
 
   deleteLink = () => {
