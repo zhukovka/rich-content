@@ -40,7 +40,7 @@ const activePlugins = (requestedPlugins = PluginList, config) => {
 };
 
 const createPlugins = ({ plugins, helpers, theme, t, isMobile }) => {
-  const linkifyPlugin = createLinkifyPlugin({ theme: theme || linkifyStyles });
+  const linkifyPlugin = createLinkifyPlugin({ target: '_blank', theme: theme || linkifyStyles });
   const focusPlugin = createFocusPlugin();
   const dndPlugin = createBlockDndPlugin();
 
