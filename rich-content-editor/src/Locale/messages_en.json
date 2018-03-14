@@ -39,7 +39,6 @@
   "VideoPlugin_InsertButton_Tooltip": "Add a Video",
   "VideoUploadModal_Header": "Add a video from YouTube or Vimeo",
   "VideoUploadModal_Input_Placeholder": "e.g. https://youtu.be/6sx-xGiFIjk",
-  "VideoUploadModal_Input_EasterEgg": "https://www.youtube.com/watch?v=_OBlgSz8sSM",
   "VideoComponent_Overlay": "To play this video, view this post from your live site",
   "GalleryPlugin_InsertButton_Tooltip" : "Add a Gallery",
   "GalleryPlugin_Layout_Grid": "Grid",

@@ -57,7 +57,6 @@ export default class VideoUploadModal extends Component {
     const { styles } = this;
     const headerText = t('VideoUploadModal_Header');
     const videoInputPlaceholder = t('VideoUploadModal_Input_Placeholder');
-    const videoInputPlaceholderEaster = t('VideoUploadModal_Input_EasterEgg');
 
     return (
       <div onKeyPress={this.handleKeyPress} className={styles.container}>
@@ -74,7 +73,7 @@ export default class VideoUploadModal extends Component {
             value={this.state.url}
             onDoubleClick={() =>
               this.setState({
-                url: { videoInputPlaceholderEaster }
+                url: 'https://www.youtube.com/watch?v=_OBlgSz8sSM'
               })
             }
           />
