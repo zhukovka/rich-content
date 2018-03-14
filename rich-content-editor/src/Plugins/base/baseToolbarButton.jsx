@@ -3,6 +3,8 @@ import React from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import isEmpty from 'lodash/isEmpty';
+import Tooltip from '~/Components/Tooltip';
 import { BUTTONS } from './buttons';
 import Panel from './basePanel';
 import Dropdown from '~/Components/Dropdown';
@@ -117,7 +119,11 @@ class BaseToolbarButton extends React.Component {
   };
 
   renderPanelButton = (buttonWrapperClassNames, buttonClassNames) => {
-    return (
+    const { theme, isMobile, t, tooltipTextKey } = this.props;
+    const tooltipText = t(tooltipTextKey);
+    const showTooltip = !isMobile && !isEmpty(tooltipText);
+
+    const panelButton = (
       <div>
         <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
           <button className={buttonClassNames} type="button" onMouseDown={this.handleClick} children={this.props.children || [this.getIcon()]}>
@@ -132,9 +138,23 @@ class BaseToolbarButton extends React.Component {
           componentData={this.props.componentData}
           componentState={this.props.componentState}
           helpers={this.props.helpers}
+          t={t}
         />
       </div>
     );
+    if (showTooltip) {
+      return (
+        <Tooltip
+          content={tooltipText}
+          moveBy={{ x: 10, y: 5 }}
+          theme={theme}
+        >
+          {panelButton}
+        </Tooltip>
+      );
+    } else {
+      return panelButton;
+    }
   };
 
   renderFilesButton = (buttonClassNames, styles) => {
@@ -213,6 +233,7 @@ BaseToolbarButton.propTypes = {
   modalStyles: PropTypes.object,
   isMobile: PropTypes.bool,
   t: PropTypes.func,
+  tooltipTextKey: PropTypes.string,
 };
 
 export default BaseToolbarButton;

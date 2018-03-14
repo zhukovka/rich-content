@@ -11,7 +11,7 @@ import {
   SizeSmallLeftButton,
   SizeSmallRightButton,
   SizeContentButton,
-  SizeFulllWidthButton,
+  SizeFullWidthButton,
   BlockLinkButton,
   DeleteButton,
 } from './buttons';
@@ -202,27 +202,36 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
               setAlignmentAndSize={this.setAlignmentAndSize}
               theme={themedStyle}
               key={key}
+              t={t}
             />
           );
         case BUTTONS.SIZE_SMALL_CENTER:
           return (
-            <SizeSmallCenterButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} />
+            <SizeSmallCenterButton
+              size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t}
+            />
           );
         case BUTTONS.SIZE_SMALL_LEFT:
           return (
-            <SizeSmallLeftButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} />
+            <SizeSmallLeftButton
+              size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t}
+            />
           );
         case BUTTONS.SIZE_SMALL_RIGHT:
           return (
-            <SizeSmallRightButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} />
+            <SizeSmallRightButton
+              size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t}
+            />
           );
         case BUTTONS.SIZE_CONTENT:
           return (
-            <SizeContentButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} />
+            <SizeContentButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t}/>
           );
         case BUTTONS.SIZE_FULL_WIDTH:
           return (
-            <SizeFulllWidthButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} />
+            <SizeFullWidthButton
+              size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t}
+            />
           );
         case BUTTONS.SEPARATOR:
           return <Separator className={separatorClassNames} key={key} />;
@@ -242,7 +251,9 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
             t={t}
           />);
         case BUTTONS.DELETE:
-          return <DeleteButton onClick={this.deleteBlock} theme={themedStyle} key={key} />;
+          return (<DeleteButton
+            onClick={this.deleteBlock} theme={themedStyle} key={key} t={t}
+          />);
         default:
           return (
             <BaseToolbarButton

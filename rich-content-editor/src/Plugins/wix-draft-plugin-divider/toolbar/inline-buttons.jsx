@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 import SettingsIcon from '../../base/icons/block-settings.svg';
 import EditIcon from '../icons/icon-edit.svg';
 import { BUTTONS } from '~/Plugins/base/buttons';
@@ -118,32 +117,37 @@ class EditModal extends React.Component {
   };
 }
 
-const InlineButtons = [
-  {
-    keyName: 'edit',
-    type: BUTTONS.PANEL,
-    panelElement: translate(null)(EditModal),
-    icon: EditIcon,
-    onClick: pubsub => console.log('*** click edit *** '), //eslint-disable-line no-console, no-unused-vars
-    mobile: true,
-  },
-  { type: BUTTONS.SEPARATOR, mobile: true },
-  { type: BUTTONS.SIZE_SMALL_LEFT, mobile: true },
-  { type: BUTTONS.SIZE_SMALL_CENTER, mobile: true },
-  { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: true },
-  { type: BUTTONS.SIZE_CONTENT, mobile: true },
-  { type: BUTTONS.SIZE_FULL_WIDTH, mobile: true },
-  { type: BUTTONS.SEPARATOR, mobile: true },
-  {
-    keyName: 'settings',
-    type: BUTTONS.PANEL,
-    panelElement: translate(null)(SettingsModal),
-    icon: SettingsIcon,
-    onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
-    mobile: true,
-  },
-  { type: BUTTONS.LINK, mobile: true },
-  { type: BUTTONS.DELETE, mobile: true },
-];
+export default({ t }) => {
+  return [
+    {
+      keyName: 'edit',
+      type: BUTTONS.PANEL,
+      panelElement: EditModal,
+      icon: EditIcon,
+      onClick: pubsub => console.log('*** click edit *** '), //eslint-disable-line no-console, no-unused-vars
+      mobile: true,
+      tooltipTextKey: 'EditButton_Tooltip',
+      t,
+    },
+    { type: BUTTONS.SEPARATOR, mobile: true },
+    { type: BUTTONS.SIZE_SMALL_LEFT, mobile: true },
+    { type: BUTTONS.SIZE_SMALL_CENTER, mobile: true },
+    { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: true },
+    { type: BUTTONS.SIZE_CONTENT, mobile: true },
+    { type: BUTTONS.SIZE_FULL_WIDTH, mobile: true },
+    { type: BUTTONS.SEPARATOR, mobile: true },
+    {
+      keyName: 'settings',
+      type: BUTTONS.PANEL,
+      panelElement: SettingsModal,
+      icon: SettingsIcon,
+      onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
+      mobile: true,
+      tooltipTextKey: 'SettingsButton_Tooltip',
+      t,
+    },
+    { type: BUTTONS.LINK, mobile: true },
+    { type: BUTTONS.DELETE, mobile: true },
+  ];
+};
 
-export default InlineButtons;
