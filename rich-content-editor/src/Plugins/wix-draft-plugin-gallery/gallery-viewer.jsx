@@ -13,7 +13,7 @@ const getDefault = () => ({
     galleryThumbnailsAlignment: 'bottom',
     isVertical: false,
     numberOfImagesPerRow: 3,
-    imageMargin: 10,
+    imageMargin: 20,
     cubeType: 'fill',
     enableInfiniteScroll: true,
     titlePlacement: 'SHOW_ON_HOVER',
