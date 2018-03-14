@@ -102,7 +102,7 @@ class ImageComponent extends React.Component {
 
   handleFilesAdded = ({ files, data, error }) => {
     this.setState({ files });
-    this.props.store.update('componentData', { item: data });
+    this.props.store.update('componentData', { src: data });
     this.resetLoadingState(error);
   }
 

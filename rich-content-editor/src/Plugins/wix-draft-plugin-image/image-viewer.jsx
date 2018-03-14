@@ -8,7 +8,6 @@ import styles from './default-image-styles.scss';
 import ImageLoader from '~/Components/ImageLoader';
 
 const getDefault = () => ({
-  data: {},
   config: {
     alignment: 'center',
     size: 'content',
@@ -24,10 +23,10 @@ class ImageViewer extends React.Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-  getImageSrc(item) {
+  getImageSrc(src) {
     const { helpers } = this.props;
 
-    if (!item && (helpers && helpers.handleFileSelection)) {
+    if (!src && (helpers && helpers.handleFileSelection)) {
       return null;
     }
 
@@ -35,11 +34,11 @@ class ImageViewer extends React.Component {
     if (this.props.dataUrl) {
       imageUrl = this.props.dataUrl;
     } else {
-      imageUrl = getImageSrc(item, helpers);
+      imageUrl = getImageSrc(src, helpers);
     }
 
     if (!imageUrl) {
-      console.error(`image plugin mounted with invalid image source!`, item); //eslint-disable-line no-console
+      console.error(`image plugin mounted with invalid image source!`, src); //eslint-disable-line no-console
     }
 
     return imageUrl;
@@ -85,12 +84,12 @@ class ImageViewer extends React.Component {
     const { styles } = this;
     const { componentData, className, onClick, isFocused, t } = this.props;
     const data = componentData || getDefault();
-    const { item = {} } = componentData;
-    const { metadata = {} } = item;
+    const { src = {} } = componentData;
+    const { metadata = {} } = src;
 
     const itemClassName = classNames(styles.imageContainer, className);
     const imageClassName = classNames(styles.image);
-    const imageSrc = this.getImageSrc(data.src || data.item);
+    const imageSrc = this.getImageSrc(data.src);
     return (
       <div onClick={onClick} className={itemClassName}>
         <div>
