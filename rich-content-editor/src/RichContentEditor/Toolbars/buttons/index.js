@@ -54,72 +54,72 @@ export { default as AddPluginButton } from './AddPluginButton';
 export const BoldButton = createTextInlineStyleButton({
   style: 'BOLD',
   Icon: BoldIcon,
-  tooltipText: 'Bold',
+  tooltipTextKey: 'BoldButton_Tooltip',
 });
 
 export const ItalicButton = createTextInlineStyleButton({
   style: 'ITALIC',
   Icon: ItalicIcon,
-  tooltipText: 'Italic',
+  tooltipTextKey: 'ItalicButton_Tooltip',
 });
 
 export const UnderlineButton = createTextInlineStyleButton({
   style: 'UNDERLINE',
   Icon: UnderlineIcon,
-  tooltipText: 'Underline',
+  tooltipTextKey: 'UnderlineButton_Tooltip',
 });
 
 export const IndentButton = createTextBlockStyleButton({
   blockTypes: ['indent'],
   Icons: [IndentIcon],
-  tooltipText: 'Indent',
+  tooltipTextKey: 'IndentButton_Tooltip',
 });
 
 export const TitleButton = createTextBlockStyleButton({
   blockTypes: ['header-one', 'header-two'],
   Icons: [TitleOneIcon, TitleTwoIcon],
   InactiveIcon: TitleIcon,
-  tooltipText: 'Title',
+  tooltipTextKey: 'TitleButton_Tooltip',
 });
 
 export const BlockquoteButton = createTextBlockStyleButton({
   blockTypes: ['blockquote'],
   Icons: [BlockquoteIcon],
-  tooltipText: 'Quote',
+  tooltipTextKey: 'QuoteButton_Tooltip',
 });
 
 export const AlignTextLeftButton = createTextAlignmentButton({
   alignment: 'left',
   Icon: AlignTextLeftIcon,
-  tooltipText: 'Align Left',
+  tooltipTextKey: 'AlignTextLeftButton_Tooltip',
 });
 
 export const AlignTextCenterButton = createTextAlignmentButton({
   alignment: 'center',
   Icon: AlignTextCenterIcon,
-  tooltipText: 'Center',
+  tooltipTextKey: 'AlignTextCenterButton_Tooltip',
 });
 
 export const AlignTextRightButton = createTextAlignmentButton({
   alignment: 'right',
   Icon: AlignTextRightIcon,
-  tooltipText: 'Align Right',
+  tooltipTextKey: 'AlignTextRightButton_Tooltip',
 });
 
 export const AlignTextJustifyButton = createTextAlignmentButton({
   alignment: 'justify',
   Icon: AlignTextJustifyIcon,
-  tooltipText: 'Justify',
+  tooltipTextKey: 'AlignTextJustifyButton_Tooltip',
 });
 
 export const OrderedListButton = createTextBlockStyleButton({
   blockTypes: ['ordered-list-item'],
   Icons: [OrderedListIcon],
-  tooltipText: 'Numbering',
+  tooltipTextKey: 'OrderedListButton_Tooltip',
 });
 
 export const UnorderedListButton = createTextBlockStyleButton({
   blockTypes: ['unordered-list-item'],
   Icons: [UnorderedListIcon],
-  tooltipText: 'Bullets',
+  tooltipTextKey: 'UnorderedListButton_Tooltip',
 });

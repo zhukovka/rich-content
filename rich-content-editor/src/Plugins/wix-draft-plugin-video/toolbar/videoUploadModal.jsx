@@ -53,24 +53,28 @@ export default class VideoUploadModal extends Component {
   };
 
   render() {
-    const { theme, doneLabel, cancelLabel } = this.props;
+    const { theme, doneLabel, cancelLabel, t } = this.props;
     const { styles } = this;
+    const headerText = t('VideoUploadModal_Header');
+    const videoInputPlaceholder = t('VideoUploadModal_Input_Placeholder');
+    const videoInputPlaceholderEaster = t('VideoUploadModal_Input_EasterEgg');
+
     return (
       <div onKeyPress={this.handleKeyPress} className={styles.container}>
         <div className={classNames(styles.header)}>
           <CameraIcon className={classNames(styles.cameraIcon, styles.header_icon)} />
-          <h3 className={styles.header_text}>Add a video from YouTube or Vimeo</h3>
+          <h3 className={styles.header_text}>{headerText}</h3>
         </div>
         <div className={styles.textInput}>
           <input
             ref={ref => (this.input = ref)}
             className={classNames(styles.textInput_input, { [styles.textInput_input_invalid]: !this.state.isValidUrl })}
-            placeholder="e.g. https://youtu.be/6sx-xGiFIjk"
+            placeholder={videoInputPlaceholder}
             onChange={this.onUrlChange}
             value={this.state.url}
             onDoubleClick={() =>
               this.setState({
-                url: 'https://www.youtube.com/watch?v=_OBlgSz8sSM',
+                url: { videoInputPlaceholderEaster }
               })
             }
           />
@@ -91,6 +95,7 @@ export default class VideoUploadModal extends Component {
           saveLabel={doneLabel}
           cancelLabel={cancelLabel}
           theme={theme}
+          t={t}
         />
       </div>
     );
@@ -106,6 +111,7 @@ VideoUploadModal.propTypes = {
   theme: PropTypes.object.isRequired,
   doneLabel: PropTypes.string,
   cancelLabel: PropTypes.string,
+  t: PropTypes.func,
 };
 
 VideoUploadModal.defaultProps = {

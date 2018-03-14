@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import decorateComponentWithProps from 'decorate-component-with-props';
+// import { translate } from 'react-i18next';
 
 import { mergeStyles } from '~/Utils';
 import styles from './gallery-settings-modal.scss';
@@ -54,7 +55,7 @@ class LayoutControlsSection extends Component {
     store.set('componentData', componentData);
   };
 
-  getControlData = () => ({
+  getControlData = t => ({
     '|': { component: Separator, props: { type: 'hr' } }, //separator
     _: { component: Separator, props: { type: 'space' } }, //separator
     itemsPerRow: {
@@ -62,6 +63,7 @@ class LayoutControlsSection extends Component {
       props: {
         onChange: value => this.applyGallerySetting({ numberOfImagesPerRow: value }),
         value: this.getValueFromComponentStyles('numberOfImagesPerRow'),
+        t,
       },
     },
     thumbnailSize: {
@@ -70,7 +72,8 @@ class LayoutControlsSection extends Component {
         onChange: value => this.applyGallerySetting({ gallerySizePx: value }),
         value: this.getValueFromComponentStyles('gallerySizePx'),
         options: {
-          label: this.getValueFromComponentStyles('isVertical') ? 'Column Width' : 'Row Height',
+          label: this.getValueFromComponentStyles('isVertical') ?
+            t('GallerySettings_LayoutControlSection_Column') : t('GallerySettings_LayoutControlSection_Row'),
           readOnly: this.getValueFromComponentStyles('oneRow')
         }
       },
@@ -80,6 +83,7 @@ class LayoutControlsSection extends Component {
       props: {
         onChange: value => this.applyGallerySetting({ imageMargin: value }),
         value: this.getValueFromComponentStyles('imageMargin'),
+        t,
       },
     },
     thumbnailSpacing: {
@@ -87,6 +91,7 @@ class LayoutControlsSection extends Component {
       props: {
         onChange: value => this.applyGallerySetting({ thumbnailSpacings: value }),
         value: this.getValueFromComponentStyles('thumbnailSpacings'),
+        t,
       },
     },
     thumbnailResize: {
@@ -94,6 +99,7 @@ class LayoutControlsSection extends Component {
       props: {
         onChange: value => this.applyGallerySetting({ cubeType: value }),
         value: this.getValueFromComponentStyles('cubeType'),
+        t,
       },
     },
     titleButtonPlacement: {
@@ -101,6 +107,7 @@ class LayoutControlsSection extends Component {
       props: {
         onChange: value => this.applyGallerySetting({ titlePlacement: value }),
         value: this.getValueFromComponentStyles('titlePlacement'),
+        t,
       },
     },
     imageRatio: {
@@ -110,7 +117,8 @@ class LayoutControlsSection extends Component {
         value: this.getValueFromComponentStyles('cubeRatio'),
         options: {
           readOnly: (this.props.layout === 4 /*slides*/) && this.getValueFromComponentStyles('cubeType') === 'fit'
-        }
+        },
+        t,
       },
     },
     imageOrientation: {
@@ -120,7 +128,8 @@ class LayoutControlsSection extends Component {
         value: this.getValueFromComponentStyles('isVertical') ? '1' : '0',
         options: {
           readOnly: this.getValueFromComponentStyles('oneRow')
-        }
+        },
+        t,
       },
     },
     scrollDirection: {
@@ -130,6 +139,7 @@ class LayoutControlsSection extends Component {
           return this.applyGallerySetting({ oneRow: value === 'horizontal', isVertical: false });
         },
         value: this.getValueFromComponentStyles('oneRow') ? 'horizontal' : 'vertical',
+        t,
       },
     },
     thumbnailPlacement: {
@@ -137,12 +147,14 @@ class LayoutControlsSection extends Component {
       props: {
         onChange: value => this.applyGallerySetting({ galleryThumbnailsAlignment: value }),
         value: this.getValueFromComponentStyles('galleryThumbnailsAlignment'),
+        t,
       },
     },
   });
 
   render() {
-    const controls = this.getControlData();
+    const { t } = this.props;
+    const controls = this.getControlData(t);
     const layoutControls = this.controlsByLayout[this.props.layout];
     return (
       <div>
@@ -161,6 +173,8 @@ LayoutControlsSection.propTypes = {
   theme: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
+  t: PropTypes.func,
 };
 
+// export default translate(null)(LayoutControlsSection);
 export default LayoutControlsSection;

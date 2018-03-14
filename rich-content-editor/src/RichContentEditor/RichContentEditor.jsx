@@ -45,6 +45,7 @@ class RichContentEditor extends Component {
       sideToolbarOffset,
       textButtons,
       isMobile,
+      t,
     } = this.props;
     const { theme } = this.state;
     const buttons = { textButtons, pluginButtons };
@@ -57,6 +58,7 @@ class RichContentEditor extends Component {
       theme: theme || {},
       getEditorState: () => this.state.editorState,
       setEditorState: editorState => this.setState({ editorState }),
+      t,
     });
   }
 
@@ -211,7 +213,7 @@ RichContentEditor.propTypes = {
   editorState: PropTypes.object,
   decorators: PropTypes.object,
   initialState: PropTypes.object,
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.object,
   onChange: PropTypes.func,
   isMobile: PropTypes.bool,
   readOnly: PropTypes.bool,
@@ -223,9 +225,4 @@ RichContentEditor.propTypes = {
   plugins: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default translate(null,
-  {
-    withRef: true,
-    wait: true,
-  }
-)(RichContentEditor);
+export default translate(null, { withRef: true })(RichContentEditor);

@@ -102,7 +102,7 @@ class ImageComponent extends React.Component {
 
   handleFilesAdded = ({ files, data, error }) => {
     this.setState({ files });
-    this.props.store.update('componentData', { item: data });
+    this.props.store.update('componentData', { src: data });
     this.resetLoadingState(error);
   }
 
@@ -114,6 +114,7 @@ class ImageComponent extends React.Component {
   };
 
   render() {
+    const { t } = this.props;
     return (
       <ImageViewer
         componentData={this.props.componentData}
@@ -124,6 +125,7 @@ class ImageComponent extends React.Component {
         isLoading={this.state.isLoading}
         dataUrl={this.state.dataUrl}
         isFocused={this.props.blockProps.isFocused}
+        t={t}
       />
     );
   }
@@ -139,6 +141,7 @@ ImageComponent.propTypes = {
   className: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
   helpers: PropTypes.object.isRequired,
+  t: PropTypes.func
 };
 
 export { ImageComponent as Component, getDefault };

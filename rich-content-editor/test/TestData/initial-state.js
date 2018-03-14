@@ -46,7 +46,7 @@ const TestData = {
         "type": "IMAGE",
         "mutability": "IMMUTABLE",
         "data": {
-          "item": {
+          "src": {
             "file_name": "20",
             "source": "static",
             "url": "https://unsplash.it/500/500?image=20",
@@ -74,7 +74,7 @@ const TestData = {
         "type": "wix-draft-plugin-image",
         "mutability": "IMMUTABLE",
         "data": {
-          "item": {
+          "src": {
             "file_name": "20",
             "source": "static",
             "url": "https://unsplash.it/500/500?image=20",

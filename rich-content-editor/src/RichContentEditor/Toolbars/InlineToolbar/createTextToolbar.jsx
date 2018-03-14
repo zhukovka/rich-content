@@ -5,9 +5,9 @@ import { DesktopTextButtonList } from '../buttons/';
 import { getTextButtonsFromList } from '../buttons/utils';
 
 
-export default ({ buttons, pubsub, theme, isMobile, helpers }) => {
+export default ({ buttons, pubsub, theme, isMobile, helpers, t }) => {
   const textButtons = get(buttons, 'desktop', DesktopTextButtonList);
-  const structure = getTextButtonsFromList({ buttons: textButtons, pubsub, theme });
+  const structure = getTextButtonsFromList({ buttons: textButtons, pubsub, theme, t });
 
   return createInlineToolbar({
     name: 'TextToolbar',
@@ -15,6 +15,7 @@ export default ({ buttons, pubsub, theme, isMobile, helpers }) => {
     pubsub,
     theme,
     isMobile,
-    helpers
+    helpers,
+    t
   });
 };

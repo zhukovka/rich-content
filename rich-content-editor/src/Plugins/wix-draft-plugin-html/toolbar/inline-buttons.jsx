@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import SettingsIcon from '../../base/icons/block-settings.svg';
 import EditIcon from '../icons/icon-edit.svg';
 import { BUTTONS } from '~/Plugins/base/buttons';
@@ -10,6 +11,7 @@ class SettingsModal extends React.Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired,
+    t: PropTypes.func,
   };
 
   constructor(props) {
@@ -26,6 +28,7 @@ class SettingsModal extends React.Component {
     return {
       width: (componentData && componentData.config && componentData.config.width) || 200,
       height: (componentData && componentData.config && componentData.config.height) || 200,
+      t: props.t,
     };
   };
 
@@ -41,31 +44,35 @@ class SettingsModal extends React.Component {
   };
 
   render = () => {
+    const { t } = this.props;
+    const widthLabel = t('HtmlPlugin_Width');
+    const heightLabel = t('HtmlPlugin_Height');
+    const pixelsLabel = t('HtmlPlugin_Pixels');
     return (
       <div>
         <div>
-          <label htmlFor="width">Width</label>
+          <label htmlFor="width">{widthLabel}</label>
           <input type="range" min="10" max="1000" value={this.state.width} id="width" step="10" onChange={this.changeWidth} />
           <output htmlFor="width" id="widthVal">
-            {this.state.width}px
+            {this.state.width}{pixelsLabel}
           </output>
         </div>
         <div>
-          <label htmlFor="height">Height</label>
+          <label htmlFor="height">{heightLabel}</label>
           <input type="range" min="10" max="1000" value={this.state.height} id="height" step="10" onChange={this.changeHeight} />
           <output htmlFor="height" id="widthVal">
-            {this.state.height}px
+            {this.state.height}{pixelsLabel}
           </output>
         </div>
       </div>
     );
   };
 }
-
 class EditModal extends React.Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired,
+    t: PropTypes.func,
   };
 
   constructor(props) {
@@ -82,6 +89,7 @@ class EditModal extends React.Component {
       isSrc: !!(props.componentData && props.componentData.config && props.componentData.config.isSrc),
       src: (props.componentData && props.componentData.src) || '',
       content: (props.componentData && props.componentData.content) || '',
+      t: props.t,
     };
   };
 
@@ -115,12 +123,16 @@ class EditModal extends React.Component {
   };
 
   render = () => {
+    const { t } = this.props;
+    const sourceLabel = t('HtmlPlugin_Source');
+    const codeLabel = t('HtmlPlugin_Code');
+    const updateLabel = t('HtmlPlugin_Update');
     return (
       <div>
         <div className={Styles.tabs}>
           <div className={Styles.tab}>
             <input type="radio" id="tab-1" name="tab-group-1" checked={this.state.isSrc} onChange={this.changeIsSrc} />
-            <label htmlFor="tab-1">Source</label>
+            <label htmlFor="tab-1">{sourceLabel}</label>
 
             <div className={Styles.content}>
               <input type="text" value={this.state.src} id="src" onChange={this.changeSrc} />
@@ -129,7 +141,7 @@ class EditModal extends React.Component {
 
           <div className={Styles.tab}>
             <input type="radio" id="tab-2" name="tab-group-1" checked={!this.state.isSrc} onChange={this.changeIsContent} />
-            <label htmlFor="tab-2">Code</label>
+            <label htmlFor="tab-2">{codeLabel}</label>
 
             <div className={Styles.content}>
               <textarea value={this.state.content} id="content" onChange={this.changeContent} />
@@ -137,7 +149,7 @@ class EditModal extends React.Component {
           </div>
         </div>
         <div>
-          <input type="button" onClick={this.updateContent} value="Update" />
+          <input type="button" onClick={this.updateContent} value={updateLabel} />
         </div>
       </div>
     );
@@ -149,37 +161,39 @@ EditModal.propTypes = {
   helpers: PropTypes.object,
   componentData: PropTypes.object.isRequired,
   componentState: PropTypes.object.isRequired,
+  t: PropTypes.func,
 };
 
-const InlineButtons = [
+export default({ t }) => {
+  return [
   //the icons in the toolbar are the following:
   // Edit - open a small dialog that has an option to add src for the iframe or code
-  {
-    keyName: 'edit',
-    type: BUTTONS.PANEL,
-    panelElement: EditModal,
-    icon: EditIcon,
-    onClick: pubsub => console.log('*** click edit *** '), //eslint-disable-line no-console, no-unused-vars,
-    mobile: true,
-  },
-  { type: BUTTONS.SEPARATOR },
-  {
-    keyName: 'settings',
-    type: BUTTONS.PANEL,
-    panelElement: SettingsModal,
-    icon: SettingsIcon,
-    onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
-    mobile: true,
-  },
-  {
-    keyName: 'external_settings',
-    type: BUTTONS.EXTERNAL_MODAL,
-    modalName: MODALS.HTML_SETTINGS,
-    icon: SettingsIcon,
-    onClick: pubsub => console.log('*** click external settings *** '), //eslint-disable-line no-console, no-unused-vars,
-    mobile: true,
-  },
-  { type: BUTTONS.DELETE },
-];
-
-export default InlineButtons;
+    {
+      keyName: 'edit',
+      type: BUTTONS.PANEL,
+      panelElement: translate(null)(EditModal),
+      icon: EditIcon,
+      onClick: pubsub => console.log('*** click edit *** '), //eslint-disable-line no-console, no-unused-vars,
+      mobile: true,
+    },
+    { type: BUTTONS.SEPARATOR },
+    {
+      keyName: 'settings',
+      type: BUTTONS.PANEL,
+      panelElement: translate(null)(SettingsModal),
+      icon: SettingsIcon,
+      onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
+      mobile: true,
+    },
+    {
+      keyName: 'external_settings',
+      type: BUTTONS.EXTERNAL_MODAL,
+      modalName: MODALS.HTML_SETTINGS,
+      icon: SettingsIcon,
+      onClick: pubsub => console.log('*** click external settings *** '), //eslint-disable-line no-console, no-unused-vars,
+      mobile: true,
+      t,
+    },
+    { type: BUTTONS.DELETE },
+  ];
+};

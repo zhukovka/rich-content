@@ -6,42 +6,71 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   value: PropTypes.string.isRequired,
-  options: PropTypes.object
+  options: PropTypes.object,
+  t: PropTypes.func,
 };
 
-export const ThumbnailResize = props => (
-  <RadioGroupHorizontal
-    label={'Thumbnail Resize'}
-    dataSource={[{ value: 'fill', labelText: 'Crop' }, { value: 'fit', labelText: 'Fit' }]}
-    {...props}
-  />
-);
+export const ThumbnailResize = props => {
+  const { t } = props;
+  const thumbnailResizeLabel = t('GallerySettings_Radios_Thumbnail_Resize');
+  const cropLabel = t('GallerySettings_Radios_Crop');
+  const fitLabel = t('GallerySettings_Radios_Fit');
+
+  return (
+    <RadioGroupHorizontal
+      label={thumbnailResizeLabel}
+      dataSource={[{ value: 'fill', labelText: cropLabel }, { value: 'fit', labelText: fitLabel }]}
+      {...props}
+    />
+  );
+};
 ThumbnailResize.propTypes = propTypes;
 
-export const TitleButtonPlacement = props => (
-  <RadioGroupHorizontal
-    label={'Title & Button Placement'}
-    dataSource={[{ value: 'SHOW_ALWAYS', labelText: 'Underneath' }, { value: 'SHOW_ON_HOVER', labelText: 'On Hover' }]}
-    {...props}
-  />
-);
+export const TitleButtonPlacement = props => {
+  const { t } = props;
+  const titleButtonPlacementLabel = t('GallerySettings_Radios_Title_Button_Placement');
+  const underneathLabel = t('GallerySettings_Radios_Underneath');
+  const onHoverLabel = t('GallerySettings_Radios_On_Hover');
+
+  return (
+    <RadioGroupHorizontal
+      label={titleButtonPlacementLabel}
+      dataSource={[{ value: 'SHOW_ALWAYS', labelText: underneathLabel }, { value: 'SHOW_ON_HOVER', labelText: onHoverLabel }]}
+      {...props}
+    />
+  );
+};
 TitleButtonPlacement.propTypes = propTypes;
 
-export const ImageOrientation = props => (
-  <RadioGroupHorizontal
-    label={'Image Orientation'}
-    readOnly={props.options.readOnly}
-    dataSource={[{ value: '1', labelText: 'Vertical' }, { value: '0', labelText: 'Horizontal' }]}
-    {...props}
-  />
-);
+export const ImageOrientation = props => {
+  const { t } = props;
+  const imageOrientationLabel = t('GallerySettings_Radios_Image_Orientation');
+  const verticalLabel = t('GallerySettings_Radios_Vertical');
+  const horizontalLabel = t('GallerySettings_Radios_Horizontal');
+
+  return (
+    <RadioGroupHorizontal
+      label={imageOrientationLabel}
+      readOnly={props.options.readOnly}
+      dataSource={[{ value: '1', labelText: verticalLabel }, { value: '0', labelText: horizontalLabel }]}
+      {...props}
+    />
+  );
+};
 ImageOrientation.propTypes = propTypes;
 
-export const ScrollDirection = props => (
-  <RadioGroupHorizontal
-    label={'Scroll Direction'}
-    dataSource={[{ value: 'vertical', labelText: 'Vertical' }, { value: 'horizontal', labelText: 'Horizontal' }]}
-    {...props}
-  />
-);
+export const ScrollDirection = props => {
+  const { t } = props;
+  const scrollDirectionLabel = t('GallerySettings_Radios_Scroll_Direction');
+  const verticalLabel = t('GallerySettings_Radios_Vertical');
+  const horizontalLabel = t('GallerySettings_Radios_Horizontal');
+
+  return (
+    <RadioGroupHorizontal
+      label={scrollDirectionLabel}
+      dataSource={[{ value: 'vertical', labelText: verticalLabel }, { value: 'horizontal', labelText: horizontalLabel }]}
+      {...props}
+    />
+  );
+};
 ScrollDirection.propTypes = propTypes;

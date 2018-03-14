@@ -79,10 +79,17 @@ class ImageSettings extends Component {
 
   render() {
     const styles = this.styles;
-    const { onCancel, theme, isMobile } = this.props;
+    const { onCancel, theme, isMobile, t } = this.props;
     const { images } = this.state;
     const selectedImage = images[this.state.selectedIndex];
     const { url, targetBlank, nofollow } = (!isEmpty(selectedImage.metadata.link) ? selectedImage.metadata.link : {});
+    const updateLabel = t('GalleryImageSettings_Update');
+    const headerLabel = t('GalleryImageSettings_Header');
+    const ReplaceLabel = t('GalleryImageSettings_Replace_Label');
+    const deleteLabel = t('GalleryImageSettings_Delete_Label');
+    const titleLabel = t('GalleryImageSettings_Title_Label');
+    const titleInputPlaceholder = t('GalleryImageSettings_Title_Input_Placeholder');
+    const linkLabel = t('GalleryImageSettings_Link_Label');
 
     return (
       <div className={styles.galleryImageSettings}>
@@ -92,13 +99,14 @@ class ImageSettings extends Component {
               theme={theme}
               cancel={() => onCancel(this.initialImageState)}
               save={() => this.onDoneClick(selectedImage)}
-              saveName="Update"
+              saveName={updateLabel}
+              t={t}
             /> :
             <h3
               className={classNames(styles.galleryImageSettings_backButton, styles.galleryImageSettings_title)}
               onClick={() => onCancel(this.initialImageState)}
             >
-              <BackIcon className={styles.galleryImageSettings_backIcon} />Image Settings
+              <BackIcon className={styles.galleryImageSettings_backIcon} />{headerLabel}
             </h3>
           }
           <div
@@ -127,23 +135,23 @@ class ImageSettings extends Component {
             </SettingsSection>
             <div className={styles.galleryImageSettings_manageImageGrid}>
               <FileInput className={styles.galleryImageSettings_replace} onChange={this.replaceItem.bind(this)}>
-                <span className={styles.galleryImageSettings_replace_text}>{'Replace'}</span>
+                <span className={styles.galleryImageSettings_replace_text}>{ReplaceLabel}</span>
               </FileInput>
               <button className={styles.galleryImageSettings_delete} onClick={() => this.deleteImage(selectedImage)}>
-                <span className={styles.galleryImageSettings_delete_text}>{'Delete'}</span>
+                <span className={styles.galleryImageSettings_delete_text}>{deleteLabel}</span>
               </button>
             </div>
             <SettingsSection theme={theme} className={styles.galleryImageSettings_section}>
               <InputWithLabel
                 theme={theme}
-                label={'Title'}
-                placeholder={'Add image title'}
+                label={titleLabel}
+                placeholder={titleInputPlaceholder}
                 value={selectedImage.metadata.title || ''}
                 onChange={event => this.imageMetadataUpdated(selectedImage, { title: event.target.value })}
               />
             </SettingsSection>
             <SettingsSection theme={theme} className={this.styles.galleryImageSettings_section}>
-              <label className={this.styles.inputWithLabel_label}>Link</label>
+              <label className={this.styles.inputWithLabel_label}>{linkLabel}</label>
             </SettingsSection>
             <div className={this.styles.galleryImageSettingsLinkContainer}>
               <LinkPanel
@@ -153,6 +161,7 @@ class ImageSettings extends Component {
                 targetBlank={targetBlank}
                 nofollow={nofollow}
                 isImageSettings
+                t={t}
               />
             </div>
           </div>
@@ -162,6 +171,7 @@ class ImageSettings extends Component {
             className={styles.galleryImageSettings_footer}
             cancel={() => onCancel(this.initialImageState)}
             save={() => this.onDoneClick(selectedImage)}
+            t={t}
           />
           }
         </div>
@@ -177,7 +187,8 @@ ImageSettings.propTypes = {
   onSave: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   handleFileChange: PropTypes.func.isRequired,
-  isMobile: PropTypes.bool
+  isMobile: PropTypes.bool,
+  t: PropTypes.func,
 };
 
 export default ImageSettings;

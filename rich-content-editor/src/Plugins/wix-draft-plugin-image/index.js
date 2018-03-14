@@ -18,6 +18,7 @@ const createImagePlugin = (config = {}) => {
     }),
     helpers,
     isMobile,
+    t,
   });
 };
 

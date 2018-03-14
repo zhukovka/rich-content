@@ -8,7 +8,6 @@ import styles from './default-image-styles.scss';
 import ImageLoader from '~/Components/ImageLoader';
 
 const getDefault = () => ({
-  data: {},
   config: {
     alignment: 'center',
     size: 'content',
@@ -24,10 +23,10 @@ class ImageViewer extends React.Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-  getImageSrc(item) {
+  getImageSrc(src) {
     const { helpers } = this.props;
 
-    if (!item && (helpers && helpers.handleFileSelection)) {
+    if (!src && (helpers && helpers.handleFileSelection)) {
       return null;
     }
 
@@ -35,11 +34,11 @@ class ImageViewer extends React.Component {
     if (this.props.dataUrl) {
       imageUrl = this.props.dataUrl;
     } else {
-      imageUrl = getImageSrc(item, helpers);
+      imageUrl = getImageSrc(src, helpers);
     }
 
     if (!imageUrl) {
-      console.error(`image plugin mounted with invalid image source!`, item); //eslint-disable-line no-console
+      console.error(`image plugin mounted with invalid image source!`, src); //eslint-disable-line no-console
     }
 
     return imageUrl;
@@ -71,24 +70,26 @@ class ImageViewer extends React.Component {
       <div className={classNames(styles.imageDescription)}>{(data && data.description) || ''}</div>;
   }
 
-  renderCaption(caption, isFocused, styles) {
+  renderCaption(caption, isFocused, styles, t) {
+    const defaultCaption = t('ImageViewer_Caption');
+
     return (
       caption ?
         <div className={styles.imageCaption}>{caption}</div> :
-        isFocused && <div className={styles.imageCaption}>Go to settings to change Caption</div>
+        isFocused && <div className={styles.imageCaption}>{defaultCaption}</div>
     );
   }
 
   render() {
     const { styles } = this;
-    const { componentData, className, onClick, isFocused } = this.props;
+    const { componentData, className, onClick, isFocused, t } = this.props;
     const data = componentData || getDefault();
-    const { item = {} } = componentData;
-    const { metadata = {} } = item;
+    const { src = {} } = componentData;
+    const { metadata = {} } = src;
 
     const itemClassName = classNames(styles.imageContainer, className);
     const imageClassName = classNames(styles.image);
-    const imageSrc = this.getImageSrc(data.item);
+    const imageSrc = this.getImageSrc(data.src);
     return (
       <div onClick={onClick} className={itemClassName}>
         <div>
@@ -97,7 +98,7 @@ class ImageViewer extends React.Component {
         </div>
         {this.renderTitle(data, styles)}
         {this.renderDescription(data, styles)}
-        {this.renderCaption(metadata.caption, isFocused, styles)}
+        {this.renderCaption(metadata.caption, isFocused, styles, t)}
       </div>
     );
   }
@@ -112,6 +113,7 @@ ImageViewer.propTypes = {
   isLoading: PropTypes.bool,
   dataUrl: PropTypes.string,
   isFocused: PropTypes.bool,
+  t: PropTypes.func,
 };
 
 export { ImageViewer, getDefault };

@@ -32,32 +32,35 @@ export const switchLayout = (layout, _componentData, store) => {
   store.set('componentData', componentData);
 };
 
-export const getCurrentLayout = store => {
+export const getCurrentLayout = (store, t) => {
   const componentData = store.get('componentData');
   const galleryLayout = (componentData && componentData.styles && componentData.styles.galleryLayout) || 0;
-  return galleryLayoutsDropdown.find(layout => layout.value === galleryLayout);
+  return getGalleryLayouts(t).find(layout => layout.value === galleryLayout);
 };
 
-export const galleryLayoutsSelector = [
-  { value: 2, label: 'Grid', icon: GridIconLarge },
-  { value: 1, label: 'Masonry', icon: MasonryIconLarge },
-  { value: 0, label: 'Collage', icon: CollageIconLarge },
-  { value: 3, label: 'Thumbnails', icon: ThumbnailsIconLarge },
-  { value: 9, label: 'Slideshow', icon: SlideshowIconLarge },
-  { value: 6, label: 'Panorama', icon: PanoramaIconLarge },
-  { value: 7, label: 'Columns', icon: ColumnsIconLarge },
-  { value: 4, label: 'Slides', icon: SlidesIconLarge },
-];
+export const getGalleryLayouts = t => {
+  return [
+    { value: 2, label: t('GalleryPlugin_Layout_Grid'), icon: GridIconLarge },
+    { value: 1, label: t('GalleryPlugin_Layout_Masonry'), icon: MasonryIconLarge },
+    { value: 0, label: t('GalleryPlugin_Layout_Collage'), icon: CollageIconLarge },
+    { value: 3, label: t('GalleryPlugin_Layout_Thumbnails'), icon: ThumbnailsIconLarge },
+    { value: 9, label: t('GalleryPlugin_Layout_Slideshow'), icon: SlideshowIconLarge },
+    { value: 6, label: t('GalleryPlugin_Layout_Panorama'), icon: PanoramaIconLarge },
+    { value: 7, label: t('GalleryPlugin_Layout_Columns'), icon: ColumnsIconLarge },
+    { value: 4, label: t('GalleryPlugin_Layout_Slides'), icon: SlidesIconLarge },
+  ];
+};
 
-// Alan, have a nice merge!
-export const galleryLayoutsDropdown = [
-  { value: 2, label: 'Grid', icon: GridIconSmall },
-  { value: 1, label: 'Masonry', icon: MasonryIconSmall },
-  { value: 0, label: 'Collage', icon: CollageIconSmall },
-  { value: 3, label: 'Thumbnails', icon: ThumbnailsIconSmall },
-  { value: 9, label: 'Slideshow', icon: SlideshowIconSmall },
-  { value: 6, label: 'Panorama', icon: PanoramaIconSmall },
-  { value: 7, label: 'Columns', icon: ColumnsIconSmall },
-  { value: 4, label: 'Slides', icon: SlidesIconSmall },
-];
+export const galleryLayoutsDropdown = t => {
+  return [
+    { value: 2, label: t('GalleryPlugin_Layout_Grid'), icon: GridIconSmall },
+    { value: 1, label: t('GalleryPlugin_Layout_Masonry'), icon: MasonryIconSmall },
+    { value: 0, label: t('GalleryPlugin_Layout_Collage'), icon: CollageIconSmall },
+    { value: 3, label: t('GalleryPlugin_Layout_Thumbnails'), icon: ThumbnailsIconSmall },
+    { value: 9, label: t('GalleryPlugin_Layout_Slideshow'), icon: SlideshowIconSmall },
+    { value: 6, label: t('GalleryPlugin_Layout_Panorama'), icon: PanoramaIconSmall },
+    { value: 7, label: t('GalleryPlugin_Layout_Columns'), icon: ColumnsIconSmall },
+    { value: 4, label: t('GalleryPlugin_Layout_Slides'), icon: SlidesIconSmall },
+  ];
+};
 

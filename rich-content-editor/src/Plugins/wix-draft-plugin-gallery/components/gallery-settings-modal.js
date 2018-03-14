@@ -28,6 +28,7 @@ class ManageMediaSection extends Component {
   };
 
   render() {
+    const { t } = this.props;
     return (
       <div>
         <SortableComponent
@@ -35,6 +36,7 @@ class ManageMediaSection extends Component {
           items={this.props.data.items}
           onItemsChange={this.applyItems}
           handleFileChange={this.handleFileChange}
+          t={t}
           isMobile={this.props.isMobile}
         />
       </div>
@@ -46,7 +48,8 @@ ManageMediaSection.propTypes = {
   data: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  isMobile: PropTypes.bool
+  isMobile: PropTypes.bool,
+  t: PropTypes.func,
 };
 
 class AdvancedSettingsSection extends Component {
@@ -76,7 +79,7 @@ class AdvancedSettingsSection extends Component {
   }
 
   render() {
-    const { data, store, isMobile, theme } = this.props;
+    const { data, store, theme, t, isMobile } = this.props;
     return this.shouldRender() && (
       <div className={isMobile ? styles.gallerySettings_settingsContainerMobile : styles.gallerySettings_settingsContainer}>
         <SettingsSection theme={theme}>
@@ -84,6 +87,7 @@ class AdvancedSettingsSection extends Component {
             theme={theme}
             value={this.getValueFromComponentStyles('galleryLayout')}
             onChange={value => this.switchLayout({ galleryLayout: value })}
+            t={t}
             isMobile={isMobile}
           />
         </SettingsSection>
@@ -92,6 +96,7 @@ class AdvancedSettingsSection extends Component {
           layout={this.getValueFromComponentStyles('galleryLayout')}
           data={data}
           store={store}
+          t={t}
           isMobile={isMobile}
         />
       </div>
@@ -104,6 +109,7 @@ AdvancedSettingsSection.propTypes = {
   store: PropTypes.object.isRequired,
   isMobile: PropTypes.bool,
   theme: PropTypes.object.isRequired,
+  t: PropTypes.func,
 };
 
 export class GallerySettingsModal extends Component {
@@ -148,17 +154,17 @@ export class GallerySettingsModal extends Component {
     this.setState({ activeTab: otherTab });
   }
 
-  tabName(tab) {
+  tabName(tab, t) {
     /* eslint-disable camelcase */
     return {
-      manage_media: 'Organize Media',
-      advanced_settings: 'Advanced Settings',
+      manage_media: t('GallerySettings_Tab_ManageMedia'),
+      advanced_settings: t('GallerySettings_Tab_AdvancedSettings'),
     }[tab];
   }
 
   render() {
     const styles = this.styles;
-    const { pubsub, helpers, isMobile } = this.props;
+    const { pubsub, helpers, t, isMobile } = this.props;
     const { activeTab } = this.state;
     const componentData = pubsub.get('componentData');
     // console.log('MODAL_RENDER: ', componentData);
@@ -173,27 +179,29 @@ export class GallerySettingsModal extends Component {
             cancel={() => this.revertComponentData()}
             save={() => helpers.closeModal()}
             switchTab={this.switchTab}
-            otherTab={this.tabName(this.otherTab())}
+            otherTab={this.tabName(this.otherTab(), t)}
+            t={t}
           />
-          {activeTab === 'manage_media' ? <ManageMediaSection data={componentData} store={pubsub.store} isMobile theme={this.props.theme}/> : null }
-          {activeTab === 'advanced_settings' ? <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store} isMobile/> : null }
+          {activeTab === 'manage_media' ? <ManageMediaSection data={componentData} store={pubsub.store} theme={this.props.theme} t={t} isMobile/> : null }
+          {activeTab === 'advanced_settings' ? <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store} t={t} isMobile/> : null }
         </div>
       );
     } else {
+      const headerText = t('GallerySettings_Header');
       return (
         <div className={styles.gallerySettings}>
-          <h3 className={styles.gallerySettings_title}>Gallery Settings</h3>
+          <h3 className={styles.gallerySettings_title}>{headerText}</h3>
           <div>
             <Tabs value={activeTab} theme={this.props.theme}>
-              <Tab label={this.tabName('manage_media')} value={'manage_media'} theme={this.props.theme}>
-                <ManageMediaSection data={componentData} store={pubsub.store} theme={this.props.theme}/>
+              <Tab label={this.tabName('manage_media', t)} value={'manage_media'} theme={this.props.theme}>
+                <ManageMediaSection data={componentData} store={pubsub.store} theme={this.props.theme} t={t}/>
               </Tab>
-              <Tab label={this.tabName('advanced_settings')} value={'advanced_settings'} theme={this.props.theme}>
-                <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store}/>
+              <Tab label={this.tabName('advanced_settings', t)} value={'advanced_settings'} theme={this.props.theme}>
+                <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store} t={t}/>
               </Tab>
             </Tabs>
           </div>
-          <SettingsPanelFooter fixed cancel={() => this.revertComponentData()} save={() => helpers.closeModal()} theme={this.props.theme}/>
+          <SettingsPanelFooter fixed cancel={() => this.revertComponentData()} save={() => helpers.closeModal()} theme={this.props.theme} t={t}/>
         </div>
       );
     }
@@ -207,6 +215,7 @@ GallerySettingsModal.propTypes = {
   pubsub: PropTypes.any.isRequired,
   isMobile: PropTypes.bool,
   theme: PropTypes.object.isRequired,
+  t: PropTypes.func,
 };
 
 export default GallerySettingsModal;

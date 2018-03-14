@@ -11,6 +11,9 @@ export default function i18n({ locale, translations }) {
       interpolation: {
         escapeValue: false
       },
+      react: {
+        wait: true,
+      },
       resources: translations,
     });
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import SelectionList from '~/Components/SelectionList';
-import { galleryLayoutsSelector } from '../../helpers';
+import { getGalleryLayouts } from '../../helpers';
 import { mergeStyles } from '~/Utils/mergeStyles';
 import styles from './layout-selector.scss';
 
@@ -14,9 +14,11 @@ class LayoutSelector extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-  layouts = galleryLayoutsSelector.map(layout => {
-    return { layoutId: layout.value, name: layout.label, icon: layout.icon };
-  });
+  getLayouts = t => {
+    return getGalleryLayouts(t).map(layout => {
+      return { layoutId: layout.value, name: layout.label, icon: layout.icon };
+    });
+  }
 
   dataMapper = ({ layoutId }) => ({ value: layoutId });
 
@@ -32,14 +34,15 @@ class LayoutSelector extends Component {
 
   render() {
     const styles = this.styles;
-    const { value, theme, onChange } = this.props;
+    const { value, theme, onChange, t } = this.props;
+    const layoutsLabel = t('GalleryPlugin_Layouts_Title');
     return (
       <div>
-        <label className={styles.layoutsSelector_label}>Layouts</label>
+        <label className={styles.layoutsSelector_label}>{layoutsLabel}</label>
         <SelectionList
           theme={theme}
           className={styles.layoutsSelector_grid}
-          dataSource={this.layouts}
+          dataSource={this.getLayouts(t)}
           dataMapper={this.dataMapper}
           renderItem={this.renderOption}
           value={value}
@@ -54,6 +57,7 @@ LayoutSelector.propTypes = {
   value: PropTypes.number.isRequired,
   theme: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
+  t: PropTypes.func,
 };
 
 export default LayoutSelector;

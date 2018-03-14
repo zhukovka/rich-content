@@ -81,7 +81,7 @@ const getMobileTheme = theme => {
   };
 };
 
-const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme }) => {
+const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme, t }) => {
   const textButtons = get(buttons, 'textButtons.mobile', MobileTextButtonList);
   const addPluginIndex = textButtons.findIndex(b => b === 'AddPlugin');
   if (addPluginIndex !== -1) {
@@ -92,6 +92,7 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
     buttons: textButtons,
     theme: mobileTheme,
     isMobile: true,
+    t,
   });
 
   if (addPluginIndex !== -1) {
@@ -102,6 +103,7 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
       getEditorState,
       setEditorState,
       pubsub,
+      t,
       theme: mobileTheme
     }));
   }
@@ -109,13 +111,14 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
   return structure;
 };
 
-export default ({ buttons, helpers, pubsub, getEditorState, setEditorState, theme }) => {
+export default ({ buttons, helpers, pubsub, getEditorState, setEditorState, theme, t }) => {
   const mobileTheme = getMobileTheme(theme);
   return createStaticToolbar({
     helpers,
+    t,
     name: 'MobileToolbar',
     theme: mobileTheme,
-    structure: getMobileButtons({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme }),
+    structure: getMobileButtons({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme, t }),
     isMobile: true
   });
 };

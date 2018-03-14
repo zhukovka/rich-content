@@ -15,7 +15,10 @@ class ImageSettingsMobileHeader extends Component {
     };
   }
   render() {
-    const { save, cancel, saveName, cancelName, switchTab, otherTab, theme } = this.props;
+    const { save, cancel, saveName, cancelName, switchTab, otherTab, theme, t } = this.props;
+    const cancelLabel = cancelName || t('ImageSettings_MobileHeader_Cancel');
+    const saveLabel = saveName || t('ImageSettings_MobileHeader_Save');
+
     return (
       <div>
         <div className={this.styles.imageSettingsMobileHeader_headerPlaceholder} />
@@ -23,7 +26,7 @@ class ImageSettingsMobileHeader extends Component {
           <a
             onClick={() => cancel()} className={classNames(this.styles.imageSettingsMobileHeader_button,
               this.styles.imageSettingsMobileHeader_cancel)}
-          >{cancelName || 'Cancel'}
+          >{cancelLabel}
           </a>
           {otherTab ?
             <a
@@ -34,7 +37,7 @@ class ImageSettingsMobileHeader extends Component {
           <a
             onClick={() => save()} className={classNames(this.styles.imageSettingsMobileHeader_button,
               this.styles.imageSettingsMobileHeader_done)}
-          >{saveName || 'Save'}
+          >{saveLabel}
           </a>
         </div>
         {this.state.showMenu ? (
@@ -66,6 +69,7 @@ ImageSettingsMobileHeader.propTypes = {
   otherTab: PropTypes.string,
   saveName: PropTypes.string,
   cancelName: PropTypes.string,
+  t: PropTypes.func,
 };
 
 export default ImageSettingsMobileHeader;

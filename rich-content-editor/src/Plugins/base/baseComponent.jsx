@@ -9,6 +9,7 @@ import merge from 'lodash/merge';
 import includes from 'lodash/includes';
 import classNames from 'classnames';
 import createHocName from './createHocName';
+import { normalizeComponentData } from '~/Utils';
 import { IMAGE_TYPE, IMAGE_TYPE_LEGACY } from '../wix-draft-plugin-image/types';
 import Styles from '~/Styles/global.scss';
 
@@ -34,13 +35,23 @@ const sizeClassName = (size, theme) => {
   }
 };
 
-const createBaseComponent = ({ PluginComponent, theme, type, pubsub, helpers }) => {
+const createBaseComponent = ({ PluginComponent, theme, type, pubsub, helpers, t }) => {
   class WrappedComponent extends Component {
     static displayName = createHocName('BaseComponent', PluginComponent);
 
     constructor(props) {
       super(props);
+      this.normalizeComponentData();
       this.state = { componentState: {}, ...this.stateFromProps(props) };
+    }
+
+    normalizeComponentData() {
+      const { getData, setData } = this.props.blockProps;
+      const componentData = getData();
+      const normalizedComponentData = normalizeComponentData(componentData);
+      if (normalizedComponentData) {
+        setData(normalizedComponentData);
+      }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -223,6 +234,7 @@ const createBaseComponent = ({ PluginComponent, theme, type, pubsub, helpers }) 
           componentData={this.state.componentData}
           componentState={this.state.componentState}
           helpers={helpers}
+          t={t}
         />
       );
 

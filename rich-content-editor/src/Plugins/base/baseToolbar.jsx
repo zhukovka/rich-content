@@ -32,7 +32,7 @@ const getInitialState = () => (
   }
 );
 
-export default function createToolbar({ buttons, theme, pubsub, helpers, isMobile }) {
+export default function createToolbar({ buttons, theme, pubsub, helpers, isMobile, t }) {
   class BaseToolbar extends Component {
     constructor(props) {
       super(props);
@@ -239,6 +239,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
             isMobile={isMobile}
             componentState={this.state.componentState}
             closeModal={helpers.closeModal}
+            t={t}
           />);
         case BUTTONS.DELETE:
           return <DeleteButton onClick={this.deleteBlock} theme={themedStyle} key={key} />;
@@ -251,6 +252,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
               pubsub={pubsub}
               helpers={helpers}
               key={key}
+              t={t}
               isMobile={isMobile}
               {...button}
             />

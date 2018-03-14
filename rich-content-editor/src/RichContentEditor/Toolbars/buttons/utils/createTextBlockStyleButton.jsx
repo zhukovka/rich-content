@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { RichUtils } from '@wix/draft-js';
 import TextButton from '../TextButton';
 
-export default ({ blockTypes, Icons, InactiveIcon = null, tooltipText }) =>
+export default ({ blockTypes, Icons, InactiveIcon = null, tooltipTextKey }) =>
   class TextBlockStyleButton extends Component {
     static propTypes = {
       getEditorState: PropTypes.func.isRequired,
       setEditorState: PropTypes.func.isRequired,
       theme: PropTypes.object.isRequired,
-      isMobile: PropTypes.bool
+      isMobile: PropTypes.bool,
+      t: PropTypes.func
     };
 
     constructor(props) {
@@ -65,7 +66,8 @@ export default ({ blockTypes, Icons, InactiveIcon = null, tooltipText }) =>
 
     render() {
       const { blockTypeIndex } = this.state;
-      const { theme, isMobile } = this.props;
+      const { theme, isMobile, t } = this.props;
+      const tooltipText = t(tooltipTextKey);
       let Icon;
       if (blockTypeIndex !== undefined) {
         Icon = Icons[blockTypeIndex];

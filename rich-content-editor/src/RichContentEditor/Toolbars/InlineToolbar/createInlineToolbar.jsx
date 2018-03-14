@@ -10,6 +10,7 @@ const createInlineToolbar = (config = {}) => {
     structure = [],
     isMobile = false,
     helpers,
+    t,
   } = config;
 
   const toolbarProps = {
@@ -17,7 +18,8 @@ const createInlineToolbar = (config = {}) => {
     structure,
     theme,
     isMobile,
-    helpers
+    helpers,
+    t
   };
 
   return {

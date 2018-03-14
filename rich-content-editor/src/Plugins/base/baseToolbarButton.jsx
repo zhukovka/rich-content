@@ -50,7 +50,7 @@ class BaseToolbarButton extends React.Component {
 
   handleClick = event => {
     event.preventDefault();
-    const { componentState, keyName, helpers, pubsub, theme, onClick, ...otherProps } = this.props;
+    const { t, componentState, keyName, helpers, pubsub, theme, onClick, ...otherProps } = this.props;
 
     if (this.props.type === BUTTONS.FILES && helpers && helpers.handleFileSelection) {
       const multiple = !!this.props.multiple;
@@ -73,6 +73,7 @@ class BaseToolbarButton extends React.Component {
           keyName,
           helpers,
           pubsub,
+          t,
           theme: theme || {},
           ...otherProps,
         };
@@ -148,10 +149,10 @@ class BaseToolbarButton extends React.Component {
   };
 
   renderDropdownButton = (buttonWrapperClassNames, buttonClassNames) => {
-    const { pubsub, componentData, onChange, getValue, ...props } = this.props;
+    const { pubsub, componentData, onChange, getValue, t, ...props } = this.props;
 
     const decoratedOnChange = value => onChange(value, componentData, pubsub.store);
-    const decoratedGetValue = () => getValue(pubsub.store);
+    const decoratedGetValue = () => getValue(pubsub.store, t);
 
     return (
       <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
@@ -211,6 +212,7 @@ BaseToolbarButton.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
   modalStyles: PropTypes.object,
   isMobile: PropTypes.bool,
+  t: PropTypes.func,
 };
 
 export default BaseToolbarButton;

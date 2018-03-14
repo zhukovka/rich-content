@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { RichUtils } from '@wix/draft-js';
 import TextButton from '../TextButton';
 
-export default ({ style, Icon, tooltipText }) =>
+export default ({ style, Icon, tooltipTextKey }) =>
   class TextInlineStyleButton extends Component {
     static propTypes = {
       getEditorState: PropTypes.func.isRequired,
       setEditorState: PropTypes.func.isRequired,
       theme: PropTypes.object.isRequired,
-      isMobile: PropTypes.bool
+      isMobile: PropTypes.bool,
+      t: PropTypes.func
     };
 
     toggleStyle = event => {
@@ -30,7 +31,8 @@ export default ({ style, Icon, tooltipText }) =>
     }
 
     render() {
-      const { theme, isMobile } = this.props;
+      const { theme, isMobile, t } = this.props;
+      const tooltipText = t(tooltipTextKey);
       return (
         <TextButton
           icon={Icon}

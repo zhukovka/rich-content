@@ -8,7 +8,7 @@ import TextLinkPanel from './TextLinkPanel';
 
 export default class TextLinkButton extends Component {
   showLinkPanel = () => {
-    const { onExtendContent, onOverrideContent, getEditorState, setEditorState, theme, isMobile, helpers, keyName } = this.props;
+    const { onExtendContent, onOverrideContent, getEditorState, setEditorState, theme, isMobile, helpers, keyName, t } = this.props;
     const modalStyles = getModalStyles({ fullScreen: false });
     if (isMobile) {
       if (helpers && helpers.openModal) {
@@ -18,6 +18,7 @@ export default class TextLinkButton extends Component {
           isMobile,
           getEditorState,
           setEditorState,
+          t,
           theme,
           modalName: MODALS.MOBILE_TEXT_LINK_MODAL,
           hidePopup: helpers.closeModal
@@ -30,7 +31,8 @@ export default class TextLinkButton extends Component {
       const linkPanelProps = {
         onExtendContent,
         onOverrideContent,
-        theme
+        theme,
+        t,
       };
       const TextLinkPanelWithProps = decorateComponentWithProps(TextLinkPanel, linkPanelProps);
       onExtendContent(TextLinkPanelWithProps);
@@ -42,7 +44,8 @@ export default class TextLinkButton extends Component {
   }
 
   render() {
-    const { theme, isMobile } = this.props;
+    const { theme, isMobile, t } = this.props;
+    const linkButtonTooltip = t('TextLinkButton_Tooltip');
     const buttonStyles = {
       button: theme.inlineToolbarButton,
       buttonWrapper: theme.inlineToolbarButton_wrapper,
@@ -54,7 +57,7 @@ export default class TextLinkButton extends Component {
       isActive={this.isActive}
       theme={{ ...theme, ...buttonStyles }}
       isMobile={isMobile}
-      tooltipText={'link'}
+      tooltipText={linkButtonTooltip}
     />);
   }
 }
@@ -68,4 +71,5 @@ TextLinkButton.propTypes = {
   isMobile: PropTypes.bool,
   helpers: PropTypes.object,
   keyName: PropTypes.string,
+  t: PropTypes.func,
 };
