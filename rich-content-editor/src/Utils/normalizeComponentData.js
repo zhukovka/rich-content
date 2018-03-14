@@ -15,10 +15,14 @@ export default componentData => {
       delete componentData.size; //eslint-disable-line fp/no-delete
       if (size === 'smallCenter') {
         config.size = 'small';
+        config.alignment = 'center';
       } else if (size === 'fullWidth') {
         config.size = 'fullWidth';
+        config.alignment = 'center';
+      } else if (size === 'original') {
+        config.size = 'original';
+        config.alignment = 'left';
       }
-      config.alignment = 'center';
     }
   } else {
     config.alignment = 'center';
