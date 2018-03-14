@@ -17,8 +17,10 @@
   background: transparent;
   color: $toolbar-font-color;;
   padding: 5px;
-  border: 0 none;
+  border: none;
   cursor: pointer;
+  line-height: normal;
+  margin: 0;
 
   @include svg-fill;
   .pluginToolbarButton_icon {

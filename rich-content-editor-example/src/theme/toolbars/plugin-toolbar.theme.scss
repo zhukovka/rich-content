@@ -17,14 +17,24 @@
 }
 
 .pluginToolbarButton {
+  // background: orange;
 }
 
 .pluginToolbarButton_wrapper {
+  // background: cyan;
 }
 
 .pluginToolbarButton_wrapper:hover .pluginToolbarButton_icon {
   color: fuchsia;
 }
+
+.pluginToolbarButton_icon {
+  // background: green;
+  svg {
+    // background: rosybrown;
+  }
+}
+
 
 /* Separator */
 .pluginToolbarSeparator {

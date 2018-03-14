@@ -16,6 +16,8 @@
     color: $toolbar-font-color;
     padding: 5px;
     border: 0 none;
+    line-height: normal;
+    margin: 0;
     cursor: pointer;
     &:hover,
     &:focus {
