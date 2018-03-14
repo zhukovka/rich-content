@@ -31,10 +31,9 @@ const santaConfig = {
 };
 
 module.exports = function(env) {
-  console.log('NODE_ENV: ', env)
   const prodConfig = prod(env);
   prodConfig.module.rules = prodConfig.module.rules.filter(rule => rule.test.toString() !== /\.scss$/.toString())
   prodConfig.output.filename = `${FILE_NAME}-santa.js`;
-  console.log(JSON.stringify(merge(prodConfig, santaConfig), null, ' '))
+
   return merge(prodConfig, santaConfig);
 };
