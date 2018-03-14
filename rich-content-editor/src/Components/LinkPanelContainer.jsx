@@ -50,7 +50,10 @@ class LinkPanelContainer extends Component {
 
   render() {
     const { styles } = this;
-    const { url, targetBlank, nofollow, theme, isActive, isMobile } = this.props;
+    const { url, targetBlank, nofollow, theme, isActive, isMobile, t } = this.props;
+    const doneButtonText = t('LinkPanelContainer_DoneButton');
+    const cancelButtonText = t('LinkPanelContainer_CancelButton');
+    const removeButtonText = t('LinkPanelContainer_RemoveButton');
     const doneButtonClassName = classNames(styles.linkPanel_FooterButton, styles.linkPanel_enabled);
     const cancelButtonClassName = classNames(styles.linkPanel_FooterButton, styles.linkPanel_Cancel);
     const linkPanelContainerClassName = classNames(styles.linkPanel_container,
@@ -66,20 +69,21 @@ class LinkPanelContainer extends Component {
             url={url}
             targetBlank={targetBlank}
             nofollow={nofollow}
+            t={t}
           />
           <div className={styles.linkPanel_actionsDivider} />
         </div>
         <div className={styles.linkPanel_Footer}>
           <div className={styles.linkPanel_LeftActions}>
-            <div className={cancelButtonClassName} onClick={this.onCancelClick}>Cancel</div>
+            <div className={cancelButtonClassName} onClick={this.onCancelClick}>{cancelButtonText}</div>
             {isActive &&
             <div className={styles.linkPanel_RemoveContainer}>
               <div className={styles.linkPanel_VerticalDivider} />
-              <div className={styles.linkPanel_FooterButton} onClick={this.onDeleteClick}>Remove Link</div>
+              <div className={styles.linkPanel_FooterButton} onClick={this.onDeleteClick}>{removeButtonText}</div>
             </div>
             }
           </div>
-          <div className={doneButtonClassName} onClick={this.onDoneClick}>Update</div>
+          <div className={doneButtonClassName} onClick={this.onDoneClick}>{doneButtonText}</div>
         </div>
       </div>
     );
@@ -97,6 +101,7 @@ LinkPanelContainer.propTypes = {
   isMobile: PropTypes.bool,
   onOverrideContent: PropTypes.func,
   theme: PropTypes.object.isRequired,
+  t: PropTypes.func,
 };
 
 export default LinkPanelContainer;

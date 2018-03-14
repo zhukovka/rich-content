@@ -5,6 +5,7 @@ class HTMLSettings extends Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired,
+    t: PropTypes.func,
   };
 
   constructor(props) {
@@ -21,6 +22,7 @@ class HTMLSettings extends Component {
     return {
       width: (componentData && componentData.config && componentData.config.width) || 200,
       height: (componentData && componentData.config && componentData.config.height) || 200,
+      t: props.t,
     };
   };
 
@@ -38,20 +40,25 @@ class HTMLSettings extends Component {
   };
 
   render = () => {
+    const { t } = this.props;
+    const widthLabel = t('HtmlPlugin_Width');
+    const heightLabel = t('HtmlPlugin_Height');
+    const pixelsLabel = t('HtmlPlugin_Pixels');
+
     return (
       <div>
         <div>
-          <label htmlFor="width">Width</label>
+          <label htmlFor="width">{widthLabel}</label>
           <input type="range" min="10" max="1000" value={this.state.width} id="width" step="10" onChange={this.changeWidth} />
           <output htmlFor="width" id="widthVal">
-            {this.state.width}px
+            {this.state.width}{pixelsLabel}
           </output>
         </div>
         <div>
-          <label htmlFor="height">Height</label>
+          <label htmlFor="height">{heightLabel}</label>
           <input type="range" min="10" max="1000" value={this.state.height} id="height" step="10" onChange={this.changeHeight} />
           <output htmlFor="height" id="widthVal">
-            {this.state.height}px
+            {this.state.height}{pixelsLabel}
           </output>
         </div>
       </div>
@@ -59,4 +66,5 @@ class HTMLSettings extends Component {
   };
 }
 
+// const translatedHtmlSettings = translate(null)(HTMLSettings);
 export default HTMLSettings;

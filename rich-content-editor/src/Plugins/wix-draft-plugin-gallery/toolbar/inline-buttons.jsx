@@ -7,57 +7,59 @@ import { getModalStyles } from '~/Utils';
 import { galleryLayoutsDropdown, switchLayout, getCurrentLayout } from '../helpers';
 
 const modalStyles = getModalStyles();
-const InlineButtons = [
-  {
-    keyName: 'add',
-    type: BUTTONS.FILES,
-    icon: AddIcon,
-    onFilesSelected: (pubsub, files) => {
-      if (files.length > 0) {
-        const handleFilesSelected = pubsub.store.get('handleFilesSelected');
-        handleFilesSelected(files);
-      }
+export default({ t }) => {
+  return [
+    {
+      keyName: 'add',
+      type: BUTTONS.FILES,
+      icon: AddIcon,
+      onFilesSelected: (pubsub, files) => {
+        if (files.length > 0) {
+          const handleFilesSelected = pubsub.store.get('handleFilesSelected');
+          handleFilesSelected(files);
+        }
+      },
+      mobile: false,
+      multiple: true,
     },
-    mobile: false,
-    multiple: true,
-  },
-  { type: BUTTONS.SEPARATOR, mobile: false },
-  {
-    keyName: 'layout',
-    type: BUTTONS.DROPDOWN,
-    options: galleryLayoutsDropdown,
-    onChange: switchLayout,
-    getValue: getCurrentLayout,
-    mobile: true,
-  },
-  { type: BUTTONS.SEPARATOR, mobile: false },
-  { type: BUTTONS.SIZE_SMALL_CENTER, mobile: false },
-  { type: BUTTONS.SIZE_CONTENT, mobile: false },
-  { type: BUTTONS.SIZE_FULL_WIDTH, mobile: false },
-  { type: BUTTONS.SEPARATOR, mobile: false },
-  { type: BUTTONS.SIZE_SMALL_LEFT, mobile: false },
-  { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: false },
-  { type: BUTTONS.SEPARATOR, mobile: false },
-  {
-    keyName: 'manage_media',
-    type: BUTTONS.EXTERNAL_MODAL,
-    icon: ManageMediaIcon,
-    modalName: MODALS.GALLERY_SETTINGS,
-    activeTab: 'manage_media',
-    modalStyles,
-    mobile: true,
-  },
-  {
-    keyName: 'advanced_settings',
-    type: BUTTONS.EXTERNAL_MODAL,
-    icon: AdvancedSettingsIcon,
-    modalName: MODALS.GALLERY_SETTINGS,
-    activeTab: 'advanced_settings',
-    modalStyles,
-    mobile: false,
-    switchLayout,
-  },
-  { type: BUTTONS.DELETE, mobile: true },
-];
-
-export default InlineButtons;
+    { type: BUTTONS.SEPARATOR, mobile: false },
+    {
+      keyName: 'layout',
+      type: BUTTONS.DROPDOWN,
+      options: galleryLayoutsDropdown(t),
+      onChange: switchLayout,
+      getValue: getCurrentLayout,
+      mobile: true,
+    },
+    { type: BUTTONS.SEPARATOR, mobile: false },
+    { type: BUTTONS.SIZE_SMALL_CENTER, mobile: false },
+    { type: BUTTONS.SIZE_CONTENT, mobile: false },
+    { type: BUTTONS.SIZE_FULL_WIDTH, mobile: false },
+    { type: BUTTONS.SEPARATOR, mobile: false },
+    { type: BUTTONS.SIZE_SMALL_LEFT, mobile: false },
+    { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: false },
+    { type: BUTTONS.SEPARATOR, mobile: false },
+    {
+      keyName: 'manage_media',
+      type: BUTTONS.EXTERNAL_MODAL,
+      icon: ManageMediaIcon,
+      modalName: MODALS.GALLERY_SETTINGS,
+      activeTab: 'manage_media',
+      modalStyles,
+      t,
+      mobile: true,
+    },
+    {
+      keyName: 'advanced_settings',
+      type: BUTTONS.EXTERNAL_MODAL,
+      icon: AdvancedSettingsIcon,
+      modalName: MODALS.GALLERY_SETTINGS,
+      activeTab: 'advanced_settings',
+      modalStyles,
+      switchLayout,
+      t,
+      mobile: false,
+    },
+    { type: BUTTONS.DELETE, mobile: true },
+  ];
+};

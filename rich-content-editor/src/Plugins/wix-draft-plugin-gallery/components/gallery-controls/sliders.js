@@ -7,12 +7,21 @@ const propTypes = {
   theme: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.object,
+  t: PropTypes.func,
 };
 
-export const ItemsPerRow = props => <SliderWithInput min={1} max={5} label={'Items per row:'} {...props} />;
+export const ItemsPerRow = props => {
+  const { t } = props;
+  const itemsPerRowLabel = t('GallerySettings_Sliders_Items_Per_Row');
+  return <SliderWithInput min={1} max={5} label={itemsPerRowLabel} {...props} />;
+};
 ItemsPerRow.propTypes = propTypes;
 
-export const Spacing = props => <SliderWithInput label={'Spacing between items:'} {...props} />;
+export const Spacing = props => {
+  const { t } = props;
+  const spacingLabel = t('GallerySettings_Spacing_Between_Items');
+  return <SliderWithInput label={spacingLabel} {...props} />;
+};
 Spacing.propTypes = propTypes;
 
 export const ThumbnailSize = props => (

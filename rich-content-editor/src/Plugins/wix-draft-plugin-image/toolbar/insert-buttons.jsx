@@ -6,10 +6,11 @@ export default ({ helpers, t }) => {
     {
       type: 'file',
       name: 'Image',
-      tooltipText: t('imagePlugin_name'),
+      tooltipText: t('ImagePlugin_InsertButton_Tooltip'),
       Icon: InsertPluginIcon,
       data: getDefault(),
       helpers,
+      t,
     },
   ];
 };

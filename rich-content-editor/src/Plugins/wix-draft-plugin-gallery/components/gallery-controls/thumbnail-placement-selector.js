@@ -31,10 +31,11 @@ class ThumbnailPlacementSelector extends Component {
   }
 
   render() {
-    const { value, onChange } = this.props;
+    const { value, onChange, t } = this.props;
+    const thumbnailPlacementLabel = t('GallerySettings_Thumbnail_Placement');
     return (
       <div>
-        <label className={this.styles.thumbnailPlacementSelector_label}>Thumbnail Placement</label>
+        <label className={this.styles.thumbnailPlacementSelector_label}>{thumbnailPlacementLabel}</label>
         <SelectionList
           theme={this.props.theme}
           className={this.styles.thumbnailPlacementSelector_grid}
@@ -53,6 +54,7 @@ ThumbnailPlacementSelector.propTypes = {
   value: PropTypes.oneOf(['bottom', 'left', 'top', 'right']),
   theme: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
+  t: PropTypes.func,
 };
 
 export default ThumbnailPlacementSelector;

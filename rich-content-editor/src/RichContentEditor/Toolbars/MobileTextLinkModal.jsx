@@ -27,7 +27,7 @@ export default class MobileTextLinkModal extends Component {
   }
 
   render() {
-    const { getEditorState, theme, isMobile } = this.props;
+    const { getEditorState, theme, isMobile, t } = this.props;
     const linkData = getLinkDataInSelection(getEditorState());
     const { url, targetBlank, nofollow } = linkData || {};
     return (
@@ -41,6 +41,7 @@ export default class MobileTextLinkModal extends Component {
         onDone={this.createLinkEntity}
         onCancel={this.hidePopup}
         onDelete={this.deleteLink}
+        t={t}
       />
     );
   }
@@ -55,4 +56,5 @@ MobileTextLinkModal.propTypes = {
   isMobile: PropTypes.bool,
   targetBlank: PropTypes.bool,
   nofollow: PropTypes.bool,
+  t: PropTypes.func,
 };

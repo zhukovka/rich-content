@@ -16,16 +16,18 @@ import Fab from '../../icons/fab.svg';
 //eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-const SortableItem = sortableElement(({ item, itemIdx, clickAction, addItemsButton, handleFileChange, isMobile, isMobileSorting, theme }) => {
+const SortableItem = sortableElement(({ item, itemIdx, clickAction, addItemsButton, handleFileChange, isMobileSorting, theme, t, isMobile }) => {
   const styles = mergeStyles({ styles: Styles, theme });
   const imageSize = (isMobile && window && window.document) ? ((window.document.body.getBoundingClientRect().width - 20) / 3) : 104;
   if (addItemsButton) {
+    const uploadMediaLabel = t('GallerySettings_Upload_Media');
+
     return (
       <FileInput
         className={classNames(styles.itemContainer, styles.filesItem, { [styles.mobile]: isMobile })}
         onChange={handleFileChange}
         multiple
-        title="Upload Media"
+        title={uploadMediaLabel}
         style={{ width: imageSize + 'px', height: imageSize + 'px' }}
       >
         <UploadIcon/>
@@ -70,19 +72,28 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, addItemsButt
 }
 );
 
-const SortableList = sortableContainer(({ items, clickAction, handleFileChange, isMobile, isMobileSorting, theme }) => {
+const SortableList = sortableContainer(({ items, clickAction, handleFileChange, isMobileSorting, theme, t, isMobile }) => {
   const styles = mergeStyles({ styles: Styles, theme });
   return (
     <div
       className={classNames(styles.sortableContainer, { [styles.mobile]: isMobile })}
     >
       {items.map((item, itemIdx) => (
-        //eslint-disable-next-line
-        <SortableItem key={`item-${itemIdx}`} itemIdx={itemIdx} index={itemIdx} item={item} clickAction={clickAction} isMobile={isMobile} isMobileSorting={isMobileSorting} disabled={isMobile && !isMobileSorting} theme={theme}/>
+        <SortableItem
+          key={`item-${itemIdx}`}
+          itemIdx={itemIdx}
+          index={itemIdx} item={item}
+          clickAction={clickAction}
+          isMobileSorting={isMobileSorting}
+          disabled={isMobile && !isMobileSorting}
+          theme={theme}
+          t={t}
+          isMobile={isMobile}
+        />
       ))}
       {isMobileSorting ? null : <SortableItem
         key={`item-upload-mock`} itemIdx={items.length} index={items.length} disabled addItemsButton isMobile={isMobile}
-        handleFileChange={handleFileChange} theme={theme}
+        handleFileChange={handleFileChange} theme={theme} t={t}
       />
       }
     </div>
@@ -90,34 +101,42 @@ const SortableList = sortableContainer(({ items, clickAction, handleFileChange, 
 });
 
 //eslint-disable-next-line
-const ItemActionsMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageSettings, handleFileChange, toggleSorting, isMobileSorting, isMobile, theme }) => {
+const ItemActionsMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageSettings, handleFileChange, toggleSorting, isMobileSorting, theme, t, isMobile }) => {
   const styles = mergeStyles({ styles: Styles, theme });
   const hasUnselectedItems = items.some(item => !item.selected);
   const hasSelectedItems = items.some(item => item.selected);
   const selectedItems = items.filter(item => item.selected);
+  const addMediaLabel = t('GallerySettings_Add_Media');
+  const finishSortingLabel = t('GallerySettings_Finish_Sorting');
+  const sortItemsLabel = t('GallerySettings_Sort_Items');
+  const selectAllLabel = t('GallerySettings_Select_All');
+  const deselectLabel = t('GallerySettings_Deselect');
+  const deleteLabel = t('GallerySettings_Delete');
+  const itemSettingsLabel = t('GallerySettings_Image_Settings');
+
   //eslint-disable-next-line max-len
-  const addItemButton = <FileInput className={styles.filesButton} onChange={handleFileChange} multiple>{(isMobile ? <Fab className={styles.fab} /> : '+ Add Media')}</FileInput>;
+  const addItemButton = <FileInput className={styles.filesButton} onChange={handleFileChange} multiple>{(isMobile ? <Fab className={styles.fab} /> : `+ ${addMediaLabel}`)}</FileInput>;
 
   const separator = <span className={styles.seperator}>·</span>;
   const buttons = [];
 
   if (isMobile && selectedItems.length === 0) {
-    buttons.push(<a className={styles.topBarLink} onClick={toggleSorting}>{isMobileSorting ? 'Finish Sorting' : 'Sort Items'}</a>);
+    buttons.push(<a className={styles.topBarLink} onClick={toggleSorting}>{isMobileSorting ? { finishSortingLabel } : { sortItemsLabel }}</a>);
     buttons.push(separator);
   }
   if (!isMobileSorting) {
     if (hasUnselectedItems) {
-      buttons.push(<a className={styles.topBarLink} onClick={() => setAllItemsValue('selected', true)}>Select All</a>);
+      buttons.push(<a className={styles.topBarLink} onClick={() => setAllItemsValue('selected', true)}>{selectAllLabel}</a>);
       buttons.push(separator);
     }
     if (hasSelectedItems) {
-      buttons.push(<a className={styles.topBarLink} onClick={() => setAllItemsValue('selected', false)}>Deselect</a>);
+      buttons.push(<a className={styles.topBarLink} onClick={() => setAllItemsValue('selected', false)}>{deselectLabel}</a>);
       buttons.push(separator);
-      buttons.push(<a className={styles.topBarLink} onClick={() => deleteSelectedItems()}>Delete</a>);
+      buttons.push(<a className={styles.topBarLink} onClick={() => deleteSelectedItems()}>{deleteLabel}</a>);
       buttons.push(separator);
     }
     if (selectedItems.length === 1) {
-      buttons.push(<a className={styles.topBarLink} onClick={() => toggleImageSettings(true)}>Image Settings</a>);
+      buttons.push(<a className={styles.topBarLink} onClick={() => toggleImageSettings(true)}>{itemSettingsLabel}</a>);
       buttons.push(separator);
     }
   }
@@ -140,6 +159,7 @@ ItemActionsMenu.propTypes = {
   toggleSorting: PropTypes.func,
   isMobileSorting: PropTypes.bool,
   theme: PropTypes.object.isRequired,
+  t: PropTypes.func,
   isMobile: PropTypes.bool
 };
 
@@ -254,7 +274,7 @@ export class SortableComponent extends Component {
   }
 
   render() {
-    const { theme } = this.props;
+    const { theme, t } = this.props;
     return !!this.state.items && (
       !this.state.imageSettingsVisible ? (
         <div>
@@ -266,8 +286,9 @@ export class SortableComponent extends Component {
             handleFileChange={this.props.handleFileChange}
             toggleSorting={this.toggleSorting}
             isMobileSorting={this.state.isMobileSorting}
-            isMobile={this.props.isMobile}
             theme={theme}
+            t={t}
+            isMobile={this.props.isMobile}
           />
           <SortableList
             items={this.state.items}
@@ -280,6 +301,7 @@ export class SortableComponent extends Component {
             handleFileChange={this.props.handleFileChange}
             isMobileSorting={this.state.isMobileSorting}
             theme={theme}
+            t={t}
             isMobile={this.props.isMobile}
           />
         </div>
@@ -292,6 +314,7 @@ export class SortableComponent extends Component {
             onCancel={items => this.saveImageSettings(items)}
             onSave={items => this.saveImageSettings(items)}
             handleFileChange={this.props.handleFileChange}
+            t={t}
             isMobile={this.props.isMobile}
           />
         </div>
@@ -307,4 +330,5 @@ SortableComponent.propTypes = {
   handleFileChange: PropTypes.func.isRequired,
   isMobile: PropTypes.bool,
   theme: PropTypes.object.isRequired,
+  t: PropTypes.func,
 };

@@ -4,7 +4,7 @@ import { createMobileToolbar, createFooterToolbar } from './StaticToolbar';
 import { createTextToolbar } from './InlineToolbar';
 import { simplePubsub, getToolbarTheme } from '~/Utils';
 
-const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, getEditorState, setEditorState }) => {
+const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, getEditorState, setEditorState, t }) => {
   const { pluginButtons, textButtons } = buttons;
   const pubsub = simplePubsub();
   const shouldCreateTextToolbar = !isMobile || baseUtils.isiOS();
@@ -25,7 +25,8 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
       theme: { ...getToolbarTheme(theme, 'inline'), ...theme },
       pubsub,
       isMobile,
-      helpers
+      helpers,
+      t,
     });
   }
 
@@ -41,6 +42,7 @@ const createToolbars = ({ buttons, sideToolbarOffset, helpers, isMobile, theme, 
       pubsub,
       getEditorState,
       setEditorState,
+      t,
       theme: { ...getToolbarTheme(theme, 'mobile'), ...theme },
     });
   }

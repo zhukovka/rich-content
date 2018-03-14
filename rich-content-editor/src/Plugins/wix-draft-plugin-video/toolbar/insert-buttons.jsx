@@ -3,12 +3,12 @@ import { MODALS } from '~/RichContentEditor/RichContentModal';
 import { getModalStyles } from '~/Utils';
 import InsertPluginIcon from './icons/insert-plugin.svg';
 
-export default ({ helpers }) => {
+export default ({ helpers, t }) => {
   return [
     {
       type: 'modal',
       name: 'Video',
-      tooltipText: 'Add a Video',
+      tooltipText: t('VideoPlugin_InsertButton_Tooltip'),
       Icon: InsertPluginIcon,
       data: DEFAULTS,
       modalName: MODALS.VIDEO_URL_INPUT,

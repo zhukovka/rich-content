@@ -71,17 +71,19 @@ class ImageViewer extends React.Component {
       <div className={classNames(styles.imageDescription)}>{(data && data.description) || ''}</div>;
   }
 
-  renderCaption(caption, isFocused, styles) {
+  renderCaption(caption, isFocused, styles, t) {
+    const defaultCaption = t('ImageViewer_Caption');
+
     return (
       caption ?
         <div className={styles.imageCaption}>{caption}</div> :
-        isFocused && <div className={styles.imageCaption}>Go to settings to change Caption</div>
+        isFocused && <div className={styles.imageCaption}>{defaultCaption}</div>
     );
   }
 
   render() {
     const { styles } = this;
-    const { componentData, className, onClick, isFocused } = this.props;
+    const { componentData, className, onClick, isFocused, t } = this.props;
     const data = componentData || getDefault();
     const { item = {} } = componentData;
     const { metadata = {} } = item;
@@ -97,7 +99,7 @@ class ImageViewer extends React.Component {
         </div>
         {this.renderTitle(data, styles)}
         {this.renderDescription(data, styles)}
-        {this.renderCaption(metadata.caption, isFocused, styles)}
+        {this.renderCaption(metadata.caption, isFocused, styles, t)}
       </div>
     );
   }
@@ -112,6 +114,7 @@ ImageViewer.propTypes = {
   isLoading: PropTypes.bool,
   dataUrl: PropTypes.string,
   isFocused: PropTypes.bool,
+  t: PropTypes.func,
 };
 
 export { ImageViewer, getDefault };

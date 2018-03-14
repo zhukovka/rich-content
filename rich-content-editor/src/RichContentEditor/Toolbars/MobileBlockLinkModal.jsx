@@ -22,7 +22,7 @@ export default class MobileBlockLinkModal extends Component {
   }
 
   render() {
-    const { pubsub, theme, isMobile } = this.props;
+    const { pubsub, theme, isMobile, t } = this.props;
     const componentLink = pubsub.get('componentLink');
     const { url, targetBlank, nofollow } = componentLink || {};
     return (
@@ -36,6 +36,7 @@ export default class MobileBlockLinkModal extends Component {
         onDone={this.wrapBlockInLink}
         onCancel={this.hidePopup}
         onDelete={this.deleteLink}
+        t={t}
       />
     );
   }
@@ -49,4 +50,5 @@ MobileBlockLinkModal.propTypes = {
   isMobile: PropTypes.bool,
   targetBlank: PropTypes.bool,
   nofollow: PropTypes.bool,
+  t: PropTypes.func,
 };

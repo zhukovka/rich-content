@@ -53,11 +53,12 @@ class VideoComponent extends React.Component {
     }
   };
 
-  renderOverlay = styles => {
+  renderOverlay = (styles, t) => {
     const { isLoaded } = this.state;
+    const overlayText = t('VideoComponent_Overlay');
     return (
       <div className={classNames(styles.video_overlay)}>
-        {isLoaded && <span className={styles.video_overlay_message}>To play this video, view this post from your live site</span>}
+        {isLoaded && <span className={styles.video_overlay_message}>{overlayText}</span>}
       </div>);
   };
 
@@ -79,12 +80,12 @@ class VideoComponent extends React.Component {
 
   render() {
     const { styles } = this;
-    const { className, onClick } = this.props;
+    const { className, onClick, t } = this.props;
     const { isPlayable } = this.state;
     const containerClassNames = classNames(styles.video_container, className || '');
     return (
       <div onClick={onClick} className={containerClassNames}>
-        {!isPlayable && this.renderOverlay(styles)}
+        {!isPlayable && this.renderOverlay(styles, t)}
         {this.renderPlayer(styles)}
       </div>
     );
@@ -99,6 +100,7 @@ VideoComponent.propTypes = {
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
+  t: PropTypes.func,
 };
 
 export { VideoComponent as Component, DEFAULTS };

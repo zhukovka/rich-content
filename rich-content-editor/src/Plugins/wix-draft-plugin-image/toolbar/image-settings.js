@@ -94,7 +94,7 @@ class ImageSettings extends Component {
   };
 
   render() {
-    const { componentData, helpers, theme, isMobile } = this.props;
+    const { componentData, helpers, theme, t, isMobile } = this.props;
     const { item } = componentData;
     if (!item) {
       return; //do not render until the item is passed
@@ -102,18 +102,26 @@ class ImageSettings extends Component {
 
     const { metadata = {} } = item;
     const { url, targetBlank, nofollow } = (!isEmpty(componentData.config.link) ? componentData.config.link : {});
+    const updateLabel = t('ImageSettings_Update');
+    const headerText = t('ImageSettings_Header');
+    const captionLabel = t('ImageSettings_Caption_Label');
+    const captionInputPlaceholder = t('ImageSettings_Caption_Input_Placeholder');
+    const altLabel = t('ImageSettings_Alt_Label');
+    const altInputPlaceholder = t('ImageSettings_Alt_Input_Placeholder');
+    const linkLabel = t('ImageSettings_Link_Label');
 
     return (
       <div className={this.styles.imageSettings}>
 
         { isMobile ?
           <ImageSettingsMobileHeader
+            t={t}
             theme={theme}
             cancel={() => this.revertComponentData()}
             save={() => this.onDoneClick()}
-            saveName="Update"
+            saveName={updateLabel}
           /> :
-          <h3 className={this.styles.imageSettingsTitle}>Image Settings</h3>
+          <h3 className={this.styles.imageSettingsTitle}>{headerText}</h3>
         }
         <div className={classNames(styles.imageSettings_scrollContainer, { [styles.imageSettings_mobile]: isMobile })}>
           <SettingsSection theme={theme}>
@@ -122,8 +130,8 @@ class ImageSettings extends Component {
           <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
             <InputWithLabel
               theme={theme}
-              label={'Caption'}
-              placeholder={'Enter your image caption (optional)'}
+              label={captionLabel}
+              placeholder={captionInputPlaceholder}
               value={metadata.caption || ''}
               onChange={event => this.imageMetadataUpdated(item, { caption: event.target.value })}
             />
@@ -131,14 +139,14 @@ class ImageSettings extends Component {
           <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
             <InputWithLabel
               theme={theme}
-              label={'Alt Text'}
-              placeholder={'Add image Alt Text'}
+              label={altLabel}
+              placeholder={altInputPlaceholder}
               value={metadata.alt || ''}
               onChange={event => this.imageMetadataUpdated(item, { alt: event.target.value })}
             />
           </SettingsSection>
           <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
-            <label className={this.styles.inputWithLabel_label}>Link</label>
+            <label className={this.styles.inputWithLabel_label}>{linkLabel}</label>
           </SettingsSection>
           <div className={this.styles.imageSettingsLinkContainer}>
             <LinkPanel
@@ -148,6 +156,7 @@ class ImageSettings extends Component {
               targetBlank={targetBlank}
               nofollow={nofollow}
               isImageSettings
+              t={t}
             />
           </div>
         </div>
@@ -156,6 +165,7 @@ class ImageSettings extends Component {
           theme={theme}
           cancel={() => this.revertComponentData()}
           save={() => this.onDoneClick()}
+          t={t}
         />
         }
 
@@ -168,6 +178,7 @@ ImageSettings.propTypes = {
   helpers: PropTypes.object,
   theme: PropTypes.object.isRequired,
   pubsub: PropTypes.any,
+  t: PropTypes.func,
   isMobile: PropTypes.bool,
 };
 

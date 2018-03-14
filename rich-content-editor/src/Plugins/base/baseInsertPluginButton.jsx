@@ -9,7 +9,7 @@ import FileInput from '~/Components/FileInput';
 import styles from '~/Styles/toolbar-button.scss';
 import { mergeStyles } from '~/Utils/mergeStyles';
 
-export default ({ blockType, button, helpers, pubsub }) => {
+export default ({ blockType, button, helpers, pubsub, t }) => {
   class InsertPluginButton extends Component {
     constructor(props) {
       super(props);
@@ -94,6 +94,7 @@ export default ({ blockType, button, helpers, pubsub }) => {
           componentData: button.data,
           onConfirm: this.addBlock,
           helpers,
+          t,
         });
       }
     }
@@ -166,6 +167,7 @@ export default ({ blockType, button, helpers, pubsub }) => {
     hidePopup: PropTypes.func,
     showName: PropTypes.bool,
     isMobile: PropTypes.bool,
+    t: PropTypes.func,
   };
 
   return InsertPluginButton;

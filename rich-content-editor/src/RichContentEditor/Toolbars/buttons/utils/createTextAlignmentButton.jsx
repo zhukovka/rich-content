@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
+
 import TextButton from '../TextButton';
 
-export default ({ alignment, Icon, tooltipText }) =>
+export default ({ alignment, Icon, tooltipTextKey }) => {
   class TextAlignmentButton extends Component {
     static propTypes = {
       alignment: PropTypes.string,
       onClick: PropTypes.func,
       theme: PropTypes.object.isRequired,
-      isMobile: PropTypes.bool
+      isMobile: PropTypes.bool,
+      t: PropTypes.func,
     };
 
     isActive = () => this.props.alignment === alignment;
@@ -16,7 +19,8 @@ export default ({ alignment, Icon, tooltipText }) =>
     handleClick = () => this.props.onClick && this.props.onClick(alignment);
 
     render() {
-      const { theme, isMobile } = this.props;
+      const { theme, isMobile, t } = this.props;
+      const tooltipText = t(tooltipTextKey);
       return (
         <TextButton
           icon={Icon}
@@ -28,4 +32,8 @@ export default ({ alignment, Icon, tooltipText }) =>
         />
       );
     }
-  };
+  }
+
+  return translate(null)(TextAlignmentButton);
+
+};

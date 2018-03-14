@@ -63,10 +63,11 @@ class LinkPanel extends Component {
 
   render() {
     const { styles } = this;
-    const { isImageSettings, theme } = this.props;
-    const firstCheckboxText = 'Open Link in New Window / Tab';
-    const secondCheckboxText = 'Add rel="nofollow" to link';
-    const inputPlaceholder = isImageSettings ? 'Add a link' : 'e.g. www.wix.com';
+    const { isImageSettings, theme, t } = this.props;
+    const firstCheckboxText = t('LinkPanel_Target_Checkbox');
+    const secondCheckboxText = t('LinkPanel_Nofollow_Checkbox');
+    const inputPlaceholder = isImageSettings ? t('LinkPanel_InputPlaceholder_ImageSettings') : t('LinkPanel_InputPlaceholder');
+    const errorTooltipText = t('LinkPanel_ErrorTooltip');
     const textInputClassName = classNames(styles.linkPanel_textInput,
       {
         [styles.linkPanel_textInput_invalid]: !this.state.isValidUrl,
@@ -87,7 +88,7 @@ class LinkPanel extends Component {
             />
             {this.state.isValidUrl ? null : (
               <Tooltip
-                content={'Invalid URL. Try Again'}
+                content={errorTooltipText}
                 moveBy={{ x: -23, y: -5 }}
                 theme={theme}
               >
@@ -111,5 +112,6 @@ LinkPanel.propTypes = {
   nofollow: PropTypes.bool,
   isImageSettings: PropTypes.bool,
   theme: PropTypes.object.isRequired,
+  t: PropTypes.func,
 };
 export default LinkPanel;

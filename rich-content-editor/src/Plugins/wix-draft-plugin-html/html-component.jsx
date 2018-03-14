@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import decorateComponentWithProps from 'decorate-component-with-props';
+import { translate } from 'react-i18next';
 
 import Overlay from './overlay';
 import styles from './default-html-styles.scss';
@@ -36,6 +37,7 @@ class HtmlComponent extends React.Component {
     const inEditMode = keyName === 'edit' && isActive;
     return {
       inEditMode,
+      t: PropTypes.func,
     };
   };
 
@@ -66,7 +68,7 @@ class HtmlComponent extends React.Component {
 
   render() {
     const { styles } = this;
-    const { blockProps, selection } = this.props;
+    const { blockProps, selection, t } = this.props;
     const isEditorFocused = selection && selection.getHasFocus();
     const { isFocused, readOnly } = blockProps || { readOnly: true };
     const data = this.props.componentData;
@@ -123,9 +125,10 @@ class HtmlComponent extends React.Component {
         </div>
       );
     } else {
+      const initLabel = t('HtmlComponent_Init_Text');
       return (
         <div onClick={this.props.onClick} className={classNames(this.props.className, styles.html_invalidGalleryItems)}>
-          Please select an iframe source
+          {initLabel}
         </div>
       );
     }
@@ -140,6 +143,8 @@ HtmlComponent.propTypes = {
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
+  t: PropTypes.func,
 };
 
-export { HtmlComponent as Component, DEFAULTS };
+const translatedHtmlComponent = translate(null)(HtmlComponent);
+export { translatedHtmlComponent as Component, DEFAULTS };

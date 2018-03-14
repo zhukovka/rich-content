@@ -35,11 +35,13 @@ class ImageRatioSelector extends Component {
       { ratio: 9 / 16, name: '9:16', ratioClass: this.styles.imageRatioSelector_9_16 },
     ];
     const { styles } = this;
-    const { value, onChange, theme, options } = this.props;
+    const { value, onChange, theme, options, t } = this.props;
+    const imageRatioLabel = t('GallerySettings_Image_Ratio');
+
 
     return (
       <div className={options.readOnly ? styles.imageRatioSelector_readOnly : null}>
-        <label className={styles.imageRatioSelector_label}>Image Ratio:</label>
+        <label className={styles.imageRatioSelector_label}>{imageRatioLabel}</label>
         <SelectionList
           theme={theme}
           className={styles.imageRatioSelector_grid}
@@ -59,6 +61,7 @@ ImageRatioSelector.propTypes = {
   theme: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.object,
+  t: PropTypes.func,
 };
 
 export default ImageRatioSelector;

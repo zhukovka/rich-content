@@ -10,7 +10,8 @@ export default (config = {}) => {
     theme,
     structure = [],
     isMobile = false,
-    helpers
+    helpers,
+    t,
   } = config;
 
   const toolbarProps = {
@@ -19,6 +20,7 @@ export default (config = {}) => {
     theme,
     isMobile,
     helpers,
+    t,
   };
 
   return {
