@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import findIndex from 'lodash/findIndex';
+import { getScaleToFillImageURL } from 'image-client-api/dist/imageClientSDK';
 import Image from '~/Components/Image';
 
 import SettingsSection from '~/Components/SettingsSection';
@@ -74,6 +75,8 @@ class ImageSettings extends Component {
     onSave(this.state.images);
   }
 
+  getImageUrl = image => getScaleToFillImageURL(('media/' + image.url), image.metadata.width, image.metadata.height, 420, 240);
+
   render() {
     const styles = this.styles;
     const { onCancel, theme, isMobile } = this.props;
@@ -106,7 +109,7 @@ class ImageSettings extends Component {
               <Image
                 resizeMode={'contain'}
                 className={styles.galleryImageSettings_image}
-                src={`https://static.wixstatic.com/${selectedImage.url}`}
+                src={this.getImageUrl(selectedImage)}
                 theme={theme}
               />
               <div className={classNames(styles.galleryImageSettings_nav, { [styles.galleryImageSettings_nav_mobile]: isMobile })}>

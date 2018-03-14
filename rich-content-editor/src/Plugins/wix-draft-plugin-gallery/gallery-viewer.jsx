@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ProGallery } from 'pro-gallery-renderer';
+const { ProGallery } = process.env.SANTA ? {} : require('pro-gallery-renderer');
 
 const getDefault = () => ({
   items: [],
@@ -16,6 +16,7 @@ const getDefault = () => ({
     cubeType: 'fill',
     enableInfiniteScroll: true,
     titlePlacement: 'SHOW_ON_HOVER',
+    allowHover: false,
     showArrows: false,
     gridStyle: 1,
     loveButton: false,

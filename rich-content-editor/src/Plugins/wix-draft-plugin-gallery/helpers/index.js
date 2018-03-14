@@ -1,2 +1,2 @@
 // guy nununu
-export { galleryLayouts, switchLayout, getCurrentLayout } from './layout-helper';
+export { galleryLayoutsSelector, galleryLayoutsDropdown, switchLayout, getCurrentLayout } from './layout-helper';
