@@ -3,30 +3,36 @@ export default componentData => {
     return null;
   }
 
-  const config = {};
-  const { alignment, size } = componentData;
+  const patch = { config: {} };
+  const { alignment, size, oembed } = componentData;
   if (alignment || size) {
     if (alignment) {
       delete componentData.alignment; //eslint-disable-line fp/no-delete
-      config.alignment = alignment;
-      config.size = 'small';
+      patch.config.alignment = alignment;
+      patch.config.size = 'small';
     }
     if (size) {
       delete componentData.size; //eslint-disable-line fp/no-delete
       if (size === 'smallCenter') {
-        config.size = 'small';
-        config.alignment = 'center';
+        patch.config.size = 'small';
+        patch.config.alignment = 'center';
       } else if (size === 'fullWidth') {
-        config.size = 'fullWidth';
-        config.alignment = 'center';
+        patch.config.size = 'fullWidth';
+        patch.config.alignment = 'center';
       } else if (size === 'original') {
-        config.size = 'original';
-        config.alignment = 'left';
+        patch.config.size = 'original';
+        patch.config.alignment = 'left';
       }
     }
   } else {
-    config.alignment = 'center';
-    config.size = 'content';
+    patch.config.alignment = 'center';
+    patch.config.size = 'content';
   }
-  return Object.assign({}, componentData, { config });
+
+  if (oembed) {
+    delete componentData.url; //eslint-disable-line fp/no-delete
+    patch.src = oembed.video_url;
+  }
+
+  return Object.assign({}, componentData, patch);
 };
