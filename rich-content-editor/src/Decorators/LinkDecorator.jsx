@@ -12,11 +12,11 @@ const findLinkEntities = (contentBlock, callback, contentState) => {
   }, callback);
 };
 
-const Link = ({ entityKey, contentState, className, children }) => {
+const Link = ({ entityKey, contentState, className, children, anchorTarget }) => {
   const { url, targetBlank, nofollow } = contentState.getEntity(entityKey).getData();
   const anchorProps = {
     href: url,
-    target: targetBlank ? '_blank' : '_self',
+    target: targetBlank ? '_blank' : (anchorTarget || '_self'),
     rel: nofollow ? 'nofollow' : null,
     className: classNames(Styles.link, className),
   };
@@ -34,6 +34,7 @@ Link.propTypes = {
   contentState: PropTypes.object.isRequired,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   className: PropTypes.string,
+  anchorTarget: PropTypes.string,
 };
 
 export { Name, findLinkEntities as Strategy, Link as Component };

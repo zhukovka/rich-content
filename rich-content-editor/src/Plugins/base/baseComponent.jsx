@@ -35,7 +35,7 @@ const sizeClassName = (size, theme) => {
   }
 };
 
-const createBaseComponent = ({ PluginComponent, theme, type, pubsub, helpers, t }) => {
+const createBaseComponent = ({ PluginComponent, theme, type, pubsub, helpers, t, anchorTarget }) => {
   class WrappedComponent extends Component {
     static displayName = createHocName('BaseComponent', PluginComponent);
 
@@ -242,7 +242,7 @@ const createBaseComponent = ({ PluginComponent, theme, type, pubsub, helpers, t 
       if (!isNil(link)) {
         anchorProps = {
           href: link.url,
-          target: link.targetBlank ? '_blank' : '_self',
+          target: link.targetBlank ? '_blank' : (anchorTarget || '_self'),
           rel: link.nofollow ? 'nofollow' : null
         };
       }

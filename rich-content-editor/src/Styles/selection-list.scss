@@ -1,6 +1,11 @@
+@supports(display:grid) {
+  .selectionList {
+    display: grid;
+  }
+}
+
 .selectionList {
   width: 100%;
-  display: grid;
 }
 
 .selectionListOption {

@@ -3,13 +3,16 @@
   margin-bottom: 13px;
 }
 
-.layoutsSelector_grid {
-  grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 92px 73px;
+@supports(display:grid) {
+  .layoutsSelector_grid {
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 92px 73px;
+  }
 }
 
 .layoutsSelector_tile {
   margin: 0 auto 0 auto;
+  display: inline-block;
 }
 
 .layoutsSelector_tile_label {
@@ -25,4 +28,15 @@
 
 .layoutsSelector_icon_selected {
   color: #0261ff;
+}
+
+@supports not (display:grid) {
+  .layoutsSelector_option {
+    display: inline-block;
+    width: 25%;
+    margin-bottom: 21px;
+  }
+}
+
+.layoutsSelector_option {
 }

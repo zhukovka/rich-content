@@ -30,18 +30,20 @@ class RichContentEditor extends Component {
       helpers,
       plugins,
       isMobile,
+      anchorTarget,
       t,
     } = this.props;
     const { theme } = this.state;
-    const { pluginInstances, pluginButtons } = createPlugins({ plugins, helpers, theme, t, isMobile });
+    const { pluginInstances, pluginButtons } = createPlugins({ plugins, helpers, theme, t, isMobile, anchorTarget });
     this.initEditorToolbars(pluginButtons);
     this.plugins = [...pluginInstances, ...Object.values(this.toolbars)];
-    this.decorators = createDecorators(decorators, theme);
+    this.decorators = createDecorators(decorators, theme, anchorTarget);
   }
 
   initEditorToolbars(pluginButtons) {
     const {
       helpers,
+      hideFooterToolbar,
       sideToolbarOffset,
       textButtons,
       isMobile,
@@ -54,6 +56,7 @@ class RichContentEditor extends Component {
       buttons,
       helpers,
       isMobile,
+      hideFooterToolbar,
       sideToolbarOffset,
       theme: theme || {},
       getEditorState: () => this.state.editorState,
@@ -221,8 +224,10 @@ RichContentEditor.propTypes = {
   placeholder: PropTypes.string,
   t: PropTypes.func,
   sideToolbarOffset: PropTypes.object,
+  hideFooterToolbar: PropTypes.bool,
   textButtons: PropTypes.arrayOf(PropTypes.string),
   plugins: PropTypes.arrayOf(PropTypes.string),
+  anchorTarget: PropTypes.string,
 };
 
 export default translate(null, { withRef: true })(RichContentEditor);

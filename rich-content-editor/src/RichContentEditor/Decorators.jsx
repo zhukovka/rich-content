@@ -9,7 +9,7 @@ const defaultDecorators = {
   config: {},
 };
 
-const createDecorators = ({ list, config } = defaultDecorators, theme) => {
+const createDecorators = ({ list, config } = defaultDecorators, theme, anchorTarget) => {
   const activeDecorators = [];
   list.forEach(decoratorName => {
     switch (decoratorName) {
@@ -17,7 +17,7 @@ const createDecorators = ({ list, config } = defaultDecorators, theme) => {
         const { Strategy: strategy, Component } = LinkDecorator;
         activeDecorators.push({
           strategy,
-          component: decorateComponentWithProps(Component, { className: theme.link }),
+          component: decorateComponentWithProps(Component, { className: theme.link, anchorTarget }),
         });
         break;
       }

@@ -64,15 +64,16 @@ $MOBILE_HEADER_HEIGHT: 50px;
 }
 
 .galleryImageSettings_manageImageGrid {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 100%;
     height: 47px;
     width: 100%;
 }
 
 %manage_button {
-    display: flex;
+    padding: 12px 15px;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 50%;
     font-size: 14px;
     border-bottom: 1px #ededed solid;
     outline: none;
@@ -85,9 +86,6 @@ $MOBILE_HEADER_HEIGHT: 50px;
 
 .galleryImageSettings_replace {
     @extend %manage_button;
-    padding: 12px 15px;
-    text-align: center;
-    display: block;
 }
 
 .galleryImageSettings_replace_text::before {
@@ -96,10 +94,8 @@ $MOBILE_HEADER_HEIGHT: 50px;
 
 .galleryImageSettings_delete {
     @extend %manage_button;
-    padding: 12px 15px;
-    text-align: center;
-    display: block;
     border-left: 1px #ededed solid;
+    clear: both;
 }
 
 .galleryImageSettings_delete_text::before {

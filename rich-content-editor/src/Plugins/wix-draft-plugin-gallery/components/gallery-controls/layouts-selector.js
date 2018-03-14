@@ -24,9 +24,6 @@ class LayoutSelector extends Component {
 
   renderOption = ({ item, selected }) => (
     <div className={this.styles.layoutsSelector_tile}>
-      <div
-        className={this.styles.layoutsSelector_tile}
-      />
       <item.icon className={classnames(this.styles.layoutsSelector_icon, { [this.styles.layoutsSelector_icon_selected]: selected })}/>
       <label className={this.styles.layoutsSelector_tile_label}>{item.name}</label>
     </div>
@@ -47,6 +44,7 @@ class LayoutSelector extends Component {
           renderItem={this.renderOption}
           value={value}
           onChange={value => onChange(value)}
+          optionClassName={styles.layoutsSelector_option}
         />
       </div>
     );
