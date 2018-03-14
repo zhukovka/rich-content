@@ -99,5 +99,14 @@
   "AlignTextRightButton_Tooltip" : "Align Right",
   "AlignTextJustifyButton_Tooltip" : "Justify",
   "OrderedListButton_Tooltip" : "Numbering",
-  "UnorderedListButton_Tooltip" : "Bullets"
+  "UnorderedListButton_Tooltip" : "Bullets",
+  "SizeOriginalButton_Tooltip": "Size Original",
+  "SizeSmallCenterButton_Tooltip": "Size Small Center",
+  "SizeSmallLeftButton_Tooltip": "Size Small Left",
+  "SizeSmallRightButton_Tooltip": "Size Small Right",
+  "SizeContentButton_Tooltip": "Size Content",
+  "SizeFullWidthButton_Tooltip": "Size Full Width",
+  "DeleteButton_Tooltip": "Delete",
+  "EditButton_Tooltip": "Edit",
+  "SettingsButton_Tooltip": "Settings"
 }

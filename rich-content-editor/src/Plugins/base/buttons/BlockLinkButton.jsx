@@ -45,11 +45,14 @@ class BlockLinkButton extends Component {
   };
 
   render() {
-    const { theme } = this.props;
+    const { theme, isMobile, t } = this.props;
+    const linkButtonTooltip = t('TextLinkButton_Tooltip');
     return (<LinkButton
       onClick={this.showLinkPanel}
       isActive={this.isActive}
       theme={theme}
+      isMobile={isMobile}
+      tooltipText={linkButtonTooltip}
     />);
   }
 }

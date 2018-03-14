@@ -42,6 +42,7 @@ export default class BasePanel extends Component {
           helpers={this.props.helpers}
           componentData={this.props.componentData}
           componentState={this.props.componentState}
+          t={this.props.t}
         />
       </div>
     );
@@ -56,4 +57,5 @@ BasePanel.propTypes = {
   componentData: PropTypes.object.isRequired,
   componentState: PropTypes.object.isRequired,
   helpers: PropTypes.object,
+  t: PropTypes.func,
 };
