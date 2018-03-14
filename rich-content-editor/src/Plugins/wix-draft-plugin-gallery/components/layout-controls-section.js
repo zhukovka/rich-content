@@ -37,7 +37,7 @@ class LayoutControlsSection extends Component {
   controlsByLayout = [
     ['|', 'scrollDirection', '|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing'], // collage
     ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing'], // masonry
-    ['|', 'itemsPerRow', '_', 'spacing', '|', 'thumbnailResize', '|', 'titleButtonPlacement', '|', 'imageRatio'], // grid
+    ['|', 'itemsPerRow', '_', 'spacing', '|', 'thumbnailResize', '|', 'imageRatio'], // grid
     ['|', 'thumbnailPlacement', '|', 'thumbnailSpacing'], // thumbnails
     ['|', 'spacing', '|', 'thumbnailResize', '|', 'imageRatio'], // slides
     [], // slideshow

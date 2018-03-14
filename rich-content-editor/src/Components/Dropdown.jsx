@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { mergeStyles } from '~/Utils/mergeStyles';
 import styles from '~/Styles/dropdown.scss';
+import DropdownArrow from './icons/dropdown.svg';
 
 const DEFAULT_PLACEHOLDER_STRING = 'Select...';
 
@@ -187,7 +188,9 @@ class Dropdown extends Component {
             className={classNames(styles['Dropdown-arrow'], {
               [styles['Dropdown-arrow-isOpen']]: this.state.isOpen
             })}
-          />
+          >
+            <DropdownArrow/>
+          </span>
         </div>
         {menu}
       </div>
