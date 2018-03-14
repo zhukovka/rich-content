@@ -57,7 +57,7 @@ const createBasePlugin = (config = {}) => {
   const pubsub = simplePubsub();
   const helpers = config.helpers || {};
   const isMobile = config.isMobile || false;
-  const t = config.t;
+  const { t, anchorTarget } = config;
   const toolbarTheme = { ...getToolbarTheme(config.theme, 'plugin'), ...config.theme };
   const Toolbar = createToolbar({ buttons: config.toolbar.InlineButtons, theme: { ...toolbarTheme, ...config.theme }, pubsub, helpers, t, isMobile });
   const InsertPluginButtons = config.toolbar.InsertButtons.map(button => (
@@ -65,7 +65,7 @@ const createBasePlugin = (config = {}) => {
   ));
   const PluginComponent = config.decorator ? config.decorator(config.component) : config.component;
 
-  const CompWithBase = createBaseComponent({ PluginComponent, theme: config.theme, type: config.type, pubsub, helpers, t });
+  const CompWithBase = createBaseComponent({ PluginComponent, theme: config.theme, type: config.type, pubsub, helpers, t, anchorTarget });
 
   return {
     blockRendererFn: (contentBlock, { getEditorState, setEditorState, getReadOnly }) => {

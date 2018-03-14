@@ -4,7 +4,7 @@ import { Component } from './divider-component';
 import { DIVIDER_TYPE } from './types';
 
 const createDividerPlugin = (config = {}) => {
-  const { decorator, helpers, theme, isMobile, t } = config;
+  const { decorator, helpers, theme, isMobile, t, anchorTarget } = config;
 
   return createBasePlugin({
     component: Component,
@@ -17,6 +17,7 @@ const createDividerPlugin = (config = {}) => {
     }),
     helpers,
     isMobile,
+    anchorTarget,
     t,
   });
 };
