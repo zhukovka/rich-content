@@ -27,11 +27,10 @@
 
 .content {
   flex: 1;
-  width: 80%;
+  width: 740px;
   margin: 0 auto;
   background: white;
   padding: 20px 40px;
-  box-sizing: border-box;
 }
 
 @keyframes App-logo-spin {
@@ -44,9 +43,10 @@
 }
 
 /*** MOBILE ***/
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 740px) {
   .content {
-    width: auto;
+    width: 100%;
+    box-sizing: border-box;
     margin: 0;
     padding: 18px;
   }
