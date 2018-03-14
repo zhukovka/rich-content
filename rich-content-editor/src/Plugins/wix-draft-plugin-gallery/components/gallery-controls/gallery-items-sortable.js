@@ -121,7 +121,7 @@ const ItemActionsMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleI
   const buttons = [];
 
   if (isMobile && selectedItems.length === 0) {
-    buttons.push(<a className={styles.topBarLink} onClick={toggleSorting}>{isMobileSorting ? { finishSortingLabel } : { sortItemsLabel }}</a>);
+    buttons.push(<a className={styles.topBarLink} onClick={toggleSorting}>{isMobileSorting ? finishSortingLabel : sortItemsLabel}</a>);
     buttons.push(separator);
   }
   if (!isMobileSorting) {
