@@ -1,6 +1,6 @@
 {
-  "LinkPanel_Target_Checkbox" : "Open Link in New Window / Tab",
-  "LinkPanel_Nofollow_Checkbox" : "Add rel=\"nofollow\" to link",
+  "LinkPanel_Target_Checkbox" : "Open link in a new tab",
+  "LinkPanel_Nofollow_Checkbox" : "Add a nofollow tag",
   "LinkPanel_InputPlaceholder_ImageSettings" : "Add a link",
   "LinkPanel_InputPlaceholder" : "e.g., www.wix.com",
   "LinkPanel_ErrorTooltip" : "Invalid URL. Try Again",
