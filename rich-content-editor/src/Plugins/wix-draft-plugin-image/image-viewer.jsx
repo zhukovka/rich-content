@@ -90,7 +90,7 @@ class ImageViewer extends React.Component {
 
     const itemClassName = classNames(styles.imageContainer, className);
     const imageClassName = classNames(styles.image);
-    const imageSrc = this.getImageSrc(data.item);
+    const imageSrc = this.getImageSrc(data.src || data.item);
     return (
       <div onClick={onClick} className={itemClassName}>
         <div>
