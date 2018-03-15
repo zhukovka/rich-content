@@ -49,7 +49,7 @@ export default class TextLinkButton extends Component {
         t,
       };
       const TextLinkPanelWithProps = decorateComponentWithProps(TextLinkPanel, linkPanelProps);
-      onExtendContent(TextLinkPanelWithProps);
+      onOverrideContent(TextLinkPanelWithProps);
     }
   }
 

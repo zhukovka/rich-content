@@ -53,7 +53,7 @@ class BlockLinkButton extends Component {
         t,
       };
       const BlockLinkPanelWithProps = decorateComponentWithProps(BlockLinkPanel, linkPanelProps);
-      onExtendContent(BlockLinkPanelWithProps);
+      onOverrideContent(BlockLinkPanelWithProps);
     }
   };
 
