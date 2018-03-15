@@ -1,36 +1,38 @@
+/* eslint-disable */
 export default componentData => {
   if (componentData.config) {
     return null;
   }
 
   const patch = { config: {} };
-  const { alignment, size, oembed } = componentData;
-  if (alignment || size) {
-    if (alignment) {
-      delete componentData.alignment; //eslint-disable-line fp/no-delete
-      patch.config.alignment = alignment;
-      patch.config.size = 'small';
-    }
+  const { alignment, size, src, oembed } = componentData;
+  if (alignment) {
+    delete componentData.alignment;
+    patch.config.alignment = alignment;
+    patch.config.size = 'small';
+  } else {
     if (size) {
-      delete componentData.size; //eslint-disable-line fp/no-delete
+      delete componentData.size;
       if (size === 'smallCenter') {
         patch.config.size = 'small';
         patch.config.alignment = 'center';
       } else if (size === 'fullWidth') {
         patch.config.size = 'fullWidth';
         patch.config.alignment = 'center';
-      } else if (size === 'original') {
+      }
+    } else {
+      if (src && src.width && src.width <= 740) {
         patch.config.size = 'original';
         patch.config.alignment = 'left';
+      } else {
+        patch.config.size = 'content';
+        patch.config.alignment = 'center';
       }
     }
-  } else {
-    patch.config.alignment = 'center';
-    patch.config.size = 'content';
   }
 
   if (oembed) {
-    delete componentData.url; //eslint-disable-line fp/no-delete
+    delete componentData.url;
     patch.src = oembed.video_url;
   }
 
