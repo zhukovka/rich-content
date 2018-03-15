@@ -6,7 +6,7 @@
 .wrapper {
   @extend .fontElementMap;
   position: relative;
-  height: calc(100% - #{$footer-toolbar-height});
+  height: 100%;
   box-sizing: border-box;
 
   -webkit-font-smoothing: antialiased;
