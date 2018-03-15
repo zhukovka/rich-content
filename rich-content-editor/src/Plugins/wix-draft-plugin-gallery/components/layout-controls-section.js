@@ -37,7 +37,7 @@ class LayoutControlsSection extends Component {
   controlsByLayout = [
     ['|', 'scrollDirection', '|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing'], // collage
     ['|', 'imageOrientation', '|', 'thumbnailSize', '|', 'spacing'], // masonry
-    ['|', 'itemsPerRow', '_', 'spacing', '|', 'thumbnailResize', '|', 'titleButtonPlacement', '|', 'imageRatio'], // grid
+    ['|', 'itemsPerRow', '_', 'spacing', '|', 'thumbnailResize', '|', 'imageRatio'], // grid
     ['|', 'thumbnailPlacement', '|', 'thumbnailSpacing'], // thumbnails
     ['|', 'spacing', '|', 'thumbnailResize', '|', 'imageRatio'], // slides
     [], // slideshow
@@ -116,7 +116,7 @@ class LayoutControlsSection extends Component {
         onChange: value => this.applyGallerySetting({ cubeRatio: value }),
         value: this.getValueFromComponentStyles('cubeRatio'),
         options: {
-          readOnly: (this.props.layout === 4 /*slides*/) && this.getValueFromComponentStyles('cubeType') === 'fit'
+          readOnly: this.getValueFromComponentStyles('cubeType') === 'fit'
         },
         t,
       },

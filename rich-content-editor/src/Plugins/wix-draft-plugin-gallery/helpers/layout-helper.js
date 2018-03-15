@@ -35,7 +35,7 @@ export const switchLayout = (layout, _componentData, store) => {
 export const getCurrentLayout = (store, t) => {
   const componentData = store.get('componentData');
   const galleryLayout = (componentData && componentData.styles && componentData.styles.galleryLayout) || 0;
-  return getGalleryLayouts(t).find(layout => layout.value === galleryLayout);
+  return galleryLayoutsDropdown(t).find(layout => layout.value === galleryLayout);
 };
 
 export const getGalleryLayouts = t => {
