@@ -116,7 +116,9 @@ export class GallerySettingsModal extends Component {
 
   constructor(props) {
     super(props);
-    this.state = this.stateFromProps(this.props);
+    this.state = {
+      activeTab: this.props.activeTab
+    };
     this.styles = mergeStyles({ styles, theme: props.theme });
     this.switchTab = this.switchTab.bind(this);
   }
@@ -133,16 +135,6 @@ export class GallerySettingsModal extends Component {
   }
 
   onComponentUpdate = () => this.forceUpdate();
-
-  componentWillReceiveProps(newProps) {
-    this.setState(this.stateFromProps(newProps));
-  }
-
-  stateFromProps(props) {
-    return {
-      activeTab: props.activeTab
-    };
-  }
 
   revertComponentData = () => {
     const { pubsub, helpers } = this.props;
