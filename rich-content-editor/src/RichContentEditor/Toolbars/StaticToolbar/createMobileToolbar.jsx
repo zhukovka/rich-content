@@ -111,7 +111,7 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
   return structure;
 };
 
-export default ({ buttons, helpers, pubsub, getEditorState, setEditorState, theme, t }) => {
+export default ({ buttons, helpers, pubsub, getEditorState, setEditorState, anchorTarget, theme, t }) => {
   const mobileTheme = getMobileTheme(theme);
   return createStaticToolbar({
     helpers,
@@ -119,6 +119,7 @@ export default ({ buttons, helpers, pubsub, getEditorState, setEditorState, them
     name: 'MobileToolbar',
     theme: mobileTheme,
     structure: getMobileButtons({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme, t }),
+    anchorTarget,
     isMobile: true
   });
 };

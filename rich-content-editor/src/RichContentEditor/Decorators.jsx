@@ -1,4 +1,5 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
+import get from 'lodash/get';
 import * as LinkDecorator from '../Decorators/LinkDecorator';
 import * as HashtagDecorator from '../Decorators/HashtagDecorator';
 
@@ -23,13 +24,14 @@ const createDecorators = ({ list, config } = defaultDecorators, theme, anchorTar
       }
       case HashtagDecorator.Name: {
         const { Strategy: strategy, Component } = HashtagDecorator;
+        const hashTagConfig = get(config, 'Hashtag', {});
         const hashtagTheme = {
           hashtag: theme && theme.hashtag,
           hashtag_hover: theme && theme.hashtag_hover, //eslint-disable-line camelcase
         };
         activeDecorators.push({
           strategy,
-          component: decorateComponentWithProps(Component, { ...config.Hashtag, theme: hashtagTheme }),
+          component: decorateComponentWithProps(Component, { hashTagConfig, theme: hashtagTheme }),
         });
         break;
       }

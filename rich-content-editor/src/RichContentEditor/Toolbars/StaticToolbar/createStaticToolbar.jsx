@@ -11,6 +11,8 @@ export default (config = {}) => {
     structure = [],
     isMobile = false,
     helpers,
+    linkModal = false,
+    anchorTarget,
     t,
   } = config;
 
@@ -20,6 +22,8 @@ export default (config = {}) => {
     theme,
     isMobile,
     helpers,
+    linkModal,
+    anchorTarget,
     t,
   };
 

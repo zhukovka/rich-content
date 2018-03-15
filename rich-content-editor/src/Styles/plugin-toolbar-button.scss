@@ -25,6 +25,7 @@
   @include svg-fill;
   .pluginToolbarButton_icon {
     width: $icon-width;
+    line-height: 0;
   }
 
   &:hover,

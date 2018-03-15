@@ -8,9 +8,21 @@ import TextLinkPanel from './TextLinkPanel';
 
 export default class TextLinkButton extends Component {
   showLinkPanel = () => {
-    const { onExtendContent, onOverrideContent, getEditorState, setEditorState, theme, isMobile, helpers, keyName, t } = this.props;
+    const {
+      onExtendContent,
+      onOverrideContent,
+      getEditorState,
+      setEditorState,
+      theme,
+      isMobile,
+      linkModal,
+      helpers,
+      keyName,
+      anchorTarget,
+      t
+    } = this.props;
     const modalStyles = getModalStyles({ fullScreen: false });
-    if (isMobile) {
+    if (isMobile || linkModal) {
       if (helpers && helpers.openModal) {
         const modalProps = {
           helpers,
@@ -20,6 +32,7 @@ export default class TextLinkButton extends Component {
           setEditorState,
           t,
           theme,
+          anchorTarget,
           modalName: MODALS.MOBILE_TEXT_LINK_MODAL,
           hidePopup: helpers.closeModal
         };
@@ -31,11 +44,12 @@ export default class TextLinkButton extends Component {
       const linkPanelProps = {
         onExtendContent,
         onOverrideContent,
+        anchorTarget,
         theme,
         t,
       };
       const TextLinkPanelWithProps = decorateComponentWithProps(TextLinkPanel, linkPanelProps);
-      onExtendContent(TextLinkPanelWithProps);
+      onOverrideContent(TextLinkPanelWithProps);
     }
   }
 
@@ -69,7 +83,9 @@ TextLinkButton.propTypes = {
   onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   isMobile: PropTypes.bool,
+  linkModal: PropTypes.bool,
   helpers: PropTypes.object,
   keyName: PropTypes.string,
+  anchorTarget: PropTypes.string,
   t: PropTypes.func,
 };

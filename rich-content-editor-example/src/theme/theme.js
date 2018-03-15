@@ -24,6 +24,7 @@ import tabsTheme from './tabs.theme.scss';
 import tooltipTheme from './tooltip.theme.scss';
 
 import inlineToolbarTheme from './toolbars/inline-toolbar.theme.scss';
+import textStaticToolbarTheme from './toolbars/text-static-toolbar.theme.scss';
 import sideToolbarTheme from './toolbars/side-toolbar.theme.scss';
 import pluginToolbarTheme from './toolbars/plugin-toolbar.theme.scss';
 import footerToolbarTheme from './toolbars/footer-toolbar.theme.scss';
@@ -95,6 +96,7 @@ const theme = {
 
   // toolbars
   ...inlineToolbarTheme,
+  ...textStaticToolbarTheme,
   ...sideToolbarTheme,
   ...pluginToolbarTheme,
   ...footerToolbarTheme,

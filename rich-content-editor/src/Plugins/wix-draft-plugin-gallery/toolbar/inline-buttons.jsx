@@ -39,7 +39,7 @@ export default({ t }) => {
     { type: BUTTONS.SEPARATOR, mobile: false },
     { type: BUTTONS.SIZE_SMALL_LEFT, mobile: false },
     { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: false },
-    { type: BUTTONS.SEPARATOR, mobile: false },
+    { type: BUTTONS.SEPARATOR, mobile: true },
     {
       keyName: 'manage_media',
       type: BUTTONS.EXTERNAL_MODAL,

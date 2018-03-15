@@ -41,7 +41,10 @@ class App extends Component {
       config: {
         Hashtag: {
           createHref: decoratedText =>
-            `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`
+            `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`,
+          onClick: (event, decoratedText) => {
+
+          }
         }
       }
     };
@@ -94,7 +97,8 @@ class App extends Component {
 
   componentDidMount() {
     ReactModal.setAppElement('body');
-    this.setState({ MobileToolbar: this.editor.getMobileToolbar() });
+    const { MobileToolbar, TextToolbar } = this.editor.getToolbars();
+    this.setState({ MobileToolbar, TextToolbar });
   }
 
   setEditor = editor => this.editor = editor;
@@ -131,7 +135,7 @@ class App extends Component {
       overlay: Object.assign({}, (this.state.modalStyles || modalStyleDefaults).overlay, theme.modalTheme.overlay),
     };
 
-    const { MobileToolbar } = this.state;
+    const { MobileToolbar, TextToolbar } = this.state;
     return (
       <div className="wrapper">
         <div className="container">
@@ -164,6 +168,7 @@ class App extends Component {
           }
           {MobileToolbar && <MobileToolbar />}
           <div className="content">
+            {TextToolbar && <TextToolbar />}
             {this.state.mounted &&
               <RichContentEditor
                 ref={this.setEditor}
@@ -174,10 +179,12 @@ class App extends Component {
                 editorState={this.state.editorState}
                 readOnly={this.state.readOnly}
                 isMobile={this.isMobile()}
+                textToolbarType={'inline'}
                 theme={theme}
                 locale={'en'}
               />
             }
+
             <ReactModal
               isOpen={this.state.showModal}
               contentLabel="External Modal Example"

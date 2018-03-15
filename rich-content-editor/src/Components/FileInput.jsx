@@ -12,13 +12,14 @@ class FileInput extends Component {
   }
 
   render() {
-    const { onChange, accept, multiple, className, children } = this.props;
+    const { onChange, accept, multiple, className, title, children } = this.props;
     const hasMultiple = multiple ? { multiple } : {};
     return (
       <label
         className={className}
         htmlFor={this.id}
         style={this.props.style}
+        title={title}
       >
         <input
           className={style.hiddenInput}
@@ -40,6 +41,7 @@ FileInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   children: PropTypes.node,
   multiple: PropTypes.bool,
+  title: PropTypes.string,
   style: PropTypes.object
 };
 

@@ -9,6 +9,8 @@ export default class StaticToolbar extends React.Component {
     structure: PropTypes.array.isRequired,
     theme: PropTypes.object.isRequired,
     isMobile: PropTypes.bool.isRequired,
+    linkModal: PropTypes.bool,
+    anchorTarget: PropTypes.string,
     helpers: PropTypes.object,
     t: PropTypes.func,
   };
@@ -67,8 +69,8 @@ export default class StaticToolbar extends React.Component {
       const spaceRight = fullWidth - eleWidth - spaceLeft;
 
       this.setState({
-        showLeftArrow: (spaceLeft > 1),
-        showRightArrow: (spaceRight > 1)
+        showLeftArrow: (spaceLeft > 2),
+        showRightArrow: (spaceRight > 26)
       });
     }
   }
@@ -78,8 +80,9 @@ export default class StaticToolbar extends React.Component {
   onExtendContent = extendContent => this.setState({ extendContent });
 
   render() {
-    const { theme, pubsub, structure, helpers, isMobile, t } = this.props;
+    const { theme, pubsub, structure, helpers, isMobile, linkModal, anchorTarget, t } = this.props;
     const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
+    const hasArrow = showLeftArrow || showRightArrow;
     const { toolbarStyles } = theme || {};
     const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
     const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons);
@@ -88,6 +91,8 @@ export default class StaticToolbar extends React.Component {
       theme,
       helpers,
       isMobile,
+      linkModal,
+      anchorTarget,
       t,
       getEditorState: pubsub.get('getEditorState'),
       setEditorState: pubsub.get('setEditorState'),
@@ -115,7 +120,7 @@ export default class StaticToolbar extends React.Component {
               <OverrideContent {...childrenProps} /> :
               structure.map((Button, index) => <Button key={index} {...childrenProps} />)
           }
-          {isMobile && <div className={toolbarStyles.responsiveSpacer} />}
+          {hasArrow && <div className={toolbarStyles.responsiveSpacer} />}
           {
             showRightArrow &&
             <div

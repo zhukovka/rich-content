@@ -54,7 +54,7 @@ export default class SideToolbar extends Component {
         position: {
           top: top - parentTop + offset.y,
           [!isMobile ? 'left' : 'right']: offset.x,
-          transform: 'scale(1)',
+          transform: `scale(${isMobile ? 0.76 : 1})`, //mobile plus is smaller
           transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
         },
       });

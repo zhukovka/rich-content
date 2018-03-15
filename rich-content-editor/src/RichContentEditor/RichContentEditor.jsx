@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { EditorState, convertFromRaw } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
 import isUndefined from 'lodash/isUndefined';
+import includes from 'lodash/includes';
 import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createToolbars from './Toolbars';
@@ -43,9 +44,11 @@ class RichContentEditor extends Component {
   initEditorToolbars(pluginButtons) {
     const {
       helpers,
+      anchorTarget,
       hideFooterToolbar,
       sideToolbarOffset,
       textButtons,
+      textToolbarType,
       isMobile,
       t,
     } = this.props;
@@ -55,7 +58,9 @@ class RichContentEditor extends Component {
     this.toolbars = createToolbars({
       buttons,
       helpers,
+      anchorTarget,
       isMobile,
+      textToolbarType,
       hideFooterToolbar,
       sideToolbarOffset,
       theme: theme || {},
@@ -65,7 +70,12 @@ class RichContentEditor extends Component {
     });
   }
 
-  getMobileToolbar = () => this.props.isMobile ? this.toolbars.mobile.Toolbar : null;
+  getToolbars = () => (
+    {
+      MobileToolbar: this.toolbars.mobile ? this.toolbars.mobile.Toolbar : null,
+      TextToolbar: this.props.textToolbarType === 'static' ? this.toolbars.text.Toolbar : null
+    }
+  )
 
   getInitialEditorState() {
     const { editorState, initialState } = this.props;
@@ -157,10 +167,7 @@ class RichContentEditor extends Component {
 
   renderToolbars = () => {
     if (!this.state.readOnly) {
-      const toolbarsToRender = this.plugins.filter(plugin => {
-        return !plugin.name ||
-          plugin.name.toLowerCase().indexOf('mobile') === -1;
-      });
+      const toolbarsToRender = this.plugins.filter(p => !p.name || !includes(['MobileToolbar', 'StaticTextToolbar'], p.name));
       //eslint-disable-next-line array-callback-return
       const toolbars = toolbarsToRender.map((plugin, index) => {
         const Toolbar = plugin.Toolbar || plugin.InlineToolbar || plugin.SideToolbar;
@@ -226,6 +233,7 @@ RichContentEditor.propTypes = {
   sideToolbarOffset: PropTypes.object,
   hideFooterToolbar: PropTypes.bool,
   textButtons: PropTypes.arrayOf(PropTypes.string),
+  textToolbarType: PropTypes.oneOf(['inline', 'static']),
   plugins: PropTypes.arrayOf(PropTypes.string),
   anchorTarget: PropTypes.string,
 };

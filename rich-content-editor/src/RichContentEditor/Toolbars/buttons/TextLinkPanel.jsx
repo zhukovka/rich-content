@@ -8,7 +8,7 @@ import LinkPanelContainer from '~/Components/LinkPanelContainer';
 
 export default class TextLinkPanel extends Component {
   componentDidMount() {
-    const { getEditorState, theme, t } = this.props;
+    const { anchorTarget, getEditorState, theme, t } = this.props;
     const linkData = getLinkDataInSelection(getEditorState());
     const { url, targetBlank, nofollow } = linkData || {};
     const linkContainerProps = {
@@ -16,6 +16,7 @@ export default class TextLinkPanel extends Component {
       targetBlank,
       nofollow,
       theme,
+      anchorTarget,
       t,
       isActive: !isEmpty(linkData),
       onDone: this.createLinkEntity,
@@ -61,5 +62,6 @@ TextLinkPanel.propTypes = {
   onExtendContent: PropTypes.func.isRequired,
   onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
+  anchorTarget: PropTypes.string,
   t: PropTypes.func,
 };
