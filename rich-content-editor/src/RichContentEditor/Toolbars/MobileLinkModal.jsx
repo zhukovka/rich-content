@@ -7,7 +7,19 @@ import LinkPanelContainer from '~/Components/LinkPanelContainer';
 
 export default class MobileLinkModal extends Component {
   render() {
-    const { url, targetBlank, nofollow, theme, isMobile, isActive, onDone, onCancel, onDelete, t } = this.props;
+    const {
+      url,
+      targetBlank,
+      anchorTarget,
+      nofollow,
+      theme,
+      isMobile,
+      isActive,
+      onDone,
+      onCancel,
+      onDelete,
+      t
+    } = this.props;
     const mobileLinkModalTitle = t('MobileLinkModal_Title');
     return (
       <div>
@@ -20,6 +32,7 @@ export default class MobileLinkModal extends Component {
         <LinkPanelContainer
           url={url}
           targetBlank={targetBlank}
+          anchorTarget={anchorTarget}
           nofollow={nofollow}
           theme={theme}
           isActive={isActive}
@@ -43,6 +56,7 @@ MobileLinkModal.propTypes = {
   isMobile: PropTypes.bool,
   url: PropTypes.string,
   targetBlank: PropTypes.bool,
+  anchorTarget: PropTypes.string,
   nofollow: PropTypes.bool,
   t: PropTypes.func,
 };

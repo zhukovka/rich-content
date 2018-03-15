@@ -18,6 +18,7 @@ export default class TextLinkButton extends Component {
       linkModal,
       helpers,
       keyName,
+      anchorTarget,
       t
     } = this.props;
     const modalStyles = getModalStyles({ fullScreen: false });
@@ -31,6 +32,7 @@ export default class TextLinkButton extends Component {
           setEditorState,
           t,
           theme,
+          anchorTarget,
           modalName: MODALS.MOBILE_TEXT_LINK_MODAL,
           hidePopup: helpers.closeModal
         };
@@ -42,11 +44,12 @@ export default class TextLinkButton extends Component {
       const linkPanelProps = {
         onExtendContent,
         onOverrideContent,
+        anchorTarget,
         theme,
         t,
       };
       const TextLinkPanelWithProps = decorateComponentWithProps(TextLinkPanel, linkPanelProps);
-      onExtendContent(TextLinkPanelWithProps);
+      onOverrideContent(TextLinkPanelWithProps);
     }
   }
 
@@ -83,5 +86,6 @@ TextLinkButton.propTypes = {
   linkModal: PropTypes.bool,
   helpers: PropTypes.object,
   keyName: PropTypes.string,
+  anchorTarget: PropTypes.string,
   t: PropTypes.func,
 };

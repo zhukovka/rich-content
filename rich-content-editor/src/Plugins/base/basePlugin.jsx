@@ -59,7 +59,15 @@ const createBasePlugin = (config = {}) => {
   const isMobile = config.isMobile || false;
   const { t, anchorTarget } = config;
   const toolbarTheme = { ...getToolbarTheme(config.theme, 'plugin'), ...config.theme };
-  const Toolbar = createToolbar({ buttons: config.toolbar.InlineButtons, theme: { ...toolbarTheme, ...config.theme }, pubsub, helpers, t, isMobile });
+  const Toolbar = createToolbar({
+    buttons: config.toolbar.InlineButtons,
+    theme: { ...toolbarTheme, ...config.theme },
+    pubsub,
+    helpers,
+    isMobile,
+    anchorTarget,
+    t,
+  });
   const InsertPluginButtons = config.toolbar.InsertButtons.map(button => (
     createInsertPluginButton({ blockType: config.type, button, helpers, pubsub, t })
   ));

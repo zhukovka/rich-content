@@ -12,7 +12,18 @@ class BlockLinkButton extends Component {
   }
 
   showLinkPanel = () => {
-    const { pubsub, onExtendContent, onOverrideContent, theme, isMobile, helpers, keyName, componentState, t } = this.props;
+    const {
+      pubsub,
+      onExtendContent,
+      onOverrideContent,
+      theme,
+      isMobile,
+      helpers,
+      keyName,
+      componentState,
+      anchorTarget,
+      t
+    } = this.props;
     const modalStyles = getModalStyles({ fullScreen: false });
     if (isMobile) {
       if (helpers && helpers.openModal) {
@@ -24,6 +35,7 @@ class BlockLinkButton extends Component {
           isMobile,
           t,
           theme,
+          anchorTarget,
           modalName: MODALS.MOBILE_BLOCK_LINK_MODAL,
           hidePopup: helpers.closeModal
         };
@@ -36,11 +48,12 @@ class BlockLinkButton extends Component {
         pubsub,
         onExtendContent,
         onOverrideContent,
+        anchorTarget,
         theme,
         t,
       };
       const BlockLinkPanelWithProps = decorateComponentWithProps(BlockLinkPanel, linkPanelProps);
-      onExtendContent(BlockLinkPanelWithProps);
+      onOverrideContent(BlockLinkPanelWithProps);
     }
   };
 
@@ -66,6 +79,7 @@ BlockLinkButton.propTypes = {
   helpers: PropTypes.object,
   keyName: PropTypes.string,
   componentState: PropTypes.object,
+  anchorTarget: PropTypes.string,
   t: PropTypes.func,
 };
 
