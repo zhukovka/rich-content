@@ -41,7 +41,10 @@ class App extends Component {
       config: {
         Hashtag: {
           createHref: decoratedText =>
-            `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`
+            `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`,
+          onClick: (event, decoratedText) => {
+
+          }
         }
       }
     };
