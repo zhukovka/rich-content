@@ -110,7 +110,7 @@
   "EditButton_Tooltip" : "Edit",
   "SettingsButton_Tooltip" : "Settings",
   "UploadMediaButton_Tooltip" : "Upload Media",
-  "ManageMediaButton_Tooltip" : "Manage Media",
+  "ManageMediaButton_Tooltip" : "Organize Media",
   "ReplaceVideoButton_Tooltip" : "Replace Video",
   "ReplaceImageButton_Tooltip" : "Replace Image"
 }
