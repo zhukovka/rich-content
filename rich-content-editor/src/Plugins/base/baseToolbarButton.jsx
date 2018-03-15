@@ -4,7 +4,7 @@ import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
-import Tooltip from '~/Components/Tooltip';
+import ToolbarButton from '~/Components/ToolbarButton';
 import { BUTTONS } from './buttons';
 import Panel from './basePanel';
 import Dropdown from '~/Components/Dropdown';
@@ -52,7 +52,7 @@ class BaseToolbarButton extends React.Component {
 
   handleClick = event => {
     event.preventDefault();
-    const { t, componentState, keyName, helpers, pubsub, theme, onClick, ...otherProps } = this.props;
+    const { componentState, keyName, helpers, pubsub, theme, t, onClick, ...otherProps } = this.props;
 
     if (this.props.type === BUTTONS.FILES && helpers && helpers.handleFileSelection) {
       const multiple = !!this.props.multiple;
@@ -109,13 +109,19 @@ class BaseToolbarButton extends React.Component {
   };
 
   renderToggleButton = (buttonWrapperClassNames, buttonClassNames) => {
-    return (
+    const { theme, isMobile, t, tooltipTextKey } = this.props;
+    const tooltipText = t(tooltipTextKey);
+    const showTooltip = !isMobile && !isEmpty(tooltipText);
+
+    const toggleButton = (
       <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
         <button className={buttonClassNames} type="button" onMouseDown={this.handleClick} children={this.props.children || [this.getIcon()]}>
           {this.getIcon()}
         </button>
       </div>
     );
+
+    return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={toggleButton} />;
   };
 
   renderPanelButton = (buttonWrapperClassNames, buttonClassNames) => {
@@ -142,30 +148,25 @@ class BaseToolbarButton extends React.Component {
         />
       </div>
     );
-    if (showTooltip) {
-      return (
-        <Tooltip
-          content={tooltipText}
-          moveBy={{ x: 10, y: 5 }}
-          theme={theme}
-        >
-          {panelButton}
-        </Tooltip>
-      );
-    } else {
-      return panelButton;
-    }
+
+    return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={panelButton} />;
   };
 
   renderFilesButton = (buttonClassNames, styles) => {
+    const { theme, isMobile, t, tooltipTextKey } = this.props;
+    const tooltipText = t(tooltipTextKey);
+    const showTooltip = !isMobile && !isEmpty(tooltipText);
+
     const replaceButtonWrapperClassNames = classNames(styles.buttonWrapper);
-    return (
+    const filesButton = (
       <div className={replaceButtonWrapperClassNames}>
         <FileInput className={classNames(buttonClassNames)} onChange={this.handleFileChange} accept="image/*" multiple={this.props.multiple}>
           {this.getIcon()}
         </FileInput>
       </div>
     );
+
+    return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={filesButton} />;
   };
 
   renderDropdownButton = (buttonWrapperClassNames, buttonClassNames) => {

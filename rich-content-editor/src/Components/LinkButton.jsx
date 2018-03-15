@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
-import Tooltip from '~/Components/Tooltip';
+import ToolbarButton from '~/Components/ToolbarButton';
 
 import LinkIcon from '~/RichContentEditor/Toolbars/icons/link.svg';
 import styles from '~/Styles/inline-toolbar-button.scss';
@@ -64,18 +64,6 @@ export default class LinkButton extends Component {
       </div>
     );
 
-    if (showTooltip) {
-      return (
-        <Tooltip
-          content={tooltipText}
-          moveBy={{ x: 10, y: 5 }}
-          theme={theme}
-        >
-          {linkButton}
-        </Tooltip>
-      );
-    } else {
-      return linkButton;
-    }
+    return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={linkButton} />;
   }
 }

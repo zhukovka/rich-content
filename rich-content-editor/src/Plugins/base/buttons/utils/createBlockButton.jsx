@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
-import Tooltip from '~/Components/Tooltip';
+import ToolbarButton from '~/Components/ToolbarButton';
 
 export default ({ Icon, tooltipTextKey }) =>
   class BlockButton extends Component {
@@ -37,18 +37,6 @@ export default ({ Icon, tooltipTextKey }) =>
         </div>
       );
 
-      if (showTooltip) {
-        return (
-          <Tooltip
-            content={tooltipText}
-            moveBy={{ x: 10, y: 5 }}
-            theme={theme}
-          >
-            {blockButton}
-          </Tooltip>
-        );
-      } else {
-        return blockButton;
-      }
+      return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={blockButton} />;
     }
   };

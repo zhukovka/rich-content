@@ -175,6 +175,7 @@ export default({ t }) => {
       icon: EditIcon,
       onClick: pubsub => console.log('*** click edit *** '), //eslint-disable-line no-console, no-unused-vars,
       mobile: true,
+      tooltipTextKey: 'EditButton_Tooltip',
     },
     { type: BUTTONS.SEPARATOR },
     {
@@ -184,6 +185,7 @@ export default({ t }) => {
       icon: SettingsIcon,
       onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
       mobile: true,
+      tooltipTextKey: 'SettingsButton_Tooltip',
     },
     {
       keyName: 'external_settings',
@@ -192,6 +194,7 @@ export default({ t }) => {
       icon: SettingsIcon,
       onClick: pubsub => console.log('*** click external settings *** '), //eslint-disable-line no-console, no-unused-vars,
       mobile: true,
+      tooltipTextKey: 'SettingsButton_Tooltip',
       t,
     },
     { type: BUTTONS.DELETE },

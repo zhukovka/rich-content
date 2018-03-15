@@ -21,6 +21,7 @@ export default({ t }) => {
       },
       mobile: false,
       multiple: true,
+      tooltipTextKey: 'UploadMediaButton_Tooltip',
     },
     { type: BUTTONS.SEPARATOR, mobile: false },
     {
@@ -48,6 +49,7 @@ export default({ t }) => {
       modalStyles,
       t,
       mobile: true,
+      tooltipTextKey: 'ManageMediaButton_Tooltip',
     },
     {
       keyName: 'advanced_settings',
@@ -59,6 +61,7 @@ export default({ t }) => {
       switchLayout,
       t,
       mobile: false,
+      tooltipTextKey: 'SettingsButton_Tooltip',
     },
     { type: BUTTONS.DELETE, mobile: true },
   ];
