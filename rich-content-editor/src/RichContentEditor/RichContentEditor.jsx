@@ -44,6 +44,7 @@ class RichContentEditor extends Component {
   initEditorToolbars(pluginButtons) {
     const {
       helpers,
+      anchorTarget,
       hideFooterToolbar,
       sideToolbarOffset,
       textButtons,
@@ -57,6 +58,7 @@ class RichContentEditor extends Component {
     this.toolbars = createToolbars({
       buttons,
       helpers,
+      anchorTarget,
       isMobile,
       textToolbarType,
       hideFooterToolbar,

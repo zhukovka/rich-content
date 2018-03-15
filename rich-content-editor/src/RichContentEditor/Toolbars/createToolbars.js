@@ -7,6 +7,7 @@ import { simplePubsub, getToolbarTheme } from '~/Utils';
 const createToolbars = config => {
   const {
     buttons,
+    anchorTarget,
     textToolbarType,
     hideFooterToolbar,
     sideToolbarOffset,
@@ -36,6 +37,7 @@ const createToolbars = config => {
       toolbars.text = createInlineTextToolbar({
         buttons: textButtons,
         theme: { ...getToolbarTheme(theme, 'inline'), ...theme },
+        anchorTarget,
         pubsub,
         isMobile,
         helpers,
@@ -45,6 +47,7 @@ const createToolbars = config => {
       toolbars.text = createStaticTextToolbar({
         buttons: textButtons,
         theme: { ...getToolbarTheme(theme, 'text'), ...theme },
+        anchorTarget,
         pubsub,
         isMobile,
         helpers,
@@ -60,6 +63,7 @@ const createToolbars = config => {
     });
   } else {
     toolbars.mobile = createMobileToolbar({
+      anchorTarget,
       buttons,
       helpers,
       pubsub,
