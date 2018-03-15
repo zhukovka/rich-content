@@ -34,7 +34,7 @@ export default class InlineToolbar extends Component {
     position: undefined,
     overrideContent: undefined,
     extendContent: undefined,
-    showRightArrow: true,
+    showRightArrow: false,
     showLeftArrow: false
   }
 

@@ -1,4 +1,4 @@
-$TITLE_HEIGHT: 100px;
+$TITLE_HEIGHT: 0px;
 $FOOTER_HEIGHT: 100px;
 
 .gallerySettings_settingsContainer {
@@ -17,7 +17,7 @@ $FOOTER_HEIGHT: 100px;
   padding: 45px 30px 24px;
   margin:0;
   border-bottom: 1px solid #EDEDED;
-  position: fixed;
+  position: relative;
   top: 0;
   background-color: #fff;
   z-index: 5;

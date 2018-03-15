@@ -186,7 +186,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
 
         this.setState({
           showLeftArrow: (spaceLeft > 2),
-          showRightArrow: (spaceRight > 2)
+          showRightArrow: (spaceRight > 26)
         });
       }
     }

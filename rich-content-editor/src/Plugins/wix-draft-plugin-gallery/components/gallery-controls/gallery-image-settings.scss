@@ -1,4 +1,4 @@
-$TITLE_HEIGHT: 100px;
+$TITLE_HEIGHT: 0px;
 $FOOTER_HEIGHT: 100px;
 $MOBILE_HEADER_HEIGHT: 50px;
 @mixin image-management-button($icon) {
@@ -42,7 +42,7 @@ $MOBILE_HEADER_HEIGHT: 50px;
 
 
 .galleryImageSettings_title {
-    position: fixed;
+    position: relative;
     display: flex;
     align-items: center;
     width: 100%;
@@ -118,30 +118,29 @@ $MOBILE_HEADER_HEIGHT: 50px;
 
 %nav {
     display: block;
-    border: rgba(0, 0, 0, 0.75) 1px solid;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.75);
-    width: 25px;
-    height: 25px;
+    border: none;
+    background-size: 25px;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    width: 27px;
+    height: 27px;
     font-size: 24px;
     font-style: normal;
     text-align: center;
-    margin: 18px;
+    margin: 16px 18px;
     cursor: pointer;
 }
 
 .galleryImageSettings_next {
     @extend %nav;
     right: 0;
-    transform: rotateZ(90deg);
-    background: rgba(0, 0, 0, 0.75) url('./icons/next.svg') center no-repeat;
+    background-image: url('./icons/next.svg');
 }
 
 .galleryImageSettings_previous {
     @extend %nav;
     left: 0;
-    transform: rotateZ(90deg);
-    background: rgba(0, 0, 0, 0.75) url('./icons/previous.svg') center no-repeat;
+    background-image: url('./icons/previous.svg');
 }
 
 .galleryImageSettings_hidden {

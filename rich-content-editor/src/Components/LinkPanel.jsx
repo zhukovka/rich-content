@@ -26,7 +26,9 @@ class LinkPanel extends Component {
   }
 
   componentDidMount() {
-    this.input.focus();
+    if (!this.props.isImageSettings) {
+      this.input.focus();
+    }
   }
 
   handleIntermediateUrlChange = event => {
