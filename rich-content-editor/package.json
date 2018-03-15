@@ -21,6 +21,7 @@
     "build:dev": "webpack --config webpack.dev.js --colors --progress",
     "prewatch": "npm run clean",
     "watch": "npm run build:dev -- --watch",
+    "watch:remote": "webpack --config webpack.remote.js --colors --progress --watch",
     "release": "wnpm-release --no-shrinkwrap",
     "lint": "eslint 'src/**/*.{js,jsx}'",
     "lint:fix": "npm run lint -- --fix",
