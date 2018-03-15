@@ -11,7 +11,7 @@
         background-color: #000;
         color: #fff;
         animation: fadeInTooltip 0.3s cubic-bezier(0.23, 1, 0.32, 1) both;
-        animation-delay: 1200ms;
+        animation-delay: 300ms;
         display: inline-block;
         z-index: 2000;
         border-radius: 8px;
@@ -37,7 +37,7 @@
         width: 10px;
         background: #000;
         animation: fadeInArrow 0.3s cubic-bezier(0.23, 1, 0.32, 1) both;
-        animation-delay: 1200ms;
+        animation-delay: 300ms;
     }
 }
 
