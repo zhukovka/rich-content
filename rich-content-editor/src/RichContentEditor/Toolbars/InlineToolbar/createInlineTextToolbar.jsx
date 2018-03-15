@@ -10,7 +10,7 @@ export default ({ buttons, pubsub, theme, isMobile, helpers, t }) => {
   const structure = getTextButtonsFromList({ buttons: textButtons, pubsub, theme, t });
 
   return createInlineToolbar({
-    name: 'TextToolbar',
+    name: 'InlineTextToolbar',
     structure,
     pubsub,
     theme,

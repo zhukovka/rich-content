@@ -8,9 +8,20 @@ import TextLinkPanel from './TextLinkPanel';
 
 export default class TextLinkButton extends Component {
   showLinkPanel = () => {
-    const { onExtendContent, onOverrideContent, getEditorState, setEditorState, theme, isMobile, helpers, keyName, t } = this.props;
+    const {
+      onExtendContent,
+      onOverrideContent,
+      getEditorState,
+      setEditorState,
+      theme,
+      isMobile,
+      linkModal,
+      helpers,
+      keyName,
+      t
+    } = this.props;
     const modalStyles = getModalStyles({ fullScreen: false });
-    if (isMobile) {
+    if (isMobile || linkModal) {
       if (helpers && helpers.openModal) {
         const modalProps = {
           helpers,
@@ -69,6 +80,7 @@ TextLinkButton.propTypes = {
   onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   isMobile: PropTypes.bool,
+  linkModal: PropTypes.bool,
   helpers: PropTypes.object,
   keyName: PropTypes.string,
   t: PropTypes.func,

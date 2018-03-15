@@ -19,7 +19,7 @@ class I18nRichContentEditor extends PureComponent {
     }
   };
 
-  getMobileToolbar = () => this.editor.getMobileToolbar();
+  getToolbars = () => this.editor.getToolbars();
 
   render() {
     return (

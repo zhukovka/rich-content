@@ -7,5 +7,8 @@ export default ({ theme = {}, horizontal = false }) => {
   if (separatorStyles && separatorStyles.inlineToolbarSeparator) {
     separatorProps.className = separatorStyles.inlineToolbarSeparator;
   }
+  if (separatorStyles && separatorStyles.separator) {
+    separatorProps.className = separatorStyles.separator;
+  }
   return decorateComponentWithProps(Separator, separatorProps);
 };
