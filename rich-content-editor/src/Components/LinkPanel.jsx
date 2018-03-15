@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
-import { isValidUrl, getNormalizedURL } from '~/Utils/urlValidators';
+import { isValidUrl } from '~/Utils/urlValidators';
 
 import Tooltip from '~/Components/Tooltip';
 import Checkbox from '~/Components/Checkbox';
@@ -37,8 +37,7 @@ class LinkPanel extends Component {
 
   handleUrlChange = () => {
     const { intermediateUrl } = this.state;
-    const url = getNormalizedURL(intermediateUrl);
-    this.setState({ url });
+    this.setState({ url: intermediateUrl });
   };
 
   handleTargetChange = event => {
