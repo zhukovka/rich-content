@@ -29,9 +29,10 @@ const createDecorators = ({ list, config } = defaultDecorators, theme, anchorTar
           hashtag: theme && theme.hashtag,
           hashtag_hover: theme && theme.hashtag_hover, //eslint-disable-line camelcase
         };
+        const hashtagProps = Object.assign({}, hashTagConfig, { theme: hashtagTheme });
         activeDecorators.push({
           strategy,
-          component: decorateComponentWithProps(Component, { hashTagConfig, theme: hashtagTheme }),
+          component: decorateComponentWithProps(Component, hashtagProps),
         });
         break;
       }
