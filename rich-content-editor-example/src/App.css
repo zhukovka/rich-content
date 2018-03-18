@@ -27,6 +27,10 @@
   padding: 20px 40px;
 }
 
+.rich-content-editor__wrapper___27dyb {
+  height: calc(100% - 52px) !important;
+}
+
 /*** MOBILE ***/
 @media only screen and (max-width: 740px) {
   .content {
