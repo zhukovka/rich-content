@@ -8,7 +8,7 @@ const createToolbars = config => {
   const {
     buttons,
     anchorTarget,
-    textToolbarType,
+    // textToolbarType,
     hideFooterToolbar,
     sideToolbarOffset,
     helpers,
@@ -33,27 +33,24 @@ const createToolbars = config => {
   };
 
   if (shouldCreateTextToolbar) {
-    if (!textToolbarType || textToolbarType === 'inline') {
-      toolbars.text = createInlineTextToolbar({
-        buttons: textButtons,
-        theme: { ...getToolbarTheme(theme, 'inline'), ...theme },
-        anchorTarget,
-        pubsub,
-        isMobile,
-        helpers,
-        t,
-      });
-    } else {
-      toolbars.text = createStaticTextToolbar({
-        buttons: textButtons,
-        theme: { ...getToolbarTheme(theme, 'text'), ...theme },
-        anchorTarget,
-        pubsub,
-        isMobile,
-        helpers,
-        t,
-      });
-    }
+    toolbars.textInline = createInlineTextToolbar({
+      buttons: textButtons,
+      theme: { ...getToolbarTheme(theme, 'inline'), ...theme },
+      anchorTarget,
+      pubsub,
+      isMobile,
+      helpers,
+      t,
+    });
+    toolbars.textStatic = createStaticTextToolbar({
+      buttons: textButtons,
+      theme: { ...getToolbarTheme(theme, 'text'), ...theme },
+      anchorTarget,
+      pubsub,
+      isMobile,
+      helpers,
+      t,
+    });
   }
 
   if (!isMobile && !hideFooterToolbar) {

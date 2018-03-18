@@ -73,7 +73,7 @@ class RichContentEditor extends Component {
   getToolbars = () => (
     {
       MobileToolbar: this.toolbars.mobile ? this.toolbars.mobile.Toolbar : null,
-      TextToolbar: this.props.textToolbarType === 'static' ? this.toolbars.text.Toolbar : null
+      TextToolbar: this.props.textToolbarType === 'static' ? this.toolbars.textStatic.Toolbar : null
     }
   )
 
@@ -98,6 +98,9 @@ class RichContentEditor extends Component {
     }
     if (this.props.theme !== nextProps.theme) {
       this.setState({ theme: nextProps.theme });
+    }
+    if (this.props.textToolbarType !== nextProps.textToolbarType) {
+      this.setState({ textToolbarType: nextProps.textToolbarType });
     }
   }
 
@@ -167,11 +170,19 @@ class RichContentEditor extends Component {
 
   renderToolbars = () => {
     if (!this.state.readOnly) {
-      const toolbarsToRender = this.plugins.filter(p => !p.name || !includes(['MobileToolbar', 'StaticTextToolbar'], p.name));
+      const toolbarsToIgnore = [
+        'MobileToolbar',
+        'StaticTextToolbar',
+        this.props.textToolbarType === 'static' ? 'InlineTextToolbar' : '',
+      ];
+      // const toolbarsToRender = this.plugins.filter(p => !includes(toolbarsToIgnore, p.name));
       //eslint-disable-next-line array-callback-return
-      const toolbars = toolbarsToRender.map((plugin, index) => {
+      const toolbars = this.plugins.map((plugin, index) => {
         const Toolbar = plugin.Toolbar || plugin.InlineToolbar || plugin.SideToolbar;
         if (Toolbar) {
+          if (includes(toolbarsToIgnore, plugin.name)) {
+            return null;
+          }
           return <Toolbar key={`k${index}`} />;
         }
       });

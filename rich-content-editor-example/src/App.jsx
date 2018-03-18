@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
-import logo from './logo.svg';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
 import { testImages } from './images-mock';
 // import testData from './testData/initialState';
@@ -29,6 +28,7 @@ class App extends Component {
       editorState: WixRichContentEditor.EditorState.createEmpty(),
       readOnly: false,
       mounted: true,
+      textToolbarType: 'inline',
     };
     this.md = window ? new MobileDetect(window.navigator.userAgent) : null;
     this.initEditorProps();
@@ -98,13 +98,23 @@ class App extends Component {
 
   componentDidMount() {
     ReactModal.setAppElement('body');
-    const { MobileToolbar, TextToolbar } = this.editor.getToolbars();
-    this.setState({ MobileToolbar, TextToolbar });
+    this.setEditorToolbars();
   }
 
   setEditor = editor => this.editor = editor;
 
+  setEditorToolbars = () => {
+    const { MobileToolbar, TextToolbar } = this.editor.getToolbars();
+    this.setState({ MobileToolbar, TextToolbar });
+  }
+
   onMountedChange = event => this.setState({ mounted: event.target.checked });
+
+  onTextToolbarTypeChange = event => {
+    this.setState({ textToolbarType: event.target.checked ? 'static' : 'inline' }, () => {
+      this.setEditorToolbars();
+    });
+  };
 
   onReadOnlyChange = event => this.setState({ readOnly: event.target.checked });
 
@@ -142,7 +152,6 @@ class App extends Component {
         <div className="container">
           {!this.isMobile() &&
             <div className="header">
-              <img src={logo} className="logo" alt="logo" />
               <h2>Wix Rich Content Editor</h2>
               <div>
                 <label htmlFor="mountedToggle">Mounted</label>
@@ -151,6 +160,15 @@ class App extends Component {
                   name="mountedToggle"
                   onChange={this.onMountedChange}
                   defaultChecked={this.state.mounted}
+                />
+              </div>
+              <div>
+                <label htmlFor="textToolbarType">Static Text Toolbar</label>
+                <input
+                  type="checkbox"
+                  name="textToolbarType"
+                  onChange={this.onTextToolbarTypeChange}
+                  defaultChecked={this.state.textToolbarType === 'static'}
                 />
               </div>
               <div>
@@ -180,7 +198,7 @@ class App extends Component {
                 editorState={this.state.editorState}
                 readOnly={this.state.readOnly}
                 isMobile={this.isMobile()}
-                textToolbarType={'inline'}
+                textToolbarType={this.state.textToolbarType}
                 theme={theme}
                 locale={'en'}
               />
