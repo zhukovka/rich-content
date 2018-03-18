@@ -15,6 +15,7 @@ const createImagePlugin = (config = {}) => {
     toolbar: createToolbar({
       t,
       helpers,
+      anchorTarget,
     }),
     helpers,
     isMobile,

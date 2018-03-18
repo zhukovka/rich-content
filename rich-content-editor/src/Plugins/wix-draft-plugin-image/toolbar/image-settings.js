@@ -100,7 +100,7 @@ class ImageSettings extends Component {
   };
 
   render() {
-    const { componentData, helpers, theme, t, isMobile } = this.props;
+    const { componentData, helpers, theme, t, anchorTarget, isMobile } = this.props;
     const { src } = componentData;
     if (!src) {
       return; //do not render until the src is passed
@@ -162,6 +162,7 @@ class ImageSettings extends Component {
               targetBlank={targetBlank}
               nofollow={nofollow}
               isImageSettings
+              anchorTarget={anchorTarget}
               t={t}
             />
           </div>
@@ -185,6 +186,7 @@ ImageSettings.propTypes = {
   theme: PropTypes.object.isRequired,
   pubsub: PropTypes.any,
   t: PropTypes.func,
+  anchorTarget: PropTypes.string,
   isMobile: PropTypes.bool,
 };
 
