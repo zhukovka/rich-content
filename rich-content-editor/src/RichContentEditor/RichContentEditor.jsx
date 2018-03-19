@@ -219,7 +219,7 @@ class RichContentEditor extends Component {
       [theme.android]: isAndroid
     });
     return (
-      <div className={wrapperClassName}>
+      <div style={this.props.style} className={wrapperClassName}>
         <div className={classNames(Styles.editor, theme.editor)}>
           {this.renderEditor()}
           {this.renderToolbars()}
@@ -246,6 +246,7 @@ RichContentEditor.propTypes = {
   textToolbarType: PropTypes.oneOf(['inline', 'static']),
   plugins: PropTypes.arrayOf(PropTypes.string),
   anchorTarget: PropTypes.string,
+  style: PropTypes.object
 };
 
 export default translate(null, { withRef: true })(RichContentEditor);
