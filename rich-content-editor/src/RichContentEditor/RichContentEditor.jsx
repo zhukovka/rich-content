@@ -174,7 +174,6 @@ class RichContentEditor extends Component {
         'StaticTextToolbar',
         this.props.textToolbarType === 'static' ? 'InlineTextToolbar' : '',
       ];
-      // const toolbarsToRender = this.plugins.filter(p => !includes(toolbarsToIgnore, p.name));
       //eslint-disable-next-line array-callback-return
       const toolbars = this.plugins.map((plugin, index) => {
         const Toolbar = plugin.Toolbar || plugin.InlineToolbar || plugin.SideToolbar;
