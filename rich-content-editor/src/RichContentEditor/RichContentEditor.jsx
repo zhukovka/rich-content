@@ -10,8 +10,8 @@ import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createToolbars from './Toolbars';
 import createPlugins from './Plugins';
 import createDecorators from './Decorators';
-import Styles from '~/Styles/rich-content-editor.scss';
-import '~/Styles/draft.scss';
+import styles from '~/Styles/rich-content-editor.scss';
+import draftStyles from '~/Styles/draft.scss';
 
 class RichContentEditor extends Component {
   constructor(props) {
@@ -114,43 +114,43 @@ class RichContentEditor extends Component {
         classList.push(theme.quote);
         break;
       case 'header-one':
-        classList.push(Styles.headerOne);
+        classList.push(styles.headerOne);
         classList.push(theme.headerOne);
         break;
       case 'header-two':
-        classList.push(Styles.headerTwo);
+        classList.push(styles.headerTwo);
         classList.push(theme.headerTwo);
         break;
       case 'header-three':
-        classList.push(Styles.headerThree);
+        classList.push(styles.headerThree);
         classList.push(theme.headerThree);
         break;
       case 'indent':
-        classList.push(Styles.indent);
+        classList.push(styles.indent);
         classList.push(theme.indent);
         break;
       case 'ordered-list-item':
-        classList.push(Styles.orderedList);
+        classList.push(styles.orderedList);
         classList.push(theme.orderedList);
         break;
       case 'unordered-list-item':
-        classList.push(Styles.unorderedList);
+        classList.push(styles.unorderedList);
         classList.push(theme.unorderedList);
         break;
       case 'atomic':
-        classList.push(Styles.atomic);
+        classList.push(styles.atomic);
         classList.push(theme.atomic);
         break;
       case 'code-block':
-        classList.push(Styles.codeBlock);
+        classList.push(styles.codeBlock);
         classList.push(theme.codeBlock);
         break;
       default:
-        classList.push(Styles.text);
+        classList.push(styles.text);
         classList.push(theme.text);
     }
     if (type !== 'atomic') {
-      classList.push(Styles[textAlignment]);
+      classList.push(styles[textAlignment]);
       classList.push(theme[textAlignment]);
     }
     return classNames(...classList);
@@ -212,15 +212,20 @@ class RichContentEditor extends Component {
     const { isMobile } = this.props;
     const { theme } = this.state;
     const isAndroid = isMobile && !baseUtils.isiOS();
-    const wrapperClassName = classNames(Styles.wrapper, theme.wrapper, {
-      [Styles.desktop]: !isMobile,
-      [theme.desktop]: !isMobile && theme && theme.desktop,
-      [Styles.android]: isAndroid,
-      [theme.android]: isAndroid
-    });
+    const wrapperClassName = classNames(
+      draftStyles.wrapper,
+      styles.wrapper,
+      theme.wrapper,
+      {
+        [styles.desktop]: !isMobile,
+        [theme.desktop]: !isMobile && theme && theme.desktop,
+        [styles.android]: isAndroid,
+        [theme.android]: isAndroid
+      }
+    );
     return (
-      <div className={wrapperClassName}>
-        <div className={classNames(Styles.editor, theme.editor)}>
+      <div style={this.props.style} className={wrapperClassName}>
+        <div className={classNames(styles.editor, theme.editor)}>
           {this.renderEditor()}
           {this.renderToolbars()}
         </div>
@@ -246,6 +251,7 @@ RichContentEditor.propTypes = {
   textToolbarType: PropTypes.oneOf(['inline', 'static']),
   plugins: PropTypes.arrayOf(PropTypes.string),
   anchorTarget: PropTypes.string,
+  style: PropTypes.object
 };
 
 export default translate(null, { withRef: true })(RichContentEditor);
