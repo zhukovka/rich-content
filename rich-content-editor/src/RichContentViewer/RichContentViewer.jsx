@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import '@wix/draft-js/dist/Draft.css'; // must import before custom styles
 import Styles from '~/Styles/rich-content-editor.scss';
 import Preview from './Preview';
 

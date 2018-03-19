@@ -10,9 +10,8 @@ import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createToolbars from './Toolbars';
 import createPlugins from './Plugins';
 import createDecorators from './Decorators';
-import '@wix/draft-js/dist/Draft.css'; // must import before custom styles
 import Styles from '~/Styles/rich-content-editor.scss';
-import '~/Styles/draft-overrides.scss';
+import '~/Styles/draft.scss';
 
 class RichContentEditor extends Component {
   constructor(props) {
