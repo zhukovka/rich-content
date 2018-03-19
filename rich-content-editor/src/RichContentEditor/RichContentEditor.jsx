@@ -110,7 +110,7 @@ class RichContentEditor extends Component {
 
     switch (type) {
       case 'blockquote':
-        classList.push(Styles.quote);
+        classList.push(styles.quote);
         classList.push(theme.quote);
         break;
       case 'header-one':
