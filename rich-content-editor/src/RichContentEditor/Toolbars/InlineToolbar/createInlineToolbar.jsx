@@ -11,6 +11,7 @@ const createInlineToolbar = (config = {}) => {
     isMobile = false,
     helpers,
     anchorTarget,
+    relValue,
     t,
   } = config;
 
@@ -21,6 +22,7 @@ const createInlineToolbar = (config = {}) => {
     isMobile,
     helpers,
     anchorTarget,
+    relValue,
     t
   };
 

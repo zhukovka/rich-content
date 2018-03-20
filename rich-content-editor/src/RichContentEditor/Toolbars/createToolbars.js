@@ -8,6 +8,7 @@ const createToolbars = config => {
   const {
     buttons,
     anchorTarget,
+    relValue,
     // textToolbarType,
     hideFooterToolbar,
     sideToolbarOffset,
@@ -37,6 +38,7 @@ const createToolbars = config => {
       buttons: textButtons,
       theme: { ...getToolbarTheme(theme, 'inline'), ...theme },
       anchorTarget,
+      relValue,
       pubsub,
       isMobile,
       helpers,
@@ -46,6 +48,7 @@ const createToolbars = config => {
       buttons: textButtons,
       theme: { ...getToolbarTheme(theme, 'text'), ...theme },
       anchorTarget,
+      relValue,
       pubsub,
       isMobile,
       helpers,

@@ -27,6 +27,7 @@ export default class InlineToolbar extends Component {
     isMobile: PropTypes.bool,
     helpers: PropTypes.object,
     anchorTarget: PropTypes.string,
+    relValue: PropTypes.string,
     t: PropTypes.func,
   };
 
@@ -172,7 +173,7 @@ export default class InlineToolbar extends Component {
   }
 
   render() {
-    const { theme, pubsub, structure, helpers, isMobile, anchorTarget, t } = this.props;
+    const { theme, pubsub, structure, helpers, isMobile, anchorTarget, relValue, t } = this.props;
     const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
     const hasArrow = showLeftArrow || showRightArrow;
     const { toolbarStyles } = theme || {};
@@ -191,6 +192,7 @@ export default class InlineToolbar extends Component {
       isMobile,
       helpers,
       anchorTarget,
+      relValue,
       t,
     };
 

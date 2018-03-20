@@ -49,6 +49,7 @@ class RichContentEditor extends Component {
       sideToolbarOffset,
       textButtons,
       textToolbarType,
+      relValue,
       isMobile,
       t,
     } = this.props;
@@ -59,6 +60,7 @@ class RichContentEditor extends Component {
       buttons,
       helpers,
       anchorTarget,
+      relValue,
       isMobile,
       textToolbarType,
       hideFooterToolbar,

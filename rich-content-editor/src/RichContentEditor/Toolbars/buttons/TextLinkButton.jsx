@@ -19,6 +19,7 @@ export default class TextLinkButton extends Component {
       helpers,
       keyName,
       anchorTarget,
+      relValue,
       t
     } = this.props;
     const modalStyles = getModalStyles({ fullScreen: false });
@@ -33,6 +34,7 @@ export default class TextLinkButton extends Component {
           t,
           theme,
           anchorTarget,
+          relValue,
           modalName: MODALS.MOBILE_TEXT_LINK_MODAL,
           hidePopup: helpers.closeModal
         };
@@ -45,6 +47,7 @@ export default class TextLinkButton extends Component {
         onExtendContent,
         onOverrideContent,
         anchorTarget,
+        relValue,
         theme,
         t,
       };
@@ -87,5 +90,6 @@ TextLinkButton.propTypes = {
   helpers: PropTypes.object,
   keyName: PropTypes.string,
   anchorTarget: PropTypes.string,
+  relValue: PropTypes.string,
   t: PropTypes.func,
 };

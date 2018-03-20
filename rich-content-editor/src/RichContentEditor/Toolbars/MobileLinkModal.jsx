@@ -11,6 +11,7 @@ export default class MobileLinkModal extends Component {
       url,
       targetBlank,
       anchorTarget,
+      relValue,
       nofollow,
       theme,
       isMobile,
@@ -33,6 +34,7 @@ export default class MobileLinkModal extends Component {
           url={url}
           targetBlank={targetBlank}
           anchorTarget={anchorTarget}
+          relValue={relValue}
           nofollow={nofollow}
           theme={theme}
           isActive={isActive}
@@ -57,6 +59,7 @@ MobileLinkModal.propTypes = {
   url: PropTypes.string,
   targetBlank: PropTypes.bool,
   anchorTarget: PropTypes.string,
+  relValue: PropTypes.string,
   nofollow: PropTypes.bool,
   t: PropTypes.func,
 };

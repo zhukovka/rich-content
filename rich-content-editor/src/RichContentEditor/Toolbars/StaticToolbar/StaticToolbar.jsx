@@ -11,6 +11,7 @@ export default class StaticToolbar extends React.Component {
     isMobile: PropTypes.bool.isRequired,
     linkModal: PropTypes.bool,
     anchorTarget: PropTypes.string,
+    relValue: PropTypes.string,
     helpers: PropTypes.object,
     t: PropTypes.func,
   };
@@ -80,7 +81,7 @@ export default class StaticToolbar extends React.Component {
   onExtendContent = extendContent => this.setState({ extendContent });
 
   render() {
-    const { theme, pubsub, structure, helpers, isMobile, linkModal, anchorTarget, t } = this.props;
+    const { theme, pubsub, structure, helpers, isMobile, linkModal, anchorTarget, relValue, t } = this.props;
     const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
     const hasArrow = showLeftArrow || showRightArrow;
     const { toolbarStyles } = theme || {};
@@ -93,6 +94,7 @@ export default class StaticToolbar extends React.Component {
       isMobile,
       linkModal,
       anchorTarget,
+      relValue,
       t,
       getEditorState: pubsub.get('getEditorState'),
       setEditorState: pubsub.get('setEditorState'),
