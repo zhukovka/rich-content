@@ -31,13 +31,14 @@ class RichContentEditor extends Component {
       plugins,
       isMobile,
       anchorTarget,
+      relValue,
       t,
     } = this.props;
     const { theme } = this.state;
-    const { pluginInstances, pluginButtons } = createPlugins({ plugins, helpers, theme, t, isMobile, anchorTarget });
+    const { pluginInstances, pluginButtons } = createPlugins({ plugins, helpers, theme, t, isMobile, anchorTarget, relValue });
     this.initEditorToolbars(pluginButtons);
     this.plugins = [...pluginInstances, ...Object.values(this.toolbars)];
-    this.decorators = createDecorators(decorators, theme, anchorTarget);
+    this.decorators = createDecorators(decorators, theme, anchorTarget, relValue);
   }
 
   initEditorToolbars(pluginButtons) {
@@ -48,6 +49,7 @@ class RichContentEditor extends Component {
       sideToolbarOffset,
       textButtons,
       textToolbarType,
+      relValue,
       isMobile,
       t,
     } = this.props;
@@ -58,6 +60,7 @@ class RichContentEditor extends Component {
       buttons,
       helpers,
       anchorTarget,
+      relValue,
       isMobile,
       textToolbarType,
       hideFooterToolbar,
@@ -174,7 +177,6 @@ class RichContentEditor extends Component {
         'StaticTextToolbar',
         this.props.textToolbarType === 'static' ? 'InlineTextToolbar' : '',
       ];
-      // const toolbarsToRender = this.plugins.filter(p => !includes(toolbarsToIgnore, p.name));
       //eslint-disable-next-line array-callback-return
       const toolbars = this.plugins.map((plugin, index) => {
         const Toolbar = plugin.Toolbar || plugin.InlineToolbar || plugin.SideToolbar;
@@ -251,6 +253,7 @@ RichContentEditor.propTypes = {
   textToolbarType: PropTypes.oneOf(['inline', 'static']),
   plugins: PropTypes.arrayOf(PropTypes.string),
   anchorTarget: PropTypes.string,
+  relValue: PropTypes.string,
   style: PropTypes.object
 };
 

@@ -65,8 +65,9 @@ class LinkPanel extends Component {
 
   render() {
     const { styles } = this;
-    const { isImageSettings, theme, anchorTarget, t } = this.props;
+    const { isImageSettings, theme, anchorTarget, relValue, t } = this.props;
     const showTargetBlankCheckbox = anchorTarget !== '_blank';
+    const showRelValueCheckbox = relValue !== 'nofollow';
     const firstCheckboxText = t('LinkPanel_Target_Checkbox');
     const secondCheckboxText = t('LinkPanel_Nofollow_Checkbox');
     const inputPlaceholder = isImageSettings ? t('LinkPanel_InputPlaceholder_ImageSettings') : t('LinkPanel_InputPlaceholder');
@@ -104,7 +105,9 @@ class LinkPanel extends Component {
           {showTargetBlankCheckbox &&
             <Checkbox label={firstCheckboxText} theme={theme} checked={this.state.targetBlank} onChange={this.handleTargetChange} />
           }
-          <Checkbox label={secondCheckboxText} theme={theme} checked={this.state.nofollow} onChange={this.handleNofollowChange} />
+          {showRelValueCheckbox &&
+            <Checkbox label={secondCheckboxText} theme={theme} checked={this.state.nofollow} onChange={this.handleNofollowChange} />
+          }
         </div>
       </div>
     );
@@ -118,6 +121,7 @@ LinkPanel.propTypes = {
   isImageSettings: PropTypes.bool,
   theme: PropTypes.object.isRequired,
   anchorTarget: PropTypes.string,
+  relValue: PropTypes.string,
   t: PropTypes.func,
 };
 export default LinkPanel;

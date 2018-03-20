@@ -50,7 +50,7 @@ class LinkPanelContainer extends Component {
 
   render() {
     const { styles } = this;
-    const { url, targetBlank, nofollow, theme, isActive, anchorTarget, isMobile, t } = this.props;
+    const { url, targetBlank, nofollow, theme, isActive, anchorTarget, relValue, isMobile, t } = this.props;
     const doneButtonText = t('LinkPanelContainer_DoneButton');
     const cancelButtonText = t('LinkPanelContainer_CancelButton');
     const removeButtonText = t('LinkPanelContainer_RemoveButton');
@@ -69,6 +69,7 @@ class LinkPanelContainer extends Component {
             url={url}
             targetBlank={targetBlank}
             anchorTarget={anchorTarget}
+            relValue={relValue}
             nofollow={nofollow}
             t={t}
           />
@@ -98,6 +99,7 @@ LinkPanelContainer.propTypes = {
   url: PropTypes.string,
   targetBlank: PropTypes.bool,
   anchorTarget: PropTypes.string,
+  relValue: PropTypes.string,
   nofollow: PropTypes.bool,
   isActive: PropTypes.bool,
   isMobile: PropTypes.bool,

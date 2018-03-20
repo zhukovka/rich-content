@@ -42,9 +42,9 @@ class App extends Component {
         Hashtag: {
           createHref: decoratedText =>
             `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`,
-          onClick: (event, decoratedText) => {
+          onClick: (event, text) => {
             event.preventDefault();
-            console.log('hashtag clicked!')
+            console.log(`'${text}' hashtag clicked!`);
           }
         }
       }

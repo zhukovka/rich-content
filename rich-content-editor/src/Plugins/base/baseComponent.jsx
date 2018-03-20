@@ -247,19 +247,20 @@ const createBaseComponent = ({ PluginComponent, theme, type, pubsub, helpers, t,
         };
       }
       const anchorClass = classNames(
-        {
+        Styles.anchor, {
           [Styles.isImage]: includes([IMAGE_TYPE, IMAGE_TYPE_LEGACY], type),
         });
       return (
         <div style={{ position: 'relative' }} className={ContainerClassNames}>
           {!isNil(link) ?
             (
-              <a
-                className={anchorClass}
-                {...anchorProps}
-              >
+              <div>
                 {component}
-              </a>
+                <a
+                  className={anchorClass}
+                  {...anchorProps}
+                />
+              </div>
             ) :
             (
               component

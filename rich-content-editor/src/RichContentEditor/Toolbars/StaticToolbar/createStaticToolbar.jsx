@@ -13,6 +13,7 @@ export default (config = {}) => {
     helpers,
     linkModal = false,
     anchorTarget,
+    relValue,
     t,
   } = config;
 
@@ -24,6 +25,7 @@ export default (config = {}) => {
     helpers,
     linkModal,
     anchorTarget,
+    relValue,
     t,
   };
 

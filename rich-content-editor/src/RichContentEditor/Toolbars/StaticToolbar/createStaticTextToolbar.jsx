@@ -75,7 +75,7 @@ const getStaticTextTheme = theme => {
   };
 };
 
-export default ({ buttons, pubsub, theme, isMobile, helpers, anchorTarget, t }) => {
+export default ({ buttons, pubsub, theme, isMobile, helpers, anchorTarget, relValue, t }) => {
   const textButtons = get(buttons, 'desktop', DesktopTextButtonList);
   const staticTextTheme = getStaticTextTheme(theme);
   const structure = getTextButtonsFromList({ buttons: textButtons, pubsub, theme: staticTextTheme, t });
@@ -89,6 +89,7 @@ export default ({ buttons, pubsub, theme, isMobile, helpers, anchorTarget, t }) 
     helpers,
     linkModal: true,
     anchorTarget,
+    relValue,
     t
   });
 };
