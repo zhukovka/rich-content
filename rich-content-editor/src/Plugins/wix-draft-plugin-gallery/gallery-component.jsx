@@ -97,13 +97,13 @@ class GalleryComponent extends React.PureComponent {
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
 
     if (hasFileChangeHelper) {
-      helpers.onFilesChange(file, ({ data }) => this.handleFilesAdded(data, itemIdx));
+      helpers.onFilesChange(file, ({ data }) => this.handleFilesAdded({ data, itemIdx }));
     } else {
       console.warn('Missing upload function'); //eslint-disable-line no-console
     }
   };
 
-  handleFilesAdded = (data, itemIdx) => {
+  handleFilesAdded = ({ data, itemIdx }) => {
     const galleryItem = {
       metadata: {
         height: data.height,

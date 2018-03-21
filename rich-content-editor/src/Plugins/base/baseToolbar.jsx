@@ -104,11 +104,6 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       this.setState({ size });
     };
 
-    deleteBlock = () => {
-      pubsub.set('visibleBlock', null);
-      pubsub.get('deleteBlock')();
-    };
-
     onVisibilityChanged = visibleBlock => {
       if (visibleBlock) {
         this.showToolbar();
@@ -252,9 +247,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
             t={t}
           />);
         case BUTTONS.DELETE:
-          return (<DeleteButton
-            onClick={this.deleteBlock} theme={themedStyle} key={key} t={t}
-          />);
+          return <DeleteButton onClick={pubsub.get('deleteBlock')} theme={themedStyle} key={key} t={t} />;
         default:
           return (
             <BaseToolbarButton
