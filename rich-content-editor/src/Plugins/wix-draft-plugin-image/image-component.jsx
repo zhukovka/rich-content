@@ -122,6 +122,7 @@ class ImageComponent extends React.Component {
         isLoading={this.state.isLoading}
         dataUrl={this.state.dataUrl}
         isFocused={this.props.blockProps.isFocused}
+        readOnly={this.props.blockProps.readOnly}
         t={t}
       />
     );
