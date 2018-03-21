@@ -11,7 +11,9 @@ class FileInput extends Component {
     this.id = `file_input_${++FileInput.id}`;
   }
 
-  render() {
+  preventBubblingUp = event => event.preventDefault();
+
+  renderInput() {
     const { onChange, accept, multiple, className, title, children } = this.props;
     const hasMultiple = multiple ? { multiple } : {};
     return (
@@ -31,18 +33,47 @@ class FileInput extends Component {
           {...hasMultiple}
         />
         {children}
-      </label>);
+      </label>
+    );
   }
+
+  renderButton() {
+    const { handleFileSelection, multiple, className, title, children } = this.props;
+    const onClick = () => handleFileSelection(multiple);
+    return (
+      <label
+        className={className}
+        htmlFor={this.id}
+        style={this.props.style}
+        title={title}
+      >
+        <button
+          id={this.id}
+          onClick={onClick}
+        >
+          {children}
+        </button>
+      </label>
+    );
+
+  }
+
+  render() {
+    const { handleFileSelection } = this.props;
+    return handleFileSelection ? this.renderButton() : this.renderInput();
+  }
+
 }
 
 FileInput.propTypes = {
   accept: PropTypes.string,
   className: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+  handleFileSelection: PropTypes.func,
   children: PropTypes.node,
   multiple: PropTypes.bool,
   title: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 FileInput.defaultProps = {

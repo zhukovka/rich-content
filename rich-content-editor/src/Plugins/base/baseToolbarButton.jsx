@@ -56,7 +56,7 @@ class BaseToolbarButton extends React.Component {
 
     if (this.props.type === BUTTONS.FILES && helpers && helpers.handleFileSelection) {
       const multiple = !!this.props.multiple;
-      helpers.handleFileSelection(multiple, pubsub.get('handleFilesAdded'), pubsub.get('deleteBlock'));
+      helpers.handleFileSelection(undefined, multiple, pubsub.get('handleFilesAdded'), pubsub.get('deleteBlock'));
       return;
     }
 

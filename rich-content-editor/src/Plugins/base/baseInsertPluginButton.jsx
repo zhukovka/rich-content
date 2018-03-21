@@ -105,7 +105,7 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
         this.addBlock(button.data || {});
         setTimeout(() => {
           const multiple = !!button.multi;
-          handleFileSelection(multiple, pubsub.get('handleFilesAdded'), pubsub.get('deleteBlock'));
+          handleFileSelection(undefined, multiple, pubsub.get('handleFilesAdded'), pubsub.get('deleteBlock'));
         });
       }
     }
