@@ -134,6 +134,11 @@ const createBaseComponent = ({ PluginComponent, theme, type, pubsub, helpers, t,
       }
     };
 
+    deleteBlock = () => {
+      pubsub.set('visibleBlock', null);
+      this.props.blockProps.deleteBlock();
+    }
+
     updateComponent() {
       const { block, blockProps } = this.props;
       if (blockProps.isFocused && blockProps.isCollapsedSelection) {
@@ -176,7 +181,7 @@ const createBaseComponent = ({ PluginComponent, theme, type, pubsub, helpers, t,
         batchUpdates.componentState = {};
         batchUpdates.componentSize = config.size;
         batchUpdates.componentAlignment = config.alignment;
-        batchUpdates.deleteBlock = this.props.blockProps.deleteBlock;
+        batchUpdates.deleteBlock = this.deleteBlock;
         batchUpdates.visibleBlock = visibleBlock;
         pubsub.set(batchUpdates);
       } else {

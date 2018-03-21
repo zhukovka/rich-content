@@ -63,7 +63,7 @@ class App extends Component {
     }
     this.helpers = {
       onFilesChange: (file, updateEntity) => mockUpload(updateEntity),
-      //handleFileSelection: (multiple, updateEntity) => mockUpload(updateEntity),
+      //handleFileSelection: (multiple, updateEntity, removeEntity) => mockUpload(updateEntity),
       openModal: data => {
         const { modalStyles, ...modalProps } = data;
         try {
