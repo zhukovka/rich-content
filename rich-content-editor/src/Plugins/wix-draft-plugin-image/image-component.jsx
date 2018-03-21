@@ -52,13 +52,12 @@ class ImageComponent extends React.Component {
   resetLoadingState = error => {
     //no upload function
     if (this.state.isMounted) {
-      this.setState({ isLoading: false, files: null, dataUrl: null, error });
+      this.setState({ isLoading: false, dataUrl: null, error });
     } else {
       //this is async and sometimes called before the component is mounted, so just place it on the state
       //eslint-disable-next-line react/no-direct-mutation-state
       this.state = Object.assign(this.state, {
         isLoading: false,
-        files: null,
         dataUrl: null,
         fileError: error,
       });
@@ -70,13 +69,12 @@ class ImageComponent extends React.Component {
   fileLoaded = (event, files) => {
     const fileDataUrl = event.target.result;
     if (this.state.isMounted) {
-      this.setState({ isLoading: true, files: null, dataUrl: fileDataUrl });
+      this.setState({ isLoading: true, dataUrl: fileDataUrl });
     } else {
       //this is async and sometimes called before the component is mounted, so just place it on the state
       //eslint-disable-next-line react/no-direct-mutation-state
       this.state = Object.assign(this.state, {
         isLoading: true,
-        files: null,
         dataUrl: fileDataUrl,
         fileError: null,
       });
@@ -95,13 +93,12 @@ class ImageComponent extends React.Component {
     const reader = new FileReader();
     reader.onload = e => this.fileLoaded(e, files);
     reader.readAsDataURL(files[0]);
-    Object.assign(state, { isLoading: true, files, dataUrl: EMPTY_SMALL_PLACEHOLDER });
+    Object.assign(state, { isLoading: true, dataUrl: EMPTY_SMALL_PLACEHOLDER });
 
     return state;
   };
 
-  handleFilesAdded = ({ files, data, error }) => {
-    this.setState({ files });
+  handleFilesAdded = ({ data, error }) => {
     this.props.store.update('componentData', { src: data });
     this.resetLoadingState(error);
   }
