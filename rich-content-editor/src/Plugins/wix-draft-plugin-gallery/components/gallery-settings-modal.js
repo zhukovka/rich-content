@@ -28,7 +28,9 @@ class ManageMediaSection extends Component {
   };
 
   render() {
-    const { t } = this.props;
+    const { helpers, store, t } = this.props;
+    const { handleFileSelection } = helpers;
+
     return (
       <div>
         <SortableComponent
@@ -36,6 +38,9 @@ class ManageMediaSection extends Component {
           items={this.props.data.items}
           onItemsChange={this.applyItems}
           handleFileChange={this.handleFileChange}
+          handleFileSelection={handleFileSelection}
+          handleFilesAdded={store.get('handleFilesAdded')}
+          deleteBlock={store.get('deleteBlock')}
           t={t}
           isMobile={this.props.isMobile}
         />
@@ -48,6 +53,7 @@ ManageMediaSection.propTypes = {
   data: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  helpers: PropTypes.object.isRequired,
   isMobile: PropTypes.bool,
   t: PropTypes.func,
 };
@@ -182,8 +188,8 @@ export class GallerySettingsModal extends Component {
             otherTab={this.tabName(this.otherTab(), t)}
             t={t}
           />
-          {activeTab === 'manage_media' ? <ManageMediaSection data={componentData} store={pubsub.store} theme={this.props.theme} t={t} isMobile/> : null }
-          {activeTab === 'advanced_settings' ? <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store} t={t} isMobile/> : null }
+          {activeTab === 'manage_media' ? <ManageMediaSection data={componentData} store={pubsub.store} theme={this.props.theme} helpers={helpers} t={t} isMobile/> : null }
+          {activeTab === 'advanced_settings' ? <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store} helpers={helpers} t={t} isMobile/> : null }
         </div>
       );
     } else {
@@ -194,10 +200,10 @@ export class GallerySettingsModal extends Component {
           <div>
             <Tabs value={activeTab} theme={this.props.theme}>
               <Tab label={this.tabName('manage_media', t)} value={'manage_media'} theme={this.props.theme}>
-                <ManageMediaSection data={componentData} store={pubsub.store} theme={this.props.theme} t={t}/>
+                <ManageMediaSection data={componentData} store={pubsub.store} helpers={helpers} theme={this.props.theme} t={t}/>
               </Tab>
               <Tab label={this.tabName('advanced_settings', t)} value={'advanced_settings'} theme={this.props.theme}>
-                <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store} t={t}/>
+                <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store} helpers={helpers} t={t}/>
               </Tab>
             </Tabs>
           </div>

@@ -58,7 +58,7 @@ class ImageSettings extends Component {
     this.setState({ images: this.state.images });
   };
 
-  replaceItem(event) {
+  replaceItem = event => {
     const { handleFileChange } = this.props;
     const itemIdx = this.state.selectedIndex;
     handleFileChange(event, itemIdx);
@@ -79,7 +79,7 @@ class ImageSettings extends Component {
 
   render() {
     const styles = this.styles;
-    const { onCancel, theme, isMobile, t } = this.props;
+    const { handleFileSelection, onCancel, theme, isMobile, t } = this.props;
     const { images } = this.state;
     const selectedImage = images[this.state.selectedIndex];
     const { url, targetBlank, nofollow } = (!isEmpty(selectedImage.metadata.link) ? selectedImage.metadata.link : {});
@@ -134,7 +134,7 @@ class ImageSettings extends Component {
               </div>
             </SettingsSection>
             <div className={styles.galleryImageSettings_manageImageGrid}>
-              <FileInput className={styles.galleryImageSettings_replace} onChange={this.replaceItem.bind(this)}>
+              <FileInput className={styles.galleryImageSettings_replace} handleFileSelection={handleFileSelection} onChange={this.replaceItem}>
                 <span className={styles.galleryImageSettings_replace_text}>{ReplaceLabel}</span>
               </FileInput>
               <button className={styles.galleryImageSettings_delete} onClick={() => this.deleteImage(selectedImage)}>
@@ -186,7 +186,8 @@ ImageSettings.propTypes = {
   onCancel: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
-  handleFileChange: PropTypes.func.isRequired,
+  handleFileSelection: PropTypes.func,
+  handleFileChange: PropTypes.func,
   isMobile: PropTypes.bool,
   t: PropTypes.func,
 };

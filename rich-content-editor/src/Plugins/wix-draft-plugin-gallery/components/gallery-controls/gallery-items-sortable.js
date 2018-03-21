@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { SortableContainer as sortableContainer, SortableElement as sortableElement, arrayMove } from 'react-sortable-hoc';
 import classNames from 'classnames';
+import findIndex from 'lodash/findIndex';
 import { getScaleToFillImageURL } from 'image-client-api/dist/imageClientSDK';
 
 import Styles from './gallery-items-sortable.scss';
@@ -16,7 +17,20 @@ import Fab from '../../icons/fab.svg';
 //eslint-disable-next-line no-unused-vars
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-const SortableItem = sortableElement(({ item, itemIdx, clickAction, addItemsButton, handleFileChange, isMobileSorting, theme, t, isMobile }) => {
+const SortableItem = sortableElement(props => {
+  const {
+    item,
+    itemIdx,
+    clickAction,
+    addItemsButton,
+    handleFileSelection,
+    handleFileChange,
+    isMobileSorting,
+    theme,
+    t,
+    isMobile
+  } = props;
+
   const styles = mergeStyles({ styles: Styles, theme });
   const imageSize = (isMobile && window && window.document) ? ((window.document.body.getBoundingClientRect().width - 20) / 3) : 104;
   if (addItemsButton) {
@@ -26,6 +40,7 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, addItemsButt
       <FileInput
         className={classNames(styles.itemContainer, styles.filesItem, { [styles.mobile]: isMobile })}
         onChange={handleFileChange}
+        handleFileSelection={handleFileSelection}
         multiple
         title={uploadMediaLabel}
         style={{ width: imageSize + 'px', height: imageSize + 'px' }}
@@ -72,7 +87,18 @@ const SortableItem = sortableElement(({ item, itemIdx, clickAction, addItemsButt
 }
 );
 
-const SortableList = sortableContainer(({ items, clickAction, handleFileChange, isMobileSorting, theme, t, isMobile }) => {
+const SortableList = sortableContainer(props => {
+  const {
+    items,
+    clickAction,
+    handleFileSelection,
+    handleFileChange,
+    isMobileSorting,
+    theme,
+    t,
+    isMobile,
+  } = props;
+
   const styles = mergeStyles({ styles: Styles, theme });
   return (
     <div
@@ -91,17 +117,41 @@ const SortableList = sortableContainer(({ items, clickAction, handleFileChange, 
           isMobile={isMobile}
         />
       ))}
-      {isMobileSorting ? null : <SortableItem
-        key={`item-upload-mock`} itemIdx={items.length} index={items.length} disabled addItemsButton isMobile={isMobile}
-        handleFileChange={handleFileChange} theme={theme} t={t}
-      />
+      {isMobileSorting ? null : (
+        <SortableItem
+          key={`item-upload-mock`}
+          itemIdx={items.length}
+          index={items.length}
+          isMobile={isMobile}
+          handleFileSelection={handleFileSelection}
+          handleFileChange={handleFileChange}
+          theme={theme}
+          t={t}
+          addItemsButton
+          disabled
+        />
+      )
       }
     </div>
   );
 });
 
 //eslint-disable-next-line
-const ItemActionsMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleImageSettings, handleFileChange, toggleSorting, isMobileSorting, theme, t, isMobile }) => {
+const ItemActionsMenu = props => {
+  const {
+    items,
+    setAllItemsValue,
+    deleteSelectedItems,
+    toggleImageSettings,
+    handleFileSelection,
+    handleFileChange,
+    toggleSorting,
+    isMobileSorting,
+    theme,
+    t,
+    isMobile,
+  } = props;
+
   const styles = mergeStyles({ styles: Styles, theme });
   const hasUnselectedItems = items.some(item => !item.selected);
   const hasSelectedItems = items.some(item => item.selected);
@@ -115,7 +165,16 @@ const ItemActionsMenu = ({ items, setAllItemsValue, deleteSelectedItems, toggleI
   const itemSettingsLabel = t('GallerySettings_Image_Settings');
 
   //eslint-disable-next-line max-len
-  const addItemButton = <FileInput className={styles.filesButton} onChange={handleFileChange} multiple>{(isMobile ? <Fab className={styles.fab} /> : `+ ${addMediaLabel}`)}</FileInput>;
+  const addItemButton = (
+    <FileInput
+      className={styles.filesButton}
+      onChange={handleFileChange}
+      handleFileSelection={handleFileSelection}
+      multiple
+    >
+      {(isMobile ? <Fab className={styles.fab} /> : `+ ${addMediaLabel}`)}
+    </FileInput>
+  );
 
   const separator = <span className={styles.seperator}>·</span>;
   const buttons = [];
@@ -155,6 +214,7 @@ ItemActionsMenu.propTypes = {
   setAllItemsValue: PropTypes.func,
   deleteSelectedItems: PropTypes.func,
   toggleImageSettings: PropTypes.func.isRequired,
+  handleFileSelection: PropTypes.func,
   handleFileChange: PropTypes.func,
   toggleSorting: PropTypes.func,
   isMobileSorting: PropTypes.bool,
@@ -273,8 +333,15 @@ export class SortableComponent extends Component {
     this.toggleImageSettings(false);
   }
 
+  handleFileSelection = multiple => {
+    const { items, editedImage } = this.state;
+    const { handleFileSelection, handleFilesAdded, deleteBlock } = this.props;
+    const index = editedImage ? findIndex(items, i => editedImage.url === i.url) : undefined;
+    handleFileSelection(index, multiple, handleFilesAdded, deleteBlock);
+  }
+
   render() {
-    const { theme, t } = this.props;
+    const { handleFileSelection: shouldHandleFileSelection, theme, t } = this.props;
     return !!this.state.items && (
       !this.state.imageSettingsVisible ? (
         <div>
@@ -283,6 +350,7 @@ export class SortableComponent extends Component {
             setAllItemsValue={this.setAllItemsValue.bind(this)}
             deleteSelectedItems={this.deleteSelectedItems.bind(this)}
             toggleImageSettings={() => this.toggleImageSettings(true)}
+            handleFileSelection={shouldHandleFileSelection ? this.handleFileSelection : null}
             handleFileChange={this.props.handleFileChange}
             toggleSorting={this.toggleSorting}
             isMobileSorting={this.state.isMobileSorting}
@@ -298,6 +366,7 @@ export class SortableComponent extends Component {
             axis="xy"
             helperClass="sortableHelper"
             transitionDuration={50}
+            handleFileSelection={shouldHandleFileSelection ? this.handleFileSelection : null}
             handleFileChange={this.props.handleFileChange}
             isMobileSorting={this.state.isMobileSorting}
             theme={theme}
@@ -313,6 +382,7 @@ export class SortableComponent extends Component {
             selectedImage={this.state.editedImage}
             onCancel={items => this.saveImageSettings(items)}
             onSave={items => this.saveImageSettings(items)}
+            handleFileSelection={shouldHandleFileSelection ? this.handleFileSelection : null}
             handleFileChange={this.props.handleFileChange}
             t={t}
             isMobile={this.props.isMobile}
@@ -327,7 +397,10 @@ SortableComponent.propTypes = {
   onItemsChange: PropTypes.func.isRequired,
   addItems: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handleFileChange: PropTypes.func.isRequired,
+  handleFileChange: PropTypes.func,
+  handleFileSelection: PropTypes.func,
+  handleFilesAdded: PropTypes.func,
+  deleteBlock: PropTypes.func,
   isMobile: PropTypes.bool,
   theme: PropTypes.object.isRequired,
   t: PropTypes.func,
