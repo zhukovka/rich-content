@@ -16,14 +16,15 @@ class ImageSettings extends Component {
   constructor(props) {
     super(props);
     this.state = this.propsToState(props);
+    this.initialState = { ...this.state };
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
   propsToState(props) {
-    const initialImageState = { ...props.componentData.src };
+    const { componentData: { src, metadata } } = props || {};
     return {
-      src: props.componentData.src,
-      initialImageState,
+      src,
+      metadata,
     };
   }
 
@@ -41,19 +42,17 @@ class ImageSettings extends Component {
 
   revertComponentData () {
     const { componentData, helpers, pubsub } = this.props;
-    const { initialImageState } = this.state;
-    if (initialImageState) {
-      componentData.src = initialImageState;
-      pubsub.set('componentData', componentData);
+    if (this.initialState) {
+      const initialComponentData = Object.assign({}, componentData, { ...this.initialState });
+      pubsub.update('componentData', initialComponentData);
+      this.setState({ ...this.initialState });
     }
-    this.setState({ src: initialImageState });
-
     helpers.closeModal();
   }
 
-  imageMetadataUpdated = (image, value) => {
-    image.metadata = Object.assign({}, image.metadata, value);
-    this.setState({ src: this.state.src });
+  metadataUpdated = (metadata, value) => {
+    const updatedMetadata = Object.assign({}, metadata, value);
+    this.setState({ metadata: updatedMetadata });
   };
 
   wrapBlockInLink = ({ url, targetBlank, nofollow }) => {
@@ -67,16 +66,16 @@ class ImageSettings extends Component {
 
   addMetadataToBlock = () => {
     const { pubsub, componentData } = this.props;
-    const { alt, caption } = this.state.src.metadata || {};
+    const { alt, caption } = this.state.metadata || {};
     const metadata = {
       alt: alt || undefined,
       caption: caption || undefined,
     };
     pubsub.set('componentData', {
       ...componentData,
+      metadata,
       src: {
         ...componentData.src,
-        metadata,
       }
     });
   };
@@ -93,7 +92,7 @@ class ImageSettings extends Component {
     } else if (this.linkPanel.state.intermediateUrl === '') {
       this.deleteLink();
     }
-    if (this.state.src.metadata) {
+    if (this.state.metadata) {
       this.addMetadataToBlock();
     }
     helpers.closeModal();
@@ -101,13 +100,13 @@ class ImageSettings extends Component {
 
   render() {
     const { componentData, helpers, theme, t, anchorTarget, isMobile } = this.props;
-    const { src } = componentData;
+    const { config = {} } = componentData;
+    const { src, metadata = {} } = this.state;
     if (!src) {
       return; //do not render until the src is passed
     }
 
-    const { metadata = {} } = src;
-    const { url, targetBlank, nofollow } = (!isEmpty(componentData.config.link) ? componentData.config.link : {});
+    const { url, targetBlank, nofollow } = (!isEmpty(config.link) ? config.link : {});
     const updateLabel = t('ImageSettings_Update');
     const headerText = t('ImageSettings_Header');
     const captionLabel = t('ImageSettings_Caption_Label');
@@ -139,7 +138,7 @@ class ImageSettings extends Component {
               label={captionLabel}
               placeholder={captionInputPlaceholder}
               value={metadata.caption || ''}
-              onChange={event => this.imageMetadataUpdated(src, { caption: event.target.value })}
+              onChange={event => this.metadataUpdated(metadata, { caption: event.target.value })}
             />
           </SettingsSection >
           <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
@@ -148,7 +147,7 @@ class ImageSettings extends Component {
               label={altLabel}
               placeholder={altInputPlaceholder}
               value={metadata.alt || ''}
-              onChange={event => this.imageMetadataUpdated(src, { alt: event.target.value })}
+              onChange={event => this.metadataUpdated(metadata, { alt: event.target.value })}
             />
           </SettingsSection>
           <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
