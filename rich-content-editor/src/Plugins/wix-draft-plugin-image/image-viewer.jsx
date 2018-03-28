@@ -84,8 +84,7 @@ class ImageViewer extends React.Component {
     const { styles } = this;
     const { componentData, className, onClick, isFocused, readOnly, t } = this.props;
     const data = componentData || getDefault();
-    const { src = {} } = componentData;
-    const { metadata = {} } = src;
+    const { metadata = {} } = componentData;
 
     const itemClassName = classNames(styles.imageContainer, className);
     const imageClassName = classNames(styles.image);
