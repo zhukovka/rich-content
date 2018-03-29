@@ -46,7 +46,7 @@ class ImageSettings extends Component {
   setLinkPanel = linkPanel => this.linkPanel = linkPanel;
 
   deleteImage(selectedImage) {
-    const images = this.state.images.filter(i => i.url !== selectedImage.url);
+    const images = this.state.images.filter(i => i.itemId !== selectedImage.itemId);
     this.setState({
       images,
       selectedIndex: Math.min(this.state.selectedIndex, images.length - 1)
