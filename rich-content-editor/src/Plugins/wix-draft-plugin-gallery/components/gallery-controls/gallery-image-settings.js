@@ -9,7 +9,7 @@ import Image from '~/Components/Image';
 import SettingsSection from '~/Components/SettingsSection';
 import InputWithLabel from '~/Components/InputWithLabel';
 import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
-import LinkPanel from '../../../../Components/LinkPanel.jsx';
+import LinkPanel from '../../../../Components/LinkPanel';
 import FileInput from '~/Components/FileInput';
 import BackIcon from './icons/back.svg';
 
