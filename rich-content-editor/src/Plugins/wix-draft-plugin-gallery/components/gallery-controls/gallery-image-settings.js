@@ -46,6 +46,7 @@ class ImageSettings extends Component {
   setLinkPanel = linkPanel => this.linkPanel = linkPanel;
 
   deleteImage(selectedImage) {
+    //todo - delete by ID (could be same image many times)
     const images = this.state.images.filter(i => i.url !== selectedImage.url);
     this.setState({
       images,
