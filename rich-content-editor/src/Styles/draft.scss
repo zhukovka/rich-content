@@ -11,18 +11,35 @@
     }
 
     .public-DraftEditor-content[contenteditable=true] {
-      -webkit-user-modify: read-write-plaintext-only
+      -webkit-user-modify: read-write-plaintext-only;
     }
 
     .DraftEditor-root {
-      position: relative
+      position: relative;
     }
 
     .public-DraftStyleDefault-block {
       position: relative;
-      white-space: pre-wrap
+      white-space: pre-wrap;
     }
 
+    .public-DraftStyleDefault-ltr {
+      direction: ltr;
+      text-align: left;
+    }
+
+    .public-DraftStyleDefault-rtl {
+      direction: rtl;
+      text-align: right;
+    }
+
+    .public-DraftStyleDefault-listLTR {
+      direction: ltr;
+    }
+
+    .public-DraftStyleDefault-listRTL {
+      direction: rtl;
+    }
 
     .public-DraftStyleDefault-ol,
     .public-DraftStyleDefault-ul {

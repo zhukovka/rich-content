@@ -4,7 +4,7 @@ export { default as simplePubsub } from './simplePubsub';
 export { getModalStyles } from './getModalStyles';
 export { mergeStyles } from './mergeStyles';
 export { isValidUrl, isVideoUrl, normalizeURL } from './urlValidators';
-export { default as normalizeComponentData } from './normalizeComponentData';
+export { default as normalizeInitialState } from './normalizeInitialState';
 export {
   insertLink,
   hasLinksInSelection,

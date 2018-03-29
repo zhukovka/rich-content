@@ -10,7 +10,7 @@ import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createToolbars from './Toolbars';
 import createPlugins from './Plugins';
 import createDecorators from './Decorators';
-import { normalizeComponentData } from '~/Utils';
+import { normalizeInitialState } from '~/Utils';
 import styles from '~/Styles/rich-content-editor.scss';
 import draftStyles from '~/Styles/draft.scss';
 
@@ -79,23 +79,13 @@ class RichContentEditor extends Component {
       TextToolbar: this.props.textToolbarType === 'static' ? this.toolbars.textStatic.Toolbar : null
     }
   )
-
-  // debilian but works
-  normalizeInitialState(initialState) {
-    if (initialState.entityMap) {
-      Object.keys(initialState.entityMap).map(entityKey => initialState.entityMap[entityKey])
-        .filter(entity => ['IMAGE', 'VIDEO'].includes(entity.type) && entity.data)
-        .forEach(entity => entity.data = normalizeComponentData(entity.data));
-    }
-  }
-
   getInitialEditorState() {
     const { editorState, initialState } = this.props;
     if (editorState) {
       return editorState;
     }
     if (initialState) {
-      this.normalizeInitialState(initialState);
+      normalizeInitialState(initialState);
       return EditorState.createWithContent(convertFromRaw(initialState));
     } else {
       return EditorState.createEmpty();
