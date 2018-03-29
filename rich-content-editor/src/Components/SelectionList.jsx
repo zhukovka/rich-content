@@ -20,7 +20,7 @@ function defaultDataMapper(item) {
 
 function defaultRenderItem({ option, selected }) {
   return option && option.value && (
-    <SelectionListOption selected={selected} value={option.value} theme={{}} onChange={() => {}}>
+    <SelectionListOption selected={selected} value={option.value} theme={{}} data-hook="selectionListOption" onChange={() => {}}>
       {option.value}
     </SelectionListOption>);
 }
@@ -63,7 +63,10 @@ class SelectionList extends Component {
       <div className={classnames(styles.selectionList, className)}>
         {dataSource.map(item => this.mapItemToOptionData(item))
           .map(({ item, option, selected }, i) => (
-            <SelectionListOption selected={selected} onChange={onChange} key={i} theme={theme} value={option.value} optionClassName={optionClassName}>
+            <SelectionListOption
+              selected={selected}
+              dataHook={item.dataHook} onChange={onChange} key={i} theme={theme} value={option.value} optionClassName={optionClassName}
+            >
               {renderItem({ item, option, selected })}
             </SelectionListOption>)
           )}
@@ -79,6 +82,7 @@ class SelectionListOption extends Component {
     children: PropTypes.node.isRequired,
     value: PropTypes.any.isRequired,
     optionClassName: PropTypes.string,
+    dataHook: PropTypes.string,
   };
 
   constructor(props) {
@@ -87,12 +91,12 @@ class SelectionListOption extends Component {
   }
 
   render() {
-    const { selected, onChange, children, value, optionClassName } = this.props;
+    const { selected, onChange, children, value, optionClassName, dataHook } = this.props;
     return (
       <div
         className={classnames(this.styles.selectionListOption,
           { [this.styles.selectionListOption_selected]: selected }, optionClassName)}
-        onClick={() => onChange(value)}
+        data-hook={dataHook} onClick={() => onChange(value)}
       >
         {children}
       </div>);

@@ -29,10 +29,12 @@ export default ({ alignment, size, Icon, tooltipTextKey }) =>
       const className = this.isActive() ? classNames(theme.button, theme.active) : theme.button;
       const tooltipText = t(tooltipTextKey);
       const showTooltip = !isMobile && !isEmpty(tooltipText);
+      const textForHooks = tooltipText.replace(/\s+/, '');
+      const dataHookText = `blockAlignmentAndSizeButton_${textForHooks}`;
 
       const blockButton = (
         <div className={theme.buttonWrapper} onMouseDown={this.preventBubblingUp}>
-          <button className={className} onClick={this.handleClick}>
+          <button className={className} data-hook={dataHookText} onClick={this.handleClick}>
             <div className={theme.icon}>
               <Icon />
             </div>

@@ -127,7 +127,7 @@ class HtmlComponent extends React.Component {
     } else {
       const initLabel = t('HtmlComponent_Init_Text');
       return (
-        <div onClick={this.props.onClick} className={classNames(this.props.className, styles.html_invalidGalleryItems)}>
+        <div data-hook="htmlComponent" onClick={this.props.onClick} className={classNames(this.props.className, styles.html_invalidGalleryItems)}>
           {initLabel}
         </div>
       );

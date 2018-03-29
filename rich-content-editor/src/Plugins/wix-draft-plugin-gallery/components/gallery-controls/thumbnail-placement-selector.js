@@ -14,7 +14,10 @@ class ThumbnailPlacementSelector extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-  dataSource = [{ alignment: 'bottom' }, { alignment: 'left' }, { alignment: 'top' }, { alignment: 'right' }];
+  dataSource = [{ alignment: 'bottom', dataHook: 'thumbnailPlacementBottom' },
+    { alignment: 'left', dataHook: 'thumbnailPlacementLeft' },
+    { alignment: 'top', dataHook: 'thumbnailPlacementTop' },
+    { alignment: 'right', dataHook: 'thumbnailPlacementRight' }];
 
   dataMapper = ({ alignment }) => ({ value: alignment });
 

@@ -60,7 +60,7 @@ export class Tabs extends Component {
                 name={`tabs`}
                 key={value}
                 className={classnames(styles.tabs_headers_option, value === this.state.activeTab ? styles.tabs_headers_option_selected : '')}
-                onClick={() => {
+                data-hook={`${value}_Tab`} onClick={() => {
                   this.setState({ activeTab: value });
                   this.renderTabs();
                 }}

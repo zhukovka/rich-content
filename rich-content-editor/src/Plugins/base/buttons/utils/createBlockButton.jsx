@@ -26,10 +26,12 @@ export default ({ Icon, tooltipTextKey }) =>
       const { theme, isMobile, t } = this.props;
       const tooltipText = t(tooltipTextKey);
       const showTooltip = !isMobile && !isEmpty(tooltipText);
+      const textForHooks = tooltipText.replace(/\s+/, '');
+      const dataHookText = `blockButton_${textForHooks}`;
 
       const blockButton = (
         <div className={theme.buttonWrapper} onMouseDown={this.preventBubblingUp}>
-          <button className={theme.button} onClick={this.handleClick} type="button">
+          <button className={theme.button} data-hook={dataHookText} onClick={this.handleClick} type="button">
             <div className={theme.icon}>
               <Icon />
             </div>

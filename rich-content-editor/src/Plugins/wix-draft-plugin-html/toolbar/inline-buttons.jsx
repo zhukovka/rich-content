@@ -52,14 +52,20 @@ class SettingsModal extends React.Component {
       <div>
         <div>
           <label htmlFor="width">{widthLabel}</label>
-          <input type="range" min="10" max="1000" value={this.state.width} id="width" step="10" onChange={this.changeWidth} />
+          <input
+            type="range" min="10" max="1000" value={this.state.width} id="width" step="10"
+            data-hook="htmlSettingsWidth" onChange={this.changeWidth}
+          />
           <output htmlFor="width" id="widthVal">
             {this.state.width}{pixelsLabel}
           </output>
         </div>
         <div>
           <label htmlFor="height">{heightLabel}</label>
-          <input type="range" min="10" max="1000" value={this.state.height} id="height" step="10" onChange={this.changeHeight} />
+          <input
+            type="range" min="10" max="1000" value={this.state.height} id="height" step="10"
+            data-hook="htmlSettingsHeight" onChange={this.changeHeight}
+          />
           <output htmlFor="height" id="widthVal">
             {this.state.height}{pixelsLabel}
           </output>
@@ -131,25 +137,34 @@ class EditModal extends React.Component {
       <div>
         <div className={Styles.tabs}>
           <div className={Styles.tab}>
-            <input type="radio" id="tab-1" name="tab-group-1" checked={this.state.isSrc} onChange={this.changeIsSrc} />
+            <input
+              type="radio" id="tab-1" name="tab-group-1" checked={this.state.isSrc}
+              data-hook="htmlPluginFirstRadio" onChange={this.changeIsSrc}
+            />
             <label htmlFor="tab-1">{sourceLabel}</label>
 
             <div className={Styles.content}>
-              <input type="text" value={this.state.src} id="src" onChange={this.changeSrc} />
+              <input type="text" value={this.state.src} id="src" data-hook="htmlPluginFirstInput" onChange={this.changeSrc} />
             </div>
           </div>
 
           <div className={Styles.tab}>
-            <input type="radio" id="tab-2" name="tab-group-1" checked={!this.state.isSrc} onChange={this.changeIsContent} />
+            <input
+              type="radio" id="tab-2" name="tab-group-1" checked={!this.state.isSrc}
+              data-hook="htmlPluginSecondRadio" onChange={this.changeIsContent}
+            />
             <label htmlFor="tab-2">{codeLabel}</label>
 
             <div className={Styles.content}>
-              <textarea value={this.state.content} id="content" onChange={this.changeContent} />
+              <textarea
+                value={this.state.content} id="content"
+                data-hook="htmlPluginTextarea" onChange={this.changeContent}
+              />
             </div>
           </div>
         </div>
         <div>
-          <input type="button" onClick={this.updateContent} value={updateLabel} />
+          <input type="button" data-hook="htmlPluginButton" onClick={this.updateContent} value={updateLabel} />
         </div>
       </div>
     );

@@ -61,7 +61,7 @@ class BlockLinkButton extends Component {
     const { theme, isMobile, t } = this.props;
     const linkButtonTooltip = t('TextLinkButton_Tooltip');
     return (<LinkButton
-      onClick={this.showLinkPanel}
+      data-hook="blockLinkButton" onClick={this.showLinkPanel}
       isActive={this.isActive}
       theme={theme}
       isMobile={isMobile}

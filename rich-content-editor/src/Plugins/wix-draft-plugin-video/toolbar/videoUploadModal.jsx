@@ -69,7 +69,7 @@ export default class VideoUploadModal extends Component {
             ref={ref => (this.input = ref)}
             className={classNames(styles.textInput_input, { [styles.textInput_input_invalid]: !this.state.isValidUrl })}
             placeholder={videoInputPlaceholder}
-            onChange={this.onUrlChange}
+            data-hook="videoUploadModalInput" onChange={this.onUrlChange}
             value={this.state.url}
             onDoubleClick={() =>
               this.setState({

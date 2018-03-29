@@ -12,13 +12,16 @@ class SliderWithInput extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
   render() {
-    const { readOnly, label, value, min, max, onChange, theme } = this.props;
+    const { readOnly, label, value, min, max, onChange, theme, sliderDataHook, inputDataHook } = this.props;
     return (
       <div className={readOnly ? this.styles.sliderWithInput_readOnly : null}>
         {label ? <label className={this.styles.sliderWithInput_label}>{label}</label> : null}
         <div className={this.styles.sliderWithInput_content}>
-          <Slider theme={theme} value={value} onChange={onChange} min={min} max={max} className={this.styles.sliderWithInput_slider} />
-          <input value={Math.floor(value)} onChange={onChange} className={this.styles.sliderWithInput_input}/>
+          <Slider
+            theme={theme} value={value} dataHook={sliderDataHook} onChange={onChange}
+            min={min} max={max} className={this.styles.sliderWithInput_slider}
+          />
+          <input value={Math.floor(value)} data-hook={inputDataHook} onChange={onChange} className={this.styles.sliderWithInput_input}/>
         </div>
       </div>
     );
@@ -33,6 +36,8 @@ SliderWithInput.propTypes = {
   readOnly: PropTypes.bool,
   theme: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
+  sliderDataHook: PropTypes.string,
+  inputDataHook: PropTypes.string,
 };
 
 SliderWithInput.defaultProps = {

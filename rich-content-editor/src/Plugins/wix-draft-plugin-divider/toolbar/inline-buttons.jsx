@@ -42,7 +42,10 @@ class SettingsModal extends React.Component {
       <div>
         <div>
           <label htmlFor="width">{widthLabel}</label>
-          <input type="range" min="10" max="100" value={this.state.width} id="width" step="1" onChange={this.changeWidth} />
+          <input
+            type="range" min="10" max="100" value={this.state.width} id="width" step="1"
+            data-hook="dividerPluginWidth" onChange={this.changeWidth}
+          />
           <output htmlFor="width" id="widthVal">
             {this.state.width}%
           </output>
@@ -95,19 +98,31 @@ class EditModal extends React.Component {
         <div className={Styles.tabs}>
           <div className={Styles.tab}>
             <div>
-              <input type="radio" name="type" id="divider1" value="divider1" checked={this.state.type === 'divider1'} onChange={this.changeType} />
+              <input
+                type="radio" name="type" id="divider1" value="divider1" checked={this.state.type === 'divider1'}
+                data-hook="dividerTypeOne" onChange={this.changeType}
+              />
               <label htmlFor="divider1">{dividerType1}</label>
             </div>
             <div>
-              <input type="radio" name="type" id="divider2" value="divider2" checked={this.state.type === 'divider2'} onChange={this.changeType} />
+              <input
+                type="radio" name="type" id="divider2" value="divider2" checked={this.state.type === 'divider2'}
+                data-hook="dividerTypeTwo" onChange={this.changeType}
+              />
               <label htmlFor="divider2">{dividerType2}</label>
             </div>
             <div>
-              <input type="radio" name="type" id="divider3" value="divider3" checked={this.state.type === 'divider3'} onChange={this.changeType} />
+              <input
+                type="radio" name="type" id="divider3" value="divider3" checked={this.state.type === 'divider3'}
+                data-hook="dividerTypeThree" onChange={this.changeType}
+              />
               <label htmlFor="divider3">{dividerType3}</label>
             </div>
             <div>
-              <input type="radio" name="type" id="divider4" value="divider4" checked={this.state.type === 'divider4'} onChange={this.changeType} />
+              <input
+                type="radio" name="type" id="divider4" value="divider4" checked={this.state.type === 'divider4'}
+                data-hook="dividerTypeFour" onChange={this.changeType}
+              />
               <label htmlFor="divider4">{dividerType4}</label>
             </div>
           </div>

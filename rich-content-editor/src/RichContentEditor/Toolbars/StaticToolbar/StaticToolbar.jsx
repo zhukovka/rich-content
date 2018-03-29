@@ -112,7 +112,7 @@ export default class StaticToolbar extends React.Component {
             showLeftArrow &&
             <div
               className={classNames(toolbarStyles.responsiveArrow, toolbarStyles.responsiveArrowLeft)}
-              onMouseDown={e => this.scrollToolbar(e, 'left')}
+              data-hook="staticToolbarLeftArrow" onMouseDown={e => this.scrollToolbar(e, 'left')}
             >
               <i className={toolbarStyles.responsiveArrowLeft_icon}/>
             </div>
@@ -127,7 +127,7 @@ export default class StaticToolbar extends React.Component {
             showRightArrow &&
             <div
               className={classNames(toolbarStyles.responsiveArrow, toolbarStyles.responsiveArrowRight)}
-              onMouseDown={e => this.scrollToolbar(e, 'right')}
+              data-hook="staticToolbarRightArrow" onMouseDown={e => this.scrollToolbar(e, 'right')}
             >
               <i className={toolbarStyles.responsiveArrowRight_icon}/>
             </div>

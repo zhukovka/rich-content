@@ -77,15 +77,19 @@ class LinkPanelContainer extends Component {
         </div>
         <div className={styles.linkPanel_Footer}>
           <div className={styles.linkPanel_LeftActions}>
-            <div className={cancelButtonClassName} onClick={this.onCancelClick}>{cancelButtonText}</div>
+            <div className={cancelButtonClassName} data-hook="linkPanelContainerCancel" onClick={this.onCancelClick}>{cancelButtonText}</div>
             {isActive &&
             <div className={styles.linkPanel_RemoveContainer}>
               <div className={styles.linkPanel_VerticalDivider} />
-              <div className={styles.linkPanel_FooterButton} onClick={this.onDeleteClick}>{removeButtonText}</div>
+              <div
+                className={styles.linkPanel_FooterButton}
+                data-hook="linkPanelContainerRemove" onClick={this.onDeleteClick}
+              >{removeButtonText}
+              </div>
             </div>
             }
           </div>
-          <div className={doneButtonClassName} onClick={this.onDoneClick}>{doneButtonText}</div>
+          <div className={doneButtonClassName} data-hook="linkPanelContainerDone" onClick={this.onDoneClick}>{doneButtonText}</div>
         </div>
       </div>
     );

@@ -76,7 +76,7 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
       const { showName } = this.props;
       const { name, Icon } = button;
       return (
-        <button className={styles.button} onClick={this.onClick}>
+        <button className={styles.button} data-hook="baseInsertPluginButton" onClick={this.onClick}>
           <div className={styles.icon}>
             <Icon key="0" />
           </div>
