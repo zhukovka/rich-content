@@ -56,7 +56,7 @@ export default class LinkButton extends Component {
 
     const linkButton = (
       <div className={styles.buttonWrapper} onMouseDown={this.preventBubblingUp}>
-        <button onClick={this.handleClick} className={styles.button}>
+        <button data-hook="linkButton" onClick={this.handleClick} className={styles.button}>
           <div className={iconClassNames}>
             <LinkIcon />
           </div>

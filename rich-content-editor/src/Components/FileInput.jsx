@@ -14,7 +14,7 @@ class FileInput extends Component {
   preventBubblingUp = event => event.preventDefault();
 
   renderInput() {
-    const { onChange, accept, multiple, className, title, children } = this.props;
+    const { onChange, accept, multiple, className, title, children, dataHook } = this.props;
     const hasMultiple = multiple ? { multiple } : {};
     return (
       <label
@@ -27,7 +27,7 @@ class FileInput extends Component {
           className={style.hiddenInput}
           id={this.id}
           type={'file'}
-          onChange={onChange}
+          data-hook={dataHook} onChange={onChange}
           accept={accept}
           tabIndex={'-1'}
           {...hasMultiple}
@@ -49,7 +49,7 @@ class FileInput extends Component {
       >
         <button
           id={this.id}
-          onClick={onClick}
+          data-hook="fileInputButton" onClick={onClick}
         >
           {children}
         </button>
@@ -74,6 +74,7 @@ FileInput.propTypes = {
   multiple: PropTypes.bool,
   title: PropTypes.string,
   style: PropTypes.object,
+  dataHook: PropTypes.string,
 };
 
 FileInput.defaultProps = {

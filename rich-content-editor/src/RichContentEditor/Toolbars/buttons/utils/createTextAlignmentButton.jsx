@@ -20,6 +20,9 @@ export default ({ alignment, Icon, tooltipTextKey }) =>
     render() {
       const { theme, isMobile, t } = this.props;
       const tooltipText = t(tooltipTextKey);
+      const textForHooks = tooltipText.replace(/\s+/, '');
+      const dataHookText = `textAlignmentButton_${textForHooks}`;
+
       return (
         <TextButton
           icon={Icon}
@@ -28,6 +31,7 @@ export default ({ alignment, Icon, tooltipTextKey }) =>
           isActive={this.isActive}
           onClick={this.handleClick}
           tooltipText={tooltipText}
+          dataHook={dataHookText}
         />
       );
     }

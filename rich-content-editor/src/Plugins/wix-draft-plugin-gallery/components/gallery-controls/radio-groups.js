@@ -19,7 +19,8 @@ export const ThumbnailResize = props => {
   return (
     <RadioGroupHorizontal
       label={thumbnailResizeLabel}
-      dataSource={[{ value: 'fill', labelText: cropLabel }, { value: 'fit', labelText: fitLabel }]}
+      dataSource={[{ value: 'fill', labelText: cropLabel, dataHook: 'radioGroupFill' },
+        { value: 'fit', labelText: fitLabel, dataHook: 'radioGroupFit' }]}
       {...props}
     />
   );
@@ -35,7 +36,8 @@ export const TitleButtonPlacement = props => {
   return (
     <RadioGroupHorizontal
       label={titleButtonPlacementLabel}
-      dataSource={[{ value: 'SHOW_ALWAYS', labelText: underneathLabel }, { value: 'SHOW_ON_HOVER', labelText: onHoverLabel }]}
+      dataSource={[{ value: 'SHOW_ALWAYS', labelText: underneathLabel, dataHook: 'radioGroupTitleShowAlways' },
+        { value: 'SHOW_ON_HOVER', labelText: onHoverLabel, dataHook: 'radioGroupTitleShowOnHover' }]}
       {...props}
     />
   );
@@ -52,7 +54,8 @@ export const ImageOrientation = props => {
     <RadioGroupHorizontal
       label={imageOrientationLabel}
       readOnly={props.options.readOnly}
-      dataSource={[{ value: '1', labelText: verticalLabel }, { value: '0', labelText: horizontalLabel }]}
+      dataSource={[{ value: '1', labelText: verticalLabel, dataHook: 'radioGroupImageOrientationVertical' },
+        { value: '0', labelText: horizontalLabel, dataHook: 'radioGroupImageOrientationHorizontal' }]}
       {...props}
     />
   );
@@ -68,7 +71,8 @@ export const ScrollDirection = props => {
   return (
     <RadioGroupHorizontal
       label={scrollDirectionLabel}
-      dataSource={[{ value: 'vertical', labelText: verticalLabel }, { value: 'horizontal', labelText: horizontalLabel }]}
+      dataSource={[{ value: 'vertical', labelText: verticalLabel, dataHook: 'radioGroupScrollDirectionVertical' },
+        { value: 'horizontal', labelText: horizontalLabel, dataHook: 'radioGroupScrollDirectionHorizontal' }]}
       {...props}
     />
   );

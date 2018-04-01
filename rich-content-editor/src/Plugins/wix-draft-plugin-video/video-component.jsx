@@ -84,7 +84,7 @@ class VideoComponent extends React.Component {
     const { isPlayable } = this.state;
     const containerClassNames = classNames(styles.video_container, className || '');
     return (
-      <div onClick={onClick} className={containerClassNames}>
+      <div data-hook="videoPlayer" onClick={onClick} className={containerClassNames}>
         {!isPlayable && this.renderOverlay(styles, t)}
         {this.renderPlayer(styles)}
       </div>

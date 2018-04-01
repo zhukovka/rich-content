@@ -12,7 +12,7 @@ class InputWithLabel extends Component {
   }
   render() {
     const { styles } = this;
-    const { label, placeholder, value, onChange, isTextArea } = this.props;
+    const { label, placeholder, value, onChange, isTextArea, dataHook } = this.props;
     const inputClassName = classNames(styles.inputWithLabel_input,
       {
         [styles.inputWithLabel_textArea]: isTextArea
@@ -26,13 +26,13 @@ class InputWithLabel extends Component {
           placeholder={placeholder}
           id={label ? `${label}_input` : ''}
           value={value}
-          onChange={onChange}
+          data-hook={dataHook} onChange={onChange}
         /> : <input
           className={styles.inputWithLabel_input}
           placeholder={placeholder}
           id={label ? `${label}_input` : ''}
           value={value}
-          onChange={onChange}
+          data-hook={dataHook} onChange={onChange}
         />}
       </div>
     );
@@ -45,6 +45,7 @@ InputWithLabel.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   isTextArea: PropTypes.bool,
+  dataHook: PropTypes.string,
 };
 
 export default InputWithLabel;

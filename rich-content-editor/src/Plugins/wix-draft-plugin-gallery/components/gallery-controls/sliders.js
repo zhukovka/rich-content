@@ -13,14 +13,14 @@ const propTypes = {
 export const ItemsPerRow = props => {
   const { t } = props;
   const itemsPerRowLabel = t('GallerySettings_Sliders_Items_Per_Row');
-  return <SliderWithInput min={1} max={5} label={itemsPerRowLabel} {...props} />;
+  return <SliderWithInput min={1} max={5} label={itemsPerRowLabel} sliderDataHook="itemsPerRowSlider" inputDataHook="itemsPerRowInput" {...props} />;
 };
 ItemsPerRow.propTypes = propTypes;
 
 export const Spacing = props => {
   const { t } = props;
   const spacingLabel = t('GallerySettings_Spacing_Between_Items');
-  return <SliderWithInput label={spacingLabel} {...props} />;
+  return <SliderWithInput label={spacingLabel} sliderDataHook="spacingSlider" inputDataHook="spacingInput" {...props} />;
 };
 Spacing.propTypes = propTypes;
 
@@ -30,6 +30,8 @@ export const ThumbnailSize = props => (
     max={1000}
     readOnly={props.options.readOnly}
     label={props.options.label}
+    sliderDataHook="thumbnailSizeSlider"
+    inputDataHook="thumbnailSizeInput"
     {...props}
   />
 );

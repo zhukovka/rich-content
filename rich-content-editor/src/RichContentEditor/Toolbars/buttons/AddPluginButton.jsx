@@ -34,7 +34,7 @@ export default class AddPluginButton extends Component {
       <TextButton
         icon={PlusIcon}
         theme={theme}
-        onClick={this.handleClick}
+        dataHook="addPluginButton" onClick={this.handleClick}
       />
     );
   }

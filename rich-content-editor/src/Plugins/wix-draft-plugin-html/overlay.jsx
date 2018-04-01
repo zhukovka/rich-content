@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Overlay = ({ isVisible, onClick, width, height }) => (
   <div
-    onClick={onClick && onClick()}
+    data-hook="overlay" onClick={onClick && onClick()}
     style={{
       display: isVisible ? 'none' : 'block',
       width: `${width}px`,

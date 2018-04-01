@@ -18,7 +18,8 @@ class Dropdown extends Component {
     getValue: PropTypes.func,
     placeholder: PropTypes.string,
     onFocus: PropTypes.func,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    dataHook: PropTypes.string,
   };
 
   constructor (props) {
@@ -106,14 +107,14 @@ class Dropdown extends Component {
       [styles['Dropdown-option-selected']]: option === this.state.selected
     });
 
-    const { value, label, icon: Icon } = option;
+    const { value, label, icon: Icon, dataHook } = option;
 
     return (
       <div
         key={value}
         className={optionClass}
         onMouseDown={this.setValue.bind(this, value, label)}
-        onClick={this.setValue.bind(this, value, label)}
+        data-hook={dataHook} onClick={this.setValue.bind(this, value, label)}
       >
         {Icon && <Icon className={styles['Dropdown-option-icon']}/>}
         <span className={styles['Dropdown-option-label']}>{label}</span>
@@ -176,12 +177,13 @@ class Dropdown extends Component {
       [styles['Dropdown-root']]: true,
       [styles['Dropdown-root-isOpen']]: this.state.isOpen
     });
+    const dataHook = this.props;
 
     return (
       <div className={dropdownClass}>
         <div
           className={classNames(styles['Dropdown-control'], disabledClass)}
-          onMouseDown={this.handleMouseDown.bind(this)} onTouchEnd={this.handleMouseDown.bind(this)}
+          data-hook={dataHook} onMouseDown={this.handleMouseDown.bind(this)} onTouchEnd={this.handleMouseDown.bind(this)}
         >
           {value}
           <span

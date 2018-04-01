@@ -298,7 +298,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
               <div
                 className={classNames(toolbarStyles.pluginToolbar_responsiveArrow, toolbarStyles.pluginToolbar_responsiveArrowLeft,
                   toolbarTheme.pluginToolbar_responsiveArrow, toolbarTheme.pluginToolbar_responsiveArrowLeft)}
-                onMouseDown={e => this.scrollToolbar(e, 'left')}
+                data-hook="baseToolbarLeftArrow" onMouseDown={e => this.scrollToolbar(e, 'left')}
               >
                 <i/>
               </div>
@@ -315,7 +315,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
               <div
                 className={classNames(toolbarStyles.pluginToolbar_responsiveArrow, toolbarStyles.pluginToolbar_responsiveArrowRight,
                   toolbarTheme.pluginToolbar_responsiveArrow, toolbarTheme.pluginToolbar_responsiveArrowRight)}
-                onMouseDown={e => this.scrollToolbar(e, 'right')}
+                data-hook="baseToolbarRightArrow" onMouseDown={e => this.scrollToolbar(e, 'right')}
               >
                 <i/>
               </div>

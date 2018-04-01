@@ -9,7 +9,6 @@ import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createToolbars from './Toolbars';
 import createPlugins from './Plugins';
-import createDecorators from './Decorators';
 import { normalizeInitialState } from '~/Utils';
 import styles from '~/Styles/rich-content-editor.scss';
 import draftStyles from '~/Styles/draft.scss';
@@ -27,19 +26,18 @@ class RichContentEditor extends Component {
 
   initPlugins() {
     const {
-      decorators,
       helpers,
       plugins,
+      config,
       isMobile,
       anchorTarget,
       relValue,
       t,
     } = this.props;
     const { theme } = this.state;
-    const { pluginInstances, pluginButtons } = createPlugins({ plugins, helpers, theme, t, isMobile, anchorTarget, relValue });
+    const { pluginInstances, pluginButtons } = createPlugins({ plugins, config, helpers, theme, t, isMobile, anchorTarget, relValue });
     this.initEditorToolbars(pluginButtons);
     this.plugins = [...pluginInstances, ...Object.values(this.toolbars)];
-    this.decorators = createDecorators(decorators, theme, anchorTarget, relValue);
   }
 
   initEditorToolbars(pluginButtons) {
@@ -85,8 +83,9 @@ class RichContentEditor extends Component {
       return editorState;
     }
     if (initialState) {
-      normalizeInitialState(initialState);
-      return EditorState.createWithContent(convertFromRaw(initialState));
+      return EditorState.createWithContent(
+        convertFromRaw(normalizeInitialState(initialState))
+      );
     } else {
       return EditorState.createEmpty();
     }
@@ -192,6 +191,20 @@ class RichContentEditor extends Component {
     }
   };
 
+  renderInlineModals = () => {
+    if (!this.state.readOnly) {
+      //eslint-disable-next-line array-callback-return
+      const modals = this.plugins.map((plugin, index) => {
+        if (plugin.InlineModals && plugin.InlineModals.length > 0) {
+          return plugin.InlineModals.map((Modal, modalIndex) => {
+            return <Modal key={`k${index}m${modalIndex}`}/>;
+          });
+        }
+      });
+      return modals;
+    }
+  };
+
   renderEditor = () => {
     const { helpers, placeholder } = this.props;
     const { editorState, readOnly } = this.state;
@@ -201,7 +214,6 @@ class RichContentEditor extends Component {
         editorState={editorState}
         onChange={this.updateEditorState}
         plugins={this.plugins}
-        decorators={this.decorators}
         blockStyleFn={this.blockStyleFn}
         placeholder={placeholder || ''}
         readOnly={!!readOnly}
@@ -231,6 +243,7 @@ class RichContentEditor extends Component {
         <div className={classNames(styles.editor, theme.editor)}>
           {this.renderEditor()}
           {this.renderToolbars()}
+          {this.renderInlineModals()}
         </div>
       </div>
     );
@@ -239,7 +252,6 @@ class RichContentEditor extends Component {
 
 RichContentEditor.propTypes = {
   editorState: PropTypes.object,
-  decorators: PropTypes.object,
   initialState: PropTypes.object,
   theme: PropTypes.object,
   onChange: PropTypes.func,
@@ -253,6 +265,7 @@ RichContentEditor.propTypes = {
   textButtons: PropTypes.arrayOf(PropTypes.string),
   textToolbarType: PropTypes.oneOf(['inline', 'static']),
   plugins: PropTypes.arrayOf(PropTypes.string),
+  config: PropTypes.object,
   anchorTarget: PropTypes.string,
   relValue: PropTypes.string,
   style: PropTypes.object

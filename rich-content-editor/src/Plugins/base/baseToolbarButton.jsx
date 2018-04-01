@@ -112,10 +112,15 @@ class BaseToolbarButton extends React.Component {
     const { theme, isMobile, t, tooltipTextKey } = this.props;
     const tooltipText = t(tooltipTextKey);
     const showTooltip = !isMobile && !isEmpty(tooltipText);
+    const textForHooks = tooltipText.replace(/\s+/, '');
+    const dataHookText = `baseToolbarButton_${textForHooks}`;
 
     const toggleButton = (
       <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
-        <button className={buttonClassNames} type="button" onMouseDown={this.handleClick} children={this.props.children || [this.getIcon()]}>
+        <button
+          className={buttonClassNames} type="button"
+          data-hook={dataHookText} onMouseDown={this.handleClick} children={this.props.children || [this.getIcon()]}
+        >
           {this.getIcon()}
         </button>
       </div>
@@ -128,10 +133,12 @@ class BaseToolbarButton extends React.Component {
     const { theme, isMobile, t, tooltipTextKey } = this.props;
     const tooltipText = t(tooltipTextKey);
     const showTooltip = !isMobile && !isEmpty(tooltipText);
+    const textForHooks = tooltipText.replace(/\s+/, '');
+    const dataHookText = `baseToolbarButtonPanelButton_${textForHooks}`;
 
     const panelButton = (
       <div>
-        <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
+        <div className={buttonWrapperClassNames} data-hook={dataHookText} onMouseDown={this.preventBubblingUp}>
           <button className={buttonClassNames} type="button" onMouseDown={this.handleClick} children={this.props.children || [this.getIcon()]}>
             {this.getIcon()}
           </button>
@@ -160,7 +167,10 @@ class BaseToolbarButton extends React.Component {
     const replaceButtonWrapperClassNames = classNames(styles.buttonWrapper);
     const filesButton = (
       <div className={replaceButtonWrapperClassNames}>
-        <FileInput className={classNames(buttonClassNames)} onChange={this.handleFileChange} accept="image/*" multiple={this.props.multiple}>
+        <FileInput
+          className={classNames(buttonClassNames)}
+          dataHook="baseToolbarButtonFileInput" onChange={this.handleFileChange} accept="image/*" multiple={this.props.multiple}
+        >
           {this.getIcon()}
         </FileInput>
       </div>
@@ -177,7 +187,10 @@ class BaseToolbarButton extends React.Component {
 
     return (
       <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
-        <Dropdown className={buttonClassNames} onChange={decoratedOnChange} getValue={decoratedGetValue} {...props} />
+        <Dropdown
+          className={buttonClassNames}
+          data-hook="baseToolbarButtonDropdown" onChange={decoratedOnChange} getValue={decoratedGetValue} {...props}
+        />
       </div>
     );
   };

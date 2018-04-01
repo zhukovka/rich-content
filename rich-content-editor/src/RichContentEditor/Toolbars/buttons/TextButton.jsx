@@ -22,6 +22,7 @@ export default class TextButton extends Component {
     theme: PropTypes.object.isRequired,
     isMobile: PropTypes.bool,
     tooltipText: PropTypes.string,
+    dataHook: PropTypes.string,
   };
 
   isActive = () => {
@@ -38,7 +39,7 @@ export default class TextButton extends Component {
 
   render() {
     const { styles } = this;
-    const { icon: Icon, theme, isMobile, tooltipText } = this.props;
+    const { icon: Icon, theme, isMobile, tooltipText, dataHook } = this.props;
     const showTooltip = !isMobile && !isEmpty(tooltipText);
     const iconClassNames = classNames(
       styles.inlineToolbarButton_icon,
@@ -49,7 +50,7 @@ export default class TextButton extends Component {
 
     const textButton = (
       <div className={styles.inlineToolbarButton_wrapper} onMouseDown={this.preventBubblingUp}>
-        <button className={styles.inlineToolbarButton} onClick={this.handleClick}>
+        <button className={styles.inlineToolbarButton} data-hook={dataHook} onClick={this.handleClick}>
           <div className={iconClassNames}>
             <Icon />
           </div>

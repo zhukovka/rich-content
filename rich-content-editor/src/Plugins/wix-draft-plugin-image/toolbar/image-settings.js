@@ -139,6 +139,7 @@ class ImageSettings extends Component {
               placeholder={captionInputPlaceholder}
               value={metadata.caption || ''}
               onChange={event => this.metadataUpdated(metadata, { caption: event.target.value })}
+              dataHook="imageSettingsCaptionInput"
             />
           </SettingsSection >
           <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
@@ -148,6 +149,7 @@ class ImageSettings extends Component {
               placeholder={altInputPlaceholder}
               value={metadata.alt || ''}
               onChange={event => this.metadataUpdated(metadata, { alt: event.target.value })}
+              dataHook="imageSettingsAltInput"
             />
           </SettingsSection>
           <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>

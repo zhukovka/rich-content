@@ -49,14 +49,20 @@ class HTMLSettings extends Component {
       <div>
         <div>
           <label htmlFor="width">{widthLabel}</label>
-          <input type="range" min="10" max="1000" value={this.state.width} id="width" step="10" onChange={this.changeWidth} />
+          <input
+            type="range" min="10" max="1000" value={this.state.width} id="width" step="10"
+            data-hook="htmlSettingsWidth" onChange={this.changeWidth}
+          />
           <output htmlFor="width" id="widthVal">
             {this.state.width}{pixelsLabel}
           </output>
         </div>
         <div>
           <label htmlFor="height">{heightLabel}</label>
-          <input type="range" min="10" max="1000" value={this.state.height} id="height" step="10" onChange={this.changeHeight} />
+          <input
+            type="range" min="10" max="1000" value={this.state.height} id="height" step="10"
+            data-hook="htmlSettingsHeight" onChange={this.changeHeight}
+          />
           <output htmlFor="height" id="widthVal">
             {this.state.height}{pixelsLabel}
           </output>

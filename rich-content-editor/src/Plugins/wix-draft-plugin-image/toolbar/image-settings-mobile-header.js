@@ -24,18 +24,18 @@ class ImageSettingsMobileHeader extends Component {
         <div className={this.styles.imageSettingsMobileHeader_headerPlaceholder} />
         <div className={this.styles.imageSettingsMobileHeader_header}>
           <a
-            onClick={() => cancel()} className={classNames(this.styles.imageSettingsMobileHeader_button,
+            data-hook="ImageSettingsMobileHeaderCancel" onClick={() => cancel()} className={classNames(this.styles.imageSettingsMobileHeader_button,
               this.styles.imageSettingsMobileHeader_cancel)}
           >{cancelLabel}
           </a>
           {otherTab ?
             <a
-              onClick={() => this.setState({ showMenu: !this.state.showMenu })}
+              data-hook="ImageSettingsMobileHeaderMore" onClick={() => this.setState({ showMenu: !this.state.showMenu })}
               className={classNames(this.styles.imageSettingsMobileHeader_button, this.styles.imageSettingsMobileHeader_menuIcon)}
             ><MoreIcon/>
             </a> : null}
           <a
-            onClick={() => save()} className={classNames(this.styles.imageSettingsMobileHeader_button,
+            data-hook="ImageSettingsMobileHeaderDone" onClick={() => save()} className={classNames(this.styles.imageSettingsMobileHeader_button,
               this.styles.imageSettingsMobileHeader_done)}
           >{saveLabel}
           </a>

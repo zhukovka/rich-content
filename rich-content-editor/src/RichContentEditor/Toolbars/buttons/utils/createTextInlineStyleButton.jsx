@@ -33,6 +33,9 @@ export default ({ style, Icon, tooltipTextKey }) =>
     render() {
       const { theme, isMobile, t } = this.props;
       const tooltipText = t(tooltipTextKey);
+      const textForHooks = tooltipText.replace(/\s+/, '');
+      const dataHookText = `textInlineStyleButton_${textForHooks}`;
+
       return (
         <TextButton
           icon={Icon}
@@ -41,6 +44,7 @@ export default ({ style, Icon, tooltipTextKey }) =>
           isActive={this.isActive}
           onClick={this.toggleStyle}
           tooltipText={tooltipText}
+          dataHook={dataHookText}
         />
       );
     }

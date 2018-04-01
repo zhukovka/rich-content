@@ -4,8 +4,6 @@ import classNames from 'classnames';
 import { normalizeURL } from '~/Utils';
 import Styles from '~/Styles/text-link.scss';
 
-const Name = 'LinkDecorator';
-
 const findLinkEntities = (contentBlock, callback, contentState) => {
   contentBlock.findEntityRanges(character => {
     const entityKey = character.getEntity();
@@ -39,4 +37,4 @@ Link.propTypes = {
   relValue: PropTypes.string,
 };
 
-export { Name, findLinkEntities as Strategy, Link as Component };
+export { findLinkEntities as Strategy, Link as Component };

@@ -53,13 +53,13 @@ const deleteEntity = (contentBlock, { getEditorState, setEditorState }) => {
   };
 };
 
-const createBasePlugin = (config = {}) => {
+const createBasePlugin = (config = {}, underlyingPlugin) => {
   const pubsub = simplePubsub();
   const helpers = config.helpers || {};
   const isMobile = config.isMobile || false;
   const { t, anchorTarget } = config;
   const toolbarTheme = { ...getToolbarTheme(config.theme, 'plugin'), ...config.theme };
-  const Toolbar = createToolbar({
+  const Toolbar = config.toolbar && config.toolbar.InlineButtons && createToolbar({
     buttons: config.toolbar.InlineButtons,
     theme: { ...toolbarTheme, ...config.theme },
     pubsub,
@@ -68,42 +68,51 @@ const createBasePlugin = (config = {}) => {
     anchorTarget,
     t,
   });
-  const InsertPluginButtons = config.toolbar.InsertButtons.map(button => (
+  const InsertPluginButtons = config.toolbar && config.toolbar.InsertButtons.map(button => (
     createInsertPluginButton({ blockType: config.type, button, helpers, pubsub, t })
   ));
-  const PluginComponent = config.decorator ? config.decorator(config.component) : config.component;
+  const PluginComponent = config.component && config.decorator ? config.decorator(config.component) : config.component;
 
-  const CompWithBase = createBaseComponent({ PluginComponent, theme: config.theme, type: config.type, pubsub, helpers, t, anchorTarget });
+  const CompWithBase = PluginComponent && createBaseComponent(
+    { PluginComponent, theme: config.theme, type: config.type, pubsub, helpers, t, anchorTarget });
 
-  return {
-    blockRendererFn: (contentBlock, { getEditorState, setEditorState, getReadOnly }) => {
-      if (contentBlock.getType() === 'atomic') {
-        // TODO subject to change for draft-js next release
-        const contentState = getEditorState().getCurrentContent();
-        const key = contentBlock.getEntityAt(0);
-        if (key) {
-          const entity = contentState.getEntity(key);
-          const type = entity.getType();
-          const pluginTypes = [config.type, config.legacyType];
-          if (includes(pluginTypes, type)) {
-            return {
-              component: CompWithBase,
-              editable: false,
-              props: {
-                getData: getData(contentBlock, { getEditorState }),
-                setData: setData(contentBlock, { getEditorState, setEditorState }),
-                deleteBlock: deleteEntity(contentBlock, { getEditorState, setEditorState }),
-                readOnly: getReadOnly(),
-              },
-            };
-          }
+  const InlineModals = config.inlineModals;
+
+  const blockRenderFunction = (contentBlock, { getEditorState, setEditorState, getReadOnly }) => {
+    if (contentBlock.getType() === 'atomic') {
+      // TODO subject to change for draft-js next release
+      const contentState = getEditorState().getCurrentContent();
+      const key = contentBlock.getEntityAt(0);
+      if (key) {
+        const entity = contentState.getEntity(key);
+        const type = entity.getType();
+        const pluginTypes = [config.type, config.legacyType];
+        if (includes(pluginTypes, type)) {
+          return {
+            component: CompWithBase,
+            editable: false,
+            props: {
+              getData: getData(contentBlock, { getEditorState }),
+              setData: setData(contentBlock, { getEditorState, setEditorState }),
+              deleteBlock: deleteEntity(contentBlock, { getEditorState, setEditorState }),
+              readOnly: getReadOnly(),
+            },
+          };
         }
       }
-      return null;
-    },
-    Toolbar,
-    InsertPluginButtons,
+    }
+    return null;
   };
+  if (underlyingPlugin) {
+    return { Toolbar, InsertPluginButtons, InlineModals, ...underlyingPlugin };
+  } else {
+    return {
+      blockRendererFn: blockRenderFunction,
+      Toolbar,
+      InsertPluginButtons,
+      InlineModals
+    };
+  }
 };
 
 export default createBasePlugin;

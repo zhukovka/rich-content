@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import redraft from 'redraft';
-import createDecorators from './DecoratorsViewer';
 import getPluginsViewer from './PluginsViewer';
 import List from './List';
 
@@ -77,7 +76,7 @@ const options = {
   },
 };
 
-const decorators = createDecorators();
+const decorators = [];
 
 const Preview = ({ raw }) => {
   const isEmpty = isEmptyRaw(raw);

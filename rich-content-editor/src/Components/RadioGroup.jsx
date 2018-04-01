@@ -32,7 +32,10 @@ class RadioGroup extends Component {
           .map(option => {
             const checked = option.value === value ? { checked: 'checked' } : {};
             return (
-              <label name={`group_${RadioGroup.id}`} key={option.value} className={this.styles.radioGroup} onClick={() => onChange(option.value)}>
+              <label
+                name={`group_${RadioGroup.id}`} key={option.value}
+                className={this.styles.radioGroup} data-hook={option.dataHook} onClick={() => onChange(option.value)}
+              >
                 <input className={this.styles.radioGroup_input} type={'radio'} {...checked} onChange={() => {}}/>
                 <span className={this.styles.radioGroup_button}/>
                 <span className={this.styles.radioGroup_label}>{option.labelText}</span>

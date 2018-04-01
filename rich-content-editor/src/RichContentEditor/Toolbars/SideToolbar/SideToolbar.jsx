@@ -47,17 +47,19 @@ export default class SideToolbar extends Component {
     setTimeout(() => {
       const { isMobile } = this.props;
       const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
-      const top = node.getBoundingClientRect().top;
-      const parentTop = node.offsetParent.getBoundingClientRect().top;
-      const { offset } = this.props;
-      this.setState({
-        position: {
-          top: top - parentTop + offset.y,
-          [!isMobile ? 'left' : 'right']: offset.x,
-          transform: `scale(${isMobile ? 0.76 : 1})`, //mobile plus is smaller
-          transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-        },
-      });
+      if (node) {
+        const top = node.getBoundingClientRect().top;
+        const parentTop = node.offsetParent.getBoundingClientRect().top;
+        const { offset } = this.props;
+        this.setState({
+          position: {
+            top: top - parentTop + offset.y,
+            [!isMobile ? 'left' : 'right']: offset.x,
+            transform: `scale(${isMobile ? 0.76 : 1})`, //mobile plus is smaller
+            transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
+          },
+        });
+      }
     });
   };
 

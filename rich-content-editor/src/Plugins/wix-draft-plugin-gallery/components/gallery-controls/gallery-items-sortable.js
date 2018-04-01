@@ -39,7 +39,7 @@ const SortableItem = sortableElement(props => {
     return (
       <FileInput
         className={classNames(styles.itemContainer, styles.filesItem, { [styles.mobile]: isMobile })}
-        onChange={handleFileChange}
+        dataHook="galleryItemsSortableFileInputBottom" onChange={handleFileChange}
         handleFileSelection={handleFileSelection}
         multiple
         title={uploadMediaLabel}
@@ -67,7 +67,7 @@ const SortableItem = sortableElement(props => {
           [styles.mobile]: isMobile,
           [styles.sorting]: isMobileSorting
         })}
-        onClick={() => clickAction(itemIdx)}
+        data-hook="galleryItemsSortable" onClick={() => clickAction(itemIdx)}
         style={{
           width: imageSize + 'px',
           height: imageSize + 'px',
@@ -168,7 +168,7 @@ const ItemActionsMenu = props => {
   const addItemButton = (
     <FileInput
       className={styles.filesButton}
-      onChange={handleFileChange}
+      dataHook="galleryItemsSortableFileInputTop" onChange={handleFileChange}
       handleFileSelection={handleFileSelection}
       multiple
     >
@@ -178,24 +178,53 @@ const ItemActionsMenu = props => {
 
   const separator = <span className={styles.seperator}>·</span>;
   const buttons = [];
+  const toggleSortingAnchor = (
+    <a
+      className={styles.topBarLink} data-hook="galleryItemsSortableToggleSorting" onClick={toggleSorting}
+    >{isMobileSorting ? finishSortingLabel : sortItemsLabel}
+    </a>
+  );
+  const selectAllAnchor = (
+    <a
+      className={styles.topBarLink} data-hook="galleryItemsSortableSelectAll" onClick={() => setAllItemsValue('selected', true)}
+    >{selectAllLabel}
+    </a>
+  );
+  const deselectAllAnchor = (
+    <a
+      className={styles.topBarLink} data-hook="galleryItemsSortableDeselectAll" onClick={() => setAllItemsValue('selected', false)}
+    >{deselectLabel}
+    </a>
+  );
 
+  const deleteAnchor = (
+    <a
+      className={styles.topBarLink} data-hook="galleryItemsSortableDelete" onClick={() => deleteSelectedItems()}
+    >{deleteLabel}
+    </a>
+  );
+
+  const itemSettingsAnchor = (
+    <a className={styles.topBarLink} data-hook="galleryItemsSortableItemSettings" onClick={() => toggleImageSettings(true)}>{itemSettingsLabel}
+    </a>
+  );
   if (isMobile && selectedItems.length === 0) {
-    buttons.push(<a className={styles.topBarLink} onClick={toggleSorting}>{isMobileSorting ? finishSortingLabel : sortItemsLabel}</a>);
+    buttons.push(toggleSortingAnchor);
     buttons.push(separator);
   }
   if (!isMobileSorting) {
     if (hasUnselectedItems) {
-      buttons.push(<a className={styles.topBarLink} onClick={() => setAllItemsValue('selected', true)}>{selectAllLabel}</a>);
+      buttons.push(selectAllAnchor);
       buttons.push(separator);
     }
     if (hasSelectedItems) {
-      buttons.push(<a className={styles.topBarLink} onClick={() => setAllItemsValue('selected', false)}>{deselectLabel}</a>);
+      buttons.push(deselectAllAnchor);
       buttons.push(separator);
-      buttons.push(<a className={styles.topBarLink} onClick={() => deleteSelectedItems()}>{deleteLabel}</a>);
+      buttons.push(deleteAnchor);
       buttons.push(separator);
     }
     if (selectedItems.length === 1) {
-      buttons.push(<a className={styles.topBarLink} onClick={() => toggleImageSettings(true)}>{itemSettingsLabel}</a>);
+      buttons.push(itemSettingsAnchor);
       buttons.push(separator);
     }
   }

@@ -39,7 +39,7 @@ class DividerComponent extends PureComponent {
     return (
       <div
         style={{ width: this.state.width + '%', margin: 'auto', ...style }}
-        onClick={this.props.onClick}
+        data-hook="divider" onClick={this.props.onClick}
         className={classnames(className, this.styles[this.state.type])}
       />
     );

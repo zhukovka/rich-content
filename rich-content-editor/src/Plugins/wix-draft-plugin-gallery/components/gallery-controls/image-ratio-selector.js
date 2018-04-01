@@ -28,11 +28,11 @@ class ImageRatioSelector extends Component {
 
   render() {
     const dataSource = [
-      { ratio: 16 / 9, name: '16:9', ratioClass: this.styles.imageRatioSelector_16_9 },
-      { ratio: 4 / 3, name: '4:3', ratioClass: this.styles.imageRatioSelector_4_3 },
-      { ratio: 1, name: '1:1', ratioClass: this.styles.imageRatioSelector_1_1 },
-      { ratio: 3 / 4, name: '3:4', ratioClass: this.styles.imageRatioSelector_3_4 },
-      { ratio: 9 / 16, name: '9:16', ratioClass: this.styles.imageRatioSelector_9_16 },
+      { ratio: 16 / 9, name: '16:9', ratioClass: this.styles.imageRatioSelector_16_9, dataHook: 'imageRatio16:9' },
+      { ratio: 4 / 3, name: '4:3', ratioClass: this.styles.imageRatioSelector_4_3, dataHook: 'imageRatio4/3' },
+      { ratio: 1, name: '1:1', ratioClass: this.styles.imageRatioSelector_1_1, dataHook: 'imageRatio1:1' },
+      { ratio: 3 / 4, name: '3:4', ratioClass: this.styles.imageRatioSelector_3_4, dataHook: 'imageRatio3:4' },
+      { ratio: 9 / 16, name: '9:16', ratioClass: this.styles.imageRatioSelector_9_16, dataHook: 'imageRatio9:16' },
     ];
     const { styles } = this;
     const { value, onChange, theme, options, t } = this.props;

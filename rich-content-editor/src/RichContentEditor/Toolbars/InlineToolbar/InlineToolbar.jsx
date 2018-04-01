@@ -211,7 +211,7 @@ export default class InlineToolbar extends Component {
             <div
               className={classNames(Styles.inlineToolbar_responsiveArrow, Styles.inlineToolbar_responsiveArrowLeft,
                 toolbarStyles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrowLeft)}
-              onMouseDown={e => this.scrollToolbar(e, 'left')}
+              data-hook="inlineToolbarLeftArrow" onMouseDown={e => this.scrollToolbar(e, 'left')}
             >
               <i/>
             </div>
@@ -228,7 +228,7 @@ export default class InlineToolbar extends Component {
             <div
               className={classNames(Styles.inlineToolbar_responsiveArrow, Styles.inlineToolbar_responsiveArrowRight,
                 toolbarStyles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrowRight)}
-              onMouseDown={e => this.scrollToolbar(e, 'right')}
+              data-hook="inlineToolbarRightArrow" onMouseDown={e => this.scrollToolbar(e, 'right')}
             >
               <i/>
             </div>

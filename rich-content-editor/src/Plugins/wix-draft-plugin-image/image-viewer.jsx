@@ -90,7 +90,7 @@ class ImageViewer extends React.Component {
     const imageClassName = classNames(styles.image);
     const imageSrc = this.getImageSrc(data.src);
     return (
-      <div onClick={onClick} className={itemClassName}>
+      <div data-hook="imageViewer" onClick={onClick} className={itemClassName}>
         <div>
           {this.renderImage(imageClassName, imageSrc, metadata.alt)}
           {this.renderLoader()}

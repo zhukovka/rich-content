@@ -86,7 +86,10 @@ export default class AddPluginFloatingToolbar extends Component {
     const popoupClassNames = classNames(Styles.sideToolbar, toolbarStyles && toolbarStyles.sideToolbar);
     return (
       <div className={floatingContainerClassNames}>
-        <div className={floatingIconClassNames} onMouseDown={this.onMouseDown} ref={el => (this.selectButton = el)}>
+        <div
+          className={floatingIconClassNames}
+          data-hook="addPluginFloatingToolbar" onMouseDown={this.onMouseDown} ref={el => (this.selectButton = el)}
+        >
           {!this.state.isActive ? <PlusIcon /> : <PlusActiveIcon />}
         </div>
         <div className={popoupClassNames} style={this.state.style} ref={el => (this.popup = el)}>

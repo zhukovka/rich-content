@@ -11,6 +11,7 @@ class Slider extends Component {
     max: PropTypes.number,
     theme: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    dataHook: PropTypes.string,
   };
 
   constructor(props) {
@@ -24,12 +25,12 @@ class Slider extends Component {
   }
 
   render() {
-    const { min, max, onChange } = this.props;
+    const { min, max, onChange, dataHook } = this.props;
     return (
       <input
         type={'range'}
         className={this.styles.slider}
-        onChange={e => this.onChange(e.target.valueAsNumber)}
+        data-hook={dataHook} onChange={e => this.onChange(e.target.valueAsNumber)}
         value={this.state.value} min={min} max={max}
         onMouseUp={e => onChange(e.target.valueAsNumber)}
       />);

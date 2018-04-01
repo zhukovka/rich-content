@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { hashtagRegexes } from '~/Utils';
+import hashtagRegexes from './hashtagRegexes';
 import Styles from '~/Styles/text-hashtag.scss';
-
-const Name = 'HashtagDecorator';
 
 const findHashtagEntities = (contentBlock, callback) => {
   const text = contentBlock.getText();
@@ -51,4 +49,4 @@ Hashtag.propTypes = {
   theme: PropTypes.object,
 };
 
-export { Name, findHashtagEntities as Strategy, Hashtag as Component };
+export { findHashtagEntities as Strategy, Hashtag as Component };
