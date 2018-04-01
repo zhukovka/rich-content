@@ -85,8 +85,9 @@ class RichContentEditor extends Component {
       return editorState;
     }
     if (initialState) {
-      normalizeInitialState(initialState);
-      return EditorState.createWithContent(convertFromRaw(initialState));
+      return EditorState.createWithContent(
+        convertFromRaw(normalizeInitialState(initialState))
+      );
     } else {
       return EditorState.createEmpty();
     }

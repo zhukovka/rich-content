@@ -1,3 +1,5 @@
+import mapValues from 'lodash/mapValues';
+import cloneDeep from 'lodash/cloneDeep';
 import { IMAGE_TYPE_LEGACY } from '~/Plugins/wix-draft-plugin-image/types';
 import { VIDEO_TYPE_LEGACY } from '~/Plugins/wix-draft-plugin-video/types';
 
@@ -43,10 +45,16 @@ const normalizeComponentData = componentData => {
 };
 /* eslint-enable */
 
-export default initialState => {
-  if (initialState.entityMap) {
-    Object.keys(initialState.entityMap).map(entityKey => initialState.entityMap[entityKey])
-      .filter(entity => [IMAGE_TYPE_LEGACY, VIDEO_TYPE_LEGACY].includes(entity.type) && entity.data)
-      .forEach(entity => entity.data = normalizeComponentData(entity.data));
-  }
-};
+const shouldNormalizeEntityData = entity =>
+  [IMAGE_TYPE_LEGACY, VIDEO_TYPE_LEGACY].includes(entity.type) && entity.data;
+
+export default initialState => ({
+  ...initialState,
+  entityMap: mapValues(
+    initialState.entityMap,
+    entity => shouldNormalizeEntityData(entity) ? {
+      ...entity,
+      data: normalizeComponentData(cloneDeep(entity.data))
+    } : entity
+  ),
+});
