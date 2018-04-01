@@ -1,4 +1,4 @@
-# rich-content-editor repo
+# wix-rich-content-editor
 
 The library is built on top of draft.js and adds a plugin model
 You can add any plugin to the texteditor and you can write your own
@@ -6,8 +6,3 @@ When writing a plugin, you write a component that is rendered in the document
 The component automatically gets a toolbar if you list the buttons it has
 The communication between the toolbar and the component is done via pubsub when updating componentData and componentState
 When one of the parties updates componentData, it is serialized into the document and notifies the textEditor on a change that needs to be saved.
-
-See [rich-content-editor-example](https://github.com/wix-private/photography/tree/master/rich-content-editor-example) to see how to consume this Component as editor.
-Also see [rich-content-viewer-example](https://github.com/wix-private/photography/tree/master/rich-content-viewer-example) to see how to consume this Component as viewer.
-
-
