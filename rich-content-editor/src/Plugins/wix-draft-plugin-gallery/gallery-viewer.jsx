@@ -19,6 +19,7 @@ const getDefault = () => ({
     enableInfiniteScroll: true,
     titlePlacement: 'SHOW_ON_HOVER',
     allowHover: false,
+    itemClick: 'link',
     showArrows: false,
     gridStyle: 1,
     loveButton: false,
