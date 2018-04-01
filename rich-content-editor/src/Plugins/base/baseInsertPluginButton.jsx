@@ -104,6 +104,7 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
           theme: this.props.theme,
           componentData: button.data,
           onConfirm: this.addBlock,
+          pubsub,
           helpers,
           t,
         });

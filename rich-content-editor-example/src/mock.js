@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use strict';
 
 const testImages = [
@@ -2417,6 +2418,58 @@ const testImages = [
 
 const testVideos = [
   {
+    version: "1.0",
+    thumbnail_url: "https://i.ytimg.com/vi/jhXlnvYZZQs/hqdefault.jpg",
+    provider_url: "https://www.youtube.com/",
+    thumbnail_height: 360,
+    provider_name: "YouTube",
+    width: 480,
+    title: "Wix.com Official 2018 Big Game Ad with Rhett & Link — Extended Version",
+    author_url: "https://www.youtube.com/user/Wix",
+    html: "<iframe width=\"480\" height=\"270\" src=\"https://www.youtube.com/embed/jhXlnvYZZQs?feature=oembed\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>",
+    height: 270,
+    author_name: "Wix.com",
+    thumbnail_width: 480,
+    type: "video",
+    video_url: "https://youtu.be/jhXlnvYZZQs"
+  },
+  {
+    height: 270,
+    author_name: "Wix.com",
+    html: "<iframe width=\"480\" height=\"270\" src=\"https://www.youtube.com/embed/BBu5codsO6Y?feature=oembed\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>",
+    thumbnail_width: 480,
+    type: "video",
+    version: "1.0",
+    thumbnail_height: 360,
+    provider_url: "https://www.youtube.com/",
+    title: "iJustine | Create a Website with Wix Artificial Design Intelligence",
+    thumbnail_url: "https://i.ytimg.com/vi/BBu5codsO6Y/hqdefault.jpg",
+    author_url: "https://www.youtube.com/user/Wix",
+    provider_name: "YouTube",
+    width: 480,
+    video_url: "https://youtu.be/BBu5codsO6Y"
+  },
+  {
+    author_name: "Wix.com",
+    width: 480,
+    thumbnail_url: "https://i.ytimg.com/vi/_zuIxexRrtk/hqdefault.jpg",
+    thumbnail_width: 480,
+    provider_url: "https://www.youtube.com/",
+    type: "video",
+    height: 270,
+    author_url: "https://www.youtube.com/user/Wix",
+    version: "1.0",
+    provider_name: "YouTube",
+    thumbnail_height: 360,
+    title: "How to Build a Wix Website for Your Business | James Veitch",
+    html: "<iframe width=\"480\" height=\"270\" src=\"https://www.youtube.com/embed/_zuIxexRrtk?feature=oembed\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>",
+    video_url: "https://youtu.be/_zuIxexRrtk"
+}
+
+];
+
+const testWixVideos = [
+  {
     itemId: 'd19570fa-e97f-4b3d-b8ad-4e24b3a9a3ec',
     url: '0d72ac_31569a98fd8d436f98ae9c827c216443',
     orderIndex: 1.447790730099e8,
@@ -3081,4 +3134,4 @@ const testVideos = [
   }
 ];
 
-export { testImages, testVideos };
+export { testImages, testVideos, testWixVideos };

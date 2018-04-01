@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ImageSettingsModal from '~/Plugins/wix-draft-plugin-image/toolbar/image-settings';
 import GallerySettingsModal from '~/Plugins/wix-draft-plugin-gallery/components/gallery-settings-modal';
 import HTMLSettingsModal from '~/Plugins/wix-draft-plugin-html/toolbar/html-settings';
-import VideoURLInputModal from '~/Plugins/wix-draft-plugin-video/toolbar/videoUploadModal';
+import VideoURLInputModal from '~/Plugins/wix-draft-plugin-video/toolbar/videoURLInputModal';
 import MobileAddPluginModal from './Toolbars/AddPluginModal';
 import MobileBlockLinkModal from './Toolbars/MobileBlockLinkModal';
 import MobileTextLinkModal from './Toolbars/MobileTextLinkModal';
