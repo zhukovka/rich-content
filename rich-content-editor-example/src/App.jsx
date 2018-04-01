@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
-import { testImages } from './images-mock';
+import { testImages, testVideos } from './mock';
 // import testData from './testData/initialState';
 import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
@@ -64,6 +64,12 @@ class App extends Component {
       //   const images = multiple ? [1,2,3] : [1];
       //   images.forEach(i => mockUpload(index, updateEntity));
       // },
+      onVideoSelected: (url, updateEntity) => {
+        setTimeout(() => {
+          const testVideo = testVideos[Math.floor(Math.random() * testVideos.length)];
+          updateEntity(testVideo);
+        }, 500);
+      },
       openModal: data => {
         const { modalStyles, ...modalProps } = data;
         try {

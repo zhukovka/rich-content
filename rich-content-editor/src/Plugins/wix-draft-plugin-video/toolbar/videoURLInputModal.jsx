@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { isVideoUrl } from '~/Utils/urlValidators';
-import styles from './video-upload-modal.scss';
 import CameraIcon from './icons/video-camera.svg';
 import ErrorIcon from './icons/error.svg';
 import classNames from 'classnames';
 import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
 import Tooltip from '~/Components/Tooltip';
 import { mergeStyles } from '~/Utils/mergeStyles';
+import styles from './video-url-input-modal.scss';
 
-export default class VideoUploadModal extends Component {
+export default class VideoURLInputModal extends Component {
   constructor(props) {
     super(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
@@ -30,11 +30,17 @@ export default class VideoUploadModal extends Component {
   onConfirm = () => {
     const { url } = this.state;
     if (isVideoUrl(url)) {
-      if (this.props.onConfirm) {
-        this.props.onConfirm({ ...this.props.componentData, src: url });
+      const { componentData, helpers, pubsub, onConfirm } = this.props;
+      if (onConfirm) {
+        onConfirm({ ...componentData, src: url });
       } else {
-        this.props.pubsub.update('componentData', { src: url });
+        pubsub.update('componentData', { src: url });
       }
+
+      if (helpers && helpers.onVideoSelected) {
+        helpers.onVideoSelected(url, data => pubsub.update('componentData', { metadata: { ...data } }));
+      }
+
       this.onCloseRequested();
     } else {
       this.setState({ isValidUrl: false });
@@ -101,7 +107,7 @@ export default class VideoUploadModal extends Component {
   }
 }
 
-VideoUploadModal.propTypes = {
+VideoURLInputModal.propTypes = {
   onConfirm: PropTypes.func,
   pubsub: PropTypes.object,
   helpers: PropTypes.object.isRequired,
@@ -113,7 +119,7 @@ VideoUploadModal.propTypes = {
   t: PropTypes.func,
 };
 
-VideoUploadModal.defaultProps = {
+VideoURLInputModal.defaultProps = {
   doneLabel: 'Add Now',
   cancelLabel: 'Cancel',
 };
