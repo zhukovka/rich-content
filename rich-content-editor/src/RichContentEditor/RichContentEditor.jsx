@@ -9,11 +9,7 @@ import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createToolbars from './Toolbars';
 import createPlugins from './Plugins';
-<<<<<<< HEAD
-import createDecorators from './Decorators';
 import { normalizeInitialState } from '~/Utils';
-=======
->>>>>>> rte: Remove decorators and support them inside the plugins model
 import styles from '~/Styles/rich-content-editor.scss';
 import draftStyles from '~/Styles/draft.scss';
 
