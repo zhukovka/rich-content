@@ -36,16 +36,13 @@ class App extends Component {
 
   initEditorProps() {
     this.plugins = WixRichContentEditor.PluginList;
-    this.decorators = {
-      list: WixRichContentEditor.DecoratorList,
-      config: {
-        Hashtag: {
-          createHref: decoratedText =>
-            `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`,
+    this.config = {
+      hashtag: {
+        createHref: decoratedText =>
+          `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`,
           onClick: (event, text) => {
-            event.preventDefault();
-            console.log(`'${text}' hashtag clicked!`);
-          }
+          event.preventDefault();
+          console.log(`'${text}' hashtag clicked!`);
         }
       }
     };
@@ -197,7 +194,7 @@ class App extends Component {
                 onChange={this.onChange}
                 helpers={this.helpers}
                 plugins={this.plugins}
-                decorators={this.decorators}
+                config={this.config}
                 editorState={this.state.editorState}
                 readOnly={this.state.readOnly}
                 isMobile={this.isMobile()}

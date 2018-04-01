@@ -74,15 +74,26 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
     renderButton = () => {
       const { styles } = this;
       const { showName } = this.props;
-      const { name, Icon } = button;
-      return (
-        <button className={styles.button} data-hook="baseInsertPluginButton" onClick={this.onClick}>
-          <div className={styles.icon}>
-            <Icon key="0" />
+      const { name, Icon, ButtonElement } = button;
+      if (ButtonElement) {
+        return (
+          <div className={styles.button} data-hook="baseInsertPluginButton" onClick={this.onClick}>
+            <div className={styles.icon}>
+              <ButtonElement key="0"/>
+            </div>
+            {showName && <span key="1" className={styles.label}>{name}</span>}
           </div>
-          {showName && <span key="1" className={styles.label}>{name}</span>}
-        </button>
-      );
+        );
+      } else {
+        return (
+          <button className={styles.button} data-hook="baseInsertPluginButton" onClick={this.onClick}>
+            <div className={styles.icon}>
+              <Icon key="0"/>
+            </div>
+            {showName && <span key="1" className={styles.label}>{name}</span>}
+          </button>
+        );
+      }
     };
 
     toggleButtonModal = () => {

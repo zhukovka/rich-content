@@ -6,7 +6,7 @@ import ToolbarButton from '~/Components/ToolbarButton';
 export default ({ Icon, tooltipTextKey }) =>
   class BlockButton extends Component {
     static propTypes = {
-      onClick: PropTypes.func.isRequired,
+      onClick: PropTypes.func,
       theme: PropTypes.object.isRequired,
       isMobile: PropTypes.bool,
       tooltipText: PropTypes.string,

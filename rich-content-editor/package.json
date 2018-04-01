@@ -45,6 +45,7 @@
     "draft-js-focus-plugin": "^2.0.1",
     "draft-js-linkify-plugin": "^2.0.1",
     "draft-js-plugins-editor": "^2.0.1",
+    "draft-js-emoji-plugin": "^2.0.1",
     "i18next": "^10.5.0",
     "image-client-api": "1.51.0",
     "linkify-it": "^2.0.3",
