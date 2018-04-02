@@ -65,6 +65,13 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
       }
     };
 
+    handleExternalFileChanged = data => {
+      if (data) {
+        this.addBlock(button.data || {});
+        setTimeout(() => pubsub.get('handleFilesAdded')(data));
+      }
+    }
+
     setForm = form => (this.form = form);
 
     resetForm = () => this.form && this.form.reset();
@@ -114,11 +121,8 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
     toggleFileSelection = () => {
       const { handleFileSelection } = helpers || {};
       if (handleFileSelection) {
-        this.addBlock(button.data || {});
-        setTimeout(() => {
-          const multiple = !!button.multi;
-          handleFileSelection(undefined, multiple, pubsub.get('handleFilesAdded'), pubsub.get('deleteBlock'));
-        });
+        const multiple = !!button.multi;
+        handleFileSelection(undefined, multiple, this.handleExternalFileChanged);
       }
     }
 
