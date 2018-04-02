@@ -51,20 +51,23 @@ class App extends Component {
       //   }
       // },
     };
-    const mockUpload = (itemIdx, updateEntity) => {
+    const mockUpload = (files, updateEntity) => {
       //mock upload
       const testItem = testImages[Math.floor(Math.random() * testImages.length)];
       const data = {
         id: testItem.photoId,
-        original_file_name: testItem.url,
+        original_file_name: files[0].name,
         file_name: testItem.url,
         width: testItem.metadata.width,
         height: testItem.metadata.height,
       };
-      setTimeout(() => updateEntity({ data, itemIdx }), 500);
+      setTimeout(() => {
+        updateEntity({ data, files });
+        console.log('consumer uploaded', data);
+      }, 20000);
     }
     this.helpers = {
-      onFilesChange: (file, updateEntity) => mockUpload(undefined, updateEntity),
+      onFilesChange: (files, updateEntity) => mockUpload(files, updateEntity),
       // handleFileSelection: (index, multiple, updateEntity, removeEntity) => {
       //   const images = multiple ? [1,2,3] : [1];
       //   images.forEach(i => mockUpload(index, updateEntity));
