@@ -1,1 +1,1 @@
-export { default } from './createToolbars';
+export { default } from './createEditorToolbars';

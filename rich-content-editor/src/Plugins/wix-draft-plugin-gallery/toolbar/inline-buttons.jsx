@@ -7,6 +7,7 @@ import { getModalStyles } from '~/Utils';
 import { galleryLayoutsDropdown, switchLayout, getCurrentLayout } from '../helpers';
 
 const modalStyles = getModalStyles();
+
 export default({ t }) => {
   return [
     {
@@ -22,6 +23,7 @@ export default({ t }) => {
       mobile: false,
       multiple: true,
       tooltipTextKey: 'UploadMediaButton_Tooltip',
+      dataHook: 'gallery_file_input',
     },
     { type: BUTTONS.SEPARATOR, mobile: false },
     {
@@ -31,15 +33,16 @@ export default({ t }) => {
       onChange: switchLayout,
       getValue: getCurrentLayout,
       mobile: true,
+      dataHook: 'gallery_layouts_dropdown'
     },
-    { type: BUTTONS.SEPARATOR, mobile: false },
-    { type: BUTTONS.SIZE_SMALL_CENTER, mobile: false },
-    { type: BUTTONS.SIZE_CONTENT, mobile: false },
-    { type: BUTTONS.SIZE_FULL_WIDTH, mobile: false },
-    { type: BUTTONS.SEPARATOR, mobile: false },
-    { type: BUTTONS.SIZE_SMALL_LEFT, mobile: false },
-    { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: false },
-    { type: BUTTONS.SEPARATOR, mobile: true },
+    { keyName: 'separator1', type: BUTTONS.SEPARATOR, mobile: false },
+    { keyName: 'sizeSmallCenter', type: BUTTONS.SIZE_SMALL_CENTER, mobile: false },
+    { keyName: 'sizeContent', type: BUTTONS.SIZE_CONTENT, mobile: false },
+    { keyName: 'sizeFullWidth', type: BUTTONS.SIZE_FULL_WIDTH, mobile: false },
+    { keyName: 'separator2', type: BUTTONS.SEPARATOR, mobile: false },
+    { keyName: 'sizeSmallLeft', type: BUTTONS.SIZE_SMALL_LEFT, mobile: false },
+    { keyName: 'sizeSmallRight', type: BUTTONS.SIZE_SMALL_RIGHT, mobile: false },
+    { keyName: 'separator3', type: BUTTONS.SEPARATOR, mobile: true },
     {
       keyName: 'manage_media',
       type: BUTTONS.EXTERNAL_MODAL,
@@ -63,6 +66,6 @@ export default({ t }) => {
       mobile: false,
       tooltipTextKey: 'SettingsButton_Tooltip',
     },
-    { type: BUTTONS.DELETE, mobile: true },
+    { keyName: 'delete', type: BUTTONS.DELETE, mobile: true },
   ];
 };

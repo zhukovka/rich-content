@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
+import isEmpty from 'lodash/isempty';
+import includes from 'lodash/includes';
 import Separator from '~/Components/Separator';
 import BaseToolbarButton from './baseToolbarButton';
 import {
@@ -32,10 +34,23 @@ const getInitialState = () => (
   }
 );
 
+const getStructure = (buttons, isMobile) => {
+  const { all, hidden } = buttons;
+  let structure = all;
+  if (!isEmpty(hidden)) {
+    structure = structure.filter(button => !includes(hidden, button.keyName));
+  }
+  if (isMobile) {
+    structure = structure.filter(button => button.mobile);
+  }
+  return structure;
+};
+
 export default function createToolbar({ buttons, theme, pubsub, helpers, isMobile, anchorTarget, t }) {
   class BaseToolbar extends Component {
     constructor(props) {
       super(props);
+      this.structure = getStructure(buttons, isMobile);
       this.state = getInitialState();
     }
 
@@ -285,7 +300,6 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       const separatorClassNames = classNames(toolbarStyles.pluginToolbarSeparator, separatorTheme && separatorTheme.pluginToolbarSeparator);
       const overrideProps = { onOverrideContent: this.onOverrideContent };
       const extendProps = { onExtendContent: this.onExtendContent };
-      const structure = isMobile ? buttons.filter(button => button.mobile) : buttons;
 
       return (
         <div style={this.state.position} className={containerClassNames}>
@@ -305,7 +319,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
             }
             {OverrideContent ?
               <OverrideContent {...overrideProps} /> :
-              structure.map((button, index) => (
+              this.structure.map((button, index) => (
                 this.renderButton(button, index, themedButtonStyle, separatorClassNames)
               ))
             }

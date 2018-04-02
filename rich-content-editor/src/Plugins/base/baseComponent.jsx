@@ -261,7 +261,7 @@ const createBaseComponent = ({ PluginComponent, theme, type, pubsub, helpers, t,
               component
             )}
           { !this.state.readOnly && (
-            <div data-hook="baseComponent" onClick={onClick} className={overlayClassNames} />
+            <div data-hook={'componentOverlay'} onClick={onClick} className={overlayClassNames} />
           )
           }
         </div>

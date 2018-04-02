@@ -107,14 +107,14 @@ class Dropdown extends Component {
       [styles['Dropdown-option-selected']]: option === this.state.selected
     });
 
-    const { value, label, icon: Icon, dataHook } = option;
+    const { value, label, icon: Icon } = option;
 
     return (
       <div
         key={value}
         className={optionClass}
         onMouseDown={this.setValue.bind(this, value, label)}
-        data-hook={dataHook} onClick={this.setValue.bind(this, value, label)}
+        data-hook={`${label}_dropdown_option`} onClick={this.setValue.bind(this, value, label)}
       >
         {Icon && <Icon className={styles['Dropdown-option-icon']}/>}
         <span className={styles['Dropdown-option-label']}>{label}</span>
@@ -177,7 +177,7 @@ class Dropdown extends Component {
       [styles['Dropdown-root']]: true,
       [styles['Dropdown-root-isOpen']]: this.state.isOpen
     });
-    const dataHook = this.props;
+    const { dataHook } = this.props;
 
     return (
       <div className={dropdownClass}>

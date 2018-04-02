@@ -44,7 +44,12 @@ class App extends Component {
           event.preventDefault();
           console.log(`'${text}' hashtag clicked!`);
         }
-      }
+      },
+      // image: {
+      //   toolbar: {
+      //     hidden: ['link', 'settings']
+      //   }
+      // },
     };
     const mockUpload = (itemIdx, updateEntity) => {
       //mock upload

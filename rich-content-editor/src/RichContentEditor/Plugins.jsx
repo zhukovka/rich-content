@@ -6,7 +6,7 @@ import { createHashtagPlugin, HASHTAG_TYPE } from '../Plugins/wix-draft-plugin-h
 import { createExternalEmojiPlugin, EXTERNAL_EMOJI_TYPE } from '../Plugins/wix-draft-plugin-emoji';
 import { createDividerPlugin, DIVIDER_TYPE } from '~/Plugins/wix-draft-plugin-divider';
 import { createGalleryPlugin, GALLERY_TYPE } from '~/Plugins/wix-draft-plugin-gallery';
-import { createHtmlPlugin, HTML_TYPE } from '~/Plugins/wix-draft-plugin-html';
+import { createHTMLPlugin, HTML_TYPE } from '~/Plugins/wix-draft-plugin-html';
 import { createImagePlugin, IMAGE_TYPE } from '~/Plugins/wix-draft-plugin-image';
 import { createVideoPlugin, VIDEO_TYPE } from '~/Plugins/wix-draft-plugin-video';
 
@@ -30,7 +30,7 @@ const activePlugins = (requestedPlugins = PluginList, config) => {
         activePlugins.push(createGalleryPlugin(config));
         break;
       case HTML_TYPE:
-        activePlugins.push(createHtmlPlugin(config));
+        activePlugins.push(createHTMLPlugin(config));
         break;
       case IMAGE_TYPE:
         activePlugins.push(createImagePlugin(config));

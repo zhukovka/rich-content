@@ -4,7 +4,7 @@ import { createMobileToolbar, createFooterToolbar, createStaticTextToolbar } fro
 import { createInlineTextToolbar } from './InlineToolbar';
 import { simplePubsub, getToolbarTheme } from '~/Utils';
 
-const createToolbars = config => {
+const createEditorToolbars = config => {
   const {
     buttons,
     anchorTarget,
@@ -77,4 +77,4 @@ const createToolbars = config => {
   return toolbars;
 };
 
-export default createToolbars;
+export default createEditorToolbars;

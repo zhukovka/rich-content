@@ -144,13 +144,13 @@ export default({ t }) => {
       tooltipTextKey: 'EditButton_Tooltip',
       t,
     },
-    { type: BUTTONS.SEPARATOR, mobile: true },
-    { type: BUTTONS.SIZE_SMALL_LEFT, mobile: true },
-    { type: BUTTONS.SIZE_SMALL_CENTER, mobile: true },
-    { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: true },
-    { type: BUTTONS.SIZE_CONTENT, mobile: true },
-    { type: BUTTONS.SIZE_FULL_WIDTH, mobile: true },
-    { type: BUTTONS.SEPARATOR, mobile: true },
+    { keyName: 'separator1', type: BUTTONS.SEPARATOR, mobile: true },
+    { keyName: 'sizeSmallLeft', type: BUTTONS.SIZE_SMALL_LEFT, mobile: true },
+    { keyName: 'sizeSmallCenter', type: BUTTONS.SIZE_SMALL_CENTER, mobile: true },
+    { keyName: 'sizeSmallRight', type: BUTTONS.SIZE_SMALL_RIGHT, mobile: true },
+    { keyName: 'sizeContent', type: BUTTONS.SIZE_CONTENT, mobile: true },
+    { keyName: 'sizeFullWidth', type: BUTTONS.SIZE_FULL_WIDTH, mobile: true },
+    { keyName: 'separator2', type: BUTTONS.SEPARATOR, mobile: true },
     {
       keyName: 'settings',
       type: BUTTONS.PANEL,
@@ -161,8 +161,8 @@ export default({ t }) => {
       tooltipTextKey: 'SettingsButton_Tooltip',
       t,
     },
-    { type: BUTTONS.LINK, mobile: true },
-    { type: BUTTONS.DELETE, mobile: true },
+    { keyName: 'link', type: BUTTONS.LINK, mobile: true },
+    { keyName: 'delete', type: BUTTONS.DELETE, mobile: true },
   ];
 };
 
