@@ -212,6 +212,6 @@ export default({ t }) => {
       tooltipTextKey: 'SettingsButton_Tooltip',
       t,
     },
-    { type: BUTTONS.DELETE },
+    { keyName: 'delete', type: BUTTONS.DELETE },
   ];
 };

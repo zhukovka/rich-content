@@ -60,7 +60,10 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
   const { t, anchorTarget } = config;
   const toolbarTheme = { ...getToolbarTheme(config.theme, 'plugin'), ...config.theme };
   const Toolbar = config.toolbar && config.toolbar.InlineButtons && createToolbar({
-    buttons: config.toolbar.InlineButtons,
+    buttons: {
+      all: config.toolbar.InlineButtons,
+      hidden: config.toolbar.hiddenButtons,
+    },
     theme: { ...toolbarTheme, ...config.theme },
     pubsub,
     helpers,

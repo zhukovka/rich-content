@@ -8,15 +8,15 @@ const modalStyles = getModalStyles();
 
 export default({ t, anchorTarget }) => {
   return [
-    { type: BUTTONS.SIZE_ORIGINAL, mobile: false },
-    { type: BUTTONS.SIZE_SMALL_CENTER, mobile: false },
-    { type: BUTTONS.SIZE_CONTENT, mobile: false },
-    { type: BUTTONS.SIZE_FULL_WIDTH, mobile: false },
-    { type: BUTTONS.SEPARATOR, mobile: false },
-    { type: BUTTONS.SIZE_SMALL_LEFT, mobile: false },
-    { type: BUTTONS.SIZE_SMALL_RIGHT, mobile: false },
-    { type: BUTTONS.SEPARATOR, mobile: false },
-    { type: BUTTONS.LINK, mobile: false },
+    { keyName: 'sizeOriginal', type: BUTTONS.SIZE_ORIGINAL, mobile: false },
+    { keyName: 'sizeSmallCenter', type: BUTTONS.SIZE_SMALL_CENTER, mobile: false },
+    { keyName: 'sizeContent', type: BUTTONS.SIZE_CONTENT, mobile: false },
+    { keyName: 'sizeFullWidth', type: BUTTONS.SIZE_FULL_WIDTH, mobile: false },
+    { keyName: 'separator1', type: BUTTONS.SEPARATOR, mobile: false },
+    { keyName: 'sizeSmallLeft', type: BUTTONS.SIZE_SMALL_LEFT, mobile: false },
+    { keyName: 'sizeSimallRight', type: BUTTONS.SIZE_SMALL_RIGHT, mobile: false },
+    { keyName: 'separator2', type: BUTTONS.SEPARATOR, mobile: false },
+    { keyName: 'link', type: BUTTONS.LINK, mobile: false },
     {
       keyName: 'settings',
       type: BUTTONS.EXTERNAL_MODAL,
@@ -37,6 +37,6 @@ export default({ t, anchorTarget }) => {
       tooltipTextKey: 'ReplaceImageButton_Tooltip',
       t,
     },
-    { type: BUTTONS.DELETE, mobile: true },
+    { keyName: 'delete', type: BUTTONS.DELETE, mobile: true },
   ];
 };
