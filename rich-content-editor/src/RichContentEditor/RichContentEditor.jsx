@@ -7,7 +7,7 @@ import isUndefined from 'lodash/isUndefined';
 import includes from 'lodash/includes';
 import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
-import createToolbars from './Toolbars';
+import createEditorToolbars from './Toolbars';
 import createPlugins from './Plugins';
 import { normalizeInitialState } from '~/Utils';
 import styles from '~/Styles/rich-content-editor.scss';
@@ -55,7 +55,7 @@ class RichContentEditor extends Component {
     const { theme } = this.state;
     const buttons = { textButtons, pluginButtons };
 
-    this.toolbars = createToolbars({
+    this.toolbars = createEditorToolbars({
       buttons,
       helpers,
       anchorTarget,
