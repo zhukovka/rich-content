@@ -20,7 +20,7 @@ function defaultDataMapper(item) {
 
 function defaultRenderItem({ option, selected }) {
   return option && option.value && (
-    <SelectionListOption selected={selected} value={option.value} theme={{}} data-hook="selectionListOption" onChange={() => {}}>
+    <SelectionListOption selected={selected} value={option.value} theme={{}} data-hook={option.value} onChange={() => {}}>
       {option.value}
     </SelectionListOption>);
 }

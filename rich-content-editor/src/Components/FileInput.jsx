@@ -38,7 +38,7 @@ class FileInput extends Component {
   }
 
   renderButton() {
-    const { handleFileSelection, multiple, className, title, children } = this.props;
+    const { handleFileSelection, multiple, className, title, children, dataHook } = this.props;
     const onClick = () => handleFileSelection(multiple);
     return (
       <label
@@ -49,7 +49,7 @@ class FileInput extends Component {
       >
         <button
           id={this.id}
-          data-hook="fileInputButton" onClick={onClick}
+          data-hook={dataHook} onClick={onClick}
         >
           {children}
         </button>

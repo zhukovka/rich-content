@@ -77,7 +77,7 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
       const { name, Icon, ButtonElement } = button;
       if (ButtonElement) {
         return (
-          <div className={styles.button} data-hook="baseInsertPluginButton" onClick={this.onClick}>
+          <div className={styles.button} data-hook={`${name.replace(' ', '_')}_insert_plugin_button`} onClick={this.onClick}>
             <div className={styles.icon}>
               <ButtonElement key="0"/>
             </div>
@@ -86,7 +86,7 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
         );
       } else {
         return (
-          <button className={styles.button} data-hook="baseInsertPluginButton" onClick={this.onClick}>
+          <button className={styles.button} data-hook={`${name.replace(' ', '_')}_insert_plugin_button`} onClick={this.onClick}>
             <div className={styles.icon}>
               <Icon key="0"/>
             </div>
@@ -131,6 +131,7 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
       return (
         <form ref={this.setForm}>
           <FileInput
+            dataHook={`${button.name}_file_input`}
             className={styles.fileInput}
             onChange={this.handleFileChange}
             accept="image/*"
