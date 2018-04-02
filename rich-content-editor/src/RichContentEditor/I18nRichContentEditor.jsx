@@ -21,6 +21,10 @@ class I18nRichContentEditor extends PureComponent {
 
   getToolbars = () => this.editor.getToolbars();
 
+  focus = () => this.editor.focus();
+
+  blur = () => this.editor.blur();
+
   render() {
     return (
       <I18nextProvider i18n={this.i18n}>
