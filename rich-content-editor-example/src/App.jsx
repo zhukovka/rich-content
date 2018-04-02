@@ -64,7 +64,7 @@ class App extends Component {
       setTimeout(() => {
         updateEntity({ data, files });
         console.log('consumer uploaded', data);
-      }, 20000);
+      }, 500);
     }
     this.helpers = {
       onFilesChange: (files, updateEntity) => mockUpload(files, updateEntity),
