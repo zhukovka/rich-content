@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
-import isEmpty from 'lodash/isempty';
+import isEmpty from 'lodash/isEmpty';
 import includes from 'lodash/includes';
 import Separator from '~/Components/Separator';
 import BaseToolbarButton from './baseToolbarButton';
