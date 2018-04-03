@@ -56,7 +56,7 @@ class App extends Component {
       const testItem = testImages[Math.floor(Math.random() * testImages.length)];
       const data = {
         id: testItem.photoId,
-        original_file_name: files[0].name,
+        original_file_name: files && files[0] ? files[0].name : testItem.url,
         file_name: testItem.url,
         width: testItem.metadata.width,
         height: testItem.metadata.height,
@@ -69,8 +69,19 @@ class App extends Component {
     this.helpers = {
       onFilesChange: (files, updateEntity) => mockUpload(files, updateEntity),
       // handleFileSelection: (index, multiple, updateEntity, removeEntity) => {
-      //   const images = multiple ? [1,2,3] : [1];
-      //   images.forEach(i => mockUpload(index, updateEntity));
+      //   const count = multiple ? [1,2,3] : [1];
+      //   const data = [];
+      //   count.forEach(_ => {
+      //     const testItem = testImages[Math.floor(Math.random() * testImages.length)];
+      //     data.push({
+      //       id: testItem.photoId,
+      //       original_file_name: testItem.url,
+      //       file_name: testItem.url,
+      //       width: testItem.metadata.width,
+      //       height: testItem.metadata.height,
+      //     });
+      //   })
+      //   setTimeout(() => { updateEntity({ data }) }, 500);
       // },
       onVideoSelected: (url, updateEntity) => {
         setTimeout(() => {
