@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import Image from '~/Components/Image';
+import ImageLoader from '~/Components/ImageLoader';
 import SettingsSection from '~/Components/SettingsSection';
 import getImageSrc from '../get-image-source';
 import InputWithLabel from '~/Components/InputWithLabel';
@@ -102,8 +103,9 @@ class ImageSettings extends Component {
     const { componentData, helpers, theme, t, anchorTarget, isMobile } = this.props;
     const { config = {} } = componentData;
     const { src, metadata = {} } = this.state;
+
     if (!src) {
-      return; //do not render until the src is passed
+      return <ImageLoader type={'medium'} theme={theme}/>; //do not render until the src is passed
     }
 
     const { url, targetBlank, nofollow } = (!isEmpty(config.link) ? config.link : {});
