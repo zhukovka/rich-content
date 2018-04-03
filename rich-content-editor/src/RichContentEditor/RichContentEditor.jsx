@@ -168,7 +168,9 @@ class RichContentEditor extends Component {
 
   focus = () => this.editor.focus();
 
-  setEditor = ref => (this.editor = ref);
+  blur = () => this.editor.blur();
+
+  setEditor = ref => (this.editor = ref || ref.editor);
 
   renderToolbars = () => {
     if (!this.state.readOnly) {

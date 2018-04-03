@@ -104,16 +104,26 @@ class GalleryComponent extends React.PureComponent {
   };
 
   handleFilesAdded = ({ data, itemIdx }) => {
-    const galleryItem = {
-      metadata: {
-        height: data.height,
-        width: data.width,
-        processedByConsumer: true
-      },
-      itemId: String(data.id),
-      url: data.file_name,
+    const handleFileAdded = (item, idx) => {
+      const galleryItem = {
+        metadata: {
+          height: item.height,
+          width: item.width,
+          processedByConsumer: true
+        },
+        itemId: String(item.id),
+        url: item.file_name,
+      };
+      this.setItemInGallery(galleryItem, idx);
     };
-    this.setItemInGallery(galleryItem, itemIdx);
+
+    if (data instanceof Array) {
+      data.forEach(item => {
+        handleFileAdded(item);
+      });
+    } else {
+      handleFileAdded(data, itemIdx);
+    }
   }
 
   fileLoaded = (event, file, itemPos) => {

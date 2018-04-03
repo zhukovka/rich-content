@@ -31,6 +31,12 @@ export default({ t, anchorTarget }) => {
     {
       keyName: 'replace',
       type: BUTTONS.FILES,
+      onFilesSelected: (pubsub, files) => {
+        if (files.length > 0) {
+          const handleFilesSelected = pubsub.store.get('handleFilesSelected');
+          handleFilesSelected(files);
+        }
+      },
       icon: MediaReplaceIcon,
       mobile: true,
       dataHook: 'image_file_input',
