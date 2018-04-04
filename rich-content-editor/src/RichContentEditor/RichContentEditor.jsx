@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { EditorState, convertFromRaw } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
 import isUndefined from 'lodash/isUndefined';
+import get from 'lodash/get';
 import includes from 'lodash/includes';
 import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
@@ -170,7 +171,7 @@ class RichContentEditor extends Component {
 
   blur = () => this.editor.blur();
 
-  setEditor = ref => (this.editor = ref || ref.editor);
+  setEditor = ref => this.editor = get(ref, 'editor', ref);
 
   renderToolbars = () => {
     if (!this.state.readOnly) {
