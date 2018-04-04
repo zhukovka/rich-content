@@ -55,6 +55,7 @@ const deleteEntity = (contentBlock, { getEditorState, setEditorState }) => {
 
 const createBasePlugin = (config = {}, underlyingPlugin) => {
   const pubsub = simplePubsub();
+  const settings = config.settings || {};
   const helpers = config.helpers || {};
   const isMobile = config.isMobile || false;
   const { t, anchorTarget } = config;
@@ -62,7 +63,7 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
   const Toolbar = config.toolbar && config.toolbar.InlineButtons && createToolbar({
     buttons: {
       all: config.toolbar.InlineButtons,
-      hidden: config.toolbar.hiddenButtons,
+      hidden: settings.toolbar ? settings.toolbar.hidden : [],
     },
     theme: { ...toolbarTheme, ...config.theme },
     pubsub,
@@ -77,7 +78,7 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
   const PluginComponent = config.component && config.decorator ? config.decorator(config.component) : config.component;
 
   const CompWithBase = PluginComponent && createBaseComponent(
-    { PluginComponent, theme: config.theme, type: config.type, pubsub, helpers, t, anchorTarget });
+    { PluginComponent, theme: config.theme, type: config.type, pubsub, settings, helpers, t, anchorTarget });
 
   const InlineModals = config.inlineModals;
 
