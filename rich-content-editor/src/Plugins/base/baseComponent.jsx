@@ -35,7 +35,7 @@ const sizeClassName = (size, theme) => {
   }
 };
 
-const createBaseComponent = ({ PluginComponent, theme, type, pubsub, helpers, t, anchorTarget }) => {
+const createBaseComponent = ({ PluginComponent, theme, type, settings, pubsub, helpers, anchorTarget, t }) => {
   class WrappedComponent extends Component {
     static displayName = createHocName('BaseComponent', PluginComponent);
 
@@ -224,6 +224,7 @@ const createBaseComponent = ({ PluginComponent, theme, type, pubsub, helpers, t,
       const component = (
         <PluginComponent
           {...this.props}
+          settings={settings}
           store={pubsub.store}
           theme={theme}
           componentData={this.state.componentData}

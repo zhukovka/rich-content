@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import includes from 'lodash/includes';
+import get from 'lodash/get';
 import { mergeStyles } from '~/Utils';
 import getImageSrc from './get-image-source';
 import styles from './default-image-styles.scss';
@@ -82,9 +83,10 @@ class ImageViewer extends React.Component {
 
   render() {
     const { styles } = this;
-    const { componentData, className, onClick, isFocused, readOnly, t } = this.props;
+    const { componentData, className, onClick, isFocused, readOnly, settings, t } = this.props;
     const data = componentData || getDefault();
     const { metadata = {} } = componentData;
+    const shouldRenderCaption = !includes(get(settings, 'toolbar.hidden'), 'settings');
 
     const itemClassName = classNames(styles.imageContainer, className);
     const imageClassName = classNames(styles.image);
@@ -97,7 +99,7 @@ class ImageViewer extends React.Component {
         </div>
         {this.renderTitle(data, styles)}
         {this.renderDescription(data, styles)}
-        {this.renderCaption(metadata.caption, isFocused, readOnly, styles, t)}
+        {shouldRenderCaption && this.renderCaption(metadata.caption, isFocused, readOnly, styles, t)}
       </div>
     );
   }
@@ -113,6 +115,7 @@ ImageViewer.propTypes = {
   dataUrl: PropTypes.string,
   isFocused: PropTypes.bool,
   readOnly: PropTypes.bool,
+  settings: PropTypes.object,
   t: PropTypes.func,
 };
 
