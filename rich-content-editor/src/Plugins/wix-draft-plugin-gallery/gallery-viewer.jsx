@@ -28,7 +28,7 @@ const getDefault = () => ({
   },
   config: {
     alignment: 'center',
-    size: 'fullWidth',
+    size: 'content',
     layout: 'small',
     spacing: 0,
   },
