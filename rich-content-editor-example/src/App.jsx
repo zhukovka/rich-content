@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   initEditorProps() {
-    this.plugins = WixRichContentEditor.PluginList;
+    this.plugins = WixRichContentEditor.PluginList.filter(p => p.indexOf('emoji') === -1);
     this.config = {
       hashtag: {
         createHref: decoratedText =>
