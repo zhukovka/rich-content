@@ -111,7 +111,7 @@ class ImageComponent extends React.Component {
   };
 
   render() {
-    const { t } = this.props;
+    const { settings, t } = this.props;
     return (
       <ImageViewer
         componentData={this.props.componentData}
@@ -123,6 +123,7 @@ class ImageComponent extends React.Component {
         dataUrl={this.state.dataUrl}
         isFocused={this.props.blockProps.isFocused}
         readOnly={this.props.blockProps.readOnly}
+        settings={settings}
         t={t}
       />
     );
@@ -139,6 +140,7 @@ ImageComponent.propTypes = {
   className: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
   helpers: PropTypes.object.isRequired,
+  settings: PropTypes.object,
   t: PropTypes.func
 };
 
