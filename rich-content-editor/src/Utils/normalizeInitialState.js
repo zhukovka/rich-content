@@ -1,12 +1,23 @@
 import mapValues from 'lodash/mapValues';
 import cloneDeep from 'lodash/cloneDeep';
-import { IMAGE_TYPE_LEGACY } from '~/Plugins/wix-draft-plugin-image/types';
-import { VIDEO_TYPE_LEGACY } from '~/Plugins/wix-draft-plugin-video/types';
+import { IMAGE_TYPE, IMAGE_TYPE_LEGACY } from '~/Plugins/wix-draft-plugin-image/types';
+import { VIDEO_TYPE, VIDEO_TYPE_LEGACY } from '~/Plugins/wix-draft-plugin-video/types';
+
+const normalizeEntityType = entityType => {
+  switch (entityType) {
+    case IMAGE_TYPE_LEGACY:
+      return IMAGE_TYPE;
+    case VIDEO_TYPE_LEGACY:
+      return VIDEO_TYPE;
+    default:
+      return entityType;
+  }
+};
 
 /* eslint-disable */
 const normalizeComponentData = componentData => {
   if (componentData.config) {
-    return null;
+    return componentData;
   }
 
   const patch = { config: {} };
@@ -45,15 +56,16 @@ const normalizeComponentData = componentData => {
 };
 /* eslint-enable */
 
-const shouldNormalizeEntityData = entity =>
+const shouldNormalizeEntity = entity =>
   [IMAGE_TYPE_LEGACY, VIDEO_TYPE_LEGACY].includes(entity.type) && entity.data;
 
 export default initialState => ({
   ...initialState,
   entityMap: mapValues(
     initialState.entityMap,
-    entity => shouldNormalizeEntityData(entity) ? {
+    entity => shouldNormalizeEntity(entity) ? {
       ...entity,
+      type: normalizeEntityType(entity.type),
       data: normalizeComponentData(cloneDeep(entity.data))
     } : entity
   ),
