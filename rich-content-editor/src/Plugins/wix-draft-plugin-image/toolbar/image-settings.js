@@ -132,7 +132,11 @@ class ImageSettings extends Component {
         }
         <div className={classNames(styles.imageSettings_scrollContainer, { [styles.imageSettings_mobile]: isMobile })}>
           <SettingsSection theme={theme}>
-            <Image resizeMode={'contain'} className={this.styles.imageSettingsImage} src={getImageSrc(src, helpers)} />
+            <Image
+              resizeMode={'contain'}
+              className={this.styles.imageSettingsImage}
+              src={getImageSrc(src, helpers, { requiredWidth: 1000, requiredHeight: 250 })}
+            />
           </SettingsSection>
           <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
             <InputWithLabel

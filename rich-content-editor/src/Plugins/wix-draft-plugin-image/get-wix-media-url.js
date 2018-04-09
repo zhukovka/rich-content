@@ -2,7 +2,7 @@ export const RESIZE_FIT = 'fit';
 export const RESIZE_COVER = 'cover';
 export const DEFAULT_QUALITY = 80;
 
-const DEFAULT_SIZE = 1000;
+const DEFAULT_SIZE = 100; //reduced for performance (should get exact height after first render)
 
 const RESIZE = {
   [RESIZE_COVER]: (w, h, rw, rh) => {
@@ -46,7 +46,9 @@ export default (
 ) => {
   if (fileName) {
     const { width, height } = RESIZE[type](w, h, rw, rh);
-    return `https://static.wixstatic.com/media/${fileName}/v1/fit/w_${width},h_${height},al_c,q_${quality}/file.jpg`;
+    const H = Math.ceil(height + 1); //make sure no sterching will occur
+    const W = Math.ceil(width + 1);
+    return `https://static.wixstatic.com/media/${fileName}/v1/fit/w_${W},h_${H},al_c,q_${quality}/file.jpg`;
   }
   return '';
 };

@@ -1,7 +1,7 @@
 
 import getWixMediaUrl from './get-wix-media-url';
 
-const getImageSrc = (src, helpers) => {
+const getImageSrc = (src, helpers, options = {}) => {
   if (typeof src === 'object') {
     if (src.source) {
       if (src.source === 'static') {
@@ -18,7 +18,13 @@ const getImageSrc = (src, helpers) => {
         }
       }
     } else if (src.file_name) {
-      return getWixMediaUrl({ file_name: src.file_name }); //eslint-disable-line camelcase
+      return getWixMediaUrl(
+        src,
+        options.requiredWidth,
+        options.requiredHeight,
+        options.requiredQuality,
+        options.resizeType
+      );
     }
   }
 
