@@ -135,7 +135,7 @@ class ImageSettings extends Component {
             <Image
               resizeMode={'contain'}
               className={this.styles.imageSettingsImage}
-              src={getImageSrc(src, helpers, { requiredWidth: 1000, requiredHeight: 250 })}
+              src={getImageSrc(src, helpers, { requiredWidth: 1000, requiredHeight: 250, requiredQuality: 80 })}
             />
           </SettingsSection>
           <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>

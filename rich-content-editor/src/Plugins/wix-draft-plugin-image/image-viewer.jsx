@@ -41,7 +41,8 @@ class ImageViewer extends React.Component {
         const { width, height } = this.state.container.getBoundingClientRect();
         const requiredWidth = width || src.width || 1;
         const requiredHeight = height || src.height || 1;
-        options = { requiredWidth, requiredHeight };
+        const requiredQuality = 80;
+        options = { requiredWidth, requiredHeight, requiredQuality };
       }
       imageUrl = getImageSrc(src, helpers, options);
     }

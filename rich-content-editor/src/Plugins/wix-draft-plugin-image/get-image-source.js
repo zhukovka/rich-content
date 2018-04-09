@@ -1,5 +1,5 @@
 
-import getWixMediaUrl from './get-wix-media-url';
+import wixMediaUrl from './get-wix-media-url';
 
 const getImageSrc = (src, helpers, options = {}) => {
   if (typeof src === 'object') {
@@ -18,7 +18,7 @@ const getImageSrc = (src, helpers, options = {}) => {
         }
       }
     } else if (src.file_name) {
-      return getWixMediaUrl(
+      return wixMediaUrl.createUrl(
         src,
         options.requiredWidth,
         options.requiredHeight,
