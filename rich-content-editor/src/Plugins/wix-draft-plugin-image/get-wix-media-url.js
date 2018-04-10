@@ -1,52 +1,70 @@
-export const RESIZE_FIT = 'fit';
-export const RESIZE_COVER = 'cover';
-export const DEFAULT_QUALITY = 80;
 
-const DEFAULT_SIZE = 1000;
+class WixMediaUrl {
+  constructor() {
+    // default small size & quality for performance (should get exact height after first render)
+    this.DEFAULT_SIZE = 100;
+    this.DEFAULT_QUALITY = 30;
 
-const RESIZE = {
-  [RESIZE_COVER]: (w, h, rw, rh) => {
-    if (rw > w || rh > h) {
-      return {
-        width: w,
-        height: h,
-      };
-    }
-
-    const wRatio = rw / w;
-    const hRatio = rh / h;
-    const ratio = Math.max(wRatio, hRatio);
-    return {
-      width: Math.ceil(w * ratio),
-      height: Math.ceil(h * ratio),
-    };
-  },
-  [RESIZE_FIT]: (w, h, rw, rh) => {
-    if (rw > w && rh > h) {
-      return {
-        width: w,
-        height: h,
-      };
-    }
-
-    return {
-      width: rw,
-      height: rh,
-    };
-  },
-};
-
-// eslint-disable-next-line max-params
-export default (
-  { file_name: fileName, width: w, height: h } = {},
-  rw = DEFAULT_SIZE,
-  rh = DEFAULT_SIZE,
-  quality = DEFAULT_QUALITY,
-  type = RESIZE_FIT
-) => {
-  if (fileName) {
-    const { width, height } = RESIZE[type](w, h, rw, rh);
-    return `https://static.wixstatic.com/media/${fileName}/v1/fit/w_${width},h_${height},al_c,q_${quality}/file.jpg`;
+    this.isWebpSupported = false;
+    this.testWebP();
   }
-  return '';
-};
+
+  testWebP = () => {
+    //sync test
+    const canvas = typeof document === 'object' ? document.createElement('canvas') : {};
+    canvas.width = canvas.height = 1;
+    const canvasDataURL = canvas.toDataURL ? canvas.toDataURL('image/webp') : null;
+    this.isWebpSupported = canvasDataURL ? canvasDataURL.indexOf('image/webp') === 5 : false;
+  };
+
+  resize(type, w, h, rw, rh) {
+    switch (type) {
+      case 'fill':
+      case 'cover':
+        if (rw > w || rh > h) {
+          return {
+            width: w,
+            height: h,
+          };
+        }
+        return {
+          width: Math.ceil(w * Math.max(rw / w, rh / h)),
+          height: Math.ceil(h * Math.max(rw / w, rh / h)),
+        };
+      case 'fit':
+      default:
+        if (rw > w && rh > h) {
+          return {
+            width: w,
+            height: h,
+          };
+        }
+
+        return {
+          width: rw,
+          height: rh,
+        };
+    }
+  }
+
+  createUrl = (
+    { file_name: fileName, width: w, height: h } = {},
+    rw = this.DEFAULT_SIZE,
+    rh = this.DEFAULT_SIZE,
+    quality = this.DEFAULT_QUALITY,
+    type = 'fit'
+  ) => {
+    if (fileName) {
+      const { width, height } = this.resize(type, w, h, rw, rh);
+      const H = Math.ceil(height + 1); //make sure no sterching will occur
+      const W = Math.ceil(width + 1);
+      const suffix = this.isWebpSupported ? 'webp' : 'jpg';
+      return `https://static.wixstatic.com/media/${fileName}/v1/fit/w_${W},h_${H},al_c,q_${quality}/file.${suffix}`;
+    }
+    return '';
+  };
+
+}
+
+const wixMediaUrl = new WixMediaUrl();
+export default wixMediaUrl;

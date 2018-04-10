@@ -22,6 +22,7 @@ class ImageViewer extends React.Component {
   constructor(props) {
     super(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
+    this.state = {};
   }
 
   getImageSrc(src) {
@@ -35,7 +36,15 @@ class ImageViewer extends React.Component {
     if (this.props.dataUrl) {
       imageUrl = this.props.dataUrl;
     } else {
-      imageUrl = getImageSrc(src, helpers);
+      let options = {};
+      if (this.state.container) {
+        const { width, height } = this.state.container.getBoundingClientRect();
+        const requiredWidth = width || src.width || 1;
+        const requiredHeight = height || src.height || 1;
+        const requiredQuality = 80;
+        options = { requiredWidth, requiredHeight, requiredQuality };
+      }
+      imageUrl = getImageSrc(src, helpers, options);
     }
 
     if (!imageUrl) {
@@ -92,7 +101,13 @@ class ImageViewer extends React.Component {
     const imageClassName = classNames(styles.image);
     const imageSrc = this.getImageSrc(data.src);
     return (
-      <div data-hook="imageViewer" onClick={onClick} className={itemClassName}>
+      <div
+        data-hook="imageViewer" onClick={onClick} className={itemClassName} ref={ele => {
+          if (!this.state.container) {
+            this.setState({ container: ele }); //saving the container on the state to trigger a new render
+          }
+        }}
+      >
         <div>
           {this.renderImage(imageClassName, imageSrc, metadata.alt)}
           {this.renderLoader()}
