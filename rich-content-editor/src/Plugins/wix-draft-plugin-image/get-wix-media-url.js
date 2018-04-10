@@ -13,7 +13,8 @@ class WixMediaUrl {
     //sync test
     const canvas = typeof document === 'object' ? document.createElement('canvas') : {};
     canvas.width = canvas.height = 1;
-    this.isWebpSupported = canvas.toDataURL ? canvas.toDataURL('image/webp').indexOf('image/webp') === 5 : false;
+    const canvasDataURL = canvas.toDataURL ? canvas.toDataURL('image/webp') : null;
+    this.isWebpSupported = canvasDataURL ? canvasDataURL.indexOf('image/webp') === 5 : false;
   };
 
   resize(type, w, h, rw, rh) {
