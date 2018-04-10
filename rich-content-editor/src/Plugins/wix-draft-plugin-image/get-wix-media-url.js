@@ -2,7 +2,7 @@
 class WixMediaUrl {
   constructor() {
     // default small size & quality for performance (should get exact height after first render)
-    this.DEFAULT_SIZE = 100;
+    this.DEFAULT_SIZE = 1000;
     this.DEFAULT_QUALITY = 30;
 
     this.isWebpSupported = false;
