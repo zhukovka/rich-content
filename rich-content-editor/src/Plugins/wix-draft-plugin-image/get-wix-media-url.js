@@ -1,9 +1,10 @@
 
 class WixMediaUrl {
   constructor() {
-    // default small size & quality for performance (should get exact height after first render)
-    this.DEFAULT_SIZE = 1000;
-    this.DEFAULT_QUALITY = 30;
+    // default small quality for performance (should get exact size after first render and then the right quality)
+    // using low quality for performance instead of size for the renderer to position the images currectly (when using dynamic height layouts)
+    this.DEFAULT_SIZE = 2048;
+    this.DEFAULT_QUALITY = 5;
 
     this.isWebpSupported = false;
     this.testWebP();
