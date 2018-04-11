@@ -38,10 +38,10 @@ class ImageViewer extends React.Component {
     } else {
       let options = {};
       if (this.state.container) {
-        const { width, height } = this.state.container.getBoundingClientRect();
+        const { width } = this.state.container.getBoundingClientRect();
         const requiredWidth = width || src.width || 1;
-        const requiredHeight = height || src.height || 1;
-        const requiredQuality = 80;
+        const requiredHeight = (src.height && src.width) ? Math.ceil((src.height / src.width) * requiredWidth) : 2048; //keep the image's original ratio
+        const requiredQuality = 90;
         options = { requiredWidth, requiredHeight, requiredQuality };
       }
       imageUrl = getImageSrc(src, helpers, options);
