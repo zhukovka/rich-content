@@ -19,23 +19,25 @@ const DEFAULTS = {
   url: undefined,
 };
 
-const alignmentClassName = (alignment, theme) => {
-  if (!alignment) {
+const alignmentClassName = (alignment, theme, type, isMobile) => {
+  if (!alignment || ([IMAGE_TYPE, IMAGE_TYPE_LEGACY].includes(type) && isMobile)) {
     return '';
   } else {
     return classNames(Styles[`align${upperFirst(alignment)}`], theme[`align${upperFirst(alignment)}`]);
   }
 };
 
-const sizeClassName = (size, theme) => {
+const sizeClassName = (size, theme, type, isMobile) => {
   if (!size) {
     return '';
+  } else if ([IMAGE_TYPE, IMAGE_TYPE_LEGACY].includes(type) && isMobile) {
+    return classNames(Styles.sizeFullWidth, theme.sizeFullWidth);
   } else {
     return classNames(Styles[`size${upperFirst(camelCase(size))}`], theme[`size${upperFirst(camelCase(size))}`]);
   }
 };
 
-const createBaseComponent = ({ PluginComponent, theme, type, settings, pubsub, helpers, anchorTarget, t }) => {
+const createBaseComponent = ({ PluginComponent, theme, type, settings, pubsub, helpers, anchorTarget, t, isMobile }) => {
   class WrappedComponent extends Component {
     static displayName = createHocName('BaseComponent', PluginComponent);
 
@@ -207,8 +209,8 @@ const createBaseComponent = ({ PluginComponent, theme, type, settings, pubsub, h
           [theme.pluginContainer]: !readOnly,
           [theme.pluginContainerReadOnly]: readOnly,
         },
-        alignmentClassName(alignment, theme),
-        sizeClassName(size, theme),
+        alignmentClassName(alignment, theme, type, isMobile),
+        sizeClassName(size, theme, type, isMobile),
         className || '',
         {
           [Styles.hasFocus]: isActive,

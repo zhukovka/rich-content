@@ -79,7 +79,7 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
   const PluginComponent = config.component && config.decorator ? config.decorator(config.component) : config.component;
 
   const CompWithBase = PluginComponent && createBaseComponent(
-    { PluginComponent, theme: config.theme, type: config.type, pubsub, settings, helpers, t, anchorTarget });
+    { PluginComponent, theme: config.theme, type: config.type, pubsub, settings, helpers, t, anchorTarget, isMobile });
 
   const InlineModals = config.inlineModals;
 
