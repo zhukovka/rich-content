@@ -23,7 +23,8 @@ const getImageSrc = (src, helpers, options = {}) => {
         options.requiredWidth,
         options.requiredHeight,
         options.requiredQuality,
-        options.resizeType
+        options.resizeType,
+        options.allowWebp
       );
     }
   }

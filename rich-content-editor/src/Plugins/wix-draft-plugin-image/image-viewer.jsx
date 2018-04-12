@@ -32,11 +32,17 @@ class ImageViewer extends React.Component {
       return null;
     }
 
-    let imageUrl;
+    const imageUrl = {
+      preload: '',
+      highres: ''
+    };
+
     if (this.props.dataUrl) {
-      imageUrl = this.props.dataUrl;
+      imageUrl.preload = imageUrl.highres = this.props.dataUrl;
     } else {
       let options = {};
+      //do not render webp on preload - the SSR never renders webp and the same format should be kept
+      imageUrl.preload = getImageSrc(src, helpers, { allowWebp: false });
       if (this.state.container) {
         const { width } = this.state.container.getBoundingClientRect();
         const requiredWidth = width || src.width || 1;
@@ -44,11 +50,11 @@ class ImageViewer extends React.Component {
         const requiredHeight = (src.height && src.width) ? Math.ceil((src.height / src.width) * requiredWidth) : 2048;
         const requiredQuality = 90;
         options = { requiredWidth, requiredHeight, requiredQuality };
+        imageUrl.highres = getImageSrc(src, helpers, options);
       }
-      imageUrl = getImageSrc(src, helpers, options);
     }
 
-    if (!imageUrl) {
+    if (!imageUrl.preload) {
       console.error(`image plugin mounted with invalid image source!`, src); //eslint-disable-line no-console
     }
 
@@ -56,11 +62,13 @@ class ImageViewer extends React.Component {
   }
 
   renderImage(imageClassName, imageSrc, alt) {
-    return (
-      alt ?
-        <img className={imageClassName} src={imageSrc} alt={alt} /> :
-        <img className={imageClassName} src={imageSrc} />
-    );
+    return [
+      <img key="preload" className={classNames(imageClassName, this.styles.imagePreload)} src={imageSrc.preload} alt={alt} />,
+      <img
+        key="highres" className={classNames(imageClassName, this.styles.imageHighres)} src={imageSrc.highres} alt={alt}
+        onLoad={e => e.target.style.opacity = 1}
+      />
+    ];
   }
 
   renderLoader() {

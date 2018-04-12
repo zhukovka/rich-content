@@ -53,13 +53,14 @@ class WixMediaUrl {
     rw = this.DEFAULT_SIZE,
     rh = this.DEFAULT_SIZE,
     quality = this.DEFAULT_QUALITY,
-    type = 'fit'
+    type = 'fit',
+    allowWebp = true
   ) => {
     if (fileName) {
       const { width, height } = this.resize(type, w, h, rw, rh);
       const H = Math.ceil(height); //make sure no sterching will occur
       const W = Math.ceil(width);
-      const suffix = this.isWebpSupported ? 'webp' : 'jpg';
+      const suffix = (allowWebp && this.isWebpSupported) ? 'webp' : 'jpg';
       return `https://static.wixstatic.com/media/${fileName}/v1/fit/w_${W},h_${H},al_c,q_${quality}/file.${suffix}`;
     }
     return '';

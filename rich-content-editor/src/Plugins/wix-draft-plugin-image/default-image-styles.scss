@@ -1,6 +1,7 @@
 .imageContainer {
   display: block;
   position: relative;
+  overflow: hidden;
 }
 
 .image {
@@ -27,4 +28,17 @@
   padding: 18px 0;
   font-size: 14px;
   line-height: 21px;
+}
+.imagePreload {
+  position: relative;
+  filter: blur(10px);
+}
+
+.imageHighres {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
 }

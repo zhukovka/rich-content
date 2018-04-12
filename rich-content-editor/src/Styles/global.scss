@@ -64,6 +64,10 @@
     margin-right: calc((100% - #{$textMobileWidth}) / 2);
   }
 }
+.sizeOriginal {
+  width: auto;
+  max-width: 740px;
+}
 
 .sizeFullWidth {
   width: 100%;
