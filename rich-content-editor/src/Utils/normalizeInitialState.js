@@ -37,13 +37,8 @@ const normalizeComponentData = componentData => {
         patch.config.alignment = 'center';
       }
     } else {
-      if (src && src.width && src.width <= 740) {
-        patch.config.size = 'original';
-        patch.config.alignment = 'left';
-      } else {
-        patch.config.size = 'content';
-        patch.config.alignment = 'center';
-      }
+      patch.config.size = src && src.width && src.width <= 740 ? 'original' : 'content';
+      patch.config.alignment = 'center';
     }
   }
 
