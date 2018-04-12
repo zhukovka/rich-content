@@ -4,6 +4,10 @@
   overflow: hidden;
 }
 
+.imageWrapper {
+  overflow: hidden;
+}
+
 .image {
   display: block;
   width: 100%;
@@ -29,9 +33,10 @@
   font-size: 14px;
   line-height: 21px;
 }
+
 .imagePreload {
   position: relative;
-  filter: blur(10px);
+  filter: blur(8px);
 }
 
 .imageHighres {

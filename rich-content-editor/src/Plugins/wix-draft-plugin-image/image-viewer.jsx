@@ -117,7 +117,7 @@ class ImageViewer extends React.Component {
           }
         }}
       >
-        <div>
+        <div className={styles.imageWrapper}>
           {this.renderImage(imageClassName, imageSrc, metadata.alt)}
           {this.renderLoader()}
         </div>
