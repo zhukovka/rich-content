@@ -109,6 +109,7 @@ class ImageViewer extends React.Component {
     const itemClassName = classNames(styles.imageContainer, className);
     const imageClassName = classNames(styles.image);
     const imageSrc = this.getImageSrc(data.src);
+
     return (
       <div
         data-hook="imageViewer" onClick={onClick} className={itemClassName} ref={ele => {
@@ -118,7 +119,7 @@ class ImageViewer extends React.Component {
         }}
       >
         <div className={styles.imageWrapper}>
-          {this.renderImage(imageClassName, imageSrc, metadata.alt)}
+          {imageSrc && this.renderImage(imageClassName, imageSrc, metadata.alt)}
           {this.renderLoader()}
         </div>
         {this.renderTitle(data, styles)}
