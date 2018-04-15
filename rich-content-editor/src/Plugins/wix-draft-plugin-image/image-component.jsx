@@ -115,6 +115,7 @@ class ImageComponent extends React.Component {
     return (
       <ImageViewer
         componentData={this.props.componentData}
+        isMobile={this.props.isMobile}
         onClick={this.props.onClick}
         className={this.props.className}
         theme={this.props.theme}
@@ -140,6 +141,7 @@ ImageComponent.propTypes = {
   className: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
   helpers: PropTypes.object.isRequired,
+  isMobile: PropTypes.bool,
   settings: PropTypes.object,
   t: PropTypes.func
 };

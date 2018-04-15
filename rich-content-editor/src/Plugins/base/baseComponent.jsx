@@ -226,6 +226,7 @@ const createBaseComponent = ({ PluginComponent, theme, type, settings, pubsub, h
       const component = (
         <PluginComponent
           {...this.props}
+          isMobile={isMobile}
           settings={settings}
           store={pubsub.store}
           theme={theme}

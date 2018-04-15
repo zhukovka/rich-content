@@ -45,10 +45,17 @@ class ImageViewer extends React.Component {
       imageUrl.preload = getImageSrc(src, helpers, { allowWebp: false });
       if (this.state.container) {
         const { width } = this.state.container.getBoundingClientRect();
-        const requiredWidth = width || src.width || 1;
+        let requiredWidth = width || src.width || 1;
+        if (this.props.isMobile) {
+          //adjust the image width to viewport scaling and device pixel ratio
+          requiredWidth *= (window && window.devicePixelRatio) || 1;
+          requiredWidth *= (window && (window.screen.width / document.body.clientWidth)) || 1;
+        }
         //keep the image's original ratio
-        const requiredHeight = (src.height && src.width) ? Math.ceil((src.height / src.width) * requiredWidth) : 2048;
+        let requiredHeight = (src.height && src.width) ? Math.ceil((src.height / src.width) * requiredWidth) : 2048;
         const requiredQuality = 90;
+        requiredWidth = Math.ceil(requiredWidth);
+        requiredHeight = Math.ceil(requiredHeight);
         options = { requiredWidth, requiredHeight, requiredQuality };
         imageUrl.highres = getImageSrc(src, helpers, options);
       }
@@ -140,6 +147,7 @@ ImageViewer.propTypes = {
   dataUrl: PropTypes.string,
   isFocused: PropTypes.bool,
   readOnly: PropTypes.bool,
+  isMobile: PropTypes.bool,
   settings: PropTypes.object,
   t: PropTypes.func,
 };
