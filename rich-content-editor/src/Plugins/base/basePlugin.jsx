@@ -72,6 +72,7 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
     anchorTarget,
     relValue,
     t,
+    name: config.toolbar.name,
   });
   const InsertPluginButtons = config.toolbar && config.toolbar.InsertButtons.map(button => (
     createInsertPluginButton({ blockType: config.type, button, helpers, pubsub, t })

@@ -1,4 +1,5 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
+import camelCase from 'lodash/camelCase';
 import StaticToolbar from './StaticToolbar';
 import { simplePubsub } from '~/Utils';
 
@@ -27,6 +28,7 @@ export default (config = {}) => {
     anchorTarget,
     relValue,
     t,
+    dataHook: camelCase(name),
   };
 
   return {

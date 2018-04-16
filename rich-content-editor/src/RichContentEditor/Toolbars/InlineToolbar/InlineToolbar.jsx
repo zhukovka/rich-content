@@ -201,6 +201,7 @@ export default class InlineToolbar extends Component {
         className={toolbarClassNames}
         style={this.getStyle()}
         ref={this.handleToolbarRef}
+        data-hook="inlineToolbar"
       >
         <div
           className={buttonClassNames}

@@ -65,7 +65,7 @@ export default class VideoURLInputModal extends Component {
     const videoInputPlaceholder = t('VideoUploadModal_Input_Placeholder');
 
     return (
-      <div onKeyPress={this.handleKeyPress} className={styles.container}>
+      <div onKeyPress={this.handleKeyPress} className={styles.container} data-hook="videoUploadModal">
         <div className={classNames(styles.header)}>
           <CameraIcon className={classNames(styles.cameraIcon, styles.header_icon)} />
           <h3 className={styles.header_text}>{headerText}</h3>

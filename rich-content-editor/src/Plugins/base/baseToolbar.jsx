@@ -46,7 +46,7 @@ const getStructure = (buttons, isMobile) => {
   return structure;
 };
 
-export default function createToolbar({ buttons, theme, pubsub, helpers, isMobile, anchorTarget, relValue, t }) {
+export default function createToolbar({ buttons, theme, pubsub, helpers, isMobile, anchorTarget, relValue, t, name }) {
   class BaseToolbar extends Component {
     constructor(props) {
       super(props);
@@ -303,7 +303,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       const extendProps = { onExtendContent: this.onExtendContent };
 
       return (
-        <div style={this.state.position} className={containerClassNames}>
+        <div style={this.state.position} className={containerClassNames} data-hook={name ? `${name}PluginToolbar` : null}>
           <div
             className={buttonContainerClassnames}
             ref={this.handleButtonsRef}
