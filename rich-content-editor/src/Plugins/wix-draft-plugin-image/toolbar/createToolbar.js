@@ -5,5 +5,6 @@ export default function createToolbar({ helpers, t, anchorTarget, relValue }) {
   return {
     InlineButtons: createInlineButtons({ t, anchorTarget, relValue }),
     InsertButtons: createInsertButtons({ helpers, t }),
+    name: 'image',
   };
 }

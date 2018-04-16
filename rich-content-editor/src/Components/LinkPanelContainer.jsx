@@ -61,7 +61,7 @@ class LinkPanelContainer extends Component {
         [styles.linkPanel_container_isMobile]: isMobile,
       });
     return (
-      <div className={linkPanelContainerClassName}>
+      <div className={linkPanelContainerClassName} data-hook="linkPanelContainer">
         <div className={styles.linkPanel_content}>
           <LinkPanel
             ref={this.setLinkPanel}
