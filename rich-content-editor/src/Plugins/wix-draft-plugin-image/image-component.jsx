@@ -66,7 +66,7 @@ class ImageComponent extends React.Component {
     this.props.store.update('componentState', { isLoading: false, userSelectedFiles: null });
   };
 
-  fileLoaded = (event, files) => {
+  fileLoaded = (event, fileList) => {
     const fileDataUrl = event.target.result;
     if (this.state.isMounted) {
       this.setState({ isLoading: true, dataUrl: fileDataUrl });
@@ -81,8 +81,8 @@ class ImageComponent extends React.Component {
     }
     const { helpers } = this.props;
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
-    if (hasFileChangeHelper) {
-      helpers.onFilesChange(files, ({ data, error }) => this.handleFilesAdded({ files, data, error }));
+    if (hasFileChangeHelper && fileList.length > 0) {
+      helpers.onFilesChange(fileList[0], ({ data, error }) => this.handleFilesAdded({ files: fileList[0], data, error }));
     } else {
       this.resetLoadingState({ msg: 'Missing upload function' });
     }
