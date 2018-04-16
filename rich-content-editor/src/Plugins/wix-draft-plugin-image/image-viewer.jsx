@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import includes from 'lodash/includes';
 import get from 'lodash/get';
+import isFunction from 'lodash/isFunction';
 import { mergeStyles } from '~/Utils';
 import getImageSrc from './get-image-source';
 import styles from './default-image-styles.scss';
@@ -68,11 +69,11 @@ class ImageViewer extends React.Component {
     return imageUrl;
   }
 
-  renderImage(imageClassName, imageSrc, alt) {
+  renderImage(imageClassName, imageSrc, alt, props) {
     return [
       <img key="preload" className={classNames(imageClassName, this.styles.imagePreload)} src={imageSrc.preload} alt={alt} />,
       <img
-        key="highres" className={classNames(imageClassName, this.styles.imageHighres)} src={imageSrc.highres} alt={alt}
+        {...props} key="highres" className={classNames(imageClassName, this.styles.imageHighres)} src={imageSrc.highres} alt={alt}
         onLoad={e => e.target.style.opacity = 1}
       />
     ];
@@ -116,6 +117,7 @@ class ImageViewer extends React.Component {
     const itemClassName = classNames(styles.imageContainer, className);
     const imageClassName = classNames(styles.image);
     const imageSrc = this.getImageSrc(data.src);
+    const imageProps = data.src && isFunction(settings.imageProps) ? settings.imageProps(data.src) : settings.imageProps;
 
     return (
       <div
@@ -126,7 +128,7 @@ class ImageViewer extends React.Component {
         }}
       >
         <div className={styles.imageWrapper}>
-          {imageSrc && this.renderImage(imageClassName, imageSrc, metadata.alt)}
+          {imageSrc && this.renderImage(imageClassName, imageSrc, metadata.alt, imageProps)}
           {this.renderLoader()}
         </div>
         {this.renderTitle(data, styles)}

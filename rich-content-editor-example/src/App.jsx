@@ -46,9 +46,13 @@ class App extends Component {
         }
       },
       // image: {
-      //   toolbar: {
-      //     hidden: ['link', 'settings']
-      //   }
+        // imageProps: src => ({
+        //   'data-pin-media': `https://static.wixstatic.com/media/${src.file_name}`,
+        //   'data-pin-url': 'https://wix.com',
+        // }),
+        // toolbar: {
+        //   hidden: ['link', 'settings']
+        // }
       // },
     };
     const mockUpload = (files, updateEntity) => {
