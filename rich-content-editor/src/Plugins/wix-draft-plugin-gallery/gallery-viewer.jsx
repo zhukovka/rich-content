@@ -101,7 +101,13 @@ class GalleryViewer extends React.Component {
 
     return (
       <div ref={elem => this.container = elem}>
-        <ProGallery styles={styles} items={this.getItems()} galleryDataSrc={'manuallySetImages'} container={size} />
+        <ProGallery
+          styles={styles}
+          items={this.getItems()}
+          galleryDataSrc={'manuallySetImages'}
+          container={size}
+          settings={this.props.settings}
+        />
       </div>);
   }
 }
@@ -111,7 +117,8 @@ GalleryViewer.propTypes = {
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
-  helpers: PropTypes.object.isRequired
+  helpers: PropTypes.object.isRequired,
+  settings: PropTypes.object
 };
 
 export { GalleryViewer, getDefault };

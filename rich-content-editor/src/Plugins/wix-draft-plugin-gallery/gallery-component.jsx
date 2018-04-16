@@ -142,6 +142,7 @@ class GalleryComponent extends React.PureComponent {
         className={this.props.className}
         theme={this.props.theme}
         helpers={this.props.helpers}
+        settings={this.props.settings}
       />);
   }
 }
@@ -154,7 +155,8 @@ GalleryComponent.propTypes = {
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
-  helpers: PropTypes.object.isRequired
+  helpers: PropTypes.object.isRequired,
+  settings: PropTypes.object
 };
 
 export { GalleryComponent as Component, getDefault };
