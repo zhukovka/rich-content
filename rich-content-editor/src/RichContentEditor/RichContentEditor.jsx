@@ -209,7 +209,7 @@ class RichContentEditor extends Component {
   };
 
   renderEditor = () => {
-    const { helpers, placeholder } = this.props;
+    const { helpers, placeholder, isInTest } = this.props;
     const { editorState, readOnly } = this.state;
     return (
       <Editor
@@ -222,6 +222,7 @@ class RichContentEditor extends Component {
         readOnly={!!readOnly}
         helpers={helpers}
         spellCheck
+        editorKey={isInTest ? 'inTest' : undefined}
       />
     );
   };
@@ -271,6 +272,7 @@ RichContentEditor.propTypes = {
   config: PropTypes.object,
   anchorTarget: PropTypes.string,
   relValue: PropTypes.string,
+  isInTest: PropTypes.bool,
   style: PropTypes.object
 };
 
