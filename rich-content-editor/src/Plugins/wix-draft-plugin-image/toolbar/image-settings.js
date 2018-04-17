@@ -75,9 +75,6 @@ class ImageSettings extends Component {
     pubsub.set('componentData', {
       ...componentData,
       metadata,
-      src: {
-        ...componentData.src,
-      }
     });
   };
 
