@@ -22,10 +22,17 @@
   line-height: normal;
   margin: 0;
 
-  @include svg-fill;
   .pluginToolbarButton_icon {
     width: $icon-width;
+    height: $icon-width;
     line-height: 0;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    @include svg-fill;
   }
 
   &:hover,
