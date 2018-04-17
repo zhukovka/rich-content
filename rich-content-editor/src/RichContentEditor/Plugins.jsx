@@ -42,7 +42,7 @@ const activePlugins = (requestedPlugins = PluginList, config) => {
         activePlugins.push(createExternalEmojiPlugin(config));
         break;
       default:
-        console.warn(`Failed to load uknown plugin "${pluginType}"`); //eslint-disable-line no-console
+        console.warn(`Failed to load unknown plugin "${pluginType}"`); //eslint-disable-line no-console
         break;
     }
   });
