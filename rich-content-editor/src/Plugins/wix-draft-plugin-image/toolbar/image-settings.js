@@ -115,7 +115,7 @@ class ImageSettings extends Component {
     const linkLabel = t('ImageSettings_Link_Label');
 
     return (
-      <div className={this.styles.imageSettings}>
+      <div className={this.styles.imageSettings} data-hook="imageSettings">
 
         { isMobile ?
           <ImageSettingsMobileHeader
