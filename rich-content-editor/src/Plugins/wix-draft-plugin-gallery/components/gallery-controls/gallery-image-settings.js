@@ -150,6 +150,7 @@ class ImageSettings extends Component {
             <SettingsSection theme={theme} className={styles.galleryImageSettings_section}>
               <InputWithLabel
                 theme={theme}
+                id="galleryImageTitleInput"
                 label={titleLabel}
                 placeholder={titleInputPlaceholder}
                 value={selectedImage.metadata.title || ''}

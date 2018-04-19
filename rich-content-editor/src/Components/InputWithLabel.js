@@ -12,7 +12,7 @@ class InputWithLabel extends Component {
   }
   render() {
     const { styles } = this;
-    const { label, placeholder, value, onChange, isTextArea, dataHook } = this.props;
+    const { id, label, placeholder, value, onChange, isTextArea, dataHook } = this.props;
     const inputClassName = classNames(styles.inputWithLabel_input,
       {
         [styles.inputWithLabel_textArea]: isTextArea
@@ -20,17 +20,17 @@ class InputWithLabel extends Component {
     );
     return (
       <div>
-        {label ? <label className={this.styles.inputWithLabel_label} htmlFor={`${label}_input`}>{label}</label> : null}
+        {label ? <label className={this.styles.inputWithLabel_label} htmlFor={id}>{label}</label> : null}
         {isTextArea ? <textarea
           className={inputClassName}
           placeholder={placeholder}
-          id={label ? `${label}_input` : ''}
+          id={id}
           value={value}
           data-hook={dataHook} onChange={onChange}
         /> : <input
           className={styles.inputWithLabel_input}
           placeholder={placeholder}
-          id={label ? `${label}_input` : ''}
+          id={id}
           value={value}
           data-hook={dataHook} onChange={onChange}
         />}
@@ -39,6 +39,7 @@ class InputWithLabel extends Component {
   }
 }
 InputWithLabel.propTypes = {
+  id: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
   theme: PropTypes.object.isRequired,

@@ -138,6 +138,7 @@ class ImageSettings extends Component {
           <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
             <InputWithLabel
               theme={theme}
+              id="imageSettingsCaptionInput"
               label={captionLabel}
               placeholder={captionInputPlaceholder}
               value={metadata.caption || ''}
@@ -148,6 +149,7 @@ class ImageSettings extends Component {
           <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
             <InputWithLabel
               theme={theme}
+              id="imageSettingsAltInput"
               label={altLabel}
               placeholder={altInputPlaceholder}
               value={metadata.alt || ''}
