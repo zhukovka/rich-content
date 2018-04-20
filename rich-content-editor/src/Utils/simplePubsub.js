@@ -18,7 +18,7 @@ const simplePubsub = initialState => {
 
   const update = (key, newData) => {
     const data = get(key);
-    const newItem = merge(data, newData);
+    const newItem = merge({}, data, newData);
     set(key, newItem);
   };
 
