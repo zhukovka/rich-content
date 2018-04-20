@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { EditorState, convertFromRaw } from '@wix/draft-js';
+import { EditorState, convertFromRaw, RichUtils } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
 import isUndefined from 'lodash/isUndefined';
 import get from 'lodash/get';
@@ -13,6 +13,8 @@ import createPlugins from './Plugins';
 import { normalizeInitialState } from '~/Utils';
 import styles from '~/Styles/rich-content-editor.scss';
 import draftStyles from '~/Styles/draft.scss';
+
+const IGNORED_COMMANDS = ['code'];
 
 class RichContentEditor extends Component {
   constructor(props) {
@@ -106,6 +108,17 @@ class RichContentEditor extends Component {
       this.setState({ textToolbarType: nextProps.textToolbarType });
     }
   }
+
+  handleKeyCommand = (command, editorState) => {
+    const newState = includes(IGNORED_COMMANDS, command) ? null : RichUtils.handleKeyCommand(editorState, command);
+
+    if (newState) {
+      this.updateEditorState(newState);
+      return 'handled';
+    }
+
+    return 'not-handled';
+  };
 
   blockStyleFn = contentBlock => {
     const { type, data: { textAlignment } } = contentBlock.toJS();
@@ -218,6 +231,7 @@ class RichContentEditor extends Component {
         onChange={this.updateEditorState}
         plugins={this.plugins}
         blockStyleFn={this.blockStyleFn}
+        handleKeyCommand={this.handleKeyCommand}
         placeholder={placeholder || ''}
         readOnly={!!readOnly}
         helpers={helpers}
