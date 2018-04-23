@@ -11,7 +11,7 @@ export const COMMANDS = {
   JUSTIFY: 'justify',
   NUMBERED_LIST: 'ordered-list-item',
   BULLET_LIST: 'unordered-list-item',
-  CODE: 'code',
+  CODE: 'code-block',
   BLOCKQUOTE: 'blockquote'
 };
 

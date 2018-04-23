@@ -10,7 +10,8 @@ import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createEditorToolbars from './Toolbars';
 import createPlugins from './Plugins';
-import { normalizeInitialState, keyBindingFn, COMMANDS, hasLinksInSelection, removeLinksInSelection } from '~/Utils';
+import { normalizeInitialState, keyBindingFn, COMMANDS, hasLinksInSelection, removeLinksInSelection, getModalStyles } from '~/Utils';
+import { MODALS } from '~/RichContentEditor/RichContentModal';
 import styles from '~/Styles/rich-content-editor.scss';
 import draftStyles from '~/Styles/draft.scss';
 
@@ -107,16 +108,25 @@ class RichContentEditor extends Component {
     }
   }
 
-  handleKeyCommand = (command, editorState) => {
+  openLinkModal() {
+    const { helpers, isMobile, anchorTarget, relValue, t, theme } = this.props;
+    const modalStyles = getModalStyles({ fullScreen: false });
+    if (helpers && helpers.openModal) {
+      const modalProps = { helpers, modalStyles, isMobile, getEditorState: () => this.state.editorState,
+        setEditorState: editorState => this.setState({ editorState }), t, theme, anchorTarget,
+        relValue, modalName: MODALS.MOBILE_TEXT_LINK_MODAL, hidePopup: helpers.closeModal };
+      helpers.openModal(modalProps);
+    }
+  }
 
+  handleKeyCommand = (command, editorState) => {
     let newState, contentState;
     switch (command) {
       case COMMANDS.LINK:
         if (hasLinksInSelection(editorState)) {
-          // handles links created manually, not by URL parsing
           newState = removeLinksInSelection(editorState);
         } else {
-          // open link modal
+          this.openLinkModal();
         }
         break;
       case COMMANDS.ALIGN_RIGHT:
@@ -131,10 +141,8 @@ class RichContentEditor extends Component {
       case COMMANDS.NUMBERED_LIST:
       case COMMANDS.BULLET_LIST:
       case COMMANDS.BLOCKQUOTE:
-        newState = RichUtils.toggleBlockType(editorState, command);
-        break;
       case COMMANDS.CODE:
-        newState = null;
+        newState = RichUtils.toggleBlockType(editorState, command);
         break;
       default:
         newState = RichUtils.handleKeyCommand(editorState, command);
