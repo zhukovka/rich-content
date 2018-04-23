@@ -4,6 +4,7 @@ export { getModalStyles } from './getModalStyles';
 export { mergeStyles } from './mergeStyles';
 export { isValidUrl, isVideoUrl, normalizeURL } from './urlValidators';
 export { default as normalizeInitialState } from './normalizeInitialState';
+export { keyBindingFn, COMMANDS } from './keyBindings';
 export {
   insertLink,
   hasLinksInSelection,

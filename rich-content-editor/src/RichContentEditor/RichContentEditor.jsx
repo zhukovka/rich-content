@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { EditorState, convertFromRaw, RichUtils } from '@wix/draft-js';
+import { EditorState, convertFromRaw, RichUtils, Modifier } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
 import isUndefined from 'lodash/isUndefined';
 import get from 'lodash/get';
@@ -10,11 +10,9 @@ import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createEditorToolbars from './Toolbars';
 import createPlugins from './Plugins';
-import { normalizeInitialState } from '~/Utils';
+import { normalizeInitialState, keyBindingFn, COMMANDS, hasLinksInSelection, removeLinksInSelection } from '~/Utils';
 import styles from '~/Styles/rich-content-editor.scss';
 import draftStyles from '~/Styles/draft.scss';
-
-const IGNORED_COMMANDS = ['code'];
 
 class RichContentEditor extends Component {
   constructor(props) {
@@ -110,7 +108,38 @@ class RichContentEditor extends Component {
   }
 
   handleKeyCommand = (command, editorState) => {
-    const newState = includes(IGNORED_COMMANDS, command) ? null : RichUtils.handleKeyCommand(editorState, command);
+
+    let newState, contentState;
+    switch (command) {
+      case COMMANDS.LINK:
+        if (hasLinksInSelection(editorState)) {
+          // handles links created manually, not by URL parsing
+          newState = removeLinksInSelection(editorState);
+        } else {
+          // open link modal
+        }
+        break;
+      case COMMANDS.ALIGN_RIGHT:
+      case COMMANDS.ALIGN_LEFT:
+      case COMMANDS.ALIGN_CENTER:
+      case COMMANDS.JUSTIFY:
+        contentState = Modifier.mergeBlockData(editorState.getCurrentContent(), editorState.getSelection(), { textAlignment: command });
+        newState = EditorState.push(editorState, contentState, 'change-block-data');
+        break;
+      case COMMANDS.TITLE:
+      case COMMANDS.SUBTITLE:
+      case COMMANDS.NUMBERED_LIST:
+      case COMMANDS.BULLET_LIST:
+      case COMMANDS.BLOCKQUOTE:
+        newState = RichUtils.toggleBlockType(editorState, command);
+        break;
+      case COMMANDS.CODE:
+        newState = null;
+        break;
+      default:
+        newState = RichUtils.handleKeyCommand(editorState, command);
+        break;
+    }
 
     if (newState) {
       this.updateEditorState(newState);
@@ -237,6 +266,7 @@ class RichContentEditor extends Component {
         helpers={helpers}
         spellCheck
         editorKey={editorKey}
+        keyBindingFn={keyBindingFn}
       />
     );
   };
