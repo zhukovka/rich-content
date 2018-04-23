@@ -1,5 +1,5 @@
 import { KeyBindingUtil, getDefaultKeyBinding } from '@wix/draft-js';
-import isEqual from 'lodash/isequal';
+import isEqual from 'lodash/isEqual';
 
 export const COMMANDS = {
   LINK: 'link',
