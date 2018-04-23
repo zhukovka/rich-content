@@ -102,7 +102,7 @@ class ImageViewer extends React.Component {
 
     return (
       caption ?
-        <div className={styles.imageCaption}>{caption}</div> :
+        <div className={styles.imageCaption} data-hook="imageViewerCaption">{caption}</div> :
         (!readOnly && isFocused) && <div className={styles.imageCaption}>{defaultCaption}</div>
     );
   }
