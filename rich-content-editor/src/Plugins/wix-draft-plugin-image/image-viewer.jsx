@@ -111,6 +111,7 @@ class ImageViewer extends React.Component {
     const { styles } = this;
     const { componentData, className, onClick, isFocused, readOnly, settings, t } = this.props;
     const data = componentData || getDefault();
+    data.config = data.config || {};
     const { metadata = {} } = componentData;
     const shouldRenderCaption = !includes(get(settings, 'toolbar.hidden'), 'settings') &&
       data.config.size !== 'original' &&
