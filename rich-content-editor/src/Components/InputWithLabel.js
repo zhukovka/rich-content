@@ -39,7 +39,7 @@ class InputWithLabel extends Component {
   }
 }
 InputWithLabel.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
   label: PropTypes.string,
   placeholder: PropTypes.string,
   theme: PropTypes.object.isRequired,
