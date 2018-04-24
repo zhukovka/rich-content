@@ -230,6 +230,7 @@ class App extends Component {
                 textToolbarType={this.state.textToolbarType}
                 theme={theme}
                 locale={'en'}
+                editorKey={'random-editorKey-ssr'}
               />
             }
 
