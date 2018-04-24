@@ -89,7 +89,18 @@ class RichContentEditor extends Component {
         convertFromRaw(normalizeInitialState(initialState))
       );
     } else {
-      return EditorState.createEmpty();
+      const emptyContentState = convertFromRaw({ //this is needed for ssr. Other wise the key will be generated randomly on both server and client.
+        entityMap: {},
+        blocks: [
+          {
+            text: '',
+            key: 'foo',
+            type: 'unstyled',
+            entityRanges: [],
+          },
+        ],
+      });
+      return EditorState.createWithContent(emptyContentState);
     }
   }
 
