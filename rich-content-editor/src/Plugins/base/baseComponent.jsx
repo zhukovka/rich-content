@@ -6,6 +6,7 @@ import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
 import isNil from 'lodash/isNil';
 import merge from 'lodash/merge';
+import isFunction from 'lodash/isFunction';
 import includes from 'lodash/includes';
 import classNames from 'classnames';
 import createHocName from './createHocName';
@@ -19,19 +20,17 @@ const DEFAULTS = {
   url: undefined,
 };
 
-const alignmentClassName = (alignment, theme, type, isMobile) => {
-  if (!alignment || ([IMAGE_TYPE, IMAGE_TYPE_LEGACY].includes(type) && isMobile)) {
+const alignmentClassName = (alignment, theme) => {
+  if (!alignment) {
     return '';
   } else {
     return classNames(Styles[`align${upperFirst(alignment)}`], theme[`align${upperFirst(alignment)}`]);
   }
 };
 
-const sizeClassName = (size, theme, type, isMobile) => {
+const sizeClassName = (size, theme) => {
   if (!size) {
     return '';
-  } else if ([IMAGE_TYPE, IMAGE_TYPE_LEGACY].includes(type) && isMobile) {
-    return classNames(Styles.sizeFullWidth, theme.sizeFullWidth);
   } else {
     return classNames(Styles[`size${upperFirst(camelCase(size))}`], theme[`size${upperFirst(camelCase(size))}`]);
   }
@@ -209,8 +208,12 @@ const createBaseComponent = ({ PluginComponent, theme, type, settings, pubsub, h
           [theme.pluginContainer]: !readOnly,
           [theme.pluginContainerReadOnly]: readOnly,
         },
-        alignmentClassName(alignment, theme, type, isMobile),
-        sizeClassName(size, theme, type, isMobile),
+        isFunction(PluginComponent.WrappedComponent.alignmentClassName) ?
+          PluginComponent.WrappedComponent.alignmentClassName(this.state.componentData, theme, Styles, isMobile) :
+          alignmentClassName(alignment, theme),
+        isFunction(PluginComponent.WrappedComponent.sizeClassName) ?
+          PluginComponent.WrappedComponent.sizeClassName(this.state.componentData, theme, Styles, isMobile) :
+          sizeClassName(size, theme),
         className || '',
         {
           [Styles.hasFocus]: isActive,
