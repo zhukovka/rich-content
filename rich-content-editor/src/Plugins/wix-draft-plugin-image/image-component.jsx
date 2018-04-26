@@ -1,32 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ImageViewer, getDefault } from './image-viewer';
-
+import classNames from 'classnames';
+import upperFirst from 'lodash/upperFirst';
+import camelCase from 'lodash/camelCase';
+import isNumber from 'lodash/isNumber';
 
 const EMPTY_SMALL_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 class ImageComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = Object.assign({ isMounted: false }, this.stateFromProps(props));
 
-    if (this.props.store) {
-      this.props.store.set('handleFilesSelected', this.handleFilesSelected.bind(this));
-      this.props.store.set('handleFilesAdded', this.handleFilesAdded.bind(this));
+    static alignmentClassName = (componentData, theme, styles, isMobile) => {
+      const { alignment, size } = componentData.config;
+      if (!alignment || isMobile) {
+        return '';
+      }
+      let align = alignment;
+      if (size === 'original' && alignment !== 'center') {
+        const { width } = componentData.src || {};
+        if (isNumber(width) && width > 350) {
+          align = 'center';
+        }
+      }
+      return classNames(styles[`align${upperFirst(align)}`], theme[`align${upperFirst(align)}`]);
     }
-  }
 
-  componentDidMount() {
-    this.state.isMounted = true; //eslint-disable-line react/no-direct-mutation-state
-  }
 
-  componentWillUnmount() {
-    this.state.isMounted = false; //eslint-disable-line react/no-direct-mutation-state
-  }
+    static sizeClassName = (componentData, theme, styles, isMobile) => {
+      const { size } = componentData.config;
+      if (!size) {
+        return '';
+      }
+      if (isMobile) {
+        return classNames(styles.sizeFullWidth, theme.sizeFullWidth);
+      }
+      return classNames(styles[`size${upperFirst(camelCase(size))}`], theme[`size${upperFirst(camelCase(size))}`]);
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(this.stateFromProps(nextProps));
-  }
+    }
+
+    constructor(props) {
+      super(props);
+      this.state = Object.assign({ isMounted: false }, this.stateFromProps(props));
+
+      if (this.props.store) {
+        this.props.store.set('handleFilesSelected', this.handleFilesSelected.bind(this));
+        this.props.store.set('handleFilesAdded', this.handleFilesAdded.bind(this));
+      }
+    }
+
+    componentDidMount() {
+      this.state.isMounted = true; //eslint-disable-line react/no-direct-mutation-state
+    }
+
+    componentWillUnmount() {
+      this.state.isMounted = false; //eslint-disable-line react/no-direct-mutation-state
+    }
+
+    componentWillReceiveProps(nextProps) {
+      this.setState(this.stateFromProps(nextProps));
+    }
 
   stateFromProps = props => {
     const componentState = props.componentState || {};
