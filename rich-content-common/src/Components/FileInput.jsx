@@ -1,34 +1,53 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import style from '../Styles/file-input.scss';
+import classnames from 'classnames';
+import { mergeStyles } from '../Utils/mergeStyles';
+
+import styles from '../Styles/global.scss';
 
 class FileInput extends Component {
 
   static id = 1;
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+    this.styles = mergeStyles({ styles, theme: props.theme });
+    this.state = { focused: false };
     this.id = `file_input_${++FileInput.id}`;
   }
 
-  preventBubblingUp = event => event.preventDefault();
+  onFocus() {
+    this.setState({ focused: true });
+  }
+
+  onBlur() {
+    this.setState({ focused: false });
+  }
 
   renderInput() {
     const { onChange, accept, multiple, className, title, children, dataHook } = this.props;
     const hasMultiple = multiple ? { multiple } : {};
+    const { styles } = this;
+    const a11yProps = {
+      role: 'button',
+      'aria-label': title
+    };
+
     return (
       <label
-        className={className}
-        htmlFor={this.id}
-        style={this.props.style}
-        title={title}
+        htmlFor={this.id} tabIndex={-1} className={classnames({ [className]: true, [styles.focused]: this.state.focused })}
+        style={this.props.style} title={title}
       >
         <input
-          className={style.hiddenInput}
+          {...a11yProps}
+          className={styles.visuallyHidden}
           id={this.id}
           type={'file'}
           data-hook={dataHook} onChange={onChange}
           accept={accept}
-          tabIndex={'-1'}
+          onFocus={() => this.onFocus()}
+          onBlur={() => this.onBlur()}
+          tabIndex="0"
           {...hasMultiple}
         />
         {children}
@@ -39,6 +58,9 @@ class FileInput extends Component {
   renderButton() {
     const { handleFileSelection, multiple, className, title, children, dataHook } = this.props;
     const onClick = () => handleFileSelection(multiple);
+    const a11yProps = {
+      'aria-label': title
+    };
     return (
       <label
         className={className}
@@ -47,6 +69,7 @@ class FileInput extends Component {
         title={title}
       >
         <button
+          {...a11yProps}
           id={this.id}
           data-hook={dataHook} onClick={onClick}
         >
@@ -73,6 +96,7 @@ FileInput.propTypes = {
   multiple: PropTypes.bool,
   title: PropTypes.string,
   style: PropTypes.object,
+  theme: PropTypes.object,
   dataHook: PropTypes.string,
 };
 

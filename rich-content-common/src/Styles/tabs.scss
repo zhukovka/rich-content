@@ -17,6 +17,10 @@
   width: 100%;
   text-align: center;
   cursor: pointer;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background-color: transparent;
+  font-size: 14px;
 }
 
 .tabs_headers_option_selected {

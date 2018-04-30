@@ -135,6 +135,7 @@ class ImageSettings extends Component {
               resizeMode={'contain'}
               className={this.styles.imageSettingsImage}
               src={getImageSrc(src, helpers, { requiredWidth: 1000, requiredHeight: 250, requiredQuality: 80 })}
+              theme={theme}
             />
           </SettingsSection>
           <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
@@ -160,7 +161,7 @@ class ImageSettings extends Component {
             />
           </SettingsSection>
           <SettingsSection theme={theme} className={this.styles.imageSettingsSection}>
-            <label className={this.styles.inputWithLabel_label}>{linkLabel}</label>
+            <span className={this.styles.inputWithLabel_label}>{linkLabel}</span>
           </SettingsSection>
           <div className={this.styles.imageSettingsLinkContainer}>
             <LinkPanel

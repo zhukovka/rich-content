@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MODALS } from 'wix-rich-content-common';
+import FocusTrap from 'focus-trap-react';
 import GallerySettingsModal from '~/Plugins/wix-draft-plugin-gallery/components/gallery-settings-modal';
 import HTMLSettingsModal from '~/Plugins/wix-draft-plugin-html/toolbar/html-settings';
 import MobileAddPluginModal from './Toolbars/AddPluginModal';
@@ -21,7 +22,10 @@ const RichContentModal = ({ modalName, modalElement, ...modalProps }) => {
     console.error(`Attempted to open unknown external modal '${modalName}'`); //eslint-disable-line no-console
     return null;
   }
-  return <ModalElement {...modalProps} />;
+  return (
+    <FocusTrap>
+      <ModalElement {...modalProps} />
+    </FocusTrap>);
 };
 
 RichContentModal.propTypes = {

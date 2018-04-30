@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import LinkPanel from './LinkPanel';
-import RadioGroupHorizontal from './RadioGroupHorizontal';
+import FocusTrap from 'focus-trap-react';
 import { mergeStyles } from '../Utils/mergeStyles';
+import RadioGroupHorizontal from './RadioGroupHorizontal';
 import styles from '../Styles/link-panel.scss';
 
 const LinkType = props => (
@@ -55,12 +56,13 @@ class LinkPanelContainer extends Component {
     const removeButtonText = t('LinkPanelContainer_RemoveButton');
     const doneButtonClassName = classNames(styles.linkPanel_FooterButton, styles.linkPanel_enabled);
     const cancelButtonClassName = classNames(styles.linkPanel_FooterButton, styles.linkPanel_Cancel);
+    const removeButtonClassName = classNames(styles.linkPanel_FooterButton);
     const linkPanelContainerClassName = classNames(styles.linkPanel_container,
       {
         [styles.linkPanel_container_isMobile]: isMobile,
       });
     return (
-      <div className={linkPanelContainerClassName} data-hook="linkPanelContainer">
+      <FocusTrap className={linkPanelContainerClassName} data-hook="linkPanelContainer">
         <div className={styles.linkPanel_content}>
           <LinkPanel
             ref={this.setLinkPanel}
@@ -76,21 +78,30 @@ class LinkPanelContainer extends Component {
         </div>
         <div className={styles.linkPanel_Footer}>
           <div className={styles.linkPanel_LeftActions}>
-            <div className={cancelButtonClassName} data-hook="linkPanelContainerCancel" onClick={this.onCancelClick}>{cancelButtonText}</div>
+            <button
+              tabIndex="0"
+              className={cancelButtonClassName} data-hook="linkPanelContainerCancel" onClick={this.onCancelClick}
+            >{cancelButtonText}
+            </button>
             {isActive &&
-              <div className={styles.linkPanel_RemoveContainer}>
-                <div className={styles.linkPanel_VerticalDivider} />
-                <div
-                  className={styles.linkPanel_FooterButton}
-                  data-hook="linkPanelContainerRemove" onClick={this.onDeleteClick}
-                >{removeButtonText}
-                </div>
-              </div>
+            <div className={styles.linkPanel_RemoveContainer}>
+              <div className={styles.linkPanel_VerticalDivider} />
+              <button
+                tabIndex="0"
+                className={removeButtonClassName}
+                data-hook="linkPanelContainerRemove" onClick={this.onDeleteClick}
+              >{removeButtonText}
+              </button>
+            </div>
             }
           </div>
-          <div className={doneButtonClassName} data-hook="linkPanelContainerDone" onClick={this.onDoneClick}>{doneButtonText}</div>
+          <button
+            tabIndex="0"
+            className={doneButtonClassName} data-hook="linkPanelContainerDone" onClick={this.onDoneClick}
+          >{doneButtonText}
+          </button>
         </div>
-      </div>
+      </FocusTrap>
     );
   }
 }

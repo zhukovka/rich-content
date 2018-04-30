@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { mergeStyles } from '../Utils/mergeStyles';
 import CheckIcon from './icons/check.svg';
 import styles from '../Styles/checkbox.scss';
+import globalStyles from '../Styles/global.scss';
 
 export default class Checkbox extends React.Component {
 
@@ -15,6 +16,8 @@ export default class Checkbox extends React.Component {
     dataHook: PropTypes.string,
   };
 
+  static id = 0;
+
   static defaultProps = {
     checked: false
   };
@@ -22,18 +25,41 @@ export default class Checkbox extends React.Component {
   constructor(props) {
     super(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
+    this.globalStyles = mergeStyles({ styles: globalStyles, theme: props.theme });
+    this.state = { focused: false };
+    this.id = `chk_${++Checkbox.id}`;
+  }
+
+  onFocus() {
+    this.setState({ focused: true });
+  }
+
+  onBlur() {
+    this.setState({ focused: false });
   }
 
   render() {
-    const { styles } = this;
+    const { styles, globalStyles } = this;
     const { onChange, label, checked, dataHook } = this.props;
     const isChecked = checked ? { checked: 'checked' } : {};
+    const a11yProps = {
+      'aria-label': label,
+      'aria-checked': checked,
+      role: 'checkbox'
+    };
 
     return (
-      <label className={styles.checkbox}>
-        <input className={styles.checkbox_input} type={'checkbox'} data-hook={dataHook} onChange={onChange} {...isChecked} />
-        <i className={classNames(styles.checkbox_icon, checked ? styles.checkbox_icon_checked : styles.checkbox_icon_unchecked)}>
-          {checked && <CheckIcon className={styles.checkbox_check} />}
+      <label htmlFor={this.id} className={classnames({ [styles.checkbox]: true, [globalStyles.focused]: this.state.focused })}>
+        <input
+          id={this.id}
+          onFocus={() => this.onFocus()}
+          onBlur={() => this.onBlur()}
+          tabIndex="0"
+          {...a11yProps}
+          className={styles.checkbox_input} type={'checkbox'} data-hook={dataHook} onChange={onChange} {...isChecked}
+        />
+        <i className={classnames(styles.checkbox_icon, checked ? styles.checkbox_icon_checked : styles.checkbox_icon_unchecked)}>
+          {checked && <CheckIcon className={styles.checkbox_check}/>}
         </i>
         <span className={styles.checkbox_label}>{label}</span>
       </label>

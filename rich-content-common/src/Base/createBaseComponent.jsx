@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import createHocName from '../Utils/createHocName';
 import getDisplayName from '../Utils/getDisplayName';
 import { normalizeURL } from '../Utils/urlValidators';
-import Styles from '~/Styles/global.scss';
+import Styles from '../Styles/global.scss';
 
 const DEFAULTS = {
   alignment: null,

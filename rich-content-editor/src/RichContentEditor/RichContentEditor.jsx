@@ -91,7 +91,7 @@ class RichContentEditor extends Component {
         convertFromRaw(rawContentState)
       );
     } else {
-      const emptyContentState = convertFromRaw({ //this is needed for ssr. Other wise the key will be generated randomly on both server and client.
+      const emptyContentState = convertFromRaw({ //this is needed for ssr. Otherwise the key will be generated randomly on both server and client.
         entityMap: {},
         blocks: [
           {

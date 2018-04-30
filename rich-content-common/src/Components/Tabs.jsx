@@ -25,6 +25,7 @@ export class Tab extends Component {
 
   render = () => this.props.selected &&
     <div
+      role="tabPanel"
       key={this.props.value}
       className={this.styles.tabs_panel}
     >{this.props.children}
@@ -51,11 +52,13 @@ export class Tabs extends Component {
     const headers = this.getTabHeaders(props.children);
 
     return (
-      <div className={styles.tabs}>
+      <div role="tablist" className={styles.tabs}>
         <div className={styles.tabs_headers}>
           {headers.map(({ label, value }) => {
             return (
-              <label
+              <button
+                role="tab"
+                tabIndex={0}
                 name={`tabs`}
                 key={value}
                 className={classNames(styles.tabs_headers_option, value === this.state.activeTab ? styles.tabs_headers_option_selected : '')}
@@ -65,7 +68,7 @@ export class Tabs extends Component {
                 }}
               >
                 <span className={this.styles.tabs_headers_option_label}>{label}</span>
-              </label>);
+              </button>);
           })}
         </div>
         {this.renderTabs()}
