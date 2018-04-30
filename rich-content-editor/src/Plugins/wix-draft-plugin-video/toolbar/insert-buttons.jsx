@@ -1,6 +1,5 @@
 import { DEFAULTS } from '../video-component';
-import { MODALS } from '~/RichContentEditor/RichContentModal';
-import { getModalStyles } from '~/Utils';
+import { getModalStyles, MODALS } from 'wix-rich-content-common';
 import InsertPluginIcon from './icons/insert-plugin.svg';
 
 export default ({ helpers, t }) => {

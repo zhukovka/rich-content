@@ -2,11 +2,13 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
+import { createImagePlugin } from 'wix-rich-content-plugin-image';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
 import { testImages, testVideos } from './mock';
 // import testData from './testData/initialState';
 import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
+import 'wix-rich-content-plugin-image/dist/styles.css';
 import theme from './theme/theme'; // must import after custom styles
 
 const modalStyleDefaults = {
@@ -36,6 +38,7 @@ class App extends Component {
 
   initEditorProps() {
     this.plugins = WixRichContentEditor.PluginList.filter(p => p.indexOf('emoji') === -1);
+    this.plugins.unshift(createImagePlugin);
     this.config = {
       hashtag: {
         createHref: decoratedText =>

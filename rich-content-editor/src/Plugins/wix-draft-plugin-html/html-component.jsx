@@ -6,7 +6,7 @@ import { translate } from 'react-i18next';
 
 import Overlay from './overlay';
 import styles from './default-html-styles.scss';
-import { mergeStyles } from '../../Utils/index';
+import { mergeStyles } from 'wix-rich-content-common';
 
 const DEFAULTS = {
   src: null,

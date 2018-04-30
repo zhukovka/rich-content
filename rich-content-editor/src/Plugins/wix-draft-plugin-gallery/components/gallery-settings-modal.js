@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Tabs, Tab } from '~/Components/Tabs';
-import { mergeStyles } from '~/Utils';
+import {
+  mergeStyles,
+  SettingsPanelFooter,
+  SettingsSection,
+  Tabs,
+  Tab
+} from 'wix-rich-content-common';
 import LayoutSelector from './gallery-controls/layouts-selector';
 import styles from './gallery-settings-modal.scss';
-import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
 import LayoutControlsSection from './layout-controls-section';
-import SettingsSection from '~/Components/SettingsSection';
 import { SortableComponent } from './gallery-controls/gallery-items-sortable';
 import layoutData from '../helpers/layout-data-provider';
 import GallerySettingsMobileHeader from './gallery-controls/gallery-settings-mobile-header';

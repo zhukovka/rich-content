@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { EditorState, Modifier } from '@wix/draft-js';
-import Separator from '~/Components/Separator';
+import { Separator, getTextAlignment } from 'wix-rich-content-common';
 import TextButton from './TextButton';
-import { getTextAlignment } from '~/Utils';
 import {
   AlignTextLeftButton,
   AlignTextCenterButton,

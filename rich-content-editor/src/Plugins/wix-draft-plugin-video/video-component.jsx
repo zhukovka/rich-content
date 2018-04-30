@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { mergeStyles } from '~/Utils';
+import { mergeStyles } from 'wix-rich-content-common';
 import styles from './default-video-styles.scss';
 
 const DEFAULTS = {

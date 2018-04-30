@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SelectionList from '~/Components/SelectionList';
 import classNames from 'classnames';
 
-import { mergeStyles } from '~/Utils';
+import { mergeStyles, SelectionList } from 'wix-rich-content-common';
 import styles from './image-ratio-selector.scss';
 class ImageRatioSelector extends Component {
 

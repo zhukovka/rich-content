@@ -6,10 +6,8 @@ import findIndex from 'lodash/findIndex';
 import { getScaleToFillImageURL } from 'image-client-api/dist/imageClientSDK';
 
 import Styles from './gallery-items-sortable.scss';
-import { mergeStyles } from '~/Utils/mergeStyles';
 import ImageSettings from './gallery-image-settings';
-import FileInput from '~/Components/FileInput';
-import ImageLoader from '~/Components/ImageLoader';
+import { mergeStyles, FileInput, ImageLoader } from 'wix-rich-content-common';
 
 import UploadIcon from '../../icons/upload.svg';
 import Fab from '../../icons/fab.svg';

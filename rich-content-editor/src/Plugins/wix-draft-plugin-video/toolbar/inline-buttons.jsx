@@ -1,6 +1,4 @@
-import { BUTTONS } from '~/Plugins/base/buttons';
-import { MODALS } from '~/RichContentEditor/RichContentModal';
-import { getModalStyles } from '~/Utils';
+import { BUTTONS, MODALS, getModalStyles } from 'wix-rich-content-common';
 import MediaReplaceIcon from './icons/media-replace.svg';
 
 export default({ t }) => {

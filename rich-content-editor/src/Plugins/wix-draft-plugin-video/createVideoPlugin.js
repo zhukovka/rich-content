@@ -1,5 +1,5 @@
 import createToolbar from './toolbar';
-import createBasePlugin from '../base/basePlugin';
+import { createBasePlugin } from 'wix-rich-content-common';
 import { Component } from './video-component';
 import { VIDEO_TYPE, VIDEO_TYPE_LEGACY } from './types';
 

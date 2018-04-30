@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import SettingsIcon from '../../base/icons/block-settings.svg';
 import EditIcon from '../icons/icon-edit.svg';
-import { BUTTONS } from '~/Plugins/base/buttons';
-import { MODALS } from '~/RichContentEditor/RichContentModal';
+import { BUTTONS, MODALS, PluginSettingsIcon } from 'wix-rich-content-common';
 import Styles from '../default-html-styles.scss';
 
 class SettingsModal extends React.Component {
@@ -197,7 +195,7 @@ export default({ t }) => {
       keyName: 'settings',
       type: BUTTONS.PANEL,
       panelElement: translate(null)(SettingsModal),
-      icon: SettingsIcon,
+      icon: PluginSettingsIcon,
       onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
       mobile: true,
       tooltipTextKey: 'SettingsButton_Tooltip',
@@ -206,7 +204,7 @@ export default({ t }) => {
       keyName: 'external_settings',
       type: BUTTONS.EXTERNAL_MODAL,
       modalName: MODALS.HTML_SETTINGS,
-      icon: SettingsIcon,
+      icon: PluginSettingsIcon,
       onClick: pubsub => console.log('*** click external settings *** '), //eslint-disable-line no-console, no-unused-vars,
       mobile: true,
       tooltipTextKey: 'SettingsButton_Tooltip',

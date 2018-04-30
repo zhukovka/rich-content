@@ -1,4 +1,4 @@
-import createBasePlugin from '../base/basePlugin';
+import { createBasePlugin } from 'wix-rich-content-common';
 import { EXTERNAL_LINK_TYPE } from './types';
 import { Strategy, Component } from './decorator';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';

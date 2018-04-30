@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import SelectionList from '~/Components/SelectionList';
 
-import { mergeStyles } from '~/Utils';
+import { mergeStyles, SelectionList } from 'wix-rich-content-common';
 import styles from './thumbnail-placement-selector.scss';
 
 import ThumbnailIcon from './icons/layout_thumbnails.svg';

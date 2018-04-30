@@ -4,16 +4,16 @@ import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import findIndex from 'lodash/findIndex';
 import { getScaleToFillImageURL } from 'image-client-api/dist/imageClientSDK';
-import Image from '~/Components/Image';
-
-import SettingsSection from '~/Components/SettingsSection';
-import InputWithLabel from '~/Components/InputWithLabel';
-import SettingsPanelFooter from '~/Components/SettingsPanelFooter';
-import LinkPanel from '../../../../Components/LinkPanel';
-import FileInput from '~/Components/FileInput';
+import {
+  mergeStyles,
+  FileInput,
+  Image,
+  InputWithLabel,
+  LinkPanel,
+  SettingsSection,
+  SettingsPanelFooter,
+} from 'wix-rich-content-common';
 import BackIcon from './icons/back.svg';
-
-import { mergeStyles } from '~/Utils';
 import styles from './gallery-image-settings.scss';
 import GallerySettingsMobileHeader from './gallery-settings-mobile-header';
 

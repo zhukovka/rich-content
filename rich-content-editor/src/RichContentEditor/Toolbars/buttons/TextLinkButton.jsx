@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import decorateComponentWithProps from 'decorate-component-with-props';
-import { MODALS } from '~/RichContentEditor/RichContentModal';
-import { hasLinksInSelection, getModalStyles } from '~/Utils';
-import LinkButton from '~/Components/LinkButton';
+import { hasLinksInSelection, getModalStyles, LinkButton, MODALS } from 'wix-rich-content-common';
 import TextLinkPanel from './TextLinkPanel';
 
 export default class TextLinkButton extends Component {

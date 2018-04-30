@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { normalizeURL } from '~/Utils';
+import { normalizeURL } from 'wix-rich-content-common';
 import Styles from '~/Styles/text-link.scss';
 
 const findLinkEntities = (contentBlock, callback, contentState) => {

@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FILE_NAME = 'wix-rich-content-editor';
 
@@ -8,7 +9,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: `${FILE_NAME}.js`,
     publicPath: '/assets/',
-    library: 'WixRichContentEditor',
+    library: FILE_NAME,
     libraryTarget: 'umd',
   },
   module: {
@@ -20,7 +21,9 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: [path.resolve(__dirname, 'src')],
+        include: [
+          path.resolve(__dirname, 'src'),
+        ],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'sass-loader'],
@@ -57,7 +60,9 @@ module.exports = {
       {
         test: /\.svg$/,
         issuer: /\.js(x)?$/,
-        include: [path.resolve(__dirname, 'src')],
+        include: [
+          path.resolve(__dirname, 'src'),
+        ],
         loaders: [
           {
             loader: 'babel-loader',

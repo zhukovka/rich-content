@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import decorateComponentWithProps from 'decorate-component-with-props';
 // import { translate } from 'react-i18next';
 
-import { mergeStyles } from '~/Utils';
+import { mergeStyles, SettingsSection } from 'wix-rich-content-common';
 import styles from './gallery-settings-modal.scss';
 import { Spacing, ItemsPerRow, ThumbnailSize } from './gallery-controls/sliders';
 import { ThumbnailResize, TitleButtonPlacement, ImageOrientation, ScrollDirection } from './gallery-controls/radio-groups';
 import ImageRatioSelector from './gallery-controls/image-ratio-selector';
 import ThumbnailPlacementSelector from './gallery-controls/thumbnail-placement-selector';
-import SettingsSection from '~/Components/SettingsSection';
 
 class Separator extends Component {
   static propTypes = {

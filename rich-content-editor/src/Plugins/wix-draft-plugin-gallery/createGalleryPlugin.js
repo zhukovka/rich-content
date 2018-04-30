@@ -1,5 +1,5 @@
 import createToolbar from './toolbar';
-import createBasePlugin from '../base/basePlugin';
+import { createBasePlugin } from 'wix-rich-content-common';
 import { Component } from './gallery-component';
 import { GALLERY_TYPE } from './types';
 

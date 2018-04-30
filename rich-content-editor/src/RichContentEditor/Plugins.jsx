@@ -7,16 +7,15 @@ import { createExternalEmojiPlugin, EXTERNAL_EMOJI_TYPE } from '../Plugins/wix-d
 import { createDividerPlugin, DIVIDER_TYPE } from '~/Plugins/wix-draft-plugin-divider';
 import { createGalleryPlugin, GALLERY_TYPE } from '~/Plugins/wix-draft-plugin-gallery';
 import { createHTMLPlugin, HTML_TYPE } from '~/Plugins/wix-draft-plugin-html';
-import { createImagePlugin, IMAGE_TYPE } from '~/Plugins/wix-draft-plugin-image';
 import { createVideoPlugin, VIDEO_TYPE } from '~/Plugins/wix-draft-plugin-video';
 
-const PluginList = [EXTERNAL_LINK_TYPE, HASHTAG_TYPE, IMAGE_TYPE, GALLERY_TYPE, VIDEO_TYPE, HTML_TYPE, DIVIDER_TYPE, EXTERNAL_EMOJI_TYPE];
+const PluginList = [EXTERNAL_LINK_TYPE, HASHTAG_TYPE, GALLERY_TYPE, VIDEO_TYPE, HTML_TYPE, DIVIDER_TYPE, EXTERNAL_EMOJI_TYPE];
 
 const activePlugins = (requestedPlugins = PluginList, config) => {
 
   const activePlugins = [];
-  requestedPlugins.forEach(pluginType => {
-    switch (pluginType) {
+  requestedPlugins.forEach(plugin => {
+    switch (plugin) {
       case EXTERNAL_LINK_TYPE:
         activePlugins.push(createLinkPlugin(config));
         break;
@@ -32,9 +31,6 @@ const activePlugins = (requestedPlugins = PluginList, config) => {
       case HTML_TYPE:
         activePlugins.push(createHTMLPlugin(config));
         break;
-      case IMAGE_TYPE:
-        activePlugins.push(createImagePlugin(config));
-        break;
       case VIDEO_TYPE:
         activePlugins.push(createVideoPlugin(config));
         break;
@@ -42,7 +38,11 @@ const activePlugins = (requestedPlugins = PluginList, config) => {
         activePlugins.push(createExternalEmojiPlugin(config));
         break;
       default:
-        console.warn(`Failed to load unknown plugin "${pluginType}"`); //eslint-disable-line no-console
+        if (typeof plugin === 'function') {
+          activePlugins.push(plugin(config));
+        } else {
+          console.warn(`Failed to load unknown plugin "${plugin}"`); //eslint-disable-line no-console
+        }
         break;
     }
   });

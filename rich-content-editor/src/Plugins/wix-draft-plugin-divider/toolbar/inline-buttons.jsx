@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SettingsIcon from '../../base/icons/block-settings.svg';
 import EditIcon from '../icons/icon-edit.svg';
-import { BUTTONS } from '~/Plugins/base/buttons';
+import { BUTTONS, PluginSettingsIcon } from 'wix-rich-content-common';
 import { DEFAULTS } from '../divider-component';
 import Styles from '../default-divider-styles.scss';
 
@@ -155,7 +154,7 @@ export default({ t }) => {
       keyName: 'settings',
       type: BUTTONS.PANEL,
       panelElement: SettingsModal,
-      icon: SettingsIcon,
+      icon: PluginSettingsIcon,
       onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
       mobile: true,
       tooltipTextKey: 'SettingsButton_Tooltip',

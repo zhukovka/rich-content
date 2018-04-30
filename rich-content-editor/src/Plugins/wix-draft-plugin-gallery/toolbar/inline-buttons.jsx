@@ -1,9 +1,6 @@
 import AddIcon from '../icons/toolbar/icon-upload.svg';
 import ManageMediaIcon from '../icons/manageMedia.svg';
-import AdvancedSettingsIcon from '~/Plugins/base/icons/block-settings.svg';
-import { BUTTONS } from '~/Plugins/base/buttons';
-import { MODALS } from '~/RichContentEditor/RichContentModal';
-import { getModalStyles } from '~/Utils';
+import { BUTTONS, MODALS, PluginSettingsIcon, getModalStyles } from 'wix-rich-content-common';
 import { galleryLayoutsDropdown, switchLayout, getCurrentLayout } from '../helpers';
 
 const modalStyles = getModalStyles();
@@ -57,7 +54,7 @@ export default({ t }) => {
     {
       keyName: 'advanced_settings',
       type: BUTTONS.EXTERNAL_MODAL,
-      icon: AdvancedSettingsIcon,
+      icon: PluginSettingsIcon,
       modalName: MODALS.GALLERY_SETTINGS,
       activeTab: 'advanced_settings',
       modalStyles,

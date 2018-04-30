@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import classNames from 'classnames';
 
-import SelectionList from '~/Components/SelectionList';
 import { getGalleryLayouts } from '../../helpers';
-import { mergeStyles } from '~/Utils/mergeStyles';
+import { mergeStyles, SelectionList } from 'wix-rich-content-common';
 import styles from './layout-selector.scss';
 
 class LayoutSelector extends Component {
@@ -24,7 +23,7 @@ class LayoutSelector extends Component {
 
   renderOption = ({ item, selected }) => (
     <div className={this.styles.layoutsSelector_tile}>
-      <item.icon className={classnames(this.styles.layoutsSelector_icon, { [this.styles.layoutsSelector_icon_selected]: selected })}/>
+      <item.icon className={classNames(this.styles.layoutsSelector_icon, { [this.styles.layoutsSelector_icon_selected]: selected })}/>
       <label className={this.styles.layoutsSelector_tile_label}>{item.name}</label>
     </div>
   );

@@ -1,4 +1,4 @@
-import createBasePlugin from '../base/basePlugin';
+import { createBasePlugin } from 'wix-rich-content-common';
 import createToolbar from './toolbar';
 import { Component } from './divider-component';
 import { DIVIDER_TYPE } from './types';
