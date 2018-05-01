@@ -1,22 +1,18 @@
 import { composeDecorators } from 'draft-js-plugins-editor';
 import createFocusPlugin from 'draft-js-focus-plugin';
 import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
-import { createHashtagPlugin, HASHTAG_TYPE } from '../Plugins/wix-draft-plugin-hashtag';
 import { createExternalEmojiPlugin, EXTERNAL_EMOJI_TYPE } from '../Plugins/wix-draft-plugin-emoji';
 import { createDividerPlugin, DIVIDER_TYPE } from '~/Plugins/wix-draft-plugin-divider';
 import { createGalleryPlugin, GALLERY_TYPE } from '~/Plugins/wix-draft-plugin-gallery';
 import { createHTMLPlugin, HTML_TYPE } from '~/Plugins/wix-draft-plugin-html';
 
-const PluginList = [GALLERY_TYPE, HTML_TYPE, DIVIDER_TYPE, HASHTAG_TYPE, EXTERNAL_EMOJI_TYPE];
+const PluginList = [GALLERY_TYPE, HTML_TYPE, DIVIDER_TYPE, EXTERNAL_EMOJI_TYPE];
 
 const activePlugins = (requestedPlugins = PluginList, config) => {
 
   const activePlugins = [];
   requestedPlugins.forEach(plugin => {
     switch (plugin) {
-      case HASHTAG_TYPE:
-        activePlugins.push(createHashtagPlugin(config));
-        break;
       case DIVIDER_TYPE:
         activePlugins.push(createDividerPlugin(config));
         break;

@@ -32,4 +32,4 @@ const createHashtagPlugin = (config = {}) => {
   }, plugin);
 };
 
-export { createHashtagPlugin, HASHTAG_TYPE };
+export { createHashtagPlugin };

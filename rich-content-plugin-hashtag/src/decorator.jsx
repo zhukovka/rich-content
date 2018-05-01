@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import hashtagRegexes from './hashtagRegexes';
-import Styles from '~/Styles/text-hashtag.scss';
+import styles from './hashtag.scss';
 
 const findHashtagEntities = (contentBlock, callback) => {
   const text = contentBlock.getText();
@@ -28,10 +28,10 @@ const Hashtag = ({ children, decoratedText, createHref, onClick, target = '_self
   const text = decoratedText.slice(1);
   const href = createHref ? createHref(text) : null;
   const Component = href ? 'a' : 'span';
-  const className = classNames(Styles.hashtag,
+  const className = classNames(styles.hashtag,
     theme && theme.hashtag,
     {
-      [Styles.hashtag_hover]: !!href,
+      [styles.hashtag_hover]: !!href,
       [theme.hashtag_hover]: theme && theme.hashtag_hover && !!href,
     });
   const decoratedOnClick = event => onClick(event, text);
