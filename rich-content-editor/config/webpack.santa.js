@@ -5,13 +5,14 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FILE_NAME = 'wix-rich-content-editor';
+const BASE_PATH = path.resolve(__dirname, '..');
 
 const santaConfig = {
   module: {
     rules: [
       {
         test: /\.scss$/,
-        include: [path.resolve(__dirname, 'src')],
+        include: [path.resolve(BASE_PATH, 'src')],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader?modules&importLoaders=1&localIdentName=[local]', 'sass-loader'],

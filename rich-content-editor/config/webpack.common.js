@@ -1,12 +1,12 @@
 const path = require('path');
-const fs = require('fs');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FILE_NAME = 'wix-rich-content-editor';
+const BASE_PATH = path.resolve(__dirname, '..');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: path.resolve(BASE_PATH, 'src', 'index.js'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(BASE_PATH, 'dist'),
     filename: `${FILE_NAME}.js`,
     publicPath: '/assets/',
     library: FILE_NAME,
@@ -16,14 +16,12 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        include: [path.resolve(__dirname, 'src')],
+        include: [path.resolve(BASE_PATH, 'src')],
         loader: 'babel-loader',
       },
       {
         test: /\.scss$/,
-        include: [
-          path.resolve(__dirname, 'src'),
-        ],
+        include: [path.resolve(BASE_PATH, 'src')],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'sass-loader'],
@@ -60,9 +58,7 @@ module.exports = {
       {
         test: /\.svg$/,
         issuer: /\.js(x)?$/,
-        include: [
-          path.resolve(__dirname, 'src'),
-        ],
+        include: [path.resolve(BASE_PATH, 'src')],
         loaders: [
           {
             loader: 'babel-loader',
@@ -86,10 +82,10 @@ module.exports = {
     ],
   },
   resolve: {
-    modules: ['node_modules', path.resolve(__dirname, 'src')],
+    modules: ['node_modules', path.resolve(BASE_PATH, 'src')],
     extensions: ['.js', '.json', '.jsx', '.css'],
     alias: {
-      'draft-js': path.resolve(__dirname, 'node_modules', '@wix', 'draft-js'),
+      'draft-js': path.resolve(BASE_PATH, 'node_modules', '@wix', 'draft-js'),
     },
   },
   performance: {
@@ -99,7 +95,7 @@ module.exports = {
       return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
     },
   },
-  context: __dirname,
+  context: BASE_PATH,
   target: 'web',
   externals: [
     /^pro-gallery-renderer.*$/,
