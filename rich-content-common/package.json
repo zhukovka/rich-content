@@ -19,7 +19,6 @@
   ],
   "main": "dist/wix-rich-content-common.js",
   "scripts": {
-    "prepare": "npm run clean && npm run transpile && npm run build:dev",
     "clean": "rm -rf dist/",
     "transpile": "babel -q src -d dist --copy-files",
     "webpack": "webpack --env.FILE_NAME=wix-rich-content-common",

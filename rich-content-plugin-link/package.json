@@ -19,7 +19,6 @@
   ],
   "main": "dist/wix-rich-content-plugin-link.js",
   "scripts": {
-    "prepare": "npm run clean && npm run transpile && npm run build:dev",
     "clean": "rm -rf dist/",
     "transpile": "babel -q src -d dist",
     "webpack": "webpack --env.FILE_NAME=wix-rich-content-plugin-link",
