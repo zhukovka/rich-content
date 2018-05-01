@@ -1,7 +1,7 @@
 import createToolbar from './toolbar';
-import { createBasePlugin } from 'wix-rich-content-common';
 import { Component } from './video-component';
 import { VIDEO_TYPE, VIDEO_TYPE_LEGACY } from './types';
+import { createBasePlugin } from 'wix-rich-content-common';
 
 const createVideoPlugin = (config = {}) => {
   const { decorator, helpers, theme, t, isMobile, anchorTarget, relValue, video: settings } = config;
@@ -25,4 +25,4 @@ const createVideoPlugin = (config = {}) => {
   });
 };
 
-export { createVideoPlugin, VIDEO_TYPE };
+export { createVideoPlugin };

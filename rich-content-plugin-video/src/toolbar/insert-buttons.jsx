@@ -1,5 +1,6 @@
 import { DEFAULTS } from '../video-component';
-import { getModalStyles, MODALS } from 'wix-rich-content-common';
+import { getModalStyles } from 'wix-rich-content-common';
+import VideoURLInputModal from './videoURLInputModal';
 import InsertPluginIcon from './icons/insert-plugin.svg';
 
 export default ({ helpers, t }) => {
@@ -10,7 +11,7 @@ export default ({ helpers, t }) => {
       tooltipText: t('VideoPlugin_InsertButton_Tooltip'),
       Icon: InsertPluginIcon,
       data: DEFAULTS,
-      modalName: MODALS.VIDEO_URL_INPUT,
+      modalElement: VideoURLInputModal,
       modalStyles: getModalStyles({ fullScreen: false }),
       helpers,
     },

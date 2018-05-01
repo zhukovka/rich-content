@@ -1,4 +1,5 @@
-import { BUTTONS, MODALS, getModalStyles } from 'wix-rich-content-common';
+import { BUTTONS, getModalStyles } from 'wix-rich-content-common';
+import VideoURLInputModal from './videoURLInputModal';
 import MediaReplaceIcon from './icons/media-replace.svg';
 
 export default({ t }) => {
@@ -14,7 +15,7 @@ export default({ t }) => {
       keyName: 'replace',
       type: BUTTONS.EXTERNAL_MODAL,
       icon: MediaReplaceIcon,
-      modalName: MODALS.VIDEO_URL_INPUT,
+      modalElement: VideoURLInputModal,
       modalStyles: getModalStyles({ fullScreen: false }),
       mobile: true,
       tooltipTextKey: 'ReplaceVideoButton_Tooltip',

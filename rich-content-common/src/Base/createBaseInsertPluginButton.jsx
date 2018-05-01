@@ -107,6 +107,7 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
       if (helpers && helpers.openModal) {
         helpers.openModal({
           modalName: button.modalName,
+          modalElement: button.modalElement,
           modalStyles: button.modalStyles,
           theme: this.props.theme,
           componentData: button.data,
