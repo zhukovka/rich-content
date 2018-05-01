@@ -93,45 +93,12 @@ module.exports = env => {
     context: BASE_PATH,
     target: 'web',
     externals: [
-      {
-        lodash: '_',
-        react: {
-          root: 'React',
-          commonjs2: 'react',
-          commonjs: 'react',
-          amd: 'react',
-          umd: 'react',
-        },
-        'react-dom': {
-          root: 'ReactDOM',
-          commonjs2: 'react-dom',
-          commonjs: 'react-dom',
-          amd: 'reactDOM',
-          umd: 'react-dom',
-        },
-        '@wix/draft-js': {
-          root: 'Draft',
-          commonjs2: '@wix/draft-js',
-          commonjs: '@wix/draft-js',
-          amd: '@wix/draft-js',
-          umd: '@wix/draft-js',
-        },
-        //TODO: externalize all common plugin dependencies
-        // classnames: {
-        //   root: 'classNames',
-        //   commonjs: 'classnames',
-        //   commonjs2: 'classnames',
-        //   amd: 'classnames',
-        //   umd: 'classnames',
-        // },
-        // 'decorate-component-with-props': {
-        //   root: 'decorateComponentWithProps',
-        //   commonjs: 'decorate-component-with-props',
-        //   commonjs2: 'decorate-component-with-props',
-        //   amd: 'decorate-component-with-props',
-        //   umd: 'decorate-component-with-props',
-        // }
-      }
+      'lodash',
+      'react',
+      'react-dom',
+      '@wix/draft-js',
+      'classnames',
+      'decorate-component-with-props',
     ],
     stats: 'errors-only',
     plugins: [new ExtractTextPlugin('styles.css')],

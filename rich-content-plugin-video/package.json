@@ -43,8 +43,6 @@
     "webpack": "^3.10.0"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "decorate-component-with-props": "^1.1.0",
     "react-player": "^1.5.0",
     "wix-rich-content-common": "^1.0.0"
   },
