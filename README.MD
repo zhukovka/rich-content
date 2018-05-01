@@ -2,13 +2,25 @@
 
 #### A super charged rich text editor with an extensible plugin system.
 
-##### To bootstrap follow these steps
+## Bootstrap
 1. `cd rich-content`
-2. `npm install` this installs `lerna` as well as other common dev dependecies
-3. `lerna bootstrap`
+2. `npm install` - installs `lerna` as well as other common dev dependecies
+3. `lerna bootstrap` - links local dependencies
+4. Build the modules by running one of the following:
+    1. `lerna run build:dev` - build once
+    2. `lerna run watch` - rebuild on changes
 
+
+## Modules
 
 [rich-content-editor](https://github.com/wix-incubator/rich-content/tree/master/rich-content-editor) is the rich content editor Component.  
+[rich-content-common](https://github.com/wix-incubator/rich-content/tree/master/rich-content-common) is a shared library utilized by the rest of the modules.  
 [rich-content-editor-example](https://github.com/wix-incubator/rich-content/tree/master/rich-content-editor-example) to see how to consume the Component as an editor.  
 [rich-content-viewer-example](https://github.com/wix-incubator/rich-content/tree/master/rich-content-viewer-example) to see how to consume the Component as a viewer.  
 [rich-content-editor-tpa](https://github.com/wix-incubator/rich-content/tree/master/rich-content-editor-tpa) to see how to consume the Component as a Wix Third Party Application.  
+
+##### Plugins
+
+[rich-content-plugin-link](https://github.com/wix-incubator/rich-content/tree/master/rich-content-plugin-link) convert plain text URLs into `<a>` tags.  
+[rich-content-plugin-image](https://github.com/wix-incubator/rich-content/tree/master/rich-content-plugin-image) add images to your content.  
+[rich-content-plugin-video](https://github.com/wix-incubator/rich-content/tree/master/rich-content-plugin-video) add videos to your content.  
