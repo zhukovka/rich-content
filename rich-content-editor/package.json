@@ -18,7 +18,7 @@
     "prebuild": "npm run transpile",
     "build": "npm run build:santa && npm run build:prod",
     "build:santa": "webpack --config ./config/webpack.santa.js --colors --progress",
-    "build:analyze": "npm run build -- --progress --env.analyzeBundle",
+    "build:analyze": "npm run build:prod -- --env.analyzeBundle",
     "build:dev": "webpack --config ./config/webpack.dev.js --colors --progress",
     "build:prod": "webpack --config ./config/webpack.prod.js --colors --progress",
     "prewatch": "npm run clean",
