@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { normalizeURL } from 'wix-rich-content-common';
-import Styles from '~/Styles/text-link.scss';
+import styles from './link.scss';
 
 const findLinkEntities = (contentBlock, callback, contentState) => {
   contentBlock.findEntityRanges(character => {
@@ -17,7 +17,7 @@ const Link = ({ entityKey, contentState, className, children, anchorTarget, relV
     href: normalizeURL(url),
     target: targetBlank ? '_blank' : (anchorTarget || '_self'),
     rel: nofollow ? 'nofollow' : (relValue || null),
-    className: classNames(Styles.link, className),
+    className: classNames(styles.link, className),
   };
   return (
     <a

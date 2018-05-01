@@ -48,6 +48,7 @@
     "whatwg-fetch": "2.0.3",
     "wix-rich-content-editor": "^1.0.0",
     "wix-rich-content-plugin-image": "^1.0.0",
+    "wix-rich-content-plugin-link": "^1.0.0",
     "wix-rich-content-plugin-video": "^1.0.0"
   },
   "scripts": {
