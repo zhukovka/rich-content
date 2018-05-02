@@ -2,27 +2,12 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
-import { createLinkPlugin } from 'wix-rich-content-plugin-link';
-import { createHashtagPlugin } from 'wix-rich-content-plugin-hashtag';
-//import { createExternalEmojiPlugin } from 'wix-rich-content-plugin-emoji';
-import { createImagePlugin } from 'wix-rich-content-plugin-image';
-import { createVideoPlugin } from 'wix-rich-content-plugin-video';
-import { createGalleryPlugin } from 'wix-rich-content-plugin-gallery';
-import { createHTMLPlugin } from 'wix-rich-content-plugin-html';
-import { createDividerPlugin } from 'wix-rich-content-plugin-divider';
+import createPlugins from './Plugins';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
 import { testImages, testVideos } from './mock';
 // import testData from './testData/initialState';
 import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
-import 'wix-rich-content-plugin-link/dist/styles.css';
-import 'wix-rich-content-plugin-hashtag/dist/styles.css';
-import 'wix-rich-content-plugin-emoji/dist/styles.css';
-import 'wix-rich-content-plugin-image/dist/styles.css';
-import 'wix-rich-content-plugin-video/dist/styles.css';
-import 'wix-rich-content-plugin-gallery/dist/styles.css';
-import 'wix-rich-content-plugin-html/dist/styles.css';
-import 'wix-rich-content-plugin-divider/dist/styles.css';
 import theme from './theme/theme'; // must import after custom styles
 
 const modalStyleDefaults = {
@@ -51,17 +36,7 @@ class App extends Component {
   }
 
   initEditorProps() {
-    this.plugins = [
-      createImagePlugin,
-      createGalleryPlugin,
-      createVideoPlugin,
-      createHTMLPlugin,
-      createDividerPlugin,
-      //createExternalEmojiPlugin
-      createLinkPlugin,
-      createHashtagPlugin,
-    ];
-
+    this.plugins = createPlugins();
     this.config = {
       hashtag: {
         createHref: decoratedText =>

@@ -9,7 +9,7 @@ import includes from 'lodash/includes';
 import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createEditorToolbars from './Toolbars';
-import createPlugins from './Plugins';
+import createPlugins from './createPlugins';
 import { keyBindingFn, COMMANDS } from './keyBindings';
 import { normalizeInitialState, MODALS, hasLinksInSelection, removeLinksInSelection, getModalStyles } from 'wix-rich-content-common';
 import styles from '~/Styles/rich-content-editor.scss';
