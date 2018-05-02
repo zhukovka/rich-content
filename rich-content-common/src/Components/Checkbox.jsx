@@ -16,8 +16,6 @@ export default class Checkbox extends React.Component {
     dataHook: PropTypes.string,
   };
 
-  static id = 0;
-
   static defaultProps = {
     checked: false
   };
@@ -27,7 +25,7 @@ export default class Checkbox extends React.Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
     this.globalStyles = mergeStyles({ styles: globalStyles, theme: props.theme });
     this.state = { focused: false };
-    this.id = `chk_${++Checkbox.id}`;
+    this.id = `chk_${Math.floor(Math.random() * 9999)}`;
   }
 
   onFocus() {

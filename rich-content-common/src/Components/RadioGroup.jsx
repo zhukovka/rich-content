@@ -6,8 +6,6 @@ import { mergeStyles } from '../Utils/mergeStyles';
 
 class RadioGroup extends Component {
 
-  static id = 0;
-
   static propTypes = {
     dataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
     onChange: PropTypes.func.isRequired,
@@ -21,7 +19,7 @@ class RadioGroup extends Component {
     super(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
     this.state = { focusIndex: -1 };
-    this.id = `group_${++RadioGroup.id}`;
+    this.id = `group_${Math.floor(Math.random() * 9999)}`;
     this.inputs = {};
   }
 

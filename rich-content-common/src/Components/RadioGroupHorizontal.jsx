@@ -6,12 +6,10 @@ import styles from '../Styles/radio-group-horizontal.scss';
 
 class RadioGroupHorizontal extends Component {
 
-  static id = 0;
-
   constructor(props) {
     super(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
-    this.id = `horizontal_group_${++RadioGroupHorizontal.id}`;
+    this.id = `h_group_${Math.floor(Math.random() * 9999)}`;
   }
 
   render() {
