@@ -103,6 +103,7 @@ module.exports = env => {
       '@wix/draft-js',
       'classnames',
       'decorate-component-with-props',
+      /^pro-gallery-renderer.*$/,
     ],
     stats: 'errors-only',
     plugins: [new ExtractTextPlugin('styles.css')],

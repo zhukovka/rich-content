@@ -24,4 +24,4 @@ const createGalleryPlugin = (config = {}) => {
   });
 };
 
-export { createGalleryPlugin, GALLERY_TYPE };
+export { createGalleryPlugin };

@@ -7,6 +7,7 @@ import { createHashtagPlugin } from 'wix-rich-content-plugin-hashtag';
 //import { createExternalEmojiPlugin } from 'wix-rich-content-plugin-emoji';
 import { createImagePlugin } from 'wix-rich-content-plugin-image';
 import { createVideoPlugin } from 'wix-rich-content-plugin-video';
+import { createGalleryPlugin } from 'wix-rich-content-plugin-gallery';
 import { createHTMLPlugin } from 'wix-rich-content-plugin-html';
 import { createDividerPlugin } from 'wix-rich-content-plugin-divider';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
@@ -19,6 +20,7 @@ import 'wix-rich-content-plugin-hashtag/dist/styles.css';
 import 'wix-rich-content-plugin-emoji/dist/styles.css';
 import 'wix-rich-content-plugin-image/dist/styles.css';
 import 'wix-rich-content-plugin-video/dist/styles.css';
+import 'wix-rich-content-plugin-gallery/dist/styles.css';
 import 'wix-rich-content-plugin-html/dist/styles.css';
 import 'wix-rich-content-plugin-divider/dist/styles.css';
 import theme from './theme/theme'; // must import after custom styles
@@ -49,17 +51,17 @@ class App extends Component {
   }
 
   initEditorProps() {
-    this.plugins = WixRichContentEditor.PluginList.filter(p => p.indexOf('emoji') === -1);
-    this.plugins.unshift(createImagePlugin);
-    this.plugins.splice(2, 0, createVideoPlugin);
-    this.plugins.splice(3, 0, createHTMLPlugin);
-    this.plugins.splice(4, 0, createDividerPlugin);
     this.plugins = [
-      ...this.plugins,
+      createImagePlugin,
+      createGalleryPlugin,
+      createVideoPlugin,
+      createHTMLPlugin,
+      createDividerPlugin,
+      //createExternalEmojiPlugin
       createLinkPlugin,
       createHashtagPlugin,
-      //createExternalEmojiPlugin,
     ];
+
     this.config = {
       hashtag: {
         createHref: decoratedText =>

@@ -50,6 +50,7 @@
     "wix-rich-content-editor": "^1.0.0",
     "wix-rich-content-plugin-divider": "^1.0.0",
     "wix-rich-content-plugin-emoji": "^1.0.0",
+    "wix-rich-content-plugin-gallery": "^1.0.0",
     "wix-rich-content-plugin-hashtag": "^1.0.0",
     "wix-rich-content-plugin-html": "^1.0.0",
     "wix-rich-content-plugin-image": "^1.0.0",

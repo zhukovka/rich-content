@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 // import { HTML_TYPE } from '../Plugins/wix-draft-plugin-html/types';
 // import * as Divider from '../Plugins/wix-draft-plugin-divider/divider-component';
 // import { DIVIDER_TYPE } from '../Plugins/wix-draft-plugin-divider/types';
-import { GalleryViewer } from '../Plugins/wix-draft-plugin-gallery/gallery-viewer';
-import { GALLERY_TYPE } from '../Plugins/wix-draft-plugin-gallery/types';
+// import { GalleryViewer } from '../Plugins/wix-draft-plugin-gallery/gallery-viewer';
+// import { GALLERY_TYPE } from '../Plugins/wix-draft-plugin-gallery/types';
 
 const typeMap = {
   // [IMAGE_TYPE_LEGACY]: ImageViewer,
@@ -16,7 +16,7 @@ const typeMap = {
   // [VIDEO_TYPE_LEGACY]: VideoComponent,
   // [HTML_TYPE]: Html.Component,
   // [DIVIDER_TYPE]: Divider.Component,
-  [GALLERY_TYPE]: GalleryViewer,
+  // [GALLERY_TYPE]: GalleryViewer,
 };
 
 

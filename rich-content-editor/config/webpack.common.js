@@ -98,8 +98,6 @@ module.exports = {
   context: BASE_PATH,
   target: 'web',
   externals: [
-    /^pro-gallery-renderer.*$/,
-    'mobx',
     {
       'draft-js': {
         root: 'Draft',
