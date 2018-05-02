@@ -23,7 +23,7 @@
     "transpile": "babel -q src -d dist",
     "webpack": "webpack --env.FILE_NAME=wix-rich-content-plugin-image",
     "prebuild": "npm run transpile",
-    "build:dev": "npm run webpack -- --config ../config/webpack.dev.js --colors --progress",
+    "build:dev": "npm run transpile && npm run webpack -- --config ../config/webpack.dev.js",
     "build": "npm run webpack -- --config ../config/webpack.prod.js",
     "watch": "npm run build -- --watch",
     "release": "wnpm-release --no-shrinkwrap",
