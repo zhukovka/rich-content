@@ -8,6 +8,7 @@ import { createHashtagPlugin } from 'wix-rich-content-plugin-hashtag';
 import { createImagePlugin } from 'wix-rich-content-plugin-image';
 import { createVideoPlugin } from 'wix-rich-content-plugin-video';
 import { createHTMLPlugin } from 'wix-rich-content-plugin-html';
+import { createDividerPlugin } from 'wix-rich-content-plugin-divider';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
 import { testImages, testVideos } from './mock';
 // import testData from './testData/initialState';
@@ -19,6 +20,7 @@ import 'wix-rich-content-plugin-emoji/dist/styles.css';
 import 'wix-rich-content-plugin-image/dist/styles.css';
 import 'wix-rich-content-plugin-video/dist/styles.css';
 import 'wix-rich-content-plugin-html/dist/styles.css';
+import 'wix-rich-content-plugin-divider/dist/styles.css';
 import theme from './theme/theme'; // must import after custom styles
 
 const modalStyleDefaults = {
@@ -51,6 +53,7 @@ class App extends Component {
     this.plugins.unshift(createImagePlugin);
     this.plugins.splice(2, 0, createVideoPlugin);
     this.plugins.splice(3, 0, createHTMLPlugin);
+    this.plugins.splice(4, 0, createDividerPlugin);
     this.plugins = [
       ...this.plugins,
       createLinkPlugin,

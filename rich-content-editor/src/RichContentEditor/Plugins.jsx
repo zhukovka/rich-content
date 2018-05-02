@@ -1,19 +1,15 @@
 import { composeDecorators } from 'draft-js-plugins-editor';
 import createFocusPlugin from 'draft-js-focus-plugin';
 import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
-import { createDividerPlugin, DIVIDER_TYPE } from '~/Plugins/wix-draft-plugin-divider';
 import { createGalleryPlugin, GALLERY_TYPE } from '~/Plugins/wix-draft-plugin-gallery';
 
-const PluginList = [GALLERY_TYPE, DIVIDER_TYPE];
+const PluginList = [GALLERY_TYPE];
 
 const activePlugins = (requestedPlugins = PluginList, config) => {
 
   const activePlugins = [];
   requestedPlugins.forEach(plugin => {
     switch (plugin) {
-      case DIVIDER_TYPE:
-        activePlugins.push(createDividerPlugin(config));
-        break;
       case GALLERY_TYPE:
         activePlugins.push(createGalleryPlugin(config));
         break;

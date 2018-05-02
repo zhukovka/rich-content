@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 // import { VideoComponent, VIDEO_TYPE_LEGACY, VIDEO_TYPE } from 'wix-rich-content-plugin-video';
 // import * as Html from '../Plugins/wix-draft-plugin-html/html-component';
 // import { HTML_TYPE } from '../Plugins/wix-draft-plugin-html/types';
-import * as Divider from '../Plugins/wix-draft-plugin-divider/divider-component';
-import { DIVIDER_TYPE } from '../Plugins/wix-draft-plugin-divider/types';
+// import * as Divider from '../Plugins/wix-draft-plugin-divider/divider-component';
+// import { DIVIDER_TYPE } from '../Plugins/wix-draft-plugin-divider/types';
 import { GalleryViewer } from '../Plugins/wix-draft-plugin-gallery/gallery-viewer';
 import { GALLERY_TYPE } from '../Plugins/wix-draft-plugin-gallery/types';
 
@@ -15,7 +15,7 @@ const typeMap = {
   // [VIDEO_TYPE]: VideoComponent,
   // [VIDEO_TYPE_LEGACY]: VideoComponent,
   // [HTML_TYPE]: Html.Component,
-  [DIVIDER_TYPE]: Divider.Component,
+  // [DIVIDER_TYPE]: Divider.Component,
   [GALLERY_TYPE]: GalleryViewer,
 };
 
