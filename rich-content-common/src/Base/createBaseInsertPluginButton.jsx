@@ -72,10 +72,6 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
       }
     }
 
-    setForm = form => (this.form = form);
-
-    resetForm = () => this.form && this.form.reset();
-
     preventBubblingUp = event => event.preventDefault();
 
     renderButton = () => {
@@ -127,23 +123,27 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
       }
     }
 
-    renderFileUploadForm = () => {
+    renderFileUploadButton = () => {
       if (helpers && helpers.handleFileSelection) {
         return null;
       }
-
+      const { showName } = this.props;
+      const { name, Icon } = button;
       const { styles } = this;
       return (
-        <form ref={this.setForm}>
-          <FileInput
-            dataHook={`${button.name}_file_input`}
-            className={styles.fileInput}
-            onChange={this.handleFileChange}
-            accept="image/*"
-            multiple={button.multi}
-            theme={this.props.theme}
-          />
-        </form>
+        <FileInput
+          dataHook={`${button.name}_file_input`}
+          className={classNames(styles.button, styles.fileUploadButton)}
+          onChange={this.handleFileChange}
+          accept="image/*"
+          multiple={button.multi}
+          theme={this.props.theme}
+        >
+          <div className={styles.icon}>
+            <Icon key="0" />
+          </div>
+          {showName && <span key="1" className={styles.label}>{name}</span>}
+        </FileInput>
       );
     };
 
@@ -156,9 +156,8 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
         styles.buttonWrapper, { [styles.mobile]: isMobile });
 
       const Button = (
-        <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
-          {this.renderButton()}
-          {button.type === 'file' && this.renderFileUploadForm()}
+        <div className={buttonWrapperClassNames}>
+          {button.type === 'file' ? this.renderFileUploadButton() : this.renderButton()}
         </div>
       );
 
