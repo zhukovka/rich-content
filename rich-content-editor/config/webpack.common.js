@@ -21,7 +21,6 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: [path.resolve(BASE_PATH, 'src')],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'sass-loader'],
