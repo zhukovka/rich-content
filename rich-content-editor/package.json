@@ -18,7 +18,7 @@
     "build": "npm run build:santa && npm run build:prod",
     "build:santa": "webpack --config ./config/webpack.santa.js",
     "build:analyze": "npm run build:prod -- --env.analyzeBundle",
-    "build:dev": "webpack --config ./config/webpack.dev.js",
+    "build:dev": "npm run transpile && webpack --config ./config/webpack.dev.js",
     "build:prod": "webpack --config ./config/webpack.prod.js",
     "prewatch": "npm run clean",
     "watch": "npm run build:dev -- --watch",
