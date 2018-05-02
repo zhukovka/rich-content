@@ -7,13 +7,11 @@ import styles from '../Styles/global.scss';
 
 class FileInput extends Component {
 
-  static id = 1;
-
   constructor(props) {
     super(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
     this.state = { focused: false };
-    this.id = `file_input_${++FileInput.id}`;
+    this.id = `file_input_${Math.floor(Math.random() * 9999)}`;
   }
 
   onFocus() {
@@ -35,7 +33,7 @@ class FileInput extends Component {
 
     return (
       <label
-        htmlFor={this.id} tabIndex={-1} className={classnames({ [className]: true, [styles.focused]: this.state.focused })}
+        htmlFor={this.id} className={classnames({ [className]: true, [styles.focused]: this.state.focused })}
         style={this.props.style} title={title}
       >
         <input
