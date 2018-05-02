@@ -4,6 +4,7 @@ import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
 import { createLinkPlugin } from 'wix-rich-content-plugin-link';
 import { createHashtagPlugin } from 'wix-rich-content-plugin-hashtag';
+//import { createExternalEmojiPlugin } from 'wix-rich-content-plugin-emoji';
 import { createImagePlugin } from 'wix-rich-content-plugin-image';
 import { createVideoPlugin } from 'wix-rich-content-plugin-video';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
@@ -13,6 +14,7 @@ import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 import 'wix-rich-content-plugin-link/dist/styles.css';
 import 'wix-rich-content-plugin-hashtag/dist/styles.css';
+import 'wix-rich-content-plugin-emoji/dist/styles.css';
 import 'wix-rich-content-plugin-image/dist/styles.css';
 import 'wix-rich-content-plugin-video/dist/styles.css';
 import theme from './theme/theme'; // must import after custom styles
@@ -46,8 +48,12 @@ class App extends Component {
     this.plugins = WixRichContentEditor.PluginList.filter(p => p.indexOf('emoji') === -1);
     this.plugins.unshift(createImagePlugin);
     this.plugins.splice(2, 0, createVideoPlugin);
-    this.plugins.push(createLinkPlugin);
-    this.plugins.push(createHashtagPlugin);
+    this.plugins = [
+      ...this.plugins,
+      createLinkPlugin,
+      createHashtagPlugin,
+      //createExternalEmojiPlugin,
+    ];
     this.config = {
       hashtag: {
         createHref: decoratedText =>

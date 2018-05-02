@@ -1,12 +1,11 @@
 import { composeDecorators } from 'draft-js-plugins-editor';
 import createFocusPlugin from 'draft-js-focus-plugin';
 import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
-import { createExternalEmojiPlugin, EXTERNAL_EMOJI_TYPE } from '../Plugins/wix-draft-plugin-emoji';
 import { createDividerPlugin, DIVIDER_TYPE } from '~/Plugins/wix-draft-plugin-divider';
 import { createGalleryPlugin, GALLERY_TYPE } from '~/Plugins/wix-draft-plugin-gallery';
 import { createHTMLPlugin, HTML_TYPE } from '~/Plugins/wix-draft-plugin-html';
 
-const PluginList = [GALLERY_TYPE, HTML_TYPE, DIVIDER_TYPE, EXTERNAL_EMOJI_TYPE];
+const PluginList = [GALLERY_TYPE, HTML_TYPE, DIVIDER_TYPE];
 
 const activePlugins = (requestedPlugins = PluginList, config) => {
 
@@ -21,9 +20,6 @@ const activePlugins = (requestedPlugins = PluginList, config) => {
         break;
       case HTML_TYPE:
         activePlugins.push(createHTMLPlugin(config));
-        break;
-      case EXTERNAL_EMOJI_TYPE:
-        activePlugins.push(createExternalEmojiPlugin(config));
         break;
       default:
         if (typeof plugin === 'function') {

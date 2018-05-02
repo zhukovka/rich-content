@@ -89,6 +89,9 @@ module.exports = env => {
     resolve: {
       modules: ['node_modules', path.resolve(BASE_PATH, 'src')],
       extensions: ['.js', '.json', '.jsx', '.css'],
+      alias: {
+        'draft-js': path.resolve(BASE_PATH, 'node_modules', '@wix', 'draft-js'),
+      },
     },
     context: BASE_PATH,
     target: 'web',
@@ -96,6 +99,7 @@ module.exports = env => {
       'lodash',
       'react',
       'react-dom',
+      'draft-js',
       '@wix/draft-js',
       'classnames',
       'decorate-component-with-props',
