@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
-import createPlugins from './Plugins';
+import plugins from './Plugins';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
 import { testImages, testVideos } from './mock';
 // import testData from './testData/initialState';
@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   initEditorProps() {
-    this.plugins = createPlugins();
+    this.plugins = plugins;
     this.config = {
       hashtag: {
         createHref: decoratedText =>

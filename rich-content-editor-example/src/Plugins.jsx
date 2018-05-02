@@ -16,7 +16,7 @@ import 'wix-rich-content-plugin-gallery/dist/styles.css';
 import 'wix-rich-content-plugin-html/dist/styles.css';
 import 'wix-rich-content-plugin-divider/dist/styles.css';
 
-const createPlugins = () => [
+const plugins = [
   createImagePlugin,
   createGalleryPlugin,
   createVideoPlugin,
@@ -27,4 +27,4 @@ const createPlugins = () => [
   createHashtagPlugin,
 ];
 
-export default createPlugins;
+export default plugins;
