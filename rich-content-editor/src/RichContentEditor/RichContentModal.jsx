@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import { MODALS } from 'wix-rich-content-common';
 import FocusTrap from 'focus-trap-react';
 import GallerySettingsModal from '~/Plugins/wix-draft-plugin-gallery/components/gallery-settings-modal';
-import HTMLSettingsModal from '~/Plugins/wix-draft-plugin-html/toolbar/html-settings';
 import MobileAddPluginModal from './Toolbars/AddPluginModal';
 import MobileBlockLinkModal from './Toolbars/MobileBlockLinkModal';
 import MobileTextLinkModal from './Toolbars/MobileTextLinkModal';
 
 const Modals = {
   [MODALS.GALLERY_SETTINGS]: GallerySettingsModal,
-  [MODALS.HTML_SETTINGS]: HTMLSettingsModal,
   [MODALS.MOBILE_ADD_PLUGIN]: MobileAddPluginModal,
   [MODALS.MOBILE_BLOCK_LINK_MODAL]: MobileBlockLinkModal,
   [MODALS.MOBILE_TEXT_LINK_MODAL]: MobileTextLinkModal,

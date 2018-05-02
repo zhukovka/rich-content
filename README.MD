@@ -28,3 +28,4 @@
 [rich-content-plugin-emoji](https://github.com/wix-incubator/rich-content/tree/master/rich-content-plugin-emoji) add emojis to your content.  
 [rich-content-plugin-image](https://github.com/wix-incubator/rich-content/tree/master/rich-content-plugin-image) add images to your content.  
 [rich-content-plugin-video](https://github.com/wix-incubator/rich-content/tree/master/rich-content-plugin-video) add videos to your content.  
+[rich-content-plugin-html](https://github.com/wix-incubator/rich-content/tree/master/rich-content-plugin-html) embed html code or sites in your content.  

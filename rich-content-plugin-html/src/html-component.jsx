@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import { translate } from 'react-i18next';
+import { mergeStyles } from 'wix-rich-content-common';
 
 import Overlay from './overlay';
 import styles from './default-html-styles.scss';
-import { mergeStyles } from 'wix-rich-content-common';
 
 const DEFAULTS = {
   src: null,

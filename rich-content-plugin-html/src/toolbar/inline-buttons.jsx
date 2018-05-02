@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
+import { BUTTONS, PluginSettingsIcon } from 'wix-rich-content-common';
+import HTMLSettingsModal from './html-settings';
 import EditIcon from '../icons/icon-edit.svg';
-import { BUTTONS, MODALS, PluginSettingsIcon } from 'wix-rich-content-common';
 import Styles from '../default-html-styles.scss';
 
 class SettingsModal extends React.Component {
@@ -203,7 +204,7 @@ export default({ t }) => {
     {
       keyName: 'external_settings',
       type: BUTTONS.EXTERNAL_MODAL,
-      modalName: MODALS.HTML_SETTINGS,
+      modalElement: HTMLSettingsModal,
       icon: PluginSettingsIcon,
       onClick: pubsub => console.log('*** click external settings *** '), //eslint-disable-line no-console, no-unused-vars,
       mobile: true,
