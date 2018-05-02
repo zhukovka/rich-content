@@ -3,5 +3,8 @@
   "packages": [
     "rich-content-*"
   ],
+  "npmClientArgs": [
+    "--no-lockfile"
+  ],
   "version": "independent"
 }
