@@ -104,19 +104,19 @@ export default class StaticToolbar extends React.Component {
     };
 
     return (
-      <div className={toolbarClassNames} data-hook={dataHook}>
+      <div role="toolbar" className={toolbarClassNames} data-hook={dataHook}>
         <div
           className={buttonClassNames}
           ref={this.handleButtonsRef}
         >
           {
             showLeftArrow &&
-            <div
+            <button
               className={classNames(toolbarStyles.responsiveArrow, toolbarStyles.responsiveArrowLeft)}
               data-hook="staticToolbarLeftArrow" onMouseDown={e => this.scrollToolbar(e, 'left')}
             >
               <i className={toolbarStyles.responsiveArrowLeft_icon}/>
-            </div>
+            </button>
           }
           {
             OverrideContent ?
@@ -126,12 +126,12 @@ export default class StaticToolbar extends React.Component {
           {hasArrow && <div className={toolbarStyles.responsiveSpacer} />}
           {
             showRightArrow &&
-            <div
+            <button
               className={classNames(toolbarStyles.responsiveArrow, toolbarStyles.responsiveArrowRight)}
               data-hook="staticToolbarRightArrow" onMouseDown={e => this.scrollToolbar(e, 'right')}
             >
               <i className={toolbarStyles.responsiveArrowRight_icon}/>
-            </div>
+            </button>
           }
         </div>
         {ExtendContent && (
