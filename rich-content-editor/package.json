@@ -52,8 +52,7 @@
     "photography-client-lib": "^1.0.69",
     "react-i18next": "^7.5.0",
     "redraft": "^0.9.0",
-    "wix-rich-content-common": "^1.0.0",
-    "wnpm-ci": "latest"
+    "wix-rich-content-common": "^1.0.0"
   },
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0",
@@ -94,7 +93,8 @@
     "react-test-renderer": "^15.6.1",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.11.1",
-		"webpack-merge": "^4.1.2"
+    "webpack-merge": "^4.1.2",
+    "wnpm-ci": "latest"
   },
   "babel": {
     "presets": ["env", "stage-0", "react"],
