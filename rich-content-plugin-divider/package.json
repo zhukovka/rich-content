@@ -87,6 +87,6 @@
   },
   "unpkg": true,
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "http://repo.dev.wix/artifactory/api/npm/npm-local/"
   }
 }
