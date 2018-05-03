@@ -8,7 +8,7 @@ const createPlugins = ({ plugins, config, helpers, theme, t, isMobile, anchorTar
 
   const wixPluginsDecorators = composeDecorators(focusPlugin.decorator, dndPlugin.decorator);
   const wixPluginConfig = { decorator: wixPluginsDecorators, helpers, theme, t, isMobile, anchorTarget, relValue, ...config };
-  const wixPlugins = plugins.map(createPlugin => createPlugin(wixPluginConfig));
+  const wixPlugins = (plugins || []).map(createPlugin => createPlugin(wixPluginConfig));
 
   const pluginButtons = [];
   wixPlugins.forEach(wixPlugin => {
