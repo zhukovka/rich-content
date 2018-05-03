@@ -78,6 +78,21 @@
     "react-test-renderer": "^15.6.1",
     "webpack": "^3.6.0"
   },
+  "babel": {
+    "presets": ["env", "stage-0", "react"],
+    "plugins": [
+      "transform-class-properties",
+      "transform-runtime",
+      [
+        "module-resolver",
+        {
+          "alias": {
+            "~": "./src"
+          }
+        }
+      ]
+    ]
+  },
   "unpkg": true,
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
