@@ -352,13 +352,8 @@ module.exports = {
     child_process: 'empty',
   },
   externals: [
-    /^wix-style-react.*$/,
     /^@wix.*/,
     'draft-js',
-    'mobx',
-    {
-      'pro-gallery-renderer': '\'pro-gallery-renderer\''
-    },
     {
       'wix-rich-content-editor': 'WixRichContentEditor'
     },
