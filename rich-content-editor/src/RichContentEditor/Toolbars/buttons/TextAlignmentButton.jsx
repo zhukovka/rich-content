@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getTextAlignment } from '~/Utils';
+import { getTextAlignment } from 'wix-rich-content-common';
 import TextButton from './TextButton';
 import TextAlignmentPanel from './TextAlignmentPanel';
 import AlignTextLeftIcon from '../icons/align-text-left.svg';

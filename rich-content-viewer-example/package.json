@@ -30,7 +30,6 @@
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
-    "pro-gallery-renderer": "^1.0.60",
     "promise": "8.0.1",
     "raf": "3.4.0",
     "react": "^15.6.2",
@@ -47,7 +46,6 @@
     "immutable": "^3.8.1",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
-    "pro-gallery-renderer": "^1.0.60",
     "wix-rich-content-editor": "^1.0.6"
   },
   "scripts": {

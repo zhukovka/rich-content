@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextButton from './TextButton';
-import { MODALS } from '~/RichContentEditor/RichContentModal';
-import { getModalStyles } from '~/Utils';
+import { MODALS, getModalStyles } from 'wix-rich-content-common';
 import PlusIcon from '../icons/plus-default.svg';
 
 export default class AddPluginButton extends Component {

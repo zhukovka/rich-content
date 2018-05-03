@@ -32,7 +32,7 @@ class App extends Component {
   }
 
   initViewerProps() {
-    // this.plugins = WixRichContentEditor.PluginList;
+    // this.plugins = [];
     // this.decorators = {
     //   list: WixRichContentEditor.DecoratorList,
     //   config: {

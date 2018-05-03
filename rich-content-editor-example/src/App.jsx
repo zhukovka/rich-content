@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
+import plugins from './Plugins';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
 import { testImages, testVideos } from './mock';
 // import testData from './testData/initialState';
@@ -35,7 +36,7 @@ class App extends Component {
   }
 
   initEditorProps() {
-    this.plugins = WixRichContentEditor.PluginList.filter(p => p.indexOf('emoji') === -1);
+    this.plugins = plugins;
     this.config = {
       hashtag: {
         createHref: decoratedText =>

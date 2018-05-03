@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
-import ToolbarButton from '~/Components/ToolbarButton';
 
-import { mergeStyles } from '~/Utils';
-import styles from '~/Styles/inline-toolbar-button.scss';
+import { mergeStyles, ToolbarButton } from 'wix-rich-content-common';
+import styles from 'wix-rich-content-common/dist/Styles/inline-toolbar-button.scss';
 
 export default class TextButton extends Component {
 
@@ -48,6 +47,7 @@ export default class TextButton extends Component {
       }
     );
 
+    /* eslint-disable jsx-a11y/no-static-element-interactions */
     const textButton = (
       <div className={styles.inlineToolbarButton_wrapper} onMouseDown={this.preventBubblingUp}>
         <button className={styles.inlineToolbarButton} data-hook={dataHook} onClick={this.handleClick}>
@@ -57,6 +57,7 @@ export default class TextButton extends Component {
         </button>
       </div>
     );
+    /* eslint-enable jsx-a11y/no-static-element-interactions */
 
     return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={textButton} />;
   }

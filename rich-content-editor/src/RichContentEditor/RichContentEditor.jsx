@@ -9,11 +9,12 @@ import includes from 'lodash/includes';
 import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createEditorToolbars from './Toolbars';
-import createPlugins from './Plugins';
-import { normalizeInitialState, keyBindingFn, COMMANDS, hasLinksInSelection, removeLinksInSelection, getModalStyles } from '~/Utils';
-import { MODALS } from '~/RichContentEditor/RichContentModal';
+import createPlugins from './createPlugins';
+import { keyBindingFn, COMMANDS } from './keyBindings';
+import { normalizeInitialState, MODALS, hasLinksInSelection, removeLinksInSelection, getModalStyles } from 'wix-rich-content-common';
 import styles from '~/Styles/rich-content-editor.scss';
 import draftStyles from '~/Styles/draft.scss';
+import 'wix-rich-content-common/dist/styles.css';
 
 class RichContentEditor extends Component {
   constructor(props) {
@@ -85,11 +86,12 @@ class RichContentEditor extends Component {
       return editorState;
     }
     if (initialState) {
+      const rawContentState = normalizeInitialState(initialState);
       return EditorState.createWithContent(
-        convertFromRaw(normalizeInitialState(initialState))
+        convertFromRaw(rawContentState)
       );
     } else {
-      const emptyContentState = convertFromRaw({ //this is needed for ssr. Other wise the key will be generated randomly on both server and client.
+      const emptyContentState = convertFromRaw({ //this is needed for ssr. Otherwise the key will be generated randomly on both server and client.
         entityMap: {},
         blocks: [
           {
@@ -331,7 +333,7 @@ RichContentEditor.propTypes = {
   hideFooterToolbar: PropTypes.bool,
   textButtons: PropTypes.arrayOf(PropTypes.string),
   textToolbarType: PropTypes.oneOf(['inline', 'static']),
-  plugins: PropTypes.arrayOf(PropTypes.string),
+  plugins: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.func])),
   config: PropTypes.object,
   anchorTarget: PropTypes.string,
   relValue: PropTypes.string,

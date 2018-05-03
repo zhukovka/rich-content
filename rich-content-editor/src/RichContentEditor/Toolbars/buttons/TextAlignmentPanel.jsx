@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { EditorState, Modifier } from '@wix/draft-js';
-import Separator from '~/Components/Separator';
+import { Separator, getTextAlignment } from 'wix-rich-content-common';
 import TextButton from './TextButton';
-import { getTextAlignment } from '~/Utils';
 import {
   AlignTextLeftButton,
   AlignTextCenterButton,
@@ -11,7 +10,7 @@ import {
   AlignTextJustifyButton
 } from './index';
 import BackArrowIcon from '../icons/back-arrow.svg';
-import styles from '~/Styles/global.scss';
+import styles from 'wix-rich-content-common/dist/Styles/global.scss';
 
 export default class AlignmentPanel extends Component {
   constructor(props) {
