@@ -39,12 +39,50 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "eslint": "^4.19.1",
-    "webpack": "^3.10.0"
+		"babel-loader": "^7.1.4",
+		"babel-plugin-module-resolver": "^3.1.1",
+		"babel-plugin-transform-class-properties": "^6.24.1",
+		"babel-plugin-transform-runtime": "^6.23.0",
+		"babel-preset-env": "^1.6.1",
+		"babel-preset-react": "^6.24.1",
+		"babel-preset-stage-0": "^6.24.1",
+		"css-loader": "^0.28.11",
+		"eslint": "^4.19.1",
+		"eslint-config-wix": "^1.1.18",
+		"eslint-plugin-fp": "^2.3.0",
+		"eslint-plugin-jsx-a11y": "^6.0.3",
+		"eslint-plugin-lodash": "^2.7.0",
+		"eslint-plugin-react": "^7.7.0",
+		"extract-text-webpack-plugin": "^3.0.2",
+		"loader-utils": "^1.1.0",
+		"node-sass": "^4.8.3",
+		"optimize-css-assets-webpack-plugin": "^3.2.0",
+		"react-svg-loader": "^2.1.0",
+		"sass-loader": "^6.0.7",
+		"style-loader": "^0.20.3",
+		"uglifyjs-webpack-plugin": "^1.2.4",
+		"url-loader": "^1.0.1",
+		"webpack": "^3.6.0",
+		"webpack-merge": "^4.1.2"
   },
   "dependencies": {
     "draft-js-emoji-plugin": "^2.0.2",
     "wix-rich-content-common": "^1.0.0"
+  },
+  "babel": {
+    "presets": ["env", "stage-0", "react"],
+    "plugins": [
+      "transform-class-properties",
+      "transform-runtime",
+      [
+        "module-resolver",
+        {
+          "alias": {
+            "~": "./src"
+          }
+        }
+      ]
+    ]
   },
   "unpkg": true,
   "publishConfig": {
