@@ -14,9 +14,7 @@ export default class AddPluginFloatingToolbar extends Component {
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      window.addEventListener('click', this.onWindowClick);
-    });
+    window.addEventListener('click', this.onWindowClick);
   }
 
   componentWillUnmount() {
