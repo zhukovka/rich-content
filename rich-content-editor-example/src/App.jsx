@@ -30,6 +30,7 @@ class App extends Component {
       readOnly: false,
       mounted: true,
       textToolbarType: 'inline',
+      showDevToggles: false,
     };
     this.md = window ? new MobileDetect(window.navigator.userAgent) : null;
     this.initEditorProps();
@@ -175,6 +176,7 @@ class App extends Component {
       content: Object.assign({}, (this.state.modalStyles || modalStyleDefaults).content, theme.modalTheme.content),
       overlay: Object.assign({}, (this.state.modalStyles || modalStyleDefaults).overlay, theme.modalTheme.overlay),
     };
+    const { showDevToggles } = this.state;
 
     const { MobileToolbar, TextToolbar } = this.state;
     return (
@@ -182,33 +184,35 @@ class App extends Component {
         <div className="container">
           {!this.isMobile() &&
             <div className="header">
-              <h2>Wix Rich Content Editor</h2>
-              <div>
-                <label htmlFor="mountedToggle">Mounted</label>
-                <input
-                  type="checkbox"
-                  name="mountedToggle"
-                  onChange={this.onMountedChange}
-                  defaultChecked={this.state.mounted}
-                />
-              </div>
-              <div>
-                <label htmlFor="textToolbarType">Static Text Toolbar</label>
-                <input
-                  type="checkbox"
-                  name="textToolbarType"
-                  onChange={this.onTextToolbarTypeChange}
-                  defaultChecked={this.state.textToolbarType === 'static'}
-                />
-              </div>
-              <div>
-                <label htmlFor="readOnlyToggle">Read Only</label>
-                <input
-                  type="checkbox"
-                  name="readOnlyToggle"
-                  onChange={this.onReadOnlyChange}
-                  defaultChecked={this.state.readOnly}
-                />
+              <h1 onClick={() => this.setState({showDevToggles: !showDevToggles})}>Wix Rich Content Editor</h1>
+              <div className="toggle-container" style={{ display: this.state.showDevToggles ? 'block' : 'none' }}>
+                <div className="toggle">
+                  <input
+                    type="checkbox"
+                    id="mountedToggle"
+                    onChange={this.onMountedChange}
+                    defaultChecked={this.state.mounted}
+                  />
+                  <label htmlFor="mountedToggle">Mounted</label>
+                </div>
+                <div className="toggle">
+                  <input
+                    type="checkbox"
+                    id="textToolbarType"
+                    onChange={this.onTextToolbarTypeChange}
+                    defaultChecked={this.state.textToolbarType === 'static'}
+                  />
+                  <label htmlFor="textToolbarType">Static Text Toolbar</label>
+                </div>
+                <div className="toggle">
+                  <input
+                    type="checkbox"
+                    id="readOnlyToggle"
+                    onChange={this.onReadOnlyChange}
+                    defaultChecked={this.state.readOnly}
+                  />
+                  <label htmlFor="readOnlyToggle">Read Only</label>
+                </div>
               </div>
               <span className="intro">
               Last saved on {this.state.lastSave.toTimeString()}
