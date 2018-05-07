@@ -15,6 +15,7 @@ export default class StaticToolbar extends React.Component {
     helpers: PropTypes.object,
     t: PropTypes.func,
     dataHook: PropTypes.string,
+    id: PropTypes.string,
   };
 
   constructor(props) {
@@ -82,7 +83,7 @@ export default class StaticToolbar extends React.Component {
   onExtendContent = extendContent => this.setState({ extendContent });
 
   render() {
-    const { theme, pubsub, structure, helpers, isMobile, linkModal, anchorTarget, relValue, t, dataHook } = this.props;
+    const { theme, pubsub, structure, helpers, isMobile, linkModal, anchorTarget, relValue, t, dataHook, id } = this.props;
     const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
     const hasArrow = showLeftArrow || showRightArrow;
     const { toolbarStyles } = theme || {};
@@ -104,7 +105,7 @@ export default class StaticToolbar extends React.Component {
     };
 
     return (
-      <div role="toolbar" className={toolbarClassNames} data-hook={dataHook}>
+      <div role="toolbar" id={id} className={toolbarClassNames} data-hook={dataHook}>
         <div
           className={buttonClassNames}
           ref={this.handleButtonsRef}

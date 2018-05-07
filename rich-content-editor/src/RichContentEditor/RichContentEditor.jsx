@@ -9,6 +9,7 @@ import includes from 'lodash/includes';
 import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createEditorToolbars from './Toolbars';
+import { getStaticTextToolbarId } from './Toolbars/toolbar-id';
 import createPlugins from './createPlugins';
 import { keyBindingFn, COMMANDS } from './keyBindings';
 import { normalizeInitialState, MODALS, hasLinksInSelection, removeLinksInSelection, getModalStyles } from 'wix-rich-content-common';
@@ -24,6 +25,7 @@ class RichContentEditor extends Component {
       readOnly: props.readOnly || false,
       theme: props.theme || {}
     };
+    this.refId = Math.floor(Math.random() * 9999);
     this.initPlugins();
   }
 
@@ -71,6 +73,7 @@ class RichContentEditor extends Component {
       getEditorState: () => this.state.editorState,
       setEditorState: editorState => this.setState({ editorState }),
       t,
+      refId: this.refId
     });
   }
 
@@ -132,6 +135,13 @@ class RichContentEditor extends Component {
     }
   }
 
+  // TODO: get rid of this ASAP!
+  // Currently, there's no way to get a static toolbar ref without consumer interference
+  findFocusableDOMElement(id) {
+    const element = document.getElementById(id);
+    return element && element.querySelector('*[tabindex="0"]');
+  }
+
   handleKeyCommand = (command, editorState) => {
     let newState, contentState;
     switch (command) {
@@ -156,6 +166,12 @@ class RichContentEditor extends Component {
       case COMMANDS.BLOCKQUOTE:
       case COMMANDS.CODE:
         newState = RichUtils.toggleBlockType(editorState, command);
+        break;
+      case COMMANDS.TAB:
+        if (this.getToolbars().TextToolbar) {
+          const staticToolbarButton = this.findFocusableDOMElement(`${getStaticTextToolbarId(this.refId)}`);
+          staticToolbarButton && staticToolbarButton.focus();
+        }
         break;
       default:
         newState = RichUtils.handleKeyCommand(editorState, command);

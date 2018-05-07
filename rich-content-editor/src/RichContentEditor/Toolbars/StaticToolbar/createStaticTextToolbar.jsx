@@ -3,6 +3,7 @@ import get from 'lodash/get';
 import createStaticToolbar from './createStaticToolbar';
 import { DesktopTextButtonList } from '../buttons/';
 import { getTextButtonsFromList } from '../buttons/utils';
+import { getStaticTextToolbarId } from '../toolbar-id';
 import toolbarStyles from '~/Styles/text-static-toolbar.scss';
 import buttonStyles from '~/Styles/text-static-toolbar-button.scss';
 import separatorStyles from '~/Styles/text-static-toolbar-separator.scss';
@@ -75,10 +76,11 @@ const getStaticTextTheme = theme => {
   };
 };
 
-export default ({ buttons, pubsub, theme, isMobile, helpers, anchorTarget, relValue, t }) => {
+export default ({ buttons, pubsub, theme, isMobile, helpers, anchorTarget, relValue, t, refId }) => {
   const textButtons = get(buttons, 'desktop', DesktopTextButtonList);
   const staticTextTheme = getStaticTextTheme(theme);
   const structure = getTextButtonsFromList({ buttons: textButtons, pubsub, theme: staticTextTheme, t });
+  const id = getStaticTextToolbarId(refId);
 
   return createStaticToolbar({
     name: 'StaticTextToolbar',
@@ -90,6 +92,7 @@ export default ({ buttons, pubsub, theme, isMobile, helpers, anchorTarget, relVa
     linkModal: true,
     anchorTarget,
     relValue,
-    t
+    t,
+    id
   });
 };

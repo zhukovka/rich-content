@@ -7,7 +7,6 @@ import upperFirst from 'lodash/upperFirst';
 import isNil from 'lodash/isNil';
 import merge from 'lodash/merge';
 import isFunction from 'lodash/isFunction';
-import includes from 'lodash/includes';
 import classNames from 'classnames';
 import createHocName from '../Utils/createHocName';
 import getDisplayName from '../Utils/getDisplayName';
@@ -36,7 +35,7 @@ const sizeClassName = (size, theme) => {
   }
 };
 
-const createBaseComponent = ({ PluginComponent, theme, type, settings, pubsub, helpers, anchorTarget, t, isMobile }) => {
+const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers, anchorTarget, t, isMobile }) => {
   class WrappedComponent extends Component {
     static displayName = createHocName('BaseComponent', PluginComponent);
 

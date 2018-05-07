@@ -17,7 +17,8 @@ const createEditorToolbars = config => {
     theme,
     getEditorState,
     setEditorState,
-    t
+    t,
+    refId
   } = config;
   const { pluginButtons, textButtons } = buttons;
   const pubsub = simplePubsub();
@@ -25,6 +26,7 @@ const createEditorToolbars = config => {
 
   const toolbars = {
     side: createSideToolbar({
+      refId,
       buttons: pluginButtons,
       offset: sideToolbarOffset,
       theme: { ...getToolbarTheme(theme, 'side'), ...theme },
@@ -35,6 +37,7 @@ const createEditorToolbars = config => {
 
   if (shouldCreateTextToolbar) {
     toolbars.textInline = createInlineTextToolbar({
+      refId,
       buttons: textButtons,
       theme: { ...getToolbarTheme(theme, 'inline'), ...theme },
       anchorTarget,
@@ -45,6 +48,7 @@ const createEditorToolbars = config => {
       t,
     });
     toolbars.textStatic = createStaticTextToolbar({
+      refId,
       buttons: textButtons,
       theme: { ...getToolbarTheme(theme, 'text'), ...theme },
       anchorTarget,
@@ -58,11 +62,13 @@ const createEditorToolbars = config => {
 
   if (!isMobile && !hideFooterToolbar) {
     toolbars.footer = createFooterToolbar({
+      refId,
       buttons: pluginButtons,
       theme: { ...getToolbarTheme(theme, 'footer'), ...theme },
     });
   } else {
     toolbars.mobile = createMobileToolbar({
+      refId,
       anchorTarget,
       relValue,
       buttons,

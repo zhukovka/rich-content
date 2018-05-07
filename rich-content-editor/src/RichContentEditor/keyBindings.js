@@ -12,7 +12,8 @@ export const COMMANDS = {
   NUMBERED_LIST: 'ordered-list-item',
   BULLET_LIST: 'unordered-list-item',
   CODE: 'code-block',
-  BLOCKQUOTE: 'blockquote'
+  BLOCKQUOTE: 'blockquote',
+  TAB: 'tab'
 };
 
 const MODIFIERS = {
@@ -67,15 +68,13 @@ const COMMAND_BY_SHORTCUT = [
     command: COMMANDS.BLOCKQUOTE,
     modifiers: [MODIFIERS.COMMAND, MODIFIERS.SHIFT],
     key: '9'
+  }, {
+    command: COMMANDS.TAB,
+    modifiers: [],
+    key: 'Tab'
   }];
 
 const { hasCommandModifier, isCtrlKeyCommand, isOptionKeyCommand } = KeyBindingUtil;
-
-function isAlphaNumeric(keyCode) {
-  return (keyCode >= '0'.charCodeAt() && keyCode <= '9'.charCodeAt()) ||
-  (keyCode >= 'a'.charCodeAt() && keyCode <= 'z'.charCodeAt()) ||
-  (keyCode >= 'A'.charCodeAt() && keyCode <= 'Z'.charCodeAt());
-}
 
 function getModifiers(e) {
   return [
@@ -84,15 +83,6 @@ function getModifiers(e) {
     ...(isOptionKeyCommand(e) ? [MODIFIERS.OPTION] : []),
     ...(e.shiftKey ? [MODIFIERS.SHIFT] : [])
   ];
-}
-
-function getShortcut(e) {
-  const { keyCode, key } = e;
-  const modifiers = getModifiers(e);
-
-  if (isAlphaNumeric(keyCode) && modifiers.length > 0) {
-    return { modifiers, key };
-  }
 }
 
 function getCommandByShortcut(shortcut) {
@@ -109,6 +99,6 @@ function getCommandByShortcut(shortcut) {
 }
 
 export function keyBindingFn(e) {
-  const shortcut = getShortcut(e);
+  const shortcut = { modifiers: getModifiers(e), key: e.key };
   return getCommandByShortcut(shortcut) || getDefaultKeyBinding(e);
 }
