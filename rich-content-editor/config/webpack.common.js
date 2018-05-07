@@ -84,7 +84,7 @@ module.exports = {
     modules: ['node_modules', path.resolve(BASE_PATH, 'src')],
     extensions: ['.js', '.json', '.jsx', '.css'],
     alias: {
-      'draft-js': path.resolve(BASE_PATH, 'node_modules', '@wix', 'draft-js'),
+      'draft-js': path.resolve(BASE_PATH, '..', 'node_modules', '@wix', 'draft-js'),
     },
   },
   performance: {

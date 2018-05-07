@@ -4,12 +4,10 @@
 
 ## Bootstrap
 1. `cd rich-content`
-2. `npm i -g lerna`
-2. `npm i` - installs common dev dependecies
-3. `lerna bootstrap` - installs all dependencies and links any cross-dependencies.
+2. `npm run bootstrap` - installs all dependencies and links any cross-dependencies.
 4. Build the modules by running one of the following:
-    1. `lerna run --parallel build:dev` - build once
-    2. `lerna run --parallel watch` - rebuild on changes
+    1. `npm run build:dev` - build once
+    2. `npm run watch` - rebuild on changes
 
 
 ## Modules

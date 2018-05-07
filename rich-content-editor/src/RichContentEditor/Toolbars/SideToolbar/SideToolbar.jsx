@@ -32,7 +32,7 @@ export default class SideToolbar extends Component {
     const currentContent = editorState.getCurrentContent();
     const currentBlock = currentContent.getBlockForKey(selection.getStartKey());
     const selectionHasContent = currentBlock.getLength() > 0;
-    if (!selection.getHasFocus() || selectionHasContent) {
+    if (selectionHasContent) {
       this.setState({
         position: {
           transform: 'scale(0)',

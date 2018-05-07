@@ -10,7 +10,7 @@ import {
   AlignTextJustifyButton
 } from './index';
 import BackArrowIcon from '../icons/back-arrow.svg';
-import styles from '~/Styles/global.scss';
+import styles from 'wix-rich-content-common/dist/Styles/global.scss';
 
 export default class AlignmentPanel extends Component {
   constructor(props) {

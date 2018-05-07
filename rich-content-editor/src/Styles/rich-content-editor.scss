@@ -1,7 +1,7 @@
-@import "./palette.scss";
-@import "./consts.scss";
-@import "./global.scss";
-@import "./fonts.scss";
+@import "../../../rich-content-common/src/Styles/palette.scss";
+@import "../../../rich-content-common/src/Styles/consts.scss";
+@import "../../../rich-content-common/src/Styles/global.scss";
+@import "../../../rich-content-common/src/Styles/fonts.scss";
 
 .wrapper {
   @extend .fontElementMap;

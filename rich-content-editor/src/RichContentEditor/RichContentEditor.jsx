@@ -15,6 +15,7 @@ import { normalizeInitialState, MODALS, hasLinksInSelection, removeLinksInSelect
 import styles from '~/Styles/rich-content-editor.scss';
 import draftStyles from '~/Styles/draft.scss';
 import 'wix-rich-content-common/dist/styles.css';
+
 class RichContentEditor extends Component {
   constructor(props) {
     super(props);
