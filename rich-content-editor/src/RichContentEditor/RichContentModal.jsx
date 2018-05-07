@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MODALS } from 'wix-rich-content-common';
-import FocusTrap from 'focus-trap-react';
+import { MODALS, FocusManager } from 'wix-rich-content-common';
 import MobileAddPluginModal from './Toolbars/AddPluginModal';
 import MobileBlockLinkModal from './Toolbars/MobileBlockLinkModal';
 import MobileTextLinkModal from './Toolbars/MobileTextLinkModal';
@@ -19,9 +18,9 @@ const RichContentModal = ({ modalName, modalElement, ...modalProps }) => {
     return null;
   }
   return (
-    <FocusTrap>
+    <FocusManager>
       <ModalElement {...modalProps} />
-    </FocusTrap>);
+    </FocusManager>);
 };
 
 RichContentModal.propTypes = {

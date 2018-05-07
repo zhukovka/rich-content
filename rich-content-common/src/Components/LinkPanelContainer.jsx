@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import LinkPanel from './LinkPanel';
-import FocusTrap from 'focus-trap-react';
 import { mergeStyles } from '../Utils/mergeStyles';
 import RadioGroupHorizontal from './RadioGroupHorizontal';
 import styles from '../Styles/link-panel.scss';
-
+import FocusManager from './FocusManager';
 const LinkType = props => (
   <RadioGroupHorizontal
     dataSource={[{ value: 'url', labelText: 'Website address (URL)' }, { value: 'page', labelText: 'Site Page' }]}
@@ -62,7 +61,7 @@ class LinkPanelContainer extends Component {
         [styles.linkPanel_container_isMobile]: isMobile,
       });
     return (
-      <FocusTrap className={linkPanelContainerClassName} data-hook="linkPanelContainer">
+      <FocusManager className={linkPanelContainerClassName} data-hook="linkPanelContainer">
         <div className={styles.linkPanel_content}>
           <LinkPanel
             ref={this.setLinkPanel}
@@ -101,7 +100,7 @@ class LinkPanelContainer extends Component {
           >{doneButtonText}
           </button>
         </div>
-      </FocusTrap>
+      </FocusManager>
     );
   }
 }

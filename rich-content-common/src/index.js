@@ -24,6 +24,7 @@ export { default as Button } from './Components/Button';
 export { default as Checkbox } from './Components/Checkbox';
 export { default as Dropdown } from './Components/Dropdown';
 export { default as FileInput } from './Components/FileInput';
+export { default as FocusManager } from './Components/FocusManager';
 export { default as Image } from './Components/Image';
 export { default as ImageLoader } from './Components/ImageLoader';
 export { default as InputWithLabel } from './Components/InputWithLabel';

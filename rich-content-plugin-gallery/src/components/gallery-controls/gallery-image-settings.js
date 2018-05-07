@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import findIndex from 'lodash/findIndex';
-import FocusTrap from 'focus-trap-react';
 import { getScaleToFillImageURL } from 'image-client-api/dist/imageClientSDK';
 import {
   mergeStyles,
@@ -13,6 +12,7 @@ import {
   LinkPanel,
   SettingsSection,
   SettingsPanelFooter,
+  FocusManager
 } from 'wix-rich-content-common';
 import BackIcon from './icons/back.svg';
 import styles from './gallery-image-settings.scss';
@@ -93,7 +93,7 @@ class ImageSettings extends Component {
     const linkLabel = t('GalleryImageSettings_Link_Label');
 
     return (
-      <FocusTrap className={styles.galleryImageSettings}>
+      <FocusManager className={styles.galleryImageSettings}>
         <div className={styles.galleryImageSettings_content}>
           { isMobile ?
             <GallerySettingsMobileHeader
@@ -183,7 +183,7 @@ class ImageSettings extends Component {
           />
           }
         </div>
-      </FocusTrap>
+      </FocusManager>
     );
   }
 }
