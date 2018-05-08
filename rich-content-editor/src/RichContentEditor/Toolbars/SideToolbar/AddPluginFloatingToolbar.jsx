@@ -30,7 +30,7 @@ export default class AddPluginFloatingToolbar extends Component {
     }
   }
 
-  onMouseDown = event => {
+  onClick = event => {
     event.preventDefault();
     event.stopPropagation();
     const { isMobile, pubsub } = this.props;
@@ -101,14 +101,13 @@ export default class AddPluginFloatingToolbar extends Component {
         focusTrapOptions={{ escapeDeactivates: false, clickOutsideDeactivates: true, initialFocus: this.getFirstFocusableChildSelector(this.id) }}
         className={floatingContainerClassNames} onKeyDown={e => this.onKeyDown(e)}
       >
-        <div
-          className={floatingIconClassNames}
-          data-hook="addPluginFloatingToolbar"
-          onMouseDown={this.onMouseDown}
+        <button
+          aria-label={'Plugin Toolbar'} aria-pressed={this.state.isActive} tabIndex="0"
+          className={floatingIconClassNames} data-hook="addPluginFloatingToolbar" onClick={this.onClick}
           ref={el => (this.selectButton = el)}
         >
           {!this.state.isActive ? <PlusIcon /> : <PlusActiveIcon />}
-        </div>
+        </button>
         <div id={this.id} className={popoupClassNames} style={this.state.style} ref={el => (this.popup = el)}>
           {this.props.structure.map((Component, index) => (
             <Component
