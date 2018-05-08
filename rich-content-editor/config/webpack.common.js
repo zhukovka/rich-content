@@ -97,43 +97,10 @@ module.exports = {
   context: BASE_PATH,
   target: 'web',
   externals: [
-    {
-      'draft-js': {
-        root: 'Draft',
-        commonjs2: '@wix/draft-js',
-        commonjs: '@wix/draft-js',
-        amd: '@wix/draft-js',
-        umd: '@wix/draft-js',
-      },
-      '@wix/draft-js': {
-        root: 'Draft',
-        commonjs2: '@wix/draft-js',
-        commonjs: '@wix/draft-js',
-        amd: '@wix/draft-js',
-        umd: '@wix/draft-js',
-      },
-      immutable: {
-        root: 'Immutable',
-        commonjs2: 'immutable',
-        commonjs: 'immutable',
-        amd: 'immutable',
-        umd: 'immutable',
-      },
-      react: {
-        root: 'React',
-        commonjs2: 'react',
-        commonjs: 'react',
-        amd: 'react',
-        umd: 'react',
-      },
-      'react-dom': {
-        root: 'ReactDOM',
-        commonjs2: 'react-dom',
-        commonjs: 'react-dom',
-        amd: 'reactDOM',
-        umd: 'react-dom',
-      }
-    },
+    'react',
+    'react-dom',
+    'immutable',
+    '@wix/draft-js',
   ],
   stats: 'errors-only',
   plugins: [new ExtractTextPlugin(`${FILE_NAME}.css`)],
