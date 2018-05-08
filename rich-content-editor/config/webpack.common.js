@@ -100,6 +100,7 @@ module.exports = {
     'react',
     'react-dom',
     'immutable',
+    'draft-js',
     '@wix/draft-js',
   ],
   stats: 'errors-only',

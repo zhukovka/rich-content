@@ -98,6 +98,7 @@ module.exports = env => {
       'lodash',
       'react',
       'react-dom',
+      'draft-js',
       '@wix/draft-js',
       'classnames',
       'decorate-component-with-props',
