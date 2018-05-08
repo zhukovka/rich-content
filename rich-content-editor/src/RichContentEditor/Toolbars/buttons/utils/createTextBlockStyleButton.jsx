@@ -11,6 +11,7 @@ export default ({ blockTypes, Icons, InactiveIcon = null, tooltipTextKey }) =>
       theme: PropTypes.object.isRequired,
       isMobile: PropTypes.bool,
       t: PropTypes.func,
+      tabIndex: PropTypes.number,
     };
 
     constructor(props) {
@@ -66,7 +67,7 @@ export default ({ blockTypes, Icons, InactiveIcon = null, tooltipTextKey }) =>
 
     render() {
       const { blockTypeIndex } = this.state;
-      const { theme, isMobile, t } = this.props;
+      const { theme, isMobile, t, tabIndex } = this.props;
       const tooltipText = t(tooltipTextKey);
       const textForHooks = tooltipText.replace(/\s+/, '');
       const dataHookText = `textBlockStyleButton_${textForHooks}`;
@@ -86,6 +87,7 @@ export default ({ blockTypes, Icons, InactiveIcon = null, tooltipTextKey }) =>
           onClick={this.setBlockStyle}
           tooltipText={tooltipText}
           dataHook={dataHookText}
+          tabIndex={tabIndex}
         />
       );
     }

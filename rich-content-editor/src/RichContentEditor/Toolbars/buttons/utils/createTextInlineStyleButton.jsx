@@ -10,7 +10,8 @@ export default ({ style, Icon, tooltipTextKey }) =>
       setEditorState: PropTypes.func.isRequired,
       theme: PropTypes.object.isRequired,
       isMobile: PropTypes.bool,
-      t: PropTypes.func
+      t: PropTypes.func,
+      tabIndex: PropTypes.number,
     };
 
     toggleStyle = event => {
@@ -31,7 +32,7 @@ export default ({ style, Icon, tooltipTextKey }) =>
     }
 
     render() {
-      const { theme, isMobile, t } = this.props;
+      const { theme, isMobile, t, tabIndex } = this.props;
       const tooltipText = t(tooltipTextKey);
       const textForHooks = tooltipText.replace(/\s+/, '');
       const dataHookText = `textInlineStyleButton_${textForHooks}`;
@@ -45,6 +46,7 @@ export default ({ style, Icon, tooltipTextKey }) =>
           onClick={this.toggleStyle}
           tooltipText={tooltipText}
           dataHook={dataHookText}
+          tabIndex={tabIndex}
         />
       );
     }

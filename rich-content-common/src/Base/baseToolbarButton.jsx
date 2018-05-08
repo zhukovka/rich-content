@@ -110,37 +110,43 @@ class BaseToolbarButton extends React.Component {
   };
 
   renderToggleButton = (buttonWrapperClassNames, buttonClassNames) => {
-    const { theme, isMobile, t, tooltipTextKey } = this.props;
+    const { theme, isMobile, t, tooltipTextKey, tabIndex } = this.props;
     const tooltipText = t(tooltipTextKey);
     const showTooltip = !isMobile && !isEmpty(tooltipText);
     const textForHooks = tooltipText.replace(/\s+/, '');
     const dataHookText = `baseToolbarButton_${textForHooks}`;
 
     const toggleButton = (
+      /* eslint-disable jsx-a11y/no-static-element-interactions */
       <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
         <button
-          className={buttonClassNames} type="button"
+          className={buttonClassNames} aria-label={tooltipText} tabIndex={tabIndex} aria-pressed={this.state.isActive}
           data-hook={dataHookText} onMouseDown={this.handleClick} children={this.props.children || [this.getIcon()]}
         >
           {this.getIcon()}
         </button>
       </div>
+      /* eslint-enable jsx-a11y/no-static-element-interactions */
     );
 
     return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={toggleButton} />;
   };
 
   renderPanelButton = (buttonWrapperClassNames, buttonClassNames) => {
-    const { theme, isMobile, t, tooltipTextKey } = this.props;
+    const { theme, isMobile, t, tooltipTextKey, tabIndex } = this.props;
     const tooltipText = t(tooltipTextKey);
     const showTooltip = !isMobile && !isEmpty(tooltipText);
     const textForHooks = tooltipText.replace(/\s+/, '');
     const dataHookText = `baseToolbarButtonPanelButton_${textForHooks}`;
 
+    /* eslint-disable jsx-a11y/no-static-element-interactions */
     const panelButton = (
       <div>
         <div className={buttonWrapperClassNames} data-hook={dataHookText} onMouseDown={this.preventBubblingUp}>
-          <button className={buttonClassNames} type="button" onMouseDown={this.handleClick} children={this.props.children || [this.getIcon()]}>
+          <button
+            className={buttonClassNames} onMouseDown={this.handleClick} children={this.props.children || [this.getIcon()]}
+            aria-label={tooltipText} tabIndex={tabIndex}
+          >
             {this.getIcon()}
           </button>
         </div>
@@ -156,12 +162,13 @@ class BaseToolbarButton extends React.Component {
         />
       </div>
     );
+    /* eslint-enable jsx-a11y/no-static-element-interactions */
 
     return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={panelButton} />;
   };
 
   renderFilesButton = (buttonClassNames, styles) => {
-    const { theme, isMobile, t, tooltipTextKey, dataHook } = this.props;
+    const { theme, isMobile, t, tooltipTextKey, dataHook, tabIndex } = this.props;
     const tooltipText = t(tooltipTextKey);
     const showTooltip = !isMobile && !isEmpty(tooltipText);
 
@@ -169,7 +176,7 @@ class BaseToolbarButton extends React.Component {
     const filesButton = (
       <div className={replaceButtonWrapperClassNames}>
         <FileInput
-          className={classNames(buttonClassNames)} theme={theme}
+          className={classNames(buttonClassNames)} theme={theme} tabIndex={tabIndex}
           dataHook={dataHook} onChange={this.handleFileChange} accept="image/*" multiple={this.props.multiple}
         >
           {this.getIcon()}
@@ -181,19 +188,21 @@ class BaseToolbarButton extends React.Component {
   };
 
   renderDropdownButton = (buttonWrapperClassNames, buttonClassNames) => {
-    const { pubsub, componentData, onChange, getValue, t, dataHook, ...props } = this.props;
+    const { pubsub, componentData, onChange, getValue, t, dataHook, tabIndex, ...props } = this.props;
 
     const decoratedOnChange = value => onChange(value, componentData, pubsub.store);
     const decoratedGetValue = () => getValue(pubsub.store, t);
 
+    /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
       <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
         <Dropdown
-          className={buttonClassNames}
+          className={buttonClassNames} tabIndex={tabIndex}
           dataHook={dataHook} onChange={decoratedOnChange} getValue={decoratedGetValue} {...props}
         />
       </div>
     );
+    /* eslint-enable jsx-a11y/no-static-element-interactions */
   };
 
   render = () => {
@@ -252,6 +261,7 @@ BaseToolbarButton.propTypes = {
   anchorTarget: PropTypes.string,
   relValue: PropTypes.string,
   dataHook: PropTypes.string,
+  tabIndex: PropTypes.number,
 };
 
 export default BaseToolbarButton;

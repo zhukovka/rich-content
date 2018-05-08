@@ -100,16 +100,22 @@ export default class InlineToolbar extends Component {
     });
   };
 
-  getStyle() {
+  getTabIndexByVisibility = () => this.isVisible() ? 0 : -1;
+
+  isVisible = () => {
     const { pubsub } = this.props;
-    const { overrideContent, extendContent, position } = this.state;
+    const { overrideContent, extendContent } = this.state;
     const selection = pubsub.get('getEditorState')().getSelection();
     // overrideContent could for example contain a text input, hence we always show overrideContent
     // TODO: Test readonly mode and possibly set isVisible to false if the editor is readonly
-    const isVisible = (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent || extendContent;
+    return (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent || extendContent;
+  };
+
+  getStyle() {
+    const { position } = this.state;
     const style = { ...position };
 
-    if (isVisible) {
+    if (this.isVisible()) {
       style.visibility = 'visible';
       style.transform = 'translate(-50%) scale(1)';
       style.transition = 'transform 0.15s cubic-bezier(.3,1.2,.2,1)';
@@ -194,6 +200,7 @@ export default class InlineToolbar extends Component {
       anchorTarget,
       relValue,
       t,
+      tabIndex: this.getTabIndexByVisibility()
     };
 
     return (
@@ -203,6 +210,7 @@ export default class InlineToolbar extends Component {
         style={this.getStyle()}
         ref={this.handleToolbarRef}
         data-hook="inlineToolbar"
+        tabIndex={this.getTabIndexByVisibility()}
       >
         <div
           className={buttonClassNames}
@@ -211,6 +219,7 @@ export default class InlineToolbar extends Component {
           {
             showLeftArrow &&
             <button
+              tabIndex={this.getTabIndexByVisibility()}
               className={classNames(Styles.inlineToolbar_responsiveArrow, Styles.inlineToolbar_responsiveArrowLeft,
                 toolbarStyles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrowLeft)}
               data-hook="inlineToolbarLeftArrow" onMouseDown={e => this.scrollToolbar(e, 'left')}
@@ -221,13 +230,14 @@ export default class InlineToolbar extends Component {
           {OverrideContent ?
             <OverrideContent {...childrenProps} /> :
             structure.map((Button, index) =>
-              <Button key={index} {...childrenProps} />
+              <Button key={index} {...childrenProps}/>
             )
           }
           {hasArrow && <div className={Styles.inlineToolbar_responsiveSpacer} />}
           {
             showRightArrow &&
             <button
+              tabIndex={this.getTabIndexByVisibility()}
               className={classNames(Styles.inlineToolbar_responsiveArrow, Styles.inlineToolbar_responsiveArrowRight,
                 toolbarStyles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrowRight)}
               data-hook="inlineToolbarRightArrow" onMouseDown={e => this.scrollToolbar(e, 'right')}

@@ -61,7 +61,7 @@ class BlockLinkButton extends Component {
   };
 
   render() {
-    const { theme, isMobile, t } = this.props;
+    const { theme, isMobile, t, tabIndex } = this.props;
     const linkButtonTooltip = t('TextLinkButton_Tooltip');
     return (<LinkButton
       data-hook="blockLinkButton" onClick={this.showLinkPanel}
@@ -69,6 +69,7 @@ class BlockLinkButton extends Component {
       theme={theme}
       isMobile={isMobile}
       tooltipText={linkButtonTooltip}
+      tabIndex={tabIndex}
     />);
   }
 }
@@ -85,6 +86,7 @@ BlockLinkButton.propTypes = {
   anchorTarget: PropTypes.string,
   relValue: PropTypes.string,
   t: PropTypes.func,
+  tabIndex: PropTypes.number,
 };
 
 export default BlockLinkButton;

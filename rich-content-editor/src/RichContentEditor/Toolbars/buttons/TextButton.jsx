@@ -22,6 +22,11 @@ export default class TextButton extends Component {
     isMobile: PropTypes.bool,
     tooltipText: PropTypes.string,
     dataHook: PropTypes.string,
+    tabIndex: PropTypes.number,
+  };
+
+  static defaultProps = {
+    tabIndex: 0
   };
 
   isActive = () => {
@@ -38,7 +43,7 @@ export default class TextButton extends Component {
 
   render() {
     const { styles } = this;
-    const { icon: Icon, theme, isMobile, tooltipText, dataHook } = this.props;
+    const { icon: Icon, theme, isMobile, tooltipText, dataHook, tabIndex } = this.props;
     const showTooltip = !isMobile && !isEmpty(tooltipText);
     const iconClassNames = classNames(
       styles.inlineToolbarButton_icon,
@@ -51,7 +56,7 @@ export default class TextButton extends Component {
     const textButton = (
       <div className={styles.inlineToolbarButton_wrapper} onMouseDown={this.preventBubblingUp}>
         <button
-          tabIndex="0" aria-label={tooltipText} aria-pressed={this.isActive()}
+          tabIndex={tabIndex} aria-label={tooltipText} aria-pressed={this.isActive()}
           className={styles.inlineToolbarButton} data-hook={dataHook} onClick={this.handleClick}
         >
           <div className={iconClassNames}>

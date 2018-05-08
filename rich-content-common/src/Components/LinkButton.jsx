@@ -36,6 +36,7 @@ export default class LinkButton extends Component {
     theme: PropTypes.object.isRequired,
     isMobile: PropTypes.bool,
     tooltipText: PropTypes.string,
+    tabIndex: PropTypes.number,
   };
 
   handleClick = () => this.props.onClick && this.props.onClick();
@@ -43,7 +44,7 @@ export default class LinkButton extends Component {
   preventBubblingUp = event => event.preventDefault();
 
   render() {
-    const { isActive, theme, isMobile, tooltipText } = this.props;
+    const { isActive, theme, isMobile, tooltipText, tabIndex } = this.props;
     const { styles } = this;
     const showTooltip = !isMobile && !isEmpty(tooltipText);
 
@@ -57,7 +58,7 @@ export default class LinkButton extends Component {
     /* eslint-disable jsx-a11y/no-static-element-interactions */
       <div className={styles.buttonWrapper} onMouseDown={this.preventBubblingUp}>
         <button
-          tabIndex="0" aria-label={tooltipText} aria-pressed={isActive} data-hook="linkButton"
+          tabIndex={tabIndex} aria-label={tooltipText} aria-pressed={isActive} data-hook="linkButton"
           onClick={this.handleClick} className={styles.button}
         >
           <div className={iconClassNames}>

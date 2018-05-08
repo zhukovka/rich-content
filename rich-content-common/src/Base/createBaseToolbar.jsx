@@ -31,6 +31,7 @@ const getInitialState = () => (
     componentState: {},
     overrideContent: undefined,
     extendContent: undefined,
+    tabIndex: -1
   }
 );
 
@@ -151,6 +152,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
         position,
         componentData,
         componentState,
+        tabIndex: 0
       });
     };
 
@@ -201,7 +203,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       }
     }
 
-    renderButton = (button, key, themedStyle, separatorClassNames) => {
+    renderButton = (button, key, themedStyle, separatorClassNames, tabIndex) => {
       const { alignment, size } = this.state;
       switch (button.type) {
         case BUTTONS.SIZE_ORIGINAL:
@@ -213,34 +215,37 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
               theme={themedStyle}
               key={key}
               t={t}
+              tabIndex={tabIndex}
             />
           );
         case BUTTONS.SIZE_SMALL_CENTER:
           return (
             <SizeSmallCenterButton
-              size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t}
+              size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t} tabIndex={tabIndex}
             />
           );
         case BUTTONS.SIZE_SMALL_LEFT:
           return (
             <SizeSmallLeftButton
-              size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t}
+              tabIndex={tabIndex} size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t}
             />
           );
         case BUTTONS.SIZE_SMALL_RIGHT:
           return (
             <SizeSmallRightButton
-              size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t}
+              tabIndex={tabIndex} size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t}
             />
           );
         case BUTTONS.SIZE_CONTENT:
           return (
-            <SizeContentButton size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t} />
+            <SizeContentButton
+              tabIndex={tabIndex} size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t}
+            />
           );
         case BUTTONS.SIZE_FULL_WIDTH:
           return (
             <SizeFullWidthButton
-              size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t}
+              tabIndex={tabIndex} size={size} alignment={alignment} setAlignmentAndSize={this.setAlignmentAndSize} theme={themedStyle} key={key} t={t}
             />
           );
         case BUTTONS.SEPARATOR:
@@ -249,6 +254,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
           return <Separator className={separatorClassNames} horizontal key={key} />;
         case BUTTONS.LINK:
           return (<BlockLinkButton
+            tabIndex={tabIndex}
             pubsub={pubsub}
             onExtendContent={this.onExtendContent}
             onOverrideContent={this.onOverrideContent}
@@ -263,10 +269,11 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
             t={t}
           />);
         case BUTTONS.DELETE:
-          return <DeleteButton onClick={pubsub.get('deleteBlock')} theme={themedStyle} key={key} t={t} />;
+          return <DeleteButton tabIndex={tabIndex} onClick={pubsub.get('deleteBlock')} theme={themedStyle} key={key} t={t} />;
         default:
           return (
             <BaseToolbarButton
+              tabIndex={tabIndex}
               theme={themedStyle}
               componentData={this.state.componentData}
               componentState={this.state.componentState}
@@ -282,7 +289,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
     };
 
     render = () => {
-      const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
+      const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent, tabIndex } = this.state;
       const hasArrow = showLeftArrow || showRightArrow;
       const { toolbarStyles: toolbarTheme } = theme || {};
       const { buttonStyles: buttonTheme, separatorStyles: separatorTheme } = theme || {};
@@ -310,30 +317,30 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
           >
             {
               showLeftArrow &&
-              <div
+              <button
                 className={classNames(toolbarStyles.pluginToolbar_responsiveArrow, toolbarStyles.pluginToolbar_responsiveArrowLeft,
                   toolbarTheme.pluginToolbar_responsiveArrow, toolbarTheme.pluginToolbar_responsiveArrowLeft)}
-                data-hook="baseToolbarLeftArrow" onMouseDown={e => this.scrollToolbar(e, 'left')}
+                data-hook="baseToolbarLeftArrow" onMouseDown={e => this.scrollToolbar(e, 'left')} tabIndex={tabIndex}
               >
                 <i />
-              </div>
+              </button>
             }
             {OverrideContent ?
               <OverrideContent {...overrideProps} /> :
               this.structure.map((button, index) => (
-                this.renderButton(button, index, themedButtonStyle, separatorClassNames)
+                this.renderButton(button, index, themedButtonStyle, separatorClassNames, tabIndex)
               ))
             }
             {hasArrow && <div className={toolbarStyles.pluginToolbar_responsiveSpacer} />}
             {
               showRightArrow &&
-              <div
+              <button
                 className={classNames(toolbarStyles.pluginToolbar_responsiveArrow, toolbarStyles.pluginToolbar_responsiveArrowRight,
                   toolbarTheme.pluginToolbar_responsiveArrow, toolbarTheme.pluginToolbar_responsiveArrowRight)}
-                data-hook="baseToolbarRightArrow" onMouseDown={e => this.scrollToolbar(e, 'right')}
+                data-hook="baseToolbarRightArrow" onMouseDown={e => this.scrollToolbar(e, 'right')} tabIndex={tabIndex}
               >
                 <i />
-              </div>
+              </button>
             }
           </div>
           {ExtendContent && (

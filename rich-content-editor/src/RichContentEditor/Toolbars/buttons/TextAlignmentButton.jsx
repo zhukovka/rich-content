@@ -34,7 +34,7 @@ class TextAlignmentButton extends Component {
   };
 
   render() {
-    const { theme, isMobile, t } = this.props;
+    const { theme, isMobile, t, tabIndex } = this.props;
     const alignmentButtonTooltip = t('TextAlignmentButton_Tooltip');
     const textForHooks = alignmentButtonTooltip.replace(/\s+/, '');
     const dataHookText = `textAlignmentButton_${textForHooks}`;
@@ -46,6 +46,7 @@ class TextAlignmentButton extends Component {
         isMobile={isMobile}
         dataHook={dataHookText} onClick={this.handleClick}
         tooltipText={alignmentButtonTooltip}
+        tabIndex={tabIndex}
       />
     );
   }
@@ -57,6 +58,7 @@ TextAlignmentButton.propTypes = {
   theme: PropTypes.object,
   isMobile: PropTypes.bool,
   t: PropTypes.func,
+  tabIndex: PropTypes.number,
 };
 
 export default TextAlignmentButton;

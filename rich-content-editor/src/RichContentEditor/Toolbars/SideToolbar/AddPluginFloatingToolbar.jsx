@@ -9,6 +9,7 @@ import Styles from '~/Styles/side-toolbar.scss';
 export default class AddPluginFloatingToolbar extends Component {
   state = {
     isActive: false,
+    tabIndex: -1,
     style: {
       transform: 'translate(-50%) scale(0)',
     },
@@ -67,6 +68,7 @@ export default class AddPluginFloatingToolbar extends Component {
         transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
       },
       isActive: true,
+      tabIndex: 0
     });
   };
 
@@ -75,7 +77,8 @@ export default class AddPluginFloatingToolbar extends Component {
       style: {
         transform: 'translate(-50%) scale(0)',
       },
-      isActive: false
+      isActive: false,
+      tabIndex: -1
     });
   };
 
@@ -111,6 +114,7 @@ export default class AddPluginFloatingToolbar extends Component {
         <div id={this.id} className={popoupClassNames} style={this.state.style} ref={el => (this.popup = el)}>
           {this.props.structure.map((Component, index) => (
             <Component
+              tabIndex={this.state.tabIndex}
               key={index}
               getEditorState={getEditorState}
               setEditorState={setEditorState}

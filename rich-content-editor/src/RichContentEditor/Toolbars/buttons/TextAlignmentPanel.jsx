@@ -53,11 +53,15 @@ export default class AlignmentPanel extends Component {
     const buttonProps = {
       alignment,
       onClick: this.onAlignmentChange,
+      tabIndex: this.props.tabIndex,
       ...this.props
     };
     return (
       <div className={styles.flex}>
-        <TextButton icon={BackArrowIcon} dataHook="textBackArrow" onClick={this.handleBackClick} theme={this.props.theme}/>
+        <TextButton
+          tabIndex={this.props.tabIndex} icon={BackArrowIcon} dataHook="textBackArrow"
+          onClick={this.handleBackClick} theme={this.props.theme}
+        />
         <Separator className={this.props.theme.inlineToolbarSeparator}/>
         {this.alignmentButtons.map((Button, i) => <Button key={i} {...buttonProps} />)}
       </div>
@@ -70,4 +74,5 @@ AlignmentPanel.propTypes = {
   setEditorState: PropTypes.func.isRequired,
   onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
+  tabIndex: PropTypes.number,
 };

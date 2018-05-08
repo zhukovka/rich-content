@@ -76,9 +76,10 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
 
     renderButton = () => {
       const { styles } = this;
-      const { showName } = this.props;
+      const { showName, tabIndex } = this.props;
       const { name, Icon, ButtonElement } = button;
       if (ButtonElement) {
+        /* eslint-disable jsx-a11y/no-static-element-interactions */
         return (
           <div className={styles.button} data-hook={`${name.replace(' ', '_')}_insert_plugin_button`} onClick={this.onClick}>
             <div className={styles.icon}>
@@ -87,9 +88,14 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
             {showName && <span key="1" className={styles.label}>{name}</span>}
           </div>
         );
+        /* eslint-enable jsx-a11y/no-static-element-interactions */
+
       } else {
         return (
-          <button className={styles.button} data-hook={`${name.replace(' ', '_')}_insert_plugin_button`} onClick={this.onClick}>
+          <button
+            aria-label={`Add ${name}`} tabIndex={tabIndex}
+            className={styles.button} data-hook={`${name.replace(' ', '_')}_insert_plugin_button`} onClick={this.onClick}
+          >
             <div className={styles.icon}>
               <Icon key="0" />
             </div>
@@ -127,7 +133,7 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
       if (helpers && helpers.handleFileSelection) {
         return null;
       }
-      const { showName } = this.props;
+      const { showName, tabIndex } = this.props;
       const { name, Icon } = button;
       const { styles } = this;
       return (
@@ -138,6 +144,7 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
           accept="image/*"
           multiple={button.multi}
           theme={this.props.theme}
+          tabIndex={tabIndex}
         >
           <div className={styles.icon}>
             <Icon key="0" />
@@ -173,6 +180,7 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
     showName: PropTypes.bool,
     isMobile: PropTypes.bool,
     t: PropTypes.func,
+    tabIndex: PropTypes.number,
   };
 
   return InsertPluginButton;
