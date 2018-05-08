@@ -137,7 +137,7 @@ class RichContentEditor extends Component {
 
   // TODO: get rid of this ASAP!
   // Currently, there's no way to get a static toolbar ref without consumer interference
-  findFocusableDOMElement(id) {
+  findFocusableChildForElement(id) {
     const element = document.getElementById(id);
     return element && element.querySelector('*[tabindex="0"]');
   }
@@ -169,7 +169,7 @@ class RichContentEditor extends Component {
         break;
       case COMMANDS.TAB:
         if (this.getToolbars().TextToolbar) {
-          const staticToolbarButton = this.findFocusableDOMElement(`${getStaticTextToolbarId(this.refId)}`);
+          const staticToolbarButton = this.findFocusableChildForElement(`${getStaticTextToolbarId(this.refId)}`);
           staticToolbarButton && staticToolbarButton.focus();
         }
         break;
