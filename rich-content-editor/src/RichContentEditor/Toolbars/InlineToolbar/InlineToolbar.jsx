@@ -198,6 +198,7 @@ export default class InlineToolbar extends Component {
 
     return (
       <div
+        role="toolbar"
         className={toolbarClassNames}
         style={this.getStyle()}
         ref={this.handleToolbarRef}
@@ -209,13 +210,13 @@ export default class InlineToolbar extends Component {
         >
           {
             showLeftArrow &&
-            <div
+            <button
               className={classNames(Styles.inlineToolbar_responsiveArrow, Styles.inlineToolbar_responsiveArrowLeft,
                 toolbarStyles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrowLeft)}
               data-hook="inlineToolbarLeftArrow" onMouseDown={e => this.scrollToolbar(e, 'left')}
             >
               <i/>
-            </div>
+            </button>
           }
           {OverrideContent ?
             <OverrideContent {...childrenProps} /> :
@@ -226,13 +227,13 @@ export default class InlineToolbar extends Component {
           {hasArrow && <div className={Styles.inlineToolbar_responsiveSpacer} />}
           {
             showRightArrow &&
-            <div
+            <button
               className={classNames(Styles.inlineToolbar_responsiveArrow, Styles.inlineToolbar_responsiveArrowRight,
                 toolbarStyles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrowRight)}
               data-hook="inlineToolbarRightArrow" onMouseDown={e => this.scrollToolbar(e, 'right')}
             >
               <i/>
-            </div>
+            </button>
           }
         </div>
         {ExtendContent && (

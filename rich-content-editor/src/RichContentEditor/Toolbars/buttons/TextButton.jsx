@@ -50,7 +50,10 @@ export default class TextButton extends Component {
     /* eslint-disable jsx-a11y/no-static-element-interactions */
     const textButton = (
       <div className={styles.inlineToolbarButton_wrapper} onMouseDown={this.preventBubblingUp}>
-        <button tabIndex="0" className={styles.inlineToolbarButton} data-hook={dataHook} onClick={this.handleClick}>
+        <button
+          tabIndex="0" aria-label={tooltipText} aria-pressed={this.isActive()}
+          className={styles.inlineToolbarButton} data-hook={dataHook} onClick={this.handleClick}
+        >
           <div className={iconClassNames}>
             <Icon />
           </div>

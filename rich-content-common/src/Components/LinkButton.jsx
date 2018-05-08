@@ -56,7 +56,10 @@ export default class LinkButton extends Component {
     const linkButton = (
     /* eslint-disable jsx-a11y/no-static-element-interactions */
       <div className={styles.buttonWrapper} onMouseDown={this.preventBubblingUp}>
-        <button data-hook="linkButton" onClick={this.handleClick} className={styles.button}>
+        <button
+          tabIndex="0" aria-label={tooltipText} aria-pressed={isActive} data-hook="linkButton"
+          onClick={this.handleClick} className={styles.button}
+        >
           <div className={iconClassNames}>
             <LinkIcon />
           </div>
@@ -64,7 +67,6 @@ export default class LinkButton extends Component {
       </div>
     );
     /* eslint-enable jsx-a11y/no-static-element-interactions */
-
 
     return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={linkButton} />;
   }
