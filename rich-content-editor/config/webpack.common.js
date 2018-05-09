@@ -100,8 +100,22 @@ module.exports = {
     'react',
     'react-dom',
     'immutable',
-    'draft-js',
-    '@wix/draft-js',
+    {
+      'draft-js': {
+        root: 'Draft',
+        commonjs2: '@wix/draft-js',
+        commonjs: '@wix/draft-js',
+        amd: '@wix/draft-js',
+        umd: '@wix/draft-js',
+      },
+      '@wix/draft-js': {
+        root: 'Draft',
+        commonjs2: '@wix/draft-js',
+        commonjs: '@wix/draft-js',
+        amd: '@wix/draft-js',
+        umd: '@wix/draft-js',
+      }
+    }
   ],
   stats: 'errors-only',
   plugins: [new ExtractTextPlugin(`${FILE_NAME}.css`)],
