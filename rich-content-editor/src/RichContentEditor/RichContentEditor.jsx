@@ -152,7 +152,7 @@ class RichContentEditor extends Component {
         } else {
           this.openLinkModal();
         }
-        break;
+        return 'handled';
       case COMMANDS.ALIGN_RIGHT:
       case COMMANDS.ALIGN_LEFT:
       case COMMANDS.ALIGN_CENTER:
@@ -172,8 +172,11 @@ class RichContentEditor extends Component {
         if (this.getToolbars().TextToolbar) {
           const staticToolbarButton = this.findFocusableChildForElement(`${getStaticTextToolbarId(this.refId)}`);
           staticToolbarButton && staticToolbarButton.focus();
+          return 'handled';
+        } else {
+          this.editor.blur();
+          return 'not-handled';
         }
-        break;
       default:
         newState = RichUtils.handleKeyCommand(editorState, command);
         break;
