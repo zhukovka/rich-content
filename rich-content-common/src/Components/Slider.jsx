@@ -12,6 +12,7 @@ class Slider extends Component {
     theme: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     dataHook: PropTypes.string,
+    readOnly: PropTypes.bool,
     ariaProps: PropTypes.object,
   };
 
@@ -42,16 +43,14 @@ class Slider extends Component {
   }
 
   render() {
-    const { min, max, onChange, dataHook, ariaProps } = this.props;
+    const { min, max, onChange, dataHook, readOnly, ariaProps } = this.props;
+    const { value } = this.state;
     return (
       <input
-        {...ariaProps}
-        type={'range'}
-        className={this.styles.slider}
-        data-hook={dataHook} onChange={e => this.onChange(e.target.valueAsNumber)}
-        value={this.state.value} min={min} max={max}
-        onMouseUp={e => onChange(e.target.valueAsNumber)}
-        onKeyUp={e => this.onKeyUp(e)}
+        aria-valuemin={min} aria-valuemax={max} aria-valuenow={value} {...ariaProps}
+        tabIndex={readOnly ? -1 : 0}
+        type={'range'} className={this.styles.slider} data-hook={dataHook} onChange={e => this.onChange(e.target.valueAsNumber)}
+        value={this.state.value} min={min} max={max} onMouseUp={e => onChange(e.target.valueAsNumber)} onKeyUp={e => this.onKeyUp(e)}
       />);
   }
 }
