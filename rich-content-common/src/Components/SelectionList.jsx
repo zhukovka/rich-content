@@ -91,18 +91,11 @@ class SelectionList extends Component {
   render() {
     const { dataSource, className, onChange, renderItem, theme, optionClassName } = this.props;
     return (
-      <div
-        ref={el => this.ref = el}
-        role={'listbox'}
-        aria-orientation={'horizontal'}
-        className={classnames(styles.selectionList, className)}
-      >
+      <div ref={el => this.ref = el} role={'listbox'} aria-orientation={'horizontal'} className={classnames(styles.selectionList, className)}>
         {dataSource.map(item => this.mapItemToOptionData(item))
           .map(({ item, option, selected }, i) => (
             <SelectionListOption
-              tabIndex={i === 0 ? 0 : -1}
-              selected={selected}
-              focused={i === this.state.focusIndex}
+              tabIndex={i === 0 ? 0 : -1} selected={selected} focused={i === this.state.focusIndex}
               dataHook={item.dataHook} onChange={onChange} key={i} theme={theme} value={option.value} optionClassName={optionClassName}
               onKeyDown={e => this.onKeyDown(e)}
             >
