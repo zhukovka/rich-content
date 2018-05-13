@@ -41,11 +41,13 @@ class SelectionList extends Component {
     value: PropTypes.any.isRequired,
     onChange: PropTypes.func.isRequired,
     optionClassName: PropTypes.string,
+    readOnly: PropTypes.bool,
   };
 
   static defaultProps = {
     dataMapper: defaultDataMapper,
-    renderItem: defaultRenderItem
+    renderItem: defaultRenderItem,
+    readOnly: false
   };
 
   mapItemToOptionData(item) {
@@ -58,7 +60,7 @@ class SelectionList extends Component {
   }
 
   onKeyDown(event) {
-    if (this.props.dataSource.length < 2) {
+    if (this.props.dataSource.length < 2 || this.props.readOnly) {
       return;
     }
     const index = this.state.focusIndex === -1 ? 0 : this.state.focusIndex;
@@ -89,13 +91,13 @@ class SelectionList extends Component {
   }
 
   render() {
-    const { dataSource, className, onChange, renderItem, theme, optionClassName } = this.props;
+    const { dataSource, className, onChange, renderItem, theme, optionClassName, readOnly } = this.props;
     return (
       <div ref={el => this.ref = el} role={'listbox'} aria-orientation={'horizontal'} className={classnames(styles.selectionList, className)}>
         {dataSource.map(item => this.mapItemToOptionData(item))
           .map(({ item, option, selected }, i) => (
             <SelectionListOption
-              tabIndex={i === 0 ? 0 : -1} selected={selected} focused={i === this.state.focusIndex}
+              tabIndex={(i === 0 && !readOnly) ? 0 : -1} selected={selected} focused={i === this.state.focusIndex}
               dataHook={item.dataHook} onChange={onChange} key={i} theme={theme} value={option.value} optionClassName={optionClassName}
               onKeyDown={e => this.onKeyDown(e)}
             >
