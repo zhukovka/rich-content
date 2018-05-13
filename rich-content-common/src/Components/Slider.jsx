@@ -44,10 +44,9 @@ class Slider extends Component {
 
   render() {
     const { min, max, onChange, dataHook, readOnly, ariaProps } = this.props;
-    const { value } = this.state;
     return (
       <input
-        aria-valuemin={min} aria-valuemax={max} aria-valuenow={value} {...ariaProps}
+        {...ariaProps}
         tabIndex={readOnly ? -1 : 0}
         type={'range'} className={this.styles.slider} data-hook={dataHook} onChange={e => this.onChange(e.target.valueAsNumber)}
         value={this.state.value} min={min} max={max} onMouseUp={e => onChange(e.target.valueAsNumber)} onKeyUp={e => this.onKeyUp(e)}
