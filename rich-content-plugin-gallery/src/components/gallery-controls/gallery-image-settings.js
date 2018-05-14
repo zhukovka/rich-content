@@ -116,10 +116,8 @@ class ImageSettings extends Component {
           >
             <SettingsSection theme={theme}>
               <Image
-                resizeMode={'contain'}
-                className={styles.galleryImageSettings_image}
-                src={this.getImageUrl(selectedImage)}
-                theme={theme}
+                alt={selectedImage.metadata.title || 'gallery image preview'} resizeMode={'contain'}
+                className={styles.galleryImageSettings_image} src={this.getImageUrl(selectedImage)} theme={theme}
               />
               <div className={classNames(styles.galleryImageSettings_nav, { [styles.galleryImageSettings_nav_mobile]: isMobile })}>
                 <button
