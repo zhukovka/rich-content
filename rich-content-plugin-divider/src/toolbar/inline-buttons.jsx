@@ -45,7 +45,7 @@ class SettingsModal extends React.Component {
             <input
               type="range" min="10" max="100" value={this.state.width} id="width" step="1" aria-label={widthLabel}
               data-hook="dividerPluginWidth" onChange={this.changeWidth} tabIndex={tabIndex}
-              role="spinbutton" aria-valuemin="10" aria-valuemax="100" aria-valuenow={this.state.width}
+              aria-valuemin="10" aria-valuemax="100" aria-valuenow={this.state.width}
             />
             {widthLabel}
           </label>

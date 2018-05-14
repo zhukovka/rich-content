@@ -53,7 +53,7 @@ class SettingsModal extends React.Component {
         <div>
           <label htmlFor="width">
             <input
-              role="spinbutton" aria-valuemin="10" aria-valuemax="1000" aria-valuenow={this.state.width}
+              aria-valuemin="10" aria-valuemax="1000" aria-valuenow={this.state.width}
               type="range" min="10" max="1000" value={this.state.width} id="width" step="10"
               data-hook="htmlSettingsWidth" onChange={this.changeWidth} tabIndex={tabIndex} aria-label={widthLabel}
             />
@@ -66,7 +66,7 @@ class SettingsModal extends React.Component {
         <div>
           <label htmlFor="height">
             <input
-              role="spinbutton" aria-valuemin="10" aria-valuemax="1000" aria-valuenow={this.state.height}
+              aria-valuemin="10" aria-valuemax="1000" aria-valuenow={this.state.height}
               type="range" min="10" max="1000" value={this.state.height} id="height" step="10"
               data-hook="htmlSettingsHeight" onChange={this.changeHeight} tabIndex={tabIndex} aria-label={heightLabel}
             />
