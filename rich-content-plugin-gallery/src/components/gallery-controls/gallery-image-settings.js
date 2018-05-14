@@ -114,7 +114,7 @@ class ImageSettings extends Component {
             className={classNames(styles.galleryImageSettings_scrollContainer,
               { [styles.galleryImageSettings_scrollContainer_mobile]: isMobile })}
           >
-            <SettingsSection theme={theme}>
+            <SettingsSection theme={theme} ariaProps={{ 'aria-label': 'image navigation', role: 'region' }}>
               <Image
                 alt={selectedImage.metadata.title || 'gallery image preview'} resizeMode={'contain'}
                 className={styles.galleryImageSettings_image} src={this.getImageUrl(selectedImage)} theme={theme}
@@ -146,7 +146,10 @@ class ImageSettings extends Component {
                 <span className={styles.galleryImageSettings_delete_text}>{deleteLabel}</span>
               </button>
             </div>
-            <SettingsSection theme={theme} className={styles.galleryImageSettings_section}>
+            <SettingsSection
+              ariaProps={{ 'aria-label': 'image properties', role: 'region' }}
+              theme={theme} className={styles.galleryImageSettings_section}
+            >
               <InputWithLabel
                 theme={theme}
                 id="galleryImageTitleInput"
@@ -156,15 +159,17 @@ class ImageSettings extends Component {
                 dataHook="galleryImageTitleInput" onChange={event => this.imageMetadataUpdated(selectedImage, { title: event.target.value })}
               />
             </SettingsSection>
-            <SettingsSection theme={theme} className={this.styles.galleryImageSettings_section}>
+            <SettingsSection
+              ariaProps={{ 'aria-label': 'image link', role: 'region' }}
+              theme={theme} className={this.styles.galleryImageSettings_section}
+            >
               <span id="gallery_image_link_lbl" className={this.styles.inputWithLabel_label}>{linkLabel}</span>
-            </SettingsSection>
-            <div className={this.styles.galleryImageSettingsLinkContainer}>
               <LinkPanel
                 ref={this.setLinkPanel} theme={theme} url={url} targetBlank={targetBlank} nofollow={nofollow}
                 isImageSettings t={t} ariaProps={{ 'aria-labelledby': 'gallery_image_link_lbl' }}
               />
-            </div>
+            </SettingsSection>
+
           </div>
           {isMobile ? null : <SettingsPanelFooter
             fixed

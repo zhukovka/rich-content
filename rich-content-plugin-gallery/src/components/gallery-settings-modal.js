@@ -92,7 +92,7 @@ class AdvancedSettingsSection extends Component {
     const { data, store, theme, t, isMobile } = this.props;
     return this.shouldRender() && (
       <div className={isMobile ? styles.gallerySettings_settingsContainerMobile : styles.gallerySettings_settingsContainer}>
-        <SettingsSection theme={theme}>
+        <SettingsSection theme={theme} ariaProps={{ 'aria-label': 'layout selection', role: 'region' }}>
           <LayoutSelector
             theme={theme}
             value={this.getValueFromComponentStyles('galleryLayout')}
