@@ -43,8 +43,9 @@ class SettingsModal extends React.Component {
         <div>
           <label htmlFor="width">
             <input
-              type="range" min="10" max="100" value={this.state.width} id="width" step="1"
+              type="range" min="10" max="100" value={this.state.width} id="width" step="1" aria-label={widthLabel}
               data-hook="dividerPluginWidth" onChange={this.changeWidth} tabIndex={tabIndex}
+              role="spinbutton" aria-valuemin="10" aria-valuemax="100" aria-valuenow={this.state.width}
             />
             {widthLabel}
           </label>
@@ -103,8 +104,9 @@ class EditModal extends React.Component {
             <div>
               <label htmlFor="divider1">
                 <input
-                  type="radio" name="type" id="divider1" value="divider1" checked={this.state.type === 'divider1'}
-                  data-hook="dividerTypeOne" onChange={this.changeType} tabIndex={tabIndex}
+                  type="radio" name="type" id="divider1" value="divider1"
+                  checked={this.state.type === 'divider1'} aria-checked={this.state.type === 'divider1'}
+                  data-hook="dividerTypeOne" onChange={this.changeType} tabIndex={tabIndex} aria-label={dividerType1}
                 />
                 {dividerType1}
               </label>
@@ -112,6 +114,7 @@ class EditModal extends React.Component {
             <div>
               <label htmlFor="divider2">
                 <input
+                  aria-checked={this.state.type === 'divider2'} aria-label={dividerType2}
                   type="radio" name="type" id="divider2" value="divider2" checked={this.state.type === 'divider2'}
                   data-hook="dividerTypeTwo" onChange={this.changeType} tabIndex={tabIndex}
                 />
@@ -121,6 +124,7 @@ class EditModal extends React.Component {
             <div>
               <label htmlFor="divider3">
                 <input
+                  aria-checked={this.state.type === 'divider3'} aria-label={dividerType3}
                   type="radio" name="type" id="divider3" value="divider3" checked={this.state.type === 'divider3'}
                   data-hook="dividerTypeThree" onChange={this.changeType} tabIndex={tabIndex}
                 />
@@ -130,6 +134,7 @@ class EditModal extends React.Component {
             <div>
               <label htmlFor="divider4">
                 <input
+                  aria-checked={this.state.type === 'divider4'} aria-label={dividerType4}
                   type="radio" name="type" id="divider4" value="divider4" checked={this.state.type === 'divider4'}
                   data-hook="dividerTypeFour" onChange={this.changeType} tabIndex={tabIndex}
                 />
