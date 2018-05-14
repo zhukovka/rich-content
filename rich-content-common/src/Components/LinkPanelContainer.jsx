@@ -49,7 +49,7 @@ class LinkPanelContainer extends Component {
 
   render() {
     const { styles } = this;
-    const { url, targetBlank, nofollow, theme, isActive, anchorTarget, relValue, isMobile, t } = this.props;
+    const { url, targetBlank, nofollow, theme, isActive, anchorTarget, relValue, isMobile, t, ariaProps } = this.props;
     const doneButtonText = t('LinkPanelContainer_DoneButton');
     const cancelButtonText = t('LinkPanelContainer_CancelButton');
     const removeButtonText = t('LinkPanelContainer_RemoveButton');
@@ -61,7 +61,7 @@ class LinkPanelContainer extends Component {
         [styles.linkPanel_container_isMobile]: isMobile,
       });
     return (
-      <FocusManager className={linkPanelContainerClassName} data-hook="linkPanelContainer">
+      <FocusManager className={linkPanelContainerClassName} data-hook="linkPanelContainer" role="form" {...ariaProps}>
         <div className={styles.linkPanel_content}>
           <LinkPanel
             ref={this.setLinkPanel} theme={theme} url={url} targetBlank={targetBlank} anchorTarget={anchorTarget}
@@ -113,6 +113,7 @@ LinkPanelContainer.propTypes = {
   onOverrideContent: PropTypes.func,
   theme: PropTypes.object.isRequired,
   t: PropTypes.func,
+  ariaProps: PropTypes.object,
 };
 
 export default LinkPanelContainer;

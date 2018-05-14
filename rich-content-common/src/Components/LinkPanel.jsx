@@ -79,18 +79,17 @@ class LinkPanel extends Component {
     );
     return (
       <div className={styles.linkPanel_Content} {...ariaProps} role="form">
-        <div onKeyPress={this.handleKeyPress}>
-          <div className={styles.linkPanel_Input}>
-            <input
-              tabIndex="0" type="url" ref={ref => (this.input = ref)} className={textInputClassName} placeholder={inputPlaceholder}
-              data-hook="linkPanelInput" onChange={this.handleIntermediateUrlChange} onBlur={this.validateUrl} value={this.state.intermediateUrl}
-            />
-            {this.state.isValidUrl ? null : (
-              <Tooltip data-hook="linkPanelTooltip" content={errorTooltipText} moveBy={{ x: -23, y: -5 }} theme={theme}>
-                <span><ErrorIcon data-hook="linkPanelError" className={styles.linkPanel_errorIcon}/></span>
-              </Tooltip>
-            )}
-          </div>
+        <div className={styles.linkPanel_Input}>
+          <input
+            onKeyPress={this.handleKeyPress}
+            tabIndex="0" type="url" ref={ref => (this.input = ref)} className={textInputClassName} placeholder={inputPlaceholder}
+            data-hook="linkPanelInput" onChange={this.handleIntermediateUrlChange} onBlur={this.validateUrl} value={this.state.intermediateUrl}
+          />
+          {this.state.isValidUrl ? null : (
+            <Tooltip data-hook="linkPanelTooltip" content={errorTooltipText} moveBy={{ x: -23, y: -5 }} theme={theme}>
+              <span><ErrorIcon data-hook="linkPanelError" className={styles.linkPanel_errorIcon}/></span>
+            </Tooltip>
+          )}
         </div>
         <div>
           {showTargetBlankCheckbox &&
