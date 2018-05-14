@@ -199,7 +199,7 @@ export class GallerySettingsModal extends Component {
     } else {
       const headerText = t('GallerySettings_Header');
       return (
-        <FocusManager focusTrapOptions={{ initialFocus: `#${activeTab}` }} className={styles.gallerySettings}>
+        <FocusManager focusTrapOptions={{ initialFocus: `#${activeTab}_header` }} className={styles.gallerySettings}>
           <h3 className={styles.gallerySettings_title}>{headerText}</h3>
           <div>
             <Tabs value={activeTab} theme={this.props.theme}>
