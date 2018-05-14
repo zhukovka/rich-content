@@ -10,10 +10,6 @@ import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 import theme from './theme/theme'; // must import after custom styles
 
-function onfocus(e) {
-  console.log('focus: ', e.target);
-}
-
 const modalStyleDefaults = {
   content: {
     top: '50%',
@@ -134,7 +130,6 @@ class App extends Component {
   componentDidMount() {
     ReactModal.setAppElement('body');
     this.setEditorToolbars();
-    document.addEventListener('focus', onfocus);
   }
 
   setEditor = editor => this.editor = editor;
@@ -187,7 +182,43 @@ class App extends Component {
     return (
       <div className="wrapper">
         <div className="container">
-
+        {!this.isMobile() &&
+            <div className="header">
+              <h1 onClick={() => this.setState({showDevToggles: !showDevToggles})}>Wix Rich Content Editor</h1>
+              <div className="toggle-container" style={{ display: this.state.showDevToggles ? 'block' : 'none' }}>
+                <div className="toggle">
+                  <input
+                    type="checkbox"
+                    id="mountedToggle"
+                    onChange={this.onMountedChange}
+                    defaultChecked={this.state.mounted}
+                  />
+                  <label htmlFor="mountedToggle">Mounted</label>
+                </div>
+                <div className="toggle">
+                  <input
+                    type="checkbox"
+                    id="textToolbarType"
+                    onChange={this.onTextToolbarTypeChange}
+                    defaultChecked={this.state.textToolbarType === 'static'}
+                  />
+                  <label htmlFor="textToolbarType">Static Text Toolbar</label>
+                </div>
+                <div className="toggle">
+                  <input
+                    type="checkbox"
+                    id="readOnlyToggle"
+                    onChange={this.onReadOnlyChange}
+                    defaultChecked={this.state.readOnly}
+                  />
+                  <label htmlFor="readOnlyToggle">Read Only</label>
+                </div>
+              </div>
+              <span className="intro">
+              Last saved on {this.state.lastSave.toTimeString()}
+              </span>
+            </div>
+          }
           {MobileToolbar && <MobileToolbar />}
           <div className="content">
             {TextToolbar && <TextToolbar />}
