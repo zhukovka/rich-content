@@ -122,12 +122,12 @@ class ImageSettings extends Component {
               <div className={classNames(styles.galleryImageSettings_nav, { [styles.galleryImageSettings_nav_mobile]: isMobile })}>
                 <button
                   className={classNames(styles.galleryImageSettings_previous,
-                    { [styles.galleryImageSettings_hidden]: this.state.selectedIndex === 0 })}
+                    { [styles.galleryImageSettings_hidden]: this.state.selectedIndex === 0 })} aria-label="previous image"
                   data-hook="galleryImageSettingsPrevious" onClick={() => this.setState({ selectedIndex: this.state.selectedIndex - 1 })}
                 />
                 <button
                   className={classNames(styles.galleryImageSettings_next,
-                    { [styles.galleryImageSettings_hidden]: this.state.selectedIndex === images.length - 1 })}
+                    { [styles.galleryImageSettings_hidden]: this.state.selectedIndex === images.length - 1 })} aria-label="next image"
                   data-hook="galleryImageSettingsNext" onClick={() => this.setState({ selectedIndex: this.state.selectedIndex + 1 })}
                 />
               </div>
@@ -135,12 +135,12 @@ class ImageSettings extends Component {
             <div className={styles.galleryImageSettings_manageImageGrid}>
               <FileInput
                 className={styles.galleryImageSettings_replace} handleFileSelection={handleFileSelection}
-                dataHook="galleryImageSettingsFileInput" onChange={this.replaceItem} theme={theme}
+                dataHook="galleryImageSettingsFileInput" onChange={this.replaceItem} theme={theme} title="Replace Image"
               >
                 <span className={styles.galleryImageSettings_replace_text}>{ReplaceLabel}</span>
               </FileInput>
               <button
-                className={styles.galleryImageSettings_delete}
+                className={styles.galleryImageSettings_delete} aria-label="delete image"
                 data-hook="galleryImageSettingsDeleteImage" onClick={() => this.deleteImage(selectedImage)}
               >
                 <span className={styles.galleryImageSettings_delete_text}>{deleteLabel}</span>
