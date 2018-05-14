@@ -159,17 +159,12 @@ class ImageSettings extends Component {
               />
             </SettingsSection>
             <SettingsSection theme={theme} className={this.styles.galleryImageSettings_section}>
-              <span className={this.styles.inputWithLabel_label}>{linkLabel}</span>
+              <span id="gallery_image_link_lbl" className={this.styles.inputWithLabel_label}>{linkLabel}</span>
             </SettingsSection>
             <div className={this.styles.galleryImageSettingsLinkContainer}>
               <LinkPanel
-                ref={this.setLinkPanel}
-                theme={theme}
-                url={url}
-                targetBlank={targetBlank}
-                nofollow={nofollow}
-                isImageSettings
-                t={t}
+                ref={this.setLinkPanel} theme={theme} url={url} targetBlank={targetBlank} nofollow={nofollow}
+                isImageSettings t={t} ariaProps={{ 'aria-labelledby': 'gallery_image_link_lbl' }}
               />
             </div>
           </div>
