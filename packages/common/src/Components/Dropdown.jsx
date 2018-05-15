@@ -30,6 +30,7 @@ class Dropdown extends Component {
     };
     this.mounted = true;
     this.styles = mergeStyles({ styles, theme: props.theme });
+    this.id = `cmbx_${Math.floor(Math.random() * 9999)}`;
 
   }
 
@@ -110,15 +111,14 @@ class Dropdown extends Component {
     const { value, label, icon: Icon } = option;
 
     return (
-      <div
-        key={value}
-        className={optionClass}
-        onMouseDown={this.setValue.bind(this, value, label)}
+      <button
+        key={value} className={optionClass} onMouseDown={this.setValue.bind(this, value, label)}
         data-hook={`${label}_dropdown_option`} onClick={this.setValue.bind(this, value, label)}
+        role="option" aria-selected={option === this.state.selected} aria-label={label}
       >
         {Icon && <Icon className={styles['Dropdown-option-icon']} />}
         <span className={styles['Dropdown-option-label']}>{label}</span>
-      </div>
+      </button>
     );
   }
 
@@ -170,8 +170,8 @@ class Dropdown extends Component {
         </span>
       );
     })();
-    const value = (<div className={styles['Dropdown-placeholder']}>{placeHolderValue}</div>);
-    const menu = this.state.isOpen ? <div className={styles['Dropdown-menu']}>{this.buildMenu()}</div> : null;
+    const value = (<div className={styles['Dropdown-placeholder']} role="textbox">{placeHolderValue}</div>);
+    const menu = this.state.isOpen ? <div className={styles['Dropdown-menu']} role="listbox" id={`${this.id}_menu`}>{this.buildMenu()}</div> : null;
 
     const dropdownClass = classNames({
       [styles['Dropdown-root']]: true,
@@ -181,9 +181,10 @@ class Dropdown extends Component {
 
     return (
       <div className={dropdownClass}>
-        <div
+        <button
+          role="combobox" aria-controls={`${this.id}_menu`} aria-expanded={this.state.isOpen}
           className={classNames(styles['Dropdown-control'], disabledClass)}
-          data-hook={dataHook} onMouseDown={this.handleMouseDown.bind(this)} onTouchEnd={this.handleMouseDown.bind(this)}
+          data-hook={dataHook} onClick={this.handleMouseDown.bind(this)} onTouchEnd={this.handleMouseDown.bind(this)}
         >
           {value}
           <span
@@ -193,7 +194,7 @@ class Dropdown extends Component {
           >
             <DropdownArrow />
           </span>
-        </div>
+        </button>
         {menu}
       </div>
     );
