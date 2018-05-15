@@ -3,7 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = env => {
   const FILE_NAME = env.FILE_NAME;
-  const BASE_PATH = path.resolve(__dirname, '..', FILE_NAME.replace('wix-', ''));
+  const BASE_PATH = path.resolve(__dirname, '..', 'packages', FILE_NAME.replace('wix-rich-content-', ''));
 
   return {
     entry: './src/index.js',
@@ -90,7 +90,7 @@ module.exports = env => {
       modules: ['node_modules', path.resolve(BASE_PATH, 'src')],
       extensions: ['.js', '.json', '.jsx', '.css'],
       alias: {
-        'draft-js': path.resolve(BASE_PATH, 'node_modules', '@wix', 'draft-js'),
+        'draft-js': path.resolve(__dirname, '..', 'node_modules', '@wix', 'draft-js'),
       },
     },
     context: BASE_PATH,
@@ -99,11 +99,25 @@ module.exports = env => {
       'lodash',
       'react',
       'react-dom',
-      'draft-js',
-      '@wix/draft-js',
       'classnames',
       'decorate-component-with-props',
       /^pro-gallery-renderer.*$/,
+      {
+        'draft-js': {
+          root: 'Draft',
+          commonjs2: '@wix/draft-js',
+          commonjs: '@wix/draft-js',
+          amd: '@wix/draft-js',
+          umd: '@wix/draft-js',
+        },
+        '@wix/draft-js': {
+          root: 'Draft',
+          commonjs2: '@wix/draft-js',
+          commonjs: '@wix/draft-js',
+          amd: '@wix/draft-js',
+          umd: '@wix/draft-js',
+        }
+      }
     ],
     stats: 'errors-only',
     plugins: [new ExtractTextPlugin('styles.css')],
