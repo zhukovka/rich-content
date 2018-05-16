@@ -1,4 +1,4 @@
-# Wix Rich Content Editor
+# Wix Rich Content
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
 #### A super charged rich text editor with an extensible plugin system.
