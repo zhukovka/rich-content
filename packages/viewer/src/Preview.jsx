@@ -60,10 +60,10 @@ const blocks = {
   'ordered-list-item': getList(true),
 };
 
-const entities = {
+const getEntities = typeMap => ({
   LINK: (children, entity, { key }) => <a key={key} href={entity.url}>{children}</a>,
-  ...getPluginsViewer()
-};
+  ...getPluginsViewer(typeMap)
+});
 
 
 const isEmptyRaw = raw => (!raw || !raw.blocks || (raw.blocks.length === 1 && raw.blocks[0].text === ''));
@@ -78,13 +78,13 @@ const options = {
 
 const decorators = [];
 
-const Preview = ({ raw }) => {
+const Preview = ({ raw, typeMap }) => {
   const isEmpty = isEmptyRaw(raw);
   window.redraft = redraft;
   return (
     <div className="Preview">
       {isEmpty && <div className="Preview-empty">There is nothing to render...</div>}
-      {!isEmpty && redraft(raw, { inline, blocks, entities, decorators }, options)}
+      {!isEmpty && redraft(raw, { inline, blocks, entities: getEntities(typeMap), decorators }, options)}
     </div>
   );
 };
@@ -94,6 +94,7 @@ Preview.propTypes = {
     blocks: PropTypes.array.isRequired, // eslint-disable-line react/no-unused-prop-types
     entityMap: PropTypes.object.isRequired, // eslint-disable-line react/no-unused-prop-types
   }).isRequired,
+  typeMap: PropTypes.object,
 };
 
 export default Preview;

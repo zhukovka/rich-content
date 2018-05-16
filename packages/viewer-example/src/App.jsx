@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
-import ReactModal from 'react-modal';
 import logo from './logo.svg';
-import { RichContentViewer } from 'wix-rich-content-viewer';
-import { RichContentModal } from 'wix-rich-content-common';
+import RichContentViewer from 'wix-rich-content-viewer';
 import './App.css';
 import 'wix-rich-content-viewer/dist/wix-rich-content-viewer.css';
 import TestData from './TestData/initial-state';
 
-const modalStyleDefaults = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
-  }
+import { ImageViewer, IMAGE_TYPE_LEGACY, IMAGE_TYPE } from 'wix-rich-content-plugin-image';
+import { VideoComponent, VIDEO_TYPE_LEGACY, VIDEO_TYPE } from 'wix-rich-content-plugin-video';
+
+const typeMap = {
+  [IMAGE_TYPE_LEGACY]: ImageViewer,
+  [IMAGE_TYPE]: ImageViewer,
+  [VIDEO_TYPE]: VideoComponent,
+  [VIDEO_TYPE_LEGACY]: VideoComponent,
 };
 
 class App extends Component {
@@ -90,18 +87,19 @@ class App extends Component {
         <div className="content">
           <RichContentViewer
             helpers={this.helpers}
+            typeMap={typeMap}
             // plugins={this.plugins}
             // decorators={this.decorators}
             initialState={this.state.raw}
           />
-          <ReactModal
+          {/* <ReactModal
             isOpen={this.state.showModal}
             contentLabel="External Modal Example"
             style={this.state.modalStyles || modalStyleDefaults}
             onRequestClose={this.closeModal}
           >
             {this.state.showModal && <RichContentModal {...this.state.modalProps} />}
-          </ReactModal>
+          </ReactModal> */}
         </div>
       </div>);
   }
