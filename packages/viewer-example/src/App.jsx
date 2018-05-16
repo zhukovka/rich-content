@@ -1,14 +1,10 @@
-import React, {
-  Component
-} from 'react';
+import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import logo from './logo.svg';
-import {
-  RichContentViewer,
-  RichContentModal
-} from 'wix-rich-content-editor';
+import { RichContentViewer } from 'wix-rich-content-viewer';
+import { RichContentModal } from 'wix-rich-content-common';
 import './App.css';
-import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
+import 'wix-rich-content-viewer/dist/wix-rich-content-viewer.css';
 import TestData from './TestData/initial-state';
 
 const modalStyleDefaults = {

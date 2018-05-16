@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Styles from '~/Styles/rich-content-editor.scss';
+import Styles from './Styles/rich-content-viewer.scss';
 import Preview from './Preview';
 
 export default class RichContentViewer extends Component {
