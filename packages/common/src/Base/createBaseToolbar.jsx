@@ -17,6 +17,7 @@ import {
   BlockLinkButton,
   DeleteButton,
 } from './buttons';
+import Panel from '../Components/Panel';
 import toolbarStyles from '../Styles/plugin-toolbar.scss';
 import buttonStyles from '../Styles/plugin-toolbar-button.scss';
 
@@ -282,11 +283,34 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
               key={key}
               t={t}
               isMobile={isMobile}
+              displayPanel={this.displayPanel}
               {...button}
             />
           );
       }
     };
+
+    displayPanel = ({ PanelContent, keyName }) => this.setState({ panel: { PanelContent, keyName } });
+
+    renderPanel() {
+      const { panel, componentData, componentState } = this.state;
+
+      return panel ? (
+        <div className={toolbarStyles.pluginToolbar_panel}>
+          <Panel
+            key={panel.keyName}
+            theme={theme}
+            store={pubsub}
+            helpers={helpers}
+            t={t}
+            componentData={componentData}
+            componentState={componentState}
+            content={panel.PanelContent}
+            keyName={panel.keyName}
+          />
+        </div>
+      ) : null;
+    }
 
     render = () => {
       const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent, tabIndex } = this.state;
@@ -348,6 +372,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
               <ExtendContent {...extendProps} />
             </div>
           )}
+          {this.renderPanel()}
         </div>
       );
     };
