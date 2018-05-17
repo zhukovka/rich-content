@@ -152,8 +152,8 @@ export default({ t }) => {
   return [
     {
       keyName: 'edit',
-      type: BUTTONS.PANEL,
-      panelElement: EditModal,
+      type: BUTTONS.INLINE_PANEL,
+      panelContent: EditModal,
       icon: EditIcon,
       onClick: pubsub => console.log('*** click edit *** '), //eslint-disable-line no-console, no-unused-vars
       mobile: true,
@@ -169,8 +169,8 @@ export default({ t }) => {
     { keyName: 'separator2', type: BUTTONS.SEPARATOR, mobile: true },
     {
       keyName: 'settings',
-      type: BUTTONS.PANEL,
-      panelElement: SettingsModal,
+      type: BUTTONS.INLINE_PANEL,
+      panelContent: SettingsModal,
       icon: PluginSettingsIcon,
       onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
       mobile: true,
