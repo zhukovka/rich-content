@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FocusManager } from '../Components/FocusManager';
+import FocusManager from '../Components/FocusManager';
 
 const RichContentModal = ({ modalElement, ...modalProps }) => {
 
+  const ModalElement = modalElement;
   return (
     <FocusManager>
-      <modalElement {...modalProps} />
+      <ModalElement {...modalProps} />
     </FocusManager>);
 };
 
