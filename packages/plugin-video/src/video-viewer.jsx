@@ -13,7 +13,7 @@ class VideoViewer extends Component {
   }
 
   render() {
-    const { componentData, ...rest } = this.props;
+    const { componentData, theme, ...rest } = this.props; // eslint-disable-line no-unused-vars
     return (
       <ReactPlayer
         className={classNames(this.styles.video_player)}
