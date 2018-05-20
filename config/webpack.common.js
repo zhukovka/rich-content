@@ -58,6 +58,10 @@ module.exports = env => {
           ],
         },
         {
+          test: require.resolve('zepto'),
+          use: 'imports-loader?this=>window'
+        },
+        {
           test: /\.svg$/,
           issuer: /\.js(x)?$/,
           include: [

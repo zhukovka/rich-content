@@ -222,6 +222,10 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
+          {
+            test: require.resolve('zepto'),
+            use: 'imports-loader?this=>window'
+        }
         ],
       },
       // ** STOP ** Are you adding a new loader?

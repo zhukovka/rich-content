@@ -47,6 +47,7 @@
     "draft-js-plugins-editor": "^2.0.1",
     "focus-trap-react": "^3.1.2",
     "i18next": "^10.5.0",
+    "imports-loader": "^0.8.0",
     "linkify-it": "^2.0.3",
     "lodash": "^4.17.4",
     "photography-client-lib": "^1.0.69",
@@ -78,7 +79,7 @@
     "react-test-renderer": "^15.6.1",
     "webpack": "^3.11.0",
     "webpack-bundle-analyzer": "^2.11.1",
-		"webpack-merge": "^4.1.2"
+    "webpack-merge": "^4.1.2"
   },
   "unpkg": true,
   "publishConfig": {
