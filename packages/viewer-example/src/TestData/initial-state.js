@@ -74,34 +74,31 @@ const TestData = {
         "type": "wix-draft-plugin-image",
         "mutability": "IMMUTABLE",
         "data": {
-          "item": {
-            "file_name": "20",
-            "source": "static",
-            "url": "https://unsplash.it/500/500?image=20",
-            "title": "This is a title",
-            "description": "This is the description"
+          "src": {
+            "width": 960,
+            "height": 720,
+            "file_name": "a27d24_3427f118d84444dbbb01c684ec4a82da~mv2.png",
+            "original_file_name": "blob"
           },
-          "config": {
-            "layout":"classic",
-            "showTitle": true,
-            "showDescription": true
-          }
+          "isLoading": false
         }
       },
     },
     "blocks": [{
-      "key": "ov8f",
+      "key": "7euc6",
       "text": " ",
       "type": "atomic",
       "depth": 0,
       "inlineStyleRanges": [],
-      "entityRanges": [{
-        "offset": 0,
-        "length": 1,
-        "key": 0
-      }],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 0
+        }
+      ],
       "data": {}
-    }]
+    },]
   },
   legacyVideo : {
     "entityMap": {
