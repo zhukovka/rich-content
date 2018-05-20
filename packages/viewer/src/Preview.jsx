@@ -65,6 +65,13 @@ const getEntities = typeMap => ({
   ...getPluginsViewer(typeMap)
 });
 
+const combineTypeMappers = mappers => {
+  if (!mappers || !mappers.length || mappers.some(resolver => typeof resolver !== 'function')) {
+    throw new TypeError('typeMappers is expected to be a function array');
+  }
+
+  return mappers.reduce((map, mapper) => Object.assign(map, mapper()), {});
+};
 
 const isEmptyRaw = raw => (!raw || !raw.blocks || (raw.blocks.length === 1 && raw.blocks[0].text === ''));
 
@@ -78,8 +85,9 @@ const options = {
 
 const decorators = [];
 
-const Preview = ({ raw, typeMap }) => {
+const Preview = ({ raw, typeMappers }) => {
   const isEmpty = isEmptyRaw(raw);
+  const typeMap = combineTypeMappers(typeMappers);
   window.redraft = redraft;
   return (
     <div className="Preview">
@@ -94,7 +102,7 @@ Preview.propTypes = {
     blocks: PropTypes.array.isRequired, // eslint-disable-line react/no-unused-prop-types
     entityMap: PropTypes.object.isRequired, // eslint-disable-line react/no-unused-prop-types
   }).isRequired,
-  typeMap: PropTypes.object,
+  typeMappers: PropTypes.arrayOf(PropTypes.func).isRequired,
 };
 
 export default Preview;

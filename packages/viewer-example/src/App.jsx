@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import RichContentViewer from 'wix-rich-content-viewer';
-import './App.css';
 import 'wix-rich-content-viewer/dist/wix-rich-content-viewer.css';
+import 'wix-rich-content-plugin-video/dist/styles.css';
+import 'wix-rich-content-plugin-image/dist/styles.css';
+import { videoTypeMapper } from 'wix-rich-content-plugin-video';
+import { imageTypeMapper } from 'wix-rich-content-plugin-image';
+
 import TestData from './TestData/initial-state';
-
-import { ImageViewer, IMAGE_TYPE_LEGACY, IMAGE_TYPE } from 'wix-rich-content-plugin-image';
-import { VideoComponent, VIDEO_TYPE_LEGACY, VIDEO_TYPE } from 'wix-rich-content-plugin-video';
-
-const typeMap = {
-  [IMAGE_TYPE_LEGACY]: ImageViewer,
-  [IMAGE_TYPE]: ImageViewer,
-  [VIDEO_TYPE]: VideoComponent,
-  [VIDEO_TYPE_LEGACY]: VideoComponent,
-};
+import logo from './logo.svg';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -87,7 +82,7 @@ class App extends Component {
         <div className="content">
           <RichContentViewer
             helpers={this.helpers}
-            typeMap={typeMap}
+            typeMappers={[videoTypeMapper, imageTypeMapper]}
             // plugins={this.plugins}
             // decorators={this.decorators}
             initialState={this.state.raw}

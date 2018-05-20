@@ -25,7 +25,7 @@ export default class RichContentViewer extends Component {
     return (
       <div className={wrapperClassName}>
         <div className={Styles.editor}>
-          <Preview raw={this.state.raw} typeMap={this.props.typeMap}/>
+          <Preview raw={this.state.raw} typeMappers={this.props.typeMappers}/>
         </div>
       </div>
     );
@@ -37,5 +37,5 @@ RichContentViewer.propTypes = {
   isMobile: PropTypes.bool,
   helpers: PropTypes.object,
   platform: PropTypes.string,
-  typeMap: PropTypes.object,
+  typeMappers: PropTypes.arrayOf(PropTypes.func).isRequired,
 };
