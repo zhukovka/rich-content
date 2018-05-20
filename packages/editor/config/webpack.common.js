@@ -56,6 +56,10 @@ module.exports = {
         ],
       },
       {
+        test: require.resolve('zepto'),
+        use: 'imports-loader?this=>window'
+      },
+      {
         test: /\.svg$/,
         issuer: /\.js(x)?$/,
         include: [path.resolve(BASE_PATH, 'src')],

@@ -62,15 +62,15 @@ export default ({ buttons, offset, pubsub, theme, isMobile }) => {
     theme,
     isMobile,
     structure: [
-      ({ getEditorState, setEditorState, theme }) => //eslint-disable-line
-        (<AddPluginFloatingToolbar
-          getEditorState={getEditorState}
-          setEditorState={setEditorState}
-          theme={toolbarButtonTheme}
-          structure={buttons}
-          pubsub={pubsub}
-          isMobile={isMobile}
-        />),
+      // ({ getEditorState, setEditorState, theme }) => //eslint-disable-line
+      //   (<AddPluginFloatingToolbar
+      //     getEditorState={getEditorState}
+      //     setEditorState={setEditorState}
+      //     theme={toolbarButtonTheme}
+      //     structure={buttons}
+      //     pubsub={pubsub}
+      //     isMobile={isMobile}
+      //   />),
     ],
   });
 };
