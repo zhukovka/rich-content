@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 const autoprefixer = require('autoprefixer');
 const path = require('path');
@@ -354,9 +352,6 @@ module.exports = {
   externals: [
     /^@wix.*/,
     'draft-js',
-    {
-      'wix-rich-content-editor': 'WixRichContentEditor'
-    },
     {
       react: 'React'
     },
