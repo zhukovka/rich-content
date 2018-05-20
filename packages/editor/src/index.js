@@ -1,10 +1,10 @@
 import { EditorState } from '@wix/draft-js';
 import RichContentEditor from '~/RichContentEditor';
-import RichContentModal from '~/RichContentEditor/RichContentModal';
+import RichContentEditorModal from '~/RichContentEditor/RichContentEditorModal';
 
 
 export {
   EditorState,
-  RichContentModal,
+  RichContentEditorModal,
   RichContentEditor
 };

@@ -40,7 +40,7 @@
     "url-loader": "^1.0.1",
     "whatwg-fetch": "2.0.3",
     "wix-rich-content-viewer": "^1.0.21",
-    "wix-rich-content-editor": "^1.0.0",
+    "wix-rich-content-common": "^1.0.0",
     "wix-rich-content-plugin-divider": "^1.0.0",
     "wix-rich-content-plugin-emoji": "^1.0.0",
     "wix-rich-content-plugin-gallery": "^1.0.0",
@@ -62,7 +62,7 @@
     "build:analyze": "npm run build -- --progress --env.analyzeBundle",
     "test": "cross-env CI=true node scripts/test.js --env=jsdom",
     "bootstrap": "npm install && npm run link",
-    "link": "npm link wix-rich-content-editor --only=production"
+    "link": "npm link wix-rich-content-viewer --only=production"
   },
   "devDependencies": {
     "cross-env": "^5.1.3",

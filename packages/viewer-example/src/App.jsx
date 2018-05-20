@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ReactModal from 'react-modal';
+import RichContentModal from 'wix-rich-content-common';
 import RichContentViewer from 'wix-rich-content-viewer';
 import 'wix-rich-content-viewer/dist/wix-rich-content-viewer.css';
 import 'wix-rich-content-plugin-video/dist/styles.css';
@@ -9,6 +11,17 @@ import { imageTypeMapper } from 'wix-rich-content-plugin-image';
 import TestData from './TestData/initial-state';
 import logo from './logo.svg';
 import './App.css';
+
+const modalStyleDefaults = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  }
+};
 
 class App extends Component {
   constructor(props) {
@@ -87,14 +100,14 @@ class App extends Component {
             // decorators={this.decorators}
             initialState={this.state.raw}
           />
-          {/* <ReactModal
+          <ReactModal
             isOpen={this.state.showModal}
             contentLabel="External Modal Example"
             style={this.state.modalStyles || modalStyleDefaults}
             onRequestClose={this.closeModal}
           >
             {this.state.showModal && <RichContentModal {...this.state.modalProps} />}
-          </ReactModal> */}
+          </ReactModal>
         </div>
       </div>);
   }
