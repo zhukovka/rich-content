@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
-import RichContentModal from 'wix-rich-content-common';
+import { RichContentModal, mergeStyles } from 'wix-rich-content-common';
 import RichContentViewer from 'wix-rich-content-viewer';
 import 'wix-rich-content-viewer/dist/wix-rich-content-viewer.css';
 import 'wix-rich-content-plugin-video/dist/styles.css';
@@ -11,7 +11,8 @@ import { imageTypeMapper } from 'wix-rich-content-plugin-image';
 import { galleryTypeMapper } from 'wix-rich-content-plugin-gallery';
 
 import TestData from './TestData/initial-state';
-import './App.css';
+import theme from './theme/theme';
+import styles from './App.scss';
 
 const modalStyleDefaults = {
   content: {
@@ -32,6 +33,7 @@ class App extends Component {
     };
     this.md = window ? new MobileDetect(window.navigator.userAgent) : null;
     this.initViewerProps();
+    this.styles = mergeStyles({ styles, theme });
   }
 
   initViewerProps() {
@@ -89,14 +91,16 @@ class App extends Component {
       (<option value={key} key={key}> {key}</option>)
     );
 
+    const { styles } = this;
+
     return (
-      <div className="wrapper">
-        <div className="container">
+      <div className={styles.wrapper}>
+        <div className={styles.container}>
           {!this.isMobile() ?
-              <div className="header">
+              <div className={styles.header}>
                 <h1>Wix Rich Content Viewer</h1>
-                <div className="toggle-container">
-                  <div className="toggle">
+                <div className={styles['toggle-container']}>
+                  <div className={styles.toggle}>
                   <select id="testData" name="testData" onChange={() => this.handleContentChange(this)} >
                     {contentOptions}
                   </select>
@@ -107,13 +111,14 @@ class App extends Component {
                 {contentOptions}
               </select>
             }
-            <div className="content">
+            <div className={styles.content}>
               <RichContentViewer
                 helpers={this.helpers}
                 typeMappers={[videoTypeMapper, imageTypeMapper, galleryTypeMapper]}
                 // plugins={this.plugins}
                 // decorators={this.decorators}
                 initialState={this.state.raw}
+                theme={theme}
               />
               <ReactModal
                 isOpen={this.state.showModal}
@@ -125,8 +130,6 @@ class App extends Component {
               </ReactModal>
             </div>
         </div>
-
-
       </div>);
   }
 }
