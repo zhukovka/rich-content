@@ -5,7 +5,6 @@ import { findDOMNode } from 'react-dom';
 import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
 import isNil from 'lodash/isNil';
-import merge from 'lodash/merge';
 import isFunction from 'lodash/isFunction';
 import classNames from 'classnames';
 import createHocName from '../Utils/createHocName';
@@ -105,9 +104,10 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
 
     onComponentDataChange = componentData => {
       if (this.isMeAndIdle) {
-        this.setState({ componentData: componentData || {} });
-        const { setData } = this.props.blockProps;
-        setData(componentData);
+        this.setState({ componentData: componentData || {} }, () => {
+          const { blockProps: { setData } } = this.props;
+          setData(componentData);
+        });
       }
     };
 
@@ -119,25 +119,25 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
 
     onComponentAlignmentChange = alignment => {
       if (alignment && this.isMeAndIdle) {
-        this.updateComponentData({ config: { alignment } });
+        this.updateComponentConfig({ alignment });
       }
     };
 
     onComponentSizeChange = size => {
       if (size && this.isMeAndIdle) {
-        this.updateComponentData({ config: { size } });
+        this.updateComponentConfig({ size });
       }
     };
 
     onComponentTextWrapChange = textWrap => {
       if (textWrap && this.isMeAndIdle) {
-        this.updateComponentData({ config: { textWrap } });
+        this.updateComponentConfig({ textWrap });
       }
     };
 
     onComponentLinkChange = link => {
       if (this.isMeAndIdle) {
-        this.updateComponentData({ config: { link } });
+        this.updateComponentConfig({ link });
       }
     };
 
@@ -159,12 +159,8 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
       return this.isMe() && !this.duringUpdate;
     }
 
-    updateComponentData = newData => {
-      const { blockProps } = this.props;
-      const newComponentData = merge({}, this.state.componentData, newData);
-      this.setState({ componentData: newComponentData });
-      const { setData } = blockProps;
-      setData(newComponentData);
+    updateComponentConfig = newConfig => {
+      pubsub.update('componentData', { config: newConfig });
     };
 
     getBoundingClientRectAsObject = element => {
