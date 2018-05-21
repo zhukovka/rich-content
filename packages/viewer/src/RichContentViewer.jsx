@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Styles from './Styles/rich-content-viewer.scss';
+import { mergeStyles } from 'wix-rich-content-common';
+import styles from './Styles/rich-content-viewer.scss';
 import Preview from './Preview';
 
 export default class RichContentViewer extends Component {
@@ -10,6 +11,7 @@ export default class RichContentViewer extends Component {
     this.state = {
       raw: props.initialState || {},
     };
+    this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -19,13 +21,15 @@ export default class RichContentViewer extends Component {
   }
 
   render() {
-    const wrapperClassName = classNames(Styles.wrapper, {
-      [Styles.desktop]: !this.props.platform || this.props.platform === 'desktop',
+    const { styles } = this;
+    const { theme } = this.props;
+    const wrapperClassName = classNames(styles.wrapper, {
+      [styles.desktop]: !this.props.platform || this.props.platform === 'desktop',
     });
     return (
       <div className={wrapperClassName}>
-        <div className={Styles.editor}>
-          <Preview raw={this.state.raw} typeMappers={this.props.typeMappers}/>
+        <div className={styles.editor}>
+          <Preview raw={this.state.raw} typeMappers={this.props.typeMappers} theme={theme}/>
         </div>
       </div>
     );
@@ -38,4 +42,5 @@ RichContentViewer.propTypes = {
   helpers: PropTypes.object,
   platform: PropTypes.string,
   typeMappers: PropTypes.arrayOf(PropTypes.func).isRequired,
+  theme: PropTypes.object,
 };
