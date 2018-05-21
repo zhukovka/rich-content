@@ -212,10 +212,7 @@ module.exports = {
           },
           {
             test: /\.scss$/,
-            include: [
-              fs.realpathSync('./node_modules/pro-gallery-renderer'),
-              path.resolve(__dirname, 'src')
-            ],
+            include: [path.resolve(__dirname, 'src')],
             loaders: [
               'style-loader',
               'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
