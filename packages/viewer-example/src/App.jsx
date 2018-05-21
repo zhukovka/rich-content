@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
+import MobileDetect from 'mobile-detect';
 import RichContentModal from 'wix-rich-content-common';
 import RichContentViewer from 'wix-rich-content-viewer';
 import 'wix-rich-content-viewer/dist/wix-rich-content-viewer.css';
@@ -29,6 +30,7 @@ class App extends Component {
     this.state = {
       raw: TestData.onlyText
     };
+    this.md = window ? new MobileDetect(window.navigator.userAgent) : null;
     this.initViewerProps();
   }
 
@@ -78,6 +80,10 @@ class App extends Component {
     //console.log('on change are', TestData[value]);
   };
 
+  isMobile = () => {
+    return this.md && this.md.mobile() !== null;
+  }
+
   render() {
     const contentOptions = Object.keys(TestData).map(key =>
       (<option value={key} key={key}> {key}</option>)
@@ -85,30 +91,42 @@ class App extends Component {
 
     return (
       <div className="wrapper">
-        <div className="header">
-          <img src={logo} className="logo" alt="logo" />
-          <h2>Wix Rich Content Viewer</h2>
-          <select id="testData" name="testData" onChange={() => this.handleContentChange(this)} >
-            {contentOptions}
-          </select>
+        <div className="container">
+          {!this.isMobile() ?
+              <div className="header">
+                <h1>Wix Rich Content Viewer</h1>
+                <div className="toggle-container">
+                  <div className="toggle">
+                  <select id="testData" name="testData" onChange={() => this.handleContentChange(this)} >
+                    {contentOptions}
+                  </select>
+                  </div>
+                </div>
+              </div> :
+              <select id="testData" name="testData" onChange={() => this.handleContentChange(this)} >
+                {contentOptions}
+              </select>
+            }
+            <div className="content">
+              <RichContentViewer
+                helpers={this.helpers}
+                typeMappers={[videoTypeMapper, imageTypeMapper]}
+                // plugins={this.plugins}
+                // decorators={this.decorators}
+                initialState={this.state.raw}
+              />
+              <ReactModal
+                isOpen={this.state.showModal}
+                contentLabel="External Modal Example"
+                style={this.state.modalStyles || modalStyleDefaults}
+                onRequestClose={this.closeModal}
+              >
+                {this.state.showModal && <RichContentModal {...this.state.modalProps} />}
+              </ReactModal>
+            </div>
         </div>
-        <div className="content">
-          <RichContentViewer
-            helpers={this.helpers}
-            typeMappers={[videoTypeMapper, imageTypeMapper]}
-            // plugins={this.plugins}
-            // decorators={this.decorators}
-            initialState={this.state.raw}
-          />
-          <ReactModal
-            isOpen={this.state.showModal}
-            contentLabel="External Modal Example"
-            style={this.state.modalStyles || modalStyleDefaults}
-            onRequestClose={this.closeModal}
-          >
-            {this.state.showModal && <RichContentModal {...this.state.modalProps} />}
-          </ReactModal>
-        </div>
+
+
       </div>);
   }
 }
