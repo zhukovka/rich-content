@@ -114,10 +114,10 @@ class GalleryViewer extends React.Component {
 
 GalleryViewer.propTypes = {
   componentData: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired,
-  className: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  className: PropTypes.string,
   theme: PropTypes.object.isRequired,
-  helpers: PropTypes.object.isRequired,
+  helpers: PropTypes.object,
   settings: PropTypes.object
 };
 

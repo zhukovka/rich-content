@@ -8,9 +8,9 @@ import 'wix-rich-content-plugin-video/dist/styles.css';
 import 'wix-rich-content-plugin-image/dist/styles.css';
 import { videoTypeMapper } from 'wix-rich-content-plugin-video';
 import { imageTypeMapper } from 'wix-rich-content-plugin-image';
+import { galleryTypeMapper } from 'wix-rich-content-plugin-gallery';
 
 import TestData from './TestData/initial-state';
-import logo from './logo.svg';
 import './App.css';
 
 const modalStyleDefaults = {
@@ -110,7 +110,7 @@ class App extends Component {
             <div className="content">
               <RichContentViewer
                 helpers={this.helpers}
-                typeMappers={[videoTypeMapper, imageTypeMapper]}
+                typeMappers={[videoTypeMapper, imageTypeMapper, galleryTypeMapper]}
                 // plugins={this.plugins}
                 // decorators={this.decorators}
                 initialState={this.state.raw}
