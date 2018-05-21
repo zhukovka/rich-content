@@ -1,0 +1,155 @@
+@import './consts';
+@import './mixins';
+@import './palette';
+@import './fonts';
+
+
+//*** GENERIC ***//
+.flex {
+  display: flex;
+}
+
+.focused,
+*:focus {
+  outline: 1px dashed;
+}
+
+.visuallyHidden {
+  width: 0.1px;
+	height: 0.1px;
+	overflow: hidden;
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+//*** BLOCK ***//
+.hasFocus {
+  @include block-select;
+}
+
+.overlay {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.pluginContainerReadOnly {
+  @extend .fontElementMap;
+}
+
+.pluginContainer {
+  @extend .fontElementMap;
+
+  &:hover {
+    @include block-select;
+  }
+}
+
+.alignLeft {
+  float: left;
+  z-index: 1;
+
+  &:not(.textWrapNowrap) {
+    margin-right: $innerSpacing;
+    margin-left: calc((100% - #{$textWidth}) / 2);
+    @include phone {
+      margin-left: calc((100% - #{$textMobileWidth}) / 2);
+    }
+  }
+}
+
+.alignCenter {
+  display: block;
+
+  &:not(.textWrapNowrap) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.alignRight {
+  float: right;
+  z-index: 1;
+
+  &:not(.textWrapNowrap) {
+    margin-left: $innerSpacing;
+    margin-right: calc((100% - #{$textWidth}) / 2);
+    @include phone {
+      margin-right: calc((100% - #{$textMobileWidth}) / 2);
+    }
+  }
+}
+
+.sizeFullWidth,
+.textWrapNowrap {
+  width: 100%;
+}
+
+.sizeContent {
+  &:not(.textWrapNowrap) {
+    max-width: 740px;
+    margin: 0 auto;
+  }
+}
+
+.sizeSmall {
+  &:not(.textWrapNowrap) {
+    width: 350px;
+  }
+}
+
+.sizeSmallCenter {
+  &:not(.textWrapNowrap) {
+    width: 350px;
+    margin: 0 auto;
+  }
+}
+
+//*** PANEL ***//
+.panelContainer {
+  @extend .fontElementMap;
+  position: absolute;
+  display: flex;
+  padding: 10px;
+  background: $primary-color-light;
+  color: $secondary-text-color;
+  border-radius: 0 2px 2px;
+  box-shadow: rgb(220, 220, 220) 1px 1px 3px 1px;
+}
+
+:global {
+  .ReactModal__Body--open {
+    overflow-y: hidden;
+  }
+
+  .ReactModal__Content {
+    font-weight: 300;
+    direction: ltr;
+  }
+
+  .ReactModalPortal {
+    @extend .glob_fontElementMap;
+  }
+}
+
+.isImage {
+  text-decoration: none;
+  color: #333333;
+}
+
+.anchor {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

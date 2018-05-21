@@ -1,15 +1,18 @@
 {
-	"name": "wix-rich-content",
+	"name": "wix-rich-content-monorepo",
 	"license": "ISC",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/wix-incubator/rich-content.git"
 	},
 	"scripts": {
-		"bootstrap": "npm i && lerna bootstrap --hoist",
-		"build:dev": "lerna run --parallel build:dev",
-		"build": "lerna run --scope=wix-rich-content-* --parallel build",
-		"watch": "lerna run --parallel watch"
+		"bootstrap": "lerna bootstrap --hoist",
+		"postinstall": "npm run bootstrap",
+		"build:dev": "lerna run --stream build:dev",
+		"build": "lerna run --stream --scope=wix-rich-content-* build",
+		"watch": "lerna run --parallel watch",
+		"customPublish": "node scripts/customPublish",
+		"createVersion": "node scripts/createVersion"
 	},
 	"devDependencies": {
 		"babel-cli": "^6.26.0",
@@ -20,6 +23,7 @@
 		"babel-preset-env": "^1.6.1",
 		"babel-preset-react": "^6.24.1",
 		"babel-preset-stage-0": "^6.24.1",
+		"chalk": "^2.4.1",
 		"css-loader": "^0.28.11",
 		"eslint": "^4.19.1",
 		"eslint-config-wix": "^1.1.18",
@@ -30,10 +34,13 @@
 		"extract-text-webpack-plugin": "^3.0.2",
 		"lerna": "^2.10.0",
 		"loader-utils": "^1.1.0",
+		"lodash": "^4.17.10",
 		"node-sass": "^4.8.3",
 		"optimize-css-assets-webpack-plugin": "^3.2.0",
+		"prompts": "^0.1.8",
 		"react-svg-loader": "^2.1.0",
 		"sass-loader": "^6.0.7",
+		"semver": "^5.5.0",
 		"style-loader": "^0.20.3",
 		"uglifyjs-webpack-plugin": "^1.2.4",
 		"url-loader": "^1.0.1",
@@ -41,7 +48,10 @@
 		"webpack-bundle-analyzer": "^2.11.1",
 		"webpack-merge": "^4.1.2"
 	},
-	"dependencies": {
-		"imports-loader": "^0.8.0"
+    "dependencies": {
+      "imports-loader": "^0.8.0"
+    },
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org/"
 	}
 }
