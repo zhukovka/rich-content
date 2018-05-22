@@ -7,10 +7,12 @@ import 'wix-rich-content-viewer/dist/wix-rich-content-viewer.css';
 import 'wix-rich-content-plugin-video/dist/styles.css';
 import 'wix-rich-content-plugin-image/dist/styles.css';
 import 'wix-rich-content-plugin-divider/dist/styles.css';
+import 'wix-rich-content-plugin-html/dist/styles.css';
 import { videoTypeMapper } from 'wix-rich-content-plugin-video';
 import { imageTypeMapper } from 'wix-rich-content-plugin-image';
 import { galleryTypeMapper } from 'wix-rich-content-plugin-gallery';
 import { dividerTypeMapper } from 'wix-rich-content-plugin-divider';
+import { htmlTypeMapper } from 'wix-rich-content-plugin-html';
 
 import TestData from './TestData/initial-state';
 import theme from './theme/theme';
@@ -120,7 +122,8 @@ class App extends Component {
                   videoTypeMapper,
                   imageTypeMapper,
                   galleryTypeMapper,
-                  dividerTypeMapper]}
+                  dividerTypeMapper,
+                  htmlTypeMapper]}
                 // plugins={this.plugins}
                 // decorators={this.decorators}
                 initialState={this.state.raw}

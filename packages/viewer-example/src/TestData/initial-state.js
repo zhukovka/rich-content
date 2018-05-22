@@ -156,11 +156,11 @@ const TestData = {
         "mutability": "IMMUTABLE",
         "data": {
           "src": "https://www.youtube.com/embed/owsfdh4gxyc",
+          "srcType": "url",
           "config": {
-            "width": 200,
+            "width": 500,
             "height": 200,
             "safe": true,
-            "isSrc": true
           }
         }
       },
@@ -411,11 +411,11 @@ const TestData = {
         "mutability": "IMMUTABLE",
         "data": {
           "src": "https://www.youtube.com/embed/owsfdh4gxyc",
+          "srcType": "url",
           "config": {
             "width": 500,
             "height": 200,
             "safe": true,
-            "isSrc": true
           }
         }
       },
