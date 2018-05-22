@@ -185,9 +185,9 @@ const TestData = {
         "type": "wix-draft-plugin-divider",
         "mutability": "IMMUTABLE",
         "data": {
-          "type": "divider1",
+          "type": "double",
           "config": {
-            "width": 500
+            "size": "large",
           },
         }
       },
@@ -423,9 +423,9 @@ const TestData = {
         "type": "wix-draft-plugin-divider",
         "mutability": "IMMUTABLE",
         "data": {
-          "type": "divider1",
+          "type": "dashed",
           "config": {
-            "width": 500
+            "size": "medium"
           },
         }
       },
