@@ -1,11 +1,52 @@
-.divider1 {
+.divider-container {
+  color: fuchsia;
 }
 
-.divider2 {
+.divider {
+
+  &--single,
+  &--double,
+  &--dashed,
+  &--dotted {
+  }
+
+  &--dashed {
+  }
+
+  &--dotted {
+  }
+
+  &--small,
+  &--small--mobile {
+  }
+
+  &--medium,
+  &--large--mobile {
+  }
+
+  &--medium--mobile {
+  }
+
+  &--large {
+  }
+
+  &--left {
+  }
+
+  &--center {
+  }
+
+  &--right {
+  }
 }
 
-.divider3 {
-}
+.divider-dropdown {
+  &__control {
+  }
 
-.divider4 {
+  &__option {
+  }
+
+  &__divider {
+  }
 }
