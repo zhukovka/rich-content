@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import noop from 'lodash';
 import classNames from 'classnames';
-import { Video } from 'santa-components/src/components/Video/Video';
+import { default as Video } from 'santa-components/src/components/Video/Video';
 import { findDOMNode } from 'react-dom';
 import { mergeStyles } from 'wix-rich-content-common';
 import styles from './default-video-styles.scss';
@@ -78,10 +79,75 @@ class VideoComponent extends React.Component {
         {isLoaded && <span className={styles.video_overlay_message}>{overlayText}</span>}
       </div>);
   };
-
   renderPlayer = () => {
+    const props = {
+      compData: {
+        type: 'Video',
+        id: 'dataItem-jhg2mieg',
+        metaData: {
+          isPreset: false,
+          schemaVersion: '1.0',
+          isHidden: false
+        },
+        videoId: 'WWpQK3nQclU',
+        videoType: 'YOUTUBE'
+      },
+      compProp: {
+        type: 'VideoProperties',
+        metaData: {
+          schemaVersion: '1.0'
+        },
+        autoplay: false,
+        loop: false,
+        showinfo: false,
+        lightTheme: false,
+        showControls: 'temp_show'
+      },
+      style: {
+        top: 264,
+        bottom: '',
+        left: 250,
+        right: '',
+        width: 480,
+        height: 277,
+        position: 'absolute'
+      },
+      windowScrollEventAspect: { clearCompScrollModes: noop },
+      logger: {
+        error: e => { console.log(e) }
+      },
+      skin: 'wysiwyg.viewer.skins.VideoSkin',
+      isExperimentOpen: () => false,
+      styleId: 'v1',
+      id: 'comp-jhg2midp',
+      structure: {
+        layout: {
+          width: 480,
+          height: 277,
+          x: 250,
+          y: 264,
+          scale: 1,
+          rotationInDegrees: 0,
+          fixedPosition: false
+        },
+        skin: 'wysiwyg.viewer.skins.VideoSkin',
+        componentType: 'wysiwyg.viewer.components.Video',
+        components: [],
+        dataQuery: '#dataItem-jhg2mieg',
+        dimensions: {
+          height: 277,
+          width: 480,
+          x: 250,
+          y: 264
+        },
+        propertyQuery: 'propItem-jhg2miei',
+        type: 'Component'
+      }
+    };
+
     return (
-     <div>Chene</div>
+      <Video isPlayingAllowed={false} {...props} />
+      // <div></div>
     );
   };
 
