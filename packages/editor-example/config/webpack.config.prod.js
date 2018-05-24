@@ -347,21 +347,5 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty',
-  },
-  externals: [
-    /^@wix.*/,
-    'draft-js',
-    {
-      'wix-rich-content-editor': 'WixRichContentEditor'
-    },
-    {
-      react: 'React'
-    },
-    {
-      'react-dom': 'ReactDOM'
-    },
-    {
-      immutable: 'Immutable'
-    }
-  ],
+  }
 };
