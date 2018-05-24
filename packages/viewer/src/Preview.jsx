@@ -61,7 +61,6 @@ const blocks = {
 };
 
 const getEntities = (typeMap, pluginProps) => ({
-  LINK: (children, entity, { key }) => <a key={key} href={entity.url}>{children}</a>,
   ...getPluginsViewer(typeMap, pluginProps)
 });
 
