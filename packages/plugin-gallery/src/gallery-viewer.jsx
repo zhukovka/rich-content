@@ -116,7 +116,7 @@ GalleryViewer.propTypes = {
   componentData: PropTypes.object.isRequired,
   onClick: PropTypes.func,
   className: PropTypes.string,
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.object,
   helpers: PropTypes.object,
   settings: PropTypes.object
 };
