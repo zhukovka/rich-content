@@ -170,7 +170,7 @@ class App extends Component {
   render() {
     const {
       RichContentEditor,
-      RichContentModal,
+      RichContentEditorModal,
     } = WixRichContentEditor;
     const modalStyles = {
       content: Object.assign({}, (this.state.modalStyles || modalStyleDefaults).content, theme.modalTheme.content),
@@ -246,7 +246,7 @@ class App extends Component {
               role="dialog"
               onRequestClose={this.closeModal}
             >
-              {this.state.showModal && <RichContentModal {...this.state.modalProps} />}
+              {this.state.showModal && <RichContentEditorModal {...this.state.modalProps} />}
             </ReactModal>
           </div>
         </div>

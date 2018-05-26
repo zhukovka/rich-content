@@ -39,13 +39,22 @@
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "^1.0.1",
     "whatwg-fetch": "2.0.3",
-    "wix-rich-content-editor": "^1.0.21"
+    "wix-rich-content-viewer": "^1.0.21",
+    "wix-rich-content-common": "^1.0.0",
+    "wix-rich-content-plugin-divider": "^1.0.0",
+    "wix-rich-content-plugin-emoji": "^1.0.0",
+    "wix-rich-content-plugin-gallery": "^1.0.0",
+    "wix-rich-content-plugin-hashtag": "^1.0.0",
+    "wix-rich-content-plugin-html": "^1.0.0",
+    "wix-rich-content-plugin-image": "^1.0.0",
+    "wix-rich-content-plugin-link": "^1.0.0",
+    "wix-rich-content-plugin-video": "^1.0.0"
   },
   "peerDependencies": {
     "immutable": "^3.8.1",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
-    "wix-rich-content-editor": "^1.0.6"
+    "wix-rich-content-viewer": "^1.0.6"
   },
   "scripts": {
     "start": "node scripts/start.js",
@@ -53,7 +62,7 @@
     "build:analyze": "npm run build -- --progress --env.analyzeBundle",
     "test": "cross-env CI=true node scripts/test.js --env=jsdom",
     "bootstrap": "npm install && npm run link",
-    "link": "npm link wix-rich-content-editor --only=production"
+    "link": "npm link wix-rich-content-viewer --only=production"
   },
   "devDependencies": {
     "cross-env": "^5.1.3",

@@ -9,10 +9,8 @@ import htmlComponentStyles from './HtmlComponent.scss';
 
 const HtmlComponent = props => {
   const styles = mergeStyles({ styles: htmlComponentStyles, theme: props.theme });
-  const {
-    blockProps: { readOnly },
-    componentData: { src, srcType, config: { width, height } },
-  } = props;
+  const { componentData: { src, srcType, config: { width, height } } } = props;
+  const readOnly = props.blockProps ? props.blockProps.readOnly : true;
 
   return (
     <div className={styles.htmlComponent} style={{ width, height }} data-hook="HtmlComponent">
@@ -33,9 +31,9 @@ const HtmlComponent = props => {
 
 HtmlComponent.propTypes = {
   componentData: PropTypes.object.isRequired,
-  blockProps: PropTypes.object.isRequired,
-  className: PropTypes.string.isRequired,
-  theme: PropTypes.object.isRequired,
+  blockProps: PropTypes.object,
+  className: PropTypes.string,
+  theme: PropTypes.object,
 };
 
 export {
