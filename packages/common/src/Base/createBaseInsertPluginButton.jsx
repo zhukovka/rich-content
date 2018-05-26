@@ -131,9 +131,6 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
     }
 
     renderFileUploadButton = () => {
-      if (helpers && helpers.handleFileSelection) {
-        return null;
-      }
       const { showName, tabIndex } = this.props;
       const { name, Icon } = button;
       const { styles } = this;
@@ -160,12 +157,13 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
       const { theme, isMobile } = this.props;
       const { tooltipText } = button;
       const showTooltip = !isMobile && !isEmpty(tooltipText);
+      const shouldRenderFileUploadButton = button.type === 'file' && !(helpers && helpers.handleFileSelection);
       const buttonWrapperClassNames = classNames(
         styles.buttonWrapper, { [styles.mobile]: isMobile });
 
       const Button = (
         <div className={buttonWrapperClassNames}>
-          {button.type === 'file' ? this.renderFileUploadButton() : this.renderButton()}
+          { shouldRenderFileUploadButton ? this.renderFileUploadButton() : this.renderButton()}
         </div>
       );
 
