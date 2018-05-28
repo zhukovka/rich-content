@@ -9,8 +9,8 @@
   display: flex;
 }
 
-.focused,
-*:focus {
+// *:focus,
+.focused {
   outline: 1px dashed;
 }
 

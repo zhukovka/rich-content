@@ -1,10 +1,11 @@
 import React from 'react';
-import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { findDOMNode } from 'react-dom';
 import { mergeStyles } from 'wix-rich-content-common';
+import VideoViewer from './video-viewer';
 import styles from './default-video-styles.scss';
+import { VIDEO_TYPE_LEGACY, VIDEO_TYPE } from './types';
 
 const DEFAULTS = {
   config: {
@@ -16,6 +17,9 @@ const DEFAULTS = {
 const MAX_WAIT_TIME = 5000;
 
 class VideoComponent extends React.Component {
+
+  static type = { VIDEO_TYPE_LEGACY, VIDEO_TYPE };
+
   constructor(props) {
     super(props);
     const isPlayable = !props.blockProps || props.blockProps.readOnly === true;
@@ -79,18 +83,14 @@ class VideoComponent extends React.Component {
       </div>);
   };
 
-  renderPlayer = styles => {
+  renderPlayer = () => {
     const { componentData } = this.props;
     return (
-      <ReactPlayer
+      <VideoViewer
         ref={this.setPlayer}
-        className={classNames(styles.video_player)}
-        width="100%"
-        height="100%"
-        url={componentData.src}
+        componentData={componentData}
         onReady={this.handleReady}
         onStart={this.handleStart}
-        controls
       />
     );
   };
@@ -110,7 +110,7 @@ class VideoComponent extends React.Component {
     return (
       <div data-hook="videoPlayer" onClick={onClick} className={containerClassNames} onKeyDown={e => this.onKeyDown(e, onClick)}>
         {!isPlayable && this.renderOverlay(styles, t)}
-        {this.renderPlayer(styles)}
+        {this.renderPlayer()}
       </div>
     );
     /* eslint-enable jsx-a11y/no-static-element-interactions */

@@ -1,8 +1,8 @@
 /* eslint-disable */
 const TestData = {
-  onlyText : {
+  onlyText: {
     "entityMap": {},
-    "blocks": [ {
+    "blocks": [{
       "key": "5g8yu",
       "text": "Hello text only",
       "type": "unstyled",
@@ -12,9 +12,39 @@ const TestData = {
       "data": {}
     }]
   },
-  legacyImage2 : {
+  link: {
+    "blocks": [
+      {
+        "key": "6v4q4",
+        "text": "www",
+        "type": "unstyled",
+        "depth": 0,
+        "inlineStyleRanges": [],
+        "entityRanges": [
+          {
+            "offset": 0,
+            "length": 3,
+            "key": 0
+          }
+        ],
+        "data": {}
+      }
+    ],
+    "entityMap": {
+      "0": {
+        "type": "LINK",
+        "mutability": "MUTABLE",
+        "data": {
+          "url": "www.com",
+          "targetBlank": true,
+          "nofollow": true
+        }
+      }
+    }
+  },
+  legacyImage2: {
     "entityMap": {},
-    "blocks": [ {
+    "blocks": [{
       "key": "5g8yu",
       "text": "Is this the right way to define atomic blocks?",
       "type": "unstyled",
@@ -40,7 +70,7 @@ const TestData = {
       },
     }]
   },
-  legacyImage : {
+  legacyImage: {
     "entityMap": {
       "0": {
         "type": "IMAGE",
@@ -68,49 +98,46 @@ const TestData = {
       "data": {}
     }]
   },
-  image : {
+  image: {
     "entityMap": {
       "0": {
         "type": "wix-draft-plugin-image",
         "mutability": "IMMUTABLE",
         "data": {
-          "item": {
-            "file_name": "20",
-            "source": "static",
-            "url": "https://unsplash.it/500/500?image=20",
-            "title": "This is a title",
-            "description": "This is the description"
+          "src": {
+            "width": 960,
+            "height": 720,
+            "file_name": "a27d24_3427f118d84444dbbb01c684ec4a82da~mv2.png",
+            "original_file_name": "blob"
           },
-          "config": {
-            "layout":"classic",
-            "showTitle": true,
-            "showDescription": true
-          }
+          "isLoading": false
         }
       },
     },
     "blocks": [{
-      "key": "ov8f",
+      "key": "7euc6",
       "text": " ",
       "type": "atomic",
       "depth": 0,
       "inlineStyleRanges": [],
-      "entityRanges": [{
-        "offset": 0,
-        "length": 1,
-        "key": 0
-      }],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 0
+        }
+      ],
       "data": {}
-    }]
+    },]
   },
-  legacyVideo : {
+  legacyVideo: {
     "entityMap": {
       "0": {
         "type": "VIDEO-EMBED",
         "mutability": "IMMUTABLE",
         "data": {
           "src": "https://www.youtube.com/watch?v=eqZVIiD6wSg",
-          "config": {"size": "content"}
+          "config": { "size": "content" }
         }
       },
     },
@@ -128,7 +155,7 @@ const TestData = {
       "data": {}
     }]
   },
-  video : {
+  video: {
     "entityMap": {
       "0": {
         "type": "wix-draft-plugin-video",
@@ -152,18 +179,18 @@ const TestData = {
       "data": {}
     }]
   },
-  html : {
+  html: {
     "entityMap": {
       "0": {
         "type": "wix-draft-plugin-html",
         "mutability": "IMMUTABLE",
         "data": {
           "src": "https://www.youtube.com/embed/owsfdh4gxyc",
+          "srcType": "url",
           "config": {
-            "width": 200,
+            "width": 500,
             "height": 200,
             "safe": true,
-            "isSrc": true
           }
         }
       },
@@ -182,15 +209,15 @@ const TestData = {
       "data": {}
     }]
   },
-  divider : {
+  divider: {
     "entityMap": {
       "0": {
         "type": "wix-draft-plugin-divider",
         "mutability": "IMMUTABLE",
         "data": {
-          "type": "divider1",
+          "type": "double",
           "config": {
-            "width": 500
+            "size": "large",
           },
         }
       },
@@ -209,7 +236,7 @@ const TestData = {
       "data": {}
     }]
   },
-  gallery : {
+  gallery: {
     "entityMap": {
       "0": {
         "type": "wix-draft-plugin-gallery",
@@ -297,7 +324,7 @@ const TestData = {
             "description": "This is the description"
           },
           "config": {
-            "layout":"classic",
+            "layout": "classic",
             "showTitle": true,
             "showDescription": true
           }
@@ -315,7 +342,7 @@ const TestData = {
             "description": "This is the description"
           },
           "config": {
-            "layout":"classic",
+            "layout": "classic",
             "showTitle": true,
             "showDescription": true
           }
@@ -325,7 +352,7 @@ const TestData = {
         "type": "wix-draft-plugin-gallery",
         "mutability": "IMMUTABLE",
         "data": {
-          "items":  [
+          "items": [
             {
               metadata: {
                 height: 1000,
@@ -374,8 +401,8 @@ const TestData = {
               itemId: '860df034014674abd7a2e73abe0b851c',
               url: '8bb438_ac190df97cfe4c6d8bcd9ca8b6b3c100.jpg',
             }
-        ],
-          "config": {"layout":"small"}
+          ],
+          "config": { "layout": "small" }
         }
       },
       "3": {
@@ -390,7 +417,7 @@ const TestData = {
             "description": "This is the description"
           },
           "config": {
-            "layout":"classic",
+            "layout": "classic",
             "showTitle": true,
             "showDescription": true
           }
@@ -414,11 +441,11 @@ const TestData = {
         "mutability": "IMMUTABLE",
         "data": {
           "src": "https://www.youtube.com/embed/owsfdh4gxyc",
+          "srcType": "url",
           "config": {
             "width": 500,
             "height": 200,
             "safe": true,
-            "isSrc": true
           }
         }
       },
@@ -426,9 +453,9 @@ const TestData = {
         "type": "wix-draft-plugin-divider",
         "mutability": "IMMUTABLE",
         "data": {
-          "type": "divider1",
+          "type": "dashed",
           "config": {
-            "width": 500
+            "size": "medium"
           },
         }
       },
@@ -441,7 +468,7 @@ const TestData = {
       "inlineStyleRanges": [],
       "entityRanges": [],
       "data": {}
-    },{
+    }, {
       "key": "ov8f",
       "text": " ",
       "type": "atomic",
@@ -453,7 +480,7 @@ const TestData = {
         "key": 6
       }],
       "data": {}
-    },{
+    }, {
       "key": "ov8w",
       "text": " ",
       "type": "atomic",
@@ -465,7 +492,7 @@ const TestData = {
         "key": 4
       }],
       "data": {}
-    },{
+    }, {
       "key": "ov8t",
       "text": " ",
       "type": "atomic",
@@ -477,7 +504,7 @@ const TestData = {
         "key": 5
       }],
       "data": {}
-    },{
+    }, {
       "key": "ov7w",
       "text": " ",
       "type": "atomic",
@@ -489,7 +516,7 @@ const TestData = {
         "key": 2
       }],
       "data": {}
-    },{
+    }, {
       "key": "ov7z",
       "text": " ",
       "type": "atomic",

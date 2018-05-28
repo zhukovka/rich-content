@@ -26,7 +26,7 @@ class ImageViewer extends React.Component {
   }
 
   getImageSrc(src) {
-    const { helpers } = this.props;
+    const { helpers } = this.props || {};
 
     if (!src && (helpers && helpers.handleFileSelection)) {
       return null;
@@ -96,13 +96,12 @@ class ImageViewer extends React.Component {
       <div className={classNames(styles.imageDescription)}>{(data && data.description) || ''}</div>;
   }
 
-  renderCaption(caption, isFocused, readOnly, styles, t) {
-    const defaultCaption = t('ImageViewer_Caption');
+  renderCaption(caption, isFocused, readOnly, styles, defaultCaption) {
 
     return (
       caption ?
         <div className={styles.imageCaption} data-hook="imageViewerCaption">{caption}</div> :
-        (!readOnly && isFocused) && <div className={styles.imageCaption}>{defaultCaption}</div>
+        (!readOnly && isFocused && defaultCaption) && <div className={styles.imageCaption}>{defaultCaption}</div>
     );
   }
 
@@ -120,7 +119,7 @@ class ImageViewer extends React.Component {
 
   render() {
     const { styles } = this;
-    const { componentData, className, onClick, isFocused, readOnly, settings, t } = this.props;
+    const { componentData, className, onClick, isFocused, readOnly, settings, defaultCaption } = this.props;
     const data = componentData || getDefault();
     data.config = data.config || {};
     const { metadata = {} } = componentData;
@@ -132,7 +131,7 @@ class ImageViewer extends React.Component {
     const itemClassName = classNames(styles.imageContainer, className);
     const imageClassName = classNames(styles.image);
     const imageSrc = this.getImageSrc(data.src);
-    const imageProps = data.src && isFunction(settings.imageProps) ? settings.imageProps(data.src) : settings.imageProps;
+    const imageProps = data.src && settings && isFunction(settings.imageProps) ? settings.imageProps(data.src) : settings && settings.imageProps;
 
     /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
@@ -146,7 +145,7 @@ class ImageViewer extends React.Component {
         </div>
         {this.renderTitle(data, styles)}
         {this.renderDescription(data, styles)}
-        {shouldRenderCaption && this.renderCaption(metadata.caption, isFocused, readOnly, styles, t)}
+        {shouldRenderCaption && this.renderCaption(metadata.caption, isFocused, readOnly, styles, defaultCaption)}
       </div>
     );
     /* eslint-enable jsx-a11y/no-static-element-interactions */
@@ -155,17 +154,17 @@ class ImageViewer extends React.Component {
 
 ImageViewer.propTypes = {
   componentData: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired,
-  className: PropTypes.string.isRequired,
-  theme: PropTypes.object.isRequired,
-  helpers: PropTypes.object.isRequired,
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+  theme: PropTypes.object,
+  helpers: PropTypes.object,
   isLoading: PropTypes.bool,
   dataUrl: PropTypes.string,
   isFocused: PropTypes.bool,
   readOnly: PropTypes.bool,
   isMobile: PropTypes.bool,
   settings: PropTypes.object,
-  t: PropTypes.func,
+  defaultCaption: PropTypes.string,
 };
 
 export { ImageViewer, getDefault };

@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { normalizeURL } from 'wix-rich-content-common';
-import styles from './link.scss';
+import LinkViewer from './LinkViewer';
 
 const findLinkEntities = (contentBlock, callback, contentState) => {
   contentBlock.findEntityRanges(character => {
@@ -12,20 +10,11 @@ const findLinkEntities = (contentBlock, callback, contentState) => {
 };
 
 const Link = ({ entityKey, contentState, className, children, anchorTarget, relValue }) => {
-  const { url, targetBlank, nofollow } = contentState.getEntity(entityKey).getData();
-  const anchorProps = {
-    href: normalizeURL(url),
-    target: targetBlank ? '_blank' : (anchorTarget || '_self'),
-    rel: nofollow ? 'nofollow' : (relValue || null),
-    className: classNames(styles.link, className),
-  };
+  const entity = contentState.getEntity(entityKey);
   return (
-    <a
-      {...anchorProps}
-    >
+    <LinkViewer componentData={entity} className={className} anchorTarget={anchorTarget} relValue={relValue}>
       {children}
-    </a>
-  );
+    </LinkViewer>);
 };
 
 Link.propTypes = {

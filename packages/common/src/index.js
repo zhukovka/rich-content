@@ -54,6 +54,7 @@ export { default as Tooltip } from './Components/Tooltip';
 
 //Modals
 export { default as MODALS } from './Modals/keys';
+export { default as RichContentModal } from './Modals/RichContentModal';
 
 //Utils
 export { default as createHocName } from './Utils/createHocName';
