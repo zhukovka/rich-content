@@ -292,9 +292,9 @@ class RichContentEditor extends Component {
   };
 
   renderEditor = () => {
-    const { 
-      helpers, 
-      editorKey, 
+    const {
+      helpers,
+      editorKey,
       tabIndex,
       placeholder,
       spellCheck,
@@ -338,6 +338,8 @@ class RichContentEditor extends Component {
         autoCapitalize={autoCapitalize}
         autoComplete={autoComplete}
         autoCorrect={autoCorrect}
+        ariaActiveDescendantID={ariaActiveDescendantID}
+        ariaAutoComplete={ariaAutoComplete}
         ariaControls={ariaControls}
         ariaDescribedBy={ariaDescribedBy}
         ariaExpanded={ariaExpanded}

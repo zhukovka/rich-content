@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "wix-rich-content-editor",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -33,9 +33,9 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js",
-      "^draft-js$": "<rootDir>/node_modules/@wix/draft-js/dist/Draft.min.js",
-      "^draft-js/.*$": "<rootDir>/node_modules/@wix/draft-js/dist/Draft.min.js",
-      "^@wix/draft-js$": "<rootDir>/node_modules/@wix/draft-js/dist/Draft.min.js"
+      "^draft-js$": "<rootDir>/../../node_modules/@wix/draft-js/dist/Draft.min.js",
+      "^draft-js/.*$": "<rootDir>/../../node_modules/@wix/draft-js/dist/Draft.min.js",
+      "^@wix/draft-js$": "<rootDir>/../../node_modules/@wix/draft-js/dist/Draft.min.js"
     }
   },
   "dependencies": {

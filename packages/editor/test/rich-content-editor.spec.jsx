@@ -1,6 +1,6 @@
 import React from 'react';
-import { RichContentEditor, RichContentModal } from '../src/index';
-import { shallow, mount } from 'enzyme';
+import { RichContentEditor } from '../src/index';
+import { shallow } from 'enzyme';
 import TestData from './TestData/initial-state';
 
 describe('RichContentEditor', () => {
@@ -53,12 +53,12 @@ describe('RichContentEditor', () => {
   // });
 });
 
-describe('Modal', () => {
-  it('should render', () => {
-    const ModalElement = () => {
-      return <div id="someId" />;
-    };
-    const wrapper = shallow(<RichContentModal modalElement={ModalElement} keyName="someName" store={{}} componentData={{}} componentState={{}} />);
-    expect(wrapper.html()).toEqual(expect.stringContaining('id="someId"'));
-  });
-});
+// describe('Modal', () => {
+//   it('should render', () => {
+//     const ModalElement = () => {
+//       return <div id="someId" />;
+//     };
+//     const wrapper = shallow(<RichContentModal modalElement={ModalElement} keyName="someName" store={{}} componentData={{}} componentState={{}} />, { context: {} });
+//     expect(wrapper.html()).toEqual(expect.stringContaining('id="someId"'));
+//   });
+// });
