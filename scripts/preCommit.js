@@ -25,8 +25,9 @@ const dirsWithModifiedFiles = execSync('git status --porcelain=1')
       return false;
     }
   })
-  .map(s => {
-    const filePath = s.trim().split(' ')[1];
+  .map(status => {
+    const statusArr = status.trim().split(' ');
+    const filePath = statusArr[statusArr.length - 1];
     const fullFileDir = path.parse(filePath).dir.replace(baseDir, '');
     const fullFileDirSepIndex = fullFileDir.indexOf(path.sep);
     const baseFileDir = fullFileDirSepIndex > -1 ? fullFileDir.substring(0, fullFileDirSepIndex) : fullFileDir;
