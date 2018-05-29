@@ -6,16 +6,26 @@
 .radioGroupHorizontal_group {
   display: flex;
   align-items: center;
-  line-height: normal;
 
   label {
-    width: 50%;
     display: inline-flex;
     align-items: center;
   }
 
   span {
     vertical-align: text-bottom;
+  }
+}
+
+.radioGroupHorizontal_groupTwoColumns {
+  label {
+    width: 50%;
+  }
+}
+
+.radioGroupHorizontal_groupInline {
+  label + label {
+    margin-left: 36px;
   }
 }
 

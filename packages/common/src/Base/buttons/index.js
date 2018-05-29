@@ -1,7 +1,8 @@
 import createBlockButton from './createBlockButton';
-import createBlockAlignmentAndSizeButton from './createBlockAlignmentAndSizeButton';
 import createBlockAlignmentButton from './createBlockAlignmentButton';
+import createBlockAlignmentAndSizeButton from './createBlockAlignmentAndSizeButton';
 import createBlockSizeButton from './createBlockSizeButton';
+import createSliderPanelButton from './createSliderPanelButton';
 import BUTTONS from '../buttons/keys';
 import BlockLinkButton from '../buttons/BlockLinkButton';
 import {
@@ -17,6 +18,8 @@ import {
   AlignmentLeftIcon,
   AlignmentCenterIcon,
   AlignmentRightIcon,
+  WidthIcon,
+  HeightIcon,
   DeleteIcon
 } from '../icons';
 
@@ -107,6 +110,28 @@ export const DeleteButton = createBlockButton({
   tooltipTextKey: 'DeleteButton_Tooltip',
 });
 
+export const WidthButton = createSliderPanelButton({
+  keyName: 'width',
+  Icon: WidthIcon,
+  tooltipTextKey: 'WidthButton_Tooltip',
+  getValue: ({ componentData }) => componentData.config.width,
+  onChange: ({ store }) => width => {
+    if (width >= 740 && store.get('componentAlignment')) {
+      store.set('componentAlignment', 'center');
+    }
+
+    store.update('componentData', { config: { width } });
+  },
+});
+
+export const HeightButton = createSliderPanelButton({
+  keyName: 'height',
+  Icon: HeightIcon,
+  tooltipTextKey: 'HeightButton_Tooltip',
+  getValue: ({ componentData }) => componentData.config.height,
+  onChange: ({ store }) => height => store.update('componentData', { config: { height } }),
+});
+
 export const BUTTONS_BY_KEY = {
   [BUTTONS.SIZE_SMALL]: SizeSmallButton,
   [BUTTONS.SIZE_MEDIUM]: SizeMediumButton,
@@ -120,4 +145,6 @@ export const BUTTONS_BY_KEY = {
   [BUTTONS.ALIGNMENT_LEFT]: AlignmentLeftButton,
   [BUTTONS.ALIGNMENT_CENTER]: AlignmentCenterButton,
   [BUTTONS.ALIGNMENT_RIGHT]: AlignmentRightButton,
+  [BUTTONS.WIDTH]: WidthButton,
+  [BUTTONS.HEIGHT]: HeightButton,
 };
