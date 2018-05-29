@@ -41,6 +41,11 @@
   display: none;
 }
 
+.pluginContainer,
+.pluginContainerReadOnly {
+  position: relative;
+}
+
 .pluginContainerReadOnly {
   @extend .fontElementMap;
 }
@@ -51,6 +56,10 @@
   &:hover {
     @include block-select;
   }
+}
+
+.pluginContainerMobile {
+  max-width: 100%;
 }
 
 .alignLeft {
@@ -118,10 +127,10 @@
   @extend .fontElementMap;
   position: absolute;
   display: flex;
-  padding: 10px;
-  background: $primary-color-light;
+  padding: 12px 24px;
+  background: white;
   color: $secondary-text-color;
-  border-radius: 0 2px 2px;
+  border-radius: $toolbarBorderRadius;
   box-shadow: rgb(220, 220, 220) 1px 1px 3px 1px;
 }
 

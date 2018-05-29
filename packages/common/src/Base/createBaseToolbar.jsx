@@ -117,7 +117,11 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
         this.hideToolbar();
       }
 
-      this.hidePanels();
+      if (visibleBlock !== this.visibleBlock) {
+        this.hidePanels();
+      }
+
+      this.visibleBlock = visibleBlock;
     };
 
     hideToolbar = () => {
@@ -126,7 +130,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
 
     showToolbar = () => {
       const toolbarNode = findDOMNode(this);
-      const toolbarHeight = toolbarNode.offsetHeight;
+      const toolbarHeight = this.buttons.offsetHeight;
       const offsetParentRect = toolbarNode.offsetParent.getBoundingClientRect();
       const offsetParentTop = offsetParentRect.top;
       const offsetParentLeft = offsetParentRect.left;
@@ -283,7 +287,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
           );
         default:
           return (
-            <BaseToolbarButton
+            <Button
               tabIndex={tabIndex}
               theme={themedStyle}
               componentData={this.state.componentData}

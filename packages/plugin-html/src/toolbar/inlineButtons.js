@@ -1,70 +1,57 @@
+import get from 'lodash/get';
 import { translate } from 'react-i18next';
-import { BUTTONS, PluginSettingsIcon } from 'wix-rich-content-common';
-import decorateComponentWithProps from 'decorate-component-with-props';
+import {
+  BUTTONS,
+  SizeSmallLeftIcon,
+  SizeSmallCenterIcon,
+  SizeSmallRightIcon,
+} from 'wix-rich-content-common';
 import EditIcon from '../icons/edit.svg';
-import WidthIcon from '../icons/width.svg';
-import HeightIcon from '../icons/height.svg';
-import HtmlSettingsModal from './HtmlSettings';
-import SettingsModal from './SettingsModal';
+import {
+  MAX_ALIGNMENT_WIDTH,
+  MIN_WIDTH,
+  MAX_WIDTH,
+  MIN_HEIGHT,
+  MAX_HEIGHT,
+  SRC_TYPE_HTML,
+  SRC_TYPE_URL,
+} from '../constants';
 import EditPanel from './HtmlEditPanel';
-import SliderPanel from './SliderPanel';
 
-export default({ t }) => {
+const getAlignmentButtonProps = componentData => ({ disabled: get(componentData, 'config.width', 0) > MAX_ALIGNMENT_WIDTH });
+const TOOLTIP_TEXT_BY_SRC_TYPE = {
+  [SRC_TYPE_HTML]: 'HtmlPlugin_EditHtml_Tooltip',
+  [SRC_TYPE_URL]: 'HtmlPlugin_EditUrl_Tooltip',
+};
+export default () => {
   return [
-  //the icons in the toolbar are the following:
-  // Edit - open a small dialog that has an option to add src for the iframe or code
     {
-      keyName: 'edit',
       type: BUTTONS.INLINE_PANEL,
+      keyName: 'edit',
       panelContent: translate(null)(EditPanel),
       icon: EditIcon,
-      tooltipTextKey: 'EditButton_Tooltip',
+      mapComponentDataToButtonProps: ({ src, srcType }) =>
+        ({ tooltipTextKey: src ? TOOLTIP_TEXT_BY_SRC_TYPE[srcType] : 'HtmlPlugin_EditEmpty_Tooltip' }),
     },
     { type: BUTTONS.SEPARATOR },
-    {
-      keyName: 'width',
-      type: BUTTONS.PANEL,
-      panelContent: decorateComponentWithProps(SliderPanel, {
-        min: 35,
-        max: 940,
-        getValue: ({ componentData }) => componentData.config.width,
-        onChange: ({ store }) => width => store.update('componentData', { config: { width } }),
-      }),
-      icon: WidthIcon,
-      tooltipTextKey: 'HtmlPlugin_Width',
-    },
-    {
-      keyName: 'height',
-      type: BUTTONS.PANEL,
-      panelContent: decorateComponentWithProps(SliderPanel, {
-        min: 35,
-        max: 1200,
-        getValue: ({ componentData }) => componentData.config.height,
-        onChange: ({ store }) => height => store.update('componentData', { config: { height } }),
-      }),
-      icon: HeightIcon,
-      tooltipTextKey: 'HtmlPlugin_Height',
-    },
+    { type: BUTTONS.WIDTH, min: MIN_WIDTH, max: MAX_WIDTH },
+    { type: BUTTONS.HEIGHT, min: MIN_HEIGHT, max: MAX_HEIGHT },
     { type: BUTTONS.SEPARATOR },
     {
-      keyName: 'settings',
-      type: BUTTONS.PANEL,
-      panelContent: translate(null)(SettingsModal),
-      icon: PluginSettingsIcon,
-      onClick: pubsub => console.log('*** click settings *** '), //eslint-disable-line no-console, no-unused-vars,
-      mobile: true,
-      tooltipTextKey: 'SettingsButton_Tooltip',
+      type: BUTTONS.ALIGNMENT_LEFT,
+      icon: SizeSmallLeftIcon,
+      mapComponentDataToButtonProps: getAlignmentButtonProps,
     },
     {
-      keyName: 'external_settings',
-      type: BUTTONS.EXTERNAL_MODAL,
-      modalElement: HtmlSettingsModal,
-      icon: PluginSettingsIcon,
-      onClick: pubsub => console.log('*** click external settings *** '), //eslint-disable-line no-console, no-unused-vars,
-      mobile: true,
-      tooltipTextKey: 'SettingsButton_Tooltip',
-      t,
+      type: BUTTONS.ALIGNMENT_CENTER,
+      icon: SizeSmallCenterIcon,
     },
-    { keyName: 'delete', type: BUTTONS.DELETE },
+    {
+      type: BUTTONS.ALIGNMENT_RIGHT,
+      icon: SizeSmallRightIcon,
+      mapComponentDataToButtonProps: getAlignmentButtonProps,
+    },
+    { type: BUTTONS.SEPARATOR },
+    { type: BUTTONS.DELETE, keyName: 'delete', mobile: true },
   ];
 };

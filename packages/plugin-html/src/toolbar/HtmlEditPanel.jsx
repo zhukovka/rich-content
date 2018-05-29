@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import debounce from 'lodash/debounce';
-import { RadioGroupHorizontal } from 'wix-rich-content-common';
+import { RadioGroupHorizontal, TextInput, startsWithHttps, isValidUrl } from 'wix-rich-content-common';
 import { SRC_TYPE_HTML, SRC_TYPE_URL } from '../constants';
 import TextArea from './TextArea';
 import styles from './HtmlEditPanel.scss';
@@ -12,6 +13,7 @@ class HtmlEditPanel extends Component {
   state = {
     srcType: this.initialData.srcType,
     [this.initialData.srcType]: this.initialData.src,
+    submitted: false,
   };
 
   handleSrcTypeChange = srcType => {
@@ -36,8 +38,30 @@ class HtmlEditPanel extends Component {
     this.props.close();
   };
 
+  handleUpdateClick = () => {
+    if (this.state.srcType !== SRC_TYPE_URL || !this.getUrlError()) {
+      this.props.close();
+    }
+
+    this.setState({ submitted: true });
+  };
+
+  getUrlError() {
+    const { t } = this.props;
+    const { url } = this.state;
+    let error = null;
+
+    if (!url || !isValidUrl(url)) {
+      error = t('HtmlEditPanel_UrlError');
+    } else if (!startsWithHttps(url)) {
+      error = t('HtmlEditPanel_HttpsError');
+    }
+
+    return error;
+  }
+
   render = () => {
-    const { srcType } = this.state;
+    const { srcType, submitted } = this.state;
     const { t, tabIndex, theme } = this.props;
 
     return (
@@ -48,24 +72,55 @@ class HtmlEditPanel extends Component {
           value={this.state.srcType}
           onChange={this.handleSrcTypeChange}
           dataSource={[
-            { value: SRC_TYPE_HTML, labelText: t('HtmlPlugin_Code') },
-            { value: SRC_TYPE_URL, labelText: t('HtmlPlugin_Source') },
+            { value: SRC_TYPE_HTML, labelText: t('HtmlEditPanel_Code') },
+            { value: SRC_TYPE_URL, labelText: t('HtmlEditPanel_Source') },
           ]}
+          inline
         />
 
         <div className={styles.htmlEditPanel_input}>
           {srcType === SRC_TYPE_HTML && (
-            <TextArea name={SRC_TYPE_HTML} onChange={this.handleSrcChange} tabIndex={tabIndex} value={this.state.html}/>
+            <TextArea
+              name={SRC_TYPE_HTML}
+              onChange={this.handleSrcChange}
+              tabIndex={tabIndex}
+              value={this.state.html}
+              placeholder={t('HtmlEditPanel_HtmlInput_Placeholder')}
+            />
           )}
 
           {srcType === SRC_TYPE_URL && (
-            <input name={SRC_TYPE_URL} onChange={this.handleSrcChange} tabIndex={tabIndex} value={this.state.url}/>
+            <TextInput
+              name={SRC_TYPE_URL}
+              onChange={this.handleSrcChange}
+              tabIndex={tabIndex}
+              value={this.state.url}
+              error={submitted ? this.getUrlError() : null}
+              theme={theme}
+              placeholder={t('HtmlEditPanel_UrlInput_Placeholder')}
+            />
           )}
         </div>
 
         <div className={styles.htmlEditPanel_buttons}>
-          <button onClick={this.handleCancelClick}>{t('HtmlPlugin_Cancel')}</button>
-          <button onClick={this.props.close}>{t('HtmlPlugin_Update')}</button>
+          <button
+            className={classNames(
+              styles.htmlEditPanel_button,
+              styles.htmlEditPanel_secondaryButton
+            )}
+            onClick={this.handleCancelClick}
+          >
+            {t('HtmlEditPanel_Cancel')}
+          </button>
+          <button
+            className={classNames(
+              styles.htmlEditPanel_button,
+              styles.htmlEditPanel_primaryButton
+            )}
+            onClick={this.handleUpdateClick}
+          >
+            {t('HtmlEditPanel_Update')}
+          </button>
         </div>
       </div>
     );

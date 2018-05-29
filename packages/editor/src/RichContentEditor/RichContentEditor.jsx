@@ -310,11 +310,6 @@ class RichContentEditor extends Component {
       ariaLabel,
       ariaMultiline,
       onEscape,
-      onTab,
-      onUpArrow,
-      onDownArrow,
-      onRightArrow,
-      onLeftArrow,
       onBlur,
       onFocus,
     } = this.props;
@@ -346,11 +341,6 @@ class RichContentEditor extends Component {
         ariaLabel={ariaLabel}
         ariaMultiline={ariaMultiline}
         onEscape={onEscape}
-        onTab={onTab}
-        onUpArrow={onUpArrow}
-        onDownArrow={onDownArrow}
-        onRightArrow={onRightArrow}
-        onLeftArrow={onLeftArrow}
         onBlur={onBlur}
         onFocus={onFocus}
       />
@@ -418,11 +408,6 @@ RichContentEditor.propTypes = {
   ariaLabel: PropTypes.string,
   ariaMultiline: PropTypes.bool,
   onEscape: PropTypes.func,
-  onTab: PropTypes.func,
-  onUpArrow: PropTypes.func,
-  onDownArrow: PropTypes.func,
-  onRightArrow: PropTypes.func,
-  onLeftArrow: PropTypes.func,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
 };

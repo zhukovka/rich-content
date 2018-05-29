@@ -1,5 +1,7 @@
 .radioGroup {
   cursor: pointer;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .radioGroup_button {
@@ -25,9 +27,7 @@
 }
 
 .radioGroup_input {
-  opacity: 0;
-  width: 0.1px;
-  height: 0.1px;
+  display: none;
 }
 
 .radioGroup_input:checked + .radioGroup_button {

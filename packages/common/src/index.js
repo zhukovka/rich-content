@@ -14,6 +14,9 @@ export {
   SizeLargeIcon,
   SizeMediumIcon,
   SizeSmallIcon,
+  SizeSmallLeftIcon,
+  SizeSmallCenterIcon,
+  SizeSmallRightIcon,
   AlignmentLeftIcon,
   AlignmentCenterIcon,
   AlignmentRightIcon,
@@ -49,6 +52,7 @@ export { default as SettingsSection } from './Components/SettingsSection';
 export { default as Slider } from './Components/Slider';
 export { default as SliderWithInput } from './Components/SliderWithInput';
 export { Tab, Tabs } from './Components/Tabs';
+export { default as TextInput } from './Components/TextInput';
 export { default as ToolbarButton } from './Components/ToolbarButton';
 export { default as Tooltip } from './Components/Tooltip';
 
@@ -67,7 +71,8 @@ export { default as normalizeInitialState } from './Utils/normalizeInitialState'
 export {
   isValidUrl,
   isVideoUrl,
-  normalizeURL
+  normalizeURL,
+  startsWithHttps
 } from './Utils/urlValidators';
 export {
   insertLink,
