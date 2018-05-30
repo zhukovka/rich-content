@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import noop from 'lodash';
-import classNames from 'classnames';
 import { default as Video } from 'santa-components/src/components/Video/Video';
-import { findDOMNode } from 'react-dom';
 import { mergeStyles } from 'wix-rich-content-common';
-import styles from './default-video-styles.scss';
 
 const DEFAULTS = {
   config: {
@@ -14,72 +11,30 @@ const DEFAULTS = {
   },
 };
 
-const MAX_WAIT_TIME = 5000;
-
 class VideoComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    const isPlayable = !props.blockProps || props.blockProps.readOnly === true;
-    this.state = {
-      isLoading: false,
-      isLoaded: false,
-      isPlayable,
-    };
-    this.styles = mergeStyles({ styles, theme: this.props.theme });
-  }
-
-  setPlayer = player => {
-    this.player = player;
-  };
-
-  componentDidMount() {
-    this.handlePlayerFocus();
-  }
 
   componentDidUpdate() {
-    this.handlePlayerFocus();
+    this.handleDataSrc();
   }
 
   /* eslint-disable react/no-find-dom-node */
-  // TODO: get rid of this ASAP!
-  // Currently, there's no other means to access the player inner iframe
-  handlePlayerFocus() {
-    return !this.state.isPlayable && this.player && findDOMNode(this.player).querySelector('iframe') &&
-      (findDOMNode(this.player).querySelector('iframe').tabIndex = -1);
+  handleDataSrc() {
+    const $iframes = $('iframe[data-src]');
+
+    $iframes.forEach(iframe => {
+      const src = iframe.getAttribute('src');
+      const dataSrc = iframe.getAttribute('data-src');
+
+      if (dataSrc) {
+        if (src !== dataSrc) {
+          iframe.setAttribute('src', dataSrc);
+        }
+        iframe.removeAttribute('data-src');
+      }
+    });
   }
-  /* eslint-enable react/no-find-dom-node */
 
-  handlePlay = event => {
-    event.preventDefault();
-    event.stopPropagation();
-    this.setState({ isLoading: true });
-    setTimeout(() => this.handleReady(), MAX_WAIT_TIME);
-  };
-
-  handleVideoStart = player => {
-    if (this.player !== player) {
-      this.setState({
-        isLoading: false,
-        isLoaded: false,
-      });
-    }
-  };
-
-  handleReady = () => {
-    if (!this.state.isLoaded) {
-      this.setState({ isLoaded: true });
-    }
-  };
-
-  renderOverlay = (styles, t) => {
-    const { isLoaded } = this.state;
-    const overlayText = t('VideoComponent_Overlay');
-    return (
-      <div className={classNames(styles.video_overlay)}>
-        {isLoaded && <span className={styles.video_overlay_message}>{overlayText}</span>}
-      </div>);
-  };
-  renderPlayer = () => {
+  render() {
     const props = {
       compData: {
         type: 'Video',
@@ -104,13 +59,8 @@ class VideoComponent extends React.Component {
         showControls: 'temp_show'
       },
       style: {
-        top: 264,
-        bottom: '',
-        left: 250,
-        right: '',
-        width: 480,
-        height: 277,
-        position: 'absolute'
+        width: '100%',
+        height: 0
       },
       windowScrollEventAspect: { clearCompScrollModes: noop },
       logger: {
@@ -145,21 +95,48 @@ class VideoComponent extends React.Component {
       }
     };
 
-    return (
-      <Video isPlayingAllowed={false} {...props} />
-      // <div></div>
-    );
-  };
+    const styleData = {
+      compId: '',
+      componentClassName: '',
+      id: 'v1',
+      metaData: {
+        isPreset: true,
+        schemaVersion: '1.0',
+        isHidden: false
+      },
+      pageId: '',
+      skin: 'wysiwyg.viewer.skins.VideoSkin',
+      style: {
+        groups: {},
+        properties: {},
+        propertiesSource: {}
+      },
+      styleType: 'system',
+      type: 'TopLevelStyle'
+    };
 
-  render() {
-    const { styles } = this;
-    const { className, onClick, t } = this.props;
-    const { isPlayable } = this.state;
-    const containerClassNames = classNames(styles.video_container, className || '');
+    const themeData = {
+      color: ['#FFFFFF', '#FFFFFF', '000000'],
+      font: [
+        'normal normal normal 40px/1.4em proxima-n-w01-reg {color_15}',
+        'normal normal normal 16px/1.4em din-next-w01-light {color_14}',
+        'normal normal normal 28px/1.4em proxima-n-w01-reg {color_15}'
+      ]
+    };
+    const serviceTopology = {
+      scriptsLocationMap: {
+        skins: 'https://static.parastorage.com/services/skins/2.1229.80'
+      }
+    };
+
+    const reportMissingSkin = noop;
+
+    const styles = Video.getCompCss(props.styleId, styleData, { themeData, serviceTopology, reportMissingSkin });
+
     return (
-      <div data-hook="videoPlayer" onClick={onClick} className={containerClassNames}>
-        {!isPlayable && this.renderOverlay(styles, t)}
-        {this.renderPlayer(styles)}
+      <div>
+        <style dangerouslySetInnerHTML={{ __html: styles[props.styleId] }} />
+        <Video isPlayingAllowed={false} {...props} />
       </div>
     );
   }
