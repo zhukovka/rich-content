@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "create-react-class": "^15.6.3",
-    "image-client-api": "^1.211.0",
+    "image-client-api": "^1.195.0",
     "santa-components": "^1.104.0",
     "santa-core-utils": "^1.504.0",
     "santa-skin-utils": "^1.150.0",
