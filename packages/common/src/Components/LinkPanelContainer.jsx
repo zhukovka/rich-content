@@ -5,7 +5,6 @@ import LinkPanel from './LinkPanel';
 import { mergeStyles } from '../Utils/mergeStyles';
 import RadioGroupHorizontal from './RadioGroupHorizontal';
 import styles from '../Styles/link-panel.scss';
-import FocusManager from './FocusManager';
 const LinkType = props => (
   <RadioGroupHorizontal
     dataSource={[{ value: 'url', labelText: 'Website address (URL)' }, { value: 'page', labelText: 'Site Page' }]}
@@ -61,7 +60,7 @@ class LinkPanelContainer extends Component {
         [styles.linkPanel_container_isMobile]: isMobile,
       });
     return (
-      <FocusManager className={linkPanelContainerClassName} data-hook="linkPanelContainer" role="form" {...ariaProps}>
+      <div className={linkPanelContainerClassName} data-hook="linkPanelContainer" role="form" {...ariaProps}>
         <div className={styles.linkPanel_content}>
           <LinkPanel
             ref={this.setLinkPanel} theme={theme} url={url} targetBlank={targetBlank} anchorTarget={anchorTarget}
@@ -94,7 +93,7 @@ class LinkPanelContainer extends Component {
           >{doneButtonText}
           </button>
         </div>
-      </FocusManager>
+      </div>
     );
   }
 }
