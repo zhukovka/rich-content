@@ -151,8 +151,9 @@ class RichContentEditor extends Component {
           newState = removeLinksInSelection(editorState);
         } else {
           this.openLinkModal();
+          return 'handled';
         }
-        return 'handled';
+        break;
       case COMMANDS.ALIGN_RIGHT:
       case COMMANDS.ALIGN_LEFT:
       case COMMANDS.ALIGN_CENTER:
