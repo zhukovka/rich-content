@@ -3,8 +3,8 @@ import isEqual from 'lodash/isEqual';
 
 export const COMMANDS = {
   LINK: 'link',
-  TITLE: 'header-one',
-  SUBTITLE: 'header-two',
+  TITLE: 'header-two',
+  SUBTITLE: 'header-three',
   ALIGN_LEFT: 'left',
   ALIGN_RIGHT: 'right',
   ALIGN_CENTER: 'center',
