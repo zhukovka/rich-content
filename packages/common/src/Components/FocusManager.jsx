@@ -37,6 +37,8 @@ class FocusManager extends Component {
     const options = Object.assign({}, focusTrapOptions, {
       onActivate: this.onActivate,
       onDeactivate: this.onDeactivate,
+      clickOutsideDeactivates: true,
+      returnFocusOnDeactivate: false
     });
     if (isMobile) {
       return (

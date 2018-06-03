@@ -43,7 +43,7 @@ export const IndentButton = createTextBlockStyleButton({
 });
 
 export const TitleButton = createTextBlockStyleButton({
-  blockTypes: ['header-one', 'header-two'],
+  blockTypes: ['header-two', 'header-three'],
   Icons: [TitleOneIcon, TitleTwoIcon],
   InactiveIcon: TitleIcon,
   tooltipTextKey: 'TitleButton_Tooltip',

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import LinkPanel from './LinkPanel';
+import FocusManager from './FocusManager';
 import { mergeStyles } from '../Utils/mergeStyles';
 import RadioGroupHorizontal from './RadioGroupHorizontal';
 import styles from '../Styles/link-panel.scss';
@@ -48,7 +49,7 @@ class LinkPanelContainer extends Component {
 
   render() {
     const { styles } = this;
-    const { url, targetBlank, nofollow, theme, isActive, anchorTarget, relValue, isMobile, t, ariaProps } = this.props;
+    const { url, targetBlank, nofollow, theme, isActive, anchorTarget, relValue, isMobile, t, ariaProps, tabIndex } = this.props;
     const doneButtonText = t('LinkPanelContainer_DoneButton');
     const cancelButtonText = t('LinkPanelContainer_CancelButton');
     const removeButtonText = t('LinkPanelContainer_RemoveButton');
@@ -60,7 +61,7 @@ class LinkPanelContainer extends Component {
         [styles.linkPanel_container_isMobile]: isMobile,
       });
     return (
-      <div className={linkPanelContainerClassName} data-hook="linkPanelContainer" role="form" {...ariaProps}>
+      <FocusManager className={linkPanelContainerClassName} data-hook="linkPanelContainer" role="form" {...ariaProps}>
         <div className={styles.linkPanel_content}>
           <LinkPanel
             ref={this.setLinkPanel} theme={theme} url={url} targetBlank={targetBlank} anchorTarget={anchorTarget}
@@ -71,7 +72,7 @@ class LinkPanelContainer extends Component {
         <div className={styles.linkPanel_Footer}>
           <div className={styles.linkPanel_LeftActions}>
             <button
-              tabIndex="0" aria-label={cancelButtonText}
+              tabIndex={tabIndex} aria-label={cancelButtonText}
               className={cancelButtonClassName} data-hook="linkPanelContainerCancel" onClick={this.onCancelClick}
             >{cancelButtonText}
             </button>
@@ -79,7 +80,7 @@ class LinkPanelContainer extends Component {
             <div className={styles.linkPanel_RemoveContainer}>
               <div className={styles.linkPanel_VerticalDivider} />
               <button
-                tabIndex="0" aria-label={removeButtonText}
+                tabIndex={tabIndex} aria-label={removeButtonText}
                 className={removeButtonClassName}
                 data-hook="linkPanelContainerRemove" onClick={this.onDeleteClick}
               >{removeButtonText}
@@ -88,12 +89,12 @@ class LinkPanelContainer extends Component {
             }
           </div>
           <button
-            tabIndex="0" aria-label={doneButtonText}
+            tabIndex={tabIndex} aria-label={doneButtonText}
             className={doneButtonClassName} data-hook="linkPanelContainerDone" onClick={this.onDoneClick}
           >{doneButtonText}
           </button>
         </div>
-      </div>
+      </FocusManager>
     );
   }
 }
@@ -113,6 +114,7 @@ LinkPanelContainer.propTypes = {
   theme: PropTypes.object.isRequired,
   t: PropTypes.func,
   ariaProps: PropTypes.object,
+  tabIndex: PropTypes.number,
 };
 
 export default LinkPanelContainer;
