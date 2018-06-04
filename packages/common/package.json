@@ -25,6 +25,7 @@
     "prebuild": "npm run transpile",
     "build:dev": "npm run transpile && npm run webpack -- --config ../../config/webpack.dev.js",
     "build": "npm run webpack -- --config ../../config/webpack.prod.js",
+    "build:analyze": "npm run build -- --env.analyzeBundle",
     "watch": "npm run build:dev -- --watch",
     "release": "wnpm-release --no-shrinkwrap",
     "test": "eslint 'src/**/*.{js,jsx}'"
