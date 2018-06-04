@@ -41,6 +41,7 @@
     "babel-cli": "^6.26.0",
     "babel-plugin-dynamic-import-webpack": "^1.0.2",
     "eslint": "^4.19.1",
+    "webpack": "^4.10.2",
     "webpack-cli": "^3.0.1"
   },
   "dependencies": {
