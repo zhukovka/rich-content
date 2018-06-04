@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "wix-rich-content-editor",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -52,7 +52,7 @@
     "photography-client-lib": "^1.0.69",
     "react-i18next": "^7.6.1",
     "redraft": "^0.9.0",
-    "wix-rich-content-common": "^1.0.6",
+    "wix-rich-content-common": "^1.0.8",
     "wnpm-ci": "latest"
   },
   "peerDependencies": {
@@ -75,10 +75,7 @@
     "prop-types": "^15.5.10",
     "react": "15.5.4",
     "react-dom": "15.5.4",
-    "react-test-renderer": "^15.6.1",
-    "webpack": "^3.11.0",
-    "webpack-bundle-analyzer": "^2.11.1",
-    "webpack-merge": "^4.1.2"
+    "react-test-renderer": "^15.6.1"
   },
   "unpkg": true,
   "publishConfig": {

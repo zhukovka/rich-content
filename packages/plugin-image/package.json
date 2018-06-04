@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-image",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -40,10 +40,10 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "eslint": "^4.19.1",
-    "webpack": "^3.11.0"
+    "webpack-cli": "^3.0.1"
   },
   "dependencies": {
-    "wix-rich-content-common": "^1.0.6"
+    "wix-rich-content-common": "^1.0.8"
   },
   "unpkg": true,
   "publishConfig": {
