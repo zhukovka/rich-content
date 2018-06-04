@@ -27,6 +27,7 @@ const prodConfig = {
       },
     ]
   },
+  plugins: [],
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
