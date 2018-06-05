@@ -22,11 +22,11 @@ class LinkViewer extends Component {
   render() {
     const { styles, props } = this;
     const { componentData, anchorTarget, relValue, className, children } = props;
-    const { url, targetBlank, nofollow } = componentData;
+    const { url, target, rel } = componentData;
     const anchorProps = {
       href: normalizeURL(url),
-      target: targetBlank ? '_blank' : (anchorTarget || '_self'),
-      rel: nofollow ? 'nofollow' : (relValue || null),
+      target: target ? target : (anchorTarget || '_self'),
+      rel: rel ? rel : (relValue || null),
       className: classNames(styles.link, className),
     };
     return <a {...anchorProps} >{children}</a>;
