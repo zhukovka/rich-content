@@ -135,8 +135,15 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
       }
     };
 
-    onComponentLinkChange = link => {
+    onComponentLinkChange = linkData => {
+      const { url, targetBlank, nofollow } = linkData || {};
       if (this.isMeAndIdle) {
+        const link = url ? {
+          url,
+          target: targetBlank ? '_blank' : '_self',
+          rel: nofollow ? 'nofollow' : 'noopener'
+        } : null;
+
         this.updateComponentConfig({ link });
       }
     };

@@ -88,7 +88,14 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       this.setState({ componentData });
     };
 
-    onComponentLinkChange = link => {
+    onComponentLinkChange = linkData => {
+      const { url, targetBlank, nofollow } = linkData || {};
+      const link = url ? {
+        url,
+        target: targetBlank ? '_blank' : '_self',
+        rel: nofollow ? 'nofollow' : 'noopener'
+      } : null;
+
       pubsub.update('componentData', { config: { link } });
     };
 
