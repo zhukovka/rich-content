@@ -10,6 +10,7 @@ module.exports = {
     filename: `${FILE_NAME}.js`,
     library: FILE_NAME,
     libraryTarget: 'umd',
+    globalObject: 'typeof self !== \'undefined\' ? self : this', //https://github.com/webpack/webpack/issues/6522
   },
   optimization: {
     namedModules: false,
