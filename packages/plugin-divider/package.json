@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-divider",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -42,10 +42,11 @@
     "eslint": "^4.19.1",
     "eslint-import-resolver-lerna": "^1.0.0",
     "eslint-plugin-import": "2.8.0",
-    "webpack": "^3.11.0"
+    "webpack": "^4.10.2",
+    "webpack-cli": "^3.0.1"
   },
   "dependencies": {
-    "wix-rich-content-common": "^1.0.3"
+    "wix-rich-content-common": "^1.0.9"
   },
   "unpkg": true,
   "publishConfig": {

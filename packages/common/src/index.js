@@ -31,6 +31,7 @@ export { default as createBaseToolbar } from './Base/createBaseToolbar';
 export { default as baseToolbarButton } from './Base/baseToolbarButton';
 
 // Components
+export { default as AccessibilityListener } from './Components/AccessibilityListener';
 export { default as Button } from './Components/Button';
 export { default as Checkbox } from './Components/Checkbox';
 export { default as Dropdown } from './Components/Dropdown';
@@ -57,7 +58,7 @@ export { default as ToolbarButton } from './Components/ToolbarButton';
 export { default as Tooltip } from './Components/Tooltip';
 
 //Modals
-export { default as MODALS } from './Modals/keys';
+export { default as EditorModals } from './Modals/EditorModals';
 export { default as RichContentModal } from './Modals/RichContentModal';
 
 //Utils

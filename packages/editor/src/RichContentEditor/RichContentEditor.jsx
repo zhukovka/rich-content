@@ -12,7 +12,7 @@ import createEditorToolbars from './Toolbars';
 import { getStaticTextToolbarId } from './Toolbars/toolbar-id';
 import createPlugins from './createPlugins';
 import { keyBindingFn, COMMANDS } from './keyBindings';
-import { MODALS, hasLinksInSelection, removeLinksInSelection, getModalStyles } from 'wix-rich-content-common';
+import { EditorModals, AccessibilityListener, hasLinksInSelection, removeLinksInSelection, getModalStyles } from 'wix-rich-content-common';
 import normalizeInitialState from './normalizeInitialState';
 import styles from '~/Styles/rich-content-editor.scss';
 import draftStyles from '~/Styles/draft.scss';
@@ -131,7 +131,7 @@ class RichContentEditor extends Component {
     if (helpers && helpers.openModal) {
       const modalProps = { helpers, modalStyles, isMobile, getEditorState: () => this.state.editorState,
         setEditorState: editorState => this.setState({ editorState }), t, theme, anchorTarget,
-        relValue, modalName: MODALS.MOBILE_TEXT_LINK_MODAL, hidePopup: helpers.closeModal };
+        relValue, modalName: EditorModals.MOBILE_TEXT_LINK_MODAL, hidePopup: helpers.closeModal };
       helpers.openModal(modalProps);
     }
   }
@@ -151,8 +151,9 @@ class RichContentEditor extends Component {
           newState = removeLinksInSelection(editorState);
         } else {
           this.openLinkModal();
+          return 'handled';
         }
-        return 'handled';
+        break;
       case COMMANDS.ALIGN_RIGHT:
       case COMMANDS.ALIGN_LEFT:
       case COMMANDS.ALIGN_CENTER:
@@ -347,6 +348,8 @@ class RichContentEditor extends Component {
     );
   };
 
+  renderAccessibilityListener = () => <AccessibilityListener isMobile={this.props.isMobile}/>;
+
   render() {
     const { isMobile } = this.props;
     const { theme } = this.state;
@@ -365,6 +368,7 @@ class RichContentEditor extends Component {
     return (
       <div style={this.props.style} className={wrapperClassName}>
         <div className={classNames(styles.editor, theme.editor)}>
+          {this.renderAccessibilityListener()}
           {this.renderEditor()}
           {this.renderToolbars()}
           {this.renderInlineModals()}

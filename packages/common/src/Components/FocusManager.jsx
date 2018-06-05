@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import FocusTrap from 'focus-trap-react';
+import FocusTrap from './FocusTrapReact';
 
 class FocusManager extends Component {
 
@@ -37,6 +37,7 @@ class FocusManager extends Component {
     const options = Object.assign({}, focusTrapOptions, {
       onActivate: this.onActivate,
       onDeactivate: this.onDeactivate,
+      clickOutsideDeactivates: true
     });
     if (isMobile) {
       return (

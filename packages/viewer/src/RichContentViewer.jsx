@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mergeStyles } from 'wix-rich-content-common';
+import { mergeStyles, AccessibilityListener } from 'wix-rich-content-common';
 import styles from './Styles/rich-content-viewer.scss';
 import Preview from './Preview';
 
@@ -31,6 +31,7 @@ export default class RichContentViewer extends Component {
         <div className={styles.editor}>
           <Preview raw={this.state.raw} typeMappers={this.props.typeMappers} theme={theme}/>
         </div>
+        <AccessibilityListener isMobile={this.props.isMobile}/>
       </div>
     );
   }
