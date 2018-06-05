@@ -6,6 +6,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 const prodConfig = {
   mode: 'production',
+  plugins: [],
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
