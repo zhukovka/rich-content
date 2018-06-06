@@ -9,6 +9,7 @@ export default ({ blockTypes, Icons, InactiveIcon = null, tooltipTextKey }) =>
       getEditorState: PropTypes.func.isRequired,
       setEditorState: PropTypes.func.isRequired,
       theme: PropTypes.object.isRequired,
+      isVisible: PropTypes.bool,
       isMobile: PropTypes.bool,
       t: PropTypes.func,
       tabIndex: PropTypes.number,
@@ -21,14 +22,44 @@ export default ({ blockTypes, Icons, InactiveIcon = null, tooltipTextKey }) =>
       };
     }
 
-    get blockType() {
+    get activeBlockType() {
       const { blockTypeIndex } = this.state;
       return blockTypeIndex !== undefined ? blockTypes[blockTypeIndex] : undefined;
     }
 
+    get selectionBlockType() {
+      const { getEditorState } = this.props;
+      if (!getEditorState) {
+        return false;
+      }
+
+      const editorState = getEditorState();
+      return editorState
+        .getCurrentContent()
+        .getBlockForKey(editorState.getSelection().getStartKey())
+        .getType();
+    }
+
+    get Icon() {
+      const { blockTypeIndex } = this.state;
+      if (blockTypeIndex !== undefined) {
+        return Icons[blockTypeIndex];
+      } else {
+        return InactiveIcon ? InactiveIcon : Icons[0];
+      }
+    }
+
+    componentWillReceiveProps(nextProps) {
+      if (this.props.isVisible === false && nextProps.isVisible === true) {
+        const { selectionBlockType } = this;
+        const blockTypeFoundIndex = blockTypes.findIndex(b => b === selectionBlockType);
+        const blockTypeIndex = blockTypeFoundIndex > -1 ? blockTypeFoundIndex : undefined;
+        this.setState({ blockTypeIndex });
+      }
+    }
 
     nextBlockTypeIndex = () => {
-      const blockType = this.blockType;
+      const blockType = this.activeBlockType;
       let nextBlockTypeIndex = 0;
       if (blockType) {
         const blockTypeIndex = blockTypes.findIndex(t => t === blockType);
@@ -46,38 +77,23 @@ export default ({ blockTypes, Icons, InactiveIcon = null, tooltipTextKey }) =>
       const { getEditorState, setEditorState } = this.props;
       const blockTypeIndex = this.nextBlockTypeIndex();
       this.setState({ blockTypeIndex }, () => {
-        const blockType = this.blockType;
+        const blockType = this.activeBlockType;
         setEditorState(RichUtils.toggleBlockType(getEditorState(), blockType));
       });
     };
 
     blockTypeIsActive = () => {
-      const { getEditorState } = this.props;
-      if (!getEditorState) {
-        return false;
-      }
-
-      const editorState = getEditorState();
-      const type = editorState
-        .getCurrentContent()
-        .getBlockForKey(editorState.getSelection().getStartKey())
-        .getType();
-      return typeof type !== 'undefined' && type === this.blockType;
+      const { blockType } = this;
+      return typeof blockType !== 'undefined' && blockType === this.activeBlockType;
     };
 
     render() {
-      const { blockTypeIndex } = this.state;
+      const { Icon } = this;
       const { theme, isMobile, t, tabIndex } = this.props;
       const tooltipText = t(tooltipTextKey);
       const textForHooks = tooltipText.replace(/\s+/, '');
       const dataHookText = `textBlockStyleButton_${textForHooks}`;
 
-      let Icon;
-      if (blockTypeIndex !== undefined) {
-        Icon = Icons[blockTypeIndex];
-      } else {
-        Icon = InactiveIcon ? InactiveIcon : Icons[0];
-      }
       return (
         <TextButton
           icon={Icon}

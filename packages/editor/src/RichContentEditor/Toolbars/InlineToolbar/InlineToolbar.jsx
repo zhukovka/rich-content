@@ -32,7 +32,6 @@ export default class InlineToolbar extends Component {
   };
 
   state = {
-    isVisible: false,
     position: undefined,
     overrideContent: undefined,
     extendContent: undefined,
@@ -106,7 +105,6 @@ export default class InlineToolbar extends Component {
     const { pubsub } = this.props;
     const { overrideContent, extendContent } = this.state;
     const selection = pubsub.get('getEditorState')().getSelection();
-    // overrideContent could for example contain a text input, hence we always show overrideContent
     // TODO: Test readonly mode and possibly set isVisible to false if the editor is readonly
     return (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent || extendContent;
   };
@@ -189,12 +187,14 @@ export default class InlineToolbar extends Component {
       [toolbarStyles.inlineToolbar_overrideContent]: !!OverrideContent,
     });
     const extendClassNames = classNames(Styles.inlineToolbar_extend, toolbarStyles && toolbarStyles.inlineToolbar_extend);
+    const toolbarStyle = this.getStyle();
     const childrenProps = {
       theme,
       getEditorState: pubsub.get('getEditorState'),
       setEditorState: pubsub.get('setEditorState'),
       onOverrideContent: this.onOverrideContent,
       onExtendContent: this.onExtendContent,
+      isVisible: toolbarStyle.visibility === 'visible',
       isMobile,
       helpers,
       anchorTarget,
@@ -208,7 +208,7 @@ export default class InlineToolbar extends Component {
         role="toolbar"
         aria-orientation="horizontal"
         className={toolbarClassNames}
-        style={this.getStyle()}
+        style={toolbarStyle}
         ref={this.handleToolbarRef}
         data-hook="inlineToolbar"
         tabIndex={this.getTabIndexByVisibility()}
