@@ -310,7 +310,6 @@ class RichContentEditor extends Component {
       ariaExpanded,
       ariaLabel,
       ariaMultiline,
-      onEscape,
       onBlur,
       onFocus,
     } = this.props;
@@ -341,7 +340,6 @@ class RichContentEditor extends Component {
         ariaExpanded={ariaExpanded}
         ariaLabel={ariaLabel}
         ariaMultiline={ariaMultiline}
-        onEscape={onEscape}
         onBlur={onBlur}
         onFocus={onFocus}
       />
@@ -411,7 +409,6 @@ RichContentEditor.propTypes = {
   ariaExpanded: PropTypes.bool,
   ariaLabel: PropTypes.string,
   ariaMultiline: PropTypes.bool,
-  onEscape: PropTypes.func,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
 };
