@@ -2,14 +2,18 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
+import { EditorState, convertFromRaw } from '@wix/draft-js';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Plugins from './Plugins';
 import ModalsMap from './ModalsMap';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
+import { Button } from 'wix-rich-content-common';
 import { testImages, testVideos } from './mock';
 // import testData from './testData/initialState';
 import './App.css';
 import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 import theme from './theme/theme'; // must import after custom styles
+import RichContentRawDataViewer from './RichContentRawDataViewer';
 
 const modalStyleDefaults = {
   content: {
@@ -43,19 +47,19 @@ class App extends Component {
       hashtag: {
         createHref: decoratedText =>
           `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`,
-          onClick: (event, text) => {
+        onClick: (event, text) => {
           event.preventDefault();
           console.log(`'${text}' hashtag clicked!`);
         }
       },
       // image: {
-        // imageProps: src => ({
-        //   'data-pin-media': `https://static.wixstatic.com/media/${src.file_name}`,
-        //   'data-pin-url': 'https://wix.com',
-        // }),
-        // toolbar: {
-        //   hidden: ['link', 'settings']
-        // }
+      // imageProps: src => ({
+      //   'data-pin-media': `https://static.wixstatic.com/media/${src.file_name}`,
+      //   'data-pin-url': 'https://wix.com',
+      // }),
+      // toolbar: {
+      //   hidden: ['link', 'settings']
+      // }
       // },
     };
     const mockUpload = (files, updateEntity) => {
@@ -168,6 +172,17 @@ class App extends Component {
     return this.md && this.md.mobile() !== null;
   }
 
+  generateEditorState() {
+    if (this.state.content && this.state.content.jsObject) {
+      const editorState = EditorState.createWithContent(convertFromRaw(this.state.content.jsObject));
+      this.setState({ editorState });
+    }
+  }
+
+  copyContent() {
+
+  }
+
   render() {
     const {
       RichContentEditor,
@@ -183,9 +198,9 @@ class App extends Component {
     return (
       <div className="wrapper">
         <div className="container">
-        {!this.isMobile() &&
+          {!this.isMobile() &&
             <div className="header">
-              <h1 onClick={() => this.setState({showDevToggles: !showDevToggles})}>Wix Rich Content Editor</h1>
+              <h1 onClick={() => this.setState({ showDevToggles: !showDevToggles })}>Wix Rich Content Editor</h1>
               <div className="toggle-container" style={{ display: this.state.showDevToggles ? 'block' : 'none' }}>
                 <div className="toggle">
                   <input
@@ -216,7 +231,7 @@ class App extends Component {
                 </div>
               </div>
               <span className="intro">
-              Last saved on {this.state.lastSave.toTimeString()}
+                Last saved on {this.state.lastSave.toTimeString()}
               </span>
             </div>
           }
@@ -224,22 +239,30 @@ class App extends Component {
           <div className="content">
             {TextToolbar && <TextToolbar />}
             {this.state.mounted &&
-              <RichContentEditor
-                ref={this.setEditor}
-                onChange={this.onChange}
-                helpers={this.helpers}
-                plugins={this.plugins}
-                config={this.config}
-                editorState={this.state.editorState}
-                readOnly={this.state.readOnly}
-                isMobile={this.isMobile()}
-                textToolbarType={this.state.textToolbarType}
-                theme={theme}
-                locale={'en'}
-                editorKey={'random-editorKey-ssr'}
-              />
+              <div className="columns">
+                <div className="column">
+                  <RichContentEditor
+                    ref={this.setEditor}
+                    onChange={this.onChange}
+                    helpers={this.helpers}
+                    plugins={this.plugins}
+                    config={this.config}
+                    editorState={this.state.editorState}
+                    // initialState={this.state.initialState}
+                    readOnly={this.state.readOnly}
+                    isMobile={this.isMobile()}
+                    textToolbarType={this.state.textToolbarType}
+                    theme={theme}
+                    locale={'en'}
+                    editorKey={'random-editorKey-ssr'}
+                  />
+                </div>
+                <div className="column">
+                  <RichContentRawDataViewer onChange={content => this.setState({ content })} editorState={this.state.editorState} width="740px"/>
+                  <Button className="raw_input_button submit" theme={theme} onClick={() => this.generateEditorState()}>Apply Rich Content</Button>
+                </div>
+              </div>
             }
-
             <ReactModal
               isOpen={this.state.showModal}
               contentLabel="External Modal Example"
