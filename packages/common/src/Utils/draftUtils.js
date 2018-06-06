@@ -3,7 +3,7 @@ import flatMap from 'lodash/flatMap';
 import findIndex from 'lodash/findIndex';
 import findLastIndex from 'lodash/findLastIndex';
 
-export function insertLink(editorState, { url, targetBlank, nofollow }) {
+export const insertLink = (editorState, { url, targetBlank, nofollow }) => {
   const selection = getSelection(editorState);
   const content = editorState.getCurrentContent();
   const contentStateWithEntity = content.createEntity('LINK', 'MUTABLE', {
@@ -42,13 +42,13 @@ export function insertLink(editorState, { url, targetBlank, nofollow }) {
   }
 
   return EditorState.forceSelection(newEditorState, newSelection);
-}
+};
 
-export function hasLinksInSelection(editorState) {
+export const hasLinksInSelection = editorState => {
   return !!getSelectedLinks(editorState).length;
-}
+};
 
-export function getLinkDataInSelection(editorState) {
+export const getLinkDataInSelection = editorState => {
   const contentState = editorState.getCurrentContent();
   const selection = getSelection(editorState);
   const startKey = selection.getStartKey();
@@ -56,23 +56,44 @@ export function getLinkDataInSelection(editorState) {
   const blockWithLinkAtBeginning = contentState.getBlockForKey(startKey);
   const linkKey = blockWithLinkAtBeginning.getEntityAt(startOffset);
   return linkKey ? contentState.getEntity(linkKey).getData() : {};
-}
+};
 
-export function removeLinksInSelection(editorState) {
+export const removeLinksInSelection = editorState => {
   return getSelectedLinks(editorState).reduce((prevState, { key, range }) => removeLink(prevState, key, range), editorState);
-}
+};
 
-export function getTextAlignment(editorState) {
+export const getTextAlignment = editorState => {
   const selection = getSelection(editorState);
   const currentContent = editorState.getCurrentContent();
   const contentBlock = currentContent.getBlockForKey(selection.getStartKey());
   const { data: { textAlignment } } = contentBlock.toJS();
   return textAlignment || 'left';
-}
+};
+
+export const isAtomicBlockFocused = editorState => {
+  const { anchorKey, focusKey } = editorState.getSelection();
+  const block = editorState.getCurrentContent().getBlockForKey(anchorKey).type;
+  return anchorKey === focusKey && block === 'atomic';
+};
+
+export const removeBlock = (editorState, blockKey) => {
+  const contentState = editorState.getCurrentContent();
+  const block = contentState.getBlockForKey(blockKey);
+  const previousBlock = contentState.getBlockBefore(blockKey);
+  const selectionRange = new SelectionState({
+    anchorOffset: previousBlock.text.length,
+    anchorKey: previousBlock.key,
+    focusOffset: block.text.length,
+    focusKey: blockKey,
+  });
+  const newContentState = Modifier.removeRange(contentState, selectionRange, 'forward');
+  return EditorState.push(editorState, newContentState, 'remove-range');
+};
 
 function getSelectedLinks(editorState) {
   return flatMap(getSelectedBlocks(editorState), block => getSelectedLinksInBlock(block, editorState));
 }
+
 
 function getSelectedBlocks(editorState) {
   const blocks = editorState.getCurrentContent().getBlocksAsArray();

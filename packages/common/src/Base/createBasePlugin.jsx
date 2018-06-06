@@ -85,7 +85,7 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
 
   const InlineModals = config.inlineModals;
 
-  const blockRenderFunction = (contentBlock, { getEditorState, setEditorState, getReadOnly }) => {
+  const blockRendererFn = (contentBlock, { getEditorState, setEditorState, getReadOnly }) => {
     if (contentBlock.getType() === 'atomic') {
       // TODO subject to change for draft-js next release
       const contentState = getEditorState().getCurrentContent();
@@ -110,14 +110,22 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
     }
     return null;
   };
+
+  const commonProps = {
+    Toolbar,
+    InsertPluginButtons,
+    InlineModals,
+  };
+
   if (underlyingPlugin) {
-    return { Toolbar, InsertPluginButtons, InlineModals, ...underlyingPlugin };
+    return {
+      ...commonProps,
+      ...underlyingPlugin
+    };
   } else {
     return {
-      blockRendererFn: blockRenderFunction,
-      Toolbar,
-      InsertPluginButtons,
-      InlineModals
+      ...commonProps,
+      blockRendererFn,
     };
   }
 };

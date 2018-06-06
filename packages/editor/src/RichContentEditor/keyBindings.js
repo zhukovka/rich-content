@@ -13,7 +13,8 @@ export const COMMANDS = {
   BULLET_LIST: 'unordered-list-item',
   CODE: 'code-block',
   BLOCKQUOTE: 'blockquote',
-  TAB: 'tab'
+  TAB: 'tab',
+  BACKSPACE: 'backspace',
 };
 
 const MODIFIERS = {
