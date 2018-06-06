@@ -25,7 +25,7 @@ class LinkViewer extends Component {
     const { url, target, rel } = componentData;
     const anchorProps = {
       href: normalizeURL(url),
-      target: target ? target : (anchorTarget || '_self'),
+      target: target ? target : (anchorTarget || '_top'),
       rel: rel ? rel : (relValue || null),
       className: classNames(styles.link, className),
     };

@@ -92,7 +92,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       const { url, targetBlank, nofollow } = linkData || {};
       const link = url ? {
         url,
-        target: targetBlank ? '_blank' : '_self',
+        target: targetBlank ? '_blank' : '_top',
         rel: nofollow ? 'nofollow' : 'noopener'
       } : null;
 

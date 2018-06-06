@@ -8,7 +8,7 @@ export const insertLink = (editorState, { url, targetBlank, nofollow }) => {
   const content = editorState.getCurrentContent();
   const contentStateWithEntity = content.createEntity('LINK', 'MUTABLE', {
     url,
-    target: targetBlank ? '_blank' : '_self',
+    target: targetBlank ? '_blank' : '_top',
     rel: nofollow ? 'nofollow' : 'noopener'
   });
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
