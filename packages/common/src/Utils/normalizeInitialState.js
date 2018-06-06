@@ -1,5 +1,6 @@
 import mapValues from 'lodash/mapValues';
 import cloneDeep from 'lodash/cloneDeep';
+import isUndefined from 'lodash/isUndefined';
 
 const normalizeEntityType = (entityType, entityTypeMap) => {
   if (entityType in entityTypeMap) {
@@ -11,6 +12,21 @@ const normalizeEntityType = (entityType, entityTypeMap) => {
 
 /* eslint-disable */
 const normalizeComponentData = componentData => {
+  const { targetBlank, nofollow, target, rel } = componentData;
+  if (isUndefined(targetBlank) && isUndefined(nofollow) && !isUndefined(target) && !isUndefined(rel)) {
+    return componentData;
+  }
+
+  delete componentData.targetBlank;
+  delete componentData.nofollow;
+
+  return Object.assign(componentData, {
+    target: targetBlank ? '_blank' : '_top',
+    rel: nofollow ? 'nofollow' : 'noopener'
+  });
+};
+
+const normalizeComponentConfig = componentData => {
   if (componentData.config) {
     return componentData;
   }
@@ -48,13 +64,19 @@ const normalizeComponentData = componentData => {
 };
 /* eslint-enable */
 
-const shouldNormalizeEntity = (entity, legacyEntityTypes) => legacyEntityTypes.includes(entity.type) && entity.data;
+const shouldNormalizeEntityConfig = (entity, normalizationMap) => normalizationMap.includes(entity.type) && entity.data;
+
+const shouldNormalizeEntityData = (entity, normalizationMap) => normalizationMap.includes(entity.type) && entity.data;
 
 export default (initialState, entityTypeMap) => ({
   ...initialState,
   entityMap: mapValues(
     initialState.entityMap,
-    entity => shouldNormalizeEntity(entity, Object.keys(entityTypeMap)) ? {
+    entity => shouldNormalizeEntityConfig(entity, Object.keys(entityTypeMap.configNormalization)) ? {
+      ...entity,
+      type: normalizeEntityType(entity.type, entityTypeMap),
+      data: normalizeComponentConfig(cloneDeep(entity.data))
+    } : shouldNormalizeEntityData(entity, Object.keys(entityTypeMap.dataNormalization)) ? {
       ...entity,
       type: normalizeEntityType(entity.type, entityTypeMap),
       data: normalizeComponentData(cloneDeep(entity.data))
