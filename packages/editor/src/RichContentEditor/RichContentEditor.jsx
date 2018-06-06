@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { EditorState, convertFromRaw, RichUtils, Modifier } from '@wix/draft-js';
+import { EditorState, convertFromRaw } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
 import isUndefined from 'lodash/isUndefined';
 import get from 'lodash/get';
@@ -9,10 +9,11 @@ import includes from 'lodash/includes';
 import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createEditorToolbars from './Toolbars';
-import { getStaticTextToolbarId } from './Toolbars/toolbar-id';
 import createPlugins from './createPlugins';
-import { keyBindingFn, COMMANDS } from './keyBindings';
-import { EditorModals, AccessibilityListener, hasLinksInSelection, removeLinksInSelection, getModalStyles } from 'wix-rich-content-common';
+import { keyBindingFn } from './keyBindings';
+import handleKeyCommand from './handleKeyCommand';
+import blockStyleFn from './blockStyleFn';
+import { EditorModals, AccessibilityListener, getModalStyles } from 'wix-rich-content-common';
 import normalizeInitialState from './normalizeInitialState';
 import styles from '~/Styles/rich-content-editor.scss';
 import draftStyles from '~/Styles/draft.scss';
@@ -143,107 +144,6 @@ class RichContentEditor extends Component {
     return element && element.querySelector('*[tabindex="0"]');
   }
 
-  handleKeyCommand = (command, editorState) => {
-    let newState, contentState;
-    switch (command) {
-      case COMMANDS.LINK:
-        if (hasLinksInSelection(editorState)) {
-          newState = removeLinksInSelection(editorState);
-        } else {
-          this.openLinkModal();
-          return 'handled';
-        }
-        break;
-      case COMMANDS.ALIGN_RIGHT:
-      case COMMANDS.ALIGN_LEFT:
-      case COMMANDS.ALIGN_CENTER:
-      case COMMANDS.JUSTIFY:
-        contentState = Modifier.mergeBlockData(editorState.getCurrentContent(), editorState.getSelection(), { textAlignment: command });
-        newState = EditorState.push(editorState, contentState, 'change-block-data');
-        break;
-      case COMMANDS.TITLE:
-      case COMMANDS.SUBTITLE:
-      case COMMANDS.NUMBERED_LIST:
-      case COMMANDS.BULLET_LIST:
-      case COMMANDS.BLOCKQUOTE:
-      case COMMANDS.CODE:
-        newState = RichUtils.toggleBlockType(editorState, command);
-        break;
-      case COMMANDS.TAB:
-        if (this.getToolbars().TextToolbar) {
-          const staticToolbarButton = this.findFocusableChildForElement(`${getStaticTextToolbarId(this.refId)}`);
-          staticToolbarButton && staticToolbarButton.focus();
-          return 'handled';
-        } else {
-          this.editor.blur();
-          return 'not-handled';
-        }
-      default:
-        newState = RichUtils.handleKeyCommand(editorState, command);
-        break;
-    }
-
-    if (newState) {
-      this.updateEditorState(newState);
-      return 'handled';
-    }
-
-    return 'not-handled';
-  };
-
-  blockStyleFn = contentBlock => {
-    const { type, data: { textAlignment } } = contentBlock.toJS();
-    const classList = [];
-    const { theme } = this.state;
-
-    switch (type) {
-      case 'blockquote':
-        classList.push(styles.quote);
-        classList.push(theme.quote);
-        break;
-      case 'header-one':
-        classList.push(styles.headerOne);
-        classList.push(theme.headerOne);
-        break;
-      case 'header-two':
-        classList.push(styles.headerTwo);
-        classList.push(theme.headerTwo);
-        break;
-      case 'header-three':
-        classList.push(styles.headerThree);
-        classList.push(theme.headerThree);
-        break;
-      case 'indent':
-        classList.push(styles.indent);
-        classList.push(theme.indent);
-        break;
-      case 'ordered-list-item':
-        classList.push(styles.orderedList);
-        classList.push(theme.orderedList);
-        break;
-      case 'unordered-list-item':
-        classList.push(styles.unorderedList);
-        classList.push(theme.unorderedList);
-        break;
-      case 'atomic':
-        classList.push(styles.atomic);
-        classList.push(theme.atomic);
-        break;
-      case 'code-block':
-        classList.push(styles.codeBlock);
-        classList.push(theme.codeBlock);
-        break;
-      default:
-        classList.push(styles.text);
-        classList.push(theme.text);
-    }
-    if (type !== 'atomic') {
-      classList.push(styles[textAlignment]);
-      classList.push(theme[textAlignment]);
-    }
-    return classNames(...classList);
-  };
-
   getEditorState = () => this.state.editorState;
 
   updateEditorState = editorState => {
@@ -310,19 +210,18 @@ class RichContentEditor extends Component {
       ariaExpanded,
       ariaLabel,
       ariaMultiline,
-      onEscape,
       onBlur,
       onFocus,
     } = this.props;
-    const { editorState, readOnly } = this.state;
+    const { editorState, readOnly, theme } = this.state;
     return (
       <Editor
         ref={this.setEditor}
         editorState={editorState}
         onChange={this.updateEditorState}
         plugins={this.plugins}
-        blockStyleFn={this.blockStyleFn}
-        handleKeyCommand={this.handleKeyCommand}
+        blockStyleFn={blockStyleFn(theme)}
+        handleKeyCommand={handleKeyCommand(this.updateEditorState)}
         editorKey={editorKey}
         keyBindingFn={keyBindingFn}
         helpers={helpers}
@@ -341,7 +240,6 @@ class RichContentEditor extends Component {
         ariaExpanded={ariaExpanded}
         ariaLabel={ariaLabel}
         ariaMultiline={ariaMultiline}
-        onEscape={onEscape}
         onBlur={onBlur}
         onFocus={onFocus}
       />
@@ -411,7 +309,6 @@ RichContentEditor.propTypes = {
   ariaExpanded: PropTypes.bool,
   ariaLabel: PropTypes.string,
   ariaMultiline: PropTypes.bool,
-  onEscape: PropTypes.func,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
 };

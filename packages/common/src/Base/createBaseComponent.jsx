@@ -135,8 +135,15 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
       }
     };
 
-    onComponentLinkChange = link => {
+    onComponentLinkChange = linkData => {
+      const { url, targetBlank, nofollow } = linkData || {};
       if (this.isMeAndIdle) {
+        const link = url ? {
+          url,
+          target: targetBlank ? '_blank' : '_top',
+          rel: nofollow ? 'nofollow' : 'noopener'
+        } : null;
+
         this.updateComponentConfig({ link });
       }
     };
@@ -263,7 +270,7 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
       if (!isNil(link)) {
         anchorProps = {
           href: normalizeURL(link.url),
-          target: link.targetBlank ? '_blank' : (anchorTarget || '_self'),
+          target: link.targetBlank ? '_blank' : (anchorTarget || '_top'),
           rel: link.nofollow ? 'nofollow' : null
         };
       }

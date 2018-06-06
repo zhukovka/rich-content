@@ -107,7 +107,9 @@ class ImageSettings extends Component {
       return <ImageLoader type={'medium'} theme={theme} />; //do not render until the src is passed
     }
 
-    const { url, targetBlank, nofollow } = (!isEmpty(config.link) ? config.link : {});
+    const { url, target, rel } = (!isEmpty(config.link) ? config.link : {});
+    const targetBlank = target === '_blank';
+    const nofollow = rel === 'nofollow';
     const updateLabel = t('ImageSettings_Update');
     const headerText = t('ImageSettings_Header');
     const captionLabel = t('ImageSettings_Caption_Label');

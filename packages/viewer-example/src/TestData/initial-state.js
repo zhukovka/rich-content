@@ -12,19 +12,29 @@ const TestData = {
       "data": {}
     }]
   },
-  link: {
+  links: {
     "blocks": [
       {
-        "key": "6v4q4",
-        "text": "www",
+        "key": "foo",
+        "text": "Search was Google’s only unambiguous win, as well as its primary source of revenue, so when Amazon rapidly surpassed Google as the top product search destination, Google’s foundations began to falter. As many noted at the time, the online advertising industry experienced a major shift from search to discovery in the mid-2010s.",
         "type": "unstyled",
         "depth": 0,
         "inlineStyleRanges": [],
         "entityRanges": [
           {
-            "offset": 0,
-            "length": 3,
+            "offset": 57,
+            "length": 25,
             "key": 0
+          },
+          {
+            "offset": 99,
+            "length": 24,
+            "key": 1
+          },
+          {
+            "offset": 204,
+            "length": 10,
+            "key": 2
           }
         ],
         "data": {}
@@ -35,9 +45,30 @@ const TestData = {
         "type": "LINK",
         "mutability": "MUTABLE",
         "data": {
-          "url": "www.com",
-          "targetBlank": true,
-          "nofollow": true
+          "href": "http://www.cnbc.com/2017/01/26/googlealphabet-reports-fourth-quarter-2016-earnings-q4.html",
+          "rel": "noopener",
+          "target": "_blank",
+          "url": "http://www.cnbc.com/2017/01/26/googlealphabet-reports-fourth-quarter-2016-earnings-q4.html"
+        }
+      },
+      "1": {
+        "type": "LINK",
+        "mutability": "MUTABLE",
+        "data": {
+          "href": "http://www.geekwire.com/2017/amazon-continues-grow-lead-google-starting-point-online-shoppers/",
+          "rel": "noopener",
+          "target": "_blank",
+          "url": "http://www.geekwire.com/2017/amazon-continues-grow-lead-google-starting-point-online-shoppers/"
+        }
+      },
+      "2": {
+        "type": "LINK",
+        "mutability": "MUTABLE",
+        "data": {
+          "href": "https://techcrunch.com/2016/08/11/google-isnt-safe-from-yahoos-fate/",
+          "rel": "noopener",
+          "target": "_blank",
+          "url": "https://techcrunch.com/2016/08/11/google-isnt-safe-from-yahoos-fate/"
         }
       }
     }

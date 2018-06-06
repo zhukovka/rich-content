@@ -80,6 +80,8 @@ export {
   hasLinksInSelection,
   getLinkDataInSelection,
   removeLinksInSelection,
-  getTextAlignment
+  getTextAlignment,
+  isAtomicBlockFocused,
+  removeBlock,
 } from './Utils/draftUtils';
 export { default as WixUtils } from './Utils/wixUtils';

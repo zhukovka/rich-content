@@ -29,7 +29,9 @@ export default class MobileTextLinkModal extends Component {
   render() {
     const { getEditorState, theme, isMobile, anchorTarget, relValue, t } = this.props;
     const linkData = getLinkDataInSelection(getEditorState());
-    const { url, targetBlank, nofollow } = linkData || {};
+    const { url, target, rel } = linkData || {};
+    const targetBlank = target === '_blank';
+    const nofollow = rel === 'nofollow';
     return (
       <MobileLinkModal
         url={url}
