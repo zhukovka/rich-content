@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
 import { EditorState, convertFromRaw } from '@wix/draft-js';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Plugins from './Plugins';
 import ModalsMap from './ModalsMap';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
