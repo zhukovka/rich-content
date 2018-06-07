@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
-import { RichContentModal, mergeStyles, Button } from 'wix-rich-content-common';
+import { RichContentModal, mergeStyles } from 'wix-rich-content-common';
 import RichContentViewer from 'wix-rich-content-viewer';
 import RichContentRawDataViewer from './RichContentRawDataViewer';
 
@@ -140,8 +140,7 @@ class App extends Component {
                 />
               </div>
               <div className={styles.column}>
-                <RichContentRawDataViewer onChange={content => this.setState({ raw })} content={this.state.raw} width="740px" />
-                <Button className={styles.raw_input_button} theme={theme} onClick={() => this.generateEditorState()}>Apply Rich Content</Button>
+                <RichContentRawDataViewer onChange={content => this.setState({ raw: content.jsObject })} content={this.state.raw} width="740px" />
               </div>
             </div>
             <ReactModal
