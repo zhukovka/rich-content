@@ -8,6 +8,7 @@ import {
 import { getStaticTextToolbarId } from './Toolbars/toolbar-id';
 import { COMMANDS } from './keyBindings';
 
+/* eslint-disable complexity */
 export default updateEditorState => (
   (command, editorState) => {
     let newState, contentState;
@@ -45,7 +46,8 @@ export default updateEditorState => (
           return 'not-handled';
         }
       case COMMANDS.BACKSPACE:
-        if (isAtomicBlockFocused(editorState) && command === 'backspace') {
+      case COMMANDS.DELETE:
+        if (isAtomicBlockFocused(editorState)) {
           newState = removeBlock(editorState, editorState.getSelection().getAnchorKey());
         }
         break;
@@ -62,4 +64,5 @@ export default updateEditorState => (
     return 'not-handled';
   }
 );
+/* eslint-disable complexity */
 
