@@ -34,6 +34,7 @@ class App extends Component {
       readOnly: false,
       mounted: true,
       textToolbarType: 'inline',
+      showContentStateEditor: false,
       showDevToggles: false,
     };
     this.md = window ? new MobileDetect(window.navigator.userAgent) : null;
@@ -153,6 +154,8 @@ class App extends Component {
 
   onReadOnlyChange = event => this.setState({ readOnly: event.target.checked });
 
+  onShowContentStateEditorChange = event => this.setState({ showContentStateEditor: event.target.checked });
+
   onChange = editorState => {
     this.setState({
       lastSave: new Date(),
@@ -228,6 +231,15 @@ class App extends Component {
                   />
                   <label htmlFor="readOnlyToggle">Read Only</label>
                 </div>
+                <div className="toggle">
+                  <input
+                    type="checkbox"
+                    id="showContentStateEditorToggle"
+                    onChange={this.onShowContentStateEditorChange}
+                    defaultChecked={this.state.showContentStateEditor}
+                  />
+                  <label htmlFor="showContentStateEditorToggle">Show Content State Editor</label>
+                </div>
               </div>
               <span className="intro">
                 Last saved on {this.state.lastSave.toTimeString()}
@@ -239,7 +251,7 @@ class App extends Component {
             {TextToolbar && <TextToolbar />}
             {this.state.mounted &&
               <div className="columns">
-                <div className="column">
+                <div className="column main">
                   <RichContentEditor
                     ref={this.setEditor}
                     onChange={this.onChange}
@@ -256,10 +268,12 @@ class App extends Component {
                     editorKey={'random-editorKey-ssr'}
                   />
                 </div>
-                <div className="column">
-                  <RichContentRawDataViewer onChange={content => this.setState({ content })} editorState={this.state.editorState} width="740px"/>
-                  <Button className="raw_input_button submit" theme={theme} onClick={() => this.generateEditorState()}>Apply Rich Content</Button>
-                </div>
+                {this.state.showContentStateEditor &&
+                  <div className="column side">
+                    <RichContentRawDataViewer onChange={content => this.setState({ content })} editorState={this.state.editorState} width="740px"/>
+                    <Button className="raw_input_button submit" theme={theme} onClick={() => this.generateEditorState()}>Apply Rich Content</Button>
+                  </div>
+                }
               </div>
             }
             <ReactModal
