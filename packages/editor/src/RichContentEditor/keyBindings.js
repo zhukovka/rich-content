@@ -15,6 +15,7 @@ export const COMMANDS = {
   BLOCKQUOTE: 'blockquote',
   TAB: 'tab',
   BACKSPACE: 'backspace',
+  DELETE: 'delete',
 };
 
 const MODIFIERS = {
