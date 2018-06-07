@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mergeStyles, AccessibilityListener } from 'wix-rich-content-common';
+import { mergeStyles, AccessibilityListener, normalizeInitialState } from 'wix-rich-content-common';
 import styles from './Styles/rich-content-viewer.scss';
 import Preview from './Preview';
 
@@ -9,10 +9,12 @@ export default class RichContentViewer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      raw: props.initialState || {},
+      raw: this.getInitialState(),
     };
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
+
+  getInitialState = () => this.props.initialState ? normalizeInitialState(this.props.initialState) : {};
 
   componentWillReceiveProps(nextProps) {
     if (this.props.initialState !== nextProps.initialState) {
