@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import JSONInput from 'react-json-editor-ajrm';
+import { normalizeInitialState } from 'wix-rich-content-common';
 
 class RichContentRawDataViewer extends Component {
 
@@ -33,7 +34,7 @@ class RichContentRawDataViewer extends Component {
       }
   };
 
-  render = () => <JSONInput placeholder={this.state.content} id={this.id} onChange={content => this.onChange(content)} {...this.props}/>;
+  render = () => <JSONInput placeholder={normalizeInitialState(this.state.content)} id={this.id} onChange={content => this.onChange(content)} {...this.props}/>;
 }
 
 // see https://github.com/AndrewRedican/react-json-editor-ajrm for details
