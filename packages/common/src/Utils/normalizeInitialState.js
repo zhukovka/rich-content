@@ -68,18 +68,30 @@ const shouldNormalizeEntityConfig = (entity, normalizationMap) => normalizationM
 
 const shouldNormalizeEntityData = (entity, normalizationMap) => normalizationMap.includes(entity.type) && entity.data;
 
-export default (initialState, entityTypeMap) => ({
-  ...initialState,
-  entityMap: mapValues(
-    initialState.entityMap,
-    entity => shouldNormalizeEntityConfig(entity, Object.keys(entityTypeMap.configNormalization)) ? {
-      ...entity,
-      type: normalizeEntityType(entity.type, entityTypeMap),
-      data: normalizeComponentConfig(cloneDeep(entity.data))
-    } : shouldNormalizeEntityData(entity, Object.keys(entityTypeMap.dataNormalization)) ? {
-      ...entity,
-      type: normalizeEntityType(entity.type, entityTypeMap),
-      data: normalizeComponentData(cloneDeep(entity.data))
-    } : entity
-  ),
-});
+export default initialState => {
+  const entityTypeMap = {
+    configNormalization: {
+      IMAGE: 'wix-draft-plugin-image',
+      'VIDEO-EMBED': 'wix-draft-plugin-video',
+    },
+    dataNormalization: {
+      LINK: 'LINK'
+    }
+  };
+
+  return {
+    ...initialState,
+    entityMap: mapValues(
+      initialState.entityMap,
+      entity => shouldNormalizeEntityConfig(entity, Object.keys(entityTypeMap.configNormalization)) ? {
+        ...entity,
+        type: normalizeEntityType(entity.type, entityTypeMap),
+        data: normalizeComponentConfig(cloneDeep(entity.data))
+      } : shouldNormalizeEntityData(entity, Object.keys(entityTypeMap.dataNormalization)) ? {
+        ...entity,
+        type: normalizeEntityType(entity.type, entityTypeMap),
+        data: normalizeComponentData(cloneDeep(entity.data))
+      } : entity
+    ),
+  };
+};
