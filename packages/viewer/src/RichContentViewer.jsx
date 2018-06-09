@@ -9,16 +9,16 @@ export default class RichContentViewer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      raw: this.getInitialState(),
+      raw: this.getInitialState(props.initialState),
     };
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-  getInitialState = () => this.props.initialState ? normalizeInitialState(this.props.initialState) : {};
+  getInitialState = initialState => initialState ? normalizeInitialState(initialState) : {};
 
   componentWillReceiveProps(nextProps) {
     if (this.props.initialState !== nextProps.initialState) {
-      this.setState({ raw: nextProps.initialState });
+      this.setState({ raw: this.getInitialState(nextProps.initialState) });
     }
   }
 
