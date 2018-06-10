@@ -7,31 +7,35 @@ import styles from './Styles/rich-content-viewer.scss';
 
 const AtomicBlock = ({ type, typeMap, componentData, children, theme, isMobile, ...props }) => {
   const mergedStyles = mergeStyles({ theme, styles });
-  const Component = typeMap[type].component;
+  const { component: Component, elementType } = typeMap[type];
   const { size, alignment, textWrap, container } = typeMap[type].classNameStrategies || {};
-  if (Component) {
 
-    const containerClassNames = classNames(mergedStyles.pluginContainerReadOnly,
-      { [mergedStyles.pluginContainerMobile]: isMobile },
-      isFunction(alignment) ? alignment(componentData, theme, styles, isMobile) :
-        alignmentClassName(componentData, theme, styles, isMobile),
-      isFunction(size) ? size(componentData, theme, styles, isMobile) :
-        sizeClassName(componentData, theme, styles, isMobile),
-      isFunction(textWrap) ? textWrap(componentData, theme, styles, isMobile) :
-        textWrapClassName(componentData, theme, styles, isMobile)
-    );
-    return (
-      <div className={containerClassNames}>
-        {isFunction(container) ?
-          <div className={container(theme)}>
+  if (Component) {
+    if (elementType !== 'inline') {
+      const containerClassNames = classNames(mergedStyles.pluginContainerReadOnly,
+        { [mergedStyles.pluginContainerMobile]: isMobile },
+        isFunction(alignment) ? alignment(componentData, theme, styles, isMobile) :
+          alignmentClassName(componentData, theme, styles, isMobile),
+        isFunction(size) ? size(componentData, theme, styles, isMobile) :
+          sizeClassName(componentData, theme, styles, isMobile),
+        isFunction(textWrap) ? textWrap(componentData, theme, styles, isMobile) :
+          textWrapClassName(componentData, theme, styles, isMobile)
+      );
+      return (
+        <div className={containerClassNames}>
+          {isFunction(container) ?
+            <div className={container(theme)}>
+              <Component componentData={componentData} theme={theme} {...props}>
+                {children}
+              </Component>
+            </div> :
             <Component componentData={componentData} theme={theme} {...props}>
               {children}
-            </Component>
-          </div> :
-          <Component componentData={componentData} theme={theme} {...props}>
-            {children}
-          </Component>}
-      </div>);
+            </Component>}
+        </div>);
+    } else {
+      return <Component componentData={componentData} theme={theme} {...props}> {children} </Component>;
+    }
   }
   return null;
 };
