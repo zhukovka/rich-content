@@ -19,7 +19,7 @@ class RichContentRawDataViewer extends Component {
   }
 
   fixKeys(content) {
-    if (content.entityMap) {
+    if (content && content.entityMap) {
       const fixedEntityMap = Object.keys(content.entityMap).reduce((map, key) => {
         return Object.assign(map, { [`"${key}"`]: content.entityMap[key]});
       }, {});
@@ -29,7 +29,7 @@ class RichContentRawDataViewer extends Component {
 
   onChange(content) {
       if (content && content.jsObject && !content.error) {
-        this.props.onChange(content);
+        this.props.onChange(this.fixKeys(content));
       }
   };
 

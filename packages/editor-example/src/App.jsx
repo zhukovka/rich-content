@@ -6,7 +6,7 @@ import { EditorState, convertFromRaw, convertToRaw } from '@wix/draft-js';
 import Plugins from './Plugins';
 import ModalsMap from './ModalsMap';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
-import { Button } from 'wix-rich-content-common';
+import { Button, normalizeInitialState } from 'wix-rich-content-common';
 import { testImages, testVideos } from './mock';
 // import testData from './testData/initialState';
 import './App.css';
@@ -176,7 +176,8 @@ class App extends Component {
 
   generateEditorState() {
     if (this.state.content && this.state.content.jsObject) {
-      const editorState = EditorState.createWithContent(convertFromRaw(this.state.content.jsObject));
+      const normalizedState = normalizeInitialState(this.state.content.jsObject);
+      const editorState = EditorState.createWithContent(convertFromRaw(normalizedState));
       this.setState({ editorState });
     }
   }
