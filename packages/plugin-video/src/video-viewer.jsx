@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { mergeStyles } from 'wix-rich-content-common';
-import styles from './default-video-styles.scss';
+import styles from './video-viewer.scss';
 
 class VideoViewer extends Component {
   constructor(props) {
