@@ -5,7 +5,7 @@ import { RichContentModal, mergeStyles } from 'wix-rich-content-common';
 import RichContentViewer from 'wix-rich-content-viewer';
 import RichContentRawDataViewer from './RichContentRawDataViewer';
 
-import 'wix-rich-content-viewer/dist/wix-rich-content-viewer.css';
+import 'wix-rich-content-viewer/dist/styles.css';
 import 'wix-rich-content-plugin-video/dist/styles.css';
 import 'wix-rich-content-plugin-image/dist/styles.css';
 import 'wix-rich-content-plugin-divider/dist/styles.css';
@@ -137,6 +137,7 @@ class App extends Component {
                   // decorators={this.decorators}
                   initialState={this.state.raw}
                   theme={theme}
+                  isMobile={this.isMobile()}
                 />
               </div>
               <div className={styles.column}>

@@ -24,14 +24,14 @@ export default class RichContentViewer extends Component {
 
   render() {
     const { styles } = this;
-    const { theme } = this.props;
+    const { theme, isMobile } = this.props;
     const wrapperClassName = classNames(styles.wrapper, {
       [styles.desktop]: !this.props.platform || this.props.platform === 'desktop',
     });
     return (
       <div className={wrapperClassName}>
         <div className={styles.editor}>
-          <Preview raw={this.state.raw} typeMappers={this.props.typeMappers} theme={theme}/>
+          <Preview raw={this.state.raw} typeMappers={this.props.typeMappers} theme={theme} isMobile={isMobile}/>
         </div>
         <AccessibilityListener isMobile={this.props.isMobile}/>
       </div>

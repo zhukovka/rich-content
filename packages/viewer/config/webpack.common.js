@@ -26,7 +26,14 @@ module.exports = {
         use: [
           'style-loader',
           MiniCssExtractPlugin.loader,
-          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
+          },
           'sass-loader'
         ]
       },
@@ -125,7 +132,7 @@ module.exports = {
   stats: 'errors-only',
   plugins: [
     new MiniCssExtractPlugin({
-      filename: `${FILE_NAME}.css`,
+      filename: 'styles.css',
     })
   ],
 };
