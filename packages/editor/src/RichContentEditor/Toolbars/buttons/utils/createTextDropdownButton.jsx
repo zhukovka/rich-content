@@ -11,6 +11,7 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
       getEditorState: PropTypes.func.isRequired,
       setEditorState: PropTypes.func.isRequired,
       theme: PropTypes.object.isRequired,
+      isVisible: PropTypes.bool,
       isMobile: PropTypes.bool,
       t: PropTypes.func,
       tabIndex: PropTypes.number,
@@ -44,6 +45,12 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
         ...rest
       };
       this.styles = mergeStyles({ styles, theme: this.theme });
+    }
+
+    componentWillReceiveProps(nextProps) {
+      if (this.props.isVisible === true && nextProps.isVisible === false) {
+        this.setState({ isOpen: false });
+      }
     }
 
     showOptions = () => this.setState({ isOpen: true });
