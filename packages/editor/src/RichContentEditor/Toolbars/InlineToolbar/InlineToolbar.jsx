@@ -23,7 +23,7 @@ export default class InlineToolbar extends Component {
   static propTypes = {
     pubsub: PropTypes.object.isRequired,
     structure: PropTypes.array.isRequired,
-    defaultTextAlignment: PropTypes.oneOf(['left', 'right', 'center']).isRequired,
+    defaultTextAlignment: PropTypes.oneOf(['left', 'right', 'center']),
     theme: PropTypes.object.isRequired,
     isMobile: PropTypes.bool,
     helpers: PropTypes.object,
