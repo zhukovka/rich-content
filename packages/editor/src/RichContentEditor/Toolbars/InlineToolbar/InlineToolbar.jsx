@@ -23,6 +23,7 @@ export default class InlineToolbar extends Component {
   static propTypes = {
     pubsub: PropTypes.object.isRequired,
     structure: PropTypes.array.isRequired,
+    defaultTextAlignment: PropTypes.oneOf(['left', 'right', 'center']).isRequired,
     theme: PropTypes.object.isRequired,
     isMobile: PropTypes.bool,
     helpers: PropTypes.object,
@@ -177,7 +178,7 @@ export default class InlineToolbar extends Component {
   }
 
   render() {
-    const { theme, pubsub, structure, helpers, isMobile, anchorTarget, relValue, t } = this.props;
+    const { theme, pubsub, structure, defaultTextAlignment, helpers, isMobile, anchorTarget, relValue, t } = this.props;
     const { showLeftArrow, showRightArrow, overrideContent: OverrideContent, extendContent: ExtendContent } = this.state;
     const hasArrow = showLeftArrow || showRightArrow;
     const { toolbarStyles } = theme || {};
@@ -194,6 +195,7 @@ export default class InlineToolbar extends Component {
       setEditorState: pubsub.get('setEditorState'),
       onOverrideContent: this.onOverrideContent,
       onExtendContent: this.onExtendContent,
+      defaultTextAlignment,
       isVisible: toolbarStyle.visibility === 'visible',
       isMobile,
       helpers,

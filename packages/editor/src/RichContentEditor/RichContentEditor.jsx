@@ -55,6 +55,7 @@ class RichContentEditor extends Component {
       sideToolbarOffset,
       textButtons,
       textToolbarType,
+      textAlignment,
       isMobile,
       t,
     } = this.props;
@@ -68,6 +69,7 @@ class RichContentEditor extends Component {
       relValue,
       isMobile,
       textToolbarType,
+      textAlignment,
       hideFooterToolbar,
       sideToolbarOffset,
       theme: theme || {},
@@ -211,6 +213,7 @@ class RichContentEditor extends Component {
       ariaMultiline,
       onBlur,
       onFocus,
+      textAlignment,
     } = this.props;
     const { editorState, readOnly, theme } = this.state;
     return (
@@ -241,6 +244,7 @@ class RichContentEditor extends Component {
         ariaMultiline={ariaMultiline}
         onBlur={onBlur}
         onFocus={onFocus}
+        textAlignment={textAlignment}
       />
     );
   };
@@ -310,6 +314,7 @@ RichContentEditor.propTypes = {
   ariaMultiline: PropTypes.bool,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
+  textAlignment: PropTypes.oneOf(['left', 'right', 'center']),
 };
 
 export default translate(null, { withRef: true })(RichContentEditor);

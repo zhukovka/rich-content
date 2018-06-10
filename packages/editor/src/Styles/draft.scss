@@ -18,6 +18,34 @@
       position: relative;
     }
 
+    .DraftEditor-alignLeft .public-DraftStyleDefault-block {
+      text-align: left
+    }
+
+    .DraftEditor-alignLeft .public-DraftEditorPlaceholder-root {
+      left: 0;
+      text-align: left
+    }
+
+    .DraftEditor-alignCenter .public-DraftStyleDefault-block {
+      text-align: center
+    }
+
+    .DraftEditor-alignCenter .public-DraftEditorPlaceholder-root {
+      margin: 0 auto;
+      text-align: center;
+      width: 100%
+    }
+
+    .DraftEditor-alignRight .public-DraftStyleDefault-block {
+      text-align: right
+    }
+
+    .DraftEditor-alignRight .public-DraftEditorPlaceholder-root {
+      right: 0;
+      text-align: right
+    }
+
     .public-DraftStyleDefault-block {
       position: relative;
       white-space: pre-wrap;
