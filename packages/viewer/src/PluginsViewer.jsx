@@ -8,7 +8,7 @@ import styles from './Styles/rich-content-viewer.scss';
 const AtomicBlock = ({ type, typeMap, componentData, children, theme, isMobile, ...props }) => {
   const mergedStyles = mergeStyles({ theme, styles });
   const Component = typeMap[type].component;
-  const { size, alignment, textWrap } = typeMap[type].classNameStrategies || {};
+  const { size, alignment, textWrap, container } = typeMap[type].classNameStrategies || {};
   if (Component) {
 
     const containerClassNames = classNames(mergedStyles.pluginContainerReadOnly,
@@ -22,9 +22,15 @@ const AtomicBlock = ({ type, typeMap, componentData, children, theme, isMobile, 
     );
     return (
       <div className={containerClassNames}>
-        <Component componentData={componentData} theme={theme} {...props}>
-          {children}
-        </Component>
+        {isFunction(container) ?
+          <div className={container(theme)}>
+            <Component componentData={componentData} theme={theme} {...props}>
+              {children}
+            </Component>
+          </div> :
+          <Component componentData={componentData} theme={theme} {...props}>
+            {children}
+          </Component>}
       </div>);
   }
   return null;
