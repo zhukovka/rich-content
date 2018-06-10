@@ -2,13 +2,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import camelCase from 'lodash/camelCase';
-import upperFirst from 'lodash/upperFirst';
 import isNil from 'lodash/isNil';
 import isFunction from 'lodash/isFunction';
 import classNames from 'classnames';
 import createHocName from '../Utils/createHocName';
 import getDisplayName from '../Utils/getDisplayName';
+import { alignmentClassName, sizeClassName, textWrapClassName } from '../Utils/classNameStrategies';
 import { normalizeURL } from '../Utils/urlValidators';
 import Styles from '../Styles/global.scss';
 
@@ -17,30 +16,6 @@ const DEFAULTS = {
   size: 'content',
   url: undefined,
   textWrap: null,
-};
-
-const alignmentClassName = (alignment, theme) => {
-  if (!alignment) {
-    return '';
-  }
-  const key = `align${upperFirst(alignment)}`;
-  return classNames(Styles[key], theme[key]);
-};
-
-const sizeClassName = (size, theme) => {
-  if (!size) {
-    return '';
-  }
-  const key = `size${upperFirst(camelCase(size))}`;
-  return classNames(Styles[key], theme[key]);
-};
-
-const textWrapClassName = (textWrap, theme) => {
-  if (!textWrap) {
-    return '';
-  }
-  const key = `textWrap${upperFirst(camelCase(textWrap))}`;
-  return classNames(Styles[key], theme[key]);
 };
 
 const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers, anchorTarget, t, isMobile }) => {
@@ -217,7 +192,7 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
     render = () => {
       const { blockProps, className, onClick, selection } = this.props;
       const { componentData, readOnly } = this.state;
-      const { alignment, size, textWrap, link, width, height } = componentData.config || {};
+      const { link, width, height } = componentData.config || {};
       const isEditorFocused = selection.getHasFocus();
       const { isFocused } = blockProps;
       const isActive = isFocused && isEditorFocused && !readOnly;
@@ -233,13 +208,13 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
         },
         isFunction(PluginComponent.WrappedComponent.alignmentClassName) ?
           PluginComponent.WrappedComponent.alignmentClassName(this.state.componentData, theme, Styles, isMobile) :
-          alignmentClassName(alignment, theme),
+          alignmentClassName(this.state.componentData, theme, Styles, isMobile),
         isFunction(PluginComponent.WrappedComponent.sizeClassName) ?
           PluginComponent.WrappedComponent.sizeClassName(this.state.componentData, theme, Styles, isMobile) :
-          sizeClassName(size, theme),
+          sizeClassName(this.state.componentData, theme, Styles, isMobile),
         isFunction(PluginComponent.WrappedComponent.textWrapClassName) ?
           PluginComponent.WrappedComponent.textWrapClassName(this.state.componentData, theme, Styles, isMobile) :
-          textWrapClassName(textWrap, theme),
+          textWrapClassName(this.state.componentData, theme, Styles, isMobile),
         className || '',
         {
           [Styles.hasFocus]: isActive,
