@@ -3,8 +3,9 @@ import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
 import { RichContentModal, mergeStyles } from 'wix-rich-content-common';
 import RichContentViewer from 'wix-rich-content-viewer';
+import RichContentRawDataViewer from './RichContentRawDataViewer';
 
-import 'wix-rich-content-viewer/dist/wix-rich-content-viewer.css';
+import 'wix-rich-content-viewer/dist/styles.css';
 import 'wix-rich-content-plugin-video/dist/styles.css';
 import 'wix-rich-content-plugin-image/dist/styles.css';
 import 'wix-rich-content-plugin-divider/dist/styles.css';
@@ -112,38 +113,46 @@ class App extends Component {
       <div className={styles.wrapper}>
         <div className={styles.container}>
           {!this.isMobile() ?
-              <div className={styles.header}>
-                <h1>Wix Rich Content Viewer</h1>
-                <div className={styles['toggle-container']}>
-                  <div className={styles.toggle}>
+            <div className={styles.header}>
+              <h1>Wix Rich Content Viewer</h1>
+              <div className={styles['toggle-container']}>
+                <div className={styles.toggle}>
                   <select id="testData" name="testData" onChange={() => this.handleContentChange(this)} >
                     {contentOptions}
                   </select>
-                  </div>
                 </div>
-              </div> :
-              <select id="testData" name="testData" onChange={() => this.handleContentChange(this)} >
-                {contentOptions}
-              </select>
-            }
-            <div className={styles.content}>
-              <RichContentViewer
-                helpers={this.helpers}
-                typeMappers={typeMappers}
-                // plugins={this.plugins}
-                // decorators={this.decorators}
-                initialState={this.state.raw}
-                theme={theme}
-              />
-              <ReactModal
-                isOpen={this.state.showModal}
-                contentLabel="External Modal Example"
-                style={this.state.modalStyles || modalStyleDefaults}
-                onRequestClose={this.closeModal}
-              >
-                {this.state.showModal && <RichContentModal {...this.state.modalProps} />}
-              </ReactModal>
+              </div>
+            </div> :
+            <select id="testData" name="testData" onChange={() => this.handleContentChange(this)} >
+              {contentOptions}
+            </select>
+          }
+          <div className={styles.content}>
+            <div className={styles.columns}>
+              <div className={styles.column}>
+                <RichContentViewer
+                  helpers={this.helpers}
+                  typeMappers={typeMappers}
+                  // plugins={this.plugins}
+                  // decorators={this.decorators}
+                  initialState={this.state.raw}
+                  theme={theme}
+                  isMobile={this.isMobile()}
+                />
+              </div>
+              <div className={styles.column}>
+                <RichContentRawDataViewer onChange={content => this.setState({ raw: content.jsObject })} content={this.state.raw} width="740px" />
+              </div>
             </div>
+            <ReactModal
+              isOpen={this.state.showModal}
+              contentLabel="External Modal Example"
+              style={this.state.modalStyles || modalStyleDefaults}
+              onRequestClose={this.closeModal}
+            >
+              {this.state.showModal && <RichContentModal {...this.state.modalProps} />}
+            </ReactModal>
+          </div>
         </div>
       </div>);
   }

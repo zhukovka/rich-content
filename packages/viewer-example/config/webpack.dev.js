@@ -14,6 +14,7 @@ const devConfig = {
     dev: {
       publicPath: '/',
       stats: 'errors-only',
+      logLevel: 'warn',
     }
   },
 };

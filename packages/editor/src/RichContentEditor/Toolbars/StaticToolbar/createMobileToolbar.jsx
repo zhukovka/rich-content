@@ -24,7 +24,7 @@ const getMobileTheme = theme => {
         toolbarTheme && toolbarTheme.mobileToolbar,
         {
           [toolbarStyles.mobileToolbar_fixed]: !baseUtils.isiOS(),
-          [toolbarTheme.mobileToolbar_fixed]: !baseUtils.isiOS(),
+          [toolbarTheme.mobileToolbar_fixed]: (toolbarTheme && toolbarTheme.mobileToolbar_fixed) && !baseUtils.isiOS(),
         }
       ),
       buttons: classNames(

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
-import { EditorState, convertFromRaw } from '@wix/draft-js';
+import { EditorState, convertFromRaw, convertToRaw } from '@wix/draft-js';
 import Plugins from './Plugins';
 import ModalsMap from './ModalsMap';
 import * as WixRichContentEditor from 'wix-rich-content-editor';
@@ -181,10 +181,6 @@ class App extends Component {
     }
   }
 
-  copyContent() {
-
-  }
-
   render() {
     const {
       RichContentEditor,
@@ -270,7 +266,7 @@ class App extends Component {
                 </div>
                 {this.state.showContentStateEditor &&
                   <div className="column side">
-                    <RichContentRawDataViewer onChange={content => this.setState({ content })} editorState={this.state.editorState} width="740px"/>
+                    <RichContentRawDataViewer onChange={content => this.setState({ content })} content={convertToRaw(this.state.editorState.getCurrentContent())} width="740px"/>
                     <Button className="raw_input_button submit" theme={theme} onClick={() => this.generateEditorState()}>Apply Rich Content</Button>
                   </div>
                 }

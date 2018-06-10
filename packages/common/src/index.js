@@ -85,3 +85,4 @@ export {
   removeBlock,
 } from './Utils/draftUtils';
 export { default as WixUtils } from './Utils/wixUtils';
+export { sizeClassName, alignmentClassName, textWrapClassName } from './Utils/classNameStrategies';
