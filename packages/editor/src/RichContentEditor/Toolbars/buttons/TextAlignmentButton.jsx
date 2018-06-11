@@ -35,8 +35,8 @@ export default createTextDropdownButton({
     AlignTextRightButton,
     AlignTextJustifyButton,
   ],
-  activeItem: ({ getEditorState, value }) => {
-    const alignment = value || getTextAlignment(getEditorState());
+  activeItem: ({ getEditorState, value, defaultValue }) => {
+    const alignment = value || getTextAlignment(getEditorState(), defaultValue);
     return {
       alignment,
       Icon: activeIcon(alignment),

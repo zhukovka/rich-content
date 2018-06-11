@@ -11,6 +11,8 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
       getEditorState: PropTypes.func.isRequired,
       setEditorState: PropTypes.func.isRequired,
       theme: PropTypes.object.isRequired,
+      defaultTextAlignment: PropTypes.string,
+      isVisible: PropTypes.bool,
       isMobile: PropTypes.bool,
       t: PropTypes.func,
       tabIndex: PropTypes.number,
@@ -18,10 +20,10 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
 
     constructor(props) {
       super(props);
-      const { getEditorState } = this.props;
+      const { defaultTextAlignment, getEditorState } = this.props;
       this.state = {
         isOpen: false,
-        selected: activeItem({ getEditorState }),
+        selected: activeItem({ getEditorState, defaultValue: defaultTextAlignment }),
       };
 
       const { buttonStyles, ...rest } = props.theme || {};
@@ -44,6 +46,12 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
         ...rest
       };
       this.styles = mergeStyles({ styles, theme: this.theme });
+    }
+
+    componentWillReceiveProps(nextProps) {
+      if (this.props.isVisible === true && nextProps.isVisible === false) {
+        this.setState({ isOpen: false });
+      }
     }
 
     showOptions = () => this.setState({ isOpen: true });

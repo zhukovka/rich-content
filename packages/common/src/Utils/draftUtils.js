@@ -62,12 +62,12 @@ export const removeLinksInSelection = editorState => {
   return getSelectedLinks(editorState).reduce((prevState, { key, range }) => removeLink(prevState, key, range), editorState);
 };
 
-export const getTextAlignment = editorState => {
+export const getTextAlignment = (editorState, defaultAlignment = 'left') => {
   const selection = getSelection(editorState);
   const currentContent = editorState.getCurrentContent();
   const contentBlock = currentContent.getBlockForKey(selection.getStartKey());
   const { data: { textAlignment } } = contentBlock.toJS();
-  return textAlignment || 'left';
+  return textAlignment || defaultAlignment;
 };
 
 export const isAtomicBlockFocused = editorState => {

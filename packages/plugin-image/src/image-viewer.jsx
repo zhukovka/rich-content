@@ -6,7 +6,7 @@ import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import { mergeStyles, ImageLoader } from 'wix-rich-content-common';
 import getImageSrc from './get-image-source';
-import styles from './default-image-styles.scss';
+import styles from './image-viewer.scss';
 
 const getDefault = () => ({
   config: {

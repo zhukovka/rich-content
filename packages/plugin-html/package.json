@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-html",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -39,13 +39,14 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "copy-webpack-plugin": "^4.5.1",
     "eslint": "^4.19.1",
     "webpack": "^4.10.2",
     "webpack-cli": "^3.0.1"
   },
   "dependencies": {
     "react-i18next": "^7.6.1",
-    "wix-rich-content-common": "^1.0.12"
+    "wix-rich-content-common": "^1.0.13"
   },
   "unpkg": true,
   "publishConfig": {

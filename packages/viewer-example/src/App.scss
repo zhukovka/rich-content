@@ -73,6 +73,14 @@
   flex-wrap: nowrap;
 }
 
+.raw_input_button {
+  height: 50px;
+  margin-top: 10px;
+  cursor: pointer;
+  background: #338de8 !important;
+  color: #fff !important;
+}
+
 /*** MOBILE ***/
 @media only screen and (max-width: 740px) {
   .content {

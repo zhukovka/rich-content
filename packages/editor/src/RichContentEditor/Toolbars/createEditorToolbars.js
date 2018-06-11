@@ -17,6 +17,7 @@ const createEditorToolbars = config => {
     theme,
     getEditorState,
     setEditorState,
+    textAlignment,
     t,
     refId
   } = config;
@@ -39,6 +40,7 @@ const createEditorToolbars = config => {
     toolbars.textInline = createInlineTextToolbar({
       refId,
       buttons: textButtons,
+      defaultTextAlignment: textAlignment,
       theme: { ...getToolbarTheme(theme, 'inline'), ...theme },
       anchorTarget,
       relValue,

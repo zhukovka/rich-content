@@ -10,22 +10,34 @@ export default class LinkButton extends Component {
 
   constructor(props) {
     super(props);
-    const { buttonStyles } = props.theme;
+    const { buttonStyles } = props.theme || {};
 
     this.styles = {
       button: classNames(
         styles.inlineToolbarButton,
-        buttonStyles && (buttonStyles.inlineToolbarButton || buttonStyles.pluginToolbarButton)
+        {
+          [buttonStyles.inlineToolbarButton]: !!buttonStyles.inlineToolbarButton,
+          [buttonStyles.pluginToolbarButton]: !!buttonStyles.pluginToolbarButton,
+        }
       ),
       buttonWrapper: classNames(
         styles.inlineToolbarButton_wrapper,
-        buttonStyles && (buttonStyles.inlineToolbarButton_wrapper || buttonStyles.pluginToolbarButton_wrapper)
+        {
+          [buttonStyles.inlineToolbarButton_wrapper]: !!buttonStyles.inlineToolbarButton_wrapper,
+          [buttonStyles.inlineToolbarButton_wrapper]: !!buttonStyles.inlineToolbarButton_wrapper,
+        }
       ),
       icon: classNames(styles.inlineToolbarButton_icon,
-        buttonStyles && (buttonStyles.inlineToolbarButton_icon || buttonStyles.pluginToolbarButton_icon)
+        {
+          [buttonStyles.inlineToolbarButton_icon]: !!buttonStyles.inlineToolbarButton_icon,
+          [buttonStyles.pluginToolbarButton_icon]: !!buttonStyles.pluginToolbarButton_icon,
+        }
       ),
       active: classNames(styles.inlineToolbarButton_active,
-        buttonStyles && (buttonStyles.inlineToolbarButton_active || buttonStyles.pluginToolbarButton_active)
+        {
+          [buttonStyles.inlineToolbarButton_active]: !!buttonStyles.inlineToolbarButton_active,
+          [buttonStyles.pluginToolbarButton_active]: !!buttonStyles.pluginToolbarButton_active,
+        }
       ),
     };
   }

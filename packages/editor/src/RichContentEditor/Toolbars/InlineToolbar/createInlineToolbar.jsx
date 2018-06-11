@@ -6,6 +6,7 @@ const createInlineToolbar = (config = {}) => {
   const {
     name = 'InlineToolbar',
     pubsub = simplePubsub(),
+    defaultTextAlignment,
     theme,
     structure = [],
     isMobile = false,
@@ -18,6 +19,7 @@ const createInlineToolbar = (config = {}) => {
   const toolbarProps = {
     pubsub,
     structure,
+    defaultTextAlignment,
     theme,
     isMobile,
     helpers,

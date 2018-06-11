@@ -9,6 +9,20 @@ import toolbarStyles from '~/Styles/mobile-toolbar.scss';
 import buttonStyles from '~/Styles/mobile-toolbar-button.scss';
 import separatorStyles from '~/Styles/mobile-toolbar-separator.scss';
 
+const createMobileToolbar = ({ buttons, helpers, pubsub, getEditorState, setEditorState, anchorTarget, relValue, theme, t }) => {
+  const mobileTheme = getMobileTheme(theme);
+  return createStaticToolbar({
+    helpers,
+    t,
+    name: 'MobileToolbar',
+    theme: mobileTheme,
+    structure: getMobileButtons({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme, t }),
+    anchorTarget,
+    relValue,
+    isMobile: true
+  });
+};
+
 const getMobileTheme = theme => {
   const {
     toolbarStyles: toolbarTheme,
@@ -82,7 +96,8 @@ const getMobileTheme = theme => {
 };
 
 const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme, t }) => {
-  const textButtons = get(buttons, 'textButtons.mobile', MobileTextButtonList);
+  const requestedButtons = get(buttons, 'textButtons.mobile');
+  const textButtons = Array.isArray(requestedButtons) ? [...requestedButtons] : [...MobileTextButtonList];
   const addPluginIndex = textButtons.findIndex(b => b === 'AddPlugin');
   if (addPluginIndex !== -1) {
     textButtons.splice(addPluginIndex, 1);
@@ -111,16 +126,4 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
   return structure;
 };
 
-export default ({ buttons, helpers, pubsub, getEditorState, setEditorState, anchorTarget, relValue, theme, t }) => {
-  const mobileTheme = getMobileTheme(theme);
-  return createStaticToolbar({
-    helpers,
-    t,
-    name: 'MobileToolbar',
-    theme: mobileTheme,
-    structure: getMobileButtons({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme, t }),
-    anchorTarget,
-    relValue,
-    isMobile: true
-  });
-};
+export default createMobileToolbar;

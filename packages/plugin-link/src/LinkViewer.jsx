@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { normalizeURL, mergeStyles } from 'wix-rich-content-common';
-import styles from './link.scss';
+import styles from './link-viewer.scss';
 
 class LinkViewer extends Component {
 
