@@ -52,6 +52,9 @@ class App extends Component {
           console.log(`'${text}' hashtag clicked!`);
         }
       },
+      html: {
+        htmlIframeSrc: 'http://localhost:3000/static/html-plugin-embed.html'
+      },
       // image: {
       // imageProps: src => ({
       //   'data-pin-media': `https://static.wixstatic.com/media/${src.file_name}`,

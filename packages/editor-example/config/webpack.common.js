@@ -1,5 +1,6 @@
 const path = require('path');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const PATHS = {
   src: path.join(__dirname, '../src'),
@@ -79,5 +80,10 @@ module.exports = env => ({
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no',
       }
     }),
+    new CopyWebpackPlugin([{
+      from: '**/*',
+      context: 'node_modules/wix-rich-content-plugin-html/dist/static/',
+      to: 'static/',
+    }]),
   ],
 });
