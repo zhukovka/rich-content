@@ -13,7 +13,7 @@ class SliderWithInput extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.value !== nextProps.value) {
-      this.setState({ inputValue: this.normalizeInputValue(this.state.inputValue) });
+      this.setState({ inputValue: this.normalizeInputValue(nextProps.value) });
     }
   }
 
