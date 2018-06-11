@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import debounce from 'lodash/debounce';
 
 import { mergeStyles } from '../Utils/mergeStyles';
 import Slider from './Slider';
@@ -8,13 +9,26 @@ import styles from '../Styles/slider-with-input.scss';
 class SliderWithInput extends Component {
   styles = mergeStyles({ styles, theme: this.props.theme });
   id = `sld_${Math.floor(Math.random() * 9999)}`;
+  state = { inputValue: this.props.value };
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) {
+      this.setState({ inputValue: this.normalizeInputValue(this.state.inputValue) });
+    }
+  }
 
   handleInputChange = event => {
-    const { max, min } = this.props;
-    const value = event.target.valueAsNumber || 0;
-    const normalizedValue = Math.min(Math.max(min, value), max);
+    this.setState({ inputValue: event.target.valueAsNumber || 0 });
+    this.submitInputValue();
+  };
 
-    this.props.onChange(normalizedValue);
+  submitInputValue = debounce(() => {
+    this.props.onChange(this.normalizeInputValue(this.state.inputValue));
+  }, 800);
+
+  normalizeInputValue = value => {
+    const { max, min } = this.props;
+    return Math.min(Math.max(min, value), max);
   };
 
   render() {
@@ -33,13 +47,30 @@ class SliderWithInput extends Component {
         {label ? <span id={`${this.id}_lbl`} className={this.styles.sliderWithInput_label}>{label}</span> : null}
         <div className={this.styles.sliderWithInput_content}>
           <Slider
-            theme={theme} value={value} dataHook={sliderDataHook} onChange={onChange} readOnly={readOnly}
-            min={min} max={max} className={this.styles.sliderWithInput_slider} ariaProps={ariaProps}
+            theme={theme}
+            value={value}
+            dataHook={sliderDataHook}
+            onChange={onChange}
+            readOnly={readOnly}
+            min={min}
+            max={max}
+            className={this.styles.sliderWithInput_slider}
+            ariaProps={ariaProps}
           />
           <input
-            tabIndex={readOnly ? -1 : 0} type="number" value={value} data-hook={inputDataHook} {...ariaProps}
-            onChange={this.handleInputChange} className={this.styles.sliderWithInput_input}
-            min={min} max={max} step="1" role="spinbutton"
+            tabIndex={readOnly ? -1 : 0}
+            type="number"
+            value={this.state.inputValue}
+            data-hook={inputDataHook}
+            {...ariaProps}
+            onChange={this.handleInputChange}
+            onBlur={this.submitInputValue}
+            onMouseUp={this.submitInputValue}
+            className={this.styles.sliderWithInput_input}
+            min={min}
+            max={max}
+            step="1"
+            role="spinbutton"
           />
         </div>
       </div>
