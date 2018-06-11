@@ -32,7 +32,6 @@ class IframeHtml extends Component {
         {...omit(this.props, 'html')}
         iframeRef={this.setIframe}
         onLoad={this.handleIframeLoad}
-        src="http://127.0.0.1:8080/html-plugin.html"
       />
     );
   }
@@ -40,6 +39,7 @@ class IframeHtml extends Component {
 
 IframeHtml.propTypes = {
   html: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
 };
 
 export default IframeHtml;

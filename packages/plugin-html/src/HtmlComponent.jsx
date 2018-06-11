@@ -15,7 +15,12 @@ const HtmlComponent = props => {
   return (
     <div className={styles.htmlComponent} data-hook="HtmlComponent">
       {srcType === SRC_TYPE_HTML && src && (
-        <IframeHtml key={SRC_TYPE_HTML} tabIndex={readOnly ? -1 : 0} html={src}/>
+        <IframeHtml
+          key={SRC_TYPE_HTML}
+          tabIndex={readOnly ? -1 : 0}
+          html={src}
+          src={props.settings.htmlIframeSrc}
+        />
       )}
 
       {srcType === SRC_TYPE_URL && isValidUrl(src) && (
@@ -34,6 +39,9 @@ HtmlComponent.propTypes = {
   blockProps: PropTypes.object,
   className: PropTypes.string,
   theme: PropTypes.object,
+  settings: PropTypes.shape({
+    htmlIframeSrc: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export {
