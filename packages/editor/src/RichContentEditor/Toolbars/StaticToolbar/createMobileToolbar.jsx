@@ -96,7 +96,8 @@ const getMobileTheme = theme => {
 };
 
 const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorState, mobileTheme, t }) => {
-  const textButtons = get(buttons, 'textButtons.mobile', MobileTextButtonList);
+  const requestedButtons = get(buttons, 'textButtons.mobile');
+  const textButtons = Array.isArray(requestedButtons) ? [...requestedButtons] : [...MobileTextButtonList];
   const addPluginIndex = textButtons.findIndex(b => b === 'AddPlugin');
   if (addPluginIndex !== -1) {
     textButtons.splice(addPluginIndex, 1);
