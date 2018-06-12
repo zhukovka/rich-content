@@ -18,10 +18,12 @@ export const LinkStrategy = (contentBlock, callback) => {
   });
 };
 
-export const LinkComponent = ({ children, decoratedText }) =>
-  <a rel="noopener noreferrer" target="_blank" href={normalizeUrl(decoratedText)}>{children}</a>;
+export const LinkComponent = ({ children, decoratedText, rel = 'noopener noreferrer', target = '_blank' }) =>
+  <a rel={rel} target={target} href={normalizeUrl(decoratedText)}>{children}</a>;
 
 LinkComponent.propTypes = {
   children: PropTypes.node,
   decoratedText: PropTypes.string,
+  rel: PropTypes.string,
+  target: PropTypes.string,
 };
