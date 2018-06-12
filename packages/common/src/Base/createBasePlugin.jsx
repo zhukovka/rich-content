@@ -54,9 +54,13 @@ const deleteEntity = (contentBlock, { getEditorState, setEditorState }) => {
   };
 };
 
+const DEFAULT_SETTINGS = {
+  showInsertButtons: true,
+};
+
 const createBasePlugin = (config = {}, underlyingPlugin) => {
   const pubsub = simplePubsub();
-  const settings = config.settings || {};
+  const settings = { ...DEFAULT_SETTINGS, ...config.settings };
   const helpers = config.helpers || {};
   const isMobile = config.isMobile || false;
   const { t, anchorTarget, relValue } = config;
@@ -75,7 +79,7 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
     t,
     name: config.toolbar.name,
   });
-  const InsertPluginButtons = config.toolbar && config.toolbar.InsertButtons.map(button => (
+  const InsertPluginButtons = settings.showInsertButtons && config.toolbar && config.toolbar.InsertButtons.map(button => (
     createInsertPluginButton({ blockType: config.type, button, helpers, pubsub, t })
   ));
   const PluginComponent = config.component && config.decorator ? config.decorator(config.component) : config.component;

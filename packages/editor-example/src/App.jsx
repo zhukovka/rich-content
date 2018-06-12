@@ -53,7 +53,8 @@ class App extends Component {
         }
       },
       html: {
-        htmlIframeSrc: 'http://localhost:3000/static/html-plugin-embed.html'
+        htmlIframeSrc: 'http://localhost:3000/static/html-plugin-embed.html',
+        // showInsertButtons: false,
       },
       // image: {
       // imageProps: src => ({
