@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
+import isNumber from 'lodash/isNumber';
 
 import { mergeStyles } from '../Utils/mergeStyles';
 import Slider from './Slider';
@@ -31,7 +32,10 @@ class SliderWithInput extends Component {
   };
 
   normalizeInputValue = value => {
-    const { max, min } = this.props;
+    const { inputMin, inputMax } = this.props;
+    const min = isNumber(inputMin) ? inputMin : this.props.min;
+    const max = isNumber(inputMax) ? inputMax : this.props.max;
+
     return Math.min(Math.max(min, value), max);
   };
 
@@ -89,6 +93,8 @@ SliderWithInput.propTypes = {
   value: PropTypes.number.isRequired,
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
+  inputMax: PropTypes.number,
+  inputMin: PropTypes.number,
   readOnly: PropTypes.bool,
   theme: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,

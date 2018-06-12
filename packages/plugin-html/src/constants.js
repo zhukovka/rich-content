@@ -8,6 +8,7 @@ export const MAX_WIDTH = 940;
 
 export const MIN_HEIGHT = 35;
 export const MAX_HEIGHT = 1200;
+export const MAX_HEIGHT_INPUT = 9999;
 
 export const DEFAULT_COMPONENT_DATA = {
   srcType: SRC_TYPE_HTML,

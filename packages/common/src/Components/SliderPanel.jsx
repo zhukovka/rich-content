@@ -4,12 +4,11 @@ import SliderWithInput from './SliderWithInput';
 import styles from '../Styles/slider-panel.scss';
 
 const SliderPanel = props => {
-  const { min, max, theme, getValue, onChange } = props;
+  const { theme, getValue, onChange, ...otherProps } = props;
   return (
     <div className={styles.sliderPanel}>
       <SliderWithInput
-        min={min}
-        max={max}
+        {...otherProps}
         theme={theme}
         value={getValue(props)}
         onChange={onChange(props)}
@@ -19,8 +18,6 @@ const SliderPanel = props => {
 };
 
 SliderPanel.propTypes = {
-  min: PropTypes.number,
-  max: PropTypes.number,
   getValue: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
