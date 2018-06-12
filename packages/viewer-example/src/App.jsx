@@ -19,6 +19,9 @@ import { dividerTypeMapper } from 'wix-rich-content-plugin-divider';
 import { htmlTypeMapper } from 'wix-rich-content-plugin-html';
 import { linkTypeMapper } from 'wix-rich-content-plugin-link';
 
+import { Strategy as HashTagStrategy, Component as HashTag } from 'wix-rich-content-plugin-hashtag';
+import { Strategy as LinkStrategy, Component as Link } from 'wix-rich-content-plugin-link';
+
 import TestData from './TestData/initial-state';
 import theme from './theme/theme';
 import styles from './App.scss';
@@ -43,19 +46,26 @@ class App extends Component {
     this.md = window ? new MobileDetect(window.navigator.userAgent) : null;
     this.initViewerProps();
     this.styles = mergeStyles({ styles, theme });
+
+    this.typeMappers = [
+      videoTypeMapper,
+      imageTypeMapper,
+      galleryTypeMapper,
+      dividerTypeMapper,
+      htmlTypeMapper,
+      linkTypeMapper];
+
+    this.decorators = [{
+        strategy: LinkStrategy,
+        component: Link
+      }, {
+        strategy: HashTagStrategy,
+        component: HashTag
+      }
+    ];
   }
 
   initViewerProps() {
-    // this.plugins = [];
-    // this.decorators = {
-    //   list: WixRichContentEditor.DecoratorList,
-    //   config: {
-    //     Hashtag: {
-    //       createHref: decoratedText =>
-    //         `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`
-    //     }
-    //   }
-    // };
     this.helpers = {
       openModal: data => {
         const { modalStyles, ...modalProps } = data;
@@ -108,13 +118,6 @@ class App extends Component {
     );
 
     const { styles } = this;
-    const typeMappers = [
-      videoTypeMapper,
-      imageTypeMapper,
-      galleryTypeMapper,
-      dividerTypeMapper,
-      htmlTypeMapper,
-      linkTypeMapper];
 
     return (
       <div className={styles.wrapper}>
@@ -139,9 +142,8 @@ class App extends Component {
               <div className={styles.column}>
                 <RichContentViewer
                   helpers={this.helpers}
-                  typeMappers={typeMappers}
-                  // plugins={this.plugins}
-                  // decorators={this.decorators}
+                  typeMappers={this.typeMappers}
+                  decorators={this.decorators}
                   initialState={this.state.raw}
                   theme={theme}
                   isMobile={this.isMobile()}
