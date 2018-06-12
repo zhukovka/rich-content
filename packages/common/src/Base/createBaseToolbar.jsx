@@ -306,6 +306,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
               isMobile={isMobile}
               displayPanel={this.displayPanel}
               displayInlinePanel={this.displayInlinePanel}
+              hideInlinePanel={this.hidePanels}
               {...buttonProps}
             />
           );
