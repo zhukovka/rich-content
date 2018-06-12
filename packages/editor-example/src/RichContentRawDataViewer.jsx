@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import JSONInput from 'react-json-editor-ajrm';
+import get from 'lodash/get';
+import set from 'lodash/set';
 
 class RichContentRawDataViewer extends Component {
 
@@ -11,7 +13,9 @@ class RichContentRawDataViewer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState(this.stateFromProps(nextProps));
+    if (this.props.content !== nextProps.content) {
+      this.setState(this.stateFromProps(nextProps));
+    }
   }
 
   stateFromProps(props){
@@ -20,11 +24,26 @@ class RichContentRawDataViewer extends Component {
 
   fixKeys(content) {
     if (content && content.entityMap) {
-      const fixedEntityMap = Object.keys(content.entityMap).reduce((map, key) => {
-        return Object.assign(map, { [`"${key}"`]: content.entityMap[key]});
+      let fixedEntityMap = Object.keys(content.entityMap).reduce((map, key) => {
+        const entity = content.entityMap[key];
+        const videoHtml = get(entity, 'data.metadata.html');
+        if (videoHtml) {
+          set(entity, 'data.metadata.html', this.escapeHtml(videoHtml));
+        } else if (get(entity, 'data.srcType') === 'html'){
+          const htmlSrc = get(entity, 'data.src');
+          set(entity, 'data.src', this.escapeHtml(htmlSrc));
+        }
+
+        return Object.assign(map, { [`"${key}"`]: entity});
+
       }, {});
+
       return Object.assign({}, content, { entityMap: fixedEntityMap });
     }
+  }
+
+  escapeHtml(text) {
+    return text.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;").replace(/\//g, "&#047;");
   }
 
   onChange(content) {
