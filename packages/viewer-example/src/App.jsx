@@ -59,7 +59,8 @@ class App extends Component {
         component: LinkComponent
       }, {
         strategy: HashTagStrategy,
-        component: HashTag
+        component: ({children, decoratedText}) =>
+          <HashTag theme={theme} onClick={this.onHashTagClick} createHref={this.createHref} decoratedText={decoratedText}>{children}</HashTag>
       }
     ];
   }
@@ -110,6 +111,13 @@ class App extends Component {
       this.setState({ raw: normalizedState });
     }
   }
+
+  onHashTagClick = (event, text) => {
+    event.preventDefault();
+    console.log(`'${text}' hashtag clicked!`);
+  };
+
+  createHref = decoratedText => `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`;
 
   render() {
     const contentOptions = Object.keys(TestData).map(key =>
