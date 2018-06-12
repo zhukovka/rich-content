@@ -210,6 +210,8 @@ class RichContentEditor extends Component {
       onFocus,
       textAlignment,
       readOnly,
+      handleBeforeInput,
+      handlePastedText,
     } = this.props;
     const { editorState, theme } = this.state;
     return (
@@ -217,6 +219,8 @@ class RichContentEditor extends Component {
         ref={this.setEditor}
         editorState={editorState}
         onChange={this.updateEditorState}
+        handleBeforeInput={handleBeforeInput}
+        handlePastedText={handlePastedText}
         plugins={this.plugins}
         blockStyleFn={blockStyleFn(theme)}
         handleKeyCommand={handleKeyCommand(this.updateEditorState)}
@@ -311,6 +315,8 @@ RichContentEditor.propTypes = {
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   textAlignment: PropTypes.oneOf(['left', 'right', 'center']),
+  handleBeforeInput: PropTypes.func,
+  handlePastedText: PropTypes.func,
 };
 
 export default translate(null, { withRef: true })(RichContentEditor);
