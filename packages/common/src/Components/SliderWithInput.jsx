@@ -19,12 +19,16 @@ class SliderWithInput extends Component {
 
   handleInputChange = event => {
     this.setState({ inputValue: event.target.valueAsNumber || 0 });
-    this.submitInputValue();
   };
 
-  submitInputValue = debounce(() => {
+  submitInputValueDebounced = debounce(() => {
     this.props.onChange(this.normalizeInputValue(this.state.inputValue));
   }, 800);
+
+  submitInputValue = () => {
+    this.submitInputValueDebounced();
+    this.submitInputValueDebounced.flush();
+  };
 
   normalizeInputValue = value => {
     const { max, min } = this.props;
@@ -66,6 +70,7 @@ class SliderWithInput extends Component {
             onChange={this.handleInputChange}
             onBlur={this.submitInputValue}
             onMouseUp={this.submitInputValue}
+            onKeyUp={this.submitInputValueDebounced}
             className={this.styles.sliderWithInput_input}
             min={min}
             max={max}

@@ -74,7 +74,9 @@ class BaseToolbarButton extends React.Component {
     }
 
     if (this.props.type === BUTTONS.INLINE_PANEL) {
-      this.props.displayInlinePanel({ PanelContent: this.props.panelContent, keyName });
+      this.state.isActive ?
+        this.props.hideInlinePanel() :
+        this.props.displayInlinePanel({ PanelContent: this.props.panelContent, keyName });
     }
 
     if (this.props.type === BUTTONS.EXTERNAL_MODAL && isActive) {
@@ -239,6 +241,7 @@ BaseToolbarButton.propTypes = {
   tabIndex: PropTypes.number,
   displayPanel: PropTypes.func.isRequired,
   displayInlinePanel: PropTypes.func.isRequired,
+  hideInlinePanel: PropTypes.func.isRequired,
 };
 
 export default BaseToolbarButton;
