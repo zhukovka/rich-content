@@ -73,7 +73,8 @@ export { default as ComponentDataValidator } from './Utils/component-data-valida
 export {
   isValidUrl,
   isVideoUrl,
-  normalizeURL,
+  normalizeUrl,
+  getUrlMatches,
   startsWithHttps
 } from './Utils/urlValidators';
 export {

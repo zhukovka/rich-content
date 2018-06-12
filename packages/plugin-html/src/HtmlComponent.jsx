@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { mergeStyles, isValidUrl, normalizeURL, ComponentDataValidator } from 'wix-rich-content-common';
+import { mergeStyles, isValidUrl, normalizeUrl, ComponentDataValidator } from 'wix-rich-content-common';
 
 import { SRC_TYPE_HTML, SRC_TYPE_URL, DEFAULT_COMPONENT_DATA } from './constants';
 import schema from './data-schema.json';
@@ -28,7 +28,7 @@ const HtmlComponent = props => {
       )}
 
       {srcType === SRC_TYPE_URL && isValidUrl(src) && (
-        <IframeUrl key={SRC_TYPE_URL} tabIndex={readOnly ? -1 : 0} src={normalizeURL(src)}/>
+        <IframeUrl key={SRC_TYPE_URL} tabIndex={readOnly ? -1 : 0} src={normalizeUrl(src)}/>
       )}
 
       {!src && !isValidUrl(src) && (
