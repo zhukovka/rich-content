@@ -23,7 +23,9 @@ class SliderWithInput extends Component {
   };
 
   submitInputValueDebounced = debounce(() => {
-    this.props.onChange(this.normalizeInputValue(this.state.inputValue));
+    const inputValue = this.normalizeInputValue(this.state.inputValue);
+    this.props.onChange(inputValue);
+    this.setState({ inputValue });
   }, 800);
 
   submitInputValue = () => {
@@ -31,13 +33,13 @@ class SliderWithInput extends Component {
     this.submitInputValueDebounced.flush();
   };
 
-  normalizeInputValue = value => {
-    const { inputMin, inputMax } = this.props;
-    const min = isNumber(inputMin) ? inputMin : this.props.min;
-    const max = isNumber(inputMax) ? inputMax : this.props.max;
+  getInputMin = () => isNumber(this.props.inputMin) ? this.props.inputMin : this.props.min;
+  getInputMax = () => isNumber(this.props.inputMax) ? this.props.inputMax : this.props.max;
 
-    return Math.min(Math.max(min, value), max);
-  };
+  normalizeInputValue = value => Math.min(
+    Math.max(this.getInputMin(), value),
+    this.getInputMax()
+  );
 
   render() {
     const { readOnly, label, value, min, max, onChange, theme, sliderDataHook, inputDataHook } = this.props;
@@ -76,8 +78,8 @@ class SliderWithInput extends Component {
             onMouseUp={this.submitInputValue}
             onKeyUp={this.submitInputValueDebounced}
             className={this.styles.sliderWithInput_input}
-            min={min}
-            max={max}
+            min={this.getInputMin()}
+            max={this.getInputMax()}
             step="1"
             role="spinbutton"
           />
