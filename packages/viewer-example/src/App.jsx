@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
 import { RichContentModal, mergeStyles, Button, normalizeInitialState } from 'wix-rich-content-common';
-import RichContentViewer from 'wix-rich-content-viewer';
+import { LinkComponent, LinkStrategy, RichContentViewer } from 'wix-rich-content-viewer';
 import RichContentRawDataViewer from './RichContentRawDataViewer';
 
 import 'wix-rich-content-viewer/dist/styles.css';
@@ -20,7 +20,6 @@ import { htmlTypeMapper } from 'wix-rich-content-plugin-html';
 import { linkTypeMapper } from 'wix-rich-content-plugin-link';
 
 import { Strategy as HashTagStrategy, Component as HashTag } from 'wix-rich-content-plugin-hashtag';
-import { Strategy as LinkStrategy, Component as Link } from 'wix-rich-content-plugin-link';
 
 import TestData from './TestData/initial-state';
 import theme from './theme/theme';
@@ -57,7 +56,7 @@ class App extends Component {
 
     this.decorators = [{
         strategy: LinkStrategy,
-        component: Link
+        component: LinkComponent
       }, {
         strategy: HashTagStrategy,
         component: HashTag

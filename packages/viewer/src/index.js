@@ -1,1 +1,2 @@
-export { default } from './RichContentViewer';
+export { default as RichContentViewer } from './RichContentViewer';
+export { LinkComponent, LinkStrategy } from './linkDecorator';
