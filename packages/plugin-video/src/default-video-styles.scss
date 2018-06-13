@@ -1,13 +1,5 @@
 @import "../../common/src/Styles/palette";
-
-.video_container {
-    position: relative;
-    overflow: hidden;
-    min-width: 350px;
-    padding-bottom: 56.25%;
-    padding-top: 25px;
-    height: 0;
-}
+@import "./video-viewer.scss";
 
 .video_overlay {
     position: absolute;

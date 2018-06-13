@@ -11,7 +11,7 @@ import 'wix-rich-content-plugin-link/dist/styles.css';
 import 'wix-rich-content-plugin-hashtag/dist/styles.css';
 import 'wix-rich-content-plugin-emoji/dist/styles.css';
 import 'wix-rich-content-plugin-image/dist/styles.css';
-import 'wix-rich-content-plugin-video/dist/styles.css';
+import 'wix-rich-content-plugin-video/dist/plugin.css';
 import 'wix-rich-content-plugin-gallery/dist/styles.css';
 import 'wix-rich-content-plugin-html/dist/styles.css';
 import 'wix-rich-content-plugin-divider/dist/styles.css';

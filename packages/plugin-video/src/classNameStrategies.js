@@ -1,4 +1,4 @@
-import styles from './default-video-styles.scss';
+import styles from './video-viewer.scss';
 import { mergeStyles } from 'wix-rich-content-common';
 
 export const containerClassName = theme => {
