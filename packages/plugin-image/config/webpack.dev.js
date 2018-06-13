@@ -9,7 +9,7 @@ module.exports = env => {
     devtool: 'cheap-module-eval-source-map',
     entry: {
       viewer: path.resolve(BASE_PATH, 'src/image-viewer.jsx'),
-      plugin: path.resolve(BASE_PATH, 'src/'),
+      [env.FILE_NAME]: path.resolve(BASE_PATH, 'src/'),
     },
   });
 };

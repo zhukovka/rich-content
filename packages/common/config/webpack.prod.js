@@ -8,7 +8,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const BASE_PATH = path.resolve(__dirname, '..');
 const prodConfig = {
   entry: {
-    viewer: path.resolve(BASE_PATH, 'src/video-viewer.jsx'),
     [env.FILE_NAME]: path.resolve(BASE_PATH, 'src/'),
   },
   mode: 'production',

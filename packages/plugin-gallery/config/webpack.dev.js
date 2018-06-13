@@ -8,7 +8,7 @@ module.exports = env => {
     mode: 'development',
     devtool: 'cheap-module-eval-source-map',
     entry: {
-      viewer: path.resolve(BASE_PATH, 'src/video-viewer.jsx'),
+      viewer: path.resolve(BASE_PATH, 'src/gallery-viewer.jsx'),
       [env.FILE_NAME]: path.resolve(BASE_PATH, 'src/'),
     },
   });

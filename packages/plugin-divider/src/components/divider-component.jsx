@@ -5,7 +5,7 @@ import { mergeStyles } from 'wix-rich-content-common';
 
 import { getType, getConfig } from '../toolbar/selectors';
 import DividerLine from './divider-line';
-import styles from '../default-styles.scss';
+import styles from '../divider-viewer.scss';
 
 class DividerComponent extends PureComponent {
   constructor(props) {

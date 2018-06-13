@@ -9,7 +9,7 @@ const BASE_PATH = path.resolve(__dirname, '..');
 const prodConfig = {
   entry: {
     viewer: path.resolve(BASE_PATH, 'src/image-viewer.jsx'),
-    plugin: path.resolve(BASE_PATH, 'src/'),
+    [env.FILE_NAME]: path.resolve(BASE_PATH, 'src/'),
   },
   mode: 'production',
   plugins: [],
