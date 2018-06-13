@@ -82,9 +82,7 @@ const options = {
   },
 };
 
-const decorators = [];
-
-const Preview = ({ raw, typeMappers, theme, isMobile }) => {
+const Preview = ({ raw, typeMappers, theme, isMobile, decorators }) => {
   const isEmpty = isEmptyRaw(raw);
   const typeMap = combineTypeMappers(typeMappers);
   window.redraft = redraft;
@@ -104,6 +102,10 @@ Preview.propTypes = {
   typeMappers: PropTypes.arrayOf(PropTypes.func).isRequired,
   theme: PropTypes.object,
   isMobile: PropTypes.bool,
+  decorators: PropTypes.arrayOf(PropTypes.shape({
+    component: PropTypes.func.isRequired,
+    strategy: PropTypes.func.isRequired,
+  })),
 };
 
 export default Preview;

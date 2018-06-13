@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
 import { RichContentModal, mergeStyles, Button, normalizeInitialState } from 'wix-rich-content-common';
-import RichContentViewer from 'wix-rich-content-viewer';
+import { LinkComponent, LinkStrategy, RichContentViewer } from 'wix-rich-content-viewer';
 import RichContentRawDataViewer from './RichContentRawDataViewer';
 
 import 'wix-rich-content-viewer/dist/styles.css';
@@ -18,6 +18,8 @@ import { galleryTypeMapper } from 'wix-rich-content-plugin-gallery';
 import { dividerTypeMapper } from 'wix-rich-content-plugin-divider';
 import { htmlTypeMapper } from 'wix-rich-content-plugin-html';
 import { linkTypeMapper } from 'wix-rich-content-plugin-link';
+
+import { Strategy as HashTagStrategy, Component as HashTag } from 'wix-rich-content-plugin-hashtag';
 
 import TestData from './TestData/initial-state';
 import theme from './theme/theme';
@@ -43,19 +45,27 @@ class App extends Component {
     this.md = window ? new MobileDetect(window.navigator.userAgent) : null;
     this.initViewerProps();
     this.styles = mergeStyles({ styles, theme });
+
+    this.typeMappers = [
+      videoTypeMapper,
+      imageTypeMapper,
+      galleryTypeMapper,
+      dividerTypeMapper,
+      htmlTypeMapper,
+      linkTypeMapper];
+
+    this.decorators = [{
+        strategy: LinkStrategy,
+        component: LinkComponent
+      }, {
+        strategy: HashTagStrategy,
+        component: ({children, decoratedText}) =>
+          <HashTag theme={theme} onClick={this.onHashTagClick} createHref={this.createHref} decoratedText={decoratedText}>{children}</HashTag>
+      }
+    ];
   }
 
   initViewerProps() {
-    // this.plugins = [];
-    // this.decorators = {
-    //   list: WixRichContentEditor.DecoratorList,
-    //   config: {
-    //     Hashtag: {
-    //       createHref: decoratedText =>
-    //         `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`
-    //     }
-    //   }
-    // };
     this.helpers = {
       openModal: data => {
         const { modalStyles, ...modalProps } = data;
@@ -102,19 +112,19 @@ class App extends Component {
     }
   }
 
+  onHashTagClick = (event, text) => {
+    event.preventDefault();
+    console.log(`'${text}' hashtag clicked!`);
+  };
+
+  createHref = decoratedText => `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`;
+
   render() {
     const contentOptions = Object.keys(TestData).map(key =>
       (<option value={key} key={key}> {key}</option>)
     );
 
     const { styles } = this;
-    const typeMappers = [
-      videoTypeMapper,
-      imageTypeMapper,
-      galleryTypeMapper,
-      dividerTypeMapper,
-      htmlTypeMapper,
-      linkTypeMapper];
 
     return (
       <div className={styles.wrapper}>
@@ -139,9 +149,8 @@ class App extends Component {
               <div className={styles.column}>
                 <RichContentViewer
                   helpers={this.helpers}
-                  typeMappers={typeMappers}
-                  // plugins={this.plugins}
-                  // decorators={this.decorators}
+                  typeMappers={this.typeMappers}
+                  decorators={this.decorators}
                   initialState={this.state.raw}
                   theme={theme}
                   isMobile={this.isMobile()}

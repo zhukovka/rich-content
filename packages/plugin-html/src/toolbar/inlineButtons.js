@@ -13,6 +13,7 @@ import {
   MAX_WIDTH,
   MIN_HEIGHT,
   MAX_HEIGHT,
+  MAX_HEIGHT_INPUT,
   SRC_TYPE_HTML,
   SRC_TYPE_URL,
 } from '../constants';
@@ -35,7 +36,7 @@ export default () => {
     },
     { type: BUTTONS.SEPARATOR },
     { type: BUTTONS.WIDTH, min: MIN_WIDTH, max: MAX_WIDTH },
-    { type: BUTTONS.HEIGHT, min: MIN_HEIGHT, max: MAX_HEIGHT },
+    { type: BUTTONS.HEIGHT, min: MIN_HEIGHT, max: MAX_HEIGHT, inputMax: MAX_HEIGHT_INPUT },
     { type: BUTTONS.SEPARATOR },
     {
       type: BUTTONS.ALIGNMENT_LEFT,

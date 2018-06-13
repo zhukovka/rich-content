@@ -10,6 +10,8 @@ export default ({ Icon, tooltipTextKey, getValue, onChange, keyName }) =>
     static propTypes = {
       min: PropTypes.number.isRequired,
       max: PropTypes.number.isRequired,
+      inputMin: PropTypes.number,
+      inputMax: PropTypes.number,
     };
 
     panelContent = decorateComponentWithProps(SliderPanel, {
@@ -17,6 +19,8 @@ export default ({ Icon, tooltipTextKey, getValue, onChange, keyName }) =>
       onChange,
       min: this.props.min,
       max: this.props.max,
+      inputMin: this.props.inputMin,
+      inputMax: this.props.inputMax,
     });
 
     render() {

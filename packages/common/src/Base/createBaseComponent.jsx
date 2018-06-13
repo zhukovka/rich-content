@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import createHocName from '../Utils/createHocName';
 import getDisplayName from '../Utils/getDisplayName';
 import { alignmentClassName, sizeClassName, textWrapClassName } from '../Utils/classNameStrategies';
-import { normalizeURL } from '../Utils/urlValidators';
+import { normalizeUrl } from '../Utils/urlValidators';
 import Styles from '../Styles/global.scss';
 
 const DEFAULTS = {
@@ -244,7 +244,7 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
       let anchorProps = {};
       if (!isNil(link)) {
         anchorProps = {
-          href: normalizeURL(link.url),
+          href: normalizeUrl(link.url),
           target: link.targetBlank ? '_blank' : (anchorTarget || '_top'),
           rel: link.nofollow ? 'nofollow' : null
         };

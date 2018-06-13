@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { normalizeURL, mergeStyles } from 'wix-rich-content-common';
+import { normalizeUrl, mergeStyles } from 'wix-rich-content-common';
 import styles from './link-viewer.scss';
 
 class LinkViewer extends Component {
@@ -24,7 +24,7 @@ class LinkViewer extends Component {
     const { componentData, anchorTarget, relValue, className, children } = props;
     const { url, target, rel } = componentData;
     const anchorProps = {
-      href: normalizeURL(url),
+      href: normalizeUrl(url),
       target: target ? target : (anchorTarget || '_top'),
       rel: rel ? rel : (relValue || null),
       className: classNames(styles.link, className),
