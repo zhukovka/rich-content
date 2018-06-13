@@ -10,7 +10,7 @@ import { createDividerPlugin } from 'wix-rich-content-plugin-divider';
 import 'wix-rich-content-plugin-link/dist/styles.css';
 import 'wix-rich-content-plugin-hashtag/dist/styles.css';
 import 'wix-rich-content-plugin-emoji/dist/styles.css';
-import 'wix-rich-content-plugin-image/dist/styles.css';
+import 'wix-rich-content-plugin-image/dist/plugin.css';
 import 'wix-rich-content-plugin-video/dist/plugin.css';
 import 'wix-rich-content-plugin-gallery/dist/styles.css';
 import 'wix-rich-content-plugin-html/dist/styles.css';

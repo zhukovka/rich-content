@@ -7,7 +7,7 @@ import RichContentRawDataViewer from './RichContentRawDataViewer';
 
 import 'wix-rich-content-viewer/dist/styles.css';
 import 'wix-rich-content-plugin-video/dist/viewer.css';
-import 'wix-rich-content-plugin-image/dist/styles.css';
+import 'wix-rich-content-plugin-image/dist/viewer.css';
 import 'wix-rich-content-plugin-divider/dist/styles.css';
 import 'wix-rich-content-plugin-html/dist/styles.css';
 import 'wix-rich-content-plugin-link/dist/styles.css';
