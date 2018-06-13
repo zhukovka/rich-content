@@ -75,7 +75,8 @@ export {
   isVideoUrl,
   normalizeUrl,
   getUrlMatches,
-  startsWithHttps
+  startsWithHttps,
+  hasProtocol,
 } from './Utils/urlValidators';
 export {
   insertLink,

@@ -5,10 +5,13 @@ import {
   RadioGroupHorizontal,
   TextInput,
   InputWithLabel,
-  startsWithHttps,
   isValidUrl,
+  startsWithHttps,
+  hasProtocol,
   mergeStyles,
 } from 'wix-rich-content-common';
+import identity from 'lodash/identity';
+import trimStart from 'lodash/trimStart';
 import { SRC_TYPE_HTML, SRC_TYPE_URL } from '../constants';
 import styles from './HtmlEditPanel.scss';
 
@@ -19,12 +22,17 @@ const VALIDATORS = {
 
     if (!url || !isValidUrl(url)) {
       error = 'HtmlEditPanel_UrlError';
-    } else if (!startsWithHttps(url)) {
+    } else if (!startsWithHttps(url) && hasProtocol(url)) {
       error = 'HtmlEditPanel_HttpsError';
     }
 
     return error;
   },
+};
+
+const NORMALIZERS = {
+  [SRC_TYPE_HTML]: identity,
+  [SRC_TYPE_URL]: url => hasProtocol(url) ? url : `https://${trimStart(url, '//')}`,
 };
 
 class HtmlEditPanel extends Component {
@@ -78,7 +86,7 @@ class HtmlEditPanel extends Component {
     const { srcType } = this.state;
     this.props.store.update('componentData', {
       srcType,
-      src: this.state[srcType] || '',
+      src: NORMALIZERS[srcType](this.state[srcType]) || '',
     });
   };
 
