@@ -7,9 +7,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 const BASE_PATH = path.resolve(__dirname, '..');
 const prodConfig = {
-  entry: {
-    [env.FILE_NAME]: path.resolve(BASE_PATH, 'src/'),
-  },
   mode: 'production',
   plugins: [],
   optimization: {
@@ -28,5 +25,10 @@ module.exports = env => {
     prodConfig.plugins.push(new BundleAnalyzerPlugin());
   }
   const common = require('../../../config/webpack.prod')(env);
-  return merge(common, prodConfig);
+  const config = merge(prodConfig, {
+    entry: {
+      [env.FILE_NAME]: path.resolve(BASE_PATH, 'src/'),
+    }
+  });
+  return merge(common, config);
 };
