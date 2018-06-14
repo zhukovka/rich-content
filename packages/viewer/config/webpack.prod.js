@@ -12,7 +12,6 @@ const prodConfig = {
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
           MiniCssExtractPlugin.loader,
           'css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]',
           'sass-loader'
