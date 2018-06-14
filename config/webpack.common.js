@@ -7,6 +7,9 @@ module.exports = env => {
   const BASE_PATH = path.resolve(__dirname, '..', 'packages', FILE_NAME.replace('wix-rich-content-', ''));
 
   return {
+    entry: {
+      [env.FILE_NAME]: path.resolve(BASE_PATH, 'src/'),
+    },
     output: {
       path: path.resolve(BASE_PATH, 'dist'),
       filename: `[name].js`,
