@@ -11,6 +11,7 @@
     "build:dev": "lerna run --stream build:dev",
     "build": "lerna run --stream --scope=wix-rich-content-* build",
     "watch": "lerna run --stream watch",
+    "watch:prod": "lerna run --stream watch:prod",
     "customPublish": "node scripts/customPublish",
     "createVersion": "node scripts/createVersion"
   },

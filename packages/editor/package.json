@@ -22,6 +22,7 @@
     "build:prod": "webpack --config ./config/webpack.prod.js",
     "prewatch": "npm run clean",
     "watch": "npm run build:dev -- --watch",
+    "watch:prod": "npm run build -- --watch",
     "watch:remote": "webpack --config ./config/webpack.remote.js --watch",
     "release": "wnpm-release --no-shrinkwrap",
     "lint": "eslint 'src/**/*.{js,jsx}'",
