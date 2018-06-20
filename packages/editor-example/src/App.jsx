@@ -249,10 +249,10 @@ class App extends Component {
           }
           {MobileToolbar && <MobileToolbar />}
           <div className="content">
-            {TextToolbar && <TextToolbar />}
             {this.state.mounted &&
               <div className="columns">
                 <div className="column main">
+                  {TextToolbar && <TextToolbar />}
                   <RichContentEditor
                     ref={this.setEditor}
                     onChange={this.onChange}
