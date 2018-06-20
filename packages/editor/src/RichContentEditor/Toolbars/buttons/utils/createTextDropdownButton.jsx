@@ -26,24 +26,24 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
         selected: activeItem({ getEditorState, defaultValue: defaultTextAlignment }),
       };
 
-      const { buttonStyles, ...rest } = props.theme || {};
+      const theme = props.theme || {};
 
       this.theme = {
+        ...theme,
         buttonStyles: {
           inlineToolbarButton_wrapper: classNames( //eslint-disable-line camelcase
             styles.inlineToolbarDropdownButton_wrapper,
-            buttonStyles && buttonStyles.inlineToolbarDropdownButton_wrapper
+            theme && theme.inlineToolbarDropdownButton_wrapper
           ),
           inlineToolbarButton: classNames(
             styles.inlineToolbarDropdownButton,
-            buttonStyles && buttonStyles.inlineToolbarDropdownButton
+            theme && theme.inlineToolbarDropdownButton
           ),
           inlineToolbarButton_icon: classNames( //eslint-disable-line camelcase
             styles.inlineToolbarDropdownButton_icon,
-            buttonStyles && buttonStyles.inlineToolbarDropdownButton_icon
+            theme && theme.inlineToolbarDropdownButton_icon
           ),
         },
-        ...rest
       };
       this.styles = mergeStyles({ styles, theme: this.theme });
     }
