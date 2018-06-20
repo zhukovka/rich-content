@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-video",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -23,10 +23,10 @@
     "transpile": "babel -q src -d dist",
     "webpack": "webpack --env.FILE_NAME=wix-rich-content-plugin-video",
     "prebuild": "npm run transpile",
-    "build:dev": "npm run transpile && npm run webpack -- --config ../../config/webpack.dev.js",
-    "build": "npm run webpack -- --config ../../config/webpack.prod.js",
-    "build:analyze": "npm run build -- --env.analyzeBundle",
+    "build:dev": "npm run transpile && npm run webpack -- --config ./config/webpack.dev.js",
+    "build": "npm run webpack -- --config ./config/webpack.prod.js",
     "watch": "npm run build:dev -- --watch",
+    "watch:prod": "npm run build -- --watch",
     "release": "wnpm-release --no-shrinkwrap",
     "test": "eslint 'src/**/*.{js,jsx}'"
   },

@@ -6,11 +6,11 @@ import { LinkComponent, LinkStrategy, RichContentViewer } from 'wix-rich-content
 import RichContentRawDataViewer from './RichContentRawDataViewer';
 
 import 'wix-rich-content-viewer/dist/styles.css';
-import 'wix-rich-content-plugin-video/dist/styles.css';
-import 'wix-rich-content-plugin-image/dist/styles.css';
-import 'wix-rich-content-plugin-divider/dist/styles.css';
-import 'wix-rich-content-plugin-html/dist/styles.css';
-import 'wix-rich-content-plugin-link/dist/styles.css';
+import 'wix-rich-content-plugin-video/dist/viewer.css';
+import 'wix-rich-content-plugin-image/dist/viewer.css';
+import 'wix-rich-content-plugin-divider/dist/viewer.css';
+import 'wix-rich-content-plugin-html/dist/viewer.css';
+import 'wix-rich-content-plugin-link/dist/viewer.css';
 
 import { videoTypeMapper } from 'wix-rich-content-plugin-video';
 import { imageTypeMapper } from 'wix-rich-content-plugin-image';
