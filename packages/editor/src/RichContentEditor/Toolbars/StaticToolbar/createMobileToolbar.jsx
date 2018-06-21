@@ -111,16 +111,19 @@ const getMobileButtons = ({ buttons, helpers, pubsub, getEditorState, setEditorS
   });
 
   if (addPluginIndex !== -1) {
-    structure.splice(addPluginIndex, 0, decorateComponentWithProps(AddPluginButton, {
-      openModal: helpers.openModal,
-      closeModal: helpers.closeModal,
-      pluginButtons: buttons.pluginButtons,
-      getEditorState,
-      setEditorState,
-      pubsub,
-      t,
-      theme: mobileTheme
-    }));
+    const addAddPluginButton = buttons.pluginButtons && buttons.pluginButtons.length;
+    if (addAddPluginButton) {
+      structure.splice(addPluginIndex, 0, decorateComponentWithProps(AddPluginButton, {
+        openModal: helpers.openModal,
+        closeModal: helpers.closeModal,
+        pluginButtons: buttons.pluginButtons,
+        getEditorState,
+        setEditorState,
+        pubsub,
+        t,
+        theme: mobileTheme
+      }));
+    }
   }
 
   return structure;
