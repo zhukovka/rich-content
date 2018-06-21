@@ -273,7 +273,7 @@ class RichContentEditor extends Component {
 
 RichContentEditor.propTypes = {
   editorKey: PropTypes.string,
-  editorState: PropTypes.object.isRequired,
+  editorState: PropTypes.object,
   initialState: PropTypes.object,
   theme: PropTypes.object,
   isMobile: PropTypes.bool,
