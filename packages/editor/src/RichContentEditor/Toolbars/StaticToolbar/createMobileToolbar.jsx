@@ -41,6 +41,10 @@ const getMobileTheme = theme => {
           [toolbarTheme.mobileToolbar_fixed]: (toolbarTheme && toolbarTheme.mobileToolbar_fixed) && !baseUtils.isiOS(),
         }
       ),
+      scrollableContainer: classNames(
+        toolbarStyles.mobileToolbar_scrollableContainer,
+        toolbarTheme && toolbarTheme.mobileToolbar_scrollableContainer
+      ),
       buttons: classNames(
         toolbarStyles.mobileToolbar_buttons,
         toolbarTheme && toolbarTheme.mobileToolbar_buttons
