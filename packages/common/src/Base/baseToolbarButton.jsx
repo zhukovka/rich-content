@@ -122,19 +122,19 @@ class BaseToolbarButton extends React.Component {
     );
   };
 
+  getDataHook = () => `baseToolbarButton_${this.props.keyName}`;
+
   renderToggleButton = (buttonWrapperClassNames, buttonClassNames) => {
     const { theme, isMobile, t, tooltipTextKey, tabIndex } = this.props;
     const tooltipText = t(tooltipTextKey);
     const showTooltip = !isMobile && !isEmpty(tooltipText);
-    const textForHooks = tooltipText.replace(/\s+/, '');
-    const dataHookText = `baseToolbarButton_${textForHooks}`;
 
     const toggleButton = (
       /* eslint-disable jsx-a11y/no-static-element-interactions */
       <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
         <button
           className={buttonClassNames} aria-label={tooltipText} tabIndex={tabIndex} aria-pressed={this.state.isActive}
-          data-hook={dataHookText} onClick={this.handleClick} children={this.props.children || [this.getIcon()]}
+          data-hook={this.getDataHook()} onClick={this.handleClick} children={this.props.children || [this.getIcon()]}
         >
           {this.getIcon()}
         </button>
@@ -146,7 +146,7 @@ class BaseToolbarButton extends React.Component {
   };
 
   renderFilesButton = (buttonClassNames, styles) => {
-    const { theme, isMobile, t, tooltipTextKey, dataHook, tabIndex } = this.props;
+    const { theme, isMobile, t, tooltipTextKey, tabIndex } = this.props;
     const tooltipText = t(tooltipTextKey);
     const showTooltip = !isMobile && !isEmpty(tooltipText);
 
@@ -155,7 +155,7 @@ class BaseToolbarButton extends React.Component {
       <div className={replaceButtonWrapperClassNames}>
         <FileInput
           className={classNames(buttonClassNames)} theme={theme} tabIndex={tabIndex}
-          dataHook={dataHook} onChange={this.handleFileChange} accept="image/*" multiple={this.props.multiple}
+          dataHook={this.getDataHook()} onChange={this.handleFileChange} accept="image/*" multiple={this.props.multiple}
         >
           {this.getIcon()}
         </FileInput>
@@ -166,7 +166,7 @@ class BaseToolbarButton extends React.Component {
   };
 
   renderDropdownButton = (buttonWrapperClassNames, buttonClassNames) => {
-    const { pubsub, componentData, onChange, getValue, t, dataHook, tabIndex, ...props } = this.props;
+    const { pubsub, componentData, onChange, getValue, t, tabIndex, ...props } = this.props;
 
     const decoratedOnChange = value => onChange(value, componentData, pubsub.store);
     const decoratedGetValue = () => getValue(pubsub.store, t);
@@ -176,7 +176,7 @@ class BaseToolbarButton extends React.Component {
       <div className={buttonWrapperClassNames} onMouseDown={this.preventBubblingUp}>
         <Dropdown
           className={buttonClassNames} tabIndex={tabIndex}
-          dataHook={dataHook} onChange={decoratedOnChange} getValue={decoratedGetValue} {...props}
+          dataHook={this.getDataHook()} onChange={decoratedOnChange} getValue={decoratedGetValue} {...props}
         />
       </div>
     );
@@ -237,7 +237,6 @@ BaseToolbarButton.propTypes = {
   tooltipTextKey: PropTypes.string,
   anchorTarget: PropTypes.string,
   relValue: PropTypes.string,
-  dataHook: PropTypes.string,
   tabIndex: PropTypes.number,
   displayPanel: PropTypes.func.isRequired,
   displayInlinePanel: PropTypes.func.isRequired,

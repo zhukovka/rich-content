@@ -9,6 +9,7 @@ export default ({ size, Icon, tooltipTextKey }) =>
     static propTypes = {
       size: PropTypes.string,
       setLayoutProps: PropTypes.func.isRequired,
+      keyName: PropTypes.string.isRequired,
       disabled: PropTypes.bool,
       theme: PropTypes.object.isRequired,
       isMobile: PropTypes.bool,
@@ -32,7 +33,7 @@ export default ({ size, Icon, tooltipTextKey }) =>
     };
 
     render() {
-      const { disabled, theme, isMobile, t, tabIndex } = this.props;
+      const { disabled, theme, isMobile, t, tabIndex, keyName } = this.props;
       const className = classNames({
         [theme.button]: true,
         [theme.active]: this.isActive(),
@@ -40,8 +41,7 @@ export default ({ size, Icon, tooltipTextKey }) =>
       });
       const tooltipText = t(tooltipTextKey);
       const showTooltip = !isMobile && !isEmpty(tooltipText);
-      const textForHooks = tooltipText.replace(/\s+/, '');
-      const dataHookText = `blockSizeButton_${textForHooks}`;
+      const dataHookText = `blockSizeButton_${keyName}`;
 
       /* eslint-disable jsx-a11y/no-static-element-interactions */
       const blockButton = (

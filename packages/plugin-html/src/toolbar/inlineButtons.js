@@ -34,25 +34,28 @@ export default () => {
       mapComponentDataToButtonProps: ({ src, srcType }) =>
         ({ tooltipTextKey: src ? TOOLTIP_TEXT_BY_SRC_TYPE[srcType] : 'HtmlPlugin_EditEmpty_Tooltip' }),
     },
-    { type: BUTTONS.SEPARATOR },
-    { type: BUTTONS.WIDTH, min: MIN_WIDTH, max: MAX_WIDTH },
-    { type: BUTTONS.HEIGHT, min: MIN_HEIGHT, max: MAX_HEIGHT, inputMax: MAX_HEIGHT_INPUT },
-    { type: BUTTONS.SEPARATOR },
+    { type: BUTTONS.SEPARATOR, keyName: 'separator1' },
+    { type: BUTTONS.WIDTH, keyName: 'width', min: MIN_WIDTH, max: MAX_WIDTH },
+    { type: BUTTONS.HEIGHT, keyName: 'height', min: MIN_HEIGHT, max: MAX_HEIGHT, inputMax: MAX_HEIGHT_INPUT },
+    { type: BUTTONS.SEPARATOR, keyName: 'separator2' },
     {
       type: BUTTONS.ALIGNMENT_LEFT,
+      keyName: 'alignLeft',
       icon: SizeSmallLeftIcon,
       mapComponentDataToButtonProps: getAlignmentButtonProps,
     },
     {
       type: BUTTONS.ALIGNMENT_CENTER,
+      keyName: 'alignCenter',
       icon: SizeSmallCenterIcon,
     },
     {
       type: BUTTONS.ALIGNMENT_RIGHT,
+      keyName: 'alignRight',
       icon: SizeSmallRightIcon,
       mapComponentDataToButtonProps: getAlignmentButtonProps,
     },
-    { type: BUTTONS.SEPARATOR },
+    { type: BUTTONS.SEPARATOR, keyName: 'separator3' },
     { type: BUTTONS.DELETE, keyName: 'delete', mobile: true },
   ];
 };

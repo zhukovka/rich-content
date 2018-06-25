@@ -18,8 +18,6 @@ import {
   createDropdownValueGetter
 } from './dropdown-options';
 
-const dataHook = key => `divider-button__${key}`;
-
 export default ({ styles }) => {
   const dropdownOptions = getDropdownOptions(styles);
   return [
@@ -32,7 +30,6 @@ export default ({ styles }) => {
       controlClassName: styles['divider-dropdown__control'],
       tooltipTextKey: 'DividerPlugin_SelectType_Tooltip',
       mobile: true,
-      dataHook: dataHook('line-type')
     },
     { keyName: 'separator1', type: BUTTONS.SEPARATOR, mobile: true },
     { keyName: 'sizeSmall', type: BUTTONS.SIZE_SMALL },
@@ -48,7 +45,6 @@ export default ({ styles }) => {
       mapComponentDataToButtonProps: componentData => ({
         icon: getNextSizeIcon(componentData),
       }),
-      dataHook: dataHook('size-mobile'),
     },
     { keyName: 'separator2', type: BUTTONS.SEPARATOR, mobile: true },
     {
@@ -75,7 +71,6 @@ export default ({ styles }) => {
         icon: getNextAlignmentIcon(componentData),
         disabled: isAlignmentDisabled(componentData),
       }),
-      dataHook: dataHook('align-mobile'),
     },
     { keyName: 'separator3', type: BUTTONS.SEPARATOR, mobile: true },
     { keyName: 'delete', type: BUTTONS.DELETE, mobile: true }

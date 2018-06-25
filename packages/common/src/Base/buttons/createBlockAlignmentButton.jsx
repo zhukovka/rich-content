@@ -16,6 +16,7 @@ export default ({ alignment, Icon, tooltipTextKey }) =>
       t: PropTypes.func,
       tabIndex: PropTypes.number,
       icon: PropTypes.func,
+      keyName: PropTypes.string.isRequired,
     };
 
     isActive = () => this.props.alignment === alignment;
@@ -33,7 +34,7 @@ export default ({ alignment, Icon, tooltipTextKey }) =>
     };
 
     render() {
-      const { disabled, theme, isMobile, t, tabIndex } = this.props;
+      const { disabled, theme, isMobile, t, tabIndex, keyName } = this.props;
       const className = classNames({
         [theme.button]: true,
         [theme.active]: this.isActive(),
@@ -41,8 +42,7 @@ export default ({ alignment, Icon, tooltipTextKey }) =>
       });
       const tooltipText = t(tooltipTextKey);
       const showTooltip = !isMobile && !isEmpty(tooltipText);
-      const textForHooks = tooltipText.replace(/\s+/, '');
-      const dataHookText = `blockAlignmentButton_${textForHooks}`;
+      const dataHookText = `blockAlignmentButton_${keyName}`;
       const IconComponent = this.props.icon || Icon;
 
       /* eslint-disable jsx-a11y/no-static-element-interactions */

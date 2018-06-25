@@ -290,6 +290,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
               theme={themedStyle}
               key={key}
               t={t}
+              {...buttonProps}
             />
           );
         default:
