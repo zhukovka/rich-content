@@ -111,7 +111,6 @@ export const DeleteButton = createBlockButton({
 });
 
 export const WidthButton = createSliderPanelButton({
-  keyName: 'width',
   Icon: WidthIcon,
   tooltipTextKey: 'WidthButton_Tooltip',
   getValue: ({ componentData }) => componentData.config.width,
@@ -125,7 +124,6 @@ export const WidthButton = createSliderPanelButton({
 });
 
 export const HeightButton = createSliderPanelButton({
-  keyName: 'height',
   Icon: HeightIcon,
   tooltipTextKey: 'HeightButton_Tooltip',
   getValue: ({ componentData }) => componentData.config.height,

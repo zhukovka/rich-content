@@ -9,6 +9,7 @@ export default ({ Icon, tooltipTextKey }) =>
       onClick: PropTypes.func,
       disabled: PropTypes.bool,
       theme: PropTypes.object.isRequired,
+      keyName: PropTypes.string.isRequired,
       isMobile: PropTypes.bool,
       tooltipText: PropTypes.string,
       t: PropTypes.func,
@@ -29,11 +30,10 @@ export default ({ Icon, tooltipTextKey }) =>
     };
 
     render() {
-      const { theme, isMobile, t, tabIndex } = this.props;
+      const { theme, isMobile, t, tabIndex, keyName } = this.props;
       const tooltipText = t(tooltipTextKey);
       const showTooltip = !isMobile && !isEmpty(tooltipText);
-      const textForHooks = tooltipText.replace(/\s+/, '');
-      const dataHookText = `blockButton_${textForHooks}`;
+      const dataHookText = `blockButton_${keyName}`;
 
       const blockButton = (
         /* eslint-disable jsx-a11y/no-static-element-interactions */

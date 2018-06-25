@@ -38,7 +38,6 @@ export default ({ t, anchorTarget, relValue }) => {
       },
       icon: MediaReplaceIcon,
       mobile: true,
-      dataHook: 'image_file_input',
       tooltipTextKey: 'ReplaceImageButton_Tooltip',
       t,
     },
