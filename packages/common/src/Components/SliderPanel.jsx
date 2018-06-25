@@ -6,12 +6,14 @@ import styles from '../Styles/slider-panel.scss';
 const SliderPanel = props => {
   const { theme, getValue, onChange, ...otherProps } = props;
   return (
-    <div className={styles.sliderPanel}>
+    <div className={styles.sliderPanel} data-hook="sliderPanel">
       <SliderWithInput
         {...otherProps}
         theme={theme}
         value={getValue(props)}
         onChange={onChange(props)}
+        sliderDataHook="sliderPanel_Slider"
+        inputDataHook="sliderPanel_Input"
       />
     </div>
   );

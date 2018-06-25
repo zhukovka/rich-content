@@ -9,13 +9,15 @@ import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import createEditorToolbars from './Toolbars';
 import createPlugins from './createPlugins';
-import { keyBindingFn } from './keyBindings';
+import { keyBindingFn, COMMANDS } from './keyBindings';
 import handleKeyCommand from './handleKeyCommand';
 import blockStyleFn from './blockStyleFn';
-import { EditorModals, AccessibilityListener, getModalStyles, normalizeInitialState } from 'wix-rich-content-common';
+import { EditorModals, AccessibilityListener, getModalStyles,
+  normalizeInitialState, hasLinksInSelection, removeLinksInSelection } from 'wix-rich-content-common';
 import styles from '~/Styles/rich-content-editor.scss';
 import draftStyles from '~/Styles/draft.scss';
 import 'wix-rich-content-common/dist/wix-rich-content-common.css';
+import { getStaticTextToolbarId } from './Toolbars/toolbar-id';
 
 class RichContentEditor extends Component {
   constructor(props) {
@@ -215,7 +217,23 @@ class RichContentEditor extends Component {
         handlePastedText={handlePastedText}
         plugins={this.plugins}
         blockStyleFn={blockStyleFn(theme)}
-        handleKeyCommand={handleKeyCommand(this.updateEditorState)}
+        handleKeyCommand={handleKeyCommand(this.updateEditorState, {
+          [COMMANDS.LINK]: editorState => {
+            if (hasLinksInSelection(editorState)) {
+              return removeLinksInSelection(editorState);
+            } else {
+              this.openLinkModal();
+            }
+          },
+          [COMMANDS.TAB]: () => {
+            if (this.getToolbars().TextToolbar) {
+              const staticToolbarButton = this.findFocusableChildForElement(`${getStaticTextToolbarId(this.refId)}`);
+              staticToolbarButton && staticToolbarButton.focus();
+            } else {
+              this.editor.blur();
+            }
+          }
+        })}
         editorKey={editorKey}
         keyBindingFn={keyBindingFn}
         helpers={helpers}
@@ -273,7 +291,7 @@ class RichContentEditor extends Component {
 
 RichContentEditor.propTypes = {
   editorKey: PropTypes.string,
-  editorState: PropTypes.object.isRequired,
+  editorState: PropTypes.object,
   initialState: PropTypes.object,
   theme: PropTypes.object,
   isMobile: PropTypes.bool,

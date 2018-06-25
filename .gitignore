@@ -17,3 +17,4 @@ maven
 **/.vscode/**
 
 .history/**
+*.todo

@@ -21,7 +21,6 @@ export default({ t }) => {
       mobile: false,
       multiple: true,
       tooltipTextKey: 'UploadMediaButton_Tooltip',
-      dataHook: 'gallery_file_input',
     },
     { type: BUTTONS.SEPARATOR, mobile: false },
     {
@@ -31,7 +30,6 @@ export default({ t }) => {
       onChange: switchLayout,
       getValue: getCurrentLayout,
       mobile: true,
-      dataHook: 'gallery_layouts_dropdown'
     },
     { keyName: 'separator1', type: BUTTONS.SEPARATOR, mobile: false },
     { keyName: 'sizeSmallCenter', type: BUTTONS.SIZE_SMALL_CENTER, mobile: false },

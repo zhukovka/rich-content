@@ -12,3 +12,9 @@
   margin-left: auto;
   direction: ltr;
 }
+
+.scrollableContainer {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}

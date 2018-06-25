@@ -6,6 +6,10 @@
     border-bottom: 1px solid rgba($secondary-text-color, 0.2);
 }
 
+.mobileToolbar_scrollableContainer {
+
+}
+
 .mobileToolbar_fixed {
     position: fixed;
     top: 0;
@@ -29,7 +33,7 @@
 }
 
 .mobileToolbar_responsiveSpacer {
-    flex: 0 0 48px;
+    flex: 0 0 32px;
     height: 100%;
 }
 
@@ -41,7 +45,7 @@
     width: 40px;
     line-height: 48px;
     text-align: center;
-    background: white;
+    background: transparent;
     font-size: 12px;
     cursor: pointer;
     z-index: 9999;

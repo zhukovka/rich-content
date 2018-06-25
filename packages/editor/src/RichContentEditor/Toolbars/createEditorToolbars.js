@@ -23,18 +23,21 @@ const createEditorToolbars = config => {
   } = config;
   const { pluginButtons, textButtons } = buttons;
   const pubsub = simplePubsub();
+  const shouldCreatePluginToolbars = pluginButtons && pluginButtons.length;
   const shouldCreateTextToolbar = !isMobile || baseUtils.isiOS();
 
-  const toolbars = {
-    side: createSideToolbar({
+  const toolbars = {};
+
+  if (shouldCreatePluginToolbars) {
+    toolbars.side = createSideToolbar({
       refId,
       buttons: pluginButtons,
       offset: sideToolbarOffset,
       theme: { ...getToolbarTheme(theme, 'side'), ...theme },
       pubsub,
       isMobile
-    }),
-  };
+    });
+  }
 
   if (shouldCreateTextToolbar) {
     toolbars.textInline = createInlineTextToolbar({
@@ -62,12 +65,14 @@ const createEditorToolbars = config => {
     });
   }
 
-  if (!isMobile && !hideFooterToolbar) {
-    toolbars.footer = createFooterToolbar({
-      refId,
-      buttons: pluginButtons,
-      theme: { ...getToolbarTheme(theme, 'footer'), ...theme },
-    });
+  if (!isMobile) {
+    if (shouldCreatePluginToolbars && !hideFooterToolbar) {
+      toolbars.footer = createFooterToolbar({
+        refId,
+        buttons: pluginButtons,
+        theme: { ...getToolbarTheme(theme, 'footer'), ...theme },
+      });
+    }
   } else {
     toolbars.mobile = createMobileToolbar({
       refId,

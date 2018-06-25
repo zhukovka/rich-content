@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-video",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "react-player": "^1.5.0",
-    "wix-rich-content-common": "^1.0.15"
+    "wix-rich-content-common": "^1.0.16"
   },
   "unpkg": true,
   "publishConfig": {

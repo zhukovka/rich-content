@@ -88,6 +88,7 @@ export default class StaticToolbar extends React.Component {
     const hasArrow = showLeftArrow || showRightArrow;
     const { toolbarStyles } = theme || {};
     const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
+    const scrollableClassNames = classNames(Styles.scrollableContainer, toolbarStyles && toolbarStyles.scrollableContainer);
     const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons);
     const extendClassNames = classNames(Styles.extend, toolbarStyles && toolbarStyles.extend);
     const childrenProps = {
@@ -106,7 +107,7 @@ export default class StaticToolbar extends React.Component {
 
     return (
       <div role="toolbar" aria-orientation="horizontal" id={id} className={toolbarClassNames} data-hook={dataHook}>
-        <div className={buttonClassNames} ref={this.handleButtonsRef} >
+        <div className={buttonClassNames}>
           {
             showLeftArrow &&
             <button
@@ -116,11 +117,13 @@ export default class StaticToolbar extends React.Component {
               <i className={toolbarStyles.responsiveArrowLeft_icon}/>
             </button>
           }
-          {
-            OverrideContent ?
-              <OverrideContent {...childrenProps} /> :
-              structure.map((Button, index) => <Button key={index} {...childrenProps} />)
-          }
+          <div className={scrollableClassNames} ref={this.handleButtonsRef}>
+            {
+              OverrideContent ?
+                <OverrideContent {...childrenProps} /> :
+                structure.map((Button, index) => <Button key={index} {...childrenProps} />)
+            }
+          </div>
           {hasArrow && <div className={toolbarStyles.responsiveSpacer} />}
           {
             showRightArrow &&
