@@ -110,8 +110,8 @@ class HtmlEditPanel extends Component {
           value={this.state.srcType}
           onChange={this.handleSrcTypeChange}
           dataSource={[
-            { value: SRC_TYPE_HTML, labelText: t('HtmlEditPanel_Code') },
-            { value: SRC_TYPE_URL, labelText: t('HtmlEditPanel_Source') },
+            { value: SRC_TYPE_HTML, labelText: t('HtmlEditPanel_Code'), dataHook: 'htmlEditPanel_radioHtml' },
+            { value: SRC_TYPE_URL, labelText: t('HtmlEditPanel_Source'), dataHook: 'htmlEditPanel_radioUrl' },
           ]}
           inline
         />
@@ -128,6 +128,7 @@ class HtmlEditPanel extends Component {
                 theme={theme}
                 isTextArea
                 isFullHeight
+                dataHook="htmlEditPanel_htmlInput"
               />
             </div>
           )}
@@ -152,6 +153,7 @@ class HtmlEditPanel extends Component {
               styles.htmlEditPanel_secondaryButton
             )}
             onClick={this.handleCancelClick}
+            data-hook="htmlEditPanel_Cancel"
           >
             {t('HtmlEditPanel_Cancel')}
           </button>
@@ -161,6 +163,7 @@ class HtmlEditPanel extends Component {
               styles.htmlEditPanel_primaryButton
             )}
             onClick={this.handleUpdateClick}
+            data-hook="htmlEditPanel_Update"
           >
             {t('HtmlEditPanel_Update')}
           </button>
