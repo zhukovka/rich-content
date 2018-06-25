@@ -340,7 +340,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       const { PanelContent, keyName } = inlinePanel || {};
 
       return inlinePanel ? (
-        <div className={toolbarStyles.pluginToolbar_inlinePanel}>
+        <div className={toolbarStyles.pluginToolbar_inlinePanel} data-hook="baseToolbar_InlinePanel">
           <PanelContent
             key={keyName}
             theme={theme}
