@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { normalizeUrl, mergeStyles } from 'wix-rich-content-common';
+import { normalizeUrl, mergeStyles, validate } from 'wix-rich-content-common';
+import isEqual from 'lodash/isEqual';
+import schema from './data-schema.json';
+
 import styles from './link-viewer.scss';
 
 class LinkViewer extends Component {
@@ -17,8 +20,16 @@ class LinkViewer extends Component {
 
   constructor(props) {
     super(props);
+    validate(props.componentData, schema);
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (!isEqual(nextProps.componentData, this.props.componentData)) {
+      validate(nextProps.componentData, schema);
+    }
+  }
+
   render() {
     const { styles, props } = this;
     const { componentData, anchorTarget, relValue, className, children } = props;

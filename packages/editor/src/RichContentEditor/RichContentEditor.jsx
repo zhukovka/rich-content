@@ -14,8 +14,8 @@ import handleKeyCommand from './handleKeyCommand';
 import blockStyleFn from './blockStyleFn';
 import { EditorModals, AccessibilityListener, getModalStyles,
   normalizeInitialState, hasLinksInSelection, removeLinksInSelection } from 'wix-rich-content-common';
-import styles from '~/Styles/rich-content-editor.scss';
-import draftStyles from '~/Styles/draft.scss';
+import styles from '../Styles/rich-content-editor.scss';
+import draftStyles from '../Styles/draft.scss';
 import 'wix-rich-content-common/dist/wix-rich-content-common.css';
 import { getStaticTextToolbarId } from './Toolbars/toolbar-id';
 
