@@ -6,6 +6,10 @@
     border: 1px solid #ddd;
 }
 
+.textToolbar_scrollableContainer {
+    display: initial;
+}
+
 .textToolbar_buttons {
     display: flex;
     width: auto;
@@ -73,4 +77,6 @@
     transform: rotate(225deg);
 }
 
-.textToolbar_extend {}
+.textToolbar_extend {
+    display: initial;
+}

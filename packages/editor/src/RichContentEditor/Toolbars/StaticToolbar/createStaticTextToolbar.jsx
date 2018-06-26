@@ -22,6 +22,10 @@ const getStaticTextTheme = theme => {
         toolbarStyles.textToolbar,
         toolbarTheme && toolbarTheme.textToolbar,
       ),
+      scrollableContainer: classNames(
+        toolbarStyles.textToolbar_scrollableContainer,
+        toolbarTheme && toolbarTheme.textToolbar_scrollableContainer
+      ),
       buttons: classNames(
         toolbarStyles.textToolbar_buttons,
         toolbarTheme && toolbarTheme.textToolbar_buttons
