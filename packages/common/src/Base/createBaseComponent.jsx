@@ -245,7 +245,7 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
       if (!isNil(link)) {
         anchorProps = {
           href: normalizeUrl(link.url),
-          target: link.targetBlank ? '_blank' : (anchorTarget || '_top'),
+          target: link.target ? '_blank' : (anchorTarget || '_top'),
           rel: link.nofollow ? 'nofollow' : null
         };
       }
