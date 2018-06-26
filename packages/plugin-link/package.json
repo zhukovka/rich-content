@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-link",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "draft-js-linkify-plugin": "^2.0.1",
-    "wix-rich-content-common": "^1.0.16"
+    "wix-rich-content-common": "^1.0.17"
   },
   "unpkg": true,
   "publishConfig": {

@@ -69,7 +69,7 @@ export { simplePubsub } from './Utils/simplePubsub';
 export { getModalStyles } from './Utils/getModalStyles';
 export { mergeStyles } from './Utils/mergeStyles';
 export { default as normalizeInitialState } from './Utils/normalizeInitialState';
-export { default as ComponentDataValidator } from './Utils/component-data-validator';
+export { validate } from './Utils/component-data-validator';
 export {
   isValidUrl,
   isVideoUrl,

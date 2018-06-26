@@ -4,7 +4,10 @@ import classNames from 'classnames';
 import includes from 'lodash/includes';
 import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
-import { mergeStyles, ImageLoader } from 'wix-rich-content-common';
+import { mergeStyles, ImageLoader, validate } from 'wix-rich-content-common';
+import isEqual from 'lodash/isEqual';
+
+import schema from './data-schema.json';
 import getImageSrc from './get-image-source';
 import styles from './image-viewer.scss';
 
@@ -21,10 +24,16 @@ class ImageViewer extends React.Component {
 
   constructor(props) {
     super(props);
+    validate(props.componentData, schema);
     this.styles = mergeStyles({ styles, theme: props.theme });
     this.state = {};
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!isEqual(nextProps.componentData, this.props.componentData)) {
+      validate(nextProps.componentData, schema);
+    }
+  }
   getImageSrc(src) {
     const { helpers } = this.props || {};
 

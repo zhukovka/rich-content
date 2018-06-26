@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-emoji",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "draft-js-emoji-plugin": "^2.0.2",
-    "wix-rich-content-common": "^1.0.16"
+    "wix-rich-content-common": "^1.0.17"
   },
   "unpkg": true,
   "publishConfig": {

@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mergeStyles } from 'wix-rich-content-common';
+import { mergeStyles, validate } from 'wix-rich-content-common';
+import isEqual from 'lodash/isEqual';
 
+import schema from '../data-schema.json';
 import { getType, getConfig } from '../toolbar/selectors';
 import DividerLine from './divider-line';
 import styles from '../divider-viewer.scss';
@@ -10,11 +12,15 @@ import styles from '../divider-viewer.scss';
 class DividerComponent extends PureComponent {
   constructor(props) {
     super(props);
+    validate(props.componentData, schema);
     this.styles = mergeStyles({ styles, theme: props.theme });
     this.state = this.stateFromProps(props);
   }
 
   componentWillReceiveProps(nextProps) {
+    if (!isEqual(nextProps.componentData, this.props.componentData)) {
+      validate(nextProps.componentData, schema);
+    }
     this.setState(this.stateFromProps(nextProps));
   }
 

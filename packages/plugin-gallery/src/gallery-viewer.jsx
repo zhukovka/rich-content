@@ -1,5 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'lodash/isEqual';
+import { validate } from 'wix-rich-content-common';
+
+import schema from './data-schema.json';
+
 const { ProGallery } = process.env.SANTA ? {} : require('pro-gallery-renderer');
 
 const getDefault = () => ({
@@ -36,6 +41,7 @@ const getDefault = () => ({
 
 class GalleryViewer extends React.Component {
   constructor(props) {
+    validate(props.componentData, schema);
     super(props);
     this.state = this.stateFromProps(props);
 
@@ -53,6 +59,9 @@ class GalleryViewer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (!isEqual(nextProps.componentData, this.props.componentData)) {
+      validate(nextProps.componentData, schema);
+    }
     this.setState(this.stateFromProps(nextProps));
     this.updateDimensions();
   }
