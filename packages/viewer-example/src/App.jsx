@@ -154,6 +154,7 @@ class App extends Component {
                   initialState={this.state.raw}
                   theme={theme}
                   isMobile={this.isMobile()}
+                  defaultLinkTarget={'_self'}
                 />
               </div>
               <div className={styles.column}>

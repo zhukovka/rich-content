@@ -2,10 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
-import { sizeClassName, alignmentClassName, textWrapClassName, mergeStyles } from 'wix-rich-content-common';
+import { sizeClassName, alignmentClassName, textWrapClassName, mergeStyles, normalizeUrl } from 'wix-rich-content-common';
 import styles from './Styles/rich-content-viewer.scss';
 
-const AtomicBlock = ({ type, typeMap, componentData, children, theme, isMobile, ...props }) => {
+const renderLink = (componentData, defaultLinkTarget) => {
+  if (componentData.config && componentData.config.link) {
+    const { url, target, rel } = componentData.config.link;
+    return <a target={target || defaultLinkTarget || '_top'} rel={rel || 'noopener'} href={normalizeUrl(url)} className={styles.anchor}>{}</a>;
+  }
+  return null;
+};
+
+const AtomicBlock = ({ type, typeMap, componentData, children, theme, isMobile, defaultLinkTarget, ...props }) => {
   const mergedStyles = mergeStyles({ theme, styles });
   const { component: Component, elementType } = typeMap[type];
   const { size, alignment, textWrap, container } = typeMap[type].classNameStrategies || {};
@@ -32,6 +40,7 @@ const AtomicBlock = ({ type, typeMap, componentData, children, theme, isMobile, 
             <Component componentData={componentData} theme={theme} {...props}>
               {children}
             </Component>}
+          {renderLink(componentData, defaultLinkTarget)}
         </div>);
     } else {
       return <Component componentData={componentData} theme={theme} {...props}> {children} </Component>;
@@ -47,6 +56,7 @@ AtomicBlock.propTypes = {
   children: PropTypes.node,
   theme: PropTypes.object,
   isMobile: PropTypes.bool,
+  defaultLinkTarget: PropTypes.string,
 };
 
 //return a list of types with a function that wraps the viewer
