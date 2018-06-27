@@ -7,6 +7,28 @@ import MentionSuggestionsWrapper from './MentionSuggestionsWrapper';
 import 'draft-js-mention-plugin/lib/plugin.css';
 import Styles from './styles.scss';
 
+/*
+Interface Mention {
+  name: string;
+  slug: string;
+  avatar: string?;
+}
+
+Interface Settings {
+  mentionPrefix: string?;
+  mentionTrigger: string?;
+  isMentionsClickable: bool;
+  getMentionLink: (mention: Mention) => string;
+  getMentions: (search: string) => Promise<Mention[]>
+  onMentionClick: (mention: Mention) => void;
+}
+*/
+
+const defaultSettings = {
+  mentionPrefix: '@',
+  mentionTrigger: '@',
+};
+
 const createMentionsPlugin = (config = {}) => {
   const type = EXTERNAL_MENTIONS_TYPE;
   const {
@@ -17,19 +39,22 @@ const createMentionsPlugin = (config = {}) => {
     t,
     anchorTarget,
     relValue,
-    mentions: settings = {},
+    mentions = {},
   } = config;
   const styles = mergeStyles({ styles: Styles, theme });
+  const settings = Object.assign({}, defaultSettings, mentions);
 
   const plugin = createMentionPlugin({
     mentionComponent: decorateComponentWithProps(MentionComponent, { settings, styles }),
     theme: styles,
-    mentionPrefix: settings.mentionPrefix || '@'
+    mentionPrefix: settings.mentionPrefix,
+    mentionTrigger: settings.mentionTrigger,
   });
 
   const inlineModals = [
     decorateComponentWithProps(MentionSuggestionsWrapper, {
       component: plugin.MentionSuggestions,
+      settings,
       styles,
     }),
   ];
