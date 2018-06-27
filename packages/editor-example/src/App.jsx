@@ -60,11 +60,13 @@ class App extends Component {
         isMentionsClickable: true,
         onMentionClick: mention => console.log({mention}),
         getMentions: (searchQuery) => new Promise(resolve =>
-           resolve([
-             {name: searchQuery, slug: searchQuery},
-             {name: 'Test One', slug: 'testone'},
-             {name: 'Test Two', slug: 'testwo', avatar: 'https://via.placeholder.com/100x100?text=Image=50'}
-            ])),
+          setTimeout(() =>  resolve([
+            {name: searchQuery, slug: searchQuery},
+            {name: 'Test One', slug: 'testone'},
+            {name: 'Test Two', slug: 'testwo', avatar: 'https://via.placeholder.com/100x100?text=Image=50'}
+           ]),
+            250)
+          ),
         getMentionLink: mention => `https://google.com?${mention.slug}`
       }
       // image: {
