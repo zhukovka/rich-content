@@ -72,7 +72,7 @@ export default class StaticToolbar extends React.Component {
 
       this.setState({
         showLeftArrow: (spaceLeft > 2),
-        showRightArrow: (spaceRight > 26)
+        showRightArrow: (spaceRight > 0)
       });
     }
   }
