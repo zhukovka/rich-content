@@ -16,6 +16,10 @@ const getFooterTheme = theme => {
         toolbarStyles.footerToolbar,
         toolbarTheme && toolbarTheme.footerToolbar,
       ),
+      scrollableContainer: classNames(
+        toolbarStyles.footerToolbar_scrollableContainer,
+        toolbarTheme && toolbarTheme.footerToolbar_scrollableContainer
+      ),
       buttons: classNames(
         toolbarStyles.footerToolbar_buttons,
         toolbarTheme && toolbarTheme.footerToolbar_buttons

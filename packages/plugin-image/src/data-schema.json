@@ -48,7 +48,7 @@
         },
         "link": {
           "$id": "/properties/config/properties/link",
-          "type": "object",
+          "type": ["object", "null"],
           "properties": {
             "url": {
               "$id": "/properties/config/properties/link/properties/url",
