@@ -188,15 +188,6 @@ export default class InlineToolbar extends Component {
       [toolbarStyles.inlineToolbar_overrideContent]: !!OverrideContent,
     });
     const extendClassNames = classNames(Styles.inlineToolbar_extend, toolbarStyles && toolbarStyles.inlineToolbar_extend);
-
-    const scrollableClassNames = classNames(Styles.inlineToolbar_scrollableContainer,
-      toolbarStyles && toolbarStyles.inlineToolbar_scrollableContainer);
-    const leftArrowClassNames = classNames(Styles.inlineToolbar_responsiveArrow, Styles.inlineToolbar_responsiveArrowLeft,
-      toolbarStyles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrowLeft);
-    const rightArrowClassNames = classNames(Styles.inlineToolbar_responsiveArrow, Styles.inlineToolbar_responsiveArrowRight,
-      toolbarStyles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrowRight);
-    const spacerClassNames = classNames(Styles.inlineToolbar_responsiveSpacer, toolbarStyles && toolbarStyles.inlineToolbar_responsiveSpacer);
-
     const toolbarStyle = this.getStyle();
     const childrenProps = {
       theme,
@@ -226,31 +217,32 @@ export default class InlineToolbar extends Component {
       >
         <div
           className={buttonClassNames}
+          ref={this.handleButtonsRef}
         >
           {
             showLeftArrow &&
             <button
               tabIndex={this.getTabIndexByVisibility()}
-              className={leftArrowClassNames}
+              className={classNames(Styles.inlineToolbar_responsiveArrow, Styles.inlineToolbar_responsiveArrowLeft,
+                toolbarStyles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrowLeft)}
               data-hook="inlineToolbarLeftArrow" onMouseDown={e => this.scrollToolbar(e, 'left')}
             >
               <i/>
             </button>
           }
-          <div className={scrollableClassNames} ref={this.handleButtonsRef}>
-            {OverrideContent ?
-              <OverrideContent {...childrenProps} /> :
-              structure.map((Button, index) =>
-                <Button key={index} {...childrenProps}/>
-              )
-            }
-          </div>
-          {hasArrow && <div className={spacerClassNames} />}
+          {OverrideContent ?
+            <OverrideContent {...childrenProps} /> :
+            structure.map((Button, index) =>
+              <Button key={index} {...childrenProps}/>
+            )
+          }
+          {hasArrow && <div className={Styles.inlineToolbar_responsiveSpacer} />}
           {
             showRightArrow &&
             <button
               tabIndex={this.getTabIndexByVisibility()}
-              className={rightArrowClassNames}
+              className={classNames(Styles.inlineToolbar_responsiveArrow, Styles.inlineToolbar_responsiveArrowRight,
+                toolbarStyles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrowRight)}
               data-hook="inlineToolbarRightArrow" onMouseDown={e => this.scrollToolbar(e, 'right')}
             >
               <i/>

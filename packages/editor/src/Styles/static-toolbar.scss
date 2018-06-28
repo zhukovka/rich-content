@@ -1,7 +1,7 @@
 @import "../../../common/src/Styles/palette";
 @import "../../../common/src/Styles/mixins";
 
-.staticToolbar {
+.toolbar {
   width: 100%;
   background: #fff;
   border-top: 1px solid #ddd;
@@ -14,7 +14,7 @@
   direction: ltr;
 }
 
-.staticToolbar_scrollableContainer {
+.scrollableContainer {
   display: flex;
   align-items: center;
   height: 100%;
@@ -28,7 +28,7 @@
   }
 }
 
-.staticToolbar_buttons {
+.buttons {
   display: flex;
   width: auto;
   height: 50px;
@@ -37,12 +37,12 @@
   align-items: center;
 }
 
-.staticToolbar_responsiveSpacer {
+.responsiveSpacer {
   flex: 0 0 32px;
   height: 100%;
 }
 
-.staticToolbar_responsiveArrow {
+.responsiveArrow {
   display: block;
   position: absolute;
   top: 0;
@@ -61,13 +61,13 @@
   }
 }
 
-.staticToolbar_responsiveArrowLeft,
-.staticToolbar_responsiveArrowRight {
+.responsiveArrowLeft,
+.responsiveArrowRight {
   right: 0;
   border-left: 1px solid $toolbar-border-color;
 }
 
-.staticToolbar_responsiveArrowLeft_icon {
+.responsiveArrowLeft_icon {
   display: inline-block;
   width: 6px;
   height: 6px;
@@ -77,7 +77,7 @@
   transform: rotate(45deg);
 }
 
-.staticToolbar_responsiveArrowRight_icon {
+.responsiveArrowRight_icon {
   display: inline-block;
   width: 6px;
   height: 6px;
@@ -87,6 +87,6 @@
   transform: rotate(225deg);
 }
 
-.staticToolbar_extend {
+.extend {
 }
 

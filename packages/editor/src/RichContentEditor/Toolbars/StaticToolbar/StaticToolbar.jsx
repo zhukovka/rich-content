@@ -87,19 +87,18 @@ export default class StaticToolbar extends React.Component {
     const hasArrow = showLeftArrow || showRightArrow;
     const { toolbarStyles } = theme || {};
 
-    const toolbarClassNames = classNames(Styles.staticToolbar, toolbarStyles && toolbarStyles.toolbar);
-    const buttonClassNames = classNames(Styles.staticToolbar_buttons, toolbarStyles && toolbarStyles.buttons);
-    const extendClassNames = classNames(Styles.staticToolbar_extend, toolbarStyles && toolbarStyles.extend);
-    const scrollableClassNames = classNames(Styles.staticToolbar_scrollableContainer, toolbarStyles && toolbarStyles.scrollableContainer);
-    const leftArrowClassNames = classNames(Styles.staticToolbar_responsiveArrow, Styles.responsiveArrowLeft,
+    const toolbarClassNames = classNames(Styles.toolbar, toolbarStyles && toolbarStyles.toolbar);
+    const scrollableClassNames = classNames(Styles.scrollableContainer, toolbarStyles && toolbarStyles.scrollableContainer);
+    const buttonClassNames = classNames(Styles.buttons, toolbarStyles && toolbarStyles.buttons);
+    const extendClassNames = classNames(Styles.extend, toolbarStyles && toolbarStyles.extend);
+    const leftArrowClassNames = classNames(Styles.responsiveArrow, Styles.responsiveArrowLeft,
       toolbarStyles && toolbarStyles.responsiveArrow, toolbarStyles && toolbarStyles.responsiveArrowLeft);
-    const leftArrowIconClassNames = classNames(Styles.staticToolbar_responsiveArrowLeft_icon,
-      toolbarStyles && toolbarStyles.responsiveArrowLeft_icon);
-    const rightArrowClassNames = classNames(Styles.staticToolbar_responsiveArrow, Styles.responsiveArrowRight,
+    const leftArrowIconClassNames = classNames(Styles.responsiveArrowLeft_icon, toolbarStyles && toolbarStyles.responsiveArrowLeft_icon);
+    const rightArrowClassNames = classNames(Styles.responsiveArrow, Styles.responsiveArrowRight,
       toolbarStyles && toolbarStyles.responsiveArrow, toolbarStyles && toolbarStyles.responsiveArrowRight);
-    const rightArrowIconClassNames = classNames(Styles.staticToolbar_responsiveArrowRight_icon,
-      toolbarStyles && toolbarStyles.responsiveArrowRight_icon);
-    const spacerClassNames = classNames(Styles.staticToolbar_responsiveSpacer, toolbarStyles && toolbarStyles.responsiveSpacer);
+    const rightArrowIconClassNames = classNames(Styles.responsiveArrowRight_icon, toolbarStyles && toolbarStyles.responsiveArrowRight_icon);
+
+    const spacerClassNames = classNames(Styles.responsiveSpacer, toolbarStyles && toolbarStyles.responsiveSpacer);
 
     const childrenProps = {
       theme,
