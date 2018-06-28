@@ -91,11 +91,11 @@ export default class StaticToolbar extends React.Component {
     const buttonClassNames = classNames(Styles.staticToolbar_buttons, toolbarStyles && toolbarStyles.buttons);
     const extendClassNames = classNames(Styles.staticToolbar_extend, toolbarStyles && toolbarStyles.extend);
     const scrollableClassNames = classNames(Styles.staticToolbar_scrollableContainer, toolbarStyles && toolbarStyles.scrollableContainer);
-    const leftArrowClassNames = classNames(Styles.staticToolbar_responsiveArrow, Styles.responsiveArrowLeft,
+    const leftArrowClassNames = classNames(Styles.staticToolbar_responsiveArrow, Styles.staticToolbar_responsiveArrowLeft,
       toolbarStyles && toolbarStyles.responsiveArrow, toolbarStyles && toolbarStyles.responsiveArrowLeft);
     const leftArrowIconClassNames = classNames(Styles.staticToolbar_responsiveArrowLeft_icon,
       toolbarStyles && toolbarStyles.responsiveArrowLeft_icon);
-    const rightArrowClassNames = classNames(Styles.staticToolbar_responsiveArrow, Styles.responsiveArrowRight,
+    const rightArrowClassNames = classNames(Styles.staticToolbar_responsiveArrow, Styles.staticToolbar_responsiveArrowRight,
       toolbarStyles && toolbarStyles.responsiveArrow, toolbarStyles && toolbarStyles.responsiveArrowRight);
     const rightArrowIconClassNames = classNames(Styles.staticToolbar_responsiveArrowRight_icon,
       toolbarStyles && toolbarStyles.responsiveArrowRight_icon);
