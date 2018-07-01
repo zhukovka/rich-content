@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Styles from '~/Styles/static-toolbar.scss';
+import Measure from 'react-measure';
 
 export default class StaticToolbar extends React.Component {
   static propTypes = {
@@ -29,53 +30,36 @@ export default class StaticToolbar extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.handleToolbarScroll();
-  }
-
-  componentWillUnmount() {
-    this.buttons && this.buttons.removeEventListener('scroll', this.handleToolbarScroll);
-    window && window.removeEventListener('resize', this.handleToolbarScroll);
-    window && window.removeEventListener('orientationchange', this.handleToolbarScroll);
-  }
-
-  handleButtonsRef = node => {
-    this.buttons = node;
-    if (this.buttons) {
-      this.buttons.addEventListener('scroll', this.handleToolbarScroll);
-      window && window.addEventListener('resize', this.handleToolbarScroll);
-      window && window.addEventListener('orientationchange', this.handleToolbarScroll);
-    }
-  };
+  handleScrollContainerRef = node => this.scrollContainer = node;
 
   scrollToolbar(event, direction) {
     event.preventDefault();
-    const { scrollLeft, clientWidth, scrollWidth } = this.buttons;
+    const { scrollLeft, clientWidth, scrollWidth } = this.scrollContainer;
     switch (direction) {
       case 'right':
-        this.buttons.scrollLeft += scrollWidth - clientWidth - scrollLeft;
+        this.scrollContainer.scrollLeft += scrollWidth - clientWidth - scrollLeft;
         break;
       case 'left':
-        this.buttons.scrollLeft -= scrollLeft;
+        this.scrollContainer.scrollLeft -= scrollLeft;
         break;
       default:
         break;
     }
   }
 
-  handleToolbarScroll = () => {
-    if (this.buttons) {
-      const spaceLeft = this.buttons.scrollLeft;
-      const eleWidth = this.buttons.clientWidth;
-      const fullWidth = this.buttons.scrollWidth;
-      const spaceRight = fullWidth - eleWidth - spaceLeft;
+  handleToolbarScroll = evt => {
+    const { scrollLeft, scrollWidth, clientWidth } = evt.target;
+    this.setToolbarScrollButton(scrollLeft, scrollWidth, clientWidth);
+  };
 
-      this.setState({
-        showLeftArrow: (spaceLeft > 2),
-        showRightArrow: (spaceRight > 0)
-      });
-    }
-  }
+  setToolbarScrollButton = (scrollLeft, scrollWidth, clientWidth) => {
+    const isScroll = scrollWidth - clientWidth > 8;
+
+    this.setState({
+      showLeftArrow: isScroll && scrollLeft > 2,
+      showRightArrow: isScroll && scrollLeft <= 2
+    });
+  };
 
   onOverrideContent = overrideContent => this.setState({ overrideContent });
 
@@ -88,7 +72,7 @@ export default class StaticToolbar extends React.Component {
     const { toolbarStyles } = theme || {};
 
     const toolbarClassNames = classNames(Styles.staticToolbar, toolbarStyles && toolbarStyles.toolbar);
-    const buttonClassNames = classNames(Styles.staticToolbar_buttons, toolbarStyles && toolbarStyles.buttons);
+    const buttonClassNames = classNames(Styles.staticToolbar_buttons, toolbarStyles && toolbarStyles.scrollContainer);
     const extendClassNames = classNames(Styles.staticToolbar_extend, toolbarStyles && toolbarStyles.extend);
     const scrollableClassNames = classNames(Styles.staticToolbar_scrollableContainer, toolbarStyles && toolbarStyles.scrollableContainer);
     const leftArrowClassNames = classNames(Styles.staticToolbar_responsiveArrow, Styles.staticToolbar_responsiveArrowLeft,
@@ -127,13 +111,22 @@ export default class StaticToolbar extends React.Component {
               <i className={leftArrowIconClassNames}/>
             </button>
           }
-          <div className={scrollableClassNames} ref={this.handleButtonsRef}>
-            {
-              OverrideContent ?
-                <OverrideContent {...childrenProps} /> :
-                structure.map((Button, index) => <Button key={index} {...childrenProps} />)
-            }
-          </div>
+          <Measure
+            client
+            scroll
+            innerRef={this.handleScrollContainerRef}
+            onResize={({ scroll, client }) => this.setToolbarScrollButton(scroll.left, scroll.width, client.width)}
+          >
+            {({ measureRef }) => (
+              <div className={scrollableClassNames} ref={measureRef} onScroll={event => this.handleToolbarScroll(event)}>
+                {
+                  OverrideContent ?
+                    <OverrideContent {...childrenProps} /> :
+                    structure.map((Button, index) => <Button key={index} {...childrenProps} />)
+                }
+              </div>
+            )}
+          </Measure>
           {hasArrow && <div className={spacerClassNames} />}
           {
             showRightArrow &&
