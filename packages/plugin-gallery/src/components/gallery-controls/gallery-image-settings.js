@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import findIndex from 'lodash/findIndex';
+import pick from 'lodash/pick';
 import { getScaleToFillImageURL } from 'image-client-api/dist/imageClientSDK';
 import {
   mergeStyles,
@@ -17,6 +18,7 @@ import {
 import BackIcon from './icons/back.svg';
 import styles from './gallery-image-settings.scss';
 import GallerySettingsMobileHeader from './gallery-settings-mobile-header';
+import { isUndefined } from 'util';
 
 class ImageSettings extends Component {
 
@@ -75,15 +77,11 @@ class ImageSettings extends Component {
     const { onSave } = this.props;
     const images = this.state.images.reduce(
       (resultImages, image) => {
-        if (image.metadata.link.url && image.metadata.link.isValidUrl) {
+        if (image.metadata && image.metadata.link && image.metadata.link.url) {
           resultImages.push({ ...image,
             metadata: {
               ...image.metadata,
-              link: {
-                url: image.metadata.link.url,
-                rel: image.metadata.link.nofollow ? 'nofollow' : 'noopener',
-                target: image.metadata.link.targetBlank ? '_blank' : '_self' // TODO: anchorTarget prop
-              }
+              link: pick(image.metadata.link, 'url', 'rel', 'target')
             }
           });
         } else {
@@ -116,7 +114,7 @@ class ImageSettings extends Component {
     const selectedImage = this.state.images[this.state.selectedIndex];
     selectedImage.metadata = selectedImage.metadata || {};
     selectedImage.metadata.link = selectedImage.metadata.link || {};
-    selectedImage.metadata.link.targetBlank = isBlank;
+    selectedImage.metadata.link.target = isBlank ? '_blank' : '_self'; // TODO: anchorTarget prop
     this.setState({ images: this.state.images });
   };
 
@@ -124,7 +122,7 @@ class ImageSettings extends Component {
     const selectedImage = this.state.images[this.state.selectedIndex];
     selectedImage.metadata = selectedImage.metadata || {};
     selectedImage.metadata.link = selectedImage.metadata.link || {};
-    selectedImage.metadata.link.nofollow = isNofollow;
+    selectedImage.metadata.link.rel = isNofollow ? 'nofollow' : 'noopener';
     this.setState({ images: this.state.images });
   };
 
@@ -141,7 +139,9 @@ class ImageSettings extends Component {
     const { handleFileSelection, onCancel, theme, isMobile, t } = this.props;
     const { images } = this.state;
     const selectedImage = images[this.state.selectedIndex];
-    const { url, targetBlank, nofollow, intermediateUrl } = (!isEmpty(selectedImage.metadata.link) ? selectedImage.metadata.link : {});
+    const { url, target, rel, intermediateUrl } = (!isEmpty(selectedImage.metadata.link) ? selectedImage.metadata.link : {});
+    const targetBlank = target === '_blank' || isUndefined(target);
+    const nofollow = rel === 'nofollow';
 
     return (
       <FocusManager className={styles.galleryImageSettings}>
