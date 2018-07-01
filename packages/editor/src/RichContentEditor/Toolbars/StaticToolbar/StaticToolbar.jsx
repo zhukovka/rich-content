@@ -30,8 +30,6 @@ export default class StaticToolbar extends React.Component {
     };
   }
 
-  handleScrollContainerRef = node => this.scrollContainer = node;
-
   scrollToolbar(event, direction) {
     event.preventDefault();
     const { scrollLeft, clientWidth, scrollWidth } = this.scrollContainer;
@@ -46,11 +44,6 @@ export default class StaticToolbar extends React.Component {
         break;
     }
   }
-
-  handleToolbarScroll = evt => {
-    const { scrollLeft, scrollWidth, clientWidth } = evt.target;
-    this.setToolbarScrollButton(scrollLeft, scrollWidth, clientWidth);
-  };
 
   setToolbarScrollButton = (scrollLeft, scrollWidth, clientWidth) => {
     const isScroll = scrollWidth - clientWidth > 8;
@@ -114,11 +107,11 @@ export default class StaticToolbar extends React.Component {
           <Measure
             client
             scroll
-            innerRef={this.handleScrollContainerRef}
+            innerRef={ref => this.scrollContainer = ref}
             onResize={({ scroll, client }) => this.setToolbarScrollButton(scroll.left, scroll.width, client.width)}
           >
-            {({ measureRef }) => (
-              <div className={scrollableClassNames} ref={measureRef} onScroll={event => this.handleToolbarScroll(event)}>
+            {({ measure, measureRef }) => (
+              <div className={scrollableClassNames} ref={measureRef} onScroll={() => measure()}>
                 {
                   OverrideContent ?
                     <OverrideContent {...childrenProps} /> :
