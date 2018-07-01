@@ -77,7 +77,8 @@ class LinkPanel extends Component {
     }
   };
 
-  validateUrl = intermediateUrl => {
+  validateUrl = () => {
+    const { intermediateUrl } = this.state;
     const isValidUrlConst = isValidUrl(intermediateUrl) || (intermediateUrl === '');
     if (isValidUrlConst) {
       this.handleUrlChange();
@@ -92,7 +93,7 @@ class LinkPanel extends Component {
 
   handleKeyPress = e => {
     if (e.charCode === 13) {
-      this.validateUrl(e.target.value);
+      this.validateUrl();
     }
   };
 
