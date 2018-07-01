@@ -52,8 +52,6 @@ class ImageSettings extends Component {
     this.initialImageState = this.props.images.map(i => ({ ...i }));
   }
 
-  setLinkPanel = linkPanel => this.linkPanel = linkPanel;
-
   deleteImage(selectedImage) {
     const images = this.state.images.filter(i => i.itemId !== selectedImage.itemId);
     this.setState({
@@ -73,15 +71,27 @@ class ImageSettings extends Component {
     handleFileChange(event, itemIdx);
   }
 
-  onDoneClick = selectedImage => {
+  onDoneClick = () => {
     const { onSave } = this.props;
-    if (this.linkPanel.state.isValidUrl && this.linkPanel.state.url) {
-      const { url, targetBlank, nofollow } = this.linkPanel.state;
-      this.imageMetadataUpdated(selectedImage, { link: { url, targetBlank, nofollow } });
-    } else if (this.linkPanel.state.intermediateUrl === '') {
-      this.imageMetadataUpdated(selectedImage, { link: {} });
-    }
-    onSave(this.state.images);
+    const images = this.state.images.reduce(
+      (resultImages, image) => {
+        if (image.metadata.link.url && image.metadata.link.isValidUrl) {
+          resultImages.push({ ...image,
+            metadata: {
+              ...image.metadata,
+              link: {
+                url: image.metadata.link.url,
+                rel: image.metadata.link.nofollow ? 'nofollow' : 'noopener',
+                target: image.metadata.link.targetBlank ? '_blank' : '_self' // TODO: anchorTarget prop
+              }
+            }
+          });
+        } else {
+          resultImages.push({ ...image, metadata: { ...image.metadata, link: null } });
+        }
+        return resultImages;
+      }, []);
+    onSave(images);
   }
 
   getImageUrl = image => getScaleToFillImageURL(('media/' + image.url), image.metadata.width, image.metadata.height, 420, 240);
@@ -98,7 +108,7 @@ class ImageSettings extends Component {
     const selectedImage = this.state.images[this.state.selectedIndex];
     selectedImage.metadata = selectedImage.metadata || {};
     selectedImage.metadata.link = selectedImage.metadata.link || {};
-    selectedImage.metadata.link.url = selectedImage.metadata.intermediateUrl;
+    selectedImage.metadata.link.url = selectedImage.metadata.link.intermediateUrl;
     this.setState({ images: this.state.images });
   };
 
@@ -206,7 +216,7 @@ class ImageSettings extends Component {
             >
               <span id="gallery_image_link_lbl" className={this.styles.inputWithLabel_label}>{this.linkLabel}</span>
               <LinkPanel
-                ref={this.setLinkPanel} theme={theme} url={url} targetBlank={targetBlank} nofollow={nofollow}
+                theme={theme} url={url} targetBlank={targetBlank} nofollow={nofollow}
                 isImageSettings t={t} ariaProps={{ 'aria-labelledby': 'gallery_image_link_lbl' }} intermediateUrl={intermediateUrl}
                 onIntermediateUrlChange={this.onImageIntermediateUrlChange} onValidateUrl={this.onValidateUrl}
                 onUrlChange={this.onImageUrlChange} onTargetBlankChange={this.onImageTargetChange} onNofollowChange={this.onImageRelChange}
