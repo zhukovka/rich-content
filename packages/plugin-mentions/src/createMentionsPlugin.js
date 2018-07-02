@@ -11,14 +11,14 @@ import Styles from './styles.scss';
 Interface Mention {
   name: string;
   slug: string;
-  avatar: string?;
+  avatar?: string;
 }
 
 Interface Settings {
-  mentionPrefix: string?;
-  mentionTrigger: string?;
+  mentionPrefix?: string;
+  mentionTrigger?: string;
   isMentionsClickable: bool;
-  getMentionLink: (mention: Mention) => string;
+  getMentionLink?: (mention: Mention) => string;
   getMentions: (search: string) => Promise<Mention[]>
   onMentionClick: (mention: Mention) => void;
 }
@@ -27,6 +27,7 @@ Interface Settings {
 const defaultSettings = {
   mentionPrefix: '@',
   mentionTrigger: '@',
+  getMentionLink: () => '#',
 };
 
 const createMentionsPlugin = (config = {}) => {
