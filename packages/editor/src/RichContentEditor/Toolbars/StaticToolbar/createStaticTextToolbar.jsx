@@ -7,7 +7,6 @@ import { getStaticTextToolbarId } from '../toolbar-id';
 import toolbarStyles from '~/Styles/text-static-toolbar.scss';
 import buttonStyles from '~/Styles/text-static-toolbar-button.scss';
 import separatorStyles from '~/Styles/text-static-toolbar-separator.scss';
-import tooltipStyles from '~/Styles/tooltip.scss';
 
 const getStaticTextTheme = theme => {
   const {
@@ -25,8 +24,7 @@ const getStaticTextTheme = theme => {
       ),
       scrollableContainer: classNames(
         toolbarStyles.textToolbar_scrollableContainer,
-        toolbarTheme && toolbarTheme.textToolbar_scrollableContainer,
-        tooltipStyles.fixedTooltip
+        toolbarTheme && toolbarTheme.textToolbar_scrollableContainer
       ),
       buttons: classNames(
         toolbarStyles.textToolbar_buttons,
