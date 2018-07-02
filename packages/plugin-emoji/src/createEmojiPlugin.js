@@ -1,45 +1,54 @@
+import React from 'react';
 import { createBasePlugin } from 'wix-rich-content-common';
-import { EXTERNAL_EMOJI_TYPE } from './types';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
-// import 'draft-js-emoji-plugin/lib/plugin.css';
+import { EXTERNAL_EMOJI_TYPE } from './types';
+import SelectButton from './SelectButton';
+import { getEmojiGroups } from './emojiGroups';
 import * as Styles from './styles.scss';
 
 const createExternalEmojiPlugin = (config = {}) => {
-  const plugin = createEmojiPlugin({ theme: Styles, useNativeArt: false });
   const type = EXTERNAL_EMOJI_TYPE;
-  const { decorator, helpers, theme, isMobile, t, anchorTarget, relValue, tooltipTextKey } = config;
+  const { decorator, helpers, theme, isMobile, t, anchorTarget, relValue } = config;
+  const plugin = createEmojiPlugin({
+    theme: Styles,
+    useNativeArt: false,
+    selectButtonContent: <SelectButton t={t} theme={theme} />,
+    toneSelectOpenDelay: 250,
+    selectGroups: getEmojiGroups(t),
+  });
 
   const InsertToolbarButton = plugin.EmojiSelect;
   let toolbar;
-  if (InsertToolbarButton) {
+  if (InsertToolbarButton && !isMobile) {
     toolbar = {
       InsertButtons: [
         {
           name: 'Emoji',
-          tooltipText: t(tooltipTextKey),
+          addToSideToolbar: false,
           ButtonElement: InsertToolbarButton,
           helpers,
-          t
-        }
-      ]
+          t,
+        },
+      ],
     };
   }
-  const inlineModals = [
-    plugin.EmojiSuggestions
-  ];
+  const inlineModals = [plugin.EmojiSuggestions];
 
-  return createBasePlugin({
-    decorator,
-    theme,
-    type,
-    toolbar,
-    inlineModals,
-    helpers,
-    isMobile,
-    anchorTarget,
-    relValue,
-    t
-  }, plugin);
+  return createBasePlugin(
+    {
+      decorator,
+      theme,
+      type,
+      toolbar,
+      inlineModals,
+      helpers,
+      isMobile,
+      anchorTarget,
+      relValue,
+      t,
+    },
+    plugin,
+  );
 };
 
 export { createExternalEmojiPlugin };
