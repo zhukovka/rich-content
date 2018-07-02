@@ -37,52 +37,33 @@
   align-items: center;
 }
 
-.staticToolbar_responsiveSpacer {
-  flex: 0 0 32px;
-  height: 100%;
-}
-
 .staticToolbar_responsiveArrow {
-  display: block;
-  position: absolute;
-  top: 0;
+  flex: 0 0 40px;
+  margin-right: -9px;
   height: 100%;
-  width: 40px;
-  line-height: 48px;
-  text-align: center;
   background: transparent;
-  font-size: 12px;
   cursor: pointer;
-  z-index: 9999;
   border: none;
-
+  border-left: 1px solid $toolbar-border-color;
   @include phone {
       transform: translate3d(0,0,0);
   }
-}
 
-.staticToolbar_responsiveArrowLeft,
-.staticToolbar_responsiveArrowRight {
-  right: 0;
-  border-left: 1px solid $toolbar-border-color;
+  > i {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border: 1px solid $toolbar-font-color;
+    border-width: 0 0 1px 1px;
+  }
 }
 
 .staticToolbar_responsiveArrowLeft_icon {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border: 1px solid $toolbar-font-color;
-  border-width: 0 0 1px 1px;
-  margin-left: 3px;
+  margin-right: -3px;
   transform: rotate(45deg);
 }
 
 .staticToolbar_responsiveArrowRight_icon {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border: 1px solid $toolbar-font-color;
-  border-width: 0 0 1px 1px;
   margin-right: 3px;
   transform: rotate(225deg);
 }
