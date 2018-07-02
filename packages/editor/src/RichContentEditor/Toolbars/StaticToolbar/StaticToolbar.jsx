@@ -30,23 +30,15 @@ export default class StaticToolbar extends React.Component {
     };
   }
 
-  scrollToolbar(event, direction) {
+  scrollToolbar(event, leftDirection) {
     event.preventDefault();
-    const { scrollLeft, clientWidth, scrollWidth } = this.scrollContainer;
-    switch (direction) {
-      case 'right':
-        this.scrollContainer.scrollLeft += scrollWidth - clientWidth - scrollLeft;
-        break;
-      case 'left':
-        this.scrollContainer.scrollLeft -= scrollLeft;
-        break;
-      default:
-        break;
-    }
+    const { clientWidth, scrollWidth } = this.scrollContainer;
+    this.scrollContainer.scrollLeft = leftDirection ? 0 : scrollWidth - clientWidth;
   }
 
   setToolbarScrollButton = (scrollLeft, scrollWidth, clientWidth) => {
-    const isScroll = scrollWidth - clientWidth > 8;
+    const currentScrollButtonWidth = this.state.showLeftArrow || this.state.showRightArrow ? 20 : 0;
+    const isScroll = scrollWidth - clientWidth - currentScrollButtonWidth > 8;
 
     this.setState({
       showLeftArrow: isScroll && scrollLeft > 2,
@@ -64,19 +56,14 @@ export default class StaticToolbar extends React.Component {
     const hasArrow = showLeftArrow || showRightArrow;
     const { toolbarStyles } = theme || {};
 
-    const toolbarClassNames = classNames(Styles.staticToolbar, toolbarStyles && toolbarStyles.toolbar);
-    const buttonClassNames = classNames(Styles.staticToolbar_buttons, toolbarStyles && toolbarStyles.scrollContainer);
-    const extendClassNames = classNames(Styles.staticToolbar_extend, toolbarStyles && toolbarStyles.extend);
-    const scrollableClassNames = classNames(Styles.staticToolbar_scrollableContainer, toolbarStyles && toolbarStyles.scrollableContainer);
-    const leftArrowClassNames = classNames(Styles.staticToolbar_responsiveArrow, Styles.staticToolbar_responsiveArrowLeft,
-      toolbarStyles && toolbarStyles.responsiveArrow, toolbarStyles && toolbarStyles.responsiveArrowLeft);
-    const leftArrowIconClassNames = classNames(Styles.staticToolbar_responsiveArrowLeft_icon,
-      toolbarStyles && toolbarStyles.responsiveArrowLeft_icon);
-    const rightArrowClassNames = classNames(Styles.staticToolbar_responsiveArrow, Styles.staticToolbar_responsiveArrowRight,
-      toolbarStyles && toolbarStyles.responsiveArrow, toolbarStyles && toolbarStyles.responsiveArrowRight);
-    const rightArrowIconClassNames = classNames(Styles.staticToolbar_responsiveArrowRight_icon,
-      toolbarStyles && toolbarStyles.responsiveArrowRight_icon);
-    const spacerClassNames = classNames(Styles.staticToolbar_responsiveSpacer, toolbarStyles && toolbarStyles.responsiveSpacer);
+    const toolbarClassNames = classNames(Styles.staticToolbar, toolbarStyles.toolbar);
+    const buttonClassNames = classNames(Styles.staticToolbar_buttons, toolbarStyles.scrollContainer);
+    const extendClassNames = classNames(Styles.staticToolbar_extend, toolbarStyles.extend);
+    const scrollableClassNames = classNames(Styles.staticToolbar_scrollableContainer, toolbarStyles.scrollableContainer);
+
+    const arrowClassNames = classNames(Styles.staticToolbar_responsiveArrow, toolbarStyles.responsiveArrow);
+    const leftArrowIconClassNames = classNames(Styles.staticToolbar_responsiveArrowLeft_icon, toolbarStyles.responsiveArrowLeft_icon);
+    const rightArrowIconClassNames = classNames(Styles.staticToolbar_responsiveArrowRight_icon, toolbarStyles.responsiveArrowRight_icon);
 
     const childrenProps = {
       theme,
@@ -95,15 +82,6 @@ export default class StaticToolbar extends React.Component {
     return (
       <div role="toolbar" aria-orientation="horizontal" id={id} className={toolbarClassNames} data-hook={dataHook}>
         <div className={buttonClassNames}>
-          {
-            showLeftArrow &&
-            <button
-              className={leftArrowClassNames}
-              data-hook="staticToolbarLeftArrow" onMouseDown={e => this.scrollToolbar(e, 'left')}
-            >
-              <i className={leftArrowIconClassNames}/>
-            </button>
-          }
           <Measure
             client
             scroll
@@ -120,14 +98,13 @@ export default class StaticToolbar extends React.Component {
               </div>
             )}
           </Measure>
-          {hasArrow && <div className={spacerClassNames} />}
           {
-            showRightArrow &&
+            hasArrow &&
             <button
-              className={rightArrowClassNames}
-              data-hook="staticToolbarRightArrow" onMouseDown={e => this.scrollToolbar(e, 'right')}
+              className={arrowClassNames}
+              data-hook="toolbarArrow" onMouseDown={e => this.scrollToolbar(e, showLeftArrow)}
             >
-              <i className={rightArrowIconClassNames}/>
+              <i className={showLeftArrow ? leftArrowIconClassNames : rightArrowIconClassNames}/>
             </button>
           }
         </div>
