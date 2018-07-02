@@ -46,6 +46,7 @@
     "webpack-cli": "^3.0.4"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "focus-trap-react": "^3.1.2",
     "image-client-api": "^1.195.0",
     "pro-gallery-renderer": "^1.0.177",
