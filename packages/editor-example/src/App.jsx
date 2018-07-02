@@ -67,7 +67,6 @@ class App extends Component {
            ]),
             250)
           ),
-        getMentionLink: mention => `https://google.com?${mention.slug}`
       }
       // image: {
       // imageProps: src => ({

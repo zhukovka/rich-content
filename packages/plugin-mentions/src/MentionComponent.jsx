@@ -6,7 +6,6 @@ const MentionComponent = mentionProps => {
   return isMentionsClickable ? (
     <a
       href={getMentionLink(mentionProps.mention)}
-      target="_blank"
       rel="noopener noreferrer"
       className={mentionProps.className}
       onClick={() => onMentionClick(mentionProps.mention)}
