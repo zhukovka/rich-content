@@ -17,7 +17,6 @@ Interface Mention {
 Interface Settings {
   mentionPrefix?: string;
   mentionTrigger?: string;
-  isMentionsClickable: bool;
   getMentionLink?: (mention: Mention) => string;
   getMentions: (search: string) => Promise<Mention[]>
   onMentionClick: (mention: Mention) => void;

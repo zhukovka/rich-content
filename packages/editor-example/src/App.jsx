@@ -57,7 +57,6 @@ class App extends Component {
         // showInsertButtons: false,
       },
       mentions: {
-        isMentionsClickable: true,
         onMentionClick: mention => console.log({mention}),
         getMentions: (searchQuery) => new Promise(resolve =>
           setTimeout(() =>  resolve([
