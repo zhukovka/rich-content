@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const MentionComponent = mentionProps => {
-  const { isMentionsClickable, onMentionClick, getMentionLink } = mentionProps.settings;
-  return isMentionsClickable ? (
+  const { onMentionClick, getMentionLink } = mentionProps.settings;
+  return onMentionClick ? (
     <a
       href={getMentionLink(mentionProps.mention)}
       rel="noopener noreferrer"
