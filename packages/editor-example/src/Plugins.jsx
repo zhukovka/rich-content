@@ -6,7 +6,7 @@ import { createVideoPlugin } from 'wix-rich-content-plugin-video';
 import { createGalleryPlugin } from 'wix-rich-content-plugin-gallery';
 import { createHtmlPlugin } from 'wix-rich-content-plugin-html';
 import { createDividerPlugin } from 'wix-rich-content-plugin-divider';
-import { createMentionsPlugin } from 'wix-rich-content-plugin-mentions';
+import { createExternalMentionsPlugin } from 'wix-rich-content-plugin-mentions';
 
 import 'wix-rich-content-plugin-link/dist/wix-rich-content-plugin-link.css';
 import 'wix-rich-content-plugin-hashtag/dist/wix-rich-content-plugin-hashtag.css';
@@ -27,7 +27,7 @@ const plugins = [
   //createExternalEmojiPlugin
   createLinkPlugin,
   createHashtagPlugin,
-  createMentionsPlugin,
+  createExternalMentionsPlugin,
 ];
 
 export default plugins;

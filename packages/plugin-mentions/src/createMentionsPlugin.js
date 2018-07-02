@@ -4,7 +4,6 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 import { EXTERNAL_MENTIONS_TYPE } from './types';
 import MentionComponent from './MentionComponent';
 import MentionSuggestionsWrapper from './MentionSuggestionsWrapper';
-import 'draft-js-mention-plugin/lib/plugin.css';
 import Styles from './styles.scss';
 
 /*
@@ -29,7 +28,7 @@ const defaultSettings = {
   getMentionLink: () => '#',
 };
 
-const createMentionsPlugin = (config = {}) => {
+const createExternalMentionsPlugin = (config = {}) => {
   const type = EXTERNAL_MENTIONS_TYPE;
   const {
     decorator,
@@ -75,4 +74,4 @@ const createMentionsPlugin = (config = {}) => {
   );
 };
 
-export { createMentionsPlugin };
+export { createExternalMentionsPlugin };
