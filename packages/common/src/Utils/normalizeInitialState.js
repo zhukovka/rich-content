@@ -11,7 +11,7 @@ const normalizeEntityType = (entityType, entityTypeMap) => {
 };
 
 /* eslint-disable */
-const normalizeComponentData = componentData => {
+const normalizeComponentData = (componentData, { anchorTarget, relValue }) => {
   const { targetBlank, nofollow, target, rel } = componentData;
   if (isUndefined(targetBlank) && isUndefined(nofollow) && !isUndefined(target) && !isUndefined(rel)) {
     return componentData;
@@ -21,8 +21,8 @@ const normalizeComponentData = componentData => {
   delete componentData.nofollow;
 
   return Object.assign(componentData, {
-    target: targetBlank ? '_blank' : '_top',
-    rel: nofollow ? 'nofollow' : 'noopener'
+    target: targetBlank ? '_blank' : (anchorTarget || '_self'),
+    rel: nofollow ? 'nofollow' : (relValue || 'noopener')
   });
 };
 
@@ -68,7 +68,7 @@ const shouldNormalizeEntityConfig = (entity, normalizationMap) => normalizationM
 
 const shouldNormalizeEntityData = (entity, normalizationMap) => normalizationMap.includes(entity.type) && entity.data;
 
-export default initialState => {
+export default (initialState, config) => {
   const entityTypeMap = {
     configNormalization: {
       IMAGE: 'wix-draft-plugin-image',
@@ -86,11 +86,11 @@ export default initialState => {
       entity => shouldNormalizeEntityConfig(entity, Object.keys(entityTypeMap.configNormalization)) ? {
         ...entity,
         type: normalizeEntityType(entity.type, entityTypeMap),
-        data: normalizeComponentConfig(cloneDeep(entity.data))
+        data: normalizeComponentConfig(cloneDeep(entity.data), config)
       } : shouldNormalizeEntityData(entity, Object.keys(entityTypeMap.dataNormalization)) ? {
         ...entity,
         type: normalizeEntityType(entity.type, entityTypeMap),
-        data: normalizeComponentData(cloneDeep(entity.data))
+        data: normalizeComponentData(cloneDeep(entity.data), config)
       } : entity
     ),
   };
