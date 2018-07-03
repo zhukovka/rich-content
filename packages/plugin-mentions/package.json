@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-mentions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "author": {
     "name": "Vytenis Butkevicius",
@@ -44,9 +44,9 @@
     "webpack-cli": "^3.0.4"
   },
   "dependencies": {
+    "decorate-component-with-props": "^1.1.0",
     "draft-js-mention-plugin": "^3.0.4",
-    "wix-rich-content-common": "^1.0.16",
-    "decorate-component-with-props": "^1.1.0"
+    "wix-rich-content-common": "^1.0.20"
   },
   "unpkg": true,
   "publishConfig": {
