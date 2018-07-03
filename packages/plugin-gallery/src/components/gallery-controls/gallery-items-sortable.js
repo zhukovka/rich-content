@@ -389,7 +389,7 @@ export class SortableComponent extends Component {
   }
 
   render() {
-    const { handleFileSelection: shouldHandleFileSelection, theme, t } = this.props;
+    const { handleFileSelection: shouldHandleFileSelection, theme, t, relValue, anchorTarget } = this.props;
     return !!this.state.items && (
       !this.state.imageSettingsVisible ? (
         <div>
@@ -434,6 +434,8 @@ export class SortableComponent extends Component {
             handleFileChange={this.props.handleFileChange}
             t={t}
             isMobile={this.props.isMobile}
+            relValue={relValue}
+            anchorTarget={anchorTarget}
           />
         </div>
       )
@@ -452,4 +454,6 @@ SortableComponent.propTypes = {
   isMobile: PropTypes.bool,
   theme: PropTypes.object.isRequired,
   t: PropTypes.func,
+  relValue: PropTypes.string,
+  anchorTarget: PropTypes.string,
 };

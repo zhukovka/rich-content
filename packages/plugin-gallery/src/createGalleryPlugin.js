@@ -15,7 +15,9 @@ const createGalleryPlugin = (config = {}) => {
     type: GALLERY_TYPE,
     toolbar: createToolbar({
       helpers,
-      t
+      t,
+      anchorTarget,
+      relValue,
     }),
     helpers,
     isMobile,
