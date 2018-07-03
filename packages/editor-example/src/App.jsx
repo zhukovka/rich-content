@@ -25,6 +25,9 @@ const modalStyleDefaults = {
   }
 };
 
+const anchorTarget = '_blank';
+const relValue = 'nofollow';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -191,7 +194,7 @@ class App extends Component {
 
   generateEditorState() {
     if (this.state.content && this.state.content.jsObject) {
-      const normalizedState = normalizeInitialState(this.state.content.jsObject);
+      const normalizedState = normalizeInitialState(this.state.content.jsObject, { anchorTarget, relValue });
       const editorState = EditorState.createWithContent(convertFromRaw(normalizedState));
       this.setState({ editorState });
     }
@@ -278,6 +281,8 @@ class App extends Component {
                     theme={theme}
                     locale={'en'}
                     editorKey={'random-editorKey-ssr'}
+                    anchorTarget={anchorTarget}
+                    relValue={relValue}
                   />
                 </div>
                 {this.state.showContentStateEditor &&
