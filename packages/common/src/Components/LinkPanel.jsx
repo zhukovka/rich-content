@@ -15,6 +15,11 @@ class LinkPanel extends Component {
     super(props);
     this.state = this.propsToState(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
+    const { t, isImageSettings } = props;
+    this.firstCheckboxText = t('LinkPanel_Target_Checkbox');
+    this.secondCheckboxText = t('LinkPanel_Nofollow_Checkbox');
+    this.inputPlaceholder = isImageSettings ? t('LinkPanel_InputPlaceholder_ImageSettings') : t('LinkPanel_InputPlaceholder');
+    this.errorTooltipText = t('LinkPanel_ErrorTooltip');
   }
 
   componentDidMount() {
@@ -99,13 +104,10 @@ class LinkPanel extends Component {
 
   render() {
     const { styles } = this;
-    const { isImageSettings, theme, anchorTarget, relValue, t, ariaProps } = this.props;
+    const { isImageSettings, theme, anchorTarget, relValue, ariaProps } = this.props;
     const showTargetBlankCheckbox = anchorTarget !== '_blank';
     const showRelValueCheckbox = relValue !== 'nofollow';
-    const firstCheckboxText = t('LinkPanel_Target_Checkbox');
-    const secondCheckboxText = t('LinkPanel_Nofollow_Checkbox');
-    const inputPlaceholder = isImageSettings ? t('LinkPanel_InputPlaceholder_ImageSettings') : t('LinkPanel_InputPlaceholder');
-    const errorTooltipText = t('LinkPanel_ErrorTooltip');
+
     const textInputClassName = classNames(styles.linkPanel_textInput,
       {
         [styles.linkPanel_textInput_invalid]: !this.state.isValidUrl,
@@ -117,11 +119,11 @@ class LinkPanel extends Component {
         <div className={styles.linkPanel_Input}>
           <input
             onKeyPress={this.handleKeyPress}
-            tabIndex="0" type="url" ref={ref => (this.input = ref)} className={textInputClassName} placeholder={inputPlaceholder}
+            tabIndex="0" type="url" ref={ref => (this.input = ref)} className={textInputClassName} placeholder={this.inputPlaceholder}
             data-hook="linkPanelInput" onChange={this.handleIntermediateUrlChange} onBlur={this.validateUrl} value={this.state.intermediateUrl}
           />
           {this.state.isValidUrl ? null : (
-            <Tooltip data-hook="linkPanelTooltip" content={errorTooltipText} moveBy={{ x: -23, y: -5 }} theme={theme}>
+            <Tooltip data-hook="linkPanelTooltip" content={this.errorTooltipText} moveBy={{ x: -23, y: -5 }} theme={theme}>
               <span><ErrorIcon data-hook="linkPanelError" className={styles.linkPanel_errorIcon} /></span>
             </Tooltip>
           )}
@@ -129,13 +131,13 @@ class LinkPanel extends Component {
         <div>
           {showTargetBlankCheckbox &&
             <Checkbox
-              label={firstCheckboxText} theme={theme} checked={this.state.targetBlank}
+              label={this.firstCheckboxText} theme={theme} checked={this.state.targetBlank}
               dataHook="linkPanelBlankCheckbox" onChange={this.handleTargetChange}
             />
           }
           {showRelValueCheckbox &&
             <Checkbox
-              label={secondCheckboxText} theme={theme} checked={this.state.nofollow}
+              label={this.secondCheckboxText} theme={theme} checked={this.state.nofollow}
               dataHook="linkPanelRelCheckbox" onChange={this.handleNofollowChange}
             />
           }

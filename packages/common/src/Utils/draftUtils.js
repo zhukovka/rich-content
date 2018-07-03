@@ -3,13 +3,13 @@ import flatMap from 'lodash/flatMap';
 import findIndex from 'lodash/findIndex';
 import findLastIndex from 'lodash/findLastIndex';
 
-export const insertLink = (editorState, { url, targetBlank, nofollow }) => {
+export const insertLink = (editorState, { url, targetBlank, nofollow, anchorTarget, relValue }) => {
   const selection = getSelection(editorState);
   const content = editorState.getCurrentContent();
   const contentStateWithEntity = content.createEntity('LINK', 'MUTABLE', {
     url,
-    target: targetBlank ? '_blank' : '_top',
-    rel: nofollow ? 'nofollow' : 'noopener'
+    target: targetBlank ? '_blank' : (anchorTarget || '_self'),
+    rel: nofollow ? 'nofollow' : (relValue || 'noopener')
   });
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 

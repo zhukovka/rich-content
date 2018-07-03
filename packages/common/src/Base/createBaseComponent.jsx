@@ -18,7 +18,7 @@ const DEFAULTS = {
   textWrap: null,
 };
 
-const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers, anchorTarget, t, isMobile }) => {
+const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers, anchorTarget, relValue, t, isMobile }) => {
   class WrappedComponent extends Component {
     static displayName = createHocName('BaseComponent', PluginComponent);
 
@@ -115,8 +115,8 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
       if (this.isMeAndIdle) {
         const link = url ? {
           url,
-          target: targetBlank ? '_blank' : '_top',
-          rel: nofollow ? 'nofollow' : 'noopener'
+          target: targetBlank ? '_blank' : (anchorTarget || '_self'),
+          rel: nofollow ? 'nofollow' : (relValue || 'noopener')
         } : null;
 
         this.updateComponentConfig({ link });
@@ -245,8 +245,8 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
       if (!isNil(link)) {
         anchorProps = {
           href: normalizeUrl(link.url),
-          target: link.target ? '_blank' : (anchorTarget || '_top'),
-          rel: link.nofollow ? 'nofollow' : null
+          target: link.target ? link.target : (anchorTarget || '_self'),
+          rel: link.rel ? link.rel : (relValue || 'noopener')
         };
       }
       const anchorClass = classNames(
