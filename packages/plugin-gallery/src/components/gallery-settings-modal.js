@@ -32,7 +32,7 @@ class ManageMediaSection extends Component {
   };
 
   render() {
-    const { helpers, store, t } = this.props;
+    const { helpers, store, t, relValue, anchorTarget, isMobile } = this.props;
     const { handleFileSelection } = helpers;
 
     return (
@@ -46,7 +46,9 @@ class ManageMediaSection extends Component {
           handleFilesAdded={store.get('handleFilesAdded')}
           deleteBlock={store.get('deleteBlock')}
           t={t}
-          isMobile={this.props.isMobile}
+          relValue={relValue}
+          anchorTarget={anchorTarget}
+          isMobile={isMobile}
         />
       </div>
     );
@@ -60,6 +62,8 @@ ManageMediaSection.propTypes = {
   helpers: PropTypes.object.isRequired,
   isMobile: PropTypes.bool,
   t: PropTypes.func,
+  anchorTarget: PropTypes.string,
+  relValue: PropTypes.string,
 };
 
 class AdvancedSettingsSection extends Component {
@@ -174,7 +178,7 @@ export class GallerySettingsModal extends Component {
 
   render() {
     const styles = this.styles;
-    const { pubsub, helpers, t, isMobile } = this.props;
+    const { pubsub, helpers, t, isMobile, anchorTarget, relValue } = this.props;
     const { activeTab } = this.state;
     const componentData = pubsub.get('componentData');
     // console.log('MODAL_RENDER: ', componentData);
@@ -192,7 +196,17 @@ export class GallerySettingsModal extends Component {
             otherTab={this.tabName(this.otherTab(), t)}
             t={t}
           />
-          {activeTab === 'manage_media' ? <ManageMediaSection data={componentData} store={pubsub.store} theme={this.props.theme} helpers={helpers} t={t} isMobile/> : null }
+          {activeTab === 'manage_media' ?
+            <ManageMediaSection
+              data={componentData}
+              store={pubsub.store}
+              theme={this.props.theme}
+              helpers={helpers}
+              t={t}
+              isMobile
+              anchorTarget={anchorTarget}
+              relValue={relValue}
+            /> : null }
           {activeTab === 'advanced_settings' ? <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store} helpers={helpers} t={t} isMobile/> : null }
         </div>
       );
@@ -204,7 +218,15 @@ export class GallerySettingsModal extends Component {
           <div>
             <Tabs value={activeTab} theme={this.props.theme}>
               <Tab label={this.tabName('manage_media', t)} value={'manage_media'} theme={this.props.theme}>
-                <ManageMediaSection data={componentData} store={pubsub.store} helpers={helpers} theme={this.props.theme} t={t}/>
+                <ManageMediaSection
+                  data={componentData}
+                  store={pubsub.store}
+                  helpers={helpers}
+                  theme={this.props.theme}
+                  t={t}
+                  anchorTarget={anchorTarget}
+                  relValue={relValue}
+                />
               </Tab>
               <Tab label={this.tabName('advanced_settings', t)} value={'advanced_settings'} theme={this.props.theme}>
                 <AdvancedSettingsSection theme={this.props.theme} data={componentData} store={pubsub.store} helpers={helpers} t={t}/>
@@ -226,6 +248,8 @@ GallerySettingsModal.propTypes = {
   isMobile: PropTypes.bool,
   theme: PropTypes.object.isRequired,
   t: PropTypes.func,
+  relValue: PropTypes.string,
+  anchorTarget: PropTypes.string,
 };
 
 export default GallerySettingsModal;

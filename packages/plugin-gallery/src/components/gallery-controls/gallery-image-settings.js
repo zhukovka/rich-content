@@ -114,7 +114,8 @@ class ImageSettings extends Component {
     const selectedImage = this.state.images[this.state.selectedIndex];
     selectedImage.metadata = selectedImage.metadata || {};
     selectedImage.metadata.link = selectedImage.metadata.link || {};
-    selectedImage.metadata.link.target = isBlank ? '_blank' : '_self'; // TODO: anchorTarget prop
+    selectedImage.metadata.link.target = isBlank ? '_blank' :
+      this.props.anchorTarget ? this.props.anchorTarget : '_self';
     this.setState({ images: this.state.images });
   };
 
@@ -122,7 +123,8 @@ class ImageSettings extends Component {
     const selectedImage = this.state.images[this.state.selectedIndex];
     selectedImage.metadata = selectedImage.metadata || {};
     selectedImage.metadata.link = selectedImage.metadata.link || {};
-    selectedImage.metadata.link.rel = isNofollow ? 'nofollow' : 'noopener';
+    selectedImage.metadata.link.rel = isNofollow ? 'nofollow' :
+      this.props.relValue ? this.props.relValue : 'noopener';
     this.setState({ images: this.state.images });
   };
 
@@ -136,7 +138,7 @@ class ImageSettings extends Component {
 
   render() {
     const styles = this.styles;
-    const { handleFileSelection, onCancel, theme, isMobile, t } = this.props;
+    const { handleFileSelection, onCancel, theme, isMobile, t, anchorTarget, relValue } = this.props;
     const { images } = this.state;
     const selectedImage = images[this.state.selectedIndex];
     const { url, target, rel, intermediateUrl } = (!isEmpty(selectedImage.metadata.link) ? selectedImage.metadata.link : {});
@@ -216,7 +218,7 @@ class ImageSettings extends Component {
             >
               <span id="gallery_image_link_lbl" className={this.styles.inputWithLabel_label}>{this.linkLabel}</span>
               <LinkPanel
-                theme={theme} url={url} targetBlank={targetBlank} nofollow={nofollow}
+                theme={theme} url={url} targetBlank={targetBlank} nofollow={nofollow} anchorTarget={anchorTarget} relValue={relValue}
                 isImageSettings t={t} ariaProps={{ 'aria-labelledby': 'gallery_image_link_lbl' }} intermediateUrl={intermediateUrl}
                 onIntermediateUrlChange={this.onImageIntermediateUrlChange} onValidateUrl={this.onValidateUrl}
                 onUrlChange={this.onImageUrlChange} onTargetBlankChange={this.onImageTargetChange} onNofollowChange={this.onImageRelChange}
@@ -249,6 +251,8 @@ ImageSettings.propTypes = {
   handleFileChange: PropTypes.func,
   isMobile: PropTypes.bool,
   t: PropTypes.func,
+  anchorTarget: PropTypes.string,
+  relValue: PropTypes.string,
 };
 
 export default ImageSettings;

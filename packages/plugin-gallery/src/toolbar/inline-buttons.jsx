@@ -6,7 +6,7 @@ import { galleryLayoutsDropdown, switchLayout, getCurrentLayout } from '../helpe
 
 const modalStyles = getModalStyles();
 
-export default({ t }) => {
+export default({ t, anchorTarget, relValue }) => {
   return [
     {
       keyName: 'add',
@@ -49,6 +49,8 @@ export default({ t }) => {
       t,
       mobile: true,
       tooltipTextKey: 'ManageMediaButton_Tooltip',
+      anchorTarget,
+      relValue
     },
     {
       keyName: 'advanced_settings',
@@ -61,6 +63,8 @@ export default({ t }) => {
       t,
       mobile: false,
       tooltipTextKey: 'SettingsButton_Tooltip',
+      anchorTarget,
+      relValue
     },
     { keyName: 'delete', type: BUTTONS.DELETE, mobile: true },
   ];
