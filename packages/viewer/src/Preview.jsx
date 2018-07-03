@@ -82,14 +82,14 @@ const options = {
   },
 };
 
-const Preview = ({ raw, typeMappers, theme, isMobile, decorators, defaultLinkTarget }) => {
+const Preview = ({ raw, typeMappers, theme, isMobile, decorators, anchorTarget, relValue }) => {
   const isEmpty = isEmptyRaw(raw);
   const typeMap = combineTypeMappers(typeMappers);
   window.redraft = redraft;
   return (
     <div className="Preview">
       {isEmpty && <div className="Preview-empty">There is nothing to render...</div>}
-      {!isEmpty && redraft(raw, { inline, blocks, entities: getEntities(typeMap, { theme, isMobile, defaultLinkTarget }), decorators }, options)}
+      {!isEmpty && redraft(raw, { inline, blocks, entities: getEntities(typeMap, { theme, isMobile, anchorTarget, relValue }), decorators }, options)}
     </div>
   );
 };
@@ -106,7 +106,8 @@ Preview.propTypes = {
     component: PropTypes.func.isRequired,
     strategy: PropTypes.func.isRequired,
   })),
-  defaultLinkTarget: PropTypes.string,
+  anchorTarget: PropTypes.string,
+  relValue: PropTypes.string,
 };
 
 export default Preview;

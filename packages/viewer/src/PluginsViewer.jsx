@@ -5,15 +5,22 @@ import isFunction from 'lodash/isFunction';
 import { sizeClassName, alignmentClassName, textWrapClassName, mergeStyles, normalizeUrl } from 'wix-rich-content-common';
 import styles from './Styles/rich-content-viewer.scss';
 
-const renderLink = (componentData, defaultLinkTarget) => {
+const renderLink = (componentData, anchorTarget, relValue) => {
   if (componentData.config && componentData.config.link) {
     const { url, target, rel } = componentData.config.link;
-    return <a target={target || defaultLinkTarget || '_top'} rel={rel || 'noopener'} href={normalizeUrl(url)} className={styles.anchor}>{}</a>;
+    return (
+      <a
+        target={target || anchorTarget || '_self'}
+        rel={rel || relValue || 'noopener'}
+        href={normalizeUrl(url)}
+        className={styles.anchor}
+      >{}
+      </a>);
   }
   return null;
 };
 
-const AtomicBlock = ({ type, typeMap, componentData, children, theme, isMobile, defaultLinkTarget, ...props }) => {
+const AtomicBlock = ({ type, typeMap, componentData, children, theme, isMobile, anchorTarget, relValue, ...props }) => {
   const mergedStyles = mergeStyles({ theme, styles });
   const { component: Component, elementType } = typeMap[type];
   const { size, alignment, textWrap, container } = typeMap[type].classNameStrategies || {};
@@ -40,7 +47,7 @@ const AtomicBlock = ({ type, typeMap, componentData, children, theme, isMobile, 
             <Component componentData={componentData} theme={theme} {...props}>
               {children}
             </Component>}
-          {renderLink(componentData, defaultLinkTarget)}
+          {renderLink(componentData, anchorTarget, relValue)}
         </div>);
     } else {
       return <Component componentData={componentData} theme={theme} {...props}> {children} </Component>;
@@ -56,7 +63,8 @@ AtomicBlock.propTypes = {
   children: PropTypes.node,
   theme: PropTypes.object,
   isMobile: PropTypes.bool,
-  defaultLinkTarget: PropTypes.string,
+  anchorTarget: PropTypes.string,
+  relValue: PropTypes.string,
 };
 
 //return a list of types with a function that wraps the viewer
