@@ -88,12 +88,12 @@ class RichContentEditor extends Component {
     }
   )
   getInitialEditorState() {
-    const { editorState, initialState } = this.props;
+    const { editorState, initialState, anchorTarget, relValue } = this.props;
     if (editorState) {
       return editorState;
     }
     if (initialState) {
-      const rawContentState = normalizeInitialState(initialState);
+      const rawContentState = normalizeInitialState(initialState, { anchorTarget, relValue });
       return EditorState.createWithContent(
         convertFromRaw(rawContentState)
       );

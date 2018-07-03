@@ -11,8 +11,8 @@ export default class MobileTextLinkModal extends Component {
 
   createLinkEntity = ({ url, targetBlank, nofollow }) => {
     if (!isEmpty(url)) {
-      const { getEditorState, setEditorState } = this.props;
-      const newEditorState = insertLink(getEditorState(), { url, targetBlank, nofollow });
+      const { getEditorState, setEditorState, anchorTarget, relValue } = this.props;
+      const newEditorState = insertLink(getEditorState(), { url, targetBlank, nofollow, anchorTarget, relValue });
       setEditorState(newEditorState);
     }
     this.hidePopup();
