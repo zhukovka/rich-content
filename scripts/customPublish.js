@@ -19,22 +19,19 @@ const lernaConfig = require(lernaJsonPath);
 
 const getPackageDetails = memoize(pkg => {
   try {
+    const npmShowCommand = `npm show ${pkg.name} --registry=${pkg.registry} --json`;
     return JSON.parse(
-      execSync(`npm show ${pkg.name} --registry=${pkg.registry} --json`),
+      execSync(npmShowCommand, { stdio: ['pipe', 'pipe', 'ignore'] }),
     );
   } catch (error) {
-    if (error.stderr.toString().includes('npm ERR! code E404')) {
-      console.error(
-        chalk.red(
-          '\nError: package not found. Possibly not published yet, please verify that this package is published to npm.',
-        ),
-      );
+    if (!error.stdout.toString().includes('E404')) {
+      console.error(chalk.red(`\nError: ${error}`));
     }
   }
 });
 
 function getPublishedVersions(pkg) {
-  return getPackageDetails(pkg).versions || [];
+  return get(getPackageDetails(pkg), 'versions', []);
 }
 
 function getLatestVersion(pkg) {
@@ -48,16 +45,16 @@ function shouldPublishPackage(pkg) {
 }
 
 function getTag(pkg) {
-  const isLessThanLatest = () => semver.lt(pkg.version, getLatestVersion(pkg));
+  const latestVersion = getLatestVersion(pkg);
+
+  const isLessThanLatest = () => latestVersion && semver.lt(pkg.version, latestVersion);
 
   const isPreRelease = () => semver.prerelease(pkg.version) !== null;
 
-  // if the version is less than the version tagged as latest in the registry
   if (isLessThanLatest()) {
     return OLD_TAG;
   }
 
-  // if it's a prerelease use the next tag
   if (isPreRelease()) {
     return NEXT_TAG;
   }
@@ -118,14 +115,14 @@ function release(pkg) {
 lernaConfig.packages.forEach(pacakagesGlob => {
   glob.sync(pacakagesGlob).forEach(pkgPath => {
     const pkgJsonPath = path.resolve(pkgPath, 'package.json');
-    const pkg = JSON.parse(fs.readFileSync(pkgJsonPath));
-    if (!pkg.private) {
-      release({
-        name: get(pkg, 'name'),
-        version: get(pkg, 'version'),
-        registry: get(pkg, 'publishConfig.registry', DEFAULT_REGISTRY),
-        path: pkgPath,
-      });
-    }
+      const pkg = JSON.parse(fs.readFileSync(pkgJsonPath));
+      if (!pkg.private) {
+        release({
+          name: get(pkg, 'name'),
+          version: get(pkg, 'version'),
+          registry: get(pkg, 'publishConfig.registry', DEFAULT_REGISTRY),
+          path: pkgPath,
+        });
+      }
   });
 });
