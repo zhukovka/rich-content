@@ -1,7 +1,6 @@
 {
   "name": "wix-rich-content-plugin-mentions",
   "version": "1.0.25",
-  "private": true,
   "author": {
     "name": "Vytenis Butkevicius",
     "email": "vytenisb@wix.com"
