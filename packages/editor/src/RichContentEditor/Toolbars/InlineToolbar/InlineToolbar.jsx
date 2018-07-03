@@ -50,9 +50,7 @@ export default class InlineToolbar extends Component {
   }
 
   onOverrideContent = overrideContent => {
-    this.setState({ overrideContent }, () => {
-      this.handleToolbarScroll();
-    });
+    this.setState({ overrideContent });
   }
 
   onExtendContent = extendContent => this.setState({ extendContent });
