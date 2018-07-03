@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
 import { RichContentModal, mergeStyles, Button, normalizeInitialState } from 'wix-rich-content-common';
-import { LinkComponent, LinkStrategy, RichContentViewer } from 'wix-rich-content-viewer';
+import { LinkStrategy, RichContentViewer } from 'wix-rich-content-viewer';
 import RichContentRawDataViewer from './RichContentRawDataViewer';
 
 import 'wix-rich-content-viewer/dist/styles.css';
@@ -17,7 +17,7 @@ import { imageTypeMapper } from 'wix-rich-content-plugin-image';
 import { galleryTypeMapper } from 'wix-rich-content-plugin-gallery';
 import { dividerTypeMapper } from 'wix-rich-content-plugin-divider';
 import { htmlTypeMapper } from 'wix-rich-content-plugin-html';
-import { linkTypeMapper } from 'wix-rich-content-plugin-link';
+import { linkTypeMapper, LinkViewer } from 'wix-rich-content-plugin-link';
 
 import { Strategy as HashTagStrategy, Component as HashTag } from 'wix-rich-content-plugin-hashtag';
 
@@ -35,6 +35,9 @@ const modalStyleDefaults = {
     transform: 'translate(-50%, -50%)'
   }
 };
+
+const anchorTarget = '_top';
+const relValue = 'noreferrer';
 
 class App extends Component {
   constructor(props) {
@@ -56,7 +59,8 @@ class App extends Component {
 
     this.decorators = [{
         strategy: LinkStrategy,
-        component: LinkComponent
+        component: ({ children, decoratedText, rel, target }) =>
+        <LinkViewer componentData={{ rel, target, url: decoratedText }} anchorTarget={anchorTarget} relValue={relValue}> {children} </LinkViewer>
       }, {
         strategy: HashTagStrategy,
         component: ({children, decoratedText}) =>
@@ -107,7 +111,7 @@ class App extends Component {
 
   generateViewerState() {
     if (this.state.content && this.state.content.jsObject) {
-      const normalizedState = normalizeInitialState(this.state.content.jsObject);
+      const normalizedState = normalizeInitialState(this.state.content.jsObject, { anchorTarget, relValue });
       this.setState({ raw: normalizedState });
     }
   }
@@ -154,7 +158,8 @@ class App extends Component {
                   initialState={this.state.raw}
                   theme={theme}
                   isMobile={this.isMobile()}
-                  defaultLinkTarget={'_self'}
+                  anchorTarget={anchorTarget}
+                  relValue={relValue}
                 />
               </div>
               <div className={styles.column}>
