@@ -18,6 +18,7 @@ import styles from '../Styles/rich-content-editor.scss';
 import draftStyles from '../Styles/draft.scss';
 import 'wix-rich-content-common/dist/wix-rich-content-common.css';
 import { getStaticTextToolbarId } from './Toolbars/toolbar-id';
+import createInlineStyleDecorators from './Decorators/inline-style-decorators';
 
 class RichContentEditor extends Component {
   constructor(props) {
@@ -164,6 +165,26 @@ class RichContentEditor extends Component {
     this.props.onChange && this.props.onChange(editorState);
   };
 
+  get customCommandHandlers() {
+    return {
+      [COMMANDS.LINK]: editorState => {
+        if (hasLinksInSelection(editorState)) {
+          return removeLinksInSelection(editorState);
+        } else {
+          this.openLinkModal();
+        }
+      },
+      [COMMANDS.TAB]: () => {
+        if (this.getToolbars().TextToolbar) {
+          const staticToolbarButton = this.findFocusableChildForElement(`${getStaticTextToolbarId(this.refId)}`);
+          staticToolbarButton && staticToolbarButton.focus();
+        } else {
+          this.editor.blur();
+        }
+      }
+    };
+  }
+
   focus = () => this.editor.focus();
 
   blur = () => this.editor.blur();
@@ -240,23 +261,7 @@ class RichContentEditor extends Component {
         handlePastedText={handlePastedText}
         plugins={this.plugins}
         blockStyleFn={blockStyleFn(theme)}
-        handleKeyCommand={handleKeyCommand(this.updateEditorState, {
-          [COMMANDS.LINK]: editorState => {
-            if (hasLinksInSelection(editorState)) {
-              return removeLinksInSelection(editorState);
-            } else {
-              this.openLinkModal();
-            }
-          },
-          [COMMANDS.TAB]: () => {
-            if (this.getToolbars().TextToolbar) {
-              const staticToolbarButton = this.findFocusableChildForElement(`${getStaticTextToolbarId(this.refId)}`);
-              staticToolbarButton && staticToolbarButton.focus();
-            } else {
-              this.editor.blur();
-            }
-          }
-        })}
+        handleKeyCommand={handleKeyCommand(this.updateEditorState, this.customCommandHandlers)}
         editorKey={editorKey}
         keyBindingFn={keyBindingFn}
         helpers={helpers}
@@ -278,6 +283,7 @@ class RichContentEditor extends Component {
         onBlur={onBlur}
         onFocus={onFocus}
         textAlignment={textAlignment}
+        decorators={[createInlineStyleDecorators(theme)]}
       />
     );
   };
