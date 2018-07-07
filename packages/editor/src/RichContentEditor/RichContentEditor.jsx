@@ -256,6 +256,7 @@ class RichContentEditor extends Component {
     return (
       <Editor
         ref={this.setEditor}
+        handleReturn={handleReturnCommand(this.updateEditorState)}
         editorState={editorState}
         onChange={this.updateEditorState}
         handleBeforeInput={handleBeforeInput}
