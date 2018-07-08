@@ -22,10 +22,10 @@ class RichContentRawDataViewer extends Component {
   }
 
   fixKeys(content) {
+    let fixed = {};
     if (content && content.entityMap) {
       let fixedEntityMap = Object.keys(content.entityMap).reduce((map, key) => {
         const entity = content.entityMap[key];
-
         const videoHtml = get(entity, 'data.metadata.html');
         if (videoHtml) {
           set(entity, 'data.metadata.html', this.escapeHtml(videoHtml));
@@ -40,6 +40,24 @@ class RichContentRawDataViewer extends Component {
 
       return Object.assign({}, content, { entityMap: fixedEntityMap });
     }
+
+    // if (fixed && fixed.blocks) {
+    //   console.log('content.blocks: ', fixed.blocks);
+    //   const fixedBlocks = fixed.blocks.map(block => {
+    //     if(block.text) {
+    //       console.log('before block.text: ', block.text);
+    //       block.text = this.escapeNewLine(block.text);
+    //       console.log('after block.text: ', block.text);
+
+    //     }
+    //     return block;
+    //   });
+    //   return Object.assign({}, fixed, { blocks: fixedBlocks });
+    // }
+  }
+
+  escapeNewLine(text) {
+    return text.replace(/[\n\r]/gmui, '\\n');
   }
 
   escapeHtml(text) {
