@@ -75,9 +75,6 @@ export {
   isAtomicBlockFocused,
   removeBlock,
 } from './Utils/draftUtils';
-export {
-  matchCaptureGroupAll,
-  matchAll
-} from './Utils/regex-utils';
 export { default as WixUtils } from './Utils/wixUtils';
 export { sizeClassName, alignmentClassName, textWrapClassName } from './Utils/classNameStrategies';
+export { getSelectionStyles } from './Utils/inlineStyleUtils';
