@@ -4,13 +4,32 @@ const TestData = {
     "entityMap": {},
     "blocks": [{
       "key": "5g8yu",
-      "text": "Hello text only",
+      "text": "Hello text only #hashtag test.com",
       "type": "unstyled",
       "depth": 0,
       "inlineStyleRanges": [],
       "entityRanges": [],
       "data": {}
     }]
+  },
+  softNewLine: {
+    "blocks": [
+      {
+        "key": "55n9j",
+        "text": "This\nis\nsoft\nnew\nline\n\n\ntest!",
+        "depth": 0,
+        "inlineStyleRanges": [
+          {
+            "offset": 0,
+            "length": 32,
+            "style": "UNDERLINE"
+          }
+        ],
+        "entityRanges": [],
+        "data": {}
+      }
+    ],
+    "entityMap": {}
   },
   links: {
     "blocks": [

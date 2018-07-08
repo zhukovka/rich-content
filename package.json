@@ -10,7 +10,7 @@
     "postinstall": "npm run bootstrap",
     "build:dev": "lerna run --stream build:dev",
     "build": "lerna run --stream --scope=wix-rich-content-* build",
-    "watch": "lerna run --stream watch",
+    "watch": "lerna run --parallel watch",
     "watch:prod": "lerna run --stream watch:prod",
     "customPublish": "node scripts/customPublish",
     "createVersion": "node scripts/createVersion"
@@ -51,6 +51,7 @@
     "semver": "^5.5.0",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.21.0",
+    "surge-github-autorelease": "^1.0.43",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
     "webpack": "^4.12.0",

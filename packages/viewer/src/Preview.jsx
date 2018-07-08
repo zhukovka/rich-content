@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import redraft from 'redraft';
 import getPluginsViewer from './PluginsViewer';
 import List from './List';
+import { NewLineStrategy, NewLineDecoration } from './decorators/soft-new-line-decorator';
 
 // import './Preview.css';
 
@@ -85,11 +86,21 @@ const options = {
 const Preview = ({ raw, typeMappers, theme, isMobile, decorators, anchorTarget, relValue }) => {
   const isEmpty = isEmptyRaw(raw);
   const typeMap = combineTypeMappers(typeMappers);
+  const combineDecorators = [...decorators, {
+    strategy: NewLineStrategy,
+    component: NewLineDecoration
+  }];
   window.redraft = redraft;
   return (
     <div className="Preview">
       {isEmpty && <div className="Preview-empty">There is nothing to render...</div>}
-      {!isEmpty && redraft(raw, { inline, blocks, entities: getEntities(typeMap, { theme, isMobile, anchorTarget, relValue }), decorators }, options)}
+      {!isEmpty &&
+        redraft(raw, {
+          inline,
+          blocks,
+          entities: getEntities(typeMap, { theme, isMobile, anchorTarget, relValue }),
+          decorators: combineDecorators },
+        options)}
     </div>
   );
 };

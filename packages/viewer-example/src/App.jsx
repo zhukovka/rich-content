@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
 import { RichContentModal, mergeStyles, Button, normalizeInitialState } from 'wix-rich-content-common';
-import { LinkStrategy, RichContentViewer } from 'wix-rich-content-viewer';
+import { LinkStrategy, RichContentViewer } from 'wix-rich-content-viewer'; // TODO: move LinkStrategy to link-plugin
 import RichContentRawDataViewer from './RichContentRawDataViewer';
 
 import 'wix-rich-content-viewer/dist/styles.css';
