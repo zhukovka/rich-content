@@ -3,6 +3,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const PATHS = {
+  root: path.join(__dirname, '..'),
   src: path.join(__dirname, '../src'),
   dist: path.join(__dirname, '../dist')
 };
@@ -15,10 +16,14 @@ module.exports = env => ({
   output: {
       path: PATHS.dist,
       filename: '[name].js',
+      chunkFilename: '[name].js',
       publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
+    extensions: ['.js', '.jsx', '.json'],
+    alias: {
+      'draft-js': path.resolve(__dirname, '..', '..', '..', 'node_modules', '@wix', 'draft-js'),
+    },
   },
   module: {
     rules: [
@@ -29,6 +34,7 @@ module.exports = env => ({
           loader: "babel-loader",
           options: {
             compact: true,
+            extends: path.resolve(PATHS.root, '..', '..', '.babelrc.js')
           }
         }
       },
@@ -59,15 +65,51 @@ module.exports = env => ({
         ]
       },
       {
-        exclude: [
-          /\.(js|jsx)$/,
-          /\.html$/,
-          /\.json$/,
-          /\.css$/,
-          /\.scss$/,
+        test: /\.(png|jpg|gif)$/,
+        issuer: /\.(s)?css$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
         ],
-        loader: "url-loader",
-      }
+      },
+      {
+        test: /\.(woff|eot|ttf|svg|woff2)$/,
+        issuer: /\.(s)?css$/,
+        use: [
+          {
+            loader: 'url-loader',
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        issuer: /\.js(x)?$/,
+        loaders: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ["@babel/preset-react"]
+            }
+          },
+          {
+            loader: 'react-svg-loader',
+            query: JSON.stringify({
+              jsx: true,
+              svgo: {
+                plugins: [
+                  { cleanupIDs: false },
+                  { removeViewBox: false },
+                  { removeDimensions: true },
+                ],
+              },
+            }),
+          },
+        ],
+      },
     ]
   },
   plugins: [

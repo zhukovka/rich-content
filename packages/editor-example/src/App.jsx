@@ -10,7 +10,6 @@ import { Button, normalizeInitialState } from 'wix-rich-content-common';
 import { testImages, testVideos } from './mock';
 // import testData from './testData/initialState';
 import './App.css';
-import 'wix-rich-content-editor/dist/wix-rich-content-editor.css';
 import theme from './theme/theme'; // must import after custom styles
 import RichContentRawDataViewer from './RichContentRawDataViewer';
 
@@ -96,6 +95,7 @@ class App extends Component {
       }, 500);
     }
     this.helpers = {
+      onReady: () => this.setEditorToolbars(),
       onFilesChange: (files, updateEntity) => mockUpload(files, updateEntity),
       // handleFileSelection: (index, multiple, updateEntity, removeEntity) => {
       //   const count = multiple ? [1,2,3] : [1];
@@ -152,7 +152,6 @@ class App extends Component {
 
   componentDidMount() {
     ReactModal.setAppElement('body');
-    this.setEditorToolbars();
   }
 
   setEditor = editor => this.editor = editor;
