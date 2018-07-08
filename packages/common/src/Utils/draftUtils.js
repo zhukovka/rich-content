@@ -90,32 +90,16 @@ export const removeBlock = (editorState, blockKey) => {
   return EditorState.push(editorState, newContentState, 'remove-range');
 };
 
-function getSelectedLinks(editorState) {
-  return flatMap(getSelectedBlocks(editorState), block => getSelectedLinksInBlock(block, editorState));
-}
-
-
-function getSelectedBlocks(editorState) {
+export const getSelectedBlocks = editorState => {
   const blocks = editorState.getCurrentContent().getBlocksAsArray();
   const selection = getSelection(editorState);
   const firstIndex = findIndex(blocks, block => block.getKey() === selection.getAnchorKey());
   const lastIndex = findLastIndex(blocks, block => block.getKey() === selection.getFocusKey());
 
   return blocks.slice(firstIndex, lastIndex + 1);
-}
+};
 
-function getSelectedLinksInBlock(block, editorState) {
-  const selectionRange = getSelectionRange(editorState, block);
-
-  return getLinkRangesInBlock(block, editorState.getCurrentContent())
-    .filter(linkRange => isInSelectionRange(selectionRange, linkRange))
-    .map(linkRange => ({
-      key: block.getKey(),
-      range: linkRange,
-    }));
-}
-
-function getSelectionRange(editorState, block) {
+export const getSelectionRange = (editorState, block) => {
   const selection = getSelection(editorState);
   const blockKey = block.getKey();
   const anchorKey = selection.getAnchorKey();
@@ -135,6 +119,25 @@ function getSelectionRange(editorState, block) {
   }
 
   return range;
+};
+
+export const isInSelectionRange = ([start, end], range) => {
+  return !(start <= range[0] && end <= range[0]) && !(start >= range[1] && end >= range[1]);
+};
+
+function getSelectedLinks(editorState) {
+  return flatMap(getSelectedBlocks(editorState), block => getSelectedLinksInBlock(block, editorState));
+}
+
+function getSelectedLinksInBlock(block, editorState) {
+  const selectionRange = getSelectionRange(editorState, block);
+
+  return getLinkRangesInBlock(block, editorState.getCurrentContent())
+    .filter(linkRange => isInSelectionRange(selectionRange, linkRange))
+    .map(linkRange => ({
+      key: block.getKey(),
+      range: linkRange,
+    }));
 }
 
 function getLinkRangesInBlock(block, contentState) {
@@ -148,10 +151,6 @@ function getLinkRangesInBlock(block, contentState) {
   );
 
   return ranges;
-}
-
-function isInSelectionRange([start, end], range) {
-  return !(start <= range[0] && end <= range[0]) && !(start >= range[1] && end >= range[1]);
 }
 
 function removeLink(editorState, blockKey, [start, end]) {
