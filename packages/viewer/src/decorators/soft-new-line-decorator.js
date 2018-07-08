@@ -1,15 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { matchCaptureGroupAll } from 'wix-rich-content-common';
-
-// const matchCaptureGroupAll = (text, regex) => {
-//   const matches = regex.exec(text);
-//   const result = [];
-
-//   matches.map(match => {
-
-//   });
-// };
+import { matchCaptureGroupAll } from 'match-index';
 
 const NewLineStrategy = (contentBlock, callback) => {
   const text = contentBlock.getText();
@@ -17,9 +8,7 @@ const NewLineStrategy = (contentBlock, callback) => {
     return [];
   }
 
-  //text = text.replace(/[\n\r]/gi, '\n ');
-
-  const lineMatches = matchCaptureGroupAll(text, /([\w\s]*)[\n\r]{0,1}|\s[\n\r]{0,1}/gi);
+  const lineMatches = matchCaptureGroupAll(text, /(.*)[\n\r]{0,1}|^$[\n\r]{0,1}/gi);
 
   if (lineMatches.length > 0 && lineMatches[0].text.length === text.length) {
     return [];
