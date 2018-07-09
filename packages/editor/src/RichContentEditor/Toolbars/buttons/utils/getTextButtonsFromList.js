@@ -5,7 +5,6 @@ import {
   UnderlineButton,
   IndentButton,
   TitleButton,
-  InlineTitleButton,
   BlockquoteButton,
   TextAlignmentButton,
   AlignTextLeftButton,
@@ -37,9 +36,6 @@ export default ({ buttons, theme, t, isMobile }) => {
         break;
       case 'Title':
         structure.push(TitleButton);
-        break;
-      case 'InlineTitle':
-        structure.push(InlineTitleButton);
         break;
       case 'Blockquote':
         structure.push(BlockquoteButton);

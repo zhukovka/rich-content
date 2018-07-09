@@ -51,12 +51,6 @@ export const TitleButton = createTextBlockStyleButton({
   tooltipTextKey: 'TitleButton_Tooltip',
 });
 
-export const InlineTitleButton = createTextInlineStyleButton({
-  style: 'inline-header-two',
-  Icon: TitleIcon,
-  tooltipTextKey: 'Inline Heading!',
-});
-
 export const BlockquoteButton = createTextBlockStyleButton({
   blockTypes: ['blockquote'],
   Icons: [BlockQuoteIcon],
