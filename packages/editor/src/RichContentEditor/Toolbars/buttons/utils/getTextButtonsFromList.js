@@ -14,6 +14,7 @@ import {
   UnorderedListButton,
   OrderedListButton,
   TextLinkButton,
+  HeadingsDropDown
 } from '../index';
 import createThemedSeparator from './createThemedSeparator';
 
@@ -22,6 +23,9 @@ export default ({ buttons, theme, t, isMobile }) => {
   const structure = [];
   buttons.forEach(buttonName => {
     switch (buttonName) {
+      case 'HeadingsDropDown':
+        structure.push(HeadingsDropDown);
+        break;
       case 'Bold':
         structure.push(BoldButton);
         break;

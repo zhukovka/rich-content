@@ -128,5 +128,16 @@
   "EmojiPlugin_EmojiGroups_Travel": "Travel & Places",
   "EmojiPlugin_EmojiGroups_Objects": "Objects",
   "EmojiPlugin_EmojiGroups_Symbols": "Symbols",
-  "EmojiPlugin_EmojiGroups_Flags": "Flags"
+  "EmojiPlugin_EmojiGroups_Flags": "Flags",
+  "HeadingsDropDown_tooltip": "Headings",
+  "TitleButton_label": "Title",
+  "TitleButton_tooltip": "Title",
+  "HeadingOneButton_label": "Heading 1",
+  "HeadingTwoButton_label": "Heading 2",
+  "HeadingThreeButton_label": "Heading 3",
+  "NormalTextButton_label": "Normal Text",
+  "HeadingOneButton_tooltip": "Heading 1",
+  "HeadingTwoButton_tooltip": "Heading 2",
+  "HeadingThreeButton_tooltip": "Heading 3",
+  "NormalTextButton_tooltip": "Normal Text"
 }
