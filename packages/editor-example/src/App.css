@@ -53,7 +53,7 @@
 }
 
 .columns {
-  width: 100%;
+  width: calc(100% - 52px);
   height: 100%;
   display: flex;
   flex: 1;
