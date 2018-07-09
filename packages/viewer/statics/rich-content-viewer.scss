@@ -169,3 +169,17 @@
   padding: 2px 25px;
   white-space: pre-wrap;
 }
+
+.normalText {
+  line-height: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  display: contents;
+}
+
+.preview {
+  white-space: pre-wrap !important;
+}
