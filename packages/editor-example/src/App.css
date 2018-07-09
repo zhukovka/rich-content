@@ -53,8 +53,8 @@
 }
 
 .columns {
-  width: calc(100% - 52px);
-  height: 100%;
+  width: 100%;
+  height: calc(100% - 52px);
   display: flex;
   flex: 1;
   flex-direction: row;
