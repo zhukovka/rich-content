@@ -1,26 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { HEADING } from './inline-styles';
 
 const propTypes = {
   children: PropTypes.node,
   theme: PropTypes.object,
 };
 
-const HeaderOneDecoration = ({ theme, children }) => <h2 className={theme.headerOne}>{children}</h2>;
-const HeaderTwoDecoration = ({ theme, children }) => <h3 className={theme.headerTwo}>{children}</h3>;
-const HeaderThreeDecoration = ({ theme, children }) => <h4 className={theme.headerThree}>{children}</h4>;
-const ParagraphDecoration = ({ theme, children }) => <p className={theme.paragraph}>{children}</p>;
+const HeaderOneDecoration = ({ theme, children }) => <h1 className={theme.headerOne}>{children}</h1>;
+const HeaderTwoDecoration = ({ theme, children }) => <h2 className={theme.headerTwo}>{children}</h2>;
+const HeaderThreeDecoration = ({ theme, children }) => <h3 className={theme.headerThree}>{children}</h3>;
 
-ParagraphDecoration.propTypes =
 HeaderOneDecoration.propTypes =
 HeaderTwoDecoration.propTypes =
 HeaderThreeDecoration.propTypes = propTypes;
 
 const styleToDecorationMap = {
-  'inline-header-one': HeaderOneDecoration, // TODO: common style consts
-  'inline-header-two': HeaderTwoDecoration,
-  'inline-header-three': HeaderThreeDecoration,
-  'inline-paragraph': ParagraphDecoration,
+  [HEADING.TITLE]: HeaderOneDecoration,
+  [HEADING.TWO]: HeaderTwoDecoration,
+  [HEADING.THREE]: HeaderThreeDecoration,
 };
 
 const withTheme = (Component, theme) => {

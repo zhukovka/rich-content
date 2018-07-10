@@ -79,3 +79,4 @@ export { default as WixUtils } from './Utils/wixUtils';
 export { sizeClassName, alignmentClassName, textWrapClassName } from './Utils/classNameStrategies';
 export { getSelectionStyles } from './Utils/inlineStyleUtils';
 export { default as createInlineStyleDecorators } from './Decorators/inline-style-decorators';
+export { HEADING } from './Decorators/inline-styles';
