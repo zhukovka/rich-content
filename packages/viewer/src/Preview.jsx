@@ -1,13 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import redraft from 'redraft';
+import classNames from 'classnames';
 import { createInlineStyleDecorators, mergeStyles } from 'wix-rich-content-common';
 import getPluginsViewer from './PluginsViewer';
 import List from './List';
 import { getStrategyByStyle } from './decorators/getStrategyByStyle';
 import styles from '../statics/rich-content-viewer.scss';
 
-const addBlock = children => <div>{children}</div>;
+const withTextAlignment = (element, blockProps, mergedStyles) => {
+  const { data } = blockProps || [];
+  const dataEntry = data.length > 0 ? data[0] : {};
+  const alignmentClass = dataEntry.textAlignment ? dataEntry.textAlignment : 'left';
+  const elementProps = {
+    ...element.props,
+    className: element.props.className ?
+      classNames(element.props.className, mergedStyles[alignmentClass]) :
+      mergedStyles[alignmentClass]
+  };
+  return React.cloneElement(element, elementProps, element.props.children);
+};
 
 const getInline = mergedStyles => {
   return {
@@ -19,11 +31,16 @@ const getInline = mergedStyles => {
 };
 
 const getList = (ordered, mergedStyles) =>
-  (children, { depth, keys }) => {
+  (children, blockProps) => {
     const className = ordered ? 'ordered' : 'unordered';
     return (
-      <List key={keys[0]} keys={keys} depth={depth} ordered={ordered}>
-        {children.map((child, i) => <li className={mergedStyles[`${className}List`]} key={keys[i]} >{addBlock(child, mergedStyles)}</li>)}
+      <List key={blockProps.keys[0]} keys={blockProps.keys} depth={blockProps.depth} ordered={ordered}>
+        {children.map((child, i) => {
+          // NOTE: list block data is an array of data entries per list item
+          const dataEntry = blockProps.data.length > i ? [blockProps.data[i]] : [{}];
+          return withTextAlignment(<li className={mergedStyles[`${className}List`]} key={blockProps.keys[i]}><div>{child}</div></li>,
+            { ...blockProps, data: dataEntry }, mergedStyles);
+        })}
       </List>
     );
   };
@@ -35,14 +52,16 @@ const getBlocks = mergedStyles => {
   // Rendering blocks like this along with cleanup results in a single p tag for each paragraph
   // adding an empty block closes current paragraph and starts a new one
   return {
-    unstyled: (children, { keys }) => <p key={keys[0]}>{children}</p>,
-    blockquote: (children, { keys }) => <blockquote className={mergedStyles.quote} key={keys[0]} >{children}</blockquote>,
-    'header-one': (children, { keys }) => children.map((child, i) => <h2 className={mergedStyles.headerOne} key={keys[i]}>{child}</h2>),
-    'header-two': (children, { keys }) => children.map((child, i) => <h3 className={mergedStyles.headerTwo} key={keys[i]}>{child}</h3>),
-    'header-three': (children, { keys }) => children.map((child, i) => <h4 className={mergedStyles.headerThree} key={keys[i]}>{child}</h4>),
-    'header-four': (children, { keys }) => children.map((child, i) => <h5 key={keys[i]}>{child}</h5>),
-    'header-five': (children, { keys }) => children.map((child, i) => <h6 key={keys[i]}>{child}</h6>),
-    'code-block': (children, { keys }) => <pre key={keys[0]} className={mergedStyles.codeBlock}>{children}</pre>,
+    unstyled: (children, blockProps) => withTextAlignment(<p key={blockProps.keys[0]}><div>{children}</div></p>, blockProps, mergedStyles),
+    blockquote: (children, blockProps) =>
+      withTextAlignment(<blockquote className={mergedStyles.quote} key={blockProps.keys[0]}><div>{children}</div></blockquote>,
+        blockProps, mergedStyles),
+    'header-two': (children, blockProps) => children.map((child, i) =>
+      withTextAlignment(<h2 className={mergedStyles.headerTwo} key={blockProps.keys[i]}>{child}</h2>, blockProps, mergedStyles)),
+    'header-three': (children, blockProps) => children.map((child, i) =>
+      withTextAlignment(<h3 className={mergedStyles.headerThree} key={blockProps.keys[i]}>{child}</h3>, blockProps, mergedStyles)),
+    'code-block': (children, blockProps) =>
+      withTextAlignment(<pre key={blockProps.keys[0]} className={mergedStyles.codeBlock}>{children}</pre>, blockProps, mergedStyles),
     'unordered-list-item': getList(false, mergedStyles),
     'ordered-list-item': getList(true, mergedStyles),
   };
