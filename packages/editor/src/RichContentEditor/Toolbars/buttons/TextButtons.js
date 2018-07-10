@@ -9,9 +9,6 @@ import {
   ItalicIcon,
   UnderlineIcon,
   IndentIcon,
-  TitleIcon,
-  TitleOneIcon,
-  TitleTwoIcon,
   BlockQuoteIcon,
   OrderedListIcon,
   UnorderedListIcon,
@@ -42,13 +39,6 @@ export const IndentButton = createTextBlockStyleButton({
   blockTypes: ['indent'],
   Icons: [IndentIcon],
   tooltipTextKey: 'IndentButton_Tooltip',
-});
-
-export const TitleButton = createTextBlockStyleButton({
-  blockTypes: ['header-two', 'header-three'],
-  Icons: [TitleOneIcon, TitleTwoIcon],
-  InactiveIcon: TitleIcon,
-  tooltipTextKey: 'TitleButton_Tooltip',
 });
 
 export const BlockquoteButton = createTextBlockStyleButton({

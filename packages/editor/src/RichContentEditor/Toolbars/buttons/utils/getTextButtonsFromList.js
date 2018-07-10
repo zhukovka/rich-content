@@ -4,7 +4,6 @@ import {
   ItalicButton,
   UnderlineButton,
   IndentButton,
-  TitleButton,
   BlockquoteButton,
   TextAlignmentButton,
   AlignTextLeftButton,
@@ -14,18 +13,15 @@ import {
   UnorderedListButton,
   OrderedListButton,
   TextLinkButton,
-  HeadingsDropDown
 } from '../index';
 import createThemedSeparator from './createThemedSeparator';
+import HeadingSwitchButton from '../inline-styling/HeadingSwitchButton';
 
 export default ({ buttons, theme, t, isMobile }) => {
   const themedSeparator = horizontal => createThemedSeparator({ theme, horizontal });
   const structure = [];
   buttons.forEach(buttonName => {
     switch (buttonName) {
-      case 'HeadingsDropDown':
-        structure.push(HeadingsDropDown);
-        break;
       case 'Bold':
         structure.push(BoldButton);
         break;
@@ -39,7 +35,7 @@ export default ({ buttons, theme, t, isMobile }) => {
         structure.push(IndentButton);
         break;
       case 'Title':
-        structure.push(TitleButton);
+        structure.push(HeadingSwitchButton);
         break;
       case 'Blockquote':
         structure.push(BlockquoteButton);

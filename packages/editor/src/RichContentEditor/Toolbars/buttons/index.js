@@ -3,7 +3,6 @@ export const DesktopTextButtonList = [
   'Italic',
   'Underline',
   'Title',
-  'HeadingsDropDown',
   'Blockquote',
   'Separator',
   'Alignment',
@@ -30,7 +29,6 @@ export const MobileTextButtonList = [
   'UnorderedList',
 ];
 
-export { default as HeadingsDropDown } from './inline-styling/HeadingsDropDown';
 export { default as TextAlignmentButton } from './TextAlignmentButton';
 export { default as TextLinkButton } from './TextLinkButton';
 export { default as AddPluginButton } from './AddPluginButton';
@@ -39,7 +37,6 @@ export {
   ItalicButton,
   UnderlineButton,
   IndentButton,
-  TitleButton,
   BlockquoteButton,
   AlignTextLeftButton,
   AlignTextCenterButton,
