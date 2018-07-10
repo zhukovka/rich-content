@@ -32,9 +32,9 @@ const createInlineStyleDropdownButton = ({ buttons, activeItem, onChange, toolti
       this.theme = {
         ...theme,
         buttonStyles: {
-          textLabelButton_wrapper: this.styles.inlineStyleDropdownButton_wrapper,
+          textLabelButton_wrapper: this.styles.inlineStyleDropdownButton_wrapper, //eslint-disable-line camelcase
           textLabelButton: this.styles.inlineStyleDropdownButton,
-          textLabelButton_icon: this.styles.inlineStyleDropdownButton_icon,
+          textLabelButton_icon: this.styles.inlineStyleDropdownButton_icon, //eslint-disable-line camelcase
         },
       };
     }

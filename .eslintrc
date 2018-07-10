@@ -58,6 +58,8 @@
     "mocha/no-exclusive-tests": "error",
     "mocha/no-skipped-tests": "error",
     "mocha/no-pending-tests": "error",
-    "no-param-reassign": "error"
+    "no-param-reassign": "error",
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/aria-proptypes": "off"
   }
 }
