@@ -20,13 +20,11 @@ const commonPresets = [
 
 const commonPlugins = [
   ['@babel/plugin-proposal-class-properties', { loose: true }],
-  '@babel/transform-runtime',
-  '@babel/plugin-syntax-dynamic-import'
+  '@babel/transform-runtime'
 ];
 
 const testPlugins = [
-  '@babel/plugin-transform-modules-commonjs',
-  'babel-plugin-dynamic-import-node'
+  '@babel/plugin-transform-modules-commonjs'
 ];
 
 module.exports = {
