@@ -38,6 +38,7 @@
     "test": "eslint 'src/**/*.{js,jsx}'"
   },
   "peerDependencies": {
+    "@babel/runtime": "^7.0.0-beta.52",
     "@wix/draft-js": "^0.10.163",
     "lodash": "^4.0.0",
     "prop-types": "^15.0.0",

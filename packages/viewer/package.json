@@ -53,6 +53,7 @@
     "wnpm-ci": "latest"
   },
   "peerDependencies": {
+    "@babel/runtime": "^7.0.0-beta.52",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0"
   },
