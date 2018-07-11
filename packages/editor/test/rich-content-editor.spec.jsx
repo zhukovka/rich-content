@@ -1,34 +1,27 @@
 import React from 'react';
 import { RichContentEditor } from '../src/index';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import TestData from './TestData/initial-state';
-
-const flushPromises = () => new Promise(resolve => setImmediate(resolve));
 
 describe('RichContentEditor', () => {
 
   it('should render', async () => {
-    const wrapper = mount(<RichContentEditor />);
-    await flushPromises();
+    const wrapper = shallow(<RichContentEditor/>);
     expect(wrapper.html()).toEqual(expect.stringContaining('class="DraftEditor-root"'));
   });
 
   it('should render edit mode', async () => {
-    const wrapper = mount(<RichContentEditor />);
-    await flushPromises();
+    const wrapper = shallow(<RichContentEditor />);
     expect(wrapper.html()).toEqual(expect.stringContaining('contenteditable="true"'));
   });
 
   it('should render read only mode', async () => {
-    const wrapper = mount(<RichContentEditor readOnly />);
-    await flushPromises();
+    const wrapper = shallow(<RichContentEditor readOnly />);
     expect(wrapper.html()).toEqual(expect.stringContaining('contenteditable="false"'));
-
   });
 
   it('should render text only', async () => {
-    const wrapper = mount(<RichContentEditor initialState={TestData.onlyText} />);
-    await flushPromises();
+    const wrapper = shallow(<RichContentEditor initialState={TestData.onlyText} />);
     expect(wrapper.html()).toEqual(expect.stringContaining('Hello text only'));
   });
   // it('should render legacy image', () => {
