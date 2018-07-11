@@ -32,10 +32,11 @@ const getInline = mergedStyles => {
 
 const getList = (ordered, mergedStyles) =>
   (children, blockProps) => {
+    const fixedChildren = children.map(child => child.length ? child : [' ']);
     const className = ordered ? 'ordered' : 'unordered';
     return (
       <List key={blockProps.keys[0]} keys={blockProps.keys} depth={blockProps.depth} ordered={ordered}>
-        {children.map((child, i) => {
+        {fixedChildren.map((child, i) => {
           // NOTE: list block data is an array of data entries per list item
           const dataEntry = blockProps.data.length > i ? [blockProps.data[i]] : [{}];
           return withTextAlignment(<li className={mergedStyles[`${className}List`]} key={blockProps.keys[i]}><div>{child}</div></li>,
