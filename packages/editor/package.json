@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "wix-rich-content-editor",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -24,7 +24,7 @@
     "poststatics": "npm run icons",
     "icons": "svgr -d dist/statics/icons dist/statics/icons",
     "posticons": "create-index -r ./dist/statics/icons && npm run babel:icons",
-    "prewatch": "npm run clean && npm run statics",
+    "prewatch": "npm run clean && mkdir -p dist && npm run statics",
     "watch": "npm run babel:es -- --watch",
     "release": "wnpm-release --no-shrinkwrap",
     "lint": "eslint 'src/**/*.{js,jsx}'",
@@ -62,6 +62,7 @@
     "wnpm-ci": "latest"
   },
   "peerDependencies": {
+    "@babel/runtime": "^7.0.0-beta.52",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0"
   },

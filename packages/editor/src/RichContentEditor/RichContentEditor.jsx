@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { EditorState, convertFromRaw } from '@wix/draft-js';
+import { EditorState, convertFromRaw, CompositeDecorator } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
@@ -20,9 +20,11 @@ import {
   getModalStyles,
   normalizeInitialState,
   hasLinksInSelection,
-  removeLinksInSelection
+  removeLinksInSelection,
+  createInlineStyleDecorators,
+  mergeStyles
 } from 'wix-rich-content-common';
-import createInlineStyleDecorators from './Decorators/inline-style-decorators';
+import { getStrategyByStyle } from './getStrategyByStyle';
 import styles from '../../statics/styles/rich-content-editor.scss';
 import draftStyles from '../../statics/styles/draft.scss';
 
@@ -259,6 +261,7 @@ class RichContentEditor extends Component {
       handlePastedText,
     } = this.props;
     const { editorState, theme } = this.state;
+    const mergedStyles = mergeStyles({ styles, theme }); // TODO: refactor the whole class to use merged styles
     return (
       <Editor
         ref={this.setEditor}
@@ -269,7 +272,6 @@ class RichContentEditor extends Component {
         handlePastedText={handlePastedText}
         plugins={this.plugins}
         blockStyleFn={blockStyleFn(theme)}
-        handleReturn={handleReturnCommand(this.updateEditorState)}
         handleKeyCommand={handleKeyCommand(this.updateEditorState, this.customCommandHandlers)}
         editorKey={editorKey}
         keyBindingFn={keyBindingFn}
@@ -292,7 +294,7 @@ class RichContentEditor extends Component {
         onBlur={onBlur}
         onFocus={onFocus}
         textAlignment={textAlignment}
-        decorators={[createInlineStyleDecorators(theme)]}
+        decorators={[new CompositeDecorator(createInlineStyleDecorators(getStrategyByStyle, mergedStyles))]}
       />
     );
   };

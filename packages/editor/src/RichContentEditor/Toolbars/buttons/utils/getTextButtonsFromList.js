@@ -4,8 +4,6 @@ import {
   ItalicButton,
   UnderlineButton,
   IndentButton,
-  TitleButton,
-  InlineTitleButton,
   BlockquoteButton,
   TextAlignmentButton,
   AlignTextLeftButton,
@@ -17,6 +15,7 @@ import {
   TextLinkButton,
 } from '../index';
 import createThemedSeparator from './createThemedSeparator';
+import HeadingSwitchButton from '../inline-styling/HeadingSwitchButton';
 
 export default ({ buttons, theme, t, isMobile }) => {
   const themedSeparator = horizontal => createThemedSeparator({ theme, horizontal });
@@ -36,10 +35,7 @@ export default ({ buttons, theme, t, isMobile }) => {
         structure.push(IndentButton);
         break;
       case 'Title':
-        structure.push(TitleButton);
-        break;
-      case 'InlineTitle':
-        structure.push(InlineTitleButton);
+        structure.push(HeadingSwitchButton);
         break;
       case 'Blockquote':
         structure.push(BlockquoteButton);

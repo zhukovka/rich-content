@@ -2,15 +2,8 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
 import { RichContentModal, mergeStyles, Button, normalizeInitialState } from 'wix-rich-content-common';
-import { LinkStrategy, RichContentViewer } from 'wix-rich-content-viewer';
+import { LinkStrategy, RichContentViewer } from 'wix-rich-content-viewer'; // TODO: move LinkStrategy to link-plugin
 import RichContentRawDataViewer from './RichContentRawDataViewer';
-
-import 'wix-rich-content-viewer/dist/styles.css';
-import 'wix-rich-content-plugin-video/dist/viewer.css';
-import 'wix-rich-content-plugin-image/dist/viewer.css';
-import 'wix-rich-content-plugin-divider/dist/viewer.css';
-import 'wix-rich-content-plugin-html/dist/viewer.css';
-import 'wix-rich-content-plugin-link/dist/viewer.css';
 
 import { videoTypeMapper } from 'wix-rich-content-plugin-video';
 import { imageTypeMapper } from 'wix-rich-content-plugin-image';

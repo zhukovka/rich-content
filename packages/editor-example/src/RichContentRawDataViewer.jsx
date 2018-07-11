@@ -23,6 +23,7 @@ class RichContentRawDataViewer extends Component {
   }
 
   fixKeys(content) {
+    let fixed = {};
     if (content && content.entityMap) {
       let fixedEntityMap = Object.keys(content.entityMap).reduce((map, key) => {
         const entity = content.entityMap[key];
@@ -38,8 +39,22 @@ class RichContentRawDataViewer extends Component {
 
       }, {});
 
-      return Object.assign({}, content, { entityMap: fixedEntityMap });
+      fixed = Object.assign({}, content, { entityMap: fixedEntityMap });
     }
+
+    if (fixed && fixed.blocks) {
+      const fixedBlocks = fixed.blocks.map(block => {
+        if(block.text) {
+          block.text = this.escapeNewLine(block.text);
+        }
+        return block;
+      });
+      return Object.assign({}, fixed, { blocks: fixedBlocks });
+    }
+  }
+
+  escapeNewLine(text) {
+    return text.replace(/[\n\r]/gmui, '\\n');
   }
 
   escapeHtml(text) {

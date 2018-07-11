@@ -20,27 +20,20 @@ const commonPresets = [
 
 const commonPlugins = [
   ['@babel/plugin-proposal-class-properties', { loose: true }],
-  '@babel/transform-runtime',
+  '@babel/transform-runtime'
 ];
 
 const testPlugins = [
-  '@babel/plugin-transform-modules-commonjs',
-  '@babel/plugin-syntax-dynamic-import'
+  '@babel/plugin-transform-modules-commonjs'
 ];
 
 module.exports = {
   presets: [presetEnvESM, ...commonPresets],
-  plugins: [
-    ...commonPlugins,
-    'syntax-dynamic-import'
-  ],
+  plugins: [...commonPlugins],
   env: {
     commonjs: {
       presets: [presetEnvCommonJS, ...commonPresets],
-      plugins: [
-        ...commonPlugins,
-        '@babel/plugin-syntax-dynamic-import'
-      ]
+      plugins: [...commonPlugins]
     },
     test: {
       presets: [presetEnvCommonJS, ...commonPresets],
