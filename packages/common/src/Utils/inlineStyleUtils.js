@@ -25,6 +25,7 @@ export const getSelectionStyles = (allStyles, editorState) => {
       // if style range is in selection, add this style to result
       return selectedStyles.concat(blockStyleRanges
         .filter(range => isInSelectionRange(blockSelectionRange, [range.start, range.end]))
-        .map(range => range.style));
+        .map(range => range.style))
+        .filter(style => !selectedStyles.includes(style));
     }, []);
 };
