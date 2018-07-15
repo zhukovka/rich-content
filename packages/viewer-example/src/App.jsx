@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
 import { RichContentModal, mergeStyles, Button, normalizeInitialState } from 'wix-rich-content-common';
-import { LinkStrategy, RichContentViewer } from 'wix-rich-content-viewer'; // TODO: move LinkStrategy to link-plugin
+import { RichContentViewer } from 'wix-rich-content-viewer';
 import RichContentRawDataViewer from './RichContentRawDataViewer';
 
 import { videoTypeMapper } from 'wix-rich-content-plugin-video';
@@ -10,7 +10,7 @@ import { imageTypeMapper } from 'wix-rich-content-plugin-image';
 import { galleryTypeMapper } from 'wix-rich-content-plugin-gallery';
 import { dividerTypeMapper } from 'wix-rich-content-plugin-divider';
 import { htmlTypeMapper } from 'wix-rich-content-plugin-html';
-import { linkTypeMapper, LinkViewer } from 'wix-rich-content-plugin-link';
+import { linkTypeMapper, LinkViewer, LinkParseStrategy } from 'wix-rich-content-plugin-link';
 
 import { Strategy as HashTagStrategy, Component as HashTag } from 'wix-rich-content-plugin-hashtag';
 
@@ -51,7 +51,7 @@ class App extends Component {
       linkTypeMapper];
 
     this.decorators = [{
-        strategy: LinkStrategy,
+        strategy: LinkParseStrategy,
         component: ({ children, decoratedText, rel, target }) =>
         <LinkViewer componentData={{ rel, target, url: decoratedText }} anchorTarget={anchorTarget} relValue={relValue}> {children} </LinkViewer>
       }, {

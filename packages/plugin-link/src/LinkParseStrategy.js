@@ -1,6 +1,6 @@
 import { getUrlMatches } from 'wix-rich-content-common';
 
-export const LinkStrategy = (contentBlock, callback) => {
+export const LinkParseStrategy = (contentBlock, callback) => {
   const text = contentBlock.getText();
   if (!text) {
     return [];
