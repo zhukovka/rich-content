@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-viewer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -36,20 +36,10 @@
     }
   },
   "dependencies": {
-    "babel-runtime": "^6.26.0",
     "classnames": "^2.2.6",
-    "decorate-component-with-props": "^1.1.0",
-    "draft-js-drag-n-drop-plugin": "^2.0.1",
-    "draft-js-focus-plugin": "^2.0.1",
-    "draft-js-plugins-editor": "^2.0.1",
-    "focus-trap-react": "^3.1.2",
-    "i18next": "^10.5.0",
-    "linkify-it": "^2.0.3",
     "lodash": "^4.17.10",
-    "photography-client-lib": "^1.0.69",
-    "react-i18next": "^7.6.1",
     "redraft": "^0.9.0",
-    "wix-rich-content-common": "^1.1.0",
+    "wix-rich-content-common": "^1.1.2",
     "wnpm-ci": "latest"
   },
   "peerDependencies": {
@@ -62,7 +52,6 @@
     "@babel/core": "^7.0.0-beta.52",
     "@babel/runtime": "^7.0.0-beta.52",
     "@svgr/cli": "^2.0.0",
-    "@wix/draft-js": "^0.10.163",
     "enzyme": "^2.9.1",
     "eslint": "^4.19.1",
     "eslint-config-wix": "^1.1.18",
@@ -70,8 +59,6 @@
     "eslint-plugin-lodash": "^2.7.0",
     "eslint-plugin-react": "^7.7.0",
     "jest": "^23.1.0",
-    "mini-css-extract-plugin": "^0.4.0",
-    "node-sass": "^4.8.3",
     "prop-types": "^15.6.2",
     "react": "15.5.4",
     "react-dom": "15.5.4",
