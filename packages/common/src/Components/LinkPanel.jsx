@@ -96,9 +96,16 @@ class LinkPanel extends Component {
     }
   };
 
-  handleKeyPress = e => {
-    if (e.charCode === 13) {
-      this.validateUrl();
+  handleKeyDown = e => {
+    const { onEnter, onEscape } = this.props;
+    if (e.key === 'Enter') { // TODO: only the 2nd 'Enter' key closes the panel because of setState() call in the validateUrl
+      if (onEnter) {
+        onEnter(e);
+      } else {
+        this.validateUrl();
+      }
+    } else if (e.key === 'Escape') {
+      onEscape && onEscape(e);
     }
   };
 
@@ -118,7 +125,7 @@ class LinkPanel extends Component {
       <div className={styles.linkPanel_Content} {...ariaProps} role="form">
         <div className={styles.linkPanel_Input}>
           <input
-            onKeyPress={this.handleKeyPress}
+            onKeyDown={this.handleKeyDown}
             tabIndex="0" type="url" ref={ref => (this.input = ref)} className={textInputClassName} placeholder={this.inputPlaceholder}
             data-hook="linkPanelInput" onChange={this.handleIntermediateUrlChange} onBlur={this.validateUrl} value={this.state.intermediateUrl}
           />
@@ -163,5 +170,7 @@ LinkPanel.propTypes = {
   onTargetBlankChange: PropTypes.func,
   onNofollowChange: PropTypes.func,
   onValidateUrl: PropTypes.func,
+  onEnter: PropTypes.func,
+  onEscape: PropTypes.func,
 };
 export default LinkPanel;
