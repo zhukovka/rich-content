@@ -24,7 +24,7 @@ export default class LinkButton extends Component {
         styles.inlineToolbarButton_wrapper,
         {
           [buttonStyles.inlineToolbarButton_wrapper]: !!buttonStyles.inlineToolbarButton_wrapper,
-          [buttonStyles.inlineToolbarButton_wrapper]: !!buttonStyles.inlineToolbarButton_wrapper,
+          [buttonStyles.pluginToolbarButton_wrapper]: !!buttonStyles.pluginToolbarButton_wrapper,
         }
       ),
       icon: classNames(styles.inlineToolbarButton_icon,
