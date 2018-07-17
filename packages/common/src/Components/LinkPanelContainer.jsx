@@ -64,6 +64,7 @@ class LinkPanelContainer extends Component {
       <FocusManager className={linkPanelContainerClassName} data-hook="linkPanelContainer" role="form" {...ariaProps}>
         <div className={styles.linkPanel_content}>
           <LinkPanel
+            onEnter={e => this.onDoneClick(e)} onEscape={e => this.onCancelClick(e)}
             ref={this.setLinkPanel} theme={theme} url={url} targetBlank={targetBlank} anchorTarget={anchorTarget}
             relValue={relValue} nofollow={nofollow} t={t} ariaProps={{ 'aria-label': 'Link management' }}
           />
