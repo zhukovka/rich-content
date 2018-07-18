@@ -76,12 +76,20 @@ class ImageViewer extends React.Component {
     return imageUrl;
   }
 
+  onHighResLoad = e => {
+    e.target.style.opacity = 1;
+    this.preloadImage && (this.preloadImage.style.opacity = 0);
+  };
+
   renderImage(imageClassName, imageSrc, alt, props) {
     return [
-      <img key="preload" className={classNames(imageClassName, this.styles.imagePreload)} src={imageSrc.preload} alt={alt} />,
+      <img
+        key="preload" ref={ref => this.preloadImage = ref}
+        className={classNames(imageClassName, this.styles.imagePreload)} src={imageSrc.preload} alt={alt}
+      />,
       <img
         {...props} key="highres" className={classNames(imageClassName, this.styles.imageHighres)} src={imageSrc.highres} alt={alt}
-        onLoad={e => e.target.style.opacity = 1}
+        onLoad={e => this.onHighResLoad(e)}
       />
     ];
   }
