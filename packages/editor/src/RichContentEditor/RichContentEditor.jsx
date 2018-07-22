@@ -7,23 +7,16 @@ import get from 'lodash/get';
 import includes from 'lodash/includes';
 import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
+import { AccessibilityListener, normalizeInitialState, createInlineStyleDecorators, mergeStyles } from 'wix-rich-content-common';
+
 import createEditorToolbars from './Toolbars';
 import createPlugins from './createPlugins';
-import { keyBindingFn, COMMANDS } from './keyBindings';
+import { keyBindingFn, initPluginKeyBindings } from './keyBindings';
 import handleKeyCommand from './handleKeyCommand';
 import handleReturnCommand from './handleReturnCommand';
 import blockStyleFn from './blockStyleFn';
 import { getStaticTextToolbarId } from './Toolbars/toolbar-id';
-import {
-  EditorModals,
-  AccessibilityListener,
-  getModalStyles,
-  normalizeInitialState,
-  hasLinksInSelection,
-  removeLinksInSelection,
-  createInlineStyleDecorators,
-  mergeStyles
-} from 'wix-rich-content-common';
+
 import { getStrategyByStyle } from './getStrategyByStyle';
 import styles from '../../statics/styles/rich-content-editor.scss';
 import draftStyles from '../../statics/styles/draft.scss';
@@ -50,12 +43,16 @@ class RichContentEditor extends Component {
       t,
     } = this.props;
     const { theme } = this.state;
-    const { pluginInstances, pluginButtons } = createPlugins({ plugins, config, helpers, theme, t, isMobile, anchorTarget, relValue });
-    this.initEditorToolbars(pluginButtons);
+    const getEditorState = () => this.state.editorState;
+    const setEditorState = editorState => this.setState({ editorState });
+    const { pluginInstances, pluginButtons, pluginTextButtonMappers } =
+      createPlugins({ plugins, config, helpers, theme, t, isMobile, anchorTarget, relValue, getEditorState, setEditorState });
+    this.initEditorToolbars(pluginButtons, pluginTextButtonMappers);
+    this.pluginKeyBindings = initPluginKeyBindings(pluginTextButtonMappers);
     this.plugins = [...pluginInstances, ...Object.values(this.toolbars)];
   }
 
-  initEditorToolbars(pluginButtons) {
+  initEditorToolbars(pluginButtons, pluginTextButtonMappers) {
     const {
       helpers,
       anchorTarget,
@@ -69,7 +66,7 @@ class RichContentEditor extends Component {
       t,
     } = this.props;
     const { theme } = this.state;
-    const buttons = { textButtons, pluginButtons };
+    const buttons = { textButtons, pluginButtons, pluginTextButtonMappers };
 
     this.toolbars = createEditorToolbars({
       buttons,
@@ -134,17 +131,6 @@ class RichContentEditor extends Component {
     }
   }
 
-  openLinkModal() {
-    const { helpers, isMobile, anchorTarget, relValue, t, theme } = this.props;
-    const modalStyles = getModalStyles({ fullScreen: false });
-    if (helpers && helpers.openModal) {
-      const modalProps = { helpers, modalStyles, isMobile, getEditorState: () => this.state.editorState,
-        setEditorState: editorState => this.setState({ editorState }), t, theme, anchorTarget,
-        relValue, modalName: EditorModals.MOBILE_TEXT_LINK_MODAL, hidePopup: helpers.closeModal };
-      helpers.openModal(modalProps);
-    }
-  }
-
   // TODO: get rid of this ASAP!
   // this is done to ensure fixed tooltips have transformed parent for scrolling
   componentDidMount() {
@@ -174,25 +160,24 @@ class RichContentEditor extends Component {
     this.props.onChange && this.props.onChange(editorState);
   };
 
-  get customCommandHandlers() {
-    return {
-      [COMMANDS.LINK]: editorState => {
-        if (hasLinksInSelection(editorState)) {
-          return removeLinksInSelection(editorState);
-        } else {
-          this.openLinkModal();
-        }
-      },
-      [COMMANDS.TAB]: () => {
+  getCustomCommandHandlers = () => ({
+    commands: [...this.pluginKeyBindings.commands, {
+      command: 'tab',
+      modifiers: [],
+      key: 'Tab'
+    }],
+    commandHanders: {
+      ...this.pluginKeyBindings.commandHandlers,
+      tab: () => {
         if (this.getToolbars().TextToolbar) {
           const staticToolbarButton = this.findFocusableChildForElement(`${getStaticTextToolbarId(this.refId)}`);
           staticToolbarButton && staticToolbarButton.focus();
         } else {
           this.editor.blur();
         }
-      }
-    };
-  }
+      },
+    }
+  });
 
   focus = () => this.editor.focus();
 
@@ -272,9 +257,9 @@ class RichContentEditor extends Component {
         handlePastedText={handlePastedText}
         plugins={this.plugins}
         blockStyleFn={blockStyleFn(theme)}
-        handleKeyCommand={handleKeyCommand(this.updateEditorState, this.customCommandHandlers)}
+        handleKeyCommand={handleKeyCommand(this.updateEditorState, this.getCustomCommandHandlers().commandHanders)}
         editorKey={editorKey}
-        keyBindingFn={keyBindingFn}
+        keyBindingFn={keyBindingFn(this.getCustomCommandHandlers().commands || [])}
         helpers={helpers}
         tabIndex={tabIndex}
         placeholder={placeholder || ''}
