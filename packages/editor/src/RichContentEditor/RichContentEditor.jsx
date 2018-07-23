@@ -324,7 +324,10 @@ RichContentEditor.propTypes = {
   t: PropTypes.func,
   sideToolbarOffset: PropTypes.object,
   hideFooterToolbar: PropTypes.bool,
-  textButtons: PropTypes.arrayOf(PropTypes.string),
+  textButtons: PropTypes.shape({
+    desktop: PropTypes.arrayOf(PropTypes.string),
+    mobile: PropTypes.arrayOf(PropTypes.string)
+  }),
   textToolbarType: PropTypes.oneOf(['inline', 'static']),
   plugins: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.func])),
   config: PropTypes.object,
