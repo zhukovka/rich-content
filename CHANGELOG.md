@@ -9,5 +9,5 @@
 
 #### :boom: Breaking Change
 * `editor`
-  * Default `locale` is `"en"`, English texts are imported statically.  Set the `locale` and `localeResource` props to use another language.
-
+  * * [#58](https://github.com/wix-incubator/rich-content/pull/58) Default `locale` is `'en'`, English texts are imported statically.  
+  Set the `locale` and `localeResource` props to use another language.
