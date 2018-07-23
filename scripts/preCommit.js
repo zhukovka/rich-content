@@ -6,25 +6,11 @@ const chalk = require('chalk');
 const isEmpty = require('lodash/isEmpty');
 
 const baseDir = 'packages/';
-const ignoredPackages = ['editor-example', 'editor-tpa', 'viewer-example'];
 
 const dirsWithModifiedFiles = execSync('git status --porcelain=1')
   .toString()
   .split('\n')
-  .filter(s => {
-    if (!s.startsWith(' ') && !s.startsWith('?') && s.indexOf(baseDir) !== -1) {
-      let isValidPkg = true;
-      for (const i of ignoredPackages) {
-        if (s.indexOf(i) !== -1) {
-          isValidPkg = false;
-          break;
-        }
-      }
-      return isValidPkg;
-    } else {
-      return false;
-    }
-  })
+  .filter(s => !s.startsWith(' ') && !s.startsWith('?') && s.indexOf(baseDir) !== -1)
   .map(status => {
     const statusArr = status.trim().split(' ');
     const filePath = statusArr[statusArr.length - 1];

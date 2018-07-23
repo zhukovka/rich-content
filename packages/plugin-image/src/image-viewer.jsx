@@ -76,12 +76,20 @@ class ImageViewer extends React.Component {
     return imageUrl;
   }
 
+  onHighResLoad = e => {
+    e.target.style.opacity = 1;
+    this.preloadImage && (this.preloadImage.style.opacity = 0);
+  };
+
   renderImage(imageClassName, imageSrc, alt, props) {
     return [
-      <img key="preload" className={classNames(imageClassName, this.styles.imagePreload)} src={imageSrc.preload} alt={alt} />,
+      <img
+        key="preload" ref={ref => this.preloadImage = ref}
+        className={classNames(imageClassName, this.styles.imagePreload)} src={imageSrc.preload} alt={alt}
+      />,
       <img
         {...props} key="highres" className={classNames(imageClassName, this.styles.imageHighres)} src={imageSrc.highres} alt={alt}
-        onLoad={e => e.target.style.opacity = 1}
+        onLoad={e => this.onHighResLoad(e)}
       />
     ];
   }
@@ -139,9 +147,14 @@ class ImageViewer extends React.Component {
     const itemClassName = classNames(styles.imageContainer, className);
     const imageClassName = classNames(styles.image);
     const imageSrc = this.getImageSrc(data.src);
-    const imageProps = data.src && settings && isFunction(settings.imageProps) ? settings.imageProps(data.src) : settings && settings.imageProps;
+    let imageProps = {};
+    if (data.src && settings && isFunction(settings.imageProps)) {
+      imageProps = settings.imageProps(data.src);
+    } else if (data.src && settings) {
+      imageProps = settings.imageProps;
+    }
 
-    /* eslint-disable jsx-a11y/no-static-element-interactions */
+
     return (
       <div
         data-hook="imageViewer" onClick={onClick} className={itemClassName} onKeyDown={e => this.onKeyDown(e, onClick)}
@@ -156,7 +169,7 @@ class ImageViewer extends React.Component {
         {shouldRenderCaption && this.renderCaption(metadata.caption, isFocused, readOnly, styles, defaultCaption)}
       </div>
     );
-    /* eslint-enable jsx-a11y/no-static-element-interactions */
+
   }
 }
 

@@ -9,7 +9,7 @@
 3. Build the modules by running one of the following:
     1. `npm run build` - build once
     2. `npm run watch` - rebuild on changes
-4. Choose an example and run `npm start`.
+4. Choose an [example](https://github.com/wix-incubator/rich-content/tree/master/examples/) and run `npm start`.
 
 
 ## Modules
@@ -33,6 +33,6 @@
 
 
 ##### Examples
-[rich-content-editor-example](https://github.com/wix-incubator/rich-content/tree/master/pacakges/editor-example) to see how to consume the Component as an editor.  
-[rich-content-viewer-example](https://github.com/wix-incubator/rich-content/tree/master/pacakges/viewer-example) to see how to consume the Component as a viewer.  
-[rich-content-editor-tpa](https://github.com/wix-incubator/rich-content/tree/master/pacakges/editor-tpa) to see how to consume the Component as an editor within a Wix Third Party Application.  
+[rich-content-editor-example](https://github.com/wix-incubator/rich-content/tree/master/examples/editor) to see how to consume the Component as an editor.  
+[rich-content-viewer-example](https://github.com/wix-incubator/rich-content/tree/master/examples/viewer) to see how to consume the Component as a viewer.  
+[rich-content-editor-tpa](https://github.com/wix-incubator/rich-content/tree/master/examples/editor-tpa) to see how to consume the Component as an editor within a Wix Third Party Application.  

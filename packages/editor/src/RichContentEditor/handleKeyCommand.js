@@ -1,12 +1,8 @@
 import { EditorState, RichUtils, Modifier } from '@wix/draft-js';
-import {
-  isAtomicBlockFocused,
-  removeBlock,
-} from 'wix-rich-content-common';
-import { COMMANDS } from './keyBindings';
+import { isAtomicBlockFocused, removeBlock, COMMANDS } from 'wix-rich-content-common';
 
 /* eslint-disable complexity */
-export default (updateEditorState, customHandlers) => (
+export default (updateEditorState, customHandlers) =>
   (command, editorState) => {
     let newState, contentState;
     if (customHandlers[command]) {
@@ -46,7 +42,6 @@ export default (updateEditorState, customHandlers) => (
     }
 
     return 'not-handled';
-  }
-);
+  };
 /* eslint-disable complexity */
 

@@ -2,19 +2,22 @@ import { composeDecorators } from 'draft-js-plugins-editor';
 import createFocusPlugin from 'draft-js-focus-plugin';
 import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
 
-const createPlugins = ({ plugins, config, helpers, theme, t, isMobile, anchorTarget, relValue }) => {
+const createPlugins = ({ plugins, config, helpers, theme, t, isMobile, anchorTarget, relValue, getEditorState, setEditorState }) => {
   const focusPlugin = createFocusPlugin();
   const dndPlugin = createBlockDndPlugin();
 
   const wixPluginsDecorators = composeDecorators(focusPlugin.decorator, dndPlugin.decorator);
-  const wixPluginConfig = { decorator: wixPluginsDecorators, helpers, theme, t, isMobile, anchorTarget, relValue, ...config };
+  const wixPluginConfig = {
+    decorator: wixPluginsDecorators,
+    helpers, theme, t, isMobile, anchorTarget, relValue, getEditorState, setEditorState, ...config
+  };
   const wixPlugins = (plugins || []).map(createPlugin => createPlugin(wixPluginConfig));
 
-  const pluginButtons = [];
+  let pluginButtons = [];
+  let pluginTextButtonMappers = [];
   wixPlugins.forEach(wixPlugin => {
-    wixPlugin.InsertPluginButtons && wixPlugin.InsertPluginButtons.forEach(insertPluginButton => {
-      pluginButtons.push(insertPluginButton);
-    });
+    pluginButtons = [...pluginButtons, ...(wixPlugin.InsertPluginButtons || [])];
+    pluginTextButtonMappers = [...pluginTextButtonMappers, ...(wixPlugin.TextButtonMapper ? [wixPlugin.TextButtonMapper] : [])];
   });
 
   const pluginInstances = [
@@ -25,7 +28,8 @@ const createPlugins = ({ plugins, config, helpers, theme, t, isMobile, anchorTar
 
   return {
     pluginInstances,
-    pluginButtons
+    pluginButtons,
+    pluginTextButtonMappers
   };
 };
 
