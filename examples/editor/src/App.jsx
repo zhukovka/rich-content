@@ -278,7 +278,6 @@ class App extends Component {
                     isMobile={this.isMobile()}
                     textToolbarType={this.state.textToolbarType}
                     theme={theme}
-                    locale={'en'}
                     editorKey={'random-editorKey-ssr'}
                     anchorTarget={anchorTarget}
                     relValue={relValue}
