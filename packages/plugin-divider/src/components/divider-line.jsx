@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { LINE_DOUBLE } from '../constants';
 
-const getLines = (type, width = 740, multilineDinstance = 7) => {
+const getLines = (type, width, multilineDinstance = 7) => {
   switch (type) {
     case LINE_DOUBLE:
       return [
