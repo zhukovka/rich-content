@@ -123,7 +123,8 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
     Toolbar,
     InsertPluginButtons,
     InlineModals,
-    TextButtonMapper
+    TextButtonMapper,
+    pubsub
   };
 
   if (underlyingPlugin) {

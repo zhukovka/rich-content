@@ -53,6 +53,7 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
       pubsub.subscribe('componentSize', this.onComponentSizeChange);
       pubsub.subscribe('componentTextWrap', this.onComponentTextWrapChange);
       pubsub.subscribe('componentLink', this.onComponentLinkChange);
+      pubsub.subscribe('editorBounds', this.onEditorBoundsChange);
     }
 
     componentDidUpdate() {
@@ -68,6 +69,7 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
       pubsub.unsubscribe('componentSize', this.onComponentSizeChange);
       pubsub.unsubscribe('componentTextWrap', this.onComponentTextWrapChange);
       pubsub.unsubscribe('componentLink', this.onComponentLinkChange);
+      pubsub.unsubscribe('editorBounds', this.onEditorBoundsChange);
       pubsub.set('visibleBlock', null);
     }
 
@@ -75,6 +77,10 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
       const { block } = this.props;
       const updatedVisibleBlock = pubsub.get('visibleBlock');
       return updatedVisibleBlock === block.getKey();
+    };
+
+    onEditorBoundsChange = editorBounds => {
+      this.setState({ editorBounds });
     };
 
     onComponentDataChange = componentData => {
@@ -238,6 +244,7 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
           componentState={this.state.componentState}
           helpers={helpers}
           t={t}
+          editorBounds={this.state.editorBounds}
         />
       );
 

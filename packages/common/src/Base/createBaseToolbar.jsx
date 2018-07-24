@@ -58,6 +58,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       pubsub.subscribe('componentSize', this.onComponentSizeChange);
       pubsub.subscribe('componentTextWrap', this.onComponentTextWrapChange);
       pubsub.subscribe('componentLink', this.onComponentLinkChange);
+      pubsub.subscribe('editorBounds', this.onEditorBoundsChange);
       this.handleToolbarScroll();
     }
 
@@ -69,10 +70,15 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
       pubsub.unsubscribe('componentSize', this.onComponentSizeChange);
       pubsub.unsubscribe('componentTextWrap', this.onComponentTextWrapChange);
       pubsub.unsubscribe('componentLink', this.onComponentLinkChange);
+      pubsub.unsubscribe('editorBounds', this.onEditorBoundsChange);
       this.buttons && this.buttons.removeEventListener('scroll', this.handleToolbarScroll);
       window && window.removeEventListener('resize', this.handleToolbarScroll);
       window && window.removeEventListener('orientationchange', this.handleToolbarScroll);
     }
+
+    onEditorBoundsChange = editorBounds => {
+      this.setState({ editorBounds });
+    };
 
     onOverrideContent = overrideContent => {
       this.setState({ overrideContent }, () => {
