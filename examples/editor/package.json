@@ -7,7 +7,6 @@
     "email": "jonathanb@wix.com"
   },
   "dependencies": {
-    "@wix/draft-js": "^0.10.163",
     "@babel/core": "^7.0.0-beta.52",
     "babel-eslint": "8.1.0",
     "babel-jest": "^23.2.0",
