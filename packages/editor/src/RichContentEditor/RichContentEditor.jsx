@@ -5,6 +5,7 @@ import { EditorState, convertFromRaw, CompositeDecorator } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
+import Measure from 'react-measure';
 import { translate } from 'react-i18next';
 import { baseUtils } from 'photography-client-lib/dist/src/utils/baseUtils';
 import { AccessibilityListener, normalizeInitialState, createInlineStyleDecorators, mergeStyles } from 'wix-rich-content-common';
@@ -45,11 +46,12 @@ class RichContentEditor extends Component {
     const { theme } = this.state;
     const getEditorState = () => this.state.editorState;
     const setEditorState = editorState => this.setState({ editorState });
-    const { pluginInstances, pluginButtons, pluginTextButtonMappers } =
+    const { pluginInstances, pluginButtons, pluginTextButtonMappers, pubsubs } =
       createPlugins({ plugins, config, helpers, theme, t, isMobile, anchorTarget, relValue, getEditorState, setEditorState });
     this.initEditorToolbars(pluginButtons, pluginTextButtonMappers);
     this.pluginKeyBindings = initPluginKeyBindings(pluginTextButtonMappers);
     this.plugins = [...pluginInstances, ...Object.values(this.toolbars)];
+    this.subscriberPubsubs = pubsubs || [];
   }
 
   initEditorToolbars(pluginButtons, pluginTextButtonMappers) {
@@ -185,6 +187,10 @@ class RichContentEditor extends Component {
 
   setEditor = ref => this.editor = get(ref, 'editor', ref);
 
+  updateBounds = editorBounds => {
+    this.subscriberPubsubs.forEach(pubsub => pubsub.set('editorBounds', editorBounds));
+  };
+
   renderToolbars = () => {
     if (!this.props.readOnly) {
       const toolbarsToIgnore = [
@@ -302,14 +308,17 @@ class RichContentEditor extends Component {
       }
     );
     return (
-      <div style={this.props.style} className={wrapperClassName}>
-        <div className={classNames(styles.editor, theme.editor)}>
-          {this.renderAccessibilityListener()}
-          {this.renderEditor()}
-          {this.renderToolbars()}
-          {this.renderInlineModals()}
-        </div>
-      </div>
+      <Measure bounds onResize={({ bounds }) => this.updateBounds(bounds)}>
+        {({ measureRef }) => (
+          <div style={this.props.style} ref={measureRef} className={wrapperClassName}>
+            <div className={classNames(styles.editor, theme.editor)}>
+              {this.renderAccessibilityListener()}
+              {this.renderEditor()}
+              {this.renderToolbars()}
+              {this.renderInlineModals()}
+            </div>
+          </div>)}
+      </Measure>
     );
   }
 }

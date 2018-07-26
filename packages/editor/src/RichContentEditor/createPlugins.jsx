@@ -15,9 +15,11 @@ const createPlugins = ({ plugins, config, helpers, theme, t, isMobile, anchorTar
 
   let pluginButtons = [];
   let pluginTextButtonMappers = [];
+  let pubsubs = [];
   wixPlugins.forEach(wixPlugin => {
     pluginButtons = [...pluginButtons, ...(wixPlugin.InsertPluginButtons || [])];
     pluginTextButtonMappers = [...pluginTextButtonMappers, ...(wixPlugin.TextButtonMapper ? [wixPlugin.TextButtonMapper] : [])];
+    pubsubs = [...pubsubs, ...(wixPlugin.pubsub ? [wixPlugin.pubsub] : [])];
   });
 
   const pluginInstances = [
@@ -29,7 +31,8 @@ const createPlugins = ({ plugins, config, helpers, theme, t, isMobile, anchorTar
   return {
     pluginInstances,
     pluginButtons,
-    pluginTextButtonMappers
+    pluginTextButtonMappers,
+    pubsubs
   };
 };
 

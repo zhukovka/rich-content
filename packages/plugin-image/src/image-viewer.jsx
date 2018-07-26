@@ -154,7 +154,7 @@ class ImageViewer extends React.Component {
       imageProps = settings.imageProps;
     }
 
-
+    /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
       <div
         data-hook="imageViewer" onClick={onClick} className={itemClassName} onKeyDown={e => this.onKeyDown(e, onClick)}
@@ -169,6 +169,7 @@ class ImageViewer extends React.Component {
         {shouldRenderCaption && this.renderCaption(metadata.caption, isFocused, readOnly, styles, defaultCaption)}
       </div>
     );
+    /* eslint-enable jsx-a11y/no-static-element-interactions */
 
   }
 }

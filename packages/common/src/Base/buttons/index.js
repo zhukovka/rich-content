@@ -115,7 +115,9 @@ export const WidthButton = createSliderPanelButton({
   tooltipTextKey: 'WidthButton_Tooltip',
   getValue: ({ componentData }) => componentData.config.width,
   onChange: ({ store }) => width => {
-    if (width >= 740 && store.get('componentAlignment')) {
+    const bounds = store.get('editorBounds');
+    const editorWidth = bounds ? bounds.width : 740;
+    if (width >= editorWidth && store.get('componentAlignment')) {
       store.set('componentAlignment', 'center');
     }
 
