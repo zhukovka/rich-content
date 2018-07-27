@@ -4,7 +4,7 @@ import { CODE_BLOCK_TYPE } from './types';
 import PrismDecorator from './PrismDecorator';
 import createCodeBlockToolbar from './toolbar/createCodeBlockToolbar';
 
-const createUnderlyingPlugin = () => ({
+const createUnderlyingPlugin = ({ theme }) => ({
   keyBindingFn: (event, { getEditorState }) => {
     if (CodeUtils.hasSelectionInBlock(getEditorState())) {
       return CodeUtils.getKeyBinding(event);
@@ -50,13 +50,13 @@ const createUnderlyingPlugin = () => ({
     return 'not-handled';
   },
 
-  decorators: [new PrismDecorator()],
+  decorators: [new PrismDecorator(theme)],
 });
 
 const createCodeBlockPlugin = (config = {}) => {
   const type = CODE_BLOCK_TYPE;
   const { decorator, helpers, theme, isMobile, t, anchorTarget, relValue, getEditorState, setEditorState } = config;
-  const plugin = createUnderlyingPlugin();
+  const plugin = createUnderlyingPlugin({ theme });
   const toolbar = createCodeBlockToolbar({
     helpers,
     theme,

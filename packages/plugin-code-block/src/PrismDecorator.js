@@ -10,6 +10,11 @@ const CODE_TOKEN_CLASS_NAMES = highlightingTheme;
 
 export default class PrismDecorator {
   highlighted = {};
+  theme;
+
+  constructor(theme = {}) {
+    this.theme = theme;
+  }
 
   getDecorations(block) {
     const blockKey = block.getKey();
@@ -49,7 +54,7 @@ export default class PrismDecorator {
   getComponentForKey() {
     return props => {
       const { type } = props; // eslint-disable-line react/prop-types
-      const className = classNames(CODE_TOKEN_CLASS_NAMES[type]);
+      const className = classNames(CODE_TOKEN_CLASS_NAMES[type], this.theme[`codeBlock_${type}`]);
       return <span {...props} className={className}/>;
     };
   }
