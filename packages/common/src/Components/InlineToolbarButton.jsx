@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty';
 import ToolbarButton from './ToolbarButton';
-import { CodeBlockIcon } from '../../statics/icons';
 import styles from '../../statics/styles/inline-toolbar-button.scss';
 
-export default class DefaultInlineToolbarButton extends Component {
+export default class InlineToolbarButton extends Component {
 
   constructor(props) {
     super(props);
@@ -49,7 +48,7 @@ export default class DefaultInlineToolbarButton extends Component {
     isMobile: PropTypes.bool,
     tooltipText: PropTypes.string,
     tabIndex: PropTypes.number,
-    icon: PropTypes.func,
+    icon: PropTypes.func.isRequired,
   };
 
   handleClick = () => this.props.onClick && this.props.onClick();
