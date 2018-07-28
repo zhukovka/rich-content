@@ -1,4 +1,5 @@
 import _reduce from 'lodash/reduce';
+import range from 'lodash/range';
 import React from 'react';
 import Immutable from 'immutable';
 import Prism from 'prismjs';
@@ -32,9 +33,7 @@ export default class PrismDecorator {
     const tokens = Prism.tokenize(blockText, grammar);
     let offset = 0;
 
-    for (let i = 0; i < tokens.length; i++) {
-      const token = tokens[i];
-
+    tokens.forEach(token => {
       if (typeof token === 'string') {
         offset += token.length;
       } else {
@@ -46,7 +45,7 @@ export default class PrismDecorator {
         addDecorations(decorations, offset, offset + getTokenLength(token), resultId);
         offset += getTokenLength(token);
       }
-    }
+    });
 
     return Immutable.List(decorations); // eslint-disable-line new-cap
   }
@@ -80,7 +79,6 @@ function getTokenLength(token) {
 }
 
 function addDecorations(decorations, start, end, componentKey) {
-  for (let i = start; i < end; i++) {
-    decorations[i] = componentKey;
-  }
+  const numRange = range(start, end, 1);
+  numRange.forEach(i => decorations[i] = componentKey);
 }
