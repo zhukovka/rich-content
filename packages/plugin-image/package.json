@@ -60,7 +60,8 @@
     "react-dom": "15.5.4"
   },
   "dependencies": {
-    "wix-rich-content-common": "^1.1.6"
+    "wix-rich-content-common": "^1.1.6",
+    "image-client-api": "1.452.0"
   },
   "unpkg": true,
   "publishConfig": {

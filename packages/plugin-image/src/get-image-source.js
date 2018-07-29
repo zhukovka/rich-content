@@ -18,14 +18,7 @@ const getImageSrc = (src, helpers, options = {}) => {
         }
       }
     } else if (src.file_name) {
-      return wixMediaUrl.createUrl(
-        src,
-        options.requiredWidth,
-        options.requiredHeight,
-        options.requiredQuality,
-        options.resizeType,
-        options.allowWebp
-      );
+      return wixMediaUrl.createUrl(src, options.requiredWidth, options.requiredHeight, options.requiredQuality);
     }
   }
 
