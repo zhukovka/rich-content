@@ -138,9 +138,7 @@ export default function createToolbar({ buttons, theme, pubsub, helpers, isMobil
 
     showToolbar = () => {
       const toolbarNode = findDOMNode(this);
-      const toolbarHeight = this.scrollContainer ?
-        // due to padding-margin hack for toolbar overflow
-        parseInt(window.getComputedStyle(this.scrollContainer).height, 10) : 0;
+      const toolbarHeight = toolbarNode.offsetHeight;
       const offsetParentRect = toolbarNode.offsetParent.getBoundingClientRect();
       const offsetParentTop = offsetParentRect.top;
       const offsetParentLeft = offsetParentRect.left;
