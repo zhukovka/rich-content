@@ -47,26 +47,22 @@ class ImageViewer extends React.Component {
 
     if (this.props.dataUrl) {
       imageUrl.preload = imageUrl.highres = this.props.dataUrl;
-    } else {
-      let options = {};
-      //do not render webp on preload - the SSR never renders webp and the same format should be kept
-      imageUrl.preload = getImageSrc(src, helpers, { allowWebp: false });
-      if (this.state.container) {
-        const { width } = this.state.container.getBoundingClientRect();
-        let requiredWidth = width || src.width || 1;
-        if (this.props.isMobile) {
-          //adjust the image width to viewport scaling and device pixel ratio
-          requiredWidth *= (window && window.devicePixelRatio) || 1;
-          requiredWidth *= (window && (window.screen.width / document.body.clientWidth)) || 1;
-        }
-        //keep the image's original ratio
-        let requiredHeight = (src.height && src.width) ? Math.ceil((src.height / src.width) * requiredWidth) : 2048;
-        const requiredQuality = 90;
-        requiredWidth = Math.ceil(requiredWidth);
-        requiredHeight = Math.ceil(requiredHeight);
-        options = { requiredWidth, requiredHeight, requiredQuality };
-        imageUrl.highres = getImageSrc(src, helpers, options);
+    } else if (this.state.container) {
+      const { width } = this.state.container.getBoundingClientRect();
+      let requiredWidth = width || src.width || 1;
+      if (this.props.isMobile) {
+        //adjust the image width to viewport scaling and device pixel ratio
+        requiredWidth *= (window && window.devicePixelRatio) || 1;
+        requiredWidth *= (window && (window.screen.width / document.body.clientWidth)) || 1;
       }
+      //keep the image's original ratio
+      let requiredHeight = (src.height && src.width) ? Math.ceil((src.height / src.width) * requiredWidth) : 2048;
+      requiredWidth = Math.ceil(requiredWidth);
+      requiredHeight = Math.ceil(requiredHeight);
+
+      //do not render webp on preload - the SSR never renders webp and the same format should be kept
+      imageUrl.preload = getImageSrc(src, helpers, { requiredWidth, requiredHeight, requiredQuality: 50, allowWebp: false });
+      imageUrl.highres = getImageSrc(src, helpers, { requiredWidth, requiredHeight, requiredQuality: 90 });
     }
 
     if (!imageUrl.preload) {
