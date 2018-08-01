@@ -46,7 +46,8 @@ const createSideToolbar = (config = {}) => {
   };
 };
 
-export default ({ buttons, offset, pubsub, theme, isMobile }) => {
+export default ({ buttons, offset, pubsub, theme, isMobile, helpers, t }) => {
+
   const { buttonStyles, ...rest } = theme;
   const toolbarButtonTheme = {
     buttonStyles: {
@@ -70,6 +71,8 @@ export default ({ buttons, offset, pubsub, theme, isMobile }) => {
           structure={buttons}
           pubsub={pubsub}
           isMobile={isMobile}
+          helpers={helpers}
+          t={t}
         />),
     ],
   });
