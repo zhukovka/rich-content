@@ -6,7 +6,22 @@
 > - :bug:        [Bug Fix]
 > - :house:      [Internal]
 
+## 1.2.8 (Aug 2, 2018)
+
+#### :rocket: New Feature
+* `editor`
+  * Decoupled mobile add button from mobile toolbar
+* `plugin-code-block`
+  * [#72](https://github.com/wix-incubator/rich-content/pull/72) Changed insert button position in toolbar + allow position configuration
+
+#### :house: Internal
+* `general`
+  * [#71](https://github.com/wix-incubator/rich-content/pull/71) Bundled with rollup
+
+<br />
+
 ## 1.2.7 (Jul 30, 2018)
+
 #### :rocket: New Feature
 * `plugin-code-block` added
 
