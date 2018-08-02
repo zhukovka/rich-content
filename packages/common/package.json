@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-common",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -17,21 +17,22 @@
   "files": [
     "dist"
   ],
-  "main": "dist/lib/index.js",
-  "module": "dist/es/index.js",
+  "module": "dist/module.js",
+  "style": "dist/styles.min.scss",
   "scripts": {
     "clean": "rm -rf dist/",
-    "babel:icons": "babel --config-file ../../.babelrc --env-name commonjs dist/statics -d dist/statics",
+    "babel:icons": "babel --config-file ../../.babelrc --env-name es dist/statics -d dist/statics",
     "postbabel:icons": "find dist/statics/icons -name \"*.svg\" -type f -delete",
     "babel:es": "babel --config-file ../../.babelrc --env-name es src -d dist/es --source-maps",
-    "babel:commonjs": "babel --config-file ../../.babelrc --env-name commonjs src -d dist/lib",
     "prebuild": "npm run clean",
-    "build": "mkdir -p dist && npm run babel:es && npm run babel:commonjs",
+    "build": "mkdir -p dist && npm run babel:es",
     "postbuild": "npm run statics",
     "statics": "cp -R statics dist/statics",
     "poststatics": "npm run icons",
     "icons": "svgr -d dist/statics/icons dist/statics/icons",
     "posticons": "create-index -r ./dist/statics/icons && npm run babel:icons",
+    "bundle": "MODULE_NAME=common rollup -c ../../rollup.config.js",
+    "bundle:analyze": "ANALYZE_BUNDLE=1 npm run bundle && open stats.html",
     "prewatch": "npm run clean && mkdir -p dist && npm run statics",
     "watch": "npm run babel:es -- --watch",
     "release": "wnpm-release --no-shrinkwrap",
@@ -59,7 +60,6 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "decorate-component-with-props": "^1.1.0",
     "focus-trap": "^2.4.5",
     "jsonschema": "^1.2.4",
     "linkify-it": "^2.0.3",

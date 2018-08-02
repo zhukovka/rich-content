@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-link",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -17,20 +17,21 @@
   "files": [
     "dist"
   ],
-  "main": "dist/lib/index.js",
-  "module": "dist/es/index.js",
+  "module": "dist/module.js",
+  "style": "dist/styles.min.scss",
   "scripts": {
     "clean": "rm -rf dist/",
     "babel:es": "babel --config-file ../../.babelrc.js --env-name es src -d dist/es --source-maps",
-    "babel:commonjs": "babel --config-file ../../.babelrc.js --env-name commonjs src -d dist/lib",
     "prebuild": "npm run clean",
     "statics": "cp -R statics dist/statics",
-    "build": "mkdir -p dist && npm run babel:es && npm run babel:commonjs",
+    "build": "mkdir -p dist && npm run babel:es",
     "postbuild": "npm run statics",
     "prewatch": "npm run clean && mkdir -p dist && npm run statics",
     "watch": "npm run babel:es -- --watch",
     "release": "wnpm-release --no-shrinkwrap",
-    "test": "eslint 'src/**/*.{js,jsx}'"
+    "test": "eslint 'src/**/*.{js,jsx}'",
+    "bundle": "MODULE_NAME=plugin-link rollup -c ../../rollup.config.js",
+    "bundle:analyze": "ANALYZE_BUNDLE=1 npm run bundle && open stats.html"
   },
   "peerDependencies": {
     "@babel/runtime": "7.0.0-beta.55",
@@ -54,7 +55,7 @@
   },
   "dependencies": {
     "draft-js-linkify-plugin": "^2.0.1",
-    "wix-rich-content-common": "^1.1.7"
+    "wix-rich-content-common": "^1.1.8"
   },
   "unpkg": true,
   "publishConfig": {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import decorateComponentWithProps from 'decorate-component-with-props';
+import decorateComponentWithProps from '../../Utils/decorateComponentWithProps';
 import SliderPanel from '../../Components/SliderPanel';
 import BaseToolbarButton from '../baseToolbarButton';
 import BUTTONS from './keys';
