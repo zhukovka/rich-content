@@ -10,7 +10,7 @@ export default ({ helpers, t }) => {
       name: 'Video',
       tooltipText: t('VideoPlugin_InsertButton_Tooltip'),
       Icon: InsertPluginIcon,
-      data: DEFAULTS,
+      componentData: DEFAULTS,
       modalElement: VideoURLInputModal,
       modalStyles: getModalStyles({ fullScreen: false }),
       helpers,

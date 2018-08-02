@@ -9,7 +9,7 @@ export default ({ helpers, t }) => {
       name: 'Gallery',
       tooltipText: t('GalleryPlugin_InsertButton_Tooltip'),
       Icon: InsertPluginIcon,
-      data: getDefault(),
+      componentData: getDefault(),
       helpers,
     },
   ];

@@ -7,7 +7,7 @@ export default ({ helpers, t }) => {
       name: 'Divider',
       tooltipText: t('DividerPlugin_InsertButton_Tooltip'),
       Icon: InsertPluginIcon,
-      data: DEFAULTS,
+      componentData: DEFAULTS,
       helpers,
       t
     }

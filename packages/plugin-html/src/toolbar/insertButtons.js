@@ -7,7 +7,7 @@ export default ({ helpers, t }) => {
       name: 'HTML',
       tooltipText: t('HtmlPlugin_InsertButton_Tooltip'),
       Icon: InsertPluginIcon,
-      data: DEFAULTS,
+      componentData: DEFAULTS,
       helpers,
     },
   ];
