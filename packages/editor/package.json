@@ -1,11 +1,12 @@
 {
   "private": false,
   "name": "wix-rich-content-editor",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
   },
+  "main": "dist/module.cjs.js",
   "module": "dist/module.js",
   "style": "dist/styles.min.scss",
   "files": [
@@ -57,7 +58,7 @@
     "react-i18next": "^7.6.1",
     "react-measure": "^2.0.2",
     "redraft": "^0.9.0",
-    "wix-rich-content-common": "^1.1.8",
+    "wix-rich-content-common": "^1.1.9",
     "wnpm-ci": "latest"
   },
   "peerDependencies": {

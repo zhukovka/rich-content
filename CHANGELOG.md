@@ -6,6 +6,14 @@
 > - :bug:        [Bug Fix]
 > - :house:      [Internal]
 
+## 1.2.9 (Aug 2, 2018)
+
+#### :house: Internal
+* `general`
+  * [#75](https://github.com/wix-incubator/rich-content/pull/75) Added commonjs bundle
+
+<br />
+
 ## 1.2.8 (Aug 2, 2018)
 
 #### :rocket: New Feature
