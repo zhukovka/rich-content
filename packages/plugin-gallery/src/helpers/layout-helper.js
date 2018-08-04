@@ -7,8 +7,6 @@ import {
   LayoutPanoramaIcon,
   LayoutColumnsIcon,
   LayoutSlidesIcon,
-} from '../../statics/icons';
-import {
   Grid as GridIconSmall,
   Masonry as MasonryIconSmall,
   Collage as CollageIconSmall,

@@ -63,6 +63,15 @@ class GalleryComponent extends React.PureComponent {
       items = [...items];
       items[itemPos] = item;
     }
+
+    //when updating componentData on an async method like this one,
+    // we need to use a sync method to change the EditorState.
+    // The broadcast is good if the toolbar is displaying some status or images
+    this.props.componentData.items = items;
+    this.props.componentData.styles = styles;
+    const { setData } = this.props.blockProps;
+    setData(this.props.componentData);
+
     this.setState({ items });
     if (this.props.store) {
       this.props.store.update('componentData', { items, styles, config: {} });
@@ -122,7 +131,7 @@ class GalleryComponent extends React.PureComponent {
     } else {
       handleFileAdded(data, itemIdx);
     }
-  }
+  };
 
   fileLoaded = (event, file, itemPos) => {
 
