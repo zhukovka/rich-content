@@ -6,6 +6,16 @@
 > - :bug:        [Bug Fix]
 > - :house:      [Internal]
 
+## [Unreleased]
+
+## 1.3.0
+
+#### :house: Internal
+* `general`
+  * [#82](https://github.com/wix-incubator/rich-content/pull/82) Transpile using rollup
+
+<br />
+
 ## 1.2.9 (Aug 2, 2018)
 
 #### :house: Internal
