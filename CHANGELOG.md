@@ -6,6 +6,25 @@
 > - :bug:        [Bug Fix]
 > - :house:      [Internal]
 
+## [Unreleased]
+
+## 1.2.10
+
+#### :bug: Bug Fix
+* `common` 
+  * [#70](https://github.com/wix-incubator/rich-content/issues/70) use `button.componentData` to be consistent with `InlineButtons`
+* `plugin-image`
+  * update editorState as well as componentData on upload
+* `plugin-gallery`
+  * update editorState as well as componentData on upload
+  * invoke `stateFromProps` only when a change has occured
+
+#### :house: Internal
+* `general`
+  * [#82](https://github.com/wix-incubator/rich-content/pull/82) Transpile using rollup
+
+<br />
+
 ## 1.2.9 (Aug 2, 2018)
 
 #### :house: Internal

@@ -52,14 +52,14 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
           this.toggleButtonModal();
           break;
         default:
-          this.addBlock(button.data || {});
+          this.addBlock(button.componentData || {});
       }
     };
 
     handleFileChange = event => {
       if (event.target.files.length > 0) {
         const files = Array.from(event.target.files);
-        const recentlyCreated = this.addBlock(button.data);
+        const recentlyCreated = this.addBlock(button.componentData);
         const state = { userSelectedFiles: { files } };
         pubsub.set('initialState_' + recentlyCreated.getKey(), state);
       }
@@ -67,7 +67,7 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
 
     handleExternalFileChanged = data => {
       if (data) {
-        this.addBlock(button.data || {});
+        this.addBlock(button.componentData || {});
         setTimeout(() => pubsub.get('handleFilesAdded')(data));
       }
     }
@@ -114,7 +114,7 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
           modalElement: button.modalElement,
           modalStyles: button.modalStyles,
           theme: this.props.theme,
-          componentData: button.data,
+          componentData: button.componentData,
           onConfirm: this.addBlock,
           pubsub,
           helpers,

@@ -1,5 +1,5 @@
 import { getDefault } from './../image-component';
-import { InsertPluginIcon } from '../../statics/icons';
+import { InsertPluginIcon } from '../icons';
 
 export default ({ helpers, t }) => {
   return [
@@ -8,7 +8,7 @@ export default ({ helpers, t }) => {
       name: 'Image',
       tooltipText: t('ImagePlugin_InsertButton_Tooltip'),
       Icon: InsertPluginIcon,
-      data: getDefault(),
+      componentData: getDefault(),
       helpers,
       t,
     },
