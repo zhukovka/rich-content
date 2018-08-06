@@ -80,7 +80,9 @@ const plugins = [
     include: 'statics/**',
   }),
   postcss({
-    minimize: true,
+    minimize: {
+      reduceIdents: false
+    },
     modules: true,
     extract: 'dist/styles.min.css',
     inject: false,
