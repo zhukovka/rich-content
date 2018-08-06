@@ -13,7 +13,7 @@ export { default as IconGridLargeActive } from './IconGridLargeActive';
 export { default as IconGridMedium } from './IconGridMedium';
 export { default as IconGridMediumActive } from './IconGridMediumActive';
 export { default as IconGridSmall } from './IconGridSmall';
-export { default as IconGridSmalLActive } from './IconGridSmalLActive';
+export { default as IconGridSmallActive } from './IconGridSmallActive';
 export { default as IconUpload } from './IconUpload';
 export { default as InsertPluginIcon } from './InsertPluginIcon';
 export { default as LayoutActiveIcon } from './LayoutActiveIcon';
