@@ -90,7 +90,9 @@ const plugins = [
       }),
     ],
   }),
-  uglify(),
+  uglify({
+    mangle: false,
+  }),
 ];
 
 if (process.env.MODULE_ANALYZE) {
@@ -110,6 +112,7 @@ export default [
         format: 'iife',
         file: `dist/${MODULE_NAME}.js`,
         globals: BUNDLE_GLOBALS,
+        sourcemap: true,
       },
       {
         file: 'dist/module.js',
@@ -118,7 +121,8 @@ export default [
       },
       {
         file: 'dist/module.cjs.js',
-        format: 'cjs'
+        format: 'cjs',
+        sourcemap: true,
       },
     ],
     plugins,
