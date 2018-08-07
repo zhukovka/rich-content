@@ -70,6 +70,15 @@ export const getTextAlignment = (editorState, defaultAlignment = 'left') => {
   return textAlignment || defaultAlignment;
 };
 
+export const setTextAlignment = (editorState, textAlignment) => {
+  const contentState = Modifier.mergeBlockData(
+    editorState.getCurrentContent(),
+    editorState.getSelection(),
+    { textAlignment }
+  );
+  return EditorState.push(editorState, contentState, 'change-block-data');
+};
+
 export const isAtomicBlockFocused = editorState => {
   const { anchorKey, focusKey } = editorState.getSelection();
   const block = editorState.getCurrentContent().getBlockForKey(anchorKey).type;
