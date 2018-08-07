@@ -13,6 +13,7 @@ const pkg = require('../package.json');
 
 const lernaPath = path.resolve(__dirname, '../node_modules/.bin/lerna');
 const scope = argv.scope || 'wix-rich-content-*';
+const force = argv.force || false;
 
 // resets the console
 process.stdout.write('\x1Bc');
@@ -35,7 +36,12 @@ prompts({
     console.log(chalk.red('Release aborted'));
   } else {
     try {
-      cp.execSync(`${lernaPath} publish --skip-npm --scope=${scope} --message="version bump:" --independent`, { stdio: 'inherit' });
+      const publishCmd = `${lernaPath} publish`;
+      let publishFlags = `--skip-npm --scope=${scope} --message="version bump:" --independent`;
+      if (force) {
+        publishFlags = `--force-publish ${publishFlags}`;
+      }
+      cp.execSync(`${publishCmd} ${publishFlags}`, { stdio: 'inherit' });
 
       console.log();
       console.log(chalk.green('Release was created locally'));
