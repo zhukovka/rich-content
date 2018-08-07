@@ -6,6 +6,15 @@
 > - :bug:        [Bug Fix]
 > - :house:      [Internal]
 
+## 1.2.13 (Aug 7, 2018)
+
+#### :bug: Bug Fix
+* `editor` 
+  * `TextAlignmentButton` works as standalone button
+  * Filter plugin and add plugin buttons from toolbar structure
+
+<br />
+
 ## 1.2.12 (Aug 7, 2018)
 
 #### :rocket: New Feature

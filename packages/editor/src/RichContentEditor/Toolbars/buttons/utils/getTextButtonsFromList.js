@@ -42,7 +42,7 @@ export default ({ buttons, theme, t, isMobile, pluginButtons }) => {
     buttonMap = Object.assign(buttonMap, pluginButtons);
   }
 
-  const structure = buttons.map(buttonName => buttonMap[buttonName]);
+  const structure = buttons.map(buttonName => buttonMap[buttonName]).filter(b => b !== undefined);
 
   return structure.map(b => decorateComponentWithProps(b, { t, isMobile }));
 };

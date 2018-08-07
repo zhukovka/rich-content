@@ -74,6 +74,7 @@ export {
   getLinkDataInSelection,
   removeLinksInSelection,
   getTextAlignment,
+  setTextAlignment,
   isAtomicBlockFocused,
   removeBlock,
 } from './Utils/draftUtils';
