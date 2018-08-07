@@ -6,6 +6,19 @@
 > - :bug:        [Bug Fix]
 > - :house:      [Internal]
 
+## 1.2.12 (Aug 7, 2018)
+
+#### :rocket: New Feature
+* `editor`
+  * [#77](https://github.com/wix-incubator/rich-content/pull/77) `alwaysShowSideToolbar` prop forces side toolbar to be displayed regardless of plugins
+
+#### :bug: Bug Fix
+* `editor` 
+  * `mergeButtonList` no longer mutates original button list
+  * inline toolbar respects `textButtons` array order and platform
+
+<br />
+
 ## 1.2.11 (Aug 7, 2018)
 
 #### :rocket: New Feature
