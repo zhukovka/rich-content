@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "wix-rich-content-editor",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
