@@ -6,9 +6,23 @@
 > - :bug:        [Bug Fix]
 > - :house:      [Internal]
 
-## [Unreleased]
+## 1.2.11 (Aug 7, 2018)
 
-## 1.2.10
+#### :rocket: New Feature
+* `general`
+  * [#78](https://github.com/wix-incubator/rich-content/pull/78) `handleFileSelection` helper is passed `componentData` as param
+  * allow responsive toolbars to scroll beyond 2 pages
+  * fixed plugin inline buttons & inline dropdown button alignment
+
+#### :bug: Bug Fix
+* `general` 
+  * `postcss` no londer renames @rules such as @keyframes
+* `editor`
+  * mobile toolbar respects `textButtons` array order
+
+<br />
+
+## 1.2.10 (Aug 6, 2018)
 
 #### :bug: Bug Fix
 * `common` 
