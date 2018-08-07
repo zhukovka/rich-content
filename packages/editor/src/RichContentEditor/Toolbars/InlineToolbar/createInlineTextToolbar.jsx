@@ -29,7 +29,7 @@ export default config => {
 
   const pluginButtons = reducePluginTextButtons(pluginTextButtonMappers);
   const pluginButtonNames = reducePluginTextButtonNames(pluginTextButtonMappers);
-  const mergedList = mergeButtonLists(DesktopTextButtonList, pluginButtonNames, 'desktop', appendSeparator);
+  const mergedList = mergeButtonLists(DesktopTextButtonList, pluginButtonNames, isMobile ? 'mobile' : 'desktop', appendSeparator);
   const textButtons = get(buttons, 'desktop', mergedList);
   const structure = getTextButtonsFromList({ buttons: textButtons, pluginButtons, pubsub, theme, t });
 
