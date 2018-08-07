@@ -1,7 +1,6 @@
-
 import get from 'lodash/get';
 import createInlineToolbar from './createInlineToolbar';
-import { DesktopTextButtonList } from '../buttons/';
+import { MobileTextButtonList, DesktopTextButtonList } from '../buttons/';
 import { getTextButtonsFromList, reducePluginTextButtons, reducePluginTextButtonNames, mergeButtonLists } from '../buttons/utils';
 
 export default config => {
@@ -29,8 +28,11 @@ export default config => {
 
   const pluginButtons = reducePluginTextButtons(pluginTextButtonMappers);
   const pluginButtonNames = reducePluginTextButtonNames(pluginTextButtonMappers);
-  const mergedList = mergeButtonLists(DesktopTextButtonList, pluginButtonNames, isMobile ? 'mobile' : 'desktop', appendSeparator);
-  const textButtons = get(buttons, 'desktop', mergedList);
+  const buttonList = isMobile ? MobileTextButtonList : DesktopTextButtonList;
+  const platformStr = isMobile ? 'mobile' : 'desktop';
+  const requestedButtons = get(buttons, platformStr);
+  const textButtonsList = requestedButtons || buttonList;
+  const textButtons = mergeButtonLists(textButtonsList, pluginButtonNames, platformStr, appendSeparator);
   const structure = getTextButtonsFromList({ buttons: textButtons, pluginButtons, pubsub, theme, t });
 
   return createInlineToolbar({
