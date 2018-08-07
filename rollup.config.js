@@ -80,7 +80,9 @@ const plugins = [
     include: 'statics/**',
   }),
   postcss({
-    minimize: true,
+    minimize: {
+      reduceIdents: false
+    },
     modules: true,
     extract: 'dist/styles.min.css',
     inject: false,
@@ -90,7 +92,9 @@ const plugins = [
       }),
     ],
   }),
-  uglify(),
+  uglify({
+    mangle: false,
+  }),
 ];
 
 if (process.env.MODULE_ANALYZE) {
@@ -110,6 +114,7 @@ export default [
         format: 'iife',
         file: `dist/${MODULE_NAME}.js`,
         globals: BUNDLE_GLOBALS,
+        sourcemap: true,
       },
       {
         file: 'dist/module.js',
@@ -118,7 +123,8 @@ export default [
       },
       {
         file: 'dist/module.cjs.js',
-        format: 'cjs'
+        format: 'cjs',
+        sourcemap: true,
       },
     ],
     plugins,
