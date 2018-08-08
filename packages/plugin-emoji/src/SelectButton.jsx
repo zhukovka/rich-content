@@ -5,7 +5,7 @@ import { EmojiPluginIcon } from './icons';
 
 const SelectButton = ({ t, theme }) => {
   return (
-    <Tooltip content={t('EmojiPlugin_InsertButton_Tooltip')} moveBy={{ x: 5, y: -5 }} theme={theme}>
+    <Tooltip content={t('EmojiPlugin_InsertButton_Tooltip')} theme={theme}>
       <div
         style={{
           width: '19px',
