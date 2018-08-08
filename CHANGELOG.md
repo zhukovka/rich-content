@@ -7,11 +7,20 @@
 > - :house:      [Internal]
 
 ## [Unreleased]
+
+## 1.2.14 (Aug 8, 2018)
+
 #### :rocket: New Feature
 * `general`
   * `react-tooltip`-based tooltips are not cut off anymore
+  * Mobile static and inline toolbars are scrollbable and arrowless
 
-  <br />
+
+#### :bug: Bug Fix
+* `plugin-video`
+  * Overlay and Player z-index issues
+
+<br />
 
 ## 1.2.13 (Aug 7, 2018)
 
