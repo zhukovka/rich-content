@@ -1,6 +1,5 @@
 @import '~wix-rich-content-common/dist/statics/styles/palette';
 @import '~wix-rich-content-common/dist/statics/styles/mixins';
-
 $borderRadius: 6px;
 .inlineToolbar {
   min-height: 50px;
@@ -13,7 +12,6 @@ $borderRadius: 6px;
   z-index: 4;
   box-sizing: border-box;
   max-width: 100%;
-  padding: 0 19px;
   direction: ltr;
 }
 
@@ -28,7 +26,6 @@ $borderRadius: 6px;
 }
 
 .inlineToolbar_responsiveArrow {
-  margin-right: -19px;
   flex: 0 0 40px;
   height: 100%;
   background: transparent;
@@ -60,14 +57,21 @@ $borderRadius: 6px;
   height: 100%;
   overflow: hidden;
   width: 100%;
-  padding: 90px 0;
+  padding: 90px 19px;
   margin: -90px 0;
   pointer-events: none;
-  & > * {
-      pointer-events: initial;
-  }
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: auto;
+  &>* {
+    pointer-events: initial;
+  }
+  &.mobile {
+    pointer-events: initial;
+    padding: 0 10px;
+    margin: 0;
+    transform: translateZ(0);
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
   &::-webkit-scrollbar {
     display: none;
     width: 0 !important;

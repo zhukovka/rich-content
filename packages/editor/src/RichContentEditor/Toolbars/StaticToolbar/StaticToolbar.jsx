@@ -21,11 +21,10 @@ export default class StaticToolbar extends React.Component {
 
   constructor(props) {
     super(props);
-    const { isMobile, structure } = this.props;
     this.state = {
       overrideContent: undefined,
       extendContent: undefined,
-      showRightArrow: isMobile && structure.length > 7,
+      showRightArrow: false,
       showLeftArrow: false
     };
   }
@@ -37,6 +36,10 @@ export default class StaticToolbar extends React.Component {
   }
 
   setToolbarScrollButton = (scrollLeft, scrollWidth, clientWidth) => {
+    if (this.props.isMobile) {
+      return;
+    }
+
     const currentScrollButtonWidth = this.state.showLeftArrow || this.state.showRightArrow ? 20 : 0;
     const isScroll = scrollWidth - clientWidth - currentScrollButtonWidth > 8;
 
@@ -59,7 +62,13 @@ export default class StaticToolbar extends React.Component {
     const toolbarClassNames = classNames(Styles.staticToolbar, toolbarStyles.toolbar);
     const buttonClassNames = classNames(Styles.staticToolbar_buttons, toolbarStyles.buttons);
     const extendClassNames = classNames(Styles.staticToolbar_extend, toolbarStyles.extend);
-    const scrollableClassNames = classNames(Styles.staticToolbar_scrollableContainer, toolbarStyles.scrollableContainer);
+    const scrollableClassNames = classNames(
+      Styles.staticToolbar_scrollableContainer,
+      toolbarStyles.scrollableContainer,
+      {
+        [Styles.mobile]: isMobile,
+      }
+    );
 
     const arrowClassNames = classNames(Styles.staticToolbar_responsiveArrow, toolbarStyles.responsiveArrow);
     const leftArrowIconClassNames = classNames(Styles.staticToolbar_responsiveArrowLeft_icon, toolbarStyles.responsiveArrowLeft_icon);
