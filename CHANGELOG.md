@@ -6,10 +6,26 @@
 > - :bug:        [Bug Fix]
 > - :house:      [Internal]
 
+## [Unreleased]
+
+## 1.2.14 (Aug 8, 2018)
+
+#### :rocket: New Feature
+* `general`
+  * `react-tooltip`-based tooltips are not cut off anymore
+  * Mobile static and inline toolbars are scrollbable and arrowless
+
+
+#### :bug: Bug Fix
+* `plugin-video`
+  * Overlay and Player z-index issues
+
+<br />
+
 ## 1.2.13 (Aug 7, 2018)
 
 #### :bug: Bug Fix
-* `editor` 
+* `editor`
   * `TextAlignmentButton` works as standalone button
   * Filter plugin and add plugin buttons from toolbar structure
 
@@ -22,7 +38,7 @@
   * [#77](https://github.com/wix-incubator/rich-content/pull/77) `alwaysShowSideToolbar` prop forces side toolbar to be displayed regardless of plugins
 
 #### :bug: Bug Fix
-* `editor` 
+* `editor`
   * `mergeButtonList` no longer mutates original button list
   * inline toolbar respects `textButtons` array order and platform
 
@@ -37,7 +53,7 @@
   * fixed plugin inline buttons & inline dropdown button alignment
 
 #### :bug: Bug Fix
-* `general` 
+* `general`
   * `postcss` no londer renames @rules such as @keyframes
 * `editor`
   * mobile toolbar respects `textButtons` array order
@@ -47,7 +63,7 @@
 ## 1.2.10 (Aug 6, 2018)
 
 #### :bug: Bug Fix
-* `common` 
+* `common`
   * [#70](https://github.com/wix-incubator/rich-content/issues/70) use `button.componentData` to be consistent with `InlineButtons`
 * `plugin-image`
   * update editorState as well as componentData on upload

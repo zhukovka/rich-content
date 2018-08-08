@@ -1,12 +1,12 @@
 import classNames from 'classnames';
 import get from 'lodash/get';
+
 import createStaticToolbar from './createStaticToolbar';
 import { DesktopTextButtonList } from '../buttons/';
 import { getTextButtonsFromList, reducePluginTextButtons, reducePluginTextButtonNames, mergeButtonLists } from '../buttons/utils';
 import { getStaticTextToolbarId } from '../toolbar-id';
 import toolbarStyles from '../../../../statics/styles/text-static-toolbar.scss';
 import separatorStyles from '../../../../statics/styles/text-static-toolbar-separator.scss';
-import tooltipStyles from '../../../../statics/styles/tooltip.scss';
 
 const getStaticTextTheme = theme => {
   const {
@@ -24,8 +24,7 @@ const getStaticTextTheme = theme => {
       ),
       scrollableContainer: classNames(
         toolbarStyles.textToolbar_scrollableContainer,
-        toolbarTheme && toolbarTheme.textToolbar_scrollableContainer,
-        tooltipStyles.fixedTooltip
+        toolbarTheme && toolbarTheme.textToolbar_scrollableContainer
       ),
       buttons: classNames(
         toolbarStyles.textToolbar_buttons,

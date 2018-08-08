@@ -121,17 +121,19 @@ class LinkPanel extends Component {
         [styles.linkPanel_imageSettings]: isImageSettings
       }
     );
+
     return (
       <div className={styles.linkPanel_Content} {...ariaProps} role="form">
         <div className={styles.linkPanel_Input}>
+
           <input
             onKeyDown={this.handleKeyDown}
             tabIndex="0" type="url" ref={ref => (this.input = ref)} className={textInputClassName} placeholder={this.inputPlaceholder}
             data-hook="linkPanelInput" onChange={this.handleIntermediateUrlChange} onBlur={this.validateUrl} value={this.state.intermediateUrl}
           />
-          {this.state.isValidUrl ? null : (
-            <Tooltip data-hook="linkPanelTooltip" content={this.errorTooltipText} moveBy={{ x: -23, y: -5 }} theme={theme}>
-              <span><ErrorIcon data-hook="linkPanelError" className={styles.linkPanel_errorIcon} /></span>
+          {!this.state.isValidUrl && (
+            <Tooltip data-hook="linkPanelTooltip" content={this.errorTooltipText} theme={theme} moveBy={{ y: 0 }} type={'error'}>
+              <ErrorIcon data-hook="linkPanelError" className={styles.linkPanel_errorIcon} />
             </Tooltip>
           )}
         </div>

@@ -168,7 +168,7 @@ export default ({ blockType, button, helpers, pubsub, t }) => {
         </div>
       );
 
-      return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={Button} />;
+      return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={Button} tooltipOffset={{ y: -10 }}/>;
     }
   }
 

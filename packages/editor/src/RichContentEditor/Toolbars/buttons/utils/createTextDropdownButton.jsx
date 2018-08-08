@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import TextButton from '../TextButton';
-import { mergeStyles } from 'wix-rich-content-common';
+import { mergeStyles, Tooltip } from 'wix-rich-content-common';
 import styles from '../../../../../statics/styles/inline-toolbar-dropdown-button.scss';
 
 export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
@@ -86,18 +86,19 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
       const dataHookText = `textDropDownButton_${textForHooks}`;
 
       return (
-        <div className={this.styles.inlineToolbarDropdown_wrapper}>
-          <TextButton
-            icon={Icon}
-            theme={this.theme}
-            isMobile={isMobile}
-            dataHook={dataHookText}
-            onClick={this.showOptions}
-            tooltipText={tooltipText}
-            tabIndex={tabIndex}
-          />
-          {isOpen && this.renderOptions()}
-        </div>
+        <Tooltip content={tooltipText} moveBy={{ y: -20 }}>
+          <div className={this.styles.inlineToolbarDropdown_wrapper}>
+            <TextButton
+              icon={Icon}
+              theme={this.theme}
+              isMobile={isMobile}
+              dataHook={dataHookText}
+              onClick={this.showOptions}
+              tabIndex={tabIndex}
+            />
+            {isOpen && this.renderOptions()}
+          </div>
+        </Tooltip>
       );
     }
   };

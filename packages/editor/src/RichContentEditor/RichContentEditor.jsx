@@ -19,7 +19,8 @@ import {
   normalizeInitialState,
   createInlineStyleDecorators,
   mergeStyles,
-  WixUtils
+  WixUtils,
+  TooltipHost
 } from 'wix-rich-content-common';
 import { getStrategyByStyle } from './getStrategyByStyle';
 import styles from '../../statics/styles/rich-content-editor.scss';
@@ -297,6 +298,8 @@ class RichContentEditor extends Component {
 
   renderAccessibilityListener = () => <AccessibilityListener isMobile={this.props.isMobile}/>;
 
+  renderTooltipHost = () => <TooltipHost theme={this.state.theme} />
+
   render() {
     const { isMobile } = this.props;
     const { theme } = this.state;
@@ -321,6 +324,7 @@ class RichContentEditor extends Component {
               {this.renderEditor()}
               {this.renderToolbars()}
               {this.renderInlineModals()}
+              {this.renderTooltipHost()}
             </div>
           </div>)}
       </Measure>

@@ -1,4 +1,3 @@
-import { EditorState, Modifier } from '@wix/draft-js';
 import {
   getTextAlignment,
   setTextAlignment,

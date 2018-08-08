@@ -129,6 +129,10 @@ export default class InlineToolbar extends Component {
   }
 
   setToolbarScrollButton = (scrollLeft, scrollWidth, clientWidth) => {
+    if (this.props.isMobile) {
+      return;
+    }
+
     const currentScrollButtonWidth = this.state.showLeftArrow || this.state.showRightArrow ? 20 : 0;
     const isScroll = scrollWidth - clientWidth - currentScrollButtonWidth > 8;
 
@@ -150,8 +154,13 @@ export default class InlineToolbar extends Component {
     });
     const extendClassNames = classNames(Styles.inlineToolbar_extend, toolbarStyles && toolbarStyles.inlineToolbar_extend);
 
-    const scrollableClassNames = classNames(Styles.inlineToolbar_scrollableContainer,
-      toolbarStyles && toolbarStyles.inlineToolbar_scrollableContainer);
+    const scrollableClassNames = classNames(
+      Styles.inlineToolbar_scrollableContainer,
+      toolbarStyles && toolbarStyles.inlineToolbar_scrollableContainer,
+      {
+        [Styles.mobile]: isMobile,
+      }
+    );
 
     const arrowClassNames = classNames(Styles.inlineToolbar_responsiveArrow, toolbarStyles.inlineToolbar_responsiveArrow);
     const leftArrowIconClassNames = classNames(Styles.inlineToolbar_responsiveArrowLeft_icon, toolbarStyles.responsiveArrowLeft_icon);
