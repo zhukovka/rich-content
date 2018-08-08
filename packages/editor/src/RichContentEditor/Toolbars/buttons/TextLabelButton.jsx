@@ -59,6 +59,6 @@ export default class TextLabelButton extends Component {
     );
     /* eslint-enable jsx-a11y/no-static-element-interactions */
 
-    return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={textButton} />;
+    return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={textButton} tooltipOffset={{ y: -20 }} />;
   }
 }
