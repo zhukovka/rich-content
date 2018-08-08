@@ -57,6 +57,6 @@ export default ({ alignment, Icon, tooltipTextKey }) =>
       );
       /* eslint-enable jsx-a11y/no-static-element-interactions */
 
-      return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={blockButton} />;
+      return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={blockButton} tooltipOffset={{ y: -20 }} />;
     }
   };

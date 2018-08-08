@@ -15,15 +15,7 @@ const TextInput = ({ inputRef, error, theme, ...otherProps }) => {
         className={classNames(styles.textInput_input, { [styles.textInput_input_invalid]: error })}
         {...otherProps}
       />
-      {error ? (
-        <Tooltip
-          content={error}
-          moveBy={{ x: -23, y: -5 }}
-          theme={theme}
-        >
-          <span><ErrorIcon className={styles.textInput_errorIcon} /></span>
-        </Tooltip>
-      ) : null}
+      {error && <Tooltip content={error} theme={theme} moveBy={{ y: 0 }} type={'error'}><ErrorIcon className={styles.textInput_errorIcon}/></Tooltip>}
     </div>
   );
 };

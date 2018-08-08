@@ -52,7 +52,8 @@
     "focus-trap": "^2.4.5",
     "jsonschema": "^1.2.4",
     "linkify-it": "^2.0.3",
-    "regexp.prototype.flags": "^1.2.0"
+    "regexp.prototype.flags": "^1.2.0",
+    "react-tooltip": "^3.6.1"
   },
   "unpkg": true,
   "publishConfig": {

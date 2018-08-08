@@ -142,7 +142,7 @@ class BaseToolbarButton extends React.Component {
       /* eslint-enable jsx-a11y/no-static-element-interactions */
     );
 
-    return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={toggleButton} />;
+    return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={toggleButton} tooltipOffset={{ y: -20 }} />;
   };
 
   renderFilesButton = (buttonClassNames, styles) => {
@@ -162,7 +162,7 @@ class BaseToolbarButton extends React.Component {
       </div>
     );
 
-    return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={filesButton} />;
+    return <ToolbarButton theme={theme} showTooltip={showTooltip} tooltipText={tooltipText} button={filesButton} tooltipOffset={{ y: -20 }}/>;
   };
 
   renderDropdownButton = (buttonWrapperClassNames, buttonClassNames) => {
