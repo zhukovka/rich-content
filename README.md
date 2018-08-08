@@ -77,7 +77,7 @@ Now, to make sure you are getting the most of the rich-content editor, include t
 ```jsx
 import 'wix-rich-content-common/dist/styles.min.css';
 import 'wix-rich-content-editor/dist/styles.min.css';
-import 'plugin-...'/dis/styles.min.css';
+import 'wix-rich-content-plugin-...'/dist/styles.min.css';
 ```
 
 > You can also import the CSS files using `@import '~...`;` from a SCSS file.
