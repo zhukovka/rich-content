@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "clean": "rm -rf dist/",
-    "statics": "mkdir -p dist && xcopy statics dist/statics /s /e /h",
+    "statics": "mkdir dist && xcopy statics dist/statics /s /e /h",
     "prebuild": "npm run statics",
     "build": "rollup --environment MODULE_NAME:viewer -c ../../rollup.config.js",
     "build:analyze": "npm run build -- --environment MODULE_ANALYZE && open stats.html",
