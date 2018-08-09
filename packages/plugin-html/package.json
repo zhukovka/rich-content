@@ -47,7 +47,8 @@
     "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
     "react": "15.5.4",
-    "react-dom": "15.5.4"
+    "react-dom": "15.5.4",
+    "rollup": "^0.63.5"
   },
   "dependencies": {
     "react-i18next": "^7.6.1",
