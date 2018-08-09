@@ -22,7 +22,7 @@
   "style": "dist/styles.min.scss",
   "scripts": {
     "clean": "rm -rf dist/",
-    "statics": "mkdir dist && xcopy statics dist/statics /s /e /h",
+    "statics": "mkdir dist && copy 'statics/**' dist/statics",
     "prebuild": "npm run statics",
     "build": "rollup --environment MODULE_NAME:plugin-divider -c ../../rollup.config.js",
     "build:analyze": "npm run build -- --environment MODULE_ANALYZE && open stats.html",
