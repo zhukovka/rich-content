@@ -47,7 +47,8 @@
     "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
     "react": "15.5.4",
-    "react-dom": "15.5.4"
+    "react-dom": "15.5.4",
+    "rollup": "^0.63.5"
   },
   "dependencies": {
     "image-client-api": "1.452.0",
@@ -55,6 +56,6 @@
   },
   "unpkg": true,
   "publishConfig": {
-    "registry": "http://repo.dev.wix/artifactory/api/npm/npm-local/"
+    "registry": "https://registry.npmjs.org/"
   }
 }
