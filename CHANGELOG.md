@@ -9,18 +9,18 @@
 
 ## [Unreleased]
 
-#### :rocket: New Feature
-* `editor`
-  * RCE `config.getToolbarSettings` API allows to customize toolbar instantiation, visibility, offset point, and buttons. Check `/docs/ToolbarCustomization.md` for more details
-
 #### :boom: Breaking Change
 * `editor`
   * `RichContentEditor`'s `alwaysShowSideToolbar`, `sideToolbarOffset`, `hideFooterToolbar` props removed
 * `general`
   * `InsertButtons` API: `addToSideToolbar` property removed; `toolbars` property is required
 
+#### :rocket: New Feature
+* `editor`
+  * RCE `config.getToolbarSettings` API allows to customize toolbar instantiation, visibility, offset point, and buttons. Check `/docs/ToolbarCustomization.md` for more details
+
 #### :book: Documentation
-* Toolbar Customization doc added
+* Toolbar Customization [doc](https://github.com/wix-incubator/rich-content/blob/develop/docs/ToolbarCustomization.md) added
 
 <br/>
 
