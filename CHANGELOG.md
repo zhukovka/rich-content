@@ -17,7 +17,7 @@
 
 #### :rocket: New Feature
 * `editor`
-  * RCE `config.getToolbarSettings` API allows to customize toolbar instantiation, visibility, offset point, and buttons. Check `/docs/ToolbarCustomization.md` for more details
+  * RCE `config.getToolbarSettings` API allows to customize toolbar instantiation, visibility, offset point, and buttons. Check [documentation](https://github.com/wix-incubator/rich-content/blob/develop/docs/ToolbarCustomization.md) for more details
 
 #### :book: Documentation
 * Toolbar Customization [doc](https://github.com/wix-incubator/rich-content/blob/develop/docs/ToolbarCustomization.md) added
