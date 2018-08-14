@@ -94,6 +94,10 @@ const plugins = [
   }),
   uglify({
     mangle: false,
+    sourceMap: {
+      filename: "out.js",
+      url: "out.js.map"
+    }
   }),
 ];
 
@@ -105,33 +109,37 @@ if (process.env.MODULE_ANALYZE) {
   );
 }
 
-export default [
-  {
-    input: 'src/index.js',
-    output: [
-      {
-        name: NAME,
-        format: 'iife',
-        file: `dist/${MODULE_NAME}.js`,
-        globals: BUNDLE_GLOBALS,
-        sourcemap: true,
-      },
-      {
-        file: 'dist/module.js',
-        format: 'es',
-        sourcemap: true,
-      },
-      {
-        file: 'dist/module.cjs.js',
-        format: 'cjs',
-        sourcemap: true,
-      },
-    ],
-    plugins,
-    external: id => !!externals.find(externalName => new RegExp(externalName).test(id)),
-    watch: {
-      exclude: ['node_modules/**'],
-      clearScreen: false,
-    }
-  },
-];
+const config = {
+  input: 'src/index.js',
+  output: [
+    {
+      file: 'dist/module.js',
+      format: 'es',
+      sourcemap: true,
+    },
+    {
+      name: NAME,
+      format: 'iife',
+      file: `dist/${MODULE_NAME}.js`,
+      globals: BUNDLE_GLOBALS,
+      sourcemap: true,
+    },
+    {
+      file: 'dist/module.cjs.js',
+      format: 'cjs',
+      sourcemap: true,
+    },
+  ],
+  plugins,
+  external: id => !!externals.find(externalName => new RegExp(externalName).test(id)),
+};
+
+if (process.env.MODULE_WATCH) {
+  config.output = config.output.filter(o => o.format === 'es');
+  config.watch = {
+    exclude: ['node_modules/**'],
+    clearScreen: false,
+  };
+}
+
+export default config;
