@@ -9,6 +9,18 @@
 
 ## [Unreleased]
 
+## 1.3.1 (Aug 16, 2018)
+
+#### :bug: Bug Fix
+* `editor`
+  * Toolbar settings functionality
+  * CSS is extracted from TextButton
+  * Moved padding from wrapper div to toolbar margin
+* `image`
+  * Check if mounted before assuming error in image src
+
+<br/>
+
 ## 1.3.0 (Aug 14, 2018)
 
 #### :boom: Breaking Change
@@ -25,7 +37,7 @@
 * `plugin-gallery`
   * Add Media and Replace button UI and functionality
   * Image Settings header is clickable
-  
+
 #### :house: Internal
 * `general`
   * Published to public npm registry
