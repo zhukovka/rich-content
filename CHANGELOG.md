@@ -9,9 +9,15 @@
 
 ## [Unreleased]
 
+## 1.3.1 (Aug 16, 2018)
+
 #### :bug: Bug Fix
 * `editor`
   * Toolbar settings functionality
+  * CSS is extracted from TextButton
+  * Moved padding from wrapper div to toolbar margin
+* `image`
+  * Check if mounted before assuming error in image src
 
 <br/>
 
