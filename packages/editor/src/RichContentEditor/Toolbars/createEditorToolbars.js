@@ -18,7 +18,7 @@ const createEditorToolbars = config => {
     refId,
     getToolbarSettings = () => []
   } = config;
-  const { pluginButtons, pluginTextButtonMappers, textButtons } = buttons;
+  const { pluginButtons, pluginTextButtons, textButtons } = buttons;
 
   const pubsub = simplePubsub();
 
@@ -45,7 +45,7 @@ const createEditorToolbars = config => {
         visibilityFn: getConfigByFormFactor({ config: getVisibilityFn(), isMobile, defaultValue: () => true }),
         theme: { ...getToolbarTheme(theme, name.toLowerCase()), ...theme },
         defaultTextAlignment: textAlignment,
-        pluginTextButtonMappers,
+        pluginTextButtons,
         getEditorState,
         setEditorState,
         anchorTarget,
