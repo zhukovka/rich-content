@@ -8,6 +8,10 @@
 > - :book:       [Documentation]
 
 ## [Unreleased]
+<br/>
+
+## 1.3.3 (Aug 19, 2018)
+
 #### :bug: Bug Fix
 * `image`
   * preload image URL supports SSR
