@@ -64,9 +64,8 @@ class ImageViewer extends React.Component {
       requiredWidth = Math.ceil(requiredWidth);
       requiredHeight = Math.ceil(requiredHeight);
 
-      //do not render webp on preload - the SSR never renders webp and the same format should be kept
-      imageUrl.preload = getImageSrc(src, helpers, { requiredWidth, requiredHeight, requiredQuality: 50, allowWebp: false });
-      imageUrl.highres = getImageSrc(src, helpers, { requiredWidth, requiredHeight, requiredQuality: 90 });
+      imageUrl.preload = getImageSrc(src, helpers, { requiredWidth, requiredHeight, requiredQuality: 50, imageType: 'preload' });
+      imageUrl.highres = getImageSrc(src, helpers, { requiredWidth, requiredHeight, requiredQuality: 90, imageType: 'highRes' });
     }
 
     if (this._isMounted && !imageUrl.preload) {
