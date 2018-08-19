@@ -8,14 +8,21 @@
 > - :book:       [Documentation]
 
 ## [Unreleased]
+<br/>
+
+## 1.3.3 (Aug 19, 2018)
+
+#### :bug: Bug Fix
+* `image`
+  * preload image URL supports SSR
+
+<br/>
 
 ## 1.3.2 (Aug 19, 2018)
 
 #### :bug: Bug Fix
 * `editor`
   * lack of `config` prop no longer crashes
-* `image`
-  * preload image URL supports SSR
 * `video`
   * prevent content overflow in mobile
 
