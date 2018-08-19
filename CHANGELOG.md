@@ -9,6 +9,10 @@
 
 ## [Unreleased]
 
+#### :bug: Bug Fix
+* `image`
+  * preload image URL supports SSR
+
 ## 1.3.1 (Aug 16, 2018)
 
 #### :bug: Bug Fix
