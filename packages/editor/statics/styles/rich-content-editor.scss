@@ -103,7 +103,9 @@
 
 .justify {
   &>* {
+    white-space: pre-line !important;
     text-align: justify !important;
+    text-align-last: justify !important;
   }
 }
 
