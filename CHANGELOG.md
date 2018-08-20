@@ -8,6 +8,24 @@
 > - :book:       [Documentation]
 
 ## [Unreleased]
+
+<br/>
+
+## 1.3.4 (Aug 20, 2018)
+
+#### :bug: Bug Fix
+* `general`
+  * Theme supports empty css classes 
+* `editor`
+  * Firefox text editing
+  * Close alignment dropdown when clicke d outside
+* `image`
+  * Transition between `preLoad` and `hiRes` images
+
+#### :house: Internal
+* `general`
+  * Seperate bundle for viewer portions of plugins
+
 <br/>
 
 ## 1.3.3 (Aug 19, 2018)
