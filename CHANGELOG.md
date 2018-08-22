@@ -9,6 +9,25 @@
 
 ## [Unreleased]
 
+## 1.4.0 (Aug 22, 2018)
+
+#### :boom: Breaking Change
+* `editor`
+  * `RichContentEditor`'s `textButtons` prop removed
+
+#### :rocket: New Feature
+* `editor`
+  * RCE `config.getToolbarSettings` API now allows to customize the plugin text buttons. Check [documentation](https://github.com/wix-incubator/rich-content/blob/develop/docs/ToolbarCustomization.md) for more details
+
+#### :bug: Bug Fix
+* `common`
+  * [#109](https://github.com/wix-incubator/rich-content/pull/109) Normalize text for atomic blocks
+
+#### :book: Documentation
+* [Toolbar Customization](https://github.com/wix-incubator/rich-content/blob/develop/docs/ToolbarCustomization.md) updated
+
+<br/>
+
 ## 1.3.5 (Aug 22, 2018)
 
 #### :bug: Bug Fix
@@ -57,7 +76,6 @@
   * lack of `config` prop no longer crashes
 * `video`
   * prevent content overflow in mobile
-
 
 <br/>
 
