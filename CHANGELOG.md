@@ -9,11 +9,17 @@
 
 ## [Unreleased]
 
+## 1.3.5 (Aug 22, 2018)
+
 #### :bug: Bug Fix
 * `common`
   * [#104](https://github.com/wix-incubator/rich-content/pull/104) Add block after file change `initialState` is set
+* `editor`
+  * [#103](https://github.com/wix-incubator/rich-content/pull/103) Close link panel on click outside
 
 #### :house: Internal
+* `general`
+  * [#105](https://github.com/wix-incubator/rich-content/pull/105) Require `@wix/draft-js@0.10.163` fixed version peer dependecy
 * `examples`
   * [#101](https://github.com/wix-incubator/rich-content/pull/101) `npm run bootstrap` links all the modules to the examples
 
