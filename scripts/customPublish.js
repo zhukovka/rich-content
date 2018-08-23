@@ -1,21 +1,14 @@
 /* eslint-disable no-console */
-
-const path = require('path');
 const execSync = require('child_process').execSync;
-const fs = require('fs');
-const glob = require('glob');
 const chalk = require('chalk');
 const semver = require('semver');
 const memoize = require('lodash/memoize');
 const get = require('lodash/get');
+const lernaPackages = require('lerna-packages');
 
-const DEFAULT_REGISTRY = 'https://registry.npmjs.org/';
 const LATEST_TAG = 'latest';
 const NEXT_TAG = 'next';
 const OLD_TAG = 'old';
-
-const lernaJsonPath = path.resolve('./lerna.json');
-const lernaConfig = require(lernaJsonPath);
 
 const getPackageDetails = memoize(pkg => {
   try {
@@ -103,27 +96,6 @@ function release(pkg) {
   }
 }
 
-// 1. load all non-private pacakges from lerna.json
-// 2. verify that each package can be published by checking the registry.
-//   (Can only publish versions that doesn't already exist)
-// 3. choose a tag ->
-// * `old` for a release that is less than latest (semver).
-// * `next` for a prerelease (beta/alpha/rc).
-// * `latest` as default.
-// 4. perform npm publish using the chosen tag.
-
-lernaConfig.packages.forEach(pacakagesGlob => {
-  glob.sync(pacakagesGlob).forEach(pkgPath => {
-    const pkgJsonPath = path.resolve(pkgPath, 'package.json');
-    const pkg = JSON.parse(fs.readFileSync(pkgJsonPath));
-
-    if (!pkg.private) {
-      release({
-        name: get(pkg, 'name'),
-        version: get(pkg, 'version'),
-        registry: get(pkg, 'publishConfig.registry', DEFAULT_REGISTRY),
-        path: pkgPath,
-      });
-    }
-  });
-});
+lernaPackages()
+  .filter(p => !p.private)
+  .forEach(p => release(p));
