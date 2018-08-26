@@ -8,6 +8,10 @@
 > - :book:       [Documentation]
 
 ## [Unreleased]
+#### :bug: Bug Fix
+* `common`
+  * `Tooltip` performance: `rebuild` is called only if `shouldRebuildOnUpdate` returns true
+<br/>
 
 #### :boom: Breaking Change
 * `code-block`:
