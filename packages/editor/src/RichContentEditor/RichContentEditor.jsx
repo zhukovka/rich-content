@@ -19,7 +19,6 @@ import {
   normalizeInitialState,
   createInlineStyleDecorators,
   mergeStyles,
-  WixUtils,
   TooltipHost,
   TOOLBARS
 } from 'wix-rich-content-common';
