@@ -15,6 +15,12 @@
 - `soundcloud`
   - [#92](https://github.com/wix-incubator/rich-content/pull/92) soundcloud plugin that inserts soundcloud iframe to the editor contents
 
+### :bug: Bug Fix
+
+- `viewer`
+  - SSR supported
+  - default props provided
+
 <br/>
 
 ## 1.5.1 (Sep 3, 2018)
