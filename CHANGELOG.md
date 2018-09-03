@@ -10,13 +10,13 @@
 
 ## [Unreleased]
 
-#### :rocket: New Feature
+### :rocket: New Feature
 
 - `soundcloud`
   - [#92](https://github.com/wix-incubator/rich-content/pull/92) soundcloud plugin that inserts soundcloud iframe to the editor contents
-  
+
 <br/>
-  
+
 ## 1.5.1 (Sep 3, 2018)
 
 ### :bug: Bug Fix
