@@ -97,7 +97,7 @@ const Preview = ({ raw, typeMappers, theme, isMobile, decorators, anchorTarget, 
     ...decorators,
     ...createInlineStyleDecorators(getStrategyByStyle, mergedStyles)
   ];
-  window.redraft = redraft;
+
   return (
     <div className={mergedStyles.preview}>
       {isEmpty && <div>There is nothing to render...</div>}
