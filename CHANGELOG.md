@@ -13,10 +13,12 @@
 ### :rocket: New Feature
 
 - `soundcloud`
-  - [#92](https://github.com/wix-incubator/rich-content/pull/92) soundcloud plugin that inserts soundcloud iframe to the editor contents
+  - [#92](https://github.com/wix-incubator/rich-content/pull/92) `plugin-sound-cloud` implemented
 
 ### :bug: Bug Fix
 
+- `image`
+  - [#125](https://github.com/wix-incubator/rich-content/pull/125) image component links now are handled individually
 - `viewer`
   - SSR support improved [WIP]
   - `RichContentViewer`: default props prevent crash
