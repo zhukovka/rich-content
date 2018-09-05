@@ -12,6 +12,18 @@
 
 ### :bug: Bug Fix
 
+- `image`
+  - [#125](https://github.com/wix-incubator/rich-content/pull/125) image component links now are handled individually
+- `viewer`
+  - SSR support improved [WIP]
+  - `RichContentViewer`: default props prevent crash
+
+<br/>
+
+## 1.5.1 (Sep 3, 2018)
+
+### :bug: Bug Fix
+
 - `gallery`
   - `gallery-image-settings`: image replacement fixed
   - `gallery-image-settings`: delete, replace, navigation icons fixed
