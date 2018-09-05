@@ -556,49 +556,6 @@ const TestData = {
       }
     ]
   },
-  soundCloud: {
-    blocks: [
-      {
-        key: "evpng",
-        text: " ",
-        type: "atomic",
-        depth: 0,
-        inlineStyleRanges: [],
-        entityRanges: [
-          {
-            offset: 0,
-            length: 1,
-            key: 0
-          }
-        ],
-        data: {}
-      }
-    ],
-    entityMap: {
-      0: {
-        type: "wix-draft-plugin-sound-cloud",
-        mutability: "IMMUTABLE",
-        data: {
-          config: {
-            size: "content",
-            alignment: "center",
-            key: "evpng"
-          },
-          src:
-            "https://soundcloud.com/miraj-perera/red-hot-chilli-peppers-cant",
-          metadata: {
-            height: 270,
-            author_name: "Wix.com",
-            html: "",
-            thumbnail_width: 480,
-            type: "video",
-            version: "1.0",
-            thumbnail_height: 360
-          }
-        }
-      }
-    }
-  },
   full: {
     entityMap: {
       "0": {

@@ -10,11 +10,6 @@
 
 ## [Unreleased]
 
-### :rocket: New Feature
-
-- `soundcloud`
-  - [#92](https://github.com/wix-incubator/rich-content/pull/92) `plugin-sound-cloud` implemented
-
 ### :bug: Bug Fix
 
 - `image`
