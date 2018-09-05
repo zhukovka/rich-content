@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { VideoCameraIcon } from '../icons';
+import { SoundCloudIcon } from '../icons';
 import classNames from 'classnames';
-import { mergeStyles, isVideoUrl, SettingsPanelFooter, TextInput, CloseIcon } from 'wix-rich-content-common';
-import styles from '../../statics/styles/video-url-input-modal.scss';
+import { mergeStyles, isSoundCloudUrl, SettingsPanelFooter, TextInput, CloseIcon } from 'wix-rich-content-common';
+import styles from '../../statics/styles/sound-cloud-url-input-modal.scss';
 
-export default class VideoURLInputModal extends Component {
+export default class SoundCloudURLInputModal extends Component {
   constructor(props) {
     super(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
@@ -24,7 +24,7 @@ export default class VideoURLInputModal extends Component {
 
   onConfirm = () => {
     const { url } = this.state;
-    if (isVideoUrl(url)) {
+    if (url && isSoundCloudUrl(url)) {
       const { componentData, helpers, pubsub, onConfirm } = this.props;
       if (onConfirm) {
         onConfirm({ ...componentData, src: url });
@@ -51,6 +51,9 @@ export default class VideoURLInputModal extends Component {
     if (e.charCode === 13) {
       this.onConfirm();
     }
+    if (e.charCode === 27) {
+      this.onCloseRequested();
+    }
   };
 
   render() {
@@ -59,15 +62,15 @@ export default class VideoURLInputModal extends Component {
     const { styles } = this;
 
     return (
-      <div className={styles.container} data-hook="videoUploadModal">
+      <div className={styles.container} data-hook="soundCloudUploadModal">
         <CloseIcon className={classNames(styles.closeIcon)} onClick={() => this.onCloseRequested()} />
-        <div role="heading" aria-labelledby="video_modal_hdr" className={classNames(styles.header)}>
-          <VideoCameraIcon className={classNames(styles.cameraIcon, styles.header_icon)} />
-          <h3 id="video_modal_hdr" className={styles.header_text}>
-            {t('VideoUploadModal_Header')}
+        <div role="heading" aria-labelledby="sound_cloud_modal_hdr" className={classNames(styles.header)}>
+          <SoundCloudIcon className={classNames(styles.header_icon)} />
+          <h3 id="sound_cloud_modal_hdr" className={styles.header_text}>
+            {t('SoundCloudUploadModal_Header')}
           </h3>
         </div>
-        <div className={styles.videoUrlInputModal_textInput}>
+        <div className={styles.soundCloudUrlInputModal_textInput}>
           <TextInput
             inputRef={ref => {
               this.input = ref;
@@ -76,10 +79,10 @@ export default class VideoURLInputModal extends Component {
             onKeyPress={this.handleKeyPress}
             onChange={this.onUrlChange}
             value={url}
-            error={!isVideoUrl(url) && submitted ? t('VideoUploadModal_Input_InvalidUrl') : null}
-            placeholder={t('VideoUploadModal_Input_Placeholder')}
+            error={!isSoundCloudUrl(url) && submitted ? t('SoundCloudUploadModal_Input_InvalidUrl') : null}
+            placeholder={t('SoundCloudUploadModal_Input_Placeholder')}
             theme={theme}
-            data-hook="videoUploadModalInput"
+            data-hook="soundCloudUploadModalInput"
           />
         </div>
         <SettingsPanelFooter
@@ -96,7 +99,7 @@ export default class VideoURLInputModal extends Component {
   }
 }
 
-VideoURLInputModal.propTypes = {
+SoundCloudURLInputModal.propTypes = {
   onConfirm: PropTypes.func,
   pubsub: PropTypes.object,
   helpers: PropTypes.object.isRequired,
@@ -108,7 +111,7 @@ VideoURLInputModal.propTypes = {
   t: PropTypes.func,
 };
 
-VideoURLInputModal.defaultProps = {
+SoundCloudURLInputModal.defaultProps = {
   doneLabel: 'Add Now',
   cancelLabel: 'Cancel',
 };

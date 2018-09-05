@@ -1,6 +1,6 @@
-import { DEFAULTS } from '../video-component';
+import { DEFAULTS } from '../soundCloud';
 import { getModalStyles, TOOLBARS } from 'wix-rich-content-common';
-import VideoURLInputModal from './videoURLInputModal';
+import SoundCloudURLInputModal from './soundCloudURLInputModal';
 import { InsertPluginIcon } from '../icons';
 
 const modalCustomStyle = {
@@ -15,12 +15,12 @@ export default ({ helpers, t }) => {
   return [
     {
       type: 'modal',
-      name: 'Video',
-      tooltipText: t('VideoPlugin_InsertButton_Tooltip'),
+      name: 'soundCloud',
+      tooltipText: t('SoundCloudPlugin_InsertButton_Tooltip'),
       Icon: InsertPluginIcon,
       componentData: DEFAULTS,
       toolbars: [TOOLBARS.FOOTER, TOOLBARS.SIDE],
-      modalElement: VideoURLInputModal,
+      modalElement: SoundCloudURLInputModal,
       modalStyles: getModalStyles({ customStyles: modalCustomStyle, fullScreen: false }),
       helpers,
     },
