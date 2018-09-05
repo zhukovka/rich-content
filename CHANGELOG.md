@@ -10,6 +10,23 @@
 
 ## [Unreleased]
 
+## 1.5.2-alpha.0 (Sep 5, 2018)
+
+### :rocket: New Feature
+
+- `soundcloud`
+  - [#92](https://github.com/wix-incubator/rich-content/pull/92) `plugin-sound-cloud` implemented
+
+### :bug: Bug Fix
+
+- `image`
+  - [#125](https://github.com/wix-incubator/rich-content/pull/125) image component links now are handled individually
+- `viewer`
+  - SSR support improved [WIP]
+  - `RichContentViewer`: default props prevent crash
+
+<br/>
+
 ## 1.5.1 (Sep 3, 2018)
 
 ### :bug: Bug Fix
