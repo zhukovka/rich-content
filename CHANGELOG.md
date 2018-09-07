@@ -10,6 +10,13 @@
 
 ## [Unreleased]
 
+## 1.6.0 (Sep 7, 2018)
+
+### :boom: Breaking Change
+
+- `general`
+  - `image` and `gallery` plugins are moved to a [separate repository](https://github.com/wix-incubator/rich-content-plugins-wix) since they have Wix private dependencies
+
 ## 1.5.2 (Sep 5, 2018)
 
 ~~### :rocket: New Feature~~
