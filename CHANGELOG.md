@@ -10,6 +10,8 @@
 
 ## [Unreleased]
 
+## 1.6.1 (Sep 13, 2018)
+
 ### :rocket: New Feature
 
 - `viewer`
