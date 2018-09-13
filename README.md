@@ -256,6 +256,8 @@ The compiled package also contains a CommonJS bundle, which you can consume if y
 
 [rich-content-viewer-example](./examples/viewer) to see how to consume the Component as a viewer.
 
+[rich-content-viewer-ssr](./examples/viewer-ssr) to see how to consume the Component as a viewer within a Yoshi-based SSR Application.
+
 [rich-content-editor-tpa](./examples/editor-tpa) to see how to consume the Component as an editor within a Wix Third Party Application.
 
 ### Modules
