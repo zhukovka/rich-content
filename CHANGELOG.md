@@ -13,15 +13,15 @@
 ### :rocket: New Feature
 
 - `viewer`
-  - `RichContentViewer` accepts `config` prop for plugin configuration
+  - [#134](https://github.com/wix-incubator/rich-content/pull/134) `RichContentViewer` accepts `config` prop for plugin configuration
 
 - `examples`
-  - `viewer-ssr` example added
+  - [#134](https://github.com/wix-incubator/rich-content/pull/134) `viewer-ssr` example added
 
 ### :bug: Bug Fix
 
 - `viewer`
-  - block rendering and text alignment fixed
+  - [#134](https://github.com/wix-incubator/rich-content/pull/134) block rendering and text alignment fixed
 
 ## 1.6.0 (Sep 7, 2018)
 
