@@ -10,12 +10,27 @@
 
 ## [Unreleased]
 
+## 1.6.1 (Sep 13, 2018)
+
+### :rocket: New Feature
+
+- `viewer`
+  - [#134](https://github.com/wix-incubator/rich-content/pull/134) `RichContentViewer` accepts `config` prop for plugin configuration
+
+- `examples`
+  - [#134](https://github.com/wix-incubator/rich-content/pull/134) `viewer-ssr` example added
+
+### :bug: Bug Fix
+
+- `viewer`
+  - [#134](https://github.com/wix-incubator/rich-content/pull/134) block rendering and text alignment fixed
+
 ## 1.6.0 (Sep 7, 2018)
 
 ### :boom: Breaking Change
 
 - `general`
-  - `image` and `gallery` plugins are moved to a [separate repository](https://github.com/wix-incubator/rich-content-plugins-wix) since they have Wix private dependencies
+  - [#128](https://github.com/wix-incubator/rich-content/pull/128) `image` and `gallery` plugins are moved to a [separate repository](https://github.com/wix-incubator/rich-content-plugins-wix) since they have Wix private dependencies
 
 ## 1.5.2 (Sep 5, 2018)
 
