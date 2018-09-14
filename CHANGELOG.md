@@ -10,6 +10,8 @@
 
 ## [Unreleased]
 
+<br/>
+
 ## 1.6.1 (Sep 13, 2018)
 
 ### :rocket: New Feature
@@ -18,12 +20,14 @@
   - [#134](https://github.com/wix-incubator/rich-content/pull/134) `RichContentViewer` accepts `config` prop for plugin configuration
 
 - `examples`
-  - [#134](https://github.com/wix-incubator/rich-content/pull/134) `viewer-ssr` example added
+  - [#134](https://github.com/wix-incubator/rich-content/pull/134) [viewer-ssr](https://github.com/wix-incubator/rich-content/tree/master/examples/viewer-ssr) example added
 
 ### :bug: Bug Fix
 
 - `viewer`
   - [#134](https://github.com/wix-incubator/rich-content/pull/134) block rendering and text alignment fixed
+
+<br/>
 
 ## 1.6.0 (Sep 7, 2018)
 
@@ -31,6 +35,8 @@
 
 - `general`
   - [#128](https://github.com/wix-incubator/rich-content/pull/128) `image` and `gallery` plugins are moved to a [separate repository](https://github.com/wix-incubator/rich-content-plugins-wix) since they have Wix private dependencies
+
+<br/>
 
 ## 1.5.2 (Sep 5, 2018)
 
@@ -47,6 +53,15 @@
 - `viewer`
   - SSR support improved [WIP]
   - `RichContentViewer`: default props prevent crash
+
+<br/>
+
+## 1.5.2-alpha.0 (Sep 5, 2018)
+
+### :rocket: New Feature
+
+- `soundcloud`
+  - [#92](https://github.com/wix-incubator/rich-content/pull/92) `plugin-sound-cloud` implemented
 
 <br/>
 
