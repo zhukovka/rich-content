@@ -86,7 +86,7 @@ import 'wix-rich-content-plugin-...'/dist/styles.min.css';
 
 ### 2. Add Plugins
 
-To add plugins to your editor, choose one of the implemented plugins from [the list of available plugins](`./pacakges/`).
+To add plugins to your editor, choose one of the implemented plugins from [the list of available plugins](`./packages/`).
 
 Install the plugin you wish use from NPM:
 
