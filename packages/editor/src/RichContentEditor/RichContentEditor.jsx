@@ -59,7 +59,18 @@ class RichContentEditor extends Component {
     const getEditorState = () => this.state.editorState;
     const setEditorState = editorState => this.setState({ editorState });
     const { pluginInstances, pluginButtons, pluginTextButtons, pubsubs } =
-      createPlugins({ plugins, config, helpers, theme, t, isMobile, anchorTarget, relValue, getEditorState, setEditorState });
+      createPlugins({
+        plugins,
+        config,
+        helpers,
+        theme,
+        t,
+        isMobile,
+        anchorTarget,
+        relValue,
+        getEditorState,
+        setEditorState,
+      });
     this.initEditorToolbars(pluginButtons, pluginTextButtons);
     this.pluginKeyBindings = initPluginKeyBindings(pluginTextButtons);
     this.plugins = [...pluginInstances, ...Object.values(this.toolbars)];
@@ -144,21 +155,6 @@ class RichContentEditor extends Component {
   }
 
   // TODO: get rid of this ASAP!
-  // this is done to ensure fixed tooltips have transformed parent for scrolling
-  componentDidMount() {
-    if (this.getToolbars().TextToolbar && !document.body.className.includes(styles.transformed)) {
-      document.body.className += ` ${styles.transformed}`;
-    }
-  }
-
-  componentDidUpdate() {
-    if (this.getToolbars().TextToolbar && !document.body.className.includes(styles.transformed)) {
-      document.body.className += ` ${styles.transformed}`;
-    }
-  }
-
-
-  // TODO: get rid of this ASAP!
   // Currently, there's no way to get a static toolbar ref without consumer interference
   findFocusableChildForElement(id) {
     const element = document.getElementById(id);
@@ -228,7 +224,7 @@ class RichContentEditor extends Component {
       const modals = this.plugins.map((plugin, index) => {
         if (plugin.InlineModals && plugin.InlineModals.length > 0) {
           return plugin.InlineModals.map((Modal, modalIndex) => {
-            return <Modal key={`k${index}m${modalIndex}`}/>;
+            return <Modal key={`k${index}m${modalIndex}`} />;
           });
         }
       });
@@ -300,7 +296,7 @@ class RichContentEditor extends Component {
     );
   };
 
-  renderAccessibilityListener = () => <AccessibilityListener isMobile={this.props.isMobile}/>;
+  renderAccessibilityListener = () => <AccessibilityListener isMobile={this.props.isMobile} />;
 
   renderTooltipHost = () => <TooltipHost theme={this.state.theme} />
 
