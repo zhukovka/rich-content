@@ -10,6 +10,10 @@
 
 ## [Unreleased]
 
+<br/>
+
+## 1.6.2 (Sep 25, 2018)
+
 ### :rocket: New Feature
 
 - `general`
