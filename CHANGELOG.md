@@ -10,6 +10,16 @@
 
 ## [Unreleased]
 
+### :rocket: New Feature
+
+- `soundcloud`
+  - [#92](https://github.com/wix-incubator/rich-content/pull/92) `plugin-sound-cloud` implemented
+
+### :bug: Bug Fix
+
+- `html`
+  - [#141](https://github.com/wix-incubator/rich-content/pull/141) width and height component data is now applied on HTML viewer component
+
 <br/>
 
 ## 1.6.2 (Sep 25, 2018)
