@@ -10,6 +10,13 @@
 
 ## [Unreleased]
 
+### :bug: Bug Fix
+
+- `viewer`
+  - [#144](https://github.com/wix-incubator/rich-content/pull/144) added theme support for `List`
+  - [#145](https://github.com/wix-incubator/rich-content/pull/145) pass `isMobile` prop to plugins
+  - [#146](https://github.com/wix-incubator/rich-content/pull/146) fix: empty `List` items are not rendered
+
 <br/>
 
 ## 1.6.3 (Sep 27, 2018)
@@ -23,12 +30,6 @@
 
 - `html`
   - [#141](https://github.com/wix-incubator/rich-content/pull/141) width and height component data is now applied on HTML viewer component
-- `viewer`
-  - [#144](https://github.com/wix-incubator/rich-content/pull/144) added theme support for `List`
-
-- `viewer`
-  - [#146](https://github.com/wix-incubator/rich-content/pull/146) fix: empty `List` items are not rendered
-  - [#145](https://github.com/wix-incubator/rich-content/pull/145) pass `isMobile` prop to plugins
 
 <br/>
 
