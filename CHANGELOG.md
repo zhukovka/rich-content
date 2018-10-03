@@ -10,6 +10,8 @@
 
 ## [Unreleased]
 
+## 1.6.5 (Oct 3, 2018)
+
 ### :rocket: New Feature
 
 - `general`
@@ -20,6 +22,10 @@
 ### :book: Documentation
 
 - [RichContentEditor API](./docs/RichContentEditorApi.md) doc added
+
+### :bug: Bug Fix
+  - `common`
+    - `BaseComponent` supplies `blockKey` when subscribing for block
 
 <br/>
 

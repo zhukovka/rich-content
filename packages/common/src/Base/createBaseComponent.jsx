@@ -52,8 +52,9 @@ const createBaseComponent = ({ PluginComponent, theme, settings, pubsub, helpers
       pubsub.subscribe('componentAlignment', this.onComponentAlignmentChange);
       pubsub.subscribe('componentSize', this.onComponentSizeChange);
       pubsub.subscribe('componentTextWrap', this.onComponentTextWrapChange);
-      this.unsubscribeOnBlock = pubsub.subscribeOnBlock({ key: 'componentLink', callback: this.onComponentLinkChange });
       pubsub.subscribe('editorBounds', this.onEditorBoundsChange);
+      const blockKey = this.props.block.getKey();
+      this.unsubscribeOnBlock = pubsub.subscribeOnBlock({ key: 'componentLink', blockKey, callback: this.onComponentLinkChange });
     }
 
     componentDidUpdate() {
