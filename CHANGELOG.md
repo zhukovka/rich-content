@@ -19,13 +19,13 @@
 - `editor`
   - [#151](https://github.com/wix-incubator/rich-content/pull/151) RCE `handleReturn` prop exposed. Check [documentation](./docs/RichContentEditorApi.md) for more details
 
-### :book: Documentation
-
-- [RichContentEditor API](./docs/RichContentEditorApi.md) doc added
-
 ### :bug: Bug Fix
   - `common`
     - `BaseComponent` supplies `blockKey` when subscribing for block
+
+### :book: Documentation
+
+- [RichContentEditor API](./docs/RichContentEditorApi.md) doc added
 
 <br/>
 
