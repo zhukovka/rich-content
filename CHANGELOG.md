@@ -15,7 +15,7 @@
 - `general`
   - [#149](https://github.com/wix-incubator/rich-content/pull/149) RCE `config.getToolbarSettings` API now allows to provide decoration component for toolbar containers. Check [documentation](https://github.com/wix-incubator/rich-content/blob/master/docs/ToolbarCustomization.md) for more details
 - `editor`
-  - RCE `handleReturn` prop exposed. Check [documentation](./docs/RichContentEditorApi.md) for more details
+  - [#151](https://github.com/wix-incubator/rich-content/pull/151) RCE `handleReturn` prop exposed. Check [documentation](./docs/RichContentEditorApi.md) for more details
 
 ### :book: Documentation
 
