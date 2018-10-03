@@ -12,6 +12,25 @@
 
 <br/>
 
+## 1.6.5 (Oct 3, 2018)
+
+### :rocket: New Feature
+
+- `general`
+  - [#149](https://github.com/wix-incubator/rich-content/pull/149) RCE `config.getToolbarSettings` API now allows to provide decoration component for toolbar containers. Check [documentation](https://github.com/wix-incubator/rich-content/blob/master/docs/ToolbarCustomization.md) for more details
+- `editor`
+  - [#151](https://github.com/wix-incubator/rich-content/pull/151) RCE `handleReturn` prop exposed. Check [documentation](./docs/RichContentEditorApi.md) for more details
+
+### :bug: Bug Fix
+  - `common`
+    - `BaseComponent` supplies `blockKey` when subscribing for block
+
+### :book: Documentation
+
+- [RichContentEditor API](./docs/RichContentEditorApi.md) doc added
+
+<br/>
+
 ## 1.6.4 (Oct 2, 2018)
 
 ### :bug: Bug Fix
