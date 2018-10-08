@@ -20,8 +20,9 @@
   - [#151](https://github.com/wix-incubator/rich-content/pull/151) RCE `handleReturn` prop exposed. Check [documentation](./docs/RichContentEditorApi.md) for more details
 
 ### :bug: Bug Fix
-  - `common`
-    - `BaseComponent` supplies `blockKey` when subscribing for block
+
+- `common`
+  - `BaseComponent` supplies `blockKey` when subscribing for block
 
 ### :book: Documentation
 

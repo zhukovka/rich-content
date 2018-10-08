@@ -1,4 +1,4 @@
-# Toolbar Customization
+# UI Settings
 
 ## Motivation
 
