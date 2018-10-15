@@ -12,7 +12,7 @@ const modalCustomStyle = {
 };
 
 if (WixUtils.isMobile()) {
-  modalCustomStyle.content.minHeight = '202px'
+  modalCustomStyle.content.minHeight = '202px';
 }
 export default ({ helpers, t }) => {
   return [

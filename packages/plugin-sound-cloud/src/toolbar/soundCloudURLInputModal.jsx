@@ -63,11 +63,11 @@ export default class SoundCloudURLInputModal extends Component {
 
     return (
       <div className={styles.container} data-hook="soundCloudUploadModal">
-          { !WixUtils.isMobile() && <CloseIcon className={classNames(styles.closeIcon)} onClick={() => this.onCloseRequested()} /> }
+        { !WixUtils.isMobile() && <CloseIcon className={classNames(styles.closeIcon)} onClick={() => this.onCloseRequested()} /> }
         <div role="heading" aria-labelledby="sound_cloud_modal_hdr" className={classNames(styles.header)}>
           <SoundCloudIcon className={classNames(styles.header_icon)} />
           <h3 id="sound_cloud_modal_hdr" className={styles.header_text}>
-              {(!WixUtils.isMobile()) ? t('SoundCloudUploadModal_Header') : t('SoundCloudUploadModal_Header_Mobile') }
+            {(!WixUtils.isMobile()) ? t('SoundCloudUploadModal_Header') : t('SoundCloudUploadModal_Header_Mobile') }
           </h3>
         </div>
         <div className={styles.soundCloudUrlInputModal_textInput}>
