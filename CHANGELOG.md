@@ -10,6 +10,11 @@
 
 ## [Unreleased]
 
+### :bug: Bug Fix
+
+- `viewer`
+  - [#152](https://github.com/wix-incubator/rich-content/issues/152) empty blocks are not cleaned up
+
 <br/>
 
 ## 1.6.6 (Oct 15, 2018)
@@ -72,7 +77,6 @@
 
 - `soundcloud`
   - [#92](https://github.com/wix-incubator/rich-content/pull/92) `plugin-sound-cloud` implemented
-
 
 ### :bug: Bug Fix
 
