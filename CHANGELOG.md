@@ -10,6 +10,10 @@
 
 ## [Unreleased]
 
+<br/>
+
+## 1.6.6 (Oct 15, 2018)
+
 ### :rocket: New Feature
 
 - `common`:
