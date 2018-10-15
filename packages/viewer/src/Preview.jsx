@@ -89,7 +89,7 @@ const options = {
   cleanup: {
     after: 'all',
     split: true,
-    except: ['unordered-list-item', 'ordered-list-item'],
+    except: ['unordered-list-item', 'ordered-list-item', 'unstyled'],
   },
 };
 
