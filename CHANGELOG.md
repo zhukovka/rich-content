@@ -12,8 +12,8 @@
 
 ### :rocket: New Feature
 
-- `mentions-plugin`
-  - add option `repositionSuggestions` to support better suggestions popup positioning in iframes
+- `mentions`
+  - [#148](https://github.com/wix-incubator/rich-content/pull/148) add option `repositionSuggestions` to support better suggestions popup positioning in iframe
 
 ### :bug: Bug Fix
 
