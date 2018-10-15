@@ -22,6 +22,8 @@
   - [#154](https://github.com/wix-incubator/rich-content/pull/154) `SelectButton` hard-coded styles are overridable by theme
 - `mentions`
   - [#148](https://github.com/wix-incubator/rich-content/pull/148) add option `repositionSuggestions` to support better suggestions popup positioning in iframe
+- `soundcloud`
+  - [#156](https://github.com/wix-incubator/rich-content/pull/156) adjusted soundcloud modal layout in mobile view
 - `viewer`
   - [#153](https://github.com/wix-incubator/rich-content/pull/153) fix: `header-one` is not rendered
   - [#152](https://github.com/wix-incubator/rich-content/issues/152) white-space render is fixed
@@ -66,6 +68,7 @@
 
 - `soundcloud`
   - [#92](https://github.com/wix-incubator/rich-content/pull/92) `plugin-sound-cloud` implemented
+
 
 ### :bug: Bug Fix
 
