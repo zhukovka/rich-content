@@ -23,4 +23,4 @@ In order to support plugin theming, the following conditions should be met:
 - the default plugin styles should be implemented in dedicated SCSS files
 - all the styling should be implemented with *class selectors* only (avoid HTML element selectors, nth-child, etc)
 - all the SCSS files should have *flat structure* (avoid nesting)
-- all the CSS class names should be *globally unique* to avoid name collisions in theme mapping. The current class naming convention is `[component_name]_[style_name]`, e.g. `.video_player`, `.video_container`, `.video_overlay`
+- all the SCSS class names should be *globally unique* to avoid name collisions in theme mapping. The current class naming convention is `[component_name]_[style_name]`, e.g. `.video_player`, `.video_container`, `.video_overlay`
