@@ -10,12 +10,21 @@
 
 ## [Unreleased]
 
+### :rocket: New Feature
+
+- `common`
+  - [#159](https://github.com/wix-incubator/rich-content/pull/159) `modalDecorations` API is added to `openModal`, `InlineButtons`, `InsertButtons` APIs. Check [documentation](./docs/plugin-development-guidelines/ModalDialogs.md) for more details
+
 ### :bug: Bug Fix
 
 - `viewer`
   - [#152](https://github.com/wix-incubator/rich-content/issues/152) empty blocks are not cleaned up
 - `common`
   - `modalStylesFn` API added to `InlineButtons` structure for dynamic styling support
+
+### :book: Documentation
+
+- [#159](https://github.com/wix-incubator/rich-content/pull/159) [Modal Dialogs](./docs/plugin-development-guidelines/ModalDialogs.md) doc added
 
 <br/>
 
