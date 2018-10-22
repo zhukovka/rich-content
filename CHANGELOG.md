@@ -10,6 +10,20 @@
 
 ## [Unreleased]
 
+<br />
+
+## 1.6.8 (Oct 18, 2018)
+
+### :bug: Bug Fix
+
+- `soundcloud`
+  - fix cropped message in mobile view 
+
+### :house: Internal
+
+- `general`
+  - draft-js version updated to 0.10.272
+
 <br/>
 
 ## 1.6.7 (Oct 18, 2018)
