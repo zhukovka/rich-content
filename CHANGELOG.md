@@ -10,6 +10,11 @@
 
 ## [Unreleased]
 
+### :house: Internal
+
+- `general`
+  - draft-js version updated to 0.10.272
+
 <br/>
 
 ## 1.6.7 (Oct 18, 2018)
