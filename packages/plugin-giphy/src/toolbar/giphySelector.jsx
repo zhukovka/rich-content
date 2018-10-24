@@ -60,8 +60,8 @@ class GiphySelector extends Component {
 
   onClick = gif => {
     const gifObj = {
-      originalUrl: gif.images.original.gif_url,
-      stillUrl: gif.images.original_still.gif_url,
+      originalUrl: gif.images.original.url,
+      stillUrl: gif.images.original_still.url,
       height: parseInt(gif.images.original.height),
       width: parseInt(gif.images.original.width)
     };
@@ -135,7 +135,7 @@ class GiphySelector extends Component {
                     onKeyPress={this.handleKeyPress}
                     onClick={() => this.onClick(gif)}
                   >
-                    <img className={styles.giphy_selecter_gif_img} src={gif.images.fixed_width_downsampled.gif_url} alt={'gif'} />
+                    <img className={styles.giphy_selecter_gif_img} src={gif.images.fixed_width_downsampled.url} alt={'gif'} />
                   </div>
                 );
               })}
