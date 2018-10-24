@@ -12,6 +12,15 @@
 
 <br/>
 
+## 1.6.10 (Oct 24, 2018)
+
+### :house: Internal
+
+- `general`
+  - `package-lock.json` files are not ignored
+
+<br/>
+
 ## 1.6.9 (Oct 24, 2018)
 
 ### :rocket: New Feature
