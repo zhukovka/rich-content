@@ -10,6 +10,11 @@
 
 ## [Unreleased]
 
+### :rocket: New Feature
+
+- `giphy`
+  - [#161](https://github.com/wix-incubator/rich-content/pull/161) `plugin-giphy` implemented
+  
 <br />
 
 ## 1.6.8 (Oct 18, 2018)
