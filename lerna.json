@@ -8,9 +8,5 @@
   "packages": [
     "packages/*"
   ],
-  "npmClientArgs": [
-    "--prefer-offline",
-    "--cache-min 9999999"
-  ],
   "version": "independent"
 }
