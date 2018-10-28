@@ -73,7 +73,6 @@
     "sass-loader": "^7.0.1",
     "semver": "^5.5.0",
     "source-map-loader": "^0.2.3",
-    "spdx-license-ids": "shinnn/spdx-license-ids",
     "style-loader": "^0.21.0",
     "surge-github-autorelease": "^1.0.43",
     "uglifyjs-webpack-plugin": "^1.2.5",
