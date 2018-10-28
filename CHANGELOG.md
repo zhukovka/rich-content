@@ -10,6 +10,13 @@
 
 ## [Unreleased]
 
+### :bug: Bug Fix
+
+- `editor`
+  - [#171](https://github.com/wix-incubator/rich-content/pull/171) SEO demand: render list item content wrapped in <p> tags
+- `viewer`
+  - [#171](https://github.com/wix-incubator/rich-content/pull/171) SEO demand: render list item content wrapped in <p> tags
+
 <br/>
 
 ## 1.6.10 (Oct 24, 2018)
