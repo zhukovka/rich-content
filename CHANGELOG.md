@@ -10,6 +10,10 @@
 
 ## [Unreleased]
 
+<br/>
+
+## 1.7.0 (Oct 31, 2018)
+
 ### :boom: Breaking Change
 
 - `viewer`
