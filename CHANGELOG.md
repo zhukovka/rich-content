@@ -13,12 +13,12 @@
 ### :boom: Breaking Change
 
 - `viewer`
-  - RichContentViewer `isRtl` prop replaced with `textDirection` prop (accepted values are `'rtl'`, `'ltr'`)
+  - [#176](https://github.com/wix-incubator/rich-content/pull/176) RichContentViewer `isRtl` prop replaced with `textDirection` prop (accepted values are `'rtl'`, `'ltr'`)
 
 ### :rocket: New Feature
 
 - `viewer`
-  - text direction applied to blocks accordingly to the text symbols
+  - [#176](https://github.com/wix-incubator/rich-content/pull/176) text direction applied to blocks accordingly to the text symbols
 
 ### :bug: Bug Fix
 
