@@ -12,6 +12,30 @@
 
 <br/>
 
+## 1.7.0 (Oct 31, 2018)
+
+### :boom: Breaking Change
+
+- `viewer`
+  - [#176](https://github.com/wix-incubator/rich-content/pull/176) RichContentViewer `isRtl` prop replaced with `textDirection` prop (accepted values are `'rtl'`, `'ltr'`)
+
+### :rocket: New Feature
+
+- `viewer`
+  - [#176](https://github.com/wix-incubator/rich-content/pull/176) text direction applied to blocks accordingly to the text symbols
+
+### :bug: Bug Fix
+
+- `editor`
+  - [#171](https://github.com/wix-incubator/rich-content/pull/171) SEO demand: render list item content wrapped in `<p>` tags
+- `viewer`
+  - [#171](https://github.com/wix-incubator/rich-content/pull/171) SEO demand: render list item content wrapped in `<p>` tags
+  - [#175](https://github.com/wix-incubator/rich-content/pull/175) plugin rendering: redundant whitespaces removed
+- `link`
+  - [#175](https://github.com/wix-incubator/rich-content/pull/175) `LinkParseStrategy` omits parsed range if it matches an entity range (link duplicates issue)
+
+<br/>
+
 ## 1.6.10 (Oct 24, 2018)
 
 ### :house: Internal
