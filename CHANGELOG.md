@@ -18,12 +18,16 @@
   - [#179](https://github.com/wix-incubator/rich-content/pull/179) `mapStoreDataToButtonProps` API exposed (to be used in toolbar button structures)
   - [#179](https://github.com/wix-incubator/rich-content/pull/179) `width` and `height` props added to the plugin config
 - `html`
-  - [#179](https://github.com/wix-incubator/rich-content/pull/179) `width`, `height`, `minWidth`, `minHeight`, `maxWidth`, and `maxHeight` values can be provided via settings. See [PluginsConfig](./examples/editor/src/PluginsConfig.js) for reference
+  - [#179](https://github.com/wix-incubator/rich-content/pull/179) `width`, `height`, `minWidth`, `minHeight`, `maxWidth`, and `maxHeight` values can be provided via settings. See [PluginCustomization](./docs/PluginCustomization.md) doc for reference
 
 ### :bug: Bug Fix
 
 - `html`
   - [#179](https://github.com/wix-incubator/rich-content/pull/179) html component maximum width is limited by the editor width rather set hard-coded
+
+### :book: Documentation
+
+- [PluginCustomization](./docs/PluginCustomization.md) doc added
 
 <br/>
 
