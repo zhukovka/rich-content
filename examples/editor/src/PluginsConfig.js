@@ -29,8 +29,13 @@ export default {
     }
   },
   [HTML_TYPE]: {
-    htmlIframeSrc: "http://localhost:3000/static/html-plugin-embed.html"
-    // showInsertButtons: false,
+    htmlIframeSrc: "http://localhost:3000/static/html-plugin-embed.html",
+    minWidth: 35,
+    maxWidth: 740,
+    height: 250,
+    width: 740,
+    minHeight: 50,
+    maxHeight: 350,
   },
   [EXTERNAL_MENTIONS_TYPE]: {
     repositionSuggestions: true,
@@ -65,7 +70,18 @@ export default {
   [VIDEO_TYPE]: {
     toolbar: {
       hidden: []
-    }
+    },
+    //Here you can call your custom video upload functionality (comment function to disable custom upload)
+    handleFileSelection: (updateEntity, removeEntity) => {
+      console.log('consumer wants to upload custom video');
+      const customVideoUrl = 'http://mirrors.standaloneinstaller.com/video-sample/jellyfish-25-mbps-hd-hevc.mp4';
+      setTimeout(() => {
+        updateEntity({ data: { url: customVideoUrl } });
+        //updateEntity({ error: { msg: 'Upload Failed' } });
+        console.log('consumer uploaded ', customVideoUrl);
+      }, 500);
+    },
+    enableCustomUploadOnMobile: true,
   },
   [GIPHY_TYPE]: {
     giphySdkApiKey: "JfQziSTdnSwDZcD3w8DpUL4LMFu3zBgU"
