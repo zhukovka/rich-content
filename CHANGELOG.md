@@ -10,6 +10,10 @@
 
 ## [Unreleased]
 
+<br/>
+
+## 1.7.1 (Nov 7, 2018)
+
 ### :rocket: New Feature
 
 - `custom video upload extension`
