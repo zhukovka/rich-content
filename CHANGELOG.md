@@ -10,6 +10,10 @@
 
 ## [Unreleased]
 
+<br/>
+
+## 1.7.2 (Nov 11, 2018)
+
 ### :bug: Bug Fix
 
 - `general`
