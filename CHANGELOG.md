@@ -10,6 +10,10 @@
 
 ## [Unreleased]
 
+<br/>
+
+## 1.7.3 (Nov 13, 2018)
+
 ### :bug: Bug Fix
 
 - `giphy`
