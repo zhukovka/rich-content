@@ -3,5 +3,4 @@ export const HEADING = {
   ONE: 'inline-header-one',
   TWO: 'inline-header-two',
   THREE: 'inline-header-three',
-  TITLE: 'inline-header-one',
 };

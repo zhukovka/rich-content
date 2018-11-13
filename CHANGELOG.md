@@ -12,6 +12,15 @@
 
 <br/>
 
+## 1.7.3 (Nov 13, 2018)
+
+### :bug: Bug Fix
+
+- `giphy`
+  - [#191](https://github.com/wix-incubator/rich-content/pull/191) using img tag (self closing) for viewer istead of gifplayer (as its not using a void img element tag)
+
+<br/>
+
 ## 1.7.2 (Nov 11, 2018)
 
 ### :bug: Bug Fix
@@ -22,7 +31,7 @@
   - [#188](https://github.com/wix-incubator/rich-content/pull/188) Fix soundcloud regix url validator to include mobile urls + Save & Cancel Button font padding fixes on mobile
 - `video`
   - [#190](https://github.com/wix-incubator/rich-content/pull/190) Text input error icon padding fix + Text input shadow fix on safari
-   
+
 <br/>
 
 ## 1.7.1 (Nov 7, 2018)
