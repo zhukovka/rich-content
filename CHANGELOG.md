@@ -12,6 +12,13 @@
 
 <br/>
 
+## 1.7.4 (Nov 15, 2018)
+
+### :bug: Bug Fix
+
+- `common`
+  - [a40574b8](https://github.com/wix-incubator/rich-content/commit/a40574b8d551e40dd8d1c27b3f7b1f7bc6f05057) decreased mobile plugin add button font size 
+
 ## 1.7.3 (Nov 13, 2018)
 
 ### :bug: Bug Fix
