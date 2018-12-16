@@ -13,10 +13,7 @@ import { linkTypeMapper, LinkViewer, LinkParseStrategy, LINK_TYPE } from 'wix-ri
 
 import { Strategy as HashTagStrategy, Component as HashTag } from 'wix-rich-content-plugin-hashtag';
 import { CodeBlockDecorator } from 'wix-rich-content-plugin-code-block/dist/module.viewer';
-
-import TestData from './TestData/initial-state';
-import theme from './theme/theme';
-import styles from './App.scss';
+import { MENTION_TYPE, mentionsTypeMapper } from 'wix-rich-content-plugin-mentions/dist/module.viewer';
 
 import 'wix-rich-content-common/dist/styles.min.css';
 import 'wix-rich-content-viewer/dist/styles.min.css';
@@ -29,6 +26,10 @@ import 'wix-rich-content-plugin-link/dist/styles.min.css';
 import 'wix-rich-content-plugin-mentions/dist/styles.min.css';
 import 'wix-rich-content-plugin-video/dist/styles.min.css';
 import 'wix-rich-content-plugin-sound-cloud/dist/styles.min.css';
+
+import TestData from './TestData/initial-state';
+import styles from './App.scss';
+import theme from './theme/theme';
 
 const modalStyleDefaults = {
   content: {
@@ -44,6 +45,11 @@ const modalStyleDefaults = {
 const linkPluginSettings = {
   onClick: (event, url) => console.log('link clicked!', url),
 };
+const mentionsPluginSettings = {
+  onMentionClick: mention => console.log('mention clicked!', mention),
+  getMentionLink: () => '/link/to/mention',
+};
+
 const anchorTarget = '_top';
 const relValue = 'noreferrer';
 
@@ -62,7 +68,9 @@ class App extends Component {
       dividerTypeMapper,
       htmlTypeMapper,
       linkTypeMapper,
-      soundCloudTypeMapper];
+      soundCloudTypeMapper,
+      mentionsTypeMapper,
+    ];
 
     this.decorators = [{
         strategy: LinkParseStrategy,
@@ -88,6 +96,7 @@ class App extends Component {
         htmlIframeSrc: 'http://localhost:3001/static/html-plugin-embed.html',
       },
       [LINK_TYPE]: linkPluginSettings,
+      [MENTION_TYPE]: mentionsPluginSettings
     }
   }
 

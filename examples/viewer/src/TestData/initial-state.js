@@ -976,6 +976,38 @@ const TestData = {
       }
     ],
     entityMap: {}
+  },
+  mentions: {
+    blocks: [
+      {
+        key: "foo",
+        text: "Hi @Vytenis Butkevičius!",
+        type: "unstyled",
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [
+          {
+            offset: 3,
+            length: 20,
+            key: 0
+          }
+        ],
+        data: {}
+      }
+    ],
+    entityMap: {
+      0: {
+        type: "mention",
+        mutability: "SEGMENTED",
+        data: {
+          mention: {
+            name: "Vytenis Butkevičius",
+            slug: "vytenisb",
+            id: "2068b184-6832-412f-abd4-31220fecd086"
+          }
+        }
+      }
+    }
   }
 };
 
