@@ -20,8 +20,10 @@
   - [#195](https://github.com/wix-incubator/rich-content/pull/195) handle input selection focus on iphone and source url optimisations
 - `viewer`
   - [#203](https://github.com/wix-incubator/rich-content/pull/203) add `text` class for text blocks
+- `soundcloud`
+  - [#206](https://github.com/wix-incubator/rich-content/pull/206) replacing insert button icon to a squared one (19*19)
 
-  
+
 <br/>
 
 ## 1.7.4 (Nov 15, 2018)
