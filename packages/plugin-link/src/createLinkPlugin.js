@@ -1,7 +1,7 @@
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import { createBasePlugin } from 'wix-rich-content-common';
 import { LINK_TYPE } from './types';
-import { Component } from './LinkDecorator';
+import { Component } from './LinkComponent';
 import { linkEntityStrategy } from './strategy';
 import styles from '../statics/link-viewer.scss';
 import createLinkToolbar from './toolbar/createLinkToolbar';
