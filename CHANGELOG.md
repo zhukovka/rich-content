@@ -15,17 +15,14 @@
 - `link`
   - [#212](https://github.com/wix-incubator/rich-content/pull/212) optional auto link
 
-<<<<<<< HEAD
 ### :bug: Bug Fix
 
 - `viewer`
   - [#214](https://github.com/wix-incubator/rich-content/pull/214) soft new line at end of block
-=======
 ### :house: Internal
 
 - `general`
   - [#213](https://github.com/wix-incubator/rich-content/pull/213) upgrade node version (8 -> 10)
->>>>>>> [*] chore(CHANGELOG) moved from 'common' to 'general'
 
 <br/>
 
