@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import redraft from 'redraft';
 import classNames from 'classnames';
 import endsWith from 'lodash/endsWith';
-import { createInlineStyleDecorators, mergeStyles } from 'wix-rich-content-common';
+import { mergeStyles } from 'wix-rich-content-common';
 import getPluginsViewer from './PluginsViewer';
 import { getTextDirection } from './utils/textUtils';
 import List from './List';
-import { getStrategyByStyle } from './decorators/getStrategyByStyle';
 import styles from '../statics/rich-content-viewer.scss';
 
 const withTextAlignment = (element, data, mergedStyles, textDirection) => {
@@ -58,14 +57,10 @@ const getList = (ordered, mergedStyles, textDirection) =>
   };
 
 const getBlocks = (mergedStyles, textDirection) => {
-  // Rendering blocks like this along with cleanup results in a single p tag for each paragraph
-  // adding an empty block closes current paragraph and starts a new one
   return {
     unstyled: (children, blockProps) => children.map((child, i) =>
       withTextAlignment(
-        <div className={mergedStyles.text} key={blockProps.keys[i]}>
-          <div>{child}</div>
-        </div>,
+        <p className={mergedStyles.text} key={blockProps.keys[i]}>{child}</p>,
         blockProps.data[i],
         mergedStyles,
         textDirection
@@ -136,11 +131,6 @@ const Preview = ({ raw, typeMappers, theme, isMobile, decorators, anchorTarget, 
 
   const augmentedRaw = augmentRaw(raw);
 
-  const combinedDecorators = [
-    ...decorators,
-    ...createInlineStyleDecorators(getStrategyByStyle, mergedStyles)
-  ];
-
   const className = classNames(mergedStyles.preview, textDirection === 'rtl' && mergedStyles.rtl);
 
   return (
@@ -153,7 +143,7 @@ const Preview = ({ raw, typeMappers, theme, isMobile, decorators, anchorTarget, 
             inline: getInline(mergedStyles),
             blocks: getBlocks(mergedStyles, textDirection),
             entities: getEntities(typeMap, { theme, isMobile, anchorTarget, relValue, config }),
-            decorators: combinedDecorators
+            decorators,
           },
           options
         )
