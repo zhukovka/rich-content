@@ -10,7 +10,27 @@
 
 ## [Unreleased]
 
-</br>
+<br/>
+
+## 1.7.6 (Dec 27, 2018)
+
+### :rocket: New Feature
+
+- `common`, `editor` & `viewer`
+  - [#205](https://github.com/wix-incubator/rich-content/pull/205) block headers
+- `link`
+  - [#212](https://github.com/wix-incubator/rich-content/pull/212) optional auto link
+
+### :bug: Bug Fix
+
+- `viewer`
+  - [#214](https://github.com/wix-incubator/rich-content/pull/214) soft new line at end of block
+### :house: Internal
+
+- `general`
+  - [#213](https://github.com/wix-incubator/rich-content/pull/213) upgrade node version (8 -> 10)
+
+<br/>
 
 ## 1.7.5 (Dec 17, 2018)
 
