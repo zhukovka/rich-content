@@ -10,6 +10,10 @@
 
 ## [Unreleased]
 
+<br/>
+
+## 1.7.6 (Dec 27, 2018)
+
 ### :rocket: New Feature
 
 - `common`, `editor` & `viewer`
