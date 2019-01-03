@@ -10,6 +10,10 @@
 
 ## [Unreleased]
 
+<br/>
+
+## 1.7.7 (Jan 3, 2019)
+
 ### :bug: Bug Fix
 
 - `viewer`
