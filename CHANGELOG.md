@@ -12,6 +12,17 @@
 
 <br/>
 
+## 1.7.7 (Jan 3, 2019)
+
+### :bug: Bug Fix
+
+- `viewer`
+  - [#218](https://github.com/wix-incubator/rich-content/pull/218) Fixed justified text alignment.
+- `examples`
+  - [#215](https://github.com/wix-incubator/rich-content/pull/215) Re-enable document scrolling after closing a modal when cliking outside + Prevent flyOut modals from jumping up when opening
+  
+<br/>
+
 ## 1.7.6 (Dec 27, 2018)
 
 ### :rocket: New Feature
