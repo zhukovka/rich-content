@@ -10,12 +10,22 @@
 
 ## [Unreleased]
 
+<hr/>
+
+## 1.7.8 (Jan 7, 2019)
+
+### :bug: Bug Fix
+
 - `common`
-  - [#220](https://github.com/wix-incubator/rich-content/pull/220) Fixed atomic block removal.
+  - [#220](https://github.com/wix-incubator/rich-content/pull/220) atomic block removal
 - `giphy`
-  - [#221](https://github.com/wix-incubator/rich-content/pull/221) Fix style issues & refactor
+  - [#221](https://github.com/wix-incubator/rich-content/pull/221) style issues
+- `viewer`
+  - [#222](https://github.com/wix-incubator/rich-content/pull/222) block augmentation no longer mutates
+  - [1200130](https://github.com/wix-incubator/rich-content/commit/12001307b1c6ba0153ae2b748b816a3b7da34ea0) render empty blocks as `<div>` tags
 - `hashtag`
-  - [#224](https://github.com/wix-incubator/rich-content/pull/224) Prevent hashtag links in code-blocks.
+  - [#224](https://github.com/wix-incubator/rich-content/pull/224) prevent hashtag links in code-blocks  
+
 <hr/>
 
 ## 1.7.7 (Jan 3, 2019)
