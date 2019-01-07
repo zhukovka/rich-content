@@ -56,16 +56,26 @@ const getList = (ordered, mergedStyles, textDirection) =>
     );
   };
 
+const getUnstyledBlocks = (mergedStyles, textDirection) =>
+  (children, blockProps) =>
+    children.map((child, i) => {
+      const [_, data = []] = child;
+      const hasText = !!data.length;
+      if (hasText) {
+        return withTextAlignment(
+          <p className={mergedStyles.text} key={blockProps.keys[i]}>{child}</p>,
+          blockProps.data[i],
+          mergedStyles,
+          textDirection
+        );
+      } else {
+        return <div className={mergedStyles.text} />;
+      }
+    });
+
 const getBlocks = (mergedStyles, textDirection) => {
   return {
-    unstyled: (children, blockProps) => children.map((child, i) =>
-      withTextAlignment(
-        <p className={mergedStyles.text} key={blockProps.keys[i]}>{child}</p>,
-        blockProps.data[i],
-        mergedStyles,
-        textDirection
-      )
-    ),
+    unstyled: getUnstyledBlocks(mergedStyles, textDirection),
     blockquote: (children, blockProps) => children.map((child, i) =>
       withTextAlignment(<blockquote className={mergedStyles.quote} key={blockProps.keys[i]}><div>{child}</div></blockquote>,
         blockProps.data[i], mergedStyles, textDirection)),
@@ -108,28 +118,36 @@ const options = {
   },
 };
 
-const augmentRaw = raw => {
-  const blocks = raw.blocks || [];
-  blocks
-    .filter(({ type }) => type !== 'atomic')
-    .forEach(block => {
-      const direction = getTextDirection(block.text);
-      if (direction === 'rtl') {
-        block.data.textDirection = direction;
-      }
-      if (endsWith(block.text, '\n')) {
-        block.text += '\n';
-      }
-    });
-  return raw;
-};
+const augmentRaw = raw => ({
+  ...raw,
+  blocks: raw.blocks.map(block => {
+    if (block.type === 'atomic') {
+      return block;
+    }
+
+    const data = { ...block.data };
+    const direction = getTextDirection(block.text);
+    if (direction === 'rtl') {
+      data.textDirection = direction;
+    }
+
+    let text = block.text;
+    if (endsWith(text, '\n')) {
+      text += '\n';
+    }
+
+    return {
+      ...block,
+      data,
+      text,
+    };
+  }),
+});
 
 const Preview = ({ raw, typeMappers, theme, isMobile, decorators, anchorTarget, relValue, config, textDirection }) => {
   const mergedStyles = mergeStyles({ styles, theme });
   const isEmpty = isEmptyRaw(raw);
   const typeMap = combineTypeMappers(typeMappers);
-
-  const augmentedRaw = augmentRaw(raw);
 
   const className = classNames(mergedStyles.preview, textDirection === 'rtl' && mergedStyles.rtl);
 
@@ -138,7 +156,7 @@ const Preview = ({ raw, typeMappers, theme, isMobile, decorators, anchorTarget, 
       {isEmpty && <div>There is nothing to render...</div>}
       {!isEmpty &&
         redraft(
-          augmentedRaw,
+          augmentRaw(raw),
           {
             inline: getInline(mergedStyles),
             blocks: getBlocks(mergedStyles, textDirection),
