@@ -12,6 +12,17 @@
 
 <hr/>
 
+## 1.7.9 (Jan 8, 2019)
+
+### :bug: Bug Fix
+
+- `editor`
+  - [70dae20](https://github.com/wix-incubator/rich-content/commit/70dae20c7f47a7a58fc309d7e2cde8dc5e51a4ce) text block styles toggle detaults to 'unstyled'
+- `viewer`
+  - [ddc2ec4](https://github.com/wix-incubator/rich-content/commit/ddc2ec4063e22b60d336321683b849915555a8ab) fixed check for empty text blocks
+
+<hr/>
+
 ## 1.7.8 (Jan 7, 2019)
 
 ### :bug: Bug Fix

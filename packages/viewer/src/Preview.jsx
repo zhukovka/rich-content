@@ -9,6 +9,8 @@ import { getTextDirection } from './utils/textUtils';
 import List from './List';
 import styles from '../statics/rich-content-viewer.scss';
 
+const isEmptyBlock = ([_, data]) => data && data.length === 0; //eslint-disable-line no-unused-vars
+
 const withTextAlignment = (element, data, mergedStyles, textDirection) => {
   const appliedTextDirection = textDirection || data.textDirection || 'ltr';
   const defaultTextAlignment = appliedTextDirection === 'rtl' ? 'right' : 'left';
@@ -59,9 +61,7 @@ const getList = (ordered, mergedStyles, textDirection) =>
 const getUnstyledBlocks = (mergedStyles, textDirection) =>
   (children, blockProps) =>
     children.map((child, i) => {
-      const [_, data = []] = child;
-      const hasText = !!data.length;
-      if (hasText) {
+      if (!isEmptyBlock(child)) {
         return withTextAlignment(
           <p className={mergedStyles.text} key={blockProps.keys[i]}>{child}</p>,
           blockProps.data[i],
