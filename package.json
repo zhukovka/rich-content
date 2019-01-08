@@ -7,9 +7,7 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap --no-ci --hoist",
-    "install:public": "npm_config_cache_min=999999 npm_config_prefer_offline=true npm run bootstrap",
-    "postinstall": "npm run bootstrap",
-    "reinstall": "lerna clean --yes && rm -rf node_modules && rm -f package-lock.json && npm i",
+    "reinstall": "lerna clean --yes && rm -rf node_modules && rm -f package-lock.json && npm run bootstrap",
     "rebuild": "npm run reinstall && npm run build",
     "build": "lerna run --parallel --stream build",
     "build:dev": "lerna run --parallel --stream build:dev",
@@ -81,7 +79,7 @@
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.4",
     "webpack-merge": "^4.1.2",
-    "webpack-serve": "^1.0.2"
+    "webpack-dev-server": "^3.1.14"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
