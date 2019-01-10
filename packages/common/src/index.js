@@ -46,6 +46,7 @@ export { default as TextInput } from './Components/TextInput';
 export { default as ToolbarButton } from './Components/ToolbarButton';
 export { default as Tooltip } from './Components/Tooltip';
 export { default as TooltipHost } from './Components/TooltipHost';
+export { default as MobileNavbar } from './Components/MobileNavbar';
 
 //Modals
 export { default as EditorModals } from './Modals/EditorModals';
