@@ -10,15 +10,19 @@
 
 ## [Unreleased]
 
+<hr/>
+
+## 1.7.10 (Jan 14, 2019)
+
 ### :rocket: New Feature
 
 - `image`
   - [#20](https://github.com/wix-incubator/rich-content-plugins-wix/pull/20) original size in mobile
-  
+
 ### :bug: Bug Fix
 
 - `video`
-  - [#227](https://github.com/wix-incubator/rich-content/pull/227) Removing font sccs property from input modal heading text so theme could be applied 
+  - [#227](https://github.com/wix-incubator/rich-content/pull/227) themable header + text input design
 - `viewer`
   - [6f5e95b](https://github.com/wix-incubator/rich-content/commit/6f5e95b22a8c85972c82b73f795fc9fb4db81a8e) fixed centering of blocks
 
