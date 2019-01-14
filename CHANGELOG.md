@@ -10,6 +10,11 @@
 
 ## [Unreleased]
 
+### :rocket: New Feature
+
+- `image`
+  - [#20](https://github.com/wix-incubator/rich-content-plugins-wix/pull/20) original size in mobile
+  
 ### :bug: Bug Fix
 
 - `video`

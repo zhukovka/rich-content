@@ -51,6 +51,10 @@ const BUNDLE_GLOBALS = {
 };
 
 const NAMED_EXPORTS = {
+  imageClientAPI: [
+    'getScaleToFillImageURL',
+    'getScaleToFitImageURL'
+  ],
   immutable: [
     'List',
   ]
@@ -72,6 +76,8 @@ const plugins = [
   }),
   commonjs({
     namedExports: {
+      '../../node_modules/image-client-api/dist/imageClientSDK.js': [...NAMED_EXPORTS.imageClientAPI],
+      'node_modules/image-client-api/dist/imageClientSDK.js': [...NAMED_EXPORTS.imageClientAPI],
       '../../node_modules/immutable/dist/immutable.js': [...NAMED_EXPORTS.immutable],
       'node_modules/immutable/dist/immutable.js': [...NAMED_EXPORTS.immutable],
     },
