@@ -35,6 +35,7 @@
     "wix-rich-content-plugin-giphy": "file:../../packages/plugin-giphy",
     "wix-rich-content-plugin-hashtag": "file:../../packages/plugin-hashtag",
     "wix-rich-content-plugin-html": "file:../../packages/plugin-html",
+    "wix-rich-content-plugin-image": "file:../../packages/plugin-image",
     "wix-rich-content-plugin-link": "file:../../packages/plugin-link",
     "wix-rich-content-plugin-mentions": "file:../../packages/plugin-mentions",
     "wix-rich-content-plugin-sound-cloud": "file:../../packages/plugin-sound-cloud",
