@@ -21,6 +21,7 @@ module.exports = env => ({
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
+    symlinks: false,
     alias: {
       'draft-js': path.resolve(__dirname, '..', '..', '..', 'node_modules', '@wix', 'draft-js'),
     },

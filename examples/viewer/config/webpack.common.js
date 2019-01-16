@@ -19,6 +19,7 @@ module.exports = env => ({
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
+    symlinks: false,
   },
   module: {
     rules: [
