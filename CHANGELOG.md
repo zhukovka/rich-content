@@ -10,10 +10,11 @@
 
 ## [Unreleased]
 
+## HTML Plugin 1.5.20 (Jan 16, 2019)
+
 ### :bug: Bug Fix
 
-- `html`
-  - [#232](https://github.com/wix-incubator/rich-content/pull/232) first time iframe onload is fired before React.render(), so it will not refresh
+- [#232](https://github.com/wix-incubator/rich-content/pull/232) first time iframe onload is fired before React.render(), so it will not refresh
   
 <hr/>
 
