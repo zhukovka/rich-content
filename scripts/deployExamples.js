@@ -1,20 +1,7 @@
 /* eslint-disable no-console, fp/no-loops */
 
-const path = require('path');
 const chalk = require('chalk');
 const execSync = require('child_process').execSync;
-
-const rootDir = path.resolve(__dirname, '..');
-
-const surgeOpts = {
-  repoOwner: 'wix-incubator',
-  repoName: 'rich-content',
-  rootPath: rootDir,
-};
-
-if (process.env.GITHUB_TOKEN) {
-  surgeOpts.githubToken = process.env.GITHUB_TOKEN;
-}
 
 const exec = cmd => execSync(cmd, { stdio: 'inherit' });
 
@@ -65,8 +52,8 @@ async function deployExamples(examples) {
 
   for (const example of examples) {
     console.log(chalk.blue(`\nDeploying ${example.name} example...`));
-    bootstrap(example);
-    build(example);
+    // bootstrap(example);
+    // build(example);
     publish(example);
   }
 }
