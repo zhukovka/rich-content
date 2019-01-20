@@ -10,15 +10,23 @@
 
 ## [Unreleased]
 
+<hr/>
+
+## Video Plugin 1.6.0 (Jan 20, 2019)
+
 ### :rocket: New Feature
 
-- `video`
-  - [#234](https://github.com/wix-incubator/rich-content/pull/234) upload thumbnail
+ [#234](https://github.com/wix-incubator/rich-content/pull/234) thumbnail support - if you are using relative URLs this requires changes
+
+<hr/>
+
+## Image Plugin 1.5.12 (Jan 20, 2019)
 
 ### :bug: Bug Fix
 
-- `image`
-  - [#233](https://github.com/wix-incubator/rich-content/pull/233) PNG images are loaded as JPG in preload, losing transparency and showing black background
+- [#233](https://github.com/wix-incubator/rich-content/pull/233) PNG images are loaded as JPG in preload, losing transparency and showing black background
+
+<hr/>
 
 ## HTML Plugin 1.5.20 (Jan 16, 2019)
 
@@ -28,7 +36,7 @@
 
 <hr/>
 
-## 1.7.11 (Jan 16, 2019)
+## Rich Content 1.7.11 (Jan 16, 2019)
 
 ### :rocket: New Feature
 
