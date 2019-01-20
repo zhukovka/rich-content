@@ -10,6 +10,11 @@
 
 ## [Unreleased]
 
+### :rocket: New Feature
+
+- `video`
+  - [#234](https://github.com/wix-incubator/rich-content/pull/234) upload thumbnail
+
 ### :bug: Bug Fix
 
 - `image`
