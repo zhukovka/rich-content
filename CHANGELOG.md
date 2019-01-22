@@ -10,6 +10,12 @@
 
 ## [Unreleased]
 
+
+### :house: Internal
+
+- `common`
+  - validate plugin schema only in development
+
 <hr/>
 
 ## Video Plugin 1.6.0 (Jan 20, 2019)
