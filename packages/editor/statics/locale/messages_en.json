@@ -102,6 +102,7 @@
   "GallerySettings_Radios_Scroll_Direction" : "Scroll direction",
   "GallerySettings_Image_Ratio" : "Image ratio",
   "GallerySettings_Thumbnail_Placement" : "Thumbnail placement",
+  "UnsplashUploadModal_Input_Placeholder" : "Search Unsplash...",
   "TextAlignmentButton_Tooltip" : "Alignment",
   "TextLinkButton_Tooltip" : "Link",
   "BoldButton_Tooltip" : "Bold",

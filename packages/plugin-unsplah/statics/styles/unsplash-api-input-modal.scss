@@ -1,0 +1,87 @@
+@import "~wix-rich-content-common/dist/statics/styles/mixins";
+@import "~wix-rich-content-common/dist/statics/styles/palette";
+
+.unsplash_api_input_modal_container {
+  width: 100%;
+  @include phone {
+    width: 100vw;
+    padding: 20px;
+    padding-top: 12px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+}
+
+.unsplash_api_input_modal_search_textinput_group {
+  width: 100%;
+  margin-top: 6px;
+  margin-bottom: 17px;
+  @include phone {
+    margin: auto;
+    padding: 0px;
+    padding-bottom: 10px;
+    width: 100%;
+  }
+}
+.textInput {
+  display: inline-block;
+}
+
+.unsplash_api_input_modal_search_input {
+  width: 554.5px;
+  box-sizing: border-box;
+  padding: 0px;
+  height: 24px;
+  font-size: 16px;
+  color: #969696;
+  border: none;
+  border-radius: 0px;
+}
+
+.unsplash_api_input_modal_search::placeholder {
+  color: black;
+  opacity: 0.5;
+}
+
+.unsplash_api_input_modal_searchIcon {
+  display: inline-block;
+  height: 13px;
+  margin-right: 18px;
+  margin-left: 8px;
+}
+
+.unsplash_api_input_modal_closeIcon {
+  width: 1px;
+  height: 11px;
+  transform: rotate(45deg);
+  background-color: #333333;
+}
+
+.unsplash_api_input_modal_navbar {
+  width: 100%;
+  height: 35px;
+  background-color: #0060ff;
+  vertical-align: middle;
+  padding-top: 15px;
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+}
+
+.unsplash_api_input_modal_backButton {
+  position: absolute;
+  top: 50%;
+  left: 23.5px;
+  width: 12px;
+  height: 12px;
+  background: none;
+  border: none;
+  transform: translateY(-50%) rotate(45deg);
+  border-bottom: solid 1px #ffffff;
+  border-left: solid 1px #ffffff;
+}

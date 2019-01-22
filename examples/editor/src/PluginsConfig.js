@@ -6,6 +6,7 @@ import { HTML_TYPE } from "wix-rich-content-plugin-html";
 import { LINK_TYPE } from "wix-rich-content-plugin-link";
 import { VIDEO_TYPE } from "wix-rich-content-plugin-video";
 import { GIPHY_TYPE } from "wix-rich-content-plugin-giphy";
+import { UNSPLASH_TYPE } from "wix-rich-content-plugin-unsplash";
 import { EXTERNAL_MENTIONS_TYPE } from "wix-rich-content-plugin-mentions";
 import { TOOLBARS, BUTTONS, DISPLAY_MODE } from "wix-rich-content-common";
 
@@ -91,6 +92,10 @@ export default {
   },
   [GIPHY_TYPE]: {
     giphySdkApiKey: "JfQziSTdnSwDZcD3w8DpUL4LMFu3zBgU"
+  },
+  [UNSPLASH_TYPE]: {
+    unsplashPublicApiKey: "",
+    unsplashSecretApiKey: ""
   },
   uiSettings,
   getToolbarSettings: ({ pluginButtons, textButtons }) => [
