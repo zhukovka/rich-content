@@ -10,6 +10,10 @@
 
 ## [Unreleased]
 
+### :bug: Bug Fix
+
+- `viewer`
+  - render empty container div when there is no content
 
 ### :house: Internal
 
