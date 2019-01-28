@@ -11,16 +11,13 @@
 ## [Unreleased]
 
 <hr/>
-
-## Link Plugin 2.0 (Jan 28, 2019)
-
-### :boom: Breaking Change
-- `link`
-  - [#235](https://github.com/wix-incubator/rich-content/pull/235) add dropdown option in link panel
-
-<hr/>
   
 ## 1.7.12 (Jan 28, 2019)
+
+### :boom: Breaking Change
+- `common`
+  - [#235](https://github.com/wix-incubator/rich-content/pull/235) add dropdown support in link panel. Breaking changes in all link panel users: `plugin-link`, `plugin-image` and `plugin-gallery`
+
 
 ### :rocket: New Feature
 - `giphy`
