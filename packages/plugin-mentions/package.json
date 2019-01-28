@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-mentions",
-  "version": "1.5.16",
+  "version": "2.0.0",
   "author": {
     "name": "Vytenis Butkevicius",
     "email": "vytenisb@wix.com"
@@ -27,7 +27,7 @@
     "build": "rollup --environment MODULE_NAME:plugin-mentions -c ../../rollup.config.js",
     "build:dev": "NODE_ENV=development npm run build",
     "build:analyze": "npm run build -- --environment MODULE_ANALYZE && open stats.html",
-    "watch": "MODULE_WATCH=1 npm run build -- --watch",
+    "watch": "NODE_ENV=development MODULE_WATCH=1 npm run build -- --watch",
     "release": "wnpm-release --no-shrinkwrap",
     "test": "eslint 'src/**/*.{js,jsx}'"
   },
@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "draft-js-mention-plugin": "^3.0.4",
-    "wix-rich-content-common": "^1.5.16"
+    "wix-rich-content-common": "^2.0.0"
   },
   "unpkg": true,
   "publishConfig": {

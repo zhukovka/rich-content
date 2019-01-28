@@ -11,6 +11,34 @@
 ## [Unreleased]
 
 <hr/>
+  
+## 2.0.0 (Jan 28, 2019)
+
+_NOTE:_ From this version onwards all modules will have the same version number, no more independent versioning.
+
+### :boom: Breaking Change
+- `common`
+  - [#235](https://github.com/wix-incubator/rich-content/pull/235) add dropdown support in link panel. Breaking changes in all link panel users: `plugin-link`, `plugin-image` and `plugin-gallery`
+
+
+### :rocket: New Feature
+- `giphy`
+  - [#236](https://github.com/wix-incubator/rich-content/pull/236) Add extra customization options to giphy plugin
+  
+### :bug: Bug Fix
+- `video`
+  - [#238](https://github.com/wix-incubator/rich-content/pull/238) Vimeo - urls not prefixed with http[s] didn't work
+- `viewer`
+  - [708c9a8](https://github.com/wix-incubator/rich-content/commit/708c9a843ce8a48841ef98c13ac211524acf3fb7) render empty container div when there is no content
+  - [#240](https://github.com/wix-incubator/rich-content/pull/240) add componentDidCatch, render null for img or video plugins instead of crashing
+
+### :house: Internal
+- `general`
+  - [#239](https://github.com/wix-incubator/rich-content/pull/239) prettier formatter
+- `common`
+  - [c6b143d](https://github.com/wix-incubator/rich-content/commit/c6b143dc792b3d9c6f7892bf24db1818bc7f4cd9) validate plugin schema only in development
+  
+<hr/>
 
 ## Video Plugin 1.6.0 (Jan 20, 2019)
 
