@@ -532,7 +532,7 @@ _NOTE:_ From this version onwards all modules will have the same version number,
   - Theme supports empty css classes
 - `editor`
   - Firefox text editing
-  - Close alignment dropdown when clicke d outside
+  - Close alignment dropdown when clicked outside
 - `image`
   - Transition between `preLoad` and `hiRes` images
 

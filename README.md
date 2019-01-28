@@ -86,7 +86,7 @@ import 'wix-rich-content-plugin-...'/dist/styles.min.css';
 
 ### 2. Add Plugins
 
-To add plugins to your editor, choose one of the implemented plugins from [the list of available plugins](`./pacakges/`).
+To add plugins to your editor, choose one of the implemented plugins from [the list of available plugins](https://github.com/wix-incubator/rich-content/tree/master/packages).
 
 Install the plugin you wish use from NPM:
 
@@ -255,6 +255,8 @@ The compiled package also contains a CommonJS bundle, which you can consume if y
 [rich-content-editor-example](./examples/editor) to see how to consume the Component as an editor.
 
 [rich-content-viewer-example](./examples/viewer) to see how to consume the Component as a viewer.
+
+[rich-content-viewer-ssr](./examples/viewer-ssr) to see how to consume the Component as a viewer within a Yoshi-based SSR Application.
 
 [rich-content-editor-tpa](./examples/editor-tpa) to see how to consume the Component as an editor within a Wix Third Party Application.
 
