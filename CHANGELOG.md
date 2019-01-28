@@ -10,10 +10,18 @@
 
 ## [Unreleased]
 
+<hr/>
+
+## Link Plugin 2.0 (Jan 28, 2019)
+
 ### :boom: Breaking Change
 - `link`
   - [#235](https://github.com/wix-incubator/rich-content/pull/235) add dropdown option in link panel
+
+<hr/>
   
+## 1.7.12 (Jan 28, 2019)
+
 ### :rocket: New Feature
 - `giphy`
   - [#236](https://github.com/wix-incubator/rich-content/pull/236) Add extra customization options to giphy plugin
@@ -22,14 +30,14 @@
 - `video`
   - [#238](https://github.com/wix-incubator/rich-content/pull/238) Vimeo - urls not prefixed with http[s] didn't work
 - `viewer`
-  - render empty container div when there is no content
+  - [708c9a8](https://github.com/wix-incubator/rich-content/commit/708c9a843ce8a48841ef98c13ac211524acf3fb7) render empty container div when there is no content
   - [#240](https://github.com/wix-incubator/rich-content/pull/240) add componentDidCatch, render null for img or video plugins instead of crashing
 
 ### :house: Internal
 - `general`
   - [#239](https://github.com/wix-incubator/rich-content/pull/239) prettier formatter
 - `common`
-  - validate plugin schema only in development
+  - [c6b143d](https://github.com/wix-incubator/rich-content/commit/c6b143dc792b3d9c6f7892bf24db1818bc7f4cd9) validate plugin schema only in development
   
 <hr/>
 
