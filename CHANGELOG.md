@@ -12,7 +12,9 @@
 
 <hr/>
   
-## 1.7.12 (Jan 28, 2019)
+## 2.0.0 (Jan 28, 2019)
+
+_NOTE:_ From this version onwards all modules will have the same version number, no more independent versioning.
 
 ### :boom: Breaking Change
 - `common`
