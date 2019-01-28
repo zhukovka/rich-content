@@ -10,6 +10,10 @@
 
 ## [Unreleased]
 
+### :boom: Breaking Change
+- `link`
+  - [#235](https://github.com/wix-incubator/rich-content/pull/235) add dropdown option in link panel
+  
 ### :rocket: New Feature
 - `giphy`
   - [#236](https://github.com/wix-incubator/rich-content/pull/236) Add extra customization options to giphy plugin
