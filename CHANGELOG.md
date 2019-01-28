@@ -19,6 +19,7 @@
   - [#238](https://github.com/wix-incubator/rich-content/pull/238) Vimeo - urls not prefixed with http[s] didn't work
 - `viewer`
   - render empty container div when there is no content
+  - [#240](https://github.com/wix-incubator/rich-content/pull/240) add componentDidCatch, render null for img or video plugins instead of crashing
 
 ### :house: Internal
 - `general`
