@@ -13,7 +13,8 @@ const devConfig = {
       {
         test: /\.js$/,
         use: ['source-map-loader'],
-        enforce: 'pre'
+        enforce: 'pre',
+        exclude: /node_modules.*node_modules/
       }
     ]
   },
