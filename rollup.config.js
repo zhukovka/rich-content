@@ -18,6 +18,7 @@ if (!process.env.MODULE_NAME) {
 
 const MODULE_NAME = pascalCase(process.env.MODULE_NAME);
 const NAME = `WixRichContent${MODULE_NAME}`;
+const IS_DEV_ENV = process.env.NODE_ENV === 'development';
 
 const externals = [
   '@babel/runtime',
@@ -33,9 +34,7 @@ const externals = [
   'wix-rich-content-common',
 ];
 
-const excludedExternals = [
-  /wix-rich-content-common\/.*?\.scss/
-];
+const excludedExternals = [/wix-rich-content-common\/.*?\.scss/];
 
 const BUNDLE_GLOBALS = {
   '@wix/draft-js': 'Draft',
@@ -49,13 +48,8 @@ const BUNDLE_GLOBALS = {
 };
 
 const NAMED_EXPORTS = {
-  imageClientAPI: [
-    'getScaleToFillImageURL',
-    'getScaleToFitImageURL'
-  ],
-  immutable: [
-    'List',
-  ]
+  imageClientAPI: ['getScaleToFillImageURL', 'getScaleToFitImageURL'],
+  immutable: ['List'],
 };
 
 const plugins = [
@@ -66,10 +60,7 @@ const plugins = [
   builtins(),
   babel({
     configFile: path.resolve(__dirname, '.babelrc.js'),
-    include: [
-      'src/**',
-      'statics/icons/**',
-    ],
+    include: ['src/**', 'statics/icons/**'],
     runtimeHelpers: true,
   }),
   commonjs({
@@ -86,24 +77,26 @@ const plugins = [
   postcss({
     minimize: {
       reduceIdents: false,
-      safe: true
+      safe: true,
     },
-    modules: true,
+    modules: {
+      generateScopedName: IS_DEV_ENV ? '[name]__[local]___[hash:base64:5]' : '[hash:base64:5]',
+    },
     extract: 'dist/styles.min.css',
     inject: false,
     plugins: [
       postcssURL({
-        url: asset => asset.url.replace('../', '/statics/')
+        url: asset => asset.url.replace('../', '/statics/'),
       }),
     ],
-  })
+  }),
 ];
 
-if (process.env.NODE_ENV !== 'development') {
+if (!IS_DEV_ENV) {
   const replace = require('rollup-plugin-replace');
   plugins.push(
     replace({
-      'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env.NODE_ENV': JSON.stringify('production'),
     })
   );
 
@@ -113,10 +106,10 @@ if (process.env.NODE_ENV !== 'development') {
       mangle: false,
       sourcemap: {
         filename: 'out.js',
-        url: 'out.js.map'
-      }
-    }),
-  )
+        url: 'out.js.map',
+      },
+    })
+  );
 }
 
 if (process.env.MODULE_ANALYZE) {
@@ -124,13 +117,11 @@ if (process.env.MODULE_ANALYZE) {
   plugins.push(
     visualizer({
       sourcemaps: true,
-    }),
+    })
   );
 }
 
-const external = id =>
-  !excludedExternals.find(regex => regex.test(id))
-  && !!externals.find(externalName => new RegExp(externalName).test(id));
+const external = id => !excludedExternals.find(regex => regex.test(id)) && !!externals.find(externalName => new RegExp(externalName).test(id));
 
 let output = [
   {
@@ -185,9 +176,7 @@ try {
   };
 } catch (_) {}
 
-const config = [
-  editorEntry,
-];
+const config = [editorEntry];
 
 if (viewerEntry) {
   config.push(viewerEntry);
