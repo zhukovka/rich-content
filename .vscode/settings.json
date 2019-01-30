@@ -8,4 +8,7 @@
     "scss",
     "sass"
   ],
+  "[json]": {
+    "editor.formatOnSave": false
+  }
 }
