@@ -5,7 +5,7 @@ import styles from '../../statics/styles/link-panel.scss';
 import { mergeStyles } from '../Utils/mergeStyles';
 
 import { FixedSizeList as List } from 'react-window';
-import Downshift from 'downshift';
+import Downshift from 'downshift/dist/downshift.cjs.js';
 import isUndefined from 'lodash/isUndefined';
 
 function isSubString(str, subStr) {
