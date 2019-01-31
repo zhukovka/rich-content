@@ -1,7 +1,8 @@
 {
   "extends": [
     "wix/react",
-    "plugin:jsx-a11y/strict"
+    "plugin:jsx-a11y/strict",
+    "prettier"
   ],
   "env": {
     "browser": true,
