@@ -58,6 +58,11 @@ class LinkPanelContainer extends PureComponent {
         [styles.linkPanel_container_isMobile]: isMobile,
       });
 
+    const { linkPanel } = uiSettings || {};
+    const { blankTargetToggleVisibilityFn, nofollowRelToggleVisibilityFn } = linkPanel || {};
+    const showTargetBlankCheckbox = blankTargetToggleVisibilityFn && blankTargetToggleVisibilityFn(anchorTarget);
+    const showRelValueCheckbox = nofollowRelToggleVisibilityFn && nofollowRelToggleVisibilityFn(relValue);
+
     const linkPanelAriaProps = { 'aria-label': 'Link management' };
     return (
       <FocusManager className={linkPanelContainerClassName} data-hook="linkPanelContainer" role="form" {...ariaProps}>
@@ -66,8 +71,8 @@ class LinkPanelContainer extends PureComponent {
             onEnter={this.onDone} onEscape={this.onCancel}
             linkValues={this.state.linkPanelValues} onChange={linkPanelValues => this.setState({ linkPanelValues })}
             theme={theme}
-            showTargetBlankCheckbox={uiSettings.linkPanel.blankTargetToggleVisibilityFn(anchorTarget)}
-            showRelValueCheckbox={uiSettings.linkPanel.nofollowRelToggleVisibilityFn(relValue)}
+            showTargetBlankCheckbox={showTargetBlankCheckbox}
+            showRelValueCheckbox={showRelValueCheckbox}
             t={t} ariaProps={linkPanelAriaProps} {...uiSettings.linkPanel}
           />
           <div className={styles.linkPanel_actionsDivider} role="separator" />

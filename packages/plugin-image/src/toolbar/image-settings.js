@@ -98,6 +98,12 @@ class ImageSettings extends Component {
     const { helpers, theme, t, anchorTarget, relValue, isMobile, uiSettings } = this.props;
     const { src, metadata = {} } = this.state;
 
+    const { linkPanel } = uiSettings || {};
+    const { blankTargetToggleVisibilityFn, nofollowRelToggleVisibilityFn } = linkPanel || {};
+    const showTargetBlankCheckbox = blankTargetToggleVisibilityFn && blankTargetToggleVisibilityFn(anchorTarget);
+    const showRelValueCheckbox = nofollowRelToggleVisibilityFn && nofollowRelToggleVisibilityFn(relValue);
+
+
     if (!src) {
       return <ImageLoader type={'medium'} theme={theme} />; //do not render until the src is passed
     }
@@ -154,8 +160,8 @@ class ImageSettings extends Component {
             <LinkPanel
               linkValues={this.state.linkPanelValues}
               onChange={this.onLinkPanelChange}
-              showTargetBlankCheckbox={uiSettings.linkPanel.blankTargetToggleVisibilityFn(anchorTarget)}
-              showRelValueCheckbox={uiSettings.linkPanel.nofollowRelToggleVisibilityFn(relValue)}
+              showTargetBlankCheckbox={showTargetBlankCheckbox}
+              showRelValueCheckbox={showRelValueCheckbox}
               theme={theme}
               t={t}
               ariaProps={{ 'aria-labelledby': 'image_settings_link_lbl' }}

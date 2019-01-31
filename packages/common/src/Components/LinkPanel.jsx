@@ -12,8 +12,12 @@ import { LinkPanelDropdown } from './LinkPanelDropdown';
 
 class LinkPanel extends Component {
   state = { showValidation: false };
+  static defaultProps = {
+    targetBlank: true,
+    showTargetBlankCheckbox: true,
+    showRelValueCheckbox: true,
+  };
   styles = mergeStyles({ styles, theme: this.props.theme });
-  static defaultProps = { targetBlank: true };
 
   componentDidMount() {
     this.onChange({ isValid: this.isValidUrl(this.props.linkValues.url) });
