@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 import fs from 'fs';
 import path from 'path';
 import resolve from 'rollup-plugin-node-resolve';
@@ -10,6 +11,8 @@ import postcss from 'rollup-plugin-postcss';
 import postcssURL from 'postcss-url';
 import pascalCase from 'pascal-case';
 import cloneDeep from 'lodash/cloneDeep';
+import nodeGlobalsPolyfill from 'rollup-plugin-node-globals';
+import { externals, globals, excludedExternals, excludedGlobals } from './rollup.externals';
 
 if (!process.env.MODULE_NAME) {
   console.error('Environment variable "MODULE_NAME" is missing!');
@@ -19,33 +22,6 @@ if (!process.env.MODULE_NAME) {
 const MODULE_NAME = pascalCase(process.env.MODULE_NAME);
 const NAME = `WixRichContent${MODULE_NAME}`;
 const IS_DEV_ENV = process.env.NODE_ENV === 'development';
-
-const externals = [
-  '@babel/runtime',
-  '@wix/draft-js',
-  'assert',
-  'core-js',
-  'classnames',
-  'draft-js',
-  'lodash',
-  'prop-types',
-  'react',
-  'react-dom',
-  'wix-rich-content-common',
-];
-
-const excludedExternals = [/wix-rich-content-common\/.*?\.scss/];
-
-const BUNDLE_GLOBALS = {
-  '@wix/draft-js': 'Draft',
-  assert: 'assert',
-  'core-js': 'core-js',
-  classnames: 'classNames',
-  lodash: '_',
-  'prop-types': 'PropTypes',
-  react: 'React',
-  'react-dom': 'ReactDOM',
-};
 
 const NAMED_EXPORTS = {
   imageClientAPI: ['getScaleToFillImageURL', 'getScaleToFitImageURL'],
@@ -72,7 +48,11 @@ const plugins = [
     },
   }),
   json({
-    include: 'statics/**',
+    include: [
+      'statics/**',
+      'node_modules/**',
+      '../../node_modules/**',
+    ],
   }),
   postcss({
     minimize: {
@@ -90,6 +70,7 @@ const plugins = [
       }),
     ],
   }),
+  nodeGlobalsPolyfill(),
 ];
 
 if (!IS_DEV_ENV) {
@@ -121,7 +102,12 @@ if (process.env.MODULE_ANALYZE) {
   );
 }
 
-const external = id => !excludedExternals.find(regex => regex.test(id)) && !!externals.find(externalName => new RegExp(externalName).test(id));
+const external = id =>
+  !id.startsWith('\0') &&
+  !id.startsWith('.') &&
+  !id.startsWith('/') &&
+  !excludedExternals.find(regex => typeof regex === 'string' ? regex === id : regex.test(id)) &&
+  !!externals.find(externalName => new RegExp(externalName).test(id));
 
 let output = [
   {
@@ -130,15 +116,24 @@ let output = [
     sourcemap: true,
   },
   {
-    name: NAME,
-    format: 'iife',
-    file: `dist/${MODULE_NAME}.js`,
-    globals: BUNDLE_GLOBALS,
+    file: 'dist/module.cjs.js',
+    format: 'cjs',
     sourcemap: true,
   },
   {
-    file: 'dist/module.cjs.js',
-    format: 'cjs',
+    name: NAME,
+    format: 'iife',
+    file: `dist/${MODULE_NAME}.js`,
+    globals: id => {
+      const isExcluded = excludedGlobals.find(p => p === id);
+      if (!isExcluded) {
+        const globalKey = Object.keys(globals).find(externalName => externalName === id || new RegExp(externalName + '\/').test(id));
+        if (globalKey) {
+          return globals[globalKey];
+        }
+      }
+      return false;
+    },
     sourcemap: true,
   },
 ];
@@ -181,5 +176,6 @@ const config = [editorEntry];
 if (viewerEntry) {
   config.push(viewerEntry);
 }
+
 
 export default config;
