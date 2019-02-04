@@ -11,6 +11,18 @@
 ## [Unreleased]
 
 <hr/>
+
+## 2.0.1 (Feb 4, 2019)
+
+### :bug: Bug Fix
+- `general`
+   - [#242](https://github.com/wix-incubator/rich-content/pull/242) move error boundary from img/video plugins to atomic block wrapper 
+   - [#ca4c5da](https://github.com/wix-incubator/rich-content/commit/ca4c5dad0b4f817ff46dcb1b55702cf9bfeb4523) fixed babel-jest error
+- `viewer`
+   - [#244](https://github.com/wix-incubator/rich-content/pull/244) wrap atomic blocks with links instead of positioning a sibling 
+
+
+<hr/>
   
 ## 2.0.0 (Jan 28, 2019)
 

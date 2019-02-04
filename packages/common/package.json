@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-common",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -72,6 +72,9 @@
   "jest": {
     "globals": {
       "NODE_ENV": "test"
+    },
+    "transform": {
+      "^.+\\.jsx?$": "<rootDir>/../../babel.jest.monorepo.js"
     },
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",

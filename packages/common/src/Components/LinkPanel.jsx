@@ -12,8 +12,12 @@ import { LinkPanelDropdown } from './LinkPanelDropdown';
 
 class LinkPanel extends Component {
   state = { showValidation: false };
+  static defaultProps = {
+    targetBlank: true,
+    showTargetBlankCheckbox: true,
+    showRelValueCheckbox: true,
+  };
   styles = mergeStyles({ styles, theme: this.props.theme });
-  static defaultProps = { targetBlank: true };
 
   componentDidMount() {
     this.onChange({ isValid: this.isValidUrl(this.props.linkValues.url) });
@@ -62,28 +66,31 @@ class LinkPanel extends Component {
   };
 
   getDropdown() {
-    return (<LinkPanelDropdown
-      theme={this.props.theme}
-      initialValue={this.props.linkValues.url}
-      onChange={this.handleUrlChange}
-      textInputProps={this.getTextInputProps()}
-      {...this.props.dropDown}
-    />);
+    return (
+      <LinkPanelDropdown
+        theme={this.props.theme}
+        initialValue={this.props.linkValues.url}
+        onChange={this.handleUrlChange}
+        textInputProps={this.getTextInputProps()}
+        {...this.props.dropDown}
+      />
+    );
   }
 
   getTextInput() {
-    return (<input
-      value={this.props.linkValues.url}
-      onChange={e => this.handleUrlChange(e.target.value)}
-      {...this.getTextInputProps()}
-    />);
+    return (
+      <input
+        value={this.props.linkValues.url}
+        onChange={e => this.handleUrlChange(e.target.value)}
+        {...this.getTextInputProps()}
+      />
+    );
   }
 
   getTextInputProps() {
-    const textInputClassName = classNames(
-      styles.linkPanel_textInput,
-      { [styles.linkPanel_textInput_invalid]: this.hasError() }
-    );
+    const textInputClassName = classNames(styles.linkPanel_textInput, {
+      [styles.linkPanel_textInput_invalid]: this.hasError(),
+    });
     return {
       type: 'url',
       className: textInputClassName,
@@ -95,7 +102,14 @@ class LinkPanel extends Component {
 
   render() {
     const { styles } = this;
-    const { theme, ariaProps, showTargetBlankCheckbox, showRelValueCheckbox, t, linkValues } = this.props;
+    const {
+      theme,
+      ariaProps,
+      showTargetBlankCheckbox,
+      showRelValueCheckbox,
+      t,
+      linkValues,
+    } = this.props;
 
     const { isValid, targetBlank, nofollow } = linkValues;
 
@@ -118,18 +132,24 @@ class LinkPanel extends Component {
           )}
         </div>
         <div>
-          {showTargetBlankCheckbox &&
+          {showTargetBlankCheckbox && (
             <Checkbox
-              label={t('LinkPanel_Target_Checkbox')} theme={theme} checked={targetBlank}
-              dataHook="linkPanelBlankCheckbox" onChange={this.handleTargetChange}
+              label={t('LinkPanel_Target_Checkbox')}
+              theme={theme}
+              checked={targetBlank}
+              dataHook="linkPanelBlankCheckbox"
+              onChange={this.handleTargetChange}
             />
-          }
-          {showRelValueCheckbox &&
+          )}
+          {showRelValueCheckbox && (
             <Checkbox
-              label={t('LinkPanel_Nofollow_Checkbox')} theme={theme} checked={nofollow}
-              dataHook="linkPanelRelCheckbox" onChange={this.handleNofollowChange}
+              label={t('LinkPanel_Nofollow_Checkbox')}
+              theme={theme}
+              checked={nofollow}
+              dataHook="linkPanelRelCheckbox"
+              onChange={this.handleNofollowChange}
             />
-          }
+          )}
         </div>
       </div>
     );
