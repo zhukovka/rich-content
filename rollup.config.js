@@ -35,7 +35,7 @@ const plugins = [
   }),
   builtins(),
   babel({
-    configFile: path.resolve(__dirname, '.babelrc.js'),
+    configFile: path.resolve(__dirname, 'babel.config.js'),
     include: ['src/**', 'statics/icons/**'],
     runtimeHelpers: true,
   }),

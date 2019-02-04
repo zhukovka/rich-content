@@ -27,7 +27,7 @@ module.exports = env => ({
           loader: 'babel-loader',
           options: {
             compact: true,
-            extends: path.resolve(PATHS.root, '..', '..', '.babelrc.js'),
+            rootMode: 'upward',
           },
         },
       },
