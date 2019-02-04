@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const babelHelpers = {};
 
 function _typeof(obj) {
