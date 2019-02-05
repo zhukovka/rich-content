@@ -36,7 +36,7 @@ prompts({
     console.log(chalk.red('Release aborted'));
   } else {
     try {
-      let lernaCmd = `${lernaPath} version --no-commit-hooks --message="version bump:"`;
+      let lernaCmd = `${lernaPath} version --no-commit-hooks`;
       if (argv.force) {
         let forceFlag = '--force-publish';
         if (typeof argv.force === 'string') {
