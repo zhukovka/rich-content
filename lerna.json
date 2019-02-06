@@ -4,7 +4,8 @@
     "version": {
       "allowBranch": [
         "develop"
-      ]
+      ],
+      "message": "[*] chore(release): %s"
     }
   },
   "packages": [

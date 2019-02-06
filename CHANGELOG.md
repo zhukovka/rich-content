@@ -15,29 +15,31 @@
 ## 2.0.1 (Feb 4, 2019)
 
 ### :bug: Bug Fix
-- `general`
-   - [#242](https://github.com/wix-incubator/rich-content/pull/242) move error boundary from img/video plugins to atomic block wrapper 
-   - [#ca4c5da](https://github.com/wix-incubator/rich-content/commit/ca4c5dad0b4f817ff46dcb1b55702cf9bfeb4523) fixed babel-jest error
-- `viewer`
-   - [#244](https://github.com/wix-incubator/rich-content/pull/244) wrap atomic blocks with links instead of positioning a sibling 
 
+- `general`
+  - [#242](https://github.com/wix-incubator/rich-content/pull/242) move error boundary from img/video plugins to atomic block wrapper
+  - [#ca4c5da](https://github.com/wix-incubator/rich-content/commit/ca4c5dad0b4f817ff46dcb1b55702cf9bfeb4523) fixed babel-jest error
+- `viewer`
+  - [#244](https://github.com/wix-incubator/rich-content/pull/244) wrap atomic blocks with links instead of positioning a sibling
 
 <hr/>
-  
+
 ## 2.0.0 (Jan 28, 2019)
 
 _NOTE:_ From this version onwards all modules will have the same version number, no more independent versioning.
 
 ### :boom: Breaking Change
+
 - `common`
   - [#235](https://github.com/wix-incubator/rich-content/pull/235) add dropdown support in link panel. Breaking changes in all link panel users: `plugin-link`, `plugin-image` and `plugin-gallery`
 
-
 ### :rocket: New Feature
+
 - `giphy`
   - [#236](https://github.com/wix-incubator/rich-content/pull/236) Add extra customization options to giphy plugin
-  
+
 ### :bug: Bug Fix
+
 - `video`
   - [#238](https://github.com/wix-incubator/rich-content/pull/238) Vimeo - urls not prefixed with http[s] didn't work
 - `viewer`
@@ -45,18 +47,19 @@ _NOTE:_ From this version onwards all modules will have the same version number,
   - [#240](https://github.com/wix-incubator/rich-content/pull/240) add componentDidCatch, render null for img or video plugins instead of crashing
 
 ### :house: Internal
+
 - `general`
   - [#239](https://github.com/wix-incubator/rich-content/pull/239) prettier formatter
 - `common`
   - [c6b143d](https://github.com/wix-incubator/rich-content/commit/c6b143dc792b3d9c6f7892bf24db1818bc7f4cd9) validate plugin schema only in development
-  
+
 <hr/>
 
 ## Video Plugin 1.6.0 (Jan 20, 2019)
 
 ### :rocket: New Feature
 
- [#234](https://github.com/wix-incubator/rich-content/pull/234) thumbnail support - if you are using relative URLs this requires changes
+[#234](https://github.com/wix-incubator/rich-content/pull/234) thumbnail support - if you are using relative URLs this requires changes
 
 <hr/>
 
