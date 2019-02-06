@@ -256,7 +256,7 @@ class App extends Component {
                     relValue={relValue}
                   />
                 </div>
-                {this.state.showContentStateEditor && (
+                {this.state.showContentStateEditor && !this.isMobile() && (
                   <div className="column side">
                     <RichContentRawDataViewer
                       onChange={content => this.setState({ content })}
