@@ -91,7 +91,7 @@ export default class SideToolbar extends Component {
         this.setState({
           position: {
             top: offset.y,
-            [!isMobile ? 'left' : 'right']: offset.x,
+            left: offset.x,
             transform: `scale(${isMobile ? 0.76 : 1})`, //mobile plus is smaller
             transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
             position: 'fixed',
