@@ -12,6 +12,19 @@
 
 <hr/>
 
+## 2.0.2 (Feb 7, 2019)
+
+### :bug: Bug Fix
+
+- `html`
+  - [#248](https://github.com/wix-incubator/rich-content/pull/248) use 'auto' width on mobile
+- `image`
+  - [#249](https://github.com/wix-incubator/rich-content/pull/249) original size support for mobile cuts off full size images
+- `viewer`
+  - [#249](https://github.com/wix-incubator/rich-content/pull/249) original size support for mobile cuts off full size images
+
+<hr/>
+
 ## 2.0.1 (Feb 4, 2019)
 
 ### :bug: Bug Fix
