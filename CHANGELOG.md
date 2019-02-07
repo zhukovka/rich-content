@@ -10,6 +10,10 @@
 
 ## [Unreleased]
 
+<hr/>
+
+## 2.0.2 (Feb 7, 2019)
+
 ### :bug: Bug Fix
 
 - `html`
