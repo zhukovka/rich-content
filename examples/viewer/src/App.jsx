@@ -216,20 +216,22 @@ class App extends Component {
                   config={this.config}
                 />
               </div>
-              <div className={styles.column}>
-                <RichContentRawDataViewer
-                  onChange={content => this.setState({ content })}
-                  content={this.state.raw}
-                  width="740px"
-                />
-                <Button
-                  className={styles.raw_input_button}
-                  theme={theme}
-                  onClick={() => this.generateViewerState()}
-                >
-                  Apply Rich Content
-                </Button>
-              </div>
+              {!this.isMobile() && (
+                <div className={styles.column}>
+                  <RichContentRawDataViewer
+                    onChange={content => this.setState({ content })}
+                    content={this.state.raw}
+                    width="740px"
+                  />
+                  <Button
+                    className={styles.raw_input_button}
+                    theme={theme}
+                    onClick={() => this.generateViewerState()}
+                  >
+                    Apply Rich Content
+                  </Button>
+                </div>
+              )}
             </div>
             <ReactModal
               isOpen={this.state.showModal}
