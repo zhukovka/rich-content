@@ -12,6 +12,24 @@
 
 <hr/>
 
+## 2.0.3 (Feb 10, 2019)
+
+### :rocket: New Feature
+- `viewer`
+  - [#246](https://github.com/wix-incubator/rich-content/pull/246) fix headers inside of lists to be semantically correct 
+- `headersMarkdown`
+  - [#246](https://github.com/wix-incubator/rich-content/pull/246) whoo hoo :) new plugin for headers markdown 
+
+### :bug: Bug Fix
+- `image`
+  - [#250](https://github.com/wix-incubator/rich-content/pull/250) reduce default preload size to 300px
+
+### :house: Internal
+- `general`
+  - [b9a6f13](https://github.com/wix-incubator/rich-content/commit/b9a6f1354ab3cd00afd226f9aab777dfab4676cb) force publish all modules with each release
+
+<hr/>
+
 ## 2.0.2 (Feb 7, 2019)
 
 ### :bug: Bug Fix
@@ -26,9 +44,7 @@
 <hr/>
 
 ## 2.0.1 (Feb 4, 2019)
-
 ### :bug: Bug Fix
-
 - `general`
   - [#242](https://github.com/wix-incubator/rich-content/pull/242) move error boundary from img/video plugins to atomic block wrapper
   - [#ca4c5da](https://github.com/wix-incubator/rich-content/commit/ca4c5dad0b4f817ff46dcb1b55702cf9bfeb4523) fixed babel-jest error

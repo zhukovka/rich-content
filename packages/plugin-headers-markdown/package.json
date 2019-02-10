@@ -1,9 +1,9 @@
 {
-  "name": "wix-rich-content-plugin-html",
+  "name": "wix-rich-content-plugin-headers-markdown",
   "version": "2.0.3",
   "author": {
-    "name": "Jonathan Bachman",
-    "email": "jonathanb@wix.com"
+    "name": "Shaul Goral",
+    "email": "shaulg@wix.com"
   },
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://github.com/wix-incubator/rich-content/issues"
   },
-  "homepage": "https://github.com/wix-incubator/rich-content/tree/master/rich-content-plugin-html",
+  "homepage": "https://github.com/wix-incubator/rich-content/tree/master/packages/plugin-headers-markdown",
   "files": [
     "dist"
   ],
@@ -22,9 +22,7 @@
   "style": "dist/styles.min.scss",
   "scripts": {
     "clean": "rm -rf dist/",
-    "statics": "mkdir -p dist && cp -R statics dist/statics",
-    "prebuild": "npm run statics",
-    "build": "rollup --environment MODULE_NAME:plugin-html -c ../../rollup.config.js",
+    "build": "rollup --environment MODULE_NAME:plugin-headers-markdown -c ../../rollup.config.js",
     "build:dev": "NODE_ENV=development npm run build",
     "build:analyze": "npm run build -- --environment MODULE_ANALYZE && open stats.html",
     "watch": "NODE_ENV=development MODULE_WATCH=1 npm run build -- --watch",
@@ -34,19 +32,14 @@
   "peerDependencies": {
     "@babel/runtime": "7.2.0",
     "@wix/draft-js": "0.10.272",
-    "classnames": "^2.0.0",
-    "lodash": "^4.0.0",
     "prop-types": "^15.0.0",
     "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0",
-    "react-i18next": "^7.0.0"
+    "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
     "@babel/runtime": "7.2.0",
     "@wix/draft-js": "0.10.272",
-    "classnames": "^2.2.6",
     "eslint": "^4.19.1",
-    "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
     "react": "15.5.4",
     "react-dom": "15.5.4",
