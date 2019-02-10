@@ -10,6 +10,10 @@
 
 ## [Unreleased]
 
+<hr/>
+
+## 2.0.3 (Feb 10, 2019)
+
 ### :rocket: New Feature
 - `viewer`
   - [#246](https://github.com/wix-incubator/rich-content/pull/246) fix headers inside of lists to be semantically correct 
@@ -18,7 +22,11 @@
 
 ### :bug: Bug Fix
 - `image`
-  - [#250](https://github.com/wix-incubator/rich-content/pull/250) reduce default preload size
+  - [#250](https://github.com/wix-incubator/rich-content/pull/250) reduce default preload size to 300px
+
+### :house: Internal
+- `general`
+  - [b9a6f13](https://github.com/wix-incubator/rich-content/commit/b9a6f1354ab3cd00afd226f9aab777dfab4676cb) force publish all modules with each release
 
 <hr/>
 
