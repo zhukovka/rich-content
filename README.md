@@ -26,19 +26,19 @@ To use the editor with `<script>` tag, consume the following JS file: `dist/Comm
 
 ```html
 <html>
-<head>
-  <script src="https://unpkg.com/wix-rich-content-common/dist/Common.js"></script>
-  <script src="https://unpkg.com/wix-rich-content-editor/dist/Editor.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/wix-rich-content-common/dist/styles.min.css" />
-  <link rel="stylesheet" href="https://unpkg.com/wix-rich-content-editor/dist/styles.min.css" />
-</head>
-<body>
+  <head>
+    <script src="https://unpkg.com/wix-rich-content-common/dist/Common.js"></script>
+    <script src="https://unpkg.com/wix-rich-content-editor/dist/Editor.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/wix-rich-content-common/dist/styles.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/wix-rich-content-editor/dist/styles.min.css" />
+  </head>
+  <body>
     <script>
-    const { RichContentEditor, EditorState } = window.WixRichContentEditor;
+      const { RichContentEditor, EditorState } = window.WixRichContentEditor;
     </script>
 
     <!-- ...rest of your app code... -->
-</body>
+  </body>
 </html>
 ```
 
@@ -56,9 +56,9 @@ Then, create an empty `editorState` in your state:
 
 ```jsx
 export class MyApp extends React.Component {
-    state = {
-          editorState: EditorState.createEmpty(),
-    };
+  state = {
+    editorState: EditorState.createEmpty(),
+  };
 }
 ```
 
@@ -69,26 +69,23 @@ import React from 'react';
 import { EditorState, RichContentEditor } from 'wix-rich-content-editor';
 
 export class MyApp extends React.Component {
-    state = {
-          editorState: EditorState.createEmpty(),
-    };
+  state = {
+    editorState: EditorState.createEmpty(),
+  };
 
-    onChange = editorState => {
-        this.setState({
-          editorState,
-        });
-    };
+  onChange = editorState => {
+    this.setState({
+      editorState,
+    });
+  };
 
-    render() {
-        return (
-            <div>
-                <RichContentEditor
-                  onChange={this.onChange}
-                  editorState={this.state.editorState}
-                />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <RichContentEditor onChange={this.onChange} editorState={this.state.editorState} />
+      </div>
+    );
+  }
 }
 ```
 
@@ -127,32 +124,30 @@ import React from 'react';
 import { EditorState, RichContentEditor } from 'wix-rich-content-editor';
 import { createDividerPlugin } from 'wix-rich-content-plugin-divider';
 
-const PLUGINS = [
-    createDividerPlugin,
-];
+const PLUGINS = [createDividerPlugin];
 
 export class MyApp extends React.Component {
-    state = {
-          editorState: EditorState.createEmpty(),
-    };
+  state = {
+    editorState: EditorState.createEmpty(),
+  };
 
-    onChange = editorState => {
-        this.setState({
-          editorState,
-        });
-    };
+  onChange = editorState => {
+    this.setState({
+      editorState,
+    });
+  };
 
-    render() {
-        return (
-            <div>
-                <RichContentEditor
-                    plugins={PLUGINS}
-                    onChange={this.onChange}
-                    editorState={this.state.editorState}
-                />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <RichContentEditor
+          plugins={PLUGINS}
+          onChange={this.onChange}
+          editorState={this.state.editorState}
+        />
+      </div>
+    );
+  }
 }
 ```
 
@@ -166,11 +161,11 @@ Use the style's `className` to override. It also support css-modules imports.
 
 ```css
 .divider {
-    backgorund-color: red;
+  backgorund-color: red;
 }
 
 .divider-container {
-    border: 1px blue solid;
+  border: 1px blue solid;
 }
 ```
 
@@ -180,37 +175,35 @@ import { EditorState, RichContentEditor } from 'wix-rich-content-editor';
 import { createDividerPlugin } from 'wix-rich-content-plugin-divider';
 import dividerTheme from './my-style.css';
 
-const PLUGINS = [
-    createDividerPlugin,
-];
+const PLUGINS = [createDividerPlugin];
 
 const THEME = {
-    ...dividerTheme,
+  ...dividerTheme,
 };
 
 export class MyApp extends React.Component {
-    state = {
-          editorState: EditorState.createEmpty(),
-    };
+  state = {
+    editorState: EditorState.createEmpty(),
+  };
 
-    onChange = editorState => {
-        this.setState({
-          editorState,
-        });
-    };
+  onChange = editorState => {
+    this.setState({
+      editorState,
+    });
+  };
 
-    render() {
-        return (
-            <div>
-                <RichContentEditor
-                    theme={THEME}
-                    plugins={PLUGINS}
-                    onChange={this.onChange}
-                    editorState={this.state.editorState}
-                />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <RichContentEditor
+          theme={THEME}
+          plugins={PLUGINS}
+          onChange={this.onChange}
+          editorState={this.state.editorState}
+        />
+      </div>
+    );
+  }
 }
 ```
 
@@ -234,9 +227,9 @@ You can find a full list of classes you can override in [here](./examples/editor
 
 [wix-rich-content-plugin-code-block](./pacakges/plugin-code-block) displays code block
 
-##### Private Wix Plugins
+[wix-rich-content-plugin-image](./packages/plugin-image) embed images in your content
 
-[wix-rich-content-plugin-image](https://github.com/wix-incubator/rich-content-plugins-wix/tree/master/packages/plugin-image) embed images in your content
+##### Private Wix Plugins
 
 [wix-rich-content-plugin-gallery](https://github.com/wix-incubator/rich-content-plugins-wix/tree/master/packages/plugin-gallery) embed Wix `pro-gallery` component in your content
 
@@ -264,11 +257,11 @@ The compiled package also contains a CommonJS bundle, which you can consume if y
 1. `cd rich-content`
 2. `npm i` - installs all dependencies and links any cross-dependencies.
 3. Build the modules by running one of the following:
-    1. `npm run build` - build once and bundles
-    2. `npm run watch` - rebuild on changes
+   1. `npm run build` - build once and bundles
+   2. `npm run watch` - rebuild on changes
 4. Choose an [example](./examples/) and run:
-    1. `yarn` (We use yarn to install since it works better than npm with `file://` dependencies)
-    2. `npm start`
+   1. `yarn` (We use yarn to install since it works better than npm with `file://` dependencies)
+   2. `npm start`
 
 #### Examples
 
