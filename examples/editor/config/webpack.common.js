@@ -129,8 +129,7 @@ module.exports = env => ({
     }),
     new CopyWebpackPlugin([
       {
-        from: '**/*',
-        context: 'node_modules/wix-rich-content-plugin-html/dist/static/',
+        from: 'node_modules/wix-rich-content-plugin-html/dist/statics/',
         to: 'static/',
       },
     ]),

@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-viewer",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "clean": "rm -rf dist/",
-    "statics": "mkdir -p dist && cp -R statics dist/statics",
+    "statics": "mkdir -p dist && cp -R statics dist",
     "prebuild": "npm run statics",
     "build": "rollup --environment MODULE_NAME:viewer -c ../../rollup.config.js",
     "build:dev": "NODE_ENV=development npm run build",
@@ -34,7 +34,7 @@
   "dependencies": {
     "direction": "^1.0.2",
     "redraft": "^0.9.0",
-    "wix-rich-content-common": "^2.0.3",
+    "wix-rich-content-common": "^2.0.4",
     "wnpm-ci": "latest"
   },
   "peerDependencies": {
