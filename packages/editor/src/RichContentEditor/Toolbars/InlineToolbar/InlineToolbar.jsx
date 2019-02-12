@@ -24,7 +24,7 @@ const getRelativeParent = element => {
 
 const displayOptionStyles = {
   [DISPLAY_MODE.NORMAL]: {},
-  [DISPLAY_MODE.FLOATING]: { position: 'fixed' },
+  [DISPLAY_MODE.FLOATING]: { position: 'absolute' },
 };
 
 export default class InlineToolbar extends Component {
