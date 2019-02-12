@@ -9,11 +9,17 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+
+<hr/>
+
+## 2.0.4 (Feb 10, 2019)
+
 ### :bug: Bug Fix
 - `general`
   - [#253](https://github.com/wix-incubator/rich-content/pull/253) fix statics copy in package.json
 - `html`
   - [#253](https://github.com/wix-incubator/rich-content/pull/253) fix instagram too wide for mobile
+
 <hr/>
 
 ## 2.0.3 (Feb 10, 2019)
