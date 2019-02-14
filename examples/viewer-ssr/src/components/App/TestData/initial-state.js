@@ -624,6 +624,47 @@ const TestData = {
       },
     ],
   },
+  image: {
+    blocks: [
+      {
+        key: 'b63uc',
+        text: ' ',
+        type: 'atomic',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [
+          {
+            offset: 0,
+            length: 1,
+            key: 0,
+          },
+        ],
+        data: {},
+      },
+    ],
+    entityMap: {
+      0: {
+        type: 'wix-draft-plugin-image',
+        mutability: 'IMMUTABLE',
+        data: {
+          config: {
+            alignment: 'center',
+            size: 'content',
+            showTitle: true,
+            showDescription: true,
+            key: 'b63uc',
+          },
+          src: {
+            id: 'e8b32772f67865aedb3b12115eaf19a4',
+            original_file_name: '8bb438_9a335dcb8c884086b8ffdf1ea44ca7e9.jpg',
+            file_name: '8bb438_9a335dcb8c884086b8ffdf1ea44ca7e9.jpg',
+            width: 5600,
+            height: 3737,
+          },
+        },
+      },
+    },
+  },
   video: {
     entityMap: {
       '0': {

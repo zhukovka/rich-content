@@ -5,6 +5,7 @@ import { RichContentModal, mergeStyles, normalizeInitialState } from 'wix-rich-c
 
 import { RichContentViewer } from 'wix-rich-content-viewer';
 
+import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/module.viewer.cjs';
 import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/module.viewer.cjs';
 import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/module.viewer.cjs';
 import { htmlTypeMapper, HTML_TYPE } from 'wix-rich-content-plugin-html/dist/module.viewer.cjs';
@@ -50,7 +51,13 @@ class App extends Component {
       raw: TestData[INITIAL_TEST_DATA_KEY],
     };
 
-    this.typeMappers = [videoTypeMapper, dividerTypeMapper, htmlTypeMapper, linkTypeMapper];
+    this.typeMappers = [
+      videoTypeMapper,
+      dividerTypeMapper,
+      htmlTypeMapper,
+      linkTypeMapper,
+      imageTypeMapper,
+    ];
 
     this.decorators = [
       {
