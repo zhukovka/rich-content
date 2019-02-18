@@ -1,12 +1,13 @@
 @import "~wix-rich-content-common/dist/statics/styles/mixins";
 @import "~wix-rich-content-common/dist/statics/styles/palette";
 
-.items_list_container{
-    margin-top: 5px;
-    height: 325px;
-    overflow: scroll;
-    overflow-x: hidden;
-    @include phone {
-        height: calc(100vh - 73px);
-    }
+.scrollbar_thumb {
+  background: #000000;
+  border-radius: 4px;
+  width: 4px;
+  margin-left: -10px;
+}
+.customize_scrollbar_container {
+  margin-right: -41px;
+  margin-top: 5px;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Scrollbars } from 'react-custom-scrollbars';
 import { mergeStyles } from 'wix-rich-content-common';
 import ItemComponent from './item-component';
 import { YOUTUBE_URL } from '../constants';
@@ -56,7 +57,15 @@ class ItemsListComponent extends Component {
           />
         );
       });
-    return <div className={this.styles.items_list_container}>{items}</div>;
+    return (
+      <Scrollbars
+        renderThumbVertical={() => <div className={styles.scrollbar_thumb} />}
+        className={styles.customize_scrollbar_container}
+        style={{ height: '303px', width: '100%', right: '-25px' }}
+      >
+        {items}
+      </Scrollbars>
+    );
   }
 }
 

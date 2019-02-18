@@ -51,6 +51,7 @@
     "rollup": "^1.1.0"
   },
   "dependencies": {
+    "react-custom-scroll": "^4.0.1",
     "react-custom-scrollbars": "^4.2.1",
     "react-infinite-scroller": "^1.2.0",
     "react-md-spinner": "^0.3.0",
