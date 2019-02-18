@@ -1,0 +1,38 @@
+.navbar_container {
+  background: #7997c6;
+  width: 100vh;
+  height: 50px;
+}
+
+.back_arrow_button {
+  background: inherit;
+  border: solid #fff;
+  border-width: 0 1px 1px 0;
+  display: inline-block;
+  height: 12px;
+  width: 10px;
+  transform: rotate(135deg);
+}
+.back_arrow_container {
+  width: calc(50vw - 40px);
+  display: inline-block;
+  padding-top: 14px;
+  padding-left: 20px;
+}
+
+.add_button_container {
+  color: #fff;
+  width: 50vw;
+  display: inline-block;
+  text-align: right;
+  padding-top: 14px;
+}
+.add_button {
+  border: none;
+  background: none;
+  color: #fff;
+}
+.add_button:disabled {
+  color: #dbdbdb;
+}
+//#DBDBDB

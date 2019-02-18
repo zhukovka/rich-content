@@ -1,0 +1,12 @@
+@import "~wix-rich-content-common/dist/statics/styles/mixins";
+@import "~wix-rich-content-common/dist/statics/styles/palette";
+
+.items_list_container{
+    margin-top: 5px;
+    height: 325px;
+    overflow: scroll;
+    overflow-x: hidden;
+    @include phone {
+        height: calc(100vh - 73px);
+    }
+}
