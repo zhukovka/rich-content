@@ -24,13 +24,12 @@ export default class YoutubeApiInputModal extends Component {
     this.searchYoutube();
   };
 
-  updateComponentData = (videoId, videoUrl) => {
-    const url = videoUrl ? videoUrl : 'https://www.youtube.com/watch?v=' + videoId;
+  updateComponentData = videoUrl => {
     const { componentData, helpers, pubsub, onConfirm } = this.props;
     if (onConfirm) {
-      onConfirm({ ...componentData, youtube: { url } });
+      onConfirm({ ...componentData, youtube: { url: videoUrl } });
     } else {
-      pubsub.update('componentData', { youtube: { url } });
+      pubsub.update('componentData', { youtube: { url: videoUrl } });
     }
     helpers.closeModal();
   };
@@ -77,7 +76,7 @@ export default class YoutubeApiInputModal extends Component {
 
   onSearchButtonClicked = term => {
     if (isVideoUrl(term)) {
-      this.updateComponentData(null, term);
+      this.updateComponentData(term);
     } else {
       this.searchYoutube(term, false);
     }
@@ -102,12 +101,12 @@ export default class YoutubeApiInputModal extends Component {
   onItemClickedHandler = url => {
     this.setState({ selectedVideoUrl: url });
     if (!WixUtils.isMobile()) {
-      this.updateComponentData(false, url);
+      this.updateComponentData(url);
     }
   };
 
-  onAddClickedHandler = videoId => {
-    this.updateComponentData(videoId);
+  onAddClickedHandler = url => {
+    this.updateComponentData(url);
   };
 
   onBackClickedHandler = () => {
