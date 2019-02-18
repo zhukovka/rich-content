@@ -13,11 +13,12 @@ export default class YoutubeApiInputModal extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
     this.state = {
       loading: true,
-      videos: [],
+      videos: null,
       selectedVideoUrl: '',
       searchTerm: '',
       nextPageToken: '',
       onTextBoxFocus: false,
+      didFail: false,
     };
   }
   componentDidMount = () => {
@@ -64,7 +65,15 @@ export default class YoutubeApiInputModal extends Component {
           const newVideos = res.items;
           let { videos } = this.state;
           videos = nextPage ? [...this.state.videos, ...newVideos] : newVideos;
-          this.setState({ loading: false, videos, nextPageToken: res.nextPageToken });
+          this.setState({
+            loading: false,
+            videos,
+            nextPageToken: res.nextPageToken,
+            didFail: false,
+          });
+        })
+        .catch(() => {
+          this.setState({ didFail: true });
         });
     }
   };
@@ -121,8 +130,28 @@ export default class YoutubeApiInputModal extends Component {
     this.setState({ onTextBoxFocus: isBlur });
   };
 
+  renderApiErrorMessage = () => {
+    const { t } = this.props;
+    return (
+      <div className={this.styles.error_message_container}>
+        <p>{t('YoutubePlugin_API_ErrorMessage_Title')}</p>
+        <p>{t('YoutubePlugin_API_ErrorMessage_Description')}</p>
+      </div>
+    );
+  };
+
+  renderResultNotFoundErrorMessage = () => {
+    const { t } = this.props;
+    return (
+      <div className={this.styles.error_message_container}>
+        <p>{t('YoutubePlugin_NoResult_ErrorMessage_Title')}</p>
+        <p>{t('YoutubePlugin_NoResult_ErrorMessage_Description')}</p>
+      </div>
+    );
+  };
+
   render() {
-    const { videos } = this.state;
+    const { videos, didFail } = this.state;
     const isMobile = WixUtils.isMobile();
     return (
       <div>
@@ -147,13 +176,20 @@ export default class YoutubeApiInputModal extends Component {
             onSearchTextBoxBlured={this.onSearchTextBoxBlured.bind(this)}
             {...this.props}
           />
-          <ItemsListComponent
-            videos={videos}
-            onItemClickedHandler={this.onItemClickedHandler.bind(this)}
-            isMobile={isMobile}
-            isTextBoxFocused={this.state.onTextBoxFocus}
-            {...this.props}
-          />
+          {!videos || didFail ? (
+            this.renderApiErrorMessage()
+          ) : videos.length === 0 ? (
+            this.renderResultNotFoundErrorMessage()
+          ) : (
+            <ItemsListComponent
+              videos={videos}
+              onItemClickedHandler={this.onItemClickedHandler.bind(this)}
+              isMobile={isMobile}
+              isTextBoxFocused={this.state.onTextBoxFocus}
+              didFail={this.state.didFail}
+              {...this.props}
+            />
+          )}
         </div>
       </div>
     );
@@ -166,4 +202,5 @@ YoutubeApiInputModal.propTypes = {
   helpers: PropTypes.object,
   pubsub: PropTypes.object,
   onConfirm: PropTypes.func,
+  t: PropTypes.func,
 };

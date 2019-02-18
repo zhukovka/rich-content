@@ -62,7 +62,7 @@ class ItemsListComponent extends Component {
 
 ItemsListComponent.propTypes = {
   theme: PropTypes.object.isRequired,
-  videos: PropTypes.array.isRequired,
+  videos: PropTypes.array,
   onItemClickedHandler: PropTypes.func.isRequired,
   isMobile: PropTypes.bool,
   isTextBoxFocused: PropTypes.bool,
