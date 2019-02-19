@@ -9,6 +9,10 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+
+<hr/>
+
+## 3.0.0 (Feb 19, 2019)
 ### :boom: Breaking Change
 - `general`
   - [#259](https://github.com/wix-incubator/rich-content/pull/259) Minimum supported React version is now 16.4.2
