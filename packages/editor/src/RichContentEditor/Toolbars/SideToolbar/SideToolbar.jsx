@@ -94,8 +94,7 @@ export default class SideToolbar extends Component {
             left: offset.x,
             transform: `scale(${isMobile ? 0.76 : 1})`, //mobile plus is smaller
             transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-            position: 'fixed',
-            zIndex: 7,
+            position: 'absolute',
           },
         });
       }

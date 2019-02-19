@@ -220,8 +220,7 @@ export default function createToolbar({
           top: this.offset.y,
           left: this.offset.x,
           transform: 'translate(-50%) scale(1)',
-          position: 'fixed',
-          zIndex: 7,
+          position: 'absolute',
         };
       }
 

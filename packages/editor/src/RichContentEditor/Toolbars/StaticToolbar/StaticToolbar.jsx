@@ -7,7 +7,7 @@ import Styles from '../../../../statics/styles/static-toolbar.scss';
 
 const displayOptionStyles = {
   [DISPLAY_MODE.NORMAL]: {},
-  [DISPLAY_MODE.FLOATING]: { position: 'fixed', zIndex: 7 },
+  [DISPLAY_MODE.FLOATING]: { position: 'absolute' },
 };
 
 export default class StaticToolbar extends React.Component {
