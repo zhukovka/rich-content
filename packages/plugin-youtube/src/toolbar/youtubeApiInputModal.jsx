@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import MDSpinner from 'react-md-spinner';
 import { mergeStyles, isVideoUrl, WixUtils } from 'wix-rich-content-common';
 import ItemsListComponent from './../components/items-list-component';
 import SearchInputComponent from './../components/search-input-component';
@@ -69,10 +70,15 @@ export default class YoutubeApiInputModal extends Component {
             loading: false,
             videos,
             nextPageToken: res.nextPageToken,
-            didFail: false,
           });
         })
         .catch(() => {
+          setTimeout(
+            function() {
+              this.setState({ loading: false });
+            }.bind(this),
+            3000
+          );
           this.setState({ didFail: true });
         });
     }
@@ -151,7 +157,7 @@ export default class YoutubeApiInputModal extends Component {
   };
 
   render() {
-    const { videos, didFail } = this.state;
+    const { videos, didFail, loading } = this.state;
     const isMobile = WixUtils.isMobile();
     return (
       <div>
@@ -176,20 +182,24 @@ export default class YoutubeApiInputModal extends Component {
             onSearchTextBoxBlured={this.onSearchTextBoxBlured.bind(this)}
             {...this.props}
           />
-          {!videos || didFail ? (
-            this.renderApiErrorMessage()
-          ) : videos.length === 0 ? (
-            this.renderResultNotFoundErrorMessage()
-          ) : (
-            <ItemsListComponent
-              videos={videos}
-              onItemClickedHandler={this.onItemClickedHandler.bind(this)}
-              isMobile={isMobile}
-              isTextBoxFocused={this.state.onTextBoxFocus}
-              didFail={this.state.didFail}
-              {...this.props}
-            />
+          {loading && (
+            <div className={this.styles.spinner_container}>
+              <MDSpinner />
+            </div>
           )}
+          {!videos || didFail
+            ? !loading && this.renderApiErrorMessage()
+            : videos.length === 0
+            ? !loading && this.renderResultNotFoundErrorMessage()
+            : !loading && (
+                <ItemsListComponent
+                  videos={videos}
+                  onItemClickedHandler={this.onItemClickedHandler.bind(this)}
+                  isMobile={isMobile}
+                  isTextBoxFocused={this.state.onTextBoxFocus}
+                  {...this.props}
+                />
+              )}
         </div>
       </div>
     );
