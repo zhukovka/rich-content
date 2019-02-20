@@ -148,7 +148,7 @@ function run() {
 
   createNpmRc();
   publishPackages();
-  publishExamples();
+  // publishExamples();
 }
 
 run();
