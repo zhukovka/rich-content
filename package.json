@@ -16,6 +16,7 @@
     "watch": "lerna exec --no-sort --concurrency 30 -- npm run watch",
     "release": "node scripts/publishPackages",
     "createVersion": "node scripts/createVersion",
+    "lint": "lerna run --parallel --stream lint",
     "test": "lerna run --parallel --stream test"
   },
   "husky": {

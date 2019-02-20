@@ -7,6 +7,7 @@ jobs:
   include:
     - stage: 'Publish'
       script:
+        - npm run lint
         - npm run build
         - npm test
         - npm run release
