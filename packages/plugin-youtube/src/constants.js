@@ -36,12 +36,9 @@ export const DesktopFlyOutModalStyles = {
     height: '383px',
     overflow: 'visible',
     border: '1px solid #ccc',
-    paddingRight: '10px',
-    paddingLeft: '18px',
     display: 'block',
     borderRadius: '2px',
     position: 'absolute',
     zIndex: 6,
-    paddingTop: '9px',
   },
 };

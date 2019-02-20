@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Scrollbars } from 'react-custom-scrollbars';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { mergeStyles } from 'wix-rich-content-common';
 import ItemComponent from './item-component';
 import { YOUTUBE_URL } from '../constants';
@@ -20,8 +21,15 @@ class ItemsListComponent extends Component {
     this.props.onItemClickedHandler(url);
   };
 
+  loadMore = () => {
+    setTimeout(() => {
+      this.props.next();
+    }, 1500);
+  };
+
   render() {
-    const { videos, isMobile, isTextBoxFocused } = this.props;
+    const { isMobile, isTextBoxFocused, loader, nextPage } = this.props;
+    const { videos } = this.state;
     const items =
       videos &&
       videos.map((video, index) => {
@@ -58,16 +66,28 @@ class ItemsListComponent extends Component {
         );
       });
     return (
-      <Scrollbars
-        renderThumbVertical={() => <div className={styles.scrollbar_thumb} />}
-        className={styles.customize_scrollbar_container}
-        style={{
-          width: isMobile ? '100%' : 'calc(100% + 22px)',
-          height: isMobile ? 'calc(100vh - 124px)' : '298px',
-        }}
+      <InfiniteScroll
+        dataLength={items.length}
+        next={this.loadMore}
+        hasMore={nextPage}
+        loader={loader}
+        height={isMobile ? 'calc(100vh - 102px)' : '330px'}
+        style={{ overflowY: 'scroll' }}
+        className={this.styles.infinite_scroll_component}
+        scrollableTarget="scrollableDiv"
       >
-        {items}
-      </Scrollbars>
+        <Scrollbars
+          id="scrollableDiv"
+          renderThumbVertical={() => <div className={styles.scrollbar_thumb} />}
+          className={styles.customize_scrollbar_container}
+          style={{
+            // width: isMobile ? '100%' : 'calc(100% + 22px)',
+            height: isMobile ? 'calc(100vh - 102px)' : '325px',
+          }}
+        >
+          {items}
+        </Scrollbars>
+      </InfiniteScroll>
     );
   }
 }
@@ -78,6 +98,9 @@ ItemsListComponent.propTypes = {
   onItemClickedHandler: PropTypes.func.isRequired,
   isMobile: PropTypes.bool,
   isTextBoxFocused: PropTypes.bool,
+  next: PropTypes.func.isRequired,
+  nextPage: PropTypes.string,
+  loader: PropTypes.Component,
 };
 
 export default ItemsListComponent;

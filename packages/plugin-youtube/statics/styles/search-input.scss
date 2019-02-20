@@ -1,6 +1,11 @@
 @import "~wix-rich-content-common/dist/statics/styles/mixins";
 @import "~wix-rich-content-common/dist/statics/styles/palette";
 
+.search_input_container{
+  padding: 10px;
+  padding-bottom: 0px;
+}
+
 .button_secondary {
   padding: 12px;
   display: inline-block;
@@ -11,6 +16,6 @@
   width: calc(100% - 78px);
   margin-right: 5px;
   @include phone {
-    width: 100vw;
+    width: calc(100vw - 20px);
   }
 }

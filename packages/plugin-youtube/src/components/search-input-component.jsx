@@ -5,7 +5,7 @@ import styles from '../../statics/styles/search-input.scss';
 class SearchInputComponent extends Component {
   constructor(props) {
     super(props);
-    this.styles = mergeStyles({ styles, theme: props.theme });
+    this.styles = mergeStyles({ styles, theme: this.props.theme });
     const { t } = this.props;
     this.state = {
       textInputValue: '',
@@ -48,7 +48,7 @@ class SearchInputComponent extends Component {
   render() {
     const { t } = this.props;
     return (
-      <div className={styles.container}>
+      <div className={styles.search_input_container}>
         <TextInput
           onChange={this.onTextInputChanged.bind(this)}
           onKeyPress={this.handleOnKeyPressed}

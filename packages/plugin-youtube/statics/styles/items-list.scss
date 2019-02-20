@@ -5,9 +5,21 @@
   background: #000000;
   border-radius: 4px;
   width: 4px;
-  margin-left: -10px;
+  margin-left: -15px;
+  cursor: pointer;
 }
 .customize_scrollbar_container {
   margin-right: -41px;
   margin-top: 5px;
+}
+
+.infinite_scroll_component {
+  overflow-y: scroll;
+  padding-left: 10px;
+  width:calc(100% + 21px);
+  height: 330px;
+  @include phone {
+    width: 100%;
+    height: calc(100vh - 124px);
+  }
 }

@@ -157,10 +157,10 @@ export default class YoutubeApiInputModal extends Component {
   };
 
   render() {
-    const { videos, didFail, loading } = this.state;
+    const { videos, didFail, loading, searchTerm } = this.state;
     const isMobile = WixUtils.isMobile();
     return (
-      <div>
+      <div className={this.styles.modal_container}>
         {WixUtils.isMobile() && (
           <NavbarComponent
             selectedVideoUrl={this.state.selectedVideoUrl}
@@ -170,10 +170,7 @@ export default class YoutubeApiInputModal extends Component {
             {...this.props}
           />
         )}
-        <div className={this.styles.modal_container}>
-          <button style={{ width: '100%', marginBottom: '5px' }} onClick={this.onNextPageClicked}>
-            Next
-          </button>
+        <div className={this.styles.search_modal_container}>
           <SearchInputComponent
             onSearchButtonClicked={this.onSearchButtonClicked.bind(this)}
             selectedVideoUrl={this.state.selectedVideoUrl}
@@ -182,14 +179,9 @@ export default class YoutubeApiInputModal extends Component {
             onSearchTextBoxBlured={this.onSearchTextBoxBlured.bind(this)}
             {...this.props}
           />
-          {loading && (
-            <div className={this.styles.spinner_container}>
-              <MDSpinner />
-            </div>
-          )}
-          {!videos || didFail
+          {!videos || (didFail && !isVideoUrl(searchTerm))
             ? !loading && this.renderApiErrorMessage()
-            : videos.length === 0
+            : videos.length === 0 && !isVideoUrl(searchTerm)
             ? !loading && this.renderResultNotFoundErrorMessage()
             : !loading && (
                 <ItemsListComponent
@@ -197,6 +189,10 @@ export default class YoutubeApiInputModal extends Component {
                   onItemClickedHandler={this.onItemClickedHandler.bind(this)}
                   isMobile={isMobile}
                   isTextBoxFocused={this.state.onTextBoxFocus}
+                  next={this.onNextPageClicked}
+                  nextPage={this.state.nextPageToken}
+                  loader={<MDSpinner />}
+                  searchTerm={this.state.searchTerm}
                   {...this.props}
                 />
               )}
