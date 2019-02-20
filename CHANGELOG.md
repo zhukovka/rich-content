@@ -12,6 +12,13 @@
 
 <hr/>
 
+## 3.0.1 (Feb 20, 2019)
+### :house: Internal
+- `general`
+  - align version with `plugin-gallery` release
+
+<hr/>
+
 ## 3.0.0 (Feb 19, 2019)
 ### :boom: Breaking Change
 - `general`
