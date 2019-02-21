@@ -81,7 +81,6 @@ class ItemsListComponent extends Component {
           renderThumbVertical={() => <div className={styles.scrollbar_thumb} />}
           className={styles.customize_scrollbar_container}
           style={{
-            // width: isMobile ? '100%' : 'calc(100% + 22px)',
             height: isMobile ? 'calc(100vh - 102px)' : '325px',
           }}
         >

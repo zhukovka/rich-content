@@ -70,10 +70,6 @@ class SearchInputComponent extends Component {
 SearchInputComponent.propTypes = {
   theme: PropTypes.object.isRequired,
   selectedVideoUrl: PropTypes.string,
-  componentData: PropTypes.object.isRequired,
-  helpers: PropTypes.object,
-  pubsub: PropTypes.object,
-  onConfirm: PropTypes.func,
   onSearchButtonClicked: PropTypes.func,
   onKeyPress: PropTypes.func,
   t: PropTypes.func.isRequired,

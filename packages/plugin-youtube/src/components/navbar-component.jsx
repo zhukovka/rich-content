@@ -44,10 +44,6 @@ class NavbarComponent extends Component {
 
 NavbarComponent.propTypes = {
   theme: PropTypes.object.isRequired,
-  componentData: PropTypes.object.isRequired,
-  helpers: PropTypes.object,
-  pubsub: PropTypes.object,
-  onConfirm: PropTypes.func,
   selectedVideoUrl: PropTypes.string,
   onAddClicked: PropTypes.func.isRequired,
   onBackClicked: PropTypes.func.isRequired,
