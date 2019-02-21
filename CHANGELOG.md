@@ -9,9 +9,27 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+
+<hr/>
+
+## 3.0.1 (Feb 20, 2019)
+### :house: Internal
+- `general`
+  - align version with `plugin-gallery` release
+
+<hr/>
+
+## 3.0.0 (Feb 19, 2019)
+### :boom: Breaking Change
+- `general`
+  - [#259](https://github.com/wix-incubator/rich-content/pull/259) Minimum supported React version is now 16.4.2
 ### :bug: Bug Fix
 - `html`
   - [#261](https://github.com/wix-incubator/rich-content/pull/261) (ios) fix instagram too wide for mobile
+### :house: Internal
+- `general`
+  - [#262](https://github.com/wix-incubator/rich-content/pull/262) update rollup-plugin-postcss
+  - [#263](https://github.com/wix-incubator/rich-content/pull/263) migrate from Wix CI to Travis CI
 
 <hr/>
 
@@ -22,6 +40,10 @@
   - [#253](https://github.com/wix-incubator/rich-content/pull/253) fix statics copy in package.json
 - `html`
   - [#253](https://github.com/wix-incubator/rich-content/pull/253) fix instagram too wide for mobile
+
+### :rocket: New Feature
+- `viewer`
+  - [#256](https://github.com/wix-incubator/rich-content/pull/256) convertToHTML
 
 <hr/>
 
