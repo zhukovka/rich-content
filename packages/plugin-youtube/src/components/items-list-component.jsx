@@ -99,7 +99,7 @@ ItemsListComponent.propTypes = {
   isTextBoxFocused: PropTypes.bool,
   next: PropTypes.func.isRequired,
   nextPage: PropTypes.string,
-  loader: PropTypes.Component,
+  loader: PropTypes.object,
 };
 
 export default ItemsListComponent;

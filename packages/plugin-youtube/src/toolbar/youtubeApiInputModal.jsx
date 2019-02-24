@@ -5,7 +5,7 @@ import { mergeStyles, isVideoUrl, WixUtils } from 'wix-rich-content-common';
 import ItemsListComponent from './../components/items-list-component';
 import SearchInputComponent from './../components/search-input-component';
 import NavbarComponent from './../components/navbar-component';
-import { YOUTUBE_API_KEY } from './../constants';
+import { YOUTUBE_API_KEY, YOUTUBE_V3_API_LINK } from './../constants';
 import styles from '../../statics/styles/youtube-api-input-modal.scss';
 
 export default class YoutubeApiInputModal extends Component {
@@ -47,13 +47,15 @@ export default class YoutubeApiInputModal extends Component {
       }
 
       const url = term
-        ? 'https://www.googleapis.com/youtube/v3/search?part=snippet&' +
+        ? YOUTUBE_V3_API_LINK +
+          'search?part=snippet&' +
           pageToken +
           'maxResults=50&order=viewCount&q=' +
           term +
           '&type=video&videoDefinition=high&key=' +
           YOUTUBE_API_KEY
-        : 'https://www.googleapis.com/youtube/v3/videos?part=snippet&' +
+        : YOUTUBE_V3_API_LINK +
+          'videos?part=snippet&' +
           pageToken +
           'chart=mostPopular&maxResults=50&pageToken=CDIQAA&key=' +
           YOUTUBE_API_KEY;
