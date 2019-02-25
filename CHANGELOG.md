@@ -12,6 +12,9 @@
 ### :bug: Bug Fix
 - `html`
   - [#266](https://github.com/wix-incubator/rich-content/pull/266) (ios) fix instagram too wide for mobile
+### :house: Internal
+- `general`
+  - [#267](https://github.com/wix-incubator/rich-content/pull/267) auto deploys examples to surge on commits to master or PRs
 
 <hr/>
 
