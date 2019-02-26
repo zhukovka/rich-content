@@ -8,7 +8,13 @@
 > - :book: [Documentation]
 > - :house: [Internal]
 
-## [Unreleased]
+## 3.0.2 (Feb 26, 2019)
+### :bug: Bug Fix
+- `html`
+  - [#266](https://github.com/wix-incubator/rich-content/pull/266) fix instagram cut off on ios
+### :house: Internal
+- `general`
+  - [#267](https://github.com/wix-incubator/rich-content/pull/267) auto deploy examples to surge on commits to master or PRs
 
 <hr/>
 
