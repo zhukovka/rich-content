@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const DotenvWebpackPlugin = require('dotenv-webpack');
 
 const PATHS = {
   root: path.join(__dirname, '..'),
@@ -71,12 +72,13 @@ module.exports = env => ({
       },
       {
         test: /\.(png|jpg|gif)$/,
-        issuer: /\.(s)?css$/,
+        issuer: /\.(css|sass|js|jsx)$/,
         use: [
           {
             loader: 'url-loader',
             options: {
               limit: 8192,
+              fallback: 'file-loader',
             },
           },
         ],
@@ -133,5 +135,8 @@ module.exports = env => ({
         to: 'static/',
       },
     ]),
+    new DotenvWebpackPlugin({
+      path: path.resolve(PATHS.root, '..', '..', '.env'),
+    }),
   ],
 });
