@@ -68,7 +68,7 @@ function run() {
     skip = 'PR from fork';
   }
   if (skip) {
-    console.log(chalk.yellow(`${skip} - skipping publish`));
+    console.log(chalk.yellow(`${skip} - skipping deploy`));
     return false;
   }
 
