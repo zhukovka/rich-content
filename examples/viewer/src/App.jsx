@@ -21,7 +21,8 @@ import {
   LINK_TYPE,
 } from 'wix-rich-content-plugin-link/dist/module.viewer';
 import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/module.viewer';
-
+import { galleryTypeMapper } from 'wix-rich-content-plugin-gallery/dist/module.viewer';
+import { mapTypeMapper } from 'wix-rich-content-plugin-map/dist/module.viewer';
 import { Strategy as HashTagStrategy, Component as HashTag } from 'wix-rich-content-plugin-hashtag';
 import {
   createHeadersMarkdownDecorator,
@@ -45,6 +46,8 @@ import 'wix-rich-content-plugin-link/dist/styles.min.css';
 import 'wix-rich-content-plugin-mentions/dist/styles.min.css';
 import 'wix-rich-content-plugin-video/dist/styles.min.css';
 import 'wix-rich-content-plugin-sound-cloud/dist/styles.min.css';
+import 'wix-rich-content-plugin-map/dist/styles.min.css';
+import 'wix-rich-content-plugin-gallery/dist/styles.min.css';
 
 import TestData from './TestData/initial-state';
 import styles from './App.scss';
@@ -90,6 +93,8 @@ class App extends Component {
       soundCloudTypeMapper,
       mentionsTypeMapper,
       imageTypeMapper,
+      mapTypeMapper,
+      galleryTypeMapper,
     ];
 
     this.config = {

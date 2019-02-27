@@ -10,6 +10,7 @@ import { createCodeBlockPlugin } from 'wix-rich-content-plugin-code-block';
 import { createSoundCloudPlugin } from 'wix-rich-content-plugin-sound-cloud';
 import { createGiphyPlugin } from 'wix-rich-content-plugin-giphy';
 import { createHeadersMarkdownPlugin } from 'wix-rich-content-plugin-headers-markdown';
+import { createMapPlugin } from 'wix-rich-content-plugin-map';
 import { createGalleryPlugin } from 'wix-rich-content-plugin-gallery';
 
 import 'wix-rich-content-common/dist/styles.min.css';
@@ -25,6 +26,7 @@ import 'wix-rich-content-plugin-image/dist/styles.min.css';
 import 'wix-rich-content-plugin-video/dist/styles.min.css';
 import 'wix-rich-content-plugin-sound-cloud/dist/styles.min.css';
 import 'wix-rich-content-plugin-giphy/dist/styles.min.css';
+import 'wix-rich-content-plugin-map/dist/styles.min.css';
 import 'wix-rich-content-plugin-gallery/dist/styles.min.css';
 
 const plugins = [
@@ -40,6 +42,7 @@ const plugins = [
   createSoundCloudPlugin,
   createGiphyPlugin,
   createHeadersMarkdownPlugin,
+  createMapPlugin,
   createGalleryPlugin,
 ];
 
