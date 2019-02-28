@@ -9,6 +9,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
+
+## 3.0.3 (Feb 28, 2019)
 ### :rocket: New Feature
 - `map`
   - [#260](https://github.com/wix-incubator/rich-content/pull/260) new google maps plugin
