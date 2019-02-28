@@ -152,7 +152,7 @@ class App extends React.PureComponent {
             {this.state.mounted && (
               <div className="columns">
                 {isMobileDevice ? (
-                  <div style={{ width: '100%' }}>
+                  <div className={"mobileDevice"} style={{ width: '100%' }}>
                     <div style={{ display: 'flex' }}>{checkBoxComponents}</div>
                     {showEditor && editor}
                     {showViewer && viewer}

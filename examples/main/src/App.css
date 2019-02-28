@@ -106,12 +106,19 @@
   flex: 1;
 }
 
-.editor, .viewer {
+.resizable .editor,
+.resizable .viewer {
   border: solid 1px #ddd;
   width: 50%;
 }
 
-.DraftEditor-root, div[class^='rich-content-viewer__wrapper'] {
+.mobileDevice .editor,
+.mobileDevice .viewer {
+    height: 100%;
+}
+
+.DraftEditor-root,
+div[class^='rich-content-viewer__wrapper'] {
   overflow: auto;
 }
 
