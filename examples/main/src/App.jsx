@@ -49,19 +49,20 @@ class App extends React.PureComponent {
       showDevToggles: true,
       editor: true,
       viewer: true,
+      ...this.getLocalStorageState(),
     };
     this.md = window ? new MobileDetect(window.navigator.userAgent) : null;
   }
 
-  componentDidMount() {
-    this.hydrateStateWithLocalStorage();
-  }
-
-  hydrateStateWithLocalStorage() {
-    checkBoxes.forEach(key => {
+  getLocalStorageState() {
+    const state = {};
+    [...checkBoxes, 'contentWidth'].forEach(key => {
       let val = local.get(key);
-      val !== null && this.setState({ [key]: val });
+      if (val !== null) {
+        state[key] = val;
+      }
     });
+    return state;
   }
 
   onEditorChange = editorState => {
@@ -159,9 +160,9 @@ class App extends React.PureComponent {
                 ) : (
                   <Resizable
                     onResize={(event, direction, { clientWidth }) =>
-                      this.setState({ contentWidth: clientWidth - 2 })
+                      local.set('contentWidth', clientWidth)
                     }
-                    defaultSize={{ width: '60%' }}
+                    defaultSize={{ width: this.state.contentWidth || '85%' }}
                     className={'resizable'}
                   >
                     {showEditor && editor}
