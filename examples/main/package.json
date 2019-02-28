@@ -49,7 +49,7 @@
     "wix-rich-content-viewer": "file:../../packages/viewer"
   },
   "scripts": {
-    "postinstall": "node ../../scripts/linkExample editor",
+    "postinstall": "node ../../scripts/linkExample main",
     "clean": "rm -rf dist/",
     "start": "webpack-dev-server --config ./config/webpack.dev.js",
     "test": "echo 'There are no tests configured for this project!' && exit 0",
