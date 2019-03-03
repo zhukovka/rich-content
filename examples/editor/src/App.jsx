@@ -16,7 +16,7 @@ import { testImages, testVideos } from './mock';
 import './App.css';
 import theme from './theme/theme'; // must import after custom styles
 import RichContentRawDataViewer from './RichContentRawDataViewer';
-import cloneDeep from 'lodash/cloneDeep'
+import cloneDeep from 'lodash/cloneDeep';
 
 const modalStyleDefaults = {
   content: {

@@ -12,6 +12,21 @@
 ### :rocket: New Feature
   - `map`
   - [#260](https://github.com/wix-incubator/rich-content/pull/260) new google maps plugin
+### :bug: Bug Fix
+- `editor`
+  - [#273](https://github.com/wix-incubator/rich-content/pull/273) staticToolbar - render the correct active state
+<hr/>
+
+## 3.0.3 (Feb 28, 2019)
+### :rocket: New Feature
+- `map`
+  - [#260](https://github.com/wix-incubator/rich-content/pull/260) new google maps plugin
+### :bug: Bug Fix
+- `viewer`
+  - [#272](https://github.com/wix-incubator/rich-content/pull/272) plugin link height issues and enabled theming plugin links
+### :house: [Internal]
+- `examples`
+    - [#269](https://github.com/wix-incubator/rich-content/pull/269) new integrated, editor/viewer, example 
 
 <hr/>
 

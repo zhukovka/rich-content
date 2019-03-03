@@ -31,6 +31,7 @@ import 'wix-rich-content-plugin-gallery/dist/styles.min.css';
 
 const plugins = [
   createImagePlugin,
+  createGalleryPlugin,
   createVideoPlugin,
   createHtmlPlugin,
   createDividerPlugin,
@@ -43,7 +44,6 @@ const plugins = [
   createGiphyPlugin,
   createHeadersMarkdownPlugin,
   createMapPlugin,
-  createGalleryPlugin,
 ];
 
 export default plugins;
