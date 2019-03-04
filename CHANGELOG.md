@@ -20,8 +20,6 @@
 
 ### :rocket: New Feature
 
-### :rocket: New Feature
-
 - `map`
   - [#260](https://github.com/wix-incubator/rich-content/pull/260) new google maps plugin
 
