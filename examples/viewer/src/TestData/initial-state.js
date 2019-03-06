@@ -914,6 +914,73 @@ const TestData = {
       },
     ],
   },
+  soundCloud: {
+    blocks: [
+      {
+        key: 'fls2k',
+        text: '',
+        type: 'unstyled',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [],
+        data: {},
+      },
+      {
+        key: '842n2',
+        text: ' ',
+        type: 'atomic',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [
+          {
+            offset: 0,
+            length: 1,
+            key: 0,
+          },
+        ],
+        data: {},
+      },
+      {
+        key: 'eku9b',
+        text: '',
+        type: 'unstyled',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [],
+        data: {},
+      },
+    ],
+    entityMap: {
+      '0': {
+        type: 'wix-draft-plugin-sound-cloud',
+        mutability: 'IMMUTABLE',
+        data: {
+          config: {
+            size: 'content',
+            alignment: 'center',
+          },
+          src: 'https://soundcloud.com/jackie-y-los-bourbons/psycho-killer',
+          metadata: {
+            height: 270,
+            author_name: 'Wix.com',
+            html:
+              '<iframe width="480" height="270" src="https://www.youtube.com/embed/_zuIxexRrtk?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
+            thumbnail_width: 480,
+            type: 'video',
+            version: '1.0',
+            thumbnail_height: 360,
+            provider_url: 'https://www.youtube.com/',
+            title: 'How to Build a Wix Website for Your Business | James Veitch',
+            thumbnail_url: 'https://i.ytimg.com/vi/_zuIxexRrtk/hqdefault.jpg',
+            author_url: 'https://www.youtube.com/user/Wix',
+            provider_name: 'YouTube',
+            width: 480,
+            video_url: 'https://youtu.be/_zuIxexRrtk',
+          },
+        },
+      },
+    },
+  },
   full: {
     entityMap: {
       '4': {
