@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mergeStyles, AccessibilityListener, normalizeInitialState } from 'wix-rich-content-common';
+import {
+  mergeStyles,
+  AccessibilityListener,
+  normalizeInitialState,
+  Context,
+} from 'wix-rich-content-common';
 import { convertToReact } from './utils/convertContentState';
 import styles from '../statics/rich-content-viewer.scss';
 
@@ -49,19 +54,23 @@ export default class RichContentViewer extends Component {
       [styles.rtl]: textDirection === 'rtl',
     });
 
+    const contextualData = { theme, isMobile, anchorTarget, relValue, config, helpers };
+
     const output = convertToReact(
       this.state.raw,
       styles,
       textDirection,
       typeMappers,
-      { theme, isMobile, anchorTarget, relValue, config, helpers },
+      contextualData,
       decorators
     );
 
     return (
       <div className={wrapperClassName}>
-        <div className={editorClassName}>{output}</div>
-        <AccessibilityListener isMobile={isMobile} />
+        <Context.Provider {...contextualData}>
+          <div className={editorClassName}>{output}</div>
+          <AccessibilityListener />
+        </Context.Provider>
       </div>
     );
   }

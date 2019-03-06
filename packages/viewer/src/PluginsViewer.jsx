@@ -8,6 +8,7 @@ import {
   textWrapClassName,
   mergeStyles,
   normalizeUrl,
+  Context,
 } from 'wix-rich-content-common';
 import styles from '../statics/rich-content-viewer.scss';
 class AtomicBlock extends React.Component {
@@ -19,23 +20,16 @@ class AtomicBlock extends React.Component {
     this.setState({ hasError: true });
   }
 
+  renderComponent(Component, children, props) {
+    return <Component {...props}>{children}</Component>;
+  }
+
   render() {
     if (this.state.hasError) {
       return null;
     }
-    const {
-      type,
-      typeMap,
-      componentData,
-      children,
-      theme,
-      isMobile,
-      anchorTarget,
-      relValue,
-      config,
-      helpers,
-      ...props
-    } = this.props;
+    const { type, typeMap, componentData, children } = this.props;
+    const { theme, isMobile, anchorTarget, relValue, config } = this.context;
 
     const mergedStyles = mergeStyles({ theme, styles });
     const { component: Component, elementType } = typeMap[type];
@@ -43,6 +37,7 @@ class AtomicBlock extends React.Component {
     const settings = (config && config[type]) || {};
 
     if (Component) {
+      Component.contextType = Context.type;
       if (elementType !== 'inline') {
         const hasLink = componentData.config && componentData.config.link;
         const ContainerElement = !hasLink ? 'div' : 'a';
@@ -76,61 +71,28 @@ class AtomicBlock extends React.Component {
           <ContainerElement className={containerClassNames} {...containerProps}>
             {isFunction(container) ? (
               <div className={container(theme)}>
-                <Component
-                  componentData={componentData}
-                  theme={theme}
-                  settings={settings}
-                  isMobile={isMobile}
-                  {...props}
-                  helpers={helpers}
-                >
-                  {children}
-                </Component>
+                {this.renderComponent(Component, children, { componentData, settings })}
               </div>
             ) : (
-              <Component
-                componentData={componentData}
-                theme={theme}
-                settings={settings}
-                isMobile={isMobile}
-                {...props}
-                helpers={helpers}
-              >
-                {children}
-              </Component>
+              this.renderComponent(Component, children, { componentData, settings })
             )}
           </ContainerElement>
         );
       } else {
-        return (
-          <Component
-            componentData={componentData}
-            theme={theme}
-            settings={settings}
-            isMobile={isMobile}
-            {...props}
-            helpers={helpers}
-          >
-            {children}
-          </Component>
-        );
+        return this.renderComponent(Component, children, { componentData, settings });
       }
     }
     return null;
   }
 }
 
+AtomicBlock.contextType = Context.type;
+
 AtomicBlock.propTypes = {
   type: PropTypes.string.isRequired,
   componentData: PropTypes.object.isRequired,
   typeMap: PropTypes.object,
   children: PropTypes.node,
-  theme: PropTypes.object,
-  isMobile: PropTypes.bool,
-  anchorTarget: PropTypes.string,
-  relValue: PropTypes.string,
-  config: PropTypes.object,
-  helpers: PropTypes.object,
 };
 
 //return a list of types with a function that wraps the viewer
