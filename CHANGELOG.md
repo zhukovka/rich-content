@@ -9,12 +9,21 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
 
+## 3.0.4 (Mar 6, 2019)
 ### :bug: Bug Fix
-
+- `common`
+    - [a9789d5](https://github.com/wix-incubator/rich-content/commit/a9789d5de23b5f5952019b4408a36fb7a2bd87c8) atomic block link no longer stretches the block
+    - [4689018](https://github.com/wix-incubator/rich-content/commit/46890187df52b796947a7f8c23ab05a3d4d71708) disabled atomic block alignment on mobile    
 - `editor`
-  - [#273](https://github.com/wix-incubator/rich-content/pull/273) staticToolbar - render the correct active state
-    <hr/>
+  - [#273](https://github.com/wix-incubator/rich-content/pull/273) `StaticToolbar` renders the correct active state
+- `viewer`
+    - [a2d6593](https://github.com/wix-incubator/rich-content/commit/a2d659375751f81d3d0873be1da01d2c7fbe30b3) don't clean up empty blocks after headers
+### :house: Internal
+- `common`
+    - [acea872](https://github.com/wix-incubator/rich-content/commit/acea8725aad29588b5b314e6b1a03e0a142eda99) removed `key` from `componentData`
+<hr/>
 
 ## 3.0.3 (Feb 28, 2019)
 
