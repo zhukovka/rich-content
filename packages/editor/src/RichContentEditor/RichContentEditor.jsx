@@ -281,7 +281,7 @@ class RichContentEditor extends Component {
         tabIndex={tabIndex}
         placeholder={placeholder || ''}
         readOnly={!!readOnly}
-        spellCheck={spellCheck || true}
+        spellCheck={spellCheck}
         stripPastedStyles={stripPastedStyles}
         autoCapitalize={autoCapitalize}
         autoComplete={autoComplete}
@@ -371,6 +371,7 @@ RichContentEditor.propTypes = {
 
 RichContentEditor.defaultProps = {
   config: {},
+  spellCheck: true,
 };
 
 export default translate(null, { withRef: true })(RichContentEditor);

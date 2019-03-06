@@ -83,7 +83,8 @@
     margin-left: 0;
 
     @include phone {
-      margin-left: calc((100% - #{$textMobileWidth}) / 2);
+      float: none;
+      margin-right: 0;
     }
   }
 }
@@ -106,7 +107,8 @@
     margin-right: 0;
 
     @include phone {
-      margin-right: calc((100% - #{$textMobileWidth}) / 2);
+      float: none;
+      margin-left: 0;
     }
   }
 }
@@ -173,5 +175,4 @@
 
 .anchor {
   display: block;
-  width: 100%;
 }
