@@ -48,7 +48,7 @@
   box-sizing: border-box;
   margin: 0 auto;
   background: white;
-  padding: 20px 40px;
+  padding: 20px 10px 20px 45px;
 }
 
 .columns {
@@ -68,6 +68,7 @@
 
 .column.side {
   max-width: 750px;
+  min-width: 50px;
   flex: 1;
   overflow: auto;
 }
@@ -98,20 +99,26 @@
 .resizable {
   display: flex;
   border: solid 1px #ddd;
-  margin-right: 20px;
-  max-width: 90%;
+  margin-right: 10px;
 }
 
 .resizable > div {
   flex: 1;
 }
 
-.editor, .viewer {
+.resizable .editor,
+.resizable .viewer {
   border: solid 1px #ddd;
   width: 50%;
 }
 
-.DraftEditor-root, div[class^='rich-content-viewer__wrapper'] {
+.mobileDevice .editor,
+.mobileDevice .viewer {
+    height: 100%;
+}
+
+.DraftEditor-root,
+div[class^='rich-content-viewer__wrapper'] {
   overflow: auto;
 }
 
