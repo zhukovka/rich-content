@@ -673,6 +673,61 @@ const TestData = {
       },
     },
   },
+  giphy: {
+    blocks: [
+      {
+        key: 'fls2k',
+        text: '',
+        type: 'unstyled',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [],
+        data: {},
+      },
+      {
+        key: 'cksr1',
+        text: ' ',
+        type: 'atomic',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [
+          {
+            offset: 0,
+            length: 1,
+            key: 0,
+          },
+        ],
+        data: {},
+      },
+      {
+        key: 'c8hff',
+        text: '',
+        type: 'unstyled',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [],
+        data: {},
+      },
+    ],
+    entityMap: {
+      '0': {
+        type: 'wix-draft-plugin-giphy',
+        mutability: 'IMMUTABLE',
+        data: {
+          config: {
+            size: 'content',
+            alignment: 'center',
+          },
+          gif: {
+            originalUrl: 'https://media0.giphy.com/media/7ZidoKPclnq7e/giphy.gif',
+            stillUrl: 'https://media0.giphy.com/media/7ZidoKPclnq7e/giphy_s.gif',
+            height: 306,
+            width: 250,
+          },
+        },
+      },
+    },
+  },
   legacyVideo: {
     entityMap: {
       '0': {
