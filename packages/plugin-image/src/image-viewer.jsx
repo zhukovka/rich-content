@@ -24,7 +24,6 @@ class ImageViewer extends React.Component {
   constructor(props) {
     super(props);
     validate(props.componentData, schema);
-    this.styles = mergeStyles({ styles, theme: props.theme });
     this.state = {};
   }
 
@@ -56,7 +55,7 @@ class ImageViewer extends React.Component {
       if (this.state.container) {
         const { width } = this.state.container.getBoundingClientRect();
         let requiredWidth = width || src.width || 1;
-        if (this.props.isMobile) {
+        if (this.context.isMobile) {
           //adjust the image width to viewport scaling and device pixel ratio
           requiredWidth *= (window && window.devicePixelRatio) || 1;
           requiredWidth *= (window && window.screen.width / document.body.clientWidth) || 1;
@@ -116,7 +115,7 @@ class ImageViewer extends React.Component {
     }
     return (
       <div className={this.styles.imageOverlay}>
-        <ImageLoader type={'medium'} theme={this.props.theme} />
+        <ImageLoader type={'medium'} />
       </div>
     );
   }
@@ -178,7 +177,7 @@ class ImageViewer extends React.Component {
   }
 
   render() {
-    const { styles } = this;
+    this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
     const {
       componentData,
       className,
@@ -229,13 +228,10 @@ ImageViewer.propTypes = {
   componentData: PropTypes.object.isRequired,
   onClick: PropTypes.func,
   className: PropTypes.string,
-  theme: PropTypes.object,
-  helpers: PropTypes.object,
   isLoading: PropTypes.bool,
   dataUrl: PropTypes.string,
   isFocused: PropTypes.bool,
   readOnly: PropTypes.bool,
-  isMobile: PropTypes.bool,
   settings: PropTypes.object,
   defaultCaption: PropTypes.string,
 };
