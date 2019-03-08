@@ -22,7 +22,6 @@
     "watch": "NODE_ENV=development MODULE_WATCH=1 npm run build -- --watch",
     "lint": "eslint 'src/**/*.{js,jsx}'",
     "lint:fix": "npm run lint -- --fix",
-    "pretest": "npm run lint",
     "test": "jest --verbose"
   },
   "jest": {
