@@ -83,7 +83,6 @@
     margin-left: 0;
 
     @include phone {
-      float: none;
       margin-right: 0;
     }
   }
@@ -107,7 +106,6 @@
     margin-right: 0;
 
     @include phone {
-      float: none;
       margin-left: 0;
     }
   }
