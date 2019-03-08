@@ -10,6 +10,12 @@
 ## [Unreleased]
 <hr/>
 
+## 3.0.5 (Mar 8, 2019)
+### :bug: Bug Fix
+- `common`
+  - [c9d954d](https://github.com/wix-incubator/rich-content/commit/c9d954d39c1d496649794c7edfe43a199a8552b5) original size image streching in mobile
+<hr/>
+
 ## 3.0.4 (Mar 6, 2019)
 ### :bug: Bug Fix
 - `common`
