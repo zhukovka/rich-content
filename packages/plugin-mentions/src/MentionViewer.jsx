@@ -9,7 +9,7 @@ class MentionViewer extends Component {
     this.styles = this.styles || mergeStyles({ styles: Styles, theme: this.context.theme });
     return (
       <MentionComponent
-        contextType={MentionViewer.contextType}
+        contextType={MentionViewer.contextType || Context.type}
         mention={this.props.componentData.mention}
         {...this.props}
         theme={this.styles}
