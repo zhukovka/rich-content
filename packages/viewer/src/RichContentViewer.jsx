@@ -45,6 +45,7 @@ export default class RichContentViewer extends Component {
       relValue,
       config,
       helpers,
+      locale,
     } = this.props;
 
     const wrapperClassName = classNames(styles.wrapper, {
@@ -54,7 +55,7 @@ export default class RichContentViewer extends Component {
       [styles.rtl]: textDirection === 'rtl',
     });
 
-    const contextualData = { theme, isMobile, anchorTarget, relValue, config, helpers };
+    const contextualData = { theme, isMobile, anchorTarget, relValue, config, helpers, locale };
 
     const output = convertToReact(
       this.state.raw,
@@ -81,6 +82,7 @@ RichContentViewer.propTypes = {
   isMobile: PropTypes.bool,
   helpers: PropTypes.object,
   platform: PropTypes.string,
+  locale: PropTypes.string,
   typeMappers: PropTypes.arrayOf(PropTypes.func),
   decorators: PropTypes.arrayOf(
     PropTypes.oneOfType([
@@ -106,4 +108,5 @@ RichContentViewer.defaultProps = {
   theme: {},
   decorators: [],
   typeMappers: [],
+  locale: 'en',
 };
