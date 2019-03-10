@@ -1163,6 +1163,72 @@ const TestData = {
       },
     },
   },
+  map: {
+    blocks: [
+      {
+        key: 'dvtg1',
+        text: '',
+        type: 'unstyled',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [],
+        data: {},
+      },
+      {
+        key: '54hkp',
+        text: ' ',
+        type: 'atomic',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [
+          {
+            offset: 0,
+            length: 1,
+            key: 0,
+          },
+        ],
+        data: {},
+      },
+      {
+        key: '1ma4t',
+        text: '',
+        type: 'unstyled',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [],
+        data: {},
+      },
+    ],
+    entityMap: {
+      '0': {
+        type: 'wix-draft-plugin-map',
+        mutability: 'IMMUTABLE',
+        data: {
+          config: {
+            size: 'content',
+            alignment: 'center',
+          },
+          googleMapApiKey: 'AIzaSyB40ci07ioXEC6U4Rkxai2rRDiJEobv0T4',
+          minWidth: 100,
+          maxWidth: 740,
+          minHeight: 100,
+          maxHeight: 1000,
+          mapSettings: {
+            address: 'Sarnath, Varanasi, Uttar Pradesh, India',
+            locationDisplayName: 'Sarnath, Varanasi, Uttar Pradesh, India',
+            lat: 25.3761664,
+            lng: 83.02271029999997,
+            zoom: 18,
+            mode: 'satellite',
+            isMarkerShown: true,
+            isZoomControlShown: true,
+            isStreetViewControlShown: true,
+            isDraggingAllowed: true,
+          },
+        },
+      },
+    },
+  },
 };
 
 export default TestData;
