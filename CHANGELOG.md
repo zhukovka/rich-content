@@ -8,6 +8,8 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+
+## 3.0.6 (Mar 11, 2019)
 ### :house: Internal
 - `viewer`
   - mergedStyles are passed to AtomicBlock as a prop [React Native requirement]
