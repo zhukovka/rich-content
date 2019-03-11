@@ -10,6 +10,12 @@
 ## [Unreleased]
 <hr/>
 
+## 3.0.7 (Mar 11, 2019)
+### :house: Internal
+- `viewer`
+  - react-native css-module issue fix
+<hr/>
+
 ## 3.0.6 (Mar 11, 2019)
 ### :house: Internal
 - `viewer`
