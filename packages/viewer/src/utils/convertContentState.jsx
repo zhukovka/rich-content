@@ -101,9 +101,9 @@ const getBlocks = (mergedStyles, textDirection) => {
   };
 };
 
-const getEntities = (typeMap, pluginProps) => ({
-  ...getPluginsViewer(typeMap, pluginProps),
-});
+const getEntities = (typeMap, pluginProps, styles) => {
+  return getPluginsViewer(typeMap, pluginProps, styles);
+};
 
 const normalizeContentState = contentState => ({
   ...contentState,
@@ -165,7 +165,7 @@ const convertToReact = (
     {
       inline: getInline(mergedStyles),
       blocks: getBlocks(mergedStyles, textDirection),
-      entities: getEntities(combineTypeMappers(typeMap), entityProps),
+      entities: getEntities(combineTypeMappers(typeMap), entityProps, mergedStyles),
       decorators,
     },
     { ...redraftOptions, ...options }
