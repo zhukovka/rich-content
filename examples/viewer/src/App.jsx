@@ -45,9 +45,9 @@ import 'wix-rich-content-plugin-image/dist/styles.min.css';
 import 'wix-rich-content-plugin-link/dist/styles.min.css';
 import 'wix-rich-content-plugin-mentions/dist/styles.min.css';
 import 'wix-rich-content-plugin-video/dist/styles.min.css';
+import 'wix-rich-content-plugin-gallery/dist/styles.min.css';
 import 'wix-rich-content-plugin-sound-cloud/dist/styles.min.css';
 import 'wix-rich-content-plugin-map/dist/styles.min.css';
-import 'wix-rich-content-plugin-gallery/dist/styles.min.css';
 
 import TestData from './TestData/initial-state';
 import styles from './App.scss';
@@ -141,15 +141,37 @@ class App extends Component {
   }
 
   initViewerProps() {
-    this.helpers = {};
+    this.helpers = {
+      openModal: data => {
+        const { modalStyles, ...modalProps } = data;
+        try {
+          document.documentElement.style.height = '100%';
+          document.documentElement.style.position = 'relative';
+        } catch (e) {
+          console.warn('Cannot change document styles', e);
+        }
+        this.setState({
+          showModal: true,
+          modalProps,
+          modalStyles,
+        });
+      },
+      closeModal: () => {
+        try {
+          document.documentElement.style.height = 'initial';
+          document.documentElement.style.position = 'initial';
+        } catch (e) {
+          console.warn('Cannot change document styles', e);
+        }
+        this.setState({
+          showModal: false,
+          modalProps: null,
+          modalStyles: null,
+          modalContent: null,
+        });
+      },
+    };
   }
-
-  closeModal = () => {
-    this.setState({
-      showModal: false,
-      modalContent: null,
-    });
-  };
 
   /* eslint-disable no-console */
   handleContentChange = () => {

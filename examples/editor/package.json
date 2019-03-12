@@ -35,6 +35,7 @@
     "wix-rich-content-plugin-divider": "file:../../packages/plugin-divider",
     "wix-rich-content-plugin-emoji": "file:../../packages/plugin-emoji",
     "wix-rich-content-plugin-giphy": "file:../../packages/plugin-giphy",
+    "wix-rich-content-plugin-gallery": "file:../../../rich-content-plugins-wix/packages/plugin-gallery",
     "wix-rich-content-plugin-hashtag": "file:../../packages/plugin-hashtag",
     "wix-rich-content-plugin-headers-markdown": "file:../../packages/plugin-headers-markdown",
     "wix-rich-content-plugin-html": "file:../../packages/plugin-html",

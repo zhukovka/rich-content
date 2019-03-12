@@ -35,6 +35,7 @@ const plugins = [
   createVideoPlugin,
   createHtmlPlugin,
   createDividerPlugin,
+  createGalleryPlugin,
   // createExternalEmojiPlugin,
   createLinkPlugin,
   createHashtagPlugin,

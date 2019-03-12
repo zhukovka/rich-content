@@ -10,4 +10,5 @@ export default {
   ...SoundCloudModalsMap,
   ...GiphyModalsMap,
   ...ImageModalsMap,
+  ...GalleryModalsMap,
 };
