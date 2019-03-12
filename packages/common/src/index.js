@@ -96,4 +96,5 @@ export {
   DISPLAY_MODE,
   DECORATION_MODE,
   HEADER_BLOCK,
+  BLOCK_TYPES,
 } from './consts';
