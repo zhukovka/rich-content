@@ -10,16 +10,25 @@
 ## [Unreleased]
 <hr/>
 
+## 3.0.8  (Mar 12, 2019)
+### :rocket: New Feature
+- `image`
+  - [bebba18](https://github.com/wix-incubator/rich-content/commit/bebba1806a99a6704c72b1a0770fc2e7cf74bba3) support fallback image in wix media
+### :house: Internal
+- `viewer`
+  - [d00fc1c](https://github.com/wix-incubator/rich-content/commit/d00fc1c2042150f3b9b121332d4b30dccbc0e982) removed `@wix/draft-js` dependency
+<hr/>
+
 ## 3.0.7 (Mar 11, 2019)
 ### :house: Internal
 - `viewer`
-  - react-native css-module issue fix
+  - [d4dcbd7](https://github.com/wix-incubator/rich-content/commit/d4dcbd76366484b0133b040656f7f3f8ad1b23e7) react-native css-module issue fix
 <hr/>
 
 ## 3.0.6 (Mar 11, 2019)
 ### :house: Internal
 - `viewer`
-  - mergedStyles are passed to AtomicBlock as a prop [React Native requirement]
+  - [bc46ff2](https://github.com/wix-incubator/rich-content/commit/bc46ff207a1f2c9b456f8b6d645e0ca001e307bc) mergedStyles are passed to AtomicBlock as a prop [React Native requirement]
 <hr/>
 
 ## 3.0.5 (Mar 8, 2019)
