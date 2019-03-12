@@ -44,8 +44,7 @@
     "wix-rich-content-plugin-mentions": "file:../../packages/plugin-mentions",
     "wix-rich-content-plugin-sound-cloud": "file:../../packages/plugin-sound-cloud",
     "wix-rich-content-plugin-video": "file:../../packages/plugin-video",
-    "wix-rich-content-plugin-map": "file:../../packages/plugin-map",
-    "wix-rich-content-plugin-gallery": "file:../../../rich-content-plugins-wix/packages/plugin-gallery"
+    "wix-rich-content-plugin-map": "file:../../packages/plugin-map"
   },
   "scripts": {
     "postinstall": "node ../../scripts/linkExample editor",
