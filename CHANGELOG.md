@@ -10,7 +10,7 @@
 ## [Unreleased]
 ### :rocket: New Feature
 - `common`
-  - color-picker component initial implementation
+  - [#278](https://github.com/wix-incubator/rich-content/pull/278) color-picker component initial implementation
 <hr/>
 
 ## 3.0.8  (Mar 12, 2019)
