@@ -10,6 +10,12 @@
 ## [Unreleased]
 <hr/>
 
+## 3.0.9 (Mar 14, 2019)
+### :rocket: New Feature
+- `common`
+  - [#278](https://github.com/wix-incubator/rich-content/pull/278) color-picker component initial implementation
+<hr/>
+
 ## 3.0.8  (Mar 12, 2019)
 ### :rocket: New Feature
 - `image`
