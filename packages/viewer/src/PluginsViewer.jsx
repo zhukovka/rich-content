@@ -6,11 +6,10 @@ import {
   sizeClassName,
   alignmentClassName,
   textWrapClassName,
-  mergeStyles,
   normalizeUrl,
   Context,
 } from 'wix-rich-content-common';
-import styles from '../statics/rich-content-viewer.scss';
+
 class AtomicBlock extends React.Component {
   state = {
     hasError: false,
@@ -28,10 +27,9 @@ class AtomicBlock extends React.Component {
     if (this.state.hasError) {
       return null;
     }
-    const { type, typeMap, componentData, children } = this.props;
+    const { type, typeMap, componentData, children, styles } = this.props;
     const { theme, isMobile, anchorTarget, relValue, config } = this.context;
 
-    const mergedStyles = mergeStyles({ theme, styles });
     const { component: Component, elementType } = typeMap[type];
     const { size, alignment, textWrap, container } = typeMap[type].classNameStrategies || {};
     const settings = (config && config[type]) || {};
@@ -42,9 +40,9 @@ class AtomicBlock extends React.Component {
         const hasLink = componentData.config && componentData.config.link;
         const ContainerElement = !hasLink ? 'div' : 'a';
         const containerClassNames = classNames(
-          mergedStyles.pluginContainerReadOnly,
+          styles.pluginContainerReadOnly,
           {
-            [mergedStyles.pluginContainerMobile]: isMobile,
+            [styles.pluginContainerMobile]: isMobile,
             [styles.anchor]: hasLink,
             [theme.anchor]: hasLink && theme.anchor,
           },
@@ -93,14 +91,26 @@ AtomicBlock.propTypes = {
   componentData: PropTypes.object.isRequired,
   typeMap: PropTypes.object,
   children: PropTypes.node,
+  styles: PropTypes.object,
+};
+
+AtomicBlock.defaultProps = {
+  styles: {},
 };
 
 //return a list of types with a function that wraps the viewer
-const getPluginsViewer = (typeMap, pluginProps) => {
+const getPluginsViewer = (typeMap, pluginProps, styles) => {
   const res = {};
   Object.keys(typeMap).forEach(type => {
     res[type] = (children, entity, { key }) => (
-      <AtomicBlock typeMap={typeMap} type={type} key={key} componentData={entity} {...pluginProps}>
+      <AtomicBlock
+        typeMap={typeMap}
+        type={type}
+        key={key}
+        componentData={entity}
+        {...pluginProps}
+        styles={styles}
+      >
         {children}
       </AtomicBlock>
     );
