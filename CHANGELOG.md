@@ -8,6 +8,19 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :house: Internal
+- `common`
+  - [#274](https://github.com/wix-incubator/rich-content/pull/274) `Context` component is implemented as a `React.createContext()` wrapper
+- `editor`
+  - [#274](https://github.com/wix-incubator/rich-content/pull/274) `Context.Provider` is integrated into `RCE`
+- `viewer`
+  - [#274](https://github.com/wix-incubator/rich-content/pull/274) `Context.Provider` is integrated into `RCV`
+- `plugins`
+  - [#274](https://github.com/wix-incubator/rich-content/pull/274) every plugin's `Component` and `Viewer` components now rely on Context
+- `examples/viewer`
+  - [#274](https://github.com/wix-incubator/rich-content/pull/274) `giphy`, `map`, and `soundCloud` examples added
+- `map`
+  - [#274](https://github.com/wix-incubator/rich-content/pull/274) redundant code removed
 <hr/>
 
 ## 3.0.4 (Mar 6, 2019)
