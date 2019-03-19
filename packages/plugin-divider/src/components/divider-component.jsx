@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mergeStyles, validate, Context } from 'wix-rich-content-common';
@@ -8,7 +8,7 @@ import DividerLine from './divider-line';
 import schema from '../../statics/data-schema.json';
 import styles from '../../statics/styles/divider-viewer.scss';
 
-class DividerComponent extends Component {
+class DividerComponent extends PureComponent {
   constructor(props) {
     super(props);
     validate(props.componentData, schema);
