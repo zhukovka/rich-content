@@ -8,6 +8,13 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :rocket: New Feature
+- `map`
+  - [92e3d9a6](https://github.com/wix-incubator/rich-content/commit/92e3d9a6), [#280](https://github.com/wix-incubator/rich-content/pull/280) dynamic map component dimentions; settings redesigned
+### :bug: Bug Fix
+- `map`
+  - [#274](https://github.com/wix-incubator/rich-content/pull/274) redundant code removed
+  - [39b380df](https://github.com/wix-incubator/rich-content/commit/39b380df) removed `store` from `map-viewer`, removed Maps API key from `component-data`, missing defaults added; styles fixed; `isMobile` prop used in `map-settings`
 ### :house: Internal
 - `common`
   - [#274](https://github.com/wix-incubator/rich-content/pull/274) `Context` component is implemented as a `React.createContext()` wrapper
@@ -19,8 +26,6 @@
   - [#274](https://github.com/wix-incubator/rich-content/pull/274) every plugin's `Component` and `Viewer` components now rely on Context
 - `examples/viewer`
   - [#274](https://github.com/wix-incubator/rich-content/pull/274) `giphy`, `map`, and `soundCloud` examples added
-- `map`
-  - [#274](https://github.com/wix-incubator/rich-content/pull/274) redundant code removed
 <hr/>
 
 
