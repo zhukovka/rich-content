@@ -4,12 +4,8 @@ import { mergeStyles, WixUtils, SettingsSection, TextInput, Button } from 'wix-r
 import ReactGoogleMapLoader from 'react-google-maps-loader';
 import ReactGooglePlacesSuggest from 'react-google-places-suggest';
 import styles from '../../statics/styles/map-settings-modal.scss';
-import { LabeledImage } from './LabeledImage';
 import { LabeledToggle } from './LabeledToggle';
 import { SearchIcon } from '../icons/SearchIcon';
-import satelliteImg from '../../statics/images/satellite.png';
-import terrainImg from '../../statics/images/terrain.png';
-import roadmapImg from '../../statics/images/roadmap.png';
 import { Scrollbars } from 'react-custom-scrollbars';
 import classNames from 'classnames';
 const uuidv4 = require('uuid/v4');
@@ -31,10 +27,10 @@ export class MapSettingsModal extends Component {
       isZoomControlShown: componentData.mapSettings.isZoomControlShown,
       isStreetViewControlShown: componentData.mapSettings.isStreetViewControlShown,
       isDraggingAllowed: componentData.mapSettings.isDraggingAllowed,
+      isViewControlShown: componentData.mapSettings.isViewControlShown,
+      locationDisplayName: componentData.mapSettings.locationDisplayName,
       isLocationInputAlreadyFocused: false,
     };
-    this.state.locationDisplayName =
-      componentData.mapSettings.locationDisplayName || this.state.address;
 
     this.uniqueClassesId = uuidv4();
   }
@@ -63,6 +59,7 @@ export class MapSettingsModal extends Component {
         isMarkerShown: this.state.isMarkerShown,
         isZoomControlShown: this.state.isZoomControlShown,
         isStreetViewControlShown: this.state.isStreetViewControlShown,
+        isViewControlShown: this.state.isViewControlShown,
         isDraggingAllowed: this.state.isDraggingAllowed,
       },
     };
@@ -85,7 +82,7 @@ export class MapSettingsModal extends Component {
   labeledToggleDefaultProps = () => ({
     sliderColor: this.props.uiSettings.themeColors.color1,
     toggleIsOnTrackColor: this.props.uiSettings.themeColors.color8,
-    toggleIsOffTrackColor: this.props.uiSettings.themeColors.color8,
+    toggleIsOffTrackColor: this.props.uiSettings.themeColors.color5,
   });
 
   renderMobileNavBar() {
@@ -129,11 +126,19 @@ export class MapSettingsModal extends Component {
     const buttonPrimaryClassName = `map_settings_modal_button_primary_${uniqueClassesId}`;
     const buttonSecondaryClassName = `map_settings_modal_button_secondary_${uniqueClassesId}`;
     const textInputClassName = `map_settings_modal_text_input_${uniqueClassesId}`;
+    const navBarClassName = `map_settings_modal_mobile_navbar_dynamic_${uniqueClassesId}`;
+    const dividerClassName = `map_settings_modal_divider_dynamic_${uniqueClassesId}`;
 
     /* eslint-disable camelcase */
     this.styles.button_primary = `${buttonPrimaryClassName} ${this.styles.button_primary}`;
     this.styles.button_secondary = `${buttonSecondaryClassName} ${this.styles.button_secondary}`;
     this.styles.textInput_input = `${textInputClassName} ${this.styles.textInput_input}`;
+    this.styles.map_settings_modal_mobile_navbar = `${navBarClassName} ${
+      this.styles.map_settings_modal_mobile_navbar
+    }`;
+    this.styles.map_settings_modal_divider = `${dividerClassName} ${
+      this.styles.map_settings_modal_divider
+    }`;
     /*eslint-enable camelcase */
 
     const style = `
@@ -157,6 +162,14 @@ export class MapSettingsModal extends Component {
       .${textInputClassName} {
         border-color: ${themeColors.color5};
       }
+      .${navBarClassName} {
+        background-color: ${themeColors.color8};
+        color: ${themeColors.color1};
+      }
+
+       .${dividerClassName} {
+        background-color: ${themeColors.color5};
+      }
     `;
 
     return <style>{style}</style>;
@@ -166,8 +179,6 @@ export class MapSettingsModal extends Component {
     const { theme, t } = this.props;
     const { locationSearchPhrase, address } = this.state;
     const { googleMapApiKey } = this.props.componentData;
-
-    const selectedLabeledImageStyle = { border: '2px solid #9a87ce' };
 
     return (
       <div
@@ -263,51 +274,22 @@ export class MapSettingsModal extends Component {
 
         <SettingsSection
           theme={theme}
-          className={this.styles.map_settings_modal_dropdown_section}
-          ariaProps={{ 'aria-label': 'ckeckboxes', role: 'region' }}
-        >
-          <div>
-            <p className={this.styles.map_settings_modal_map_modes_sub_header}>
-              {t('MapSettings_MapType_Label')}
-            </p>
-            <div className={this.styles.map_settings_modal_map_modes}>
-              <LabeledImage
-                label={t('MapSettings_MapType_RoadMap_Label')}
-                src={roadmapImg}
-                onClick={() => this.setState({ mode: 'roadmap' })}
-                imgStyle={this.state.mode === 'roadmap' ? selectedLabeledImageStyle : {}}
-                theme={theme}
-              />
-
-              <LabeledImage
-                label={t('MapSettings_MapType_Satellite_Label')}
-                src={satelliteImg}
-                onClick={() => this.setState({ mode: 'satellite' })}
-                imgStyle={this.state.mode === 'satellite' ? selectedLabeledImageStyle : {}}
-                theme={theme}
-              />
-
-              <LabeledImage
-                label={t('MapSettings_MapType_Terrain_Label')}
-                src={terrainImg}
-                onClick={() => this.setState({ mode: 'terrain' })}
-                imgStyle={this.state.mode === 'terrain' ? selectedLabeledImageStyle : {}}
-                theme={theme}
-              />
-            </div>
-          </div>
-        </SettingsSection>
-
-        <div className={this.styles.map_settings_modal_divider_wrapper}>
-          <div className={this.styles.map_settings_modal_divider} />
-        </div>
-
-        <SettingsSection
-          theme={theme}
           className={this.styles.map_settings_modal_checkbox_section}
           ariaProps={{ 'aria-label': 'ckeckboxes', role: 'region' }}
         >
           <div className={this.styles.map_settings_modal_map_options}>
+            <p className={this.styles.map_settings_modal_map_options_sub_header}>
+              {t('MapSettings_MapOption_SubHeader')}
+            </p>
+
+            <LabeledToggle
+              label={t('MapSettings_MapOption_Show_View_Control_Label')}
+              checked={this.state.isViewControlShown}
+              onChange={() => this.setState({ isViewControlShown: !this.state.isViewControlShown })}
+              {...this.labeledToggleDefaultProps()}
+              theme={theme}
+            />
+
             <LabeledToggle
               label={t('MapSettings_MapOption_Show_Marker_Label')}
               checked={this.state.isMarkerShown}
