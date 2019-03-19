@@ -3,10 +3,10 @@ import {
   getModalStyles,
   PluginSettingsIcon,
   SizeSmallCenterIcon,
-  WixUtils,
 } from 'wix-rich-content-common';
 import { MapSettingsModal } from './MapSettingsModal';
 import get from 'lodash/get';
+import { DEFAULTS } from '../constants';
 
 const getAlignmentButtonProps = ({ store, componentData }) => {
   const MAX_ALIGNMENT_WIDTH = 739;
@@ -24,22 +24,22 @@ export default ({ settings, t, helpers }) => {
     {
       type: BUTTONS.WIDTH,
       keyName: 'width',
-      min: minWidth,
+      min: minWidth || DEFAULTS.minWidth,
       mapStoreDataToPanelProps: ({ store }) => {
         const bounds = store.get('editorBounds');
         if (bounds && bounds.width) {
           return { max: maxWidth ? Math.min(maxWidth, bounds.width) : bounds.width };
         } else {
-          return { max: maxWidth };
+          return { max: maxWidth || DEFAULTS.maxWidth };
         }
       },
     },
     {
       type: BUTTONS.HEIGHT,
       keyName: 'height',
-      min: minHeight,
-      max: maxHeight,
-      inputMax: maxHeight,
+      min: minHeight || DEFAULTS.minHeight,
+      max: maxHeight || DEFAULTS.maxHeight,
+      inputMax: maxHeight || DEFAULTS.maxHeight,
     },
     { keyName: 'separator1', type: BUTTONS.SEPARATOR, mobile: false },
     {
@@ -66,19 +66,12 @@ export default ({ settings, t, helpers }) => {
       type: BUTTONS.EXTERNAL_MODAL,
       icon: PluginSettingsIcon,
       modalElement: MapSettingsModal,
-      modalStyles: WixUtils.isMobile()
-        ? getModalStyles({
-            customStyles: { content: { width: '100%', maxWidth: '100%' } },
-            fullScreen: true,
-          })
-        : getModalStyles({
-            customStyles: { content: { width: '480px', maxWidth: '480px' } },
-            fullScreen: true,
-          }),
+      modalStyles: getModalStyles(),
       mobile: true,
       tooltipTextKey: 'MapPluginButton_Settings_Tooltip',
       helpers,
       t,
+      settings,
     },
     { keyName: 'delete', type: BUTTONS.DELETE, mobile: true },
   ];

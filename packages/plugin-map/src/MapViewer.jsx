@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import ReactGoogleMapLoader from 'react-google-maps-loader';
 import isEqual from 'lodash/isEqual';
-import { validate } from 'wix-rich-content-common';
+import { validate, Context } from 'wix-rich-content-common';
 import schema from '../statics/data-schema.json';
 
 const GoogleMapWrapper = withGoogleMap(props => (
@@ -50,60 +50,65 @@ export class MapViewer extends Component {
   }
 
   componentDidMount() {
-    const { width } = this.rootElement.getBoundingClientRect();
+    if (!this.props.componentData.config.width) {
+      if (this.props.settings && this.props.settings.width) {
+        this.props.componentData.config.width = this.props.settings.width;
+      } else if (this.element) {
+        const { width } = this.element.getBoundingClientRect();
+        this.props.componentData.config.width = width;
+      }
+    }
 
-    this.props.componentData.config.width = width;
-
-    const MAP_INITIAL_HEIGHT = 400;
-    this.props.componentData.config.height = this.props.settings.height || MAP_INITIAL_HEIGHT;
+    if (!this.props.componentData.config.height) {
+      if (this.props.settings && this.props.settings.height) {
+        this.props.componentData.config.height = this.props.settings.height;
+      }
+    }
   }
 
-  setRootElementRef = elm => (this.rootElement = elm);
+  setRootElementRef = elm => (this.element = elm);
 
   render() {
-    const { componentData, settings, store } = this.props;
+    const {
+      componentData: { mapSettings, config: { width, height } = {} },
+      settings: { googleMapApiKey } = {},
+    } = this.props;
 
-    const maxWidth = store.get('editorBounds').width;
-    const width = settings.width && maxWidth ? Math.min(settings.width, maxWidth) : 'auto';
-    const height = settings.height || 'auto';
+    const style = {
+      width: this.context.isMobile ? 'auto' : width,
+      height,
+      whiteSpace: 'initial',
+    };
 
     return (
-      <div ref={this.setRootElementRef} style={{ width, height }}>
+      <div ref={this.setRootElementRef} style={style}>
         <ReactGoogleMapLoader
           params={{
-            key: componentData.googleMapApiKey,
+            key: googleMapApiKey,
             libraries: 'geometry,drawing,places',
           }}
           render={googleMaps =>
             googleMaps && (
               <GoogleMapWrapper
-                isMarkerShown={componentData.mapSettings.isMarkerShown}
+                isMarkerShown={mapSettings.isMarkerShown}
                 loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={
-                  <div
-                    style={{
-                      height: componentData.config.height + 'px',
-                      whiteSpace: 'initial',
-                      width: componentData.config.width + 'px',
-                    }}
-                  />
-                }
+                containerElement={<div style={style} />}
                 mapElement={<div style={{ height: `100%` }} />}
-                lat={Number(componentData.mapSettings.lat)}
-                lng={Number(componentData.mapSettings.lng)}
-                markerTitle={componentData.mapSettings.address}
-                markerTooltipContent={componentData.mapSettings.locationDisplayName}
-                zoom={componentData.mapSettings.zoom}
+                lat={Number(mapSettings.lat)}
+                lng={Number(mapSettings.lng)}
+                markerTitle={mapSettings.address}
+                markerTooltipContent={mapSettings.locationDisplayName}
+                zoom={mapSettings.zoom}
                 onMarkerTooltipCloseClick={() => this.setState({ isMarkerTooltipRendered: false })}
                 onMarkerClick={() =>
                   this.setState({ isMarkerTooltipRendered: !this.state.isMarkerTooltipRendered })
                 }
                 isMarkerTooltipRendered={this.state.isMarkerTooltipRendered}
-                mode={componentData.mapSettings.mode}
-                isZoomControlShown={componentData.mapSettings.isZoomControlShown}
-                isStreetViewControlShown={componentData.mapSettings.isStreetViewControlShown}
-                isViewControlShown={componentData.mapSettings.isViewControlShown}
-                isDraggingAllowed={componentData.mapSettings.isDraggingAllowed}
+                mode={mapSettings.mode}
+                isZoomControlShown={mapSettings.isZoomControlShown}
+                isStreetViewControlShown={mapSettings.isStreetViewControlShown}
+                isViewControlShown={mapSettings.isViewControlShown}
+                isDraggingAllowed={mapSettings.isDraggingAllowed}
                 {...this.props}
               />
             )
@@ -114,8 +119,14 @@ export class MapViewer extends Component {
   }
 }
 
+MapViewer.contextType = Context.type;
+
 MapViewer.propTypes = {
   componentData: PropTypes.object.isRequired,
-  settings: PropTypes.object,
-  store: PropTypes.object,
+  settings: PropTypes.shape({
+    width: PropTypes.number,
+    height: PropTypes.number,
+    googleMapApiKey: PropTypes.string.isRequired,
+    mapSettings: PropTypes.object,
+  }).isRequired,
 };

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { mergeStyles, WixUtils, SettingsSection, TextInput, Button } from 'wix-rich-content-common';
+import { mergeStyles, SettingsSection, TextInput, Button } from 'wix-rich-content-common';
 import ReactGoogleMapLoader from 'react-google-maps-loader';
 import ReactGooglePlacesSuggest from 'react-google-places-suggest';
 import styles from '../../statics/styles/map-settings-modal.scss';
@@ -176,9 +176,9 @@ export class MapSettingsModal extends Component {
   };
 
   renderSettingsSections() {
-    const { theme, t } = this.props;
+    const { theme, t, isMobile } = this.props;
     const { locationSearchPhrase, address } = this.state;
-    const { googleMapApiKey } = this.props.componentData;
+    const { googleMapApiKey } = this.props.settings;
 
     return (
       <div
@@ -266,7 +266,7 @@ export class MapSettingsModal extends Component {
           />
         </SettingsSection>
 
-        {!WixUtils.isMobile() && (
+        {!isMobile && (
           <div className={this.styles.map_settings_modal_divider_wrapper}>
             <div className={this.styles.map_settings_modal_divider} />
           </div>
@@ -330,7 +330,7 @@ export class MapSettingsModal extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, isMobile } = this.props;
 
     const wrapWithScrollBars = jsx => (
       <Scrollbars
@@ -346,7 +346,7 @@ export class MapSettingsModal extends Component {
     return (
       <div>
         {this.renderInjectedStyles()}
-        {WixUtils.isMobile() && this.renderMobileNavBar()}
+        {isMobile && this.renderMobileNavBar()}
 
         <div className={this.styles.map_settings_modal_settings_container}>
           <div
@@ -358,11 +358,11 @@ export class MapSettingsModal extends Component {
             <div className={this.styles.map_settings_modal_title}>{t('MapSettings_Title')}</div>
           </div>
 
-          {WixUtils.isMobile()
+          {isMobile
             ? this.renderSettingsSections()
             : wrapWithScrollBars(this.renderSettingsSections())}
 
-          {!WixUtils.isMobile() && (
+          {!isMobile && (
             <div
               className={classNames(
                 this.styles.map_settings_modal_footer,
@@ -397,8 +397,10 @@ MapSettingsModal.propTypes = {
   pubsub: PropTypes.object,
   helpers: PropTypes.object.isRequired,
   componentData: PropTypes.object.isRequired,
+  settings: PropTypes.object.isRequired,
   onConfirm: PropTypes.func,
   theme: PropTypes.object.isRequired,
   uiSettings: PropTypes.object.isRequired,
   t: PropTypes.func,
+  isMobile: PropTypes.bool,
 };
