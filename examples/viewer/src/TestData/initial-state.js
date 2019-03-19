@@ -1207,12 +1207,9 @@ const TestData = {
           config: {
             size: 'content',
             alignment: 'center',
+            width: 740,
+            height: 650,
           },
-          googleMapApiKey: 'AIzaSyB40ci07ioXEC6U4Rkxai2rRDiJEobv0T4',
-          minWidth: 100,
-          maxWidth: 740,
-          minHeight: 100,
-          maxHeight: 1000,
           mapSettings: {
             address: 'Sarnath, Varanasi, Uttar Pradesh, India',
             locationDisplayName: 'Sarnath, Varanasi, Uttar Pradesh, India',
