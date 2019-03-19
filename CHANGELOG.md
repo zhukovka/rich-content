@@ -8,13 +8,28 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :house: Internal
+- `common`
+  - [#274](https://github.com/wix-incubator/rich-content/pull/274) `Context` component is implemented as a `React.createContext()` wrapper
+- `editor`
+  - [#274](https://github.com/wix-incubator/rich-content/pull/274) `Context.Provider` is integrated into `RCE`
+- `viewer`
+  - [#274](https://github.com/wix-incubator/rich-content/pull/274) `Context.Provider` is integrated into `RCV`
+- `plugins`
+  - [#274](https://github.com/wix-incubator/rich-content/pull/274) every plugin's `Component` and `Viewer` components now rely on Context
+- `examples/viewer`
+  - [#274](https://github.com/wix-incubator/rich-content/pull/274) `giphy`, `map`, and `soundCloud` examples added
+- `map`
+  - [#274](https://github.com/wix-incubator/rich-content/pull/274) redundant code removed
 <hr/>
+
 
 ## 3.0.9 (Mar 14, 2019)
 ### :rocket: New Feature
 - `common`
   - [#278](https://github.com/wix-incubator/rich-content/pull/278) color-picker component initial implementation
 <hr/>
+
 
 ## 3.0.8  (Mar 12, 2019)
 ### :rocket: New Feature
@@ -25,11 +40,13 @@
   - [d00fc1c](https://github.com/wix-incubator/rich-content/commit/d00fc1c2042150f3b9b121332d4b30dccbc0e982) removed `@wix/draft-js` dependency
 <hr/>
 
+
 ## 3.0.7 (Mar 11, 2019)
 ### :house: Internal
 - `viewer`
   - [d4dcbd7](https://github.com/wix-incubator/rich-content/commit/d4dcbd76366484b0133b040656f7f3f8ad1b23e7) react-native css-module issue fix
 <hr/>
+
 
 ## 3.0.6 (Mar 11, 2019)
 ### :house: Internal
@@ -37,11 +54,13 @@
   - [bc46ff2](https://github.com/wix-incubator/rich-content/commit/bc46ff207a1f2c9b456f8b6d645e0ca001e307bc) mergedStyles are passed to AtomicBlock as a prop [React Native requirement]
 <hr/>
 
+
 ## 3.0.5 (Mar 8, 2019)
 ### :bug: Bug Fix
 - `common`
   - [c9d954d](https://github.com/wix-incubator/rich-content/commit/c9d954d39c1d496649794c7edfe43a199a8552b5) original size image streching in mobile
 <hr/>
+
 
 ## 3.0.4 (Mar 6, 2019)
 ### :bug: Bug Fix
