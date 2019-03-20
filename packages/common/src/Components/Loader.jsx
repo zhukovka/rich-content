@@ -5,13 +5,13 @@ import { mergeStyles } from '../Utils/mergeStyles';
 import Context from '../Utils/Context';
 import styles from '../../statics/styles/loaders.scss';
 
-class ImageLoader extends React.Component {
+class Loader extends React.Component {
   render() {
     this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
     return (
       <div
         className={classNames(this.props.overlayClassName, this.styles.loaderOverlay)}
-        data-hook="imageLoader"
+        data-hook="loader"
       >
         <div
           className={classNames(this.props.loaderClassName, this.styles.loader, {
@@ -23,18 +23,18 @@ class ImageLoader extends React.Component {
   }
 }
 
-ImageLoader.contextType = Context.type;
+Loader.contextType = Context.type;
 
-ImageLoader.propTypes = {
+Loader.propTypes = {
   type: PropTypes.string,
   overlayClassName: PropTypes.string,
   loaderClassName: PropTypes.string,
 };
 
-ImageLoader.defaultProps = {
+Loader.defaultProps = {
   type: 'mini',
   overlayClassName: '',
   loaderClassName: '',
 };
 
-export default ImageLoader;
+export default Loader;

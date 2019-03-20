@@ -9,6 +9,8 @@
 
 ## [Unreleased]
 ### :rocket: New Feature
+- `file-upload`
+  - [#281](https://github.com/wix-incubator/rich-content/pull/281) new file upload plugin
 - `map`
   - [92e3d9a6](https://github.com/wix-incubator/rich-content/commit/92e3d9a6), [#280](https://github.com/wix-incubator/rich-content/pull/280) dynamic map component dimentions; settings redesigned
 ### :bug: Bug Fix
@@ -18,6 +20,7 @@
 ### :house: Internal
 - `common`
   - [#274](https://github.com/wix-incubator/rich-content/pull/274) `Context` component is implemented as a `React.createContext()` wrapper
+  - [#281](https://github.com/wix-incubator/rich-content/pull/281) renamed `ImageLoader` to `Loader`
 - `editor`
   - [#274](https://github.com/wix-incubator/rich-content/pull/274) `Context.Provider` is integrated into `RCE`
 - `viewer`
