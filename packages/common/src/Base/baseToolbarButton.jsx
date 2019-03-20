@@ -272,7 +272,7 @@ class BaseToolbarButton extends React.Component {
   };
 
   render = () => {
-    const { settings, helpers, disabled, theme: themedStyles } = this.props;
+    const { disabled, theme: themedStyles } = this.props;
     const { isActive } = this.state;
     const buttonWrapperClassNames = classNames(themedStyles.buttonWrapper);
     const buttonClassNames = classNames({
