@@ -38,8 +38,8 @@
   "peerDependencies": {
     "@babel/runtime": "7.2.0",
     "lodash": "^4.0.0",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
   },
   "devDependencies": {
     "@babel/runtime": "7.2.0",
@@ -48,9 +48,9 @@
     "jest": "^23.1.0",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-test-renderer": "^16.4.2",
+    "react": "16.6.3",
+    "react-dom": "16.6.3",
+    "react-test-renderer": "16.6.3",
     "rollup": "^1.1.0"
   },
   "unpkg": true,
