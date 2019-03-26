@@ -11,6 +11,8 @@
 ### :bug: Bug Fix
 - `common`
   - [#283](https://github.com/wix-incubator/rich-content/pull/283) fix handleExternalFileChanged
+- `editor`
+  - inline-text-toolbar: link panel on mobile is now displayed as modal neither inline panel
 <hr/>
 
 ## 3.1.1 (Mar 20, 2019)
