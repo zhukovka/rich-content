@@ -8,11 +8,15 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
+
+## 3.1.1 (Mar 28, 2019)
 ### :bug: Bug Fix
 - `common`
-  - [#283](https://github.com/wix-incubator/rich-content/pull/283) fix handleExternalFileChanged
+  - [#283](https://github.com/wix-incubator/rich-content/pull/283) fix image upload `updateEntity` callback
 - `editor`
-  - inline-text-toolbar: link panel on mobile is now displayed as modal neither inline panel
+  - [b1e720b](https://github.com/wix-incubator/rich-content/commit/b1e720b) inline-text-toolbar: link panel on mobile is now displayed as modal neither inline panel
+  
 <hr/>
 
 ## 3.1.1 (Mar 20, 2019)
