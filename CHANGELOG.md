@@ -10,7 +10,7 @@
 ## [Unreleased]
 <hr/>
 
-## 3.1.1 (Mar 28, 2019)
+## 3.1.2 (Mar 28, 2019)
 ### :bug: Bug Fix
 - `common`
   - [#283](https://github.com/wix-incubator/rich-content/pull/283) fix image upload `updateEntity` callback
