@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
+
+## 3.2.0 (Mar 28, 2019)
 ### :rocket: New Feature
 - `button`
   - [#275](https://github.com/wix-incubator/rich-content/pull/275) new button plugin
