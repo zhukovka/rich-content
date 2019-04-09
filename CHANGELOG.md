@@ -10,6 +10,12 @@
 ## [Unreleased]
 <hr/>
 
+## 3.2.1 (Apr 9, 2019)
+### :house: Internal
+- `general`
+  - align version with `plugin-gallery` release
+
+
 ## 3.2.0 (Apr 8, 2019)
 ### :rocket: New Feature
 - `button`
@@ -25,7 +31,7 @@
   - [#283](https://github.com/wix-incubator/rich-content/pull/283) fix image upload `updateEntity` callback
 - `editor`
   - [b1e720b](https://github.com/wix-incubator/rich-content/commit/b1e720b) inline-text-toolbar: link panel on mobile is now displayed as modal neither inline panel
-  
+
 <hr/>
 
 ## 3.1.1 (Mar 20, 2019)
