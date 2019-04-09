@@ -35,6 +35,7 @@ import {
 import { galleryTypeMapper } from 'wix-rich-content-plugin-gallery/dist/module.viewer';
 import { fileUploadTypeMapper } from 'wix-rich-content-plugin-file-upload/dist/module.viewer';
 import { giphyTypeMapper } from 'wix-rich-content-plugin-giphy/dist/module.viewer';
+import { buttonTypeMapper } from 'wix-rich-content-plugin-button/dist/module.viewer';
 
 import 'wix-rich-content-common/dist/styles.min.css';
 import 'wix-rich-content-viewer/dist/styles.min.css';
@@ -52,6 +53,7 @@ import 'wix-rich-content-plugin-sound-cloud/dist/styles.min.css';
 import 'wix-rich-content-plugin-map/dist/styles.min.css';
 import 'wix-rich-content-plugin-file-upload/dist/styles.min.css';
 import 'wix-rich-content-plugin-giphy/dist/styles.min.css';
+import 'wix-rich-content-plugin-button/dist/styles.min.css';
 
 import TestData from './TestData/initial-state';
 import styles from './App.scss';
@@ -101,6 +103,7 @@ class App extends Component {
       fileUploadTypeMapper,
       giphyTypeMapper,
       galleryTypeMapper,
+      buttonTypeMapper,
     ];
 
     this.config = {

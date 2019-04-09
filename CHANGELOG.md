@@ -10,13 +10,22 @@
 ## [Unreleased]
 <hr/>
 
+## 3.2.0 (Apr 8, 2019)
+### :rocket: New Feature
+- `button`
+  - [#275](https://github.com/wix-incubator/rich-content/pull/275) new button plugin
+### :bug: Bug Fix
+- `general`
+  - [#285](https://github.com/wix-incubator/rich-content/pull/285) prevent `context` from rerendering unnecessarily
+<hr/>
+
 ## 3.1.2 (Mar 28, 2019)
 ### :bug: Bug Fix
 - `common`
   - [#283](https://github.com/wix-incubator/rich-content/pull/283) fix image upload `updateEntity` callback
 - `editor`
   - [b1e720b](https://github.com/wix-incubator/rich-content/commit/b1e720b) inline-text-toolbar: link panel on mobile is now displayed as modal neither inline panel
-  
+
 <hr/>
 
 ## 3.1.1 (Mar 20, 2019)
