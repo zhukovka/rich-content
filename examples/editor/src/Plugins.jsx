@@ -17,7 +17,7 @@ import { createGalleryPlugin } from 'wix-rich-content-plugin-gallery';
 
 import 'wix-rich-content-common/dist/styles.min.css';
 import 'wix-rich-content-editor/dist/styles.min.css';
-// import 'wix-rich-content-plugin-code-block/dist/styles.min.css';
+import 'wix-rich-content-plugin-code-block/dist/styles.min.css';
 import 'wix-rich-content-plugin-divider/dist/styles.min.css';
 // import 'wix-rich-content-plugin-emoji/dist/styles.min.css';
 import 'wix-rich-content-plugin-html/dist/styles.min.css';
@@ -39,7 +39,6 @@ const plugins = [
   createVideoPlugin,
   createHtmlPlugin,
   createDividerPlugin,
-  createGalleryPlugin,
   // createExternalEmojiPlugin,
   createLinkPlugin,
   createHashtagPlugin,
