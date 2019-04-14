@@ -10,10 +10,16 @@
 ## [Unreleased]
 <hr/>
 
+## 3.2.3 (Apr 14, 2019)
+### :house: Internal
+- `general`
+  - align version with `plugin-gallery` release
+  - [ac27a91](https://github.com/wix-incubator/rich-content/commit/ac27a91b427f64555ca653a37772755e21315198) CI fails if any script fails
+<hr/>
+
 ## 3.2.2 (Apr 14, 2019)
 ### :house: Internal
 - `general`
-    - align version with `plugin-gallery` release
   - [#287](https://github.com/wix-incubator/rich-content/pull/287) support building modules on Windows
 <hr/>
 
