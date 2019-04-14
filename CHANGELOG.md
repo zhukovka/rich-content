@@ -10,11 +10,18 @@
 ## [Unreleased]
 <hr/>
 
+## 3.2.2 (Apr 14, 2019)
+### :house: Internal
+- `general`
+    - align version with `plugin-gallery` release
+  - [#287](https://github.com/wix-incubator/rich-content/pull/287) support building modules on Windows
+<hr/>
+
 ## 3.2.1 (Apr 9, 2019)
 ### :house: Internal
 - `general`
   - align version with `plugin-gallery` release
-
+<hr/>
 
 ## 3.2.0 (Apr 8, 2019)
 ### :rocket: New Feature
@@ -23,6 +30,7 @@
 ### :bug: Bug Fix
 - `general`
   - [#285](https://github.com/wix-incubator/rich-content/pull/285) prevent `context` from rerendering unnecessarily
+
 <hr/>
 
 ## 3.1.2 (Mar 28, 2019)
