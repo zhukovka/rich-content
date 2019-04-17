@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
+
+## 3.3.0 (Apr 17, 2019)
 ### :boom: Breaking Change
 - `editor`
   - `getToolbarSettings` API: `pluginTextButtons` parameter now exposes `mobile` and `desktop` button lists, more details [here](./docs/ToolbarCustomization.md)
@@ -23,7 +26,7 @@
   - `getSelectionStyles` util now accepts `styleSelectionPredicate` function parameter
 ### :book: Documentation
 - [Toolbar Customization](./docs/ToolbarCustomization.md) doc updated
-<hr/>
+
 
 ## 3.2.3 (Apr 14, 2019)
 ### :house: Internal
