@@ -13,19 +13,19 @@
 ## 3.3.0 (Apr 17, 2019)
 ### :boom: Breaking Change
 - `editor`
-  - [#287](https://github.com/wix-incubator/rich-content/pull/287) `getToolbarSettings` API: `pluginTextButtons` parameter now exposes `mobile` and `desktop` button lists, more details [here](./docs/ToolbarCustomization.md)
+  - [#284](https://github.com/wix-incubator/rich-content/pull/284) `getToolbarSettings` API: `pluginTextButtons` parameter now exposes `mobile` and `desktop` button lists, more details [here](./docs/ToolbarCustomization.md)
 ### :rocket: New Feature
 - `text-color`
-  - [#287](https://github.com/wix-incubator/rich-content/pull/287) new plugin added
+  - [#284](https://github.com/wix-incubator/rich-content/pull/284) new plugin added
 - `editor`
-  - [#287](https://github.com/wix-incubator/rich-content/pull/287) `RichContentEditor` accepts the `customStyleFn` prop, details [here](https://draftjs.org/docs/api-reference-editor.html#customstylefn)
+  - [#284](https://github.com/wix-incubator/rich-content/pull/284) `RichContentEditor` accepts the `customStyleFn` prop, details [here](https://draftjs.org/docs/api-reference-editor.html#customstylefn)
 ### :bug: Bug Fix
 - `common`
-  - [#287](https://github.com/wix-incubator/rich-content/pull/287) `color-picker` component UI adjusted according to design
-  - [#287](https://github.com/wix-incubator/rich-content/pull/287) `getModalStyles` util: `customStyles` now affect both `desktop` and `mobile` styles
-  - [#287](https://github.com/wix-incubator/rich-content/pull/287) `getSelectionStyles` util now accepts `styleSelectionPredicate` function parameter
+  - [#284](https://github.com/wix-incubator/rich-content/pull/284) `color-picker` component UI adjusted according to design
+  - [#284](https://github.com/wix-incubator/rich-content/pull/284) `getModalStyles` util: `customStyles` now affect both `desktop` and `mobile` styles
+  - [#284](https://github.com/wix-incubator/rich-content/pull/284) `getSelectionStyles` util now accepts `styleSelectionPredicate` function parameter
 ### :book: Documentation
-- [#287](https://github.com/wix-incubator/rich-content/pull/287) [Toolbar Customization](./docs/ToolbarCustomization.md) doc updated
+- [#284](https://github.com/wix-incubator/rich-content/pull/284) [Toolbar Customization](./docs/ToolbarCustomization.md) doc updated
 
 
 ## 3.2.3 (Apr 14, 2019)
