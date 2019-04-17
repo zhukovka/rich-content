@@ -8,6 +8,21 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :boom: Breaking Change
+- `editor`
+  - `getToolbarSettings` API: `pluginTextButtons` parameter now exposes `mobile` and `desktop` button lists, more details [here](./docs/ToolbarCustomization.md)
+### :rocket: New Feature
+- `text-color`
+  - new plugin added
+- `editor`
+  - `RichContentEditor` accepts the `customStyleFn` prop, details [here](https://draftjs.org/docs/api-reference-editor.html#customstylefn)
+### :bug: Bug Fix
+- `common`
+  - `color-picker` component UI adjusted according to design
+  - `getModalStyles` util: `customStyles` now affect both `desktop` and `mobile` styles
+  - `getSelectionStyles` util now accepts `styleSelectionPredicate` function parameter
+### :book: Documentation
+- [Toolbar Customization](./docs/ToolbarCustomization.md) doc updated
 <hr/>
 
 ## 3.2.3 (Apr 14, 2019)
@@ -45,8 +60,12 @@
   - [#283](https://github.com/wix-incubator/rich-content/pull/283) fix image upload `updateEntity` callback
 - `editor`
   - [b1e720b](https://github.com/wix-incubator/rich-content/commit/b1e720b) inline-text-toolbar: link panel on mobile is now displayed as modal neither inline panel
+<<<<<<< HEAD
+=======
 
+>>>>>>> develop
 <hr/>
+
 
 ## 3.1.1 (Mar 20, 2019)
 ### :rocket: New Feature
