@@ -12,6 +12,7 @@ import { createButtonPlugin } from 'wix-rich-content-plugin-button';
 import { createGiphyPlugin } from 'wix-rich-content-plugin-giphy';
 import { createHeadersMarkdownPlugin } from 'wix-rich-content-plugin-headers-markdown';
 import { createMapPlugin } from 'wix-rich-content-plugin-map';
+import { createTextColorPlugin } from 'wix-rich-content-plugin-text-color';
 import { createFileUploadPlugin } from 'wix-rich-content-plugin-file-upload';
 import { createGalleryPlugin } from 'wix-rich-content-plugin-gallery';
 
@@ -49,6 +50,7 @@ const plugins = [
   createGiphyPlugin,
   createHeadersMarkdownPlugin,
   createMapPlugin,
+  createTextColorPlugin,
   createFileUploadPlugin,
 ];
 
