@@ -8,6 +8,11 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :bug: Bug Fix
+- `text-color`
+  - selection state handled correctly
+- `common`
+  - focus-manager: console log removed
 <hr/>
 
 
