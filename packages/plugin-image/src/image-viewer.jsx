@@ -7,18 +7,10 @@ import isFunction from 'lodash/isFunction';
 import { mergeStyles, Loader, validate, Context } from 'wix-rich-content-common';
 import isEqual from 'lodash/isEqual';
 import getImageSrc from './get-image-source';
+import { getDefault } from './consts';
 import { WIX_MEDIA_DEFAULT } from './get-wix-media-url';
 import schema from '../statics/data-schema.json';
 import styles from '../statics/styles/image-viewer.scss';
-
-const getDefault = () => ({
-  config: {
-    alignment: 'center',
-    size: 'content',
-    showTitle: true,
-    showDescription: true,
-  },
-});
 
 class ImageViewer extends React.Component {
   constructor(props) {
@@ -255,4 +247,4 @@ ImageViewer.propTypes = {
   defaultCaption: PropTypes.string,
 };
 
-export { ImageViewer, getDefault };
+export default ImageViewer;

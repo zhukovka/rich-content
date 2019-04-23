@@ -36,7 +36,7 @@ const plugins = [
     extensions: ['.js', '.jsx', '.json'],
   }),
   builtins(),
-  images(),
+  // images(), //TODO: restore - required by plugins-map
   copy({
     files: 'statics/**/*',
     dest: 'dist',
@@ -119,33 +119,35 @@ const external = id =>
 
 let output = [
   {
-    file: 'dist/module.js',
+    // file: 'dist/module.js',
+    dir: 'dist/esm',
     format: 'es',
     sourcemap: true,
   },
   {
-    file: 'dist/module.cjs.js',
+    // file: 'dist/module.cjs.js',
+    dir: 'dist/cjs',
     format: 'cjs',
     sourcemap: true,
   },
-  {
-    name: NAME,
-    format: 'iife',
-    file: `dist/${MODULE_NAME}.js`,
-    globals: id => {
-      const isExcluded = excludedGlobals.find(p => p === id);
-      if (!isExcluded) {
-        const globalKey = Object.keys(globals).find(
-          externalName => externalName === id || new RegExp(externalName + '/').test(id)
-        );
-        if (globalKey) {
-          return globals[globalKey];
-        }
-      }
-      return false;
-    },
-    sourcemap: true,
-  },
+  // {
+  //   name: NAME,
+  //   format: 'iife',
+  //   file: `dist/${MODULE_NAME}.js`,
+  //   globals: id => {
+  //     const isExcluded = excludedGlobals.find(p => p === id);
+  //     if (!isExcluded) {
+  //       const globalKey = Object.keys(globals).find(
+  //         externalName => externalName === id || new RegExp(externalName + '/').test(id)
+  //       );
+  //       if (globalKey) {
+  //         return globals[globalKey];
+  //       }
+  //     }
+  //     return false;
+  //   },
+  //   sourcemap: true,
+  // },
 ];
 
 if (process.env.MODULE_WATCH) {
@@ -171,8 +173,7 @@ try {
   viewerEntry = {
     input: 'src/viewer.js',
     output: cloneDeep(output).map(o => {
-      const anchor = o.file.indexOf('.');
-      o.file = `${o.file.slice(0, anchor)}.viewer${o.file.slice(anchor)}`;
+      o.dir = `${o.dir}/viewer`;
       return o;
     }),
     plugins,

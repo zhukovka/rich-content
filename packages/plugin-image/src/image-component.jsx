@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ImageViewer, getDefault } from './image-viewer';
+import DynamicImageViewer from './dynamic-image-viewer';
 import { sizeClassName, alignmentClassName } from './classNameStrategies';
 import { Context } from 'wix-rich-content-common';
 
@@ -133,7 +133,7 @@ class ImageComponent extends React.Component {
   render() {
     const { settings, componentData, onClick, className, blockProps } = this.props;
     return (
-      <ImageViewer
+      <DynamicImageViewer
         componentData={componentData}
         onClick={onClick}
         className={className}
@@ -161,4 +161,4 @@ ImageComponent.propTypes = {
   settings: PropTypes.object,
 };
 
-export { ImageComponent as Component, getDefault };
+export { ImageComponent as Component };
