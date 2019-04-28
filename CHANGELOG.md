@@ -13,6 +13,8 @@
   - selection state handled correctly
 - `common`
   - focus-manager: console log removed
+- `viewer`
+  - .atomic class is applied to a proper element [similar to editor layout]
 - `general`
   - merged styles are used in plugins rather default ones
 <hr/>
