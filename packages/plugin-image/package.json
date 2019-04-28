@@ -51,6 +51,7 @@
     "rollup": "^1.1.0"
   },
   "dependencies": {
+    "@loadable/component": "5.9.0",
     "image-client-api": "1.2218.0",
     "wix-rich-content-common": "^3.3.1"
   },

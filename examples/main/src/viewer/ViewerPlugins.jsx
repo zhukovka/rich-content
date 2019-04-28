@@ -1,27 +1,27 @@
 import theme from '../theme/theme';
-import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/module.viewer';
-import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/module.viewer';
-import { HTML_TYPE, htmlTypeMapper } from 'wix-rich-content-plugin-html/dist/module.viewer';
-import { soundCloudTypeMapper } from 'wix-rich-content-plugin-sound-cloud/dist/module.viewer';
+import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/esm/viewer';
+import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/esm/viewer';
+import { HTML_TYPE, htmlTypeMapper } from 'wix-rich-content-plugin-html/dist/esm/viewer';
+import { soundCloudTypeMapper } from 'wix-rich-content-plugin-sound-cloud/dist/esm/viewer';
 import {
   LINK_TYPE,
   LinkParseStrategy,
   linkTypeMapper,
   LinkViewer,
-} from 'wix-rich-content-plugin-link/dist/module.viewer';
-import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/module.viewer';
-import { mapTypeMapper } from 'wix-rich-content-plugin-map/dist/module.viewer';
+} from 'wix-rich-content-plugin-link/dist/esm/viewer';
+import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/esm/viewer';
+import { mapTypeMapper } from 'wix-rich-content-plugin-map/dist/esm/viewer';
 import { Component as HashTag, Strategy as HashTagStrategy } from 'wix-rich-content-plugin-hashtag';
 import {
   createHeadersMarkdownDecorator,
   HEADERS_MARKDOWN_TYPE,
 } from 'wix-rich-content-plugin-headers-markdown';
-import { CodeBlockDecorator } from 'wix-rich-content-plugin-code-block/dist/module.viewer';
+import { CodeBlockDecorator } from 'wix-rich-content-plugin-code-block/dist/esm/viewer';
 import {
   MENTION_TYPE,
   mentionsTypeMapper,
-} from 'wix-rich-content-plugin-mentions/dist/module.viewer';
-import { fileUploadTypeMapper } from 'wix-rich-content-plugin-file-upload/dist/module.viewer';
+} from 'wix-rich-content-plugin-mentions/dist/esm/viewer';
+import { fileUploadTypeMapper } from 'wix-rich-content-plugin-file-upload/dist/esm/viewer';
 import { TextColorDecorator } from 'wix-rich-content-plugin-text-color';
 
 import 'wix-rich-content-common/dist/styles.min.css';

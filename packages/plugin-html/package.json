@@ -17,8 +17,8 @@
   "files": [
     "dist"
   ],
-  "main": "dist/module.cjs.js",
-  "module": "dist/module.js",
+  "main": "dist/cjs/editor.js",
+  "module": "dist/esm/editor.js",
   "style": "dist/styles.min.scss",
   "scripts": {
     "clean": "rm -rf dist/",

@@ -6,8 +6,8 @@
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
   },
-  "main": "dist/module.cjs.js",
-  "module": "dist/module.js",
+  "main": "dist/cjs/editor.js",
+  "module": "dist/esm/editor.js",
   "style": "dist/styles.min.scss",
   "files": [
     "dist"

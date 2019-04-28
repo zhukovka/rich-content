@@ -66,11 +66,6 @@ class AtomicBlock extends React.Component {
           };
         }
         return (
-          <Context.Consumer>
-            {({foobar}) => {
-
-            }}
-          </Context.Consumer>
           <ContainerElement className={containerClassNames} {...containerProps}>
             {isFunction(container) ? (
               <div className={container(theme)}>
