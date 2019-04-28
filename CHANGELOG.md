@@ -10,13 +10,14 @@
 ## [Unreleased]
 ### :bug: Bug Fix
 - `text-color`
-  - selection state handled correctly
+  - [5227d93](https://github.com/wix-incubator/rich-content/commit/5227d9370ff0106ab16f1c44077991ead28ba856) selection state handled correctly
 - `common`
-  - focus-manager: console log removed
+  - [0595e88](https://github.com/wix-incubator/rich-content/commit/0595e88c3da6173df9c99c6ce56baf0b3f14fb2c) focus-manager: console log removed
 - `viewer`
-  - .atomic class is applied to a proper element [similar to editor layout]
+  - [cc09f6f](https://github.com/wix-incubator/rich-content/commit/cc09f6ff1b72926885d357f955c93c54be688b22) atomic class is applied to a proper element [similar to editor layout]
+  - [1a3ddc0](https://github.com/wix-incubator/rich-content/commit/1a3ddc060a32f187d8029488ac24bc3adfd7e8b0) headers line spacing
 - `general`
-  - merged styles are used in plugins rather default ones
+  - [a720dd6](https://github.com/wix-incubator/rich-content/commit/a720dd604cce4fcd8b9bf9cc22d15fb6840bd8c5) merged styles are used in plugins rather default ones
 <hr/>
 
 
