@@ -119,35 +119,15 @@ const external = id =>
 
 let output = [
   {
-    // file: 'dist/module.js',
     dir: 'dist/esm',
     format: 'es',
     sourcemap: true,
   },
   {
-    // file: 'dist/module.cjs.js',
     dir: 'dist/cjs',
     format: 'cjs',
     sourcemap: true,
   },
-  // {
-  //   name: NAME,
-  //   format: 'iife',
-  //   file: `dist/${MODULE_NAME}.js`,
-  //   globals: id => {
-  //     const isExcluded = excludedGlobals.find(p => p === id);
-  //     if (!isExcluded) {
-  //       const globalKey = Object.keys(globals).find(
-  //         externalName => externalName === id || new RegExp(externalName + '/').test(id)
-  //       );
-  //       if (globalKey) {
-  //         return globals[globalKey];
-  //       }
-  //     }
-  //     return false;
-  //   },
-  //   sourcemap: true,
-  // },
 ];
 
 if (process.env.MODULE_WATCH) {
@@ -159,33 +139,22 @@ const watch = {
   clearScreen: false,
 };
 
-const editorEntry = {
-  input: 'src/index.js',
-  output: cloneDeep(output),
-  plugins,
-  external,
-  watch,
+const input = {
+  editor: './src/index.js',
 };
+const viewerPath = './src/viewer.js';
 
-let viewerEntry;
-try {
-  fs.accessSync('./src/viewer.js');
-  viewerEntry = {
-    input: 'src/viewer.js',
-    output: cloneDeep(output).map(o => {
-      o.dir = `${o.dir}/viewer`;
-      return o;
-    }),
+if (fs.existsSync(viewerPath)) {
+  input.viewer = viewerPath;
+}
+const config = [
+  {
+    input,
+    output: cloneDeep(output),
     plugins,
     external,
     watch,
-  };
-} catch (_) {}
-
-const config = [editorEntry];
-
-if (viewerEntry) {
-  config.push(viewerEntry);
-}
+  },
+];
 
 export default config;

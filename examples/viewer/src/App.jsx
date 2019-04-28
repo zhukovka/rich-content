@@ -10,7 +10,7 @@ import {
 import { RichContentViewer } from 'wix-rich-content-viewer';
 import RichContentRawDataViewer from './RichContentRawDataViewer';
 
-import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/module.viewer';
+import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/esm/viewer';
 import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/module.viewer';
 import { htmlTypeMapper, HTML_TYPE } from 'wix-rich-content-plugin-html/dist/module.viewer';
 import { soundCloudTypeMapper } from 'wix-rich-content-plugin-sound-cloud/dist/module.viewer';
@@ -20,7 +20,7 @@ import {
   LinkParseStrategy,
   LINK_TYPE,
 } from 'wix-rich-content-plugin-link/dist/module.viewer';
-import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/module.viewer';
+import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/esm/viewer';
 import { mapTypeMapper, MAP_TYPE } from 'wix-rich-content-plugin-map/dist/module.viewer';
 import { Strategy as HashTagStrategy, Component as HashTag } from 'wix-rich-content-plugin-hashtag';
 import { TextColorDecorator } from 'wix-rich-content-plugin-text-color';

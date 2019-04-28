@@ -981,6 +981,64 @@ const TestData = {
       },
     },
   },
+  image: {
+    blocks: [
+      {
+        key: 'bp14n',
+        text: '',
+        type: 'unstyled',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [],
+        data: {},
+      },
+      {
+        key: '40rrr',
+        text: ' ',
+        type: 'atomic',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [
+          {
+            offset: 0,
+            length: 1,
+            key: 0,
+          },
+        ],
+        data: {},
+      },
+      {
+        key: 'ac51c',
+        text: '',
+        type: 'unstyled',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [],
+        data: {},
+      },
+    ],
+    entityMap: {
+      0: {
+        type: 'wix-draft-plugin-image',
+        mutability: 'IMMUTABLE',
+        data: {
+          config: {
+            alignment: 'center',
+            size: 'content',
+            showTitle: true,
+            showDescription: true,
+          },
+          src: {
+            id: '53defddc48f1fed38b715b4eda295c7d',
+            original_file_name: '8bb438_a5ad0a96b999457f863d8fbcb9a88947.jpg',
+            file_name: '8bb438_a5ad0a96b999457f863d8fbcb9a88947.jpg',
+            width: 5120,
+            height: 3413,
+          },
+        },
+      },
+    },
+  },
   full: {
     entityMap: {
       '4': {
