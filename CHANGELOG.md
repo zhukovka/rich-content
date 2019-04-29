@@ -17,7 +17,7 @@
 - `common`
   - [0595e88](https://github.com/wix-incubator/rich-content/commit/0595e88c3da6173df9c99c6ce56baf0b3f14fb2c) focus-manager: console log removed
 - `html`
-  - [69ccd8d](https://github.com/wix-incubator/rich-content/commit/69ccd8d38ccf70a4e282c137208c3c366db236fe) selection state handled correctly
+  - [69ccd8d](https://github.com/wix-incubator/rich-content/commit/69ccd8d38ccf70a4e282c137208c3c366db236fe) limit body width to viewport width
 - `text-color`
   - [5227d93](https://github.com/wix-incubator/rich-content/commit/5227d9370ff0106ab16f1c44077991ead28ba856) selection state handled correctly
 - `viewer`
