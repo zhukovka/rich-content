@@ -9,6 +9,10 @@
 
 ## [Unreleased]
 ### :rocket: New Feature
+- `common`
+  - [#295](https://github.com/wix-incubator/rich-content/pull/295) insert plugin button with `custom-block` type supported [allows to run custom add-block handler]
+- `code-block`
+  - [#295](https://github.com/wix-incubator/rich-content/pull/295) insert-buttons added
 - `text-color`
   - [#290](https://github.com/wix-incubator/rich-content/pull/290) customization API exposed (defining and handling custom inline styles)
 ### :bug: Bug Fix
