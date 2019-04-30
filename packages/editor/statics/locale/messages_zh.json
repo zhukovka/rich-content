@@ -136,6 +136,7 @@
   "ButtonModal_Settings_Tab" : "設定",
   "VideoPlugin_InsertButton_Tooltip" : "新增一個視訊",
   "ButtonModal_Color_Section" : "顏色",
+  "TextCodeBlock_InsertButton_Tooltip" : "Add a Code Block",
   "DividerPlugin_InsertButton_Tooltip" : "新增分隔線",
   "TextLinkButton_Tooltip" : "連結",
   "GallerySettings_Radios_Underneath" : "在圖片下",

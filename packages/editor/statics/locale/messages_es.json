@@ -136,6 +136,7 @@
   "ButtonModal_Settings_Tab" : "Opciones",
   "VideoPlugin_InsertButton_Tooltip" : "Agrega un video",
   "ButtonModal_Color_Section" : "Color",
+  "TextCodeBlock_InsertButton_Tooltip" : "Add a Code Block",
   "DividerPlugin_InsertButton_Tooltip" : "Agregar divisor",
   "TextLinkButton_Tooltip" : "Enlace",
   "GallerySettings_Radios_Underneath" : "Debajo de la imagen",

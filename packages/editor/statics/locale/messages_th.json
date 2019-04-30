@@ -136,6 +136,7 @@
   "ButtonModal_Settings_Tab" : "ตั้งค่า",
   "VideoPlugin_InsertButton_Tooltip" : "ใส่วิดีโอ",
   "ButtonModal_Color_Section" : "สี",
+  "TextCodeBlock_InsertButton_Tooltip" : "Add a Code Block",
   "DividerPlugin_InsertButton_Tooltip" : "เพิ่มเส้นแบ่ง",
   "TextLinkButton_Tooltip" : "ลิงก์",
   "GallerySettings_Radios_Underneath" : "ใต้ภาพ",

@@ -136,6 +136,7 @@
   "ButtonModal_Settings_Tab" : "Inställningar",
   "VideoPlugin_InsertButton_Tooltip" : "Lägg till ett videoklipp",
   "ButtonModal_Color_Section" : "Färg",
+  "TextCodeBlock_InsertButton_Tooltip" : "Add a Code Block",
   "DividerPlugin_InsertButton_Tooltip" : "Lägg till en avdelare",
   "TextLinkButton_Tooltip" : "Länk",
   "GallerySettings_Radios_Underneath" : "Under bild",

@@ -136,6 +136,7 @@
   "ButtonModal_Settings_Tab" : "Ustawienia",
   "VideoPlugin_InsertButton_Tooltip" : "Dodaj film",
   "ButtonModal_Color_Section" : "Kolor",
+  "TextCodeBlock_InsertButton_Tooltip" : "Add a Code Block",
   "DividerPlugin_InsertButton_Tooltip" : "Dodaj separator",
   "TextLinkButton_Tooltip" : "Link",
   "GallerySettings_Radios_Underneath" : "Pod obrazem",

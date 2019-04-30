@@ -136,6 +136,7 @@
   "ButtonModal_Settings_Tab" : "Innstillinger",
   "VideoPlugin_InsertButton_Tooltip" : "Legg til video",
   "ButtonModal_Color_Section" : "Farge",
+  "TextCodeBlock_InsertButton_Tooltip" : "Add a Code Block",
   "DividerPlugin_InsertButton_Tooltip" : "Legg til en delelinje",
   "TextLinkButton_Tooltip" : "Link",
   "GallerySettings_Radios_Underneath" : "Under bildet",

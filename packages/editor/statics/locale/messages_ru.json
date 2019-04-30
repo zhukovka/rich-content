@@ -136,6 +136,7 @@
   "ButtonModal_Settings_Tab" : "Настройка",
   "VideoPlugin_InsertButton_Tooltip" : "Добавить видео",
   "ButtonModal_Color_Section" : "Цвет",
+  "TextCodeBlock_InsertButton_Tooltip" : "Add a Code Block",
   "DividerPlugin_InsertButton_Tooltip" : "Добавить разделитель",
   "TextLinkButton_Tooltip" : "Ссылка",
   "GallerySettings_Radios_Underneath" : "Под фото",

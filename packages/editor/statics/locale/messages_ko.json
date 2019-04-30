@@ -136,6 +136,7 @@
   "ButtonModal_Settings_Tab" : "설정",
   "VideoPlugin_InsertButton_Tooltip" : "동영상 추가",
   "ButtonModal_Color_Section" : "색상",
+  "TextCodeBlock_InsertButton_Tooltip" : "Add a Code Block",
   "DividerPlugin_InsertButton_Tooltip" : "구분선 추가",
   "TextLinkButton_Tooltip" : "링크",
   "GallerySettings_Radios_Underneath" : "이미지 아래",

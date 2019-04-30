@@ -136,6 +136,7 @@
   "ButtonModal_Settings_Tab" : "設定",
   "VideoPlugin_InsertButton_Tooltip" : "動画を追加",
   "ButtonModal_Color_Section" : "色",
+  "TextCodeBlock_InsertButton_Tooltip" : "Add a Code Block",
   "DividerPlugin_InsertButton_Tooltip" : "区切り線を追加",
   "TextLinkButton_Tooltip" : "リンク",
   "GallerySettings_Radios_Underneath" : "画像の下",
