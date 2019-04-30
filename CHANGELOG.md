@@ -10,6 +10,21 @@
 ## [Unreleased]
 <hr/>
 
+## 3.3.3 (Apr 30, 2019)
+### :rocket: New Feature
+- `common`
+  - [#295](https://github.com/wix-incubator/rich-content/pull/295) insert plugin button with `custom-block` type supported [allows to run custom add-block handler]
+- `code-block`
+  - [#295](https://github.com/wix-incubator/rich-content/pull/295) insert-buttons added
+- `text-color`
+  - [#290](https://github.com/wix-incubator/rich-content/pull/290) customization API exposed (defining and handling custom inline styles)
+### :bug: Bug Fix
+- `video`
+  - [#293](https://github.com/wix-incubator/rich-content/pull/293) fix ratio
+### :book: Documentation
+- [#290](https://github.com/wix-incubator/rich-content/pull/290) [Plugin Customization doc]('./docs/PluginCustomization.md') update on `text-color`
+<hr/>
+
 ## 3.3.2 (Apr 29, 2019)
 ### :bug: Bug Fix
 - `general`
