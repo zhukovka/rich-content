@@ -8,8 +8,14 @@
 > - :house: [Internal]
 
 ## [Unreleased]
-- `video` 
+### :rocket: New Feature
+- `text-color`
+  - [#290](https://github.com/wix-incubator/rich-content/pull/290) customization API exposed (defining and handling custom inline styles)
+### :bug: Bug Fix
+- `video`
   - [#293](https://github.com/wix-incubator/rich-content/pull/293) fix ratio
+### :book: Documentation
+- [#290](https://github.com/wix-incubator/rich-content/pull/290) [Plugin Customization doc]('./docs/PluginCustomization.md') update on `text-color`
 <hr/>
 
 ## 3.3.2 (Apr 29, 2019)
