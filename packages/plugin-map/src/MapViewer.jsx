@@ -34,7 +34,7 @@ const GoogleMapWrapper = withGoogleMap(props => (
   </GoogleMap>
 ));
 
-export class MapViewer extends Component {
+class MapViewer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -130,3 +130,5 @@ MapViewer.propTypes = {
     mapSettings: PropTypes.object,
   }).isRequired,
 };
+
+export default MapViewer;

@@ -1,6 +1,6 @@
 import { createBasePlugin } from 'wix-rich-content-common';
 import { MAP_TYPE } from './constants';
-import { MapViewer } from './MapViewer';
+import MapViewer from './dynamic-map-viewer';
 import createToolbar from './toolbar';
 
 const createMapPlugin = (config = {}) => {

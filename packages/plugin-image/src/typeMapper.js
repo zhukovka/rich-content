@@ -1,9 +1,9 @@
-import { ImageViewer } from './image-viewer';
+import DynamicImageViewer from './dynamic-image-viewer';
 import { IMAGE_TYPE_LEGACY, IMAGE_TYPE } from './types';
 import { sizeClassName, alignmentClassName } from './classNameStrategies';
 
 const imageRenderDescriptor = {
-  component: ImageViewer,
+  component: DynamicImageViewer,
   classNameStrategies: {
     size: sizeClassName,
     alignment: alignmentClassName,

@@ -1,4 +1,4 @@
-import SoundCloudViewer from './soundCloud-viewer';
+import SoundCloudViewer from './dynamic-soundCloud-viewer';
 import { SOUND_CLOUD_TYPE } from './types';
 import { containerClassName } from './classNameStrategies';
 

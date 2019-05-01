@@ -1,4 +1,4 @@
-import { Component as HtmlComponent } from './HtmlComponent';
+import HtmlComponent from './dynamic-html-component';
 import { HTML_TYPE } from './types';
 
 export const typeMapper = () => ({

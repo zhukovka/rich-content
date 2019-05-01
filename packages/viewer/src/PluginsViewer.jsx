@@ -35,7 +35,6 @@ class AtomicBlock extends React.Component {
     const settings = (config && config[type]) || {};
 
     if (Component) {
-      Component.contextType = Context.type;
       if (elementType !== 'inline') {
         const hasLink = componentData.config && componentData.config.link;
         const ContainerElement = !hasLink ? 'div' : 'a';

@@ -5,15 +5,15 @@ import { RichContentModal, mergeStyles, normalizeInitialState } from 'wix-rich-c
 
 import { RichContentViewer } from 'wix-rich-content-viewer';
 
-import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/module.viewer.cjs';
-import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/module.viewer.cjs';
-import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/module.viewer.cjs';
-import { htmlTypeMapper, HTML_TYPE } from 'wix-rich-content-plugin-html/dist/module.viewer.cjs';
+import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/esm/viewer.cjs';
+import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/esm/viewer.cjs';
+import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/esm/viewer.cjs';
+import { htmlTypeMapper, HTML_TYPE } from 'wix-rich-content-plugin-html/dist/esm/viewer.cjs';
 import {
   linkTypeMapper,
   LinkViewer,
   LinkParseStrategy,
-} from 'wix-rich-content-plugin-link/dist/module.viewer.cjs';
+} from 'wix-rich-content-plugin-link/dist/esm/viewer.cjs';
 import { Strategy as HashTagStrategy, Component as HashTag } from 'wix-rich-content-plugin-hashtag';
 
 import TestData from './TestData/initial-state';

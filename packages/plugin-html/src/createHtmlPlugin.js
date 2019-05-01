@@ -1,6 +1,6 @@
 import createToolbar from './toolbar';
 import { createBasePlugin } from 'wix-rich-content-common';
-import { Component } from './HtmlComponent';
+import Component from './dynamic-html-component';
 import { HTML_TYPE } from './types';
 
 const createHtmlPlugin = (config = {}) => {

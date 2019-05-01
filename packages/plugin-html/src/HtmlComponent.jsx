@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { mergeStyles, isValidUrl, normalizeUrl, validate, Context } from 'wix-rich-content-common';
 
-import {
-  SRC_TYPE_HTML,
-  SRC_TYPE_URL,
-  DEFAULT_COMPONENT_DATA,
-  INIT_HEIGHT,
-  INIT_WIDTH,
-} from './constants';
+import { SRC_TYPE_HTML, SRC_TYPE_URL, INIT_HEIGHT, INIT_WIDTH } from './constants';
 import schema from '../statics/data-schema.json';
 import IframeHtml from './IframeHtml';
 import IframeUrl from './IframeUrl';
@@ -96,4 +90,4 @@ HtmlComponent.propTypes = {
   }).isRequired,
 };
 
-export { HtmlComponent as Component, DEFAULT_COMPONENT_DATA as DEFAULTS };
+export default HtmlComponent;

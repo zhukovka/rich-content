@@ -1,4 +1,4 @@
-import VideoViewer from './video-viewer';
+import VideoViewer from './dynamic-video-viewer';
 import { VIDEO_TYPE_LEGACY, VIDEO_TYPE } from './types';
 import { containerClassName } from './classNameStrategies';
 

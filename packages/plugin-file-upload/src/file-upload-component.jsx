@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import FileUploadViewer from './file-upload-viewer';
+import FileUploadViewer from './dynamic-file-upload-viewer';
 
 const DEFAULTS = {
   config: {

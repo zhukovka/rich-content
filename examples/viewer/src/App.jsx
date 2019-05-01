@@ -10,33 +10,33 @@ import {
 import { RichContentViewer } from 'wix-rich-content-viewer';
 import RichContentRawDataViewer from './RichContentRawDataViewer';
 
-import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/module.viewer';
-import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/module.viewer';
-import { htmlTypeMapper, HTML_TYPE } from 'wix-rich-content-plugin-html/dist/module.viewer';
-import { soundCloudTypeMapper } from 'wix-rich-content-plugin-sound-cloud/dist/module.viewer';
+import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/esm/viewer';
+import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/esm/viewer';
+import { htmlTypeMapper, HTML_TYPE } from 'wix-rich-content-plugin-html/dist/esm/viewer';
+import { soundCloudTypeMapper } from 'wix-rich-content-plugin-sound-cloud/dist/esm/viewer';
 import {
   linkTypeMapper,
   LinkViewer,
   LinkParseStrategy,
   LINK_TYPE,
-} from 'wix-rich-content-plugin-link/dist/module.viewer';
-import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/module.viewer';
-import { mapTypeMapper, MAP_TYPE } from 'wix-rich-content-plugin-map/dist/module.viewer';
+} from 'wix-rich-content-plugin-link/dist/esm/viewer';
+import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/esm/viewer';
+import { mapTypeMapper, MAP_TYPE } from 'wix-rich-content-plugin-map/dist/esm/viewer';
 import { Strategy as HashTagStrategy, Component as HashTag } from 'wix-rich-content-plugin-hashtag';
-import { TextColorDecorator } from 'wix-rich-content-plugin-text-color';
+import { createTextColorDecorator } from 'wix-rich-content-plugin-text-color';
 import {
   createHeadersMarkdownDecorator,
   HEADERS_MARKDOWN_TYPE,
 } from 'wix-rich-content-plugin-headers-markdown';
-import { CodeBlockDecorator } from 'wix-rich-content-plugin-code-block/dist/module.viewer';
+import { CodeBlockDecorator } from 'wix-rich-content-plugin-code-block/dist/esm/viewer';
 import {
   MENTION_TYPE,
   mentionsTypeMapper,
-} from 'wix-rich-content-plugin-mentions/dist/module.viewer';
-import { galleryTypeMapper } from 'wix-rich-content-plugin-gallery/dist/module.viewer';
-import { fileUploadTypeMapper } from 'wix-rich-content-plugin-file-upload/dist/module.viewer';
-import { giphyTypeMapper } from 'wix-rich-content-plugin-giphy/dist/module.viewer';
-import { buttonTypeMapper } from 'wix-rich-content-plugin-button/dist/module.viewer';
+} from 'wix-rich-content-plugin-mentions/dist/esm/viewer';
+import { fileUploadTypeMapper } from 'wix-rich-content-plugin-file-upload/dist/esm/viewer';
+import { galleryTypeMapper } from 'wix-rich-content-plugin-gallery/dist/esm/viewer';
+import { giphyTypeMapper } from 'wix-rich-content-plugin-giphy/dist/esm/viewer';
+import { buttonTypeMapper } from 'wix-rich-content-plugin-button/dist/esm/viewer';
 
 import 'wix-rich-content-common/dist/styles.min.css';
 import 'wix-rich-content-viewer/dist/styles.min.css';
@@ -140,7 +140,7 @@ class App extends Component {
     };
 
     this.decorators = [
-      TextColorDecorator,
+      createTextColorDecorator(this.config),
       {
         strategy: LinkParseStrategy,
         component: ({ children, decoratedText, rel, target }) => (

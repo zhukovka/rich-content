@@ -59,8 +59,6 @@ export default class RichContentViewer extends Component {
       [styles.rtl]: textDirection === 'rtl',
     });
 
-    const contextualData = { theme, isMobile, anchorTarget, relValue, config, helpers, locale };
-
     const output = convertToReact(
       this.state.raw,
       styles,

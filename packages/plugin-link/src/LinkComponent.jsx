@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LinkViewer from './LinkViewer';
+import LinkViewer from './dynamic-link-viewer';
 
 const Link = ({
   entityKey,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import { Context, normalizeUrl } from 'wix-rich-content-common';
 import { COLORS } from '../constants';
-import ButtonViewer from './button-viewer';
+import DynamicButtonViewer from './dynamic-button-viewer';
 
 class ButtonComponent extends PureComponent {
   constructor(props) {
@@ -68,7 +68,7 @@ class ButtonComponent extends PureComponent {
     }
 
     return (
-      <ButtonViewer
+      <DynamicButtonViewer
         url={normalizeUrl(url)}
         style={style}
         target={target}

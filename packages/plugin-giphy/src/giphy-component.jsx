@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import GiphyViewer from './giphy-viewer';
+import GiphyViewer from './dynamic-giphy-viewer';
 import { GIPHY_TYPE } from './constants';
 
 class GiphyComponent extends Component {
