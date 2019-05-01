@@ -8,6 +8,84 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :house: Internal
+- `toolbars`
+  - [#296](https://github.com/wix-incubator/rich-content/pull/296) Improve performance by eliminating a lot of unnecessary work that was done on the toolbars for every keystroke.
+<hr/>
+
+## 3.3.3 (Apr 30, 2019)
+### :rocket: New Feature
+- `common`
+  - [#295](https://github.com/wix-incubator/rich-content/pull/295) insert plugin button with `custom-block` type supported [allows to run custom add-block handler]
+- `code-block`
+  - [#295](https://github.com/wix-incubator/rich-content/pull/295) insert-buttons added
+- `text-color`
+  - [#290](https://github.com/wix-incubator/rich-content/pull/290) customization API exposed (defining and handling custom inline styles)
+### :bug: Bug Fix
+- `video`
+  - [#293](https://github.com/wix-incubator/rich-content/pull/293) fix ratio
+### :book: Documentation
+- [#290](https://github.com/wix-incubator/rich-content/pull/290) [Plugin Customization doc]('./docs/PluginCustomization.md') update on `text-color`
+<hr/>
+
+## 3.3.2 (Apr 29, 2019)
+### :bug: Bug Fix
+- `general`
+  - [a720dd6](https://github.com/wix-incubator/rich-content/commit/a720dd604cce4fcd8b9bf9cc22d15fb6840bd8c5) merged styles are used in plugins rather default ones
+- `common`
+  - [0595e88](https://github.com/wix-incubator/rich-content/commit/0595e88c3da6173df9c99c6ce56baf0b3f14fb2c) focus-manager: console log removed
+- `html`
+  - [69ccd8d](https://github.com/wix-incubator/rich-content/commit/69ccd8d38ccf70a4e282c137208c3c366db236fe) limit body width to viewport width
+- `text-color`
+  - [5227d93](https://github.com/wix-incubator/rich-content/commit/5227d9370ff0106ab16f1c44077991ead28ba856) selection state handled correctly
+- `viewer`
+  - [cc09f6f](https://github.com/wix-incubator/rich-content/commit/cc09f6ff1b72926885d357f955c93c54be688b22) atomic class is applied to a proper element [similar to editor layout]
+  - [1a3ddc0](https://github.com/wix-incubator/rich-content/commit/1a3ddc060a32f187d8029488ac24bc3adfd7e8b0) headers line spacing
+<hr/>
+
+## 3.3.1 (Apr 17, 2019)
+### :bug: Bug Fix
+- `link`
+  - [#288](https://github.com/wix-incubator/rich-content/pull/288) `link` fix link not using theme
+- `viewer`
+  - [#289](https://github.com/wix-incubator/rich-content/pull/289) `atomic-block` now has proper style to comply with the `editor` style
+<hr/>
+
+## 3.3.0 (Apr 17, 2019)
+### :boom: Breaking Change
+- `editor`
+  - [#284](https://github.com/wix-incubator/rich-content/pull/284) `getToolbarSettings` API: `pluginTextButtons` parameter now exposes `mobile` and `desktop` button lists, more details [here](./docs/ToolbarCustomization.md)
+### :rocket: New Feature
+- `text-color`
+  - [#284](https://github.com/wix-incubator/rich-content/pull/284) new plugin added
+- `editor`
+  - [#284](https://github.com/wix-incubator/rich-content/pull/284) `RichContentEditor` accepts the `customStyleFn` prop, details [here](https://draftjs.org/docs/api-reference-editor.html#customstylefn)
+### :bug: Bug Fix
+- `common`
+  - [#284](https://github.com/wix-incubator/rich-content/pull/284) `color-picker` component UI adjusted according to design
+  - [#284](https://github.com/wix-incubator/rich-content/pull/284) `getModalStyles` util: `customStyles` now affect both `desktop` and `mobile` styles
+  - [#284](https://github.com/wix-incubator/rich-content/pull/284) `getSelectionStyles` util now accepts `styleSelectionPredicate` function parameter
+### :book: Documentation
+- [#284](https://github.com/wix-incubator/rich-content/pull/284) [Toolbar Customization](./docs/ToolbarCustomization.md) doc updated
+<hr/>
+
+## 3.2.3 (Apr 14, 2019)
+### :house: Internal
+- `general`
+  - align version with `plugin-gallery` release
+  - [ac27a91](https://github.com/wix-incubator/rich-content/commit/ac27a91b427f64555ca653a37772755e21315198) CI fails if any script fails
+<hr/>
+
+## 3.2.2 (Apr 14, 2019)
+### :house: Internal
+- `general`
+  - [#287](https://github.com/wix-incubator/rich-content/pull/287) support building modules on Windows
+<hr/>
+
+## 3.2.1 (Apr 9, 2019)
+### :house: Internal
+- `general`
+  - align version with `plugin-gallery` release
 <hr/>
 
 
