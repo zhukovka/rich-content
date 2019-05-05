@@ -35,9 +35,12 @@ prompts({
   } else {
     try {
       let lernaCmd = `${lernaPath} version --no-commit-hooks --force-publish="*"`;
-      if (argv.release) {
-        lernaCmd = `${lernaCmd} ${argv.release}`;
+      console.log(argv);
+
+      if (argv.version) {
+        lernaCmd = `${lernaCmd} ${argv.version}`;
       }
+      console.log(lernaCmd);
       cp.execSync(lernaCmd, { stdio: 'inherit' });
     } catch (error) {
       throw error;

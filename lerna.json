@@ -3,7 +3,7 @@
   "command": {
     "version": {
       "allowBranch": [
-        "develop"
+        "develop", "all-plugins-dynamic"
       ],
       "message": "[*] chore(release): %s"
     }
