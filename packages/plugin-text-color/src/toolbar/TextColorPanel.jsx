@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import isFunction from 'lodash/isFunction';
 import { Modifier, EditorState } from '@wix/draft-js';
 import { ColorPicker, getSelectionStyles } from 'wix-rich-content-common';
 import {
@@ -70,7 +71,9 @@ export default class TextColorPanel extends Component {
 
   render() {
     const { theme, settings, t, setKeepToolbarOpen, isMobile } = this.props;
-    const palette = settings.getPaletteColors() || DEFAULT_PALETTE;
+    const palette = isFunction(settings.getPaletteColors)
+      ? settings.getPaletteColors()
+      : DEFAULT_PALETTE;
     const { onCustomPickerToggle, onCustomColorPicked } = settings;
     return (
       <ColorPicker
@@ -99,7 +102,7 @@ TextColorPanel.propTypes = {
   uiSettings: PropTypes.object,
   settings: PropTypes.shape({
     onColorAdded: PropTypes.func.isRequired,
-    getPaletteColors: PropTypes.func.isRequired,
+    getPaletteColors: PropTypes.func,
     getUserColors: PropTypes.func,
     selectionColor: PropTypes.string,
     onCustomPickerToggle: PropTypes.func,
