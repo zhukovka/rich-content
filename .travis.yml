@@ -10,3 +10,5 @@ script:
   - npm run test || travis_terminate 1;
   - npm run release || travis_terminate 1;
   - npm run deploy || travis_terminate 1;
+env:
+  - FORCE_PUBLISH=1
