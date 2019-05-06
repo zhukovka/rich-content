@@ -10,6 +10,7 @@ const Editor = React.lazy(() => import('./editor/Editor'));
 const Viewer = React.lazy(() => import('./viewer/Viewer'));
 import Resizable from 're-resizable';
 import startCase from 'lodash/startCase';
+import debounce from 'lodash/debounce';
 import local from 'local-storage';
 
 // const whyDidYouRender = require('@welldone-software/why-did-you-render/dist/no-classes-transpile/umd/whyDidYouRender.min.js');
@@ -65,17 +66,20 @@ class App extends React.PureComponent {
     return state;
   }
 
+  setViewerState = debounce(editorState => {
+    const content = editorState.getCurrentContent();
+    if (content !== this.state.editorState.getCurrentContent()) {
+      theis.setState({ viewerState: convertToRaw(content) });
+    }
+  }, 70);
+
   onEditorChange = editorState => {
     const state = {
       lastSave: new Date(),
       editorState,
     };
-
-    const content = editorState.getCurrentContent();
-    if (content !== this.state.editorState.getCurrentContent()) {
-      state.viewerState = convertToRaw(content);
-    }
     this.setState(state);
+    this.setViewerState(editorState);
   };
 
   isMobileDevice = () => {
