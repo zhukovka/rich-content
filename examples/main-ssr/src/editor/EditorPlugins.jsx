@@ -19,7 +19,7 @@ import {
 import { createMapPlugin, MAP_TYPE } from 'wix-rich-content-plugin-map';
 import { createFileUploadPlugin, FILE_UPLOAD_TYPE } from 'wix-rich-content-plugin-file-upload';
 import { createTextColorPlugin, TEXT_COLOR_TYPE } from 'wix-rich-content-plugin-text-color';
-import { createGalleryPlugin } from 'wix-rich-content-plugin-gallery';
+// import { createGalleryPlugin } from 'wix-rich-content-plugin-gallery';
 
 
 import React from 'react';
@@ -56,7 +56,7 @@ export const editorPlugins = [
   createMapPlugin,
   createFileUploadPlugin,
   createTextColorPlugin,
-  createGalleryPlugin,
+  // createGalleryPlugin,
 ];
 
 const themeColors = {

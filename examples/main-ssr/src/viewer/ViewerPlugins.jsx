@@ -1,29 +1,29 @@
 import theme from '../theme/theme';
-import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/module.viewer';
-import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/module.viewer';
-import { HTML_TYPE, htmlTypeMapper } from 'wix-rich-content-plugin-html/dist/module.viewer';
-import { soundCloudTypeMapper } from 'wix-rich-content-plugin-sound-cloud/dist/module.viewer';
+import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/cjs/viewer';
+import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/cjs/viewer';
+import { HTML_TYPE, htmlTypeMapper } from 'wix-rich-content-plugin-html/dist/cjs/viewer';
+import { soundCloudTypeMapper } from 'wix-rich-content-plugin-sound-cloud/dist/cjs/viewer';
 import {
   LINK_TYPE,
   LinkParseStrategy,
   linkTypeMapper,
   LinkViewer,
-} from 'wix-rich-content-plugin-link/dist/module.viewer';
-import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/module.viewer';
-import { mapTypeMapper } from 'wix-rich-content-plugin-map/dist/module.viewer';
+} from 'wix-rich-content-plugin-link/dist/cjs/viewer';
+import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/cjs/viewer';
+import { mapTypeMapper } from 'wix-rich-content-plugin-map/dist/cjs/viewer';
 import { Component as HashTag, Strategy as HashTagStrategy } from 'wix-rich-content-plugin-hashtag';
 import {
   createHeadersMarkdownDecorator,
   HEADERS_MARKDOWN_TYPE,
 } from 'wix-rich-content-plugin-headers-markdown';
-import { CodeBlockDecorator } from 'wix-rich-content-plugin-code-block/dist/module.viewer';
+import { CodeBlockDecorator } from 'wix-rich-content-plugin-code-block/dist/cjs/viewer';
 import {
   MENTION_TYPE,
   mentionsTypeMapper,
-} from 'wix-rich-content-plugin-mentions/dist/module.viewer';
-import { fileUploadTypeMapper } from 'wix-rich-content-plugin-file-upload/dist/module.viewer';
+} from 'wix-rich-content-plugin-mentions/dist/cjs/viewer';
+import { fileUploadTypeMapper } from 'wix-rich-content-plugin-file-upload/dist/cjs/viewer';
 import { createTextColorDecorator, TEXT_COLOR_TYPE } from 'wix-rich-content-plugin-text-color';
-import { galleryTypeMapper } from 'wix-rich-content-plugin-gallery/dist/module.viewer';
+// import { galleryTypeMapper } from 'wix-rich-content-plugin-gallery/dist/cjs/viewer';
 
 import { getViewerCustomStyleFn, getStyleSelectionPredicate } from '../text-color-style-fn';
 
@@ -50,7 +50,7 @@ export const typeMappers = [
   imageTypeMapper,
   mapTypeMapper,
   fileUploadTypeMapper,
-  galleryTypeMapper,
+  // galleryTypeMapper,
 ];
 
 const themeColors = {
