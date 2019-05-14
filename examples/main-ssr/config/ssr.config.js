@@ -1,39 +1,36 @@
-const path = require('path');
+/* eslint-disable */
+const nodeExternals = require('webpack-node-externals');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DotenvWebpackPlugin = require('dotenv-webpack');
+const LoadablePlugin = require('@loadable/webpack-plugin');
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 
 const PATHS = {
   root: path.join(__dirname, '..'),
-  src: path.join(__dirname, '../src/client'),
+  src: path.join(__dirname, '../src'),
   dist: path.join(__dirname, '../dist'),
 };
 
-module.exports = env => ({
-  entry: [require.resolve('./polyfills'), path.resolve(PATHS.src, 'main-web.js')],
+const production = process.env.NODE_ENV === 'production'
+const development =
+  !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+
+const getConfig = target => ({
+  name: target,
+  mode: development ? 'development' : 'production',
+  target,
+  entry: `./src/client/main-${target}.js`,
   output: {
-    path: PATHS.dist,
-    filename: '[name].js',
-    chunkFilename: '[name].js',
-    publicPath: '/',
+    path: path.join(PATHS.dist, target),
+    filename: production ? '[name]-bundle-[chunkhash:8].js' : '[name].js',
+    publicPath: `/dist/${target}/`,
+    libraryTarget: target === 'node' ? 'commonjs2' : undefined,
   },
-  resolve: {
-    extensions: ['.js', '.jsx', '.json'],
-    symlinks: false,
-    alias: {
-      'draft-js': path.resolve(__dirname, '..', '..', '..', 'node_modules', '@wix', 'draft-js'),
-      '@wix/draft-js': path.resolve(
-        __dirname,
-        '..',
-        '..',
-        '..',
-        'node_modules',
-        '@wix',
-        'draft-js'
-      ),
-      'wix-rich-content-common': path.resolve(__dirname, '..', '..', '..', 'packages', 'common'),
-    },
-  },
+  externals:
+    target === 'node' ? ['@loadable/component', nodeExternals()] : undefined,
   module: {
     rules: [
       {
@@ -44,19 +41,22 @@ module.exports = env => ({
           options: {
             compact: true,
             rootMode: 'upward',
+            caller: target
           },
         },
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+        ],
       },
       {
         test: /\.scss$/,
         use: [
-          {
-            loader: 'style-loader',
-          },
           {
             loader: 'css-loader',
             options: {
@@ -120,15 +120,15 @@ module.exports = env => ({
     ],
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      title: 'Rich Content Editor',
-      favicon: './public/favicon.ico',
-      template: './public/index.html',
-      meta: {
-        charset: 'utf-8',
-        viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no',
-      },
-    }),
+    // new HtmlWebPackPlugin({
+    //   title: 'Rich Content Editor',
+    //   favicon: '../public/favicon.ico',
+    //   template: '../public/index.html',
+    //   meta: {
+    //     charset: 'utf-8',
+    //     viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no',
+    //   },
+    // }),
     new CopyWebpackPlugin([
       {
         from: 'node_modules/wix-rich-content-plugin-html/dist/statics/',
@@ -138,5 +138,11 @@ module.exports = env => ({
     new DotenvWebpackPlugin({
       path: path.resolve(PATHS.root, '..', '..', '.env'),
     }),
+    new LoadablePlugin(),
+    new MiniCssExtractPlugin()
   ],
 });
+
+module.exports = [getConfig('web'), getConfig('node')];
+
+

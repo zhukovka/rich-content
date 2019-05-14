@@ -18,6 +18,7 @@
     "draft-js": "^0.10.5",
     "express": "^4.16.4",
     "jest": "^23.1.0",
+    "@loadable/server": "^5.9.0",
     "local-storage": "1.4.2",
     "lodash": "^4.17.11",
     "memory-fs": "^0.4.1",
@@ -28,6 +29,8 @@
     "prop-types": "^15.6.2",
     "raf": "3.4.0",
     "re-resizable": "4.11.0",
+    "core-js": "^3.0.1",
+    "moment": "^2.24.0",
     "react": "16.6.3",
     "react-dom": "16.6.3",
     "react-highlight-words": "0.15.1",
@@ -56,7 +59,11 @@
   },
   "scripts": {
     "clean": "rm -rf dist/",
-    "start": "node ./server.js",
+    "dev": "node ./lib/server/index.js",
+    "start": "nodemon ./src/server/index.js",
+    "build": "yarn build:webpack && yarn build:lib",
+    "build:lib": "babel -d lib src",
+    "build:webpack": "webpack --config ./config/webpack.dev.js",
     "test": "echo 'There are no tests configured for this project!' && exit 0"
   },
   "devDependencies": {
@@ -70,6 +77,8 @@
     "@babel/preset-env": "7.2.3",
     "@babel/preset-react": "7.0.0",
     "@babel/runtime": "^7.2.0",
+    "@loadable/babel-plugin": "^5.10.0",
+    "@loadable/webpack-plugin": "^5.7.1",
     "@welldone-software/why-did-you-render": "2.5.2",
     "dotenv-webpack": "^1.7.0",
     "eslint": "^4.19.1",
@@ -79,6 +88,12 @@
     "webpack-cli": "^3.0.4",
     "webpack-dev-server": "^3.1.14",
     "webpack-node-externals": "^1.7.2",
+    "@babel/node": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^2.1.1",
+    "mini-css-extract-plugin": "^0.6.0",
+    "nodemon": "^1.19.0",
+    "webpack-dev-middleware": "^3.6.2",
     "wix-statics-parent": "*"
   },
   "eslintConfig": {
