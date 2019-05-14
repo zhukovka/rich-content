@@ -30,6 +30,8 @@
   - [86b94cc](https://github.com/wix-incubator/rich-content/commit/86b94cc19fac3fe6d04fe348735de7538992b1ac)&nbsp;&nbsp;`<Loader />`&nbsp;&nbsp;component supports getting theme from context or props (external modals)
 - `editor`
   - [#297](https://github.com/wix-incubator/rich-content/pull/297) support rtl in lists
+- `link`
+  - [#302](https://github.com/wix-incubator/rich-content/pull/302) apply theme in link panel
 ### :book: Documentation
 - [Plugin Customization](./docs/PluginCustomization.md) doc updated
 ### :house: Internal
