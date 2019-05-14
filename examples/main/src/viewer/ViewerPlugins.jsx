@@ -64,17 +64,6 @@ export const typeMappers = [
   fileUploadTypeMapper,
 ];
 
-const themeColors = {
-  color1: '#ffffff',
-  color2: '#303030',
-  color3: '#3a54b4',
-  color4: '#bfad80',
-  color5: '#bf695c',
-  color6: '#f7f7f7',
-  color7: '#000000',
-  color8: '#9a87ce',
-};
-
 export const config = {
   [HEADERS_MARKDOWN_TYPE]: {
     hideMarkdown: true,
@@ -85,8 +74,8 @@ export const config = {
   [LINK_TYPE]: linkPluginSettings,
   [MENTION_TYPE]: mentionsPluginSettings,
   [TEXT_COLOR_TYPE]: {
-    styleSelectionPredicate: getStyleSelectionPredicate(themeColors),
-    customStyleFn: getViewerCustomStyleFn(themeColors),
+    styleSelectionPredicate,
+    customStyleFn: viewerCustomStyleFn,
   },
 };
 
