@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
+
+## 3.4.0 (May 14, 2019)
 ### :rocket: New Feature
 - `line-spacing`
   - [#282](https://github.com/wix-incubator/rich-content/pull/282) new plugin added
