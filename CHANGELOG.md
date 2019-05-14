@@ -10,6 +10,35 @@
 ## [Unreleased]
 <hr/>
 
+## 3.4.0 (May 14, 2019)
+### :rocket: New Feature
+- `line-spacing`
+  - [#282](https://github.com/wix-incubator/rich-content/pull/282) new plugin added
+- `common`
+  - [#294](https://github.com/wix-incubator/rich-content/pull/294) ColorPicker now accepts `onCustomPickerToggle`, `onCustomColorPicked` props for higher customability
+  - [#301](https://github.com/wix-incubator/rich-content/pull/301) ColorPicker now accepts `schemeColor`, `schemeAttributes` props for scheme color support
+- `text-color`
+  - [#294](https://github.com/wix-incubator/rich-content/pull/294) plugin config now accepts `onCustomPickerToggle`, `onCustomColorPicked` handlers
+  - [#301](https://github.com/wix-incubator/rich-content/pull/301) plugin config now accepts `colorScheme` mapping instead of `getPaletteColors` and converter functions
+### :bug: Bug Fix
+- `text-color`
+  - [#301](https://github.com/wix-incubator/rich-content/pull/301) viewer decorator does not override other inline styles
+  - [#300](https://github.com/wix-incubator/rich-content/pull/300) missing `getPaletteColors` won't crash
+  - [#300](https://github.com/wix-incubator/rich-content/pull/300) pop-up is opened as internal modal rather external one
+  - [#300](https://github.com/wix-incubator/rich-content/pull/300) pop-up is themable
+- `common`
+  - [86b94cc](https://github.com/wix-incubator/rich-content/commit/86b94cc19fac3fe6d04fe348735de7538992b1ac)&nbsp;&nbsp;`<Loader />`&nbsp;&nbsp;component supports getting theme from context or props (external modals)
+- `editor`
+  - [#297](https://github.com/wix-incubator/rich-content/pull/297) support rtl in lists
+### :book: Documentation
+- [Plugin Customization](./docs/PluginCustomization.md) doc updated
+### :house: Internal
+- `toolbars`
+  - [#296](https://github.com/wix-incubator/rich-content/pull/296) improve performance by eliminating a lot of unnecessary work that was done on the toolbars for every keystroke.
+- `examples`
+  - [#298](https://github.com/wix-incubator/rich-content/pull/296) hmr + error handling for viewer
+<hr/>
+
 ## 3.3.3 (Apr 30, 2019)
 ### :rocket: New Feature
 - `common`
@@ -294,18 +323,22 @@ _NOTE:_ From this version onwards all modules will have the same version number,
 - `common`
   - [c6b143d](https://github.com/wix-incubator/rich-content/commit/c6b143dc792b3d9c6f7892bf24db1818bc7f4cd9) validate plugin schema only in development
 <hr/>
+
 ## Video Plugin 1.6.0 (Jan 20, 2019)
 ### :rocket: New Feature
 [#234](https://github.com/wix-incubator/rich-content/pull/234) thumbnail support - if you are using relative URLs this requires changes
 <hr/>
+
 ## Image Plugin 1.5.12 (Jan 20, 2019)
 ### :bug: Bug Fix
 - [#233](https://github.com/wix-incubator/rich-content/pull/233) PNG images are loaded as JPG in preload, losing transparency and showing black background
 <hr/>
+
 ## HTML Plugin 1.5.20 (Jan 16, 2019)
 ### :bug: Bug Fix
 - [#232](https://github.com/wix-incubator/rich-content/pull/232) first time iframe onload is fired before React.render(), so it will not refresh
 <hr/>
+
 ## Rich Content 1.7.11 (Jan 16, 2019)
 ### :rocket: New Feature
 - `video`
