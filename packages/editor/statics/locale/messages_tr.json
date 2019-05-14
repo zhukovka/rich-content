@@ -1,6 +1,7 @@
 {
   "GiphyUploadModal_mobileNavbar_Title" : "Gif Seçin",
   "LineSpacing_beforeParagraph" : "Paragraftan Önce",
+  "LineSpacingButton_Tooltip" : "Line Spacing",
   "LineSpacing_cancel" : "İptal",
   "DividerPlugin_SelectType_Tooltip" : "Select Style",
   "HeightButton_Tooltip" : "Yükseklik",

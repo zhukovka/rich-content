@@ -1,6 +1,7 @@
 {
   "GiphyUploadModal_mobileNavbar_Title" : "GIF 선택",
   "LineSpacing_beforeParagraph" : "단락 앞",
+  "LineSpacingButton_Tooltip" : "Line Spacing",
   "LineSpacing_cancel" : "취소",
   "DividerPlugin_SelectType_Tooltip" : "Select Style",
   "HeightButton_Tooltip" : "높이",
