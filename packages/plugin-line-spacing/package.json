@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "react-modal": "3.8.1",
-    "wix-rich-content-common": "^3.4.1"
+    "wix-rich-content-common": "3.4.1"
   },
   "unpkg": true,
   "publishConfig": {
