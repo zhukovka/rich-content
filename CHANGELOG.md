@@ -10,6 +10,12 @@
 ## [Unreleased]
 <hr/>
 
+## 3.4.1 (May 15, 2019)
+### :bug: Bug Fix
+- `common`
+  - [6f787ae](https://github.com/wix-incubator/rich-content/commit/6f787ae05c42e3ca1897d328a989a758b03674dd) `InlineToolbarButton` `forwardRef` propType changed to support Node
+<hr/>
+
 ## 3.4.0 (May 14, 2019)
 ### :rocket: New Feature
 - `line-spacing`
