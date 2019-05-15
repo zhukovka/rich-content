@@ -1,3 +1,4 @@
+import React from 'react';
 import theme from '../theme/theme';
 import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/cjs/viewer';
 import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/cjs/viewer';
@@ -78,6 +79,9 @@ export const config = {
     customStyleFn: getViewerCustomStyleFn(themeColors),
   },
 };
+
+const anchorTarget = '_blank';
+const relValue= 'noopener';
 
 export const decorators = [
   {
