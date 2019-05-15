@@ -53,7 +53,7 @@
   "dependencies": {
     "draft-js-code": "^0.3.0",
     "prismjs": "^1.15.0",
-    "wix-rich-content-common": "^4.0.0-alpha.4"
+    "wix-rich-content-common": "4.0.0-alpha.4"
   },
   "unpkg": true,
   "publishConfig": {

@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "draft-js-mention-plugin": "^3.0.4",
-    "wix-rich-content-common": "^4.0.0-alpha.4"
+    "wix-rich-content-common": "4.0.0-alpha.4"
   },
   "unpkg": true,
   "publishConfig": {
