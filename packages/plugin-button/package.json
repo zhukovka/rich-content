@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "react-custom-scrollbars": "^4.2.1",
-    "wix-rich-content-common": "^4.0.0-alpha.3"
+    "wix-rich-content-common": "4.0.0-alpha.3"
   },
   "unpkg": true,
   "publishConfig": {
