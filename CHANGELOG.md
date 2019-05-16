@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
+
+## 3.4.2 (May 16, 2019)
 ### :bug: Bug Fix
 - `editor`
   - [#304](https://github.com/wix-incubator/rich-content/pull/304) fix list items theme
