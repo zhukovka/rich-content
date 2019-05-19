@@ -8,6 +8,8 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+- `line-spacing`
+  - [6e75d9b](https://github.com/wix-incubator/rich-content/commit/6e75d9bad9e604aaf72c59dd89c43a5579e53af9) fix import
 <hr/>
 
 ## 3.4.2 (May 16, 2019)
