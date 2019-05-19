@@ -11,6 +11,7 @@
 <hr >
 
 ## 3.4.3 (May 20, 2019)
+### :bug: Bug Fix
 - `line-spacing`
   - [6e75d9b](https://github.com/wix-incubator/rich-content/commit/6e75d9bad9e604aaf72c59dd89c43a5579e53af9) fix import
 - `text-color`
