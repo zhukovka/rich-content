@@ -37,32 +37,31 @@ export default class TextColorPanel extends Component {
   }
 
   setColor(color) {
+    let { editorState } = this.props;
     if (color !== this.state.currentColor) {
-      this.applyInlineColorStyle(color);
+      editorState = this.getInlineColorState(color);
       this.setState({
         currentColor: extractColor(this.props.settings.colorScheme, color),
         currentSchemeColor: color,
       });
     }
-    this.props.closeModal();
+    this.props.closeModal(editorState);
   }
 
-  applyInlineColorStyle(color) {
-    const { editorState, setEditorState, settings } = this.props;
+  getInlineColorState(color) {
+    const { editorState, settings } = this.props;
     const styleSelectionPredicate =
       settings.styleSelectionPredicate || DEFAULT_STYLE_SELECTION_PREDICATE;
+    const selection = editorState.getSelection();
     const currentColors = getSelectionStyles(styleSelectionPredicate, editorState);
     const newEditorState = currentColors.reduce((nextEditorState, prevColor) => {
-      const selection = nextEditorState.getSelection();
       const contentState = nextEditorState.getCurrentContent();
       const nextContentState = Modifier.removeInlineStyle(contentState, selection, prevColor);
       return EditorState.push(nextEditorState, nextContentState, 'change-inline-style');
     }, editorState);
-
-    const selection = newEditorState.getSelection();
     const contentState = newEditorState.getCurrentContent();
     const newContentState = Modifier.applyInlineStyle(contentState, selection, color);
-    setEditorState(EditorState.push(newEditorState, newContentState, 'change-inline-style'));
+    return EditorState.push(newEditorState, newContentState, 'change-inline-style');
   }
 
   onColorAdded(color) {
