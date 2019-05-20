@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Modal from 'react-modal';
+import { EditorState } from '@wix/draft-js';
 import { InlineToolbarButton, getSelectionStyles, mergeStyles } from 'wix-rich-content-common';
 import TextColorIcon from './TextColorIcon';
 import { TEXT_COLOR_TYPE } from '../types';
@@ -15,6 +16,7 @@ export default class TextColorButton extends Component {
     this.buttonRef = React.createRef();
     this.state = { showPanel: false };
     this.styles = mergeStyles({ styles, theme: props.theme });
+    this.originalState = props.getEditorState();
   }
 
   static getModalParent() {
@@ -31,10 +33,17 @@ export default class TextColorButton extends Component {
     this.setState({ isPanelOpen: true, panelLeft, panelTop: bottom });
   };
 
-  closePanel = () => {
+  closePanel = editorState => {
     this.setState({ isPanelOpen: false });
     this.props.setKeepOpen(false);
+    this.preserveSelectionState(editorState);
   };
+
+  preserveSelectionState(newEditorState) {
+    const { setEditorState } = this.props;
+    const selection = this.originalState.getSelection();
+    setEditorState(EditorState.forceSelection(newEditorState || this.originalState, selection));
+  }
 
   get isActive() {
     const settings = this.props.config[TEXT_COLOR_TYPE] || {};
@@ -81,7 +90,7 @@ export default class TextColorButton extends Component {
         forwardRef={this.buttonRef}
       >
         <Modal
-          onRequestClose={this.closePanel}
+          onRequestClose={() => this.closePanel()}
           isOpen={isPanelOpen}
           parentSelector={TextColorButton.getModalParent}
           className={classNames({
