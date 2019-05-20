@@ -10,6 +10,12 @@
 ## [Unreleased]
 <hr/>
 
+## 3.4.5 (May 20, 2019)
+### :bug: Bug Fix
+- `text-color`
+  - [ca95d453](https://github.com/wix-incubator/rich-content/commit/ca95d453) selection state and text are preserved on panel closing
+<hr/>
+
 ## 3.4.4 (May 20, 2019)
 ### :bug: Bug Fix
 - `text-color`
