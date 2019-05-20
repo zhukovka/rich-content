@@ -16,7 +16,6 @@ export default class TextColorButton extends Component {
     this.buttonRef = React.createRef();
     this.state = { showPanel: false };
     this.styles = mergeStyles({ styles, theme: props.theme });
-    this.originalState = props.getEditorState();
   }
 
   static getModalParent() {
@@ -40,9 +39,10 @@ export default class TextColorButton extends Component {
   };
 
   preserveSelectionState(newEditorState) {
-    const { setEditorState } = this.props;
-    const selection = this.originalState.getSelection();
-    setEditorState(EditorState.forceSelection(newEditorState || this.originalState, selection));
+    const { setEditorState, getEditorState } = this.props;
+    const editorState = getEditorState();
+    const selection = editorState.getSelection();
+    setEditorState(EditorState.forceSelection(newEditorState || editorState, selection));
   }
 
   get isActive() {
