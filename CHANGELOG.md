@@ -8,6 +8,8 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+- `text-color`
+  - [ca95d453](https://github.com/wix-incubator/rich-content/commit/ca95d453) selection state and text are preserved on panel closing
 <hr/>
 
 ## 3.4.4 (May 20, 2019)
