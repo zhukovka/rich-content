@@ -8,7 +8,10 @@
 > - :house: [Internal]
 
 ## [Unreleased]
-<hr >
+### :bug: Bug Fix
+- `text-color`
+  - [55e7609f](https://github.com/wix-incubator/rich-content/commit/55e7609f) `getSelectionStyles` now returns correct style list for multiple block selection
+<hr/>
 
 ## 3.4.3 (May 20, 2019)
 ### :bug: Bug Fix
