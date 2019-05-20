@@ -8,9 +8,16 @@
 > - :house: [Internal]Í
 
 ## [Unreleased]
-<hr >
+<hr/>
+
+## 3.4.4 (May 20, 2019)
+### :bug: Bug Fix
+- `text-color`
+  - [55e7609f](https://github.com/wix-incubator/rich-content/commit/55e7609f) `getSelectionStyles` now returns correct style list for multiple block selection
+<hr/>
 
 ## 3.4.3 (May 20, 2019)
+### :bug: Bug Fix
 - `line-spacing`
   - [6e75d9b](https://github.com/wix-incubator/rich-content/commit/6e75d9bad9e604aaf72c59dd89c43a5579e53af9) fix import
 - `text-color`
