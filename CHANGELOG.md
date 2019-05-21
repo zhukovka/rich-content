@@ -10,6 +10,12 @@
 ## [Unreleased]
 <hr/>
 
+## 3.4.6 (May 20, 2019)
+### :bug: Bug Fix
+- `line-spacing`
+  - [d91d53b](https://github.com/wix-incubator/rich-content/commit/d91d53b) line-spacing should work now ;)
+<hr/>
+
 ## 3.4.5 (May 20, 2019)
 ### :bug: Bug Fix
 - `text-color`
