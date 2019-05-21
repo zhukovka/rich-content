@@ -10,6 +10,32 @@
 ## [Unreleased]
 <hr/>
 
+## 3.4.5 (May 20, 2019)
+### :bug: Bug Fix
+- `text-color`
+  - [ca95d453](https://github.com/wix-incubator/rich-content/commit/ca95d453) selection state and text are preserved on panel closing
+<hr/>
+
+## 3.4.4 (May 20, 2019)
+### :bug: Bug Fix
+- `text-color`
+  - [55e7609f](https://github.com/wix-incubator/rich-content/commit/55e7609f) `getSelectionStyles` now returns correct style list for multiple block selection
+<hr/>
+
+## 3.4.3 (May 20, 2019)
+### :bug: Bug Fix
+- `line-spacing`
+  - [6e75d9b](https://github.com/wix-incubator/rich-content/commit/6e75d9bad9e604aaf72c59dd89c43a5579e53af9) fix import
+- `text-color`
+  - [6de0cbc](https://github.com/wix-incubator/rich-content/commit/6de0cbcc5dbd83ccf844982e479307b2d4e1423a) selection state is preserved on panel opening
+<hr/>
+
+## 3.4.2 (May 16, 2019)
+### :bug: Bug Fix
+- `editor`
+  - [#304](https://github.com/wix-incubator/rich-content/pull/304) fix list items theme
+<hr/>
+
 ## 3.4.1 (May 15, 2019)
 ### :bug: Bug Fix
 - `common`
