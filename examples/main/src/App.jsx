@@ -68,7 +68,7 @@ class App extends React.PureComponent {
   setViewerState = editorState => {
     const content = editorState.getCurrentContent();
     if (content !== this.state.editorState.getCurrentContent()) {
-      this.setState({ viewerState: convertToRaw(content) });
+      this.setState({ viewerState: JSON.parse(JSON.stringify(convertToRaw(content))) });
     }
   };
 

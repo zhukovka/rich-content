@@ -4,7 +4,6 @@ import { BLOCK_TYPES } from 'wix-rich-content-common';
 import redraft from 'redraft';
 import classNames from 'classnames';
 import endsWith from 'lodash/endsWith';
-import camelCase from 'lodash/camelCase';
 import List from '../List';
 import getPluginsViewer from '../PluginsViewer';
 import { getTextDirection } from './textUtils';
@@ -21,8 +20,15 @@ const getBlockStyleClasses = (data, mergedStyles, textDirection, classes) => {
   return classNames(classes, { [mergedStyles.rtl]: rtl }, mergedStyles[alignmentClass]);
 };
 
-const blockDataToStyle = ({ dynamicStyles }) =>
-  dynamicStyles ? dynamicStyles.mapKeys(camelCase).toJS() : {};
+const kebabToCamel = s => s.replace(/-([a-z])/, (_, p1) => p1.toUpperCase());
+
+const kebabToCamelObjectKeys = (obj = {}) =>
+  Object.keys(obj).reduce((result, key) => {
+    result[kebabToCamel(key)] = obj[key];
+    return result;
+  }, {});
+
+const blockDataToStyle = ({ dynamicStyles }) => kebabToCamelObjectKeys(dynamicStyles);
 
 const getInline = mergedStyles => {
   return {
