@@ -115,13 +115,15 @@ class App extends React.PureComponent {
     const isMobile = simulateMobile || isMobileDevice;
     const editor = (
       <Suspense fallback={<div>Loading...</div>}>
-        <Editor
-          onChange={this.onEditorChange}
-          editorState={this.state.editorState}
-          readOnly={this.state.readOnly}
-          isMobile={isMobile}
-          staticToolbar={this.state.staticToolbar}
-        />
+        <ErrorBoundary>
+          <Editor
+            onChange={this.onEditorChange}
+            editorState={this.state.editorState}
+            readOnly={this.state.readOnly}
+            isMobile={isMobile}
+            staticToolbar={this.state.staticToolbar}
+          />
+        </ErrorBoundary>
       </Suspense>
     );
     const viewer = (
