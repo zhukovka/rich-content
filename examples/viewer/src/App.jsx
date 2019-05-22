@@ -21,7 +21,6 @@ import {
   LINK_TYPE,
 } from 'wix-rich-content-plugin-link/dist/esm/viewer';
 import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/esm/viewer';
-import { mapTypeMapper, MAP_TYPE } from 'wix-rich-content-plugin-map/dist/esm/viewer';
 import { Strategy as HashTagStrategy, Component as HashTag } from 'wix-rich-content-plugin-hashtag';
 import { createTextColorDecorator, TEXT_COLOR_TYPE } from 'wix-rich-content-plugin-text-color';
 import {
@@ -29,14 +28,9 @@ import {
   HEADERS_MARKDOWN_TYPE,
 } from 'wix-rich-content-plugin-headers-markdown';
 import { CodeBlockDecorator } from 'wix-rich-content-plugin-code-block/dist/esm/viewer';
-import {
-  MENTION_TYPE,
-  mentionsTypeMapper,
-} from 'wix-rich-content-plugin-mentions/dist/esm/viewer';
+import { MENTION_TYPE, mentionsTypeMapper } from 'wix-rich-content-plugin-mentions/dist/esm/viewer';
 import { fileUploadTypeMapper } from 'wix-rich-content-plugin-file-upload/dist/esm/viewer';
-import { galleryTypeMapper } from 'wix-rich-content-plugin-gallery/dist/esm/viewer';
 import { giphyTypeMapper } from 'wix-rich-content-plugin-giphy/dist/esm/viewer';
-import { buttonTypeMapper } from 'wix-rich-content-plugin-button/dist/esm/viewer';
 
 import 'wix-rich-content-common/dist/styles.min.css';
 import 'wix-rich-content-viewer/dist/styles.min.css';
@@ -49,12 +43,9 @@ import 'wix-rich-content-plugin-image/dist/styles.min.css';
 import 'wix-rich-content-plugin-link/dist/styles.min.css';
 import 'wix-rich-content-plugin-mentions/dist/styles.min.css';
 import 'wix-rich-content-plugin-video/dist/styles.min.css';
-import 'wix-rich-content-plugin-gallery/dist/styles.min.css';
 import 'wix-rich-content-plugin-sound-cloud/dist/styles.min.css';
-import 'wix-rich-content-plugin-map/dist/styles.min.css';
 import 'wix-rich-content-plugin-file-upload/dist/styles.min.css';
 import 'wix-rich-content-plugin-giphy/dist/styles.min.css';
-import 'wix-rich-content-plugin-button/dist/styles.min.css';
 
 import TestData from './TestData/initial-state';
 import styles from './App.scss';
@@ -102,11 +93,8 @@ class App extends Component {
       soundCloudTypeMapper,
       mentionsTypeMapper,
       imageTypeMapper,
-      mapTypeMapper,
       fileUploadTypeMapper,
       giphyTypeMapper,
-      galleryTypeMapper,
-      buttonTypeMapper,
     ];
 
     this.config = {
@@ -118,27 +106,6 @@ class App extends Component {
       },
       [LINK_TYPE]: linkPluginSettings,
       [MENTION_TYPE]: mentionsPluginSettings,
-      [MAP_TYPE]: {
-        googleMapApiKey: process.env.GOOGLE_MAPS_API_KEY,
-        minWidth: 100,
-        maxWidth: 1400,
-        minHeight: 100,
-        maxHeight: 1400,
-        width: 650,
-        mapSettings: {
-          address: 'Wix HQ, Nemal Tel Aviv Street, Tel Aviv-Yafo, Israel',
-          locationDisplayName: 'Wix HQ, Nemal Tel Aviv Street, Tel Aviv-Yafo, Israel',
-          lat: 32.097235,
-          lng: 34.77427,
-          zoom: 18,
-          mode: 'roadmap',
-          isMarkerShown: true,
-          isZoomControlShown: true,
-          isStreetViewControlShown: true,
-          isViewControlShown: true,
-          isDraggingAllowed: true,
-        },
-      },
       [TEXT_COLOR_TYPE]: {
         styleSelectionPredicate,
         customStyleFn: viewerCustomStyleFn,

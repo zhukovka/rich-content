@@ -17,10 +17,7 @@ import {
   HEADERS_MARKDOWN_TYPE,
 } from 'wix-rich-content-plugin-headers-markdown';
 import { CodeBlockDecorator } from 'wix-rich-content-plugin-code-block/dist/esm/viewer';
-import {
-  MENTION_TYPE,
-  mentionsTypeMapper,
-} from 'wix-rich-content-plugin-mentions/dist/esm/viewer';
+import { MENTION_TYPE, mentionsTypeMapper } from 'wix-rich-content-plugin-mentions/dist/esm/viewer';
 import { fileUploadTypeMapper } from 'wix-rich-content-plugin-file-upload/dist/esm/viewer';
 import { createTextColorDecorator } from 'wix-rich-content-plugin-text-color';
 
@@ -73,14 +70,9 @@ export const config = {
   },
   [LINK_TYPE]: linkPluginSettings,
   [MENTION_TYPE]: mentionsPluginSettings,
-  [TEXT_COLOR_TYPE]: {
-    styleSelectionPredicate,
-    customStyleFn: viewerCustomStyleFn,
-  },
 };
 
 export const decorators = [
-  TextColorDecorator,
   {
     strategy: LinkParseStrategy,
     component: ({ children, decoratedText, rel, target }) => (
