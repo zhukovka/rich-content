@@ -9,6 +9,8 @@
 
 ## [Unreleased]
 ### :bug: Bug Fix
+- `common`
+  - [98414497](https://github.com/wix-incubator/rich-content/commit/98414497) CustomColorPicker: text input is editable
 - `example`
   - [68978aff](https://github.com/wix-incubator/rich-content/commit/68978aff) make css load at top so that `theme` is preferred over it
 <hr/>
