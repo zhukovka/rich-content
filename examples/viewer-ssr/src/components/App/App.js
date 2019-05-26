@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 import MobileDetect from 'mobile-detect';
 import { RichContentModal, mergeStyles, normalizeInitialState } from 'wix-rich-content-common';
 
 import { RichContentViewer } from 'wix-rich-content-viewer';
-
-import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/cjs/viewer';
-import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/cjs/viewer';
-import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/cjs/viewer';
-import { htmlTypeMapper, HTML_TYPE } from 'wix-rich-content-plugin-html/dist/cjs/viewer';
-import {
-  linkTypeMapper,
-  LinkViewer,
-  LinkParseStrategy,
-} from 'wix-rich-content-plugin-link/dist/cjs/viewer';
-import { Strategy as HashTagStrategy, Component as HashTag } from 'wix-rich-content-plugin-hashtag';
 
 import TestData from './TestData/initial-state';
 
@@ -50,6 +40,19 @@ class App extends Component {
       testDataKey: INITIAL_TEST_DATA_KEY,
       raw: TestData[INITIAL_TEST_DATA_KEY],
     };
+
+    const {
+      imageTypeMapper,
+      videoTypeMapper,
+      dividerTypeMapper,
+      linkTypeMapper,
+      LinkViewer,
+      LinkParseStrategy,
+      htmlTypeMapper,
+      HTML_TYPE,
+      HashTagStrategy,
+      HashTag,
+    } = props;
 
     this.typeMappers = [
       videoTypeMapper,
@@ -203,5 +206,18 @@ class App extends Component {
     /* eslint-enable jsx-a11y/no-onchange */
   }
 }
+
+App.propTypes = {
+  imageTypeMapper: PropTypes.func,
+  videoTypeMapper: PropTypes.func,
+  dividerTypeMapper: PropTypes.func,
+  linkTypeMapper: PropTypes.func,
+  LinkViewer: PropTypes.func,
+  LinkParseStrategy: PropTypes.func,
+  htmlTypeMapper: PropTypes.func,
+  HTML_TYPE: PropTypes.string,
+  HashTagStrategy: PropTypes.func,
+  HashTag: PropTypes.func,
+};
 
 export default App;

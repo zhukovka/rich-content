@@ -12,6 +12,30 @@ import wixExpressCsrf from 'wix-express-csrf';
 import wixExpressRequireHttps from 'wix-express-require-https';
 import { readFileSync } from 'fs';
 
+import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/cjs/viewer';
+import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/cjs/viewer';
+import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/cjs/viewer';
+import { htmlTypeMapper, HTML_TYPE } from 'wix-rich-content-plugin-html/dist/cjs/viewer';
+import {
+  linkTypeMapper,
+  LinkViewer,
+  LinkParseStrategy,
+} from 'wix-rich-content-plugin-link/dist/cjs/viewer';
+import { Strategy as HashTagStrategy, Component as HashTag } from 'wix-rich-content-plugin-hashtag';
+
+const appImports = {
+  imageTypeMapper,
+  videoTypeMapper,
+  dividerTypeMapper,
+  linkTypeMapper,
+  LinkViewer,
+  LinkParseStrategy,
+  htmlTypeMapper,
+  HTML_TYPE,
+  HashTagStrategy,
+  HashTag,
+};
+
 module.exports = (app, context) => {
   const config = context.config.load('viewer-ssr');
   const templatePath = './src/index.ejs';
@@ -47,8 +71,8 @@ module.exports = (app, context) => {
   function getComponentRenderingData(req) {
     const appHtml = renderToString(
       <I18nextProvider i18n={req.i18n}>
-        <App />
-      </I18nextProvider>
+        <App {...appImports} />
+      </I18nextProvider>,
     );
 
     return {
