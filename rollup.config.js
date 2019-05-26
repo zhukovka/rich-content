@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import resolve from 'rollup-plugin-node-resolve';
 import builtins from 'rollup-plugin-node-builtins';
-import copy from 'rollup-plugin-cpy';
+import copy from 'rollup-plugin-copy'
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import json from 'rollup-plugin-json';
@@ -12,7 +12,6 @@ import postcss from 'rollup-plugin-postcss';
 import postcssURL from 'postcss-url';
 import pascalCase from 'pascal-case';
 import cloneDeep from 'lodash/cloneDeep';
-import images from 'rollup-plugin-image-files';
 import nodeGlobalsPolyfill from 'rollup-plugin-node-globals';
 import { externals, globals, excludedExternals, excludedGlobals } from './rollup.externals';
 
@@ -36,13 +35,9 @@ const plugins = [
     extensions: ['.js', '.jsx', '.json'],
   }),
   builtins(),
-  images(),
   copy({
-    files: 'statics/**/*',
-    dest: 'dist',
-    options: {
-      parents: true,
-    },
+    targets: ['statics'],
+    outputFolder: 'dist',
   }),
   babel({
     configFile: path.resolve(__dirname, 'babel.config.js'),
