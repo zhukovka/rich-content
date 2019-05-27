@@ -1,7 +1,8 @@
+import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import { createBasePlugin } from 'wix-rich-content-common';
 import { LINK_TYPE } from './types';
 import { Component } from './LinkComponent';
-import { linkEntityStrategy, autoLinkifyStrategy } from './strategies';
+import { linkEntityStrategy } from './strategy';
 import createLinkToolbar from './toolbar/createLinkToolbar';
 
 const createLinkPlugin = (config = {}) => {
@@ -11,10 +12,13 @@ const createLinkPlugin = (config = {}) => {
 
   const decorators = [];
   if (settings.autoLink !== false) {
-    decorators.push({
-      strategy: autoLinkifyStrategy({ ...config }),
-      component: {},
-    });
+    decorators.push(
+      createLinkifyPlugin({
+        component: Component,
+        target: anchorTarget,
+        rel: relValue,
+      }).decorators[0]
+    );
   }
 
   decorators.push({ strategy: linkEntityStrategy, component: Component });

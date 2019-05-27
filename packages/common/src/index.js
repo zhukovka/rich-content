@@ -78,7 +78,6 @@ export {
 
 export {
   insertLink,
-  insertLinkInPosition,
   hasLinksInSelection,
   getLinkDataInSelection,
   removeLinksInSelection,
