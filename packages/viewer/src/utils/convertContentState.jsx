@@ -135,7 +135,14 @@ const redraftOptions = {
   cleanup: {
     after: BLOCK_TYPES.filter(t => t.indexOf('header') === -1),
     split: true,
-    except: ['unordered-list-item', 'ordered-list-item', 'unstyled'],
+    except: [
+      'unordered-list-item',
+      'ordered-list-item',
+      'unstyled',
+      'header-one',
+      'header-two',
+      'header-three',
+    ],
   },
 };
 
