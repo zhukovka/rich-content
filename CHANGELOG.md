@@ -9,6 +9,8 @@
 
 ## [Unreleased]
 ### :bug: Bug Fix
+- `viewer`
+  - [8ee5a07e](https://github.com/wix-incubator/rich-content/commit/8ee5a07e) empty headers are not removed (same behavior as in the editor)
 - `general`
   - [#308](https://github.com/wix-incubator/rich-content/pull/308) remove 'rollup-plugin-image-files' and switch rollup copy plugin
 - `common`
