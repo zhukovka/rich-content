@@ -10,6 +10,19 @@
 ## [Unreleased]
 <hr/>
 
+## 3.4.7 (May 29, 2019)
+### :bug: Bug Fix
+- `viewer`
+  - [8ee5a07e](https://github.com/wix-incubator/rich-content/commit/8ee5a07e) empty headers are not removed (same behavior as in the editor)
+- `general`
+  - [#308](https://github.com/wix-incubator/rich-content/pull/308) remove 'rollup-plugin-image-files' and switch rollup copy plugin
+- `common`
+  - [98414497](https://github.com/wix-incubator/rich-content/commit/98414497) CustomColorPicker: text input is editable
+- `example`
+  - [68978aff](https://github.com/wix-incubator/rich-content/commit/68978aff) make css load at top so that `theme` is preferred over it
+<hr/>
+
+
 ## 3.4.6 (May 20, 2019)
 ### :bug: Bug Fix
 - `line-spacing`
