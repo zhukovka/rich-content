@@ -26,6 +26,7 @@ const devConfig = {
     compress: true,
     publicPath: '/',
     stats: 'errors-only',
+    disableHostCheck: true,
   },
 };
 
