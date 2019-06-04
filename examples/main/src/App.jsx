@@ -102,12 +102,14 @@ class App extends PureComponent {
           onHide={this.onSectionVisibilityChange}
           onSizeChanged={size => this.onSectionSizeChanged('editor', size)}
         >
-          <Editor
-            onChange={this.onEditorChange}
-            editorState={editorState}
-            isMobile={this.isMobile}
-            staticToolbar={staticToolbar}
-          />
+          <ErrorBoundary>
+            <Editor
+              onChange={this.onEditorChange}
+              editorState={editorState}
+              isMobile={this.isMobile}
+              staticToolbar={staticToolbar}
+            />
+          </ErrorBoundary>
         </Section>
       )
     );

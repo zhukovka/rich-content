@@ -22,6 +22,7 @@ module.exports = env => ({
     extensions: ['.js', '.jsx', '.json'],
     symlinks: false,
     alias: {
+      'react-hot-loader': path.resolve(path.join(__dirname, '..', 'node_modules', 'react-hot-loader')),
       'draft-js': path.resolve(__dirname, '..', '..', '..', 'node_modules', '@wix', 'draft-js'),
       '@wix/draft-js': path.resolve(
         __dirname,
@@ -45,6 +46,7 @@ module.exports = env => ({
           options: {
             compact: true,
             rootMode: 'upward',
+            plugins: ['react-hot-loader/babel'],
           },
         },
       },
