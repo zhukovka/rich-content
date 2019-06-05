@@ -37,3 +37,12 @@ export const getStateFromObject = obj => {
   const editorState = EditorState.createWithContent(convertFromRaw(normalizedState));
   return { editorState, viewerState: normalizedState };
 };
+
+export const getHostname = () => {
+  if (!window) {
+    return null;
+  }
+
+  const { hostname, port } = window.location;
+  return port ? `${hostname}:${port}` : hostname;
+};
