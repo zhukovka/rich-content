@@ -33,10 +33,6 @@ body {
       height: 100%;
 
       .container {
-        display: flex;
-        flex-direction: row;
-        height: 100%;
-
         .empty-state {
           display: flex;
           justify-content: center;
@@ -50,8 +46,6 @@ body {
         }
 
         .section {
-          overflow: auto;
-
           .placeholder {
             text-align: center;
             margin-top: 25px;
@@ -160,6 +154,7 @@ body {
           .content {
             height: calc(100% - #{$headerHeight});
             box-sizing: border-box;
+            padding-bottom: 10px;
 
             .editor {
               min-height: 100%;
@@ -219,9 +214,11 @@ body {
           }
         }
 
-        .bar {
+        .splitter {
+          width: 3px;
           background: $secondaryColor;
-          cursor: col-resize;
+          border-right: 1px solid $primaryColor;
+          border-left: 1px solid $primaryColor;
         }
       }
     }

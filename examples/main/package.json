@@ -32,7 +32,7 @@
     "react-json-editor-ajrm": "^2.5.3",
     "react-modal": "^3.1.11",
     "react-monaco-editor": "^0.26.1",
-    "react-simple-resizer": "^1.2.4",
+    "react-reflex": "^3.0.13",
     "react-tiny-fab": "^2.0.0",
     "whatwg-fetch": "2.0.3",
     "wix-rich-content-common": "file:../../packages/common",

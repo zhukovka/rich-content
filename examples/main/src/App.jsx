@@ -1,11 +1,17 @@
 /* eslint-disable */
 import { hot } from 'react-hot-loader/root';
 import React, { PureComponent } from 'react';
-import { Container, Bar } from 'react-simple-resizer';
+import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 import compact from 'lodash/compact';
 import flatMap from 'lodash/flatMap';
 import { convertToRaw, EditorState } from '@wix/draft-js';
-import { ContentStateEditor, ErrorBoundary, Fab, Section } from './Components';
+import {
+  ContentStateEditor,
+  ErrorBoundary,
+  Fab,
+  SectionHeader,
+  SectionContent,
+} from './Components';
 import { generateKey, isMobile, loadStateFromStorage, saveStateToStorage } from './utils';
 const Editor = React.lazy(() => import('./editor/Editor'));
 const Viewer = React.lazy(() => import('./viewer/Viewer'));
@@ -35,11 +41,11 @@ class App extends PureComponent {
   }
 
   componentDidMount() {
-    window && window.addEventListener('resize', () => this.onContentStateEditorResize());
+    window && window.addEventListener('resize', this.onContentStateEditorResize);
   }
 
   componentWillUnmount() {
-    window && window.removeEventListener('resize');
+    window && window.removeEventListener('resize', this.onContentStateEditorResize);
   }
 
   setContentStateEditor = ref => (this.contentStateEditor = ref);
@@ -66,13 +72,6 @@ class App extends PureComponent {
     this.setViewerState(editorState);
   };
 
-  onSectionSizeChanged = (sectionName, size) => {
-    this.setState({ [`${sectionName}Size`]: size }, () => saveStateToStorage(this.state));
-    if (sectionName === 'contentState') {
-      this.onContentStateEditorResize();
-    }
-  };
-
   onSectionVisibilityChange = (sectionName, isVisible) => {
     this.setState(
       { [`is${sectionName}Shown`]: isVisible, containerKey: generateKey('prefix') },
@@ -84,7 +83,7 @@ class App extends PureComponent {
   };
 
   renderEditor = () => {
-    const { isEditorShown, editorSize, editorState, staticToolbar } = this.state;
+    const { isEditorShown, editorState, staticToolbar } = this.state;
     const settings = [];
     if (!isMobile()) {
       settings.push({
@@ -94,63 +93,61 @@ class App extends PureComponent {
     }
     return (
       isEditorShown && (
-        <Section
-          title="Editor"
-          key="editor-section"
-          settings={settings}
-          defaultSize={editorSize}
-          onHide={this.onSectionVisibilityChange}
-          onSizeChanged={size => this.onSectionSizeChanged('editor', size)}
-        >
-          <ErrorBoundary>
-            <Editor
-              onChange={this.onEditorChange}
-              editorState={editorState}
-              isMobile={this.isMobile}
-              staticToolbar={staticToolbar}
-            />
-          </ErrorBoundary>
-        </Section>
+        <ReflexElement key="editor-section" className="section">
+          <SectionHeader
+            title="Editor"
+            settings={settings}
+            onHide={this.onSectionVisibilityChange}
+          />
+          <SectionContent>
+            <ErrorBoundary>
+              <Editor
+                onChange={this.onEditorChange}
+                editorState={editorState}
+                isMobile={this.isMobile}
+                staticToolbar={staticToolbar}
+              />
+            </ErrorBoundary>
+          </SectionContent>
+        </ReflexElement>
       )
     );
   };
 
   renderViewer = () => {
-    const { isViewerShown, viewerSize, viewerState } = this.state;
+    const { isViewerShown, viewerState } = this.state;
     return (
       isViewerShown && (
-        <Section
-          title="Viewer"
-          key="viewer-section"
-          defaultSize={viewerSize}
-          onHide={this.onSectionVisibilityChange}
-          onSizeChanged={size => this.onSectionSizeChanged('viewer', size)}
-        >
-          <ErrorBoundary>
-            <Viewer initialState={viewerState} isMobile={this.isMobile} />
-          </ErrorBoundary>
-        </Section>
+        <ReflexElement key="viewer-section" className="section">
+          <SectionHeader title="Viewer" onHide={this.onSectionVisibilityChange} />
+          <SectionContent>
+            <ErrorBoundary>
+              <Viewer initialState={viewerState} isMobile={this.isMobile} />
+            </ErrorBoundary>
+          </SectionContent>
+        </ReflexElement>
       )
     );
   };
 
   renderContentState = () => {
-    const { isContentStateShown, contetStateSize, editorState } = this.state;
+    const { isContentStateShown, editorState } = this.state;
     return (
       isContentStateShown && (
-        <Section
-          title="Content State"
+        <ReflexElement
           key="contentstate-section"
-          defaultSize={contetStateSize}
-          onHide={this.onSectionVisibilityChange}
-          onSizeChanged={size => this.onSectionSizeChanged('contentState', size)}
+          className="section"
+          onStopResize={this.onContentStateEditorResize}
         >
-          <ContentStateEditor
-            ref={this.setContentStateEditor}
-            onChange={this.onContentStateEditorChange}
-            contentState={convertToRaw(editorState.getCurrentContent())}
-          />
-        </Section>
+          <SectionHeader title="Content State" onHide={this.onSectionVisibilityChange} />
+          <SectionContent isLoadedLazily={false}>
+            <ContentStateEditor
+              ref={this.setContentStateEditor}
+              onChange={this.onContentStateEditorChange}
+              contentState={convertToRaw(editorState.getCurrentContent())}
+            />
+          </SectionContent>
+        </ReflexElement>
       )
     );
   };
@@ -162,23 +159,25 @@ class App extends PureComponent {
     const sections = compact([this.renderEditor(), this.renderViewer(), this.renderContentState()]);
 
     return flatMap(sections, (val, i, arr) =>
-      arr.length - 1 !== i ? [val, <Bar size={5} className="bar" key={`bar-${i}`} />] : val
+      arr.length - 1 !== i
+        ? [val, <ReflexSplitter className="splitter" propagate={true} key={`splitter-${i}`} />]
+        : val
     );
   };
 
   render() {
-    const { containerKey, isEditorShown, isViewerShown, isContentStateShown } = this.state;
+    const { isEditorShown, isViewerShown, isContentStateShown } = this.state;
     const showEmptyState = !isEditorShown && !isViewerShown && !isContentStateShown;
 
     return (
       <div className="wrapper">
-        <Container key={containerKey} className="container">
+        <ReflexContainer orientation="vertical" windowResizeAware={true} className="container">
           {showEmptyState ? (
             <div className="empty-state">Wix Rich Content</div>
           ) : (
             this.renderSections()
           )}
-        </Container>
+        </ReflexContainer>
         <Fab
           isMobile={this.isMobile}
           isEditorShown={isEditorShown}
