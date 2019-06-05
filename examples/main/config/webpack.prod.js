@@ -52,7 +52,5 @@ module.exports = env => {
   common.module.rules = common.module.rules.filter(
     rule => rule.test && rule.test.toString() !== /\.scss$/.toString()
   );
-  const config = merge(common, prodConfig);
-  console.log(JSON.stringify(config.module.rules, null, 2));
-  return config;
+  return merge(common, prodConfig);
 };
