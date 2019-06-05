@@ -23,7 +23,8 @@ import {
   mentionsTypeMapper,
 } from 'wix-rich-content-plugin-mentions/dist/module.viewer';
 import { fileUploadTypeMapper } from 'wix-rich-content-plugin-file-upload/dist/module.viewer';
-import { createTextColorDecorator, TEXT_COLOR_TYPE } from 'wix-rich-content-plugin-text-color';
+import { textColorInlineStyleMapper, TEXT_COLOR_TYPE } from 'wix-rich-content-plugin-text-color';
+
 import { viewerCustomStyleFn, styleSelectionPredicate } from '../text-color-style-fn';
 import { anchorTarget, relValue } from '../consts';
 
@@ -83,6 +84,8 @@ export const config = {
   },
 };
 
+export const getInlineStyleMappers = raw => [textColorInlineStyleMapper(config, raw)];
+
 export const decorators = [
   {
     strategy: LinkParseStrategy,
@@ -114,5 +117,4 @@ export const decorators = [
   },
   new CodeBlockDecorator({ theme }),
   createHeadersMarkdownDecorator(config),
-  createTextColorDecorator(config),
 ];
