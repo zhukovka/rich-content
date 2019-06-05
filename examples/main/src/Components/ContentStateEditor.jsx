@@ -42,9 +42,7 @@ class ContentStateEditor extends PureComponent {
     }
   }, 500);
 
-  refreshLayout = debounce(() => {
-    this.refs.monaco && this.refs.monaco.editor.layout();
-  }, 100);
+  refreshLayout = () => this.refs.monaco && this.refs.monaco.editor.layout();
 
   render = () => {
     const { contentState } = this.state;
