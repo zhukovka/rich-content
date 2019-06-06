@@ -38,11 +38,12 @@ export const getStateFromObject = obj => {
   return { editorState, viewerState: normalizedState };
 };
 
-export const getHostname = () => {
+export const getBaseUrl = () => {
   if (!window) {
     return null;
   }
 
-  const { hostname, port } = window.location;
-  return port ? `${hostname}:${port}` : hostname;
+  const { hostname, port, protocol } = window.location;
+  const baseUrl = `${protocol}//${hostname}`;
+  return port ? `${baseUrl}:${port}` : baseUrl;
 };
