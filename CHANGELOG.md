@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
+
+## 3.5.0 (June 6, 2019)
 ### :boom: Breaking Change
 - `text-color`
   - [#310](https://github.com/wix-incubator/rich-content/pull/310) viewer-side decorator replaced by inline-style-mapper. See [documentation](./docs/PluginCustomization.md) for more details
@@ -19,11 +22,11 @@
   - [#310](https://github.com/wix-incubator/rich-content/pull/310) merged styles applied to mention-viewer
 - `hashtag`
   - [#310](https://github.com/wix-incubator/rich-content/pull/310) underline-style applied to the hashtag content rather itself
+### :book: Documentation
+- [#310](https://github.com/wix-incubator/rich-content/pull/310) [Plugin Customization doc](./docs/PluginCustomization.md) updated regarding the `text-color` API
 ### :house: Internal
 - `example`
   - [#309](https://github.com/wix-incubator/rich-content/pull/309) removed standalone editor and viewer examples + overhaul on main example
-### :book: Documentation
-- [#310](https://github.com/wix-incubator/rich-content/pull/310) [Plugin Customization doc](./docs/PluginCustomization.md) updated regarding the `text-color` API
 <hr/>
 
 ## 3.4.7 (May 29, 2019)
