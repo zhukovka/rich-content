@@ -12,7 +12,13 @@ import {
   SectionHeader,
   SectionContent,
 } from './Components';
-import { generateKey, isMobile, loadStateFromStorage, saveStateToStorage } from './utils';
+import {
+  generateKey,
+  getStateFromObject,
+  isMobile,
+  loadStateFromStorage,
+  saveStateToStorage,
+} from './utils';
 const Editor = React.lazy(() => import('./editor/Editor'));
 const Viewer = React.lazy(() => import('./viewer/Viewer'));
 
