@@ -2,9 +2,6 @@
   "lerna": "3.0.3",
   "command": {
     "version": {
-      "allowBranch": [
-        "develop"
-      ],
       "message": "[*] chore(release): %s"
     }
   },
