@@ -42,7 +42,7 @@ import 'wix-rich-content-plugin-video/dist/styles.min.css';
 import 'wix-rich-content-plugin-sound-cloud/dist/styles.min.css';
 import 'wix-rich-content-plugin-map/dist/styles.min.css';
 import 'wix-rich-content-plugin-file-upload/dist/styles.min.css';
-import { getHostname } from '../utils';
+import { getBaseUrl } from '../utils';
 
 const linkPluginSettings = {
   onClick: (event, url) => console.log('link clicked!', url),
@@ -74,7 +74,7 @@ export const config = {
     hideMarkdown: true,
   },
   [HTML_TYPE]: {
-    htmlIframeSrc: `http://${getHostname()}/static/html-plugin-embed.html`,
+    htmlIframeSrc: `${getBaseUrl()}/static/html-plugin-embed.html`,
   },
   [LINK_TYPE]: linkPluginSettings,
   [MENTION_TYPE]: mentionsPluginSettings,
