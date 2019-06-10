@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import MonacoEditor from 'react-monaco-editor';
 import debounce from 'lodash/debounce';
+import contentStateSchema from 'wix-rich-content-common/dist/statics/content-state.schema.json';
 
 const stringifyJSON = obj => JSON.stringify(obj, null, 2);
 
@@ -31,6 +32,19 @@ class ContentStateEditor extends PureComponent {
     }
   }
 
+  editorWillMount = monaco => {
+    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+      validate: true,
+      schemas: [
+        {
+          uri: 'https://wix-rich-content/content-state-schema.json', // scema id
+          fileMatch: ['*'],
+          schema: contentStateSchema,
+        },
+      ],
+    });
+  };
+
   onEditorChange = debounce(content => {
     if (content !== '') {
       try {
@@ -53,6 +67,7 @@ class ContentStateEditor extends PureComponent {
         value={contentState}
         options={this.editorOptions}
         onChange={this.onEditorChange}
+        editorWillMount={this.editorWillMount}
       />
     );
   };

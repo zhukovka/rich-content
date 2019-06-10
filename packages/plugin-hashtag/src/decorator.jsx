@@ -45,7 +45,11 @@ const Hashtag = ({
   const props = href ? { className, href, target, onClick: decoratedOnClick } : { className };
   return (
     <Component {...props}>
-      {children.some(child => child.type === 'span') ? children : <span>{children}</span>}
+      {React.Children.toArray(children).some(child => child.type === 'span') ? (
+        children
+      ) : (
+        <span>{children}</span>
+      )}
     </Component>
   );
 };

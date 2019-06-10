@@ -10,6 +10,15 @@
 ## [Unreleased]
 <hr/>
 
+## 3.5.1 (Jun 10, 2019)
+### :rocket: New Feature
+- `example`
+  - [61b38c61](https://github.com/wix-incubator/rich-content/commit/61b38c61) content-state is validated
+### :bug: Bug Fix
+- `hashtag`
+  - [8678c06e](https://github.com/wix-incubator/rich-content/commit/8678c06e) props.children converted to array
+<hr/>
+
 ## 3.5.0 (June 6, 2019)
 ### :boom: Breaking Change
 - `text-color`

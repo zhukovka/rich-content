@@ -1,0 +1,77 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wix-rich-content/content-state-schema.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": ["blocks"],
+  "properties": {
+    "blocks": {
+      "$id": "#/properties/blocks",
+      "type": "array",
+      "title": "The Blocks Schema",
+      "items": {
+        "$id": "#/properties/blocks/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": ["key", "text", "type", "inlineStyleRanges"],
+        "properties": {
+          "key": {
+            "$id": "#/properties/blocks/items/properties/key",
+            "type": "string",
+            "title": "The Key Schema",
+            "default": "",
+            "examples": ["45qkg"],
+            "pattern": "^(.*)$"
+          },
+          "text": {
+            "$id": "#/properties/blocks/items/properties/text",
+            "type": "string",
+            "title": "The Text Schema",
+            "default": "",
+            "examples": ["test"],
+            "pattern": "^(.*)$"
+          },
+          "type": {
+            "$id": "#/properties/blocks/items/properties/type",
+            "type": "string",
+            "title": "The Type Schema",
+            "default": "",
+            "examples": ["unstyled"],
+            "pattern": "^(unstyled|header-one|header-two|header-three|header-four|header-five|header-six|unordered-list-item|ordered-list-item|blockquote|atomic|code-block)$"
+          },
+          "depth": {
+            "$id": "#/properties/blocks/items/properties/depth",
+            "type": "integer",
+            "title": "The Depth Schema",
+            "default": 0,
+            "examples": [0]
+          },
+          "inlineStyleRanges": {
+            "$id": "#/properties/blocks/items/properties/inlineStyleRanges",
+            "type": "array",
+            "title": "The Inlinestyleranges Schema"
+          },
+          "entityRanges": {
+            "$id": "#/properties/blocks/items/properties/entityRanges",
+            "type": "array",
+            "title": "The Entityranges Schema",
+            "default": null
+          },
+          "data": {
+            "$id": "#/properties/blocks/items/properties/data",
+            "type": "object",
+            "title": "The Data Schema",
+            "default": null
+          }
+        }
+      }
+    },
+    "entityMap": {
+      "$id": "#/properties/entityMap",
+      "type": "object",
+      "title": "The Entitymap Schema",
+      "default": null
+    }
+  }
+}
