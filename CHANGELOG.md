@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :rocket: New Feature
+- `example`
+  - [61b38c61](https://github.com/wix-incubator/rich-content/commit/61b38c61) content-state is validated
 <hr/>
 
 ## 3.5.0 (June 6, 2019)
