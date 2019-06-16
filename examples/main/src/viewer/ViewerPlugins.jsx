@@ -12,7 +12,7 @@ import {
 } from 'wix-rich-content-plugin-link/dist/module.viewer';
 import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/module.viewer';
 import { mapTypeMapper } from 'wix-rich-content-plugin-map/dist/module.viewer';
-import { Component as HashTag, Strategy as HashTagStrategy } from 'wix-rich-content-plugin-hashtag';
+import { HashtagDecorator } from 'wix-rich-content-plugin-hashtag/dist/module.viewer';
 import {
   createHeadersMarkdownDecorator,
   HEADERS_MARKDOWN_TYPE,
@@ -50,11 +50,6 @@ const linkPluginSettings = {
 const mentionsPluginSettings = {
   onMentionClick: mention => console.log('mention clicked!', mention),
   getMentionLink: () => '/link/to/mention',
-};
-
-const onHashTagClick = (event, text) => {
-  event.preventDefault();
-  console.log(`'${text}' hashtag clicked!`);
 };
 
 export const typeMappers = [
@@ -100,21 +95,14 @@ export const decorators = [
       </LinkViewer>
     ),
   },
-  {
-    strategy: HashTagStrategy,
-    component: ({ children, decoratedText }) => (
-      <HashTag
-        theme={theme}
-        onClick={onHashTagClick}
-        createHref={decoratedText =>
-          `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`
-        }
-        decoratedText={decoratedText}
-      >
-        {children}
-      </HashTag>
-    ),
-  },
+  new HashtagDecorator({
+    theme,
+    onClick: (event, text) => {
+      event.preventDefault();
+      console.log(`'${text}' hashtag clicked!`);
+    },
+    createHref: decoratedText => `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`,
+  }),
   new CodeBlockDecorator({ theme }),
   createHeadersMarkdownDecorator(config),
 ];
