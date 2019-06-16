@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :boom: Breaking Change
+- `hashtag`
+  - [80d4880](https://github.com/wix-incubator/rich-content/commit/80d4880) replaced ~~`HashTagStrategy`~~ with `HashTagDecorator` please check [`ViewerPlugins.jsx`](https://github.com/wix-incubator/rich-content/blob/develop/examples/main/src/viewer/ViewerPlugins.jsx) for an example of how to implement the new decorator.
 ### :bug: Bug Fix
 - `common`
   - [2566224a](https://github.com/wix-incubator/rich-content/commit/2566224a) color-picker button style fixed
