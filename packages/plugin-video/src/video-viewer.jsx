@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import ReactPlayerWrapper from './reactPlayerWrapper';
+import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { mergeStyles, validate, Context } from 'wix-rich-content-common';
@@ -40,7 +40,7 @@ class VideoViewer extends Component {
     this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
     const url = this.normalizeUrl(getVideoSrc(componentData.src, settings));
     const props = { ...rest, url, onReady: this.fixVideoRatio };
-    return <ReactPlayerWrapper className={classNames(this.styles.video_player)} {...props} />;
+    return <ReactPlayer className={classNames(this.styles.video_player)} {...props} />;
   }
 }
 
