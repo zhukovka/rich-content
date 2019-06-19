@@ -5,8 +5,8 @@ import redraft from 'redraft';
 import classNames from 'classnames';
 import endsWith from 'lodash/endsWith';
 import List from '../List';
-import getPluginsViewer from '../PluginsViewer';
-import { getTextDirection } from './textUtils';
+import getPluginViewers from '../getPluginViewers';
+import { getTextDirection, kebabToCamelObjectKeys } from './textUtils';
 import { staticInlineStyleMapper } from '../staticInlineStyleMapper';
 
 const isEmptyContentState = raw =>
@@ -20,14 +20,6 @@ const getBlockStyleClasses = (data, mergedStyles, textDirection, classes) => {
   const alignmentClass = data.textAlignment || defaultTextAlignment;
   return classNames(classes, { [mergedStyles.rtl]: rtl }, mergedStyles[alignmentClass]);
 };
-
-const kebabToCamel = s => s.replace(/-([a-z])/, (_, p1) => p1.toUpperCase());
-
-const kebabToCamelObjectKeys = (obj = {}) =>
-  Object.keys(obj).reduce((result, key) => {
-    result[kebabToCamel(key)] = obj[key];
-    return result;
-  }, {});
 
 const blockDataToStyle = ({ dynamicStyles }) => kebabToCamelObjectKeys(dynamicStyles);
 
@@ -85,7 +77,7 @@ const getBlocks = (mergedStyles, textDirection) => {
 };
 
 const getEntities = (typeMap, pluginProps, styles) => {
-  return getPluginsViewer(typeMap, pluginProps, styles);
+  return getPluginViewers(typeMap, pluginProps, styles);
 };
 
 const normalizeContentState = contentState => ({
