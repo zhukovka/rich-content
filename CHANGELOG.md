@@ -5,15 +5,34 @@
 > - :rocket: [New Feature]
 > - :bug: [Bug Fix]
 > - :book: [Documentation]
-> - :house: [Internal]Í
+> - :house: [Internal]
 
 ## [Unreleased]
+### :boom: Breaking Change
+- `hashtag`
+  - [80d4880](https://github.com/wix-incubator/rich-content/commit/80d4880) replaced ~~`HashTagStrategy`~~ with `HashTagDecorator` please check [`ViewerPlugins.jsx`](https://github.com/wix-incubator/rich-content/blob/develop/examples/main/src/viewer/ViewerPlugins.jsx) for an example of how to implement the new decorator.
+- `version contentState`
+  - [#313](https://github.com/wix-incubator/rich-content/pull/313) add versioning to the ContentState. Allows the removing linkify decorator.
+- `link`
+  - [#315](https://github.com/wix-incubator/rich-content/pull/315) remove autolink config option (was never functional)
+### :bug: Bug Fix
+- `common`
+  - [2566224a](https://github.com/wix-incubator/rich-content/commit/2566224a) color-picker button style fixed
+- `video`
+  - [#317](https://github.com/wix-incubator/rich-content/commit/317) color-picker button style fixed
+### :house: Internal
+- `viewer`
+  - [b7177a60](https://github.com/wix-incubator/rich-content/commit/b7177a60) text-utils refactoring
+- `example`
+  - [#314](https://github.com/wix-incubator/rich-content/pull/314) content state data validation improved
+- `link`
+  - [#313](https://github.com/wix-incubator/rich-content/pull/313) new auto link system generates link entities. Stop using linkify decorator
 <hr/>
 
 ## 3.5.1 (Jun 10, 2019)
 ### :rocket: New Feature
 - `example`
-  - [61b38c61](https://github.com/wix-incubator/rich-content/commit/61b38c61) content-state is validated
+  - [e1fb3ae](https://github.com/wix-incubator/rich-content/commit/e1fb3ae) content-state is validated
 ### :bug: Bug Fix
 - `hashtag`
   - [8678c06e](https://github.com/wix-incubator/rich-content/commit/8678c06e) props.children converted to array
