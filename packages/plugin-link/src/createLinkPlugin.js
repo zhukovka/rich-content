@@ -16,20 +16,19 @@ const createLinkPlugin = (config = {}) => {
   const toolbar = createLinkToolbar(config);
 
   const decorators = [{ strategy: linkEntityStrategy, component: Component }];
-  let handleReturn, handleBeforeInput, onChange;
   let linkifyData;
 
-  handleReturn = (event, editorState) => {
+  const handleReturn = (event, editorState) => {
     linkifyData = getLinkifyData(editorState);
   };
 
-  handleBeforeInput = (chars, editorState) => {
+  const handleBeforeInput = (chars, editorState) => {
     if (/\s/.test(chars)) {
       linkifyData = getLinkifyData(editorState);
     }
   };
 
-  onChange = editorState => {
+  const onChange = editorState => {
     if (linkifyData) {
       const newEditorState = addLinkAt(linkifyData, editorState);
       linkifyData = false;
