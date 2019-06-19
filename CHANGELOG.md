@@ -27,7 +27,7 @@
   - [#313](https://github.com/wix-incubator/rich-content/pull/313) new auto link system generates link entities. Stop using linkify decorator
 <hr/>
 
-## 3.5.2 (Jun 10, 2019)
+## 3.5.3 (Jun 10, 2019)
 ### :bug: Bug Fix
 - `video`
   - [#317](https://github.com/wix-incubator/rich-content/pull/317) fix vimeo loading when requirejs is used in the site
