@@ -18,10 +18,6 @@
 ### :bug: Bug Fix
 - `common`
   - [2566224a](https://github.com/wix-incubator/rich-content/commit/2566224a) color-picker button style fixed
-- `video`
-  - [#317](https://github.com/wix-incubator/rich-content/commit/317) color-picker button style fixed
-- `viewer`
-  - [#318](https://github.com/wix-incubator/rich-content/commit/318) children only from inline components in viewer
 ### :house: Internal
 - `viewer`
   - [b7177a60](https://github.com/wix-incubator/rich-content/commit/b7177a60) text-utils refactoring
@@ -31,6 +27,13 @@
   - [#313](https://github.com/wix-incubator/rich-content/pull/313) new auto link system generates link entities. Stop using linkify decorator
 <hr/>
 
+## 3.5.2 (Jun 10, 2019)
+### :bug: Bug Fix
+- `video`
+  - [#317](https://github.com/wix-incubator/rich-content/pull/317) fix vimeo loading when requirejs is used in the site
+- `viewer`
+  - [#318](https://github.com/wix-incubator/rich-content/pull/318) children only from inline components in viewer
+  
 ## 3.5.1 (Jun 10, 2019)
 ### :rocket: New Feature
 - `example`
