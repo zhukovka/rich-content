@@ -18,11 +18,16 @@
 ### :bug: Bug Fix
 - `common`
   - [2566224a](https://github.com/wix-incubator/rich-content/commit/2566224a) color-picker button style fixed
+- `video`
+  - [e70e9d57](https://github.com/wix-incubator/rich-content/commit/e70e9d57) window is undefined on SSR
 ### :house: Internal
+- `common`
+  - [9e44b8ff](https://github.com/wix-incubator/rich-content/commit/9e44b8ff) SSR utils: `isWindowAvailable`, `getWindow` implemented
 - `viewer`
   - [b7177a60](https://github.com/wix-incubator/rich-content/commit/b7177a60) text-utils refactoring
 - `example`
   - [#314](https://github.com/wix-incubator/rich-content/pull/314) content state data validation improved
+  - [ef6b7d14](https://github.com/wix-incubator/rich-content/commit/ef6b7d14) `viewer-ssr` example: hashtag config updated
 - `link`
   - [#313](https://github.com/wix-incubator/rich-content/pull/313) new auto link system generates link entities. Stop using linkify decorator
 <hr/>
@@ -33,7 +38,7 @@
   - [#317](https://github.com/wix-incubator/rich-content/pull/317) fix vimeo loading when requirejs is used in the site
 - `viewer`
   - [#318](https://github.com/wix-incubator/rich-content/pull/318) children only from inline components in viewer
-  
+
 ## 3.5.1 (Jun 10, 2019)
 ### :rocket: New Feature
 - `example`
