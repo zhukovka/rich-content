@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
+import { getWindow } from 'wix-rich-content-common';
 
 export default class ReactPlayerWrapper extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      requireVimeo: isVimeoUrl(props.url) && !window[VIMEO_GLOBAL] && window.requirejs,
-    };
+  isVimeoRequired() {
+    const window = getWindow();
+    return isVimeoUrl(this.props.url) && !window[VIMEO_GLOBAL] && window.requirejs;
   }
 
   componentDidMount() {
-    if (this.state.requireVimeo) {
+    if (this.isVimeoRequired()) {
+      const window = getWindow();
       window.require([VIMEO_SDK_URL], player => {
         window.Vimeo = { Player: player };
         this.setState({ requireVimeo: false });
@@ -20,7 +20,7 @@ export default class ReactPlayerWrapper extends Component {
   }
 
   render() {
-    if (this.state.requireVimeo) {
+    if (this.isVimeoRequired()) {
       return null;
     }
     return <ReactPlayer {...this.props} />;
