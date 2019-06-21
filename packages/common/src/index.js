@@ -90,6 +90,7 @@ export {
   removeBlock,
 } from './Utils/draftUtils';
 export { default as WixUtils } from './Utils/wixUtils';
+export { isWindowAvailable, getWindow } from './Utils/ssrUtils';
 export { sizeClassName, alignmentClassName, textWrapClassName } from './Utils/classNameStrategies';
 export { getSelectionStyles } from './Utils/inlineStyleUtils';
 export { getConfigByFormFactor } from './Utils/getConfigByFormFactor';
