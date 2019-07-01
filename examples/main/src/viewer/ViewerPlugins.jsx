@@ -4,10 +4,7 @@ import { videoTypeMapper } from 'wix-rich-content-plugin-video/dist/module.viewe
 import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/module.viewer';
 import { HTML_TYPE, htmlTypeMapper } from 'wix-rich-content-plugin-html/dist/module.viewer';
 import { soundCloudTypeMapper } from 'wix-rich-content-plugin-sound-cloud/dist/module.viewer';
-import {
-  LINK_TYPE,
-  linkTypeMapper,
-} from 'wix-rich-content-plugin-link/dist/module.viewer';
+import { LINK_TYPE, linkTypeMapper } from 'wix-rich-content-plugin-link/dist/module.viewer';
 import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/module.viewer';
 import { mapTypeMapper } from 'wix-rich-content-plugin-map/dist/module.viewer';
 import { HashtagDecorator } from 'wix-rich-content-plugin-hashtag/dist/module.viewer';
@@ -40,7 +37,7 @@ import 'wix-rich-content-plugin-video/dist/styles.min.css';
 import 'wix-rich-content-plugin-sound-cloud/dist/styles.min.css';
 import 'wix-rich-content-plugin-map/dist/styles.min.css';
 import 'wix-rich-content-plugin-file-upload/dist/styles.min.css';
-import {CONTENT_STATE_VERSION} from 'wix-rich-content-common';
+
 import { getBaseUrl } from '../utils';
 
 const linkPluginSettings = {
