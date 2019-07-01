@@ -8,6 +8,8 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+
+## 4.0.0 "Lynn" (Jul 1, 2019)
 ### :boom: Breaking Change
 - `hashtag`
   - [80d4880](https://github.com/wix-incubator/rich-content/commit/80d4880) replaced ~~`HashTagStrategy`~~ with `HashTagDecorator` please check [`ViewerPlugins.jsx`](https://github.com/wix-incubator/rich-content/blob/develop/examples/main/src/viewer/ViewerPlugins.jsx) for an example of how to implement the new decorator.
