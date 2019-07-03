@@ -10,7 +10,7 @@
 ## [Unreleased]
 ### :bug: Bug Fix
 - `text-color`
-  - viewer module build definition added
+  - [5cfbd247](https://github.com/wix-incubator/rich-content/commit/5cfbd247) viewer module build definition added
 <hr/>
 
 ## 4.0.2 (Jul 2, 2019)
