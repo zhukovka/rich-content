@@ -8,6 +8,10 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :bug: Bug Fix
+- `text-color`
+  - viewer module build definition added
+<hr/>
 
 ## 4.0.2 (Jul 2, 2019)
 ### :rocket: New Feature
