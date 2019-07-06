@@ -1,2 +1,2 @@
 export { TEXT_COLOR_TYPE } from './types';
-export { default as TextColorInlineStyleMapper } from './textColorInlineStyleMapper';
+export { default as textColorInlineStyleMapper } from './textColorInlineStyleMapper';
