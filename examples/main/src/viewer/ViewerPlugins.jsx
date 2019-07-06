@@ -21,7 +21,10 @@ import {
   fileUploadTypeMapper,
   FILE_UPLOAD_TYPE,
 } from 'wix-rich-content-plugin-file-upload/dist/module.viewer';
-import { textColorInlineStyleMapper, TEXT_COLOR_TYPE } from 'wix-rich-content-plugin-text-color';
+import {
+  textColorInlineStyleMapper,
+  TEXT_COLOR_TYPE,
+} from 'wix-rich-content-plugin-text-color/dist/module.viewer';
 
 import { viewerCustomStyleFn, styleSelectionPredicate } from '../text-color-style-fn';
 import { anchorTarget, relValue } from '../consts';
