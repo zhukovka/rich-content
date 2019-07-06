@@ -11,6 +11,9 @@
 ### :bug: Bug Fix
 - `text-color`
   - [5cfbd247](https://github.com/wix-incubator/rich-content/commit/5cfbd247) viewer module build definition added
+### :house: Internal
+- `examples`
+  - [1286b6e8](https://github.com/wix-incubator/rich-content/commit/1286b6e8) `text-color` plugin added to `examples/viewer-ssr`
 <hr/>
 
 ## 4.0.2 (Jul 2, 2019)
