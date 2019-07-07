@@ -85,8 +85,8 @@ export const config = {
         setTimeout(
           () =>
             resolve('http://file-examples.com/wp-content/uploads/2017/10/file-sample_150kB.pdf'),
-          100
-        )
+          1000,
+        ),
       ),
   },
 };
