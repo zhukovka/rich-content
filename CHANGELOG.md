@@ -8,9 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
-- `file-upload`
-    - In viewer show spinner while file download is resolving;
 ### :bug: Bug Fix
+- `file-upload`
+  - [#327](https://github.com/wix-incubator/rich-content/pull/327) shows spinner while file URL is being resolved
 - `viewer`
   - [ebca5ef8](https://github.com/wix-incubator/rich-content/commit/ebca5ef8) RTL alignment and class are applied only if textDirection equals 'rtl'
 - `text-color`
