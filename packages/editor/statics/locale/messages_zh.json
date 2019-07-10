@@ -16,6 +16,7 @@
   "HtmlPlugin_EditHtml_Tooltip" : "編輯 HTML",
   "VideoUploadModal_CustomVideoHeader" : "或從您的電腦上傳影片",
   "HtmlPlugin_EditEmpty_Tooltip" : "新增 HTML 或 URL",
+  "FileUploadInsertButton_tooltip" : "Add a File Upload",
   "HtmlEditPanel_UrlInput_Placeholder" : "僅限 HTTPS",
   "TitleButton_Tooltip" : "標題",
   "VideoUploadModal_Header" : "從YouTube、Vimeo或Facebook增加影片",

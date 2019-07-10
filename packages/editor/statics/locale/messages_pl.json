@@ -16,6 +16,7 @@
   "HtmlPlugin_EditHtml_Tooltip" : "Edytuj kod HTML",
   "VideoUploadModal_CustomVideoHeader" : "Lub prześlij filmik z komputera",
   "HtmlPlugin_EditEmpty_Tooltip" : "Dodaj HTML lub URL",
+  "FileUploadInsertButton_tooltip" : "Add a File Upload",
   "HtmlEditPanel_UrlInput_Placeholder" : "Tylko HTTPS",
   "TitleButton_Tooltip" : "Tytuł",
   "VideoUploadModal_Header" : "Dodaj film z YouTube, Vimeo lub Facebooka",

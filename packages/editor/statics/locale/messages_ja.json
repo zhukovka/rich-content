@@ -16,6 +16,7 @@
   "HtmlPlugin_EditHtml_Tooltip" : "HTML を編集",
   "VideoUploadModal_CustomVideoHeader" : "または PC から動画をアップロード",
   "HtmlPlugin_EditEmpty_Tooltip" : "HTML または URL を追加",
+  "FileUploadInsertButton_tooltip" : "Add a File Upload",
   "HtmlEditPanel_UrlInput_Placeholder" : "HTTPS のみ使用できます",
   "TitleButton_Tooltip" : "タイトル",
   "VideoUploadModal_Header" : "YouTube、Vimeo、Facebook から動画を追加",

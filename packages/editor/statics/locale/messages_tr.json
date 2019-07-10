@@ -16,6 +16,7 @@
   "HtmlPlugin_EditHtml_Tooltip" : "HTML'i düzenleyin",
   "VideoUploadModal_CustomVideoHeader" : "Ya da, bilgisayarınızdan bir video yükleyin",
   "HtmlPlugin_EditEmpty_Tooltip" : "HTML ya da URL ekleyin",
+  "FileUploadInsertButton_tooltip" : "Add a File Upload",
   "HtmlEditPanel_UrlInput_Placeholder" : "Yalnızca HTTPS",
   "TitleButton_Tooltip" : "Başlık",
   "VideoUploadModal_Header" : "YouTube, Vimeo veya Facebook'tan bir video ekleyin",

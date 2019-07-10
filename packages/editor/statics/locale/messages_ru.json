@@ -16,6 +16,7 @@
   "HtmlPlugin_EditHtml_Tooltip" : "Редактировать HTML",
   "VideoUploadModal_CustomVideoHeader" : "Или загрузите видео с компьютера",
   "HtmlPlugin_EditEmpty_Tooltip" : "Добавить HTML или URL",
+  "FileUploadInsertButton_tooltip" : "Add a File Upload",
   "HtmlEditPanel_UrlInput_Placeholder" : "Только HTTPS",
   "TitleButton_Tooltip" : "Заголовок",
   "VideoUploadModal_Header" : "Добавьте видео с YouTube, Vimeo или Facebook",

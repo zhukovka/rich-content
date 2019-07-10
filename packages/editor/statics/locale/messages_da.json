@@ -16,6 +16,7 @@
   "HtmlPlugin_EditHtml_Tooltip" : "Rediger HTML",
   "VideoUploadModal_CustomVideoHeader" : "Eller upload en video fra din computer",
   "HtmlPlugin_EditEmpty_Tooltip" : "Tilføj HTML eller URL",
+  "FileUploadInsertButton_tooltip" : "Add a File Upload",
   "HtmlEditPanel_UrlInput_Placeholder" : "Kun HTTPS",
   "TitleButton_Tooltip" : "Titel",
   "VideoUploadModal_Header" : "Tilføj en video fra YouTube, Vimeo eller Facebook",

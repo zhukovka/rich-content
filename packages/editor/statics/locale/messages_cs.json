@@ -16,6 +16,7 @@
   "HtmlPlugin_EditHtml_Tooltip" : "Upravit HTML",
   "VideoUploadModal_CustomVideoHeader" : "Nebo nahrajte video z počítače",
   "HtmlPlugin_EditEmpty_Tooltip" : "Přidat HTML nebo URL",
+  "FileUploadInsertButton_tooltip" : "Add a File Upload",
   "HtmlEditPanel_UrlInput_Placeholder" : "Pouze HTTPS",
   "TitleButton_Tooltip" : "Označení",
   "VideoUploadModal_Header" : "Přidejte video z YouTube, Vimea nebo Facebooku",

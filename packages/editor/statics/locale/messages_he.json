@@ -16,6 +16,7 @@
   "HtmlPlugin_EditHtml_Tooltip" : "עריכת HTML",
   "VideoUploadModal_CustomVideoHeader" : "אפשר גם להעלות סרטון מהמחשב שלך",
   "HtmlPlugin_EditEmpty_Tooltip" : "הוספת כתובת אתר או HTML",
+  "FileUploadInsertButton_tooltip" : "Add a File Upload",
   "HtmlEditPanel_UrlInput_Placeholder" : "HTTPS בלבד",
   "TitleButton_Tooltip" : "כותרת",
   "VideoUploadModal_Header" : "הוסף קטע וידאו מ-YouTube, Vimeo או Facebook.",

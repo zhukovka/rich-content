@@ -16,6 +16,7 @@
   "HtmlPlugin_EditHtml_Tooltip" : "HTML 편집",
   "VideoUploadModal_CustomVideoHeader" : "또는 컴퓨터의 동영상을 업로드하시겠습니까?",
   "HtmlPlugin_EditEmpty_Tooltip" : "HTML 또는 URL 추가",
+  "FileUploadInsertButton_tooltip" : "Add a File Upload",
   "HtmlEditPanel_UrlInput_Placeholder" : "HTTPS 코드만 입력하세요.",
   "TitleButton_Tooltip" : "제목",
   "VideoUploadModal_Header" : "YouTube, Vimeo, Facebook 페이지 동영상을 추가하세요.",

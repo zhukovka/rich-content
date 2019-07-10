@@ -16,6 +16,7 @@
   "HtmlPlugin_EditHtml_Tooltip" : "แก้ไข HTML",
   "VideoUploadModal_CustomVideoHeader" : "หรืออัปโหลดวิดีโอจากคอมพิวเตอร์ของคุณ",
   "HtmlPlugin_EditEmpty_Tooltip" : "เพิ่ม HTML หรือ URL",
+  "FileUploadInsertButton_tooltip" : "Add a File Upload",
   "HtmlEditPanel_UrlInput_Placeholder" : "HTTPS เท่านั้น",
   "TitleButton_Tooltip" : "ชื่อเรื่อง",
   "VideoUploadModal_Header" : "เพิ่มวิดีโอจาก YouTube, Vimeo หรือ Facebook",

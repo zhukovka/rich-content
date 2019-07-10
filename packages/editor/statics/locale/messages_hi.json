@@ -16,6 +16,7 @@
   "HtmlPlugin_EditHtml_Tooltip" : "HTML संपादित करें",
   "VideoUploadModal_CustomVideoHeader" : "या, अपने कंप्यूटर से एक वीडियो अपलोड करें",
   "HtmlPlugin_EditEmpty_Tooltip" : "HTML या URL जोड़ें",
+  "FileUploadInsertButton_tooltip" : "Add a File Upload",
   "HtmlEditPanel_UrlInput_Placeholder" : "केवल HTTPS",
   "TitleButton_Tooltip" : "शीर्षक",
   "VideoUploadModal_Header" : "YouTube, Vimeo या Facebook से वीडियो जोड़ें",
