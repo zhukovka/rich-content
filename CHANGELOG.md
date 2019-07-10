@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
+
+## 4.0.3 (Jul 10, 2019)
 ### :rocket: New Feature
 - `editor`
   - [b5f9a6e2](https://github.com/wix-incubator/rich-content/commit/b5f9a6e2) split editorStateConversion to a separate entry in editor/dist/lib
@@ -28,7 +31,6 @@
   - [1286b6e8](https://github.com/wix-incubator/rich-content/commit/1286b6e8) `text-color` plugin added to `examples/viewer-ssr`
 - `rollup`
   - [9b31c8e4](https://github.com/wix-incubator/rich-content/commit/9b31c8e4) Every file in src/lib will evaluate to an entry in dist/lib/
-<hr/>
 
 ## 4.0.2 (Jul 2, 2019)
 ### :rocket: New Feature
