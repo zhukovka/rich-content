@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 import compact from 'lodash/compact';
 import flatMap from 'lodash/flatMap';
-import { convertToRaw, createEmpty } from 'wix-rich-content-editor';
+import { convertToRaw, createEmpty } from 'wix-rich-content-editor/dist/lib/editorStateConversion';
 import {
   ContentStateEditor,
   ErrorBoundary,
