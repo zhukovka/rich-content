@@ -10,7 +10,7 @@
 ## [Unreleased]
 <hr/>
 
-## 4.0.4 (Jul 10, 2019)
+## 4.0.5 (Jul 10, 2019)
 ### :bug: Bug Fix
 - `editor`
   - [#331](https://github.com/wix-incubator/rich-content/pull/331) bad import of current version from common
