@@ -11,6 +11,9 @@
 ### :bug: Bug Fix
 - `editor`
   - [45968d56](https://github.com/wix-incubator/rich-content/commit/45968d56) static toolbar displays tooltips
+### :house: Internal
+- `general`
+  - [e791fc1b](https://github.com/wix-incubator/rich-content/commit/e791fc1b) isMobile prop passed to internal plugin modals
 <hr/>
 
 ## 4.0.5 (Jul 10, 2019)
