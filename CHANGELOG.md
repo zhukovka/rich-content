@@ -10,7 +10,7 @@
 ## [Unreleased]
 ### :rocket: New Feature
 - `common`
-  - `color-picker` layout now rendered by a component consumer via the `children` prop
+  - [#333](https://github.com/wix-incubator/rich-content/pull/333) `color-picker` layout now rendered by a component consumer via the `children` prop
 ### :bug: Bug Fix
 - `editor`
   - [45968d56](https://github.com/wix-incubator/rich-content/commit/45968d56) static toolbar displays tooltips
@@ -18,7 +18,7 @@
   - [d38cad90](https://github.com/wix-incubator/rich-content/commit/d38cad90) search icon fixed
 ### :house: Internal
 - `text-color`
-  - `color-picker` layout rendered by a `text-color-panel`
+  - [#333](https://github.com/wix-incubator/rich-content/pull/333) `color-picker` layout rendered by a `text-color-panel`
 - `general`
   - [e791fc1b](https://github.com/wix-incubator/rich-content/commit/e791fc1b) isMobile prop passed to internal plugin modals
 <hr/>
