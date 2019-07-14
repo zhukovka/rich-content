@@ -15,7 +15,7 @@
 - `editor`
   - [45968d56](https://github.com/wix-incubator/rich-content/commit/45968d56) static toolbar displays tooltips
 - `map`
-  - [d38cad90](https://github.com/wix-incubator/rich-content/commit/d38cad90) search icon fixed
+  - [4c4fc344](https://github.com/wix-incubator/rich-content/commit/4c4fc344) search icon fixed
 ### :house: Internal
 - `text-color`
   - [#333](https://github.com/wix-incubator/rich-content/pull/333) `color-picker` layout rendered by a `text-color-panel`
