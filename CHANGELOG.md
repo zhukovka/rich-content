@@ -14,6 +14,8 @@
 ### :bug: Bug Fix
 - `editor`
   - [45968d56](https://github.com/wix-incubator/rich-content/commit/45968d56) static toolbar displays tooltips
+- `map`
+  - [d38cad90](https://github.com/wix-incubator/rich-content/commit/d38cad90) search icon fixed
 ### :house: Internal
 - `text-color`
   - `color-picker` layout rendered by a `text-color-panel`
