@@ -8,10 +8,15 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+
+
+## 4.0.6 (Jul 15, 2019)
 ### :rocket: New Feature
 - `common`
   - [#333](https://github.com/wix-incubator/rich-content/pull/333) `color-picker` layout now rendered by a component consumer via the `children` prop
 ### :bug: Bug Fix
+- `common`
+  - [bbfc9038](https://github.com/wix-incubator/rich-content/commit/bbfc9038) `Context`: default value provided
 - `editor`
   - [45968d56](https://github.com/wix-incubator/rich-content/commit/45968d56) static toolbar displays tooltips
 - `map`
