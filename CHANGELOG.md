@@ -8,13 +8,31 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+
+
+## 4.0.6 (Jul 15, 2019)
+### :rocket: New Feature
+- `common`
+  - [#333](https://github.com/wix-incubator/rich-content/pull/333) `color-picker` layout now rendered by a component consumer via the `children` prop
+### :bug: Bug Fix
+- `common`
+  - [bbfc9038](https://github.com/wix-incubator/rich-content/commit/bbfc9038) `Context`: default value provided
+- `editor`
+  - [45968d56](https://github.com/wix-incubator/rich-content/commit/45968d56) static toolbar displays tooltips
+- `map`
+  - [4c4fc344](https://github.com/wix-incubator/rich-content/commit/4c4fc344) search icon fixed
+### :house: Internal
+- `text-color`
+  - [#333](https://github.com/wix-incubator/rich-content/pull/333) `color-picker` layout rendered by a `text-color-panel`
+- `general`
+  - [e791fc1b](https://github.com/wix-incubator/rich-content/commit/e791fc1b) isMobile prop passed to internal plugin modals
 <hr/>
 
 ## 4.0.5 (Jul 10, 2019)
 ### :bug: Bug Fix
 - `editor`
   - [#331](https://github.com/wix-incubator/rich-content/pull/331) bad import of current version from common
-  - [#331](https://github.com/wix-incubator/rich-content/pull/331) import only package.json vertios. Instead of the whole package.json.   
+  - [#331](https://github.com/wix-incubator/rich-content/pull/331) import only package.json version rather the whole package.json
 
 ## 4.0.3 (Jul 10, 2019)
 ### :rocket: New Feature
