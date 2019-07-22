@@ -8,7 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
-
+### :bug: Bug Fix
+- `file-upload`
+  - redundant container removed (in the Viewer)
 
 ## 4.0.6 (Jul 15, 2019)
 ### :rocket: New Feature
