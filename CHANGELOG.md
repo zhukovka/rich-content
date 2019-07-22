@@ -10,7 +10,7 @@
 ## [Unreleased]
 ### :bug: Bug Fix
 - `file-upload`
-  - redundant container removed (in the Viewer)
+  - [aa3a4c6d](https://github.com/wix-incubator/rich-content/commit/aa3a4c6d) redundant container removed (in the Viewer)
 
 ## 4.0.6 (Jul 15, 2019)
 ### :rocket: New Feature
