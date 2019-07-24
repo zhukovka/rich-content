@@ -8,7 +8,17 @@
 > - :house: [Internal]
 
 ## [Unreleased]
-
+### :boom: Breaking Change
+- `file-upload`
+  - [#335](https://github.com/wix-incubator/rich-content/pull/335) visual update, styling and class name changes
+### :bug: Bug Fix
+- `file-upload`
+  - [aa3a4c6d](https://github.com/wix-incubator/rich-content/commit/aa3a4c6d) redundant container removed (in the Viewer)
+### :house: Internal
+- `general`
+  - [#319](https://github.com/wix-incubator/rich-content/pull/319) lock dependencies
+  - [15de167](https://github.com/wix-incubator/rich-content/commit/15de167) upgrade to node 12
+  - [#337](https://github.com/wix-incubator/rich-content/pull/337) upgrade to eslint 6
 
 ## 4.0.6 (Jul 15, 2019)
 ### :rocket: New Feature
@@ -70,6 +80,8 @@
   - [80d4880](https://github.com/wix-incubator/rich-content/commit/80d4880) replaced ~~`HashTagStrategy`~~ with `HashTagDecorator` please check [`ViewerPlugins.jsx`](https://github.com/wix-incubator/rich-content/blob/develop/examples/main/src/viewer/ViewerPlugins.jsx) for an example of how to implement the new decorator.
 - `general`
   - [#313](https://github.com/wix-incubator/rich-content/pull/313) add versioning to the ContentState. Allows the removing linkify decorator.
+- `hashtag`
+  - [80d4880](https://github.com/wix-incubator/rich-content/commit/80d4880) replaced ~~`HashTagStrategy`~~ with `HashTagDecorator` please check [`ViewerPlugins.jsx`](https://github.com/wix-incubator/rich-content/blob/develop/examples/main/src/viewer/ViewerPlugins.jsx) for an example of how to implement the new decorator.
 - `link`
   - [#315](https://github.com/wix-incubator/rich-content/pull/315) remove autolink config option (was never functional)
 ### :rocket: New Feature
