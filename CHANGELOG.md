@@ -17,6 +17,7 @@
 ### :house: Internal
 - `general`
   - [#319](https://github.com/wix-incubator/rich-content/pull/319) lock dependencies
+  - [15de167](https://github.com/wix-incubator/rich-content/commit/15de167) upgrade to node 12
 
 ## 4.0.6 (Jul 15, 2019)
 ### :rocket: New Feature
