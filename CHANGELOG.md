@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
+
+## 4.0.8 (Jul 24, 2019)
 ### :bug: Bug Fix
 - `html`
   - [#338](https://github.com/wix-incubator/rich-content/pull/338) fix performance.now() breaks ssr 
