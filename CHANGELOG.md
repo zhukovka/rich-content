@@ -10,6 +10,14 @@
 ## [Unreleased]
 <hr/>
 
+## 4.0.9 (Jul 25, 2019)
+### :bug: Bug Fix
+- `html`
+  - [#341](https://github.com/wix-incubator/rich-content/pull/341) fix ssr
+- `image`
+  - [#341](https://github.com/wix-incubator/rich-content/pull/341) fix ssr
+<hr/>
+
 ## 4.0.8 (Jul 24, 2019)
 ### :bug: Bug Fix
 - `html`
