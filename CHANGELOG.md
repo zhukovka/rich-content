@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :bug: Bug Fix
+- `viewer`
+  - [139f023](https://github.com/wix-incubator/rich-content/commit/139f023) atomic blocks are no longer rendered in `<p>` tags
 <hr/>
 
 ## 4.0.9 (Jul 25, 2019)
