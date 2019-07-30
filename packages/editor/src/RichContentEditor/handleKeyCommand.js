@@ -1,4 +1,4 @@
-import { EditorState, RichUtils, Modifier } from '@wix/draft-js';
+import { EditorState, RichUtils, Modifier } from 'draft-js';
 import { isAtomicBlockFocused, removeBlock, COMMANDS } from 'wix-rich-content-common';
 
 export default (updateEditorState, customHandlers) => (command, editorState) => {

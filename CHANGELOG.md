@@ -8,8 +8,12 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :bug: Bug Fix
 - `file-upload`
   - [#345](https://github.com/wix-incubator/rich-content/pull/345) handle empty file name
+### :house: Internal
+- `general`
+  - [#347](https://github.com/wix-incubator/rich-content/pull/347) draft-js version updated to 0.11.0
 <hr/>
 
 ## 4.0.10 (Jul 29, 2019)
