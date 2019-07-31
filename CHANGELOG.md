@@ -10,6 +10,27 @@
 ## [Unreleased]
 <hr/>
 
+## 4.0.11 (Jul 31, 2019)
+### :bug: Bug Fix
+- `file-upload`
+  - [#345](https://github.com/wix-incubator/rich-content/pull/345) handle empty file name
+- `html`
+  - [c2b2101d](https://github.com/wix-incubator/rich-content/commit/c2b2101d) fix height on iphone
+<hr/>
+
+## 4.0.10 (Jul 29, 2019)
+### :bug: Bug Fix
+- `image`
+  - [#342](https://github.com/wix-incubator/rich-content/pull/342) in editor image is not show when helpers are provided
+- `viewer`
+  - [139f023](https://github.com/wix-incubator/rich-content/commit/139f023) atomic blocks are no longer rendered in `<p>` tags
+- `file-upload`
+  - [#343](https://github.com/wix-incubator/rich-content/pull/343) improve name function
+### :house: Internal
+- `general`
+  - [#344](https://github.com/wix-incubator/rich-content/pull/344) import destructed members from `lodash`
+<hr/>
+
 ## 4.0.9 (Jul 25, 2019)
 ### :bug: Bug Fix
 - `html`
