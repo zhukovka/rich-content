@@ -11,6 +11,8 @@
 ### :bug: Bug Fix
 - `editor`
   - [#353](https://github.com/wix-incubator/rich-content/pull/353) fix line spacing in lists
+- `mentions`
+  - [#354](https://github.com/wix-incubator/rich-content/pull/354) Fix Google 'Touch to Search' trigger when clicking on mention
 ### :rocket: New Feature
 - `viewer`
   - [#351](https://github.com/wix-incubator/rich-content/pull/351) `disable` prop allows pausing media
@@ -53,7 +55,7 @@
 ## 4.0.8 (Jul 24, 2019)
 ### :bug: Bug Fix
 - `html`
-  - [#338](https://github.com/wix-incubator/rich-content/pull/338) fix performance.now() breaks ssr 
+  - [#338](https://github.com/wix-incubator/rich-content/pull/338) fix performance.now() breaks ssr
 - `file-upload`
   - [#340](https://github.com/wix-incubator/rich-content/pull/340) unique ids for icons
 <hr/>
