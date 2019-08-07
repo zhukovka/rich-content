@@ -7,13 +7,26 @@
 > - :book: [Documentation]
 > - :house: [Internal]
 
-## [Unreleased]
+## 4.0.12 (Aug 7, 2019)
+### :rocket: New Feature
+- `viewer`
+  - [#351](https://github.com/wix-incubator/rich-content/pull/351) `disable` prop allows pausing media
+### :bug: Bug Fix
+- `editor`
+  - [#353](https://github.com/wix-incubator/rich-content/pull/353) fix line spacing in lists
+- `mentions`
+  - [#354](https://github.com/wix-incubator/rich-content/pull/354) fix Google 'Touch to Search' trigger when clicking on mention
+### :house: Internal
+- `example`
+  - [#350](https://github.com/wix-incubator/rich-content/pull/350) ability to change locale
 <hr/>
 
 ## 4.0.11 (Jul 31, 2019)
 ### :bug: Bug Fix
 - `file-upload`
   - [#345](https://github.com/wix-incubator/rich-content/pull/345) handle empty file name
+- `editor`
+  - [#349](https://github.com/wix-incubator/rich-content/pull/349) Add rtlcss ignore directives
 - `html`
   - [c2b2101d](https://github.com/wix-incubator/rich-content/commit/c2b2101d) fix height on iphone
 <hr/>
@@ -42,7 +55,7 @@
 ## 4.0.8 (Jul 24, 2019)
 ### :bug: Bug Fix
 - `html`
-  - [#338](https://github.com/wix-incubator/rich-content/pull/338) fix performance.now() breaks ssr 
+  - [#338](https://github.com/wix-incubator/rich-content/pull/338) fix performance.now() breaks ssr
 - `file-upload`
   - [#340](https://github.com/wix-incubator/rich-content/pull/340) unique ids for icons
 <hr/>
