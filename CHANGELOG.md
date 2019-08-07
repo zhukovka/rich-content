@@ -7,15 +7,15 @@
 > - :book: [Documentation]
 > - :house: [Internal]
 
-## [Unreleased]
+## 4.0.12 (Aug 7, 2019)
+### :rocket: New Feature
+- `viewer`
+  - [#351](https://github.com/wix-incubator/rich-content/pull/351) `disable` prop allows pausing media
 ### :bug: Bug Fix
 - `editor`
   - [#353](https://github.com/wix-incubator/rich-content/pull/353) fix line spacing in lists
 - `mentions`
-  - [#354](https://github.com/wix-incubator/rich-content/pull/354) Fix Google 'Touch to Search' trigger when clicking on mention
-### :rocket: New Feature
-- `viewer`
-  - [#351](https://github.com/wix-incubator/rich-content/pull/351) `disable` prop allows pausing media
+  - [#354](https://github.com/wix-incubator/rich-content/pull/354) fix Google 'Touch to Search' trigger when clicking on mention
 ### :house: Internal
 - `example`
   - [#350](https://github.com/wix-incubator/rich-content/pull/350) ability to change locale
