@@ -7,6 +7,13 @@
 > - :book: [Documentation]
 > - :house: [Internal]
 
+## [Unreleased]
+### :house: Internal
+- `general`
+  - [#356](https://github.com/wix-incubator/rich-content/pull/356) removed `WixUtils.isMobile`
+  - [#356](https://github.com/wix-incubator/rich-content/pull/356) renamed `WixUtils` to `isiOS` and deleted everything except for isiOS
+<hr/>
+
 ## 4.0.12 (Aug 7, 2019)
 ### :rocket: New Feature
 - `viewer`
@@ -57,7 +64,7 @@
 ## 4.0.8 (Jul 24, 2019)
 ### :bug: Bug Fix
 - `html`
-  - [#338](https://github.com/wix-incubator/rich-content/pull/338) fix performance.now() breaks ssr
+  - [#338](https://github.com/wix-incubator/rich-content/pull/338) fix performance.now() breaks ssr 
 - `file-upload`
   - [#340](https://github.com/wix-incubator/rich-content/pull/340) unique ids for icons
 <hr/>
