@@ -8,7 +8,12 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :boom: Breaking Change
+- `editor`
+  - [#359](https://github.com/wix-incubator/rich-content/pull/359) updated inline/text static/mobile toolbar theme classes
 ### :rocket: New Feature
+- `editor`
+  - [#359](https://github.com/wix-incubator/rich-content/pull/359) added support for rtl in editor modals
 - `general`
   - [#358](https://github.com/wix-incubator/rich-content/pull/358) viewport based lazy loading for plugin components
 ### :bug: Bug Fix
