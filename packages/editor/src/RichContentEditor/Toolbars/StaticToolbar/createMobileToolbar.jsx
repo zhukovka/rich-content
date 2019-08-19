@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import classNames from 'classnames';
 import { decorateComponentWithProps, isiOS } from 'wix-rich-content-common';
 import createStaticToolbar from './createStaticToolbar';
 import { AddPluginButton } from '../buttons';
@@ -66,65 +66,65 @@ const getMobileTheme = theme => {
 
   return {
     toolbarStyles: {
-      toolbar: clsx(toolbarStyles.mobileToolbar, toolbarTheme && toolbarTheme.mobileToolbar, {
+      toolbar: classNames(toolbarStyles.mobileToolbar, toolbarTheme && toolbarTheme.mobileToolbar, {
         [toolbarStyles.mobileToolbar_fixed]: !isiOS(),
         [toolbarTheme.mobileToolbar_fixed]:
           toolbarTheme && toolbarTheme.mobileToolbar_fixed && !isiOS(),
       }),
-      scrollableContainer: clsx(
+      scrollableContainer: classNames(
         toolbarStyles.mobileToolbar_scrollableContainer,
         toolbarTheme && toolbarTheme.mobileToolbar_scrollableContainer
       ),
-      buttons: clsx(
+      buttons: classNames(
         toolbarStyles.mobileToolbar_buttons,
         toolbarTheme && toolbarTheme.mobileToolbar_buttons
       ),
-      extend: clsx(
+      extend: classNames(
         toolbarStyles.mobileToolbar_extend,
         toolbarTheme && toolbarTheme.mobileToolbar_extend
       ),
       responsiveSpacer: toolbarStyles.mobileToolbar_responsiveSpacer,
-      responsiveArrow: clsx(
+      responsiveArrow: classNames(
         toolbarStyles.mobileToolbar_responsiveArrow,
         toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrow
       ),
-      responsiveArrowLeft: clsx(
+      responsiveArrowLeft: classNames(
         toolbarStyles.mobileToolbar_responsiveArrowLeft,
         toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrowLeft
       ),
-      responsiveArrowRight: clsx(
+      responsiveArrowRight: classNames(
         toolbarStyles.mobileToolbar_responsiveArrowRight,
         toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrowRight
       ),
       //eslint-disable-next-line camelcase
-      responsiveArrowLeft_icon: clsx(
+      responsiveArrowLeft_icon: classNames(
         toolbarStyles.mobileToolbar_responsiveArrowLeft_icon,
         toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrowLeft_icon
       ),
       //eslint-disable-next-line camelcase
-      responsiveArrowRight_icon: clsx(
+      responsiveArrowRight_icon: classNames(
         toolbarStyles.mobileToolbar_responsiveArrowRight_icon,
         toolbarTheme && toolbarTheme.mobileToolbar_responsiveArrowRight_icon
       ),
     },
     buttonStyles: {
       //eslint-disable-next-line camelcase
-      inlineToolbarButton_wrapper: clsx(
+      inlineToolbarButton_wrapper: classNames(
         buttonStyles.mobileToolbarButton_wrapper,
         buttonTheme && buttonTheme.mobileToolbarButton_wrapper
       ),
-      inlineToolbarButton: clsx(
+      inlineToolbarButton: classNames(
         buttonStyles.mobileToolbarButton,
         buttonTheme && buttonTheme.mobileToolbarButton
       ),
       //eslint-disable-next-line camelcase
-      inlineToolbarButton_icon: clsx(
+      inlineToolbarButton_icon: classNames(
         buttonStyles.mobileToolbarButton_icon,
         buttonTheme && buttonTheme.mobileToolbarButton_icon
       ),
     },
     separatorStyles: {
-      separator: clsx(
+      separator: classNames(
         separatorStyles.mobileToolbarSeparator,
         separatorTheme && separatorTheme.mobileToolbarSeparator
       ),

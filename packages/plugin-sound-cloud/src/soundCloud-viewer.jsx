@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import { mergeStyles, validate, matchSoundCloudUrl, Context } from 'wix-rich-content-common';
 import { isEqual } from 'lodash';
 import schema from '../statics/data-schema.json';
@@ -25,7 +25,7 @@ class SoundCloudViewer extends Component {
     const { componentData, ...rest } = this.props;
     return (
       <ReactPlayer
-        className={clsx(this.styles.soundCloud_player)}
+        className={classNames(this.styles.soundCloud_player)}
         url={matchSoundCloudUrl(componentData.src)}
         {...rest}
         playing={this.context.disabled ? false : this.state.playing}

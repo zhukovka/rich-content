@@ -25,8 +25,6 @@ describe('editor', () => {
       .setTextStyle(INLINE_TOOLBAR_BUTTONS.QUOTE, [30, 170])
       .setColor(3, [20, 30])
       .setLineSpacing(3, [30, 100])
-      .setSelection(0, 0) // hide toolbar
-      .blurEditor()
       .matchSnapshots();
   });
 

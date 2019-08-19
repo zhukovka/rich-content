@@ -112,8 +112,5 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
-  },
-  "dependencies": {
-    "clsx": "^1.0.4"
   }
 }

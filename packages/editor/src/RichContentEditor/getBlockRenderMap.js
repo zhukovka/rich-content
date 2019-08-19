@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import { get } from 'lodash';
 import { DefaultDraftBlockRenderMap } from '@wix/draft-js';
 import { mergeStyles } from 'wix-rich-content-common';
@@ -35,7 +35,7 @@ export default theme => {
           const direction = get(child, 'props.children.props.direction', 'LTR');
           return (
             <li
-              className={clsx(
+              className={classNames(
                 mergedStyles[listName],
                 `public-DraftStyleDefault-${listName}Item`,
                 listClassNames(direction),

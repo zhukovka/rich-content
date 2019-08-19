@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import Measure from 'react-measure';
 import { debounce, identity, pickBy } from 'lodash';
 import { DISPLAY_MODE, Context, TooltipHost } from 'wix-rich-content-common';
@@ -102,21 +102,21 @@ export default class StaticToolbar extends React.PureComponent {
     const { toolbarStyles } = theme || {};
     const { showLeftArrow, showRightArrow, overrideContent: OverrideContent } = this.state;
     const hasArrow = showLeftArrow || showRightArrow;
-    const arrowClassNames = clsx(
+    const arrowClassNames = classNames(
       Styles.staticToolbar_responsiveArrow,
       toolbarStyles.responsiveArrow
     );
-    const leftArrowIconClassNames = clsx(
+    const leftArrowIconClassNames = classNames(
       Styles.staticToolbar_responsiveArrowLeft_icon,
       toolbarStyles.responsiveArrowLeft_icon
     );
-    const rightArrowIconClassNames = clsx(
+    const rightArrowIconClassNames = classNames(
       Styles.staticToolbar_responsiveArrowRight_icon,
       toolbarStyles.responsiveArrowRight_icon
     );
 
-    const buttonClassNames = clsx(Styles.staticToolbar_buttons, toolbarStyles.buttons);
-    const scrollableClassNames = clsx(
+    const buttonClassNames = classNames(Styles.staticToolbar_buttons, toolbarStyles.buttons);
+    const scrollableClassNames = classNames(
       Styles.staticToolbar_scrollableContainer,
       toolbarStyles.scrollableContainer,
       {
@@ -187,7 +187,7 @@ export default class StaticToolbar extends React.PureComponent {
     const { extendContent: ExtendContent } = this.state;
 
     const { toolbarStyles } = theme || {};
-    const extendClassNames = clsx(Styles.staticToolbar_extend, toolbarStyles.extend);
+    const extendClassNames = classNames(Styles.staticToolbar_extend, toolbarStyles.extend);
 
     const childrenProps = {
       theme,
@@ -209,7 +209,7 @@ export default class StaticToolbar extends React.PureComponent {
 
     const props = {
       style,
-      className: clsx(Styles.staticToolbar, toolbarStyles.toolbar),
+      className: classNames(Styles.staticToolbar, toolbarStyles.toolbar),
       role: 'toolbar',
       'aria-orientation': 'horizontal',
       id,

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import { get } from 'lodash';
 import { mergeStyles } from '../Utils/mergeStyles';
 import Context from '../Utils/Context';
@@ -18,11 +18,11 @@ class Loader extends React.Component {
   render() {
     return (
       <div
-        className={clsx(this.props.overlayClassName, this.styles.loaderOverlay)}
+        className={classNames(this.props.overlayClassName, this.styles.loaderOverlay)}
         data-hook="loader"
       >
         <div
-          className={clsx(this.props.loaderClassName, this.styles.loader, {
+          className={classNames(this.props.loaderClassName, this.styles.loader, {
             [this.styles[this.props.type]]: this.props.type,
           })}
         />

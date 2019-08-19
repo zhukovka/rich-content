@@ -7,7 +7,7 @@ import styles from '../../statics/styles/map-settings-modal.scss';
 import { LabeledToggle } from './LabeledToggle';
 import { SearchIcon } from '../icons/SearchIcon';
 import { Scrollbars } from 'react-custom-scrollbars';
-import clsx from 'clsx';
+import classNames from 'classnames';
 const uuidv4 = require('uuid/v4');
 
 export class MapSettingsModal extends Component {
@@ -178,7 +178,7 @@ export class MapSettingsModal extends Component {
 
     return (
       <div
-        className={clsx(
+        className={classNames(
           this.styles.map_settings_modal_settings,
           this.styles.map_settings_modal_main_content_block
         )}
@@ -346,7 +346,7 @@ export class MapSettingsModal extends Component {
 
         <div className={this.styles.map_settings_modal_settings_container}>
           <div
-            className={clsx(
+            className={classNames(
               this.styles.map_settings_modal_title_container,
               this.styles.map_settings_modal_main_content_block
             )}
@@ -360,7 +360,7 @@ export class MapSettingsModal extends Component {
 
           {!isMobile && (
             <div
-              className={clsx(
+              className={classNames(
                 this.styles.map_settings_modal_footer,
                 this.styles.map_settings_modal_main_content_block
               )}

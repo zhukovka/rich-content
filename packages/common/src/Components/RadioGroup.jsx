@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import classnames from 'classnames';
 import styles from '../../statics/styles/radio-group.scss';
 import { mergeStyles } from '../Utils/mergeStyles';
 
@@ -75,7 +75,7 @@ class RadioGroup extends Component {
         role="radiogroup"
         tabIndex="-1"
         aria-disabled={readOnly}
-        className={clsx(styles.radioGroup, className)}
+        className={classnames(styles.radioGroup, className)}
         onKeyDown={e => this.onKeyDown(e)}
       >
         {dataSource.map((option, i) => {

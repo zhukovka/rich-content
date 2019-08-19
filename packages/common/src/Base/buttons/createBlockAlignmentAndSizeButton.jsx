@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import { isEmpty } from 'lodash';
 import ToolbarButton from '../../Components/ToolbarButton';
 
@@ -35,7 +35,7 @@ export default ({ alignment, size, Icon, tooltipTextKey }) =>
 
     render() {
       const { disabled, theme, isMobile, t, tabIndex, keyName } = this.props;
-      const className = clsx({
+      const className = classNames({
         [theme.button]: true,
         [theme.active]: this.isActive(),
         [theme.disabled]: disabled,
