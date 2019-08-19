@@ -17,7 +17,6 @@
   - [#361](https://github.com/wix-incubator/rich-content/pull/361) icons: hard-coded `fill` values replaced by `currentColor` to support theming
 - `giphy`
   - [fa229a0a](https://github.com/wix-incubator/rich-content/commit/fa229a0a) giphy viewer exposes GIPHY_TYPE
-  - [#363](https://github.com/wix-incubator/rich-content/pull/363) giphy plugin popup positioned correctly in RTL
 ### :house: Internal
 - `general`
   - [#356](https://github.com/wix-incubator/rich-content/pull/356) removed `WixUtils.isMobile`
