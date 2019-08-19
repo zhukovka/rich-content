@@ -503,12 +503,12 @@ export default function createToolbar({
         toolbarTheme && toolbarTheme.pluginToolbar_responsiveArrow
       );
       const leftArrowIconClassNames = clsx(
-        toolbarStyles.pluginToolbar_responsiveArrowLeft_icon,
-        toolbarTheme && toolbarTheme.responsiveArrowLeft_icon
+        toolbarStyles.pluginToolbar_responsiveArrowStart_icon,
+        toolbarTheme && toolbarTheme.responsiveArrowStart_icon
       );
       const rightArrowIconClassNames = clsx(
-        toolbarStyles.pluginToolbar_responsiveArrowRight_icon,
-        toolbarTheme && toolbarTheme.responsiveArrowRight_icon
+        toolbarStyles.pluginToolbar_responsiveArrowEnd_icon,
+        toolbarTheme && toolbarTheme.responsiveArrowEnd_icon
       );
       const separatorClassNames = clsx(
         toolbarStyles.pluginToolbarSeparator,
