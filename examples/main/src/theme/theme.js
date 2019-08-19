@@ -24,7 +24,6 @@ import selectionListTheme from './selection-list.theme.scss';
 import sliderTheme from './slider.theme.scss';
 import tabsTheme from './tabs.theme.scss';
 import tooltipTheme from './tooltip.theme.scss';
-import placeholderTheme from './placeholder.theme.scss';
 
 import inlineToolbarTheme from './toolbars/inline-toolbar.theme.scss';
 import textStaticToolbarTheme from './toolbars/text-static-toolbar.theme.scss';
@@ -71,7 +70,6 @@ const theme = {
   ...sliderTheme,
   ...tabsTheme,
   ...tooltipTheme,
-  ...placeholderTheme,
 
   // modals
   ...videoUploadTheme,
