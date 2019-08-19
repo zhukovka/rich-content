@@ -67,24 +67,24 @@
   }
 }
 
-.pluginToolbar_responsiveArrowStart {
+.pluginToolbar_responsiveArrowLeft {
   right: 0;
   border-left: 1px solid $toolbar-border-color;
   border-radius: 0 $toolbarBorderRadius $toolbarBorderRadius 0;
 }
 
-.pluginToolbar_responsiveArrowStart_icon {
+.pluginToolbar_responsiveArrowLeft_icon {
   margin-right: 3px;
   transform: rotate(45deg);
 }
 
-.pluginToolbar_responsiveArrowEnd {
+.pluginToolbar_responsiveArrowRight {
   right: 0;
   border-left: 1px solid $toolbar-border-color;
   border-radius: 0 $toolbarBorderRadius $toolbarBorderRadius 0;
 }
 
-.pluginToolbar_responsiveArrowEnd_icon {
+.pluginToolbar_responsiveArrowRight_icon {
   margin-right: 3px;
   transform: rotate(225deg);
 }

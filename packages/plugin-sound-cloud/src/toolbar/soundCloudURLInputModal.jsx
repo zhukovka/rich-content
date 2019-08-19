@@ -72,11 +72,11 @@ export default class SoundCloudURLInputModal extends Component {
 
   render() {
     const { url, submitted } = this.state;
-    const { doneLabel, cancelLabel, t, isMobile, languageDir } = this.props;
+    const { doneLabel, cancelLabel, t, isMobile } = this.props;
     const { styles } = this;
 
     return (
-      <div className={styles.container} data-hook="soundCloudUploadModal" dir={languageDir}>
+      <div className={styles.container} data-hook="soundCloudUploadModal">
         {!isMobile && (
           <CloseIcon className={clsx(styles.closeIcon)} onClick={() => this.onCloseRequested()} />
         )}
@@ -132,7 +132,6 @@ SoundCloudURLInputModal.propTypes = {
   cancelLabel: PropTypes.string,
   t: PropTypes.func,
   isMobile: PropTypes.bool,
-  languageDir: PropTypes.string,
 };
 
 SoundCloudURLInputModal.defaultProps = {
