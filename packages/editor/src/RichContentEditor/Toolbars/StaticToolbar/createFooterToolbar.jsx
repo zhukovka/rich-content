@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import createStaticToolbar from './createStaticToolbar';
 import toolbarStyles from '../../../../statics/styles/footer-toolbar.scss';
 
@@ -8,38 +8,38 @@ const getFooterTheme = theme => {
 
   return {
     toolbarStyles: {
-      toolbar: classNames(toolbarStyles.footerToolbar, toolbarTheme && toolbarTheme.footerToolbar),
-      scrollableContainer: classNames(
+      toolbar: clsx(toolbarStyles.footerToolbar, toolbarTheme && toolbarTheme.footerToolbar),
+      scrollableContainer: clsx(
         toolbarStyles.footerToolbar_scrollableContainer,
         toolbarTheme && toolbarTheme.footerToolbar_scrollableContainer
       ),
-      buttons: classNames(
+      buttons: clsx(
         toolbarStyles.footerToolbar_buttons,
         toolbarTheme && toolbarTheme.footerToolbar_buttons
       ),
-      extend: classNames(
+      extend: clsx(
         toolbarStyles.footerToolbar_extend,
         toolbarTheme && toolbarTheme.footerToolbar_extend
       ),
-      responsiveArrow: classNames(
+      responsiveArrow: clsx(
         toolbarStyles.footerToolbar_responsiveArrow,
         toolbarTheme && toolbarTheme.footerToolbar_responsiveArrow
       ),
-      responsiveArrowStart: classNames(
+      responsiveArrowStart: clsx(
         toolbarStyles.footerToolbar_responsiveArrowStart,
         toolbarTheme && toolbarTheme.footerToolbar_responsiveArrowStart
       ),
-      responsiveArrowEnd: classNames(
+      responsiveArrowEnd: clsx(
         toolbarStyles.footerToolbar_responsiveArrowEnd,
         toolbarTheme && toolbarTheme.footerToolbar_responsiveArrowEnd
       ),
       //eslint-disable-next-line camelcase
-      responsiveArrowStart_icon: classNames(
+      responsiveArrowStart_icon: clsx(
         toolbarStyles.footerToolbar_responsiveArrowStart_icon,
         toolbarTheme && toolbarTheme.footerToolbar_responsiveArrowStart_icon
       ),
       //eslint-disable-next-line camelcase
-      responsiveArrowEnd_icon: classNames(
+      responsiveArrowEnd_icon: clsx(
         toolbarStyles.footerToolbar_responsiveArrowEnd_icon,
         toolbarTheme && toolbarTheme.footerToolbar_responsiveArrowEnd_icon
       ),
