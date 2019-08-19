@@ -10,7 +10,7 @@
 ## [Unreleased]
 <hr/>
 
-## 4.0.13 (Aug 19, 2019)
+## 4.0.14 (Aug 19, 2019)
 ### :bug: Bug Fix
 - `editor`
   - [#357](https://github.com/wix-incubator/rich-content/pull/357) fix footerToolbar css
