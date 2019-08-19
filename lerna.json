@@ -3,7 +3,8 @@
   "command": {
     "version": {
       "allowBranch": [
-        "develop"
+        "develop",
+        "master"
       ],
       "message": "[*] chore(release): %s"
     }
@@ -15,5 +16,5 @@
   "npmClientArgs": [
     "--no-lockfile"
   ],
-  "version": "4.0.13"
+  "version": "4.0.14"
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import { EditorState, convertFromRaw } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
 import { get, includes, merge, debounce } from 'lodash';
@@ -372,7 +372,7 @@ class RichContentEditor extends Component {
   render() {
     const { isMobile } = this.props;
     const { theme } = this.state;
-    const wrapperClassName = clsx(draftStyles.wrapper, styles.wrapper, theme.wrapper, {
+    const wrapperClassName = classNames(draftStyles.wrapper, styles.wrapper, theme.wrapper, {
       [styles.desktop]: !isMobile,
       [theme.desktop]: !isMobile && theme && theme.desktop,
     });
@@ -383,7 +383,7 @@ class RichContentEditor extends Component {
             <div dir={this.contextualData.languageDir}>
               <div style={this.props.style} ref={measureRef} className={wrapperClassName}>
                 {this.renderStyleTag()}
-                <div className={clsx(styles.editor, theme.editor)}>
+                <div className={classNames(styles.editor, theme.editor)}>
                   {this.renderAccessibilityListener()}
                   {this.renderEditor()}
                   {this.renderToolbars()}

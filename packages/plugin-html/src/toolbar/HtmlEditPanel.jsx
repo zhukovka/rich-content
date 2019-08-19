@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import {
   RadioGroupHorizontal,
   TextInput,
@@ -155,14 +155,17 @@ class HtmlEditPanel extends Component {
 
         <div className={styles.htmlEditPanel_buttons}>
           <button
-            className={clsx(styles.htmlEditPanel_button, styles.htmlEditPanel_secondaryButton)}
+            className={classNames(
+              styles.htmlEditPanel_button,
+              styles.htmlEditPanel_secondaryButton
+            )}
             onClick={this.handleCancelClick}
             data-hook="htmlEditPanel_Cancel"
           >
             {t('HtmlEditPanel_Cancel')}
           </button>
           <button
-            className={clsx(styles.htmlEditPanel_button, styles.htmlEditPanel_primaryButton)}
+            className={classNames(styles.htmlEditPanel_button, styles.htmlEditPanel_primaryButton)}
             onClick={this.handleUpdateClick}
             data-hook="htmlEditPanel_Update"
           >

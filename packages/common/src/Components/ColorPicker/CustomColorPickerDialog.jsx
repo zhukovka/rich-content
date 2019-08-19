@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import { mergeStyles } from '../../Utils/mergeStyles';
 import CustomColorPicker from './CustomColorPicker';
 import styles from '../../../statics/styles/custom-color-picker-dialog.scss';
@@ -49,7 +49,7 @@ class CustomColorPickerDialog extends Component {
             {t('ColorPickerButtonLabel_Cancel')}
           </button>
           <button
-            className={clsx(
+            className={classNames(
               styles.colorPickerDialog_button,
               styles.colorPickerDialog_button_update
             )}

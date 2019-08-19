@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../../statics/styles/map-settings-modal.scss';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import { mergeStyles } from 'wix-rich-content-common';
 
 export class LabeledToggle extends Component {
@@ -39,7 +39,7 @@ export class LabeledToggle extends Component {
           role="button"
         >
           <div
-            className={clsx(this.styles.labeled_toggle_input_container, {
+            className={classNames(this.styles.labeled_toggle_input_container, {
               [this.styles.labeled_toggle_input_container_off]: !checked,
             })}
           >

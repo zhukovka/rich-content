@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import Styles from '../../statics/styles/toolbar-separator.scss';
 
 const Separator = ({ className = '', horizontal = false }) => {
-  const separatorClassNames = clsx(
+  const separatorClassNames = classNames(
     horizontal ? Styles.horizontalSeparator : Styles.separator,
     className
   );

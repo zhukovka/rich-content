@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import classNames from 'classnames';
 import styles from '../../statics/styles/rich-content-editor.scss';
 
 const types = {
@@ -28,6 +28,6 @@ export default (theme, styleToClass) => {
 
     const dynamicClasses = Object.entries(dynamicStyles).map(styleToClass);
 
-    return clsx(...classList, ...dynamicClasses);
+    return classNames(...classList, ...dynamicClasses);
   };
 };

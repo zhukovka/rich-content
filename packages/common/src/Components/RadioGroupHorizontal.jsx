@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import RadioGroup from './RadioGroup';
 import { mergeStyles } from '../Utils/mergeStyles';
 import styles from '../../statics/styles/radio-group-horizontal.scss';
@@ -15,7 +15,7 @@ class RadioGroupHorizontal extends Component {
   render() {
     const { label, readOnly, inline, ...props } = this.props;
     const { styles } = this;
-    const groupClassName = clsx(
+    const groupClassName = classNames(
       styles.radioGroupHorizontal_group,
       inline && styles.radioGroupHorizontal_groupInline,
       !inline && styles.radioGroupHorizontal_groupTwoColumns

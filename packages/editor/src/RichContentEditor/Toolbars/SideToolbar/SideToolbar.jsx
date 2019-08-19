@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import { debounce } from 'lodash';
 import { DISPLAY_MODE } from 'wix-rich-content-common';
 import DraftOffsetKey from '@wix/draft-js/lib/DraftOffsetKey';
@@ -126,7 +126,10 @@ export default class SideToolbar extends Component {
     const { wrapperStyles } = theme || {};
 
     const props = {
-      className: clsx(Styles.sideToolbarWrapper, wrapperStyles && wrapperStyles.sideToolbarWrapper),
+      className: classNames(
+        Styles.sideToolbarWrapper,
+        wrapperStyles && wrapperStyles.sideToolbarWrapper
+      ),
       style: this.state.position,
     };
 

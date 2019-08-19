@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import { getVisibleSelectionRect } from '@wix/draft-js';
 import Measure from 'react-measure';
 import ClickOutside from 'react-click-outside';
@@ -230,7 +230,7 @@ export default class InlineToolbar extends Component {
     const hasArrow = showLeftArrow || showRightArrow;
     const { toolbarStyles } = theme || {};
 
-    const buttonClassNames = clsx(
+    const buttonClassNames = classNames(
       Styles.inlineToolbar_buttons,
       toolbarStyles && toolbarStyles.inlineToolbar_buttons,
       {
@@ -238,12 +238,12 @@ export default class InlineToolbar extends Component {
         [toolbarStyles.inlineToolbar_overrideContent]: !!OverrideContent,
       }
     );
-    const extendClassNames = clsx(
+    const extendClassNames = classNames(
       Styles.inlineToolbar_extend,
       toolbarStyles && toolbarStyles.inlineToolbar_extend
     );
 
-    const scrollableClassNames = clsx(
+    const scrollableClassNames = classNames(
       Styles.inlineToolbar_scrollableContainer,
       toolbarStyles && toolbarStyles.inlineToolbar_scrollableContainer,
       {
@@ -251,15 +251,15 @@ export default class InlineToolbar extends Component {
       }
     );
 
-    const arrowClassNames = clsx(
+    const arrowClassNames = classNames(
       Styles.inlineToolbar_responsiveArrow,
       toolbarStyles.inlineToolbar_responsiveArrow
     );
-    const leftArrowIconClassNames = clsx(
+    const leftArrowIconClassNames = classNames(
       Styles.inlineToolbar_responsiveArrowStart_icon,
       toolbarStyles.responsiveArrowStart_icon
     );
-    const rightArrowIconClassNames = clsx(
+    const rightArrowIconClassNames = classNames(
       Styles.inlineToolbar_responsiveArrowEnd_icon,
       toolbarStyles.responsiveArrowEnd_icon
     );
@@ -330,7 +330,7 @@ export default class InlineToolbar extends Component {
     const { toolbarStyles } = theme || {};
 
     const props = {
-      className: clsx(Styles.inlineToolbar, toolbarStyles && toolbarStyles.inlineToolbar),
+      className: classNames(Styles.inlineToolbar, toolbarStyles && toolbarStyles.inlineToolbar),
       style: this.getStyle(),
       tabIndex: this.isVisible() ? 0 : -1,
       role: 'toolbar',

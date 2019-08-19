@@ -1,7 +1,7 @@
 /* eslint-disable react/no-find-dom-node */
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import { pickBy } from 'lodash';
 import Measure from 'react-measure';
 import { TOOLBARS, DISPLAY_MODE } from '../consts';
@@ -462,11 +462,11 @@ export default function createToolbar({
       const hasArrow = showLeftArrow || showRightArrow;
       const { toolbarStyles: toolbarTheme } = theme || {};
       const { buttonStyles: buttonTheme, separatorStyles: separatorTheme } = theme || {};
-      const scrollableContainerClasses = clsx(
+      const scrollableContainerClasses = classNames(
         toolbarStyles.pluginToolbar_scrollableContainer,
         toolbarTheme && toolbarTheme.pluginToolbar_scrollableContainer
       );
-      const buttonContainerClassnames = clsx(
+      const buttonContainerClassnames = classNames(
         toolbarStyles.pluginToolbar_buttons,
         toolbarTheme && toolbarTheme.pluginToolbar_buttons,
         {
@@ -475,42 +475,42 @@ export default function createToolbar({
         }
       );
       const themedButtonStyle = {
-        buttonWrapper: clsx(
+        buttonWrapper: classNames(
           buttonStyles.pluginToolbarButton_wrapper,
           buttonTheme && buttonTheme.pluginToolbarButton_wrapper
         ),
-        button: clsx(
+        button: classNames(
           buttonStyles.pluginToolbarButton,
           buttonTheme && buttonTheme.pluginToolbarButton
         ),
-        icon: clsx(
+        icon: classNames(
           buttonStyles.pluginToolbarButton_icon,
           buttonTheme && buttonTheme.pluginToolbarButton_icon
         ),
-        active: clsx(
+        active: classNames(
           buttonStyles.pluginToolbarButton_active,
           buttonTheme && buttonTheme.pluginToolbarButton_active
         ),
-        disabled: clsx(
+        disabled: classNames(
           buttonStyles.pluginToolbarButton_disabled,
           buttonTheme && buttonTheme.pluginToolbarButton_disabled
         ),
         ...theme,
       };
 
-      const arrowClassNames = clsx(
+      const arrowClassNames = classNames(
         toolbarStyles.pluginToolbar_responsiveArrow,
         toolbarTheme && toolbarTheme.pluginToolbar_responsiveArrow
       );
-      const leftArrowIconClassNames = clsx(
+      const leftArrowIconClassNames = classNames(
         toolbarStyles.pluginToolbar_responsiveArrowStart_icon,
         toolbarTheme && toolbarTheme.responsiveArrowStart_icon
       );
-      const rightArrowIconClassNames = clsx(
+      const rightArrowIconClassNames = classNames(
         toolbarStyles.pluginToolbar_responsiveArrowEnd_icon,
         toolbarTheme && toolbarTheme.responsiveArrowEnd_icon
       );
-      const separatorClassNames = clsx(
+      const separatorClassNames = classNames(
         toolbarStyles.pluginToolbarSeparator,
         separatorTheme && separatorTheme.pluginToolbarSeparator
       );
@@ -573,7 +573,10 @@ export default function createToolbar({
       if (this.visibilityFn()) {
         const props = {
           style: this.state.position,
-          className: clsx(toolbarStyles.pluginToolbar, toolbarTheme && toolbarTheme.pluginToolbar),
+          className: classNames(
+            toolbarStyles.pluginToolbar,
+            toolbarTheme && toolbarTheme.pluginToolbar
+          ),
           'data-hook': name ? `${name}PluginToolbar` : null,
         };
 
