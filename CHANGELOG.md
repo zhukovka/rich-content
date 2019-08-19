@@ -19,6 +19,8 @@
 ### :bug: Bug Fix
 - `editor`
   - [#357](https://github.com/wix-incubator/rich-content/pull/357) fix footerToolbar css
+- `general`
+  - [#361](https://github.com/wix-incubator/rich-content/pull/361) icons: hard-coded `fill` values replaced by `currentColor` to support theming
 - `giphy`
   - [fa229a0a](https://github.com/wix-incubator/rich-content/commit/fa229a0a) giphy viewer exposes GIPHY_TYPE
 ### :house: Internal
