@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-divider",
-  "version": "4.0.12",
+  "version": "4.0.13",
   "author": {
     "name": "Jonathan Bachman",
     "email": "jonathanb@wix.com"
@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "clsx": "^1.0.4",
-    "wix-rich-content-common": "^4.0.12"
+    "wix-rich-content-common": "^4.0.13"
   },
   "unpkg": true,
   "publishConfig": {
