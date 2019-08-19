@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-map",
-  "version": "4.0.12",
+  "version": "4.0.13",
   "author": {
     "name": "Ehab Sharif",
     "email": "ehabs@wix.com"
@@ -33,7 +33,7 @@
   "peerDependencies": {
     "@babel/runtime": "7.2.0",
     "@wix/draft-js": "0.10.272",
-    "classnames": "^2.0.0",
+    "clsx": "^1.0.4",
     "lodash": "^4.0.0",
     "prop-types": "^15.0.0",
     "react": "^16.6.3",
@@ -42,7 +42,7 @@
   "devDependencies": {
     "@babel/runtime": "7.2.0",
     "@wix/draft-js": "0.10.272",
-    "classnames": "^2.2.6",
+    "clsx": "^1.0.4",
     "cross-env": "^5.2.0",
     "eslint": "^6.1.0",
     "eslint-import-resolver-lerna": "^1.0.0",
@@ -59,7 +59,7 @@
     "react-google-maps-loader": "~4.2.5",
     "react-google-places-suggest": "~3.8.0",
     "uuid": "~3.3.2",
-    "wix-rich-content-common": "^4.0.12"
+    "wix-rich-content-common": "^4.0.13"
   },
   "unpkg": true,
   "publishConfig": {

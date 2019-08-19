@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ReactPlayerWrapper from './reactPlayerWrapper';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { mergeStyles, validate, Context } from 'wix-rich-content-common';
 import { isEqual } from 'lodash';
 import getVideoSrc from './get-video-source';
@@ -45,7 +45,7 @@ class VideoViewer extends Component {
       onReady: this.fixVideoRatio,
       disabled: this.context.disabled,
     };
-    return <ReactPlayerWrapper className={classNames(this.styles.video_player)} {...props} />;
+    return <ReactPlayerWrapper className={clsx(this.styles.video_player)} {...props} />;
   }
 }
 

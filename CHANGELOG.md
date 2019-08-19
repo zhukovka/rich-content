@@ -7,6 +7,27 @@
 > - :book: [Documentation]
 > - :house: [Internal]
 
+## [Unreleased]
+<hr/>
+
+## 4.0.13 (Aug 19, 2019)
+### :bug: Bug Fix
+- `editor`
+  - [#357](https://github.com/wix-incubator/rich-content/pull/357) fix footerToolbar css
+- `html`
+  - [#364](https://github.com/wix-incubator/rich-content/pull/364) fix html embed height
+- `general`
+  - [#361](https://github.com/wix-incubator/rich-content/pull/361) icons: hard-coded `fill` values replaced by `currentColor` to support theming
+- `giphy`
+  - [fa229a0a](https://github.com/wix-incubator/rich-content/commit/fa229a0a) giphy viewer exposes GIPHY_TYPE
+### :house: Internal
+- `general`
+  - [#356](https://github.com/wix-incubator/rich-content/pull/356) removed `WixUtils.isMobile`
+  - [#356](https://github.com/wix-incubator/rich-content/pull/356) renamed `WixUtils` to `isiOS` and deleted everything except for isiOS
+  - [#362](https://github.com/wix-incubator/rich-content/pull/362) `classnames` dependency replaced by `clsx`
+  - [#360](https://github.com/wix-incubator/rich-content/pull/360)  `editorBounds` pusub subscription replaced by `getEditorBounds` function passed via the context and params for plugin initialization
+<hr/>
+
 ## 4.0.12 (Aug 7, 2019)
 ### :rocket: New Feature
 - `viewer`
@@ -17,6 +38,8 @@
 - `mentions`
   - [#354](https://github.com/wix-incubator/rich-content/pull/354) fix Google 'Touch to Search' trigger when clicking on mention
 ### :house: Internal
+- `tests`
+    [#334](https://github.com/wix-incubator/rich-content/pull/334) add Cypress
 - `example`
   - [#350](https://github.com/wix-incubator/rich-content/pull/350) ability to change locale
 <hr/>
@@ -55,7 +78,7 @@
 ## 4.0.8 (Jul 24, 2019)
 ### :bug: Bug Fix
 - `html`
-  - [#338](https://github.com/wix-incubator/rich-content/pull/338) fix performance.now() breaks ssr
+  - [#338](https://github.com/wix-incubator/rich-content/pull/338) fix performance.now() breaks ssr 
 - `file-upload`
   - [#340](https://github.com/wix-incubator/rich-content/pull/340) unique ids for icons
 <hr/>
