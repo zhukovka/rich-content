@@ -2,20 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { get, includes, isEqual, isFunction } from 'lodash';
-import { mergeStyles, Loader, validate, Context } from 'wix-rich-content-common';
+import { mergeStyles, Loader, validate, Context, ViewportRenderer } from 'wix-rich-content-common';
 import getImageSrc from './get-image-source';
 import { WIX_MEDIA_DEFAULT } from './get-wix-media-url';
+import { getDefault } from './consts';
 import schema from '../statics/data-schema.json';
 import styles from '../statics/styles/image-viewer.scss';
-
-const getDefault = () => ({
-  config: {
-    alignment: 'center',
-    size: 'content',
-    showTitle: true,
-    showDescription: true,
-  },
-});
 
 class ImageViewer extends React.Component {
   constructor(props) {
@@ -33,6 +25,7 @@ class ImageViewer extends React.Component {
       validate(nextProps.componentData, schema);
     }
   }
+
   getImageSrc(src) {
     const { helpers } = this.context || {};
 
@@ -215,22 +208,24 @@ class ImageViewer extends React.Component {
 
     /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
-      <div
-        data-hook="imageViewer"
-        onClick={onClick}
-        className={itemClassName}
-        onKeyDown={e => this.onKeyDown(e, onClick)}
-        ref={e => this.handleRef(e)}
-      >
-        <div className={this.styles.imageWrapper}>
-          {imageSrc && this.renderImage(imageClassName, imageSrc, metadata.alt, imageProps)}
-          {this.renderLoader()}
+      <ViewportRenderer>
+        <div
+          data-hook="imageViewer"
+          onClick={onClick}
+          className={itemClassName}
+          onKeyDown={e => this.onKeyDown(e, onClick)}
+          ref={e => this.handleRef(e)}
+        >
+          <div className={this.styles.imageWrapper}>
+            {imageSrc && this.renderImage(imageClassName, imageSrc, metadata.alt, imageProps)}
+            {this.renderLoader()}
+          </div>
+          {this.renderTitle(data, this.styles)}
+          {this.renderDescription(data, this.styles)}
+          {this.shouldRenderCaption() &&
+            this.renderCaption(metadata.caption, isFocused, readOnly, this.styles, defaultCaption)}
         </div>
-        {this.renderTitle(data, this.styles)}
-        {this.renderDescription(data, this.styles)}
-        {this.shouldRenderCaption() &&
-          this.renderCaption(metadata.caption, isFocused, readOnly, this.styles, defaultCaption)}
-      </div>
+      </ViewportRenderer>
     );
     /* eslint-enable jsx-a11y/no-static-element-interactions */
   }
@@ -250,4 +245,4 @@ ImageViewer.propTypes = {
   defaultCaption: PropTypes.string,
 };
 
-export { ImageViewer, getDefault };
+export default ImageViewer;
