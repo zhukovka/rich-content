@@ -65,17 +65,13 @@ const plugins = [
     ],
   }),
   postcss({
-    minimize: false,
-    modules: {
-      generateScopedName: '[name]__[local]',
+    minimize: {
+      reduceIdents: false,
+      safe: true,
     },
-    // minimize: {
-    //   reduceIdents: false,
-    //   safe: true,
-    // },
-    // modules: {
-    //   generateScopedName: IS_DEV_ENV ? '[name]__[local]___[hash:base64:5]' : '[hash:base64:5]',
-    // },
+    modules: {
+      generateScopedName: IS_DEV_ENV ? '[name]__[local]___[hash:base64:5]' : '[hash:base64:5]',
+    },
     extract: 'dist/styles.min.css',
     plugins: [
       postcssExclude({
