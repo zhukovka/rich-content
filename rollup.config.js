@@ -9,6 +9,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import json from 'rollup-plugin-json';
 import postcss from 'rollup-plugin-postcss';
+import postcssExclude from 'postcss-exclude-files';
 import postcssURL from 'postcss-url';
 import postcssRTL from 'postcss-rtl';
 import pascalCase from 'pascal-case';
@@ -64,17 +65,23 @@ const plugins = [
     ],
   }),
   postcss({
-    minimize: {
-      reduceIdents: false,
-      safe: true,
-    },
+    minimize: false,
     modules: {
-      generateScopedName: IS_DEV_ENV ? '[name]__[local]___[hash:base64:5]' : '[hash:base64:5]',
+      generateScopedName: '[name]__[local]',
     },
+    // minimize: {
+    //   reduceIdents: false,
+    //   safe: true,
+    // },
+    // modules: {
+    //   generateScopedName: IS_DEV_ENV ? '[name]__[local]___[hash:base64:5]' : '[hash:base64:5]',
+    // },
     extract: 'dist/styles.min.css',
-    inject: false,
     plugins: [
-      postcssRTL({}),
+      postcssExclude({
+        filter: '**/*.global.scss',
+        plugins: [postcssRTL()],
+      }),
       postcssURL({
         url: asset => asset.url.replace('../', '/statics/'),
       }),
