@@ -16,6 +16,9 @@
   - [#359](https://github.com/wix-incubator/rich-content/pull/359) added support for rtl in editor modals
 - `general`
   - [#358](https://github.com/wix-incubator/rich-content/pull/358) viewport based lazy loading for plugin components
+### :bug: Bug Fix
+- `example`
+  - [32580b58](https://github.com/wix-incubator/rich-content/commit/32580b58) webpack: SCSS plugin rule exclude fixed
 <hr/>
 
 ## 4.0.14 (Aug 19, 2019)
