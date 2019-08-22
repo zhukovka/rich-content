@@ -19,6 +19,8 @@
 ### :bug: Bug Fix
 - `example`
   - [32580b58](https://github.com/wix-incubator/rich-content/commit/32580b58) webpack: SCSS plugin rule exclude fixed
+- `e2e`
+  - [4bb51408](https://github.com/wix-incubator/rich-content/commit/4bb51408) hide toolbar before snapshot comparison
 <hr/>
 
 ## 4.0.14 (Aug 19, 2019)
