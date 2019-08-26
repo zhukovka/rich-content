@@ -8,6 +8,24 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :boom: Breaking Change
+- `editor`
+  - [#359](https://github.com/wix-incubator/rich-content/pull/359) updated inline/text static/mobile toolbar theme classes
+### :rocket: New Feature
+- `editor`
+  - [#359](https://github.com/wix-incubator/rich-content/pull/359) added support for rtl in editor modals
+- `general`
+  - [#358](https://github.com/wix-incubator/rich-content/pull/358) viewport based lazy loading for plugin components
+### :bug: Bug Fix
+- `html`
+  - [#369](https://github.com/wix-incubator/rich-content/pull/369) instagram height bug on ios
+- `example`
+  - [32580b58](https://github.com/wix-incubator/rich-content/commit/32580b58) webpack: SCSS plugin rule exclude fixed
+### :house: Internal
+- `general`
+  - [#365](https://github.com/wix-incubator/rich-content/pull/365) moved packages into web directory
+- `e2e`
+  - [4bb51408](https://github.com/wix-incubator/rich-content/commit/4bb51408) hide toolbar before snapshot comparison
 <hr/>
 
 ## 4.0.14 (Aug 19, 2019)
@@ -20,6 +38,7 @@
   - [#361](https://github.com/wix-incubator/rich-content/pull/361) icons: hard-coded `fill` values replaced by `currentColor` to support theming
 - `giphy`
   - [fa229a0a](https://github.com/wix-incubator/rich-content/commit/fa229a0a) giphy viewer exposes GIPHY_TYPE
+  - [#363](https://github.com/wix-incubator/rich-content/pull/363) giphy plugin popup positioned correctly in RTL
 ### :house: Internal
 - `general`
   - [#356](https://github.com/wix-incubator/rich-content/pull/356) removed `WixUtils.isMobile`
@@ -77,7 +96,7 @@
 ## 4.0.8 (Jul 24, 2019)
 ### :bug: Bug Fix
 - `html`
-  - [#338](https://github.com/wix-incubator/rich-content/pull/338) fix performance.now() breaks ssr 
+  - [#338](https://github.com/wix-incubator/rich-content/pull/338) fix performance.now() breaks ssr
 - `file-upload`
   - [#340](https://github.com/wix-incubator/rich-content/pull/340) unique ids for icons
 <hr/>
