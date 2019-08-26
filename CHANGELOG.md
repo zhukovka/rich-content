@@ -17,8 +17,6 @@
 - `general`
   - [#358](https://github.com/wix-incubator/rich-content/pull/358) viewport based lazy loading for plugin components
 ### :bug: Bug Fix
-- `html`
-  - [#369](https://github.com/wix-incubator/rich-content/pull/369) instagram height bug on ios
 - `example`
   - [32580b58](https://github.com/wix-incubator/rich-content/commit/32580b58) webpack: SCSS plugin rule exclude fixed
 ### :house: Internal
@@ -26,6 +24,12 @@
   - [#365](https://github.com/wix-incubator/rich-content/pull/365) moved packages into web directory
 - `e2e`
   - [4bb51408](https://github.com/wix-incubator/rich-content/commit/4bb51408) hide toolbar before snapshot comparison
+<hr/>
+
+## 4.0.16 (Aug 26, 2019)
+### :bug: Bug Fix
+- `html`
+  - [#369](https://github.com/wix-incubator/rich-content/pull/369) instagram height bug on ios
 <hr/>
 
 ## 4.0.14 (Aug 19, 2019)
