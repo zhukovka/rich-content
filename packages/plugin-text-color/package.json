@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-text-color",
-  "version": "4.0.15",
+  "version": "4.0.16",
   "author": {
     "name": "Alex Greenstein",
     "email": "alexgr@wix.com"
@@ -23,7 +23,7 @@
   "scripts": {
     "clean": "rm -rf dist/",
     "prebuild": "npm run clean",
-    "build": "rollup --environment MODULE_NAME:plugin-text-color -c ../../rollup.config.js",
+    "build": "rollup --environment MODULE_NAME:plugin-text-color -c ../../../rollup.config.js",
     "build:dev": "cross-env NODE_ENV=development npm run build",
     "build:analyze": "npm run build -- --environment MODULE_ANALYZE && open stats.html",
     "watch": "cross-env NODE_ENV=development MODULE_WATCH=1 npm run build -- --watch",
@@ -51,8 +51,8 @@
     "rollup": "^1.1.0"
   },
   "dependencies": {
-    "react-modal": "~3.8.1",
-    "wix-rich-content-common": "^4.0.15"
+    "react-modal": "~3.1.11",
+    "wix-rich-content-common": "4.0.16"
   },
   "unpkg": true,
   "publishConfig": {
