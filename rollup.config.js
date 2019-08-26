@@ -75,7 +75,7 @@ const plugins = [
     extract: 'dist/styles.min.css',
     plugins: [
       postcssExclude({
-        filter: '**/*.global.scss',
+        filter: ['**/*.global.scss', '**/inline-toolbar.scss'],
         plugins: [postcssRTL()],
       }),
       postcssURL({

@@ -10,7 +10,9 @@
 ## [Unreleased]
 ### :boom: Breaking Change
 - `editor`
-  - [#359](https://github.com/wix-incubator/rich-content/pull/359) updated inline/text static/mobile toolbar theme classes
+  - [#359](https://github.com/wix-incubator/rich-content/pull/359) added support for rtl in editor
+    - added postcss-rtl to our build process
+    - updated inline/text static/mobile toolbar theme classes
 ### :rocket: New Feature
 - `editor`
   - [#359](https://github.com/wix-incubator/rich-content/pull/359) added support for rtl in editor modals
