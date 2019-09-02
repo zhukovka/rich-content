@@ -11,10 +11,11 @@
   },
   "packages": [
     "e2e/test-env",
-    "packages/*"
+    "examples/main",
+    "packages/**/*"
   ],
   "npmClientArgs": [
     "--no-lockfile"
   ],
-  "version": "4.0.18"
+  "version": "5.0.0"
 }
