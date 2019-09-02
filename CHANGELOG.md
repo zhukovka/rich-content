@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
+
+## 5.0.0 "Mamtak" (Sep 2, 2019)
 ### :boom: Breaking Change
 - `editor`
   - [#359](https://github.com/wix-incubator/rich-content/pull/359) added support for rtl in editor
