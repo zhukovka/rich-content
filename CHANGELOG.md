@@ -14,6 +14,9 @@
 ### :bug: Bug Fix
 - `example`
   - [84b10276](https://github.com/wix-incubator/rich-content/commit/84b10276) static toolbar styles
+### :house: Internal
+- `general`
+  - [d100a69d](https://github.com/wix-incubator/rich-content/commit/d100a69d) rollup version fixed due to breaking changes
 <hr/>
 
 ## 5.0.0 "Mamtak" (Sep 2, 2019)
