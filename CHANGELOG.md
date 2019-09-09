@@ -11,6 +11,9 @@
 ### :rocket: New Feature
 - `editor`
   - [#378](https://github.com/wix-incubator/rich-content/pull/378) plus icon is displayed next to text
+### :bug: Bug Fix
+- `example`
+  - [84b10276](https://github.com/wix-incubator/rich-content/commit/84b10276) static toolbar styles
 <hr/>
 
 ## 5.0.0 "Mamtak" (Sep 2, 2019)
