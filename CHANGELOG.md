@@ -10,6 +10,20 @@
 ## [Unreleased]
 <hr/>
 
+## 5.0.1 (Sep 10, 2019)
+### :rocket: New Feature
+- `editor`
+  - [#378](https://github.com/wix-incubator/rich-content/pull/378) plus icon is displayed next to text
+### :bug: Bug Fix
+- `general`
+  - [#381](https://github.com/wix-incubator/rich-content/pull/381) atomic block alignment functionality restored
+- `example`
+  - [84b10276](https://github.com/wix-incubator/rich-content/commit/84b10276) static toolbar styles
+### :house: Internal
+- `general`
+  - [d100a69d](https://github.com/wix-incubator/rich-content/commit/d100a69d) rollup version fixed due to breaking changes
+<hr/>
+
 ## 5.0.0 "Mamtak" (Sep 2, 2019)
 ### :boom: Breaking Change
 - `editor`
@@ -19,10 +33,11 @@
 ### :rocket: New Feature
 - `editor`
   - [#359](https://github.com/wix-incubator/rich-content/pull/359) added support for rtl in editor modals
-  - [#374](https://github.com/wix-incubator/rich-content/pull/374) removing line adjacent to atomic block removes line and not block
 - `general`
   - [#358](https://github.com/wix-incubator/rich-content/pull/358) viewport based lazy loading for plugin components
 ### :bug: Bug Fix
+- `editor`
+  - [#374](https://github.com/wix-incubator/rich-content/pull/374) removing line adjacent to atomic block removes line and not block
 - `example`
   - [32580b58](https://github.com/wix-incubator/rich-content/commit/32580b58) webpack: SCSS plugin rule exclude fixed
 - `image`
