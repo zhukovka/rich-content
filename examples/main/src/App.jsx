@@ -3,7 +3,13 @@ import { hot } from 'react-hot-loader/root';
 import React, { PureComponent } from 'react';
 import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 import { compact, flatMap } from 'lodash';
-import { convertToRaw, createEmpty } from 'wix-rich-content-editor/dist/lib/editorStateConversion';
+import {
+  convertToRaw,
+  convertFromRaw,
+  createWithContent,
+  createEmpty,
+} from 'wix-rich-content-editor/dist/lib/editorStateConversion';
+import { debounce } from 'lodash';
 import {
   ContentStateEditor,
   ErrorBoundary,
@@ -31,13 +37,17 @@ class App extends PureComponent {
     if (locale !== 'en') {
       this.setLocale(locale);
     }
-    window.onbeforeunload = function() { return "Your work will be lost."; };
+    window.onbeforeunload = function() {
+      return 'Your work will be lost.';
+    };
   }
 
   getInitialState() {
     const containerKey = generateKey('container');
-    const editorState = createEmpty();
     const localState = loadStateFromStorage();
+    const editorState = localState.contentState
+      ? createWithContent(convertFromRaw(localState.contentState))
+      : createEmpty();
     return {
       containerKey,
       editorState,
@@ -46,6 +56,7 @@ class App extends PureComponent {
       isContentStateShown: false,
       viewerResetKey: 0,
       editorResetKey: 0,
+      contentState: convertToRaw(editorState.getCurrentContent()),
       ...localState,
     };
   }
@@ -67,7 +78,16 @@ class App extends PureComponent {
   onContentStateEditorResize = () =>
     this.contentStateEditor && this.contentStateEditor.refreshLayout();
 
-  onEditorChange = editorState => this.setState({ editorState });
+  onEditorChange = editorState => {
+    this.setState({ editorState });
+    this.saveContentState(editorState);
+  };
+
+  saveContentState = debounce(editorState => {
+    const contentState = convertToRaw(editorState.getCurrentContent());
+    this.setState({ contentState });
+    saveStateToStorage({ ...this.state, contentState });
+  }, 500);
 
   onSectionVisibilityChange = (sectionName, isVisible) => {
     this.setState(
@@ -144,7 +164,10 @@ class App extends PureComponent {
   };
 
   renderViewer = () => {
-    const { isViewerShown, editorState } = this.state;
+    const { isViewerShown, contentState } = this.state;
+    if (!isViewerShown) {
+      return null;
+    }
     const settings = [
       {
         name: 'Mobile',
@@ -155,30 +178,24 @@ class App extends PureComponent {
           })),
       },
     ];
-    const viewerState = JSON.parse(JSON.stringify(convertToRaw(editorState.getCurrentContent()))); //emulate initilState passed in by consumers
+    const viewerState = JSON.parse(JSON.stringify(contentState)); //emulate initilState passed in by consumers
     return (
-      isViewerShown && (
-        <ReflexElement key={`viewer-section-${this.state.viewerResetKey}`} className="section">
-          <SectionHeader
-            title="Viewer"
-            settings={settings}
-            onHide={this.onSectionVisibilityChange}
-          />
-          <SectionContent>
-            <ErrorBoundary>
-              <Viewer
-                initialState={viewerState}
-                isMobile={this.state.viewerIsMobile || this.isMobile}
-              />
-            </ErrorBoundary>
-          </SectionContent>
-        </ReflexElement>
-      )
+      <ReflexElement key={`viewer-section-${this.state.viewerResetKey}`} className="section">
+        <SectionHeader title="Viewer" settings={settings} onHide={this.onSectionVisibilityChange} />
+        <SectionContent>
+          <ErrorBoundary>
+            <Viewer
+              initialState={viewerState}
+              isMobile={this.state.viewerIsMobile || this.isMobile}
+            />
+          </ErrorBoundary>
+        </SectionContent>
+      </ReflexElement>
     );
   };
 
   renderContentState = () => {
-    const { isContentStateShown, editorState } = this.state;
+    const { isContentStateShown, contentState } = this.state;
     return (
       isContentStateShown && (
         <ReflexElement
@@ -191,7 +208,7 @@ class App extends PureComponent {
             <ContentStateEditor
               ref={this.setContentStateEditor}
               onChange={this.onContentStateEditorChange}
-              contentState={convertToRaw(editorState.getCurrentContent())}
+              contentState={contentState}
             />
           </SectionContent>
         </ReflexElement>
