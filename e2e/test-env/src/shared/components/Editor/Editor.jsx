@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { convertFromRaw, convertToRaw, EditorState } from '@wix/draft-js';
+import { convertFromRaw, convertToRaw, EditorState } from 'draft-js';
 import deepFreeze from 'deep-freeze';
 import { RichContentEditor } from 'wix-rich-content-editor';
 import 'wix-rich-content-common/dist/styles.min.css';
