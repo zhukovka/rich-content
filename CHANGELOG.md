@@ -13,6 +13,9 @@
   - [#377](https://github.com/wix-incubator/rich-content/pull/377) resize decoration added (based on `draftjs-resizeable-plugin`)
 - `image`
   - [#377](https://github.com/wix-incubator/rich-content/pull/377) custom resizing implemented
+### :bug: Bug Fix
+  - `html`
+    - [#385](  https://github.com/wix-incubator/rich-content/pull/385) edit panel resets to default state when focusing on different instances of the same plugin
 <hr/>
 
 ## 5.0.1 (Sep 10, 2019)
