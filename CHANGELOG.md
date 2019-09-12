@@ -9,6 +9,8 @@
 
 ## [Unreleased]
 ### :rocket: New Feature
+- `html`
+  - [#379](https://github.com/wix-incubator/rich-content/pull/379) edit panel opens on click when src is blank
 - `editor`
   - [#377](https://github.com/wix-incubator/rich-content/pull/377) resize decoration added (based on `draftjs-resizeable-plugin`)
 - `image`
