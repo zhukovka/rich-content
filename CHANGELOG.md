@@ -23,6 +23,8 @@
 - `viewer`
   - [#386](https://github.com/wix-incubator/rich-content/pull/386) code block duplication
 ### :house: Internal
+- `e2e`
+  - [#368](https://github.com/wix-incubator/rich-content/pull/368) test rtl support in toolbars, text and external modals
 - `editor`
   - [#377](https://github.com/wix-incubator/rich-content/pull/377) resize decoration added (based on `draftjs-resizeable-plugin`)
 <hr/>
