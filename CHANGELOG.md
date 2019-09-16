@@ -10,6 +10,23 @@
 ## [Unreleased]
 <hr/>
 
+## 5.1.0 (Sep 16, 2019)
+### :rocket: New Feature
+- `html`
+  - [#379](https://github.com/wix-incubator/rich-content/pull/379) edit panel opens on click when src is blank
+- `image`
+  - [#377](https://github.com/wix-incubator/rich-content/pull/377) custom resizing implemented
+  - [#380](https://github.com/wix-incubator/rich-content/pull/380) Image Editor (Wix Image Studio)
+### :bug: Bug Fix
+- `html`
+  - [#385](https://github.com/wix-incubator/rich-content/pull/385) edit panel resets to default state when focusing on different instances of the same plugin
+- `viewer`
+  - [#386](https://github.com/wix-incubator/rich-content/pull/386) code block duplication
+### :house: Internal
+- `editor`
+  - [#377](https://github.com/wix-incubator/rich-content/pull/377) resize decoration added (based on `draftjs-resizeable-plugin`)
+<hr/>
+
 ## 5.0.1 (Sep 10, 2019)
 ### :rocket: New Feature
 - `editor`
@@ -22,6 +39,7 @@
 ### :house: Internal
 - `general`
   - [d100a69d](https://github.com/wix-incubator/rich-content/commit/d100a69d) rollup version fixed due to breaking changes
+  - [#384](https://github.com/wix-incubator/rich-content/pull/384) upload e2e snapshots in ci
 <hr/>
 
 ## 5.0.0 "Mamtak" (Sep 2, 2019)
@@ -382,7 +400,7 @@
 - `video`
   - [#293](https://github.com/wix-incubator/rich-content/pull/293) fix ratio
 ### :book: Documentation
-  - [#290](https://github.com/wix-incubator/rich-content/pull/290) [Plugin Customization doc]('./docs/PluginCustomization.md') update on `text-color`
+- [#290](https://github.com/wix-incubator/rich-content/pull/290) [Plugin Customization doc]('./docs/PluginCustomization.md') update on `text-color`
 <hr/>
 
 ## 3.3.2 (Apr 29, 2019)

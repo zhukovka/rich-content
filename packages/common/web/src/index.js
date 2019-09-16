@@ -81,6 +81,7 @@ export {
 export {
   insertLinkAtCurrentSelection,
   insertLinkInPosition,
+  hasLinksInBlock,
   hasLinksInSelection,
   getLinkDataInSelection,
   removeLinksInSelection,
@@ -107,4 +108,6 @@ export {
   DECORATION_MODE,
   HEADER_BLOCK,
   BLOCK_TYPES,
+  PLUGIN_DECORATION_PROPS,
+  PLUGIN_DECORATIONS,
 } from './consts';
