@@ -31,7 +31,7 @@ class App extends PureComponent {
     if (locale !== 'en') {
       this.setLocale(locale);
     }
-    disableBrowserBackHistory();
+    disableBrowserBackButton();
   }
 
   getInitialState() {
@@ -248,7 +248,7 @@ class App extends PureComponent {
   }
 }
 
-function disableBrowserBackHistory() {
+function disableBrowserBackButton() {
   (function(global) {
     if (typeof global === 'undefined') {
       throw new Error('window is undefined');
