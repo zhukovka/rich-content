@@ -195,7 +195,9 @@ Cypress.Commands.add('openAddPluginModal', () => {
 });
 
 Cypress.Commands.add('openImageSettings', () => {
-  cy.get('[data-hook=imageViewer] [data-hook=imageViewer]:first').click({ force: true });
+  cy.get('[data-hook=imageViewer]:first')
+    .parent()
+    .click();
   cy.get('[aria-label=Settings]').click();
   cy.get('[data-hook="imageSettings"]');
 });
