@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
+
+## 5.1.1 (Sep 22, 2019)
 ### :bug: Bug Fix
 - `image`
   - [#388](https://github.com/wix-incubator/rich-content/pull/388) changed default image alignment
