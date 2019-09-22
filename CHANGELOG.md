@@ -10,6 +10,17 @@
 ## [Unreleased]
 <hr/>
 
+## 5.1.1 (Sep 22, 2019)
+### :bug: Bug Fix
+- `image`
+  - [#388](https://github.com/wix-incubator/rich-content/pull/388) changed default image alignment
+- `viewer`
+  - [#390](https://github.com/wix-incubator/rich-content/pull/390) justified text new lines disappear
+### :house: Internal
+- `e2e`
+  - [#368](https://github.com/wix-incubator/rich-content/pull/368) test rtl support in toolbars, text and external modals
+<hr/>
+
 ## 5.1.0 (Sep 16, 2019)
 ### :rocket: New Feature
 - `html`
