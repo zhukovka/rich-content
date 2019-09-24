@@ -12,6 +12,8 @@
 - `gallery`
   - [#391](https://github.com/wix-incubator/rich-content/pull/391) gallery image titles
 ### :bug: Bug Fix
+- `editor`
+  - [#392](https://github.com/wix-incubator/rich-content/pull/392) text in line toolbar has tooltips
 - `image`
   - [75336e34](https://github.com/wix-incubator/rich-content/commit/75336e34) open imageStudio on crop tab
 - `example`
