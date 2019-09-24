@@ -9,8 +9,11 @@
 
 ## [Unreleased]
 ### :bug: Bug Fix
+- `editor`
+  - [#395](https://github.com/wix-incubator/rich-content/pull/395) removed div wrapping editor that was added in [#359](https://github.com/wix-incubator/rich-content/pull/359)
+### :house: Internal
 - `example`
-  - [9add0fbc](https://github.com/wix-incubator/rich-content/commit/9add0fbc) gallery validation schema used for content validation 
+  - [9add0fbc](https://github.com/wix-incubator/rich-content/commit/9add0fbc) gallery validation schema used for content validation  
 <hr/>
 
 ## 5.1.1 (Sep 22, 2019)
