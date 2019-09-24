@@ -9,6 +9,8 @@
 
 ## [Unreleased]
 ### :bug: Bug Fix
+- `image`
+  - [75336e34](https://github.com/wix-incubator/rich-content/commit/75336e34) open imageStudio on crop tab
 - `example`
   - [9add0fbc](https://github.com/wix-incubator/rich-content/commit/9add0fbc) gallery validation schema used for content validation
   - [#395](https://github.com/wix-incubator/rich-content/pull/395) removed external div in editor
