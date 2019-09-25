@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isEqual } from 'lodash';
-import { validate, mergeStyles, Context, ViewportRenderer } from 'wix-rich-content-common';
+import { validate, mergeStyles, Context } from 'wix-rich-content-common';
 import { convertItemData } from './helpers/convert-item-data';
 import { getDefault } from './constants';
 import resizeMediaUrl from './helpers/resize-media-url';
@@ -106,18 +106,16 @@ class GalleryViewer extends React.Component {
     this.styles = this.styles || mergeStyles({ styles: viewerStyles, theme: this.context.theme });
     const { styleParams, size = { width: 300 } } = this.state;
     return (
-      <ViewportRenderer>
-        <div ref={elem => (this.container = elem)} className={this.styles.gallery_container}>
-          <ProGallery
-            items={this.getItems()}
-            styles={styleParams}
-            container={size}
-            settings={this.props.settings}
-            eventsListener={this.handleGalleryEvents}
-            resizeMediaUrl={resizeMediaUrl}
-          />
-        </div>
-      </ViewportRenderer>
+      <div ref={elem => (this.container = elem)} className={this.styles.gallery_container}>
+        <ProGallery
+          items={this.getItems()}
+          styles={styleParams}
+          container={size}
+          settings={this.props.settings}
+          eventsListener={this.handleGalleryEvents}
+          resizeMediaUrl={resizeMediaUrl}
+        />
+      </div>
     );
   }
 }
