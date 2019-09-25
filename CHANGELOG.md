@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
+
+## 5.1.2 (Sep 25, 2019)
 ### :bug: Bug Fix
 - `editor`
   - [#395](https://github.com/wix-incubator/rich-content/pull/395) removed div wrapping editor that was added in [#359](https://github.com/wix-incubator/rich-content/pull/359)
