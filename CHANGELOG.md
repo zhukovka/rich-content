@@ -16,6 +16,8 @@
   - [#392](https://github.com/wix-incubator/rich-content/pull/392) text in line toolbar has tooltips
 - `image`
   - [75336e34](https://github.com/wix-incubator/rich-content/commit/75336e34) open imageStudio on crop tab
+- `gallery`
+ - [20e2af4](https://github.com/wix-incubator/rich-content/commit/20e2af4) height issues - disabled above the fold 
 - `example`
   - [9add0fbc](https://github.com/wix-incubator/rich-content/commit/9add0fbc) gallery validation schema used for content validation
   - [#395](https://github.com/wix-incubator/rich-content/pull/395) removed div wrapping editor that was added in [#359](https://github.com/wix-incubator/rich-content/pull/359)
