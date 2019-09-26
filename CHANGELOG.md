@@ -10,6 +10,15 @@
 ## [Unreleased]
 <hr/>
 
+## 5.1.3 (Sep 26, 2019)
+### :bug: Bug Fix
+- `gallery`
+  - [#401](https://github.com/wix-incubator/rich-content/pull/401) resize media url returns absolute url when not resizing
+### :house: Internal
+- `gallery`
+  - [#401](https://github.com/wix-incubator/rich-content/pull/401) `pro-gallery` updated to `v1.3.17`
+<hr/>
+
 ## 5.1.2 (Sep 25, 2019)
 ### :bug: Bug Fix
 - `editor`
