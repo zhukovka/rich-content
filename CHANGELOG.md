@@ -19,6 +19,8 @@
 ### :house: Internal
 - `e2e`
   - [#393](https://github.com/wix-incubator/rich-content/pull/393) added atomic block alignment testing
+- `mentions`
+  - [#387](https://github.com/wix-incubator/rich-content/pull/387) data validation schema added
 <hr/>
 
 ## 5.1.4 (Sep 26, 2019)
