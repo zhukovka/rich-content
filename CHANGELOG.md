@@ -16,18 +16,20 @@
   - [#392](https://github.com/wix-incubator/rich-content/pull/392) text in line toolbar has tooltips
 - `image`
   - [75336e34](https://github.com/wix-incubator/rich-content/commit/75336e34) open imageStudio on crop tab
-<<<<<<< HEAD
 - `gallery`
   - [#404](https://github.com/wix-incubator/rich-content/pull/404) delete last remaining image in image settings returns to gallery settings
   - [#403](https://github.com/wix-incubator/rich-content/pull/403) re-render gallery on change only
-=======
-  - [d0986f3](https://github.com/wix-incubator/rich-content/commit/d0986f3) disabled above the fold 
->>>>>>> fix/image-viewport-renderer
 ### :house: Internal
 - `e2e`
   - [#393](https://github.com/wix-incubator/rich-content/pull/393) added atomic block alignment testing
 - `mentions`
   - [#387](https://github.com/wix-incubator/rich-content/pull/387) data validation schema added
+<hr/>
+
+## 5.1.5 (Oct 2, 2019)
+### :bug: Bug Fix
+- `image`
+  - [38c6c4d](https://github.com/wix-incubator/rich-content/commit/38c6c4d)  disabled above the fold
 <hr/>
 
 ## 5.1.4 (Sep 26, 2019)
