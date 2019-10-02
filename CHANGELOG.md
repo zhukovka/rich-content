@@ -8,9 +8,12 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
+
+## 5.1.5 (Oct 2, 2019)
 ### :bug: Bug Fix
 - `image`
-  - [38c6c4d](https://github.com/wix-incubator/rich-content/commit/38c6c4d) open imageStudio on crop tab
+  - [38c6c4d](https://github.com/wix-incubator/rich-content/commit/38c6c4d)  disabled above the fold
 <hr/>
 
 ## 5.1.4 (Sep 26, 2019)
