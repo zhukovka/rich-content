@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :bug: Bug Fix
+- `image`
+  - [38c6c4d](https://github.com/wix-incubator/rich-content/commit/38c6c4d) open imageStudio on crop tab
 <hr/>
 
 ## 5.1.4 (Sep 26, 2019)
