@@ -16,6 +16,7 @@
   - [#392](https://github.com/wix-incubator/rich-content/pull/392) text in line toolbar has tooltips
 - `image`
   - [75336e34](https://github.com/wix-incubator/rich-content/commit/75336e34) open imageStudio on crop tab
+  - [d0986f3](https://github.com/wix-incubator/rich-content/commit/d0986f3) disabled above the fold 
 ### :house: Internal
 - `e2e`
   - [#393](https://github.com/wix-incubator/rich-content/pull/393) added atomic block alignment testing
