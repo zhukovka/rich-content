@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { isEqual } from 'lodash';
 import { validate, mergeStyles, Context } from 'wix-rich-content-common';
 import { convertItemData } from './helpers/convert-item-data';
-import { getDefault } from './constants';
+import { getDefault, isHorizontalLayout } from './constants';
 import resizeMediaUrl from './helpers/resize-media-url';
 import schema from '../statics/data-schema.json';
 import viewerStyles from '../statics/styles/viewer.scss';
@@ -16,7 +16,10 @@ class GalleryViewer extends React.Component {
     validate(props.componentData, schema);
     super(props);
 
-    this.state = this.stateFromProps(props);
+    this.state = {
+      size: {},
+      ...this.stateFromProps(props),
+    };
 
     this.sampleItems = [1, 2, 3].map(i => {
       return {
@@ -34,6 +37,11 @@ class GalleryViewer extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (!isEqual(nextProps.componentData, this.props.componentData)) {
+      const { galleryLayout: currentGalleryLayout } = this.props.componentData.styles;
+      const { galleryLayout: nextGalleryLayout } = nextProps.componentData.styles;
+      if (currentGalleryLayout !== nextGalleryLayout) {
+        this.handleGalleryLayoutChange(nextProps.componentData.styles);
+      }
       validate(nextProps.componentData, schema);
     }
     this.setState(this.stateFromProps(nextProps), () => this.updateDimensions());
@@ -77,25 +85,33 @@ class GalleryViewer extends React.Component {
     }
   }
 
-  // handle pro-gallery events
-  // https://github.com/wix-incubator/pro-gallery/blob/master/packages/gallery/src/utils/constants/events.js
+  handleGalleryLayoutChange = styleParams => {
+    if (this.container) {
+      if (isHorizontalLayout(styleParams)) {
+        const { width } = this.container.getBoundingClientRect();
+        const height = width ? (width * 9) / 16 : 300;
+        this.setState(state => ({
+          size: {
+            ...state.size,
+            height,
+          },
+        }));
+      } else {
+        this.setState({ size: { height: undefined } });
+      }
+    }
+  };
+
   handleGalleryEvents = (name, data) => {
     switch (name) {
-      // container size change callback
       case 'GALLERY_CHANGE':
-        // ignore thumbnails layout
-        if (this.state.styleParams.galleryLayout === 3) {
-          return;
+        if (this.container) {
+          if (!isHorizontalLayout(this.state.styleParams)) {
+            this.container.style.height = `${data.layoutHeight}px`;
+          } else {
+            this.container.style.height = 'auto';
+          }
         }
-        this.container && (this.container.style.height = `${data.layoutHeight}px`);
-        this.setState(prevState => {
-          this.setState({
-            size: {
-              ...prevState.size,
-              height: data.layoutHeight,
-            },
-          });
-        });
         break;
       default:
         break;
