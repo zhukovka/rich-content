@@ -47,6 +47,8 @@ class ImageSettings extends Component {
       240
     );
 
+  onInputWithLabelChange = event => this.props.onUpdateImage({ title: event.target.value });
+
   onLinkPanelChange = linkPanelValues => {
     this.props.onUpdateImage({ link: this.linkPanelToLink(linkPanelValues) });
   };
@@ -64,7 +66,6 @@ class ImageSettings extends Component {
     nofollow: rel === 'nofollow',
     isValid,
   });
-
   render() {
     const styles = this.styles;
     const {
@@ -80,7 +81,6 @@ class ImageSettings extends Component {
       onNextImage,
       onPreviousImage,
       onDeleteImage,
-      onUpdateImage,
       visibleLeftArrow,
       visibleRightArrow,
       uiSettings,
@@ -129,7 +129,11 @@ class ImageSettings extends Component {
               <div>
                 <SettingsSection
                   theme={theme}
-                  ariaProps={{ 'aria-label': 'image navigation', role: 'region' }}
+                  ariaProps={{
+                    'aria-label': 'image navigation',
+                    role: 'region',
+                    'data-hook': 'galleryImageSettingsPreview',
+                  }}
                 >
                   <Image
                     alt={metadata.title || 'gallery image preview'}
@@ -142,6 +146,7 @@ class ImageSettings extends Component {
                     className={classNames(styles.galleryImageSettings_nav, {
                       [styles.galleryImageSettings_nav_mobile]: isMobile,
                     })}
+                    data-hook="galleryImagePreview"
                   >
                     <button
                       className={classNames(styles.galleryImageSettings_previous, {
@@ -202,8 +207,9 @@ class ImageSettings extends Component {
                     label={this.titleLabel}
                     placeholder={this.titleInputPlaceholder}
                     value={metadata.title || ''}
+                    maxLength={30}
                     dataHook="galleryImageTitleInput"
-                    onChange={event => onUpdateImage({ title: event.target.value })}
+                    onChange={this.onInputWithLabelChange}
                   />
                 </SettingsSection>
                 <SettingsSection

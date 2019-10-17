@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { debounce } from 'lodash';
 import { DISPLAY_MODE } from 'wix-rich-content-common';
-import DraftOffsetKey from '@wix/draft-js/lib/DraftOffsetKey';
+import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
 import Styles from '../../../../statics/styles/side-toolbar-wrapper.scss';
 
 export default class SideToolbar extends Component {
@@ -119,7 +119,8 @@ export default class SideToolbar extends Component {
   }
 
   render() {
-    if (!this.state.isVisible) {
+    //checking false since undefined is not good
+    if (this.state.isVisible === false) {
       return null;
     }
     const { theme } = this.props;

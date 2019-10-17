@@ -8,6 +8,7 @@ import resizeMediaUrl from './helpers/resize-media-url';
 import schema from '../statics/data-schema.json';
 import viewerStyles from '../statics/styles/viewer.scss';
 import 'pro-gallery/dist/statics/main.min.css';
+import ExpandIcon from './icons/expand.svg';
 
 const { ProGallery } = process.env.SANTA ? {} : require('pro-gallery');
 
@@ -23,6 +24,12 @@ class GalleryViewer extends React.Component {
   }
 
   componentDidMount() {
+    if (this.context.helpers.onExpand) {
+      const styleParams = this.state.styleParams;
+      this.setState({
+        styleParams: { ...styleParams, allowHover: true },
+      });
+    }
     this.updateDimensions();
     window.addEventListener('resize', this.updateDimensions);
   }
@@ -71,8 +78,13 @@ class GalleryViewer extends React.Component {
   stateFromProps = props => {
     const defaults = getDefault();
     const items = props.componentData.items || defaults.items;
-    const styleParams = Object.assign(defaults.styles, props.componentData.styles || {});
-
+    const styleParams = this.getStyleParams(
+      Object.assign(defaults.styles, props.componentData.styles || {}),
+      this.hasTitle(items)
+    );
+    if (this.context && this.context.helpers.onExpand) {
+      styleParams.allowHover = true;
+    }
     return {
       items,
       styleParams,
@@ -101,28 +113,79 @@ class GalleryViewer extends React.Component {
           }
         }
         break;
+      case 'ITEM_ACTION_TRIGGERED':
+        this.handleExpand(data);
+        break;
       default:
         break;
     }
   };
 
+  handleExpand = data => {
+    const { onExpand } = this.context.helpers;
+    onExpand && onExpand(this.props.entityIndex, data.idx);
+  };
+
+  hasTitle = items => {
+    return items.some(item => {
+      return item.metadata && item.metadata.title;
+    });
+  };
+
+  getStyleParams = (styleParams, shouldRenderTitle) => {
+    if (!shouldRenderTitle) {
+      return styleParams;
+    }
+    const display = this.context.isMobile
+      ? { titlePlacement: 'SHOW_BELOW', calculateTextBoxHeightMode: 'AUTOMATIC' }
+      : { titlePlacement: 'SHOW_ON_HOVER', allowHover: true, galleryVerticalAlign: 'flex-end' };
+    return {
+      ...styleParams,
+      isVertical: styleParams.galleryLayout === 1,
+      allowTitle: true,
+      galleryTextAlign: 'center',
+      textsHorizontalPadding: 0,
+      imageInfoType: 'NO_BACKGROUND',
+      hoveringBehaviour: 'APPEARS',
+      textsVerticalPadding: 0,
+      ...display,
+    };
+  };
+
+  hoverElement = itemProps => {
+    return itemProps.linkData.url ? (
+      <ExpandIcon
+        className={this.viewerStyles.expandIcon}
+        onClick={e => {
+          e.preventDefault();
+          this.handleExpand(itemProps);
+        }}
+      />
+    ) : null;
+  };
+
   render() {
     this.styles = this.styles || mergeStyles({ styles: viewerStyles, theme: this.context.theme });
+    const { scrollingElement, ...settings } = this.props.settings;
     // TODO remove gallery key
     const { galleryKey, styleParams, size = { width: 300 } } = this.state;
+    const items = this.getItems();
     return (
       <div
         key={galleryKey}
         ref={elem => (this.container = elem)}
         className={this.styles.gallery_container}
+        data-hook="galleryViewer"
       >
         <ProGallery
-          items={this.getItems()}
+          items={items}
           styles={styleParams}
           container={size}
-          settings={this.props.settings}
+          settings={settings}
+          scrollingElement={scrollingElement}
           eventsListener={this.handleGalleryEvents}
           resizeMediaUrl={resizeMediaUrl}
+          customHoverRenderer={this.hoverElement}
         />
       </div>
     );
@@ -131,6 +194,7 @@ class GalleryViewer extends React.Component {
 
 GalleryViewer.propTypes = {
   componentData: PropTypes.object.isRequired,
+  entityIndex: PropTypes.number.isRequired,
   onClick: PropTypes.func,
   className: PropTypes.string,
   settings: PropTypes.object,
