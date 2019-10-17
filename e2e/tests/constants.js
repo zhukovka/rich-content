@@ -1,7 +1,7 @@
 // eslint-disable-next-line prettier/prettier
 export const fixtures = [
   'headers',
-  // 'images',
+  'images',
   'inline-styles',
   'lists',
   'quote',

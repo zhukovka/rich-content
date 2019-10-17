@@ -1,7 +1,5 @@
 import { INLINE_TOOLBAR_BUTTONS } from '../cypress/dataHooks';
 
-/* eslint-disable mocha/no-skipped-tests */
-
 describe('editor', () => {
   before(function() {
     cy.eyesOpen({
@@ -57,6 +55,7 @@ describe('editor', () => {
       .enterParagraphs(['#LIVING THE DREAM\n'])
       .setLink([0, 17], 'https://www.sport5.co.il')
       .setTextStyle(INLINE_TOOLBAR_BUTTONS.CODE_BLOCK, [0, 10])
+      .setSelection(0, 0)
       .enterParagraphs(['@NO_MORE\n'])
       .setLink([0, 10], 'https://www.wix.com/')
       .setTextStyle(INLINE_TOOLBAR_BUTTONS.CODE_BLOCK, [0, 10])
