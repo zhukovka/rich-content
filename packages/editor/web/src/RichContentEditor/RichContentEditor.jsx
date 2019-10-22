@@ -53,7 +53,17 @@ class RichContentEditor extends Component {
   setEditorState = editorState => this.setState({ editorState });
 
   initContext = () => {
-    const { theme, t, locale, anchorTarget, relValue, helpers, config, isMobile } = this.props;
+    const {
+      theme,
+      t,
+      locale,
+      anchorTarget,
+      relValue,
+      helpers,
+      config,
+      isMobile,
+      shouldRenderOptimizedImages,
+    } = this.props;
     this.contextualData = {
       theme,
       t,
@@ -66,6 +76,7 @@ class RichContentEditor extends Component {
       setEditorState: this.setEditorState,
       getEditorBounds: this.getEditorBounds,
       languageDir: getLangDir(locale),
+      shouldRenderOptimizedImages,
     };
   };
 
@@ -440,6 +451,7 @@ RichContentEditor.propTypes = {
   handleReturn: PropTypes.func,
   customStyleFn: PropTypes.func,
   locale: PropTypes.string.isRequired,
+  shouldRenderOptimizedImages: PropTypes.bool,
 };
 
 RichContentEditor.defaultProps = {
