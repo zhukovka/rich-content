@@ -8,9 +8,12 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+<hr/>
+
+## 5.1.10 (Oct 23, 2019)
 ### :bug: Bug Fix
 - `gallery`
-  - `scrollingElement` should be passed within gallery config
+  - [#408](https://github.com/wix-incubator/rich-content/pull/408) `scrollingElement` should be passed within gallery config
 <hr/>
 
 ## 5.1.9 (Oct 16, 2019)
