@@ -31,3 +31,4 @@ e2e/cypress/videos
 e2e/cypress/screenshots
 e2e/cypress/snapshots/All\sSpecs
 tags
+applitools.config.js

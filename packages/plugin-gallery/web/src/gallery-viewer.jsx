@@ -6,7 +6,7 @@ import { convertItemData } from './helpers/convert-item-data';
 import { getDefault, isHorizontalLayout, sampleItems } from './constants';
 import resizeMediaUrl from './helpers/resize-media-url';
 import schema from '../statics/data-schema.json';
-import viewerStyles from '../statics/styles/viewer.scss';
+import styles from '../statics/styles/viewer.scss';
 import 'pro-gallery/dist/statics/main.min.css';
 
 const { ProGallery } = process.env.SANTA ? {} : require('pro-gallery');
@@ -107,7 +107,8 @@ class GalleryViewer extends React.Component {
   };
 
   render() {
-    this.styles = this.styles || mergeStyles({ styles: viewerStyles, theme: this.context.theme });
+    this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
+    const { scrollingElement, ...settings } = this.props.settings;
     // TODO remove gallery key
     const { galleryKey, styleParams, size = { width: 300 } } = this.state;
     return (
@@ -120,7 +121,8 @@ class GalleryViewer extends React.Component {
           items={this.getItems()}
           styles={styleParams}
           container={size}
-          settings={this.props.settings}
+          scrollingElement={scrollingElement}
+          settings={settings}
           eventsListener={this.handleGalleryEvents}
           resizeMediaUrl={resizeMediaUrl}
         />

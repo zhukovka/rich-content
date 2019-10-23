@@ -8,6 +8,9 @@
 > - :house: [Internal]
 
 ## [Unreleased]
+### :bug: Bug Fix
+- `gallery`
+  - `scrollingElement` should be passed within gallery config
 <hr/>
 
 ## 5.1.9 (Oct 16, 2019)
