@@ -43,7 +43,6 @@
 - `gallery`
   - [#404](https://github.com/wix-incubator/rich-content/pull/404) delete last remaining image in image settings returns to gallery settings
   - [#403](https://github.com/wix-incubator/rich-content/pull/403) re-render gallery on change only
-  - [#408](https://github.com/wix-incubator/rich-content/pull/408) panorama layout displays all items
 - `example`
   - [#430](https://github.com/wix-incubator/rich-content/pull/430) editor + viewer: gallery config field `scrollingElement` value is a function
 ### :house: Internal
@@ -55,6 +54,19 @@
 - `mentions`
   - [#387](https://github.com/wix-incubator/rich-content/pull/387) data validation schema added
 <hr/>
+
+## 5.1.11 (Oct 28, 2019)
+### :bug: Bug Fix
+- `html`
+  - [#439](https://github.com/wix-incubator/rich-content/pull/439) apply style on container
+<hr/>
+
+## 5.1.10 (Oct 23, 2019)
+### :bug: Bug Fix
+- `gallery`
+  - [#408](https://github.com/wix-incubator/rich-content/pull/408) `scrollingElement` should be passed within gallery config
+<hr/>
+
 
 ## 5.1.9 (Oct 16, 2019)
 ### :bug: Bug Fix
