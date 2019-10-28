@@ -10,6 +10,12 @@
 ## [Unreleased]
 <hr/>
 
+## 5.1.11 (Oct 28, 2019)
+### :bug: Bug Fix
+- `html`
+  - [#439](https://github.com/wix-incubator/rich-content/pull/439) apply style on container
+<hr/>
+
 ## 5.1.10 (Oct 23, 2019)
 ### :bug: Bug Fix
 - `gallery`
