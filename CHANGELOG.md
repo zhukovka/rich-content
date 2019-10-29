@@ -8,7 +8,13 @@
 > - :house: [Internal]
 
 ## [Unreleased]
-### :boom: Breaking Change
+<details>
+  <summary>
+    Changes that have landed in master but are not yet released.
+    Click to see more.
+  </summary>
+  
+  ### :boom: Breaking Change
 - `general`
   - [#347](https://github.com/wix-incubator/rich-content/pull/347) replaced `@wix/draft-js@0.10.272` with `draft-js@0.11.0`
 ### :rocket: New Feature
@@ -55,6 +61,8 @@
   - [#405](https://github.com/wix-incubator/rich-content/pull/405) visual tests run on applitools
 - `mentions`
   - [#387](https://github.com/wix-incubator/rich-content/pull/387) data validation schema added
+</details>
+
 <hr/>
 
 ## 5.1.11 (Oct 28, 2019)
