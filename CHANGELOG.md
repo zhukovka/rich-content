@@ -13,8 +13,11 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-  
-  ### :boom: Breaking Change
+</details>
+<hr/>
+
+## 6.0.0 "MOAV" (Oct 30, 2019)
+### :boom: Breaking Change
 - `general`
   - [#347](https://github.com/wix-incubator/rich-content/pull/347) replaced `@wix/draft-js@0.10.272` with `draft-js@0.11.0`
 ### :rocket: New Feature
@@ -36,7 +39,7 @@
   - [#421](https://github.com/wix-incubator/rich-content/pull/421) resize-decorator is not activated on mobile
   - [#400](https://github.com/wix-incubator/rich-content/pull/400) inline and mobile toolbar RTL support
   - [#407](https://github.com/wix-incubator/rich-content/pull/407) list indentation
-  - [#427](https://github.com/wix-incubator/rich-content/pull/427) focus
+  - [#427](https://github.com/wix-incubator/rich-content/pull/427) focus race condition
   - [#434](https://github.com/wix-incubator/rich-content/pull/434) text dropdown buttons tooltips display
   - [#433](https://github.com/wix-incubator/rich-content/pull/433) side toolbar is positioned to the right in RTL
 - `divider`
@@ -61,8 +64,6 @@
   - [#405](https://github.com/wix-incubator/rich-content/pull/405) visual tests run on applitools
 - `mentions`
   - [#387](https://github.com/wix-incubator/rich-content/pull/387) data validation schema added
-</details>
-
 <hr/>
 
 ## 5.1.11 (Oct 28, 2019)
