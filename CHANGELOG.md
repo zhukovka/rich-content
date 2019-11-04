@@ -17,6 +17,7 @@
   ### :rocket: New Feature
   - `video`
     - [#443](https://github.com/wix-incubator/rich-content/pull/443) async url resolving support
+    - [#444](https://github.com/wix-incubator/rich-content/pull/444) file upload support
   ### :bug: Bug Fix
   - `divider`
     - [#438](https://github.com/wix-incubator/rich-content/pull/438) container alignment
