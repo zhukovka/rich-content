@@ -23,9 +23,6 @@
     - [#438](https://github.com/wix-incubator/rich-content/pull/438) container alignment
   - `viewer`
     - [#442](https://github.com/wix-incubator/rich-content/pull/442) html plugin alignment
-  ### :house: Internal
-  - `gallery`
-    - [#446](https://github.com/wix-incubator/rich-content/pull/446) `pro-gallery` updated to `v1.5.25`
     
 </details>
 <hr/>
@@ -81,6 +78,11 @@
 - `mentions`
   - [#387](https://github.com/wix-incubator/rich-content/pull/387) data validation schema added
 <hr/>
+
+## 5.1.12 (Nov 4, 2019)
+### :house: Internal
+  - `gallery`
+    - [#446](https://github.com/wix-incubator/rich-content/pull/446) `pro-gallery` updated to `v1.5.25`
 
 ## 5.1.11 (Oct 28, 2019)
 ### :bug: Bug Fix
