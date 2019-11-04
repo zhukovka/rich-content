@@ -3,9 +3,8 @@
   "command": {
     "version": {
       "allowBranch": [
-        "develop",
-        "release",
-        "master"
+        "master",
+        "release*"
       ],
       "message": "[*] chore(release): %s"
     }
