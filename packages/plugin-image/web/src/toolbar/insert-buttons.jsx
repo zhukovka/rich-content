@@ -2,7 +2,9 @@ import { TOOLBARS } from 'wix-rich-content-common';
 import { getDefault } from '../consts';
 import { InsertPluginIcon } from '../icons';
 
-export default ({ helpers, t }) => {
+export default ({ helpers, t, settings }) => {
+  const { size, alignment, showTitle, showDescription } = settings;
+  const defaults = getDefault();
   return [
     {
       type: 'file',
@@ -10,7 +12,7 @@ export default ({ helpers, t }) => {
       tooltipText: t('ImagePlugin_InsertButton_Tooltip'),
       toolbars: [TOOLBARS.FOOTER, TOOLBARS.SIDE],
       Icon: InsertPluginIcon,
-      componentData: getDefault(),
+      componentData: { ...defaults, size, alignment, showDescription, showTitle },
       helpers,
       t,
     },
