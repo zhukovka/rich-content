@@ -16,7 +16,6 @@ import { createSoundCloudPlugin } from 'wix-rich-content-plugin-sound-cloud';
 import { createGiphyPlugin, GIPHY_TYPE } from 'wix-rich-content-plugin-giphy';
 import {
   createHeadersMarkdownPlugin,
-  HEADERS_MARKDOWN_TYPE,
 } from 'wix-rich-content-plugin-headers-markdown';
 import { createMapPlugin, MAP_TYPE } from 'wix-rich-content-plugin-map';
 import { createFileUploadPlugin, FILE_UPLOAD_TYPE } from 'wix-rich-content-plugin-file-upload';
@@ -151,6 +150,10 @@ export const config = {
     scrollingElement: () => typeof window !== 'undefined' && document.getElementsByClassName('editor-example')[0],
   },
   [IMAGE_TYPE]: {
+    config: {
+      alignment: 'left',
+      size: 'small',
+    },
     imageEditorWixSettings: {
       initiator: 'some-initiator',
       siteToken:
