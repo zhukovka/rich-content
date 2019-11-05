@@ -3,7 +3,7 @@ import { getDefault } from '../consts';
 import { InsertPluginIcon } from '../icons';
 
 export default ({ helpers, t, settings }) => {
-  const { size, alignment, showTitle, showDescription } = settings;
+  const { config } = settings;
   const defaults = getDefault();
   return [
     {
@@ -12,7 +12,7 @@ export default ({ helpers, t, settings }) => {
       tooltipText: t('ImagePlugin_InsertButton_Tooltip'),
       toolbars: [TOOLBARS.FOOTER, TOOLBARS.SIDE],
       Icon: InsertPluginIcon,
-      componentData: { ...defaults, size, alignment, showDescription, showTitle },
+      componentData: { config: { ...defaults.config, ...config } },
       helpers,
       t,
     },
