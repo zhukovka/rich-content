@@ -23,7 +23,11 @@
     - [#438](https://github.com/wix-incubator/rich-content/pull/438) container alignment
   - `viewer`
     - [#442](https://github.com/wix-incubator/rich-content/pull/442) html plugin alignment
-    
+  ### :house: Internal
+  - `gallery`
+    - [#446](https://github.com/wix-incubator/rich-content/pull/446) `pro-gallery` updated to `v1.5.25`
+  - `e2e`
+    - [#447](https://github.com/wix-incubator/rich-content/pull/447) added more supported browsers
 </details>
 <hr/>
 
