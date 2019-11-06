@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://path/to/schema.json",
+  "$id": "https://wix-rich-content/button-content-data-schema.json",
   "type": "object",
   "properties": {
     "button": {

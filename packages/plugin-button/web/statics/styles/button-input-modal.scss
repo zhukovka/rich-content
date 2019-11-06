@@ -1,29 +1,29 @@
-@import "~wix-rich-content-common/dist/statics/styles/mixins";
-@import "~wix-rich-content-common/dist/statics/styles/palette";
+@import '~wix-rich-content-common/dist/statics/styles/mixins';
+@import '~wix-rich-content-common/dist/statics/styles/palette';
 
-.button_inputModal_container {
+.container {
   @include phone {
-    padding: 33px 20px;
-    padding-bottom: 10px;
+    padding: 6px 20px;
+    padding-bottom: 4px;
   }
 }
 
-.button_inputModal_design_component_container {
+.design_component_container {
   @include phone {
-    padding-top: 24px;
-    padding-bottom: 0;
+    padding-top: 7px;
+    padding-bottom: 0px;
   }
 }
 
-.button_inputModal_focus_manager {
-  border-top: none;
+.focus_manager {
+  border-top: 1px solid #ededed;
 }
 
-.button_inputModal_separator {
-  border-top: solid 1px #ccc;
+.separator {
+  border-top: solid 1px rgba(51, 51, 51, 0.2);
 }
 
-.button_inputModal_scroll {
+.scroll {
   height: calc(100vh - 152px);
   overflow-y: scroll;
   @include phone {
@@ -32,32 +32,30 @@
   }
 }
 
-.button_inputModal_header {
+.header {
   display: flex;
   align-items: center;
   margin-top: 1px;
-  padding: 18px 30px 21px;
-  height: auto;
+  padding: 22px 30px 18px;
+  border-bottom: 1px solid #ededed;
+  height: 80px;
   box-sizing: border-box;
 }
 
-.button_inputModal_header_text {
-  font-size: 20px;
-  font-family: Avenir;
+.header_text {
+  font-size: 16px;
   width: 100%;
   margin-top: 13px;
   margin-bottom: 10px;
+  margin-left: -1px;
   color: #333333;
   @include phone {
-    font-family: Avenir;
-    font-size: 20px;
-    line-height: 1.4;
-    color: #000000;
-    margin-top: 0px;
+    margin: 11px -1px 0;
+    font-size: 18px;
   }
 }
 
-.button_inputModal_design_header_text {
+.design_header_text {
   font-size: 16px;
   margin: 10px 0px;
   width: 100%;
@@ -65,21 +63,18 @@
     padding-left: 20px;
     margin: 9px 0px 0px;
     padding-bottom: 8px;
-    font-family: Avenir;
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
 .tabs_headers_option {
+  border-bottom: 1px solid #ededed;
   padding-bottom: 0px;
   padding-top: 0px;
-  font-size: 16px;
-  font-weight: normal;
-  font-family: Avenir;
 }
 .tabs_headers {
   border-bottom: none;
-  height: 52px;
+  height: 42px;
 }
 .tabs_headers_option_selected {
   border-bottom: solid 3px #0261ff;
@@ -91,21 +86,18 @@
   color: red;
 }
 
-.button_inputModal_errorIcon {
+.errorIcon {
   position: absolute;
-  top: 2px;
-  left: 130px;
-  color: #F97972;
+  top: -1px;
+  left: 123px;
 }
-.tabs_headers_option + .tabs_headers_option {
-  border-left: 0;
-}
-.button_inputModal_modal_footer {
+
+.modal_footer {
   padding-right: 29px;
   padding-left: 30px;
 }
 
-.button_inputModal_settingTab {
+.settingTab {
   position: relative;
   width: 100%;
 }
@@ -115,18 +107,18 @@
 }
 
 .tabs_panel {
-  height: calc(100vh - 242px);
+  height: calc(100vh - 223px);
   overflow: hidden;
   box-sizing: border-box;
   padding: 0px 30px 0px;
   padding-right: 0px;
 }
 
-.button_inputModal_tabLabel {
-  margin-top: 15px;
+.tabLabel {
+  margin-top: 12px;
 }
 
-.button_inputModal_scrollbar_thumb {
+.scrollbar_thumb {
   background: #000000;
   border-radius: 4px;
   width: 4px;
@@ -138,37 +130,16 @@
   opacity: 0.8;
 }
 
-.button_inputModal_customize_scrollbar_container {
+.customize_scrollbar_container {
   height: 100%;
 }
 
 .settingsPanel_save {
-  width: 165px;
-  height: 42px;
-}
-.settingsPanel_cancel + .settingsPanel_save {
-  margin-left: 30px;
-}
-
-.settingsPanel_footer {
-  border-top: 0;
+  width: 78px;
+  height: 40px;
 }
 
 .settingsPanel_cancel {
-  width: 165px;
-  height: 42px;
-}
-.button_primary {
-  font-family: Avenir;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #ffffff;
-  background: #0261ff;
-}
-.button_secondary {
-  font-family: Avenir;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #0261ff;
-  border: 1px solid #0261ff;
+  width: 90px;
+  height: 40px;
 }
