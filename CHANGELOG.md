@@ -14,7 +14,12 @@
     Click to see more.
   </summary>
 
-  ### :rocket: New Feature
+  
+</details>
+<hr/>
+
+## 6.1.0 (Nov 10, 2019)
+### :rocket: New Feature
   - `editor`
     - [#445](https://github.com/wix-incubator/rich-content/pull/445) initial intent for all plugins except file-upload plugins
   - `mentions`
@@ -42,7 +47,6 @@
     - [#450](https://github.com/wix-incubator/rich-content/pull/450) moved width from data into data.config
   - `babel`
     - [#454](https://github.com/wix-incubator/rich-content/pull/454) add optional chaining support   
-</details>
 <hr/>
 
 ## 6.0.0 "MOAV" (Oct 30, 2019)
