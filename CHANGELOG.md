@@ -25,6 +25,8 @@
     - [#449](https://github.com/wix-incubator/rich-content/pull/449) force video mime type for uploads
     - [#451](https://github.com/wix-incubator/rich-content/pull/451) uses unique file input id
   ### :bug: Bug Fix
+  - `common`
+    - [#454](https://github.com/wix-incubator/rich-content/pull/454) link panel not loading link data after page refresh
   - `divider`
     - [#438](https://github.com/wix-incubator/rich-content/pull/438) container alignment
   - `viewer`
@@ -36,6 +38,9 @@
     - [#446](https://github.com/wix-incubator/rich-content/pull/446) `pro-gallery` updated to `v1.5.25`
   - `e2e`
     - [#447](https://github.com/wix-incubator/rich-content/pull/447) added more supported browsers
+  - `babel`
+    - [#454](https://github.com/wix-incubator/rich-content/pull/454) add optional chaining support
+    
 </details>
 <hr/>
 
