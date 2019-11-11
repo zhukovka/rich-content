@@ -35,7 +35,7 @@ class ExampleApp extends PureComponent {
       contentState,
       isEditorShown: true,
       isViewerShown: !isMobile,
-      isPreviewShown: !this.isMobile,
+      isPreviewShown: !isMobile,
       isContentStateShown: false,
       viewerResetKey: 0,
       previewResetKey: 0,
@@ -147,7 +147,6 @@ class ExampleApp extends PureComponent {
     );
   };
 
-
   renderPreview = () => {
     const { previewState, isMobile, locale, localeResource } = this.props;
     const { isPreviewShown } = this.state;
@@ -163,7 +162,10 @@ class ExampleApp extends PureComponent {
     ];
     return (
       isPreviewShown && (
-        <ReflexElement key={`preview-section-${this.state.previewResetKey}`} className="section preview-example">
+        <ReflexElement
+          key={`preview-section-${this.state.previewResetKey}`}
+          className="section preview-example"
+        >
           <SectionHeader
             title="Preview"
             settings={settings}
@@ -171,7 +173,12 @@ class ExampleApp extends PureComponent {
           />
           <SectionContent>
             <ErrorBoundary>
-              <Preview initialState={previewState} isMobile={this.state.previewIsMobile || isMobile} locale={locale} localeResource={localeResource}/>
+              <Preview
+                initialState={previewState}
+                isMobile={this.state.previewIsMobile || isMobile}
+                locale={locale}
+                localeResource={localeResource}
+              />
             </ErrorBoundary>
           </SectionContent>
         </ReflexElement>
@@ -205,7 +212,12 @@ class ExampleApp extends PureComponent {
           />
           <SectionContent>
             <ErrorBoundary>
-              <Viewer initialState={viewerState} isMobile={this.state.viewerIsMobile || isMobile} locale={locale} localeResource={localeResource}/>
+              <Viewer
+                initialState={viewerState}
+                isMobile={this.state.viewerIsMobile || isMobile}
+                locale={locale}
+                localeResource={localeResource}
+              />
             </ErrorBoundary>
           </SectionContent>
         </ReflexElement>
@@ -239,7 +251,12 @@ class ExampleApp extends PureComponent {
     this.setState({ [`show${sectionName}`]: isVisible });
 
   renderSections = () => {
-    const sections = compact([this.renderEditor(), this.renderViewer(), this.renderPreview(), this.renderContentState()]);
+    const sections = compact([
+      this.renderEditor(),
+      this.renderViewer(),
+      this.renderPreview(),
+      this.renderContentState(),
+    ]);
 
     return flatMap(sections, (val, i, arr) =>
       arr.length - 1 !== i
@@ -251,7 +268,8 @@ class ExampleApp extends PureComponent {
   render() {
     const { isMobile } = this.props;
     const { isEditorShown, isViewerShown, isContentStateShown, isPreviewShown } = this.state;
-    const showEmptyState = !isEditorShown && !isViewerShown && !isContentStateShown && !isPreviewShown;
+    const showEmptyState =
+      !isEditorShown && !isViewerShown && !isContentStateShown && !isPreviewShown;
 
     return (
       <div className="wrapper">
