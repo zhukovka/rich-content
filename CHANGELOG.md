@@ -18,6 +18,9 @@
 <hr/>
 
 ## 6.2.0 (Nov 11, 2019)
+### :boom: Breaking Change
+- `locale`
+  - [#435](https://github.com/wix-incubator/rich-content/pull/435) `messages_xx.json` files moved to `wix-rich-content-common`
 ### :rocket: New Feature
 - `preview`
   - [#435](https://github.com/wix-incubator/rich-content/pull/435) package added
@@ -29,9 +32,6 @@
 ### :book: Documentation
 - `preview`
   - [#435](https://github.com/wix-incubator/rich-content/pull/435) [documentation](./docs/rich-content-preview.md) added
-### :house: Internal
-- `locale`
-  - [#435](https://github.com/wix-incubator/rich-content/pull/435) `messages_xx.json` files moved to `wix-rich-content-common`
 
 ## 6.1.0 (Nov 10, 2019)
 ### :rocket: New Feature
