@@ -21,26 +21,11 @@ import IframeHtml from './IframeHtml';
 import IframeUrl from './IframeUrl';
 import htmlComponentStyles from '../statics/styles/HtmlComponent.scss';
 
-const getPageURL = (htmlIframeSrc, siteDomain) => {
-  const regex = /http.+com/gm;
-  const res = regex.exec(siteDomain) || (htmlIframeSrc && regex.exec && regex.exec(htmlIframeSrc));
-  if (res) {
-    return res[0];
-  }
-  return res;
-};
-
 class HtmlComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      siteDomain: this.context && this.context.siteDomain,
-    };
-  }
+  state = {};
 
   componentDidMount() {
     const { componentData, settings } = this.props;
-    const { siteDomain } = this.context;
     if (!componentData.config.width) {
       if (settings && settings.width) {
         componentData.config.width = settings.width;
@@ -59,23 +44,6 @@ class HtmlComponent extends Component {
         componentData.config.height = INIT_HEIGHT;
       }
     }
-    this.setState({ siteDomain });
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    const { componentData, settings } = props;
-    let html = componentData && componentData.src;
-    if (componentData.srcType === 'html' && state.siteDomain) {
-      const { htmlIframeSrc } = settings;
-      const pageURL = getPageURL(htmlIframeSrc, state.siteDomain);
-      if (pageURL && html && html.includes && html.includes('adsbygoogle')) {
-        const updatedAd = `<ins class="adsbygoogle"\n\tdata-page-url="${pageURL}"`;
-        html = html.replace(new RegExp('<ins class="adsbygoogle"', 'g'), updatedAd);
-      }
-    }
-    return {
-      html,
-    };
   }
 
   setHeight = iframeHeight => {
@@ -87,7 +55,6 @@ class HtmlComponent extends Component {
   };
 
   render() {
-    const { html } = this.state;
     this.styles =
       this.styles || mergeStyles({ styles: htmlComponentStyles, theme: this.context.theme });
     const { props } = this;
@@ -116,7 +83,7 @@ class HtmlComponent extends Component {
             <IframeHtml
               key={SRC_TYPE_HTML}
               tabIndex={readOnly ? -1 : 0}
-              html={html}
+              html={src}
               src={htmlIframeSrc}
               onHeightChange={this.setHeight}
             />

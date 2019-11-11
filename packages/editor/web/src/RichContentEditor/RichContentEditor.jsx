@@ -72,7 +72,6 @@ class RichContentEditor extends Component {
       isMobile,
       shouldRenderOptimizedImages,
       initialIntent,
-      siteDomain,
     } = this.props;
     this.contextualData = {
       theme,
@@ -88,7 +87,6 @@ class RichContentEditor extends Component {
       languageDir: getLangDir(locale),
       shouldRenderOptimizedImages,
       initialIntent,
-      siteDomain,
     };
   };
 
@@ -478,7 +476,6 @@ RichContentEditor.propTypes = {
   shouldRenderOptimizedImages: PropTypes.bool,
   onAtomicBlockFocus: PropTypes.func,
   initialIntent: PropTypes.string,
-  siteDomain: PropTypes.string,
 };
 
 RichContentEditor.defaultProps = {
