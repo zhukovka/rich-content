@@ -16,9 +16,6 @@ To install this package as editor, use the following command ([draft-js version]
 npm install --save wix-rich-content-editor draft-js
 ```
 
-#### Note 
-`wix-rich-content-editor` depends on - make sure to install it as well.
-
 To install this package as viewer, use the following command:
 
 ```bash
