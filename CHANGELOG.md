@@ -56,7 +56,9 @@
     - [#438](https://github.com/wix-incubator/rich-content/pull/438) container alignment
   - `viewer`
     - [#442](https://github.com/wix-incubator/rich-content/pull/442) html plugin alignment
-  - `editor`
+  - `gallery`
+    - [#455](https://github.com/wix-incubator/rich-content/pull/455) gallery image titles appears
+  - editor
     - [#448](https://github.com/wix-incubator/rich-content/pull/448) placeholder style fixed
   ### :house: Internal
   - `gallery`
