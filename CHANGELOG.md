@@ -125,14 +125,20 @@
   - [#387](https://github.com/wix-incubator/rich-content/pull/387) data validation schema added
 <hr/>
 
-## 5.1.13 (Nov 5, 2019)
+## 5.1.14 (Hotfix - Nov 14, 2019)
+### :house: Internal
+  - `gallery`
+    - [#467](https://github.com/wix-incubator/rich-content/pull/467) `pro-gallery` updated to `v1.5.33`
+<hr />
+
+## 5.1.13 (Hotfix - Nov 5, 2019)
 ### :bug: Bug Fix
   - `viewer`
     - [#426](https://github.com/wix-incubator/rich-content/pull/426) rtl issues
   - `file-upload`
     - [#426](https://github.com/wix-incubator/rich-content/pull/426) spinner animation
 
-## 5.1.12 (Nov 4, 2019)
+## 5.1.12 (Hotfix - Nov 4, 2019)
 ### :house: Internal
   - `gallery`
     - [#446](https://github.com/wix-incubator/rich-content/pull/446) `pro-gallery` updated to `v1.5.25`
