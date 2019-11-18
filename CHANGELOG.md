@@ -54,6 +54,8 @@
     - [#444](https://github.com/wix-incubator/rich-content/pull/444) file upload support
     - [#449](https://github.com/wix-incubator/rich-content/pull/449) force video mime type for uploads
     - [#451](https://github.com/wix-incubator/rich-content/pull/451) uses unique file input id
+  - `editor`
+    - [#453](https://github.com/wix-incubator/rich-content/pull/453) added drag and drop capability to plugins
   - `html`
     - [#460](https://github.com/wix-incubator/rich-content/pull/460) adsense support
   ### :bug: Bug Fix
