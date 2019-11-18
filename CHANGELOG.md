@@ -15,8 +15,10 @@
   </summary>
   
   ### :bug: Bug Fix
+  - `gallery`
+    - [#469](https://github.com/wix-incubator/rich-content/pull/469) styles reference
   - `fullscreen`
-    - [#465](https://github.com/wix-incubator/rich-content/pull/465) getImagesData not working correctly
+    - [#465](https://github.com/wix-incubator/rich-content/pull/465) getImagesData was not working correctly
   - `video`
     - [#468](https://github.com/wix-incubator/rich-content/pull/468) video file upload selection  
   ### :house: Internal
