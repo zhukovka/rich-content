@@ -237,11 +237,11 @@ Note: these plugins are found in a [separate repository](https://github.com/wix-
 
 ### Usage with [Yoshi](https://github.com/wix/yoshi)
 
-To use the editor with Yoshi, you should do the same bootstrapping process, but make sure to include the package's `.css` files from a `.scss` file, or add `.global` to the import:
+To use the editor with Yoshi, you should do the same bootstrapping process, but make sure to include the package's `.css` files from a `.global.scss` file.  For example, create a file named `rich-content.global.scss` with the following content (make sure to import styles from any plugins you are using as well):
 
-```es6
-import 'wix-rich-content-common/dist/styles.min.global.css';
-import 'wix-rich-content-editor/dist/styles.min.global.css';
+```scss
+@import '~wix-rich-content-common/dist/styles.min.css';
+@import '~wix-rich-content-editor/dist/styles.min.css';
 ```
 
 > This workaround is required because Yoshi re-compiles CSS files, and applies css-modules again.
