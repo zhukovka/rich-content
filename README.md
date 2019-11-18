@@ -229,11 +229,7 @@ You can find a full list of classes you can override in [here](./examples/main/s
 
 [wix-rich-content-plugin-image](./packages/plugin-image) embed images in your content
 
-##### Private Wix Plugins
-
-[wix-rich-content-plugin-gallery](https://github.com/wix-incubator/rich-content-plugins-wix/tree/master/packages/plugin-gallery) embed Wix `pro-gallery` component in your content
-
-Note: these plugins are found in a [separate repository](https://github.com/wix-incubator/rich-content-plugins-wix) since they are dependent on private Wix code
+[wix-rich-content-plugin-gallery](./packages/plugin-gallery) embed Wix `pro-gallery` component in your content
 
 ### Usage with [Yoshi](https://github.com/wix/yoshi)
 
