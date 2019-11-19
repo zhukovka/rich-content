@@ -34,7 +34,7 @@ class ImageViewer extends React.Component {
   getImageUrl(src) {
     const { helpers } = this.context || {};
 
-    if (!src && (helpers && helpers.handleFileSelection)) {
+    if (!src && helpers && helpers.handleFileSelection) {
       return null;
     }
 

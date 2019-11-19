@@ -4,11 +4,12 @@ import { MediaReplaceIcon, ImageEditorIcon } from '../icons';
 
 const removeEmpty = list => list.filter(item => !!item);
 
-export default ({ t, anchorTarget, relValue, uiSettings, isMobile, imageEditorWixSettings }) => {
+export default ({ t, anchorTarget, relValue, uiSettings, isMobile, settings = {} }) => {
   const modalStyles = getModalStyles({ isMobile });
   const imageEditorStyles = getModalStyles({
     customStyles: { content: { maxWidth: '100%', background: 'transparent' } },
   });
+  const { imageEditorWixSettings, onImageEditorOpen } = settings;
   const imageEditorButton = imageEditorWixSettings
     ? {
         keyName: 'imageEditor',
@@ -18,6 +19,7 @@ export default ({ t, anchorTarget, relValue, uiSettings, isMobile, imageEditorWi
         modalStyles: imageEditorStyles,
         t,
         imageEditorWixSettings,
+        onImageEditorOpen,
         mobile: false,
         tooltipTextKey: 'ImageEditorButton_Tooltip',
       }

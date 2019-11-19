@@ -7,6 +7,12 @@
 > - :book: [Documentation]
 > - :house: [Internal]
 
+## 5.1.15 (Nov 14, 2019)
+### :rocket: New Feature
+- `image`
+  - [#476](https://github.com/wix-incubator/rich-content/pull/476) `config.onImageEditorOpen` is invoked when media studio is launched
+<hr />
+
 ## 5.1.14 (Nov 14, 2019)
 ### :house: Internal
   - `gallery`
