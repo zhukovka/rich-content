@@ -14,7 +14,13 @@
     Click to see more.
   </summary>
   
-  ### :rocket: New Feature
+  
+
+</details>
+<hr/>
+
+## 6.3.0 (Nov 20, 2019)
+### :rocket: New Feature
   - `editor`
     - [#473](https://github.com/wix-incubator/rich-content/pull/473) enable consumers to set plugin defaults
   - `image`
@@ -23,7 +29,7 @@
     - [#477](https://github.com/wix-incubator/rich-content/pull/477) `uiSettings.disableRightClick` enables right click protection
   ### :bug: Bug Fix
   - `preview`
-    -[#479](https://github.com/wix-incubator/rich-content/pull/479) seeFullPost default style fixed
+    - [#479](https://github.com/wix-incubator/rich-content/pull/479) seeFullPost default style fixed
   - `gallery`
     - [#469](https://github.com/wix-incubator/rich-content/pull/469) styles reference
   - `fullscreen`
@@ -33,9 +39,6 @@
   ### :house: Internal
   - `gallery`
     - [#467](https://github.com/wix-incubator/rich-content/pull/467) `pro-gallery` updated to `v1.5.33`
-
-</details>
-<hr/>
 
 ## 6.2.0 (Nov 11, 2019)
 ### :boom: Breaking Change
