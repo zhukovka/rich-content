@@ -1,4 +1,4 @@
-import { getUrlMatches } from 'wix-rich-content-common';
+import { getUrlMatches } from 'wix-rich-content-common/dist/urlValidators';
 
 export const LinkStrategy = (contentBlock, callback) => {
   const text = contentBlock.getText();

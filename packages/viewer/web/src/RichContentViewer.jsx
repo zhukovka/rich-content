@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {
-  mergeStyles,
-  AccessibilityListener,
-  normalizeInitialState,
-  Context,
-} from 'wix-rich-content-common';
+import { mergeStyles } from 'wix-rich-content-common/dist/mergeStyles';
+import { AccessibilityListener } from 'wix-rich-content-common/dist/AccessibilityListener';
+import { normalizeInitialState } from 'wix-rich-content-common/dist/normalizeInitialState';
+import { Context } from 'wix-rich-content-common/dist/Context';
 import { convertToReact } from './utils/convertContentState';
 import viewerStyles from '../statics/rich-content-viewer.scss';
 import viewerAlignmentStyles from '../statics/rich-content-viewer-alignment.rtlignore.scss';

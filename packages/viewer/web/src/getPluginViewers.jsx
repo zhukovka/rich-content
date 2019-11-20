@@ -6,9 +6,9 @@ import {
   sizeClassName,
   alignmentClassName,
   textWrapClassName,
-  normalizeUrl,
-  Context,
-} from 'wix-rich-content-common';
+} from 'wix-rich-content-common/dist/classNameStrategies';
+import { normalizeUrl } from 'wix-rich-content-common/dist/urlValidators';
+import { Context } from 'wix-rich-content-common/dist/Context';
 import { getInteractionWrapper, DefaultInteractionWrapper } from './utils/getInteractionWrapper';
 
 class PluginViewer extends PureComponent {

@@ -47,7 +47,7 @@ const editorEntry = {
 };
 
 let libEntries;
-try {
+if (fs.existsSync('./src/lib')) {
   fs.readdirSync('./src/lib/').forEach(file => {
     libEntries = {
       input: 'src/lib/' + file,
@@ -61,11 +61,10 @@ try {
       watch,
     };
   });
-} catch (_) {}
+}
 
 let viewerEntry;
-try {
-  fs.accessSync('./src/viewer.js');
+if (fs.existsSync('./src/viewer.js')) {
   viewerEntry = {
     input: 'src/viewer.js',
     output: cloneDeep(output).map(o => {
@@ -77,10 +76,49 @@ try {
     external,
     watch,
   };
-} catch (_) {}
+}
 
 const config = [editorEntry];
 
+if (MODULE_NAME === 'Common') {
+  const paths = fs
+    .readFileSync('./src/index.js', 'utf8')
+    .match(/\'\.\/.+\'/g)
+    .map(s => s.slice(1, -1).replace('./', './src/'))
+    .map(path => {
+      if (fs.existsSync(path + '.js')) {
+        return path + '.js';
+      } else if (fs.existsSync(path + '.jsx')) {
+        return path + '.jsx';
+      } else if (fs.existsSync(path) && fs.lstatSync(path).isDirectory()) {
+        return path + '/index.js';
+      } else {
+        console.warn("can't find index for this path: " + path);
+      }
+    })
+    .reduce((paths, path) => {
+      const name = path
+        .replace('/index.js', '')
+        .replace('.jsx', '')
+        .replace('.js', '')
+        .match(/\w+$/)[0];
+      paths[name] = path;
+      return paths;
+    }, {});
+  config.push({
+    input: paths,
+    output: [
+      {
+        dir: 'dist',
+        format: 'es',
+        sourcemap: true,
+      },
+    ],
+    plugins,
+    external,
+    watch,
+  });
+}
 if (viewerEntry) {
   config.push(viewerEntry);
 }

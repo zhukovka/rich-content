@@ -1,4 +1,4 @@
-import { withI18n } from 'wix-rich-content-common';
+import { withI18n } from 'wix-rich-content-common/dist/withI18n';
 import englishResources from 'wix-rich-content-common/dist/statics/locale/messages_en.json';
 import RichContentViewer from './RichContentViewer';
 

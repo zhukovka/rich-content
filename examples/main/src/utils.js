@@ -1,7 +1,7 @@
 import { debounce, pick } from 'lodash';
 import local from 'local-storage';
 import MobileDetect from 'mobile-detect';
-import { convertFromRaw, createWithContent } from 'wix-rich-content-editor';
+import { convertFromRaw, createWithContent } from 'wix-rich-content-editor/dist/lib/editorStateConversion';
 import { normalizeInitialState, isSSR } from 'wix-rich-content-common';
 import * as CONSTS from './consts';
 
