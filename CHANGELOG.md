@@ -15,6 +15,8 @@
   </summary>
   
   ### :rocket: New Feature
+  - `editor`
+    - [#473](https://github.com/wix-incubator/rich-content/pull/473) enable consumers to set plugin defaults
   - `image`
     - [#476](https://github.com/wix-incubator/rich-content/pull/476) `config.onImageEditorOpen` is invoked when media studio is launched
   ### :bug: Bug Fix
@@ -29,6 +31,7 @@
   ### :house: Internal
   - `gallery`
     - [#467](https://github.com/wix-incubator/rich-content/pull/467) `pro-gallery` updated to `v1.5.33`
+
 </details>
 <hr/>
 

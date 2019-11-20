@@ -13,7 +13,7 @@ import {
   EXTERNAL_MENTIONS_TYPE,
 } from 'wix-rich-content-plugin-mentions';
 import { createCodeBlockPlugin, CODE_BLOCK_TYPE } from 'wix-rich-content-plugin-code-block';
-import { createSoundCloudPlugin } from 'wix-rich-content-plugin-sound-cloud';
+import { createSoundCloudPlugin, SOUND_CLOUD_TYPE } from 'wix-rich-content-plugin-sound-cloud';
 import { createGiphyPlugin, GIPHY_TYPE } from 'wix-rich-content-plugin-giphy';
 import {
   createHeadersMarkdownPlugin,
@@ -154,6 +154,14 @@ export const config = {
       typeof window !== 'undefined' && document.getElementsByClassName('editor-example')[0],
   },
   [IMAGE_TYPE]: {
+    // defaultData: {
+    //   config: {
+    //     alignment: 'left',
+    //     size: 'content',
+    //     showTitle: true,
+    //     showDescription: true,
+    //   },
+    // },
     imageEditorWixSettings: {
       initiator: 'some-initiator',
       siteToken:
@@ -221,6 +229,7 @@ export const config = {
   [LINK_TYPE]: {
     onClick: (event, url) => console.log('link clicked!', url),
   },
+  [SOUND_CLOUD_TYPE]: {},
   [CODE_BLOCK_TYPE]: {},
   [DIVIDER_TYPE]: {},
   // [EXTERNAL_EMOJI_TYPE]: {},
