@@ -1,4 +1,4 @@
-import { MODIFIERS } from 'wix-rich-content-common';
+import { MODIFIERS } from 'wix-rich-content-common/dist/consts';
 import TextCodeBlockButton from './TextCodeBlockButton';
 import { CODE_BLOCK_TYPE } from '../types';
 import { toggleBlockTypeAndEnsureSpaces } from './blockTypeModifiers';

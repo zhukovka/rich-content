@@ -1,4 +1,4 @@
-import { TOOLBARS } from 'wix-rich-content-common';
+import { TOOLBARS } from 'wix-rich-content-common/dist/consts';
 import { CodeBlockIcon } from '../icons';
 
 export default ({ helpers, t, addBlockHandler }) => {

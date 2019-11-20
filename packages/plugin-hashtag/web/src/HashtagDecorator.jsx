@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import { range } from 'lodash';
-import { hasLinksInBlock } from 'wix-rich-content-common';
+import { hasLinksInBlock } from 'wix-rich-content-common/dist/draftUtils';
 import Hashtag from './HashtagComponent';
 import hashtagRegexes from './hashtagRegexes';
 
