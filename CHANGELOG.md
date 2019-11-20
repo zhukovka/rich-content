@@ -19,6 +19,8 @@
     - [#473](https://github.com/wix-incubator/rich-content/pull/473) enable consumers to set plugin defaults
   - `image`
     - [#476](https://github.com/wix-incubator/rich-content/pull/476) `config.onImageEditorOpen` is invoked when media studio is launched
+  - `plugins`
+    - [#477](https://github.com/wix-incubator/rich-content/pull/477) `uiSettings.disableRightClick` enables right click protection
   ### :bug: Bug Fix
   - `preview`
     -[#479](https://github.com/wix-incubator/rich-content/pull/479) seeFullPost default style fixed
