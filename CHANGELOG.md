@@ -20,7 +20,9 @@
   - `image`
     - [#476](https://github.com/wix-incubator/rich-content/pull/476) `config.onImageEditorOpen` is invoked when media studio is launched
   - `plugins`
-    - [#477](https://github.com/wix-incubator/rich-content/pull/477) `uiSettings.disableRightClick` enables right click protection
+    - [#477](https://github.com/wix-incubator/rich-content/pull/477) `uiSettings.disableRightClick` enables right click protection   
+  - `giphy`
+    - [#474](https://github.com/wix-incubator/rich-content/pull/474) mp4 gifs and lower res gifs support
   ### :bug: Bug Fix
   - `preview`
     -[#479](https://github.com/wix-incubator/rich-content/pull/479) seeFullPost default style fixed
