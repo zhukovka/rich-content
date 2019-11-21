@@ -33,6 +33,8 @@
 - `giphy`
     - [#474](https://github.com/wix-incubator/rich-content/pull/474) mp4 gifs and lower res gifs support
 ### :bug: Bug Fix
+- `imageEditor`
+  - [#482](https://github.com/wix-incubator/rich-content/pull/482) fix imageEditor doesn't load when requireJS is present
 - `preview`
   - [#479](https://github.com/wix-incubator/rich-content/pull/479) seeFullPost default style fixed
 - `gallery`
