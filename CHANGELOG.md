@@ -16,7 +16,9 @@
   
 ### :bug: Bug Fix
 - `video`
-  - [#480](https://github.com/wix-incubator/rich-content/pull/480) video file selection 
+  - [#480](https://github.com/wix-incubator/rich-content/pull/480) video file selection
+- `giphy`
+  - [#485](https://github.com/wix-incubator/rich-content/pull/485) giphy-viewer: `data.config.sizes` fallbacks to empty object
   
   
 </details>
