@@ -15,6 +15,8 @@
   </summary>
   
   ### :rocket: New Feature
+  - `text-color`
+    - [#440](https://github.com/wix-incubator/rich-content/pull/440) text highlight plugin
   - `button`
     - [#472](https://github.com/wix-incubator/rich-content/pull/472) plugin improved  
 ### :bug: Bug Fix
@@ -80,9 +82,7 @@
     - [#452](https://github.com/wix-incubator/rich-content/pull/452) `handleDropdownOpen`, `handleDropdownClose` and `popoverComponent` added to plugin settings
   - `video`
     - [#443](https://github.com/wix-incubator/rich-content/pull/443) async url resolving support
-    - [#444](https://github.com/wix-incubator/rich-content/pull/444) file upload support
-  - `text-color`
-    - [#440](https://github.com/wix-incubator/rich-content/pull/440) text highlight plugin
+    - [#444](https://github.com/wix-incubator/rich-content/pull/444) file upload support  
     - [#449](https://github.com/wix-incubator/rich-content/pull/449) force video mime type for uploads
     - [#451](https://github.com/wix-incubator/rich-content/pull/451) uses unique file input id
   - `editor`
