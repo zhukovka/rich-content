@@ -54,7 +54,7 @@ import {
   customBackgroundStyleFn,
 } from '../../src/text-color-style-fn';
 import { getBaseUrl } from '../../src/utils';
-
+// import { MyCustomIcon, SizeSmallRightIcon, TOOLBARS } from 'wix-rich-content-common';
 // import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-common';
 // import InlineToolbarDecoration from './Components/InlineToolbarDecoration';
 // import StaticToolbarDecoration from './Components/StaticToolbarDecoration';
@@ -164,9 +164,21 @@ const uiSettings = {
 };
 
 export const config = {
+  // [BUTTON_TYPE]: {
+  //   toolbar: {
+  //     icons: {
+  //       Button: MyCustomIcon, // insert plugin icon
+  //     },
+  //   },
+  // },
   [GALLERY_TYPE]: {
     scrollingElement: () =>
       typeof window !== 'undefined' && document.getElementsByClassName('editor-example')[0],
+    // toolbar: {
+    //   icons: {
+    //     Gallery: MyCustomIcon, // insert plugin icon
+    //   },
+    // },
   },
   [IMAGE_TYPE]: {
     // defaultData: {
@@ -185,6 +197,23 @@ export const config = {
       mediaRoot: 'some-mediaRoot',
     },
     onImageEditorOpen: () => console.log('Media Studio Launched'),
+    // toolbar: {
+    //   icons: {
+    //     Image: MyCustomIcon, // insert plugin icon
+    //     alignLeft: MyCustomIcon,
+    //     link: MyCustomIcon,
+    //     sizeOriginal: MyCustomIcon,
+    //     sizeSmallCenter: MyCustomIcon,
+    //     sizeContent: MyCustomIcon,
+    //     imageEditor: MyCustomIcon,
+    //     sizeFullWidth: MyCustomIcon,
+    //     alignCenter: MyCustomIcon,
+    //     alignRight: MyCustomIcon,
+    //     settings: MyCustomIcon,
+    //     replace: MyCustomIcon,
+    //     delete: SizeSmallRightIcon,
+    //   },
+    // },
   },
   [HASHTAG_TYPE]: {
     createHref: decoratedText => `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`,
@@ -200,6 +229,11 @@ export const config = {
     width: 350,
     minHeight: 50,
     maxHeight: 1200,
+    // toolbar: {
+    //   icons: {
+    //     HTML: MyCustomIcon, // insert plugin icon
+    //   },
+    // },
   },
   [EXTERNAL_MENTIONS_TYPE]: {
     repositionSuggestions: true,
@@ -234,6 +268,11 @@ export const config = {
       ),
   },
   [LINE_SPACING_TYPE]: {
+    // toolbar: {
+    //   icons: {
+    //     'line-spacing': MyCustomIcon, // insert plugin icon
+    //   },
+    // },
     defaultSpacing: {
       'line-height': '1.5',
       'padding-top': '2px',
@@ -242,6 +281,11 @@ export const config = {
     onUpdate: spacing => console.log(LINE_SPACING_TYPE, spacing),
   },
   [LINK_TYPE]: {
+    // toolbar: {
+    //   icons: {
+    //     link: MyCustomIcon, // insert plugin icon
+    //   },
+    // },
     onClick: (event, url) => console.log('link clicked!', url),
   },
   [SOUND_CLOUD_TYPE]: {},
@@ -251,6 +295,9 @@ export const config = {
   [VIDEO_TYPE]: {
     toolbar: {
       hidden: [],
+      // icons: {
+      //   Video: MyCustomIcon, //insert plugin icon
+      // },
     },
     //Here you can call your custom video upload functionality (comment function to disable custom upload)
     handleFileSelection: (updateEntity, removeEntity) => {
@@ -304,6 +351,11 @@ export const config = {
   },
   [GIPHY_TYPE]: {
     giphySdkApiKey: process.env.GIPHY_API_KEY,
+    // toolbar: {
+    //   icons: {
+    //     GIF: MyCustomIcon, // insert plugin icon
+    //   },
+    // },
     sizes: { desktop: 'original', mobile: 'original' }, // original or downsizedSmall are supported
   },
   [MAP_TYPE]: {
@@ -324,8 +376,18 @@ export const config = {
       isStreetViewControlShown: true,
       isDraggingAllowed: true,
     },
+    // toolbar: {
+    //   icons: {
+    //     Map: MyCustomIcon,  // insert plugin icon
+    //   },
+    // },
   },
   [FILE_UPLOAD_TYPE]: {
+    // toolbar: {
+    //   icons: {
+    // UploadFile: MyCustomIcon, // insert plugin icon
+    //   },
+    // },
     accept: '*',
     onFileSelected: (file, updateEntity) => {
       const name = file.name;
@@ -403,6 +465,26 @@ export const config = {
   },
   uiSettings,
   getToolbarSettings: ({ pluginButtons, textButtons }) => [
+    // {
+    //   name: TOOLBARS.TEXT,
+    //   getIcons: () => ({
+    //     Bold: MyCustomIcon,
+    //     Italic: MyCustomIcon,
+    //     Underline: MyCustomIcon,
+    //     Indent: MyCustomIcon,
+    //     inactiveIconTitle: SizeSmallRightIcon,
+    //     TitleOne: MyCustomIcon,
+    //     TitleTwo: SizeSmallRightIcon,
+    //     Blockquote: MyCustomIcon,
+    //     Alignment: MyCustomIcon,
+    //     AlignLeft: MyCustomIcon,
+    //     AlignCenter: MyCustomIcon,
+    //     AlignRight: MyCustomIcon,
+    //     AlignJustify: MyCustomIcon,
+    //     OrderedList: MyCustomIcon,
+    //     UnorderedList: MyCustomIcon,
+    //   }),
+    // },
     // {
     //   name: TOOLBARS.PLUGIN,
     //   getVisibilityFn: () => ({

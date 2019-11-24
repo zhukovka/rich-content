@@ -14,11 +14,13 @@
     Click to see more.
   </summary>
   
-  ### :rocket: New Feature
-  - `text-color`
-    - [#440](https://github.com/wix-incubator/rich-content/pull/440) text highlight plugin
-  - `button`
-    - [#472](https://github.com/wix-incubator/rich-content/pull/472) plugin improved  
+### :rocket: New Feature
+- `text-color`
+  - [#440](https://github.com/wix-incubator/rich-content/pull/440) text highlight plugin   
+- `editor`
+  - [#462](https://github.com/wix-incubator/rich-content/pull/462) custom icons for all toolbar buttons
+- `button`
+  - [#472](https://github.com/wix-incubator/rich-content/pull/472) plugin improved
 ### :bug: Bug Fix
 - `video`
   - [#480](https://github.com/wix-incubator/rich-content/pull/480) video file selection

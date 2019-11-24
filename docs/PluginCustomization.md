@@ -26,7 +26,14 @@ The `width` and `height` are expected to be integers. They serve as **initial** 
 
 #### `toolbar`
 
-The `toolbar` setting refers to plugin functionality toolbar. Currently, it exposes a single field `hidden` which is expected to be an array of toolbar button `keynames` to be removed from toolbar.
+The `toolbar` setting refers to the plugin functionality toolbar, it is an object which may consist of the following keys: 
+
+| setting key | description                                                                                 | default value | is required? | editor/viewer config |
+| ----------- | ------------------------------------------------------------------------------------------- | ------------- | ------------ | -------------------- |
+| `hidden`    | an array of toolbar button `keynames` to be removed from toolbar                            | none          | No           | editor               |
+| `icons`     | an object of toolbar button `keynames` to custom icons map: `{ delete: MyCustomTrashIcon }` | none          | No           | editor               |
+
+Currently, it exposes a single field `hidden` which is expected to be an array of toolbar button `keynames` to be removed from toolbar.
 
 #### `defaultData`
 
