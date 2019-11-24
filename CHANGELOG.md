@@ -13,10 +13,11 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-  
 ### :rocket: New Feature
+- `emoji`
+  - [#470](https://github.com/wix-incubator/rich-content/pull/470) plugin reworked
 - `text-color`
-  - [#440](https://github.com/wix-incubator/rich-content/pull/440) text highlight plugin   
+  - [#440](https://github.com/wix-incubator/rich-content/pull/440) text highlight plugin
 - `editor`
   - [#462](https://github.com/wix-incubator/rich-content/pull/462) custom icons for all toolbar buttons
 - `button`
@@ -50,7 +51,7 @@
 - `fullscreen`
   - [#465](https://github.com/wix-incubator/rich-content/pull/465) getImagesData was not working correctly
 - `video`
-  - [#468](https://github.com/wix-incubator/rich-content/pull/468) video file upload selection  
+  - [#468](https://github.com/wix-incubator/rich-content/pull/468) video file upload selection
 ### :house: Internal
 - `gallery`
   - [#467](https://github.com/wix-incubator/rich-content/pull/467) `pro-gallery` updated to `v1.5.33`
@@ -1733,3 +1734,4 @@ _NOTE:_ From this version onwards all modules will have the same version number,
 - `editor`
   - [#58](https://github.com/wix-incubator/rich-content/pull/58) Default `locale` is `'en'`, English texts are imported statically
     Set the `locale` and `localeResource` props to use another language
+
