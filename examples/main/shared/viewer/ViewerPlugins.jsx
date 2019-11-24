@@ -28,9 +28,15 @@ import {
 import {
   textColorInlineStyleMapper,
   TEXT_COLOR_TYPE,
+  TEXT_HIGHLIGHT_TYPE,
+  textHighlightInlineStyleMapper,
 } from 'wix-rich-content-plugin-text-color/dist/module.viewer';
 
-import { viewerCustomStyleFn, styleSelectionPredicate } from '../../src/text-color-style-fn';
+import {
+  viewerCustomForegroundStyleFn,
+  styleSelectionPredicate,
+  viewerCustomBackgroundStyleFn,
+} from '../../src/text-color-style-fn';
 
 import 'wix-rich-content-common/dist/styles.min.css';
 import 'wix-rich-content-viewer/dist/styles.min.css';
@@ -94,9 +100,13 @@ export const config = {
   },
   [LINK_TYPE]: linkPluginSettings,
   [MENTION_TYPE]: mentionsPluginSettings,
+  [TEXT_HIGHLIGHT_TYPE]: {
+    styleSelectionPredicate,
+    customStyleFn: viewerCustomBackgroundStyleFn,
+  },
   [TEXT_COLOR_TYPE]: {
     styleSelectionPredicate,
-    customStyleFn: viewerCustomStyleFn,
+    customStyleFn: viewerCustomForegroundStyleFn,
   },
   [FILE_UPLOAD_TYPE]: {
     resolveFileUrl: () =>
@@ -111,7 +121,10 @@ export const config = {
   uiSettings,
 };
 
-export const getInlineStyleMappers = raw => [textColorInlineStyleMapper(config, raw)];
+export const getInlineStyleMappers = raw => [
+  textColorInlineStyleMapper(config, raw),
+  textHighlightInlineStyleMapper(config, raw),
+];
 
 export const decorators = [
   new HashtagDecorator({

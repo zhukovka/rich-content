@@ -79,6 +79,8 @@
   - `video`
     - [#443](https://github.com/wix-incubator/rich-content/pull/443) async url resolving support
     - [#444](https://github.com/wix-incubator/rich-content/pull/444) file upload support
+  - `text-color`
+    - [#440](https://github.com/wix-incubator/rich-content/pull/440) text highlight plugin
     - [#449](https://github.com/wix-incubator/rich-content/pull/449) force video mime type for uploads
     - [#451](https://github.com/wix-incubator/rich-content/pull/451) uses unique file input id
   - `editor`
@@ -179,8 +181,8 @@
 
 ## 5.1.12 (Hotfix - Nov 4, 2019)
 ### :house: Internal
-  - `gallery`
-    - [#446](https://github.com/wix-incubator/rich-content/pull/446) `pro-gallery` updated to `v1.5.25`
+- `gallery`
+  - [#446](https://github.com/wix-incubator/rich-content/pull/446) `pro-gallery` updated to `v1.5.25`
 
 ## 5.1.11 (Oct 28, 2019)
 ### :bug: Bug Fix

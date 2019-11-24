@@ -22,6 +22,7 @@ import {
 import { createMapPlugin, MAP_TYPE } from 'wix-rich-content-plugin-map';
 import { createFileUploadPlugin, FILE_UPLOAD_TYPE } from 'wix-rich-content-plugin-file-upload';
 import { createTextColorPlugin, TEXT_COLOR_TYPE } from 'wix-rich-content-plugin-text-color';
+import { createTextHighlightPlugin, TEXT_HIGHLIGHT_TYPE } from 'wix-rich-content-plugin-text-color';
 import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
 import Highlighter from 'react-highlight-words';
 import casual from 'casual-browserify';
@@ -44,8 +45,12 @@ import 'wix-rich-content-plugin-giphy/dist/styles.min.css';
 import 'wix-rich-content-plugin-map/dist/styles.min.css';
 import 'wix-rich-content-plugin-file-upload/dist/styles.min.css';
 import 'wix-rich-content-plugin-text-color/dist/styles.min.css';
-
-import { customStyleFn, styleSelectionPredicate, colorScheme } from '../../src/text-color-style-fn';
+import {
+  customForegroundStyleFn,
+  styleSelectionPredicate,
+  colorScheme,
+  customBackgroundStyleFn,
+} from '../../src/text-color-style-fn';
 import { getBaseUrl } from '../../src/utils';
 
 // import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-common';
@@ -72,6 +77,7 @@ export const editorPlugins = [
   createMapPlugin,
   createFileUploadPlugin,
   createTextColorPlugin,
+  createTextHighlightPlugin,
   createBlockDndPlugin,
 ];
 
@@ -338,10 +344,27 @@ export const config = {
     //   setTimeout(() => updateEntity({ data }), 500);
     // },
   },
-  [TEXT_COLOR_TYPE]: {
+  [TEXT_HIGHLIGHT_TYPE]: {
+    // toolbar: {
+    //   icons: {
+    //     TextHighlight: CustomIcon,
+    //   },
+    // },
     colorScheme,
     styleSelectionPredicate,
-    customStyleFn,
+    customStyleFn: customBackgroundStyleFn,
+    onColorAdded: color => (userColors = [color, ...userColors]),
+    getUserColors: () => userColors,
+  },
+  [TEXT_COLOR_TYPE]: {
+    // toolbar: {
+    //   icons: {
+    //     TextColor: CustomIcon,
+    //   },
+    // },
+    colorScheme,
+    styleSelectionPredicate,
+    customStyleFn: customForegroundStyleFn,
     onColorAdded: color => (userColors = [color, ...userColors]),
     getUserColors: () => userColors,
   },
