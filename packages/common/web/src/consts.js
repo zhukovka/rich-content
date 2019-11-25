@@ -22,11 +22,12 @@ export const MODIFIERS = {
 
 export const TOOLBARS = {
   SIDE: 'SIDE',
-  MOBILE: 'MOBILE',
+  MOBILE: 'MOBILE', //Text Toolbar
   FOOTER: 'FOOTER',
-  STATIC: 'TEXT',
-  INLINE: 'INLINE',
+  STATIC: 'TEXT', //Text Toolbar
+  INLINE: 'INLINE', //Text Toolbar
   PLUGIN: 'PLUGIN',
+  TEXT: 'ALL-TEXT-TOOLBARS',
 };
 
 export const DISPLAY_MODE = {
@@ -74,4 +75,9 @@ export const PLUGIN_DECORATION_PROPS = {
     width: props.width,
     containerClassName: props.containerClassName,
   }),
+};
+
+export const TOOLBAR_OFFSETS = {
+  top: 12,
+  left: 15,
 };
