@@ -14,15 +14,16 @@
     Click to see more.
   </summary>
   
+</details>
+<hr/>
+
+## 6.5.0 (Nov 25, 2019)
 ### :bug: Bug Fix
 - `editor`
   - [2a1e1b4a](https://github.com/wix-incubator/rich-content/commit/2a1e1b4a) fix import from common/src
 - `e2e`
   - [98d8c980](https://github.com/wix-incubator/rich-content/commit/98d8c980) fix e2e
   
-</details>
-<hr/>
-
 ## 6.4.0 (Nov 25, 2019)
 ### :rocket: New Feature
 - `emoji`
