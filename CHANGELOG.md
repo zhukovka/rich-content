@@ -13,6 +13,7 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+
 ### :rocket: New Feature
 - `emoji`
   - [#470](https://github.com/wix-incubator/rich-content/pull/470) plugin reworked
@@ -20,6 +21,7 @@
   - [#440](https://github.com/wix-incubator/rich-content/pull/440) text highlight plugin
 - `editor`
   - [#462](https://github.com/wix-incubator/rich-content/pull/462) custom icons for all toolbar buttons
+  - [#475](https://github.com/wix-incubator/rich-content/pull/475) plugin toolbar alignment
 - `button`
   - [#472](https://github.com/wix-incubator/rich-content/pull/472) plugin improved
 ### :bug: Bug Fix
@@ -29,6 +31,7 @@
   - [#485](https://github.com/wix-incubator/rich-content/pull/485) giphy-viewer: `data.config.sizes` fallbacks to empty object
 - `draftjs`
   - revert [#483](https://github.com/wix-incubator/rich-content/pull/483) update draftjs 0.11 => 0.11.2
+
 </details>
 <hr/>
 
