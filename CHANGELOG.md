@@ -17,6 +17,8 @@
 ### :bug: Bug Fix
 - `editor`
   - [2a1e1b4a](https://github.com/wix-incubator/rich-content/commit/2a1e1b4a) fix import from common/src
+- `e2e`
+  - [98d8c980](https://github.com/wix-incubator/rich-content/commit/98d8c980) fix e2e
   
 </details>
 <hr/>
