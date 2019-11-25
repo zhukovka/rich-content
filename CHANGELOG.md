@@ -27,11 +27,11 @@
 ### :bug: Bug Fix
 - `video`
   - [#480](https://github.com/wix-incubator/rich-content/pull/480) video file selection
+- `gallery`
+  - [#481](https://github.com/wix-incubator/rich-content/pull/481) fixed layout transition behavior
 - `giphy`
   - [#485](https://github.com/wix-incubator/rich-content/pull/485) giphy-viewer: `data.config.sizes` fallbacks to empty object
-- `draftjs`
-  - revert [#483](https://github.com/wix-incubator/rich-content/pull/483) update draftjs 0.11 => 0.11.2
-
+  
 </details>
 <hr/>
 
