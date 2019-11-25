@@ -27,7 +27,8 @@
   - [#480](https://github.com/wix-incubator/rich-content/pull/480) video file selection
 - `giphy`
   - [#485](https://github.com/wix-incubator/rich-content/pull/485) giphy-viewer: `data.config.sizes` fallbacks to empty object
-
+- `draftjs`
+  - revert [#483](https://github.com/wix-incubator/rich-content/pull/483) update draftjs 0.11 => 0.11.2
 </details>
 <hr/>
 
@@ -56,7 +57,7 @@
 - `gallery`
   - [#467](https://github.com/wix-incubator/rich-content/pull/467) `pro-gallery` updated to `v1.5.33`
 - `draftjs`
-  - [#483](https://github.com/wix-incubator/rich-content/pull/483) update draftjs 0.11 => 0.11.2
+  - reverted in next release. [#483](https://github.com/wix-incubator/rich-content/pull/483) update draftjs 0.11 => 0.11.2
 - `e2e`
   - [#484](https://github.com/wix-incubator/rich-content/pull/484) fix atomic block alignment tests
 <hr/>
