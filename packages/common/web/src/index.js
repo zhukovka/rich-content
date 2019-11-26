@@ -82,6 +82,7 @@ export {
 export {
   insertLinkAtCurrentSelection,
   insertLinkInPosition,
+  getBlockLinkRanges,
   hasLinksInBlock,
   hasLinksInSelection,
   getLinkDataInSelection,

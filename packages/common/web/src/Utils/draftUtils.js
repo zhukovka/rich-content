@@ -83,29 +83,28 @@ function addEntity(editorState, targetSelection, entityData) {
   return EditorState.push(editorState, newContentState, 'apply-entity');
 }
 
-export const hasLinksInBlock = (block, contentState) => {
+export const getBlockLinkRanges = (block, contentState) => {
   try {
     //editor
     if (block.findEntityRanges) {
-      return !!getLinkRangesInBlock(block, contentState).length;
+      return getLinkRangesInBlock(block, contentState);
     }
     //viewer
-    if (block.entityRanges && block.entityRanges.length) {
-      return block.entityRanges.some(entityRange => {
+    if (block.entityRanges) {
+      return block.entityRanges.filter(entityRange => {
         const entityMap = contentState.get('entityMap');
         const entityKey = entityMap[entityRange.key];
         const entity = contentState.getEntity(entityKey);
-        const entityType = entity.type;
-        if (entityType === 'LINK' || entityType === 'wix-draft-plugin-external-link') {
-          return true;
-        }
-        return false;
+        return entity.type === 'LINK' || entity.type === 'wix-draft-plugin-external-link';
       });
     }
   } catch (e) {
-    return false;
+    return [];
   }
 };
+
+export const hasLinksInBlock = (block, contentState) =>
+  getBlockLinkRanges(block, contentState).length > 0;
 
 export const hasLinksInSelection = editorState => {
   return !!getSelectedLinks(editorState).length;
