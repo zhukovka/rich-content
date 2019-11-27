@@ -14,6 +14,9 @@
     Click to see more.
   </summary>
 
+### :rocket: New Feature
+- `file-upload`
+  - [#489](https://github.com/wix-incubator/rich-content/pull/489) `config.downloadTarget` enables consumers to control in which tab files are opened
 ### :bug: Bug Fix
 - `image`
   - [#478](https://github.com/wix-incubator/rich-content/pull/478) margin & size (alignment strategy updated)
@@ -30,7 +33,8 @@
 ### :house: Internal
 - `draftjs`
   - [#487](https://github.com/wix-incubator/rich-content/pull/487) update draftjs 0.11 => 0.11.2
-  
+<hr/>
+
 ## 6.4.0 (Nov 25, 2019)
 ### :rocket: New Feature
 - `emoji`
