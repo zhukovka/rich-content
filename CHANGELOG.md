@@ -6,7 +6,6 @@
 > - :bug: [Bug Fix]
 > - :book: [Documentation]
 > - :house: [Internal]
-
 ## [Unreleased]
 <details>
   <summary>
@@ -20,6 +19,8 @@
 ### :bug: Bug Fix
 - `image`
   - [#478](https://github.com/wix-incubator/rich-content/pull/478) margin & size (alignment strategy updated)
+- `mentions`
+  - [#486](https://github.com/wix-incubator/rich-content/pull/486) suggestions can be navigated using keyboard arrows  
   
 </details>
 <hr/>
@@ -53,7 +54,7 @@
   - [#481](https://github.com/wix-incubator/rich-content/pull/481) fixed layout transition behavior
 - `giphy`
   - [#485](https://github.com/wix-incubator/rich-content/pull/485) giphy-viewer: `data.config.sizes` fallbacks to empty object
-  <hr/>
+<hr/>
 
 ## 6.3.0 (Nov 20, 2019)
 ### :rocket: New Feature
