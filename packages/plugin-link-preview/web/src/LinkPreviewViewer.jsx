@@ -5,7 +5,7 @@ import { invoke, isEqual } from 'lodash';
 import schema from '../statics/data-schema.json';
 import styles from '../statics/link-viewer.scss';
 
-class LinkViewer extends Component {
+class LinkPreviewViewer extends Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
     theme: PropTypes.object,
@@ -54,6 +54,6 @@ class LinkViewer extends Component {
   }
 }
 
-LinkViewer.contextType = Context.type;
+LinkPreviewViewer.contextType = Context.type;
 
-export default LinkViewer;
+export default LinkPreviewViewer;

@@ -71,6 +71,8 @@ function insertLink(
   });
 }
 
+// export const addAtomicBlockWithEntity = (editorState, selection, entityData) => {};
+
 function addEntity(editorState, targetSelection, entityData) {
   const entityKey = createEntity(editorState, entityData);
   const oldSelection = editorState.getSelection();
@@ -193,10 +195,11 @@ export const replaceWithEmptyBlock = (editorState, blockKey) => {
 export const deleteBlock = (editorState, blockKey) => {
   const contentState = editorState.getCurrentContent();
   const block = contentState.getBlockForKey(blockKey);
-  const previousBlock = contentState.getBlockBefore(blockKey);
+  const previousBlock = contentState.getBlockBefore(blockKey) || block;
+  const anchorOffset = previousBlock.key === blockKey ? 0 : previousBlock.text.length;
   const selectionRange = new SelectionState({
     anchorKey: previousBlock.key,
-    anchorOffset: previousBlock.text.length,
+    anchorOffset,
     focusKey: blockKey,
     focusOffset: block.text.length,
   });

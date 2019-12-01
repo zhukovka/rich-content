@@ -1,5 +1,6 @@
 import React from "react";
 import { createLinkPlugin, LINK_TYPE } from "wix-rich-content-plugin-link";
+import { createLinkPreviewPlugin, LINK_PREVIEW_TYPE } from "wix-rich-content-plugin-link-preview";
 import {
   createLineSpacingPlugin,
   LINE_SPACING_TYPE
@@ -81,6 +82,7 @@ export const editorPlugins = [
   createDividerPlugin,
   createLineSpacingPlugin,
   createLinkPlugin,
+  createLinkPreviewPlugin,
   createHashtagPlugin,
   createExternalMentionsPlugin,
   createCodeBlockPlugin,
