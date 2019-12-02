@@ -1,6 +1,5 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { convertFromRaw } from '@wix/draft-js';
 import { BLOCK_TYPES } from 'wix-rich-content-common';
 import redraft from 'redraft';
 import classNames from 'classnames';
@@ -124,7 +123,6 @@ const combineMappers = (mappers, ...args) => {
 };
 
 const redraftOptions = {
-  convertFromRaw,
   cleanup: {
     after: BLOCK_TYPES.filter(t => t.indexOf('header') === -1),
     split: true,
