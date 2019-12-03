@@ -12,14 +12,15 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+  
+</details>
+<hr/>
 
+## 5.1.16 (Dec 3, 2019)
 ### :house: Internal
 - `viewer`
   - [d58d8916](https://github.com/wix-incubator/rich-content/commit/d58d8916) remove draftjs
   - [a02b632a](https://github.com/wix-incubator/rich-content/commit/a02b632a) remove draftjs
-  
-</details>
-<hr/>
 
 ## 5.1.15 (Nov 19, 2019)
 ### :rocket: New Feature
