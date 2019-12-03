@@ -23,7 +23,8 @@
   - [#486](https://github.com/wix-incubator/rich-content/pull/486) suggestions can be navigated using keyboard arrows  
 ### :house: Internal
 - `viewer`
-  - [d58d8916](https://github.com/wix-incubator/rich-content/commit/d58d8916) remove unused draftjs
+  - [d58d8916](https://github.com/wix-incubator/rich-content/commit/d58d8916) remove draftjs
+  - [a02b632a](https://github.com/wix-incubator/rich-content/commit/a02b632a) remove draftjs
   
 </details>
 <hr/>
