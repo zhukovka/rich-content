@@ -20,8 +20,14 @@
 - `image`
   - [#478](https://github.com/wix-incubator/rich-content/pull/478) margin & size (alignment strategy updated)
 - `mentions`
-  - [#486](https://github.com/wix-incubator/rich-content/pull/486) suggestions can be navigated using keyboard arrows  
+  - [#486](https://github.com/wix-incubator/rich-content/pull/486) suggestions can be navigated using keyboard arrows
 ### :house: Internal
+- `common`
+  - [#493](https://github.com/wix-incubator/rich-content/pull/493) `common` package was split into `editor-common` and `common` in order to reduce `viewer` bundle size
+- `viewer examples`
+  - [#493](https://github.com/wix-incubator/rich-content/pull/493) remove RichContentModal from viewer examples
+- `e2e`
+  - [#493](https://github.com/wix-incubator/rich-content/pull/493) fix video and soundcloud tests
 - `viewer`
   - [d58d8916](https://github.com/wix-incubator/rich-content/commit/d58d8916) remove draftjs
   - [a02b632a](https://github.com/wix-incubator/rich-content/commit/a02b632a) remove draftjs
