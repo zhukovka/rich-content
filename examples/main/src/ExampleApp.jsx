@@ -22,6 +22,7 @@ class ExampleApp extends PureComponent {
   constructor(props) {
     super(props);
     this.state = this.getInitialState();
+    this.onEditorChange(this.state.editorState);
     disableBrowserBackButton();
   }
 
@@ -30,6 +31,7 @@ class ExampleApp extends PureComponent {
     const containerKey = generateKey('container');
     const localState = loadStateFromStorage();
     const contentState = getContentStateFromEditorState(createEmpty());
+    const { editorState } = getStateFromObject(localState.contentState || contentState);
     return {
       containerKey,
       contentState,
@@ -42,6 +44,7 @@ class ExampleApp extends PureComponent {
       editorResetKey: 0,
       shouldMockUpload: true,
       ...localState,
+      editorState,
     };
   }
 
@@ -54,7 +57,10 @@ class ExampleApp extends PureComponent {
   }
 
   onEditorChange = editorState => {
-    this.setState({ contentState: getContentStateFromEditorState(editorState) });
+    this.setState({ contentState: getContentStateFromEditorState(editorState) },
+      () => {
+        saveStateToStorage(this.state);
+      });
     this.props.onEditorChange && this.props.onEditorChange(editorState);
   };
 
@@ -63,6 +69,10 @@ class ExampleApp extends PureComponent {
   onContentStateEditorChange = obj => {
     if (this.props.onEditorChange) {
       const { editorState } = getStateFromObject(obj);
+      this.setState({ editorState },
+        () => {
+          saveStateToStorage(this.state);
+        });
       this.props.onEditorChange(editorState);
     }
   };
@@ -84,7 +94,9 @@ class ExampleApp extends PureComponent {
   };
 
   renderEditor = () => {
-    const { allLocales, editorState, locale, localeResource, isMobile } = this.props;
+    const { editorState: editorStateFromState } = this.state;
+    const { allLocales, editorState: editorStateFromProps, locale, localeResource, isMobile } = this.props;
+    const editorState = editorStateFromState || editorStateFromProps;
     const { isEditorShown, staticToolbar, shouldMockUpload, editorIsMobile } = this.state;
     const settings = [
       {
@@ -277,8 +289,8 @@ class ExampleApp extends PureComponent {
           {showEmptyState ? (
             <div className="empty-state">Wix Rich Content</div>
           ) : (
-            this.renderSections()
-          )}
+              this.renderSections()
+            )}
         </ReflexContainer>
         <Fab
           isMobile={isMobile}
@@ -294,28 +306,28 @@ class ExampleApp extends PureComponent {
 }
 
 function disableBrowserBackButton() {
-  (function(global) {
+  (function (global) {
     if (typeof global === 'undefined') {
       throw new Error('window is undefined');
     }
 
     var _hash = '!';
-    var noBackPlease = function() {
+    var noBackPlease = function () {
       global.location.href += '#';
 
       // making sure we have the fruit available for juice (^__^)
-      global.setTimeout(function() {
+      global.setTimeout(function () {
         global.location.href += '!';
       }, 50);
     };
 
-    global.onhashchange = function() {
+    global.onhashchange = function () {
       if (global.location.hash !== _hash) {
         global.location.hash = _hash;
       }
     };
 
-    global.onload = function() {
+    global.onload = function () {
       noBackPlease();
     };
   })(window);
