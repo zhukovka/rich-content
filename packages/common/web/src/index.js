@@ -26,6 +26,7 @@ export { hasLinksInBlock } from './Utils/draftUtils';
 export { validate, getContentStateSchema } from './Utils/data-schema-validator';
 export { isSSR } from './Utils/ssrUtils';
 export { getImageSrc, WIX_MEDIA_DEFAULT } from './Utils/imageUtils';
-export { isHexColor } from './Components/ColorPicker/utils';
+export { isHexColor } from './Utils/colorUtils';
+export { isRtl, getLangDir } from './Utils/rtlUtils';
 
 export { HEADER_BLOCK, BLOCK_TYPES } from './consts';
