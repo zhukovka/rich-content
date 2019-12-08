@@ -47,14 +47,14 @@
     "eslint": "^6.1.0",
     "eslint-import-resolver-lerna": "^1.0.0",
     "eslint-plugin-import": "2.8.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.15",
     "prop-types": "^15.6.2",
     "react": "16.6.3",
     "react-dom": "16.6.3",
     "rollup": "1.20.3"
   },
   "dependencies": {
-    "react-custom-scrollbars": "~4.2.1",
+    "react-custom-scrollbars": "^4.2.1",
     "react-google-maps": "~9.4.5",
     "react-google-maps-loader": "~4.2.5",
     "react-google-places-suggest": "~3.8.0",
