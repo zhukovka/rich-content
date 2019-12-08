@@ -82,7 +82,6 @@ export const editorPlugins = [
   createTextColorPlugin,
   createEmojiPlugin,
   createTextHighlightPlugin,
-  createBlockDndPlugin,
   createUndoRedoPlugin,
 ];
 
