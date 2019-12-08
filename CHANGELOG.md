@@ -13,6 +13,10 @@
     Click to see more.
   </summary>
 
+</details>
+<hr/>
+
+## 6.6.0 (Dec 8, 2019)
 ### :rocket: New Feature
 - `file-upload`
   - [#489](https://github.com/wix-incubator/rich-content/pull/489) `config.downloadTarget` enables consumers to control in which tab files are opened
@@ -52,8 +56,6 @@
   - [d58d8916](https://github.com/wix-incubator/rich-content/commit/d58d8916) remove draftjs
   - [a02b632a](https://github.com/wix-incubator/rich-content/commit/a02b632a) remove draftjs
   - [#513](https://github.com/wix-incubator/rich-content/pull/513) removed `Immutable.js` dependency from `viewer`
-</details>
-<hr/>
 
 ## 6.5.0 (Nov 25, 2019)
 ### :bug: Bug Fix
