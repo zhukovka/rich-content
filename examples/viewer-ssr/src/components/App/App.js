@@ -27,17 +27,6 @@ import TestData from './TestData/initial-state';
 import theme from './theme/theme';
 import styles from './App.scss';
 
-const modalStyleDefaults = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
-
 const anchorTarget = '_top';
 const relValue = 'noreferrer';
 
