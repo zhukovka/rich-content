@@ -16,6 +16,8 @@
 ### :rocket: New Feature
 - `file-upload`
   - [#489](https://github.com/wix-incubator/rich-content/pull/489) `config.downloadTarget` enables consumers to control in which tab files are opened
+- `undo-redo`
+  - [#495](https://github.com/wix-incubator/rich-content/pull/495) creates undo redo plugin 
 - `editor`
   - [#503](https://github.com/wix-incubator/rich-content/pull/503) activated drag and drop capability by default
 - `video`
