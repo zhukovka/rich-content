@@ -1,9 +1,8 @@
-import Immutable from 'immutable';
 import { range } from 'lodash';
 import Hashtag from './HashtagComponent';
 import hashtagRegexes from './hashtagRegexes';
 
-export default hasLinksInBlock =>
+export default (hasLinksInBlock, immutableList) =>
   class HashtagDecorator {
     constructor(componentProps) {
       this.componentProps = componentProps;
@@ -21,7 +20,7 @@ export default hasLinksInBlock =>
         hasLinksInBlock(block, contentState) ||
         !text.match(hashtagRegexes.hashSigns)
       ) {
-        return Immutable.List(decorations); // eslint-disable-line new-cap
+        return immutableList ? immutableList(decorations) : decorations;
       }
 
       text.replace(hashtagRegexes.validHashtag, (match, before, hash, hashText, offset, chunk) => {
@@ -36,7 +35,7 @@ export default hasLinksInBlock =>
         tagRange.forEach(i => (decorations[i] = `${key}-${htagId}`));
       });
 
-      return Immutable.List(decorations); // eslint-disable-line new-cap
+      return immutableList ? immutableList(decorations) : decorations;
     }
 
     getComponentForKey() {
