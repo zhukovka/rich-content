@@ -10,10 +10,11 @@ import {
 import { EditorState } from 'draft-js';
 
 import { LineSpacingIcon } from '../icons';
-import Modal from 'react-modal';
+import ReactModal2 from 'react-modal2';
 import Panel from './LineSpacingPanel';
 import classNames from 'classnames';
 import styles from '../../statics/styles/styles.scss';
+import { Gateway } from 'react-gateway';
 
 const lineHeight = 'line-height';
 const spaceBefore = 'padding-top';
@@ -104,32 +105,32 @@ export default class LineSpacingButton extends Component {
         icon={icon}
         ref={ref => (this.buttonRef = ref)}
       >
-        <Modal
-          isOpen={isPanelOpen}
-          onRequestClose={() => this.save()}
-          className={classNames(styles.lineSpacingModal, {
-            [styles.lineSpacingModal_mobile]: isMobile,
-          })}
-          overlayClassName={classNames(styles.lineSpacingModalOverlay, {
-            [styles.lineSpacingModalOverlay_mobile]: isMobile,
-          })}
-          parentSelector={LineSpacingButton.getModalParent}
-          style={{
-            content: modalStyle,
-          }}
-          ariaHideApp={false}
-        >
-          <Panel
-            spacing={{ ...defaultSpacing, ...spacing }}
-            onChange={this.updateSpacing}
-            onSave={this.save}
-            onCancel={this.cancel}
-            styles={this.styles}
-            t={t}
-            isMobile={isMobile}
-            theme={theme}
-          />
-        </Modal>
+        {isPanelOpen && (
+          <Gateway into="inlineToolbarModal">
+            <ReactModal2
+              onClose={() => this.save()}
+              modalClassName={classNames(styles.lineSpacingModal, {
+                [styles.lineSpacingModal_mobile]: isMobile,
+              })}
+              backdropClassName={classNames(styles.lineSpacingModalOverlay, {
+                [styles.lineSpacingModalOverlay_mobile]: isMobile,
+              })}
+              parentSelector={LineSpacingButton.getModalParent}
+              modalStyles={modalStyle}
+            >
+              <Panel
+                spacing={{ ...defaultSpacing, ...spacing }}
+                onChange={this.updateSpacing}
+                onSave={this.save}
+                onCancel={this.cancel}
+                styles={this.styles}
+                t={t}
+                isMobile={isMobile}
+                theme={theme}
+              />
+            </ReactModal2>
+          </Gateway>
+        )}
       </InlineToolbarButton>
     );
   }

@@ -105,6 +105,7 @@ export default class Editor extends PureComponent {
   }
 
   componentDidMount() {
+    ReactModal2.getApplicationElement = () => document?.getElementById('root');
     this.setEditorToolbars();
   }
 
@@ -178,7 +179,7 @@ export default class Editor extends PureComponent {
           localeResource={this.props.localeResource}
           // siteDomain="https://www.wix.com"
         />
-        {
+        {this.state.showModal && (
           <Gateway into="modal">
             <ReactModal2
               backdropStyles={modalStyles.overlay}
@@ -196,7 +197,7 @@ export default class Editor extends PureComponent {
               />
             </ReactModal2>
           </Gateway>
-        }
+        )}
       </div>
     );
   }

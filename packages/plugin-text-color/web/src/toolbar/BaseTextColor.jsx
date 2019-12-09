@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Modal from 'react-modal';
+import ReactModal2 from 'react-modal2';
 import { EditorState } from 'draft-js';
 import { mergeStyles } from 'wix-rich-content-common';
 import { InlineToolbarButton, getSelectionStyles } from 'wix-rich-content-editor-common';
@@ -9,6 +9,7 @@ import TextColorPanel from './TextColorPanel';
 import { PANEL_WIDTH, DEFAULT_STYLE_SELECTION_PREDICATE } from '../constants';
 import styles from '../../statics/styles/text-color-modal.scss';
 import { styleMapper } from '../text-decorations-utils';
+import { Gateway } from 'react-gateway';
 
 export default class BaseTextColor extends Component {
   constructor(props) {
@@ -94,35 +95,39 @@ export default class BaseTextColor extends Component {
         icon={pluginParams.icon}
         forwardRef={this.buttonRef}
       >
-        <Modal
-          onRequestClose={() => this.closePanel()}
-          isOpen={isPanelOpen}
-          parentSelector={BaseTextColor.getModalParent}
-          className={classNames({
-            [this.styles.textColorModal]: !isMobile,
-            [this.styles.textColorModal_mobile]: isMobile,
-          })}
-          overlayClassName={classNames({
-            [this.styles.textColorModalOverlay]: !isMobile,
-            [this.styles.textColorModalOverlay_mobile]: isMobile,
-          })}
-          style={modalStyle}
-          ariaHideApp={false}
-        >
-          <TextColorPanel
-            t={t}
-            isMobile={isMobile}
-            theme={theme}
-            closeModal={this.closePanel}
-            editorState={getEditorState()}
-            setEditorState={setEditorState}
-            settings={settings}
-            uiSettings={uiSettings}
-            setKeepToolbarOpen={setKeepOpen}
-            styleMapper={this.styleMapper}
-            predicate={pluginParams.predicate}
-          />
-        </Modal>
+        {isPanelOpen && (
+          <Gateway into="inlineToolbarModal">
+            <ReactModal2
+              onClose={() => this.closePanel()}
+              closeOnBackdropClick={false}
+              parentSelector={BaseTextColor.getModalParent}
+              modalClassName={classNames({
+                [this.styles.textColorModal]: !isMobile,
+                [this.styles.textColorModal_mobile]: isMobile,
+              })}
+              backdropClassName={classNames({
+                [this.styles.textColorModalOverlay]: !isMobile,
+                [this.styles.textColorModalOverlay_mobile]: isMobile,
+              })}
+              backdropStyles={modalStyle.overlay}
+              modalStyles={modalStyle.content}
+            >
+              <TextColorPanel
+                t={t}
+                isMobile={isMobile}
+                theme={theme}
+                closeModal={this.closePanel}
+                editorState={getEditorState()}
+                setEditorState={setEditorState}
+                settings={settings}
+                uiSettings={uiSettings}
+                setKeepToolbarOpen={setKeepOpen}
+                styleMapper={this.styleMapper}
+                predicate={pluginParams.predicate}
+              />
+            </ReactModal2>
+          </Gateway>
+        )}
       </InlineToolbarButton>
     );
   }

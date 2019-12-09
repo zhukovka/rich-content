@@ -8,6 +8,7 @@ import { debounce } from 'lodash';
 import { DISPLAY_MODE } from 'wix-rich-content-editor-common';
 import Styles from '../../../../statics/styles/inline-toolbar.rtlignore.scss';
 import { getLangDir } from 'wix-rich-content-common';
+import { GatewayDest, GatewayProvider } from 'react-gateway';
 
 const TOOLBAR_OFFSET = 5;
 
@@ -345,16 +346,22 @@ export default class InlineToolbar extends Component {
     if (this.ToolbarDecoration) {
       const { ToolbarDecoration } = this;
       return (
-        <ToolbarDecoration refCallback={this.handleToolbarRef} {...props}>
-          {this.renderToolbarContent()}
-        </ToolbarDecoration>
+        <GatewayProvider>
+          <ToolbarDecoration refCallback={this.handleToolbarRef} {...props}>
+            {this.renderToolbarContent()}
+          </ToolbarDecoration>
+          <GatewayDest name="inlineToolbarModal" className="modal-container" />
+        </GatewayProvider>
       );
     }
 
     return (
-      <div ref={this.handleToolbarRef} {...props}>
-        {this.renderToolbarContent()}
-      </div>
+      <GatewayProvider>
+        <div ref={this.handleToolbarRef} {...props}>
+          {this.renderToolbarContent()}
+        </div>
+        <GatewayDest name="inlineToolbarModal" className="modal-container" />
+      </GatewayProvider>
     );
   }
 }
