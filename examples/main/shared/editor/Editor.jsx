@@ -2,11 +2,12 @@ import React, { PureComponent } from 'react';
 import { RichContentEditor, RichContentEditorModal } from 'wix-rich-content-editor';
 import { convertToRaw } from 'draft-js';
 import * as PropTypes from 'prop-types';
-import ReactModal from 'react-modal';
+import ReactModal2 from 'react-modal2';
 import { testImages, testVideos } from './mock';
 import * as Plugins from './EditorPlugins';
 import ModalsMap from './ModalsMap';
 import theme from '../theme/theme'; // must import after custom styles
+import { Gateway } from 'react-gateway';
 
 const modalStyleDefaults = {
   content: {
@@ -25,7 +26,6 @@ export default class Editor extends PureComponent {
   state = {};
   constructor(props) {
     super(props);
-    // ReactModal.setAppElement('#root');
     this.initEditorProps();
   }
 
@@ -105,7 +105,6 @@ export default class Editor extends PureComponent {
   }
 
   componentDidMount() {
-    ReactModal.setAppElement('body');
     this.setEditorToolbars();
   }
 
@@ -179,19 +178,24 @@ export default class Editor extends PureComponent {
           localeResource={this.props.localeResource}
           // siteDomain="https://www.wix.com"
         />
-        <ReactModal
-          isOpen={this.state.showModal}
-          contentLabel="External Modal Example"
-          style={modalStyles}
-          role="dialog"
-          onRequestClose={onRequestClose || this.helpers.closeModal}
-        >
-          <RichContentEditorModal
-            modalsMap={ModalsMap}
-            locale={this.props.locale}
-            {...this.state.modalProps}
-          />
-        </ReactModal>
+        {this.state.showModal && (
+          <Gateway into="modal">
+            <ReactModal2
+              backdropStyles={modalStyles.overlay}
+              backdropClassName="modal-backdrop"
+              modalClassName="modal"
+              modalStyles={modalStyles.content}
+              role="dialog"
+              onClose={onRequestClose || this.helpers.closeModal}
+            >
+              <RichContentEditorModal
+                modalsMap={ModalsMap}
+                locale={this.props.locale}
+                {...this.state.modalProps}
+              />
+            </ReactModal2>
+          </Gateway>
+        )}
       </div>
     );
   }

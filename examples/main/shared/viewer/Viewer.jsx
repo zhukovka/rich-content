@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import ReactModal from 'react-modal';
+// import ReactModal2 from 'react-modal2';
 import { RichContentViewer } from 'wix-rich-content-viewer';
 import { isSSR } from 'wix-rich-content-common';
 import * as PropTypes from 'prop-types';
@@ -16,7 +16,8 @@ export default class Viewer extends PureComponent {
     super(props);
 
     if (!isSSR()) {
-      ReactModal.setAppElement('#root');
+      // ReactModal2.setApplicationElement('#root');
+      // ReactModal2.getApplicationElement = () => document.getElementById('root');
       this.expandModeData = getImagesData(this.props.initialState);
     }
     this.state = {

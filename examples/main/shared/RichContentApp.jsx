@@ -6,6 +6,12 @@ import { isSSR } from 'wix-rich-content-common';
 import ExampleApp from '../src/ExampleApp';
 import TestApp from '../../../e2e/test-env/src/client/TestApp';
 import { getRequestedLocale, isMobile } from '../src/utils';
+import { GatewayDest, GatewayProvider } from 'react-gateway';
+
+// import ReactModal2 from 'react-modal2';
+// debugger;
+// ReactModal2.getApplicationElement = () => document.getElementById('bodyId');
+// console.log(ReactModal2.getApplicationElement());
 
 const generateViewerState = editorState =>
   JSON.parse(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
@@ -17,6 +23,11 @@ class RichContentApp extends PureComponent {
     if (this.props.mode === 'demo') {
       this.onEditorChange = debounce(this.onEditorChange, 100);
     }
+  }
+
+  componentDidMount() {
+    // ReactModal2.setApplicationElement(document.getElementById('root'));
+    // console.log(document.getElementById('bodyId'));
   }
 
   getInitialState = ({ initialState, locale = getRequestedLocale(), mode }) => {
@@ -48,18 +59,21 @@ class RichContentApp extends PureComponent {
     const { allLocales, initialState, mode } = this.props;
     const App = mode === 'demo' ? ExampleApp : TestApp;
     return (
-      <App
-        allLocales={allLocales}
-        initialState={initialState}
-        editorState={editorState}
-        viewerState={viewerState}
-        previewState={viewerState}
-        locale={locale}
-        isMobile={mode === 'demo' ? isMobile() : this.props.isMobile}
-        localeResource={localeResource}
-        onEditorChange={this.onEditorChange}
-        setLocale={this.setLocaleResource}
-      />
+      <GatewayProvider>
+        <App
+          allLocales={allLocales}
+          initialState={initialState}
+          editorState={editorState}
+          viewerState={viewerState}
+          previewState={viewerState}
+          locale={locale}
+          isMobile={mode === 'demo' ? isMobile() : this.props.isMobile}
+          localeResource={localeResource}
+          onEditorChange={this.onEditorChange}
+          setLocale={this.setLocaleResource}
+        ></App>
+        <GatewayDest name="modal" className="modal-container" />
+      </GatewayProvider>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import ReactModal from 'react-modal';
+import ReactModal2 from 'react-modal';
 // import MonacoEditor from 'react-monaco-editor';
 import { isSSR } from 'wix-rich-content-common';
 import { RichContentModal } from 'wix-rich-content-editor-common';
@@ -26,7 +26,8 @@ export default class Preview extends PureComponent {
   constructor(props) {
     super(props);
     if (!isSSR()) {
-      ReactModal.setAppElement('#root');
+      // ReactModal2.setApplicationElement(document.getElementById('root'));
+      // ReactModal2.getApplicationElement = () => document.getElementById('root');
     }
     this.state = {
       disabled: false,
@@ -163,14 +164,17 @@ export default class Preview extends PureComponent {
             disabled={this.state.disabled}
           />
         </div>
-        <ReactModal
-          isOpen={this.state.showModal}
-          contentLabel="External Modal Example"
-          style={this.state.modalStyles || modalStyleDefaults}
-          onRequestClose={this.closeModal}
-        >
-          {this.state.showModal && <RichContentModal {...this.state.modalProps} />}
-        </ReactModal>
+        {this.state.showModal && (
+          <ReactModal2
+            // isOpen={this.state.showModal}
+            // contentLabel="External Modal Example"
+            modalClassName="modal"
+            modalStyles={this.state.modalStyles || modalStyleDefaults}
+            onClose={this.closeModal}
+          >
+            {this.state.showModal && <RichContentModal {...this.state.modalProps} />}
+          </ReactModal2>
+        )}
       </div>
     );
   }

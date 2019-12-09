@@ -123,6 +123,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "cypress": "3.7.0"
+    "cypress": "3.7.0",
+    "react-gateway": "^3.0.0",
+    "react-modal2": "^5.0.1"
   }
 }
