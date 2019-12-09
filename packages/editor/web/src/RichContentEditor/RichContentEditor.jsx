@@ -332,6 +332,7 @@ class RichContentEditor extends Component {
       handleReturn,
     } = this.props;
     const { editorState, theme } = this.state;
+
     return (
       <Editor
         ref={this.setEditor}

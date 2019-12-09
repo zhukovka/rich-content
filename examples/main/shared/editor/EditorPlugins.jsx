@@ -4,6 +4,7 @@ import { createLineSpacingPlugin, LINE_SPACING_TYPE } from 'wix-rich-content-plu
 import { createHashtagPlugin, HASHTAG_TYPE } from 'wix-rich-content-plugin-hashtag';
 import { createEmojiPlugin } from 'wix-rich-content-plugin-emoji';
 import { createImagePlugin, IMAGE_TYPE } from 'wix-rich-content-plugin-image';
+import { createUndoRedoPlugin, UNDO_REDO_TYPE } from 'wix-rich-content-plugin-undo-redo';
 import { createGalleryPlugin, GALLERY_TYPE } from 'wix-rich-content-plugin-gallery';
 import { createVideoPlugin, VIDEO_TYPE } from 'wix-rich-content-plugin-video';
 import { createHtmlPlugin, HTML_TYPE } from 'wix-rich-content-plugin-html';
@@ -81,6 +82,7 @@ export const editorPlugins = [
   createTextColorPlugin,
   createEmojiPlugin,
   createTextHighlightPlugin,
+  createUndoRedoPlugin,
 ];
 
 const themeColors = {
@@ -169,6 +171,13 @@ const uiSettings = {
 };
 
 export const config = {
+  [UNDO_REDO_TYPE]: {
+    // toolbar: {
+    //   icons: {
+    //     Undo: SizeSmallRightIcon, // insert plugin icon
+    //   },
+    // },
+  },
   // [BUTTON_TYPE]: {
   //   toolbar: {
   //     icons: {

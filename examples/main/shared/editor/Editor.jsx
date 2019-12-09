@@ -178,7 +178,7 @@ export default class Editor extends PureComponent {
           localeResource={this.props.localeResource}
           // siteDomain="https://www.wix.com"
         />
-        {this.state.showModal && (
+        {
           <Gateway into="modal">
             <ReactModal2
               backdropStyles={modalStyles.overlay}
@@ -186,6 +186,7 @@ export default class Editor extends PureComponent {
               modalClassName="modal"
               modalStyles={modalStyles.content}
               role="dialog"
+              closeOnBackdropClick={false}
               onClose={onRequestClose || this.helpers.closeModal}
             >
               <RichContentEditorModal
@@ -195,7 +196,7 @@ export default class Editor extends PureComponent {
               />
             </ReactModal2>
           </Gateway>
-        )}
+        }
       </div>
     );
   }

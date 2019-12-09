@@ -1,23 +1,9 @@
 import React, { PureComponent } from 'react';
-import ReactModal2 from 'react-modal';
-// import MonacoEditor from 'react-monaco-editor';
-import { isSSR } from 'wix-rich-content-common';
-import { RichContentModal } from 'wix-rich-content-editor-common';
 import { ContentStateTransformation, RichContentPreview } from 'wix-rich-content-preview';
 import * as PropTypes from 'prop-types';
 import * as Plugins from './PreviewPlugins';
 import theme from '../theme/theme'; // must import after custom styles
 import 'wix-rich-content-preview/dist/styles.min.css';
-const modalStyleDefaults = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
 
 const anchorTarget = '_top';
 const relValue = 'noreferrer';
@@ -25,10 +11,6 @@ const relValue = 'noreferrer';
 export default class Preview extends PureComponent {
   constructor(props) {
     super(props);
-    if (!isSSR()) {
-      // ReactModal2.setApplicationElement(document.getElementById('root'));
-      // ReactModal2.getApplicationElement = () => document.getElementById('root');
-    }
     this.state = {
       disabled: false,
     };
@@ -164,17 +146,6 @@ export default class Preview extends PureComponent {
             disabled={this.state.disabled}
           />
         </div>
-        {this.state.showModal && (
-          <ReactModal2
-            // isOpen={this.state.showModal}
-            // contentLabel="External Modal Example"
-            modalClassName="modal"
-            modalStyles={this.state.modalStyles || modalStyleDefaults}
-            onClose={this.closeModal}
-          >
-            {this.state.showModal && <RichContentModal {...this.state.modalProps} />}
-          </ReactModal2>
-        )}
       </div>
     );
   }
