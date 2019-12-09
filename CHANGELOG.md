@@ -12,6 +12,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+  
+  ### :house: Internal
+  - `editor`
+    - [#510](https://github.com/wix-incubator/rich-content/pull/510) custom icons code refactoring
 
 </details>
 <hr/>
