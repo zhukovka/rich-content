@@ -38,7 +38,7 @@
 - `mentions`
   - [#486](https://github.com/wix-incubator/rich-content/pull/486) suggestions can be navigated using keyboard arrows
 - `giphy|emoji`
-  - [#512](https://github.com/wix-incubator/rich-content/pull/512) correct popup positions of emojy & giphy
+  - [#512](https://github.com/wix-incubator/rich-content/pull/512) correct popup positions on desktop
 - `code-block`
   - [#506](https://github.com/wix-incubator/rich-content/pull/506) fixed functinality of custom key handler
 ### :house: Internal
