@@ -186,11 +186,11 @@ Cypress.Commands.add('setAlignment', alignment => {
   cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.ALIGNMENT).setTextStyle(alignment);
 });
 
-function setInlineToolbarMenueItem(item, selection, butttonIndex) {
+function setInlineToolbarMenueItem(item, selection, buttonIndex) {
   cy.setTextStyle(item, selection)
     .get('.ReactModalPortal')
     .find('button')
-    .eq(butttonIndex)
+    .eq(buttonIndex)
     .click();
 }
 
