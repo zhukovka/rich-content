@@ -1,4 +1,4 @@
-import { createBasePlugin, getSelectedBlocks } from 'wix-rich-content-common';
+import { createBasePlugin, getSelectedBlocks } from 'wix-rich-content-editor-common';
 import { isLinkBlock, replaceLinkWithPreview } from './utils';
 import { LINK_PREVIEW_TYPE } from './types';
 // import { LinkPreviewComponent } from './LinkPreviewComponent';
@@ -11,7 +11,7 @@ const createLinkPreviewPlugin = (config = {}) => {
 
   const handleReturn = (e, editorState) => {
     const currentBlock = getSelectedBlocks(editorState)[0];
-    if (isLinkBlock(currentBlock, editorState)) {
+    if (isLinkBlock(currentBlock)) {
       const siteMetadata = {
         title: 'Wix Ltd',
         description: 'Website Building Platform',

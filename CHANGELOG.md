@@ -6,7 +6,6 @@
 > - :bug: [Bug Fix]
 > - :book: [Documentation]
 > - :house: [Internal]
-
 ## [Unreleased]
 <details>
   <summary>
@@ -14,6 +13,62 @@
     Click to see more.
   </summary>
 
+</details>
+<hr/>
+
+## 6.6.0 (Dec 8, 2019)
+### :rocket: New Feature
+- `file-upload`
+  - [#489](https://github.com/wix-incubator/rich-content/pull/489) `config.downloadTarget` enables consumers to control in which tab files are opened
+- `undo-redo`
+  - [#495](https://github.com/wix-incubator/rich-content/pull/495) creates undo redo plugin
+- `editor`
+  - [#503](https://github.com/wix-incubator/rich-content/pull/503) activated drag and drop capability by default
+- `video`
+  - [#507](https://github.com/wix-incubator/rich-content/pull/507) support all video platform urls supported by `react-player`
+- `soundcloud`
+  - [#507](https://github.com/wix-incubator/rich-content/pull/507) support all audio platform urls supported by `react-player`
+### :bug: Bug Fix
+- `examples/viewer-ssr`
+  - [#499](https://github.com/wix-incubator/rich-content/pull/499) highlight plugin configuration fixed
+- `fullscreen`
+  - [#496](https://github.com/wix-incubator/rich-content/pull/496) adds support for legacy image type
+- `image`
+  - [#478](https://github.com/wix-incubator/rich-content/pull/478) margin & size (alignment strategy updated)
+- `mentions`
+  - [#486](https://github.com/wix-incubator/rich-content/pull/486) suggestions can be navigated using keyboard arrows
+- `giphy|emoji`
+  - [#512](https://github.com/wix-incubator/rich-content/pull/512) correct popup positions on desktop
+- `code-block`
+  - [#506](https://github.com/wix-incubator/rich-content/pull/506) fixed functinality of custom key handler
+### :house: Internal
+- `rollup`
+  - [#501](https://github.com/wix-incubator/rich-content/pull/501) remove rollup-plugin-node-builtins and rollup-plugin-node-globals
+- `common`
+  - [#493](https://github.com/wix-incubator/rich-content/pull/493) `common` package was split into `editor-common` and `common` in order to reduce `viewer` bundle size
+  - [#502](https://github.com/wix-incubator/rich-content/pull/502) removed external dependency for detecting rtl
+- `viewer examples`
+  - [#493](https://github.com/wix-incubator/rich-content/pull/493) remove RichContentModal from viewer examples
+- `e2e`
+  - [#501](https://github.com/wix-incubator/rich-content/pull/501) update cypress 3.6 => 3.7
+  - [#493](https://github.com/wix-incubator/rich-content/pull/493) fix video and soundcloud tests
+- `viewer`
+  - [d58d8916](https://github.com/wix-incubator/rich-content/commit/d58d8916) remove draftjs
+  - [a02b632a](https://github.com/wix-incubator/rich-content/commit/a02b632a) remove draftjs
+  - [#513](https://github.com/wix-incubator/rich-content/pull/513) removed `Immutable.js` dependency from `viewer`
+
+## 6.5.0 (Nov 25, 2019)
+### :bug: Bug Fix
+- `editor`
+  - [2a1e1b4a](https://github.com/wix-incubator/rich-content/commit/2a1e1b4a) fix import from common/src
+- `e2e`
+  - [98d8c980](https://github.com/wix-incubator/rich-content/commit/98d8c980) fix e2e
+### :house: Internal
+- `draftjs`
+  - [#487](https://github.com/wix-incubator/rich-content/pull/487) update draftjs 0.11 => 0.11.2
+<hr/>
+
+## 6.4.0 (Nov 25, 2019)
 ### :rocket: New Feature
 - `emoji`
   - [#470](https://github.com/wix-incubator/rich-content/pull/470) plugin reworked
@@ -31,8 +86,6 @@
   - [#481](https://github.com/wix-incubator/rich-content/pull/481) fixed layout transition behavior
 - `giphy`
   - [#485](https://github.com/wix-incubator/rich-content/pull/485) giphy-viewer: `data.config.sizes` fallbacks to empty object
-  
-</details>
 <hr/>
 
 ## 6.3.0 (Nov 20, 2019)
@@ -89,7 +142,7 @@
     - [#452](https://github.com/wix-incubator/rich-content/pull/452) `handleDropdownOpen`, `handleDropdownClose` and `popoverComponent` added to plugin settings
   - `video`
     - [#443](https://github.com/wix-incubator/rich-content/pull/443) async url resolving support
-    - [#444](https://github.com/wix-incubator/rich-content/pull/444) file upload support  
+    - [#444](https://github.com/wix-incubator/rich-content/pull/444) file upload support
     - [#449](https://github.com/wix-incubator/rich-content/pull/449) force video mime type for uploads
     - [#451](https://github.com/wix-incubator/rich-content/pull/451) uses unique file input id
   - `editor`

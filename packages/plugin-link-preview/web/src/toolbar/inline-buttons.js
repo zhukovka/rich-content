@@ -1,4 +1,4 @@
-import { BUTTONS } from 'wix-rich-content-common';
+import { BUTTONS } from 'wix-rich-content-editor-common';
 export default () => [
   {
     keyName: 'delete',

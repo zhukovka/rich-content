@@ -1,5 +1,6 @@
-import { AtomicBlockUtils } from 'draft-js';
-import { getBlockLinkRanges, deleteBlock } from 'wix-rich-content-common';
+import { EditorState, AtomicBlockUtils } from 'draft-js';
+import { isValidUrl } from 'wix-rich-content-common';
+import { deleteBlock } from 'wix-rich-content-editor-common';
 import { LINK_PREVIEW_TYPE } from './types';
 
 // const resetAtomicBlock = (contentBlock, contentState) => {
@@ -18,11 +19,17 @@ const replaceAtomicBlock = (contentBlock, editorState, entityProviderFn) => {
   const contentState = editorState.getCurrentContent();
   const entityKey = contentBlock.getEntityAt(0);
   const currentEntity = contentState.getEntity(entityKey);
-  const { type, mutability, data } = entityProviderFn(currentEntity.data);
+  const { type, mutability, data } = entityProviderFn(currentEntity);
   const withoutBlock = deleteBlock(editorState, contentBlock.getKey());
-  const contentStateWithEntity = contentState.createEntity(type, mutability, data);
+  const newContentState = withoutBlock.getCurrentContent();
+  const contentStateWithEntity = newContentState.createEntity(type, mutability, data);
+  const editorStateWithEntity = EditorState.push(
+    withoutBlock,
+    contentStateWithEntity,
+    'apply-entity'
+  );
   const newEntityKey = contentStateWithEntity.getLastCreatedEntityKey();
-  return AtomicBlockUtils.insertAtomicBlock(withoutBlock, newEntityKey, ' ');
+  return AtomicBlockUtils.insertAtomicBlock(editorStateWithEntity, newEntityKey, ' ');
 };
 
 const getPreviewEntity = (linkData, siteMetadata) => ({
@@ -53,12 +60,4 @@ export const replacePreviewWithLink = (contentBlock, editorState) =>
   replaceAtomicBlock(contentBlock, editorState, entity => getLinkEntity(entity.data));
 
 // Validates that block contains only a single link
-export const isLinkBlock = (contentBlock, editorState) => {
-  const contentState = editorState.getCurrentContent();
-  const linkRanges = getBlockLinkRanges(contentBlock, contentState);
-  if (linkRanges.length !== 1) {
-    return false;
-  }
-  const [offset, length] = linkRanges[0];
-  return offset === 0 && length === contentBlock.getLength();
-};
+export const isLinkBlock = contentBlock => isValidUrl(contentBlock.getText().trim());
