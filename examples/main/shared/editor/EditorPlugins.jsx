@@ -238,11 +238,7 @@ export const config = {
   },
   [HTML_TYPE]: {
     htmlIframeSrc: `${getBaseUrl()}/static/html-plugin-embed.html`,
-    minWidth: 35,
-    maxWidth: 740,
     width: 350,
-    minHeight: 50,
-    maxHeight: 1200,
     // toolbar: {
     //   icons: {
     //     HTML: MyCustomIcon, // insert plugin icon
