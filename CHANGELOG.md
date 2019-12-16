@@ -12,11 +12,11 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-  
+
   ### :rocket: New Feature
   - `fullscreen`
     - [#519](https://github.com/wix-incubator/rich-content/pull/519) add props: topMargin, backgroundColor, foregroundColor. Remove counter when only 1 image. Larger z-index
-  - `editor-common` 
+  - `editor-common`
     - [#526](https://github.com/wix-incubator/rich-content/pull/526) `onAtomicBlockFocus` is invoked with `undefined` when an atomic block loses focus
     - [#530](https://github.com/wix-incubator/rich-content/pull/530)`uiSettings.linkPanel.placeholder` determines the link panel's placeholder
   ### :bug: Bug Fix
@@ -29,7 +29,7 @@
     - [#527](https://github.com/wix-incubator/rich-content/pull/527) remove onTab (moved to keyBindingFn/handleKeyCommand)
   - `pubsub`
     - [#528](https://github.com/wix-incubator/rich-content/pull/528) rename visibleBlock to focusedBlock
-  
+
 </details>
 <hr/>
 
@@ -51,13 +51,15 @@
 - `file-upload`
   - [#489](https://github.com/wix-incubator/rich-content/pull/489) `config.downloadTarget` enables consumers to control in which tab files are opened
 - `undo-redo`
-  - [#495](https://github.com/wix-incubator/rich-content/pull/495) creates undo redo plugin 
+  - [#495](https://github.com/wix-incubator/rich-content/pull/495) creates undo redo plugin
 - `editor`
   - [#503](https://github.com/wix-incubator/rich-content/pull/503) activated drag and drop capability by default
 - `video`
   - [#507](https://github.com/wix-incubator/rich-content/pull/507) support all video platform urls supported by `react-player`
 - `soundcloud`
   - [#507](https://github.com/wix-incubator/rich-content/pull/507) support all audio platform urls supported by `react-player`
+- `Resize for HTML + Video plugins`
+  - [#536](https://github.com/wix-incubator/rich-content/pull/536) HTML + Video plugins are resizable
 ### :bug: Bug Fix
 - `examples/viewer-ssr`
   - [#499](https://github.com/wix-incubator/rich-content/pull/499) highlight plugin configuration fixed
@@ -172,7 +174,7 @@
     - [#452](https://github.com/wix-incubator/rich-content/pull/452) `handleDropdownOpen`, `handleDropdownClose` and `popoverComponent` added to plugin settings
   - `video`
     - [#443](https://github.com/wix-incubator/rich-content/pull/443) async url resolving support
-    - [#444](https://github.com/wix-incubator/rich-content/pull/444) file upload support  
+    - [#444](https://github.com/wix-incubator/rich-content/pull/444) file upload support
     - [#449](https://github.com/wix-incubator/rich-content/pull/449) force video mime type for uploads
     - [#451](https://github.com/wix-incubator/rich-content/pull/451) uses unique file input id
   - `editor`
