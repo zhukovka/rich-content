@@ -24,12 +24,8 @@ const createImagePlugin = (config = {}) => {
     component: Component,
     type: IMAGE_TYPE,
     legacyType: IMAGE_TYPE_LEGACY,
-    pluginDecorationProps: (props, componentData) => {
-      return pluginDecorationProps(props, componentData);
-    },
-    componentWillReceiveDecorationProps: (props, nextProps, onPropsChange) => {
-      componentWillReceiveDecorationProps(props, nextProps, onPropsChange);
-    },
+    pluginDecorationProps,
+    componentWillReceiveDecorationProps,
     toolbar: createToolbar({
       helpers,
       anchorTarget,

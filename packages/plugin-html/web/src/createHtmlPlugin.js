@@ -18,9 +18,7 @@ const createHtmlPlugin = (config = {}) => {
     pluginDecorationProps: props => {
       return pluginDecorationProps(props);
     },
-    componentWillReceiveDecorationProps: (props, nextProps, onPropsChange) => {
-      componentWillReceiveDecorationProps(props, nextProps, onPropsChange);
-    },
+    componentWillReceiveDecorationProps,
     settings,
     type: HTML_TYPE,
     toolbar: createToolbar({

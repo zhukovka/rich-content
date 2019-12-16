@@ -15,12 +15,8 @@ const createVideoPlugin = (config = {}) => {
     component: Component,
     type: VIDEO_TYPE,
     legacyType: VIDEO_TYPE_LEGACY,
-    pluginDecorationProps: (props, componentData) => {
-      return pluginDecorationProps(props, componentData);
-    },
-    componentWillReceiveDecorationProps: (props, nextProps, onPropsChange) => {
-      componentWillReceiveDecorationProps(props, nextProps, onPropsChange);
-    },
+    pluginDecorationProps,
+    componentWillReceiveDecorationProps,
     toolbar: createToolbar({
       helpers,
       t,
