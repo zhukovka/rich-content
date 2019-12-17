@@ -1,11 +1,11 @@
 import createToolbar from './toolbar';
 import { Component } from './video-component';
 import { VIDEO_TYPE, VIDEO_TYPE_LEGACY } from './types';
+import { createBasePlugin } from 'wix-rich-content-editor-common';
 import {
-  createBasePlugin,
   pluginDecorationProps,
   componentWillReceiveDecorationProps,
-} from 'wix-rich-content-editor-common';
+} from 'wix-rich-content-editor';
 
 const createVideoPlugin = (config = {}) => {
   const type = VIDEO_TYPE;

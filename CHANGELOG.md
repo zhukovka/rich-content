@@ -13,12 +13,19 @@
     Click to see more.
   </summary>
 
+  ### :boom: Breaking Change
+  - `HTML`
+    - [#536](https://github.com/wix-incubator/rich-content/pull/536) Removed minWidth, maxWidth, minHeight, maxHeight from HTML plugin config
   ### :rocket: New Feature
   - `fullscreen`
     - [#519](https://github.com/wix-incubator/rich-content/pull/519) add props: topMargin, backgroundColor, foregroundColor. Remove counter when only 1 image. Larger z-index
   - `editor-common`
     - [#526](https://github.com/wix-incubator/rich-content/pull/526) `onAtomicBlockFocus` is invoked with `undefined` when an atomic block loses focus
     - [#530](https://github.com/wix-incubator/rich-content/pull/530)`uiSettings.linkPanel.placeholder` determines the link panel's placeholder
+  - `Video`
+    - [#536](https://github.com/wix-incubator/rich-content/pull/536) Resize for Video plugin
+  - `HTML`
+    - [#536](https://github.com/wix-incubator/rich-content/pull/536) Resize for HTML plugin
   ### :bug: Bug Fix
   - `divider`
     - [#511](https://github.com/wix-incubator/rich-content/pull/511) divider's width set to 100% in editor&viewer when no initial state of width is given
@@ -58,8 +65,6 @@
   - [#507](https://github.com/wix-incubator/rich-content/pull/507) support all video platform urls supported by `react-player`
 - `soundcloud`
   - [#507](https://github.com/wix-incubator/rich-content/pull/507) support all audio platform urls supported by `react-player`
-- `Resize for HTML + Video plugins`
-  - [#536](https://github.com/wix-incubator/rich-content/pull/536) HTML + Video plugins are resizable
 ### :bug: Bug Fix
 - `examples/viewer-ssr`
   - [#499](https://github.com/wix-incubator/rich-content/pull/499) highlight plugin configuration fixed

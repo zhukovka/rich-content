@@ -78,7 +78,6 @@ export { isiOS } from './Utils/isiOS';
 export { getSelectionStyles } from './Utils/inlineStyleUtils';
 export { getConfigByFormFactor } from './Utils/getConfigByFormFactor';
 export { mergeToolbarSettings } from './Utils/mergeToolbarSettings';
-export { pluginDecorationProps, componentWillReceiveDecorationProps } from './Utils/decorationUtil';
 export {
   COMMANDS,
   MODIFIERS,
