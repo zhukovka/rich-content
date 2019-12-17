@@ -1,6 +1,4 @@
-import { EditorState, AtomicBlockUtils } from 'draft-js';
-import { isValidUrl } from 'wix-rich-content-common';
-import { deleteBlock } from 'wix-rich-content-editor-common';
+import { removeBlock, addAtomicBlock, getLinkRangesInBlock } from 'wix-rich-content-editor-common';
 import { LINK_PREVIEW_TYPE } from './types';
 
 // const resetAtomicBlock = (contentBlock, contentState) => {
@@ -17,19 +15,12 @@ import { LINK_PREVIEW_TYPE } from './types';
 
 const replaceAtomicBlock = (contentBlock, editorState, entityProviderFn) => {
   const contentState = editorState.getCurrentContent();
+  // console.log('replaceAtomicBlock');
   const entityKey = contentBlock.getEntityAt(0);
   const currentEntity = contentState.getEntity(entityKey);
-  const { type, mutability, data } = entityProviderFn(currentEntity);
-  const withoutBlock = deleteBlock(editorState, contentBlock.getKey());
-  const newContentState = withoutBlock.getCurrentContent();
-  const contentStateWithEntity = newContentState.createEntity(type, mutability, data);
-  const editorStateWithEntity = EditorState.push(
-    withoutBlock,
-    contentStateWithEntity,
-    'apply-entity'
-  );
-  const newEntityKey = contentStateWithEntity.getLastCreatedEntityKey();
-  return AtomicBlockUtils.insertAtomicBlock(editorStateWithEntity, newEntityKey, ' ');
+  const { type, data } = entityProviderFn(currentEntity);
+  const withoutBlock = removeBlock(editorState, contentBlock.getKey());
+  return addAtomicBlock(withoutBlock, type, data);
 };
 
 const getPreviewEntity = (linkData, siteMetadata) => ({
@@ -60,4 +51,15 @@ export const replacePreviewWithLink = (contentBlock, editorState) =>
   replaceAtomicBlock(contentBlock, editorState, entity => getLinkEntity(entity.data));
 
 // Validates that block contains only a single link
-export const isLinkBlock = contentBlock => isValidUrl(contentBlock.getText().trim());
+export const getBlockLinkUrl = (contentBlock, editorState) => {
+  const contentState = editorState.getCurrentContent();
+  const linkRanges = getLinkRangesInBlock(contentBlock, contentState);
+  if (linkRanges.length !== 1) {
+    return false;
+  }
+  const [offset, length] = linkRanges[0];
+  if (offset !== 0 || length !== contentBlock.getLength()) {
+    return false;
+  }
+  return contentBlock.getText();
+};

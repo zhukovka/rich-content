@@ -1,6 +1,6 @@
 import React from 'react';
 import { createLinkPlugin, LINK_TYPE } from 'wix-rich-content-plugin-link';
-import { createLinkPreviewPlugin } from 'wix-rich-content-plugin-link-preview';
+import { createLinkPreviewPlugin, LINK_PREVIEW_TYPE } from 'wix-rich-content-plugin-link-preview';
 import { createLineSpacingPlugin, LINE_SPACING_TYPE } from 'wix-rich-content-plugin-line-spacing';
 import { createHashtagPlugin, HASHTAG_TYPE } from 'wix-rich-content-plugin-hashtag';
 import { createEmojiPlugin } from 'wix-rich-content-plugin-emoji';
@@ -176,6 +176,13 @@ const uiSettings = {
 };
 
 export const config = {
+  [LINK_PREVIEW_TYPE]: {
+    fetchMetadata: () => setTimeout(() => ({
+        title: 'Wix Ltd',
+        description: 'Website Building Platform',
+        thumbnail: 'https://financesonline.com/uploads/2018/01/wix-logo.png',
+      }), 1000)
+  },
   [UNDO_REDO_TYPE]: {
     // toolbar: {
     //   icons: {
