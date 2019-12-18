@@ -73,6 +73,9 @@ export {
   replaceWithEmptyBlock,
   deleteBlock,
   getSelectedBlocks,
+  getCurrentBlock,
+  getLinkRangesInBlock,
+  addAtomicBlock,
 } from './Utils/draftUtils';
 export { isiOS } from './Utils/isiOS';
 export { getSelectionStyles } from './Utils/inlineStyleUtils';

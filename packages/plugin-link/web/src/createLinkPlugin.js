@@ -1,4 +1,5 @@
 import { createBasePlugin, insertLinkInPosition } from 'wix-rich-content-editor-common';
+import { getBlockLinkUrl, addLinkPreview } from 'wix-rich-content-link-preview/dist/lib/utils';
 import {
   isValidUrl,
   // getUrlMatches,
@@ -19,6 +20,12 @@ const createLinkPlugin = (config = {}) => {
 
   const handleReturn = (event, editorState) => {
     linkifyData = getLinkifyData(editorState);
+    if (linkifyData && settings.preview) {
+      const url = getBlockLinkUrl(editorState);
+      if (url) {
+        linkifyData.preview = true;
+      }
+    }
   };
 
   const handleBeforeInput = (chars, editorState) => {
@@ -28,12 +35,14 @@ const createLinkPlugin = (config = {}) => {
   };
 
   const onChange = editorState => {
-    if (linkifyData) {
-      const newEditorState = addLinkAt(linkifyData, editorState);
-      linkifyData = false;
-      return newEditorState;
+    let newEditorState = editorState;
+    if (linkifyData && !linkifyData.preview) {
+      newEditorState = addLinkAt(linkifyData, editorState);
+    } else if (linkifyData?.preview) {
+      newEditorState = addLinkPreview(linkifyData, editorState, settings.preview);
     }
-    return editorState;
+    linkifyData = false;
+    return newEditorState;
   };
   // linkify pasted text
   // onChange = editorState => {

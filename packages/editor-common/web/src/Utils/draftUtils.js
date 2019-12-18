@@ -1,4 +1,4 @@
-import { EditorState, Modifier, RichUtils, SelectionState } from 'draft-js';
+import { AtomicBlockUtils, EditorState, Modifier, RichUtils, SelectionState } from 'draft-js';
 import { cloneDeep, flatMap, findIndex, findLastIndex } from 'lodash';
 
 export const insertLinkInPosition = (
@@ -20,6 +20,14 @@ export const insertLinkInPosition = (
     anchorTarget,
     relValue,
   });
+};
+
+export const getCurrentBlock = editorState => {
+  const selectionState = editorState.getSelection();
+  const contentState = editorState.getCurrentContent();
+  const block = contentState.getBlockForKey(selectionState.getStartKey());
+
+  return block;
 };
 
 export const insertLinkAtCurrentSelection = (
@@ -238,7 +246,20 @@ function getSelectedLinksInBlock(block, editorState) {
     }));
 }
 
-function getLinkRangesInBlock(block, contentState) {
+export const addAtomicBlock = (editorState, entityType, data = {}) => {
+  const contentState = editorState.getCurrentContent();
+  const contentStateWithEntity = contentState.createEntity(entityType, 'IMMUTABLE', data);
+  const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+
+  const newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
+
+  return EditorState.forceSelection(
+    newEditorState,
+    newEditorState.getCurrentContent().getSelectionAfter()
+  );
+};
+
+export function getLinkRangesInBlock(block, contentState) {
   const ranges = [];
   block.findEntityRanges(
     value => {

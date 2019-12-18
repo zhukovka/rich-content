@@ -1,4 +1,4 @@
-import { deleteBlock, addAtomicBlock, getLinkRangesInBlock } from 'wix-rich-content-editor-common';
+import { addAtomicBlock, getLinkRangesInBlock } from 'wix-rich-content-editor-common';
 import { LINK_PREVIEW_TYPE } from '../types';
 
 // const resetAtomicBlock = (contentBlock, contentState) => {
