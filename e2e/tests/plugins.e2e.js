@@ -1,3 +1,4 @@
+/*global cy*/
 import {
   PLUGIN_COMPONENT,
   PLUGIN_TOOLBAR_BUTTONS,
