@@ -40,6 +40,8 @@
     - [#527](https://github.com/wix-incubator/rich-content/pull/527) remove onTab (moved to keyBindingFn/handleKeyCommand)
   - `pubsub`
     - [#528](https://github.com/wix-incubator/rich-content/pull/528) rename visibleBlock to focusedBlock
+  - `common`
+    - [#534](https://github.com/wix-incubator/rich-content/pull/534) exposes data normalization and data validation utils as separate entries
   - `button`
     - [#517](https://github.com/wix-incubator/rich-content/pull/517) plugin button refactor
   
