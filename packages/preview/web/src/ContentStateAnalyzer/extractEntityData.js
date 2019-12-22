@@ -103,8 +103,10 @@ const converters = {
   'wix-draft-plugin-button': defaultEntityConverter,
   LINK: defaultEntityConverter,
   'wix-draft-plugin-html': defaultEntityConverter,
+  LINK_PREVIEW_TYPE: defaultEntityConverter,
 };
 
-const extractEntityData = entity => converters[entity.type](entity);
+const extractEntityData = entity =>
+  converters[entity.type] ? converters[entity.type](entity) : defaultEntityConverter(entity);
 
 export default extractEntityData;
