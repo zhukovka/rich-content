@@ -51,7 +51,7 @@ const createLinkPlugin = (config = {}) => {
       newEditorState = addLinkAt(linkifyData, editorState);
     } else if (linkifyData?.preview) {
       const withoutBlock = deleteBlock(editorState, linkifyData.block.key);
-      newEditorState = addLinkPreview(linkifyData.string, withoutBlock, settings.preview);
+      newEditorState = addLinkPreview(withoutBlock, config, linkifyData.string);
     }
     linkifyData = false;
     return newEditorState;
