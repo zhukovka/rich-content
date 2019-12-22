@@ -1,56 +1,62 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { normalizeUrl, mergeStyles, validate, Context } from 'wix-rich-content-common';
-import { invoke, isEqual } from 'lodash';
-import schema from '../statics/data-schema.json';
-import styles from '../statics/link-viewer.scss';
+import {
+  normalizeUrl,
+  mergeStyles,
+  validate,
+  Context,
+  linkPreviewSchema,
+  ReadMore,
+} from 'wix-rich-content-common';
+import styles from '../statics/styles/link-preview.scss';
 
 class LinkPreviewViewer extends Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
-    theme: PropTypes.object,
-    children: PropTypes.node,
-    anchorTarget: PropTypes.string,
-    relValue: PropTypes.string,
-    settings: PropTypes.object,
+    fetchMetadata: PropTypes.func.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-    validate(props.componentData, schema);
-    this.state = { styles };
-  }
+  state = {};
 
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(nextProps.componentData, this.props.componentData)) {
-      validate(nextProps.componentData, schema);
+  async componentDidMount() {
+    validate(linkPreviewSchema, this.props.componentData);
+    if (!this.state.metadata) {
+      const url = normalizeUrl(this.props.componentData.url);
+      const metadata = await this.props.fetchMetadata(url);
+      this.setState({ metadata });
     }
   }
 
-  componentDidMount() {
-    const theme = this.context && this.context.theme;
-    this.setState({ styles: mergeStyles({ styles, theme }) });
-  }
-
-  handleClick = event => {
-    invoke(this, 'props.settings.onClick', event, this.getHref());
-  };
-
-  getHref() {
-    return normalizeUrl(this.props.componentData.url);
-  }
-
   render() {
-    const { componentData, anchorTarget, relValue, children } = this.props;
-    const { target, rel } = componentData;
-    const anchorProps = {
-      href: this.getHref(),
-      target: target ? target : anchorTarget || '_self',
-      rel: rel ? rel : relValue || 'noopener',
-      className: this.state.styles.link,
-      onClick: this.handleClick,
-    };
-    return <a {...anchorProps}>{children}</a>;
+    this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
+    if (!this.state.metadata) {
+      return null;
+    }
+    return (
+      <a
+        className={styles.linkPreview_link}
+        href={this.state.metadata.url}
+        target={this.context.anchorTarget}
+        rel={this.context.relValue}
+      >
+        <figure className={styles.linkPreview}>
+          <section className={styles.linkPreview_info}>
+            <figcaption className={styles.linkPreview_title}>
+              <ReadMore lines={1} text={this.state.metadata.title} label="" />
+            </figcaption>
+            <p className={this.styles.linkPreview_description}>
+              <ReadMore text={this.state.metadata.description} label="" />
+            </p>
+            <footer className={styles.linkPreview_footer}>{this.state.metadata.url}</footer>
+          </section>
+          <img
+            className={styles.linkPreview_image}
+            src={this.state.metadata.thumbnail_url}
+            alt={this.state.metadata.title}
+          />
+        </figure>
+      </a>
+    );
   }
 }
 
