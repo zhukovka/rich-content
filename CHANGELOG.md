@@ -16,7 +16,7 @@
 </details>
 <hr/>
 
-## 6.6.1 (Dec 11, 2019)
+## 6.6.2 (Dec 11, 2019)
  ### :rocket: New Feature
   - `editor-common`
     - [#526](https://github.com/wix-incubator/rich-content/pull/526) `onAtomicBlockFocus` is invoked with `undefined` when an atomic block loses focus
