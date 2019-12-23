@@ -5,8 +5,11 @@ import createLinkPreviewToolbar from './toolbar/createLinkPreviewToolbar';
 
 const createLinkPreviewPlugin = (config = {}) => {
   const type = LINK_PREVIEW_TYPE;
-  const { [type]: settings = {}, ...rest } = config;
-  const toolbar = createLinkPreviewToolbar();
+  if (!config[LINK_PREVIEW_TYPE]) {
+    config[LINK_PREVIEW_TYPE] = {};
+  }
+  const { [type]: settings, ...rest } = config;
+  const toolbar = createLinkPreviewToolbar(settings);
 
   return createBasePlugin({
     component: LinkPreviewComponent,

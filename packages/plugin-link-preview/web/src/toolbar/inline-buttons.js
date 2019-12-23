@@ -1,8 +1,13 @@
-import { BUTTONS } from 'wix-rich-content-editor-common';
-export default () => [
+import { TrashIcon } from 'wix-rich-content-editor-common';
+export default settings => [
   {
-    keyName: 'delete',
-    type: BUTTONS.DELETE,
-    mobile: false,
+    keyName: 'deletePreview',
+    type: 'custom',
+    icon: TrashIcon,
+    onClick: () => {
+      settings?.onDelete();
+    },
+    mobile: true,
+    desktop: true,
   },
 ];
