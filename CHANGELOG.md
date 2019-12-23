@@ -13,9 +13,11 @@
     Click to see more.
   </summary>
 
-  ### :rocket: New Feature
-  - `fullscreen`
-    - [#519](https://github.com/wix-incubator/rich-content/pull/519) add props: topMargin, backgroundColor, foregroundColor. Remove counter when only 1 image. Larger z-index
+</details>
+<hr/>
+
+## 6.6.1 (Dec 11, 2019)
+ ### :rocket: New Feature
   - `editor-common`
     - [#526](https://github.com/wix-incubator/rich-content/pull/526) `onAtomicBlockFocus` is invoked with `undefined` when an atomic block loses focus
     - [#530](https://github.com/wix-incubator/rich-content/pull/530) `uiSettings.linkPanel.placeholder` determines the link panel's placeholder
@@ -28,8 +30,6 @@
     - [#504](https://github.com/wix-incubator/rich-content/pull/504) pasted links get the configured anchorTarget and relValue
   - `undo-redo`
     - [#543](https://github.com/wix-incubator/rich-content/pull/543) fix undo-redo icons on mobile
-  - `divider`
-    - [#511](https://github.com/wix-incubator/rich-content/pull/511) divider's width set to 100% in editor&viewer when no initial state of width is given
   - `editor`
     - [#521](https://github.com/wix-incubator/rich-content/pull/521) replace p element with div element in lists
   - `gallery`
@@ -44,7 +44,6 @@
   - `e2e`
     - [#538](https://github.com/wix-incubator/rich-content/pull/538) moved tests out of Docker, e2e and unit tests run in github actions
     - [#542](https://github.com/wix-incubator/rich-content/pull/542) e2e tests run visual tests and content snapshots separately
-  ### :house: Internal
   - `codeBlock`
     - [#527](https://github.com/wix-incubator/rich-content/pull/527) remove onTab (moved to keyBindingFn/handleKeyCommand)
   - `pubsub`
@@ -53,9 +52,7 @@
     - [#534](https://github.com/wix-incubator/rich-content/pull/534) exposes data normalization and data validation utils as separate entries
   - `button`
     - [#517](https://github.com/wix-incubator/rich-content/pull/517) plugin button refactor
-</details>
-<hr/>
-
+    
 ## 6.6.1 (Dec 11, 2019)
 ### :rocket: New Feature
 - `fullscreen`
