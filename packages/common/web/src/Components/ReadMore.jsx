@@ -38,7 +38,6 @@ class ReadMore extends PureComponent {
     const textToCollapse = text || getChildrenText(children);
     return (
       <Fragment>
-        <div className={this.styles.readMore_wrapper} onClick={this.props.onClick} />
         {isExpanded ? {textToCollapse} :
           <LinesEllipsis
             text={textToCollapse}
