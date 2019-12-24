@@ -8,8 +8,8 @@ const createLinkPreviewPlugin = (config = {}) => {
   if (!config[LINK_PREVIEW_TYPE]) {
     config[LINK_PREVIEW_TYPE] = {};
   }
-  const { [type]: settings, ...rest } = config;
-  const toolbar = createLinkPreviewToolbar(settings);
+  const { [type]: settings, setEditorState, ...rest } = config;
+  const toolbar = createLinkPreviewToolbar(settings, setEditorState);
 
   return createBasePlugin({
     component: LinkPreviewComponent,
