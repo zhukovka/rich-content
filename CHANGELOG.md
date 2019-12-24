@@ -12,6 +12,15 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+  
+  ### :boom: Breaking Change
+  - `text-color`
+    - [#520](https://github.com/wix-incubator/rich-content/pull/520) the class name "colorPicker_add_color_button_hidden" was changed to "colorPicker_color_button_hidden" in the CSS file "color-picker.scss"
+  ### :rocket: New Feature
+  - `text-color`
+    - [#520](https://github.com/wix-incubator/rich-content/pull/520) color Picker- adding an option to change back to default color
+  - `fullscreen`
+    - [#519](https://github.com/wix-incubator/rich-content/pull/519) add props: topMargin, backgroundColor, foregroundColor. Remove counter when only 1 image. Larger z-index
 
 </details>
 <hr/>
