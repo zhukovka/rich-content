@@ -20,6 +20,7 @@ export default ({ settings, t, anchorTarget, relValue }) => {
       mobile: false,
       multiple: true,
       tooltipTextKey: 'UploadMediaButton_Tooltip',
+      settings,
     },
     { type: BUTTONS.SEPARATOR, mobile: false },
     {

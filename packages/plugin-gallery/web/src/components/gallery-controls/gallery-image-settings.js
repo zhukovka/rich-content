@@ -39,13 +39,15 @@ class ImageSettings extends Component {
   };
 
   getImageUrl = image =>
-    imageClientAPI.getScaleToFillImageURL(
-      'media/' + image.url,
-      image.metadata.width,
-      image.metadata.height,
-      420,
-      240
-    );
+    image.metadata.type !== 'video'
+      ? imageClientAPI.getScaleToFillImageURL(
+          'media/' + image.url,
+          image.metadata.width,
+          image.metadata.height,
+          420,
+          240
+        )
+      : image.metadata.poster;
 
   onInputWithLabelChange = event => this.props.onUpdateImage({ title: event.target.value });
 
@@ -213,25 +215,27 @@ class ImageSettings extends Component {
                     onChange={this.onInputWithLabelChange}
                   />
                 </SettingsSection>
-                <SettingsSection
-                  ariaProps={{ 'aria-label': 'image link', role: 'region' }}
-                  theme={theme}
-                  className={this.styles.galleryImageSettings_section}
-                >
-                  <span id="gallery_image_link_lbl" className={this.styles.inputWithLabel_label}>
-                    {this.linkLabel}
-                  </span>
-                  <LinkPanel
-                    linkValues={this.linkToLinkPanel(metadata.link || {})}
-                    onChange={this.onLinkPanelChange}
-                    showTargetBlankCheckbox={showTargetBlankCheckbox}
-                    showRelValueCheckbox={showRelValueCheckbox}
+                {metadata.type !== 'video' && (
+                  <SettingsSection
+                    ariaProps={{ 'aria-label': 'image link', role: 'region' }}
                     theme={theme}
-                    t={t}
-                    ariaProps={{ 'aria-labelledby': 'gallery_image_link_lbl' }}
-                    placeholder={placeholder}
-                  />
-                </SettingsSection>
+                    className={this.styles.galleryImageSettings_section}
+                  >
+                    <span id="gallery_image_link_lbl" className={this.styles.inputWithLabel_label}>
+                      {this.linkLabel}
+                    </span>
+                    <LinkPanel
+                      linkValues={this.linkToLinkPanel(metadata.link || {})}
+                      onChange={this.onLinkPanelChange}
+                      showTargetBlankCheckbox={showTargetBlankCheckbox}
+                      showRelValueCheckbox={showRelValueCheckbox}
+                      theme={theme}
+                      t={t}
+                      ariaProps={{ 'aria-labelledby': 'gallery_image_link_lbl' }}
+                      placeholder={placeholder}
+                    />
+                  </SettingsSection>
+                )}
               </div>
             )}
           </div>

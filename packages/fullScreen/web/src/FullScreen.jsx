@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Carousel, { Modal, ModalGateway, carouselComponents } from 'react-images';
+import View from './View.jsx';
 import RightArrowIcon from './icons/rightArrow.svg';
 import LeftArrowIcon from './icons/leftArrow.svg';
 import CloseIcon from './icons/close.svg';
@@ -89,6 +90,7 @@ export default class Fullscreen extends React.Component {
               views={images}
               currentIndex={index}
               components={{
+                View,
                 NavigationPrev: addChildTo(carouselComponents.NavigationNext, LeftArrowIcon),
                 NavigationNext: addChildTo(carouselComponents.NavigationNext, RightArrowIcon),
                 HeaderClose: addChildTo(carouselComponents.HeaderClose, CloseIcon),

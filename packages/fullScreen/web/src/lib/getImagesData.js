@@ -5,26 +5,40 @@ const imageTypeLegacy = 'IMAGE';
 const galleryType = 'wix-draft-plugin-gallery';
 
 // eslint-disable-next-line camelcase
-function getUrl({ file_name, width, height }) {
+function getUrl({ file_name, width, height, type }) {
   const { width: screenWidth, height: screenHeight } = window.screen;
-  return getImageSrc(
-    // eslint-disable-next-line camelcase
-    { file_name, width, height },
-    {},
-    {
-      requiredWidth: screenWidth - 200,
-      requiredHeight: screenHeight - 200,
-      requiredQuality: 90,
-      imageType: 'highRes',
-    }
-  );
+  return {
+    src: getImageSrc(
+      // eslint-disable-next-line camelcase
+      { file_name, width, height },
+      {},
+      {
+        requiredWidth: screenWidth - 200,
+        requiredHeight: screenHeight - 200,
+        requiredQuality: 90,
+        imageType: 'highRes',
+      }
+    ),
+    type,
+  };
+  // return getImageSrc(
+  //   // eslint-disable-next-line camelcase
+  //   { file_name, width, height },
+  //   {},
+  //   {
+  //     requiredWidth: screenWidth - 200,
+  //     requiredHeight: screenHeight - 200,
+  //     requiredQuality: 90,
+  //     imageType: 'highRes',
+  //   }
+  // );
 }
 
 function imageEntryToUrl(entry) {
   if (!entry.data.src) {
     return '';
   }
-  return getUrl(entry.data.src);
+  return getUrl({ ...entry.data.src, type: 'image' });
 }
 
 function galleryEntryToUrls(entry) {
@@ -35,6 +49,7 @@ function convertGalleryItemToImage(item) {
   return {
     // eslint-disable-next-line camelcase
     file_name: item.url,
+    type: item.metadata.type || 'image',
     width: item.metadata.width,
     height: item.metadata.height,
   };

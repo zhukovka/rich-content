@@ -72,13 +72,16 @@ const SortableItem = sortableElement(props => {
 
     let url;
     if (item.metadata.processedByConsumer) {
-      url = imageClientAPI.getScaleToFillImageURL(
-        prefix + item.url,
-        item.metadata.width,
-        item.metadata.height,
-        imageSize,
-        imageSize
-      );
+      url =
+        item.metadata.type !== 'video'
+          ? imageClientAPI.getScaleToFillImageURL(
+              prefix + item.url,
+              item.metadata.width,
+              item.metadata.height,
+              imageSize,
+              imageSize
+            )
+          : item.metadata.poster;
     }
 
     return (

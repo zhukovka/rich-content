@@ -6,15 +6,15 @@ import { GALLERY_TYPE } from './types';
 const createGalleryPlugin = (config = {}) => {
   const type = GALLERY_TYPE;
   const { helpers, theme, t, anchorTarget, relValue, [type]: settings = {}, ...rest } = config;
-
+  const _settings = { ...settings, accept: 'image/* || video/*' };
   return createBasePlugin({
     component: Component,
-    settings,
+    settings: _settings,
     theme,
     t,
     type,
     toolbar: createToolbar({
-      settings,
+      settings: _settings,
       helpers,
       t,
       anchorTarget,

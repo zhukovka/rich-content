@@ -31,6 +31,17 @@ export const convertItemData = ({ items, anchorTarget, relValue }) =>
           target: '_blank',
         },
       };
+      if (item?.metadata?.type === 'video') {
+        convertedData.metaData.link = {
+          type: 'wix',
+          target: '_blank',
+          data: {
+            target: '_blank',
+            rel: 'noopener',
+            url: normalizeUrl(item.url || ''),
+          },
+        };
+      }
       if (item.metadata.link) {
         convertedData.metaData.link = {
           type: 'wix',

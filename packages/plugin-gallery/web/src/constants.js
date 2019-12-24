@@ -73,5 +73,29 @@ export const DEFAULTS = {
   },
 };
 
+export const imageItem = (img, event) => {
+  return {
+    metadata: {
+      type: 'image',
+      height: img.height,
+      width: img.width,
+    },
+    itemId: String(event.timeStamp),
+    url: img.src,
+  };
+};
+
+export const videoItem = (video, event) => {
+  return {
+    metadata: {
+      type: 'video',
+      height: 200,
+      width: 200,
+    },
+    itemId: String(event.timeStamp),
+    url: video.src,
+  };
+};
+
 export const isHorizontalLayout = ({ galleryLayout }) =>
   HORIZONTAL_LAYOUTS.indexOf(galleryLayout) > -1;
