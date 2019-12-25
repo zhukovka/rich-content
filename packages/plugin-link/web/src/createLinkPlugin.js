@@ -1,4 +1,3 @@
-import { EditorState } from 'draft-js';
 import {
   deleteBlock,
   createBasePlugin,
@@ -52,14 +51,7 @@ const createLinkPlugin = (config = {}) => {
       newEditorState = addLinkAt(linkifyData, editorState);
     } else if (linkifyData?.preview) {
       const withoutBlock = deleteBlock(editorState, linkifyData.block.key);
-      const linkifyDataPreserve = { ...linkifyData };
-      newEditorState = addLinkPreview(withoutBlock, config, linkifyData.string, () => {
-        const withLink = addLinkAt(linkifyDataPreserve, editorState);
-        return EditorState.forceSelection(
-          withLink,
-          withLink.getCurrentContent().getSelectionAfter()
-        );
-      });
+      newEditorState = addLinkPreview(withoutBlock, config, linkifyData.string);
     }
     linkifyData = false;
     return newEditorState;
