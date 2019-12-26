@@ -120,6 +120,26 @@ getToolbarSettings: ({ pluginButtons, textButtons }) => [
 ```
 
 All available button names are listed in the [EditorPlugins](https://github.com/wix-incubator/rich-content/blob/master/examples/main/shared/editor/EditorPlugins.jsx) file under the `getToolbarSettings` section.
+
+### Customizing Text Toolbar Button Icons
+
+| property                 | description                                                                                                                                                                                                                                                                         | affected toolbars                           |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| `name`                   | one of the toolbar types (see `TOOLBARS` const for details)                                                                                                                                                                                                                         | all                                         |
+| `shouldCreate`           | determines whether the toolbar should be created at the first place                                                                                                                                                                                                                 | all                                         |
+| `getVisibilityFn`        | toolbar visibility function                                                                                                                                                                                                                                                         | all                                         |
+| `getPositionOffset`      | toolbar offset point in pixels, relatively to the default toolbar position                                                                                                                                                                                                          | all                                         |
+| `getDisplayOptions`      | toolbar display options (see next section for details)                                                                                                                                                                                                                              | all                                         |
+| `getToolbarDecorationFn` | component to be rendered instead of default toolbar container (see the following sections for details)                                                                                                                                                                              | all                                         |
+| `getButtons` (1)         | a list of the toolbar button components                                                                                                                                                                                                                                             | plugin insertion and functionality toolbars |
+| `getButtons` (2)         | a list of inline button names                                                                                                                                                                                                                                                       | text editing toolbars                       |
+| `getTextPluginButtons`   | a map of inline buttons added by plugins. The keys are derived from the `PluginTextButtonMappers` -- see the `link-plugin`'s [createLinkToolbar](https://github.com/wix-incubator/rich-content/blob/master/packages/plugin-link/web/src/toolbar/createLinkToolbar.js) for reference | text editing toolbars                       |
+
+#### Display Options
+
+At the moment, the `getDisplayOptions` API consists of a single property `displayMode`. This property accepts two values (defined in [consts.js](https://github.com/wix-incubator/rich-content/blob/master/packages/editor-common/web/src/consts.js)):
+
+All available button names are listed in the [EditorPlugins](https://github.com/wix-incubator/rich-content/blob/master/examples/main/shared/editor/EditorPlugins.jsx) file under the `getToolbarSettings` section.
 - `DISPLAY_MODE.FLOATING` the toolbars are in fixed position. This, combined with `getVisibilityFn` and `getPositionOffset` properties, causes toolbars to "float".
 
 **Note**: while in `DISPLAY_MODE.FLOATING` mode, the `getPositionOffset` property denotes absolute screen coordinates.

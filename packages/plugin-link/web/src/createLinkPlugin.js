@@ -2,6 +2,7 @@ import {
   deleteBlock,
   createBasePlugin,
   insertLinkInPosition,
+  fixPastedLinks,
 } from 'wix-rich-content-editor-common';
 import { addLinkPreview } from 'wix-rich-content-plugin-link-preview/dist/lib/utils';
 import {
@@ -45,9 +46,19 @@ const createLinkPlugin = (config = {}) => {
     }
   };
 
+  let prevContentState;
+  const isPasteChange = editorState => {
+    const contentState = editorState.getCurrentContent();
+    const contentChanged = contentState !== prevContentState;
+    prevContentState = contentState;
+    return contentChanged && editorState.getLastChangeType() === 'insert-fragment';
+  };
+
   const onChange = editorState => {
     let newEditorState = editorState;
-    if (linkifyData && !linkifyData.preview) {
+    if (isPasteChange(editorState)) {
+      newEditorState = fixPastedLinks(editorState, { anchorTarget, relValue });
+    } else if (linkifyData && !linkifyData.preview) {
       newEditorState = addLinkAt(linkifyData, editorState);
     } else if (linkifyData?.preview) {
       const withoutBlock = deleteBlock(editorState, linkifyData.block.key);
@@ -56,37 +67,6 @@ const createLinkPlugin = (config = {}) => {
     linkifyData = false;
     return newEditorState;
   };
-  // linkify pasted text
-  // onChange = editorState => {
-  //   let newEditorState = editorState;
-  //   if (editorState.getLastChangeType() === 'insert-fragment') {
-  //     const content = editorState.getCurrentContent();
-  //     const startKey = content.getSelectionBefore().getStartKey();
-  //     const endKey = content.getSelectionAfter().getEndKey();
-  //     const blockMap = content.getBlockMap();
-  //     const blockKeys = blockMap.keySeq();
-  //     const startIndex = blockKeys.indexOf(startKey);
-  //     const endIndex = blockKeys.indexOf(endKey) + 1;
-  //
-  //     blockMap.slice(startIndex, endIndex).forEach(block => {
-  //       const text = block.getText();
-  //       getUrlMatches(text)
-  //         .filter(({ text: url, index: start, lastIndex: end }) => {
-  //           const entityKey = block.getEntityAt(start);
-  //           const entityType = entityKey !== null && content.getEntity(entityKey).getType();
-  //           const longEnough = url.length >= minLinkifyLength;
-  //           return entityType !== 'LINK' && entityType !== 'WAS_LINK' && longEnough;
-  //         })
-  //         .forEach(({ text: url, index: start, lastIndex: end }) => {
-  //           newEditorState = addLinkAt(
-  //             { string: url, index: start, endIndex: end, blockKey: block.getKey() },
-  //             newEditorState
-  //           );
-  //         });
-  //     });
-  //   }
-  //   return newEditorState;
-  // };
 
   const getLinkifyData = editorState => {
     const str = findLastStringWithNoSpaces(editorState);

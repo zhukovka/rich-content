@@ -78,27 +78,6 @@ class DesignComponent extends PureComponent {
     this.setState({ customTextColors });
   };
 
-  onBackgroundcolorAdded(color) {
-    this.props.settings.onBackgroundColorAdded(color);
-    this.setState({
-      backgroundCustomcolors: this.props.settings.getBackgroundColors() || [],
-    });
-  }
-
-  onBordercolorAdded = color => {
-    this.props.settings.onBorderColorAdded(color);
-    this.setState({
-      borderCustomcolors: this.props.settings.getBorderColors() || [],
-    });
-  };
-
-  onTextcolorAdded = color => {
-    this.props.settings.onTextColorAdded(color);
-    this.setState({
-      textCustomcolors: this.props.settings.getTextColors() || [],
-    });
-  };
-
   onBorderWidthChange = value => {
     const design = { ...this.state.design, borderWidth: value, padding: 12 - value / 2 };
     this.setState({ design });
