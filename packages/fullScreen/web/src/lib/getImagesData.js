@@ -20,18 +20,9 @@ function getUrl({ file_name, width, height, type }) {
       }
     ),
     type,
+    width: screenWidth - 200,
+    height: screenHeight - 200,
   };
-  // return getImageSrc(
-  //   // eslint-disable-next-line camelcase
-  //   { file_name, width, height },
-  //   {},
-  //   {
-  //     requiredWidth: screenWidth - 200,
-  //     requiredHeight: screenHeight - 200,
-  //     requiredQuality: 90,
-  //     imageType: 'highRes',
-  //   }
-  // );
 }
 
 function imageEntryToUrl(entry) {
