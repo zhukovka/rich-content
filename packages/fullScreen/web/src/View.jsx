@@ -12,6 +12,7 @@ export default function View(props) {
     maxWidth: '100%',
     position: 'relative',
   };
+
   return (
     <div style={getStyles('view', props)}>
       {type !== 'video' ? (
