@@ -33,13 +33,9 @@ export const convertItemData = ({ items, anchorTarget, relValue }) =>
       };
       if (item?.metadata?.type === 'video') {
         convertedData.metaData.link = {
-          type: 'wix',
           target: '_blank',
-          data: {
-            target: '_blank',
-            rel: 'noopener',
-            url: normalizeUrl(item.url || ''),
-          },
+          rel: 'noopener',
+          url: normalizeUrl(item.url || ''),
         };
       }
       if (item.metadata.link) {

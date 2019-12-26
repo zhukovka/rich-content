@@ -4,7 +4,7 @@ import { ReactPlayerWrapper } from 'wix-rich-content-plugin-video';
 
 export default function View(props) {
   const { data, getStyles } = props;
-  const { src, type, width, height } = data.src;
+  const { src, type, height } = data.src;
   const styles = {
     lineHeight: 0,
     marginLeft: 'auto',
@@ -17,7 +17,7 @@ export default function View(props) {
       {type !== 'video' ? (
         <img src={src} alt={''} style={styles} />
       ) : (
-        <ReactPlayerWrapper url={src} style={styles} width={width} height={height} />
+        <ReactPlayerWrapper url={src} style={styles} height={height} width={'85%'} />
       )}
     </div>
   );

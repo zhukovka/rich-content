@@ -38,16 +38,16 @@ class ImageSettings extends Component {
     this.props.handleFileChange(files);
   };
 
-  getImageUrl = image =>
-    image.metadata.type !== 'video'
+  getImageUrl = item =>
+    item.metadata.type !== 'video'
       ? imageClientAPI.getScaleToFillImageURL(
-          'media/' + image.url,
-          image.metadata.width,
-          image.metadata.height,
+          'media/' + item.url,
+          item.metadata.width,
+          item.metadata.height,
           420,
           240
         )
-      : image.metadata.poster;
+      : item.metadata.poster;
 
   onInputWithLabelChange = event => this.props.onUpdateImage({ title: event.target.value });
 
