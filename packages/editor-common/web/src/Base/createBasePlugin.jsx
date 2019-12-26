@@ -1,4 +1,4 @@
-import { includes, get } from 'lodash';
+import { includes } from 'lodash';
 import createBaseComponent from './createBaseComponent';
 import createToolbar from './createBaseToolbar';
 import createInsertPluginButton from './createBaseInsertPluginButton';

@@ -98,12 +98,12 @@ function addEntity(editorState, targetSelection, entityData) {
   return EditorState.push(editorState, newContentState, 'apply-entity');
 }
 
-export const hasLinksInBlock = (block, contentState) => {
-  return !!getLinkRangesInBlock(block, contentState).length;
-};
-
 export const hasLinksInSelection = editorState => {
   return !!getSelectedLinks(editorState).length;
+};
+
+export const hasLinksInBlock = (block, contentState) => {
+  return !!getLinkRangesInBlock(block, contentState).length;
 };
 
 export const getLinkDataInSelection = editorState => {
@@ -321,13 +321,6 @@ function getSelection(editorState) {
 
   return selection;
 }
-export const hasLinksInBlock = (block, contentState) => {
-  return block.entityRanges.some(entityRange => {
-    const entityType = contentState.entityMap[entityRange.key]?.type;
-    return entityType === 'LINK' || entityType === 'wix-draft-plugin-external-link';
-  });
-};
-
 // a selection of the new content from the last change
 function createLastChangeSelection(editorState) {
   const content = editorState.getCurrentContent();
