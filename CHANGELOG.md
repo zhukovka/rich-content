@@ -21,6 +21,9 @@
     - [#520](https://github.com/wix-incubator/rich-content/pull/520) color Picker- adding an option to change back to default color
   - `fullscreen`
     - [#519](https://github.com/wix-incubator/rich-content/pull/519) add props: topMargin, backgroundColor, foregroundColor. Remove counter when only 1 image. Larger z-index
+    - [#553](https://github.com/wix-incubator/rich-content/pull/553) video playing support
+  - `gallery`
+    - [#553](https://github.com/wix-incubator/rich-content/pull/553) gallery supports adding videos
 
 </details>
 <hr/>

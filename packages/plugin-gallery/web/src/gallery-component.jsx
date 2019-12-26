@@ -160,7 +160,8 @@ class GalleryComponent extends PureComponent {
       const img = new Image();
       img.onload = e => this.imageLoaded(e, file, itemPos);
       img.src = event.target.result;
-    } else {
+    }
+    if (file.type.match('video/*')) {
       this.videoLoaded(event, file, itemPos);
     }
   };
