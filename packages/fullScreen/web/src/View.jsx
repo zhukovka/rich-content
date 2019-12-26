@@ -16,9 +16,9 @@ export default function View(props) {
   };
   return (
     <div style={getStyles('view', props)}>
-      {(type === 'video' && <ReactPlayerWrapper url={src} style={styles} />) || (
-        <img src={src} alt={''} style={styles} />
-      )}
+      {(type === 'video' && (
+        <ReactPlayerWrapper url={src} style={styles} width={'90vw'} height={'90vh'} />
+      )) || <img src={src} alt={''} style={styles} />}
     </div>
   );
 }
