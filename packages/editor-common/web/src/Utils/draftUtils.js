@@ -179,19 +179,43 @@ export const replaceWithEmptyBlock = (editorState, blockKey) => {
 };
 
 export const createBlock = (editorState, data, type) => {
-  const currentEditorState = editorState;
-  const contentState = currentEditorState.getCurrentContent();
-  const contentStateWithEntity = contentState.createEntity(type, 'IMMUTABLE', cloneDeep(data));
-  const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-  const newEditorState = AtomicBlockUtils.insertAtomicBlock(currentEditorState, entityKey, ' ');
+  const selection = editorState.getSelection();
+  const offsetOfTheEndKey = editorState
+    .getCurrentContent()
+    .getBlockForKey(selection.getEndKey())
+    .getLength();
+  const selectionStateAtTheEnd = createSelection({
+    blockKey: selection.getEndKey(),
+    anchorOffset: offsetOfTheEndKey,
+    focusOffset: offsetOfTheEndKey,
+  });
+  const editorStateWithSelectionAtTheEnd = EditorState.acceptSelection(
+    editorState,
+    selectionStateAtTheEnd
+  );
+
+  const entityKey = createEntity(editorStateWithSelectionAtTheEnd, {
+    type,
+    mutability: 'IMMUTABLE',
+    data: cloneDeep(data),
+  });
+
+  const newEditorState = AtomicBlockUtils.insertAtomicBlock(
+    editorStateWithSelectionAtTheEnd,
+    entityKey,
+    ' '
+  );
   const recentlyCreatedKey = newEditorState.getSelection().getAnchorKey();
   // when adding atomic block, there is the atomic itself, and then there is a text block with one space,
   // so get the block before the space
-  const newBlock = newEditorState.getCurrentContent().getBlockBefore(recentlyCreatedKey);
+  const newEditorStateWithoutSpaceAfter = deleteBlock(newEditorState, recentlyCreatedKey);
+  const newBlock = newEditorStateWithoutSpaceAfter
+    .getCurrentContent()
+    .getBlockForKey(newEditorStateWithoutSpaceAfter.getSelection().getAnchorKey());
 
   const newSelection = SelectionState.createEmpty(newBlock.getKey());
 
-  return { newBlock, newSelection, newEditorState };
+  return { newBlock, newSelection, newEditorState: newEditorStateWithoutSpaceAfter };
 };
 
 export const deleteBlock = (editorState, blockKey) => {
