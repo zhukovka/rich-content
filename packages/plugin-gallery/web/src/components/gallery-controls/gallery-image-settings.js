@@ -39,15 +39,22 @@ class ImageSettings extends Component {
   };
 
   getImageUrl = item =>
-    item.metadata.type !== 'video'
-      ? imageClientAPI.getScaleToFillImageURL(
-          'media/' + item.url,
-          item.metadata.width,
-          item.metadata.height,
-          420,
-          240
-        )
-      : item.metadata.poster;
+    // item.metadata.type !== 'video'
+    //   ? imageClientAPI.getScaleToFillImageURL(
+    //       'media/' + item.url,
+    //       item.metadata.width,
+    //       item.metadata.height,
+    //       420,
+    //       240
+    //     )
+    //   : item.metadata.poster;
+    imageClientAPI.getScaleToFillImageURL(
+      'media/' + (item.metadata.type !== 'video' ? item.url : item.metadata.poster),
+      item.metadata.width,
+      item.metadata.height,
+      420,
+      240
+    );
 
   onInputWithLabelChange = event => this.props.onUpdateImage({ title: event.target.value });
 
