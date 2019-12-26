@@ -15,7 +15,7 @@ export default ({ helpers, t, isMobile, settings }) => {
   if (isMobile) {
     customStyles.content.minHeight = '202px';
   }
-  const icon = get(settings, 'toolbar.icons.SoundCloud', InsertPluginIcon);
+  const icon = settings?.toolbar?.icons?.SoundCloud || InsertPluginIcon;
   return [
     {
       type: 'modal',

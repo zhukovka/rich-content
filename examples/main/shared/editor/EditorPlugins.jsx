@@ -169,6 +169,7 @@ const uiSettings = {
     blankTargetToggleVisibilityFn: () => true,
     nofollowRelToggleVisibilityFn: () => true,
     dropDown: getLinkPanelDropDownConfig(),
+    //placeholder: "Enter a URL here",
   },
   // disableRightClick: true,
 };
@@ -177,8 +178,7 @@ export const config = {
   [LINK_PREVIEW_TYPE]: {
     fetchMetadata: () =>
       Promise.resolve({
-        title:
-          'Free Website Builder | Create a Free Website',
+        title: 'Free Website Builder | Create a Free Website',
         description:
           'Create a free website with Wix.com. Choose a stunning template and customize anything with the Wix website builder—no coding skills needed. Create yours today!',
         thumbnail_url: 'https://financesonline.com/uploads/2018/01/wix-logo.png',
@@ -192,13 +192,6 @@ export const config = {
     //   },
     // },
   },
-  // [BUTTON_TYPE]: {
-  //   toolbar: {
-  //     icons: {
-  //       Button: MyCustomIcon, // insert plugin icon
-  //     },
-  //   },
-  // },
   [GALLERY_TYPE]: {
     scrollingElement: () =>
       typeof window !== 'undefined' && document.getElementsByClassName('editor-example')[0],
@@ -225,6 +218,7 @@ export const config = {
       mediaRoot: 'some-mediaRoot',
     },
     onImageEditorOpen: () => console.log('Media Studio Launched'),
+    // createGalleryForMultipleImages: true,
     // toolbar: {
     //   icons: {
     //     Image: MyCustomIcon, // insert plugin icon
@@ -318,7 +312,13 @@ export const config = {
     onClick: (event, url) => console.log('link clicked!', url),
   },
   [SOUND_CLOUD_TYPE]: {},
-  [CODE_BLOCK_TYPE]: {},
+  [CODE_BLOCK_TYPE]: {
+    // toolbar: {
+    //   icons: {
+    //     codeBlock: MyCustomIcon, // insert plugin icon
+    //   },
+    // },
+  },
   [DIVIDER_TYPE]: {},
   // [EXTERNAL_EMOJI_TYPE]: {},
   [VIDEO_TYPE]: {
@@ -444,6 +444,11 @@ export const config = {
     // },
   },
   [BUTTON_TYPE]: {
+    //   toolbar: {
+    //     icons: {
+    //       Button: MyCustomIcon, // insert plugin icon
+    //     },
+    //   },
     palette: ['#FEFDFD', '#D5D4D4', '#ABCAFF', '#81B0FF', '#0261FF', '#0141AA'],
     selectionBackgroundColor: 'fuchsia',
     selectionBorderColor: '#FFF',
@@ -477,18 +482,6 @@ export const config = {
     colorScheme,
     styleSelectionPredicate,
     customStyleFn: customBackgroundStyleFn,
-    onColorAdded: color => (userColors = [color, ...userColors]),
-    getUserColors: () => userColors,
-  },
-  [TEXT_COLOR_TYPE]: {
-    // toolbar: {
-    //   icons: {
-    //     TextColor: CustomIcon,
-    //   },
-    // },
-    colorScheme,
-    styleSelectionPredicate,
-    customStyleFn: customForegroundStyleFn,
     onColorAdded: color => (userColors = [color, ...userColors]),
     getUserColors: () => userColors,
   },
