@@ -15,5 +15,4 @@ module.exports = {
   ...privateConfig,
   concurrency: 200,
   batchId: getHeadHash(),
-  dontCloseBatches: true,
 };

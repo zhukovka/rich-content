@@ -8,6 +8,7 @@ describe('text', () => {
       appName: 'Text',
       testName: this.test.parent.title,
       browser: DEFAULT_DESKTOP_BROWSERS,
+      dontCloseBatches: true,
     });
   });
 
