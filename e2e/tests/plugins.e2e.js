@@ -18,7 +18,6 @@ const eyesOpen = ({
     appName: 'Plugins',
     testName: title,
     browser: DEFAULT_DESKTOP_BROWSERS,
-    dontCloseBatches: true,
   });
 
 describe('plugins', () => {
