@@ -1,28 +1,41 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { isEqual } from 'lodash';
 import {
   normalizeUrl,
   mergeStyles,
   validate,
   Context,
-  linkPreviewSchema,
   ReadMore,
+  pluginLinkPreviewSchema,
 } from 'wix-rich-content-common';
 import styles from '../statics/styles/link-preview.scss';
 
 class LinkPreviewViewer extends Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
-    fetchMetadata: PropTypes.func.isRequired,
+    settings: PropTypes.shape({
+      fetchMetadata: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
-  state = {};
+  constructor(props) {
+    super(props);
+    validate(props.componentData, pluginLinkPreviewSchema);
+    this.state = {};
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!isEqual(nextProps.componentData, this.props.componentData)) {
+      validate(nextProps.componentData, pluginLinkPreviewSchema);
+    }
+  }
 
   async componentDidMount() {
-    validate(linkPreviewSchema, this.props.componentData);
+    validate(pluginLinkPreviewSchema, this.props.componentData);
     if (!this.state.metadata) {
       const url = normalizeUrl(this.props.componentData.url);
-      const metadata = await this.props.fetchMetadata(url);
+      const metadata = await this.props.settings.fetchMetadata(url);
       this.setState({ metadata });
     }
   }

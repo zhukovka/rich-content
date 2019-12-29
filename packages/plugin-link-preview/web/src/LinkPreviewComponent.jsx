@@ -5,7 +5,7 @@ import LinkPreviewViewer from './LinkPreviewViewer';
 const LinkPreviewComponent = props => {
   const { url, blockProps, settings } = props;
   const componentData = url ? { url } : blockProps.getData();
-  return <LinkPreviewViewer componentData={componentData} fetchMetadata={settings.fetchMetadata} />;
+  return <LinkPreviewViewer componentData={componentData} settings={settings} />;
 };
 
 LinkPreviewComponent.propTypes = {

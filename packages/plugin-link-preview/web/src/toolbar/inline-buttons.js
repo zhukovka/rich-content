@@ -1,5 +1,10 @@
-import { SelectionState, EditorState, Modifier } from 'draft-js';
-import { getCurrentBlock, TrashIcon } from 'wix-rich-content-editor-common';
+import { EditorState, Modifier } from 'draft-js';
+import {
+  getCurrentBlock,
+  TrashIcon,
+  deleteBlock,
+  replaceWithEmptyBlock,
+} from 'wix-rich-content-editor-common';
 
 const onDeletePreview = editorState => {
   const currentBlock = getCurrentBlock(editorState);
@@ -9,18 +14,18 @@ const onDeletePreview = editorState => {
     .getEntity(entityKey)
     ?.getData();
   const url = entityData?.url;
-  const contentState = editorState.getCurrentContent();
-  const nextBlock = contentState.getBlockAfter(currentBlock.key) || currentBlock;
-  const focusOffset = currentBlock.key === nextBlock.key ? 0 : nextBlock.text.length;
-  const selectionRange = new SelectionState({
-    anchorKey: currentBlock.key,
-    anchorOffset: 0,
-    focusKey: nextBlock.key,
-    focusOffset,
-  });
-  const newContentState = Modifier.replaceText(contentState, selectionRange, url);
-  const newEditorState = EditorState.push(editorState, newContentState, 'change-block-type');
-  return EditorState.forceSelection(newEditorState, newContentState.getSelectionAfter());
+  let newState = replaceWithEmptyBlock(editorState, currentBlock.key);
+  const contentState = Modifier.insertText(
+    newState.getCurrentContent(),
+    newState.getSelection(),
+    url
+  );
+  const nextBlock = contentState.getBlockAfter(currentBlock.key);
+  if (nextBlock) {
+    newState = deleteBlock(newState, nextBlock.key);
+  }
+  // const withoutBlocks = EditorState.push(editorState, newContentState, 'remove-range');
+  return EditorState.push(newState, contentState, 'change-block-type');
 };
 
 export default (settings, setEditorState, getEditorState) => [
