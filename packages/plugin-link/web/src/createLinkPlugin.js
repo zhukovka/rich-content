@@ -5,10 +5,7 @@ import {
   fixPastedLinks,
 } from 'wix-rich-content-editor-common';
 import { addLinkPreview } from 'wix-rich-content-plugin-link-preview/dist/lib/utils';
-import {
-  isValidUrl,
-  // getUrlMatches,
-} from 'wix-rich-content-common';
+import { isValidUrl } from 'wix-rich-content-common';
 import { LINK_TYPE } from './types';
 import { Component } from './LinkComponent';
 import { linkEntityStrategy } from './strategy';
@@ -61,8 +58,8 @@ const createLinkPlugin = (config = {}) => {
     } else if (linkifyData && !linkifyData.preview) {
       newEditorState = addLinkAt(linkifyData, editorState);
     } else if (linkifyData?.preview) {
-      const withoutBlock = deleteBlock(editorState, linkifyData.block.key);
-      newEditorState = addLinkPreview(withoutBlock, config, linkifyData.string);
+      const withoutLinkBlock = deleteBlock(editorState, linkifyData.block.key);
+      newEditorState = addLinkPreview(withoutLinkBlock, config, linkifyData.string);
     }
     linkifyData = false;
     return newEditorState;
