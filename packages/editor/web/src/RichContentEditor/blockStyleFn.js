@@ -15,10 +15,14 @@ const types = {
 
 export default (theme, styleToClass) => {
   return contentBlock => {
-    const {
-      type,
-      data: { textAlignment, dynamicStyles = {} },
-    } = contentBlock.toJS();
+    // const {
+    //   type,
+    //   data: { textAlignment, dynamicStyles = {} },
+    // } = contentBlock.toJS();
+    const type = contentBlock.getType();
+    const data = contentBlock.getData();
+    const textAlignment = data.get('textAlignment');
+    const dynamicStyles = data.get('dynamicStyles') || {};
 
     const key = types[type] || 'text';
 
