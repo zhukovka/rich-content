@@ -117,7 +117,7 @@ class GalleryComponent extends PureComponent {
     const handleFileAdded = (item, idx) => {
       const galleryItem = {
         metadata: {
-          type: item.type || 'image',
+          type: item.type,
           height: item.height,
           width: item.width,
           processedByConsumer: true,

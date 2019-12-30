@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
-// TODO: expolre shifting to ReactPlayerWrapper
+// TODO: explore shifting to ReactPlayerWrapper
 // import { ReactPlayerWrapper } from 'wix-rich-content-plugin-video';
 export default function View(props) {
   const { data, getStyles } = props;
