@@ -37,7 +37,6 @@ const createBaseComponent = ({
   componentWillReceiveDecorationProps = () => {},
   getEditorBounds,
   onOverlayClick,
-  onAtomicBlockFocus,
   disableRightClick,
 }) => {
   class WrappedComponent extends Component {
@@ -100,7 +99,7 @@ const createBaseComponent = ({
     componentWillUnmount() {
       this.subscriptions.forEach(subscription => pubsub.unsubscribe(...subscription));
       this.subscriptionsOnBlock.forEach(unsubscribe => unsubscribe());
-      pubsub.set('focusedBlock', null);
+      this.updateUnselectedComponent();
     }
 
     isMe = blockKey => {
@@ -110,6 +109,10 @@ const createBaseComponent = ({
       } else {
         return pubsub.get('focusedBlock') === block.getKey();
       }
+    };
+
+    isMeAndIdle = blockKey => {
+      return this.isMe(blockKey) && !this.duringUpdate;
     };
 
     onComponentDataChange = (componentData, blockKey) => {
@@ -136,13 +139,13 @@ const createBaseComponent = ({
     };
 
     onComponentLinkChange = linkData => {
-      const { url, targetBlank, nofollow } = linkData || {};
+      const { url, target, rel } = linkData || {};
       if (this.isMeAndIdle()) {
         const link = url
           ? {
               url,
-              target: targetBlank === true ? '_blank' : anchorTarget || '_self',
-              rel: nofollow === true ? 'nofollow' : relValue || 'noopener',
+              target,
+              rel,
             }
           : null;
 
@@ -163,10 +166,6 @@ const createBaseComponent = ({
         this.updateUnselectedComponent();
       }
     }
-
-    isMeAndIdle = blockKey => {
-      return this.isMe(blockKey) && !this.duringUpdate;
-    };
 
     handleClick = e => {
       if (onOverlayClick) {
@@ -202,7 +201,6 @@ const createBaseComponent = ({
         batchUpdates.deleteBlock = this.deleteBlock;
         batchUpdates.focusedBlock = focusedBlock;
         pubsub.set(batchUpdates);
-        onAtomicBlockFocus(focusedBlock);
       } else {
         //maybe just the position has changed
         const blockNode = findDOMNode(this);
@@ -212,12 +210,7 @@ const createBaseComponent = ({
     }
 
     updateUnselectedComponent() {
-      const batchUpdates = {};
-      batchUpdates.focusedBlock = null;
-      batchUpdates.componentData = {};
-      batchUpdates.componentState = {};
-      pubsub.set(batchUpdates);
-      onAtomicBlockFocus(undefined);
+      pubsub.set({ focusedBlock: null, componentData: {}, componentState: {} });
     }
 
     handleContextMenu = e => disableRightClick && e.preventDefault();
