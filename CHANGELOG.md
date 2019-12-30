@@ -14,58 +14,66 @@
   </summary>
 
   ### :bug: Bug Fix
-  - `editor-common`
-    - [#558](https://github.com/wix-incubator/rich-content/pull/558) getBlockInfo util arguments fixed
   - `link`
     - [#546](https://github.com/wix-incubator/rich-content/pull/546) saves the last data and the initial state of the checkboxes("Open in a new tab", "Add a nofollow tag") is according to the defaults (anchorTarget, relValue)
+
 </details>
 <hr/>
 
+## 6.6.5 (Dec 30, 2019)
+- `editor-common`
+  - [#560](https://github.com/wix-incubator/rich-content/pull/560) getBlockInfo returns entity type rather block type
+
+## 6.6.4 (Dec 30, 2019)
+### :bug: Bug Fix
+- `editor-common`
+  - [#558](https://github.com/wix-incubator/rich-content/pull/558) getBlockInfo util arguments fixed
+
 ## 6.6.3 (Dec 29, 2019)
-  ### :rocket: New Feature
-   - `text-color`
-     - [#520](https://github.com/wix-incubator/rich-content/pull/520) color Picker- adding an option to change back to default color
-  ### :bug: Bug Fix
-   - `editor`
-      - [#556](https://github.com/wix-incubator/rich-content/pull/556) fix onAtomicBlockFocus to work when alternating focus between different kinds of plugins
-    
+### :rocket: New Feature
+- `text-color`
+  - [#520](https://github.com/wix-incubator/rich-content/pull/520) color Picker- adding an option to change back to default color
+### :bug: Bug Fix
+- `editor`
+  - [#556](https://github.com/wix-incubator/rich-content/pull/556) fix onAtomicBlockFocus to work when alternating focus between different kinds of plugins
+
 ## 6.6.2 (Dec 11, 2019)
- ### :rocket: New Feature
-  - `editor-common`
-    - [#526](https://github.com/wix-incubator/rich-content/pull/526) `onAtomicBlockFocus` is invoked with `undefined` when an atomic block loses focus
-    - [#530](https://github.com/wix-incubator/rich-content/pull/530) `uiSettings.linkPanel.placeholder` determines the link panel's placeholder
-  - `image`
-    - [#533](https://github.com/wix-incubator/rich-content/pull/533) add multiple images at once, enabling `config.createGalleryForMultipleImages` renders them as a gallery
-  - `file-upload`
-    - [#533](https://github.com/wix-incubator/rich-content/pull/533) add multiple files at once
-  ### :bug: Bug Fix
-  - `editor`
-    - [#504](https://github.com/wix-incubator/rich-content/pull/504) pasted links get the configured anchorTarget and relValue
-  - `undo-redo`
-    - [#543](https://github.com/wix-incubator/rich-content/pull/543) fix undo-redo icons on mobile
-  - `editor`
-    - [#521](https://github.com/wix-incubator/rich-content/pull/521) replace p element with div element in lists
-  - `gallery`
-    - [#545](https://github.com/wix-incubator/rich-content/pull/545) fix image ratio change in gallery slider layout
-  ### :house: Internal
-  - `gallery-settings`
-    - [#535](https://github.com/wix-incubator/rich-content/pull/535) gallery setting's header, tabs and footer position
-  - `images-settings`
-    - [#537](https://github.com/wix-incubator/rich-content/pull/537) image and gallery setting's header, tabs and footer position
-  - `editor`
-    - [#522](https://github.com/wix-incubator/rich-content/pull/522) support legacy margin scss attributes
-  - `e2e`
-    - [#538](https://github.com/wix-incubator/rich-content/pull/538) moved tests out of Docker, e2e and unit tests run in github actions
-    - [#542](https://github.com/wix-incubator/rich-content/pull/542) e2e tests run visual tests and content snapshots separately
-  - `codeBlock`
-    - [#527](https://github.com/wix-incubator/rich-content/pull/527) remove onTab (moved to keyBindingFn/handleKeyCommand)
-  - `pubsub`
-    - [#528](https://github.com/wix-incubator/rich-content/pull/528) rename visibleBlock to focusedBlock
-  - `common`
-    - [#534](https://github.com/wix-incubator/rich-content/pull/534) exposes data normalization and data validation utils as separate entries
-  - `button`
-    - [#517](https://github.com/wix-incubator/rich-content/pull/517) plugin button refactor
-    
+### :rocket: New Feature
+- `editor-common`
+  - [#526](https://github.com/wix-incubator/rich-content/pull/526) `onAtomicBlockFocus` is invoked with `undefined` when an atomic block loses focus
+  - [#530](https://github.com/wix-incubator/rich-content/pull/530) `uiSettings.linkPanel.placeholder` determines the link panel's placeholder
+- `image`
+  - [#533](https://github.com/wix-incubator/rich-content/pull/533) add multiple images at once, enabling `config.createGalleryForMultipleImages` renders them as a gallery
+- `file-upload`
+  - [#533](https://github.com/wix-incubator/rich-content/pull/533) add multiple files at once
+### :bug: Bug Fix
+- `editor`
+  - [#504](https://github.com/wix-incubator/rich-content/pull/504) pasted links get the configured anchorTarget and relValue
+- `undo-redo`
+  - [#543](https://github.com/wix-incubator/rich-content/pull/543) fix undo-redo icons on mobile
+- `editor`
+  - [#521](https://github.com/wix-incubator/rich-content/pull/521) replace p element with div element in lists
+- `gallery`
+  - [#545](https://github.com/wix-incubator/rich-content/pull/545) fix image ratio change in gallery slider layout
+### :house: Internal
+- `gallery-settings`
+  - [#535](https://github.com/wix-incubator/rich-content/pull/535) gallery setting's header, tabs and footer position
+- `images-settings`
+  - [#537](https://github.com/wix-incubator/rich-content/pull/537) image and gallery setting's header, tabs and footer position
+- `editor`
+  - [#522](https://github.com/wix-incubator/rich-content/pull/522) support legacy margin scss attributes
+- `e2e`
+  - [#538](https://github.com/wix-incubator/rich-content/pull/538) moved tests out of Docker, e2e and unit tests run in github actions
+  - [#542](https://github.com/wix-incubator/rich-content/pull/542) e2e tests run visual tests and content snapshots separately
+- `codeBlock`
+  - [#527](https://github.com/wix-incubator/rich-content/pull/527) remove onTab (moved to keyBindingFn/handleKeyCommand)
+- `pubsub`
+  - [#528](https://github.com/wix-incubator/rich-content/pull/528) rename visibleBlock to focusedBlock
+- `common`
+  - [#534](https://github.com/wix-incubator/rich-content/pull/534) exposes data normalization and data validation utils as separate entries
+- `button`
+  - [#517](https://github.com/wix-incubator/rich-content/pull/517) plugin button refactor
+
 ## 6.6.1 (Dec 11, 2019)
 ### :rocket: New Feature
 - `fullscreen`
