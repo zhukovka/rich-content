@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ReactPlayerWrapper } from 'wix-rich-content-plugin-video';
-
+import ReactPlayer from 'react-player';
+// TODO: expolre shifting to ReactPlayerWrapper
+// import { ReactPlayerWrapper } from 'wix-rich-content-plugin-video';
 export default function View(props) {
   const { data, getStyles } = props;
   const { src, type, height } = data.src;
@@ -18,7 +19,7 @@ export default function View(props) {
       {type !== 'video' ? (
         <img src={src} alt={''} style={styles} />
       ) : (
-        <ReactPlayerWrapper url={src} style={styles} height={height} width={'85%'} />
+        <ReactPlayer url={src} style={styles} height={height} width={'85%'} />
       )}
     </div>
   );
