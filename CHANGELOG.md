@@ -13,12 +13,13 @@
     Click to see more.
   </summary>
 
-  ### :bug: Bug Fix
-  - `editor-common`
-    - [#558](https://github.com/wix-incubator/rich-content/pull/558) getBlockInfo util arguments fixed
-
 </details>
 <hr/>
+
+## 6.6.4 (Dec 30, 2019)
+### :bug: Bug Fix
+- `editor-common`
+  - [#558](https://github.com/wix-incubator/rich-content/pull/558) getBlockInfo util arguments fixed
 
 ## 6.6.3 (Dec 29, 2019)
 ### :rocket: New Feature
