@@ -7,22 +7,19 @@ const galleryType = 'wix-draft-plugin-gallery';
 // eslint-disable-next-line camelcase
 function getUrl({ file_name, width, height, type }) {
   const { width: screenWidth, height: screenHeight } = window.screen;
-  const requiredWidth = screenWidth - 200;
-  const requiredHeight = screenHeight - 200;
   return {
     src: getImageSrc(
       // eslint-disable-next-line camelcase
       { file_name, width, height },
       {},
       {
-        requiredWidth,
-        requiredHeight,
+        requiredWidth: screenWidth - 200,
+        requiredHeight: screenHeight - 200,
         requiredQuality: 90,
         imageType: 'highRes',
       }
     ),
     type,
-    height: requiredHeight,
   };
 }
 

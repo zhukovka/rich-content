@@ -5,7 +5,7 @@ import ReactPlayer from 'react-player';
 // import { ReactPlayerWrapper } from 'wix-rich-content-plugin-video';
 export default function View(props) {
   const { data, getStyles } = props;
-  const { src, type, height } = data.src;
+  const { src, type } = data.src;
   const styles = {
     lineHeight: 0,
     marginLeft: 'auto',
@@ -13,13 +13,16 @@ export default function View(props) {
     maxWidth: '100%',
     position: 'relative',
   };
+  const { screenWidth } = window.screen;
+  const width = screenWidth - 200;
+  const height = (width * 9) / 16;
 
   return (
     <div style={getStyles('view', props)}>
       {type !== 'video' ? (
         <img src={src} alt={''} style={styles} />
       ) : (
-        <ReactPlayer url={src} style={styles} height={height} width={'85%'} />
+        <ReactPlayer url={src} style={styles} height={height} width={width} />
       )}
     </div>
   );

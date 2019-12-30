@@ -125,9 +125,9 @@ class GalleryComponent extends PureComponent {
         itemId: String(item.id),
         url: item.file_name,
       };
-      item.type === 'video'
-        ? (galleryItem.metadata.poster = item.thumbnail_url || item.poster)
-        : null;
+      if (item.type === 'video') {
+        galleryItem.metadata.poster = item.poster || item.thumbnail_url;
+      }
       this.setItemInGallery(galleryItem, idx);
     };
 
@@ -160,8 +160,7 @@ class GalleryComponent extends PureComponent {
       const img = new Image();
       img.onload = e => this.imageLoaded(e, file, itemPos);
       img.src = event.target.result;
-    }
-    if (file.type.match('video/*')) {
+    } else if (file.type.match('video/*')) {
       this.videoLoaded(event, file, itemPos);
     }
   };
