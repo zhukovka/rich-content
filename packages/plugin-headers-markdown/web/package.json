@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-headers-markdown",
-  "version": "6.6.3",
+  "version": "6.6.5-alpha.0",
   "author": {
     "name": "Shaul Goral",
     "email": "shaulg@wix.com"
@@ -39,8 +39,8 @@
   },
   "devDependencies": {
     "@babel/runtime": "7.2.0",
-    "cross-env": "^5.2.0",
     "@wix/draft-js": "0.11.3",
+    "cross-env": "^5.2.0",
     "eslint": "^6.1.0",
     "prop-types": "^15.6.2",
     "react": "16.6.3",
@@ -48,8 +48,8 @@
     "rollup": "1.20.3"
   },
   "dependencies": {
-    "wix-rich-content-common": "6.6.3",
-    "wix-rich-content-editor-common": "6.6.3"
+    "wix-rich-content-common": "6.6.5-alpha.0",
+    "wix-rich-content-editor-common": "6.6.5-alpha.0"
   },
   "unpkg": true,
   "publishConfig": {
