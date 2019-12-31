@@ -1,4 +1,4 @@
-import { EditorState, Modifier, RichUtils, SelectionState, AtomicBlockUtils } from 'draft-js';
+import { EditorState, Modifier, RichUtils, SelectionState, AtomicBlockUtils } from '@wix/draft-js';
 import { cloneDeep, flatMap, findIndex, findLastIndex } from 'lodash';
 
 function createSelection({ blockKey, anchorOffset, focusOffset }) {

@@ -1,4 +1,4 @@
-import { RichUtils, Modifier, EditorState, KeyBindingUtil } from 'draft-js';
+import { RichUtils, Modifier, EditorState, KeyBindingUtil } from '@wix/draft-js';
 import { getAnchorBlockData } from 'wix-rich-content-editor-common';
 
 export default updateEditorState => (command, editorState) => {

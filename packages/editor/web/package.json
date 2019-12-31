@@ -32,6 +32,9 @@
     },
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",
+      "^draft-js$": "<rootDir>/../../../node_modules/@wix/draft-js/dist/Draft.min.js",
+      "^draft-js/.*$": "<rootDir>/../../../node_modules/@wix/draft-js/dist/Draft.min.js",
+      "^@wix/draft-js$": "<rootDir>/../../../node_modules/@wix/draft-js/dist/Draft.min.js",
       "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
     }
   },
@@ -46,7 +49,7 @@
   "peerDependencies": {
     "@babel/runtime": "7.2.0",
     "classnames": "^2.0.0",
-    "draft-js": "0.11.2",
+    "@wix/draft-js": "0.11.3",
     "lodash": "^4.0.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
@@ -56,7 +59,7 @@
     "babel-jest": "^23.6.0",
     "classnames": "^2.2.6",
     "cross-env": "^5.2.0",
-    "draft-js": "0.11.2",
+    "@wix/draft-js": "0.11.3",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.1",
     "eslint": "^6.1.0",

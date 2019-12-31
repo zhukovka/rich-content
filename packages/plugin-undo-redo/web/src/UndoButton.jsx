@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { EditorState } from 'draft-js';
+import { EditorState } from '@wix/draft-js';
 import classNames from 'classnames';
 import undoIcon from './icons/UndoIcon';
 import { InlineToolbarButton } from 'wix-rich-content-editor-common';
