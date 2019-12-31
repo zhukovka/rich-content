@@ -30,15 +30,15 @@ class ImageSettings extends Component {
     this.linkLabel = t('GalleryImageSettings_Link_Label');
   }
 
-  deleteImage() {
-    this.props.onDeleteImage();
+  deleteItem() {
+    this.props.onDeleteItem();
   }
 
   replaceItem = files => {
     this.props.handleFileChange(files);
   };
 
-  getImageUrl = item =>
+  getMediaUrl = item =>
     imageClientAPI.getScaleToFillImageURL(
       'media/' + (item.metadata.type !== 'video' ? item.url : item.metadata.poster),
       item.metadata.width,
@@ -47,10 +47,10 @@ class ImageSettings extends Component {
       240
     );
 
-  onInputWithLabelChange = event => this.props.onUpdateImage({ title: event.target.value });
+  onInputWithLabelChange = event => this.props.onUpdateItem({ title: event.target.value });
 
   onLinkPanelChange = linkPanelValues => {
-    this.props.onUpdateImage({ link: this.linkPanelToLink(linkPanelValues) });
+    this.props.onUpdateItem({ link: this.linkPanelToLink(linkPanelValues) });
   };
 
   linkPanelToLink = ({ url, targetBlank, nofollow, isValid }) => ({
@@ -86,9 +86,9 @@ class ImageSettings extends Component {
       t,
       anchorTarget,
       relValue,
-      onNextImage,
-      onPreviousImage,
-      onDeleteImage,
+      onNextItem,
+      onPreviousItem,
+      onDeleteItem,
       visibleLeftArrow,
       visibleRightArrow,
       uiSettings,
@@ -148,7 +148,7 @@ class ImageSettings extends Component {
                     alt={metadata.title || 'gallery image preview'}
                     resizeMode={'contain'}
                     className={styles.galleryImageSettings_image}
-                    src={this.getImageUrl(image)}
+                    src={this.getMediaUrl(image)}
                     theme={theme}
                   />
                   <div
@@ -163,7 +163,7 @@ class ImageSettings extends Component {
                       })}
                       aria-label="previous image"
                       data-hook="galleryImageSettingsPrevious"
-                      onClick={onPreviousImage}
+                      onClick={onPreviousItem}
                     >
                       <PreviousIcon />
                     </button>
@@ -173,7 +173,7 @@ class ImageSettings extends Component {
                       })}
                       aria-label="next image"
                       data-hook="galleryImageSettingsNext"
-                      onClick={onNextImage}
+                      onClick={onNextItem}
                     >
                       <NextIcon />
                     </button>
@@ -197,7 +197,7 @@ class ImageSettings extends Component {
                     className={styles.galleryImageSettings_delete}
                     aria-label="delete image"
                     data-hook="galleryImageSettingsDeleteImage"
-                    onClick={onDeleteImage}
+                    onClick={onDeleteItem}
                   >
                     <DeleteIcon className={styles.galleryImageSettings_delete_icon} />
                     <span className={styles.galleryImageSettings_delete_text}>
@@ -269,10 +269,10 @@ ImageSettings.propTypes = {
   }).isRequired,
   onCancel: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
-  onDeleteImage: PropTypes.func.isRequired,
-  onUpdateImage: PropTypes.func.isRequired,
-  onNextImage: PropTypes.func.isRequired,
-  onPreviousImage: PropTypes.func.isRequired,
+  onDeleteItem: PropTypes.func.isRequired,
+  onUpdateItem: PropTypes.func.isRequired,
+  onNextItem: PropTypes.func.isRequired,
+  onPreviousItem: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   handleFileSelection: PropTypes.func,
   handleFileChange: PropTypes.func,

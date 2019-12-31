@@ -13,9 +13,8 @@ export default function View(props) {
     maxWidth: '100%',
     position: 'relative',
   };
-  const { screenWidth } = window.screen;
-  const width = screenWidth - 200;
-  const height = (width * 9) / 16;
+  const width = window.screen.width - 200;
+  const height = (window.screen.height * 9) / 16;
 
   return (
     <div style={getStyles('view', props)}>

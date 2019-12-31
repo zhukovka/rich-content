@@ -27,7 +27,7 @@ function imageEntryToUrl(entry) {
   if (!entry.data.src) {
     return '';
   }
-  return getUrl({ ...entry.data.src, type: 'image' });
+  return getUrl({ ...entry.data.src });
 }
 
 function galleryEntryToUrls(entry) {
@@ -38,7 +38,7 @@ function convertGalleryItemToImage(item) {
   return {
     // eslint-disable-next-line camelcase
     file_name: item.url,
-    type: item.metadata.type || 'image',
+    type: item.metadata.type,
     width: item.metadata.width,
     height: item.metadata.height,
   };

@@ -183,7 +183,7 @@ const ItemActionsMenu = props => {
     items,
     setAllItemsValue,
     deleteSelectedItems,
-    toggleImageSettings,
+    toggleMediaSettings,
     handleFileSelection,
     handleFileChange,
     toggleSorting,
@@ -281,7 +281,7 @@ const ItemActionsMenu = props => {
       key="itemSettingsButton"
       className={styles.topBarLink}
       data-hook="galleryItemsSortableItemSettings"
-      onClick={() => toggleImageSettings(true)}
+      onClick={() => toggleMediaSettings(true)}
       aria-label={itemSettingsLabel}
       role="menuitem"
     >
@@ -322,7 +322,7 @@ ItemActionsMenu.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
   setAllItemsValue: PropTypes.func,
   deleteSelectedItems: PropTypes.func,
-  toggleImageSettings: PropTypes.func.isRequired,
+  toggleMediaSettings: PropTypes.func.isRequired,
   handleFileSelection: PropTypes.func,
   handleFileChange: PropTypes.func,
   toggleSorting: PropTypes.func,
@@ -351,7 +351,7 @@ export class SortableComponent extends Component {
       return;
     }
     if (this.clickedOnce) {
-      this.toggleImageSettings(true, itemIdx);
+      this.toggleMediaSettings(true, itemIdx);
       this.clickedOnce = false;
       clearInterval(this.doubleClickTimer);
     } else {
@@ -373,8 +373,8 @@ export class SortableComponent extends Component {
 
     this.setState({
       items,
-      editedImage: selectedItems.length ? selectedItems[0] : null,
-      editedImageIndex:
+      editedItem: selectedItems.length ? selectedItems[0] : null,
+      editedItemIndex:
         selectedItems.length === 1
           ? findIndex(items, i => i.itemId === selectedItems[0].itemId)
           : -1,
@@ -392,21 +392,21 @@ export class SortableComponent extends Component {
     });
   }
 
-  toggleImageSettings = (imageSettingsVisible, itemIdx) => {
+  toggleMediaSettings = (imageSettingsVisible, itemIdx) => {
     const { items } = this.state;
-    let editedImage;
-    let editedImageIndex;
+    let editedItem;
+    let editedItemIndex;
 
     if (itemIdx >= 0) {
       items.map((item, idx) => {
         item.selected = idx === itemIdx;
         return item;
       });
-      editedImage = this.state.items[itemIdx];
-      editedImageIndex = itemIdx;
+      editedItem = this.state.items[itemIdx];
+      editedItemIndex = itemIdx;
     } else {
-      editedImage = this.state.editedImage;
-      editedImageIndex = this.state.editedImageIndex;
+      editedItem = this.state.editedItem;
+      editedItemIndex = this.state.editedItemIndex;
     }
 
     if (imageSettingsVisible) {
@@ -418,8 +418,8 @@ export class SortableComponent extends Component {
     this.setState({
       items,
       imageSettingsVisible,
-      editedImage,
-      editedImageIndex,
+      editedItem,
+      editedItemIndex,
     });
   };
 
@@ -460,7 +460,7 @@ export class SortableComponent extends Component {
     this.setState({ items: this.initialImageState }, () => {
       this.state.items.forEach(i => (i.selected = false));
     });
-    this.toggleImageSettings(false);
+    this.toggleMediaSettings(false);
   };
 
   saveImageSettings = () => {
@@ -475,74 +475,74 @@ export class SortableComponent extends Component {
     this.setState({ items }, () => {
       this.state.items.forEach(i => (i.selected = false));
     });
-    this.toggleImageSettings(false);
+    this.toggleMediaSettings(false);
   };
 
   handleFileSelection = multiple => {
-    const { items, editedImage } = this.state;
+    const { items, editedItem } = this.state;
     const { handleFileSelection, handleFilesAdded, deleteBlock } = this.props;
-    const index = editedImage ? findIndex(items, i => editedImage.url === i.url) : undefined;
+    const index = editedItem ? findIndex(items, i => editedItem.url === i.url) : undefined;
     handleFileSelection(index, multiple, handleFilesAdded, deleteBlock);
   };
 
-  onNextImage = () => {
-    const { editedImageIndex, items } = this.state;
-    if (editedImageIndex >= 0) {
-      const newIndex = Math.min(editedImageIndex + 1, items.length - 1);
-      items[editedImageIndex].selected = false;
+  onNextItem = () => {
+    const { editedItemIndex, items } = this.state;
+    if (editedItemIndex >= 0) {
+      const newIndex = Math.min(editedItemIndex + 1, items.length - 1);
+      items[editedItemIndex].selected = false;
       items[newIndex].selected = true;
       this.setState({
-        editedImage: items[newIndex],
-        editedImageIndex: newIndex,
+        editedItem: items[newIndex],
+        editedItemIndex: newIndex,
         items,
       });
     }
   };
 
-  onPreviousImage = () => {
-    const { editedImageIndex, items } = this.state;
-    if (editedImageIndex >= 0) {
-      const newIndex = Math.max(editedImageIndex - 1, 0);
-      items[editedImageIndex].selected = false;
+  onPreviousItem = () => {
+    const { editedItemIndex, items } = this.state;
+    if (editedItemIndex >= 0) {
+      const newIndex = Math.max(editedItemIndex - 1, 0);
+      items[editedItemIndex].selected = false;
       items[newIndex].selected = true;
       this.setState({
-        editedImage: items[newIndex],
-        editedImageIndex: newIndex,
+        editedItem: items[newIndex],
+        editedItemIndex: newIndex,
         items,
       });
     }
   };
 
-  onUpdateImage = metadata => {
-    const { editedImage } = this.state;
-    Object.assign(editedImage.metadata, metadata);
-    this.setState({ editedImage });
+  onUpdateItem = metadata => {
+    const { editedItem } = this.state;
+    Object.assign(editedItem.metadata, metadata);
+    this.setState({ editedItem });
   };
 
-  onDeleteImage = () => {
-    const { editedImageIndex, items } = this.state;
+  onDeleteItem = () => {
+    const { editedItemIndex, items } = this.state;
     const newItems = items.filter(item => !item.selected);
-    const newIndex = Math.min(editedImageIndex, newItems.length - 1);
-    const newEditedImage = newItems.length !== 0 ? newItems[newIndex] : { metadata: '', title: '' };
-    newEditedImage.selected = true;
+    const newIndex = Math.min(editedItemIndex, newItems.length - 1);
+    const newEditedItem = newItems.length !== 0 ? newItems[newIndex] : { metadata: '', title: '' };
+    newEditedItem.selected = true;
     this.props.onItemsChange(newItems);
     this.setState(
       {
-        editedImageIndex: newIndex,
-        editedImage: newEditedImage,
+        editedItemIndex: newIndex,
+        editedItem: newEditedItem,
         items: newItems,
       },
       () => {
         if (newItems.length === 0) {
-          this.toggleImageSettings(false);
+          this.toggleMediaSettings(false);
         }
       }
     );
   };
 
   handleFileChange = files => {
-    const { editedImageIndex } = this.state;
-    this.props.handleFileChange(files, editedImageIndex);
+    const { editedItemIndex } = this.state;
+    this.props.handleFileChange(files, editedItemIndex);
     this.props.onItemsChange(this.state.items);
   };
 
@@ -563,7 +563,7 @@ export class SortableComponent extends Component {
             items={this.state.items}
             setAllItemsValue={this.setAllItemsValue.bind(this)}
             deleteSelectedItems={this.deleteSelectedItems.bind(this)}
-            toggleImageSettings={() => this.toggleImageSettings(true)}
+            toggleMediaSettings={() => this.toggleMediaSettings(true)}
             handleFileSelection={shouldHandleFileSelection ? this.handleFileSelection : null}
             handleFileChange={this.props.handleFileChange}
             toggleSorting={this.toggleSorting}
@@ -592,21 +592,21 @@ export class SortableComponent extends Component {
         <div>
           <ImageSettings
             theme={theme}
-            image={this.state.editedImage}
+            image={this.state.editedItem}
             onCancel={this.onCancel}
             onSave={this.saveImageSettings}
-            onNextImage={this.onNextImage}
-            onPreviousImage={this.onPreviousImage}
-            onDeleteImage={this.onDeleteImage}
-            onUpdateImage={data => this.onUpdateImage(data)}
+            onNextItem={this.onNextItem}
+            onPreviousItem={this.onPreviousItem}
+            onDeleteItem={this.onDeleteItem}
+            onUpdateItem={data => this.onUpdateItem(data)}
             handleFileSelection={shouldHandleFileSelection ? this.handleFileSelection : null}
             handleFileChange={this.handleFileChange}
             t={t}
             isMobile={this.props.isMobile}
             relValue={relValue}
             anchorTarget={anchorTarget}
-            visibleLeftArrow={this.state.editedImageIndex > 0}
-            visibleRightArrow={this.state.editedImageIndex < this.state.items.length - 1}
+            visibleLeftArrow={this.state.editedItemIndex > 0}
+            visibleRightArrow={this.state.editedItemIndex < this.state.items.length - 1}
             uiSettings={uiSettings}
           />
         </div>
