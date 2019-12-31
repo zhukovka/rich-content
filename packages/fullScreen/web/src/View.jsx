@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactPlayer from 'react-player';
+import VideoView from './VideoView';
 // TODO: explore shifting to ReactPlayerWrapper
 // import { ReactPlayerWrapper } from 'wix-rich-content-plugin-video';
 export default function View(props) {
-  const { data, getStyles } = props;
+  const { data, getStyles, currentIndex, index } = props;
   const { src, type } = data.src;
 
   const styles = {
@@ -15,13 +15,10 @@ export default function View(props) {
     position: 'relative',
   };
 
-  const width = '80%';
-  const height = (window.screen.height * 9) / 16;
-
   return (
     <div style={getStyles('view', props)}>
       {type === 'video' ? (
-        <ReactPlayer url={src} style={styles} height={height} width={width} />
+        <VideoView url={src} styles={styles} disabled={currentIndex !== index} />
       ) : (
         <img src={src} alt={''} style={styles} />
       )}
@@ -32,4 +29,6 @@ export default function View(props) {
 View.propTypes = {
   data: PropTypes.object,
   getStyles: PropTypes.func,
+  currentIndex: PropTypes.number,
+  index: PropTypes.number,
 };
