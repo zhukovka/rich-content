@@ -160,6 +160,10 @@ The file object structure:
 
 The `ContentStateMetadata.maps` exposes the data extracted from `google-map` entities. The map data structure is similar to `mapSettings` object structure (found in the map entity data).
 
+#### ContentStateMetadata.links
+
+The `ContentStateMetadata.links` exposes the data extracted from `link` entities. The data contains the link url.
+
 ### ContentStateBuilder
 
 The `ContentStateBuilder` exposes API for ContentState generation, based on the Builder design pattern.
@@ -234,7 +238,11 @@ The `mediaInfo` param is expected to be a file data object returned by [ContentS
 The `ContentStateBuilder.map` method appends an `atomic` block to the `blocks` and a `wix-draft-plugin-map` entity to the `entityMap`. The optional params `config` and `overrides` are merged with the `entity.data.config` and `entity.data`, respectively.
 The `mediaInfo` parameter is expected to be a map data object returned by [ContentStateMetadata.maps](./rich-content-preview.md#contentstatemetadatamaps) method.
 
-### ContentStateTransformation
+#### ContentStateBuilder.linkPreview({ url })
+
+The `ContentStateBuilder.linkPreview` method appends an `atomic` block to the `blocks` and a `LINK_PREVIEW` entity to the `entityMap`.
+
+## ContentStateTransformation
 
 The `ContentStateTransformation` represents a rule to be applied on content state in order to achieve the desired preview state:
 
