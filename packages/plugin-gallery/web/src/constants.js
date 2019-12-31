@@ -73,14 +73,14 @@ export const DEFAULTS = {
   },
 };
 
-export const imageItem = (img, event) => {
+export const imageItem = (img, itemId) => {
   return {
     metadata: {
       type: 'image',
       height: img.height,
       width: img.width,
     },
-    itemId: String(event.timeStamp),
+    itemId,
     url: img.src,
   };
 };

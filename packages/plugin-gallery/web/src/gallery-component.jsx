@@ -101,7 +101,7 @@ class GalleryComponent extends PureComponent {
 
   imageLoaded = (event, file, itemPos) => {
     const img = event.target;
-    const item = imageItem(img, event);
+    const item = imageItem(img, String(event.timeStamp));
     const itemIdx = this.setItemInGallery(item, itemPos);
     const { helpers } = this.context;
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
