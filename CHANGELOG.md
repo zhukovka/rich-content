@@ -17,10 +17,6 @@
   - `gallery`
     - [#553](https://github.com/wix-incubator/rich-content/pull/553) gallery supports adding videos
   
-  ### :bug: Bug Fix
-  - `link`
-    - [#546](https://github.com/wix-incubator/rich-content/pull/546) saves the last data and the initial state of the checkboxes("Open in a new tab", "Add a nofollow tag") is according to the defaults (anchorTarget, relValue)
-  
   ### :house: Internal
   - `fullscreen`
     - [#553](https://github.com/wix-incubator/rich-content/pull/553) video playing support
