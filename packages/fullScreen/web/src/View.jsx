@@ -6,6 +6,7 @@ import ReactPlayer from 'react-player';
 export default function View(props) {
   const { data, getStyles } = props;
   const { src, type } = data.src;
+
   const styles = {
     lineHeight: 0,
     marginLeft: 'auto',
@@ -13,15 +14,16 @@ export default function View(props) {
     maxWidth: '100%',
     position: 'relative',
   };
-  const width = window.screen.width - 200;
+
+  const width = '80%';
   const height = (window.screen.height * 9) / 16;
 
   return (
     <div style={getStyles('view', props)}>
-      {type !== 'video' ? (
-        <img src={src} alt={''} style={styles} />
-      ) : (
+      {type === 'video' ? (
         <ReactPlayer url={src} style={styles} height={height} width={width} />
+      ) : (
+        <img src={src} alt={''} style={styles} />
       )}
     </div>
   );
