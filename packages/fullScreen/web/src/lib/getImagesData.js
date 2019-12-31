@@ -27,7 +27,7 @@ function imageEntryToUrl(entry) {
   if (!entry.data.src) {
     return '';
   }
-  return getUrl({ ...entry.data.src });
+  return getUrl(entry.data.src);
 }
 
 function galleryEntryToUrls(entry) {
