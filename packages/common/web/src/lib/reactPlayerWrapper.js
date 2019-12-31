@@ -11,6 +11,7 @@ export default class ReactPlayerWrapper extends Component {
     super(props);
     this.state = {
       vimeoLoaded: false,
+      isPlaying: false,
     };
   }
 
@@ -26,23 +27,17 @@ export default class ReactPlayerWrapper extends Component {
     }
   }
 
-  static getDerivedStateFromProps(props) {
-    if (props.disabled) {
-      return { playing: false };
-    }
-    return null;
-  }
-
   render() {
     if (!this.state.vimeoLoaded && this.isVimeoAndRequireJS()) {
       return null;
     }
-    const { isPlayable } = this.props;
+    const { isPlayable, styles, disabled } = this.props;
     return (
       <ReactPlayer
-        playing={this.state.playing}
-        onPlay={() => this.setState({ playing: true })}
-        onPause={() => this.setState({ playing: false })}
+        playing={this.state.isPlaying && !disabled}
+        onPlay={() => this.setState({ isPlaying: true })}
+        onPause={() => this.setState({ isPlaying: false })}
+        style={styles}
         {...this.props}
         light={!isPlayable}
       />
@@ -54,6 +49,7 @@ ReactPlayerWrapper.propTypes = {
   url: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   isPlayable: PropTypes.bool,
+  styles: PropTypes.object,
 };
 
 ReactPlayerWrapper.defaultProps = {

@@ -51,11 +51,10 @@ try {
   fs.readdirSync('./src/lib/').forEach(file => {
     libEntries = {
       input: 'src/lib/' + file,
-      output: output.map(o =>
-        Object.assign(o, {
-          file: o.file.replace('dist/', 'dist/lib/').replace('module', file.replace('.js', '')),
-        })
-      ),
+      output: output.map(o => ({
+        ...o,
+        file: o.file.replace('dist/', 'dist/lib/').replace('module', file.replace('.js', '')),
+      })),
       plugins,
       external,
       watch,
@@ -69,6 +68,7 @@ try {
   viewerEntry = {
     input: 'src/viewer.js',
     output: cloneDeep(output).map(o => {
+      console.log(o.file);
       const anchor = o.file.indexOf('.');
       o.file = `${o.file.slice(0, anchor)}.viewer${o.file.slice(anchor)}`;
       return o;

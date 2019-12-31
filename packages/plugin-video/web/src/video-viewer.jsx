@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import ReactPlayerWrapper from './reactPlayerWrapper';
+import ReactPlayerWrapper from 'wix-rich-content-common/src/lib/reactPlayerWrapper';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
