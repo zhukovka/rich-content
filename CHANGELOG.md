@@ -24,8 +24,18 @@
   ### :house: Internal
   - `fullscreen`
     - [#553](https://github.com/wix-incubator/rich-content/pull/553) video playing support
+
+  ### :bug: Bug Fix
+  - `link`
+    - [#546](https://github.com/wix-incubator/rich-content/pull/546) saves the last data and the initial state of the checkboxes("Open in a new tab", "Add a nofollow tag") is according to the defaults (anchorTarget, relValue)
+
 </details>
 <hr/>
+
+## 6.6.5 (Dec 30, 2019)
+### :bug: Bug Fix
+- `editor-common`
+  - [#560](https://github.com/wix-incubator/rich-content/pull/560) getBlockInfo returns entity type rather block type
 
 ## 6.6.4 (Dec 30, 2019)
 ### :bug: Bug Fix
