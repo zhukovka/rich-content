@@ -18,7 +18,7 @@ import GallerySettingsMobileHeader from './gallery-controls/gallery-settings-mob
 class ManageMediaSection extends Component {
   applyItems = items => {
     const { data, store } = this.props;
-    const componentData = { ...data, items };
+    const componentData = { ...data, items, excludeUndoStack: true };
     store.set('componentData', componentData);
   };
 
@@ -90,6 +90,7 @@ class AdvancedSettingsSection extends Component {
     const componentData = {
       ...data,
       styles: Object.assign({}, setting),
+      excludeUndoStack: true,
     };
     store.set('componentData', componentData);
   };
@@ -204,6 +205,14 @@ export class GallerySettingsModal extends Component {
     }[tab];
   }
 
+  onSave = () => {
+    const { helpers, pubsub } = this.props;
+    const componentData = pubsub.get('componentData');
+    componentData.excludeUndoStack = false;
+    pubsub.set('componentData', componentData);
+    helpers.closeModal();
+  };
+
   render() {
     const styles = this.styles;
     const {
@@ -228,7 +237,7 @@ export class GallerySettingsModal extends Component {
           <GallerySettingsMobileHeader
             theme={this.props.theme}
             cancel={() => this.revertComponentData()}
-            save={() => helpers.closeModal()}
+            save={() => this.onSave()}
             switchTab={this.switchTab}
             otherTab={this.tabName(this.otherTab(), t)}
             t={t}
@@ -303,7 +312,7 @@ export class GallerySettingsModal extends Component {
           <SettingsPanelFooter
             fixed
             cancel={() => this.revertComponentData()}
-            save={() => helpers.closeModal()}
+            save={() => this.onSave()}
             theme={this.props.theme}
             t={t}
           />

@@ -118,7 +118,8 @@ const createBaseComponent = ({
           const {
             blockProps: { setData },
           } = this.props;
-          setData(componentData);
+          const { excludeUndoStack = false } = componentData;
+          setData(componentData, excludeUndoStack);
         });
       }
     };

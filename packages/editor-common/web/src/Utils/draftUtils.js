@@ -138,10 +138,23 @@ export const getAnchorBlockData = editorState => {
   return block.get('data').toJS();
 };
 
-export const setEntityData = (editorState, entityKey, data) => {
-  if (entityKey) {
+export const setEntityData = (editorState, contentBlock, data, type, excludeUndoStack = false) => {
+  const entityKey = contentBlock.getEntityAt(0);
+  if (excludeUndoStack && entityKey) {
     const contentState = editorState.getCurrentContent();
     contentState.replaceEntityData(entityKey, cloneDeep(data));
+  } else if (type) {
+    const blockKey = contentBlock.getKey();
+    const selection = new SelectionState({
+      anchorKey: blockKey,
+      anchorOffset: 0,
+      focusKey: blockKey,
+      focusOffset: 1,
+    });
+    return addEntity(editorState, selection, {
+      type,
+      data,
+    });
   }
   return editorState;
 };

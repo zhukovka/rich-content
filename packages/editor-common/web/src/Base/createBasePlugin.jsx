@@ -12,8 +12,10 @@ const getData = (contentBlock, { getEditorState }) => () =>
     .getEntity(contentBlock.getEntityAt(0))
     .getData();
 
-const setData = (contentBlock, { getEditorState, setEditorState }) => newData =>
-  setEditorState(setEntityData(getEditorState(), contentBlock.getEntityAt(0), newData));
+const setData = (contentBlock, type, { getEditorState, setEditorState }) => (
+  newData,
+  excludeUndoStack = false
+) => setEditorState(setEntityData(getEditorState(), contentBlock, newData, type, excludeUndoStack));
 
 const deleteEntity = (contentBlock, { getEditorState, setEditorState }) => () =>
   setEditorState(deleteBlock(getEditorState(), contentBlock.getKey()));
@@ -124,7 +126,10 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
             editable: false,
             props: {
               getData: getData(contentBlock, { getEditorState }),
-              setData: setData(contentBlock, { getEditorState, setEditorState }),
+              setData: setData(contentBlock, config.type, {
+                getEditorState,
+                setEditorState,
+              }),
               deleteBlock: deleteEntity(contentBlock, { getEditorState, setEditorState }),
               readOnly: getReadOnly(),
             },
