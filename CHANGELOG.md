@@ -13,6 +13,9 @@
     Click to see more.
   </summary>
 
+  ### :rocket: New Feature
+  - `code-block`
+    - [#569](https://github.com/wix-incubator/rich-content/pull/569) add code block style, more information in: https://github.com/wix-incubator/rich-content/blob/master/docs/PluginCustomization.md
   ### :bug: Bug Fix
   - `editor-common`
     - [#550](https://github.com/wix-incubator/rich-content/pull/550) remove dashed border when focused
