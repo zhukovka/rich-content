@@ -3,7 +3,7 @@ import { range, reduce as _reduce } from 'lodash';
 import PropTypes from 'prop-types';
 import Prism from 'prismjs';
 import classNames from 'classnames';
-import { hasLinksInBlock } from 'wix-rich-content-editor-common';
+import { hasLinksInBlockViewer } from 'wix-rich-content-common';
 import highlightingTheme from '../statics/styles/highlighting-theme.scss';
 
 const DEFAULT_SYNTAX = 'javascript';
@@ -22,9 +22,11 @@ PrismToken.propTypes = {
 export default class PrismDecorator {
   highlighted = {};
   theme;
+  hasLinksInBlock;
 
-  constructor(theme = {}) {
+  constructor(theme = {}, hasLinksInBlock) {
     this.theme = theme;
+    this.hasLinksInBlock = hasLinksInBlock ? hasLinksInBlock : hasLinksInBlockViewer;
   }
 
   getDecorations(block, contentState) {
@@ -34,7 +36,7 @@ export default class PrismDecorator {
 
     this.highlighted[blockKey] = {};
 
-    if (block.getType() !== 'code-block' || hasLinksInBlock(block, contentState)) {
+    if (block.getType() !== 'code-block' || this.hasLinksInBlock(block, contentState)) {
       return decorations;
     }
 
