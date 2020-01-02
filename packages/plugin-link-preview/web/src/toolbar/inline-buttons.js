@@ -2,6 +2,7 @@ import { SelectionState, EditorState, Modifier } from 'draft-js';
 import { getCurrentBlock, TrashIcon, replaceWithEmptyBlock } from 'wix-rich-content-editor-common';
 
 const onDeletePreview = editorState => {
+  // preserve url
   let currentBlock = getCurrentBlock(editorState);
   const entityKey = currentBlock.getEntityAt(0);
   const entityData = editorState
@@ -9,12 +10,15 @@ const onDeletePreview = editorState => {
     .getEntity(entityKey)
     ?.getData();
   const url = entityData?.url;
+
+  // replace preview block with text block containing url
   let newState = replaceWithEmptyBlock(editorState, currentBlock.key);
   let contentState = Modifier.insertText(
     newState.getCurrentContent(),
     newState.getSelection(),
     url
   );
+  // reread block after insertText
   currentBlock = contentState.getBlockForKey(currentBlock.key);
   const nextBlock = contentState.getBlockAfter(currentBlock.key);
   if (nextBlock) {
