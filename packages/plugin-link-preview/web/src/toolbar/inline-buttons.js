@@ -30,7 +30,6 @@ const onDeletePreview = editorState => {
       focusOffset: 1,
     });
     contentState = Modifier.removeRange(contentState, selectionRange, 'forward');
-    // newState = EditorState.push(newState, contentState, 'remove-range');
   }
   newState = EditorState.push(newState, contentState, 'change-block-type');
   return EditorState.forceSelection(newState, contentState.getSelectionAfter());
