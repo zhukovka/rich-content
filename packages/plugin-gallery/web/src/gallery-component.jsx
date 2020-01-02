@@ -31,7 +31,7 @@ class GalleryComponent extends PureComponent {
   stateFromProps = props => {
     const items = props.componentData.items || []; // || DEFAULTS.items;
     const styles = Object.assign(DEFAULTS.styles, props.componentData.styles || {});
-    const isLoading = (props.componentState && props.componentState.isLoading) || 0;
+    const isLoading = props.componentState?.isLoading || 0;
     const state = {
       items,
       styles,
@@ -43,7 +43,7 @@ class GalleryComponent extends PureComponent {
       if (isLoading <= 0 && userSelectedFiles) {
         //lets continue the uploading process
         if (userSelectedFiles.files && userSelectedFiles.files.length > 0) {
-          Object.assign(state, { isLoading: userSelectedFiles.files.length });
+          state.isLoading = userSelectedFiles.files.length;
           this.handleFilesSelected(userSelectedFiles.files);
         }
         if (this.props.store) {
@@ -58,7 +58,7 @@ class GalleryComponent extends PureComponent {
     return state;
   };
 
-  setItemInGallery = (item, itemPos) => {
+  setItemInGallery = (item, itemPos, excludeFromUndoStack) => {
     const shouldAdd = typeof itemPos === 'undefined';
     let { items, styles } = this.state;
     let itemIdx;
@@ -74,28 +74,30 @@ class GalleryComponent extends PureComponent {
     //when updating componentData on an async method like this one,
     // we need to use a sync method to change the EditorState.
     // The broadcast is good if the toolbar is displaying some status or images
-    this.props.componentData.items = items;
-    this.props.componentData.styles = styles;
-    const { setData } = this.props.blockProps;
-    setData(this.props.componentData);
+    const { componentData, store } = this.props;
+    componentData.items = items;
+    componentData.styles = styles;
 
     this.setState({ items });
-    if (this.props.store) {
-      this.props.store.update('componentData', { items, styles, config: {} });
+    if (store) {
+      store.update('componentData', { items, styles, config: {} }, undefined, excludeFromUndoStack);
     }
 
     return itemIdx;
   };
 
   handleFilesSelected = (files, itemPos) => {
+    this.props.excludeDataChangesFromUndoStack(true);
     Array(...files).forEach(file => {
       const reader = new FileReader();
-      reader.onload = e => this.fileLoaded(e, file, itemPos);
+      reader.onload = e => {
+        this.fileLoaded(e, file, itemPos, files.length);
+      };
       reader.readAsDataURL(file);
     });
   };
 
-  imageLoaded = (event, file, itemPos) => {
+  imageLoaded = (event, file, itemPos, totalItemsNumber) => {
     const img = event.target;
     const item = {
       metadata: {
@@ -105,19 +107,21 @@ class GalleryComponent extends PureComponent {
       itemId: String(event.timeStamp),
       url: img.src,
     };
-
-    const itemIdx = this.setItemInGallery(item, itemPos);
+    const excludeFromUndoStack = true;
+    const itemIdx = this.setItemInGallery(item, itemPos, excludeFromUndoStack);
     const { helpers } = this.context;
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
 
     if (hasFileChangeHelper) {
-      helpers.onFilesChange(file, ({ data }) => this.handleFilesAdded({ data, itemIdx }));
+      helpers.onFilesChange(file, ({ data }) =>
+        this.handleFilesAdded({ data, itemIdx, totalItemsNumber })
+      );
     } else {
       console.warn('Missing upload function'); //eslint-disable-line no-console
     }
   };
 
-  handleFilesAdded = ({ data, itemIdx }) => {
+  handleFilesAdded = ({ data, itemIdx, totalItemsNumber }) => {
     const handleFileAdded = (item, idx) => {
       const galleryItem = {
         metadata: {
@@ -129,6 +133,9 @@ class GalleryComponent extends PureComponent {
         url: item.file_name,
       };
       this.setItemInGallery(galleryItem, idx);
+      if (itemIdx === totalItemsNumber - 1) {
+        this.props.excludeDataChangesFromUndoStack(false);
+      }
     };
 
     if (data instanceof Array) {
@@ -140,9 +147,9 @@ class GalleryComponent extends PureComponent {
     }
   };
 
-  fileLoaded = (event, file, itemPos) => {
+  fileLoaded = (event, file, itemPos, totalItemsNumber) => {
     const img = new Image();
-    img.onload = e => this.imageLoaded(e, file, itemPos);
+    img.onload = e => this.imageLoaded(e, file, itemPos, totalItemsNumber);
     img.src = event.target.result;
   };
 
@@ -167,6 +174,7 @@ GalleryComponent.propTypes = {
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string.isRequired,
   settings: PropTypes.object,
+  excludeDataChangesFromUndoStack: PropTypes.func,
 };
 
 GalleryComponent.contextType = Context.type;

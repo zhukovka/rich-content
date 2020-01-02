@@ -18,7 +18,7 @@ import GallerySettingsMobileHeader from './gallery-controls/gallery-settings-mob
 class ManageMediaSection extends Component {
   applyItems = items => {
     const { data, store } = this.props;
-    const componentData = { ...data, items, excludeUndoStack: true };
+    const componentData = { ...data, items };
     store.set('componentData', componentData);
   };
 
@@ -90,7 +90,6 @@ class AdvancedSettingsSection extends Component {
     const componentData = {
       ...data,
       styles: Object.assign({}, setting),
-      excludeUndoStack: true,
     };
     store.set('componentData', componentData);
   };
@@ -208,7 +207,6 @@ export class GallerySettingsModal extends Component {
   onSave = () => {
     const { helpers, pubsub } = this.props;
     const componentData = pubsub.get('componentData');
-    componentData.excludeUndoStack = false;
     pubsub.set('componentData', componentData);
     helpers.closeModal();
   };

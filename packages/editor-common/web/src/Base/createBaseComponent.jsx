@@ -118,10 +118,13 @@ const createBaseComponent = ({
           const {
             blockProps: { setData },
           } = this.props;
-          const { excludeUndoStack = false } = componentData;
-          setData(componentData, excludeUndoStack);
+          setData(componentData, this.state.excludeFromUndoStack);
         });
       }
+    };
+
+    excludeDataChangesFromUndoStack = excludeFromUndoStack => {
+      this.setState({ excludeFromUndoStack });
     };
 
     onComponentStateChange = componentState => {
@@ -193,16 +196,16 @@ const createBaseComponent = ({
       const oldFocusedBlock = pubsub.get('focusedBlock');
       const focusedBlock = block.getKey();
       if (oldFocusedBlock !== focusedBlock) {
-        const batchUpdates = {};
         const blockNode = findDOMNode(this);
         const componentData = this.state.componentData;
         const boundingRect = this.getBoundingClientRectAsObject(blockNode);
-        batchUpdates.boundingRect = boundingRect;
-        batchUpdates.componentData = componentData;
-        batchUpdates.componentState = {};
-        batchUpdates.deleteBlock = this.deleteBlock;
-        batchUpdates.focusedBlock = focusedBlock;
-        pubsub.set(batchUpdates);
+        pubsub.set({
+          boundingRect,
+          componentData,
+          focusedBlock,
+          componentState: {},
+          deleteBlock: this.deleteBlock,
+        });
         onAtomicBlockFocus(focusedBlock);
       } else {
         //maybe just the position has changed
@@ -213,11 +216,7 @@ const createBaseComponent = ({
     }
 
     updateUnselectedComponent() {
-      const batchUpdates = {};
-      batchUpdates.focusedBlock = null;
-      batchUpdates.componentData = {};
-      batchUpdates.componentState = {};
-      pubsub.set(batchUpdates);
+      pubsub.set({ focusedBlock: null, componentData: {}, componentState: {} });
       onAtomicBlockFocus(undefined);
     }
 
@@ -284,6 +283,7 @@ const createBaseComponent = ({
           helpers={helpers}
           t={t}
           editorBounds={getEditorBounds()}
+          excludeDataChangesFromUndoStack={this.excludeDataChangesFromUndoStack}
         />
       );
 

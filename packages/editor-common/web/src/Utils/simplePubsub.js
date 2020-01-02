@@ -26,19 +26,21 @@ export const simplePubsub = initialState => {
   };
 
   // Deep merge objects into store. Merges the the newData with the data for the given key.
-  const update = (key, newData, blockKey) => {
+  const update = (key, newData, blockKey, excludeFromUndoStack) => {
     const data = get(key);
     const newItem = merge({}, data, newData);
-    blockKey ? _setSingle(key, newItem, blockKey) : set(key, newItem);
+    blockKey
+      ? _setSingle(key, newItem, blockKey, excludeFromUndoStack)
+      : set(key, newItem, excludeFromUndoStack);
   };
 
-  const _setSingle = (key, item, blockKey) => {
+  const _setSingle = (key, item, blockKey, excludeFromUndoStack) => {
     state = {
       ...state,
       [key]: item,
     };
     if (listeners[key]) {
-      listeners[key].forEach(listener => listener(state[key], blockKey));
+      listeners[key].forEach(listener => listener(state[key], blockKey, excludeFromUndoStack));
     }
   };
 
@@ -59,6 +61,8 @@ export const simplePubsub = initialState => {
       _setBatch(args[0]);
     } else if (args.length === 2) {
       _setSingle(args[0], args[1]);
+    } else if (args.length === 3) {
+      args[2] ? _setSingle(args[0], args[1], '', args[2]) : _setSingle(args[0], args[1]);
     } else {
       console.error('pubsub set invalid args'); // eslint-disable-line no-console
     }
