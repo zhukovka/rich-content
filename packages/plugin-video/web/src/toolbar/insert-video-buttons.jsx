@@ -6,7 +6,6 @@ import {
 } from 'wix-rich-content-editor-common';
 import VideoSelectionInputModal from './videoSelectionInputModal';
 import { InsertPluginIcon } from '../icons';
-import { get } from 'lodash';
 import {
   SelectionModalCustomStyle,
   ExtendedSelectionModalCustomStyle,

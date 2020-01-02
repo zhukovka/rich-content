@@ -76,12 +76,21 @@ function insertLink(
   ).set('selectionAfter', oldSelection);
   const newEditorState = EditorState.push(editorState, newContentState, 'change-inline-style');
 
+  let target = '_blank',
+    rel = 'nofollow';
+  if (!targetBlank) {
+    target = anchorTarget !== '_blank' ? anchorTarget : '_self';
+  }
+  if (!nofollow) {
+    rel = relValue !== 'nofollow' ? relValue : 'noopener';
+  }
+
   return addEntity(newEditorState, selection, {
     type: 'LINK',
     data: {
       url,
-      target: targetBlank ? '_blank' : anchorTarget || defaultAnchorTarget,
-      rel: nofollow ? 'nofollow' : relValue || defaultRelValue,
+      target,
+      rel,
     },
   });
 }
@@ -205,11 +214,10 @@ export const createBlock = (editorState, data, type) => {
 export const deleteBlock = (editorState, blockKey) => {
   const contentState = editorState.getCurrentContent();
   const block = contentState.getBlockForKey(blockKey);
-  const previousBlock = contentState.getBlockBefore(blockKey) || block;
-  const anchorOffset = blockKey === previousBlock.key ? 0 : previousBlock.text.length;
+  const previousBlock = contentState.getBlockBefore(blockKey);
   const selectionRange = new SelectionState({
     anchorKey: previousBlock.key,
-    anchorOffset,
+    anchorOffset: previousBlock.text.length,
     focusKey: blockKey,
     focusOffset: block.text.length,
   });
@@ -325,7 +333,7 @@ export function fixPastedLinks(editorState, { anchorTarget, relValue }) {
   links.forEach(({ key: blockKey, range }) => {
     const block = content.getBlockForKey(blockKey);
     const entityKey = block.getEntityAt(range[0]);
-    const data = content.getEntity(entityKey).getData();
+    const data = entityKey && content.getEntity(entityKey).getData();
     const url = data.url || data.href;
     if (url) {
       content.replaceEntityData(entityKey, {
@@ -336,6 +344,22 @@ export function fixPastedLinks(editorState, { anchorTarget, relValue }) {
     }
   });
   return editorState;
+}
+
+export function getFocusedBlockKey(editorState) {
+  const selection = editorState.getSelection();
+  return selection.isCollapsed() && selection.getAnchorKey();
+}
+
+export function getBlockInfo(editorState, blockKey) {
+  const contentState = editorState.getCurrentContent();
+  const block = contentState.getBlockForKey(blockKey);
+  const entityKey = block.getEntityAt(0);
+  const entity = entityKey && contentState.getEntity(entityKey);
+  const entityData = entity?.data;
+  const type = entity?.type;
+
+  return { type: type || 'text', entityData };
 }
 
 export function setSelection(editorState, selection) {

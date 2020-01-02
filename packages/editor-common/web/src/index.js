@@ -73,11 +73,13 @@ export {
   setEntityData,
   replaceWithEmptyBlock,
   deleteBlock,
-  getSelectedBlocks,
   getCurrentBlock,
+  getSelectedBlocks,
   getLinkRangesInBlock,
   createEntity,
   createBlock,
+  getBlockInfo,
+  getFocusedBlockKey,
 } from './Utils/draftUtils';
 export { isiOS } from './Utils/isiOS';
 export { getSelectionStyles } from './Utils/inlineStyleUtils';

@@ -1,4 +1,3 @@
-import { get } from 'lodash';
 import { DEFAULTS, MobileFullScreenCustomStyle, DesktopFlyOutModalStyles } from '../constants';
 import {
   getModalStyles,

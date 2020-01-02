@@ -121,7 +121,7 @@ getToolbarSettings: ({ pluginButtons, textButtons }) => [
 
 All available button names are listed in the [EditorPlugins](https://github.com/wix-incubator/rich-content/blob/master/examples/main/shared/editor/EditorPlugins.jsx) file under the `getToolbarSettings` section.
 
-### Customizing Text Toolbar Button Icons
+### `Settings` properties
 
 | property                 | description                                                                                                                                                                                                                                                                         | affected toolbars                           |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
