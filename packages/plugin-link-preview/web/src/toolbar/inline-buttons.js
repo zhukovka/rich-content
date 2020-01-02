@@ -21,18 +21,19 @@ const onDeletePreview = editorState => {
   // reread block after insertText
   currentBlock = contentState.getBlockForKey(currentBlock.key);
   const nextBlock = contentState.getBlockAfter(currentBlock.key);
-  if (nextBlock) {
+  // delte empty block after preview
+  if (nextBlock && nextBlock.text.length === 0) {
     const selectionRange = new SelectionState({
       anchorKey: currentBlock.key,
       anchorOffset: currentBlock.text.length,
       focusKey: nextBlock.key,
-      focusOffset: Math.max(nextBlock.text.length, 1),
+      focusOffset: 1,
     });
     contentState = Modifier.removeRange(contentState, selectionRange, 'forward');
-    newState = EditorState.push(newState, contentState, 'remove-range');
+    // newState = EditorState.push(newState, contentState, 'remove-range');
   }
   newState = EditorState.push(newState, contentState, 'change-block-type');
-  return EditorState.forceSelection(newState, newState.getSelectionAfter());
+  return EditorState.forceSelection(newState, contentState.getSelectionAfter());
 };
 
 export default (settings, setEditorState, getEditorState) => [
