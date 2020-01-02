@@ -60,12 +60,12 @@
     - [#550](https://github.com/wix-incubator/rich-content/pull/550) remove dashed border when focused
   - `editor`
     - [#504](https://github.com/wix-incubator/rich-content/pull/504) pasted links get the configured anchorTarget and relValue
+    - [#521](https://github.com/wix-incubator/rich-content/pull/521) replace p element with div element in lists
+    - [#552](https://github.com/wix-incubator/rich-content/pull/552) fix Plugin toolbar shouldCreate config crush
   - `editor`
     - [#554](https://github.com/wix-incubator/rich-content/pull/554) change align shortcuts from cmd to cmd + shift
   - `undo-redo`
     - [#543](https://github.com/wix-incubator/rich-content/pull/543) fix undo-redo icons on mobile
-  - `editor`
-    - [#521](https://github.com/wix-incubator/rich-content/pull/521) replace p element with div element in lists
   - `gallery`
     - [#545](https://github.com/wix-incubator/rich-content/pull/545) fix image ratio change in gallery slider layout
   ### :house: Internal
