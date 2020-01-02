@@ -26,7 +26,7 @@ export default class PrismDecorator {
 
   constructor(theme = {}, hasLinksInBlock) {
     this.theme = theme;
-    this.hasLinksInBlock = hasLinksInBlock ? hasLinksInBlock : hasLinksInBlockViewer;
+    this.hasLinksInBlock = hasLinksInBlock || hasLinksInBlockViewer;
   }
 
   getDecorations(block, contentState) {
