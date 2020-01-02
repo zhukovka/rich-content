@@ -170,6 +170,7 @@ export const setEntityData = (editorState, contentBlock, data, type, excludeUndo
     return addEntity(editorState, selection, {
       type,
       data,
+      mutability: 'IMMUTABLE',
     });
   }
   return editorState;
