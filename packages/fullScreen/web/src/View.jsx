@@ -11,6 +11,7 @@ export default function View(props) {
     marginRight: 'auto',
     maxWidth: '100%',
     position: 'relative',
+    zIndex: 0,
   };
 
   const height = (window.screen.height * 9) / 16;
@@ -24,6 +25,7 @@ export default function View(props) {
           disabled={currentIndex !== index}
           height={height}
           width={'80%'}
+          shouldRenderOverlay
         />
       ) : (
         <img src={src} alt={''} style={styles} />
