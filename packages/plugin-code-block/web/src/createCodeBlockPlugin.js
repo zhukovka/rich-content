@@ -62,7 +62,7 @@ const createCodeBlockPlugin = (config = {}) => {
     ...rest
   } = config;
 
-  const { decoratedCode } = settings;
+  const { decoratedCode = true } = settings;
   const plugin = createUnderlyingPlugin({ theme, decoratedCode });
   const toolbar = createCodeBlockToolbar({
     helpers,

@@ -81,9 +81,9 @@ The `defaultData` setting enables consumers to set the default data for a plugin
 
 ### Code Block Plugin Settings
 
-| setting key | description                 | default value | is required? | editor/viewer config |
-| ----------- | --------------------------- | ------------- | ------------ | -------------------- |
-| `decoratedCode`   | optional Code Block style | false          | No           | editor                 |
+| setting key       | description                 | default value | is required? | editor/viewer config |
+| ----------------- | --------------------------- | ------------- | ------------ | -------------------- |
+| `decoratedCode`   | optional Code Block style   | true          | No           | editor               |
 
 ### Mentions Plugin Settings
 

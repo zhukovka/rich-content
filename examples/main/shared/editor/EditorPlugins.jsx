@@ -300,7 +300,7 @@ export const config = {
   },
   [SOUND_CLOUD_TYPE]: {},
   [CODE_BLOCK_TYPE]: {
-    decoratedCode: true,
+    //decoratedCode: false,
     // toolbar: {
     //   icons: {
     //     codeBlock: MyCustomIcon, // insert plugin icon
