@@ -223,8 +223,8 @@ describe('plugins', () => {
 
     it('enable to add a soundcloud URI', function() {
       cy.openSoundCloudModal().addSoundCloud();
-      cy.waitForVideoToLoad();
       cy.shrinkPlugin();
+      cy.waitForVideoToLoad();
       cy.focusEditor().enterParagraphs(['Will this fix the flakiness?']);
       cy.eyesCheckWindow(this.test.title);
     });
