@@ -963,7 +963,7 @@ exports[`plugins > video > enable to add a video from URI #0`] =
   ],
   "entityMap": {
     "0": {
-      "type": "wix-draft-plugin-video"
+      "type": "wix-draft-plugin-video",
       "mutability": "IMMUTABLE",
       "data": {
         "config": {
