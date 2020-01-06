@@ -155,7 +155,7 @@ export const getAnchorBlockData = editorState => {
 };
 
 export const setEntityData = (editorState, contentBlock, data, type, excludeUndoStack = false) => {
-  const entityKey = contentBlock.getEntityAt(0); //
+  const entityKey = contentBlock.getEntityAt(0);
   if (excludeUndoStack && entityKey) {
     const contentState = editorState.getCurrentContent();
     contentState.replaceEntityData(entityKey, cloneDeep(data));
