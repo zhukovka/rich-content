@@ -16,6 +16,9 @@
   ### :bug: Bug Fix
   - `link`
     - [#546](https://github.com/wix-incubator/rich-content/pull/546) saves the last data and the initial state of the checkboxes("Open in a new tab", "Add a nofollow tag") is according to the defaults (anchorTarget, relValue)
+  ### :rocket: New Feature
+  - `editor`
+    - [#571](https://github.com/wix-incubator/rich-content/pull/571) Change the 'TT' Font style into 'Heading X' Drop-down
 </details>
 <hr/>
 
