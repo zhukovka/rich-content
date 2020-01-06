@@ -967,7 +967,7 @@ exports[`plugins > video > enable to add a video from URI #0`] =
       "mutability": "IMMUTABLE",
       "data": {
         "config": {
-           "size": "content",
+          "size": "content",
           "alignment": "center"
         },
         "src": "https://youtu.be/BBu5codsO6Y",
