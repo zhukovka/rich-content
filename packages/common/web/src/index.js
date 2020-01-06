@@ -42,4 +42,4 @@ export { getImageSrc, WIX_MEDIA_DEFAULT } from './Utils/imageUtils';
 export { isHexColor } from './Utils/colorUtils';
 export { isRtl, getLangDir } from './Utils/rtlUtils';
 
-export { HEADER_BLOCK, BLOCK_TYPES } from './consts';
+export { HEADER_BLOCK, BLOCK_TYPES, TITLE_FONT_STYLE, DEFAULT_FONTS_OPTIONS } from './consts';

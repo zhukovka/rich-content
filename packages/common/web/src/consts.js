@@ -18,3 +18,15 @@ export const BLOCK_TYPES = [
   'code-block',
   'unstyled',
 ];
+
+export const TITLE_FONT_STYLE = {
+  heading1: 'header-one',
+  heading2: 'header-two',
+  heading3: 'header-three',
+  heading4: 'header-four',
+  heading5: 'header-five',
+  heading6: 'header-six',
+  paragraph: 'unstyled',
+};
+
+export const DEFAULT_FONTS_OPTIONS = ['paragraph', 'heading2', 'heading3'];

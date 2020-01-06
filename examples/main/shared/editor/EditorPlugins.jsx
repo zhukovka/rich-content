@@ -55,6 +55,7 @@ import {
   customBackgroundStyleFn,
 } from '../../src/text-color-style-fn';
 import { getBaseUrl } from '../../src/utils';
+import { TOOLBARS } from 'wix-rich-content-editor-common';
 // import { MyCustomIcon, SizeSmallRightIcon, TOOLBARS } from 'wix-rich-content-editor-common';
 // import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common';
 // import InlineToolbarDecoration from './Components/InlineToolbarDecoration';
@@ -486,6 +487,10 @@ export const config = {
   },
   uiSettings,
   getToolbarSettings: ({ pluginButtons, textButtons }) => [
+    {
+      name: TOOLBARS.TEXT,
+      fontStyles: ['paragraph', 'heading2', 'heading3', 'heading4', 'heading5', 'heading6'],
+    },
     // {
     //   name: TOOLBARS.TEXT,
     //   getIcons: () => ({

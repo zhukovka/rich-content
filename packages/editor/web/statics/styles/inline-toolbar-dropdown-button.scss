@@ -1,12 +1,15 @@
+@import '~wix-rich-content-common/dist/statics/styles/mixins';
+@import '~wix-rich-content-common/dist/statics/styles/palette';
+@import '~wix-rich-content-common/dist/statics/styles/consts';
 .inlineToolbarDropdown_wrapper {
   position: relative;
-  margin-right: 10px;
   padding: 10px 0;
 }
 
 .inlineToolbarDropdown_options {
   position: absolute;
-  top: 10px;
+  overflow: scroll;
+  max-height: 100px;
   left: -3px;
   padding: 0 3px;
   background: white;
@@ -16,12 +19,25 @@
 .inlineToolbarDropdownButton_wrapper {
   margin-right: 0 !important;
   padding: 0 !important;
+  &>*{
+    font-size: medium;
+    margin-top: 2px;
+  }
 }
 
 .inlineToolbarDropdownButton {
-  outline: none;
+  outline: none;  
 }
 
 .inlineToolbarDropdownButton_icon {
   outline: none;
+}
+
+.inlineToolbarDropdownButton_arrowIcon {
+  position: absolute;
+  right: 6px;
+  top: 15px;
+
+.inlineToolbarDropdownButton_arrowIcon_isOpen {
+  transform: rotate(180deg);
 }

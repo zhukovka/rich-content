@@ -1,4 +1,3 @@
-import { HEADER_BLOCK } from 'wix-rich-content-common';
 import {
   AlignLeftIcon,
   AlignTextCenterIcon,
@@ -11,9 +10,6 @@ import {
   UnderlineIcon,
   IndentIcon,
   BlockQuoteIcon,
-  TitleIcon,
-  TitleOneIcon,
-  TitleTwoIcon,
   OrderedListIcon,
   UnorderedListIcon,
 } from '../../Icons';
@@ -47,14 +43,6 @@ export const indentButton = icon =>
     blockTypes: ['indent'],
     Icons: [icon || IndentIcon],
     tooltipTextKey: 'IndentButton_Tooltip',
-  });
-
-export const titleButton = (inactiveIconTitle, iconForTitleOne, iconForTitleTwo) =>
-  createTextBlockStyleButton({
-    blockTypes: [HEADER_BLOCK.TWO, HEADER_BLOCK.THREE],
-    Icons: [iconForTitleOne || TitleOneIcon, iconForTitleTwo || TitleTwoIcon],
-    InactiveIcon: inactiveIconTitle || TitleIcon,
-    tooltipTextKey: 'TitleButton_Tooltip',
   });
 
 export const blockquoteButton = icon =>

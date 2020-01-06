@@ -4,7 +4,6 @@ import {
   italicButton,
   underlineButton,
   indentButton,
-  titleButton,
   blockquoteButton,
   alignTextLeftButton,
   alignTextCenterButton,
@@ -15,6 +14,8 @@ import {
   textAlignmentButton,
 } from '../index';
 import createThemedSeparator from './createThemedSeparator';
+import createTextTitleButton from './createTextTitleButton';
+import { DEFAULT_FONTS_OPTIONS } from 'wix-rich-content-common';
 
 export default ({ buttons, theme, t, isMobile, textPluginButtons, uiSettings, config }) => {
   const themedSeparator = horizontal => createThemedSeparator({ theme, horizontal });
@@ -22,12 +23,13 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons, uiSettings, co
     ?.getToolbarSettings?.({})
     .find(setting => setting.name === TOOLBARS.TEXT);
   const icons = customSettings?.getIcons?.() || {};
+  const customFontStyles = customSettings?.fontStyles || DEFAULT_FONTS_OPTIONS;
   const buttonByName = {
     Bold: boldButton(icons.Bold),
     Italic: italicButton(icons.Italic),
     Underline: underlineButton(icons.Underline),
     Indent: indentButton(icons.Indent),
-    Title: titleButton(icons.inactiveIconTitle, icons.TitleOne, icons.TitleTwo),
+    Title: createTextTitleButton(customFontStyles),
     Blockquote: blockquoteButton(icons.Blockquote),
     Alignment: textAlignmentButton(icons),
     AlignLeft: alignTextLeftButton(icons.AlignLeft),

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import TextButton from '../TextButton';
 import { mergeStyles } from 'wix-rich-content-common';
 import { Tooltip } from 'wix-rich-content-editor-common';
+import DropdownArrowIcon from 'wix-rich-content-editor-common/src/Icons/DropdownArrowIcon';
 import styles from '../../../../../statics/styles/inline-toolbar-dropdown-button.scss';
 import ClickOutside from 'react-click-outside';
 
@@ -29,7 +30,6 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
       };
 
       const theme = props.theme || {};
-
       this.theme = {
         ...theme,
         buttonStyles: {
@@ -48,9 +48,19 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
             theme && theme.inlineToolbarDropdownButton_icon
           ),
           //eslint-disable-next-line camelcase
+          inlineToolbarButton_arrowIcon: classNames(
+            styles.inlineToolbarDropdownButton_arrowIcon,
+            theme && theme.inlineToolbarButton_arrowIcon
+          ),
+          //eslint-disable-next-line camelcase
           inlineToolbarButton_active: classNames(
             styles.inlineToolbarButton_active,
             theme && theme.inlineToolbarDropdownButton_active
+          ),
+          //eslint-disable-next-line camelcase
+          inlineToolbarButton_buttonName: classNames(
+            styles.inlineToolbarButton_buttonName,
+            theme && theme.inlineToolbarButton_buttonName
           ),
         },
       };
@@ -95,18 +105,29 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
 
     render() {
       const {
-        selected: { Icon },
+        selected: { Icon, textButtonKeyName },
         isOpen,
       } = this.state;
       const { isMobile, tabIndex, t } = this.props;
       const tooltipText = t(tooltipTextKey);
       const textForHooks = tooltipText.replace(/\s+/, '');
       const dataHookText = `textDropDownButton_${textForHooks}`;
+      const arrowIcon = (
+        <span
+          className={classNames(this.styles.inlineToolbarButton_arrowIcon, {
+            [this.styles.inlineToolbarButton_arrowIcon_isOpen]: this.state.isOpen,
+          })}
+        >
+          <DropdownArrowIcon />
+        </span>
+      );
 
       return (
         <Tooltip content={tooltipText} moveBy={{ y: -20 }}>
           <div className={this.styles.inlineToolbarDropdown_wrapper}>
             <TextButton
+              textButtonKeyName={textButtonKeyName}
+              arrowIcon={arrowIcon}
               icon={Icon}
               theme={this.theme}
               isMobile={isMobile}

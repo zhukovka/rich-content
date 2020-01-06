@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isEmpty } from 'lodash';
-
 import { mergeStyles } from 'wix-rich-content-common';
 import { ToolbarButton } from 'wix-rich-content-editor-common';
 import styles from 'wix-rich-content-editor-common/dist/statics/styles/inline-toolbar-button.scss';
@@ -15,7 +14,7 @@ export default class TextButton extends Component {
   }
 
   static propTypes = {
-    icon: PropTypes.func.isRequired,
+    icon: PropTypes.func,
     onClick: PropTypes.func.isRequired,
     isActive: PropTypes.func,
     theme: PropTypes.object.isRequired,
@@ -24,6 +23,8 @@ export default class TextButton extends Component {
     dataHook: PropTypes.string,
     tabIndex: PropTypes.number,
     shouldRefreshTooltips: PropTypes.func,
+    textButtonKeyName: PropTypes.string,
+    arrowIcon: PropTypes.func,
   };
 
   static defaultProps = {
@@ -52,6 +53,8 @@ export default class TextButton extends Component {
       dataHook,
       tabIndex,
       shouldRefreshTooltips,
+      textButtonKeyName,
+      arrowIcon,
     } = this.props;
     const showTooltip = !isMobile && !isEmpty(tooltipText);
     const iconClassNames = classNames(styles.inlineToolbarButton_icon, {
@@ -69,9 +72,22 @@ export default class TextButton extends Component {
           data-hook={dataHook}
           onClick={this.handleClick}
         >
-          <div className={iconClassNames}>
-            <Icon />
-          </div>
+          {arrowIcon ? (
+            <div className={styles.inlineToolbarButton_buttonName}>
+              {textButtonKeyName || (
+                <div className={iconClassNames}>
+                  <Icon />
+                </div>
+              )}
+              {arrowIcon}
+            </div>
+          ) : (
+            textButtonKeyName || (
+              <div className={iconClassNames}>
+                <Icon />
+              </div>
+            )
+          )}
         </button>
       </div>
     );
