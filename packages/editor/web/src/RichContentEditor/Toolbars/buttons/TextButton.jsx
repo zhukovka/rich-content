@@ -24,7 +24,7 @@ export default class TextButton extends Component {
     tabIndex: PropTypes.number,
     shouldRefreshTooltips: PropTypes.func,
     textButtonKeyName: PropTypes.string,
-    arrowIcon: PropTypes.func,
+    arrowIcon: PropTypes.object,
   };
 
   static defaultProps = {
