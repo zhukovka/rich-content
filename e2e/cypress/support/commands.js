@@ -348,6 +348,10 @@ Cypress.Commands.add('addSoundCloud', () => {
   cy.get(`[data-hook=${PLUGIN_COMPONENT.SOUND_CLOUD}]:first`)
     .parent()
     .click();
+  cy.wait(700); //wait for mockupload (there's a bug where componentData isn't saved when plugin loses focus)
+  cy.get(`[data-hook=${PLUGIN_COMPONENT.SOUND_CLOUD}]:first`)
+    .parent()
+    .click();
 });
 
 Cypress.Commands.add('addVideoFromURI', () => {
