@@ -356,6 +356,10 @@ Cypress.Commands.add('addVideoFromURI', () => {
   cy.get(`[data-hook=${PLUGIN_COMPONENT.VIDEO}]:first`)
     .parent()
     .click();
+  cy.wait(700); //wait for mockupload (there's a bug where componentData isn't saved when plugin loses focus)
+  cy.get(`[data-hook=${PLUGIN_COMPONENT.VIDEO}]:first`)
+    .parent()
+    .click();
 });
 
 Cypress.Commands.add('addHtml', () => {
