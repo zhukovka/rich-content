@@ -16,11 +16,6 @@
   ### :rocket: New Feature
   - `gallery`
     - [#553](https://github.com/wix-incubator/rich-content/pull/553) gallery supports adding videos
-  
-  ### :house: Internal
-  - `fullscreen`
-    - [#553](https://github.com/wix-incubator/rich-content/pull/553) video playing support
-
   ### :bug: Bug Fix
   - `text-color`
      - [#572](https://github.com/wix-incubator/rich-content/pull/572) color Picker- ResetToDefault button sticky to bottom
@@ -36,6 +31,8 @@
     - [#562](https://github.com/wix-incubator/rich-content/pull/562) use `@lerna/project` to get all lerna packages
   - `e2e`
     - [#564](https://github.com/wix-incubator/rich-content/pull/564) snapshots renaming for gallery and image plugins tests
+  - `fullscreen`
+    - [#553](https://github.com/wix-incubator/rich-content/pull/553) video playing support
       
 </details>
 <hr/>
