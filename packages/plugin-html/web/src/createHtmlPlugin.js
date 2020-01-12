@@ -4,7 +4,7 @@ import {
   pluginDecorationProps,
   componentWillReceiveDecorationProps,
 } from 'wix-rich-content-editor';
-import { Component } from './HtmlComponent';
+import { Component, DEFAULTS } from './HtmlComponent';
 import { HTML_TYPE } from './types';
 
 const createHtmlPlugin = (config = {}) => {
@@ -32,6 +32,7 @@ const createHtmlPlugin = (config = {}) => {
     isMobile,
     t,
     getEditorBounds,
+    defaultPluginData: DEFAULTS,
     ...rest,
   });
 };

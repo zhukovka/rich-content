@@ -7,7 +7,7 @@ export const INIT_WIDTH = 350;
 
 export const INIT_HEIGHT = 550;
 
-export const DEFAULT_COMPONENT_DATA = {
+export const DEFAULTS = {
   srcType: SRC_TYPE_HTML,
   src: '',
   config: {

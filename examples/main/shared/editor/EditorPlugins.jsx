@@ -103,7 +103,7 @@ let userButtonBorderColors = [...buttonDefaultPalette];
 
 const getLinkPanelDropDownConfig = () => {
   const getItems = () => {
-    casual.define('item', function () {
+    casual.define('item', function() {
       return {
         value: casual.url,
         label: casual.catch_phrase,
@@ -179,13 +179,7 @@ export const config = {
     //   },
     // },
   },
-  // [BUTTON_TYPE]: {
-  //   toolbar: {
-  //     icons: {
-  //       Button: MyCustomIcon, // insert plugin icon
-  //     },
-  //   },
-  // },
+
   [GALLERY_TYPE]: {
     scrollingElement: () =>
       typeof window !== 'undefined' && document.getElementsByClassName('editor-example')[0],
@@ -212,6 +206,7 @@ export const config = {
       mediaRoot: 'some-mediaRoot',
     },
     onImageEditorOpen: () => console.log('Media Studio Launched'),
+    // createGalleryForMultipleImages: true,
     // toolbar: {
     //   icons: {
     //     Image: MyCustomIcon, // insert plugin icon
@@ -432,6 +427,11 @@ export const config = {
     // },
   },
   [BUTTON_TYPE]: {
+    //   toolbar: {
+    //     icons: {
+    //       Button: MyCustomIcon, // insert plugin icon
+    //     },
+    //   },
     palette: ['#FEFDFD', '#D5D4D4', '#ABCAFF', '#81B0FF', '#0261FF', '#0141AA'],
     selectionBackgroundColor: 'fuchsia',
     selectionBorderColor: '#FFF',
