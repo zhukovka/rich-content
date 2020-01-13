@@ -5,7 +5,7 @@ import { RichUtils } from 'draft-js';
 import TextButton from './TextButton';
 
 export default ({ value, keyName, tooltipTextKey }) =>
-  class TitleButton extends Component {
+  class FontStyleButton extends Component {
     static propTypes = {
       getEditorState: PropTypes.func.isRequired,
       setEditorState: PropTypes.func.isRequired,

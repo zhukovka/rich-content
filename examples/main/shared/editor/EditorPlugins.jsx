@@ -489,7 +489,7 @@ export const config = {
   getToolbarSettings: ({ pluginButtons, textButtons }) => [
     {
       name: TOOLBARS.TEXT,
-      fontStyles: ['paragraph', 'heading2', 'heading3', 'heading4', 'heading5', 'heading6'],
+      fontStyles: ['P', 'H2', 'H3', 'H4', 'H5', 'H6'],
     },
     // {
     //   name: TOOLBARS.TEXT,

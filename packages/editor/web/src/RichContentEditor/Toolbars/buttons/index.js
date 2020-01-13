@@ -28,7 +28,6 @@ export const MobileTextButtonList = [
 
 export { default as textAlignmentButton } from './TextAlignmentButton';
 export { default as AddPluginButton } from './AddPluginButton';
-export { default as titleButton } from './TitleButton';
 export {
   boldButton,
   italicButton,

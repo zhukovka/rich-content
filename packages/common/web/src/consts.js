@@ -20,13 +20,13 @@ export const BLOCK_TYPES = [
 ];
 
 export const TITLE_FONT_STYLE = {
-  heading1: 'header-one',
-  heading2: 'header-two',
-  heading3: 'header-three',
-  heading4: 'header-four',
-  heading5: 'header-five',
-  heading6: 'header-six',
-  paragraph: 'unstyled',
+  H1: 'header-one',
+  H2: 'header-two',
+  H3: 'header-three',
+  H4: 'header-four',
+  H5: 'header-five',
+  H6: 'header-six',
+  P: 'unstyled',
 };
 
-export const DEFAULT_FONTS_OPTIONS = ['paragraph', 'heading2', 'heading3'];
+export const DEFAULT_FONTS_OPTIONS = ['P', 'H2', 'H3'];

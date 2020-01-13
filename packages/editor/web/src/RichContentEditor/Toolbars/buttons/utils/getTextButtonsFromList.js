@@ -14,22 +14,22 @@ import {
   textAlignmentButton,
 } from '../index';
 import createThemedSeparator from './createThemedSeparator';
-import createTextTitleButton from './createTextTitleButton';
-import { DEFAULT_FONTS_OPTIONS } from 'wix-rich-content-common';
+import { createFontStyleStructure } from './createFontStyleButton';
 
-export default ({ buttons, theme, t, isMobile, textPluginButtons, uiSettings, config }) => {
+export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSettings, config }) => {
   const themedSeparator = horizontal => createThemedSeparator({ theme, horizontal });
   const customSettings = config
     ?.getToolbarSettings?.({})
     .find(setting => setting.name === TOOLBARS.TEXT);
   const icons = customSettings?.getIcons?.() || {};
-  const customFontStyles = customSettings?.fontStyles || DEFAULT_FONTS_OPTIONS;
-  const buttonByName = {
+  const fontStylesButton = createFontStyleStructure(customSettings, isMobile);
+
+  const buttonsMap = {
     Bold: boldButton(icons.Bold),
     Italic: italicButton(icons.Italic),
     Underline: underlineButton(icons.Underline),
     Indent: indentButton(icons.Indent),
-    Title: createTextTitleButton(customFontStyles),
+    Title: fontStylesButton,
     Blockquote: blockquoteButton(icons.Blockquote),
     Alignment: textAlignmentButton(icons),
     AlignLeft: alignTextLeftButton(icons.AlignLeft),
@@ -40,14 +40,15 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons, uiSettings, co
     UnorderedList: unorderedListButton(icons.UnorderedList),
     Separator: themedSeparator(false),
     HorizontalSeparator: themedSeparator(true),
+    ...textPluginButtons,
   };
 
-  let buttonMap = buttonByName;
-  if (textPluginButtons) {
-    buttonMap = Object.assign(buttonMap, textPluginButtons);
-  }
+  const buttonCompArray = buttons
+    .map(buttonName => buttonsMap[buttonName])
+    .filter(x => x)
+    .flat();
 
-  const structure = buttons.map(buttonName => buttonMap[buttonName]).filter(b => b !== undefined);
-
-  return structure.map(b => decorateComponentWithProps(b, { t, isMobile, uiSettings, config }));
+  return buttonCompArray.map(b =>
+    decorateComponentWithProps(b, { t, isMobile, uiSettings, config })
+  );
 };

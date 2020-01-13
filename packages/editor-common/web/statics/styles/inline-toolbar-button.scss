@@ -37,7 +37,7 @@
 
   svg {
     width: 100%;
-    height: 100%;
+    height: 100%; 
   }
 
   @include svg-fill;
@@ -50,7 +50,7 @@
 }
 
 .inlineToolbarButton_buttonName{
-  padding-right: 10px;
+  padding-right: 25px;
   display: flex;
 }
 

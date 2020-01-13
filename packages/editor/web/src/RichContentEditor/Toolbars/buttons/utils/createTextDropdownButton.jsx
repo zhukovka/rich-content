@@ -73,7 +73,10 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
       }
     }
 
-    showOptions = () => this.setState({ isOpen: true });
+    showOptions = () => {
+      const { isOpen } = this.state;
+      this.setState({ isOpen: !isOpen });
+    };
 
     renderOptions = () => {
       const { getEditorState, setEditorState } = this.props;
@@ -114,8 +117,8 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
       const dataHookText = `textDropDownButton_${textForHooks}`;
       const arrowIcon = (
         <span
-          className={classNames(this.styles.inlineToolbarButton_arrowIcon, {
-            [this.styles.inlineToolbarButton_arrowIcon_isOpen]: this.state.isOpen,
+          className={classNames(this.styles.inlineToolbarDropdownButton_arrowIcon, {
+            [this.styles.inlineToolbarDropdownButton_arrowIcon_isOpen]: this.state.isOpen,
           })}
         >
           <DropdownArrowIcon />
