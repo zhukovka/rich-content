@@ -56,6 +56,10 @@ export { default as decorateComponentWithProps } from './Utils/decorateComponent
 export { getToolbarTheme } from './Utils/getToolbarTheme';
 export { simplePubsub } from './Utils/simplePubsub';
 export { getModalStyles } from './Utils/getModalStyles';
+export {
+  pluginDecorationProps,
+  componentWillReceiveDecorationProps,
+} from './Utils/resizeDecorationPropHandlers';
 
 export {
   insertLinkAtCurrentSelection,

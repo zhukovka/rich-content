@@ -1,4 +1,4 @@
-import { PLUGIN_DECORATION_PROPS, PLUGIN_DECORATIONS } from 'wix-rich-content-editor-common';
+import { PLUGIN_DECORATION_PROPS, PLUGIN_DECORATIONS } from '../consts';
 
 export const pluginDecorationProps = (props, componentData) => {
   const resizeableProps = PLUGIN_DECORATION_PROPS[PLUGIN_DECORATIONS.RESIZEABLE](props);
