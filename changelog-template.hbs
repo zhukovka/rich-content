@@ -1,0 +1,17 @@
+# Changelog
+{{#each releases}}
+## {{title}} ({{niceDate}})
+
+{{#merge-list merges heading=' ### :boom: Breaking Change' message='breaking-change:'}}
+{{/merge-list}}
+
+{{#merge-list merges heading=' ### :rocket: New Feature' message='feat:'}}
+{{/merge-list}}
+
+{{#merge-list merges heading=' ### :bug: Bug Fix' message='fix:'}}
+{{/merge-list}}
+
+{{#merge-list merges heading=' ### :house: Internal' message='house:'}}
+{{/merge-list}}
+
+{{/each}}
