@@ -32,7 +32,8 @@
     "e2e:app:dev": "cd e2e/test-env && npm run dev",
     "test:unit": "lerna run --parallel --stream test",
     "lint": "lerna run --parallel --stream lint",
-    "build:test": "npm run build && npm run build --prefix e2e/test-env"
+    "build:test": "npm run build && npm run build --prefix e2e/test-env",
+    "auto-changelog": "auto-changelog --handlebars-setup changelogSetup.js"
   },
   "husky": {
     "hooks": {
@@ -116,6 +117,16 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "auto-changelog": {
+    "output": "CHANGELOG2.md",
+    "template": "changelog-template.hbs",
+    "unreleased": true,
+    "commitLimit": false,
+    "includeBranch": [
+      "release-v2",
+      "release-v3"
+    ]
   },
   "dependencies": {}
 }
