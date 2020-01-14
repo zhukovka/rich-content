@@ -119,7 +119,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "auto-changelog": {
-    "output": "CHANGELOG2.md",
+    "output": "CHANGELOG.md",
     "template": "changelog-template.hbs",
     "unreleased": true,
     "commitLimit": false,
