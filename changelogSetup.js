@@ -9,14 +9,11 @@ module.exports = function(Handlebars) {
     const list = context.filter(merge => {
       if (options.hash.message) {
         const pattern = new RegExp(options.hash.message, 'm');
-        if (!pattern.test(merge.message)) {
+        if (!pattern.test(merge.commit.message)) {
           return false;
         }
         merge.packages = `- ${merge.message.split(' ')[0]}`;
-        merge.message = merge.message
-          .split(' ')
-          .slice(2)
-          .join(' ');
+        merge.message = merge.commit.message;
         merge.id = `\t - [#${merge.id}]`;
         merge.href = `(${merge.href})`;
         return true;
@@ -29,7 +26,21 @@ module.exports = function(Handlebars) {
     }
 
     const merges = list.reduce((acc, item) => {
-      acc.push([item.packages, item.id + item.href + ' ' + item.message]);
+      const messages = item.message.split('\n');
+      const pattern = new RegExp(options.hash.message, 'm');
+      if (!messages) {
+        acc.push([item.packages, item.id + item.href + ' ' + item.message]);
+      } else {
+        messages.map(message => {
+          const splittedMessage = message.split(' ');
+          if (pattern.test(message) && splittedMessage.length > 2) {
+            acc.push([
+              splittedMessage[0],
+              item.id + item.href + ' ' + splittedMessage.slice(2).join(' '),
+            ]);
+          }
+        });
+      }
       return acc;
     }, []);
 
@@ -61,7 +72,8 @@ module.exports = function(Handlebars) {
       const currVersion = parseFloat(context.substring(1));
       const fromVersion = parseFloat(version);
       const isSupportedVersion =
-        fromVersion < currVersion || (fromVersion <= currVersion && context[5] >= version[4]);
+        fromVersion < currVersion ||
+        (fromVersion <= currVersion && context.length >= 5 && context[5] >= version[4]);
       if (isSupportedVersion) {
         return true;
       } else {
