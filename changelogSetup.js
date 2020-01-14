@@ -12,10 +12,6 @@ module.exports = function(Handlebars) {
         if (!pattern.test(merge.commit.message)) {
           return false;
         }
-        merge.packages = `- ${merge.message.split(' ')[0]}`;
-        merge.message = merge.commit.message;
-        merge.id = `\t - [#${merge.id}]`;
-        merge.href = `(${merge.href})`;
         return true;
       }
       return false;
@@ -26,21 +22,18 @@ module.exports = function(Handlebars) {
     }
 
     const merges = list.reduce((acc, item) => {
-      const messages = item.message.split('\n');
-      const pattern = new RegExp(options.hash.message, 'm');
-      if (!messages) {
-        acc.push([item.packages, item.id + item.href + ' ' + item.message]);
-      } else {
-        messages.map(message => {
-          const splittedMessage = message.split(' ');
-          if (pattern.test(message) && splittedMessage.length > 2) {
-            acc.push([
-              splittedMessage[0],
-              item.id + item.href + ' ' + splittedMessage.slice(2).join(' '),
-            ]);
-          }
-        });
-      }
+      const messages = item.commit.message.split('\n');
+      const pattern = /\[(.+)\]\s+(\S+)\s+(.+)($\n|\s)/;
+
+      messages.forEach(message => {
+        const match = pattern.exec(message);
+        if (match) {
+          acc.push([
+            ` - ${match[1] === '*' ? 'general' : match[1]}`,
+            `\t - [#${item.id}](${item.href}) ${match[3]}`,
+          ]);
+        }
+      });
       return acc;
     }, []);
 
@@ -51,8 +44,10 @@ module.exports = function(Handlebars) {
     const result = Object.keys(groupByPackages)
       .reduce((acc, key) => {
         acc.push(key);
-        Object.values(groupByPackages[key]).map(value => {
-          return acc.push(value[1]);
+        Object.values(groupByPackages[key]).forEach(value => {
+          if (!acc.includes(value[1])) {
+            acc.push(value[1]);
+          }
         });
         return acc;
       }, [])
