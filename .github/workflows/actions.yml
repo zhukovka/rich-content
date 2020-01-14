@@ -1,5 +1,11 @@
 name: action
-on: push
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   visual-tests:
@@ -73,3 +79,11 @@ jobs:
     env:
       SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
       SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+  pr-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: morrisoncole/pr-lint-action@v1.0.0
+        with:
+          title-regex: '\w feat: \w|\w fix: \w|\w house: \w|\w breaking-change: \w'
+          on-failed-regex-comment: 'Failed to match regex: `%regex%`!'
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
