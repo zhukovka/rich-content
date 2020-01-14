@@ -1,7 +1,9 @@
 # Changelog
 {{#each releases}}
-## {{title}} ({{niceDate}})
 
+{{#if (check-release-version title)}}
+
+## {{title}} ({{niceDate}})
 {{#merge-list merges heading=' ### :boom: Breaking Change' message='breaking-change:'}}
 {{/merge-list}}
 
@@ -13,5 +15,7 @@
 
 {{#merge-list merges heading=' ### :house: Internal' message='house:'}}
 {{/merge-list}}
+
+{{/if}}
 
 {{/each}}
