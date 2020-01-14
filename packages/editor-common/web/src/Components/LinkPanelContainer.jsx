@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import LinkPanel from './LinkPanel';
+import LinkToAnchorPanel from './LinkToAnchorPanel';
 import FocusManager from './FocusManager';
-import { mergeStyles } from 'wix-rich-content-common';
+import { mergeStyles, isValidUrl } from 'wix-rich-content-common';
 import RadioGroupHorizontal from './RadioGroupHorizontal';
 import styles from '../../statics/styles/link-panel.scss';
 const LinkType = props => (
@@ -25,9 +28,11 @@ class LinkPanelContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
-    const { url, targetBlank, nofollow } = this.props;
+    const { url, targetBlank, nofollow, anchorsEntities } = this.props;
+    this.withAnchors = anchorsEntities ? anchorsEntities.length !== 0 : false;
     this.state = {
       linkPanelValues: { url, targetBlank, nofollow },
+      activeTab: !url || isValidUrl(url) ? 'link' : 'anchor',
     };
   }
 
@@ -47,6 +52,38 @@ class LinkPanelContainer extends PureComponent {
 
   onCancel = () => this.props.onCancel();
 
+  changeTab = tab => {
+    this.setState({ activeTab: tab });
+  };
+
+  renderTabs = () => {
+    const { styles } = this;
+    const { t } = this.props;
+
+    return (
+      <div>
+        <div className={styles.linkPanel_tabsWrapper}>
+          <div
+            className={classNames(styles.linkPanel_tab, {
+              [styles.linkPanel_tabSelected]: this.state.activeTab === 'link',
+            })}
+            onClick={() => this.changeTab('link')}
+          >
+            {t('LinkPanel_LinkTab')}
+          </div>
+          <div
+            className={classNames(styles.linkPanel_tab, {
+              [styles.linkPanel_tabSelected]: this.state.activeTab === 'anchor',
+            })}
+            onClick={() => this.changeTab('anchor')}
+          >
+            {t('LinkPanel_AnchorTab')}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   render() {
     const { styles } = this;
     const {
@@ -60,6 +97,7 @@ class LinkPanelContainer extends PureComponent {
       tabIndex,
       uiSettings,
     } = this.props;
+    const { activeTab } = this.state;
     const doneButtonText = t('LinkPanelContainer_DoneButton');
     const cancelButtonText = t('LinkPanelContainer_CancelButton');
     const removeButtonText = t('LinkPanelContainer_RemoveButton');
@@ -89,18 +127,34 @@ class LinkPanelContainer extends PureComponent {
         {...ariaProps}
       >
         <div className={styles.linkPanel_content}>
-          <LinkPanel
-            onEnter={this.onDone}
-            onEscape={this.onCancel}
-            linkValues={this.state.linkPanelValues}
-            onChange={linkPanelValues => this.setState({ linkPanelValues })}
-            theme={theme}
-            showTargetBlankCheckbox={showTargetBlankCheckbox}
-            showRelValueCheckbox={showRelValueCheckbox}
-            t={t}
-            ariaProps={linkPanelAriaProps}
-            {...uiSettings.linkPanel}
-          />
+          {this.withAnchors && this.renderTabs()}
+          {activeTab === 'link' ? (
+            <LinkPanel
+              anchorsEntities={this.props.anchorsEntities}
+              onEnter={this.onDone}
+              onEscape={this.onCancel}
+              linkValues={this.state.linkPanelValues}
+              onChange={linkPanelValues => this.setState({ linkPanelValues })}
+              theme={theme}
+              showTargetBlankCheckbox={showTargetBlankCheckbox}
+              showRelValueCheckbox={showRelValueCheckbox}
+              t={t}
+              ariaProps={linkPanelAriaProps}
+              {...uiSettings.linkPanel}
+            />
+          ) : (
+            <LinkToAnchorPanel
+              anchorsEntities={this.props.anchorsEntities}
+              onEnter={this.onDone}
+              onEscape={this.onCancel}
+              linkValues={this.state.linkPanelValues}
+              onChange={linkPanelValues => this.setState({ linkPanelValues })}
+              theme={theme}
+              t={t}
+              ariaProps={linkPanelAriaProps}
+              {...uiSettings.linkPanel}
+            />
+          )}
           <div className={styles.linkPanel_actionsDivider} role="separator" />
         </div>
         <div className={styles.linkPanel_Footer}>
@@ -145,6 +199,7 @@ class LinkPanelContainer extends PureComponent {
 }
 
 LinkPanelContainer.propTypes = {
+  anchorsEntities: PropTypes.array.isRequired,
   onDone: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,

@@ -3,27 +3,25 @@ import PropTypes from 'prop-types';
 import { EditorState } from 'draft-js';
 import { isEmpty } from 'lodash';
 import {
-  insertLinkAtCurrentSelection,
+  insertAnchorAtCurrentSelection,
   getLinkDataInSelection,
   removeLinksInSelection,
-  LinkPanelContainer,
+  AnchorPanelContainer,
   decorateComponentWithProps,
   getEntityByType,
 } from 'wix-rich-content-editor-common';
 
-export default class TextLinkPanel extends Component {
+export default class AnchorLinkPanel extends Component {
   componentDidMount() {
     const { anchorTarget, relValue, getEditorState, theme, t, uiSettings } = this.props;
     const linkData = getLinkDataInSelection(getEditorState());
-    const { url, target, rel } = linkData || {};
+    const { name, target } = linkData || {};
     const anchorsEntities = getEntityByType(getEditorState(), 'wix-draft-plugin-anchor');
     const targetBlank = target ? target === '_blank' : anchorTarget === '_blank';
-    const nofollow = rel ? rel === 'nofollow' : relValue === 'nofollow';
     const linkContainerProps = {
       anchorsEntities,
-      url,
+      name,
       targetBlank,
-      nofollow,
       theme,
       anchorTarget,
       relValue,
@@ -37,22 +35,19 @@ export default class TextLinkPanel extends Component {
     };
 
     const LinkPanelContainerWithProps = decorateComponentWithProps(
-      LinkPanelContainer,
+      AnchorPanelContainer,
       linkContainerProps
     );
     this.props.onOverrideContent(LinkPanelContainerWithProps);
   }
 
-  createLinkEntity = ({ url, targetBlank, nofollow }) => {
-    const { anchorTarget, relValue } = this.props;
-    if (!isEmpty(url)) {
+  createLinkEntity = ({ name }) => {
+    const { anchorTarget } = this.props;
+    if (!isEmpty(name)) {
       const { getEditorState, setEditorState } = this.props;
-      const newEditorState = insertLinkAtCurrentSelection(getEditorState(), {
-        url,
-        targetBlank,
-        nofollow,
+      const newEditorState = insertAnchorAtCurrentSelection(getEditorState(), {
+        name,
         anchorTarget,
-        relValue,
       });
       setEditorState(newEditorState);
     }
@@ -63,7 +58,7 @@ export default class TextLinkPanel extends Component {
     const { getEditorState, setEditorState } = this.props;
     const editorState = getEditorState();
     const selection = editorState.getSelection();
-    const newEditorState = removeLinksInSelection(editorState);
+    const newEditorState = removeLinksInSelection(editorState, 'wix-draft-plugin-anchor');
     setEditorState(EditorState.acceptSelection(newEditorState, selection));
   };
 
@@ -77,7 +72,7 @@ export default class TextLinkPanel extends Component {
   }
 }
 
-TextLinkPanel.propTypes = {
+AnchorLinkPanel.propTypes = {
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
   onExtendContent: PropTypes.func.isRequired,

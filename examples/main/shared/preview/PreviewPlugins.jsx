@@ -4,6 +4,7 @@ import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/module.v
 import { HTML_TYPE, htmlTypeMapper } from 'wix-rich-content-plugin-html/dist/module.viewer';
 import { soundCloudTypeMapper } from 'wix-rich-content-plugin-sound-cloud/dist/module.viewer';
 import { LINK_TYPE, linkTypeMapper } from 'wix-rich-content-plugin-link/dist/module.viewer';
+import { ANCHOR_TYPE, AnchorTypeMapper } from 'wix-rich-content-plugin-anchor/dist/module.viewer';
 import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/module.viewer';
 import {
   galleryTypeMapper,
@@ -52,6 +53,9 @@ import { getBaseUrl } from '../../src/utils';
 const linkPluginSettings = {
   onClick: (event, url) => console.log('link clicked!', url),
 };
+const anchorPluginSettings = {
+  onClick: (event, url) => console.log('anchor clicked!', url),
+};
 const mentionsPluginSettings = {
   onMentionClick: mention => console.log('mention clicked!', mention),
   getMentionLink: () => '/link/to/mention',
@@ -62,6 +66,7 @@ export const typeMappers = [
   dividerTypeMapper,
   htmlTypeMapper,
   linkTypeMapper,
+  AnchorTypeMapper,
   soundCloudTypeMapper,
   mentionsTypeMapper,
   imageTypeMapper,
@@ -83,6 +88,7 @@ export const config = {
     htmlIframeSrc: `${getBaseUrl()}/static/html-plugin-embed.html`,
   },
   [LINK_TYPE]: linkPluginSettings,
+  [ANCHOR_TYPE]: anchorPluginSettings,
   [MENTION_TYPE]: mentionsPluginSettings,
   [TEXT_COLOR_TYPE]: {
     styleSelectionPredicate,

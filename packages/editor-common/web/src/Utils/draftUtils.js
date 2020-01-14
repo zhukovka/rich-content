@@ -87,6 +87,69 @@ function insertLink(
   });
 }
 
+export const insertAnchorAtCurrentSelection = (editorState, { name, anchorTarget }) => {
+  let selection = getSelection(editorState);
+  let newEditorState = editorState;
+  if (selection.isCollapsed()) {
+    const contentState = Modifier.insertText(editorState.getCurrentContent(), selection, name);
+    selection = selection.merge({ focusOffset: selection.getFocusOffset() + name.length });
+    newEditorState = EditorState.push(editorState, contentState, 'insert-characters');
+  }
+
+  const fullBlockSelection = createSelection({
+    blockKey: selection.getEndKey(),
+    anchorOffset: 0,
+    focusOffset: editorState
+      .getCurrentContent()
+      .getBlockForKey(selection.getEndKey())
+      .getLength(),
+  });
+
+  const editorStateWithLink = insertAnchor(newEditorState, fullBlockSelection, {
+    name,
+    anchorTarget,
+  });
+
+  return EditorState.forceSelection(
+    editorStateWithLink,
+    selection.merge({ anchorOffset: selection.focusOffset })
+  );
+};
+
+function insertAnchor(editorState, selection, { name, anchorTarget }) {
+  const contentState = editorState.getCurrentContent();
+  const newEditorState = EditorState.push(editorState, contentState, 'change-inline-style');
+
+  const target = anchorTarget !== '_blank' ? anchorTarget : '_self';
+
+  return addEntity(newEditorState, selection, {
+    type: 'wix-draft-plugin-anchor',
+    data: {
+      name,
+      target,
+    },
+  });
+}
+
+export const getEntityByType = (editorState, type) => {
+  const contentState = editorState.getCurrentContent();
+  const anchorsEntities = [];
+  contentState.getBlockMap().forEach(block => {
+    // could also use .map() instead
+    block.findEntityRanges(character => {
+      const charEntity = character.getEntity();
+      if (charEntity) {
+        // could be `null`
+        const contentEntity = contentState.getEntity(charEntity).toJS();
+        if (contentEntity.type === type) {
+          anchorsEntities.push(contentEntity);
+        }
+      }
+    });
+  });
+  return anchorsEntities;
+};
+
 function addEntity(editorState, targetSelection, entityData) {
   const entityKey = createEntity(editorState, entityData);
   const oldSelection = editorState.getSelection();
@@ -100,11 +163,15 @@ function addEntity(editorState, targetSelection, entityData) {
 }
 
 export const hasLinksInBlock = (block, contentState) => {
-  return !!getLinkRangesInBlock(block, contentState).length;
+  return !!getEntityRangesInBlockByType(block, contentState).length;
 };
 
 export const hasLinksInSelection = editorState => {
-  return !!getSelectedLinks(editorState).length;
+  return !!getSelectedEntitiesByType(editorState, 'LINK').length;
+};
+
+export const hasEntityInSelectionByType = (editorState, type) => {
+  return !!getSelectedEntitiesByType(editorState, type).length;
 };
 
 export const getLinkDataInSelection = editorState => {
@@ -117,8 +184,8 @@ export const getLinkDataInSelection = editorState => {
   return linkKey ? contentState.getEntity(linkKey).getData() : {};
 };
 
-export const removeLinksInSelection = editorState => {
-  return getSelectedLinks(editorState).reduce(
+export const removeLinksInSelection = (editorState, type = 'LINK') => {
+  return getSelectedEntitiesByType(editorState, type).reduce(
     (prevState, { key, range }) => removeLink(prevState, key, range),
     editorState
   );
@@ -252,16 +319,16 @@ export const isInSelectionRange = ([start, end], range) => {
   return !(start <= range[0] && end <= range[0]) && !(start >= range[1] && end >= range[1]);
 };
 
-function getSelectedLinks(editorState) {
+function getSelectedEntitiesByType(editorState, type) {
   return flatMap(getSelectedBlocks(editorState), block =>
-    getSelectedLinksInBlock(block, editorState)
+    getSelectedEntitiesInBlockByType(block, editorState, type)
   );
 }
 
-function getSelectedLinksInBlock(block, editorState) {
+function getSelectedEntitiesInBlockByType(block, editorState, type) {
   const selectionRange = getSelectionRange(editorState, block);
 
-  return getLinkRangesInBlock(block, editorState.getCurrentContent())
+  return getEntityRangesInBlockByType(block, editorState.getCurrentContent(), type)
     .filter(linkRange => isInSelectionRange(selectionRange, linkRange))
     .map(linkRange => ({
       key: block.getKey(),
@@ -269,12 +336,12 @@ function getSelectedLinksInBlock(block, editorState) {
     }));
 }
 
-function getLinkRangesInBlock(block, contentState) {
+function getEntityRangesInBlockByType(block, contentState, type = 'LINK') {
   const ranges = [];
   block.findEntityRanges(
     value => {
       const key = value.getEntity();
-      return key && contentState.getEntity(key).type === 'LINK';
+      return key && contentState.getEntity(key).type === type;
     },
     (start, end) => ranges.push([start, end])
   );
@@ -321,7 +388,7 @@ function createLastChangeSelection(editorState) {
 
 export function fixPastedLinks(editorState, { anchorTarget, relValue }) {
   const lastChangeSelection = createLastChangeSelection(editorState);
-  const links = getSelectedLinks(setSelection(editorState, lastChangeSelection));
+  const links = getSelectedEntitiesByType(setSelection(editorState, lastChangeSelection), 'LINK');
   const content = editorState.getCurrentContent();
   links.forEach(({ key: blockKey, range }) => {
     const block = content.getBlockForKey(blockKey);

@@ -3,30 +3,28 @@ import PropTypes from 'prop-types';
 import { EditorState } from 'draft-js';
 import { isEmpty } from 'lodash';
 import {
-  insertLinkAtCurrentSelection,
+  insertAnchorAtCurrentSelection,
   getLinkDataInSelection,
   removeLinksInSelection,
   getEntityByType,
 } from 'wix-rich-content-editor-common';
-import MobileLinkModal from './MobileLinkModal';
+import MobileAnchorModal from './MobileAnchorModal';
 
-export default class MobileTextLinkModal extends Component {
+export default class MobileTextAnchorModal extends Component {
   constructor(props) {
     super(props);
     const { getEditorState } = props;
     this.anchorsEntities = getEntityByType(getEditorState(), 'wix-draft-plugin-anchor');
   }
+
   hidePopup = () => this.props.hidePopup();
 
-  createLinkEntity = ({ url, targetBlank, nofollow }) => {
-    if (!isEmpty(url)) {
-      const { getEditorState, setEditorState, anchorTarget, relValue } = this.props;
-      const newEditorState = insertLinkAtCurrentSelection(getEditorState(), {
-        url,
-        targetBlank,
-        nofollow,
+  createLinkEntity = ({ name }) => {
+    if (!isEmpty(name)) {
+      const { getEditorState, setEditorState, anchorTarget } = this.props;
+      const newEditorState = insertAnchorAtCurrentSelection(getEditorState(), {
+        name,
         anchorTarget,
-        relValue,
       });
       setEditorState(newEditorState);
     }
@@ -37,20 +35,20 @@ export default class MobileTextLinkModal extends Component {
     const { getEditorState, setEditorState } = this.props;
     const editorState = getEditorState();
     const selection = editorState.getSelection();
-    const newEditorState = removeLinksInSelection(editorState);
+    const newEditorState = removeLinksInSelection(editorState, 'wix-draft-plugin-anchor');
     setEditorState(EditorState.acceptSelection(newEditorState, selection));
   };
 
   render() {
     const { getEditorState, theme, isMobile, anchorTarget, relValue, t, uiSettings } = this.props;
     const linkData = getLinkDataInSelection(getEditorState());
-    const { url, target, rel } = linkData || {};
+    const { name, target, rel } = linkData || {};
     const targetBlank = target ? target === '_blank' : anchorTarget === '_blank';
     const nofollow = rel ? rel === 'nofollow' : relValue === 'nofollow';
     return (
-      <MobileLinkModal
+      <MobileAnchorModal
         anchorsEntities={this.anchorsEntities}
-        url={url}
+        name={name}
         targetBlank={targetBlank}
         nofollow={nofollow}
         theme={theme}
@@ -68,7 +66,7 @@ export default class MobileTextLinkModal extends Component {
   }
 }
 
-MobileTextLinkModal.propTypes = {
+MobileTextAnchorModal.propTypes = {
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
   hidePopup: PropTypes.func.isRequired,

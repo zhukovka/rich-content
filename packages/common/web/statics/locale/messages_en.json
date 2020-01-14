@@ -217,5 +217,17 @@
   "TextCodeBlock_InsertButton_Tooltip" : "Add a Code Block",
   "Preview_ReadMore_Label": "read more",
   "Preview_SeeFullPost_Label": "See Full Post",
-  "ColorPicker_SetToDefault_ButtonLabel": "Reset to Default"
+  "ColorPicker_SetToDefault_ButtonLabel": "Reset to Default",
+  "AnchorPanelContainer_DoneButton": "Save",
+  "AnchorPanelContainer_CancelButton": "Cancel",
+  "AnchorPanelContainer_RemoveButton": "Remove Anchor",
+  "AnchorPanel_DescriptionLabel": "You can link your post content with anchors\nby using link option.",
+  "AnchorPanel_InputPlaceholder": "Name of Anchor",
+  "AnchorPanel_ErrorTooltip": "This Anchor is already exist.",
+  "LinkPanel_LinkTab": "External Link",
+  "LinkPanel_AnchorTab": "Anchor",
+  "LinkPanel_AnchorInputPlaceholder": "Select an anchor",
+  "LinkPanel_AnchorErrorTooltip": "Check the Anchor name",
+  "TextAnchorButton_Tooltip": "Anchor",
+  "MobileAnchorModal_Title" : "Add an Anchor"
 }

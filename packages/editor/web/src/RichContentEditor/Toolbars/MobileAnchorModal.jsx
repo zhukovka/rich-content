@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { LinkPanelContainer } from 'wix-rich-content-editor-common';
-import { LinkIcon } from '../Icons';
+import { AnchorPanelContainer } from 'wix-rich-content-editor-common';
+import { AnchorIcon } from '../Icons';
 import styles from '../../../statics/styles/mobile-link-modal.scss';
 
-export default class MobileLinkModal extends Component {
+export default class MobileAnchorModal extends Component {
   render() {
     const {
-      url,
+      name,
       targetBlank,
       anchorTarget,
       relValue,
@@ -22,20 +22,20 @@ export default class MobileLinkModal extends Component {
       uiSettings,
       anchorsEntities,
     } = this.props;
-    const mobileLinkModalTitle = t('MobileLinkModal_Title');
+    const mobileAnchorModalTitle = t('MobileAnchorModal_Title');
     return (
       <div>
         <div className={styles.mobileLinkModal_titleContainer}>
           <div className={styles.mobileLinkModal_linkIconContainer}>
-            <LinkIcon />
+            <AnchorIcon />
           </div>
           <h3 id="mob_link_modal_hdr" className={styles.mobileLinkModal_title}>
-            {mobileLinkModalTitle}
+            {mobileAnchorModalTitle}
           </h3>
         </div>
-        <LinkPanelContainer
+        <AnchorPanelContainer
           anchorsEntities={anchorsEntities}
-          url={url}
+          name={name}
           targetBlank={targetBlank}
           anchorTarget={anchorTarget}
           relValue={relValue}
@@ -55,7 +55,7 @@ export default class MobileLinkModal extends Component {
   }
 }
 
-MobileLinkModal.propTypes = {
+MobileAnchorModal.propTypes = {
   anchorsEntities: PropTypes.array.isRequired,
   theme: PropTypes.object.isRequired,
   onDone: PropTypes.func.isRequired,
@@ -63,7 +63,7 @@ MobileLinkModal.propTypes = {
   onDelete: PropTypes.func.isRequired,
   isActive: PropTypes.bool,
   isMobile: PropTypes.bool,
-  url: PropTypes.string,
+  name: PropTypes.string,
   targetBlank: PropTypes.bool,
   anchorTarget: PropTypes.string,
   relValue: PropTypes.string,

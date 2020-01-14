@@ -11,6 +11,7 @@ export { default as DropdownArrowIcon } from './DropdownArrowIcon';
 export { default as ErrorIcon } from './ErrorIcon';
 export { default as HeightIcon } from './HeightIcon';
 export { default as LinkIcon } from './LinkIcon';
+export { default as AnchorIcon } from './AnchorIcon';
 export { default as PluginSettingsIcon } from './PluginSettingsIcon';
 export { default as SizeBestFitIcon } from './SizeBestFitIcon';
 export { default as SizeFullWidthIcon } from './SizeFullWidthIcon';

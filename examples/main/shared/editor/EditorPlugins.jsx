@@ -1,5 +1,6 @@
 import React from 'react';
 import { createLinkPlugin, LINK_TYPE } from 'wix-rich-content-plugin-link';
+import { createAnchorPlugin, ANCHOR_TYPE } from 'wix-rich-content-plugin-anchor';
 import { createLineSpacingPlugin, LINE_SPACING_TYPE } from 'wix-rich-content-plugin-line-spacing';
 import { createHashtagPlugin, HASHTAG_TYPE } from 'wix-rich-content-plugin-hashtag';
 import { createEmojiPlugin } from 'wix-rich-content-plugin-emoji';
@@ -69,6 +70,7 @@ export const editorPlugins = [
   createHtmlPlugin,
   createDividerPlugin,
   createLineSpacingPlugin,
+  createAnchorPlugin,
   createLinkPlugin,
   createHashtagPlugin,
   createExternalMentionsPlugin,
@@ -103,7 +105,7 @@ let userButtonBorderColors = [...buttonDefaultPalette];
 
 const getLinkPanelDropDownConfig = () => {
   const getItems = () => {
-    casual.define('item', function() {
+    casual.define('item', function () {
       return {
         value: casual.url,
         label: casual.catch_phrase,
@@ -297,6 +299,14 @@ export const config = {
     //   },
     // },
     onClick: (event, url) => console.log('link clicked!', url),
+  },
+  [ANCHOR_TYPE]: {
+    // toolbar: {
+    //   icons: {
+    //     anchor: MyCustomIcon, // insert plugin icon
+    //   },
+    // },
+    onClick: (event, url) => console.log('anchor clicked!', url),
   },
   [SOUND_CLOUD_TYPE]: {},
   [CODE_BLOCK_TYPE]: {

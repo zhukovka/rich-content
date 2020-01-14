@@ -28,8 +28,10 @@ export { default as FocusManager } from './Components/FocusManager';
 export { default as Image } from './Components/Image';
 export { default as InputWithLabel } from './Components/InputWithLabel';
 export { default as LinkButton } from './Components/LinkButton';
+export { default as AnchorButton } from './Components/AnchorButton';
 export { default as LinkPanel } from './Components/LinkPanel';
 export { default as LinkPanelContainer } from './Components/LinkPanelContainer';
+export { default as AnchorPanelContainer } from './Components/AnchorPanelContainer';
 export { default as Panel } from './Components/Panel';
 export { default as RadioGroup } from './Components/RadioGroup';
 export { default as RadioGroupHorizontal } from './Components/RadioGroupHorizontal';
@@ -59,10 +61,13 @@ export { getModalStyles } from './Utils/getModalStyles';
 
 export {
   insertLinkAtCurrentSelection,
+  insertAnchorAtCurrentSelection,
+  getEntityByType,
   insertLinkInPosition,
   hasLinksInBlock,
   fixPastedLinks,
   hasLinksInSelection,
+  hasEntityInSelectionByType,
   getLinkDataInSelection,
   removeLinksInSelection,
   getTextAlignment,

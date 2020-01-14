@@ -12,6 +12,7 @@ import fileUploadSchema from 'wix-rich-content-common/dist/statics/schemas/plugi
 import mapSchema from 'wix-rich-content-common/dist/statics/schemas/plugin-map.schema.json';
 import htmlSchema from 'wix-rich-content-common/dist/statics/schemas/plugin-html.schema.json';
 import linkSchema from 'wix-rich-content-common/dist/statics/schemas/plugin-link.schema.json';
+import anchorSchema from 'wix-rich-content-common/dist/statics/schemas/plugin-anchor.schema.json';
 import mentionSchema from 'wix-rich-content-common/dist/statics/schemas/plugin-mentions.schema.json';
 import gallerySchema from 'wix-rich-content-common/dist/statics/schemas/plugin-gallery.schema.json';
 import buttonSchema from 'wix-rich-content-common/dist/statics/schemas/plugin-button.schema.json';
@@ -25,6 +26,7 @@ import { SOUND_CLOUD_TYPE } from 'wix-rich-content-plugin-sound-cloud';
 import { MAP_TYPE } from 'wix-rich-content-plugin-map';
 import { HTML_TYPE } from 'wix-rich-content-plugin-html';
 import { LINK_TYPE } from 'wix-rich-content-plugin-link';
+import { ANCHOR_TYPE } from 'wix-rich-content-plugin-anchor';
 import { MENTION_TYPE } from 'wix-rich-content-plugin-mentions';
 import { GALLERY_TYPE } from 'wix-rich-content-plugin-gallery';
 import { BUTTON_TYPE } from 'wix-rich-content-plugin-button';
@@ -76,6 +78,7 @@ class ContentStateEditor extends PureComponent {
             [MAP_TYPE]: mapSchema,
             [HTML_TYPE]: htmlSchema,
             [LINK_TYPE]: linkSchema,
+            [ANCHOR_TYPE]: anchorSchema,
             [MENTION_TYPE]: mentionSchema,
             [GALLERY_TYPE]: gallerySchema,
             [BUTTON_TYPE]: buttonSchema,

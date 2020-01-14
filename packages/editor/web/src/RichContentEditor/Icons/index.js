@@ -3,6 +3,7 @@ export { default as BoldIcon } from './BoldIcon';
 export { default as IndentIcon } from './IndentIcon';
 export { default as ItalicIcon } from './ItalicIcon';
 export { default as LinkIcon } from './LinkIcon';
+export { default as AnchorIcon } from './AnchorIcon';
 export { default as OrderedListIcon } from './OrderedListIcon';
 export { default as PlusActiveIcon } from './PlusActiveIcon';
 export { default as PlusIcon } from './PlusIcon';

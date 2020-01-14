@@ -5,11 +5,13 @@ import { EditorModals, RichContentModal } from 'wix-rich-content-editor-common';
 import MobileAddPluginModal from './Toolbars/AddPluginModal';
 import MobileBlockLinkModal from './Toolbars/MobileBlockLinkModal';
 import MobileTextLinkModal from './Toolbars/MobileTextLinkModal';
+import MobileTextAnchorModal from './Toolbars/MobileTextAnchorModal';
 
 const Modals = {
   [EditorModals.MOBILE_ADD_PLUGIN]: MobileAddPluginModal,
   [EditorModals.MOBILE_BLOCK_LINK_MODAL]: MobileBlockLinkModal,
   [EditorModals.MOBILE_TEXT_LINK_MODAL]: MobileTextLinkModal,
+  [EditorModals.MOBILE_TEXT_ANCHOR_MODAL]: MobileTextAnchorModal,
 };
 
 const RichContentEditorModal = ({ modalName, modalElement, modalsMap, ...modalProps }) => {
