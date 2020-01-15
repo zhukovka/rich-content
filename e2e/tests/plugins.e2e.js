@@ -37,19 +37,18 @@ describe('plugins', () => {
     after(() => cy.eyesClose());
 
     it('render image toolbar and settings', function() {
-      cy.openPluginToolbar(PLUGIN_COMPONENT.IMAGE)
-        .shrinkPlugin()
-        .hideTooltip();
+      cy.openPluginToolbar(PLUGIN_COMPONENT.IMAGE).shrinkPlugin();
       cy.eyesCheckWindow(this.test.title + '  - plugin toolbar');
       cy.openImageSettings();
       cy.get(`[data-hook=${IMAGE_SETTINGS.PREVIEW}]:first`);
       cy.eyesCheckWindow(this.test.title + ' - settings');
       cy.addImageTitle();
       cy.eyesCheckWindow(this.test.title + ' - add image title');
+      cy.editImageTitle();
+      cy.eyesCheckWindow(this.test.title + ' - in plugin editing');
       cy.openImageSettings(false).deleteImageTitle();
       cy.eyesCheckWindow(this.test.title + ' - delete image title');
       cy.openImageSettings(false).addImageLink();
-      cy.hideTooltip();
       cy.eyesCheckWindow(this.test.title + ' - add a link');
     });
   });
@@ -102,13 +101,9 @@ describe('plugins', () => {
         .get(`[data-hook=${'image-item'}]:first`)
         .get(`[data-hook=${'image-item'}]`)
         .eq(1);
-      cy.openPluginToolbar(PLUGIN_COMPONENT.GALLERY)
-        .shrinkPlugin()
-        .hideTooltip();
+      cy.openPluginToolbar(PLUGIN_COMPONENT.GALLERY).shrinkPlugin();
       cy.eyesCheckWindow(this.test.title + ' toolbar');
-      cy.openGalleryAdvancedSettings()
-        .get('.__react_component_tooltip.show')
-        .should('not.exist');
+      cy.openGalleryAdvancedSettings();
       cy.eyesCheckWindow(this.test.title + ' settings');
     });
 
@@ -295,7 +290,6 @@ describe('plugins', () => {
         PLUGIN_TOOLBAR_BUTTONS.SMALL_CENTER
       );
       cy.get(`button[data-hook=${PLUGIN_TOOLBAR_BUTTONS.REPLACE}][tabindex=0]`).click();
-      cy.get('.__react_component_tooltip.show').should('not.exist');
       cy.eyesCheckWindow(this.test.title);
     });
   });
@@ -358,9 +352,7 @@ describe('plugins', () => {
 
     function testAtomicBlockAlignment(align) {
       it('align atomic block ' + align, function() {
-        cy.loadEditorAndViewer('images')
-          .alignImage(align)
-          .hideTooltip();
+        cy.loadEditorAndViewer('images').alignImage(align);
         cy.eyesCheckWindow(this.test.title);
       });
     }

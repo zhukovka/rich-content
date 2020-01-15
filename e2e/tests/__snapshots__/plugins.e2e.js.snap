@@ -1,4 +1,4 @@
-exports[`plugins > image > render plugin toolbar and customize in settings #0`] =
+exports[`plugins > image > render image toolbar and settings #0`] =
 {
   "blocks": [
     {
@@ -476,7 +476,7 @@ exports[`plugins > full screen > gallery full screen > expand gallery image on f
   }
 };
 
-exports[`plugins > gallery > should render gallery plugin toolbar and settings #0`] =
+exports[`plugins > gallery > render gallery plugin #0`] =
 {
   "blocks": [
     {
@@ -535,7 +535,7 @@ exports[`plugins > gallery > should render gallery plugin toolbar and settings #
       "depth": 0,
       "entityRanges": [
         {
-          "key": 1,
+          "key": 0,
           "length": 1,
           "offset": 0
         }
@@ -621,7 +621,7 @@ exports[`plugins > gallery > should render gallery plugin toolbar and settings #
           "alignment": "center",
           "showDescription": true,
           "showTitle": true,
-          "size": "content"
+          "size": "small"
         },
         "src": {
           "file_name": "8bb438_4a6550d4df364f9890180f52243fb396.jpg",
@@ -637,7 +637,7 @@ exports[`plugins > gallery > should render gallery plugin toolbar and settings #
   }
 };
 
-exports[`plugins > gallery > organize media > should allow to manipulate the media items #0`] =
+exports[`plugins > gallery > organize media > allow to manipulate the media items #0`] =
 {
   "blocks": [
     {
@@ -694,9 +694,24 @@ exports[`plugins > gallery > organize media > should allow to manipulate the med
     {
       "data": {},
       "depth": 0,
+      "entityRanges": [
+        {
+          "key": 1,
+          "length": 1,
+          "offset": 0
+        }
+      ],
+      "inlineStyleRanges": [],
+      "key": 5,
+      "text": " ",
+      "type": "atomic"
+    },
+    {
+      "data": {},
+      "depth": 0,
       "entityRanges": [],
       "inlineStyleRanges": [],
-      "key": 3,
+      "key": 6,
       "text": "",
       "type": "unstyled"
     }
@@ -748,14 +763,14 @@ exports[`plugins > gallery > organize media > should allow to manipulate the med
           "alignment": "center",
           "showDescription": true,
           "showTitle": true,
-          "size": "small"
+          "size": "content"
         },
         "src": {
-          "file_name": "8bb438_cdbf2bdff4864d2094370a3051812409.jpg",
-          "height": 3727,
-          "id": "61d3f0c021fd47d92a4e7395ab107e48",
-          "original_file_name": "8bb438_cdbf2bdff4864d2094370a3051812409.jpg",
-          "width": 5600
+          "file_name": "8bb438_4a6550d4df364f9890180f52243fb396.jpg",
+          "height": 1081,
+          "id": "d052fe7e6db2fd246708f8e56ddc3684",
+          "original_file_name": "8bb438_4a6550d4df364f9890180f52243fb396.jpg",
+          "width": 1621
         }
       },
       "mutability": "IMMUTABLE",
@@ -764,7 +779,7 @@ exports[`plugins > gallery > organize media > should allow to manipulate the med
   }
 };
 
-exports[`plugins > gallery > image settings > should allow to update image content #0`] =
+exports[`plugins > gallery > media settings > allow to update media content #0`] =
 {
   "blocks": [
     {
@@ -773,15 +788,6 @@ exports[`plugins > gallery > image settings > should allow to update image conte
       "entityRanges": [],
       "inlineStyleRanges": [],
       "key": 0,
-      "text": "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. ",
-      "type": "unstyled"
-    },
-    {
-      "data": {},
-      "depth": 0,
-      "entityRanges": [],
-      "inlineStyleRanges": [],
-      "key": 1,
       "text": "",
       "type": "unstyled"
     },
@@ -796,7 +802,7 @@ exports[`plugins > gallery > image settings > should allow to update image conte
         }
       ],
       "inlineStyleRanges": [],
-      "key": 2,
+      "key": 1,
       "text": " ",
       "type": "atomic"
     },
@@ -805,7 +811,7 @@ exports[`plugins > gallery > image settings > should allow to update image conte
       "depth": 0,
       "entityRanges": [],
       "inlineStyleRanges": [],
-      "key": 3,
+      "key": 2,
       "text": "",
       "type": "unstyled"
     },
@@ -814,25 +820,16 @@ exports[`plugins > gallery > image settings > should allow to update image conte
       "depth": 0,
       "entityRanges": [],
       "inlineStyleRanges": [],
+      "key": 3,
+      "text": "This is a test of the gallery plugin.",
+      "type": "unstyled"
+    },
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
       "key": 4,
-      "text": "Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.",
-      "type": "unstyled"
-    },
-    {
-      "data": {},
-      "depth": 0,
-      "entityRanges": [],
-      "inlineStyleRanges": [],
-      "key": 5,
-      "text": "Bring to the table win-win survival strategies to ensure proactive domination.",
-      "type": "unstyled"
-    },
-    {
-      "data": {},
-      "depth": 0,
-      "entityRanges": [],
-      "inlineStyleRanges": [],
-      "key": 6,
       "text": "",
       "type": "unstyled"
     },
@@ -847,18 +844,9 @@ exports[`plugins > gallery > image settings > should allow to update image conte
         }
       ],
       "inlineStyleRanges": [],
-      "key": 7,
+      "key": 5,
       "text": " ",
       "type": "atomic"
-    },
-    {
-      "data": {},
-      "depth": 0,
-      "entityRanges": [],
-      "inlineStyleRanges": [],
-      "key": 8,
-      "text": "",
-      "type": "unstyled"
     },
     {
       "data": {},
@@ -874,36 +862,17 @@ exports[`plugins > gallery > image settings > should allow to update image conte
     "0": {
       "data": {
         "config": {
-          "alignment": "left",
-          "showDescription": true,
-          "showTitle": true,
-          "size": "small"
-        },
-        "src": {
-          "file_name": "8bb438_131a7e1872bc45ec827bb61e56b840fe.jpg",
-          "height": 3354,
-          "id": "036c6bf6cef5e4409848eb4eb6f80de1",
-          "original_file_name": "8bb438_131a7e1872bc45ec827bb61e56b840fe.jpg",
-          "width": 2898
-        }
-      },
-      "mutability": "IMMUTABLE",
-      "type": "wix-draft-plugin-image"
-    },
-    "1": {
-      "data": {
-        "config": {
           "alignment": "center",
           "showDescription": true,
           "showTitle": true,
           "size": "content"
         },
         "src": {
-          "file_name": "8bb438_83e03311e53a47ce9ba8bda910fdad88.jpg",
-          "height": 3526,
-          "id": "b12907da5fbb55a31a760e49fb0bb4e6",
-          "original_file_name": "8bb438_83e03311e53a47ce9ba8bda910fdad88.jpg",
-          "width": 5177
+          "file_name": "8bb438_4a6550d4df364f9890180f52243fb396.jpg",
+          "height": 1081,
+          "id": "d052fe7e6db2fd246708f8e56ddc3684",
+          "original_file_name": "8bb438_4a6550d4df364f9890180f52243fb396.jpg",
+          "width": 1621
         }
       },
       "mutability": "IMMUTABLE",
@@ -920,7 +889,7 @@ exports[`plugins > video > render upload modal #0`] =
       "depth": 0,
       "entityRanges": [],
       "inlineStyleRanges": [],
-      "key": 1,
+      "key": 0,
       "text": "",
       "type": "unstyled"
     }
@@ -945,13 +914,13 @@ exports[`plugins > video > enable to add a video from URI #0`] =
       "depth": 0,
       "entityRanges": [
         {
-          "key": 1,
+          "key": 0,
           "length": 1,
           "offset": 0
         }
       ],
       "inlineStyleRanges": [],
-      "key": 7,
+      "key": 1,
       "text": " ",
       "type": "atomic"
     },
@@ -960,17 +929,8 @@ exports[`plugins > video > enable to add a video from URI #0`] =
       "depth": 0,
       "entityRanges": [],
       "inlineStyleRanges": [],
-      "key": 8,
+      "key": 2,
       "text": "",
-      "type": "unstyled"
-    },
-    {
-      "data": {},
-      "depth": 0,
-      "entityRanges": [],
-      "inlineStyleRanges": [],
-      "key": 9,
-      "text": "At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution.",
       "type": "unstyled"
     }
   ],
@@ -979,8 +939,6 @@ exports[`plugins > video > enable to add a video from URI #0`] =
       "data": {
         "config": {
           "alignment": "center",
-          "showDescription": true,
-          "showTitle": true,
           "size": "small"
         },
         "isCustomVideo": false,
@@ -1003,12 +961,12 @@ exports[`plugins > video > enable to add a video from URI #0`] =
         "src": "https://youtu.be/BBu5codsO6Y"
       },
       "mutability": "IMMUTABLE",
-      "type": "wix-draft-plugin-image"
+      "type": "wix-draft-plugin-video"
     }
   }
 };
 
-exports[`plugins > alignment > align atomic block right #0`] =
+exports[`plugins > soundcloud > render upload modal #0`] =
 {
   "blocks": [
     {
@@ -1017,9 +975,16 @@ exports[`plugins > alignment > align atomic block right #0`] =
       "entityRanges": [],
       "inlineStyleRanges": [],
       "key": 0,
-      "text": "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. ",
+      "text": "",
       "type": "unstyled"
-    },
+    }
+  ],
+  "entityMap": {}
+};
+
+exports[`plugins > soundcloud > enable to add a soundcloud URI #0`] =
+{
+  "blocks": [
     {
       "data": {},
       "depth": 0,
@@ -1483,6 +1448,128 @@ exports[`plugins > file-upload > render file-upload plugin toolbar #0`] =
           "alignment": "center",
           "size": "small"
         },
+        "gif": {
+          "height": 400,
+          "originalUrl": "https://media1.giphy.com/media/hrk8ehR4lCZ27FtjPA/giphy_s.gif",
+          "stillUrl": "https://media1.giphy.com/media/hrk8ehR4lCZ27FtjPA/giphy_s.gif",
+          "width": 480
+        }
+      },
+      "mutability": "IMMUTABLE",
+      "type": "wix-draft-plugin-giphy"
+    }
+  }
+};
+
+exports[`plugins > map > render map plugin toolbar and settings #0`] =
+{
+  "blocks": [
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
+      "key": 0,
+      "text": "",
+      "type": "unstyled"
+    },
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [
+        {
+          "key": 0,
+          "length": 1,
+          "offset": 0
+        }
+      ],
+      "inlineStyleRanges": [],
+      "key": 1,
+      "text": " ",
+      "type": "atomic"
+    },
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
+      "key": 2,
+      "text": "",
+      "type": "unstyled"
+    }
+  ],
+  "entityMap": {
+    "0": {
+      "data": {
+        "config": {
+          "alignment": "center",
+          "height": 400,
+          "size": "content",
+          "width": 400
+        },
+        "mapSettings": {
+          "address": "Wix HQ, Nemal Tel Aviv Street, Tel Aviv-Yafo, Israel",
+          "isDraggingAllowed": true,
+          "isMarkerShown": true,
+          "isStreetViewControlShown": true,
+          "isZoomControlShown": true,
+          "lat": 32.097235,
+          "lng": 34.77427,
+          "locationDisplayName": "Wix HQ, Nemal Tel Aviv Street, Tel Aviv-Yafo, Israel",
+          "mode": "roadmap",
+          "zoom": 18
+        }
+      },
+      "mutability": "IMMUTABLE",
+      "type": "wix-draft-plugin-map"
+    }
+  }
+};
+
+exports[`plugins > file-upload > render file-upload plugin toolbar #0`] =
+{
+  "blocks": [
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
+      "key": 0,
+      "text": "",
+      "type": "unstyled"
+    },
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [
+        {
+          "key": 0,
+          "length": 1,
+          "offset": 0
+        }
+      ],
+      "inlineStyleRanges": [],
+      "key": 1,
+      "text": " ",
+      "type": "atomic"
+    },
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
+      "key": 2,
+      "text": "",
+      "type": "unstyled"
+    }
+  ],
+  "entityMap": {
+    "0": {
+      "data": {
+        "config": {
+          "alignment": "center",
+          "size": "small"
+        },
         "name": "receipt.pdf",
         "type": "pdf",
         "url": ""
@@ -1536,15 +1623,6 @@ exports[`plugins > drag and drop > drag and drop plugins #0`] =
       "inlineStyleRanges": [],
       "key": 3,
       "text": "",
-      "type": "unstyled"
-    },
-    {
-      "data": {},
-      "depth": 0,
-      "entityRanges": [],
-      "inlineStyleRanges": [],
-      "key": 9,
-      "text": "At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution.",
       "type": "unstyled"
     }
   ],

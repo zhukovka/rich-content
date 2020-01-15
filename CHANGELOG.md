@@ -13,38 +13,80 @@
     Click to see more.
   </summary>
 
+  ### :boom: [Breaking Change]
+  - `Side-Toolbar`
+    - [#577](https://github.com/wix-incubator/rich-content/pull/577) Remove add plugins button from inline toolbar in mobile and change mobile side toolbar to be fixed position instead, for customize Add Plugins button css use css media query (@media only screen and (max-width: 800px))
+  ### :rocket: New Feature
+  - `link`
+    - [#551](https://github.com/wix-incubator/rich-content/pull/551) adding a tooltip for nofollow tag explanation
+  - `image`
+    - [#563](https://github.com/wix-incubator/rich-content/pull/563) in-plugin editing enabled for caption
   ### :bug: Bug Fix
+  - `text-color`
+     - [#572](https://github.com/wix-incubator/rich-content/pull/572) color Picker- ResetToDefault button sticky to bottom
+     - [#576](https://github.com/wix-incubator/rich-content/pull/576) color Picker-new colors are added to the end of the list + 'reset to default' removes from the 'inlineStyleRanges' in the content state
   - `editor-common`
     - [#550](https://github.com/wix-incubator/rich-content/pull/550) remove dashed border when focused
+    - [#584](https://github.com/wix-incubator/rich-content/pull/584) fix gallery dropdown css
   - `link`
     - [#546](https://github.com/wix-incubator/rich-content/pull/546) saves the last data and the initial state of the checkboxes("Open in a new tab", "Add a nofollow tag") is according to the defaults (anchorTarget, relValue)
-  ### :house: Internal
+    - [#589](https://github.com/wix-incubator/rich-content/pull/589) in order to edit the link settings its enough to select only part of the words that belongs to the link
+  - `editor-common`
+    - [#566](https://github.com/wix-incubator/rich-content/pull/566) Fix tooltip position in bottom tooltip
   - `general`
-    - [#561](https://github.com/wix-incubator/rich-content/pull/561) refactor - cleanup readOnly prop from code
-    - [#562](https://github.com/wix-incubator/rich-content/pull/562) use `@lerna/project` to get all lerna packages
-  - `e2e`
-    - [#564](https://github.com/wix-incubator/rich-content/pull/564) snapshots renaming for gallery and image plugins tests
+    - [#585](https://github.com/wix-incubator/rich-content/pull/585) Deploy every branch to surge. Will have the domain http://rich-content-branch_name.surge.sh/
 
 </details>
 <hr/>
 
+  - `editor`
+    - [#575](https://github.com/wix-incubator/rich-content/pull/575) ltr&rtl css yoshi issues solved (requested by forum)
+  - `general`
+    - [#585](https://github.com/wix-incubator/rich-content/pull/585) Deploy every branch to surge. Will have the domain http://rich-content-branch_name.surge.sh/
 ## 6.6.5 (Dec 30, 2019)
 ### :bug: Bug Fix
 - `editor-common`
   - [#560](https://github.com/wix-incubator/rich-content/pull/560) getBlockInfo returns entity type rather block type
-
-## 6.6.4 (Dec 30, 2019)
+## 6.6.6 (Jan 9, 2020)
 ### :bug: Bug Fix
-- `editor-common`
-  - [#558](https://github.com/wix-incubator/rich-content/pull/558) getBlockInfo util arguments fixed
+- `image`
+  - [#581](https://github.com/wix-incubator/rich-content/pull/581) remove low resolution preload image for gif
+- `mentions`
+  - [#580](https://github.com/wix-incubator/rich-content/pull/580) mention list style fixed
 
-## 6.6.3 (Dec 29, 2019)
+### :bug: Bug Fix
+- `editor`
+  - [#556](https://github.com/wix-incubator/rich-content/pull/556) fix onAtomicBlockFocus to work when alternating focus between different kinds of plugins
+
+## 6.6.2 (Dec 11, 2019)
+### :rocket: New Feature
+- `editor-common`
+  - [#526](https://github.com/wix-incubator/rich-content/pull/526) `onAtomicBlockFocus` is invoked with `undefined` when an atomic block loses focus
+  - [#530](https://github.com/wix-incubator/rich-content/pull/530) `uiSettings.linkPanel.placeholder` determines the link panel's placeholder
+- `image`
+  - [#533](https://github.com/wix-incubator/rich-content/pull/533) add multiple images at once, enabling `config.createGalleryForMultipleImages` renders them as a gallery
 ### :rocket: New Feature
 - `text-color`
   - [#520](https://github.com/wix-incubator/rich-content/pull/520) color Picker- adding an option to change back to default color
 ### :bug: Bug Fix
 - `editor`
   - [#556](https://github.com/wix-incubator/rich-content/pull/556) fix onAtomicBlockFocus to work when alternating focus between different kinds of plugins
+
+## 6.6.2 (Dec 11, 2019)
+### :rocket: New Feature
+- `editor-common`
+  - [#526](https://github.com/wix-incubator/rich-content/pull/526) `onAtomicBlockFocus` is invoked with `undefined` when an atomic block loses focus
+  - [#530](https://github.com/wix-incubator/rich-content/pull/530) `uiSettings.linkPanel.placeholder` determines the link panel's placeholder
+- `image`
+  - [#533](https://github.com/wix-incubator/rich-content/pull/533) add multiple images at once, enabling `config.createGalleryForMultipleImages` renders them as a gallery
+- `file-upload`
+  - [#533](https://github.com/wix-incubator/rich-content/pull/533) add multiple files at once
+### :bug: Bug Fix
+- `editor-common`
+  - [#550](https://github.com/wix-incubator/rich-content/pull/550) remove dashed border when focused
+- `editor`
+  - [#504](https://github.com/wix-incubator/rich-content/pull/504) pasted links get the configured anchorTarget and relValue
+  - [#521](https://github.com/wix-incubator/rich-content/pull/521) replace p element with div element in lists
   - [#552](https://github.com/wix-incubator/rich-content/pull/552) fix Plugin toolbar shouldCreate config crush
 - `editor`
   - [#554](https://github.com/wix-incubator/rich-content/pull/554) change align shortcuts from cmd to cmd + shift
@@ -55,7 +97,141 @@
 ### :house: Internal
 - `gallery-settings`
   - [#535](https://github.com/wix-incubator/rich-content/pull/535) gallery setting's header, tabs and footer position
-- `editor-common`
+- `images-settings`
+  - [#537](https://github.com/wix-incubator/rich-content/pull/537) image and gallery setting's header, tabs and footer position
+- `editor`
+  - [#522](https://github.com/wix-incubator/rich-content/pull/522) support legacy margin scss attributes
+- `e2e`
+  - [#538](https://github.com/wix-incubator/rich-content/pull/538) moved tests out of Docker, e2e and unit tests run in github actions
+  - [#542](https://github.com/wix-incubator/rich-content/pull/542) e2e tests run visual tests and content snapshots separately
+- `codeBlock`
+  - [#527](https://github.com/wix-incubator/rich-content/pull/527) remove onTab (moved to keyBindingFn/handleKeyCommand)
+- `pubsub`
+  - [#528](https://github.com/wix-incubator/rich-content/pull/528) rename visibleBlock to focusedBlock
+- `common`
+  - [#534](https://github.com/wix-incubator/rich-content/pull/534) exposes data normalization and data validation utils as separate entries
+- `button`
+  - [#517](https://github.com/wix-incubator/rich-content/pull/517) plugin button refactor
+
+## 6.6.1 (Dec 11, 2019)
+### :rocket: New Feature
+- `fullscreen`
+  - [#519](https://github.com/wix-incubator/rich-content/pull/519) add props: topMargin, backgroundColor, foregroundColor. Remove counter when only 1 image. Larger z-index
+### :bug: Bug Fix
+- `divider`
+  - [#511](https://github.com/wix-incubator/rich-content/pull/511) divider's width set to 100% in editor&viewer when no initial state of width is given
+- `emoji`
+  - [#525](https://github.com/wix-incubator/rich-content/pull/525) fix emoji delete bug
+### :house: Internal
+- `editor`
+  - [#510](https://github.com/wix-incubator/rich-content/pull/510) custom icons code refactoring
+
+## 6.6.0 (Dec 8, 2019)
+### :rocket: New Feature
+- `file-upload`
+  - [#489](https://github.com/wix-incubator/rich-content/pull/489) `config.downloadTarget` enables consumers to control in which tab files are opened
+- `undo-redo`
+  - [#495](https://github.com/wix-incubator/rich-content/pull/495) creates undo redo plugin
+- `editor`
+  - [#503](https://github.com/wix-incubator/rich-content/pull/503) activated drag and drop capability by default
+- `video`
+  - [#507](https://github.com/wix-incubator/rich-content/pull/507) support all video platform urls supported by `react-player`
+- `soundcloud`
+  - [#507](https://github.com/wix-incubator/rich-content/pull/507) support all audio platform urls supported by `react-player`
+### :bug: Bug Fix
+- `examples/viewer-ssr`
+  - [#499](https://github.com/wix-incubator/rich-content/pull/499) highlight plugin configuration fixed
+- `fullscreen`
+  - [#496](https://github.com/wix-incubator/rich-content/pull/496) adds support for legacy image type
+- `image`
+  - [#478](https://github.com/wix-incubator/rich-content/pull/478) margin & size (alignment strategy updated)
+- `mentions`
+  - [#486](https://github.com/wix-incubator/rich-content/pull/486) suggestions can be navigated using keyboard arrows
+- `giphy|emoji`
+  - [#512](https://github.com/wix-incubator/rich-content/pull/512) correct popup positions on desktop
+- `code-block`
+  - [#506](https://github.com/wix-incubator/rich-content/pull/506) fixed functinality of custom key handler
+### :house: Internal
+- `rollup`
+  - [#501](https://github.com/wix-incubator/rich-content/pull/501) remove rollup-plugin-node-builtins and rollup-plugin-node-globals
+- `common`
+  - [#493](https://github.com/wix-incubator/rich-content/pull/493) `common` package was split into `editor-common` and `common` in order to reduce `viewer` bundle size
+  - [#502](https://github.com/wix-incubator/rich-content/pull/502) removed external dependency for detecting rtl
+- `viewer examples`
+  - [#493](https://github.com/wix-incubator/rich-content/pull/493) remove RichContentModal from viewer examples
+- `e2e`
+  - [#501](https://github.com/wix-incubator/rich-content/pull/501) update cypress 3.6 => 3.7
+  - [#493](https://github.com/wix-incubator/rich-content/pull/493) fix video and soundcloud tests
+- `viewer`
+  - [d58d8916](https://github.com/wix-incubator/rich-content/commit/d58d8916) remove draftjs
+  - [a02b632a](https://github.com/wix-incubator/rich-content/commit/a02b632a) remove draftjs
+  - [#513](https://github.com/wix-incubator/rich-content/pull/513) removed `Immutable.js` dependency from `viewer`
+
+## 6.5.0 (Nov 25, 2019)
+### :bug: Bug Fix
+- `editor`
+  - [2a1e1b4a](https://github.com/wix-incubator/rich-content/commit/2a1e1b4a) fix import from common/src
+- `e2e`
+  - [98d8c980](https://github.com/wix-incubator/rich-content/commit/98d8c980) fix e2e
+### :house: Internal
+- `draftjs`
+  - [#487](https://github.com/wix-incubator/rich-content/pull/487) update draftjs 0.11 => 0.11.2
+<hr/>
+
+## 6.4.0 (Nov 25, 2019)
+### :rocket: New Feature
+- `emoji`
+  - [#470](https://github.com/wix-incubator/rich-content/pull/470) plugin reworked
+- `text-color`
+  - [#440](https://github.com/wix-incubator/rich-content/pull/440) text highlight plugin
+- `editor`
+  - [#462](https://github.com/wix-incubator/rich-content/pull/462) custom icons for all toolbar buttons
+  - [#475](https://github.com/wix-incubator/rich-content/pull/475) plugin toolbar alignment
+- `button`
+  - [#472](https://github.com/wix-incubator/rich-content/pull/472) plugin improved
+### :bug: Bug Fix
+- `video`
+  - [#480](https://github.com/wix-incubator/rich-content/pull/480) video file selection
+- `gallery`
+  - [#481](https://github.com/wix-incubator/rich-content/pull/481) fixed layout transition behavior
+- `giphy`
+  - [#485](https://github.com/wix-incubator/rich-content/pull/485) giphy-viewer: `data.config.sizes` fallbacks to empty object
+<hr/>
+
+## 6.3.0 (Nov 20, 2019)
+### :rocket: New Feature
+- `general`
+  - [#477](https://github.com/wix-incubator/rich-content/pull/477) `uiSettings.disableRightClick` enables right click protection for gallery, video and image plugins
+- `editor`
+  - [#473](https://github.com/wix-incubator/rich-content/pull/473) enable consumers to set plugin defaults
+- `image`
+  - [#476](https://github.com/wix-incubator/rich-content/pull/476) `config.onImageEditorOpen` is invoked when media studio is launched
+- `giphy`
+  - [#474](https://github.com/wix-incubator/rich-content/pull/474) mp4 gifs and lower res gifs support
+### :bug: Bug Fix
+- `imageEditor`
+  - [#482](https://github.com/wix-incubator/rich-content/pull/482) fix imageEditor doesn't load when requireJS is present
+- `preview`
+  - [#479](https://github.com/wix-incubator/rich-content/pull/479) seeFullPost default style fixed
+- `gallery`
+  - [#469](https://github.com/wix-incubator/rich-content/pull/469) styles reference
+- `fullscreen`
+  - [#465](https://github.com/wix-incubator/rich-content/pull/465) getImagesData was not working correctly
+- `video`
+  - [#468](https://github.com/wix-incubator/rich-content/pull/468) video file upload selection
+### :house: Internal
+- `gallery`
+  - [#467](https://github.com/wix-incubator/rich-content/pull/467) `pro-gallery` updated to `v1.5.33`
+- `draftjs`
+  - reverted in next release. [#483](https://github.com/wix-incubator/rich-content/pull/483) update draftjs 0.11 => 0.11.2
+- `e2e`
+  - [#484](https://github.com/wix-incubator/rich-content/pull/484) fix atomic block alignment tests
+<hr/>
+
+## 6.2.0 (Nov 11, 2019)
+### :boom: Breaking Change
+- `locale`
+  - [#435](https://github.com/wix-incubator/rich-content/pull/435) `messages_xx.json` files moved to `wix-rich-content-common`
   - [#550](https://github.com/wix-incubator/rich-content/pull/550) remove dashed border when focused
 - `editor`
   - [#504](https://github.com/wix-incubator/rich-content/pull/504) pasted links get the configured anchorTarget and relValue
@@ -77,50 +253,36 @@
 
 ## 6.6.0 (Dec 8, 2019)
 ### :rocket: New Feature
-- `file-upload`
-  - [#489](https://github.com/wix-incubator/rich-content/pull/489) `config.downloadTarget` enables consumers to control in which tab files are opened
-- `undo-redo`
-  - [#495](https://github.com/wix-incubator/rich-content/pull/495) creates undo redo plugin
 - `editor`
-  - [#503](https://github.com/wix-incubator/rich-content/pull/503) activated drag and drop capability by default
+  - [#445](https://github.com/wix-incubator/rich-content/pull/445) initial intent for all plugins except file-upload plugins
+- `mentions`
+  - [#452](https://github.com/wix-incubator/rich-content/pull/452) `handleDropdownOpen`, `handleDropdownClose` and `popoverComponent` added to plugin settings
 - `video`
-  - [#507](https://github.com/wix-incubator/rich-content/pull/507) support all video platform urls supported by `react-player`
-
-    - [#453](https://github.com/wix-incubator/rich-content/pull/453) added drag and drop capability to plugins
-  - `html`
-    - [#460](https://github.com/wix-incubator/rich-content/pull/460) adsense support
+  - [#443](https://github.com/wix-incubator/rich-content/pull/443) async url resolving support
+  - [#444](https://github.com/wix-incubator/rich-content/pull/444) file upload support
+  - [#449](https://github.com/wix-incubator/rich-content/pull/449) force video mime type for uploads
+  - [#451](https://github.com/wix-incubator/rich-content/pull/451) uses unique file input id
+- `editor`
+  - [#453](https://github.com/wix-incubator/rich-content/pull/453) added drag and drop capability to plugins
+- `html`
+  - [#460](https://github.com/wix-incubator/rich-content/pull/460) adsense support
 ### :bug: Bug Fix
 - `common`
   - [#454](https://github.com/wix-incubator/rich-content/pull/454) link panel not loading link data after page refresh
 - `divider`
-  - [#438](https://github.com/wix-incubator/rich-content/pull/438) container alignment
-- `viewer`
-  - [#442](https://github.com/wix-incubator/rich-content/pull/442) html plugin alignment
-- `gallery`
-  - [#455](https://github.com/wix-incubator/rich-content/pull/455) gallery image titles appears
-- editor
-  - [#448](https://github.com/wix-incubator/rich-content/pull/448) placeholder style fixed
-### :house: Internal
-- `gallery`
-  - [#446](https://github.com/wix-incubator/rich-content/pull/446) `pro-gallery` updated to `v1.5.25`
-- `e2e`
-  - [#447](https://github.com/wix-incubator/rich-content/pull/447) added more supported browsers
-- `resize`
-  - [#450](https://github.com/wix-incubator/rich-content/pull/450) moved width from data into data.config
-- `babel`
-  - [#454](https://github.com/wix-incubator/rich-content/pull/454) add optional chaining support
-<hr/>
-
-## 6.0.0 "MOAV" (Oct 30, 2019)
-### :boom: Breaking Change
-- `general`
-  - [#347](https://github.com/wix-incubator/rich-content/pull/347) replaced `@wix/draft-js@0.10.272` with `draft-js@0.11.0`
-### :rocket: New Feature
-- `fullscreen`
-  - [#389](https://github.com/wix-incubator/rich-content/pull/389) fullscreen for gallery and images :)
-- `gallery`
-  - [#391](https://github.com/wix-incubator/rich-content/pull/391) gallery image titles
+- `editor`
+  - [#445](https://github.com/wix-incubator/rich-content/pull/445) initial intent for all plugins except file-upload plugins
 - `mentions`
+  - [#452](https://github.com/wix-incubator/rich-content/pull/452) `handleDropdownOpen`, `handleDropdownClose` and `popoverComponent` added to plugin settings
+- `video`
+  - [#443](https://github.com/wix-incubator/rich-content/pull/443) async url resolving support
+  - [#444](https://github.com/wix-incubator/rich-content/pull/444) file upload support
+  - [#449](https://github.com/wix-incubator/rich-content/pull/449) force video mime type for uploads
+  - [#451](https://github.com/wix-incubator/rich-content/pull/451) uses unique file input id
+- `editor`
+  - [#453](https://github.com/wix-incubator/rich-content/pull/453) added drag and drop capability to plugins
+- `html`
+  - [#460](https://github.com/wix-incubator/rich-content/pull/460) adsense support
   - [#402](https://github.com/wix-incubator/rich-content/pull/402) mentions suggestion box size controll
 - `editor`
   - [#396](https://github.com/wix-incubator/rich-content/pull/396) sticky static toolbar on all platforms

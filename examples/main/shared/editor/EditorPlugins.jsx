@@ -482,7 +482,7 @@ export const config = {
     colorScheme,
     styleSelectionPredicate,
     customStyleFn: customBackgroundStyleFn,
-    onColorAdded: color => (userColors = [color, ...userColors]),
+    onColorAdded: color => (userColors = [...userColors, color]),
     getUserColors: () => userColors,
   },
   [TEXT_COLOR_TYPE]: {
@@ -494,7 +494,7 @@ export const config = {
     colorScheme,
     styleSelectionPredicate,
     customStyleFn: customForegroundStyleFn,
-    onColorAdded: color => (userColors = [color, ...userColors]),
+    onColorAdded: color => (userColors = [...userColors, color]),
     getUserColors: () => userColors,
   },
   uiSettings,
