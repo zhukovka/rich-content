@@ -57,6 +57,7 @@ import {
   customBackgroundStyleFn,
 } from '../../src/text-color-style-fn';
 import { getBaseUrl } from '../../src/utils';
+import { getPreviewLinkMetadata } from 'wix-rich-content-editor-common';
 // import { MyCustomIcon, SizeSmallRightIcon, TOOLBARS } from 'wix-rich-content-editor-common';
 // import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common';
 // import InlineToolbarDecoration from './Components/InlineToolbarDecoration';
@@ -176,14 +177,7 @@ const uiSettings = {
 
 export const config = {
   [LINK_PREVIEW_TYPE]: {
-    fetchMetadata: () =>
-      Promise.resolve({
-        title: 'Free Website Builder | Create a Free Website',
-        description:
-          'Create a free website with Wix.com. Choose a stunning template and customize anything with the Wix website builder—no coding skills needed. Create yours today!',
-        thumbnail_url: 'https://financesonline.com/uploads/2018/01/wix-logo.png',
-        url: 'https://www.wix.com',
-      }),
+    fetchMetadata: url => getPreviewLinkMetadata(url),
   },
   [UNDO_REDO_TYPE]: {
     // toolbar: {
