@@ -52,7 +52,8 @@
   },
   "dependencies": {
     "wix-rich-content-common": "6.6.6",
-    "wix-rich-content-editor-common": "6.6.6"
+    "wix-rich-content-editor-common": "6.6.6",
+    "wix-rich-content-plugin-link-preview": "6.6.6"
   },
   "unpkg": true,
   "publishConfig": {

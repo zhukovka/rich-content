@@ -1,0 +1,37 @@
+.linkPreview {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.linkPreview_image {
+  width: 25%;
+  border: solid 1px #ededed;
+}
+
+.linkPreview_link {
+  text-decoration: none;
+}
+
+.linkPreview_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #ededed;
+  padding: 1em;
+}
+
+.linkPreview_title {
+  font-weight: bold;
+  align-self: flex-start;
+}
+
+.linkPreview_description {
+}
+
+.linkPreview_footer {
+  color: #999;
+  align-self: flex-end;
+}

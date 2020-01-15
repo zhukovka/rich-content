@@ -26,31 +26,47 @@ export const insertLinkInPosition = (
   });
 };
 
-export const insertLinkAtCurrentSelection = (
-  editorState,
-  { url, targetBlank, nofollow, anchorTarget, relValue }
-) => {
+export const getCurrentBlock = editorState => {
+  const selectionState = editorState.getSelection();
+  const contentState = editorState.getCurrentContent();
+  const block = contentState.getBlockForKey(selectionState.getStartKey());
+
+  return block;
+};
+
+export const insertLinkAtCurrentSelection = (editorState, data) => {
   let selection = getSelection(editorState);
   let newEditorState = editorState;
   if (selection.isCollapsed()) {
+    const { url } = data;
     const contentState = Modifier.insertText(editorState.getCurrentContent(), selection, url);
     selection = selection.merge({ focusOffset: selection.getFocusOffset() + url.length });
     newEditorState = EditorState.push(editorState, contentState, 'insert-characters');
   }
-
-  const editorStateWithLink = insertLink(newEditorState, selection, {
-    url,
-    targetBlank,
-    nofollow,
-    anchorTarget,
-    relValue,
-  });
+  let editorStateWithLink;
+  if (isSelectionBelongsToExsistingLink(newEditorState, selection)) {
+    const contentState = newEditorState.getCurrentContent();
+    const blockKey = selection.getStartKey();
+    const block = contentState.getBlockForKey(blockKey);
+    const entityKey = block.getEntityAt(selection.getStartOffset());
+    editorStateWithLink = setEntityData(newEditorState, entityKey, data);
+  } else {
+    editorStateWithLink = insertLink(newEditorState, selection, data);
+  }
 
   return EditorState.forceSelection(
     editorStateWithLink,
     selection.merge({ anchorOffset: selection.focusOffset })
   );
 };
+
+function isSelectionBelongsToExsistingLink(editorState, selection) {
+  const startOffset = selection.getStartOffset();
+  const endOffset = selection.getEndOffset();
+  return getSelectedLinks(editorState).find(({ range }) => {
+    return range[0] <= startOffset && range[1] >= endOffset;
+  });
+}
 
 const defaultAnchorTarget = '_self';
 const defaultRelValue = 'noopener';
@@ -206,10 +222,11 @@ export const createBlock = (editorState, data, type) => {
 export const deleteBlock = (editorState, blockKey) => {
   const contentState = editorState.getCurrentContent();
   const block = contentState.getBlockForKey(blockKey);
-  const previousBlock = contentState.getBlockBefore(blockKey);
+  const previousBlock = contentState.getBlockBefore(blockKey) || block;
+  const anchorOffset = previousBlock.key === blockKey ? 0 : previousBlock.text.length;
   const selectionRange = new SelectionState({
     anchorKey: previousBlock.key,
-    anchorOffset: previousBlock.text.length,
+    anchorOffset,
     focusKey: blockKey,
     focusOffset: block.text.length,
   });
@@ -269,7 +286,7 @@ function getSelectedLinksInBlock(block, editorState) {
     }));
 }
 
-function getLinkRangesInBlock(block, contentState) {
+export function getLinkRangesInBlock(block, contentState) {
   const ranges = [];
   block.findEntityRanges(
     value => {
@@ -308,7 +325,6 @@ function getSelection(editorState) {
 
   return selection;
 }
-
 // a selection of the new content from the last change
 function createLastChangeSelection(editorState) {
   const content = editorState.getCurrentContent();

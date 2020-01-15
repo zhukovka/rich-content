@@ -1,5 +1,6 @@
 import React from 'react';
 import { createLinkPlugin, LINK_TYPE } from 'wix-rich-content-plugin-link';
+import { createLinkPreviewPlugin, LINK_PREVIEW_TYPE } from 'wix-rich-content-plugin-link-preview';
 import { createLineSpacingPlugin, LINE_SPACING_TYPE } from 'wix-rich-content-plugin-line-spacing';
 import { createHashtagPlugin, HASHTAG_TYPE } from 'wix-rich-content-plugin-hashtag';
 import { createEmojiPlugin } from 'wix-rich-content-plugin-emoji';
@@ -39,6 +40,7 @@ import 'wix-rich-content-plugin-html/dist/styles.min.css';
 import 'wix-rich-content-plugin-hashtag/dist/styles.min.css';
 import 'wix-rich-content-plugin-line-spacing/dist/styles.min.css';
 import 'wix-rich-content-plugin-link/dist/styles.min.css';
+import 'wix-rich-content-plugin-link-preview/dist/styles.min.css';
 import 'wix-rich-content-plugin-mentions/dist/styles.min.css';
 import 'wix-rich-content-plugin-image/dist/styles.min.css';
 import 'wix-rich-content-plugin-gallery/dist/styles.min.css';
@@ -55,6 +57,7 @@ import {
   customBackgroundStyleFn,
 } from '../../src/text-color-style-fn';
 import { getBaseUrl } from '../../src/utils';
+import { getPreviewLinkMetadata } from 'wix-rich-content-editor-common';
 // import { MyCustomIcon, SizeSmallRightIcon, TOOLBARS } from 'wix-rich-content-editor-common';
 // import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common';
 // import InlineToolbarDecoration from './Components/InlineToolbarDecoration';
@@ -70,6 +73,7 @@ export const editorPlugins = [
   createDividerPlugin,
   createLineSpacingPlugin,
   createLinkPlugin,
+  createLinkPreviewPlugin,
   createHashtagPlugin,
   createExternalMentionsPlugin,
   createCodeBlockPlugin,
@@ -172,6 +176,9 @@ const uiSettings = {
 };
 
 export const config = {
+  [LINK_PREVIEW_TYPE]: {
+    fetchMetadata: url => getPreviewLinkMetadata(url),
+  },
   [UNDO_REDO_TYPE]: {
     // toolbar: {
     //   icons: {
@@ -179,7 +186,6 @@ export const config = {
     //   },
     // },
   },
-
   [GALLERY_TYPE]: {
     scrollingElement: () =>
       typeof window !== 'undefined' && document.getElementsByClassName('editor-example')[0],
@@ -291,6 +297,7 @@ export const config = {
     onUpdate: spacing => console.log(LINE_SPACING_TYPE, spacing),
   },
   [LINK_TYPE]: {
+    preview: true,
     // toolbar: {
     //   icons: {
     //     link: MyCustomIcon, // insert plugin icon

@@ -32,6 +32,10 @@ class DesignComponent extends PureComponent {
       customBorderColors: (getBorderColors && getBorderColors()) || DEFAULT_PALETTE,
       pickerType: '',
     };
+
+    this.onBackgroundcolorAdded = this.onBackgroundcolorAdded.bind(this);
+    this.onBordercolorAdded = this.onBordercolorAdded.bind(this);
+    this.onTextcolorAdded = this.onTextcolorAdded.bind(this);
   }
 
   componentDidUpdate = () => {

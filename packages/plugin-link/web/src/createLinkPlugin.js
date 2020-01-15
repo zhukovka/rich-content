@@ -1,16 +1,18 @@
 import {
+  deleteBlock,
   createBasePlugin,
   insertLinkInPosition,
   fixPastedLinks,
 } from 'wix-rich-content-editor-common';
-import {
-  isValidUrl,
-  // getUrlMatches,
-} from 'wix-rich-content-common';
+import { addLinkPreview } from 'wix-rich-content-plugin-link-preview/dist/lib/utils';
+import { isValidUrl, fetchLinkMetdata } from 'wix-rich-content-common';
 import { LINK_TYPE } from './types';
 import { Component } from './LinkComponent';
 import { linkEntityStrategy } from './strategy';
 import createLinkToolbar from './toolbar/createLinkToolbar';
+/* eslint-disable */
+const AUTH_TOKEN = `D0nawxcVUD5MtaQ8yKCNagHIWvpDGTRGqUfKfaqtKok.eyJpbnN0YW5jZUlkIjoiZDM0MDgzYTItNTlhYi00MTJjLWI0NjItNzk1NTk0MWMxOWQwIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiYmM0ZjIzODEtMzY1Mi00MTE4LWIxOGItY2NmNDE2MmZkZTA3Iiwic2lnbkRhdGUiOiIyMDIwLTAxLTE0VDE2OjMwOjEyLjY2OVoiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiI2N2RkZDA5ZS00YWU5LTQ5NWMtOWE4OS0wZGZiZGY4MTQ4ZTYiLCJhaWQiOiIyMWY2NzFiZS05OGZlLTQxMTctYjg4ZC02YzI2ZTJjN2YxNzkiLCJiaVRva2VuIjoiNmYwZmEwMjMtNmZmOS0wMDM0LTA1ZTktYjVhMTgyMzNjN2Q3Iiwic2l0ZU93bmVySWQiOiI4MTk2ZGM1Ni1kNDVjLTRkZWYtYTc2Ny0zMDAyNDZhYjBiN2EifQ`;
+const mockBasePath = `https://cors-anywhere.herokuapp.com/http://stehauho.wixsite.com`;
 
 const createLinkPlugin = (config = {}) => {
   const type = LINK_TYPE;
@@ -21,8 +23,26 @@ const createLinkPlugin = (config = {}) => {
   const decorators = [{ strategy: linkEntityStrategy, component: Component }];
   let linkifyData;
 
-  const handleReturn = (event, editorState) => {
+  const handleReturn = async (event, editorState) => {
     linkifyData = getLinkifyData(editorState);
+    if (linkifyData && settings.preview) {
+      const url = getBlockLinkUrl(linkifyData);
+      const { title, description, thumbnail_url } = await fetchLinkMetdata(
+        url,
+        mockBasePath,
+        AUTH_TOKEN
+      );
+      if (url && (title || description || thumbnail_url)) {
+        linkifyData = { ...linkifyData, preview: true, title, description, thumbnail_url };
+      }
+    }
+  };
+
+  const getBlockLinkUrl = linkifyData => {
+    const { string, block } = linkifyData;
+    if (block.getText() === string) {
+      return string;
+    }
   };
 
   const handleBeforeInput = (chars, editorState) => {
@@ -40,14 +60,17 @@ const createLinkPlugin = (config = {}) => {
   };
 
   const onChange = editorState => {
+    let newEditorState = editorState;
     if (isPasteChange(editorState)) {
-      return fixPastedLinks(editorState, { anchorTarget, relValue });
-    } else if (linkifyData) {
-      const newEditorState = addLinkAt(linkifyData, editorState);
-      linkifyData = false;
-      return newEditorState;
+      newEditorState = fixPastedLinks(editorState, { anchorTarget, relValue });
+    } else if (linkifyData && !linkifyData.preview) {
+      newEditorState = addLinkAt(linkifyData, editorState);
+    } else if (linkifyData?.preview) {
+      const withoutLinkBlock = deleteBlock(editorState, linkifyData.block.key);
+      newEditorState = addLinkPreview(withoutLinkBlock, config, linkifyData.string);
     }
-    return editorState;
+    linkifyData = false;
+    return newEditorState;
   };
 
   const getLinkifyData = editorState => {

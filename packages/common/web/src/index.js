@@ -2,6 +2,7 @@
 export { default as AccessibilityListener } from './Components/AccessibilityListener';
 export { default as ViewportRenderer } from './Components/ViewportRenderer';
 export { default as Loader } from './Components/Loader';
+export { default as ReadMore } from './Components/ReadMore';
 
 // Utils
 export { default as withI18n } from './Utils/withI18n';
@@ -19,7 +20,7 @@ export { mergeStyles } from './Utils/mergeStyles';
 export { default as normalizeInitialState } from './Utils/normalization/normalizeInitialState';
 export { default as getDisplayName } from './Utils/getDisplayName';
 export { default as Version } from './Utils/versioningUtils';
-export { hasLinksInBlock } from './Utils/draftUtils';
+export { hasLinksInBlock } from './Utils/blockUtils';
 export { validate, getContentStateSchema } from './Utils/data-schema-validator';
 export { isSSR } from './Utils/ssrUtils';
 
@@ -33,6 +34,7 @@ export { default as pluginGiphySchema } from '../statics/schemas/plugin-giphy.sc
 export { default as pluginHtmlSchema } from '../statics/schemas/plugin-html.schema.json';
 export { default as pluginImageSchema } from '../statics/schemas/plugin-image.schema.json';
 export { default as pluginLinkSchema } from '../statics/schemas/plugin-link.schema.json';
+export { default as pluginLinkPreviewSchema } from '../statics/schemas/plugin-link-preview.schema.json';
 export { default as pluginMapSchema } from '../statics/schemas/plugin-map.schema.json';
 export { default as pluginMentionsSchema } from '../statics/schemas/plugin-mentions.schema.json';
 export { default as pluginSoundCloudSchema } from '../statics/schemas/plugin-sound-cloud.schema.json';
@@ -43,3 +45,8 @@ export { isHexColor } from './Utils/colorUtils';
 export { isRtl, getLangDir } from './Utils/rtlUtils';
 
 export { HEADER_BLOCK, BLOCK_TYPES } from './consts';
+export {
+  fetchLinkMetdata,
+  getPreviewLinkMetadata,
+  getEmbedLinkMetadata,
+} from './Utils/linkPreviewData';
