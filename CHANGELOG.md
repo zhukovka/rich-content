@@ -13,17 +13,25 @@
     Click to see more.
   </summary>
 
+  ### :boom: [Breaking Change]
+  - `Side-Toolbar`
+    - [#577](https://github.com/wix-incubator/rich-content/pull/577) Remove add plugins button from inline toolbar in mobile and change mobile side toolbar to be fixed position instead, for customize Add Plugins button css use css media query (@media only screen and (max-width: 800px))
   ### :rocket: New Feature
+  - `link`
+    - [#551](https://github.com/wix-incubator/rich-content/pull/551) adding a tooltip for nofollow tag explanation
   - `image`
     - [#563](https://github.com/wix-incubator/rich-content/pull/563) in-plugin editing enabled for caption
   ### :bug: Bug Fix
   - `text-color`
      - [#572](https://github.com/wix-incubator/rich-content/pull/572) color Picker- ResetToDefault button sticky to bottom
+     - [#576](https://github.com/wix-incubator/rich-content/pull/576) color Picker-new colors are added to the end of the list + 'reset to default' removes from the 'inlineStyleRanges' in the content state
   - `editor-common`
     - [#550](https://github.com/wix-incubator/rich-content/pull/550) remove dashed border when focused
     - [#565](https://github.com/wix-incubator/rich-content/pull/565) undo remembers all plugins changes
+    - [#584](https://github.com/wix-incubator/rich-content/pull/584) fix gallery dropdown css
   - `link`
     - [#546](https://github.com/wix-incubator/rich-content/pull/546) saves the last data and the initial state of the checkboxes("Open in a new tab", "Add a nofollow tag") is according to the defaults (anchorTarget, relValue)
+    - [#589](https://github.com/wix-incubator/rich-content/pull/589) in order to edit the link settings its enough to select only part of the words that belongs to the link
   - `editor-common`
     - [#566](https://github.com/wix-incubator/rich-content/pull/566) Fix tooltip position in bottom tooltip
   ### :house: Internal
