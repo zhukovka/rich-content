@@ -28,15 +28,10 @@
   - `editor-common`
     - [#550](https://github.com/wix-incubator/rich-content/pull/550) remove dashed border when focused
     - [#584](https://github.com/wix-incubator/rich-content/pull/584) fix gallery dropdown css
-    - [#605](https://github.com/wix-incubator/rich-content/pull/605) base toolbar relies on props rather context
   - `link`
     - [#546](https://github.com/wix-incubator/rich-content/pull/546) saves the last data and the initial state of the checkboxes("Open in a new tab", "Add a nofollow tag") is according to the defaults (anchorTarget, relValue)
     - [#589](https://github.com/wix-incubator/rich-content/pull/589) in order to edit the link settings its enough to select only part of the words that belongs to the link
     - [#566](https://github.com/wix-incubator/rich-content/pull/566) Fix tooltip position in bottom tooltip
-  - `editor`
-    - [#604](https://github.com/wix-incubator/rich-content/pull/604) drag & drop to beginning of first block is disabled
-  - `video`
-    - [#604](https://github.com/wix-incubator/rich-content/pull/604) missing thumbnail for custom uploaded video
   ### :house: Internal
   - `general`
     - [#561](https://github.com/wix-incubator/rich-content/pull/561) refactor - cleanup readOnly prop from code
@@ -46,11 +41,21 @@
     - [#564](https://github.com/wix-incubator/rich-content/pull/564) snapshots renaming for gallery and image plugins tests
   - `editor`
     - [#575](https://github.com/wix-incubator/rich-content/pull/575) ltr&rtl css yoshi issues solved (requested by forum)
-  - `examples`
-    - [#604](https://github.com/wix-incubator/rich-content/pull/604) changed custom upload mock video to a wix media video
 
 </details>
 <hr/>
+
+## 6.6.7 (Jan 16, 2020)
+### :bug: Bug Fix
+- `editor`
+  - [#604](https://github.com/wix-incubator/rich-content/pull/604) drag & drop to beginning of first block is disabled
+- `video`
+  - [#604](https://github.com/wix-incubator/rich-content/pull/604) missing thumbnail for custom uploaded video
+- `editor-common`
+  - [#605](https://github.com/wix-incubator/rich-content/pull/605) base toolbar relies on props rather context
+### :house: Internal
+- `examples`
+  - [#604](https://github.com/wix-incubator/rich-content/pull/604) changed custom upload mock video to a wix media video
 
 ## 6.6.6 (Jan 9, 2020)
 ### :bug: Bug Fix
