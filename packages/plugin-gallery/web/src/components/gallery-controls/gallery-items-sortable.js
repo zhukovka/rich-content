@@ -71,7 +71,7 @@ const SortableItem = sortableElement(props => {
     }
 
     let url;
-    if (item.metadata.processedByConsumer) {
+    if (!item.url.includes('data:', 0)) {
       url = imageClientAPI.getScaleToFillImageURL(
         prefix + item.url,
         item.metadata.width,
