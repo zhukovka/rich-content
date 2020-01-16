@@ -57,7 +57,7 @@ import {
   customBackgroundStyleFn,
 } from '../../src/text-color-style-fn';
 import { getBaseUrl } from '../../src/utils';
-import { getPreviewLinkMetadata } from 'wix-rich-content-editor-common';
+import { linkPreviewUtil } from 'wix-rich-content-common';
 // import { MyCustomIcon, SizeSmallRightIcon, TOOLBARS } from 'wix-rich-content-editor-common';
 // import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common';
 // import InlineToolbarDecoration from './Components/InlineToolbarDecoration';
@@ -175,9 +175,10 @@ const uiSettings = {
   // disableRightClick: true,
 };
 
+const authorization = `D0nawxcVUD5MtaQ8yKCNagHIWvpDGTRGqUfKfaqtKok.eyJpbnN0YW5jZUlkIjoiZDM0MDgzYTItNTlhYi00MTJjLWI0NjItNzk1NTk0MWMxOWQwIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiYmM0ZjIzODEtMzY1Mi00MTE4LWIxOGItY2NmNDE2MmZkZTA3Iiwic2lnbkRhdGUiOiIyMDIwLTAxLTE0VDE2OjMwOjEyLjY2OVoiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiI2N2RkZDA5ZS00YWU5LTQ5NWMtOWE4OS0wZGZiZGY4MTQ4ZTYiLCJhaWQiOiIyMWY2NzFiZS05OGZlLTQxMTctYjg4ZC02YzI2ZTJjN2YxNzkiLCJiaVRva2VuIjoiNmYwZmEwMjMtNmZmOS0wMDM0LTA1ZTktYjVhMTgyMzNjN2Q3Iiwic2l0ZU93bmVySWQiOiI4MTk2ZGM1Ni1kNDVjLTRkZWYtYTc2Ny0zMDAyNDZhYjBiN2EifQ`;
 export const config = {
   [LINK_PREVIEW_TYPE]: {
-    fetchMetadata: url => getPreviewLinkMetadata(url),
+    fetchMetadata: linkPreviewUtil(authorization),
   },
   [UNDO_REDO_TYPE]: {
     // toolbar: {
@@ -297,7 +298,10 @@ export const config = {
     onUpdate: spacing => console.log(LINE_SPACING_TYPE, spacing),
   },
   [LINK_TYPE]: {
-    preview: true,
+    preview: {
+      enable: true,
+      fetchMetadata: linkPreviewUtil(authorization),
+    },
     // toolbar: {
     //   icons: {
     //     link: MyCustomIcon, // insert plugin icon
