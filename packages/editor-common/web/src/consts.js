@@ -1,3 +1,6 @@
+import React from 'react';
+import { ResizeContainer } from 'wix-rich-content-common/src/Components/ResizeContainer';
+
 export const COMMANDS = {
   TITLE: 'header-two',
   SUBTITLE: 'header-three',
@@ -53,6 +56,15 @@ export const PLUGIN_DECORATION_PROPS = {
     style: props.style,
     width: props.width,
     containerClassName: props.containerClassName,
+    // eslint-disable-next-line react/prop-types
+    DecorateContainer: ({ children, ...containerProps }) => {
+      return (
+        // eslint-disable-next-line react/prop-types
+        <ResizeContainer {...props.resizeDirections} {...containerProps}>
+          {children}
+        </ResizeContainer>
+      );
+    },
   }),
 };
 

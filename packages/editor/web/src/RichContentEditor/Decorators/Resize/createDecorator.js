@@ -11,7 +11,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import { mergeStyles, Context } from 'wix-rich-content-common';
 import deafultStyles from '../../../../statics/styles/resizeable.rtlignore.scss';
 
@@ -236,19 +236,22 @@ export default ({ config, store }) => WrappedComponent =>
         styles.cursor = 'default';
       }
 
-      const containerClassName = classNames({
-        [this.mergedStyles.resizeHandleR]:
-          alignment !== 'right' && size !== 'fullWidth' && !this.context.isMobile,
-        [this.mergedStyles.resizeHandleL]:
-          alignment !== 'left' && size !== 'fullWidth' && !this.context.isMobile,
-      });
+      const resizeDirections = {
+        both:
+          alignment !== 'right' &&
+          alignment !== 'left' &&
+          size !== 'fullWidth' &&
+          !this.context.isMobile,
+        right: alignment !== 'right' && size !== 'fullWidth' && !this.context.isMobile,
+        left: alignment !== 'left' && size !== 'fullWidth' && !this.context.isMobile,
+      };
 
       const interactionProps = {
         onMouseDown: this.mouseDown,
         onMouseMove: this.mouseMove,
         onMouseLeave: this.mouseLeave,
         width: this.state.width || this.props.minWidth,
-        containerClassName,
+        resizeDirections,
       };
 
       return (

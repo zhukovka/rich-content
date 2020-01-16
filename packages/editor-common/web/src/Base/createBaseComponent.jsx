@@ -216,7 +216,7 @@ const createBaseComponent = ({
     render = () => {
       const { blockProps, className, selection, onDragStart } = this.props;
       const { componentData } = this.state;
-      const { containerClassName, ...decorationProps } = pluginDecorationProps(
+      const { DecorateContainer, ...decorationProps } = pluginDecorationProps(
         this.props,
         componentData
       );
@@ -239,7 +239,6 @@ const createBaseComponent = ({
         {
           [this.styles.pluginContainerMobile]: isMobile,
           [theme.pluginContainerMobile]: isMobile,
-          [containerClassName]: !!containerClassName,
         },
         classNameStrategies,
         className || '',
@@ -288,8 +287,9 @@ const createBaseComponent = ({
       });
 
       /* eslint-disable jsx-a11y/anchor-has-content */
+      const Container = DecorateContainer || 'div';
       return (
-        <div
+        <Container
           role="none"
           style={sizeStyles}
           className={ContainerClassNames}
@@ -313,7 +313,7 @@ const createBaseComponent = ({
             className={overlayClassNames}
             draggable
           />
-        </div>
+        </Container>
       );
       /* eslint-enable jsx-a11y/anchor-has-content */
     };
