@@ -45,28 +45,34 @@ class LinkPreviewViewer extends Component {
     if (!this.state.metadata) {
       return null;
     }
+    const { title, description, thumbnail_url, url, html } = this.state.metadata;
+    if (html) {
+      return <div dangerouslySetInnerHTML={{ __html: html }} />; //eslint-disable-line
+    }
+
+    const { anchorTarget, relValue } = this.context;
+    const {
+      linkPreview_link,
+      linkPreview,
+      linkPreview_info,
+      linkPreview_title,
+      linkPreview_image,
+      linkPreview_description,
+      linkPreview_footer,
+    } = this.styles;
     return (
-      <a
-        className={styles.linkPreview_link}
-        href={this.state.metadata.url}
-        target={this.context.anchorTarget}
-        rel={this.context.relValue}
-      >
-        <figure className={styles.linkPreview}>
-          <section className={styles.linkPreview_info}>
-            <figcaption className={styles.linkPreview_title}>
-              <ReadMore lines={1} text={this.state.metadata.title} label="" />
+      <a className={linkPreview_link} href={url} target={anchorTarget} rel={relValue}>
+        <figure className={linkPreview}>
+          <section className={linkPreview_info}>
+            <figcaption className={linkPreview_title}>
+              <ReadMore lines={1} text={title} label="" />
             </figcaption>
-            <p className={this.styles.linkPreview_description}>
-              <ReadMore text={this.state.metadata.description} label="" />
+            <p className={linkPreview_description}>
+              <ReadMore text={description} label="" />
             </p>
-            <footer className={styles.linkPreview_footer}>{this.state.metadata.url}</footer>
+            <footer className={linkPreview_footer}>{url}</footer>
           </section>
-          <img
-            className={styles.linkPreview_image}
-            src={this.state.metadata.thumbnail_url}
-            alt={this.state.metadata.title}
-          />
+          <img className={linkPreview_image} src={thumbnail_url} alt={title} />
         </figure>
       </a>
     );
