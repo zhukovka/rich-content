@@ -33,7 +33,7 @@
     "test:unit": "lerna run --parallel --stream test",
     "lint": "lerna run --parallel --stream lint",
     "build:test": "npm run build && npm run build --prefix e2e/test-env",
-    "auto-changelog": "auto-changelog --handlebars-setup changelogSetup.js"
+    "auto-changelog": "auto-changelog --handlebars-setup changelogSetup.js ; cat tmp-changelog.md | cat - CHANGELOG.md > temp && mv temp CHANGELOG.md ; rm tmp-changelog.md"
   },
   "husky": {
     "hooks": {
@@ -119,7 +119,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "auto-changelog": {
-    "output": "CHANGELOG.md",
+    "output": "tmp-changelog.md",
     "template": "changelog-template.hbs",
     "unreleased": true,
     "commitLimit": false,
