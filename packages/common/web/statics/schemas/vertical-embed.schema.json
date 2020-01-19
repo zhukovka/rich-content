@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://wix-rich-content/vertical-embed-content-data-schema.json",
+    "type": "object",
+    "properties": {
+      "config": {
+        "type": "object",
+        "title": "configuration",
+        "properties": {
+          "size": {
+            "$id": "/properties/config/properties/size",
+            "enum": ["medium", "small", "large"],
+            "title": "size",
+            "examples": ["medium", "small", "large"]
+          },
+          "alignment": {
+            "enum": ["left", "right", "center"],
+            "title": "alignment",
+            "examples": ["left", "right", "center"]
+          },
+          "textWrap": {
+            "type": "string",
+            "title": "text wrap style",
+            "examples": ["nowrap"]
+          }
+        }
+      }
+    },
+    "required": ["type"]
+  }

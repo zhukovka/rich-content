@@ -9,6 +9,7 @@ import { createGalleryPlugin, GALLERY_TYPE } from 'wix-rich-content-plugin-galle
 import { createVideoPlugin, VIDEO_TYPE } from 'wix-rich-content-plugin-video';
 import { createHtmlPlugin, HTML_TYPE } from 'wix-rich-content-plugin-html';
 import { createDividerPlugin, DIVIDER_TYPE } from 'wix-rich-content-plugin-divider';
+import { createVerticalEmbedPlugin, VERTICAL_EMBED_TYPE } from 'wix-rich-content-plugin-vertical-embed';
 import {
   createExternalMentionsPlugin,
   EXTERNAL_MENTIONS_TYPE,
@@ -83,6 +84,7 @@ export const editorPlugins = [
   createEmojiPlugin,
   createTextHighlightPlugin,
   createUndoRedoPlugin,
+  createVerticalEmbedPlugin,
 ];
 
 const themeColors = {
@@ -103,7 +105,7 @@ let userButtonBorderColors = [...buttonDefaultPalette];
 
 const getLinkPanelDropDownConfig = () => {
   const getItems = () => {
-    casual.define('item', function() {
+    casual.define('item', function () {
       return {
         value: casual.url,
         label: casual.catch_phrase,
@@ -307,6 +309,7 @@ export const config = {
     // },
   },
   [DIVIDER_TYPE]: {},
+  [VERTICAL_EMBED_TYPE]: {},
   // [EXTERNAL_EMOJI_TYPE]: {},
   [VIDEO_TYPE]: {
     toolbar: {
