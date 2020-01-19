@@ -1,0 +1,19 @@
+@import '~wix-rich-content-common/dist/statics/styles/palette';
+
+.anchorViewer {
+  text-decoration: none;
+}
+
+[class*="public-DraftStyleDefault-ltr"] > .anchorViewer_anchorIcon {
+  position: absolute;
+  top: 3px;
+  left: -9px;
+  color: orange;
+}
+
+[class*="public-DraftStyleDefault-rtl"] > .anchorViewer_anchorIcon {
+  position: absolute;
+  top: 3px;
+  right: -9px;
+  color: orange;
+}

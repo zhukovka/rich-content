@@ -28,7 +28,7 @@ export default class TextLinkPanel extends Component {
       anchorTarget,
       relValue,
       t,
-      isActive: !isEmpty(linkData),
+      isActive: !isEmpty(linkData) && !isEmpty(linkData.url),
       onDone: this.createLinkEntity,
       onCancel: this.hideLinkPanel,
       onDelete: this.deleteLink,

@@ -26,7 +26,7 @@ export default class AnchorLinkPanel extends Component {
       anchorTarget,
       relValue,
       t,
-      isActive: !isEmpty(linkData),
+      isActive: !isEmpty(linkData) && !isEmpty(linkData.name),
       onDone: this.createLinkEntity,
       onCancel: this.hideLinkPanel,
       onDelete: this.deleteLink,

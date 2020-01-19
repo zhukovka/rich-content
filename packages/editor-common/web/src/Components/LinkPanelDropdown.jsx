@@ -115,15 +115,19 @@ export class LinkPanelDropdown extends Component {
         }) => (
           <div onClick={withoutSearch ? () => this.toggleWithoutSearchIsOpen() : null}>
             {withoutSearch && (
-              <DropdownArrowIcon style={{ position: 'absolute', top: '12px', right: '12px' }} />
+              <DropdownArrowIcon className={styles.linkPanelDropdown_dropdownArrowIcon} />
             )}
             {/*<label {...getLabelProps()}>Enter a fruit</label>*/}
-            <input {...getInputProps(textInputProps)} disabled={withoutSearch} />
+            {!withoutSearch ? (
+              <input {...getInputProps(textInputProps)} />
+            ) : (
+              <input {...getInputProps(textInputProps)} readOnly style={{ cursor: 'pointer' }} />
+            )}
             {(isOpen || this.props.isOpen) && (
               <List
                 className={styles.linkPanel_dropdownList}
                 style={{ borderTop: '0', position: 'absolute' }}
-                height={Math.min(items.length * itemHeight + 1, 200)}
+                height={Math.min(items.length * itemHeight + 1, withoutSearch ? 150 : 200)}
                 itemCount={items.length}
                 itemSize={itemHeight}
                 itemData={{

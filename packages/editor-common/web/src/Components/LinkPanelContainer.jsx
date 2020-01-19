@@ -31,16 +31,18 @@ class LinkPanelContainer extends PureComponent {
     const { url, targetBlank, nofollow, anchorsEntities } = this.props;
     this.withAnchors = anchorsEntities ? anchorsEntities.length !== 0 : false;
     this.state = {
-      linkPanelValues: { url, targetBlank, nofollow },
-      activeTab: !url || isValidUrl(url) ? 'link' : 'anchor',
+      linkPanelValues: { url: url && isValidUrl(url) ? url : undefined, targetBlank, nofollow },
+      anchorPanelValues: { url: url && !isValidUrl(url) ? url : undefined, targetBlank, nofollow },
+      activeTab: !url || isValidUrl(url) || !this.withAnchors ? 'link' : 'anchor',
     };
   }
 
   onDone = () => {
-    const { linkPanelValues } = this.state;
-    if (linkPanelValues.isValid && linkPanelValues.url) {
-      this.props.onDone(linkPanelValues);
-    } else if (linkPanelValues.url === '') {
+    const { linkPanelValues, anchorPanelValues, activeTab } = this.state;
+    const activeTabValue = activeTab === 'link' ? linkPanelValues : anchorPanelValues;
+    if (activeTabValue.isValid && activeTabValue.url) {
+      this.props.onDone(activeTabValue);
+    } else if (activeTabValue.url === '') {
       this.onDelete();
     }
   };
@@ -147,8 +149,8 @@ class LinkPanelContainer extends PureComponent {
               anchorsEntities={this.props.anchorsEntities}
               onEnter={this.onDone}
               onEscape={this.onCancel}
-              linkValues={this.state.linkPanelValues}
-              onChange={linkPanelValues => this.setState({ linkPanelValues })}
+              linkValues={this.state.anchorPanelValues}
+              onChange={anchorPanelValues => this.setState({ anchorPanelValues })}
               theme={theme}
               t={t}
               ariaProps={linkPanelAriaProps}

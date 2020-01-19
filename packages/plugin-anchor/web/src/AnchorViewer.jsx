@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { mergeStyles, validate, Context, pluginAnchorSchema } from 'wix-rich-content-common';
 import { isEqual } from 'lodash';
-import styles from '../statics/anchor-viewer.scss';
+import styles from '../statics/anchor-viewer.rtlignore.scss';
 import AnchorIcon from './icons/anchor-icon.svg';
 
 class AnchorViewer extends Component {
@@ -44,7 +44,8 @@ class AnchorViewer extends Component {
     return (
       <>
         {!!renderInEditor && (
-          <AnchorIcon style={{ position: 'absolute', top: '3px', left: '-9px' }} />
+          <AnchorIcon className={this.state.styles.anchorViewer_anchorIcon} />
+          // <AnchorIcon style={{ position: 'absolute', top: '3px', left: '-9px', color: 'orange' }} />
         )}
         <a {...anchorProps}>{children}</a>
       </>
