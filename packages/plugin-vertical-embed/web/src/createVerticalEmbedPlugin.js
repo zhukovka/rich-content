@@ -9,7 +9,6 @@ import Styles from '../statics/styles/default-styles.scss';
 const createVerticalEmbedPlugin = (config = {}) => {
   const type = VERTICAL_EMBED_TYPE;
   const { helpers, theme, t, [type]: settings = {}, ...rest } = config;
-
   const styles = mergeStyles({ styles: Styles, theme });
 
   return createBasePlugin({
