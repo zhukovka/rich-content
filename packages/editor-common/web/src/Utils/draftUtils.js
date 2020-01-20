@@ -213,6 +213,19 @@ export const setSelectionToBlock = (newEditorState, setEditorState, newActiveBlo
   );
 };
 
+export const createBlockAndFocus = (editorState, data, pluginType) => {
+  const { newBlock, newSelection, newEditorState } = createBlock(editorState, data, pluginType);
+  window.getSelection().removeAllRanges();
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve({
+        newEditorState: EditorState.forceSelection(newEditorState, newSelection),
+        newBlock,
+      });
+    }, 0);
+  });
+};
+
 export const createBlock = (editorState, data, type) => {
   const currentEditorState = editorState;
   const contentState = currentEditorState.getCurrentContent();

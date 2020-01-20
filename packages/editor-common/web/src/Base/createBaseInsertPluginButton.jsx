@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { EditorState } from 'draft-js';
 import { isEmpty } from 'lodash';
 import { mergeStyles, Context } from 'wix-rich-content-common';
-import { createBlock, setSelectionToBlock } from '../Utils/draftUtils.js';
+import { createBlock } from '../Utils/draftUtils.js';
 import classNames from 'classnames';
 import FileInput from '../Components/FileInput';
 import ToolbarButton from '../Components/ToolbarButton';
@@ -46,14 +46,9 @@ export default ({
 
     addBlock = data => {
       const { getEditorState, setEditorState } = this.props;
-      const { newSelection, newEditorState, newBlock } = this.createBlock(
-        getEditorState(),
-        data,
-        blockType
-      );
+      const { newSelection, newEditorState } = this.createBlock(getEditorState(), data, blockType);
 
       setEditorState(EditorState.forceSelection(newEditorState, newSelection));
-      setTimeout(() => setSelectionToBlock(newEditorState, setEditorState, newBlock), 500);
     };
 
     addCustomBlock = buttonData => {
@@ -112,12 +107,11 @@ export default ({
           blockType === galleryType ||
           (galleryData && settings.createGalleryForMultipleImages && files.length > 1);
 
-        const { newEditorState, newSelection, newBlock } = shouldCreateGallery
+        const { newEditorState, newSelection } = shouldCreateGallery
           ? this.createBlocksFromFiles([files], galleryData, galleryType)
           : this.createBlocksFromFiles(files, button.componentData, blockType);
 
         setEditorState(EditorState.forceSelection(newEditorState, newSelection));
-        setTimeout(() => setSelectionToBlock(newEditorState, setEditorState, newBlock), 500);
       }
     };
 

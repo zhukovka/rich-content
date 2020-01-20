@@ -75,6 +75,7 @@ export {
   deleteBlock,
   createEntity,
   setSelectionToBlock,
+  createBlockAndFocus,
   createBlock,
   getBlockInfo,
   getFocusedBlockKey,
