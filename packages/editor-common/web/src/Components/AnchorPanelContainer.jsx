@@ -54,15 +54,15 @@ class AnchorPanelContainer extends PureComponent {
       styles.linkPanel_Cancel
     );
     const removeButtonClassName = classNames(styles.linkPanel_FooterButton);
-    const linkPanelContainerClassName = classNames(styles.linkPanel_container, {
+    const anchorPanelContainerClassName = classNames(styles.linkPanel_container, {
       [styles.linkPanel_container_isMobile]: isMobile,
     });
 
     const linkPanelAriaProps = { 'aria-label': 'Link management' };
     return (
       <FocusManager
-        className={linkPanelContainerClassName}
-        data-hook="linkPanelContainer"
+        className={anchorPanelContainerClassName}
+        data-hook="anchorPanelContainer"
         role="form"
         {...ariaProps}
       >
@@ -87,7 +87,7 @@ class AnchorPanelContainer extends PureComponent {
               tabIndex={tabIndex}
               aria-label={cancelButtonText}
               className={cancelButtonClassName}
-              data-hook="linkPanelContainerCancel"
+              data-hook="anchorPanelContainerCancel"
               onClick={this.onCancel}
             >
               {cancelButtonText}
@@ -99,7 +99,7 @@ class AnchorPanelContainer extends PureComponent {
                   tabIndex={tabIndex}
                   aria-label={removeButtonText}
                   className={removeButtonClassName}
-                  data-hook="linkPanelContainerRemove"
+                  data-hook="anchorPanelContainerRemove"
                   onClick={this.onDelete}
                 >
                   {removeButtonText}
@@ -111,7 +111,7 @@ class AnchorPanelContainer extends PureComponent {
             tabIndex={tabIndex}
             aria-label={doneButtonText}
             className={doneButtonClassName}
-            data-hook="linkPanelContainerDone"
+            data-hook="anchorPanelContainerDone"
             onClick={this.onDone}
           >
             {doneButtonText}

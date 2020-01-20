@@ -92,13 +92,13 @@ class LinkToAnchorPanel extends Component {
           {this.hasError() && (
             <Tooltip
               shouldRebuildOnUpdate={() => !isValid}
-              data-hook="linkPanelTooltip"
+              data-hook="anchorPanelTooltip"
               content={t('LinkPanel_AnchorErrorTooltip')}
               theme={theme}
               moveBy={{ y: 0 }}
               type={'error'}
             >
-              <ErrorIcon data-hook="linkPanelError" className={styles.linkPanel_errorIcon} />
+              <ErrorIcon data-hook="anchorPanelError" className={styles.linkPanel_errorIcon} />
             </Tooltip>
           )}
         </div>
