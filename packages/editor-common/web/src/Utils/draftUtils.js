@@ -1,6 +1,6 @@
 import { EditorState, Modifier, RichUtils, SelectionState, AtomicBlockUtils } from 'draft-js';
 import { cloneDeep, flatMap, findIndex, findLastIndex } from 'lodash';
-import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
+// import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
 
 function createSelection({ blockKey, anchorOffset, focusOffset }) {
   return SelectionState.createEmpty(blockKey).merge({
@@ -196,30 +196,30 @@ export const replaceWithEmptyBlock = (editorState, blockKey) => {
   return EditorState.forceSelection(newState, resetBlock.getSelectionAfter());
 };
 
-export const setSelectionToBlock = (newEditorState, setEditorState, newActiveBlock) => {
-  const editorState = newEditorState;
-  const offsetKey = DraftOffsetKey.encode(newActiveBlock.getKey(), 0, 0);
-  const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
-  const selection = window.getSelection();
-  const range = document.createRange();
-  range.setStart(node, 0);
-  range.setEnd(node, 0);
-  selection.removeAllRanges();
-  selection.addRange(range);
+// export const setSelectionToBlock = (newEditorState, setEditorState, newActiveBlock) => {
+//   const editorState = newEditorState;
+//   const offsetKey = DraftOffsetKey.encode(newActiveBlock.getKey(), 0, 0);
+//   const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
+//   const selection = window.getSelection();
+//   const range = document.createRange();
+//   range.setStart(node, 0);
+//   range.setEnd(node, 0);
+//   selection.removeAllRanges();
+//   selection.addRange(range);
 
-  setEditorState(
-    EditorState.forceSelection(
-      editorState,
-      new SelectionState({
-        anchorKey: newActiveBlock.getKey(),
-        anchorOffset: 0,
-        focusKey: newActiveBlock.getKey(),
-        focusOffset: 0,
-        isBackward: false,
-      })
-    )
-  );
-};
+//   setEditorState(
+//     EditorState.forceSelection(
+//       editorState,
+//       new SelectionState({
+//         anchorKey: newActiveBlock.getKey(),
+//         anchorOffset: 0,
+//         focusKey: newActiveBlock.getKey(),
+//         focusOffset: 0,
+//         isBackward: false,
+//       })
+//     )
+//   );
+// };
 
 export const createBlockAndFocus = (editorState, data, pluginType) => {
   const { newBlock, newSelection, newEditorState } = createBlock(editorState, data, pluginType);
