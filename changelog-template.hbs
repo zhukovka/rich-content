@@ -2,19 +2,35 @@
 {{#each releases}}
 
 {{#if (check-release-version title)}}
-
 ## {{title}} ({{niceDate}})
-{{#merge-list merges heading=' ### :boom: Breaking Change' message='breaking-change:'}}
-{{/merge-list}}
 
-{{#merge-list merges heading=' ### :rocket: New Feature' message='feat:'}}
-{{/merge-list}}
+{{#if (check-unreleased title)}}
+<details>
+    <summary>
+        Changes that have landed in master but are not yet released.
+        Click to see more.
+    </summary>
+    {{/if}}
 
-{{#merge-list merges heading=' ### :bug: Bug Fix' message='fix:'}}
-{{/merge-list}}
+    {{#merge-list merges heading=' ### :boom: Breaking Change' message='breaking-change: '}}
+    {{/merge-list}}
 
-{{#merge-list merges heading=' ### :house: Internal' message='house:'}}
-{{/merge-list}}
+    {{#merge-list merges heading=' ### :rocket: New Feature' message='feat: '}}
+    {{/merge-list}}
+
+    {{#merge-list merges heading=' ### :bug: Bug Fix' message='fix: '}}
+    {{/merge-list}}
+
+    {{#merge-list merges heading=' ### :house: Internal' message='internal: '}}
+    {{/merge-list}}
+
+    {{#merge-list merges heading=' ### :book: Documentation' message='doc: '}}
+    {{/merge-list}}
+
+    {{#if (check-unreleased title)}}
+</details>
+<hr />
+{{/if}}
 
 {{/if}}
 

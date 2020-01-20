@@ -23,7 +23,7 @@ module.exports = function(Handlebars) {
 
     const merges = list.reduce((acc, item) => {
       const messages = item.commit.message.split('\n');
-      const pattern = /\[(.+)\]\s+(\S+)\s+(.+)($\n|\s)/;
+      const pattern = /\[(.+)\]\s+(\S+)\s+(.+[a-zA-Z])/;
 
       messages.forEach(message => {
         const match = pattern.exec(message);
@@ -53,6 +53,10 @@ module.exports = function(Handlebars) {
       }, [])
       .join('\n');
 
+    if (!result || result === '') {
+      return '';
+    }
+
     return `${options.hash.heading}\n\n${result}`;
   });
 
@@ -77,5 +81,9 @@ module.exports = function(Handlebars) {
     } catch (e) {
       return false;
     }
+  });
+
+  Handlebars.registerHelper('check-unreleased', function(context) {
+    return context === 'Unreleased';
   });
 };
