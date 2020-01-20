@@ -14,11 +14,11 @@ import {
 export default class AnchorLinkPanel extends Component {
   componentDidMount() {
     const { anchorTarget, relValue, getEditorState, theme, t, uiSettings } = this.props;
-    const linkData = getLinkDataInSelection(getEditorState());
-    const { name, target } = linkData || {};
+    const anchorData = getLinkDataInSelection(getEditorState());
+    const { name, target } = anchorData || {};
     const anchorsEntities = getEntityByType(getEditorState(), 'wix-draft-plugin-anchor');
     const targetBlank = target ? target === '_blank' : anchorTarget === '_blank';
-    const linkContainerProps = {
+    const anchorContainerProps = {
       anchorsEntities,
       name,
       targetBlank,
@@ -26,22 +26,22 @@ export default class AnchorLinkPanel extends Component {
       anchorTarget,
       relValue,
       t,
-      isActive: !isEmpty(linkData) && !isEmpty(linkData.name),
-      onDone: this.createLinkEntity,
-      onCancel: this.hideLinkPanel,
-      onDelete: this.deleteLink,
+      isActive: !isEmpty(anchorData) && !isEmpty(anchorData.name),
+      onDone: this.createAnchorEntity,
+      onCancel: this.hideAnchorPanel,
+      onDelete: this.deleteAnchor,
       onOverrideContent: this.props.onOverrideContent,
       uiSettings,
     };
 
-    const LinkPanelContainerWithProps = decorateComponentWithProps(
+    const AnchorPanelContainerWithProps = decorateComponentWithProps(
       AnchorPanelContainer,
-      linkContainerProps
+      anchorContainerProps
     );
-    this.props.onOverrideContent(LinkPanelContainerWithProps);
+    this.props.onOverrideContent(AnchorPanelContainerWithProps);
   }
 
-  createLinkEntity = ({ name }) => {
+  createAnchorEntity = ({ name }) => {
     const { anchorTarget } = this.props;
     if (!isEmpty(name)) {
       const { getEditorState, setEditorState } = this.props;
@@ -51,10 +51,10 @@ export default class AnchorLinkPanel extends Component {
       });
       setEditorState(newEditorState);
     }
-    this.hideLinkPanel();
+    this.hideAnchorPanel();
   };
 
-  deleteLink = () => {
+  deleteAnchor = () => {
     const { getEditorState, setEditorState } = this.props;
     const editorState = getEditorState();
     const selection = editorState.getSelection();
@@ -62,7 +62,7 @@ export default class AnchorLinkPanel extends Component {
     setEditorState(EditorState.acceptSelection(newEditorState, selection));
   };
 
-  hideLinkPanel = () => {
+  hideAnchorPanel = () => {
     this.props.onExtendContent(undefined);
     this.props.onOverrideContent(undefined);
   };

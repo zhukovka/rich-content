@@ -13,15 +13,15 @@ class AnchorPanelContainer extends PureComponent {
     const { name } = this.props;
     this.existingName = name;
     this.state = {
-      linkPanelValues: { name },
+      anchorPanelValues: { name },
     };
   }
 
   onDone = () => {
-    const { linkPanelValues } = this.state;
-    if (linkPanelValues.isValid && linkPanelValues.name) {
-      this.props.onDone(linkPanelValues);
-    } else if (linkPanelValues.name === '') {
+    const { anchorPanelValues } = this.state;
+    if (anchorPanelValues.isValid && anchorPanelValues.name) {
+      this.props.onDone(anchorPanelValues);
+    } else if (anchorPanelValues.name === '') {
       this.onDelete();
     }
   };
@@ -58,7 +58,7 @@ class AnchorPanelContainer extends PureComponent {
       [styles.linkPanel_container_isMobile]: isMobile,
     });
 
-    const linkPanelAriaProps = { 'aria-label': 'Link management' };
+    const anchorPanelAriaProps = { 'aria-label': 'Anchor management' };
     return (
       <FocusManager
         className={anchorPanelContainerClassName}
@@ -71,11 +71,11 @@ class AnchorPanelContainer extends PureComponent {
             existingName={this.existingName}
             onEnter={this.onDone}
             onEscape={this.onCancel}
-            linkValues={this.state.linkPanelValues}
-            onChange={linkPanelValues => this.setState({ linkPanelValues })}
+            linkValues={this.state.anchorPanelValues}
+            onChange={anchorPanelValues => this.setState({ anchorPanelValues })}
             theme={theme}
             t={t}
-            ariaProps={linkPanelAriaProps}
+            ariaProps={anchorPanelAriaProps}
             anchorsEntities={anchorsEntities}
             {...uiSettings.linkPanel}
           />

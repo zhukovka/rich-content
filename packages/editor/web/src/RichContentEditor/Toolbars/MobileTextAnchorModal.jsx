@@ -19,7 +19,7 @@ export default class MobileTextAnchorModal extends Component {
 
   hidePopup = () => this.props.hidePopup();
 
-  createLinkEntity = ({ name }) => {
+  createAnchorEntity = ({ name }) => {
     if (!isEmpty(name)) {
       const { getEditorState, setEditorState, anchorTarget } = this.props;
       const newEditorState = insertAnchorAtCurrentSelection(getEditorState(), {
@@ -31,7 +31,7 @@ export default class MobileTextAnchorModal extends Component {
     this.hidePopup();
   };
 
-  deleteLink = () => {
+  deleteAnchor = () => {
     const { getEditorState, setEditorState } = this.props;
     const editorState = getEditorState();
     const selection = editorState.getSelection();
@@ -41,8 +41,8 @@ export default class MobileTextAnchorModal extends Component {
 
   render() {
     const { getEditorState, theme, isMobile, anchorTarget, relValue, t, uiSettings } = this.props;
-    const linkData = getLinkDataInSelection(getEditorState());
-    const { name, target, rel } = linkData || {};
+    const anchorData = getLinkDataInSelection(getEditorState());
+    const { name, target, rel } = anchorData || {};
     const targetBlank = target ? target === '_blank' : anchorTarget === '_blank';
     const nofollow = rel ? rel === 'nofollow' : relValue === 'nofollow';
     return (
@@ -52,13 +52,13 @@ export default class MobileTextAnchorModal extends Component {
         targetBlank={targetBlank}
         nofollow={nofollow}
         theme={theme}
-        isActive={!isEmpty(linkData)}
+        isActive={!isEmpty(anchorData)}
         isMobile={isMobile}
         anchorTarget={anchorTarget}
         relValue={relValue}
-        onDone={this.createLinkEntity}
+        onDone={this.createAnchorEntity}
         onCancel={this.hidePopup}
-        onDelete={this.deleteLink}
+        onDelete={this.deleteAnchor}
         uiSettings={uiSettings}
         t={t}
       />

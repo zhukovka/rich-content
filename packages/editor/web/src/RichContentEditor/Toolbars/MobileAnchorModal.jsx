@@ -29,7 +29,7 @@ export default class MobileAnchorModal extends Component {
           <div className={styles.mobileLinkModal_linkIconContainer}>
             <AnchorIcon />
           </div>
-          <h3 id="mob_link_modal_hdr" className={styles.mobileLinkModal_title}>
+          <h3 id="mob_anchor_modal_hdr" className={styles.mobileLinkModal_title}>
             {mobileAnchorModalTitle}
           </h3>
         </div>
@@ -47,7 +47,7 @@ export default class MobileAnchorModal extends Component {
           onCancel={onCancel}
           onDelete={onDelete}
           t={t}
-          ariaProps={{ 'aria-labelledby': 'mob_link_modal_hdr' }}
+          ariaProps={{ 'aria-labelledby': 'mob_anchor_modal_hdr' }}
           uiSettings={uiSettings}
         />
       </div>

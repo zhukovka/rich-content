@@ -10,7 +10,7 @@ import {
 import AnchorLinkPanel from './AnchorLinkPanel';
 
 export default class TextAnchorButton extends Component {
-  showLinkPanel = () => {
+  showAnchorPanel = () => {
     const {
       onExtendContent,
       onOverrideContent,
@@ -51,7 +51,7 @@ export default class TextAnchorButton extends Component {
         );
       }
     } else {
-      const linkPanelProps = {
+      const anchorPanelProps = {
         onExtendContent,
         onOverrideContent,
         anchorTarget,
@@ -60,12 +60,15 @@ export default class TextAnchorButton extends Component {
         t,
         uiSettings,
       };
-      const TextLinkPanelWithProps = decorateComponentWithProps(AnchorLinkPanel, linkPanelProps);
-      onOverrideContent(TextLinkPanelWithProps);
+      const TextAnchorPanelWithProps = decorateComponentWithProps(
+        AnchorLinkPanel,
+        anchorPanelProps
+      );
+      onOverrideContent(TextAnchorPanelWithProps);
     }
   };
 
-  get isActive() {
+  isActive() {
     return hasEntityInSelectionByType(this.props.getEditorState(), 'wix-draft-plugin-anchor');
   }
 
@@ -78,11 +81,11 @@ export default class TextAnchorButton extends Component {
       icon: theme.inlineToolbarButton_icon,
       active: theme.inlineToolbarButton_active,
     };
-    const icon = config?.LINK?.toolbar?.icons?.link;
+    const icon = config?.ANCHOR?.toolbar?.icons?.anchor;
     return (
       <AnchorButton
-        onClick={this.showLinkPanel}
-        isActive={this.isActive}
+        onClick={this.showAnchorPanel}
+        isActive={this.isActive()}
         theme={{ ...theme, ...buttonStyles }}
         isMobile={isMobile}
         tooltipText={anchorButtonTooltip}
