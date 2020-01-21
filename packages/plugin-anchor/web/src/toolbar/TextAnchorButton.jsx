@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import {
   hasEntityInSelectionByType,
   getModalStyles,
-  AnchorButton,
   EditorModals,
   decorateComponentWithProps,
 } from 'wix-rich-content-editor-common';
 import AnchorLinkPanel from './AnchorLinkPanel';
+import AnchorButton from './AnchorButton';
 
 export default class TextAnchorButton extends Component {
   showAnchorPanel = () => {
@@ -68,9 +68,9 @@ export default class TextAnchorButton extends Component {
     }
   };
 
-  isActive() {
+  isActive = () => {
     return hasEntityInSelectionByType(this.props.getEditorState(), 'wix-draft-plugin-anchor');
-  }
+  };
 
   render() {
     const { theme, isMobile, t, tabIndex, config } = this.props;
