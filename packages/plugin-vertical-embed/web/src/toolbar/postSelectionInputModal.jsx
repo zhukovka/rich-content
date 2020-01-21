@@ -28,19 +28,14 @@ export default class PostSelectionInputModal extends Component {
   componentDidMount() {
     this.input.focus();
     this.input.setSelectionRange(0, this.input.value.length);
-    this.props.fetchPosts().then(posts => this.setState({ posts }));
+    this.search();
   }
 
   handleKeyPress = () => {};
 
-  search = async e => {
-    const posts = await this.props.searchPosts(e.target.value);
-    this.setState({ posts });
-  };
-
   currentAbortController = null;
-  onInputChange = async e => {
-    const { abortController, promise } = this.props.searchPosts(e.target.value);
+  async search(query) {
+    const { abortController, promise } = this.props.searchPosts(query);
     if (this.currentAbortController) {
       this.currentAbortController.abort();
     }
@@ -55,7 +50,9 @@ export default class PostSelectionInputModal extends Component {
       }
       throw e;
     }
-  };
+  }
+
+  onInputChange = e => this.search(e.target.value);
 
   // TODO
   onConfirm = () => {};
