@@ -16,6 +16,7 @@ class LinkPreviewViewer extends Component {
     componentData: PropTypes.object.isRequired,
     settings: PropTypes.shape({
       fetchMetadata: PropTypes.func.isRequired,
+      disableOembed: PropTypes.bool,
     }).isRequired,
   };
 
@@ -46,7 +47,7 @@ class LinkPreviewViewer extends Component {
       return null;
     }
     const { title, description, thumbnail_url, url, html } = this.state.metadata;
-    if (html) {
+    if (!this.props.settings.disableOembed && html) {
       return <div dangerouslySetInnerHTML={{ __html: html }} />; //eslint-disable-line
     }
 

@@ -179,6 +179,7 @@ const authorization = `D0nawxcVUD5MtaQ8yKCNagHIWvpDGTRGqUfKfaqtKok.eyJpbnN0YW5jZ
 export const config = {
   [LINK_PREVIEW_TYPE]: {
     fetchMetadata: linkPreviewUtil(authorization),
+    disableOembed: false,
   },
   [UNDO_REDO_TYPE]: {
     // toolbar: {

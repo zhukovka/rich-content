@@ -120,6 +120,7 @@ export const config = {
     //     url: 'https://www.wix.com',
     //   }),
     fetchMetadata: linkPreviewUtil(authorization),
+    disableOembed: false,
   },
   [MENTION_TYPE]: mentionsPluginSettings,
   [TEXT_HIGHLIGHT_TYPE]: {
