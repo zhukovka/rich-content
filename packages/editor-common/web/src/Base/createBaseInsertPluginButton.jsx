@@ -68,7 +68,6 @@ export default ({
     createBlocksFromFiles = (files, data, type) => {
       let editorState = this.props.getEditorState();
       let selection;
-      let block;
       files.forEach(file => {
         const { newBlock, newSelection, newEditorState } = this.createBlock(
           editorState,
@@ -77,12 +76,11 @@ export default ({
         );
         editorState = newEditorState;
         selection = selection || newSelection;
-        block = newBlock;
         const state = { userSelectedFiles: { files: Array.isArray(file) ? file : [file] } };
         commonPubsub.set('initialState_' + newBlock.getKey(), state);
       });
 
-      return { newEditorState: editorState, newSelection: selection, newBlock: block };
+      return { newEditorState: editorState, newSelection: selection };
     };
 
     onClick = event => {
