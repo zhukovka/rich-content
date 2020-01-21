@@ -73,7 +73,6 @@ export {
   setEntityData,
   replaceWithEmptyBlock,
   deleteBlock,
-  getCurrentBlock,
   getSelectedBlocks,
   getLinkRangesInBlock,
   createEntity,
