@@ -13,6 +13,7 @@ export const INLINE_TOOLBAR_BUTTONS = {
   TEXT_ALIGN_RIGHT: 'textAlignmentButton_right',
   LINE_SPACING: 'LineSpacingButton',
   LINK: 'LinkButton',
+  ANCHOR: 'AnchorButton',
   CODE_BLOCK: 'TextCodeBlockButton',
 };
 

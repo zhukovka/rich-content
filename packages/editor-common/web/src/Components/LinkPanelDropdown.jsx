@@ -124,24 +124,26 @@ export class LinkPanelDropdown extends Component {
               <input {...getInputProps(textInputProps)} readOnly style={{ cursor: 'pointer' }} />
             )}
             {(isOpen || this.props.isOpen) && (
-              <List
-                className={styles.linkPanel_dropdownList}
-                style={{ borderTop: '0', position: 'absolute' }}
-                height={Math.min(items.length * itemHeight + 1, withoutSearch ? 150 : 200)}
-                itemCount={items.length}
-                itemSize={itemHeight}
-                itemData={{
-                  items,
-                  getItemProps,
-                  highlightedIndex,
-                  selectedItem,
-                  formatMenuItem,
-                  inputValue,
-                }}
-                {...getMenuProps()}
-              >
-                {ItemRenderer}
-              </List>
+              <div data-hook="linkPanelDropdownList">
+                <List
+                  className={styles.linkPanel_dropdownList}
+                  style={{ borderTop: '0', position: 'absolute' }}
+                  height={Math.min(items.length * itemHeight + 1, withoutSearch ? 150 : 200)}
+                  itemCount={items.length}
+                  itemSize={itemHeight}
+                  itemData={{
+                    items,
+                    getItemProps,
+                    highlightedIndex,
+                    selectedItem,
+                    formatMenuItem,
+                    inputValue,
+                  }}
+                  {...getMenuProps()}
+                >
+                  {ItemRenderer}
+                </List>
+              </div>
             )}
           </div>
         )}

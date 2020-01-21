@@ -186,6 +186,27 @@ Cypress.Commands.add('setLink', (selection, link) => {
     .click();
 });
 
+Cypress.Commands.add('setAnchor', (selection, anchorName) => {
+  cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.ANCHOR, selection)
+    .get(`[data-hook=anchorPanelContainer] [data-hook=anchorPanelInput]`)
+    .type(anchorName)
+    .get(`[data-hook=anchorPanelContainerDone]`)
+    .click();
+});
+
+Cypress.Commands.add('setLinkToAnchor', selection => {
+  cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.LINK, selection)
+    .get(`[data-hook=linkPanelContainerAnchorTab]`)
+    .click()
+    .get(`[data-hook=linkPanelContainer] [data-hook=anchorLinkPanelInput]`)
+    .click()
+    .get(`[data-hook=linkPanelDropdownList]`)
+    .children()
+    .click()
+    .get(`[data-hook=linkPanelContainerDone]`)
+    .click();
+});
+
 Cypress.Commands.add('setAlignment', alignment => {
   cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.ALIGNMENT).setTextStyle(alignment);
 });

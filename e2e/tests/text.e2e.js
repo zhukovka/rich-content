@@ -71,4 +71,11 @@ describe('text', () => {
       .setTextStyle(INLINE_TOOLBAR_BUTTONS.UNORDERED_LIST, [550, 1]);
     cy.eyesCheckWindow(this.test.title);
   });
+
+  it('allow to create anchor and link to anchor', function() {
+    cy.loadEditorAndViewer('plain')
+      .setAnchor([0, 10], 'blabla')
+      .setLinkToAnchor([310, 10]);
+    cy.eyesCheckWindow(this.test.title);
+  });
 });

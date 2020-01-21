@@ -69,7 +69,7 @@ class AnchorPanel extends Component {
       type: 'text',
       className: textInputClassName,
       placeholder: this.props.t('AnchorPanel_InputPlaceholder'),
-      'data-hook': 'AnchorPanelInput',
+      'data-hook': 'anchorPanelInput',
       onBlur: () => this.setState({ showValidation: true }),
     };
   }

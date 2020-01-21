@@ -70,6 +70,7 @@ class LinkPanelContainer extends PureComponent {
               [styles.linkPanel_tabSelected]: this.state.activeTab === 'link',
             })}
             onClick={() => this.changeTab('link')}
+            data-hook="linkPanelContainerLinkTab"
           >
             {t('LinkPanel_LinkTab')}
           </div>
@@ -78,6 +79,7 @@ class LinkPanelContainer extends PureComponent {
               [styles.linkPanel_tabSelected]: this.state.activeTab === 'anchor',
             })}
             onClick={() => this.changeTab('anchor')}
+            data-hook="linkPanelContainerAnchorTab"
           >
             {t('LinkPanel_AnchorTab')}
           </div>
