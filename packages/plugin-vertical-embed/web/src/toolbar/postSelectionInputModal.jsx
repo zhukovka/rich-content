@@ -78,16 +78,18 @@ export default class PostSelectionInputModal extends Component {
             />
           )}
           <h2 className={styles.verticalEmbedModalTitle}>{t('Select_Blog_Post_Title')}</h2>
-          <TextInput
-            inputRef={ref => {
-              this.input = ref;
-            }}
-            onKeyPress={this.handleKeyPress}
-            onChange={this.onInputChange}
-            placeholder={t('VideoUploadModal_Input_Placeholder')}
-            theme={styles}
-            data-hook="videoUploadModalInput"
-          />
+          <div className={styles.textInputWrapper}>
+            <TextInput
+              inputRef={ref => {
+                this.input = ref;
+              }}
+              onKeyPress={this.handleKeyPress}
+              onChange={this.onInputChange}
+              placeholder={t('VideoUploadModal_Input_Placeholder')}
+              theme={styles}
+              data-hook="videoUploadModalInput"
+            />
+          </div>
           {posts && posts.length > 0 && <ItemsListComponent items={posts} />}
         </div>
 
