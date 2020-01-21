@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Context } from 'wix-rich-content-common';
 import styles from '../../statics/styles/items-list-component.scss';
+import { getItemsListPlaceholder } from '../icons/itemsListPlaceholder';
 
 class ItemsListComponent extends Component {
   state = {
@@ -23,7 +24,7 @@ class ItemsListComponent extends Component {
           checked={this.state.selectedItem.id === item.id}
         />
         <span className={styles.radioButton} />
-        <img className={styles.listItemImage} src={item.imageUrl} alt="List item image" />
+        {item.imageUrl ? <img className={styles.listItemImage} src={item.imageUrl} alt="List item image" /> : getItemsListPlaceholder()}
 
         <div className={styles.actionItemsContainer}>
           <h5>{item.title}</h5>
