@@ -5,7 +5,7 @@ export const linkPreviewUtil = authStr => {
   const state = {};
   return async url => {
     const { title, description, thumbnail_url, html, url: oldUrl } = state;
-    if (oldUrl === url && (!!title || description || thumbnail_url || html)) {
+    if (oldUrl === url && title && (description || thumbnail_url || html)) {
       return state;
     }
     let oEmbedRes;
