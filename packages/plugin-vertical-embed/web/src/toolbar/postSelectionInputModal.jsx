@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { CloseIcon } from 'wix-rich-content-editor-common';
+import { CloseIcon, Button } from 'wix-rich-content-editor-common';
 import { mergeStyles } from 'wix-rich-content-common';
 import styles from '../../statics/styles/post-selection-input-modal.scss';
+import ItemsListComponent from '../components/items-list-component';
 
 export default class PostSelectionInputModal extends Component {
   state = {
@@ -10,9 +11,8 @@ export default class PostSelectionInputModal extends Component {
     posts: [],
   };
   styles = mergeStyles({ styles, theme: this.props.theme });
-  id = `VideoUploadModal_FileInput_${Math.floor(Math.random() * 9999)}`;
 
-  afterOpenModal = () => {};
+  afterOpenModal = () => { };
 
   onCloseRequested = () => {
     this.setState({ isOpen: false });
@@ -25,6 +25,14 @@ export default class PostSelectionInputModal extends Component {
     }
   };
 
+  getMappedPosts(posts) {
+    return posts.map(post => ({
+      imageUrl: `https://static.wixstatic.com/media/${post.coverImage.url}`,
+      subtitle: new Date(post.lastPublishedDate).toDateString(),
+      ...post,
+    }));
+  }
+
   fetchPosts = () =>
     fetch(`${this.props.blogAPIUrl}/posts?limit=20`, {
       headers: {
@@ -33,7 +41,8 @@ export default class PostSelectionInputModal extends Component {
       },
     })
       .then(resp => (resp.ok ? resp.json() : {}))
-      .then(json => this.setState({ posts: json.post || [] }))
+      .then(({ post }) => this.getMappedPosts(post))
+      .then(posts => this.setState({ posts }))
       .catch(error => console.log('Error in fetching posts: ', error));
 
   componentDidMount() {
@@ -47,21 +56,24 @@ export default class PostSelectionInputModal extends Component {
 
     return (
       <div dir={languageDir}>
-        <div className={styles.video_modal_container_big} data-hook="videoUploadModal">
+        <div className={styles.verticalEmbedContainer} data-hook="verticalEmbedModal">
           {!isMobile && (
             <CloseIcon
-              className={styles.video_modal_closeIcon}
+              className={styles.verticalEmbedModalCloseIcon}
               onClick={() => this.onCloseRequested()}
             />
           )}
-          <h2 className={styles.video_modal_add_a_Video}>{t('Select_Blog_Post_Title')}</h2>
-          {posts && (
-            <ul>
-              {posts.map(post => (
-                <li key={post.id}>{post.title}</li>
-              ))}
-            </ul>
-          )}
+          <h2 className={styles.verticalEmbedModalTitle}>{t('Select_Blog_Post_Title')}</h2>
+          {posts && posts.length && <ItemsListComponent items={posts}></ItemsListComponent>}
+        </div>
+
+        <div className={styles.actionButtonsContainer}>
+          <Button type="secondary" className={styles.actionButton} onClick={() => this.onCloseRequested()}>
+            Cancel
+          </Button>
+          <Button className={styles.actionButton} onClick={() => onConfirm()}>
+            Choose
+          </Button>
         </div>
       </div>
     );
