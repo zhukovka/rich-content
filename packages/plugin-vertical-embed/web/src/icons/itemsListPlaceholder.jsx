@@ -9,7 +9,13 @@ export const getItemsListPlaceholder = () => (
     viewBox="0 0 60 60"
   >
     <defs>
-      <pattern id="placeholder_blog_list-b" width="100%" height="100%" y="0%" patternUnits="objectBoundingBox">
+      <pattern
+        id="placeholder_blog_list-b"
+        width="100%"
+        height="100%"
+        y="0%"
+        patternUnits="objectBoundingBox"
+      >
         <use transform="scale(.0586)" xlinkHref="#placeholder_blog_list-a" />
       </pattern>
       <image
@@ -21,7 +27,7 @@ export const getItemsListPlaceholder = () => (
     </defs>
     <path
       fill="url(#placeholder_blog_list-b)"
-      fill-rule="evenodd"
+      fillRule="evenodd"
       d="M0,6.0000383 C0,2.68630865 2.69463714,0 6.0000383,0 L53.9999617,0 C57.3136914,0 60,2.69463714 60,6.0000383 L60,53.9999617 C60,57.3136914 57.3053629,60 53.9999617,60 L6.0000383,60 C2.68630865,60 0,57.3053629 0,53.9999617 L0,6.0000383 Z"
     />
   </svg>

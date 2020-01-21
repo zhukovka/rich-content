@@ -6,7 +6,7 @@ import { getItemsListPlaceholder } from '../icons/itemsListPlaceholder';
 
 class ItemsListComponent extends Component {
   state = {
-    selectedItem: this.props.items[0] || {}
+    selectedItem: this.props.items[0] || {},
   };
 
   onConfirm() {
@@ -15,7 +15,10 @@ class ItemsListComponent extends Component {
 
   renderListItem(item) {
     return (
-      <div className={styles.listItemContainer} onClick={() => this.setState({ selectedItem: item })}>
+      <div
+        className={styles.listItemContainer}
+        onClick={() => this.setState({ selectedItem: item })}
+      >
         <input
           tabIndex="-1"
           id={`list-item-radio-${item.id}`}
@@ -24,22 +27,22 @@ class ItemsListComponent extends Component {
           checked={this.state.selectedItem.id === item.id}
         />
         <span className={styles.radioButton} />
-        {item.imageUrl ? <img className={styles.listItemImage} src={item.imageUrl} alt="List item image" /> : getItemsListPlaceholder()}
+        {item.imageUrl ? (
+          <img className={styles.listItemImage} src={item.imageUrl} alt={item.title} />
+        ) : (
+          getItemsListPlaceholder()
+        )}
 
         <div className={styles.actionItemsContainer}>
           <h5>{item.title}</h5>
           <h6>{new Date(item.subtitle).toDateString()}</h6>
         </div>
       </div>
-    )
+    );
   }
 
   render() {
-    return (
-      <>
-        {this.props.items.map(item => this.renderListItem(item))}
-      </>
-    );
+    return <>{this.props.items.map(item => this.renderListItem(item))}</>;
   }
 }
 
