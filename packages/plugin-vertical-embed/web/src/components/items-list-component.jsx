@@ -9,15 +9,16 @@ class ItemsListComponent extends Component {
     selectedItem: this.props.items[0] || {},
   };
 
-  onSelectionChange() {
-    this.props.onSelectionChange(this.state.selectedItem);
+  onSelectionChange(item) {
+    this.setState({ selectedItem: item });
+    this.props.onSelectionChange(item);
   }
 
   renderListItem(item) {
     return (
       <div
         className={styles.listItemContainer}
-        onClick={() => this.setState({ selectedItem: item })}
+        onClick={() => this.onSelectionChange(item)}
       >
         <input
           tabIndex="-1"
