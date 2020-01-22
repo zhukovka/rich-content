@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { EditorState } from 'draft-js';
 import { isEmpty } from 'lodash';
 import { mergeStyles } from 'wix-rich-content-common';
 import { createBlock, setSelectionToBlock } from '../Utils/draftUtils.js';
@@ -24,6 +23,9 @@ export default ({
   isMobile,
   pluginDefaults,
 }) => {
+  const galleryType = 'wix-draft-plugin-gallery';
+  const galleryData = pluginDefaults[galleryType];
+
   class InsertPluginButton extends React.PureComponent {
     constructor(props) {
       super(props);
@@ -92,15 +94,9 @@ export default ({
       }
     };
 
-    shouldCreateGallery = blockType => null;
-
     handleFileChange = files => {
       if (files.length > 0) {
-        const galleryType = 'wix-draft-plugin-gallery';
-        const galleryData = pluginDefaults[galleryType];
-        const shouldCreateGallery =
-          blockType === galleryType ||
-          (galleryData && settings.createGalleryForMultipleImages && files.length > 1);
+        const shouldCreateGallery = this.getShouldCreateGallery(files);
 
         let data = button.componentData;
         let type = blockType;
@@ -109,9 +105,17 @@ export default ({
           data = galleryData;
           type = galleryType;
         }
+        this.addGallery(files);
         this.addBlocksFromFiles(files, data, type);
       }
     };
+
+    getShouldCreateGallery(files) {
+      return (
+        blockType === galleryType ||
+        (galleryData && settings.createGalleryForMultipleImages && files.length > 1)
+      );
+    }
 
     handleExternalFileChanged = (data, error) => {
       if (data) {
