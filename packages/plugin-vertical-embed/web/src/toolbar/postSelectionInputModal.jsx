@@ -91,9 +91,9 @@ export default class PostSelectionInputModal extends Component {
               }}
               onKeyPress={this.handleKeyPress}
               onChange={this.onInputChange}
-              placeholder={t('VideoUploadModal_Input_Placeholder')}
+              placeholder={t('Select_Blog_Post_Search_Placeholder')}
               theme={styles}
-              data-hook="videoUploadModalInput"
+              data-hook="blogPostSearchInput"
             />
           </div>
           {posts && posts.length > 0 && <ItemsListComponent items={posts} onSelectionChange={selectedPost => this.setState({ selectedPost })} />}
@@ -105,10 +105,10 @@ export default class PostSelectionInputModal extends Component {
             className={styles.actionButton}
             onClick={() => this.onCloseRequested()}
           >
-            Cancel
+            {t('Select_Blog_Post_Modal_Cancel')}
           </Button>
           <Button className={styles.actionButton} onClick={() => this.onConfirm()}>
-            Choose
+            {t('Select_Blog_Post_Modal_Confirm')}
           </Button>
         </div>
       </div>

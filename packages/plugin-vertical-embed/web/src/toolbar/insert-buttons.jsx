@@ -12,12 +12,14 @@ import {
 } from './selectionModalCustomStyles';
 
 export default ({ helpers, t, settings, isMobile }) => {
+  // TODO Change icon
   const icon = InsertPluginIcon;
   const customStyles =
     (!isMobile || settings.enableCustomUploadOnMobile) &&
-    (settings.handleFileSelection || settings.handleFileUpload)
+      (settings.handleFileSelection || settings.handleFileUpload)
       ? ExtendedSelectionModalCustomStyle
       : SelectionModalCustomStyle;
+
   return [
     {
       type: 'modal',
