@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { EditorState } from 'draft-js';
 import { isEmpty } from 'lodash';
 import { mergeStyles } from 'wix-rich-content-common';
-import { createBlock } from '../Utils/draftUtils.js';
+import { createBlock, setSelectionToBlock } from '../Utils/draftUtils.js';
 import classNames from 'classnames';
 import FileInput from '../Components/FileInput';
 import ToolbarButton from '../Components/ToolbarButton';
@@ -46,13 +46,9 @@ export default ({
 
     addBlock = data => {
       const { getEditorState, setEditorState } = this.props;
-      const { newBlock, newSelection, newEditorState } = this.createBlock(
-        getEditorState(),
-        data,
-        blockType
-      );
-      setEditorState(EditorState.forceSelection(newEditorState, newSelection));
-      return { newBlock, newSelection, newEditorState };
+      const { block, editorState } = this.createBlock(getEditorState(), data, blockType);
+      setEditorState(setSelectionToBlock(editorState, block));
+      return { block };
     };
 
     addCustomBlock = buttonData => {
@@ -65,22 +61,18 @@ export default ({
       return createBlock(editorState, data, type);
     };
 
-    createBlocksFromFiles = (files, data, type) => {
+    addBlocksFromFiles = (files, data, type) => {
+      const { setEditorState } = this.props;
       let editorState = this.props.getEditorState();
-      let selection;
+      let firstBlock;
       files.forEach(file => {
-        const { newBlock, newSelection, newEditorState } = this.createBlock(
-          editorState,
-          data,
-          type
-        );
+        const { block, editorState: newEditorState } = this.createBlock(editorState, data, type);
         editorState = newEditorState;
-        selection = selection || newSelection;
+        firstBlock = firstBlock || block;
         const state = { userSelectedFiles: { files: Array.isArray(file) ? file : [file] } };
-        commonPubsub.set('initialState_' + newBlock.getKey(), state);
+        commonPubsub.set('initialState_' + block.getKey(), state);
       });
-
-      return { newEditorState: editorState, newSelection: selection };
+      setEditorState(setSelectionToBlock(editorState, firstBlock));
     };
 
     onClick = event => {
@@ -100,8 +92,9 @@ export default ({
       }
     };
 
+    shouldCreateGallery = blockType => null;
+
     handleFileChange = files => {
-      const { setEditorState } = this.props;
       if (files.length > 0) {
         const galleryType = 'wix-draft-plugin-gallery';
         const galleryData = pluginDefaults[galleryType];
@@ -109,11 +102,14 @@ export default ({
           blockType === galleryType ||
           (galleryData && settings.createGalleryForMultipleImages && files.length > 1);
 
-        const { newEditorState, newSelection } = shouldCreateGallery
-          ? this.createBlocksFromFiles([files], galleryData, galleryType)
-          : this.createBlocksFromFiles(files, button.componentData, blockType);
-
-        setEditorState(EditorState.forceSelection(newEditorState, newSelection));
+        let data = button.componentData;
+        let type = blockType;
+        if (shouldCreateGallery) {
+          files = [files];
+          data = galleryData;
+          type = galleryType;
+        }
+        this.addBlocksFromFiles(files, data, type);
       }
     };
 
@@ -123,8 +119,8 @@ export default ({
           data.error = error;
         }
 
-        const { newBlock } = this.addBlock(button.componentData || {});
-        const blockKey = newBlock.getKey();
+        const { block } = this.addBlock(button.componentData || {});
+        const blockKey = block.getKey();
         setTimeout(() => pubsub.getBlockHandler('handleFilesAdded', blockKey)(blockKey, data));
       }
     };

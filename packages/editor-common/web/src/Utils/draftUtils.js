@@ -221,31 +221,34 @@ export const replaceWithEmptyBlock = (editorState, blockKey) => {
 //   );
 // };
 
-export const createBlockAndFocus = (editorState, data, pluginType) => {
-  const { newBlock, newSelection, newEditorState } = createBlock(editorState, data, pluginType);
-  window.getSelection().removeAllRanges();
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({
-        newEditorState: EditorState.forceSelection(newEditorState, newSelection),
-        newBlock,
-      });
-    }, 0);
-  });
-};
+// export const createBlockAndFocus = (editorState, data, pluginType) => {
+//   const { newBlock, newSelection, newEditorState } = createBlock(editorState, data, pluginType);
+//   window.getSelection().removeAllRanges();
+//   return new Promise(resolve => {
+//     setTimeout(() => {
+//       resolve({
+//         newEditorState: EditorState.forceSelection(newEditorState, newSelection),
+//         newBlock,
+//       });
+//     }, 0);
+//   });
+// };
+
+export function setSelectionToBlock(editorState, block) {
+  const selection = SelectionState.createEmpty(block.getKey());
+  return setSelection(editorState, selection);
+}
 
 export const createBlock = (editorState, data, type) => {
-  const currentEditorState = editorState;
-  const contentState = currentEditorState.getCurrentContent();
+  const contentState = editorState.getCurrentContent();
   const contentStateWithEntity = contentState.createEntity(type, 'IMMUTABLE', cloneDeep(data));
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-  const newEditorState = AtomicBlockUtils.insertAtomicBlock(currentEditorState, entityKey, ' ');
+  const newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
   const recentlyCreatedKey = newEditorState.getSelection().getAnchorKey();
   // when adding atomic block, there is the atomic itself, and then there is a text block with one space,
   // so get the block before the space
-  const newBlock = newEditorState.getCurrentContent().getBlockBefore(recentlyCreatedKey);
-  const newSelection = SelectionState.createEmpty(newBlock.getKey());
-  return { newBlock, newSelection, newEditorState };
+  const block = newEditorState.getCurrentContent().getBlockBefore(recentlyCreatedKey);
+  return { block, editorState: newEditorState };
 };
 
 export const deleteBlock = (editorState, blockKey) => {
@@ -401,5 +404,5 @@ export function getBlockInfo(editorState, blockKey) {
 }
 
 export function setSelection(editorState, selection) {
-  return EditorState.acceptSelection(editorState, selection);
+  return EditorState.forceSelection(editorState, selection);
 }
