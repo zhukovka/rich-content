@@ -194,14 +194,19 @@ Cypress.Commands.add('setAnchor', (selection, anchorName) => {
     .click();
 });
 
-Cypress.Commands.add('setLinkToAnchor', selection => {
+Cypress.Commands.add('removeAnchor', selection => {
+  cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.ANCHOR, selection)
+    .get(`[data-hook=anchorPanelContainerRemove]`)
+    .click();
+});
+
+Cypress.Commands.add('setLinkToAnchor', (selection, indexFromAnchorList) => {
   cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.LINK, selection)
     .get(`[data-hook=linkPanelContainerAnchorTab]`)
     .click()
     .get(`[data-hook=linkPanelContainer] [data-hook=anchorLinkPanelInput]`)
     .click()
-    .get(`[data-hook=linkPanelDropdownList]`)
-    .children()
+    .get(`[data-hook=linkPanelDropdownListItem${indexFromAnchorList}]`)
     .click()
     .get(`[data-hook=linkPanelContainerDone]`)
     .click();

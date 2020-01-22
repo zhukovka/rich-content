@@ -75,7 +75,11 @@ describe('text', () => {
   it('allow to create anchor and link to anchor', function() {
     cy.loadEditorAndViewer('plain')
       .setAnchor([0, 10], 'blabla')
-      .setLinkToAnchor([310, 10]);
+      .setLinkToAnchor([310, 10], 0)
+      .setAnchor([220, 10], 'blabla2')
+      .setAnchor([555, 5], 'blabla3')
+      .removeAnchor([555, 5])
+      .setLinkToAnchor([600, 10], 1);
     cy.eyesCheckWindow(this.test.title);
   });
 });

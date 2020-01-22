@@ -36,6 +36,7 @@ class ItemRenderer extends PureComponent {
     const item = items[index];
     return (
       <div
+        data-hook={`linkPanelDropdownListItem${index}`}
         {...getItemProps({
           item,
           index,
@@ -124,26 +125,24 @@ export class LinkPanelDropdown extends Component {
               <input {...getInputProps(textInputProps)} readOnly style={{ cursor: 'pointer' }} />
             )}
             {(isOpen || this.props.isOpen) && (
-              <div data-hook="linkPanelDropdownList">
-                <List
-                  className={styles.linkPanel_dropdownList}
-                  style={{ borderTop: '0', position: 'absolute' }}
-                  height={Math.min(items.length * itemHeight + 1, withoutSearch ? 150 : 200)}
-                  itemCount={items.length}
-                  itemSize={itemHeight}
-                  itemData={{
-                    items,
-                    getItemProps,
-                    highlightedIndex,
-                    selectedItem,
-                    formatMenuItem,
-                    inputValue,
-                  }}
-                  {...getMenuProps()}
-                >
-                  {ItemRenderer}
-                </List>
-              </div>
+              <List
+                className={styles.linkPanel_dropdownList}
+                style={{ borderTop: '0', position: 'absolute' }}
+                height={Math.min(items.length * itemHeight + 1, withoutSearch ? 150 : 200)}
+                itemCount={items.length}
+                itemSize={itemHeight}
+                itemData={{
+                  items,
+                  getItemProps,
+                  highlightedIndex,
+                  selectedItem,
+                  formatMenuItem,
+                  inputValue,
+                }}
+                {...getMenuProps()}
+              >
+                {ItemRenderer}
+              </List>
             )}
           </div>
         )}

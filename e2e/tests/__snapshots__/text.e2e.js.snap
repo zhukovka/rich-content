@@ -475,7 +475,13 @@ exports[`text > allow to create anchor and link to anchor #0`] =
     {
       "data": {},
       "depth": 0,
-      "entityRanges": [],
+      "entityRanges": [
+        {
+          "key": 1,
+          "length": 106,
+          "offset": 0
+        }
+      ],
       "inlineStyleRanges": [],
       "key": 1,
       "text": "Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.",
@@ -486,7 +492,7 @@ exports[`text > allow to create anchor and link to anchor #0`] =
       "depth": 0,
       "entityRanges": [
         {
-          "key": 1,
+          "key": 2,
           "length": 10,
           "offset": 8
         }
@@ -514,8 +520,20 @@ exports[`text > allow to create anchor and link to anchor #0`] =
     {
       "data": {},
       "depth": 0,
-      "entityRanges": [],
-      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "key": 3,
+          "length": 10,
+          "offset": 71
+        }
+      ],
+      "inlineStyleRanges": [
+        {
+          "length": 10,
+          "offset": 71,
+          "style": "UNDERLINE"
+        }
+      ],
       "key": 4,
       "text": "User generated content in real-time will have multiple touchpoints for offshoring.",
       "type": "unstyled"
@@ -559,9 +577,26 @@ exports[`text > allow to create anchor and link to anchor #0`] =
     },
     "1": {
       "data": {
+        "name": "blabla2",
+        "target": "_self"
+      },
+      "mutability": "MUTABLE",
+      "type": "wix-draft-plugin-anchor"
+    },
+    "2": {
+      "data": {
         "rel": "noopener",
         "target": "_self",
         "url": "blabla"
+      },
+      "mutability": "MUTABLE",
+      "type": "LINK"
+    },
+    "3": {
+      "data": {
+        "rel": "noopener",
+        "target": "_self",
+        "url": "blabla2"
       },
       "mutability": "MUTABLE",
       "type": "LINK"
