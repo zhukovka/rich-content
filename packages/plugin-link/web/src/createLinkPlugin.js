@@ -10,30 +10,39 @@ import { LINK_TYPE } from './types';
 import { Component } from './LinkComponent';
 import { linkEntityStrategy } from './strategy';
 import createLinkToolbar from './toolbar/createLinkToolbar';
+import { EditorState } from 'draft-js';
 
 const createLinkPlugin = (config = {}) => {
   const type = LINK_TYPE;
-  const { theme, anchorTarget, relValue, [type]: settings = {}, ...rest } = config;
+  const { setEditorState, theme, anchorTarget, relValue, [type]: settings = {}, ...rest } = config;
   settings.minLinkifyLength = settings.minLinkifyLength || 6;
   const toolbar = createLinkToolbar(config);
 
   const decorators = [{ strategy: linkEntityStrategy, component: Component }];
   let linkifyData;
+  const { preview } = settings;
+
   const handleReturn = (event, editorState) => {
     linkifyData = getLinkifyData(editorState);
-    const { preview } = settings;
     if (linkifyData && preview?.enable) {
       const url = getBlockLinkUrl(linkifyData);
-      // url &&
-      //   preview.fetchLinkMetdata(linkifyData.url)
-      //     .then(({ title, description, thumbnail_url }) => {
-      //       if (!!title || !!description || !!thumbnail_url) {
-      //         linkifyData.preview = true;
-      //       }
-      //     });
       if (url) {
-        linkifyData.preview = true;
-        linkifyData.url = url;
+        const withoutLinkBlock = deleteBlock(editorState, linkifyData.block.key);
+        return preview.fetchMetadata(url).then(({ title, description, thumbnail_url }) => {
+          let newEditorState;
+          if (title && thumbnail_url) {
+            newEditorState = addLinkPreview(
+              withoutLinkBlock,
+              config,
+              title,
+              description,
+              thumbnail_url,
+              url
+            );
+            linkifyData = false;
+            setEditorState(EditorState.createWithContent(newEditorState.getCurrentContent()));
+          }
+        });
       }
     }
   };
@@ -63,11 +72,8 @@ const createLinkPlugin = (config = {}) => {
     let newEditorState = editorState;
     if (isPasteChange(editorState)) {
       newEditorState = fixPastedLinks(editorState, { anchorTarget, relValue });
-    } else if (linkifyData && !linkifyData.preview) {
+    } else if (linkifyData && !linkifyData?.preview) {
       newEditorState = addLinkAt(linkifyData, editorState);
-    } else if (linkifyData?.preview) {
-      const withoutLinkBlock = deleteBlock(editorState, linkifyData.block.key);
-      newEditorState = addLinkPreview(withoutLinkBlock, config, linkifyData.string);
     }
     linkifyData = false;
     return newEditorState;

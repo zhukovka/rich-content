@@ -10,8 +10,29 @@
         "title": "URL",
         "default": "",
         "examples": ["wix.com"]
+      },
+      "title": {
+        "$id": "/properties/title",
+        "type": "string",
+        "title": "title",
+        "default": "",
+        "examples": ["Free Website Builder | Create a Free Website"]
+      },
+      "description": {
+        "$id": "/properties/description",
+        "type": "string",
+        "title": "description",
+        "default": "",
+        "examples": ["Create a free website with Wix.com. Choose a stunning template and customize anything with the Wix website builder—no coding skills needed. Create yours today!"]
+      },
+      "thumbnail_url": {
+        "$id": "/properties/thumbnail_url",
+        "type": "string",
+        "title": "thumbnail_url",
+        "default": "",
+        "examples": ["https://static.wixstatic.com/media/5305c5_5f112df56dcd40a29e855baae08f19ce~mv2.jpg/v1/fill/w_600,h_315,al_c/5305c5_5f112df56dcd40a29e855baae08f19ce~mv2.jpg"]
       }
     },
-    "required": ["url"]
+    "required": ["url", "title", "thumbnail_url"]
   }
-  
+

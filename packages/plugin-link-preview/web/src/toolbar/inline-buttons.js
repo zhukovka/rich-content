@@ -1,9 +1,16 @@
 import { SelectionState, EditorState, Modifier } from 'draft-js';
-import { getCurrentBlock, TrashIcon, replaceWithEmptyBlock } from 'wix-rich-content-editor-common';
+import {
+  getCurrentBlock,
+  replaceWithEmptyBlock,
+  LinkIcon,
+  insertLinkInPosition,
+  BUTTONS,
+} from 'wix-rich-content-editor-common';
 
-const onDeletePreview = editorState => {
+const onConvertToLink = (editorState, setEditorState) => {
   // preserve url
   let currentBlock = getCurrentBlock(editorState);
+  const blockKey = currentBlock.key;
   const entityKey = currentBlock.getEntityAt(0);
   const entityData = editorState
     .getCurrentContent()
@@ -32,17 +39,37 @@ const onDeletePreview = editorState => {
     contentState = Modifier.removeRange(contentState, selectionRange, 'forward');
   }
   newState = EditorState.push(newState, contentState, 'change-block-type');
-  return EditorState.forceSelection(newState, contentState.getSelectionAfter());
+  // change the url from plain text to a link
+  const editorStateWithLink = insertLinkInPosition(
+    EditorState.push(newState, newState.getCurrentContent(), 'change-block-type'),
+    blockKey,
+    0,
+    url.length,
+    {
+      url,
+    }
+  );
+  EditorState.push(
+    editorStateWithLink,
+    editorStateWithLink.getCurrentContent(),
+    'change-block-type'
+  );
+  setEditorState(EditorState.createWithContent(editorStateWithLink.getCurrentContent()));
 };
 
 export default (settings, setEditorState, getEditorState) => [
   {
-    keyName: 'deletePreview',
+    keyName: 'delete',
+    type: BUTTONS.DELETE,
+    mobile: true,
+  },
+  {
+    keyName: 'convertToLink',
     type: 'custom',
-    icon: TrashIcon,
+    icon: LinkIcon,
     onClick: () => {
       const editorState = getEditorState();
-      setEditorState(onDeletePreview(editorState));
+      onConvertToLink(editorState, setEditorState);
     },
     mobile: true,
     desktop: true,

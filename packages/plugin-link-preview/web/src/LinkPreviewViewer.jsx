@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isEqual } from 'lodash';
 import {
-  normalizeUrl,
   mergeStyles,
   validate,
   Context,
@@ -35,9 +34,7 @@ class LinkPreviewViewer extends Component {
   async componentDidMount() {
     validate(pluginLinkPreviewSchema, this.props.componentData);
     if (!this.state.metadata) {
-      const url = normalizeUrl(this.props.componentData.url);
-      const metadata = await this.props.settings.fetchMetadata(url);
-      this.setState({ metadata });
+      this.setState({ metadata: this.props.componentData });
     }
   }
 
