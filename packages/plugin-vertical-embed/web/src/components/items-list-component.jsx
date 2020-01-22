@@ -9,8 +9,8 @@ class ItemsListComponent extends Component {
     selectedItem: this.props.items[0] || {},
   };
 
-  onConfirm() {
-    //confirm logic with this.state.selectedItem
+  onSelectionChange() {
+    this.props.onSelectionChange(this.state.selectedItem);
   }
 
   renderListItem(item) {
@@ -30,8 +30,8 @@ class ItemsListComponent extends Component {
         {item.imageUrl ? (
           <img className={styles.listItemImage} src={item.imageUrl} alt={item.title} />
         ) : (
-          getItemsListPlaceholder()
-        )}
+            getItemsListPlaceholder()
+          )}
 
         <div className={styles.actionItemsContainer}>
           <h5>{item.title}</h5>

@@ -9,6 +9,7 @@ export default class PostSelectionInputModal extends Component {
   state = {
     errorMsg: '',
     posts: [],
+    selectedPost: null,
   };
   styles = mergeStyles({ styles, theme: this.props.theme });
 
@@ -31,7 +32,7 @@ export default class PostSelectionInputModal extends Component {
     this.search();
   }
 
-  handleKeyPress = () => {};
+  handleKeyPress = () => { };
 
   currentAbortController = null;
   async search(query) {
@@ -54,8 +55,13 @@ export default class PostSelectionInputModal extends Component {
 
   onInputChange = e => this.search(e.target.value);
 
-  // TODO
-  onConfirm = () => {};
+  onConfirm = () => {
+    const { onConfirm, componentData } = this.props;
+    if (onConfirm) {
+      onConfirm({ ...componentData, selectedPost: this.state.selectedPost || this.state.posts[0] });
+      this.onCloseRequested();
+    }
+  };
 
   handleKeyPress = e => {
     if (e.charCode === 13) {
@@ -90,7 +96,7 @@ export default class PostSelectionInputModal extends Component {
               data-hook="videoUploadModalInput"
             />
           </div>
-          {posts && posts.length > 0 && <ItemsListComponent items={posts} />}
+          {posts && posts.length > 0 && <ItemsListComponent items={posts} onSelectionChange={selectedPost => this.setState({ selectedPost })} />}
         </div>
 
         <div className={styles.actionButtonsContainer}>

@@ -6,6 +6,7 @@ import { isEqual } from 'lodash';
 import { getConfig } from '../toolbar/selectors';
 import { customClassName } from '../classNameStrategies';
 import styles from '../../statics/styles/vertical-embed-viewer.rtlignore.scss';
+import LinkPreviewViewer from './LinkPreviewViewer';
 
 class VerticalEmbedComponent extends PureComponent {
   static customClassName = (componentData, theme, styles, isMobile) =>
@@ -44,9 +45,15 @@ class VerticalEmbedComponent extends PureComponent {
       this.context.isMobile && this.styles['vertical-embed-container--mobile'],
       this.props.className
     );
+    const post = this.props.componentData.selectedPost;
+    const metadata = { title: post.title, url: `${window.location.href}/post/${post.slug}`, description: post.excerpt };
+
+    // TODO: Modify this to properly use LinkPreviewViewer when it's finished
     return (
       <div className={className} data-hook="vertical-embed">
-        Vertical embed plugin!
+        <LinkPreviewViewer
+          componentData={this.props.componentData}
+          settings={{ fetchMetadata: () => Promise.resolve(metadata) }}></LinkPreviewViewer>
       </div>
     );
   }
