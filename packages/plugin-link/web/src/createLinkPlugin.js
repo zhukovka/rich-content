@@ -29,9 +29,8 @@ const createLinkPlugin = (config = {}) => {
       if (url) {
         const withoutLinkBlock = deleteBlock(editorState, linkifyData.block.key);
         return preview.fetchMetadata(url).then(({ title, description, thumbnail_url }) => {
-          let newEditorState;
           if (title && thumbnail_url) {
-            newEditorState = addLinkPreview(
+            const newEditorState = addLinkPreview(
               withoutLinkBlock,
               config,
               title,
@@ -39,8 +38,10 @@ const createLinkPlugin = (config = {}) => {
               thumbnail_url,
               url
             );
+            setEditorState(
+              EditorState.forceSelection(newEditorState, newEditorState.getSelection())
+            );
             linkifyData = false;
-            setEditorState(EditorState.createWithContent(newEditorState.getCurrentContent()));
           }
         });
       }

@@ -14,7 +14,6 @@ class LinkPreviewViewer extends Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
     settings: PropTypes.shape({
-      fetchMetadata: PropTypes.func.isRequired,
       disableOembed: PropTypes.bool,
     }).isRequired,
   };
@@ -33,21 +32,16 @@ class LinkPreviewViewer extends Component {
 
   async componentDidMount() {
     validate(pluginLinkPreviewSchema, this.props.componentData);
-    if (!this.state.metadata) {
-      this.setState({ metadata: this.props.componentData });
-    }
   }
 
   render() {
     this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
-    if (!this.state.metadata) {
-      return null;
-    }
-    const { title, description, thumbnail_url, url, html } = this.state.metadata;
+    const {
+      componentData: { title, description, thumbnail_url, url, html },
+    } = this.props;
     if (!this.props.settings.disableOembed && html) {
       return <div dangerouslySetInnerHTML={{ __html: html }} />; //eslint-disable-line
     }
-
     const { anchorTarget, relValue } = this.context;
     const {
       linkPreview_link,
@@ -56,21 +50,38 @@ class LinkPreviewViewer extends Component {
       linkPreview_title,
       linkPreview_image,
       linkPreview_description,
-      linkPreview_footer,
+      linkPreview_url,
     } = this.styles;
+    const { imageRatio } = this.state;
+    if (!imageRatio) {
+      this.setState(
+        { imageRatio: document.getElementById('linkPreviewSection')?.offsetHeight },
+        () => this.forceUpdate()
+      );
+    }
     return (
       <a className={linkPreview_link} href={url} target={anchorTarget} rel={relValue}>
-        <figure className={linkPreview}>
+        <figure className={linkPreview} id="linkPreviewSection">
+          <div
+            style={{
+              height: imageRatio,
+              width: imageRatio,
+              backgroundImage: `url(${thumbnail_url})`,
+            }}
+            className={linkPreview_image}
+            alt={title}
+          />
           <section className={linkPreview_info}>
+            <div className={linkPreview_url}>{url}</div>
             <figcaption className={linkPreview_title}>
-              <ReadMore lines={1} text={title} label="" />
+              <ReadMore lines={2} text={title} label="" />
             </figcaption>
-            <p className={linkPreview_description}>
-              <ReadMore text={description} label="" />
-            </p>
-            <footer className={linkPreview_footer}>{url}</footer>
+            {description && (
+              <div className={linkPreview_description}>
+                <ReadMore lines={1} text={description} label="" />
+              </div>
+            )}
           </section>
-          <img className={linkPreview_image} src={thumbnail_url} alt={title} />
         </figure>
       </a>
     );

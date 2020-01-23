@@ -1,13 +1,18 @@
 .linkPreview {
   margin: 0;
   width: 100%;
-  display: flex;
+  display: table;
   justify-content: space-between;
   cursor: pointer;
+  border: 1px solid #ededed;
+  max-height: 170px;
+  overflow: hidden;
 }
 
 .linkPreview_image {
-  width: 25%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   border: solid 1px #ededed;
 }
 
@@ -16,22 +21,30 @@
 }
 
 .linkPreview_info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 1px solid #ededed;
-  padding: 1em;
+  padding: 20px 28px 20px 28px;
+  width: 100%;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .linkPreview_title {
   font-weight: bold;
   align-self: flex-start;
+  font-size: 20px;
+  line-height: 28px;
+  padding: 8px 0px 12px 0px;
+}
+
+.linkPreview_description,
+.linkPreview_url {
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .linkPreview_description {
+  align-self: flex-end;
 }
 
-.linkPreview_footer {
-  color: #999;
-  align-self: flex-end;
+.linkPreview_url {
+  align-self: flex-start;
 }

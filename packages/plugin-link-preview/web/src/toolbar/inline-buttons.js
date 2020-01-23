@@ -7,7 +7,7 @@ import {
   BUTTONS,
 } from 'wix-rich-content-editor-common';
 
-const onConvertToLink = (editorState, setEditorState) => {
+const onConvertToLink = editorState => {
   // preserve url
   let currentBlock = getCurrentBlock(editorState);
   const blockKey = currentBlock.key;
@@ -29,13 +29,13 @@ const onConvertToLink = (editorState, setEditorState) => {
   currentBlock = contentState.getBlockForKey(currentBlock.key);
   const nextBlock = contentState.getBlockAfter(currentBlock.key);
   // delte empty block after preview
+  const selectionRange = new SelectionState({
+    anchorKey: currentBlock.key,
+    anchorOffset: currentBlock.text.length,
+    focusKey: nextBlock.key,
+    focusOffset: 1,
+  });
   if (nextBlock && nextBlock.text.length === 0) {
-    const selectionRange = new SelectionState({
-      anchorKey: currentBlock.key,
-      anchorOffset: currentBlock.text.length,
-      focusKey: nextBlock.key,
-      focusOffset: 1,
-    });
     contentState = Modifier.removeRange(contentState, selectionRange, 'forward');
   }
   newState = EditorState.push(newState, contentState, 'change-block-type');
@@ -54,7 +54,7 @@ const onConvertToLink = (editorState, setEditorState) => {
     editorStateWithLink.getCurrentContent(),
     'change-block-type'
   );
-  setEditorState(EditorState.createWithContent(editorStateWithLink.getCurrentContent()));
+  return EditorState.forceSelection(editorStateWithLink, selectionRange);
 };
 
 export default (settings, setEditorState, getEditorState) => [
@@ -69,7 +69,7 @@ export default (settings, setEditorState, getEditorState) => [
     icon: LinkIcon,
     onClick: () => {
       const editorState = getEditorState();
-      onConvertToLink(editorState, setEditorState);
+      setEditorState(onConvertToLink(editorState));
     },
     mobile: true,
     desktop: true,
