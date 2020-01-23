@@ -6,25 +6,16 @@ import {
 import { InsertPluginIcon } from '../icons';
 import PostSelectionInputModal from './postSelectionInputModal';
 import { DEFAULTS } from '../constants';
-import {
-  SelectionModalCustomStyle,
-  ExtendedSelectionModalCustomStyle,
-} from './selectionModalCustomStyles';
 
 export default ({ helpers, t, settings, isMobile }) => {
-  // TODO Change icon
+  // TODO: Change icon
   const icon = InsertPluginIcon;
-  const customStyles =
-    (!isMobile || settings.enableCustomUploadOnMobile) &&
-      (settings.handleFileSelection || settings.handleFileUpload)
-      ? ExtendedSelectionModalCustomStyle
-      : SelectionModalCustomStyle;
 
   return [
     {
       type: 'modal',
       name: 'VerticalEmbed',
-      tooltipText: t('Vertical embed plugin'),
+      tooltipText: t('Vertical_Embed_Toolbar_Tooltip'),
       toolbars: [TOOLBARS.FOOTER, TOOLBARS.SIDE],
       Icon: icon,
       componentData: DEFAULTS,
@@ -32,7 +23,6 @@ export default ({ helpers, t, settings, isMobile }) => {
       t,
       modalElement: decorateComponentWithProps(PostSelectionInputModal, settings),
       modalStyles: getModalStyles({
-        customStyles,
         fullScreen: false,
         isMobile,
       }),

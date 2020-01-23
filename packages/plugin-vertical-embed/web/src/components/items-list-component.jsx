@@ -21,7 +21,6 @@ class ItemsListComponent extends Component {
         onClick={() => this.onSelectionChange(item)}
       >
         <input
-          tabIndex="-1"
           id={`list-item-radio-${item.id}`}
           className={styles.radioInput}
           type={'radio'}
@@ -36,7 +35,7 @@ class ItemsListComponent extends Component {
 
         <div className={styles.actionItemsContainer}>
           <h5>{item.title}</h5>
-          <h6>{new Date(item.subtitle).toDateString()}</h6>
+          <h6>{item.subtitle}</h6>
         </div>
       </div>
     );

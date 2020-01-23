@@ -5,6 +5,7 @@ import { mergeStyles } from 'wix-rich-content-common';
 import styles from '../../statics/styles/post-selection-input-modal.scss';
 import ItemsListComponent from '../components/items-list-component';
 
+// TODO: You may want to make this component a generic item selection modal, rather than a post selection modal
 export default class PostSelectionInputModal extends Component {
   state = {
     errorMsg: '',
@@ -57,10 +58,12 @@ export default class PostSelectionInputModal extends Component {
 
   onConfirm = () => {
     const { onConfirm, componentData } = this.props;
-    if (onConfirm) {
-      onConfirm({ ...componentData, selectedPost: this.state.selectedPost || this.state.posts[0] });
-      this.onCloseRequested();
+    if (!onConfirm) {
+      return;
     }
+
+    onConfirm({ ...componentData, selectedPost: this.state.selectedPost || this.state.posts[0] });
+    this.onCloseRequested();
   };
 
   handleKeyPress = e => {

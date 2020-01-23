@@ -237,5 +237,6 @@
   "Select_Blog_Post_Title": "Select blog post",
   "Select_Blog_Post_Search_Placeholder": "Search for blog posts...",
   "Select_Blog_Post_Modal_Cancel": "Cancel",
-  "Select_Blog_Post_Modal_Confirm": "Choose"
+  "Select_Blog_Post_Modal_Confirm": "Choose",
+  "Vertical_Embed_Toolbar_Tooltip": "Vertical embed plugin"
 }
