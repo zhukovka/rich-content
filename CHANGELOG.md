@@ -22,6 +22,8 @@
   - `image`
     - [#563](https://github.com/wix-incubator/rich-content/pull/563) in-plugin editing enabled for caption
   ### :bug: Bug Fix
+  - `image`
+    - [#622](https://github.com/wix-incubator/rich-content/pull/622) fix ssr blurry image
   - `general`
     - [#574](https://github.com/wix-incubator/rich-content/pull/574) improve custom icon API
   - `giphy`
