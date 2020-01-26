@@ -41,6 +41,8 @@
     - [#613](https://github.com/wix-incubator/rich-content/pull/613) Fix native upload video
   - `gallery`
     - [#602](https://github.com/wix-incubator/rich-content/pull/602) replace gallery image from settings bug
+  - `common`
+    - [#620](https://github.com/wix-incubator/rich-content/pull/620) backward compatibility for legacy image custom size
     - [#606](https://github.com/wix-incubator/rich-content/pull/606) infinite loader in gallery settings images (in blog, mobile app)
   ### :house: Internal
   - `general`
