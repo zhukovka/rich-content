@@ -34,6 +34,9 @@ class LinkPreviewViewer extends Component {
     validate(pluginLinkPreviewSchema, this.props.componentData);
   }
 
+  handleIframeLoad = () => {
+    this.iframe.style.height = this.iframe.contentWindow.document.body.scrollHeight + 'px';
+  };
   render() {
     this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
     const {
@@ -41,7 +44,14 @@ class LinkPreviewViewer extends Component {
       settings,
     } = this.props;
     if (!settings.disableOembed && html) {
-      return <div dangerouslySetInnerHTML={{ __html: html }} />; //eslint-disable-line
+      return (
+        <iframe
+          title="oembed content"
+          srcDoc={html}
+          ref={ref => (this.iframe = ref)}
+          onLoad={this.handleIframeLoad}
+        />
+      );
     }
     const { anchorTarget, relValue } = this.context;
     const {
