@@ -28,16 +28,11 @@ const createLinkPlugin = (config = {}) => {
       const url = getBlockLinkUrl(linkifyData);
       if (url) {
         const withoutLinkBlock = deleteBlock(editorState, linkifyData.block.key);
-        return preview.fetchMetadata(url).then(({ title, description, thumbnail_url }) => {
-          if (title && thumbnail_url) {
-            const newEditorState = addLinkPreview(
-              withoutLinkBlock,
-              config,
-              title,
-              description,
-              thumbnail_url,
-              url
-            );
+        return preview.fetchMetadata(url).then(linkPreviewData => {
+          const { title, thumbnail_url, html } = linkPreviewData;
+          linkPreviewData.url = url;
+          if ((title && thumbnail_url) || html) {
+            const newEditorState = addLinkPreview(withoutLinkBlock, config, linkPreviewData);
             setEditorState(
               EditorState.forceSelection(newEditorState, newEditorState.getSelection())
             );

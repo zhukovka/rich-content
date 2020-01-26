@@ -38,8 +38,9 @@ class LinkPreviewViewer extends Component {
     this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
     const {
       componentData: { title, description, thumbnail_url, url, html },
+      settings,
     } = this.props;
-    if (!this.props.settings.disableOembed && html) {
+    if (!settings.disableOembed && html) {
       return <div dangerouslySetInnerHTML={{ __html: html }} />; //eslint-disable-line
     }
     const { anchorTarget, relValue } = this.context;
