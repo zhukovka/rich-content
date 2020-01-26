@@ -36,6 +36,7 @@ class LinkPreviewViewer extends Component {
 
   handleIframeLoad = () => {
     this.iframe.style.height = this.iframe.contentWindow.document.body.scrollHeight + 'px';
+    this.iframe.style.width = this.iframe.contentWindow.document.body.scrollWidth + 'px';
   };
   render() {
     this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
@@ -43,17 +44,7 @@ class LinkPreviewViewer extends Component {
       componentData: { title, description, thumbnail_url, url, html },
       settings,
     } = this.props;
-    if (!settings.disableOembed && html) {
-      return (
-        <iframe
-          title="oembed content"
-          srcDoc={html}
-          ref={ref => (this.iframe = ref)}
-          onLoad={this.handleIframeLoad}
-        />
-      );
-    }
-    const { anchorTarget, relValue } = this.context;
+
     const {
       linkPreview_link,
       linkPreview,
@@ -62,7 +53,21 @@ class LinkPreviewViewer extends Component {
       linkPreview_image,
       linkPreview_description,
       linkPreview_url,
+      linkPreview_oEmbed,
     } = this.styles;
+
+    if (!settings.disableOembed && html) {
+      return (
+        <iframe
+          title="oembed content"
+          srcDoc={html}
+          ref={ref => (this.iframe = ref)}
+          onLoad={this.handleIframeLoad}
+          className={linkPreview_oEmbed}
+        />
+      );
+    }
+    const { anchorTarget, relValue } = this.context;
     const { imageRatio } = this.state;
     if (!imageRatio) {
       this.setState(
@@ -75,8 +80,8 @@ class LinkPreviewViewer extends Component {
         <figure className={linkPreview} id="linkPreviewSection">
           <div
             style={{
-              height: imageRatio,
-              width: imageRatio,
+              height: imageRatio || 0,
+              width: imageRatio || 0,
               backgroundImage: `url(${thumbnail_url})`,
             }}
             className={linkPreview_image}
