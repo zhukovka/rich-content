@@ -35,6 +35,7 @@
   - `editor-common`
     - [#550](https://github.com/wix-incubator/rich-content/pull/550) remove dashed border when focused
     - [#584](https://github.com/wix-incubator/rich-content/pull/584) fix gallery dropdown css
+    - [#594](https://github.com/wix-incubator/rich-content/pull/594) fix the selection after adding a new block in oneApp
     - [#626](https://github.com/wix-incubator/rich-content/pull/626) insertLinkAtCurrentSelection utility fixed
     - [#633](https://github.com/wix-incubator/rich-content/pull/633) fix upload the same file in FileInput
   - `link`
