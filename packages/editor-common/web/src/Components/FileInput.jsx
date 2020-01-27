@@ -27,6 +27,7 @@ class FileInput extends Component {
 
   handleChange = e => {
     this.props.onChange(Array.from(e.target.files));
+    e.target.value = null;
   };
 
   render() {
