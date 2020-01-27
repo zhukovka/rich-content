@@ -3,7 +3,7 @@ import { createLinkPlugin, LINK_TYPE } from 'wix-rich-content-plugin-link';
 import { createAnchorPlugin, ANCHOR_TYPE } from 'wix-rich-content-plugin-anchor';
 import { createLineSpacingPlugin, LINE_SPACING_TYPE } from 'wix-rich-content-plugin-line-spacing';
 import { createHashtagPlugin, HASHTAG_TYPE } from 'wix-rich-content-plugin-hashtag';
-import { createEmojiPlugin } from 'wix-rich-content-plugin-emoji';
+import { createEmojiPlugin, EMOJI_TYPE } from 'wix-rich-content-plugin-emoji';
 import { createImagePlugin, IMAGE_TYPE } from 'wix-rich-content-plugin-image';
 import { createUndoRedoPlugin, UNDO_REDO_TYPE } from 'wix-rich-content-plugin-undo-redo';
 import { createGalleryPlugin, GALLERY_TYPE } from 'wix-rich-content-plugin-gallery';
@@ -56,6 +56,7 @@ import {
   customBackgroundStyleFn,
 } from '../../src/text-color-style-fn';
 import { getBaseUrl } from '../../src/utils';
+import { testWixVideos } from './mock';
 // import { MyCustomIcon, SizeSmallRightIcon, TOOLBARS } from 'wix-rich-content-editor-common';
 // import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common';
 // import InlineToolbarDecoration from './Components/InlineToolbarDecoration';
@@ -105,7 +106,7 @@ let userButtonBorderColors = [...buttonDefaultPalette];
 
 const getLinkPanelDropDownConfig = () => {
   const getItems = () => {
-    casual.define('item', function () {
+    casual.define('item', function() {
       return {
         value: casual.url,
         label: casual.catch_phrase,
@@ -174,11 +175,75 @@ const uiSettings = {
   // disableRightClick: true,
 };
 
+const videoHandlers = {
+  //media manager - Here you can call your custom video upload functionality (comment function to disable custom upload)
+  handleFileSelection: (updateEntity, removeEntity) => {
+    console.log('consumer wants to upload custom video');
+    const mockVideoIndex = Math.floor(Math.random() * testWixVideos.length);
+    const testVideo = testWixVideos[mockVideoIndex];
+    const videoWithAbsoluteUrl = {
+      url:
+        'https://video.wixstatic.com/video/11062b_a552731f40854d16a91627687fb8d1a6/1080p/mp4/file.mp4',
+    };
+    const videoWithRelativeUrl = {
+      pathname: `video/${testVideo.url}/1080p/mp4/file.mp4`,
+      thumbnail: {
+        pathname: `media/${testVideo.metadata.posters[0].url}`,
+        height: 1080,
+        width: 1920,
+      },
+    };
+    // You can provide either absolute or relative URL.
+    // If relative URL is provided, a function 'getVideoUrl' will be invoked to form a full URL.
+    const videoToUpload = videoWithRelativeUrl;
+    setTimeout(() => {
+      updateEntity({ data: videoToUpload });
+      //updateEntity({ error: { msg: 'Upload Failed' } });
+      console.log('consumer uploaded ', videoToUpload);
+    }, 500);
+  },
+  // this is for native file upload
+  handleFileUpload: (file, updateEntity, removeEntity) => {
+    console.log('consumer wants to upload custom video', file);
+    const mockVideoIndex = Math.floor(Math.random() * testWixVideos.length);
+    const testVideo = testWixVideos[mockVideoIndex];
+    const videoWithAbsoluteUrl = {
+      url:
+        'https://video.wixstatic.com/video/11062b_a552731f40854d16a91627687fb8d1a6/1080p/mp4/file.mp4',
+    };
+    const videoWithRelativeUrl = {
+      pathname: `video/${testVideo.url}/1080p/mp4/file.mp4`,
+      thumbnail: {
+        pathname: `media/${testVideo.metadata.posters[0].url}`,
+        height: 1080,
+        width: 1920,
+      },
+    };
+    // You can provide either absolute or relative URL.
+    // If relative URL is provided, a function 'getVideoUrl' will be invoked to form a full URL.
+    const videoToUpload = videoWithRelativeUrl;
+    setTimeout(() => {
+      updateEntity({ data: videoToUpload });
+      //updateEntity({ error: { msg: 'Upload Failed' } });
+      console.log('consumer uploaded ', videoToUpload);
+    }, 500);
+  },
+};
+
 export const config = {
+  [EMOJI_TYPE]: {
+    // toolbar: {
+    //   icons: {
+    //     InsertPluginButtonIcon: MyCustomIcon,
+    //   },
+    // },
+  },
+
   [UNDO_REDO_TYPE]: {
     // toolbar: {
     //   icons: {
-    //     Undo: SizeSmallRightIcon, // insert plugin icon
+    //     Undo: MyCustomIcon, // insert plugin icon
+    //     Redo: MyCustomIcon, // insert plugin icon
     //   },
     // },
   },
@@ -188,7 +253,7 @@ export const config = {
       typeof window !== 'undefined' && document.getElementsByClassName('editor-example')[0],
     // toolbar: {
     //   icons: {
-    //     Gallery: MyCustomIcon, // insert plugin icon
+    //     InsertPluginButtonIcon: MyCustomIcon,
     //   },
     // },
   },
@@ -212,7 +277,7 @@ export const config = {
     // createGalleryForMultipleImages: true,
     // toolbar: {
     //   icons: {
-    //     Image: MyCustomIcon, // insert plugin icon
+    //     InsertPluginButtonIcon: MyCustomIcon,
     //     alignLeft: MyCustomIcon,
     //     link: MyCustomIcon,
     //     sizeOriginal: MyCustomIcon,
@@ -226,6 +291,7 @@ export const config = {
     //     replace: MyCustomIcon,
     //     delete: SizeSmallRightIcon,
     //   },
+    // },
     // },
   },
   [HASHTAG_TYPE]: {
@@ -244,7 +310,7 @@ export const config = {
     maxHeight: 1200,
     // toolbar: {
     //   icons: {
-    //     HTML: MyCustomIcon, // insert plugin icon
+    //     InsertPluginButtonIcon: MyCustomIcon,
     //   },
     // },
   },
@@ -283,7 +349,7 @@ export const config = {
   [LINE_SPACING_TYPE]: {
     // toolbar: {
     //   icons: {
-    //     'line-spacing': MyCustomIcon, // insert plugin icon
+    //     InsertPluginButtonIcon: MyCustomIcon,
     //   },
     // },
     defaultSpacing: {
@@ -296,7 +362,7 @@ export const config = {
   [LINK_TYPE]: {
     // toolbar: {
     //   icons: {
-    //     link: MyCustomIcon, // insert plugin icon
+    //     InsertPluginButtonIcon: MyCustomIcon,
     //   },
     // },
     onClick: (event, url) => console.log('link clicked!', url),
@@ -309,69 +375,39 @@ export const config = {
     // },
     onClick: (event, url) => console.log('anchor clicked!', url),
   },
-  [SOUND_CLOUD_TYPE]: {},
-  [CODE_BLOCK_TYPE]: {
+  [SOUND_CLOUD_TYPE]: {
     // toolbar: {
     //   icons: {
-    //     codeBlock: MyCustomIcon, // insert plugin icon
+    //     InsertPluginButtonIcon: MyCustomIcon,
     //   },
     // },
   },
-  [DIVIDER_TYPE]: {},
+  [CODE_BLOCK_TYPE]: {
+    // toolbar: {
+    //   icons: {
+    //     InsertPluginButtonIcon: MyCustomIcon,
+    //   },
+    // },
+  },
+  [DIVIDER_TYPE]: {
+    // toolbar: {
+    //   icons: {
+    //     InsertPluginButtonIcon: MyCustomIcon,
+    //   },
+    // },
+  },
   // [EXTERNAL_EMOJI_TYPE]: {},
   [VIDEO_TYPE]: {
     toolbar: {
       hidden: [],
       // icons: {
-      //   Video: MyCustomIcon, //insert plugin icon
+      //   InsertPluginButtonIcon: MyCustomIcon,
       // },
     },
-    //Here you can call your custom video upload functionality (comment function to disable custom upload)
-    handleFileSelection: (updateEntity, removeEntity) => {
-      console.log('consumer wants to upload custom video');
-      const videoWithAbsoluteUrl = {
-        url:
-          'https://video.wixstatic.com/video/11062b_a552731f40854d16a91627687fb8d1a6/1080p/mp4/file.mp4',
-      };
-      const videoWithRelativeUrl = {
-        pathname: 'video/11062b_a552731f40854d16a91627687fb8d1a6/1080p/mp4/file.mp4',
-        thumbnail: {
-          pathname: 'media/11062b_a552731f40854d16a91627687fb8d1a6f000.jpg',
-          height: 1080,
-          width: 1920,
-        },
-      };
-      // You can provide either absolute or relative URL.
-      // If relative URL is provided, a function 'getVideoUrl' will be invoked to form a full URL.
-      const videoToUpload = videoWithRelativeUrl;
-      setTimeout(() => {
-        updateEntity({ data: videoToUpload });
-        //updateEntity({ error: { msg: 'Upload Failed' } });
-        console.log('consumer uploaded ', videoToUpload);
-      }, 500);
-    },
-    // handleFileUpload: (file, updateEntity, removeEntity) => {
-    //   console.log('consumer wants to upload custom video', file);
-    //   const videoWithAbsoluteUrl = {
-    //     url: 'http://mirrors.standaloneinstaller.com/video-sample/jellyfish-25-mbps-hd-hevc.mp4',
-    //   };
-    //   const videoWithRelativeUrl = {
-    //     pathname: 'video/441c23_84f5c058e5e4479ab9e626cd5560a21b/file',
-    //     thumbnail: {
-    //       pathname: 'media/441c23_84f5c058e5e4479ab9e626cd5560a21bf000.jpg',
-    //       height: 1080,
-    //       width: 1920,
-    //     },
-    //   };
-    //   // You can provide either absolute or relative URL.
-    //   // If relative URL is provided, a function 'getVideoUrl' will be invoked to form a full URL.
-    //   const videoToUpload = videoWithAbsoluteUrl;
-    //   setTimeout(() => {
-    //     updateEntity({ data: videoToUpload });
-    //     //updateEntity({ error: { msg: 'Upload Failed' } });
-    //     console.log('consumer uploaded ', videoToUpload);
-    //   }, 500);
-    // },
+    //media manager - Here you can call your custom video upload functionality (comment function to disable custom upload)
+    handleFileSelection: videoHandlers.handleFileSelection,
+    // this is for native file upload
+    // handleFileUpload: videoHandlers.handleFileUpload,
     enableCustomUploadOnMobile: true,
     // Function is invoked when rendering video which has relative URL.
     // You should take the pathname and form a full URL.
@@ -381,7 +417,7 @@ export const config = {
     giphySdkApiKey: process.env.GIPHY_API_KEY || 'HXSsAGVNzjeUjhKfhhD9noF8sIbpYDsV',
     // toolbar: {
     //   icons: {
-    //     GIF: MyCustomIcon, // insert plugin icon
+    //     InsertPluginButtonIcon: MyCustomIcon,
     //   },
     // },
     sizes: { desktop: 'original', mobile: 'original' }, // original or downsizedSmall are supported
@@ -406,48 +442,48 @@ export const config = {
     },
     // toolbar: {
     //   icons: {
-    //     Map: MyCustomIcon,  // insert plugin icon
+    //     InsertPluginButtonIcon: MyCustomIcon,
     //   },
     // },
   },
   [FILE_UPLOAD_TYPE]: {
     // toolbar: {
     //   icons: {
-    // UploadFile: MyCustomIcon, // insert plugin icon
+    //     InsertPluginButtonIcon: MyCustomIcon,
     //   },
     // },
     accept: '*',
-    onFileSelected: (file, updateEntity) => {
-      const name = file.name;
-      const filenameParts = name.split('.');
-      const type = filenameParts[filenameParts.length - 1];
-
-      const data = {
-        name,
-        type,
-        url: '',
-      };
-      setTimeout(() => updateEntity({ data }), 1000);
-    },
-    // handleFileSelection: updateEntity => {
-    //   const filenames = ['image.jpg', 'document.pdf', 'music.mp3'];
-    //   const name = filenames[Math.floor(Math.random() * filenames.length)];
+    // onFileSelected: (file, updateEntity) => {
+    //   const name = file.name;
     //   const filenameParts = name.split('.');
     //   const type = filenameParts[filenameParts.length - 1];
+
     //   const data = {
     //     name,
     //     type,
-    //     url: 'http://file-examples.com/wp-content/uploads/2017/10/file-sample_150kB.pdf',
+    //     url: '',
     //   };
-    //   setTimeout(() => updateEntity({ data }), 500);
+    //   setTimeout(() => updateEntity({ data }), 1000);
     // },
+    handleFileSelection: updateEntity => {
+      const filenames = ['image.jpg', 'document.pdf', 'music.mp3'];
+      const name = filenames[Math.floor(Math.random() * filenames.length)];
+      const filenameParts = name.split('.');
+      const type = filenameParts[filenameParts.length - 1];
+      const data = {
+        name,
+        type,
+        url: 'http://file-examples.com/wp-content/uploads/2017/10/file-sample_150kB.pdf',
+      };
+      setTimeout(() => updateEntity({ data }), 500);
+    },
   },
   [BUTTON_TYPE]: {
-    //   toolbar: {
-    //     icons: {
-    //       Button: MyCustomIcon, // insert plugin icon
-    //     },
+    // toolbar: {
+    //   icons: {
+    //     InsertPluginButtonIcon: MyCustomIcon,
     //   },
+    // },
     palette: ['#FEFDFD', '#D5D4D4', '#ABCAFF', '#81B0FF', '#0261FF', '#0141AA'],
     selectionBackgroundColor: 'fuchsia',
     selectionBorderColor: '#FFF',
@@ -475,7 +511,7 @@ export const config = {
   [TEXT_HIGHLIGHT_TYPE]: {
     // toolbar: {
     //   icons: {
-    //     TextHighlight: CustomIcon,
+    //     InsertPluginButtonIcon: MyCustomIcon,
     //   },
     // },
     colorScheme,
@@ -487,7 +523,7 @@ export const config = {
   [TEXT_COLOR_TYPE]: {
     // toolbar: {
     //   icons: {
-    //     TextColor: CustomIcon,
+    //     InsertPluginButtonIcon: MyCustomIcon,
     //   },
     // },
     colorScheme,

@@ -13,9 +13,6 @@
     Click to see more.
   </summary>
 
-  ### :boom: [Breaking Change]
-  - `editor`
-    - [#577](https://github.com/wix-incubator/rich-content/pull/577) Remove add plugins button from inline toolbar in mobile and change mobile side toolbar to be fixed position instead, for customize Add Plugins button css use css media query (@media only screen and (max-width: 800px))
   ### :rocket: New Feature
   - `link`
     - [#551](https://github.com/wix-incubator/rich-content/pull/551) adding a tooltip for nofollow tag explanation
@@ -24,6 +21,11 @@
   - `anchor`
     - [#600](https://github.com/wix-incubator/rich-content/pull/600) new anchor plugin
   ### :bug: Bug Fix
+  - `image`
+    - [#622](https://github.com/wix-incubator/rich-content/pull/622) fix ssr blurry image
+  - `general`
+    - [#632](https://github.com/wix-incubator/rich-content/pull/632) ViewportRenderer disabled for all the plugins
+    - [#574](https://github.com/wix-incubator/rich-content/pull/574) improve custom icon API
   - `giphy`
     - [#621](https://github.com/wix-incubator/rich-content/pull/621) custom icon selection logic fixed
   - `divider`
@@ -34,12 +36,22 @@
   - `editor-common`
     - [#550](https://github.com/wix-incubator/rich-content/pull/550) remove dashed border when focused
     - [#584](https://github.com/wix-incubator/rich-content/pull/584) fix gallery dropdown css
+    - [#626](https://github.com/wix-incubator/rich-content/pull/626) insertLinkAtCurrentSelection utility fixed
   - `link`
     - [#546](https://github.com/wix-incubator/rich-content/pull/546) saves the last data and the initial state of the checkboxes("Open in a new tab", "Add a nofollow tag") is according to the defaults (anchorTarget, relValue)
-    - [#589](https://github.com/wix-incubator/rich-content/pull/589) in order to edit the link settings its enough to select only part of the words that belongs to the link
     - [#566](https://github.com/wix-incubator/rich-content/pull/566) Fix tooltip position in bottom tooltip
+  - `video`
+    - [#613](https://github.com/wix-incubator/rich-content/pull/613) Fix native upload video
   - `gallery`
     - [#602](https://github.com/wix-incubator/rich-content/pull/602) replace gallery image from settings bug
+    - [#624](https://github.com/wix-incubator/rich-content/pull/624) nonnative replace gallery image
+  - `image`
+    - [#624](https://github.com/wix-incubator/rich-content/pull/624) nonnative replace image
+  - `common`
+    - [#620](https://github.com/wix-incubator/rich-content/pull/620) backward compatibility for legacy image custom size
+    - [#606](https://github.com/wix-incubator/rich-content/pull/606) infinite loader in gallery settings images (in blog, mobile app)
+  - `html`
+    - [#631](https://github.com/wix-incubator/rich-content/pull/631) HTML fix height issue - remove height style from ViewerWrapper
   ### :house: Internal
   - `general`
     - [#561](https://github.com/wix-incubator/rich-content/pull/561) refactor - cleanup readOnly prop from code
@@ -49,6 +61,9 @@
     - [#564](https://github.com/wix-incubator/rich-content/pull/564) snapshots renaming for gallery and image plugins tests
   - `editor`
     - [#575](https://github.com/wix-incubator/rich-content/pull/575) ltr&rtl css yoshi issues solved (requested by forum)
+  - `example`
+    - [#624](https://github.com/wix-incubator/rich-content/pull/575) video selection is done without native file selector
+
 
 </details>
 <hr/>
@@ -57,6 +72,7 @@
 ### :bug: Bug Fix
 - `editor-common`
   - [#608](https://github.com/wix-incubator/rich-content/pull/608) fileSelectionChanged works for a single image
+  - [#601](https://github.com/wix-incubator/rich-content/pull/601) in order to edit the link settings its enough to select only part of the words that belongs to the link
 
 ## 6.6.7 (Jan 16, 2020)
 ### :bug: Bug Fix
