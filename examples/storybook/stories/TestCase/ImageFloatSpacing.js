@@ -3,10 +3,7 @@ import { RichContentEditor, convertFromRaw, createWithContent } from 'wix-rich-c
 import { RichContentViewer } from 'wix-rich-content-viewer';
 import { createImagePlugin } from 'wix-rich-content-plugin-image';
 import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/module.viewer';
-
 import imageFloatWithSpace from '../../fixtures/imageFloatWithSpace';
-const PLUGINS = [createImagePlugin];
-
 import {
   RichContentEditorBox,
   RichContentViewerBox,
@@ -14,6 +11,8 @@ import {
   Section,
   Page,
 } from '../Components/StoryParts';
+
+const PLUGINS = [createImagePlugin];
 const helpers = {
   onFilesChange: (files, updateEntity) => console.log('on file change', { files, updateEntity }), //eslint-disable-line
 };

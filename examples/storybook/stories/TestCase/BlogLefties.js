@@ -4,10 +4,10 @@ import { RichContentViewerBox, ContentState, Section, Page } from '../Components
 import { RichContentViewer } from 'wix-rich-content-viewer';
 import { imageTypeMapper } from 'wix-rich-content-plugin-image/dist/module.viewer';
 import { linkTypeMapper } from 'wix-rich-content-plugin-link/dist/module.viewer';
-
 import AlignLeftiesState from '../../fixtures/AlignLefties';
-const typeMappers = [imageTypeMapper, linkTypeMapper, htmlTypeMapper];
 import viewerTheme from './viewer.scss';
+
+const typeMappers = [imageTypeMapper, linkTypeMapper, htmlTypeMapper];
 const theme = {
   ...viewerTheme,
 };

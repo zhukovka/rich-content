@@ -3,13 +3,8 @@ import InstagramEmbedState from '../../fixtures/InstagramEmbedState';
 import { htmlTypeMapper, HTML_TYPE } from 'wix-rich-content-plugin-html/dist/module.viewer';
 import { RichContentViewer } from 'wix-rich-content-viewer';
 
-import {
-  RichContentEditorBox,
-  RichContentViewerBox,
-  ContentState,
-  Section,
-  Page,
-} from '../Components/StoryParts';
+import { RichContentViewerBox, ContentState, Section, Page } from '../Components/StoryParts';
+
 const typeMappers = [htmlTypeMapper];
 export default () => {
   const config = {
