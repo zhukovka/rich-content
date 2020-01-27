@@ -13,63 +13,63 @@
     Click to see more.
   </summary>
 
-  ### :rocket: New Feature
-  - `link`
-    - [#551](https://github.com/wix-incubator/rich-content/pull/551) adding a tooltip for nofollow tag explanation
-  - `image`
-    - [#563](https://github.com/wix-incubator/rich-content/pull/563) in-plugin editing enabled for caption
-  ### :bug: Bug Fix
-  - `image`
-    - [#622](https://github.com/wix-incubator/rich-content/pull/622) fix ssr blurry image
-    - [#634](https://github.com/wix-incubator/rich-content/pull/634) nonnative multi-select of images
-  - `general`
-    - [#632](https://github.com/wix-incubator/rich-content/pull/632) ViewportRenderer disabled for all the plugins
-    - [#574](https://github.com/wix-incubator/rich-content/pull/574) improve custom icon API
-  - `giphy`
-    - [#621](https://github.com/wix-incubator/rich-content/pull/621) custom icon selection logic fixed
-  - `divider`
-    - [#615](https://github.com/wix-incubator/rich-content/pull/615) alignment classes apply floating on text-wrap elements only
-  - `text-color`
-    - [#572](https://github.com/wix-incubator/rich-content/pull/572) color Picker- ResetToDefault button sticky to bottom
-    - [#576](https://github.com/wix-incubator/rich-content/pull/576) color Picker-new colors are added to the end of the list + 'reset to default' removes from the 'inlineStyleRanges' in the content state
-  - `editor-common`
-    - [#550](https://github.com/wix-incubator/rich-content/pull/550) remove dashed border when focused
-    - [#584](https://github.com/wix-incubator/rich-content/pull/584) fix gallery dropdown css
-    - [#594](https://github.com/wix-incubator/rich-content/pull/594) fix the selection after adding a new block in oneApp
-    - [#626](https://github.com/wix-incubator/rich-content/pull/626) insertLinkAtCurrentSelection utility fixed
-    - [#633](https://github.com/wix-incubator/rich-content/pull/633) fix upload the same file in FileInput
-  - `link`
-    - [#546](https://github.com/wix-incubator/rich-content/pull/546) saves the last data and the initial state of the checkboxes("Open in a new tab", "Add a nofollow tag") is according to the defaults (anchorTarget, relValue)
-    - [#566](https://github.com/wix-incubator/rich-content/pull/566) Fix tooltip position in bottom tooltip
-  - `video`
-    - [#613](https://github.com/wix-incubator/rich-content/pull/613) Fix native upload video
-  - `gallery`
-    - [#602](https://github.com/wix-incubator/rich-content/pull/602) replace gallery image from settings bug
-    - [#624](https://github.com/wix-incubator/rich-content/pull/624) nonnative replace gallery image
-  - `image`
-    - [#624](https://github.com/wix-incubator/rich-content/pull/624) nonnative replace image
-  - `common`
-    - [#620](https://github.com/wix-incubator/rich-content/pull/620) backward compatibility for legacy image custom size
-    - [#606](https://github.com/wix-incubator/rich-content/pull/606) infinite loader in gallery settings images (in blog, mobile app)
-  - `html`
-    - [#631](https://github.com/wix-incubator/rich-content/pull/631) HTML fix height issue - remove height style from ViewerWrapper
-  ### :house: Internal
-  - `general`
-    - [#561](https://github.com/wix-incubator/rich-content/pull/561) refactor - cleanup readOnly prop from code
-    - [#562](https://github.com/wix-incubator/rich-content/pull/562) use `@lerna/project` to get all lerna packages
-    - [#585](https://github.com/wix-incubator/rich-content/pull/585) Deploy every branch to surge. Will have the domain http://rich-content-branch_name.surge.sh/
-  - `e2e`
-    - [#564](https://github.com/wix-incubator/rich-content/pull/564) snapshots renaming for gallery and image plugins tests
-  - `editor`
-    - [#575](https://github.com/wix-incubator/rich-content/pull/575) ltr&rtl css yoshi issues solved (requested by forum)
-  - `example`
-    - [#634](https://github.com/wix-incubator/rich-content/pull/634) added toggle for mocking image multi-select
-    - [#624](https://github.com/wix-incubator/rich-content/pull/575) video selection is done without native file selector
-
-
 </details>
 <hr/>
 
+## 6.7.0 (Jan 27, 2020)
+### :rocket: New Feature
+- `link`
+  - [#551](https://github.com/wix-incubator/rich-content/pull/551) adding a tooltip for nofollow tag explanation
+- `image`
+  - [#563](https://github.com/wix-incubator/rich-content/pull/563) in-plugin editing enabled for caption
+### :bug: Bug Fix
+- `image`
+  - [#622](https://github.com/wix-incubator/rich-content/pull/622) fix ssr blurry image
+  - [#634](https://github.com/wix-incubator/rich-content/pull/634) nonnative multi-select of images
+- `general`
+  - [#632](https://github.com/wix-incubator/rich-content/pull/632) ViewportRenderer disabled for all the plugins
+  - [#574](https://github.com/wix-incubator/rich-content/pull/574) improve custom icon API
+- `giphy`
+  - [#621](https://github.com/wix-incubator/rich-content/pull/621) custom icon selection logic fixed
+- `divider`
+  - [#615](https://github.com/wix-incubator/rich-content/pull/615) alignment classes apply floating on text-wrap elements only
+- `text-color`
+  - [#572](https://github.com/wix-incubator/rich-content/pull/572) color Picker- ResetToDefault button sticky to bottom
+  - [#576](https://github.com/wix-incubator/rich-content/pull/576) color Picker-new colors are added to the end of the list + 'reset to default' removes from the 'inlineStyleRanges' in the content state
+- `editor-common`
+  - [#550](https://github.com/wix-incubator/rich-content/pull/550) remove dashed border when focused
+  - [#584](https://github.com/wix-incubator/rich-content/pull/584) fix gallery dropdown css
+  - [#594](https://github.com/wix-incubator/rich-content/pull/594) fix the selection after adding a new block in oneApp
+  - [#626](https://github.com/wix-incubator/rich-content/pull/626) insertLinkAtCurrentSelection utility fixed
+  - [#633](https://github.com/wix-incubator/rich-content/pull/633) fix upload the same file in FileInput
+- `link`
+  - [#546](https://github.com/wix-incubator/rich-content/pull/546) saves the last data and the initial state of the checkboxes("Open in a new tab", "Add a nofollow tag") is according to the defaults (anchorTarget, relValue)
+  - [#566](https://github.com/wix-incubator/rich-content/pull/566) Fix tooltip position in bottom tooltip
+- `video`
+  - [#613](https://github.com/wix-incubator/rich-content/pull/613) Fix native upload video
+- `gallery`
+  - [#602](https://github.com/wix-incubator/rich-content/pull/602) replace gallery image from settings bug
+  - [#624](https://github.com/wix-incubator/rich-content/pull/624) nonnative replace gallery image
+- `image`
+  - [#624](https://github.com/wix-incubator/rich-content/pull/624) nonnative replace image
+- `common`
+  - [#620](https://github.com/wix-incubator/rich-content/pull/620) backward compatibility for legacy image custom size
+  - [#606](https://github.com/wix-incubator/rich-content/pull/606) infinite loader in gallery settings images (in blog, mobile app)
+- `html`
+  - [#631](https://github.com/wix-incubator/rich-content/pull/631) HTML fix height issue - remove height style from ViewerWrapper
+### :house: Internal
+- `general`
+  - [#561](https://github.com/wix-incubator/rich-content/pull/561) refactor - cleanup readOnly prop from code
+  - [#562](https://github.com/wix-incubator/rich-content/pull/562) use `@lerna/project` to get all lerna packages
+  - [#585](https://github.com/wix-incubator/rich-content/pull/585) Deploy every branch to surge. Will have the domain http://rich-content-branch_name.surge.sh/
+- `e2e`
+  - [#564](https://github.com/wix-incubator/rich-content/pull/564) snapshots renaming for gallery and image plugins tests
+- `editor`
+  - [#575](https://github.com/wix-incubator/rich-content/pull/575) ltr&rtl css yoshi issues solved (requested by forum)
+- `example`
+  - [#634](https://github.com/wix-incubator/rich-content/pull/634) added toggle for mocking image multi-select
+  - [#624](https://github.com/wix-incubator/rich-content/pull/575) video selection is done without native file selector
+    
 ## 6.6.8 (Jan 16, 2020)
 ### :bug: Bug Fix
 - `editor-common`
