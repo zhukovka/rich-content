@@ -75,8 +75,7 @@ class HtmlComponent extends Component {
   setHeight = iframeHeight => {
     if (iframeHeight !== this.state.iframeHeight) {
       this.setState({ iframeHeight });
-      const { store, block } = this.props;
-      store && store.setBlockHandler('htmlPluginMaxHeight', block.key, iframeHeight);
+      this.props.store?.update('componentData', { config: { height: iframeHeight } });
     }
   };
 
