@@ -23,7 +23,7 @@ class LinkToAnchorPanel extends Component {
     this.onChange({
       url,
       isValid: this.isValidUrl(url),
-      targetBlank: false,
+      isLinkToAnchor: true,
     });
   };
 

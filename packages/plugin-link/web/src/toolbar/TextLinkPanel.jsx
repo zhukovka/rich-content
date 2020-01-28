@@ -43,7 +43,7 @@ export default class TextLinkPanel extends Component {
     this.props.onOverrideContent(LinkPanelContainerWithProps);
   }
 
-  createLinkEntity = ({ url, targetBlank, nofollow }) => {
+  createLinkEntity = ({ url, targetBlank, nofollow, isLinkToAnchor }) => {
     const { anchorTarget, relValue } = this.props;
     if (!isEmpty(url)) {
       const { getEditorState, setEditorState } = this.props;
@@ -53,6 +53,7 @@ export default class TextLinkPanel extends Component {
         nofollow,
         anchorTarget,
         relValue,
+        isLinkToAnchor,
       });
       setEditorState(newEditorState);
     }

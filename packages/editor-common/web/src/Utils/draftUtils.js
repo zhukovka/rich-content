@@ -137,10 +137,18 @@ export const getEntityByType = (editorState, type) => {
   return anchorsEntities;
 };
 
-function createLinkEntityData({ url, targetBlank, nofollow, anchorTarget, relValue }) {
+function createLinkEntityData({
+  url,
+  targetBlank,
+  nofollow,
+  anchorTarget,
+  relValue,
+  isLinkToAnchor,
+}) {
+  const targetToExternalLink = targetBlank ? '_blank' : anchorTarget || '_self';
   return {
     url,
-    target: targetBlank ? '_blank' : anchorTarget || '_self',
+    target: isLinkToAnchor ? '_self' : targetToExternalLink,
     rel: nofollow ? 'nofollow' : relValue || 'noopener noreferrer',
   };
 }
