@@ -2,7 +2,7 @@ import { SelectionState, EditorState, Modifier } from 'draft-js';
 import {
   getCurrentBlock,
   replaceWithEmptyBlock,
-  LinkIcon,
+  TrashIcon,
   insertLinkInPosition,
   BUTTONS,
 } from 'wix-rich-content-editor-common';
@@ -57,21 +57,19 @@ const onConvertToLink = editorState => {
   return EditorState.forceSelection(editorStateWithLink, selectionRange);
 };
 
-export default (settings, setEditorState, getEditorState) => [
-  {
-    keyName: 'delete',
-    type: BUTTONS.DELETE,
-    mobile: true,
-  },
-  {
-    keyName: 'convertToLink',
-    type: 'custom',
-    icon: LinkIcon,
-    onClick: () => {
-      const editorState = getEditorState();
-      setEditorState(onConvertToLink(editorState));
+export default (settings, setEditorState, getEditorState) => {
+  return [
+    { keyName: 'link', type: BUTTONS.LINK_PREVIEW, mobile: false },
+    {
+      keyName: 'delete',
+      type: 'custom',
+      icon: TrashIcon,
+      onClick: () => {
+        const editorState = getEditorState();
+        setEditorState(onConvertToLink(editorState));
+      },
+      mobile: true,
+      desktop: true,
     },
-    mobile: true,
-    desktop: true,
-  },
-];
+  ];
+};

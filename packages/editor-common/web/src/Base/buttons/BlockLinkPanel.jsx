@@ -5,7 +5,7 @@ import { isEmpty } from 'lodash';
 import LinkPanelContainer from '../../Components/LinkPanelContainer';
 class BlockLinkPanel extends Component {
   componentDidMount() {
-    const { anchorTarget, relValue, theme, t, uiSettings, pubsub } = this.props;
+    const { anchorTarget, relValue, theme, t, uiSettings, pubsub, unchangedUrl } = this.props;
     const componentLink = pubsub.getBlockData({ key: 'componentLink' });
     const { url, target, rel } = componentLink || {};
     const targetBlank = target ? target === '_blank' : anchorTarget === '_blank';
@@ -24,6 +24,7 @@ class BlockLinkPanel extends Component {
       onDelete: this.deleteLink,
       onOverrideContent: this.props.onOverrideContent,
       uiSettings,
+      unchangedUrl,
     };
 
     const LinkPanelContainerWithProps = decorateComponentWithProps(
@@ -34,7 +35,7 @@ class BlockLinkPanel extends Component {
   }
 
   wrapBlockInLink = ({ url, targetBlank, nofollow }) => {
-    const { pubsub, anchorTarget, relValue } = this.props;
+    const { pubsub, anchorTarget, relValue, unchangedUrl } = this.props;
     let target = '_blank',
       rel = 'nofollow';
     if (!targetBlank) {
@@ -43,12 +44,13 @@ class BlockLinkPanel extends Component {
     if (!nofollow) {
       rel = relValue !== 'nofollow' ? relValue : 'noopener';
     }
-
-    if (!isEmpty(url)) {
-      pubsub.setBlockData({
-        key: 'componentLink',
-        item: { url, target, rel },
-      });
+    if (!isEmpty(url) || unchangedUrl) {
+      unchangedUrl
+        ? pubsub.update('componentData', { config: { target, rel } })
+        : pubsub.setBlockData({
+            key: 'componentLink',
+            item: { url, target, rel },
+          });
     } else {
       pubsub.setBlockData({ key: 'componentLink', item: null });
     }
@@ -76,6 +78,7 @@ BlockLinkPanel.propTypes = {
   relValue: PropTypes.string,
   t: PropTypes.func,
   uiSettings: PropTypes.object,
+  unchangedUrl: PropTypes.bool,
 };
 
 export default BlockLinkPanel;

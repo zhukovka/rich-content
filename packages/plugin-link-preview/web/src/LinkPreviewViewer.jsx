@@ -41,7 +41,7 @@ class LinkPreviewViewer extends Component {
   render() {
     this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
     const {
-      componentData: { title, description, thumbnail_url, url, html },
+      componentData: { title, description, thumbnail_url, url, html, config = {} },
       settings,
     } = this.props;
 
@@ -76,7 +76,12 @@ class LinkPreviewViewer extends Component {
       );
     }
     return (
-      <a className={linkPreview_link} href={url} target={anchorTarget} rel={relValue}>
+      <a
+        className={linkPreview_link}
+        href={url}
+        target={config?.target || anchorTarget}
+        rel={config?.rel || relValue}
+      >
         <figure className={linkPreview} id="linkPreviewSection">
           <div
             style={{

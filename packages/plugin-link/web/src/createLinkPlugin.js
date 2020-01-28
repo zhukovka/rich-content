@@ -33,10 +33,10 @@ const createLinkPlugin = (config = {}) => {
           linkPreviewData.url = url;
           if ((title && thumbnail_url) || html) {
             const newEditorState = addLinkPreview(withoutLinkBlock, config, linkPreviewData);
-            setEditorState(
+            linkifyData = false;
+            return setEditorState(
               EditorState.forceSelection(newEditorState, newEditorState.getSelection())
             );
-            linkifyData = false;
           }
         });
       }
