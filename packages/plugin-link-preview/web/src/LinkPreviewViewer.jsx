@@ -41,12 +41,11 @@ class LinkPreviewViewer extends Component {
   render() {
     this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
     const {
-      componentData: { title, description, thumbnail_url, url, html, config = {} },
+      componentData: { title, description, thumbnail_url, html, config = {} },
       settings,
     } = this.props;
 
     const {
-      linkPreview_link,
       linkPreview,
       linkPreview_info,
       linkPreview_title,
@@ -67,7 +66,6 @@ class LinkPreviewViewer extends Component {
         />
       );
     }
-    const { anchorTarget, relValue } = this.context;
     const { imageRatio } = this.state;
     if (!imageRatio) {
       this.setState(
@@ -75,36 +73,30 @@ class LinkPreviewViewer extends Component {
         () => this.forceUpdate()
       );
     }
+    const url = config.link?.url;
     return (
-      <a
-        className={linkPreview_link}
-        href={url}
-        target={config?.target || anchorTarget}
-        rel={config?.rel || relValue}
-      >
-        <figure className={linkPreview} id="linkPreviewSection">
-          <div
-            style={{
-              height: imageRatio || 0,
-              width: imageRatio || 0,
-              backgroundImage: `url(${thumbnail_url})`,
-            }}
-            className={linkPreview_image}
-            alt={title}
-          />
-          <section className={linkPreview_info}>
-            <div className={linkPreview_url}>{url}</div>
-            <figcaption className={linkPreview_title}>
-              <ReadMore lines={2} text={title} label="" />
-            </figcaption>
-            {description && (
-              <div className={linkPreview_description}>
-                <ReadMore lines={1} text={description} label="" />
-              </div>
-            )}
-          </section>
-        </figure>
-      </a>
+      <figure className={linkPreview} id="linkPreviewSection">
+        <div
+          style={{
+            height: imageRatio || 0,
+            width: imageRatio || 0,
+            backgroundImage: `url(${thumbnail_url})`,
+          }}
+          className={linkPreview_image}
+          alt={title}
+        />
+        <section className={linkPreview_info}>
+          <div className={linkPreview_url}>{url}</div>
+          <figcaption className={linkPreview_title}>
+            <ReadMore lines={2} text={title} label="" />
+          </figcaption>
+          {description && (
+            <div className={linkPreview_description}>
+              <ReadMore lines={1} text={description} label="" />
+            </div>
+          )}
+        </section>
+      </figure>
     );
   }
 }

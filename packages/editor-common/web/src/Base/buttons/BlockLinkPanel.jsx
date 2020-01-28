@@ -46,7 +46,7 @@ class BlockLinkPanel extends Component {
     }
     if (!isEmpty(url) || unchangedUrl) {
       unchangedUrl
-        ? pubsub.update('componentData', { config: { target, rel } })
+        ? pubsub.update('componentData', { config: { link: { target, rel } } })
         : pubsub.setBlockData({
             key: 'componentLink',
             item: { url, target, rel },
