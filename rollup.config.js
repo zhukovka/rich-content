@@ -68,11 +68,10 @@ try {
   fs.readdirSync(`./${libEntriesPath}`).forEach(file => {
     libEntries = {
       input: libEntriesPath + file,
-      output: output.map(o =>
-        Object.assign(o, {
-          file: o.file.replace('dist/', 'dist/lib/').replace('module', file.replace('.js', '')),
-        })
-      ),
+      output: output.map(o => ({
+        ...o,
+        file: o.file.replace('dist/', 'dist/lib/').replace('module', file.replace('.js', '')),
+      })),
       plugins,
       external,
       watch,
