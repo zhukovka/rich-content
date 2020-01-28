@@ -24,6 +24,7 @@ class ImageComponent extends React.Component {
       const blockKey = block.getKey();
       store.setBlockHandler('handleFilesSelected', blockKey, this.handleFilesSelected.bind(this));
       store.setBlockHandler('handleFilesAdded', blockKey, this.handleFilesAdded.bind(this));
+      store.setBlockHandler('handleMetadataChange', blockKey, this.handleMetadataChange.bind(this));
     }
   }
 
@@ -93,7 +94,7 @@ class ImageComponent extends React.Component {
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
     if (hasFileChangeHelper && fileList.length > 0) {
       helpers.onFilesChange(fileList[0], ({ data, error }) =>
-        this.handleFilesAdded(this.props.block.getKey(), { data, error })
+        this.handleFilesAdded({ data, error })
       );
     } else {
       this.resetLoadingState({ msg: 'Missing upload function' });
@@ -110,7 +111,7 @@ class ImageComponent extends React.Component {
     return state;
   };
 
-  handleFilesAdded = (blockKey, { data, error }) => {
+  handleFilesAdded = ({ data, error }) => {
     const imageData = data.length ? data[0] : data;
     const config = { ...this.props.componentData.config };
     if (!config.alignment) {
@@ -120,8 +121,18 @@ class ImageComponent extends React.Component {
       config,
       src: imageData,
     };
-    this.props.store.update('componentData', componentData, blockKey);
+    this.props.store.update('componentData', componentData, this.props.block.getKey());
     this.resetLoadingState(error);
+  };
+
+  handleMetadataChange = newMetadata => {
+    const { componentData } = this.props;
+    const metadata = { ...componentData.metadata, ...newMetadata };
+    this.props.store.update(
+      'componentData',
+      { ...componentData, metadata },
+      this.props.block.getKey()
+    );
   };
 
   getLoadingParams = componentState => {
@@ -130,6 +141,8 @@ class ImageComponent extends React.Component {
     const { isLoading, userSelectedFiles } = componentState;
     return { alreadyLoading, isLoading, userSelectedFiles };
   };
+
+  handleCaptionChange = caption => this.handleMetadataChange({ caption });
 
   render() {
     const { settings, componentData, onClick, className, blockProps } = this.props;
@@ -141,9 +154,10 @@ class ImageComponent extends React.Component {
         isLoading={this.state.isLoading}
         dataUrl={this.state.dataUrl}
         isFocused={blockProps.isFocused}
-        readOnly={blockProps.readOnly}
         settings={settings}
         defaultCaption={this.context.t('ImageViewer_Caption')}
+        onCaptionChange={this.handleCaptionChange}
+        setFocusToBlock={blockProps.setFocusToBlock}
       />
     );
   }
