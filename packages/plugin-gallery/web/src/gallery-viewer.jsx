@@ -186,6 +186,7 @@ class GalleryViewer extends React.Component {
         onContextMenu={this.handleContextMenu}
       >
         <ProGallery
+          domId={this.props.galleryKey}
           items={items}
           styles={styleParams}
           container={size}
@@ -201,6 +202,7 @@ class GalleryViewer extends React.Component {
 }
 
 GalleryViewer.propTypes = {
+  galleryKey: PropTypes.string.isRequired,
   componentData: PropTypes.object.isRequired,
   entityIndex: PropTypes.number,
   onClick: PropTypes.func,
