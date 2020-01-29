@@ -68,7 +68,7 @@ try {
   fs.readdirSync(`./${libEntriesPath}`).forEach(file => {
     libEntries = {
       input: libEntriesPath + file,
-      output: output.map(o => ({
+      output: cloneDeep(output).map(o => ({
         ...o,
         file: o.file.replace('dist/', 'dist/lib/').replace('module', file.replace('.js', '')),
       })),
