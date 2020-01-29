@@ -16,7 +16,7 @@ const onConvertToLink = editorState => {
     .getCurrentContent()
     .getEntity(entityKey)
     ?.getData();
-  const url = entityData?.url;
+  const url = entityData?.config?.link?.url;
 
   // replace preview block with text block containing url
   let newState = replaceWithEmptyBlock(editorState, currentBlock.key);

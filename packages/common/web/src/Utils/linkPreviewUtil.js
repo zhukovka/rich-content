@@ -14,12 +14,18 @@ export const linkPreviewUtil = authStr => {
       state = oEmbedRes;
     } catch (e) {
       console.error('caught', e); //eslint-disable-line no-console
-      oEmbedRes = {
-        title: 'A mock title',
-        description: 'A mock description',
-        thumbnail_url:
-          'https://image.insider.com/5de5784979d757159d0b6838?width=1100&format=jpeg&auto=webp',
-      };
+      oEmbedRes = new Promise(resolve => {
+        setTimeout(
+          () =>
+            resolve({
+              title: 'A mock title',
+              description: 'A mock description',
+              thumbnail_url:
+                'https://image.insider.com/5de5784979d757159d0b6838?width=1100&format=jpeg&auto=webp', //eslint-disable-line
+            }),
+          1
+        );
+      });
     }
 
     return oEmbedRes;
