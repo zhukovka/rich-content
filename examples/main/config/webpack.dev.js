@@ -49,7 +49,7 @@ const devConfig = {
     stats: 'errors-only',
     disableHostCheck: true,
     proxy: {
-      '/rich-content/oembed': 'https://www.wix.com/',
+      '/rich-content/oembed': 'http://stehauho.wixsite.com/',
     },
   },
 };

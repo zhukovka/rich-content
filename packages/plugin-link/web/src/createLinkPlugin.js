@@ -27,14 +27,15 @@ const createLinkPlugin = (config = {}) => {
     if (linkifyData && preview?.enable) {
       const url = getBlockLinkUrl(linkifyData);
       if (url) {
-        const withoutLinkBlock = deleteBlock(editorState, linkifyData.block.key);
-        return preview.fetchMetadata(url).then(linkPreviewData => {
+        const blockKey = linkifyData.block.key;
+        preview.fetchMetadata(url).then(linkPreviewData => {
           const { title, thumbnail_url, html } = linkPreviewData;
           linkPreviewData.url = url;
           if ((title && thumbnail_url) || html) {
+            const withoutLinkBlock = deleteBlock(editorState, blockKey);
             const newEditorState = addLinkPreview(withoutLinkBlock, config, linkPreviewData);
             linkifyData = false;
-            return setEditorState(
+            setEditorState(
               EditorState.forceSelection(newEditorState, newEditorState.getSelection())
             );
           }
@@ -68,7 +69,7 @@ const createLinkPlugin = (config = {}) => {
     let newEditorState = editorState;
     if (isPasteChange(editorState)) {
       newEditorState = fixPastedLinks(editorState, { anchorTarget, relValue });
-    } else if (linkifyData && !linkifyData?.preview) {
+    } else if (linkifyData) {
       newEditorState = addLinkAt(linkifyData, editorState);
     }
     linkifyData = false;
@@ -76,8 +77,8 @@ const createLinkPlugin = (config = {}) => {
   };
 
   const getLinkifyData = editorState => {
-    const str = findLastStringWithNoSpaces(editorState);
-    return shouldLinkify(str, editorState) && str;
+    const strData = findLastStringWithNoSpaces(editorState);
+    return shouldLinkify(strData, editorState) && strData;
   };
 
   const shouldLinkify = (consecutiveString, editorState) =>
