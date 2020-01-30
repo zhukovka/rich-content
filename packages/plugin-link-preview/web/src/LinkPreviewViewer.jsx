@@ -71,7 +71,6 @@ class LinkPreviewViewer extends Component {
       <figure className={linkPreview} id="linkPreviewSection">
         <div
           style={{
-            height: imageRatio || 0,
             width: imageRatio || 0,
             backgroundImage: `url(${thumbnail_url})`,
           }}
