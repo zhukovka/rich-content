@@ -3,6 +3,7 @@ import { LINK_PREVIEW_TYPE } from './types';
 import LinkPreviewComponent from './LinkPreviewComponent';
 import createLinkPreviewToolbar from './toolbar/createLinkPreviewToolbar';
 import { convertLinkPreviewToLink } from './lib/utils';
+import { REMOVE_LINK_PREVIEW } from './consts';
 
 const createLinkPreviewPlugin = (config = {}) => {
   const type = LINK_PREVIEW_TYPE;
@@ -17,15 +18,15 @@ const createLinkPreviewPlugin = (config = {}) => {
     const currentBlock = getCurrentBlock(editorState);
     const entityKey = currentBlock.getEntityAt(0);
     const entityType = entityKey && editorState.getCurrentContent().getEntity(entityKey).type;
-    if (entityType === 'LINK_PREVIEW') {
+    if (entityType === LINK_PREVIEW_TYPE) {
       if (event.key === 'Backspace') {
-        return 'remove-link-preview';
+        return REMOVE_LINK_PREVIEW;
       }
     }
   };
 
   const handleKeyCommand = (command, editorState, timestamp, { setEditorState }) => {
-    if (command === 'remove-link-preview') {
+    if (command === REMOVE_LINK_PREVIEW) {
       const newState = convertLinkPreviewToLink(editorState);
       setEditorState(newState);
       return 'handled';
