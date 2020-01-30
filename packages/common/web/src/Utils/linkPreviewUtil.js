@@ -22,6 +22,7 @@ export const linkPreviewUtil = authStr => {
               description: 'A mock description',
               thumbnail_url:
                 'https://image.insider.com/5de5784979d757159d0b6838?width=1100&format=jpeg&auto=webp', //eslint-disable-line
+              provider_url: 'www.wix.com',
             }),
           1
         );

@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isEqual } from 'lodash';
-import {
-  mergeStyles,
-  validate,
-  Context,
-  ReadMore,
-  pluginLinkPreviewSchema,
-} from 'wix-rich-content-common';
+import { mergeStyles, validate, Context, pluginLinkPreviewSchema } from 'wix-rich-content-common';
 import styles from '../statics/styles/link-preview.scss';
 
 class LinkPreviewViewer extends Component {
@@ -86,14 +80,10 @@ class LinkPreviewViewer extends Component {
         />
         <section className={linkPreview_info}>
           <div className={linkPreview_url}>{provider_url}</div>
-          <figcaption className={linkPreview_title}>
-            <ReadMore lines={2} text={title} label="" />
+          <figcaption className={linkPreview_title} id="link-preview-title">
+            {title}
           </figcaption>
-          {description && (
-            <div className={linkPreview_description}>
-              <ReadMore lines={1} text={description} label="" />
-            </div>
-          )}
+          {description && <div className={linkPreview_description}>{description}</div>}
         </section>
       </figure>
     );
