@@ -149,17 +149,11 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
     customStyleFn,
   };
 
-  if (underlyingPlugin) {
-    return {
-      ...commonProps,
-      ...underlyingPlugin,
-    };
-  } else {
-    return {
-      ...commonProps,
-      blockRendererFn,
-    };
-  }
+  return {
+    ...commonProps,
+    blockRendererFn,
+    ...(underlyingPlugin || {}),
+  };
 };
 
 export default createBasePlugin;
