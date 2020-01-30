@@ -11,8 +11,15 @@ import {
 export const addLinkPreview = (editorState, config, linkPreviewData) => {
   const settings = config[LINK_PREVIEW_TYPE];
   const { size, alignment } = { ...DEFAULTS, ...(settings || {}) };
-  const { url, ...rest } = linkPreviewData;
-  const data = { config: { size, alignment, link: { url } }, ...rest };
+  const { url, thumbnail_url, title, description, html, provider_url } = linkPreviewData;
+  const data = {
+    config: { size, alignment, link: { url } },
+    thumbnail_url,
+    title,
+    description,
+    html,
+    provider_url,
+  };
   const { newEditorState } = createBlock(editorState, data, LINK_PREVIEW_TYPE);
   return newEditorState;
 };

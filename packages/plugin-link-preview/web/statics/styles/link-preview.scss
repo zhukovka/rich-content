@@ -30,7 +30,7 @@
   align-self: flex-start;
   font-size: 20px;
   line-height: 28px;
-  padding: 8px 0px 12px 0px;
+  padding-top: 12px;
 }
 
 .linkPreview_description,
@@ -38,6 +38,10 @@
   font-size: 16px;
   line-height: 24px;
   align-self: flex-start;
+}
+
+.linkPreview_descriptio {
+  padding-top: 8px;
 }
 
 .linkPreview_oEmbed {
