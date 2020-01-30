@@ -14,6 +14,8 @@
   </summary>
 
 ### :bug: Bug Fix
+- `gallery`
+  - [#639](https://github.com/wix-incubator/rich-content/pull/639) numberOfImagesPerRow style removed from defaults
 - `image`
   - [#635](https://github.com/wix-incubator/rich-content/pull/635) image reloaded when adding/removing link
 - `video`
