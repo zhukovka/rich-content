@@ -12,6 +12,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+
+### :bug: Bug Fix
+- `editor-common`
+  - [#642](https://github.com/wix-incubator/rich-content/pull/642) block selection is removed when losing focus
 </details>
 <hr/>
 

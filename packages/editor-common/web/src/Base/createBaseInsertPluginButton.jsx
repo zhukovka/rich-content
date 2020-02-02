@@ -101,11 +101,9 @@ export default ({
       }
     };
 
-
     shouldCreateGallery = files =>
       blockType === galleryType ||
       (pluginDefaults[galleryType] && settings.createGalleryForMultipleImages && files.length > 1);
-
     handleFileChange = (files, updateEntity) => {
       const { setEditorState } = this.props;
       if (files.length > 0) {
