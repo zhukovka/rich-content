@@ -1,7 +1,7 @@
 import React from 'react';
 import { ResizeContainer } from 'wix-rich-content-common/src/Components/ResizeContainer';
 
-export const COMMANDS = {
+export const COMMANDS = Object.freeze({
   TITLE: 'header-two',
   SUBTITLE: 'header-three',
   ALIGN_LEFT: 'left',
@@ -14,16 +14,16 @@ export const COMMANDS = {
   BLOCKQUOTE: 'blockquote',
   BACKSPACE: 'backspace',
   DELETE: 'delete',
-};
+});
 
-export const MODIFIERS = {
+export const MODIFIERS = Object.freeze({
   COMMAND: 'command',
   CTRL: 'ctrl',
   OPTION: 'option',
   SHIFT: 'shift',
-};
+});
 
-export const TOOLBARS = {
+export const TOOLBARS = Object.freeze({
   SIDE: 'SIDE',
   MOBILE: 'MOBILE', //Text Toolbar
   FOOTER: 'FOOTER',
@@ -31,24 +31,24 @@ export const TOOLBARS = {
   INLINE: 'INLINE', //Text Toolbar
   PLUGIN: 'PLUGIN',
   TEXT: 'ALL-TEXT-TOOLBARS',
-};
+});
 
-export const DISPLAY_MODE = {
+export const DISPLAY_MODE = Object.freeze({
   NORMAL: 'NORMAL',
   FLOATING: 'FLOATING',
-};
+});
 
-export const DECORATION_MODE = {
+export const DECORATION_MODE = Object.freeze({
   PREPEND: 'PREPEND',
   WRAP: 'WRAP',
   APPEND: 'APPEND',
-};
+});
 
-export const PLUGIN_DECORATIONS = {
+export const PLUGIN_DECORATIONS = Object.freeze({
   RESIZEABLE: 'RESIZEABLE',
-};
+});
 
-export const PLUGIN_DECORATION_PROPS = {
+export const PLUGIN_DECORATION_PROPS = Object.freeze({
   [PLUGIN_DECORATIONS.RESIZEABLE]: props => ({
     onMouseDown: props.onMouseDown,
     onMouseMove: props.onMouseMove,
@@ -66,9 +66,9 @@ export const PLUGIN_DECORATION_PROPS = {
       );
     },
   }),
-};
+});
 
-export const TOOLBAR_OFFSETS = {
+export const TOOLBAR_OFFSETS = Object.freeze({
   top: 12,
   left: 15,
-};
+});
