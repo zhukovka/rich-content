@@ -64,6 +64,8 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
       getEditorBounds,
       initialIntent,
       languageDir,
+      getEditorState: config.getEditorState,
+      setEditorState: config.setEditorState,
     });
   const InsertPluginButtons =
     settings.showInsertButtons &&

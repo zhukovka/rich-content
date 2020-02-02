@@ -39,6 +39,8 @@ export default function createToolbar({
   getToolbarSettings = () => [],
   getEditorBounds,
   languageDir,
+  getEditorState,
+  setEditorState,
 }) {
   class BaseToolbar extends Component {
     constructor(props) {
@@ -250,6 +252,12 @@ export default function createToolbar({
         settings: button.settings,
         pubsub,
       };
+      const position = {
+        '--offset-top': `${this.offset.y}px`,
+        '--offset-left': `${this.offset.x}px`,
+        transform: 'scale(1)',
+        position: 'absolute',
+      };
       switch (button.type) {
         case BUTTONS.TEXT_ALIGN_LEFT:
         case BUTTONS.TEXT_ALIGN_CENTER:
@@ -357,6 +365,9 @@ export default function createToolbar({
               hideInlinePanel={this.hidePanels}
               uiSettings={uiSettings}
               getEditorBounds={getEditorBounds}
+              getEditorState={getEditorState}
+              setEditorState={setEditorState}
+              position={position}
               {...buttonProps}
             />
           );

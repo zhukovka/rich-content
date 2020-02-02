@@ -103,17 +103,20 @@ export const insertAnchorAtCurrentSelection = (editorState, { name, anchorTarget
   );
 };
 
-function insertAnchor(editorState, selection, { name, anchorTarget }) {
+function insertAnchor(editorState, selection, { name }) {
   const contentState = editorState.getCurrentContent();
   const newEditorState = EditorState.push(editorState, contentState, 'change-inline-style');
-
-  const target = anchorTarget !== '_blank' ? anchorTarget : '_self';
 
   return addEntity(newEditorState, selection, {
     type: 'wix-draft-plugin-anchor',
     data: {
       name,
-      target,
+      type: 'single',
+      target: '_self',
+      config: {
+        size: 'large',
+        alignment: 'center',
+      },
     },
   });
 }

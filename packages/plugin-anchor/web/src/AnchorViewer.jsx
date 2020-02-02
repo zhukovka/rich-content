@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { mergeStyles, validate, Context, pluginAnchorSchema } from 'wix-rich-content-common';
 import { isEqual } from 'lodash';
 import styles from '../statics/anchor-viewer.rtlignore.scss';
-import AnchorIcon from './icons/anchor-icon.svg';
 
 class AnchorViewer extends Component {
   static propTypes = {
@@ -34,7 +33,7 @@ class AnchorViewer extends Component {
   }
 
   render() {
-    const { componentData, anchorTarget, children, renderInEditor } = this.props;
+    const { componentData, anchorTarget, renderInEditor } = this.props;
     const { target, name } = componentData;
     const anchorProps = {
       name: renderInEditor ? `editor-${name}` : name,
@@ -42,13 +41,12 @@ class AnchorViewer extends Component {
       className: this.state.styles.anchorViewer,
     };
     return (
-      <>
-        {!!renderInEditor && (
-          <AnchorIcon className={this.state.styles.anchorViewer_anchorIcon} />
-          // <AnchorIcon style={{ position: 'absolute', top: '3px', left: '-9px', color: 'orange' }} />
-        )}
-        <a {...anchorProps}>{children}</a>
-      </>
+      <div className={this.state.styles.dividerContainer}>
+        <a {...anchorProps}>{''}</a>
+        <svg className={this.state.styles.divider}>
+          <line x2="100%" />
+        </svg>
+      </div>
     );
   }
 }

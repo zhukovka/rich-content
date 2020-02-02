@@ -35,25 +35,14 @@ class AnchorPanelContainer extends PureComponent {
 
   render() {
     const { styles } = this;
-    const {
-      theme,
-      isActive,
-      isMobile,
-      t,
-      ariaProps,
-      tabIndex,
-      uiSettings,
-      anchorsEntities,
-    } = this.props;
+    const { theme, isMobile, t, ariaProps, tabIndex, uiSettings, anchorsEntities } = this.props;
     const doneButtonText = t('AnchorPanelContainer_DoneButton');
     const cancelButtonText = t('AnchorPanelContainer_CancelButton');
-    const removeButtonText = t('AnchorPanelContainer_RemoveButton');
     const doneButtonClassName = classNames(styles.linkPanel_FooterButton, styles.linkPanel_enabled);
     const cancelButtonClassName = classNames(
       styles.linkPanel_FooterButton,
       styles.linkPanel_Cancel
     );
-    const removeButtonClassName = classNames(styles.linkPanel_FooterButton);
     const anchorPanelContainerClassName = classNames(styles.linkPanel_container, {
       [styles.linkPanel_container_isMobile]: isMobile,
     });
@@ -92,20 +81,6 @@ class AnchorPanelContainer extends PureComponent {
             >
               {cancelButtonText}
             </button>
-            {isActive && (
-              <div className={styles.linkPanel_RemoveContainer}>
-                <div className={styles.linkPanel_VerticalDivider} />
-                <button
-                  tabIndex={tabIndex}
-                  aria-label={removeButtonText}
-                  className={removeButtonClassName}
-                  data-hook="anchorPanelContainerRemove"
-                  onClick={this.onDelete}
-                >
-                  {removeButtonText}
-                </button>
-              </div>
-            )}
           </div>
           <button
             tabIndex={tabIndex}

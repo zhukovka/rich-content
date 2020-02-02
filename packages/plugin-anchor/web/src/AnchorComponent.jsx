@@ -2,36 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AnchorViewer from './AnchorViewer';
 
-const Anchor = ({
-  entityKey,
-  contentState,
-  children,
-  anchorTarget,
-  relValue,
-  settings,
-  href,
-  rel,
-  target,
-  ...otherProps
-}) => {
-  const componentData = href
-    ? { url: href, rel, target }
-    : contentState.getEntity(entityKey).getData();
-  return (
-    <AnchorViewer
-      componentData={componentData}
-      anchorTarget={anchorTarget}
-      relValue={relValue}
-      settings={settings}
-      {...otherProps}
-      renderInEditor
-    >
-      {children}
-    </AnchorViewer>
-  );
-};
+class Anchor extends React.PureComponent {
+  render() {
+    const { componentData, children, anchorTarget, relValue, settings, ...otherProps } = this.props;
+
+    return (
+      <AnchorViewer
+        componentData={componentData}
+        anchorTarget={anchorTarget}
+        relValue={relValue}
+        settings={settings}
+        {...otherProps}
+        renderInEditor
+      >
+        {children}
+      </AnchorViewer>
+    );
+  }
+}
 
 Anchor.propTypes = {
+  componentData: PropTypes.object,
   entityKey: PropTypes.string.isRequired,
   contentState: PropTypes.object.isRequired,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,

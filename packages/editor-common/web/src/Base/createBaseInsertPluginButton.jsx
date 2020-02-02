@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { EditorState } from 'draft-js';
 import { isEmpty } from 'lodash';
 import { mergeStyles } from 'wix-rich-content-common';
-import { createBlock } from '../Utils/draftUtils.js';
+import { createBlock, getEntityByType } from '../Utils/draftUtils.js';
 import classNames from 'classnames';
 import FileInput from '../Components/FileInput';
 import ToolbarButton from '../Components/ToolbarButton';
@@ -83,6 +83,29 @@ export default ({
       return { newEditorState: editorState, newSelection: selection };
     };
 
+    createNewAnchor = () => {
+      const newAnchorBaseName = 'Anchor';
+      let newAnchorIndex = 1;
+      while (this.isAnchorNameExists(`${newAnchorBaseName}${newAnchorIndex}`)) {
+        newAnchorIndex++;
+      }
+      this.addBlock({
+        type: 'single',
+        name: `${newAnchorBaseName}${newAnchorIndex}`,
+        target: '_self',
+        config: {
+          size: 'large',
+          alignment: 'center',
+        },
+      });
+    };
+
+    isAnchorNameExists = name => {
+      const { getEditorState } = this.props;
+      const anchorsEntities = getEntityByType(getEditorState(), 'wix-draft-plugin-anchor');
+      return anchorsEntities.some(anchor => anchor.data.name === name);
+    };
+
     onClick = event => {
       event.preventDefault();
       switch (button.type) {
@@ -94,6 +117,9 @@ export default ({
           break;
         case 'custom-block':
           this.addCustomBlock(button);
+          break;
+        case 'Anchor':
+          this.createNewAnchor();
           break;
         default:
           this.addBlock(button.componentData || {});

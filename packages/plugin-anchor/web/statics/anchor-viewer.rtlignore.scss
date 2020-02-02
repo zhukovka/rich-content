@@ -1,19 +1,28 @@
 @import '~wix-rich-content-common/dist/statics/styles/palette';
 
-.anchorViewer {
-  text-decoration: none;
-}
-
-[class*="public-DraftStyleDefault-ltr"] > .anchorViewer_anchorIcon {
-  position: absolute;
-  top: 3px;
-  left: -9px;
-  color: orange;
-}
-
-[class*="public-DraftStyleDefault-rtl"] > .anchorViewer_anchorIcon {
+.anchorViewer_anchorIcon {
   position: absolute;
   top: 3px;
   right: -9px;
-  color: orange;
+}
+
+.dividerContainer {
+  box-sizing: border-box;
+  width: 100%;
+  height: 29px;
+  padding-top: 14px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.divider {
+  box-sizing: border-box;
+  display: block;
+  stroke: currentColor;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  color: aqua;
 }

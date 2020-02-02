@@ -16,9 +16,10 @@ class AnchorPanel extends Component {
 
   isValidAnchor = name => {
     const isValidAnchor =
-      this.props.existingName === name ||
-      !name ||
-      !(this.props.anchorsEntities.filter(entity => entity.data.name === name).length > 0);
+      (this.props.existingName === name ||
+        !name ||
+        !(this.props.anchorsEntities.filter(entity => entity.data.name === name).length > 0)) &&
+      name !== '';
     return isValidAnchor;
   };
 
