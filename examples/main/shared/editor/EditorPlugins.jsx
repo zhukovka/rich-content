@@ -58,7 +58,7 @@ import {
 import { getBaseUrl } from '../../src/utils';
 import { testWixVideos } from './mock';
 // import { MyCustomIcon, SizeSmallRightIcon, TOOLBARS } from 'wix-rich-content-editor-common';
-// import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common';
+import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common';
 // import InlineToolbarDecoration from './Components/InlineToolbarDecoration';
 // import StaticToolbarDecoration from './Components/StaticToolbarDecoration';
 // import SideToolbarDecoration from './Components/SideToolbarDecoration';
@@ -273,8 +273,8 @@ export const config = {
       metaSiteId: '538fa6c6-c953-4cdd-86c4-4b869aecf980',
       mediaRoot: 'some-mediaRoot',
     },
-    onImageEditorOpen: () => console.log('Media Studio Launched'),
     // createGalleryForMultipleImages: true,
+    onImageEditorOpen: () => console.log('Media Studio Launched'),
     // toolbar: {
     //   icons: {
     //     InsertPluginButtonIcon: MyCustomIcon,
@@ -467,14 +467,19 @@ export const config = {
     // },
     handleFileSelection: updateEntity => {
       const filenames = ['image.jpg', 'document.pdf', 'music.mp3'];
-      const name = filenames[Math.floor(Math.random() * filenames.length)];
-      const filenameParts = name.split('.');
-      const type = filenameParts[filenameParts.length - 1];
-      const data = {
-        name,
-        type,
-        url: 'http://file-examples.com/wp-content/uploads/2017/10/file-sample_150kB.pdf',
-      };
+      const multiple = false;
+      const count = multiple ? [1, 2, 3] : [1];
+      const data = [];
+      count.forEach(_ => {
+        const name = filenames[Math.floor(Math.random() * filenames.length)];
+        const filenameParts = name.split('.');
+        const type = filenameParts[filenameParts.length - 1];
+        data.push({
+          name,
+          type,
+          url: 'http://file-examples.com/wp-content/uploads/2017/10/file-sample_150kB.pdf',
+        });
+      });
       setTimeout(() => updateEntity({ data }), 500);
     },
   },
@@ -652,14 +657,14 @@ export const config = {
     //     desktop: () => true,
     //   }),
     //   getDisplayOptions: () => ({
-    //     desktop: { displayMode:  DISPLAY_MODE.FLOATING },
+    //     desktop: { displayMode: DISPLAY_MODE.FLOATING },
     //   }),
     //   getPositionOffset: () => ({
-    //     desktop: { x: 0, y: 0 },
+    //     desktop: { x: 300, y: 0 },
     //   }),
-    //   getToolbarDecorationFn: () => ({
-    //     desktop: () => StaticToolbarDecoration
-    //   })
+    //   // getToolbarDecorationFn: () => ({
+    //   //   desktop: () => StaticToolbarDecoration,
+    //   // }),
     // },
     // {
     //   name: TOOLBARS.INLINE,

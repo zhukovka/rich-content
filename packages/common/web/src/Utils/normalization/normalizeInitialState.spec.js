@@ -564,7 +564,9 @@ describe('normalizeInitialState', () => {
         },
         src: {
           id: '599ada_e9c9134635b544f0857ccc3ce9e0fa68~mv2.jpg',
+          // eslint-disable-next-line camelcase
           original_file_name: '599ada_e9c9134635b544f0857ccc3ce9e0fa68~mv2.jpg',
+          // eslint-disable-next-line camelcase
           file_name: '599ada_e9c9134635b544f0857ccc3ce9e0fa68~mv2.jpg',
           width: 522,
           height: 522,
@@ -608,11 +610,14 @@ describe('normalizeInitialState', () => {
             data,
           },
         },
-        VERSION: '6.6.8',
       });
 
       const actual = uut(initialState(badData), {});
-      expect(actual).toEqual(initialState(goodData));
+      const goodDataWithVersion = {
+        ...initialState(goodData),
+        VERSION: Version.currentVersion,
+      };
+      expect(actual).toEqual(goodDataWithVersion);
     });
   });
 });

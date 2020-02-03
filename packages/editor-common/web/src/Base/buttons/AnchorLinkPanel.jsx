@@ -1,12 +1,9 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
-import {
-  getLinkDataInSelection,
-  AnchorPanelContainer,
-  decorateComponentWithProps,
-  getEntityByType,
-} from 'wix-rich-content-editor-common';
+import { getLinkDataInSelection, getEntityByType } from '../../Utils/draftUtils';
+import AnchorPanelContainer from '../../Components/AnchorPanelContainer';
+import decorateComponentWithProps from '../../Utils/decorateComponentWithProps';
 
 export default class AnchorLinkPanel extends Component {
   componentDidMount() {

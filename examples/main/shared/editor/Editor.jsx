@@ -20,6 +20,7 @@ const modalStyleDefaults = {
 };
 const anchorTarget = '_blank';
 const relValue = 'noopener';
+let shouldMultiSelectImages = false;
 
 export default class Editor extends PureComponent {
   state = {};
@@ -50,8 +51,8 @@ export default class Editor extends PureComponent {
     };
     this.helpers = {
       // onFilesChange: (files, updateEntity) => mockUpload(files, updateEntity),
-      handleFileSelection: (index, multiple, updateEntity, removeEntity) => {
-        const count = multiple ? [1, 2, 3] : [1];
+      handleFileSelection: (index, multiple, updateEntity, removeEntity, componentData) => {
+        const count = componentData.items || shouldMultiSelectImages ? [1, 2, 3] : [1];
         const data = [];
         count.forEach(_ => {
           const testItem = testImages[Math.floor(Math.random() * testImages.length)];
@@ -115,6 +116,9 @@ export default class Editor extends PureComponent {
     if (prevProps.staticToolbar !== this.props.staticToolbar) {
       this.setEditorToolbars();
     }
+    if (prevProps.shouldMultiSelectImages !== this.props.shouldMultiSelectImages) {
+      shouldMultiSelectImages = this.props.shouldMultiSelectImages;
+    }
   }
 
   setEditorToolbars = () => {
@@ -140,16 +144,14 @@ export default class Editor extends PureComponent {
 
   render() {
     const modalStyles = {
-      content: Object.assign(
-        {},
-        (this.state.modalStyles || modalStyleDefaults).content,
-        theme.modalTheme.content
-      ),
-      overlay: Object.assign(
-        {},
-        (this.state.modalStyles || modalStyleDefaults).overlay,
-        theme.modalTheme.overlay
-      ),
+      content: {
+        ...(this.state.modalStyles || modalStyleDefaults).content,
+        ...theme.modalTheme.content,
+      },
+      overlay: {
+        ...(this.state.modalStyles || modalStyleDefaults).overlay,
+        ...theme.modalTheme.overlay,
+      },
     };
     const { MobileToolbar, TextToolbar } = this.state;
     const textToolbarType = this.props.staticToolbar && !this.props.isMobile ? 'static' : null;

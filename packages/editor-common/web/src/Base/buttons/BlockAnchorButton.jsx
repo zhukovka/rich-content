@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  getModalStyles,
-  EditorModals,
-  decorateComponentWithProps,
-} from 'wix-rich-content-editor-common';
+import { getModalStyles } from '../../Utils/getModalStyles';
+import EditorModals from '../../Modals/EditorModals';
+import decorateComponentWithProps from '../../Utils/decorateComponentWithProps';
 import AnchorLinkPanel from './AnchorLinkPanel';
 import AnchorButton from './AnchorButton';
 

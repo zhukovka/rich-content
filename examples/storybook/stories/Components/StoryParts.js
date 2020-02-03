@@ -20,7 +20,7 @@ export const Section = ({ type, title, children }) => {
   return (
     <div className={styles.section}>
       <h2>{title || type}</h2>
-      <div className={type}>{children}</div>
+      <div className={styles[type]}>{children}</div>
     </div>
   );
 };
@@ -35,7 +35,7 @@ Section.propTypes = {
 };
 
 export const RichContentEditorBox = ({ children, preset }) => (
-  <div className={`${styles.rceWrapper} ${preset || ''}`}>{children}</div>
+  <div className={`${styles.rceWrapper} ${styles[preset || '']}`}>{children}</div>
 );
 
 RichContentEditorBox.propTypes = {
@@ -43,7 +43,7 @@ RichContentEditorBox.propTypes = {
 };
 
 export const RichContentViewerBox = ({ children, preset }) => (
-  <div className={`${styles.rcvWrapper} ${preset || ''}`}>{children}</div>
+  <div className={`${styles.rcvWrapper} ${styles[preset || '']}`}>{children}</div>
 );
 
 RichContentViewerBox.propTypes = {

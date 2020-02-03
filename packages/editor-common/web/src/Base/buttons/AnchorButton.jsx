@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PluginSettingsIcon from '../../Icons/PluginSettingsIcon';
-import { InlineToolbarButton } from 'wix-rich-content-editor-common';
+import InlineToolbarButton from '../../Components/InlineToolbarButton';
 
 const AnchorButton = ({ icon, ...otherProps }) => (
   <InlineToolbarButton
