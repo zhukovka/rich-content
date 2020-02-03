@@ -26,4 +26,6 @@ export default {
   HEIGHT: 'height',
   LINK: 'link',
   DELETE: 'delete',
+  ANCHOR: 'anchor',
+  FLOATING_MODAL: 'floating-modal',
 };

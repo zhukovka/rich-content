@@ -5,6 +5,8 @@ import createBlockSizeButton from './createBlockSizeButton';
 import createSliderPanelButton from './createSliderPanelButton';
 import BUTTONS from './keys';
 import BlockLinkButton from '../buttons/BlockLinkButton';
+import BlockAnchorButton from '../buttons/BlockAnchorButton';
+import FloatingModalButton from '../buttons/FloatingModalButton';
 import {
   SizeSmallIcon,
   SizeMediumIcon,
@@ -27,6 +29,8 @@ import {
 export { BUTTONS };
 
 export { BlockLinkButton };
+export { BlockAnchorButton };
+export { FloatingModalButton };
 
 export const sizeSmallButton = icon =>
   createBlockSizeButton({

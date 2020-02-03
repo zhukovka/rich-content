@@ -40,7 +40,7 @@ export default ({ t, anchorTarget, relValue, uiSettings, isMobile, settings = {}
     { keyName: 'alignCenter', type: BUTTONS.SIZE_CONTENT_CENTER, mobile: false },
     { keyName: 'alignRight', type: BUTTONS.SIZE_SMALL_RIGHT, mobile: false },
     { keyName: 'separator2', type: BUTTONS.SEPARATOR, mobile: false },
-    { keyName: 'link', type: BUTTONS.LINK, mobile: false },
+    { keyName: 'link', type: BUTTONS.FLOATING_MODAL, mobile: false },
     imageEditorButton,
     {
       keyName: 'settings',

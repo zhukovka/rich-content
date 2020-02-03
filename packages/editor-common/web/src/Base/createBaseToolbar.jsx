@@ -9,7 +9,7 @@ import { mergeToolbarSettings } from '../Utils/mergeToolbarSettings';
 import Separator from '../Components/Separator';
 import BaseToolbarButton from './baseToolbarButton';
 import { getDefaultToolbarSettings } from './default-toolbar-settings';
-import { BUTTONS, BUTTONS_BY_KEY, BlockLinkButton, deleteButton } from './buttons';
+import { BUTTONS, BUTTONS_BY_KEY, deleteButton, FloatingModalButton } from './buttons';
 import Panel from '../Components/Panel';
 import toolbarStyles from '../../statics/styles/plugin-toolbar.scss';
 import buttonStyles from '../../statics/styles/plugin-toolbar-button.scss';
@@ -315,9 +315,10 @@ export default function createToolbar({
           return <Separator className={separatorClassNames} key={key} />;
         case BUTTONS.HORIZONTAL_SEPARATOR:
           return <Separator className={separatorClassNames} horizontal key={key} />;
-        case BUTTONS.LINK:
+        case BUTTONS.FLOATING_MODAL:
           return (
-            <BlockLinkButton
+            <FloatingModalButton
+              buttonKeyName={button.keyName}
               tabIndex={tabIndex}
               pubsub={pubsub}
               onOverrideContent={this.onOverrideContent}
@@ -332,6 +333,8 @@ export default function createToolbar({
               t={t}
               uiSettings={uiSettings}
               icons={icons.link}
+              getEditorState={getEditorState}
+              setEditorState={setEditorState}
             />
           );
         case BUTTONS.DELETE: {
