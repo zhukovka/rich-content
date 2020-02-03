@@ -15,18 +15,14 @@ class GalleryComponent extends PureComponent {
     this.state = this.stateFromProps(props);
 
     const { block, store, commonPubsub } = this.props;
-    this.blockKey = block.getKey();
+    const blockKey = block.getKey();
     if (store) {
-      store.setBlockHandler(
-        'handleFilesSelected',
-        this.blockKey,
-        this.handleFilesSelected.bind(this)
-      );
-      store.setBlockHandler('handleFilesAdded', this.blockKey, this.handleFilesAdded.bind(this));
+      store.setBlockHandler('handleFilesSelected', blockKey, this.handleFilesSelected.bind(this));
+      store.setBlockHandler('handleFilesAdded', blockKey, this.handleFilesAdded.bind(this));
     }
     commonPubsub?.setBlockHandler(
       'galleryHandleFilesAdded',
-      this.blockKey,
+      blockKey,
       this.handleFilesAdded.bind(this)
     );
   }
@@ -43,7 +39,7 @@ class GalleryComponent extends PureComponent {
 
   stateFromProps = props => {
     const items = props.componentData.items || []; // || DEFAULTS.items;
-    const styles = Object.assign(DEFAULTS.styles, props.componentData.styles || {});
+    const styles = { ...DEFAULTS.styles, ...(props.componentData.styles || {}) };
     const isLoading = (props.componentState && props.componentState.isLoading) || 0;
     const state = {
       items,
@@ -56,7 +52,7 @@ class GalleryComponent extends PureComponent {
       if (isLoading <= 0 && userSelectedFiles) {
         //lets continue the uploading process
         if (userSelectedFiles.files && userSelectedFiles.files.length > 0) {
-          Object.assign(state, { isLoading: userSelectedFiles.files.length });
+          state.isLoading = userSelectedFiles.files.length;
           this.handleFilesSelected(userSelectedFiles.files);
         }
         if (this.props.store) {

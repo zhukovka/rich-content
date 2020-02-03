@@ -5,7 +5,6 @@ import { createDividerPlugin } from 'wix-rich-content-plugin-divider';
 import { createHashtagPlugin, HASHTAG_TYPE } from 'wix-rich-content-plugin-hashtag';
 import { createImagePlugin } from 'wix-rich-content-plugin-image';
 
-
 const config = {
   [HASHTAG_TYPE]: {
     createHref: decoratedText => `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`,
