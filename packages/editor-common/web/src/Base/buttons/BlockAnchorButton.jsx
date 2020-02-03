@@ -40,6 +40,7 @@ export default class BlockAnchorButton extends Component {
           modalName: EditorModals.MOBILE_TEXT_ANCHOR_MODAL,
           hidePopup: helpers.closeModal,
           uiSettings,
+          pubsub,
         };
         helpers.openModal(modalProps);
       } else {
