@@ -18,6 +18,9 @@ class ItemsListComponent extends Component {
     return (
       <div
         className={styles.listItemContainer}
+        role="button"
+        tabIndex="-1"
+        onKeyDown={() => {}}
         onClick={() => this.onSelectionChange(item)}
       >
         <input
@@ -30,8 +33,8 @@ class ItemsListComponent extends Component {
         {item.imageUrl ? (
           <img className={styles.listItemImage} src={item.imageUrl} alt={item.title} />
         ) : (
-            getItemsListPlaceholder()
-          )}
+          getItemsListPlaceholder()
+        )}
 
         <div className={styles.actionItemsContainer}>
           <h5>{item.title}</h5>
@@ -48,6 +51,7 @@ class ItemsListComponent extends Component {
 
 ItemsListComponent.propTypes = {
   items: PropTypes.array.isRequired,
+  onSelectionChange: PropTypes.func,
 };
 
 ItemsListComponent.contextType = Context.type;

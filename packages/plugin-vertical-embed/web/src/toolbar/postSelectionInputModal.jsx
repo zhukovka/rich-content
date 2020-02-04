@@ -33,7 +33,7 @@ export default class PostSelectionInputModal extends Component {
     this.search();
   }
 
-  handleKeyPress = () => { };
+  handleKeyPress = () => {};
 
   currentAbortController = null;
   async search(query) {
@@ -99,7 +99,12 @@ export default class PostSelectionInputModal extends Component {
               data-hook="blogPostSearchInput"
             />
           </div>
-          {posts && posts.length > 0 && <ItemsListComponent items={posts} onSelectionChange={selectedPost => this.setState({ selectedPost })} />}
+          {posts && posts.length > 0 && (
+            <ItemsListComponent
+              items={posts}
+              onSelectionChange={selectedPost => this.setState({ selectedPost })}
+            />
+          )}
         </div>
 
         <div className={styles.actionButtonsContainer}>

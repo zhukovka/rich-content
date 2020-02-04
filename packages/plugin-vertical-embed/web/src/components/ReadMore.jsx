@@ -20,30 +20,26 @@ class ReadMore extends PureComponent {
     isExpanded: false,
     ellipsis: '…',
     lines: 3,
-    onClick: () => { },
+    onClick: () => {},
   };
 
   /* eslint-disable */
   render() {
     this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
-    const {
-      lines,
-      label,
-      ellipsis,
-      children,
-      text,
-      isExpanded,
-    } = this.props;
+    const { lines, label, ellipsis, children, text, isExpanded } = this.props;
     const textToCollapse = text || getChildrenText(children);
     return (
       <Fragment>
-        {isExpanded ? { textToCollapse } :
+        {isExpanded ? (
+          { textToCollapse }
+        ) : (
           <LinesEllipsis
             text={textToCollapse}
             className={this.styles.readMore}
             maxLine={lines}
             ellipsis={`${ellipsis} ${label}`}
-          />}
+          />
+        )}
       </Fragment>
     );
   }

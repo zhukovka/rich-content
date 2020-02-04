@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { isEqual } from 'lodash';
-import {
-  mergeStyles,
-  validate,
-  Context,
-} from 'wix-rich-content-common';
+import { mergeStyles, Context } from 'wix-rich-content-common';
 import styles from '../../statics/styles/link-preview.scss';
 import ReadMore from './ReadMore';
 
