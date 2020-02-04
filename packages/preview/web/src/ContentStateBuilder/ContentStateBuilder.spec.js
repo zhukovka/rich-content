@@ -232,10 +232,12 @@ describe('content state media builder', () => {
       type: 'LINK_PREVIEW',
       mutability: 'IMMUTABLE',
       data: {
-        url: 'wix.com',
         config: {
-          size: 'content',
           alignment: 'center',
+          link: {
+            url: 'wix.com',
+          },
+          size: 'content',
         },
       },
     });

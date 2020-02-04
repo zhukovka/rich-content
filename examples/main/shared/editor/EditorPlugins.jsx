@@ -60,7 +60,7 @@ import { getBaseUrl } from '../../src/utils';
 import { linkPreviewUtil } from 'wix-rich-content-common';
 import { testWixVideos } from './mock';
 // import { MyCustomIcon, SizeSmallRightIcon, TOOLBARS } from 'wix-rich-content-editor-common';
-// import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common';
+import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common';
 // import InlineToolbarDecoration from './Components/InlineToolbarDecoration';
 // import StaticToolbarDecoration from './Components/StaticToolbarDecoration';
 // import SideToolbarDecoration from './Components/SideToolbarDecoration';
@@ -129,6 +129,7 @@ const getLinkPanelDropDownConfig = () => {
       searchWords={[searchWords]}
       textToHighlight={textToHighlight}
       highlightTag={({ children }) => <strong className="highlighted-text">{children}</strong>}
+      autoEscape
     />
   );
 
@@ -658,14 +659,14 @@ export const config = {
     //     desktop: () => true,
     //   }),
     //   getDisplayOptions: () => ({
-    //     desktop: { displayMode:  DISPLAY_MODE.FLOATING },
+    //     desktop: { displayMode: DISPLAY_MODE.FLOATING },
     //   }),
     //   getPositionOffset: () => ({
-    //     desktop: { x: 0, y: 0 },
+    //     desktop: { x: 300, y: 0 },
     //   }),
-    //   getToolbarDecorationFn: () => ({
-    //     desktop: () => StaticToolbarDecoration
-    //   })
+    //   // getToolbarDecorationFn: () => ({
+    //   //   desktop: () => StaticToolbarDecoration,
+    //   // }),
     // },
     // {
     //   name: TOOLBARS.INLINE,

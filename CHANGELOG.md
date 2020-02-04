@@ -14,14 +14,28 @@
   </summary>
 
 ### :bug: Bug Fix
+- `map`
+  - [#612](https://github.com/wix-incubator/rich-content/pull/612) warnings issues of google-maps-loader props
+- `editor-common`
+  - [#642](https://github.com/wix-incubator/rich-content/pull/642) block selection is removed when losing focus
+- `link`
+  - [#646](https://github.com/wix-incubator/rich-content/pull/646) backslash in link panel breaks editor
+</details>
+<hr/>
+
+## 6.7.1 (Jan 27, 2020)
+### :bug: Bug Fix
+- `gallery`
+  - [#639](https://github.com/wix-incubator/rich-content/pull/639) numberOfImagesPerRow style removed from defaults
 - `image`
   - [#635](https://github.com/wix-incubator/rich-content/pull/635) image reloaded when adding/removing link
+- `video`
+  - [#636](https://github.com/wix-incubator/rich-content/pull/636) facebook video ratio in SSR
 ### :house: Internal
 - `e2e`
   - [#635](https://github.com/wix-incubator/rich-content/pull/635) disable css transitions in cypress
-  
-</details>
-<hr/>
+- `github-actions`
+  - [#637](https://github.com/wix-incubator/rich-content/pull/637) moved deployment from Travis CI to Github Actions
 
 ## 6.7.0 (Jan 27, 2020)
 ### :rocket: New Feature
@@ -75,7 +89,7 @@
 - `example`
   - [#634](https://github.com/wix-incubator/rich-content/pull/634) toggle for mocking image multi-select
   - [#624](https://github.com/wix-incubator/rich-content/pull/575) video and image selection is uses external selection logic
-    
+
 ## 6.6.8 (Jan 16, 2020)
 ### :bug: Bug Fix
 - `editor-common`

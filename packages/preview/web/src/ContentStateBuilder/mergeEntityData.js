@@ -81,7 +81,13 @@ const linkPreviewMerger = ({ url }, entity) => ({
   ...entity,
   data: {
     ...entity.data,
-    url,
+    config: {
+      ...entity.data.config,
+      link: {
+        ...entity.data.config.link,
+        url,
+      },
+    },
   },
 });
 
