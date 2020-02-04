@@ -4,6 +4,7 @@ import { mergeStyles, validate, Context, pluginAnchorSchema } from 'wix-rich-con
 import { isEqual } from 'lodash';
 import styles from '../statics/anchor-viewer.rtlignore.scss';
 import classNames from 'classnames';
+import AnchorIcon from './icons/anchor-icon.svg';
 
 class AnchorViewer extends Component {
   static propTypes = {
@@ -48,9 +49,15 @@ class AnchorViewer extends Component {
         })}
       >
         <a {...anchorProps}>{''}</a>
-        <svg className={this.state.styles.divider}>
-          <line x2="100%" />
-        </svg>
+        {!!renderInEditor && [
+          <svg key="line" className={this.state.styles.divider}>
+            <line x2="100%" />
+          </svg>,
+          <div key="name" className={this.state.styles.anchorName}>
+            <AnchorIcon className={this.state.styles.anchorViewer_anchorIcon} />
+            {name}
+          </div>,
+        ]}
       </div>
     );
   }
