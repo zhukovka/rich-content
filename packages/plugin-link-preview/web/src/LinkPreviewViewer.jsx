@@ -4,6 +4,8 @@ import { isEqual } from 'lodash';
 import { mergeStyles, validate, Context, pluginLinkPreviewSchema } from 'wix-rich-content-common';
 import styles from '../statics/styles/link-preview.scss';
 
+const MAX_2_LINES_CHARS_NUM = 120;
+
 class LinkPreviewViewer extends Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
@@ -16,6 +18,7 @@ class LinkPreviewViewer extends Component {
     super(props);
     validate(props.componentData, pluginLinkPreviewSchema);
     this.state = {};
+    this.shouldElipsiseTitle = props.componentData.title.length > MAX_2_LINES_CHARS_NUM;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,6 +50,7 @@ class LinkPreviewViewer extends Component {
       linkPreview_description,
       linkPreview_url,
       linkPreview_oEmbed,
+      ellipsis,
     } = this.styles;
 
     if (!settings.disableOembed && html) {
@@ -81,6 +85,7 @@ class LinkPreviewViewer extends Component {
           <div className={linkPreview_url}>{provider_url}</div>
           <figcaption className={linkPreview_title} id="link-preview-title">
             {title}
+            {this.shouldElipsiseTitle && <span className={ellipsis}>...</span>}
           </figcaption>
           {description && <div className={linkPreview_description}>{description}</div>}
         </section>

@@ -36,6 +36,10 @@
   display: flex;
 }
 
+.ellipsis {
+  align-self: flex-end;
+}
+
 .linkPreview_title,
 .linkPreview_description,
 .linkPreview_url {
