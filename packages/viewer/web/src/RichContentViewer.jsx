@@ -69,35 +69,49 @@ class RichContentViewer extends Component {
     };
   }
 
+  static getDerivedStateFromError(error) {
+    return { error };
+  }
+
   render() {
-    const { styles } = this;
-    const { textDirection, typeMappers, decorators, inlineStyleMappers, locale } = this.props;
+    const { onError } = this.props;
+    try {
+      if (this.state.error) {
+        onError(this.state.error);
+        return null;
+      }
+      const { styles } = this;
+      const { textDirection, typeMappers, decorators, inlineStyleMappers, locale } = this.props;
 
-    const wrapperClassName = classNames(styles.wrapper, {
-      [styles.desktop]: !this.props.platform || this.props.platform === 'desktop',
-    });
-    const editorClassName = classNames(styles.editor, {
-      [styles.rtl]: textDirection === 'rtl',
-    });
+      const wrapperClassName = classNames(styles.wrapper, {
+        [styles.desktop]: !this.props.platform || this.props.platform === 'desktop',
+      });
+      const editorClassName = classNames(styles.editor, {
+        [styles.rtl]: textDirection === 'rtl',
+      });
 
-    const output = convertToReact(
-      this.state.raw,
-      styles,
-      textDirection,
-      typeMappers,
-      this.state.contextualData,
-      decorators,
-      inlineStyleMappers
-    );
+      const output = convertToReact(
+        this.state.raw,
+        styles,
+        textDirection,
+        typeMappers,
+        this.state.contextualData,
+        decorators,
+        inlineStyleMappers
+      );
 
-    return (
-      <div className={wrapperClassName} dir={getLangDir(locale)}>
-        <Context.Provider value={this.state.contextualData}>
-          <div className={editorClassName}>{output}</div>
-          <AccessibilityListener />
-        </Context.Provider>
-      </div>
-    );
+      return (
+        <div className={wrapperClassName} dir={getLangDir(locale)}>
+          <Context.Provider value={this.state.contextualData}>
+            <div className={editorClassName}>{output}</div>
+            <AccessibilityListener />
+          </Context.Provider>
+        </div>
+      );
+    } catch (err) {
+      onError(err);
+      return null;
+    }
   }
 }
 
@@ -131,6 +145,7 @@ RichContentViewer.propTypes = {
   disabled: PropTypes.bool,
   shouldRenderOptimizedImages: PropTypes.bool,
   siteDomain: PropTypes.string,
+  onError: PropTypes.func,
 };
 
 RichContentViewer.defaultProps = {
@@ -139,6 +154,9 @@ RichContentViewer.defaultProps = {
   typeMappers: [],
   inlineStyleMappers: [],
   locale: 'en',
+  onError: err => {
+    throw err;
+  },
 };
 
 export default RichContentViewer;

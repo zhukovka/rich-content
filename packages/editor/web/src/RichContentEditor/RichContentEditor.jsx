@@ -30,6 +30,10 @@ import styles from '../../statics/styles/rich-content-editor.scss';
 import draftStyles from '../../statics/styles/draft.rtlignore.scss';
 
 class RichContentEditor extends Component {
+  static getDerivedStateFromError(error) {
+    return { error };
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -426,35 +430,45 @@ class RichContentEditor extends Component {
   onResize = debounce(({ bounds }) => this.updateBounds(bounds), 100);
 
   render() {
-    const { isMobile } = this.props;
-    const { theme } = this.state;
-    const wrapperClassName = classNames(draftStyles.wrapper, styles.wrapper, theme.wrapper, {
-      [styles.desktop]: !isMobile,
-      [theme.desktop]: !isMobile && theme && theme.desktop,
-    });
-    return (
-      <Context.Provider value={this.contextualData}>
-        <Measure bounds onResize={this.onResize}>
-          {({ measureRef }) => (
-            <div
-              style={this.props.style}
-              ref={measureRef}
-              className={wrapperClassName}
-              dir={this.contextualData.languageDir}
-            >
-              {this.renderStyleTag()}
-              <div className={classNames(styles.editor, theme.editor)}>
-                {this.renderAccessibilityListener()}
-                {this.renderEditor()}
-                {this.renderToolbars()}
-                {this.renderInlineModals()}
-                {this.renderTooltipHost()}
+    const { onError } = this.props;
+    try {
+      if (this.state.error) {
+        onError(this.state.error);
+        return null;
+      }
+      const { isMobile } = this.props;
+      const { theme } = this.state;
+      const wrapperClassName = classNames(draftStyles.wrapper, styles.wrapper, theme.wrapper, {
+        [styles.desktop]: !isMobile,
+        [theme.desktop]: !isMobile && theme && theme.desktop,
+      });
+      return (
+        <Context.Provider value={this.contextualData}>
+          <Measure bounds onResize={this.onResize}>
+            {({ measureRef }) => (
+              <div
+                style={this.props.style}
+                ref={measureRef}
+                className={wrapperClassName}
+                dir={this.contextualData.languageDir}
+              >
+                {this.renderStyleTag()}
+                <div className={classNames(styles.editor, theme.editor)}>
+                  {this.renderAccessibilityListener()}
+                  {this.renderEditor()}
+                  {this.renderToolbars()}
+                  {this.renderInlineModals()}
+                  {this.renderTooltipHost()}
+                </div>
               </div>
-            </div>
-          )}
-        </Measure>
-      </Context.Provider>
-    );
+            )}
+          </Measure>
+        </Context.Provider>
+      );
+    } catch (err) {
+      onError(err);
+      return null;
+    }
   }
 }
 
@@ -499,6 +513,7 @@ RichContentEditor.propTypes = {
   onAtomicBlockFocus: PropTypes.func,
   initialIntent: PropTypes.string,
   siteDomain: PropTypes.string,
+  onError: PropTypes.func,
 };
 
 RichContentEditor.defaultProps = {
@@ -506,6 +521,9 @@ RichContentEditor.defaultProps = {
   spellCheck: true,
   customStyleFn: () => ({}),
   locale: 'en',
+  onError: err => {
+    throw err;
+  },
 };
 
 export default RichContentEditor;
