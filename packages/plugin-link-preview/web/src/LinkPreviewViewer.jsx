@@ -68,7 +68,7 @@ class LinkPreviewViewer extends Component {
       } catch (e) {}
     }
     return (
-      <figure className={linkPreview} id="linkPreviewSection">
+      <figure className={linkPreview} id="linkPreviewSection" data-hook="linkPreviewViewer">
         <div
           style={{
             width: imageRatio || 0,

@@ -362,4 +362,24 @@ describe('plugins', () => {
     testAtomicBlockAlignment('center');
     testAtomicBlockAlignment('right');
   });
+
+  context('link preview', () => {
+    before(function() {
+      eyesOpen(this);
+    });
+
+    beforeEach('load editor', () => cy.loadEditorAndViewer('linkPreview'));
+
+    after(() => cy.eyesClose());
+
+    it('delete link preview from inline toolbar', function() {
+      cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
+      cy.deletePluginFromInlineToolbar();
+      cy.eyesCheckWindow('convert link preview to link');
+    });
+    it('change link preview settings', function() {
+      cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
+      cy.setLinkSettings();
+    });
+  });
 });

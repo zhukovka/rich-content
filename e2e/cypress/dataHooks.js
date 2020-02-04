@@ -14,6 +14,7 @@ export const INLINE_TOOLBAR_BUTTONS = {
   LINE_SPACING: 'LineSpacingButton',
   LINK: 'LinkButton',
   CODE_BLOCK: 'TextCodeBlockButton',
+  DELETE: 'baseToolbarButton_delete',
 };
 
 export const STATIC_TOOLBAR_BUTTONS = {
@@ -91,6 +92,7 @@ export const PLUGIN_COMPONENT = {
   SOUND_CLOUD: 'soundCloudPlayer',
   MAP: 'mapViewer',
   FILE_UPLOAD: 'fileUploadViewer',
+  LINK_PREVIEW: 'linkPreviewViewer',
 };
 
 export const DIVIDER_DROPDOWN_OPTIONS = {
