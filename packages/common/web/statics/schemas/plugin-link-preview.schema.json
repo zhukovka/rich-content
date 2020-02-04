@@ -4,12 +4,26 @@
     "type": "object",
     "definitions": {},
     "properties": {
-      "url": {
-        "$id": "/properties/url",
-        "type": "string",
-        "title": "URL",
-        "default": "",
-        "examples": ["wix.com"]
+      "config": {
+        "$id": "/properties/config",
+        "type": "object",
+        "title": "configuration",
+        "required": ["link"],
+        "properties": {
+          "link": {
+            "$id": "/properties/config/properties/link",
+            "type": ["object", "null"],
+            "required": ["url"],
+            "properties": {
+              "url": {
+                "$id": "/properties/config/properties/link/properties/url",
+                "type": "string",
+                "title": "URL",
+                "examples": ["wix.com"]
+              }
+            }
+          }
+        }
       },
       "title": {
         "$id": "/properties/title",
@@ -31,8 +45,15 @@
         "title": "thumbnail_url",
         "default": "",
         "examples": ["https://static.wixstatic.com/media/5305c5_5f112df56dcd40a29e855baae08f19ce~mv2.jpg/v1/fill/w_600,h_315,al_c/5305c5_5f112df56dcd40a29e855baae08f19ce~mv2.jpg"]
+      },
+      "html": {
+        "$id": "/properties/html",
+        "type": "string",
+        "title": "html",
+        "default": "",
+        "examples": ["<div>Hello world!</div>"]
       }
     },
-    "required": ["url", "title", "thumbnail_url"]
+    "required": ["config", "title", "thumbnail_url"]
   }
 

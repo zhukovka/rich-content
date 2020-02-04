@@ -62,10 +62,10 @@ class LinkPreviewViewer extends Component {
     }
     const { imageRatio } = this.state;
     if (!imageRatio) {
-      this.setState(
-        { imageRatio: document.getElementById('linkPreviewSection')?.offsetHeight },
-        () => this.forceUpdate()
-      );
+      try {
+        const imageRatio = document.getElementById('linkPreviewSection')?.offsetHeight;
+        this.setState({ imageRatio }, () => this.forceUpdate());
+      } catch (e) {}
     }
     return (
       <figure className={linkPreview} id="linkPreviewSection">

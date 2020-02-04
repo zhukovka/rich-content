@@ -33,17 +33,19 @@ const createLinkPreviewPlugin = (config = {}) => {
     }
     return 'not-handled';
   };
+  const underlyingPlugin = { handleKeyCommand, keyBindingFn };
 
-  return createBasePlugin(
+  const basePluginProps = createBasePlugin(
     {
       component: LinkPreviewComponent,
-      toolbar,
       type,
+      toolbar,
       settings,
       ...rest,
     },
-    { handleKeyCommand, keyBindingFn }
+    underlyingPlugin
   );
+  return basePluginProps;
 };
 
 export { createLinkPreviewPlugin };
