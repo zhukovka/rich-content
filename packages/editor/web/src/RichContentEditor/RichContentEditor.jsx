@@ -20,12 +20,7 @@ import {
   getBlockInfo,
   getFocusedBlockKey,
 } from 'wix-rich-content-editor-common';
-import {
-  Context,
-  AccessibilityListener,
-  normalizeInitialState,
-  getLangDir,
-} from 'wix-rich-content-common';
+import { AccessibilityListener, normalizeInitialState, getLangDir } from 'wix-rich-content-common';
 import styles from '../../statics/styles/rich-content-editor.scss';
 import draftStyles from '../../statics/styles/draft.rtlignore.scss';
 
@@ -38,7 +33,6 @@ class RichContentEditor extends Component {
     super(props);
     this.state = {
       editorState: this.getInitialEditorState(),
-      theme: props.theme || {},
       editorBounds: {},
     };
     this.refId = Math.floor(Math.random() * 9999);
@@ -53,9 +47,6 @@ class RichContentEditor extends Component {
 
     this.initContext();
     this.initPlugins();
-  }
-  componentDidMount() {
-    this.resetInitialIntent();
   }
 
   componentDidUpdate() {
@@ -81,12 +72,6 @@ class RichContentEditor extends Component {
     }
   };
 
-  resetInitialIntent = () => {
-    if (this.contextualData.initialIntent) {
-      this.contextualData.initialIntent = '';
-    }
-  };
-
   getEditorState = () => this.state.editorState;
 
   setEditorState = editorState => this.setState({ editorState });
@@ -100,14 +85,14 @@ class RichContentEditor extends Component {
       relValue,
       helpers,
       config,
-      isMobile,
+      isMobile = false,
       shouldRenderOptimizedImages,
       initialIntent,
       siteDomain,
     } = this.props;
 
     this.contextualData = {
-      theme,
+      theme: theme || {},
       t,
       locale,
       anchorTarget,
@@ -129,34 +114,11 @@ class RichContentEditor extends Component {
   getEditorBounds = () => this.state.editorBounds;
 
   initPlugins() {
-    const {
-      helpers,
-      locale,
-      initialIntent,
-      plugins,
-      config,
-      isMobile,
-      anchorTarget,
-      relValue,
-      t,
-      customStyleFn,
-    } = this.props;
+    const { plugins, customStyleFn } = this.props;
 
-    const { theme } = this.state;
     const { pluginInstances, pluginButtons, pluginTextButtons, pluginStyleFns } = createPlugins({
       plugins,
-      config,
-      helpers,
-      theme,
-      t,
-      isMobile,
-      anchorTarget,
-      relValue,
-      initialIntent,
-      languageDir: getLangDir(locale),
-      getEditorState: this.getEditorState,
-      setEditorState: this.setEditorState,
-      getEditorBounds: this.getEditorBounds,
+      context: this.contextualData,
     });
     this.initEditorToolbars(pluginButtons, pluginTextButtons);
     this.pluginKeyBindings = initPluginKeyBindings(pluginTextButtons);
@@ -165,38 +127,14 @@ class RichContentEditor extends Component {
   }
 
   initEditorToolbars(pluginButtons, pluginTextButtons) {
-    const {
-      helpers,
-      anchorTarget,
-      relValue,
-      textToolbarType,
-      isMobile,
-      t,
-      config = {},
-      textAlignment,
-      locale,
-    } = this.props;
-    const { theme } = this.state;
+    const { textAlignment } = this.props;
     const buttons = { pluginButtons, pluginTextButtons };
 
     this.toolbars = createEditorToolbars({
       buttons,
-      helpers,
-      anchorTarget,
-      relValue,
-      isMobile,
-      textToolbarType,
       textAlignment,
-      theme: theme || {},
-      getEditorState: this.getEditorState,
-      setEditorState: this.setEditorState,
-      getEditorBounds: this.getEditorBounds,
-      t,
       refId: this.refId,
-      getToolbarSettings: config.getToolbarSettings,
-      uiSettings: config.uiSettings,
-      config,
-      locale,
+      context: this.contextualData,
     });
   }
 
@@ -356,7 +294,8 @@ class RichContentEditor extends Component {
       handlePastedText,
       handleReturn,
     } = this.props;
-    const { editorState, theme } = this.state;
+    const { editorState } = this.state;
+    const { theme } = this.contextualData;
 
     return (
       <Editor
@@ -402,9 +341,11 @@ class RichContentEditor extends Component {
     );
   };
 
-  renderAccessibilityListener = () => <AccessibilityListener />;
+  renderAccessibilityListener = () => (
+    <AccessibilityListener isMobile={this.contextualData.isMobile} />
+  );
 
-  renderTooltipHost = () => <TooltipHost />;
+  renderTooltipHost = () => <TooltipHost theme={this.contextualData.theme} />;
 
   styleToClass = ([key, val]) => `rich_content_${key}-${val.toString().replace('.', '_')}`;
 
@@ -437,33 +378,31 @@ class RichContentEditor extends Component {
         return null;
       }
       const { isMobile } = this.props;
-      const { theme } = this.state;
+      const { theme } = this.contextualData;
       const wrapperClassName = classNames(draftStyles.wrapper, styles.wrapper, theme.wrapper, {
         [styles.desktop]: !isMobile,
         [theme.desktop]: !isMobile && theme && theme.desktop,
       });
       return (
-        <Context.Provider value={this.contextualData}>
-          <Measure bounds onResize={this.onResize}>
-            {({ measureRef }) => (
-              <div
-                style={this.props.style}
-                ref={measureRef}
-                className={wrapperClassName}
-                dir={this.contextualData.languageDir}
-              >
-                {this.renderStyleTag()}
-                <div className={classNames(styles.editor, theme.editor)}>
-                  {this.renderAccessibilityListener()}
-                  {this.renderEditor()}
-                  {this.renderToolbars()}
-                  {this.renderInlineModals()}
-                  {this.renderTooltipHost()}
-                </div>
+        <Measure bounds onResize={this.onResize}>
+          {({ measureRef }) => (
+            <div
+              style={this.props.style}
+              ref={measureRef}
+              className={wrapperClassName}
+              dir={getLangDir(this.props.locale)}
+            >
+              {this.renderStyleTag()}
+              <div className={classNames(styles.editor, theme.editor)}>
+                {this.renderAccessibilityListener()}
+                {this.renderEditor()}
+                {this.renderToolbars()}
+                {this.renderInlineModals()}
+                {this.renderTooltipHost()}
               </div>
-            )}
-          </Measure>
-        </Context.Provider>
+            </div>
+          )}
+        </Measure>
       );
     } catch (err) {
       onError(err);
