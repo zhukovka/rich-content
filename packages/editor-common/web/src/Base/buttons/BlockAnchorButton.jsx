@@ -78,7 +78,7 @@ export default class BlockAnchorButton extends Component {
 
   render() {
     const { theme, isMobile, t, tabIndex, config } = this.props;
-    const anchorButtonTooltip = t('TextAnchorButton_Tooltip');
+    const anchorButtonTooltip = t('AnchorPlugin_Settings_Tooltip');
     const buttonStyles = {
       button: theme.inlineToolbarButton,
       buttonWrapper: theme.inlineToolbarButton_wrapper,

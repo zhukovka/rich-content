@@ -85,7 +85,7 @@ export default ({
     };
 
     createNewAnchor = () => {
-      const newAnchorBaseName = 'Anchor';
+      const newAnchorBaseName = t('AnchorPlugin_Modal_Placeholder');
       let newAnchorIndex = 1;
       while (this.isAnchorNameExists(`${newAnchorBaseName}${newAnchorIndex}`)) {
         newAnchorIndex++;

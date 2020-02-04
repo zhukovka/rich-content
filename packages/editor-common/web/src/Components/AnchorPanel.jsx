@@ -69,7 +69,7 @@ class AnchorPanel extends Component {
     return {
       type: 'text',
       className: textInputClassName,
-      placeholder: this.props.t('AnchorPanel_InputPlaceholder'),
+      placeholder: this.props.t('AnchorPlugin_Modal_Placeholder_Empty'),
       'data-hook': 'anchorPanelInput',
       onBlur: () => this.setState({ showValidation: true }),
     };
@@ -100,7 +100,7 @@ class AnchorPanel extends Component {
           )}
         </div>
         <div className={styles.anchorPanel_DescriptionLabel}>
-          <span>{t('AnchorPanel_DescriptionLabel')}</span>
+          <span>{t('AnchorPlugin_Modal_Description')}</span>
         </div>
       </div>
     );

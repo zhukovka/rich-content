@@ -59,7 +59,7 @@ class LinkToAnchorPanel extends Component {
     return {
       type: 'string',
       className: textInputClassName,
-      placeholder: this.props.placeholder || this.props.t('LinkPanel_AnchorInputPlaceholder'),
+      placeholder: this.props.placeholder || this.props.t('Select an anchor to link to'),
       'data-hook': 'anchorLinkPanelInput',
       onBlur: () => this.setState({ showValidation: true }),
     };
