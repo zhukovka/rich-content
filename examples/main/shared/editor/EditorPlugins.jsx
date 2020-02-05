@@ -237,6 +237,7 @@ const videoHandlers = {
 export const config = {
   [LINK_PREVIEW_TYPE]: {
     disableEmbed: false,
+    fetchMetadata: linkPreviewUtil(authorization),
   },
   [EMOJI_TYPE]: {
     // toolbar: {
@@ -367,7 +368,6 @@ export const config = {
   [LINK_TYPE]: {
     preview: {
       enable: true,
-      fetchMetadata: linkPreviewUtil(authorization),
     },
     // toolbar: {
     //   icons: {

@@ -1,5 +1,4 @@
 import {
-  deleteBlock,
   createBasePlugin,
   insertLinkInPosition,
   fixPastedLinks,
@@ -10,11 +9,10 @@ import { LINK_TYPE } from './types';
 import { Component } from './LinkComponent';
 import { linkEntityStrategy } from './strategy';
 import createLinkToolbar from './toolbar/createLinkToolbar';
-import { EditorState } from 'draft-js';
 
 const createLinkPlugin = (config = {}) => {
   const type = LINK_TYPE;
-  const { setEditorState, theme, anchorTarget, relValue, [type]: settings = {}, ...rest } = config;
+  const { theme, anchorTarget, relValue, [type]: settings = {}, ...rest } = config;
   settings.minLinkifyLength = settings.minLinkifyLength || 6;
   const toolbar = createLinkToolbar(config);
 
@@ -28,18 +26,7 @@ const createLinkPlugin = (config = {}) => {
       const url = getBlockLinkUrl(linkifyData);
       if (url) {
         const blockKey = linkifyData.block.key;
-        preview.fetchMetadata(url).then(linkPreviewData => {
-          const { title, thumbnail_url, html } = linkPreviewData;
-          linkPreviewData.url = url;
-          if ((title && thumbnail_url) || html) {
-            const withoutLinkBlock = deleteBlock(editorState, blockKey);
-            const newEditorState = addLinkPreview(withoutLinkBlock, config, linkPreviewData);
-            linkifyData = false;
-            setEditorState(
-              EditorState.forceSelection(newEditorState, newEditorState.getSelection())
-            );
-          }
-        });
+        addLinkPreview(editorState, config, blockKey, url);
       }
     }
   };

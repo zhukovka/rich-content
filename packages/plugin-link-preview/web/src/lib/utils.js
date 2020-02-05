@@ -6,22 +6,41 @@ import {
   replaceWithEmptyBlock,
   insertLinkInPosition,
   createBlock,
+  deleteBlock,
 } from 'wix-rich-content-editor-common';
+import { isValidImgSrc } from 'wix-rich-content-common';
 
-export const addLinkPreview = (editorState, config, linkPreviewData) => {
+export const addLinkPreview = (editorState, config, blockKey, url) => {
   const settings = config[LINK_PREVIEW_TYPE];
-  const { size, alignment } = { ...DEFAULTS, ...(settings || {}) };
-  const { url, thumbnail_url, title, description, html, provider_url } = linkPreviewData;
-  const data = {
-    config: { size, alignment, link: { url } },
-    thumbnail_url,
-    title,
-    description,
-    html,
-    provider_url,
-  };
-  const { newEditorState } = createBlock(editorState, data, LINK_PREVIEW_TYPE);
-  return newEditorState;
+  const { fetchMetadata } = settings;
+  const { setEditorState } = config;
+  fetchMetadata(url).then(linkPreviewData => {
+    shouldAddLinkPreview(linkPreviewData).then(shouldAddLinkPreview => {
+      if (shouldAddLinkPreview /*|| html*/) {
+        const withoutLinkBlock = deleteBlock(editorState, blockKey);
+        const { size, alignment } = { ...DEFAULTS, ...(settings || {}) };
+        const { url, thumbnail_url, title, description, html, provider_url } = linkPreviewData;
+        const data = {
+          config: { size, alignment, link: { url } },
+          thumbnail_url,
+          title,
+          description,
+          html,
+          provider_url,
+        };
+        const { newEditorState } = createBlock(withoutLinkBlock, data, LINK_PREVIEW_TYPE);
+        setEditorState(EditorState.forceSelection(newEditorState, newEditorState.getSelection()));
+      }
+    });
+  });
+};
+
+const shouldAddLinkPreview = linkPreviewData => {
+  const { title, thumbnail_url /*,html*/ } = linkPreviewData;
+  if (thumbnail_url && title) {
+    return isValidImgSrc(thumbnail_url);
+  }
+  return false;
 };
 
 export const convertLinkPreviewToLink = editorState => {

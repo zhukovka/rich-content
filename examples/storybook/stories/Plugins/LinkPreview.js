@@ -70,7 +70,6 @@ export default () => {
     [LINK_TYPE]: {
       preview: {
         enable: true,
-        fetchMetadata: linkPreviewUtil(authorization),
       },
     },
   };

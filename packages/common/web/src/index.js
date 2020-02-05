@@ -13,6 +13,7 @@ export {
   getUrlMatches,
   startsWithHttps,
   hasProtocol,
+  isValidImgSrc,
 } from './Utils/urlValidators';
 export { mergeStyles } from './Utils/mergeStyles';
 export { default as normalizeInitialState } from './Utils/normalization/normalizeInitialState';
