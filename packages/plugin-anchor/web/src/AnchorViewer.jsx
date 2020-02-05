@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { mergeStyles, validate, Context, pluginAnchorSchema } from 'wix-rich-content-common';
+import { mergeStyles, validate, pluginAnchorSchema } from 'wix-rich-content-common';
 import { isEqual } from 'lodash';
 import styles from '../statics/anchor-viewer.rtlignore.scss';
 import classNames from 'classnames';
@@ -31,7 +31,7 @@ class AnchorViewer extends Component {
   }
 
   componentDidMount() {
-    const theme = this.context && this.context.theme;
+    const { theme } = this.props;
     this.setState({ styles: mergeStyles({ styles, theme }) });
   }
 
@@ -66,7 +66,5 @@ class AnchorViewer extends Component {
     );
   }
 }
-
-AnchorViewer.contextType = Context.type;
 
 export default AnchorViewer;
