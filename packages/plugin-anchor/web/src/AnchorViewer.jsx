@@ -5,6 +5,7 @@ import { isEqual } from 'lodash';
 import styles from '../statics/anchor-viewer.rtlignore.scss';
 import classNames from 'classnames';
 import AnchorIcon from './icons/anchor-icon.svg';
+import DragAndDropIcon from './icons/drag-and-drop-dots.svg';
 
 class AnchorViewer extends Component {
   static propTypes = {
@@ -53,9 +54,12 @@ class AnchorViewer extends Component {
           <svg key="line" className={this.state.styles.divider}>
             <line x2="100%" />
           </svg>,
-          <div key="name" className={this.state.styles.anchorName}>
-            <AnchorIcon className={this.state.styles.anchorViewer_anchorIcon} />
-            {name}
+          <div key="name" className={this.state.styles.anchorDividerLabel}>
+            <div className={this.state.styles.iconsAndNameWrapper}>
+              <AnchorIcon className={this.state.styles.anchorViewer_anchorIcon} />
+              <div className={this.state.styles.nameLabel}>{name}</div>
+              <DragAndDropIcon className={this.state.styles.anchorViewer_dragAndDropIcon} />
+            </div>
           </div>,
         ]}
       </div>
