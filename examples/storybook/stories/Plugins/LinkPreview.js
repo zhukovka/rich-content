@@ -8,7 +8,9 @@ import {
 import { linkTypeMapper, LINK_TYPE } from 'wix-rich-content-plugin-link/dist/module.viewer';
 import { createLinkPreviewPlugin } from 'wix-rich-content-plugin-link-preview';
 import { createLinkPlugin } from 'wix-rich-content-plugin-link';
-
+import ThemeWrapper from '../../src/ThemeWrapper';
+import { Themes } from '../../src/RceTheme';
+import { wixPalettes } from '../palettesExample';
 import LinkPreview from '../../fixtures/LinkPreview';
 
 const mockOembedResults = [
@@ -81,11 +83,13 @@ export default () => {
           <RichContentViewer initialState={LinkPreview} typeMappers={typeMappers} />
         </RichContentViewerBox>
         <RichContentEditorBox preset="blog-preset">
-          <RichContentEditor
-            config={config}
-            plugins={plugins}
-            editorState={createWithContent(convertFromRaw(LinkPreview))}
-          />
+          <ThemeWrapper theme={Themes.PALETTE} palette={wixPalettes.site1}>
+            <RichContentEditor
+              config={config}
+              plugins={plugins}
+              editorState={createWithContent(convertFromRaw(LinkPreview))}
+            />
+          </ThemeWrapper>
         </RichContentEditorBox>
       </Section>
 
