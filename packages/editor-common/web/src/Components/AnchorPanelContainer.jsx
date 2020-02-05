@@ -21,8 +21,6 @@ class AnchorPanelContainer extends PureComponent {
     const { anchorPanelValues } = this.state;
     if (anchorPanelValues.isValid && anchorPanelValues.name) {
       this.props.onDone(anchorPanelValues);
-    } else if (anchorPanelValues.name === '') {
-      this.onDelete();
     }
   };
 

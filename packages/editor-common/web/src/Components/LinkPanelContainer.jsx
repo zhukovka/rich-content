@@ -32,7 +32,14 @@ class LinkPanelContainer extends PureComponent {
     this.withAnchors = anchorsEntities ? anchorsEntities.length !== 0 : false;
     this.state = {
       linkPanelValues: { url: url && isValidUrl(url) ? url : undefined, targetBlank, nofollow },
-      anchorPanelValues: { url: url && !isValidUrl(url) ? url : undefined, targetBlank, nofollow },
+      anchorPanelValues: {
+        url:
+          url && !isValidUrl(url) && anchorsEntities.some(anchor => anchor.data.name === url)
+            ? url
+            : undefined,
+        targetBlank,
+        nofollow,
+      },
       activeTab: !url || isValidUrl(url) || !this.withAnchors ? 'link' : 'anchor',
     };
   }
@@ -81,7 +88,7 @@ class LinkPanelContainer extends PureComponent {
             onClick={() => this.changeTab('anchor')}
             data-hook="linkPanelContainerAnchorTab"
           >
-            {t('LinkPanel_AnchorTab')}
+            {t('LinkPanel_Anchor_Title')}
           </div>
         </div>
       </div>
@@ -172,7 +179,7 @@ class LinkPanelContainer extends PureComponent {
             >
               {cancelButtonText}
             </button>
-            {isActive && (
+            {isActive && (this.state.linkPanelValues.url || this.state.anchorPanelValues.url) && (
               <div className={styles.linkPanel_RemoveContainer}>
                 <div className={styles.linkPanel_VerticalDivider} />
                 <button

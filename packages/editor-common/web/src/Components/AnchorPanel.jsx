@@ -79,7 +79,7 @@ class AnchorPanel extends Component {
     const { styles } = this;
     const { theme, ariaProps, t, linkValues } = this.props;
 
-    const { isValid } = linkValues;
+    const { name, isValid } = linkValues;
 
     return (
       <div className={styles.linkPanel_Content} {...ariaProps} role="form">
@@ -90,7 +90,11 @@ class AnchorPanel extends Component {
             <Tooltip
               shouldRebuildOnUpdate={() => !isValid}
               data-hook="anchorPanelTooltip"
-              content={t('AnchorPanel_ErrorTooltip')}
+              content={
+                name === ''
+                  ? t('AnchorPlugin_EmptyNameErrorTooltip')
+                  : t('AnchorPlugin_ExistingNameErrorTooltip')
+              }
               theme={theme}
               moveBy={{ y: 0 }}
               type={'error'}
