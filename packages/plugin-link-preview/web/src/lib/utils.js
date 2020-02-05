@@ -14,12 +14,12 @@ export const addLinkPreview = (editorState, config, blockKey, url) => {
   const settings = config[LINK_PREVIEW_TYPE];
   const { fetchMetadata } = settings;
   const { setEditorState } = config;
-  fetchMetadata(url).then(linkPreviewData => {
+  return fetchMetadata(url).then(linkPreviewData => {
     shouldAddLinkPreview(linkPreviewData).then(shouldAddLinkPreview => {
       if (shouldAddLinkPreview /*|| html*/) {
         const withoutLinkBlock = deleteBlock(editorState, blockKey);
         const { size, alignment } = { ...DEFAULTS, ...(settings || {}) };
-        const { url, thumbnail_url, title, description, html, provider_url } = linkPreviewData;
+        const { thumbnail_url, title, description, html, provider_url } = linkPreviewData;
         const data = {
           config: { size, alignment, link: { url } },
           thumbnail_url,
