@@ -65,7 +65,7 @@ export default () => {
   const config = {
     [LINK_PREVIEW_TYPE]: {
       fetchMetadata: linkPreviewUtil(authorization),
-      disableOembed: false,
+      disableEmbed: false,
     },
     [LINK_TYPE]: {
       preview: {

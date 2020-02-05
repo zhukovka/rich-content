@@ -10,7 +10,7 @@ class LinkPreviewViewer extends Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
     settings: PropTypes.shape({
-      disableOembed: PropTypes.bool,
+      disableEmbed: PropTypes.bool,
     }).isRequired,
   };
 
@@ -38,8 +38,8 @@ class LinkPreviewViewer extends Component {
   render() {
     this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
     const {
-      componentData: { title, description, thumbnail_url, html, provider_url },
-      settings,
+      componentData: { title, description, thumbnail_url, /* html,*/ provider_url },
+      // settings,
     } = this.props;
 
     const {
@@ -49,21 +49,21 @@ class LinkPreviewViewer extends Component {
       linkPreview_image,
       linkPreview_description,
       linkPreview_url,
-      linkPreview_oEmbed,
+      // linkPreview_embed,
       ellipsis,
     } = this.styles;
 
-    if (!settings.disableOembed && html) {
-      return (
-        <iframe
-          title="oembed content"
-          srcDoc={html}
-          ref={ref => (this.iframe = ref)}
-          onLoad={this.handleIframeLoad}
-          className={linkPreview_oEmbed}
-        />
-      );
-    }
+    // if (!settings.disableEmbed && html) {
+    //   return (
+    //     <iframe
+    //       title="oembed content"
+    //       srcDoc={html}
+    //       ref={ref => (this.iframe = ref)}
+    //       onLoad={this.handleIframeLoad}
+    //       className={linkPreview_embed}
+    //     />
+    //   );
+    // }
     const { imageRatio } = this.state;
     if (!imageRatio) {
       try {

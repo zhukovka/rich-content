@@ -8,6 +8,7 @@ import htmlTheme from './html.theme.scss';
 import imageTheme from './image.theme.scss';
 import videoTheme from './video.theme.scss';
 import fileUploadTheme from './file-upload.theme.scss';
+import linkPreviewTheme from './link-preview.theme.scss';
 
 import commonTheme from './global.theme.scss';
 import checkboxTheme from './checkbox.theme.scss';
@@ -55,6 +56,7 @@ const theme = {
   ...imageTheme,
   ...videoTheme,
   ...fileUploadTheme,
+  ...linkPreviewTheme,
 
   // common
   ...commonTheme,
