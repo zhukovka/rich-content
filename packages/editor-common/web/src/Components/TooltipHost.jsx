@@ -4,6 +4,8 @@ import ReactTooltip from 'react-tooltip';
 import { mergeStyles } from 'wix-rich-content-common';
 import styles from '../../statics/styles/tooltip.scss';
 
+const PLACE_BUTTON = 'place-bottom';
+
 // TODO: add tooltip configuration ability
 const TooltipHost = ({ theme }) => {
   const mergedStyles = mergeStyles({ styles, theme });

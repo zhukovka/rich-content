@@ -46,22 +46,6 @@ const editorEntry = {
   watch,
 };
 
-let viewerEntry;
-try {
-  fs.accessSync('./src/viewer.js');
-  viewerEntry = {
-    input: 'src/viewer.js',
-    output: cloneDeep(output).map(o => {
-      const anchor = o.file.indexOf('.');
-      o.file = `${o.file.slice(0, anchor)}.viewer${o.file.slice(anchor)}`;
-      return o;
-    }),
-    plugins,
-    external,
-    watch,
-  };
-} catch (_) {}
-
 let libEntries;
 try {
   let libEntriesPath = 'src/lib/';
@@ -79,13 +63,13 @@ try {
   });
 } catch (_) {}
 
+let viewerEntry;
 try {
   let viewerPath = 'src/viewer.js';
   fs.accessSync(`./${viewerPath}`);
   viewerEntry = {
     input: viewerPath,
     output: cloneDeep(output).map(o => {
-      const anchor = o.file.indexOf('.');
       o.file = addPartToFilename(o.file, 'viewer');
       return o;
     }),
