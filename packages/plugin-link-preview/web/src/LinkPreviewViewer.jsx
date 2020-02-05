@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isEqual } from 'lodash';
-import { mergeStyles, validate, Context, pluginLinkPreviewSchema } from 'wix-rich-content-common';
+import { mergeStyles, validate, pluginLinkPreviewSchema } from 'wix-rich-content-common';
 import styles from '../statics/styles/link-preview.scss';
 
 const MAX_2_LINES_CHARS_NUM = 120;
@@ -12,13 +12,21 @@ class LinkPreviewViewer extends Component {
     settings: PropTypes.shape({
       disableEmbed: PropTypes.bool,
     }).isRequired,
+    theme: PropTypes.object,
   };
 
   constructor(props) {
     super(props);
-    validate(props.componentData, pluginLinkPreviewSchema);
+    const { componentData } = props;
+    validate(componentData, pluginLinkPreviewSchema);
+    const { title, description } = componentData;
     this.state = {};
-    this.shouldElipsiseTitle = props.componentData.title.length > MAX_2_LINES_CHARS_NUM;
+    this.shouldElipsiseTitle = title.length > MAX_2_LINES_CHARS_NUM;
+    let imageRatio = this.shouldElipsiseTitle ? 138 : 104;
+    if (description) {
+      imageRatio += 28;
+    }
+    this.imageRatio = imageRatio;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -36,12 +44,20 @@ class LinkPreviewViewer extends Component {
     this.iframe.style.width = this.iframe.contentWindow.document.body.scrollWidth + 'px';
   };
   render() {
-    this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
     const {
-      componentData: { title, description, thumbnail_url, /* html,*/ provider_url },
-      // settings,
+      componentData: {
+        title,
+        description,
+        thumbnail_url,
+        /* html,*/ provider_url,
+        config: {
+          link: { url },
+        },
+      },
+      theme,
     } = this.props;
 
+    this.styles = this.styles || mergeStyles({ styles, theme });
     const {
       linkPreview,
       linkPreview_info,
@@ -64,25 +80,19 @@ class LinkPreviewViewer extends Component {
     //     />
     //   );
     // }
-    const { imageRatio } = this.state;
-    if (!imageRatio) {
-      try {
-        const imageRatio = document.getElementById('linkPreviewSection')?.offsetHeight;
-        this.setState({ imageRatio }, () => this.forceUpdate());
-      } catch (e) {}
-    }
+
     return (
       <figure className={linkPreview} id="linkPreviewSection" data-hook="linkPreviewViewer">
         <div
           style={{
-            width: imageRatio || 0,
+            width: this.imageRatio || 0,
             backgroundImage: `url(${thumbnail_url})`,
           }}
           className={linkPreview_image}
           alt={title}
         />
         <section className={linkPreview_info}>
-          <div className={linkPreview_url}>{provider_url}</div>
+          <div className={linkPreview_url}>{provider_url || url}</div>
           <figcaption className={linkPreview_title} id="link-preview-title">
             {title}
             {this.shouldElipsiseTitle && <span className={ellipsis}>...</span>}
@@ -93,7 +103,5 @@ class LinkPreviewViewer extends Component {
     );
   }
 }
-
-LinkPreviewViewer.contextType = Context.type;
 
 export default LinkPreviewViewer;
