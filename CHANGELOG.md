@@ -27,6 +27,7 @@
     - [#646](https://github.com/wix-incubator/rich-content/pull/646) backslash in link panel breaks editor
   ### :house: Internal
   - `general`
+    - [#627](https://github.com/wix-incubator/rich-content/pull/627) React Context completely removed
     - [#641](https://github.com/wix-incubator/rich-content/pull/641) `babel-plugin-transform-react-remove-prop-type` added`
     - [#637](https://github.com/wix-incubator/rich-content/pull/637) moved deployment from Travis CI to Github Actions
 
