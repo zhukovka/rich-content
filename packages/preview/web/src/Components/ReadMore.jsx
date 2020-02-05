@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { mergeStyles } from 'wix-rich-content-common';
 import LinesEllipsis from 'react-lines-ellipsis';
 import { getChildrenText } from '../utils';
 import styles from '../../statics/styles/read-more.scss';
-class ReadMore extends Component {
+
+class ReadMore extends PureComponent {
   static propTypes = {
-    children: PropTypes.node.isRequired,
-    lines: PropTypes.number,
-    text: PropTypes.string,
     ellipsis: PropTypes.string,
     label: PropTypes.string,
+    lines: PropTypes.number,
+    children: PropTypes.node.isRequired,
     onPreviewExpand: PropTypes.func.isRequired,
     onClick: PropTypes.func,
     text: PropTypes.string,
@@ -19,52 +19,42 @@ class ReadMore extends Component {
   };
 
   static defaultProps = {
+    ellipsis: '…',
+    lines: 3,
     onClick: () => {},
   };
 
-  static contextType = Context.type;
-
   onClick = e => {
+    const { onClick, onPreviewExpand } = this.props;
     e.preventDefault();
-    this.props.onClick();
-    this.props.onPreviewExpand();
+    onClick();
+    onPreviewExpand();
   };
 
-  onKeyDown = e => {
-    if (e.keyCode === 13) {
-      this.props.onClick();
-    }
-  };
-
+  /* eslint-disable */
   render() {
     this.styles = this.styles || mergeStyles({ styles, theme: this.props.theme });
     const {
       lines,
       label = this.props.t('Preview_ReadMore_Label'),
       ellipsis,
-      label = this.context.t('Preview_ReadMore_Label'),
       children,
+      text,
     } = this.props;
-    return [
-      <div
-        role="link"
-        tabIndex="0"
-        className={this.styles.readMore_wrapper}
-        onClick={this.props.onClick}
-        onKeyDown={this.onKeyDown}
-        key="readMoreOverlay"
-      />,
-      <ReadMoreWrapper
-        key="readMoreEllipis"
-        lines={lines}
-        text={text}
-        ellipsis={ellipsis}
-        label={label}
-      >
-        {children}
-      </ReadMoreWrapper>,
-    ];
+    const textToCollapse = text || getChildrenText(children);
+    return (
+      <Fragment>
+        <div className={this.styles.readMore_wrapper} onClick={this.onClick} />
+        <LinesEllipsis
+          text={textToCollapse}
+          className={this.styles.readMore}
+          maxLine={lines}
+          ellipsis={`${ellipsis} ${label}`}
+        />
+      </Fragment>
+    );
   }
+  /* eslint-enable */
 }
 
 export default ReadMore;
