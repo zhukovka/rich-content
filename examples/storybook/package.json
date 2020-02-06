@@ -77,9 +77,6 @@
     ]
   },
   "eslintConfig": {
-    "extends": "yoshi-base",
-    "rules": {
-      "import/no-unresolved": "off"
-    }
+    "extends": "react-app"
   }
 }
