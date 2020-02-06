@@ -1,7 +1,7 @@
 import { TrashIcon, BUTTONS } from 'wix-rich-content-editor-common';
 import { convertLinkPreviewToLink } from '../lib/utils';
 
-export default (settings, setEditorState, getEditorState) => {
+export default (setEditorState, getEditorState) => {
   return [
     { keyName: 'link', type: BUTTONS.LINK_PREVIEW, mobile: false },
     {

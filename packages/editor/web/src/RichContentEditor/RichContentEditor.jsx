@@ -108,6 +108,7 @@ class RichContentEditor extends Component {
       siteDomain,
       setInPluginEditingMode: this.setInPluginEditingMode,
       getInPluginEditingMode: this.getInPluginEditingMode,
+      getEditorState: this.getEditorState,
     };
   };
 
