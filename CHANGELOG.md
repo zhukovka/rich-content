@@ -13,6 +13,9 @@
     Click to see more.
   </summary>
 
+  ### :bug: Bug Fix
+  - `viewer`
+    - [#654](https://github.com/wix-incubator/rich-content/pull/654) plugin settings retrieved correctly
 
 </details>
 <hr/>
