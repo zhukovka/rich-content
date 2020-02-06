@@ -23,6 +23,7 @@
   flex-direction: column;
   vertical-align: middle;
   overflow: hidden;
+  color: black;
 }
 
 .linkPreview_title {
@@ -52,6 +53,10 @@
   font-size: 16px;
   line-height: 24px;
   white-space: nowrap;
+}
+
+.linkPreview_url {
+  color: #969696;
 }
 
 .linkPreview_description {
