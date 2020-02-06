@@ -2750,3 +2750,124 @@ exports[`plugins > gallery > render gallery out of view #0`] =
     }
   }
 };
+
+exports[`plugins > anchor > allow to create anchor and link to anchor #0`] =
+{
+  "blocks": [
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [
+        {
+          "key": 0,
+          "length": 14,
+          "offset": 0
+        }
+      ],
+      "inlineStyleRanges": [
+        {
+          "length": 14,
+          "offset": 0,
+          "style": "UNDERLINE"
+        }
+      ],
+      "key": 0,
+      "text": "link to anchor",
+      "type": "unstyled"
+    },
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [
+        {
+          "key": 1,
+          "length": 1,
+          "offset": 0
+        }
+      ],
+      "inlineStyleRanges": [],
+      "key": 1,
+      "text": " ",
+      "type": "atomic"
+    },
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
+      "key": 2,
+      "text": " ",
+      "type": "unstyled"
+    },
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [
+        {
+          "key": 2,
+          "length": 1,
+          "offset": 0
+        }
+      ],
+      "inlineStyleRanges": [],
+      "key": 3,
+      "text": " ",
+      "type": "atomic"
+    },
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
+      "key": 4,
+      "text": "",
+      "type": "unstyled"
+    },
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
+      "key": 5,
+      "text": "",
+      "type": "unstyled"
+    }
+  ],
+  "entityMap": {
+    "0": {
+      "data": {
+        "rel": "noopener",
+        "target": "_self",
+        "url": "Anchor 1"
+      },
+      "mutability": "MUTABLE",
+      "type": "LINK"
+    },
+    "1": {
+      "data": {
+        "config": {
+          "alignment": "center",
+          "size": "large"
+        },
+        "name": "blabla",
+        "target": "_self",
+        "type": "single"
+      },
+      "mutability": "IMMUTABLE",
+      "type": "wix-draft-plugin-anchor"
+    },
+    "2": {
+      "data": {
+        "config": {
+          "alignment": "center",
+          "size": "large"
+        },
+        "name": "Anchor 1",
+        "target": "_self",
+        "type": "single"
+      },
+      "mutability": "IMMUTABLE",
+      "type": "wix-draft-plugin-anchor"
+    }
+  }
+};

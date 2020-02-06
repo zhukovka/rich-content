@@ -20,6 +20,7 @@ export const INLINE_TOOLBAR_BUTTONS = {
 export const STATIC_TOOLBAR_BUTTONS = {
   VIDEO: 'Video_insert_plugin_button',
   SOUND_CLOUD: 'SoundCloud_insert_plugin_button',
+  ANCHOR: 'Anchor_insert_plugin_button',
 };
 
 export const SETTINGS_PANEL = {

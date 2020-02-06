@@ -194,20 +194,6 @@ Cypress.Commands.add('setLink', (selection, link) => {
     .click();
 });
 
-Cypress.Commands.add('setAnchor', (selection, anchorName) => {
-  cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.ANCHOR, selection)
-    .get(`[data-hook=anchorPanelContainer] [data-hook=anchorPanelInput]`)
-    .type(anchorName)
-    .get(`[data-hook=anchorPanelContainerDone]`)
-    .click();
-});
-
-Cypress.Commands.add('removeAnchor', selection => {
-  cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.ANCHOR, selection)
-    .get(`[data-hook=anchorPanelContainerRemove]`)
-    .click();
-});
-
 Cypress.Commands.add('setLinkToAnchor', (selection, indexFromAnchorList) => {
   cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.LINK, selection)
     .get(`[data-hook=linkPanelContainerAnchorTab]`)
@@ -218,6 +204,25 @@ Cypress.Commands.add('setLinkToAnchor', (selection, indexFromAnchorList) => {
     .click()
     .get(`[data-hook=linkPanelContainerDone]`)
     .click();
+});
+
+Cypress.Commands.add('insertAnchor', () => {
+  cy.get(`[data-hook*=${STATIC_TOOLBAR_BUTTONS.ANCHOR}][tabindex!=-1]`).click();
+});
+
+Cypress.Commands.add('changeAnchorName', anchorName => {
+  cy.get(`[data-hook*=${INLINE_TOOLBAR_BUTTONS.ANCHOR}]`)
+    .click()
+    .get(`[data-hook=anchorPanelContainer] [data-hook=anchorPanelInput]`)
+    .type(anchorName)
+    .get(`[data-hook=anchorPanelContainerDone]`)
+    .click();
+});
+
+Cypress.Commands.add('deleteAnchor', () => {
+  cy.get(`[data-hook*=${PLUGIN_TOOLBAR_BUTTONS.DELETE}][tabindex!=-1]`).click({
+    force: true,
+  });
 });
 
 Cypress.Commands.add('setAlignment', alignment => {

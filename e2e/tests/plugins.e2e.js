@@ -27,6 +27,27 @@ describe('plugins', () => {
 
   afterEach(() => cy.matchContentSnapshot());
 
+  context('anchor', () => {
+    before(function() {
+      eyesOpen(this);
+    });
+
+    beforeEach('load editor', () => cy.loadEditorAndViewer('empty'));
+
+    after(() => cy.eyesClose());
+
+    it('allow to create anchor and link to anchor', function() {
+      cy.insertAnchor();
+      cy.deleteAnchor();
+      cy.insertAnchor();
+      cy.focusEditor().enterParagraphs(['link to anchor ']);
+      cy.setLinkToAnchor([0, 14], 0);
+      cy.insertAnchor();
+      cy.changeAnchorName('blabla');
+      cy.eyesCheckWindow(this.test.title);
+    });
+  });
+
   context('image', () => {
     before(function() {
       eyesOpen(this);

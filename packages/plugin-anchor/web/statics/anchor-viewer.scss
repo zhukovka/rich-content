@@ -10,21 +10,21 @@
   margin-right: 12px;
 }
 
-.dividerContainer {
+.anchorViewer_dividerContainer {
   box-sizing: border-box;
   width: 100%;
-  height: 29px;
-  padding-top: 14px;
+  height: 43px;
+  padding-top: 21px;
   max-width: 100%;
   margin: 0 auto;
   opacity: 0.6;
-  &.InvisibleDividerContainer {
+  &.anchorViewer_invisibleDividerContainer {
     height: 0;
     padding-top: 0;
   }
 }
 
-.divider {
+.anchorViewer_anchorPluginDivider {
   box-sizing: border-box;
   display: block;
   stroke: currentColor;
@@ -35,20 +35,20 @@
   margin: 0 auto;
 }
 
-.anchorDividerLabel {
+.anchorViewer_anchorDividerLabel {
   border: 1px solid;
   border-radius:13px;
   position: absolute;
-  top: 0;
+  top: 8px;
   right: 40px;
-  height: 26px;
+  height: 24px;
   width: 150px;
   display: flex;
   align-items: center;
   background-color: currentColor;
 }
 
-.iconsAndNameWrapper {
+.anchorViewer_iconsAndNameWrapper {
   color: white;
   display: flex;
   align-items: center;
@@ -56,7 +56,7 @@
   justify-content: space-around;
 }
 
-.nameLabel {
+.anchorViewer_nameLabel {
   font-family: HelveticaNeue;
   width: 85px;  
   font-size: 12px;
