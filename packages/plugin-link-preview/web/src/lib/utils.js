@@ -1,6 +1,6 @@
 import { DEFAULTS } from '../consts';
 import { LINK_PREVIEW_TYPE } from '../types';
-import { SelectionState, EditorState, Modifier } from 'draft-js';
+import { SelectionState, EditorState, Modifier, RichUtils } from 'draft-js';
 import {
   getCurrentBlock,
   replaceWithEmptyBlock,
@@ -29,7 +29,7 @@ export const addLinkPreview = (editorState, config, blockKey, url) => {
           provider_url,
         };
         const { newEditorState } = createBlock(withoutLinkBlock, data, LINK_PREVIEW_TYPE);
-        setEditorState(EditorState.forceSelection(newEditorState, newEditorState.getSelection()));
+        setEditorState(RichUtils.insertSoftNewline(newEditorState));
       }
     });
   });
@@ -90,5 +90,5 @@ export const convertLinkPreviewToLink = editorState => {
     editorStateWithLink.getCurrentContent(),
     'change-block-type'
   );
-  return EditorState.forceSelection(editorStateWithLink, selectionRange);
+  return EditorState.forceSelection(editorStateWithLink, editorStateWithLink.getSelection());
 };
