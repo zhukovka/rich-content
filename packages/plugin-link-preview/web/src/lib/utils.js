@@ -40,7 +40,7 @@ const shouldAddLinkPreview = linkPreviewData => {
   if (thumbnail_url && title) {
     return isValidImgSrc(thumbnail_url);
   }
-  return false;
+  return new Promise(resolve => resolve(false));
 };
 
 export const convertLinkPreviewToLink = editorState => {
