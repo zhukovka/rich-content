@@ -74,6 +74,12 @@ export default class RceTheme {
         linkPreview_url: {
           color: actionColor,
         },
+        anchorViewer_dividerContainer: {
+          color: textColor,
+        },
+        anchorViewer_iconsAndNameWrapper: {
+          color: bgColor,
+        },
       };
     }
   }

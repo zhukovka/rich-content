@@ -1,0 +1,150 @@
+{
+  "blocks": [
+    {
+      "key": "foo",
+      "text": "Anchor Plugin",
+      "type": "header-two",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "fpv4n",
+      "text": " ",
+      "type": "atomic",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 0
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "8usa5",
+      "text": "Anchors are invisible on the viewer, but you can create links to them. When people click the link, they’ll reach the anchor’s location.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "beg8h",
+      "text": "link to Anchor with long name",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 29,
+          "style": "UNDERLINE"
+        }
+      ],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 29,
+          "key": 1
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "2396l",
+      "text": " ",
+      "type": "atomic",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 2
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "17c9p",
+      "text": "link to Top anchor",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 18,
+          "style": "UNDERLINE"
+        }
+      ],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 18,
+          "key": 3
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "6clqn",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    }
+  ],
+  "entityMap": {
+    "0": {
+      "type": "wix-draft-plugin-anchor",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "type": "single",
+        "name": "Top",
+        "target": "_self",
+        "config": {
+          "size": "large",
+          "alignment": "center"
+        }
+      }
+    },
+    "1": {
+      "type": "LINK",
+      "mutability": "MUTABLE",
+      "data": {
+        "url": "Anchor with long name",
+        "target": "_self",
+        "rel": "noopener"
+      }
+    },
+    "2": {
+      "type": "wix-draft-plugin-anchor",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "type": "single",
+        "name": "Anchor with long name",
+        "target": "_self",
+        "config": {
+          "size": "large",
+          "alignment": "center"
+        }
+      }
+    },
+    "3": {
+      "type": "LINK",
+      "mutability": "MUTABLE",
+      "data": {
+        "url": "Top",
+        "target": "_blank",
+        "rel": "noopener"
+      }
+    }
+  },
+  "VERSION": "6.8.0"
+}
