@@ -11,7 +11,7 @@ import { createLinkPlugin } from 'wix-rich-content-plugin-link';
 import ThemeWrapper from '../../src/ThemeWrapper';
 import { Themes } from '../../src/RceTheme';
 import { wixPalettes } from '../palettesExample';
-import LinkPreview from '../../fixtures/LinkPreview';
+import LinkPreview from '../../../../e2e/tests/fixtures/linkPreview.json';
 
 const mockOembedResults = [
   {
