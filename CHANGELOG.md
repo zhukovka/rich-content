@@ -13,16 +13,19 @@
     Click to see more.
   </summary>
 
-  ### :bug: Bug Fix
-  - `common`
-    - [#658](https://github.com/wix-incubator/rich-content/pull/658) `types` definitions moved to `src/consts` from `statics`
-  - `image`
-    - [#657](https://github.com/wix-incubator/rich-content/pull/657) defaults for editor-only props in image-viewer
-    - [#657](https://github.com/wix-incubator/rich-content/pull/657) in-plugin editing input rendered in edit mode only
-    - [#657](https://github.com/wix-incubator/rich-content/pull/657) highres URL on SSR protection
-
 </details>
 <hr/>
+
+## 6.8.2 (Feb 9, 2020)
+### :bug: Bug Fix
+- `common`
+  - [#658](https://github.com/wix-incubator/rich-content/pull/658) `types` definitions moved to `src/consts` from `statics`
+- `image`
+  - [#657](https://github.com/wix-incubator/rich-content/pull/657) defaults for editor-only props in image-viewer
+  - [#657](https://github.com/wix-incubator/rich-content/pull/657) in-plugin editing input rendered in edit mode only
+  - [#657](https://github.com/wix-incubator/rich-content/pull/657) highres URL on SSR protection
+
+
 
 ## 6.8.1 (Feb 6, 2020)
 ### :bug: Bug Fix
