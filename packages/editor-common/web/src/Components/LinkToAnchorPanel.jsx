@@ -15,7 +15,7 @@ class LinkToAnchorPanel extends Component {
 
   componentDidMount() {
     this.withAnchors = this.props.anchorsEntities ? this.props.anchorsEntities.length !== 0 : false;
-    this.onChange({ isValid: this.isValidUrl(this.props.linkValues.url) });
+    this.onChange({ isValid: this.isValidUrl(this.props.linkValues.url), isLinkToAnchor: true });
   }
 
   handleUrlChange = url => {
