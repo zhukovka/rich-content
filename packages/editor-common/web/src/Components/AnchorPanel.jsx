@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -5,6 +6,7 @@ import { mergeStyles } from 'wix-rich-content-common';
 import Tooltip from './Tooltip';
 import { ErrorIcon } from '../Icons';
 import styles from '../../statics/styles/anchor-panel.scss';
+import InfoIcon from '../Icons/InfoIcon.svg';
 
 class AnchorPanel extends Component {
   state = { showValidation: false };
@@ -83,7 +85,16 @@ class AnchorPanel extends Component {
 
     return (
       <div className={styles.linkPanel_Content} {...ariaProps} role="form">
-        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+        <div className={styles.anchorPanel_DescriptionLabel}>
+          <span>{t('AnchorPlugin_Modal_Placeholder_Empty')}</span>
+          <Tooltip
+            shouldRebuildOnUpdate={() => true}
+            content={t('AnchorPlugin_Modal_Description')}
+            theme={styles.theme}
+          >
+            <InfoIcon className={styles.anchor_infoIcon} />
+          </Tooltip>
+        </div>
         <div className={styles.linkPanel_Input} onKeyDown={this.handleKeyDown}>
           {this.getTextInput()}
           {this.hasError() && (
@@ -102,9 +113,6 @@ class AnchorPanel extends Component {
               <ErrorIcon data-hook="anchorPanelError" className={styles.linkPanel_errorIcon} />
             </Tooltip>
           )}
-        </div>
-        <div className={styles.anchorPanel_DescriptionLabel}>
-          <span>{t('AnchorPlugin_Modal_Description')}</span>
         </div>
       </div>
     );

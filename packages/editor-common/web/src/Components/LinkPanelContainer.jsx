@@ -36,7 +36,7 @@ class LinkPanelContainer extends PureComponent {
         url:
           url && !isValidUrl(url) && anchorsEntities.some(anchor => anchor.data.name === url)
             ? url
-            : undefined,
+            : anchorsEntities[0]?.data.name,
         targetBlank,
         nofollow,
       },
