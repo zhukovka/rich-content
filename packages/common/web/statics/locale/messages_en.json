@@ -247,6 +247,7 @@
   "LinkPanel_AnchorInputPlaceholder": "Select an anchor",
   "LinkPanel_AnchorErrorTooltip": "Check the Anchor name",
   "TextAnchorButton_Tooltip": "Anchor",
+  "AnchorPlugin_AddAnchor_Tooltip" : "Add an anchor",
   "MobileAnchorModal_Title" : "Add an Anchor",
   "ColorPicker_SetToDefault_ButtonLabel": "Reset to default",
   "ImageSettings_Alt_Label_Tooltip" : "Search engines can’t see images, but they can read Alt text. Add a short description to every image to push your pages higher up on search results and boost your SEO.",

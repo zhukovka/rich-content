@@ -1,14 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PluginSettingsIcon from '../../Icons/PluginSettingsIcon';
+import PluginEditIcon from '../../Icons/PluginEditIcon';
 import InlineToolbarButton from '../../Components/InlineToolbarButton';
 
 const AnchorButton = ({ icon, ...otherProps }) => (
-  <InlineToolbarButton
-    icon={icon || PluginSettingsIcon}
-    dataHook={'AnchorButton'}
-    {...otherProps}
-  />
+  <InlineToolbarButton icon={icon || PluginEditIcon} dataHook={'AnchorButton'} {...otherProps} />
 );
 
 AnchorButton.propTypes = {

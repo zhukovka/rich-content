@@ -8,7 +8,7 @@ export default ({ helpers, t, settings }) => {
     {
       name: 'Anchor',
       type: 'Anchor',
-      tooltipText: t('TextAnchorButton_Tooltip'),
+      tooltipText: t('AnchorPlugin_AddAnchor_Tooltip'),
       toolbars: [TOOLBARS.FOOTER, TOOLBARS.SIDE],
       Icon: icon,
       componentData: DEFAULTS,
