@@ -93,7 +93,6 @@ export default ({
       this.addBlock({
         type: 'single',
         name: `${newAnchorBaseName}${newAnchorIndex}`,
-        target: '_self',
         config: {
           size: 'large',
           alignment: 'center',

@@ -2850,7 +2850,6 @@ exports[`plugins > anchor > allow to create anchor and link to anchor #0`] =
           "size": "large"
         },
         "name": "blabla",
-        "target": "_self",
         "type": "single"
       },
       "mutability": "IMMUTABLE",
@@ -2863,7 +2862,6 @@ exports[`plugins > anchor > allow to create anchor and link to anchor #0`] =
           "size": "large"
         },
         "name": "Anchor 1",
-        "target": "_self",
         "type": "single"
       },
       "mutability": "IMMUTABLE",

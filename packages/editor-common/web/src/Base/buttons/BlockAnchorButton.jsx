@@ -9,7 +9,6 @@ import AnchorButton from './AnchorButton';
 export default class BlockAnchorButton extends Component {
   showAnchorPanel = () => {
     const {
-      onExtendContent,
       onOverrideContent,
       getEditorState,
       setEditorState,
@@ -52,8 +51,6 @@ export default class BlockAnchorButton extends Component {
     } else {
       const anchorPanelProps = {
         getEditorState,
-        setEditorState,
-        onExtendContent,
         onOverrideContent,
         anchorTarget,
         relValue,
@@ -61,7 +58,6 @@ export default class BlockAnchorButton extends Component {
         t,
         uiSettings,
         pubsub,
-        helpers,
       };
       const TextAnchorPanelWithProps = decorateComponentWithProps(
         AnchorLinkPanel,
@@ -104,7 +100,6 @@ BlockAnchorButton.propTypes = {
   pubsub: PropTypes.object.isRequired,
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
-  onExtendContent: PropTypes.func.isRequired,
   onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   isMobile: PropTypes.bool,

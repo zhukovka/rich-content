@@ -61,7 +61,6 @@ export { getModalStyles } from './Utils/getModalStyles';
 
 export {
   insertLinkAtCurrentSelection,
-  insertAnchorAtCurrentSelection,
   getEntityByType,
   insertLinkInPosition,
   hasLinksInBlock,

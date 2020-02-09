@@ -12,10 +12,6 @@ class AnchorViewer extends Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
     theme: PropTypes.object,
-    children: PropTypes.node,
-    anchorTarget: PropTypes.string,
-    relValue: PropTypes.string,
-    settings: PropTypes.object,
     renderInEditor: PropTypes.bool,
   };
 
@@ -37,13 +33,12 @@ class AnchorViewer extends Component {
   }
 
   render() {
-    const { componentData, anchorTarget, renderInEditor } = this.props;
-    const { target, name } = componentData;
+    const { componentData, renderInEditor } = this.props;
+    const { name } = componentData;
     const anchorProps = {
       name: renderInEditor
         ? `${ANCHOR_PLUGIN_PRE_NAME.HTML_PRE_NAME}-editor-${name}`
         : `${ANCHOR_PLUGIN_PRE_NAME.HTML_PRE_NAME}-${name}`,
-      target: target ? target : anchorTarget || '_self',
       className: this.state.styles.anchorViewer,
     };
     return (

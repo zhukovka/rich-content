@@ -74,53 +74,6 @@ function insertLink(editorState, selection, data) {
   });
 }
 
-export const insertAnchorAtCurrentSelection = (editorState, { name, anchorTarget }) => {
-  let selection = getSelection(editorState);
-  let newEditorState = editorState;
-  if (selection.isCollapsed()) {
-    const contentState = Modifier.insertText(editorState.getCurrentContent(), selection, name);
-    selection = selection.merge({ focusOffset: selection.getFocusOffset() + name.length });
-    newEditorState = EditorState.push(editorState, contentState, 'insert-characters');
-  }
-
-  const fullBlockSelection = createSelection({
-    blockKey: selection.getEndKey(),
-    anchorOffset: 0,
-    focusOffset: editorState
-      .getCurrentContent()
-      .getBlockForKey(selection.getEndKey())
-      .getLength(),
-  });
-
-  const editorStateWithLink = insertAnchor(newEditorState, fullBlockSelection, {
-    name,
-    anchorTarget,
-  });
-
-  return EditorState.forceSelection(
-    editorStateWithLink,
-    selection.merge({ anchorOffset: selection.focusOffset })
-  );
-};
-
-function insertAnchor(editorState, selection, { name }) {
-  const contentState = editorState.getCurrentContent();
-  const newEditorState = EditorState.push(editorState, contentState, 'change-inline-style');
-
-  return addEntity(newEditorState, selection, {
-    type: 'wix-draft-plugin-anchor',
-    data: {
-      name,
-      type: 'single',
-      target: '_self',
-      config: {
-        size: 'large',
-        alignment: 'center',
-      },
-    },
-  });
-}
-
 export const getEntityByType = (editorState, type) => {
   const contentState = editorState.getCurrentContent();
   const anchorsEntities = [];

@@ -52,14 +52,11 @@ export default class AnchorLinkPanel extends Component {
 
 AnchorLinkPanel.propTypes = {
   getEditorState: PropTypes.func.isRequired,
-  setEditorState: PropTypes.func.isRequired,
-  onExtendContent: PropTypes.func.isRequired,
   onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   anchorTarget: PropTypes.string,
   relValue: PropTypes.string,
   t: PropTypes.func,
   uiSettings: PropTypes.object,
-  helpers: PropTypes.object,
   pubsub: PropTypes.object.isRequired,
 };
