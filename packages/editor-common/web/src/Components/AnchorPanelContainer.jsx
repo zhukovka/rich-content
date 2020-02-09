@@ -24,11 +24,6 @@ class AnchorPanelContainer extends PureComponent {
     }
   };
 
-  onDelete = () => {
-    this.props.onDelete();
-    this.onCancel();
-  };
-
   onCancel = () => this.props.onCancel();
 
   render() {
@@ -99,7 +94,6 @@ AnchorPanelContainer.propTypes = {
   anchorsEntities: PropTypes.array.isRequired,
   onDone: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
   name: PropTypes.string,
   anchorTarget: PropTypes.string,
   relValue: PropTypes.string,

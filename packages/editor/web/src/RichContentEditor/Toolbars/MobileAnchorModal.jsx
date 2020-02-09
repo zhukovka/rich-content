@@ -1,73 +1,62 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AnchorPanelContainer } from 'wix-rich-content-editor-common';
-import { AnchorIcon } from '../Icons';
-import styles from '../../../statics/styles/mobile-link-modal.scss';
+import { isEmpty } from 'lodash';
+import { getLinkDataInSelection, getEntityByType } from 'wix-rich-content-editor-common';
+import MobileAnchorLinkModal from './MobileAnchorLinkModal';
 
 export default class MobileAnchorModal extends Component {
+  constructor(props) {
+    super(props);
+    const { getEditorState } = props;
+    this.anchorsEntities = getEntityByType(getEditorState(), 'wix-draft-plugin-anchor');
+  }
+
+  hidePopup = () => this.props.hidePopup();
+
+  updateAnchor = ({ name }) => {
+    const { pubsub } = this.props;
+    pubsub.update('componentData', { name });
+    this.hidePopup();
+  };
+
   render() {
-    const {
-      name,
-      targetBlank,
-      anchorTarget,
-      relValue,
-      nofollow,
-      theme,
-      isMobile,
-      isActive,
-      onDone,
-      onCancel,
-      onDelete,
-      t,
-      uiSettings,
-      anchorsEntities,
-    } = this.props;
-    const mobileAnchorModalTitle = t('MobileAnchorModal_Title');
+    const { getEditorState, theme, isMobile, anchorTarget, relValue, t, uiSettings } = this.props;
+    const anchorData = getLinkDataInSelection(getEditorState());
+    const { name, target, rel } = anchorData || {};
+    const targetBlank = target ? target === '_blank' : anchorTarget === '_blank';
+    const nofollow = rel ? rel === 'nofollow' : relValue === 'nofollow';
     return (
-      <div>
-        <div className={styles.mobileLinkModal_titleContainer}>
-          <div className={styles.mobileLinkModal_linkIconContainer}>
-            <AnchorIcon />
-          </div>
-          <h3 id="mob_anchor_modal_hdr" className={styles.mobileLinkModal_title}>
-            {mobileAnchorModalTitle}
-          </h3>
-        </div>
-        <AnchorPanelContainer
-          anchorsEntities={anchorsEntities}
-          name={name}
-          targetBlank={targetBlank}
-          anchorTarget={anchorTarget}
-          relValue={relValue}
-          nofollow={nofollow}
-          theme={theme}
-          isActive={isActive}
-          isMobile={isMobile}
-          onDone={onDone}
-          onCancel={onCancel}
-          onDelete={onDelete}
-          t={t}
-          ariaProps={{ 'aria-labelledby': 'mob_anchor_modal_hdr' }}
-          uiSettings={uiSettings}
-        />
-      </div>
+      <MobileAnchorLinkModal
+        anchorsEntities={this.anchorsEntities}
+        name={name}
+        targetBlank={targetBlank}
+        nofollow={nofollow}
+        theme={theme}
+        isActive={!isEmpty(anchorData)}
+        isMobile={isMobile}
+        anchorTarget={anchorTarget}
+        relValue={relValue}
+        onDone={this.updateAnchor}
+        onCancel={this.hidePopup}
+        uiSettings={uiSettings}
+        t={t}
+      />
     );
   }
 }
 
 MobileAnchorModal.propTypes = {
-  anchorsEntities: PropTypes.array.isRequired,
+  getEditorState: PropTypes.func.isRequired,
+  setEditorState: PropTypes.func.isRequired,
+  hidePopup: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
-  onDone: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  isActive: PropTypes.bool,
+  url: PropTypes.string,
   isMobile: PropTypes.bool,
-  name: PropTypes.string,
   targetBlank: PropTypes.bool,
+  nofollow: PropTypes.bool,
   anchorTarget: PropTypes.string,
   relValue: PropTypes.string,
-  nofollow: PropTypes.bool,
   t: PropTypes.func,
   uiSettings: PropTypes.object,
+  pubsub: PropTypes.object.isRequired,
 };
