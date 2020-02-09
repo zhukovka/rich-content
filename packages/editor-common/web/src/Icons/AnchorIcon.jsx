@@ -2,13 +2,6 @@
 import React from 'react';
 
 const AnchorIcon = props => (
-  // <svg
-  //   width="17"
-  //   height="17"
-  //   preserveAspectRatio="xMidYMid"
-  //   viewBox="0 0 26 26"
-  //   className="symbol symbol-anchor anchorIcon"
-  // >
   <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 26 26" {...props}>
     <path
       fillRule="evenodd"

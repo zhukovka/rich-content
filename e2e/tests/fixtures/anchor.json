@@ -107,7 +107,6 @@
       "data": {
         "type": "single",
         "name": "Top",
-        "target": "_self",
         "config": {
           "size": "large",
           "alignment": "center"
@@ -129,7 +128,6 @@
       "data": {
         "type": "single",
         "name": "Anchor with long name",
-        "target": "_self",
         "config": {
           "size": "large",
           "alignment": "center"
@@ -141,10 +139,10 @@
       "mutability": "MUTABLE",
       "data": {
         "url": "Top",
-        "target": "_blank",
+        "target": "_self",
         "rel": "noopener"
       }
     }
   },
-  "VERSION": "6.8.0"
+  "VERSION": "6.8.1"
 }

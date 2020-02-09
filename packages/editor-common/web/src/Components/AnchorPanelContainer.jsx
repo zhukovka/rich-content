@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import AnchorPanel from './AnchorPanel';
 import FocusManager from './FocusManager';
 import { mergeStyles } from 'wix-rich-content-common';
-import styles from '../../statics/styles/link-panel.scss';
+import styles from '../../statics/styles/anchor-panel.scss';
 
 class AnchorPanelContainer extends PureComponent {
   constructor(props) {
@@ -31,13 +31,16 @@ class AnchorPanelContainer extends PureComponent {
     const { theme, isMobile, t, ariaProps, tabIndex, uiSettings, anchorsEntities } = this.props;
     const doneButtonText = t('AnchorPanelContainer_DoneButton');
     const cancelButtonText = t('AnchorPanelContainer_CancelButton');
-    const doneButtonClassName = classNames(styles.linkPanel_FooterButton, styles.linkPanel_enabled);
-    const cancelButtonClassName = classNames(
-      styles.linkPanel_FooterButton,
-      styles.linkPanel_Cancel
+    const doneButtonClassName = classNames(
+      styles.anchorPanel_FooterButton,
+      styles.anchorPanel_enabled
     );
-    const anchorPanelContainerClassName = classNames(styles.linkPanel_container, {
-      [styles.linkPanel_container_isMobile]: isMobile,
+    const cancelButtonClassName = classNames(
+      styles.anchorPanel_FooterButton,
+      styles.anchorPanel_Cancel
+    );
+    const anchorPanelContainerClassName = classNames(styles.anchorPanel_container, {
+      [styles.anchorPanel_container_isMobile]: isMobile,
     });
 
     const anchorPanelAriaProps = { 'aria-label': 'Anchor management' };
@@ -48,7 +51,7 @@ class AnchorPanelContainer extends PureComponent {
         role="form"
         {...ariaProps}
       >
-        <div className={styles.linkPanel_content}>
+        <div className={styles.anchorPanel_content}>
           <AnchorPanel
             existingName={this.existingName}
             onEnter={this.onDone}
@@ -59,12 +62,12 @@ class AnchorPanelContainer extends PureComponent {
             t={t}
             ariaProps={anchorPanelAriaProps}
             anchorsEntities={anchorsEntities}
-            {...uiSettings.linkPanel}
+            {...uiSettings.anchorPanel}
           />
-          <div className={styles.linkPanel_actionsDivider} role="separator" />
+          <div className={styles.anchorPanel_actionsDivider} role="separator" />
         </div>
-        <div className={styles.linkPanel_Footer}>
-          <div className={styles.linkPanel_FooterActions}>
+        <div className={styles.anchorPanel_Footer}>
+          <div className={styles.anchorPanel_FooterActions}>
             <button
               tabIndex={tabIndex}
               aria-label={cancelButtonText}

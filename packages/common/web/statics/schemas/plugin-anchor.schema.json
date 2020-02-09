@@ -11,12 +11,27 @@
         "default": "",
         "examples": ["wix"]
       },
-      "target": {
-        "$id": "/properties/target",
-        "type": "string",
-        "title": "target",
-        "default": "_self",
-        "examples": ["_blank", "_top", "_self"]
+      "type": {
+        "enum": ["single"],
+        "title": "type",
+        "examples": ["single"]
+      },
+      "config": {
+        "type": "object",
+        "title": "configuration",
+        "properties": {
+          "size": {
+            "$id": "/properties/config/properties/size",
+            "enum": ["large"],
+            "title": "size",
+            "examples": ["large"]
+          },
+          "alignment": {
+            "enum": ["center"],
+            "title": "alignment",
+            "examples": ["center"]
+          }
+        }
       }
     },
     "required": ["name"]

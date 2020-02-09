@@ -84,7 +84,7 @@ class AnchorPanel extends Component {
     const { name, isValid } = linkValues;
 
     return (
-      <div className={styles.linkPanel_Content} {...ariaProps} role="form">
+      <div className={styles.anchorPanel_Content} {...ariaProps} role="form">
         <div className={styles.anchorPanel_DescriptionLabel}>
           <span>{t('AnchorPlugin_Modal_Placeholder_Empty')}</span>
           <Tooltip
@@ -95,7 +95,7 @@ class AnchorPanel extends Component {
             <InfoIcon className={styles.anchor_infoIcon} />
           </Tooltip>
         </div>
-        <div className={styles.linkPanel_Input} onKeyDown={this.handleKeyDown}>
+        <div className={styles.anchorPanel_Input} onKeyDown={this.handleKeyDown}>
           {this.getTextInput()}
           {this.hasError() && (
             <Tooltip
@@ -110,7 +110,7 @@ class AnchorPanel extends Component {
               moveBy={{ y: 0 }}
               type={'error'}
             >
-              <ErrorIcon data-hook="anchorPanelError" className={styles.linkPanel_errorIcon} />
+              <ErrorIcon data-hook="anchorPanelError" className={styles.anchorPanel_errorIcon} />
             </Tooltip>
           )}
         </div>
