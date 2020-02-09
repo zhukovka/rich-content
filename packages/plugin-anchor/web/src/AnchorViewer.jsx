@@ -6,6 +6,7 @@ import styles from '../statics/anchor-viewer.scss';
 import classNames from 'classnames';
 import AnchorIcon from './icons/anchor-icon.svg';
 import DragAndDropIcon from './icons/drag-and-drop-dots.svg';
+import { ANCHOR_PLUGIN_PRE_NAME } from 'wix-rich-content-editor-common';
 
 class AnchorViewer extends Component {
   static propTypes = {
@@ -39,7 +40,9 @@ class AnchorViewer extends Component {
     const { componentData, anchorTarget, renderInEditor } = this.props;
     const { target, name } = componentData;
     const anchorProps = {
-      name: renderInEditor ? `editor-${name}` : name,
+      name: renderInEditor
+        ? `${ANCHOR_PLUGIN_PRE_NAME.HTML_PRE_NAME}-editor-${name}`
+        : `${ANCHOR_PLUGIN_PRE_NAME.HTML_PRE_NAME}-${name}`,
       target: target ? target : anchorTarget || '_self',
       className: this.state.styles.anchorViewer,
     };

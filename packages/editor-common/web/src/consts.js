@@ -60,3 +60,7 @@ export const TOOLBAR_OFFSETS = Object.freeze({
   top: 12,
   left: 15,
 });
+
+export const ANCHOR_PLUGIN_PRE_NAME = Object.freeze({
+  HTML_PRE_NAME: 'rce-anchor',
+});

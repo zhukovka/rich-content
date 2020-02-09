@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { normalizeUrl, mergeStyles, validate, pluginLinkSchema } from 'wix-rich-content-common';
 import { invoke, isEqual } from 'lodash';
 import styles from '../statics/link-viewer.scss';
+import { ANCHOR_PLUGIN_PRE_NAME } from 'wix-rich-content-editor-common';
 
 class LinkViewer extends Component {
   static propTypes = {
@@ -36,7 +37,9 @@ class LinkViewer extends Component {
   };
 
   getHref() {
-    const href = normalizeUrl(this.props.componentData.url) || `#${this.props.componentData.url}`;
+    const href =
+      normalizeUrl(this.props.componentData.url) ||
+      `#${ANCHOR_PLUGIN_PRE_NAME.HTML_PRE_NAME}-${this.props.componentData.url}`;
     return href;
   }
 
