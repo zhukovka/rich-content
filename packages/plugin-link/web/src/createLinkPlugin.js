@@ -15,6 +15,7 @@ const createLinkPlugin = (config = {}) => {
   const { theme, anchorTarget, relValue, [type]: settings = {}, ...rest } = config;
   settings.minLinkifyLength = settings.minLinkifyLength || 6;
   const toolbar = createLinkToolbar(config);
+  let alreadyDisplayedAsLinkPreview = {};
 
   const decorators = [{ strategy: linkEntityStrategy, component: Component }];
   let linkifyData;
@@ -24,8 +25,11 @@ const createLinkPlugin = (config = {}) => {
     linkifyData = getLinkifyData(editorState);
     if (linkifyData && preview?.enable) {
       const url = getBlockLinkUrl(linkifyData);
-      if (url) {
-        const blockKey = linkifyData.block.key;
+      const blockKey = linkifyData.block.key;
+      const blocBeforeUrl =
+        editorState.getCurrentContent().getBlockBefore(blockKey)?.key || blockKey; // if there is not block before this is the first block
+      if (url && alreadyDisplayedAsLinkPreview[url] !== blocBeforeUrl) {
+        alreadyDisplayedAsLinkPreview = { ...alreadyDisplayedAsLinkPreview, [url]: blocBeforeUrl };
         addLinkPreview(editorState, config, blockKey, url);
       }
     }
