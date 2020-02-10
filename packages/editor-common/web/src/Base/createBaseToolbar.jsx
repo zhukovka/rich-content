@@ -9,10 +9,18 @@ import { mergeToolbarSettings } from '../Utils/mergeToolbarSettings';
 import Separator from '../Components/Separator';
 import BaseToolbarButton from './baseToolbarButton';
 import { getDefaultToolbarSettings } from './default-toolbar-settings';
-import { BUTTONS, BUTTONS_BY_KEY, BlockLinkButton, deleteButton } from './buttons';
+import {
+  BUTTONS,
+  BUTTONS_BY_KEY,
+  BlockLinkButton,
+  deleteButton,
+  moveUpButton,
+  moveDownButton,
+} from './buttons';
 import Panel from '../Components/Panel';
 import toolbarStyles from '../../statics/styles/plugin-toolbar.scss';
 import buttonStyles from '../../statics/styles/plugin-toolbar-button.scss';
+import { moveBlockUp, moveBlockDown } from '../Utils/draftUtils';
 
 const getInitialState = () => ({
   position: { transform: 'scale(0)' },
@@ -39,6 +47,8 @@ export default function createToolbar({
   getToolbarSettings = () => [],
   getEditorBounds,
   languageDir,
+  // getEditorState,  for move block down/up
+  // setEditorState,  for move block down/up
 }) {
   class BaseToolbar extends Component {
     constructor(props) {
@@ -336,6 +346,34 @@ export default function createToolbar({
               key={key}
               t={t}
               icon={icons.delete}
+              {...buttonProps}
+            />
+          );
+        }
+        case BUTTONS.MOVE_UP: {
+          const MoveUpButtonComponent = moveUpButton(icons.moveUp);
+          return (
+            <MoveUpButtonComponent
+              tabIndex={tabIndex}
+              onClick={() => moveBlockUp()}
+              theme={themedStyle}
+              key={key}
+              t={t}
+              icon={icons.moveUp}
+              {...buttonProps}
+            />
+          );
+        }
+        case BUTTONS.MOVE_DOWN: {
+          const MoveDownButtonComponent = moveDownButton(icons.moveDown);
+          return (
+            <MoveDownButtonComponent
+              tabIndex={tabIndex}
+              onClick={() => moveBlockDown()}
+              theme={themedStyle}
+              key={key}
+              t={t}
+              icon={icons.moveDown}
               {...buttonProps}
             />
           );

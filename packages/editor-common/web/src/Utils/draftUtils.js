@@ -94,6 +94,16 @@ function addEntity(editorState, targetSelection, entityData) {
   return EditorState.push(editorState, newContentState, 'apply-entity');
 }
 
+export const moveBlockUp = () => {
+  // eslint-disable-next-line no-console
+  console.log('moveBlockUp');
+};
+
+export const moveBlockDown = () => {
+  // eslint-disable-next-line no-console
+  console.log('moveBlockDown');
+};
+
 export const hasLinksInBlock = (block, contentState) => {
   return !!getLinkRangesInBlock(block, contentState).length;
 };

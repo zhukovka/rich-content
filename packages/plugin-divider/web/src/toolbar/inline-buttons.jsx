@@ -7,6 +7,8 @@ export default ({ styles, settings }) => {
   const dropdownOptions = getDropdownOptions(styles);
   const icons = settings?.toolbar?.icons || {};
   return [
+    { keyName: 'move-down', type: BUTTONS.MOVE_DOWN, mobile: true }, // just to develop the move up/down
+    { keyName: 'move-up', type: BUTTONS.MOVE_UP, mobile: true }, // just to develop the move up/down
     {
       keyName: 'type',
       type: BUTTONS.DROPDOWN,

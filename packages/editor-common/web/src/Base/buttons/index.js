@@ -22,6 +22,8 @@ import {
   WidthIcon,
   HeightIcon,
   TrashIcon,
+  MoveUpIcon,
+  MoveDownIcon,
 } from '../../Icons';
 
 export { BUTTONS };
@@ -151,6 +153,18 @@ export const deleteButton = icon =>
   createBlockButton({
     Icon: icon || TrashIcon,
     tooltipTextKey: 'DeleteButton_Tooltip',
+  });
+
+export const moveUpButton = icon =>
+  createBlockButton({
+    Icon: icon || MoveUpIcon,
+    tooltipTextKey: 'AnchorPlugin_MoveUp_Tooltip',
+  });
+
+export const moveDownButton = icon =>
+  createBlockButton({
+    Icon: icon || MoveDownIcon,
+    tooltipTextKey: 'AnchorPlugin_MoveDown_Tooltip',
   });
 
 export const widthButton = icon =>

@@ -78,6 +78,8 @@ export {
   createBlock,
   getBlockInfo,
   getFocusedBlockKey,
+  moveBlockUp,
+  moveBlockDown,
 } from './Utils/draftUtils';
 export { isiOS } from './Utils/isiOS';
 export { getSelectionStyles } from './Utils/inlineStyleUtils';

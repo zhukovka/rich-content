@@ -26,4 +26,6 @@ export default {
   HEIGHT: 'height',
   LINK: 'link',
   DELETE: 'delete',
+  MOVE_UP: 'move-up',
+  MOVE_DOWN: 'move-down',
 };
