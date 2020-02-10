@@ -4,8 +4,6 @@ import { isEqual } from 'lodash';
 import { mergeStyles, validate, pluginLinkPreviewSchema } from 'wix-rich-content-common';
 import styles from '../statics/styles/link-preview.scss';
 
-const MAX_2_LINES_CHARS_NUM = 120;
-
 class LinkPreviewViewer extends Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
@@ -13,15 +11,18 @@ class LinkPreviewViewer extends Component {
       disableEmbed: PropTypes.bool,
     }).isRequired,
     theme: PropTypes.object,
+    isMobile: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
     super(props);
-    const { componentData } = props;
+    const { componentData, isMobile } = props;
     validate(componentData, pluginLinkPreviewSchema);
     const { title, description } = componentData;
     this.state = {};
+    const MAX_2_LINES_CHARS_NUM = isMobile ? 60 : 120;
     this.shouldElipsiseTitle = title.length > MAX_2_LINES_CHARS_NUM;
+    this.shouldElipsiseDescription = isMobile && description && description.length > 70;
     let imageRatio = this.shouldElipsiseTitle ? 138 : 104;
     if (description) {
       imageRatio += 28;
@@ -55,6 +56,7 @@ class LinkPreviewViewer extends Component {
         },
       },
       theme,
+      isMobile,
     } = this.props;
 
     this.styles = this.styles || mergeStyles({ styles, theme });
@@ -85,7 +87,7 @@ class LinkPreviewViewer extends Component {
       <figure className={linkPreview} id="linkPreviewSection" data-hook="linkPreviewViewer">
         <div
           style={{
-            width: this.imageRatio || 0,
+            width: isMobile ? 110 : this.imageRatio || 0,
             backgroundImage: `url(${thumbnail_url})`,
           }}
           className={linkPreview_image}
@@ -97,7 +99,12 @@ class LinkPreviewViewer extends Component {
             {title}
             {this.shouldElipsiseTitle && <span className={ellipsis}>...</span>}
           </figcaption>
-          {description && <div className={linkPreview_description}>{description}</div>}
+          {description && (
+            <div className={linkPreview_description}>
+              {description}
+              {this.shouldElipsiseDescription && <span className={ellipsis}>...</span>}
+            </div>
+          )}
         </section>
       </figure>
     );

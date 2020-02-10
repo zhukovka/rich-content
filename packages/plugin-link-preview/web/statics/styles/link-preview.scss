@@ -66,3 +66,43 @@
 .linkPreview_embed {
   border: 0;
 }
+
+@media only screen and (max-width: 800px) {
+  .linkPreview {
+    max-height: 144px;
+  }
+
+  .linkPreview_image {
+    width: 110;
+  }
+
+  .linkPreview_info {
+    padding: 12px;
+  }
+
+  .linkPreview_title {
+    font-size: 16px;
+    line-height: 24px;
+    padding-top: 8px;
+    max-height: 48px;
+    min-height: 1.5;
+  }
+
+  .ellipsis {
+    align-self: flex-end;
+  }
+
+  .linkPreview_url {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .linkPreview_description {
+    font-size: 14px;
+    line-height: 20px;
+    max-height: 40px;
+    padding-top: 0;
+    white-space: normal;
+    display: flex;
+  }
+}
