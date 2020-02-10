@@ -3,14 +3,14 @@ import {
   getModalStyles,
   DECORATION_MODE,
   decorateComponentWithProps,
+  ReplaceIcon,
 } from 'wix-rich-content-editor-common';
-import { MediaReplaceIcon } from '../icons';
 import GiphyApiInputModal from './giphyApiInputModal';
 import { MobileFullScreenCustomStyle, DesktopFlyOutModalStyles } from '../constants';
 import Arrow from './arrow';
 
 export default ({ t, settings, isMobile }) => {
-  const icon = settings?.toolbar?.icons?.replace || MediaReplaceIcon;
+  const icon = settings?.toolbar?.icons?.replace || ReplaceIcon;
   const modalStyles = isMobile
     ? getModalStyles({ customStyles: MobileFullScreenCustomStyle, fullScreen: true, isMobile })
     : null;

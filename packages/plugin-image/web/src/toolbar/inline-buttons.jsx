@@ -1,7 +1,12 @@
 import { get, isEmpty } from 'lodash';
-import { BUTTONS, PluginSettingsIcon, getModalStyles } from 'wix-rich-content-editor-common';
+import {
+  BUTTONS,
+  PluginSettingsIcon,
+  getModalStyles,
+  ReplaceIcon,
+} from 'wix-rich-content-editor-common';
 import { Modals } from '../modals';
-import { MediaReplaceIcon, ImageEditorIcon } from '../icons';
+import { ImageEditorIcon } from '../icons';
 
 const removeEmpty = list => list.filter(item => !!item);
 
@@ -63,7 +68,7 @@ export default ({ t, anchorTarget, relValue, uiSettings, isMobile, settings = {}
           pubsub.getBlockHandler('handleFilesSelected')(files);
         }
       },
-      icon: icons.replace || MediaReplaceIcon,
+      icon: icons.replace || ReplaceIcon,
       mobile: true,
       tooltipTextKey: 'ReplaceImageButton_Tooltip',
       t,
