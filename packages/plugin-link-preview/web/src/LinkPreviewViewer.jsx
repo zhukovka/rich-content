@@ -23,11 +23,6 @@ class LinkPreviewViewer extends Component {
     const MAX_2_LINES_CHARS_NUM = isMobile ? 60 : 120;
     this.shouldElipsiseTitle = title.length > MAX_2_LINES_CHARS_NUM;
     this.shouldElipsiseDescription = isMobile && description && description.length > 70;
-    let imageRatio = this.shouldElipsiseTitle ? 138 : 104;
-    if (description) {
-      imageRatio += 28;
-    }
-    this.imageRatio = imageRatio;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -83,11 +78,19 @@ class LinkPreviewViewer extends Component {
     //   );
     // }
 
+    const { imageRatio } = this.state;
+    if (!imageRatio) {
+      try {
+        const imageRatio = document.getElementById('linkPreviewSection')?.offsetHeight;
+        this.setState({ imageRatio }, () => this.forceUpdate());
+      } catch (e) {}
+    }
+
     return (
       <figure className={linkPreview} id="linkPreviewSection" data-hook="linkPreviewViewer">
         <div
           style={{
-            width: isMobile ? 110 : this.imageRatio || 0,
+            width: isMobile ? 110 : imageRatio || 0,
             backgroundImage: `url(${thumbnail_url})`,
           }}
           className={linkPreview_image}
