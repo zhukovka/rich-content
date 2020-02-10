@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 
-const ReplaceIcon = props => (
+const MediaReplaceIcon = props => (
   <svg
     xmlnsXlink="http://www.w3.org/1999/xlink"
     width={19}
@@ -24,4 +24,4 @@ const ReplaceIcon = props => (
   </svg>
 );
 
-export default ReplaceIcon;
+export default MediaReplaceIcon;

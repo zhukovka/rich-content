@@ -1,7 +1,8 @@
-import { BUTTONS, ReplaceIcon } from 'wix-rich-content-editor-common';
+import { BUTTONS } from 'wix-rich-content-editor-common';
+import { MediaReplaceIcon } from '../icons';
 
 export default ({ settings, t }) => {
-  const icon = settings?.toolbar?.icons?.replace || ReplaceIcon;
+  const icon = settings?.toolbar?.icons?.replace || MediaReplaceIcon;
   return [
     { keyName: 'sizeSmallLeft', type: BUTTONS.SIZE_SMALL_LEFT, mobile: false },
     { keyName: 'sizeSmallCenter', type: BUTTONS.SIZE_SMALL_CENTER, mobile: false },

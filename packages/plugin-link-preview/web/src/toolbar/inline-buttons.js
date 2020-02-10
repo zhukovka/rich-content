@@ -1,5 +1,6 @@
-import { ReplaceIcon, BUTTONS } from 'wix-rich-content-editor-common';
+import { BUTTONS } from 'wix-rich-content-editor-common';
 import { convertLinkPreviewToLink } from '../lib/utils';
+import { ConvertToLinkIcon } from '../icons';
 
 export default (setEditorState, getEditorState) => {
   return [
@@ -7,7 +8,7 @@ export default (setEditorState, getEditorState) => {
     {
       keyName: 'replaceToLink',
       type: 'custom',
-      icon: ReplaceIcon,
+      icon: ConvertToLinkIcon,
       onClick: () => {
         const editorState = getEditorState();
         setEditorState(convertLinkPreviewToLink(editorState));
