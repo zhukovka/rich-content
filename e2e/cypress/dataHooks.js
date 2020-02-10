@@ -14,7 +14,6 @@ export const INLINE_TOOLBAR_BUTTONS = {
   LINE_SPACING: 'LineSpacingButton',
   LINK: 'LinkButton',
   CODE_BLOCK: 'TextCodeBlockButton',
-  DELETE: 'baseToolbarButton_delete',
 };
 
 export const STATIC_TOOLBAR_BUTTONS = {

@@ -378,14 +378,13 @@ describe('plugins', () => {
 
     after(() => cy.eyesClose());
 
-    it('delete link preview from inline toolbar', function() {
-      cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
-      cy.deletePluginFromInlineToolbar();
-      cy.eyesCheckWindow('convert link preview to link');
-    });
     it('change link preview settings', function() {
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
       cy.setLinkSettings();
+    });
+    it('convert link preview to regular link', function() {
+      cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
+      cy.get(`[data-hook=baseToolbarButton_replaceToLink][tabindex!=-1]`).click();
     });
   });
 });

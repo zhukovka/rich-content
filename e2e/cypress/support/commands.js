@@ -202,10 +202,6 @@ Cypress.Commands.add('setLinkSettings', () => {
     .click();
 });
 
-Cypress.Commands.add('deletePluginFromInlineToolbar', () => {
-  cy.get(`[data-hook=${INLINE_TOOLBAR_BUTTONS.DELETE}]:first`).click();
-});
-
 Cypress.Commands.add('setAlignment', alignment => {
   cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.ALIGNMENT).setTextStyle(alignment);
 });
