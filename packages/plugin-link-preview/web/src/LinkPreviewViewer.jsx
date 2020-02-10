@@ -39,6 +39,17 @@ class LinkPreviewViewer extends Component {
     this.iframe.style.height = this.iframe.contentWindow.document.body.scrollHeight + 'px';
     this.iframe.style.width = this.iframe.contentWindow.document.body.scrollWidth + 'px';
   };
+
+  getUrlForDisplay = url => {
+    let numOfCharsToRemove = 0;
+    if (url.substring(0, 7) === 'http://') {
+      numOfCharsToRemove = 7;
+    } else if (url.substring(0, 8) === 'https://') {
+      numOfCharsToRemove = 8;
+    }
+    return url.substring(numOfCharsToRemove);
+  };
+
   render() {
     const {
       componentData: {
@@ -97,7 +108,7 @@ class LinkPreviewViewer extends Component {
           alt={title}
         />
         <section className={linkPreview_info}>
-          <div className={linkPreview_url}>{provider_url || url}</div>
+          <div className={linkPreview_url}>{this.getUrlForDisplay(provider_url || url)}</div>
           <figcaption className={linkPreview_title} id="link-preview-title">
             {title}
             {this.shouldElipsiseTitle && <span className={ellipsis}>...</span>}
