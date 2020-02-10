@@ -91,6 +91,7 @@ class AnchorPanel extends Component {
             shouldRebuildOnUpdate={() => true}
             content={t('AnchorPlugin_Modal_Description')}
             theme={styles.theme}
+            moveBy={{ x: -4 }}
           >
             <InfoIcon className={styles.anchor_infoIcon} />
           </Tooltip>
