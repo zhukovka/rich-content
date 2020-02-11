@@ -390,3 +390,79 @@ export function getBlockInfo(editorState, blockKey) {
 export function setSelection(editorState, selection) {
   return EditorState.acceptSelection(editorState, selection);
 }
+
+export const insertPaywall = editorState => {
+  const blockIndexOfPaywall = 1;
+  const contentState = editorState.getCurrentContent();
+  const blockMap = contentState.getBlockMap();
+  const blocks = Object.keys(blockMap.toJS());
+  const blockKeyOfTheSecondBlock =
+    blocks.length > blockIndexOfPaywall
+      ? blocks[blockIndexOfPaywall - 1]
+      : blocks[blocks.length - 1];
+  const offsetOfTheSecondBlock = contentState.getBlockForKey(blockKeyOfTheSecondBlock).getLength();
+  const selectionAtTheSecondBlock = createSelection({
+    blockKey: blockKeyOfTheSecondBlock,
+    anchorOffset: offsetOfTheSecondBlock,
+    focusOffset: offsetOfTheSecondBlock,
+  });
+  const editorStateWithSelectorAtTheSecondBlock = EditorState.acceptSelection(
+    editorState,
+    selectionAtTheSecondBlock
+  );
+  const dividerData = {
+    type: 'single',
+    config: {
+      size: 'large',
+      alignment: 'center',
+      textWrap: 'nowrap',
+      noam: false,
+    },
+  };
+  const { newEditorState } = createBlock(
+    editorStateWithSelectorAtTheSecondBlock,
+    dividerData,
+    'wix-draft-plugin-divider'
+  );
+  return newEditorState;
+};
+
+export const getPaywallBlockKey = editorState => {
+  const contentState = editorState.getCurrentContent();
+  let paywallBlockKey;
+  contentState.getBlockMap().forEach(block => {
+    // could also use .map() instead
+    block.findEntityRanges(character => {
+      const charEntity = character.getEntity();
+      if (charEntity) {
+        // could be `null`
+        const contentEntity = contentState.getEntity(charEntity).toJS();
+        if (contentEntity.type === 'wix-draft-plugin-divider') {
+          paywallBlockKey = block.key;
+        }
+      }
+    });
+  });
+  return paywallBlockKey;
+};
+
+export const isPaywallInUse = editorState => {
+  return !!getPaywallBlockKey(editorState);
+};
+
+export const removePaywall = editorState => {
+  return deleteBlock(editorState, getPaywallBlockKey(editorState));
+};
+
+export const cutContentUnderPaywall = editorState => {
+  const contentState = editorState.getCurrentContent();
+  const blockMap = contentState.getBlockMap();
+  const blocks = Object.keys(blockMap.toJS());
+  const paywallBlockKey = getPaywallBlockKey(editorState);
+  const indexOfPaywallBlock = blocks.indexOf(paywallBlockKey);
+  let cutEditorState = editorState;
+  for (let i = indexOfPaywallBlock; i < blocks.length; i++) {
+    cutEditorState = deleteBlock(cutEditorState, blocks[i]);
+  }
+  return cutEditorState;
+};

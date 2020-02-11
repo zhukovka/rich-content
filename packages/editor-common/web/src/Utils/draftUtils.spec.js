@@ -1,6 +1,8 @@
 import mockLinkEditorState from '../../../../../e2e/tests/fixtures/headers.json';
 import mockAlignmentEditorState from '../../../../../e2e/tests/fixtures/text-alignment.json';
 import mockGifEditorState from '../../../../../e2e/tests/fixtures/gif.json';
+import mockPlainTextEditorState from '../../../../../e2e/tests/fixtures/plain.json';
+import mockPlainTextWithPaywallEditorState from '../../../../../e2e/tests/fixtures/paywall.json';
 
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import {
@@ -17,6 +19,10 @@ import {
   deleteBlock,
   getSelectedBlocks,
   getTextAlignment,
+  insertPaywall,
+  isPaywallInUse,
+  removePaywall,
+  cutContentUnderPaywall,
 } from './draftUtils';
 
 const getContentAsObject = editorState => convertToRaw(editorState.getCurrentContent());
@@ -186,6 +192,35 @@ describe('Test draftUtils functions', () => {
         const selectedBlocks = getSelectedBlocks(editorWithSelectedBlocks);
         expect(selectedBlocks).toMatchSnapshot();
       });
+    });
+  });
+
+  describe('Test draftUtils paywall functions', () => {
+    const editorStateWithoutPaywall = getEditorStateFromJson(mockPlainTextEditorState);
+    const editorStateWithPaywall = getEditorStateFromJson(mockPlainTextWithPaywallEditorState);
+
+    it('Test insertPaywall function', () => {
+      const newEditorState = insertPaywall(editorStateWithoutPaywall);
+      const contentStateObj = getContentAsObject(newEditorState);
+      contentStateObj.blocks[1].key = 'paywall-key';
+      contentStateObj.blocks[2].key = 'post-space-key';
+      expect(contentStateObj).toMatchSnapshot();
+    });
+    it('Test isPaywallInUse function returns false', () => {
+      expect(isPaywallInUse(editorStateWithoutPaywall)).toEqual(false);
+    });
+    it('Test isPaywallInUse function returns true', () => {
+      expect(isPaywallInUse(editorStateWithPaywall)).toEqual(true);
+    });
+    it('Test removePaywall function', () => {
+      const newEditorState = removePaywall(editorStateWithPaywall);
+      const contentStateObj = getContentAsObject(newEditorState);
+      expect(contentStateObj).toMatchSnapshot();
+    });
+    it('Test cutContentUnderPaywall function', () => {
+      const newEditorState = cutContentUnderPaywall(editorStateWithPaywall);
+      const contentStateObj = getContentAsObject(newEditorState);
+      expect(contentStateObj).toMatchSnapshot();
     });
   });
 });
