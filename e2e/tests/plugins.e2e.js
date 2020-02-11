@@ -6,6 +6,7 @@ import {
   GALLERY_SETTINGS,
   GALLERY_IMAGE_SETTINGS,
   IMAGE_SETTINGS,
+  GIPHY_PLUGIN,
 } from '../cypress/dataHooks';
 import { DEFAULT_DESKTOP_BROWSERS } from '../tests/constants';
 
@@ -290,19 +291,20 @@ describe('plugins', () => {
     });
   });
 
-  context('gif', () => {
+  context('giphy', () => {
     before('load editor', function() {
       eyesOpen(this);
-      cy.loadEditorAndViewer('gif');
     });
 
     after(() => cy.eyesClose());
 
     it('render giphy plugin toolbar', function() {
-      cy.openPluginToolbar(PLUGIN_COMPONENT.GIF).clickToolbarButton(
+      cy.loadEditorAndViewer('giphy');
+      cy.openPluginToolbar(PLUGIN_COMPONENT.GIPHY).clickToolbarButton(
         PLUGIN_TOOLBAR_BUTTONS.SMALL_CENTER
       );
       cy.get(`button[data-hook=${PLUGIN_TOOLBAR_BUTTONS.REPLACE}][tabindex=0]`).click();
+      cy.get(`[data-hook=${GIPHY_PLUGIN.UPLOAD_MODAL}] img`);
       cy.eyesCheckWindow(this.test.title);
     });
   });
