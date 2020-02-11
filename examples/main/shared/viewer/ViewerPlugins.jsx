@@ -93,12 +93,8 @@ const uiSettings = {
   disableRightClick: true,
 };
 
-const authorization = `D0nawxcVUD5MtaQ8yKCNagHIWvpDGTRGqUfKfaqtKok.eyJpbnN0YW5jZUlkIjoiZDM0MDgzYTItNTlhYi00MTJjLWI0NjItNzk1NTk0MWMxOWQwIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiYmM0ZjIzODEtMzY1Mi00MTE4LWIxOGItY2NmNDE2MmZkZTA3Iiwic2lnbkRhdGUiOiIyMDIwLTAxLTE0VDE2OjMwOjEyLjY2OVoiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiI2N2RkZDA5ZS00YWU5LTQ5NWMtOWE4OS0wZGZiZGY4MTQ4ZTYiLCJhaWQiOiIyMWY2NzFiZS05OGZlLTQxMTctYjg4ZC02YzI2ZTJjN2YxNzkiLCJiaVRva2VuIjoiNmYwZmEwMjMtNmZmOS0wMDM0LTA1ZTktYjVhMTgyMzNjN2Q3Iiwic2l0ZU93bmVySWQiOiI4MTk2ZGM1Ni1kNDVjLTRkZWYtYTc2Ny0zMDAyNDZhYjBiN2EifQ`;
-export const config = {
-  [GALLERY_TYPE]: {
-    scrollingElement: () =>
-      typeof window !== 'undefined' && document.getElementsByClassName('viewer-example')[0],
-  },
+const config = {
+  [GALLERY_TYPE]: {},
   [HEADERS_MARKDOWN_TYPE]: {
     hideMarkdown: true,
   },
@@ -137,6 +133,18 @@ export const config = {
     getVideoUrl: src => `https://video.wixstatic.com/${src.pathname}`,
   },
   uiSettings,
+};
+
+export const getConfig = (additionalConfig = {}) => {
+  let _config = { ...config };
+  Object.keys(additionalConfig).forEach(key => {
+    if (additionalConfig[key]) {
+      const orgConfig = config[key] || {};
+      _config[key] = { ...orgConfig, ...additionalConfig[key] };
+    }
+  });
+
+  return _config;
 };
 
 export const getInlineStyleMappers = raw => [
