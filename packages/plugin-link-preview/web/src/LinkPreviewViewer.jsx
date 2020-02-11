@@ -16,13 +16,9 @@ class LinkPreviewViewer extends Component {
 
   constructor(props) {
     super(props);
-    const { componentData, isMobile } = props;
+    const { componentData } = props;
     validate(componentData, pluginLinkPreviewSchema);
-    const { title, description } = componentData;
     this.state = {};
-    const MAX_2_LINES_CHARS_NUM = isMobile ? 60 : 120;
-    this.shouldElipsiseTitle = title.length > MAX_2_LINES_CHARS_NUM;
-    this.shouldElipsiseDescription = isMobile && description && description.length > 70;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -56,13 +52,15 @@ class LinkPreviewViewer extends Component {
         title,
         description,
         thumbnail_url,
-        /* html,*/ provider_url,
+        // html,
+        provider_url,
         config: {
           link: { url },
         },
       },
       theme,
       isMobile,
+      // settings,
     } = this.props;
 
     this.styles = this.styles || mergeStyles({ styles, theme });
@@ -74,7 +72,6 @@ class LinkPreviewViewer extends Component {
       linkPreview_description,
       linkPreview_url,
       // linkPreview_embed,
-      ellipsis,
     } = this.styles;
 
     // if (!settings.disableEmbed && html) {
@@ -111,14 +108,8 @@ class LinkPreviewViewer extends Component {
           <div className={linkPreview_url}>{this.getUrlForDisplay(provider_url || url)}</div>
           <figcaption className={linkPreview_title} id="link-preview-title">
             {title}
-            {this.shouldElipsiseTitle && <span className={ellipsis}>...</span>}
           </figcaption>
-          {description && (
-            <div className={linkPreview_description}>
-              {description}
-              {this.shouldElipsiseDescription && <span className={ellipsis}>...</span>}
-            </div>
-          )}
+          {description && <div className={linkPreview_description}>{description}</div>}
         </section>
       </figure>
     );
