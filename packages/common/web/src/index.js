@@ -26,6 +26,7 @@ export { isSSR } from './Utils/ssrUtils';
 /* eslint-disable max-len */
 export { default as pluginButtonSchema } from '../statics/schemas/plugin-button.schema.json';
 export { default as pluginDividerSchema } from '../statics/schemas/plugin-divider.schema.json';
+export { default as pluginPaywallSchema } from '../statics/schemas/plugin-paywall.schema.json';
 export { default as pluginFileUploadSchema } from '../statics/schemas/plugin-file-upload.schema.json';
 export { default as pluginGallerySchema } from '../statics/schemas/plugin-gallery.schema.json';
 export { default as pluginGiphySchema } from '../statics/schemas/plugin-giphy.schema.json';

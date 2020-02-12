@@ -91,6 +91,7 @@
             "wix-draft-plugin-sound-cloud",
             "wix-draft-plugin-hashtag",
             "wix-draft-plugin-divider",
+            "wix-draft-plugin-paywall",
             "wix-draft-plugin-emoji",
             "wix-draft-plugin-giphy",
             "wix-draft-plugin-map",

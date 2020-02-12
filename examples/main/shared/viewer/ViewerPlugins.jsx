@@ -1,6 +1,7 @@
 import theme from '../theme/theme';
 import { VIDEO_TYPE, videoTypeMapper } from 'wix-rich-content-plugin-video/dist/module.viewer';
 import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/module.viewer';
+import { paywallTypeMapper } from 'wix-rich-content-plugin-paywall/dist/module.viewer';
 import { HTML_TYPE, htmlTypeMapper } from 'wix-rich-content-plugin-html/dist/module.viewer';
 import { soundCloudTypeMapper } from 'wix-rich-content-plugin-sound-cloud/dist/module.viewer';
 import { LINK_TYPE, linkTypeMapper } from 'wix-rich-content-plugin-link/dist/module.viewer';
@@ -46,6 +47,7 @@ import 'wix-rich-content-viewer/dist/styles.min.css';
 // import 'wix-rich-content-plugin-code-block/dist/styles.min.css';
 import 'wix-rich-content-plugin-button/dist/styles.min.css';
 import 'wix-rich-content-plugin-divider/dist/styles.min.css';
+import 'wix-rich-content-plugin-paywall/dist/styles.min.css';
 import 'wix-rich-content-plugin-hashtag/dist/styles.min.css';
 import 'wix-rich-content-plugin-html/dist/styles.min.css';
 import 'wix-rich-content-plugin-image/dist/styles.min.css';
@@ -72,6 +74,7 @@ export const typeMappers = [
   videoTypeMapper,
   buttonTypeMapper,
   dividerTypeMapper,
+  paywallTypeMapper,
   htmlTypeMapper,
   linkTypeMapper,
   soundCloudTypeMapper,

@@ -4,6 +4,7 @@ import { debounce } from 'lodash';
 import { getContentStateSchema, isSSR } from 'wix-rich-content-common';
 
 import dividerSchema from 'wix-rich-content-common/dist/statics/schemas/plugin-divider.schema.json';
+import paywallSchema from 'wix-rich-content-common/dist/statics/schemas/plugin-paywall.schema.json';
 import imageSchema from 'wix-rich-content-common/dist/statics/schemas/plugin-image.schema.json';
 import videoSchema from 'wix-rich-content-common/dist/statics/schemas/plugin-video.schema.json';
 import giphySchema from 'wix-rich-content-common/dist/statics/schemas/plugin-giphy.schema.json';
@@ -17,6 +18,7 @@ import gallerySchema from 'wix-rich-content-common/dist/statics/schemas/plugin-g
 import buttonSchema from 'wix-rich-content-common/dist/statics/schemas/plugin-button.schema.json';
 
 import { DIVIDER_TYPE } from 'wix-rich-content-plugin-divider';
+import { PAYWALL_TYPE } from 'wix-rich-content-plugin-paywall';
 import { VIDEO_TYPE } from 'wix-rich-content-plugin-video';
 import { IMAGE_TYPE } from 'wix-rich-content-plugin-image';
 import { GIPHY_TYPE } from 'wix-rich-content-plugin-giphy';
@@ -68,6 +70,7 @@ class ContentStateEditor extends PureComponent {
           fileMatch: ['*'],
           schema: getContentStateSchema({
             [DIVIDER_TYPE]: dividerSchema,
+            [PAYWALL_TYPE]: paywallSchema,
             [IMAGE_TYPE]: imageSchema,
             [VIDEO_TYPE]: videoSchema,
             [GIPHY_TYPE]: giphySchema,

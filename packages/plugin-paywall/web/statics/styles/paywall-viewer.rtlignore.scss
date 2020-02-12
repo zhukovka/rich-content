@@ -1,0 +1,55 @@
+
+.paywallDividerContainer {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 43px;
+  padding-top: 21px;
+  max-width: 100%;
+  margin: 0 auto;
+  opacity: 0.6;
+  display: flex;
+  justify-content: center;
+}
+
+.paywallDivider {
+  box-sizing: border-box;
+  display: block;
+  stroke: currentColor;
+  stroke-width: 2px;
+  shape-rendering: crispEdges;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.paywallDividerLabel {
+  border: 1px solid;
+  border-radius:13px;
+  position: absolute;
+  top: 8px;
+  height: 24px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  background-color: currentColor;
+}
+
+.paywallIconsAndNameWrapper {
+  color: white;
+  display: flex;
+  align-items: center;
+  width: inherit;
+  justify-content: space-around;
+}
+
+.paywallNameLabel {
+  font-family: HelveticaNeue;
+  width: 89px;  
+  font-size: 12px;
+  line-height:1.33;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}

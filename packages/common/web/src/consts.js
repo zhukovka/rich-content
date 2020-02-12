@@ -22,6 +22,7 @@ export const BLOCK_TYPES = Object.freeze([
 export const BUTTON_TYPE = 'wix-draft-plugin-button';
 export const CODE_BLOCK_TYPE = 'code-block';
 export const DIVIDER_TYPE = 'wix-draft-plugin-divider';
+export const PAYWALL_TYPE = 'wix-draft-plugin-paywall';
 export const EMOJI_TYPE = 'wix-draft-plugin-emoji';
 export const FILE_UPLOAD_TYPE = 'wix-draft-plugin-file-upload';
 export const GALLERY_TYPE = 'wix-draft-plugin-gallery';

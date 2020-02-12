@@ -54,6 +54,7 @@
     "wix-rich-content-common": "file:../../packages/common/web",
     "wix-rich-content-plugin-code-block": "file:../../packages/plugin-code-block/web",
     "wix-rich-content-plugin-divider": "file:../../packages/plugin-divider/web",
+    "wix-rich-content-plugin-paywall": "file:../../packages/plugin-paywall/web",
     "wix-rich-content-plugin-emoji": "file:../../packages/plugin-emoji/web",
     "wix-rich-content-plugin-hashtag": "file:../../packages/plugin-hashtag/web",
     "wix-rich-content-plugin-html": "file:../../packages/plugin-html/web",
