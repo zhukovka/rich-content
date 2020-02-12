@@ -9,7 +9,7 @@ import { createGalleryPlugin, GALLERY_TYPE } from 'wix-rich-content-plugin-galle
 import { createVideoPlugin, VIDEO_TYPE } from 'wix-rich-content-plugin-video';
 import { createHtmlPlugin, HTML_TYPE } from 'wix-rich-content-plugin-html';
 import { createDividerPlugin, DIVIDER_TYPE } from 'wix-rich-content-plugin-divider';
-import { createPaywallPlugin, PAYWALL_TYPE } from 'wix-rich-content-plugin-paywall';
+import { createPaywallPlugin } from 'wix-rich-content-plugin-paywall';
 import {
   createExternalMentionsPlugin,
   EXTERNAL_MENTIONS_TYPE,
@@ -381,13 +381,6 @@ const config = {
     // },
   },
   [DIVIDER_TYPE]: {
-    // toolbar: {
-    //   icons: {
-    //     InsertPluginButtonIcon: MyCustomIcon,
-    //   },
-    // },
-  },
-  [PAYWALL_TYPE]: {
     // toolbar: {
     //   icons: {
     //     InsertPluginButtonIcon: MyCustomIcon,
