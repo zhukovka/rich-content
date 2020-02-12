@@ -6,7 +6,7 @@ import {
   ContentBlock,
   BlockMapBuilder,
   SelectionState,
-} from '@wix/draft-js';
+} from 'draft-js';
 import { List } from 'immutable';
 
 export const hasBlockType = (blockType, editorState) => {

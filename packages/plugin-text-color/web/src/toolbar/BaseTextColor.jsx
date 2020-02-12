@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Modal from 'react-modal';
-import { EditorState } from '@wix/draft-js';
+import { EditorState } from 'draft-js';
 import { mergeStyles } from 'wix-rich-content-common';
 import { InlineToolbarButton, getSelectionStyles } from 'wix-rich-content-editor-common';
 import TextColorPanel from './TextColorPanel';
