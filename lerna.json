@@ -5,7 +5,7 @@
       "allowBranch": [
         "master",
         "release*",
-        "fix/composition"
+        "fix/composition*",
       ],
       "message": "[*] chore(release): %s"
     }
