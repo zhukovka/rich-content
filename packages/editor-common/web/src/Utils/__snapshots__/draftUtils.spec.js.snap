@@ -581,16 +581,11 @@ Object {
   "entityMap": Object {
     "0": Object {
       "data": Object {
-        "config": Object {
-          "alignment": "center",
-          "noam": false,
-          "size": "large",
-          "textWrap": "nowrap",
-        },
+        "config": Object {},
         "type": "single",
       },
       "mutability": "IMMUTABLE",
-      "type": "wix-draft-plugin-divider",
+      "type": "wix-draft-plugin-paywall",
     },
   },
 }

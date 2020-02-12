@@ -410,19 +410,14 @@ export const insertPaywall = editorState => {
     editorState,
     selectionAtTheSecondBlock
   );
-  const dividerData = {
+  const paywallData = {
     type: 'single',
-    config: {
-      size: 'large',
-      alignment: 'center',
-      textWrap: 'nowrap',
-      noam: false,
-    },
+    config: {},
   };
   const { newEditorState } = createBlock(
     editorStateWithSelectorAtTheSecondBlock,
-    dividerData,
-    'wix-draft-plugin-divider'
+    paywallData,
+    'wix-draft-plugin-paywall'
   );
   return newEditorState;
 };
@@ -437,7 +432,7 @@ export const getPaywallBlockKey = editorState => {
       if (charEntity) {
         // could be `null`
         const contentEntity = contentState.getEntity(charEntity).toJS();
-        if (contentEntity.type === 'wix-draft-plugin-divider') {
+        if (contentEntity.type === 'wix-draft-plugin-paywall') {
           paywallBlockKey = block.key;
         }
       }

@@ -99,16 +99,11 @@
   ],
   "entityMap": {
     "0": {
-      "type": "wix-draft-plugin-divider",
+      "type": "wix-draft-plugin-paywall",
       "mutability": "IMMUTABLE",
       "data": {
         "type": "single",
-        "config": {
-          "size": "large",
-          "alignment": "center",
-          "textWrap": "nowrap",
-          "noam": false
-        }
+        "config": {}
       }
     }
   },
