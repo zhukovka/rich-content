@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { isEqual } from 'lodash';
 import { mergeStyles, validate, pluginLinkPreviewSchema } from 'wix-rich-content-common';
 import styles from '../statics/styles/link-preview.scss';
+import HtmlComponent from 'wix-rich-content-plugin-html/dist/lib/HtmlComponent';
 
 class LinkPreviewViewer extends Component {
   static propTypes = {
@@ -22,13 +23,22 @@ class LinkPreviewViewer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log({ nextProps });
     if (!isEqual(nextProps.componentData, this.props.componentData)) {
       validate(nextProps.componentData, pluginLinkPreviewSchema);
     }
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     validate(pluginLinkPreviewSchema, this.props.componentData);
+    const { componentData } = this.props;
+    const { html } = componentData;
+    const iframeDocument = document.getElementById('myiframe')?.contentWindow?.document;
+    if (iframeDocument) {
+      iframeDocument.open('text/html', 'replace');
+      iframeDocument.write(unescape(html));
+      iframeDocument.close();
+    }
   }
 
   handleIframeLoad = () => {
@@ -47,21 +57,17 @@ class LinkPreviewViewer extends Component {
   };
 
   render() {
+    const { componentData, theme, isMobile, settings } = this.props;
     const {
-      componentData: {
-        title,
-        description,
-        thumbnail_url,
-        // html,
-        provider_url,
-        config: {
-          link: { url },
-        },
+      title,
+      description,
+      thumbnail_url,
+      html,
+      provider_url,
+      config: {
+        link: { url },
       },
-      theme,
-      isMobile,
-      // settings,
-    } = this.props;
+    } = componentData;
 
     this.styles = this.styles || mergeStyles({ styles, theme });
     const {
@@ -71,48 +77,52 @@ class LinkPreviewViewer extends Component {
       linkPreview_image,
       linkPreview_description,
       linkPreview_url,
-      // linkPreview_embed,
     } = this.styles;
 
-    // if (!settings.disableEmbed && html) {
-    //   return (
-    //     <iframe
-    //       title="oembed content"
-    //       srcDoc={html}
-    //       ref={ref => (this.iframe = ref)}
-    //       onLoad={this.handleIframeLoad}
-    //       className={linkPreview_embed}
-    //     />
-    //   );
-    // }
+    if (!settings.disableEmbed && html) {
+      const htmlCompProps = {
+        componentData: {
+          srcType: 'html',
+          src: unescape(html),
+          ...componentData,
+        },
+        settings,
+        theme,
+        isMobile,
+      };
 
-    const { imageRatio } = this.state;
-    if (!imageRatio) {
-      try {
-        const imageRatio = document.getElementById('linkPreviewSection')?.offsetHeight;
-        this.setState({ imageRatio }, () => this.forceUpdate());
-      } catch (e) {}
+      return <iframe id="myiframe" />;
+
+      // return <HtmlComponent {...htmlCompProps} />;
+    } else {
+      const { imageRatio } = this.state;
+      if (!imageRatio) {
+        try {
+          const imageRatio = document.getElementById('linkPreviewSection')?.offsetHeight;
+          this.setState({ imageRatio }, () => this.forceUpdate());
+        } catch (e) {}
+      }
+
+      return (
+        <figure className={linkPreview} id="linkPreviewSection" data-hook="linkPreviewViewer">
+          <div
+            style={{
+              width: isMobile ? 110 : imageRatio || 0,
+              backgroundImage: `url(${thumbnail_url})`,
+            }}
+            className={linkPreview_image}
+            alt={title}
+          />
+          <section className={linkPreview_info}>
+            <div className={linkPreview_url}>{this.getUrlForDisplay(provider_url || url)}</div>
+            <figcaption className={linkPreview_title} id="link-preview-title">
+              {title}
+            </figcaption>
+            {description && <div className={linkPreview_description}>{description}</div>}
+          </section>
+        </figure>
+      );
     }
-
-    return (
-      <figure className={linkPreview} id="linkPreviewSection" data-hook="linkPreviewViewer">
-        <div
-          style={{
-            width: isMobile ? 110 : imageRatio || 0,
-            backgroundImage: `url(${thumbnail_url})`,
-          }}
-          className={linkPreview_image}
-          alt={title}
-        />
-        <section className={linkPreview_info}>
-          <div className={linkPreview_url}>{this.getUrlForDisplay(provider_url || url)}</div>
-          <figcaption className={linkPreview_title} id="link-preview-title">
-            {title}
-          </figcaption>
-          {description && <div className={linkPreview_description}>{description}</div>}
-        </section>
-      </figure>
-    );
   }
 }
 

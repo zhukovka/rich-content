@@ -238,6 +238,7 @@ export const config = {
   [LINK_PREVIEW_TYPE]: {
     disableEmbed: false,
     fetchMetadata: linkPreviewUtil(authorization),
+    htmlIframeSrc: `${getBaseUrl()}/static/html-plugin-embed.html`,
   },
   [EMOJI_TYPE]: {
     // toolbar: {
