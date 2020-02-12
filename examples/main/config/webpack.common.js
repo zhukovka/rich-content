@@ -23,6 +23,8 @@ module.exports = env => ({
     extensions: ['.js', '.jsx', '.json'],
     symlinks: false,
     alias: {
+      'draft-js': path.resolve(PATHS.monorepo_root, 'node_modules', '@wix', 'draft-js'),
+      '@wix/draft-js': path.resolve(PATHS.monorepo_root, 'node_modules', '@wix', 'draft-js'),
       'wix-rich-content-common': path.resolve(PATHS.monorepo_root, 'packages', 'common', 'web'),
       'wix-rich-content-editor-common': path.resolve(
         PATHS.monorepo_root,

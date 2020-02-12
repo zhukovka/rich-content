@@ -4,7 +4,8 @@
     "version": {
       "allowBranch": [
         "master",
-        "release*"
+        "release*",
+        "fix/composition"
       ],
       "message": "[*] chore(release): %s"
     }

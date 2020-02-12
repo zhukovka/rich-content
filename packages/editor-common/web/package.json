@@ -32,8 +32,8 @@
   },
   "peerDependencies": {
     "@babel/runtime": "7.2.0",
+    "@wix/draft-js": "0.0.5",
     "classnames": "^2.0.0",
-    "draft-js": "0.11.2",
     "lodash": "^4.0.0",
     "prop-types": "^15.0.0",
     "react": "^16.6.3",
@@ -41,11 +41,11 @@
   },
   "devDependencies": {
     "@babel/runtime": "7.2.0",
+    "@wix/draft-js": "0.0.5",
     "babel-jest": "^23.6.0",
     "classnames": "^2.0.0",
     "cross-env": "^5.2.0",
     "deep-freeze": "0.0.1",
-    "draft-js": "0.11.2",
     "eslint": "^6.1.0",
     "jest": "^23.1.0",
     "lodash": "^4.17.15",
@@ -80,6 +80,9 @@
     },
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",
+      "^draft-js$": "<rootDir>/../../../node_modules/@wix/draft-js/dist/Draft.min.js",
+      "^draft-js/.*$": "<rootDir>/../../../node_modules/@wix/draft-js/dist/Draft.min.js",
+      "^@wix/draft-js$": "<rootDir>/../../../node_modules/@wix/draft-js/dist/Draft.min.js",
       "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
     }
   }

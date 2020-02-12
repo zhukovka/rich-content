@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { EditorState, convertFromRaw } from 'draft-js';
+import { EditorState, convertFromRaw } from '@wix/draft-js';
 import Editor from 'draft-js-plugins-editor';
 import { get, includes, merge, debounce } from 'lodash';
 import Measure from 'react-measure';
@@ -11,7 +11,6 @@ import { createKeyBindingFn, initPluginKeyBindings } from './keyBindings';
 import handleKeyCommand from './handleKeyCommand';
 import handleReturnCommand from './handleReturnCommand';
 import blockStyleFn from './blockStyleFn';
-import getBlockRenderMap from './getBlockRenderMap';
 import { combineStyleFns } from './combineStyleFns';
 import { getStaticTextToolbarId } from './Toolbars/toolbar-id';
 import {
@@ -312,7 +311,6 @@ class RichContentEditor extends Component {
         handlePastedText={handlePastedText}
         plugins={this.plugins}
         blockStyleFn={blockStyleFn(theme, this.styleToClass)}
-        blockRenderMap={getBlockRenderMap(theme)}
         handleKeyCommand={handleKeyCommand(
           this.updateEditorState,
           this.getCustomCommandHandlers().commandHanders

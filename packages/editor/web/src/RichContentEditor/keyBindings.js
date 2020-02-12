@@ -1,4 +1,4 @@
-import { KeyBindingUtil } from 'draft-js';
+import { KeyBindingUtil } from '@wix/draft-js';
 import { isEqual } from 'lodash';
 import { COMMANDS, MODIFIERS } from 'wix-rich-content-editor-common';
 

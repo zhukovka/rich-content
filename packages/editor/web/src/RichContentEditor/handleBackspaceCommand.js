@@ -1,4 +1,4 @@
-import { RichUtils, EditorState } from 'draft-js';
+import { RichUtils, EditorState } from '@wix/draft-js';
 import { isAtomicBlockFocused, replaceWithEmptyBlock } from 'wix-rich-content-editor-common';
 import removeBlockAdjacentToAtomic from './atomicBlockRemovalUtil';
 

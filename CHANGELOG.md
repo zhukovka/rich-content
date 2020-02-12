@@ -70,7 +70,6 @@
 ### :house: Internal
 - `e2e`
   - [#635](https://github.com/wix-incubator/rich-content/pull/635) disable css transitions in cypress
-
 ## 6.7.0 (Jan 27, 2020)
 ### :rocket: New Feature
 - `image`
