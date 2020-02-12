@@ -78,6 +78,10 @@ export {
   createBlock,
   getBlockInfo,
   getFocusedBlockKey,
+  insertPaywall,
+  isPaywallInUse,
+  removePaywall,
+  cutContentUnderPaywall,
 } from './Utils/draftUtils';
 export { isiOS } from './Utils/isiOS';
 export { getSelectionStyles } from './Utils/inlineStyleUtils';
