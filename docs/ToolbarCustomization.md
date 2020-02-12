@@ -139,7 +139,7 @@ All available button names are listed in the [EditorPlugins](https://github.com/
 
 At the moment, the `getDisplayOptions` API consists of a single property `displayMode`. This property accepts two values (defined in [consts.js](https://github.com/wix-incubator/rich-content/blob/master/packages/editor-common/web/src/consts.js)):
 
-All available button names are listed in the [EditorPlugins](https://github.com/wix-incubator/rich-content/blob/master/examples/main/shared/editor/EditorPlugins.jsx) file under the `getToolbarSettings` section.
+- `DISPLAY_MODE.NORMAL` is the default; the toolbars are normally-positioned
 - `DISPLAY_MODE.FLOATING` the toolbars are in fixed position. This, combined with `getVisibilityFn` and `getPositionOffset` properties, causes toolbars to "float".
 
 **Note**: while in `DISPLAY_MODE.FLOATING` mode, the `getPositionOffset` property denotes absolute screen coordinates.
@@ -182,7 +182,7 @@ In order to replace a button icon in a specific plugin toolbar or to replace the
 const config = {
   [VIDEO_TYPE]: {
     toolbar: {
-      icons: { 
+      icons: {
         delete: MyCustomDeleteIcon
         InsertPluginButtonIcon: MyCustomPluginIcon
       }

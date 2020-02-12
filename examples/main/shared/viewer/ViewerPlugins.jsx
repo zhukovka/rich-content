@@ -63,7 +63,6 @@ import 'wix-rich-content-plugin-map/dist/styles.min.css';
 import 'wix-rich-content-plugin-file-upload/dist/styles.min.css';
 import 'wix-rich-content-plugin-giphy/dist/styles.min.css';
 import { getBaseUrl } from '../../src/utils';
-import { linkPreviewUtil } from 'wix-rich-content-common';
 
 const linkPluginSettings = {
   onClick: (event, url) => console.log('link clicked!', url),
