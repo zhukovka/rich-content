@@ -49,6 +49,7 @@
     "wix-rich-content-plugin-html": "6.8.3",
     "wix-rich-content-plugin-image": "6.8.3",
     "wix-rich-content-plugin-link": "6.8.3",
+    "wix-rich-content-plugin-link-preview": "6.8.3",
     "wix-rich-content-viewer": "6.8.3"
   },
   "devDependencies": {
@@ -76,9 +77,6 @@
     ]
   },
   "eslintConfig": {
-    "extends": "yoshi-base",
-    "rules": {
-      "import/no-unresolved": "off"
-    }
+    "extends": "react-app"
   }
 }

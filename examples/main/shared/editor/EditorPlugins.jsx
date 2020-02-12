@@ -1,5 +1,6 @@
 import React from 'react';
 import { createLinkPlugin, LINK_TYPE } from 'wix-rich-content-plugin-link';
+import { createLinkPreviewPlugin, LINK_PREVIEW_TYPE } from 'wix-rich-content-plugin-link-preview';
 import { createLineSpacingPlugin, LINE_SPACING_TYPE } from 'wix-rich-content-plugin-line-spacing';
 import { createHashtagPlugin, HASHTAG_TYPE } from 'wix-rich-content-plugin-hashtag';
 import { createEmojiPlugin, EMOJI_TYPE } from 'wix-rich-content-plugin-emoji';
@@ -39,6 +40,7 @@ import 'wix-rich-content-plugin-html/dist/styles.min.css';
 import 'wix-rich-content-plugin-hashtag/dist/styles.min.css';
 import 'wix-rich-content-plugin-line-spacing/dist/styles.min.css';
 import 'wix-rich-content-plugin-link/dist/styles.min.css';
+import 'wix-rich-content-plugin-link-preview/dist/styles.min.css';
 import 'wix-rich-content-plugin-mentions/dist/styles.min.css';
 import 'wix-rich-content-plugin-image/dist/styles.min.css';
 import 'wix-rich-content-plugin-gallery/dist/styles.min.css';
@@ -55,6 +57,7 @@ import {
   customBackgroundStyleFn,
 } from '../../src/text-color-style-fn';
 import { getBaseUrl } from '../../src/utils';
+import { linkPreviewUtil } from 'wix-rich-content-common';
 import { testWixVideos } from './mock';
 // import { MyCustomIcon, SizeSmallRightIcon, TOOLBARS } from 'wix-rich-content-editor-common';
 import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common';
@@ -71,6 +74,7 @@ export const editorPlugins = [
   createDividerPlugin,
   createLineSpacingPlugin,
   createLinkPlugin,
+  createLinkPreviewPlugin,
   createHashtagPlugin,
   createExternalMentionsPlugin,
   createCodeBlockPlugin,
@@ -173,6 +177,8 @@ const uiSettings = {
   // disableRightClick: true,
 };
 
+const authorization = `D0nawxcVUD5MtaQ8yKCNagHIWvpDGTRGqUfKfaqtKok.eyJpbnN0YW5jZUlkIjoiZDM0MDgzYTItNTlhYi00MTJjLWI0NjItNzk1NTk0MWMxOWQwIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiYmM0ZjIzODEtMzY1Mi00MTE4LWIxOGItY2NmNDE2MmZkZTA3Iiwic2lnbkRhdGUiOiIyMDIwLTAxLTE0VDE2OjMwOjEyLjY2OVoiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiI2N2RkZDA5ZS00YWU5LTQ5NWMtOWE4OS0wZGZiZGY4MTQ4ZTYiLCJhaWQiOiIyMWY2NzFiZS05OGZlLTQxMTctYjg4ZC02YzI2ZTJjN2YxNzkiLCJiaVRva2VuIjoiNmYwZmEwMjMtNmZmOS0wMDM0LTA1ZTktYjVhMTgyMzNjN2Q3Iiwic2l0ZU93bmVySWQiOiI4MTk2ZGM1Ni1kNDVjLTRkZWYtYTc2Ny0zMDAyNDZhYjBiN2EifQ`;
+
 const videoHandlers = {
   //media manager - Here you can call your custom video upload functionality (comment function to disable custom upload)
   handleFileSelection: (updateEntity, removeEntity) => {
@@ -229,6 +235,10 @@ const videoHandlers = {
 };
 
 export const config = {
+  [LINK_PREVIEW_TYPE]: {
+    disableEmbed: false,
+    fetchMetadata: linkPreviewUtil(authorization),
+  },
   [EMOJI_TYPE]: {
     // toolbar: {
     //   icons: {
@@ -236,7 +246,6 @@ export const config = {
     //   },
     // },
   },
-
   [UNDO_REDO_TYPE]: {
     // toolbar: {
     //   icons: {
@@ -245,7 +254,6 @@ export const config = {
     //   },
     // },
   },
-
   [GALLERY_TYPE]: {
     scrollingElement: () =>
       typeof window !== 'undefined' && document.getElementsByClassName('editor-example')[0],
@@ -358,6 +366,9 @@ export const config = {
     onUpdate: spacing => console.log(LINE_SPACING_TYPE, spacing),
   },
   [LINK_TYPE]: {
+    preview: {
+      enable: true,
+    },
     // toolbar: {
     //   icons: {
     //     InsertPluginButtonIcon: MyCustomIcon,

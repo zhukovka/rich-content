@@ -248,6 +248,7 @@ describe('plugins', () => {
     });
   });
 
+  // eslint-disable-next-line mocha/no-skipped-tests
   context('divider', () => {
     before(function() {
       eyesOpen(this);
@@ -366,5 +367,24 @@ describe('plugins', () => {
     testAtomicBlockAlignment('left');
     testAtomicBlockAlignment('center');
     testAtomicBlockAlignment('right');
+  });
+
+  context('link preview', () => {
+    before(function() {
+      eyesOpen(this);
+    });
+
+    beforeEach('load editor', () => cy.loadEditorAndViewer('linkPreview'));
+
+    after(() => cy.eyesClose());
+
+    it('change link preview settings', function() {
+      cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
+      cy.setLinkSettings();
+    });
+    it('convert link preview to regular link', function() {
+      cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
+      cy.get(`[data-hook=baseToolbarButton_replaceToLink][tabindex!=-1]`).click();
+    });
   });
 });

@@ -26,6 +26,14 @@ export const insertLinkInPosition = (
   });
 };
 
+export const getCurrentBlock = editorState => {
+  const selectionState = editorState.getSelection();
+  const contentState = editorState.getCurrentContent();
+  const block = contentState.getBlockForKey(selectionState.getStartKey());
+
+  return block;
+};
+
 export const insertLinkAtCurrentSelection = (editorState, data) => {
   let selection = getSelection(editorState);
   let newEditorState = editorState;
@@ -238,10 +246,11 @@ export const createBlock = (editorState, data, type) => {
 export const deleteBlock = (editorState, blockKey) => {
   const contentState = editorState.getCurrentContent();
   const block = contentState.getBlockForKey(blockKey);
-  const previousBlock = contentState.getBlockBefore(blockKey);
+  const previousBlock = contentState.getBlockBefore(blockKey) || block;
+  const anchorOffset = previousBlock.key === blockKey ? 0 : previousBlock.text.length;
   const selectionRange = new SelectionState({
     anchorKey: previousBlock.key,
-    anchorOffset: previousBlock.text.length,
+    anchorOffset,
     focusKey: blockKey,
     focusOffset: block.text.length,
   });
@@ -301,7 +310,7 @@ function getSelectedLinksInBlock(block, editorState) {
     }));
 }
 
-function getLinkRangesInBlock(block, contentState) {
+export function getLinkRangesInBlock(block, contentState) {
   const ranges = [];
   block.findEntityRanges(
     value => {
@@ -340,7 +349,6 @@ function getSelection(editorState) {
 
   return selection;
 }
-
 // a selection of the new content from the last change
 function createLastChangeSelection(editorState) {
   const content = editorState.getCurrentContent();

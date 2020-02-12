@@ -48,6 +48,9 @@ const devConfig = {
     publicPath: '/',
     stats: 'errors-only',
     disableHostCheck: true,
+    proxy: {
+      '/rich-content/oembed': 'http://stehauho.wixsite.com/',
+    },
   },
 };
 
