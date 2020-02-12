@@ -13,6 +13,9 @@
     Click to see more.
   </summary>
 
+### :rocket: New Feature
+- `paywall`
+  - [#670](https://github.com/wix-incubator/rich-content/pull/670) new paywall plugin
 </details>
 <hr/>
 
