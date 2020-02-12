@@ -1,10 +1,8 @@
 import createInlineButtons from './inline-buttons';
-import createInsertButtons from './insert-buttons';
 
-export default function createToolbar({ settings, helpers, styles, t }) {
+export default function createToolbar({ settings, styles }) {
   return {
     InlineButtons: createInlineButtons({ styles, settings }),
-    InsertButtons: createInsertButtons({ helpers, t, settings }),
     name: 'paywall',
   };
 }
