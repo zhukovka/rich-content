@@ -1,9 +1,7 @@
 import { createHtmlPlugin } from './createHtmlPlugin';
 import { HTML_TYPE } from './types';
-import { getBaseUrl } from './util';
 
 const defaultConfig = {
-  htmlIframeSrc: `${getBaseUrl()}/static/html-plugin-embed.html`,
   minWidth: 35,
   maxWidth: 740,
   width: 350,
