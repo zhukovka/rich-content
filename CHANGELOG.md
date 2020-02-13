@@ -22,7 +22,7 @@
   - [#645](https://github.com/wix-incubator/rich-content/pull/645) When removing link from text the cursor is in the correct position
 - `gallery`
   - [#672](https://github.com/wix-incubator/rich-content/pull/672) gallery images settings frozen
-  
+
 ## 6.8.3 (Feb 11, 2020)
 ### :bug: Bug Fix
 - `image`
@@ -30,7 +30,9 @@
 ### :house: Internal
 - `general`
   - [#666](https://github.com/wix-incubator/rich-content/pull/666) ES5 syntax validation in `dist/statics` on postbuild
-  
+- `html`
+  - [#681](https://github.com/wix-incubator/rich-content/pull/681) htmlIframeSrc setting can be removed from html plugin config
+
 ## 6.8.2 (Feb 9, 2020)
 ### :bug: Bug Fix
 - `common`
@@ -126,7 +128,7 @@
 - `example`
   - [#634](https://github.com/wix-incubator/rich-content/pull/634) toggle for mocking image multi-select
   - [#624](https://github.com/wix-incubator/rich-content/pull/575) video and image selection is uses external selection logic
-    
+
 ## 6.6.8 (Jan 16, 2020)
 ### :bug: Bug Fix
 - `editor-common`
