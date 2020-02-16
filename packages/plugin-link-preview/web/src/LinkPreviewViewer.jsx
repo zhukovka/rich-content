@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { isEqual } from 'lodash';
 import { mergeStyles, validate, pluginLinkPreviewSchema } from 'wix-rich-content-common';
 import styles from '../statics/styles/link-preview.scss';
-import HtmlComponent from 'wix-rich-content-plugin-html/dist/lib/HtmlComponent';
 
 class LinkPreviewViewer extends Component {
   static propTypes = {
@@ -23,7 +22,6 @@ class LinkPreviewViewer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log({ nextProps });
     if (!isEqual(nextProps.componentData, this.props.componentData)) {
       validate(nextProps.componentData, pluginLinkPreviewSchema);
     }
@@ -80,18 +78,18 @@ class LinkPreviewViewer extends Component {
     } = this.styles;
 
     if (!settings.disableEmbed && html) {
-      const htmlCompProps = {
-        componentData: {
-          srcType: 'html',
-          src: unescape(html),
-          ...componentData,
-        },
-        settings,
-        theme,
-        isMobile,
-      };
+      // const htmlCompProps = {
+      //   componentData: {
+      //     srcType: 'html',
+      //     src: unescape(html),
+      //     ...componentData,
+      //   },
+      //   settings,
+      //   theme,
+      //   isMobile,
+      // };
 
-      return <iframe id="myiframe" />;
+      return <div />;
 
       // return <HtmlComponent {...htmlCompProps} />;
     } else {
