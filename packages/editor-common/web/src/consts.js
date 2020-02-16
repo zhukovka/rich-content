@@ -64,7 +64,6 @@ export const PLUGIN_DECORATION_PROPS = Object.freeze({
     onMouseLeave: props.onMouseLeave,
     style: props.style,
     width: props.width,
-    containerClassName: props.containerClassName,
     DecorateContainer,
   }),
 });
