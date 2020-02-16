@@ -10,9 +10,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-//import classNames from 'classnames';
-import { mergeStyles } from 'wix-rich-content-common';
-import deafultStyles from '../../../../statics/styles/resizeable.rtlignore.scss';
 
 const getDisplayName = WrappedComponent => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
@@ -203,9 +200,6 @@ export default ({ config, store }) => WrappedComponent =>
       const { isTop, isLeft, isRight, isBottom } = hoverPosition;
 
       const styles = { position: 'relative', ...style };
-
-      this.mergedStyles =
-        this.mergedStyles || mergeStyles({ styles: deafultStyles, theme: config.theme });
 
       if (horizontal === 'auto') {
         styles.width = 'auto';
