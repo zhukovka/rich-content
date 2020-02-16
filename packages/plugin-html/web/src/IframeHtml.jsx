@@ -18,7 +18,7 @@ class IframeHtml extends Component {
 
   writeToIframe = iframeElement => {
     this.iframe = iframeElement;
-    const iframeDocument = iframeElement.contentWindow?.document;
+    const iframeDocument = iframeElement?.contentWindow?.document;
     if (iframeDocument) {
       iframeDocument.open('text/html', 'replace');
       iframeDocument.write(htmlIframeSrc);
@@ -38,7 +38,7 @@ class IframeHtml extends Component {
 
   updateIframeContent = content => {
     this.shouldIgnoreLoad = true;
-    this.iframe.contentWindow.postMessage(
+    this.iframe?.contentWindow.postMessage(
       { type: 'htmlPlugin:updateContent', id: this.id, content },
       '*'
     );
@@ -74,7 +74,6 @@ class IframeHtml extends Component {
 
 IframeHtml.propTypes = {
   html: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
   onHeightChange: PropTypes.any,
 };
 
