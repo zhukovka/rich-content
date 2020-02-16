@@ -299,6 +299,7 @@ const createBaseComponent = ({
           data-focus={isActive}
           onDragStart={this.onDragStart}
           onContextMenu={this.handleContextMenu}
+          resizeDirections={this.props.resizeDirections}
           {...decorationProps}
         >
           {component}
@@ -322,6 +323,7 @@ const createBaseComponent = ({
     className: PropTypes.string,
     onClick: PropTypes.func,
     onDragStart: PropTypes.func,
+    resizeDirections: PropTypes.object,
   };
 
   return WrappedComponent;

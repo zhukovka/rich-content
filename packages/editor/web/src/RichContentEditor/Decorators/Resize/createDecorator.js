@@ -238,12 +238,9 @@ export default ({ config, store }) => WrappedComponent =>
 
       const resizeDirections = {
         both:
-          alignment !== 'right' &&
-          alignment !== 'left' &&
-          size !== 'fullWidth' &&
-          !this.context.isMobile,
-        right: alignment !== 'right' && size !== 'fullWidth' && !this.context.isMobile,
-        left: alignment !== 'left' && size !== 'fullWidth' && !this.context.isMobile,
+          alignment !== 'right' && alignment !== 'left' && size !== 'fullWidth' && !config.isMobile,
+        right: alignment !== 'right' && size !== 'fullWidth' && !config.isMobile,
+        left: alignment !== 'left' && size !== 'fullWidth' && !config.isMobile,
       };
 
       const interactionProps = {

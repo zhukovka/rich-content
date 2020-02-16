@@ -48,6 +48,15 @@ export const PLUGIN_DECORATIONS = Object.freeze({
   RESIZEABLE: 'RESIZEABLE',
 });
 
+// eslint-disable-next-line react/prop-types
+const DecorateContainer = ({ children, resizeDirections, ...containerProps }) => {
+  return (
+    <ResizeContainer {...resizeDirections} {...containerProps}>
+      {children}
+    </ResizeContainer>
+  );
+};
+
 export const PLUGIN_DECORATION_PROPS = Object.freeze({
   [PLUGIN_DECORATIONS.RESIZEABLE]: props => ({
     onMouseDown: props.onMouseDown,
@@ -56,15 +65,7 @@ export const PLUGIN_DECORATION_PROPS = Object.freeze({
     style: props.style,
     width: props.width,
     containerClassName: props.containerClassName,
-    // eslint-disable-next-line react/prop-types
-    DecorateContainer: ({ children, ...containerProps }) => {
-      return (
-        // eslint-disable-next-line react/prop-types
-        <ResizeContainer {...props.resizeDirections} {...containerProps}>
-          {children}
-        </ResizeContainer>
-      );
-    },
+    DecorateContainer,
   }),
 });
 
