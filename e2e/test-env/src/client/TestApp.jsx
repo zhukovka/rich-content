@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 class TestApp extends PureComponent {
   renderEditor = () => {
     const { initialState, onEditorChange, locale, localeResource, isMobile } = this.props;
+
     return (
       <Editor
         onChange={onEditorChange}
