@@ -55,6 +55,8 @@ class LinkPreviewViewer extends Component {
     return url.substring(numOfCharsToRemove);
   };
 
+  isValidHtml = html => html.substring(0, 12) !== '<div>{"url":';
+
   render() {
     const { componentData, theme, isMobile, settings } = this.props;
     const {
@@ -78,7 +80,7 @@ class LinkPreviewViewer extends Component {
       linkPreview_url,
     } = this.styles;
 
-    if (!settings.disableEmbed && html) {
+    if (!settings.disableEmbed && html && this.isValidHtml(html)) {
       const htmlCompProps = {
         componentData: {
           srcType: 'html',
