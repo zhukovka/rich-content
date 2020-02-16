@@ -74,7 +74,6 @@ class IframeHtml extends Component {
 
 IframeHtml.propTypes = {
   html: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
   onHeightChange: PropTypes.any,
 };
 
