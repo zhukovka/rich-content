@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewerWrapper } from 'wix-rich-content-wrapper/dist/module.js';
+import { RichContentWrapper } from 'wix-rich-content-wrapper';
 import { pluginHtml, htmlTypeMapper } from 'wix-rich-content-plugin-html/dist/module.viewer.js';
 import { pluginButton } from 'wix-rich-content-plugin-button/dist/module.viewer.js';
 import { pluginImage, imageTypeMapper } from 'wix-rich-content-plugin-image/dist/module.viewer.js';
@@ -12,11 +12,11 @@ const typeMappers = [imageTypeMapper, linkTypeMapper, htmlTypeMapper];
 
 export default () => {
   return (
-    <ViewerWrapper
+    <RichContentWrapper
       plugins={[pluginButton(), pluginDivider(), pluginGallery(), pluginHtml(), pluginImage()]}
       theme={'Default'}
     >
       <RichContentViewer typeMappers={typeMappers} />
-    </ViewerWrapper>
+    </RichContentWrapper>
   );
 };
