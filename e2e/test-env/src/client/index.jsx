@@ -4,7 +4,7 @@ import RichContentApp from '../../../../examples/main/shared/RichContentApp';
 import './app.css';
 
 const props = {
-  initialState: window.__CONTENT_STATE__,
+  initialState: JSON.parse(unescape(window.__CONTENT_STATE__)),
   isMobile: window.isMobile,
   locale: window.locale,
 };
