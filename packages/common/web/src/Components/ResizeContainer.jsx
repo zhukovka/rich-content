@@ -24,7 +24,7 @@ ResizeContainer.propTypes = {
   containerProps: PropTypes.object,
   resizeDirections: PropTypes.object,
   children: PropTypes.any,
-  right: PropTypes.bool,
-  left: PropTypes.bool,
-  both: PropTypes.bool,
+  // right: PropTypes.bool,
+  // left: PropTypes.bool,
+  // both: PropTypes.bool,
 };
