@@ -6,9 +6,10 @@ import {
   LINK_PREVIEW_TYPE,
 } from 'wix-rich-content-plugin-link-preview/dist/module.viewer';
 import { linkTypeMapper, LINK_TYPE } from 'wix-rich-content-plugin-link/dist/module.viewer';
-import { createLinkPreviewPlugin } from 'wix-rich-content-plugin-link-preview';
-import { createLinkPlugin } from 'wix-rich-content-plugin-link';
+import { pluginLinkPreview } from 'wix-rich-content-plugin-link-preview';
+import { pluginLink } from 'wix-rich-content-plugin-link';
 import LinkPreview from '../../../../e2e/tests/fixtures/linkPreview.json';
+import { RichContentWrapper } from 'wix-rich-content-wrapper';
 
 import {
   RichContentEditorBox,
@@ -75,17 +76,15 @@ export default () => {
       },
     },
   };
-  const plugins = [createLinkPreviewPlugin, createLinkPlugin];
+  const plugins = [pluginLink(), pluginLinkPreview()];
 
   return (
     <Page title="Link Preview">
       <Section type={Section.Types.COMPARISON}>
         <RichContentEditorBox preset="blog-preset">
-          <RichContentEditor
-            config={config}
-            plugins={plugins}
-            editorState={createWithContent(convertFromRaw(LinkPreview))}
-          />
+          <RichContentWrapper plugins={plugins}>
+            <RichContentEditor editorState={createWithContent(convertFromRaw(LinkPreview))} />
+          </RichContentWrapper>
         </RichContentEditorBox>
         <RichContentViewerBox preset="blog-preset">
           <RichContentViewer initialState={LinkPreview} typeMappers={typeMappers} />
