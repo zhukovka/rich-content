@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { mergeStyles } from 'wix-rich-content-common';
 import styles from '../../statics/styles/link-preview.scss';
-import ReadMore from './ReadMore';
-
 class LinkPreviewViewer extends Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
@@ -26,10 +24,15 @@ class LinkPreviewViewer extends Component {
   }
 
   render() {
+    // const { componentData } = this.props;
+    // console.log({ componentData });
     this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
-    if (!this.state.metadata) {
+    const { metadata } = this.state;
+    if (!metadata) {
       return null;
     }
+
+    const { title, description, url, thumbnail_url } = metadata;
     return (
       <a
         className={styles.linkPreview_link}
@@ -39,19 +42,11 @@ class LinkPreviewViewer extends Component {
       >
         <figure className={styles.linkPreview}>
           <section className={styles.linkPreview_info}>
-            <figcaption className={styles.linkPreview_title}>
-              <ReadMore lines={1} text={this.state.metadata.title} label="" />
-            </figcaption>
-            <p className={this.styles.linkPreview_description}>
-              <ReadMore text={this.state.metadata.description} label="" />
-            </p>
-            <footer className={styles.linkPreview_footer}>{this.state.metadata.url}</footer>
+            <figcaption className={styles.linkPreview_title}>{title}</figcaption>
+            <p className={this.styles.linkPreview_description}>{description}</p>
+            <footer className={styles.linkPreview_footer}>{url}</footer>
           </section>
-          <img
-            className={styles.linkPreview_image}
-            src={this.state.metadata.thumbnail_url}
-            alt={this.state.metadata.title}
-          />
+          <img className={styles.linkPreview_image} src={thumbnail_url} alt={title} />
         </figure>
       </a>
     );

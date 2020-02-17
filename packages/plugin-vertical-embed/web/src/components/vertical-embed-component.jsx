@@ -29,20 +29,22 @@ class VerticalEmbedComponent extends PureComponent {
 
   render() {
     this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
-    const post = this.props.componentData.selectedPost;
+    const { componentData, className } = this.props;
+    const { selectedPost } = componentData;
 
+    const { title, slug, excerpt: description } = selectedPost;
     // TODO: Make sure SSR works with url
     const metadata = {
-      title: post.title,
-      url: `${window.location.href}/post/${post.slug}`,
-      description: post.excerpt,
+      title,
+      url: `${window.location.href}/post/${slug}`,
+      description,
     };
 
     // TODO: Modify this to properly use LinkPreviewViewer when it's finished
     return (
-      <div className={this.props.className} data-hook="vertical-embed">
+      <div className={className} data-hook="vertical-embed">
         <LinkPreviewViewer
-          componentData={this.props.componentData}
+          componentData={componentData}
           settings={{ fetchMetadata: () => Promise.resolve(metadata) }}
         />
       </div>
