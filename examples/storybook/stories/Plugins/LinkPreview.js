@@ -68,12 +68,6 @@ export default () => {
   const config = {
     [LINK_PREVIEW_TYPE]: {
       fetchMetadata: linkPreviewUtil(authorization),
-      disableEmbed: false,
-    },
-    [LINK_TYPE]: {
-      preview: {
-        enable: true,
-      },
     },
   };
   const plugins = [pluginLink(), pluginLinkPreview()];
@@ -83,7 +77,10 @@ export default () => {
       <Section type={Section.Types.COMPARISON}>
         <RichContentEditorBox preset="blog-preset">
           <RichContentWrapper plugins={plugins}>
-            <RichContentEditor editorState={createWithContent(convertFromRaw(LinkPreview))} />
+            <RichContentEditor
+              editorState={createWithContent(convertFromRaw(LinkPreview))}
+              config={config}
+            />
           </RichContentWrapper>
         </RichContentEditorBox>
         <RichContentViewerBox preset="blog-preset">
