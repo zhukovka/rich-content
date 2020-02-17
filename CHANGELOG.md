@@ -18,6 +18,8 @@
   - [#680](https://github.com/wix-incubator/rich-content/pull/680) dragging plugins from editor to address bar pastes media url
 - `image`
   - [#691](https://github.com/wix-incubator/rich-content/pull/691) resize image border
+- `gallery`
+  - [#690](https://github.com/wix-incubator/rich-content/pull/690) fix title and altText
   
 </details>
 <hr/>
