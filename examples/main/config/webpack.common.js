@@ -48,7 +48,7 @@ module.exports = env => ({
           {
             loader: 'style-loader',
             options: {
-              insert: 'top',
+              insert: 'head',
             },
           },
           'css-loader',
