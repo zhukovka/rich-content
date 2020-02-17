@@ -16,6 +16,14 @@
 </details>
 <hr/>
 
+## 6.8.5 (Feb 17, 2020)
+### :bug: Bug Fix
+- `editor-common`
+  - [#680](https://github.com/wix-incubator/rich-content/pull/680) dragging plugins from editor to address bar pastes media url
+- `gallery`
+  - [#690](https://github.com/wix-incubator/rich-content/pull/690) fix title and altText
+  
+
 ## 6.8.4 (Feb 12, 2020)
 ### :bug: Bug Fix
 - `editor-common`
@@ -33,6 +41,8 @@
 
 ## 6.8.2 (Feb 9, 2020)
 ### :bug: Bug Fix
+- `emoji`
+  - [#669](https://github.com/wix-incubator/rich-content/pull/669) mouse cursor is shown as pointer on the actual icons + fix the emoji plugin in RTL+ position the modal at the bottom in mobile+ refactoring the emoji modal and giphy modal to be more consistent
 - `common`
   - [#658](https://github.com/wix-incubator/rich-content/pull/658) `types` definitions moved to `src/consts` from `statics`
 - `image`
