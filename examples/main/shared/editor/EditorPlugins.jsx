@@ -389,7 +389,21 @@ const config = {
     //   },
     // },
   },
-  [VERTICAL_EMBED_TYPE]: {},
+  [VERTICAL_EMBED_TYPE]: {
+    searchPosts: () => ({
+      abortController: {
+        abort: () => {},
+      },
+      promise: Promise.resolve([
+        {
+          id: 1,
+          title: 'first',
+          imageUrl: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
+        },
+        { id: 2, title: 'second' },
+      ]),
+    }),
+  },
   // [EXTERNAL_EMOJI_TYPE]: {},
   [VIDEO_TYPE]: {
     toolbar: {

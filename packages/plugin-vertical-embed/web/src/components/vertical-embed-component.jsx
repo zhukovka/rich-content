@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { mergeStyles, validate, Context, verticalEmbedSchema } from 'wix-rich-content-common';
+import { mergeStyles, validate, verticalEmbedSchema } from 'wix-rich-content-common';
 import { isEqual } from 'lodash';
 import { customClassName } from '../classNameStrategies';
 import styles from '../../statics/styles/vertical-embed-viewer.rtlignore.scss';
@@ -54,7 +54,5 @@ VerticalEmbedComponent.propTypes = {
   componentData: PropTypes.object.isRequired,
   className: PropTypes.string,
 };
-
-VerticalEmbedComponent.contextType = Context.type;
 
 export default VerticalEmbedComponent;

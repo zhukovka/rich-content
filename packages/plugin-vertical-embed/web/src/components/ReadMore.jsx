@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import LinesEllipsis from 'react-lines-ellipsis';
 import styles from '../../statics/styles/read-more.scss';
 import { getChildrenText } from '../../../../preview/web/src/utils';
-import { mergeStyles, Context } from 'wix-rich-content-common';
+import { mergeStyles } from 'wix-rich-content-common';
 
 class ReadMore extends PureComponent {
   static propTypes = {
@@ -45,7 +45,5 @@ class ReadMore extends PureComponent {
   }
   /* eslint-enable */
 }
-
-ReadMore.contextType = Context.type;
 
 export default ReadMore;

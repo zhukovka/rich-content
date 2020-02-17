@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Context } from 'wix-rich-content-common';
 import styles from '../../statics/styles/items-list-component.scss';
 import { getItemsListPlaceholder } from '../icons/itemsListPlaceholder';
 
@@ -15,6 +14,7 @@ class ItemsListComponent extends Component {
   }
 
   renderListItem(item) {
+    const { id, title, subtitle, imageUrl } = item;
     return (
       <div
         className={styles.listItemContainer}
@@ -24,21 +24,21 @@ class ItemsListComponent extends Component {
         onClick={() => this.onSelectionChange(item)}
       >
         <input
-          id={`list-item-radio-${item.id}`}
+          id={`list-item-radio-${id}`}
           className={styles.radioInput}
           type={'radio'}
-          checked={this.state.selectedItem.id === item.id}
+          checked={this.state.selectedItem.id === id}
         />
         <span className={styles.radioButton} />
-        {item.imageUrl ? (
-          <img className={styles.listItemImage} src={item.imageUrl} alt={item.title} />
+        {imageUrl ? (
+          <img className={styles.listItemImage} src={imageUrl} alt={title} />
         ) : (
           getItemsListPlaceholder()
         )}
 
         <div className={styles.actionItemsContainer}>
-          <h5>{item.title}</h5>
-          <h6>{item.subtitle}</h6>
+          <h5>{title}</h5>
+          <h6>{subtitle}</h6>
         </div>
       </div>
     );
@@ -53,7 +53,5 @@ ItemsListComponent.propTypes = {
   items: PropTypes.array.isRequired,
   onSelectionChange: PropTypes.func,
 };
-
-ItemsListComponent.contextType = Context.type;
 
 export default ItemsListComponent;

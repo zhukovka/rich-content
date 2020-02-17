@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { mergeStyles, Context } from 'wix-rich-content-common';
+import { mergeStyles } from 'wix-rich-content-common';
 import styles from '../../statics/styles/link-preview.scss';
 import ReadMore from './ReadMore';
 
@@ -57,7 +57,5 @@ class LinkPreviewViewer extends Component {
     );
   }
 }
-
-LinkPreviewViewer.contextType = Context.type;
 
 export default LinkPreviewViewer;
