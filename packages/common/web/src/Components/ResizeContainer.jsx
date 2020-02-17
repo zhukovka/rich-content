@@ -1,25 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from '../../statics/styles/resize-container.scss';
 import PropTypes from 'prop-types';
 
-export const ResizeContainer = ({ right, left, both, children, ...containerProps }) => {
-  const leftDiv = <div key="left" className={styles.resizeHandleL} />;
-  const rightDiv = <div key="right" className={styles.resizeHandleR} />;
-  const displayDiv = both ? [leftDiv, rightDiv] : left ? leftDiv : right ? rightDiv : null;
+class ResizeContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { displayDiv: null };
+  }
 
-  return (
-    <div {...containerProps}>
-      {displayDiv}
-      {children}
-    </div>
-  );
-};
+  componentDidMount() {
+    const { right, left, both } = this.props;
+    const leftDiv = <div key="left" className={styles.resizeHandleL} />;
+    const rightDiv = <div key="right" className={styles.resizeHandleR} />;
+    const border = both ? [leftDiv, rightDiv] : left ? leftDiv : right ? rightDiv : null;
+    this.setState(() => {
+      return { displayDiv: border };
+    });
+  }
+
+  render() {
+    const { children, ...containerProps } = this.props;
+    return (
+      <div {...containerProps}>
+        {this.state.displayDiv}
+        {children}
+      </div>
+    );
+  }
+}
 
 ResizeContainer.propTypes = {
   containerProps: PropTypes.object,
-  resizeDirections: PropTypes.object,
   children: PropTypes.any,
   right: PropTypes.bool,
   left: PropTypes.bool,
   both: PropTypes.bool,
 };
+
+export default ResizeContainer;

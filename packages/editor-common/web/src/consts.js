@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResizeContainer } from 'wix-rich-content-common/src/Components/ResizeContainer';
+import ResizeContainer from 'wix-rich-content-common/src/Components/ResizeContainer';
 
 export const COMMANDS = Object.freeze({
   TITLE: 'header-two',
