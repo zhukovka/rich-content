@@ -16,7 +16,7 @@
 </details>
 <hr/>
 
-## 6.8.4 (Feb 17, 2020)
+## 6.8.5 (Feb 17, 2020)
 ### :bug: Bug Fix
 - `editor-common`
   - [#680](https://github.com/wix-incubator/rich-content/pull/680) dragging plugins from editor to address bar pastes media url
