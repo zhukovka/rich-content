@@ -51,7 +51,7 @@ export const PLUGIN_DECORATIONS = Object.freeze({
 // eslint-disable-next-line react/prop-types
 const DecorateContainer = ({ children, resizeDirections, ...containerProps }) => {
   return (
-    <ResizeContainer {...resizeDirections} {...containerProps}>
+    <ResizeContainer resizeDirections={resizeDirections} {...containerProps}>
       {children}
     </ResizeContainer>
   );

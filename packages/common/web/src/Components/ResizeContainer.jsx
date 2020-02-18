@@ -9,7 +9,7 @@ class ResizeContainer extends Component {
   }
 
   componentDidMount() {
-    const { right, left, both } = this.props;
+    const { both, right, left } = this.props.resizeDirections;
     const leftDiv = <div key="left" className={styles.resizeHandleL} />;
     const rightDiv = <div key="right" className={styles.resizeHandleR} />;
     const border = both ? [leftDiv, rightDiv] : left ? leftDiv : right ? rightDiv : null;
@@ -19,7 +19,8 @@ class ResizeContainer extends Component {
   }
 
   render() {
-    const { children, ...containerProps } = this.props;
+    // eslint-disable-next-line no-unused-vars
+    const { children, resizeDirections, ...containerProps } = this.props;
     return (
       <div {...containerProps}>
         {this.state.displayDiv}
@@ -32,9 +33,7 @@ class ResizeContainer extends Component {
 ResizeContainer.propTypes = {
   containerProps: PropTypes.object,
   children: PropTypes.any,
-  right: PropTypes.bool,
-  left: PropTypes.bool,
-  both: PropTypes.bool,
+  resizeDirections: PropTypes.object,
 };
 
 export default ResizeContainer;
