@@ -84,7 +84,7 @@ const desktopSideBarStyles = {
     padding: 0,
     height: '100%',
     width: '100%',
-    maxWidth: '420px',
+    maxWidth: '620px',
     direction: 'ltr',
     zIndex: 6,
   },

@@ -9,8 +9,8 @@ import ItemsListComponent from '../components/items-list-component';
 export default class PostSelectionInputModal extends Component {
   state = {
     errorMsg: '',
-    posts: [],
-    selectedPost: null,
+    products: [],
+    selectedProduct: null,
   };
   styles = mergeStyles({ styles, theme: this.props.theme });
 
@@ -44,8 +44,8 @@ export default class PostSelectionInputModal extends Component {
     this.currentAbortController = abortController;
 
     try {
-      const posts = await promise;
-      this.setState({ posts });
+      const products = await promise;
+      this.setState({ products });
     } catch (e) {
       if (e.name === 'AbortError') {
         return;
@@ -62,7 +62,10 @@ export default class PostSelectionInputModal extends Component {
       return;
     }
 
-    onConfirm({ ...componentData, selectedPost: this.state.selectedPost || this.state.posts[0] });
+    onConfirm({
+      ...componentData,
+      selectedProduct: this.state.selectedProduct || this.state.products[0],
+    });
     this.onCloseRequested();
   };
 
@@ -73,7 +76,7 @@ export default class PostSelectionInputModal extends Component {
   };
 
   render() {
-    const { posts } = this.state;
+    const { products } = this.state;
     const { t, isMobile, languageDir } = this.props;
     const { styles } = this;
 
@@ -86,7 +89,7 @@ export default class PostSelectionInputModal extends Component {
               onClick={() => this.onCloseRequested()}
             />
           )}
-          <h2 className={styles.verticalEmbedModalTitle}>{t('Select_Blog_Post_Title')}</h2>
+          <h2 className={styles.verticalEmbedModalTitle}>{t('Select_Embed_Product')}</h2>
           <div className={styles.textInputWrapper}>
             <TextInput
               inputRef={ref => {
@@ -99,10 +102,10 @@ export default class PostSelectionInputModal extends Component {
               data-hook="blogPostSearchInput"
             />
           </div>
-          {posts && posts.length > 0 && (
+          {products && products.length > 0 && (
             <ItemsListComponent
-              items={posts}
-              onSelectionChange={selectedPost => this.setState({ selectedPost })}
+              items={products}
+              onSelectionChange={selectedProduct => this.setState({ selectedProduct })}
             />
           )}
         </div>

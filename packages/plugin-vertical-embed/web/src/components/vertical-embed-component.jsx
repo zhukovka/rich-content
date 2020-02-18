@@ -4,7 +4,6 @@ import { mergeStyles, validate, verticalEmbedSchema } from 'wix-rich-content-com
 import { isEqual } from 'lodash';
 import { customClassName } from '../classNameStrategies';
 import styles from '../../statics/styles/vertical-embed-viewer.rtlignore.scss';
-import VerticalEmbedView from './VerticalEmbedView';
 
 class VerticalEmbedComponent extends PureComponent {
   static customClassName = (componentData, theme, styles, isMobile) =>
@@ -30,23 +29,13 @@ class VerticalEmbedComponent extends PureComponent {
   render() {
     this.styles = this.styles || mergeStyles({ styles, theme: this.context.theme });
     const { componentData, className } = this.props;
-    const { selectedPost } = componentData;
+    const { selectedProduct } = componentData;
+    const { html } = selectedProduct;
 
-    const { title, slug, excerpt: description } = selectedPost;
-    // TODO: Make sure SSR works with url
-    const metadata = {
-      title,
-      url: `${window.location.href}/post/${slug}`,
-      description,
-    };
-
-    // TODO: Modify this to properly use VerticalEmbedView when it's finished
     return (
       <div className={className} data-hook="vertical-embed">
-        <VerticalEmbedView
-          componentData={componentData}
-          settings={{ fetchMetadata: () => Promise.resolve(metadata) }}
-        />
+        {/* eslint-disable-next-line react/no-danger*/}
+        <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
     );
   }

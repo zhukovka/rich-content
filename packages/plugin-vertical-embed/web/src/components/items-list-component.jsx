@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../../statics/styles/items-list-component.scss';
-import { getItemsListPlaceholder } from '../icons/itemsListPlaceholder';
 
 class ItemsListComponent extends Component {
   state = {
@@ -14,7 +13,7 @@ class ItemsListComponent extends Component {
   }
 
   renderListItem(item) {
-    const { id, title, subtitle, imageUrl } = item;
+    const { id, html } = item;
     return (
       <div
         className={styles.listItemContainer}
@@ -23,29 +22,27 @@ class ItemsListComponent extends Component {
         onKeyDown={() => {}}
         onClick={() => this.onSelectionChange(item)}
       >
-        <input
-          id={`list-item-radio-${id}`}
-          className={styles.radioInput}
-          type={'radio'}
-          checked={this.state.selectedItem.id === id}
-        />
-        <span className={styles.radioButton} />
-        {imageUrl ? (
-          <img className={styles.listItemImage} src={imageUrl} alt={title} />
-        ) : (
-          getItemsListPlaceholder()
-        )}
-
-        <div className={styles.actionItemsContainer}>
-          <h5>{title}</h5>
-          <h6>{subtitle}</h6>
+        <div
+          style={{
+            position: 'relative',
+            border: this.state.selectedItem.id === id ? '1px blue solid' : 0,
+          }}
+        >
+          <div className={styles.blocker} />
+          {/* eslint-disable-next-line react/no-danger */}
+          <div key={id} dangerouslySetInnerHTML={{ __html: html }} />
         </div>
       </div>
     );
   }
 
   render() {
-    return <>{this.props.items.map(item => this.renderListItem(item))}</>;
+    return (
+      //TODO: make height work with % instead of px
+      <div className={styles.wrapper} style={{ height: '600px' }}>
+        {this.props.items.map(item => this.renderListItem(item))}
+      </div>
+    );
   }
 }
 
