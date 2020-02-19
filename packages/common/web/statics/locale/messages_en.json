@@ -247,8 +247,8 @@
   "GallerySettings_Spacing_Between_Items_Tooltip" : "Set the spacing between the items in your gallery.",
   "Common_Units_PX" : "px",
   "Select_Embed_Product": "Select Product",
-  "Select_Blog_Post_Search_Placeholder": "Search for blog posts...",
-  "Select_Blog_Post_Modal_Cancel": "Cancel",
-  "Select_Blog_Post_Modal_Confirm": "Choose",
+  "Select_Products_Search_Placeholder": "Search for Products...",
+  "Select_Products_Modal_Cancel": "Cancel",
+  "Select_Products_Modal_Confirm": "Choose",
   "Vertical_Embed_Toolbar_Tooltip": "Vertical embed plugin"
 }
