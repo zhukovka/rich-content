@@ -5,7 +5,7 @@ import {
   linkPreviewTypeMapper,
   LINK_PREVIEW_TYPE,
 } from 'wix-rich-content-plugin-link-preview/dist/module.viewer';
-import { linkTypeMapper, LINK_TYPE } from 'wix-rich-content-plugin-link/dist/module.viewer';
+import { linkTypeMapper } from 'wix-rich-content-plugin-link/dist/module.viewer';
 import { pluginLinkPreview } from 'wix-rich-content-plugin-link-preview';
 import { pluginLink } from 'wix-rich-content-plugin-link';
 import LinkPreview from '../../../../e2e/tests/fixtures/linkPreview.json';
@@ -18,8 +18,6 @@ import {
   Section,
   Page,
 } from '../Components/StoryParts';
-
-import ThemesExample from '../Components/ThemesExample';
 
 const mockOembedResults = [
   {
@@ -90,12 +88,6 @@ export default () => {
 
       <Section title="Content State">
         <ContentState json={LinkPreview} />
-      </Section>
-
-      <Section title="themeing">
-        <ThemesExample>
-          <RichContentViewer initialState={LinkPreview} typeMappers={typeMappers} />
-        </ThemesExample>
       </Section>
     </Page>
   );

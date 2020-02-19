@@ -21,6 +21,7 @@ import { pluginMentions } from 'wix-rich-content-plugin-mentions';
 import { pluginSoundCloud } from 'wix-rich-content-plugin-sound-cloud';
 import { pluginUndoRedo } from 'wix-rich-content-plugin-undo-redo';
 import { pluginVideo } from 'wix-rich-content-plugin-video';
+import { pluginLinkPreview } from 'wix-rich-content-plugin-link-preview';
 
 const configs = {
   fileUpload: {
@@ -68,6 +69,7 @@ const plugins = [
   pluginSoundCloud(),
   pluginUndoRedo(),
   pluginVideo(),
+  pluginLinkPreview(),
 ];
 const EditorWrapper = ({ contentState, palette }) => {
   const editorState = createWithContent(convertFromRaw(contentState));
