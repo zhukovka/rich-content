@@ -17,6 +17,9 @@
 </details>
 <hr/>
 
+## 6.8.6-alpha.1 (Feb 19, 2020)
+migrate to @wix/draft-js
+
 ## 6.8.6 (Feb 19, 2020)
 ### :bug: Bug Fix
 - `image`
