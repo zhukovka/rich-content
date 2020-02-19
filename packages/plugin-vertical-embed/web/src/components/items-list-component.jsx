@@ -39,7 +39,7 @@ class ItemsListComponent extends Component {
   render() {
     return (
       //TODO: make height work with % instead of px
-      <div className={styles.wrapper} style={{ height: '600px' }}>
+      <div className={styles.wrapper} style={{ maxHeight: '80%' }}>
         {this.props.items.map(item => this.renderListItem(item))}
       </div>
     );

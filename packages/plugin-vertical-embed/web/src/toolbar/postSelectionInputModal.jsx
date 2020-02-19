@@ -81,7 +81,7 @@ export default class PostSelectionInputModal extends Component {
     const { styles } = this;
 
     return (
-      <div dir={languageDir}>
+      <div dir={languageDir} style={{ display: 'flex', flexDirection: 'column' }}>
         <div className={styles.verticalEmbedContainer} data-hook="verticalEmbedModal">
           {!isMobile && (
             <CloseIcon
