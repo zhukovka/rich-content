@@ -5,24 +5,50 @@ import Palette from '../Components/Palette';
 import { wixPalettes } from '../palettesExample';
 import { RichContentEditor, convertFromRaw, createWithContent } from 'wix-rich-content-editor';
 import { RichContentWrapper } from 'wix-rich-content-wrapper';
+import { pluginButton } from 'wix-rich-content-plugin-button';
+import { pluginCodeBlock } from 'wix-rich-content-plugin-code-block';
 import { pluginDivider } from 'wix-rich-content-plugin-divider';
+import { pluginEmoji } from 'wix-rich-content-plugin-emoji';
+import { pluginFileUpload } from 'wix-rich-content-plugin-file-upload';
+import { pluginGallery } from 'wix-rich-content-plugin-gallery';
+import { pluginGiphy } from 'wix-rich-content-plugin-giphy';
+import { pluginHashtag } from 'wix-rich-content-plugin-hashtag';
+import { pluginHeadersMarkdown } from 'wix-rich-content-plugin-headers-markdown';
 import { pluginHtml } from 'wix-rich-content-plugin-html';
 import { pluginImage } from 'wix-rich-content-plugin-image';
-import { pluginGallery } from 'wix-rich-content-plugin-gallery';
-import { pluginButton } from 'wix-rich-content-plugin-button';
-import { pluginHashtag } from 'wix-rich-content-plugin-hashtag';
+import { pluginLineSpacing } from 'wix-rich-content-plugin-line-spacing';
+import { pluginLink } from 'wix-rich-content-plugin-link';
+import { pluginMap } from 'wix-rich-content-plugin-map';
+import { pluginMentions } from 'wix-rich-content-plugin-mentions';
+import { pluginSoundCloud } from 'wix-rich-content-plugin-sound-cloud';
+import { pluginUndoRedo } from 'wix-rich-content-plugin-undo-redo';
+import { pluginVideo } from 'wix-rich-content-plugin-video';
 import SegmentedToggle from 'wix-style-react/SegmentedToggle';
 import FormField from 'wix-style-react/FormField';
+import { configs } from './pluginConfigs';
 import { Layout } from 'wix-style-react/Layout';
+import '../styles.global.scss';
 
 const editorState = createWithContent(convertFromRaw(exapmleState));
 const plugins = [
+  pluginButton(),
+  pluginCodeBlock(),
   pluginDivider(),
+  pluginEmoji(),
+  pluginFileUpload(configs.fileUpload),
+  pluginGallery(),
+  pluginGiphy(configs.giphy),
+  pluginHashtag(),
   pluginHtml(),
   pluginImage(),
-  pluginGallery(),
-  pluginButton(),
-  pluginHashtag(),
+  pluginHeadersMarkdown(),
+  pluginLineSpacing(),
+  pluginLink(),
+  pluginMap({ googleMapApiKey: process.env.GOOGLE_MAPS_API_KEY }),
+  pluginMentions(),
+  pluginSoundCloud(),
+  pluginUndoRedo(),
+  pluginVideo(),
 ];
 
 export default () => {
@@ -71,6 +97,7 @@ class ThemeSelector extends React.Component {
             plugins={plugins}
             theme={'Palette'}
             palette={wixPalettes[selected]}
+            modalSupport
           >
             <RichContentEditor editorState={editorState} />
           </RichContentWrapper>
