@@ -1,8 +1,10 @@
 import ThemeGenerator, { THEMES } from './ThemeGenerator';
 import { wixPalettes } from '../../tests/palettesExample';
+import { pluginHashtag } from '../../../../plugin-hashtag/web/src/editor';
 
 describe('ThemeGenerator', () => {
-  const createTheme = (theme, palette) => new ThemeGenerator({ theme, palette });
+  const createTheme = (theme, palette, themeGenerators) =>
+    new ThemeGenerator(false, { theme, palette, themeGenerators });
 
   describe('constructor', () => {
     it('should create a new default theme', () => {
@@ -26,7 +28,9 @@ describe('ThemeGenerator', () => {
     });
 
     it('should create theme object', () => {
-      const themeGenerator = createTheme(THEMES.PALETTE, wixPalettes.site1);
+      const themeGenerator = createTheme(THEMES.PALETTE, wixPalettes.site1, [
+        pluginHashtag().theme,
+      ]);
       const styleObj = themeGenerator.getStylesObject();
 
       expect(styleObj.editor.color).toBe('#414141');

@@ -12,9 +12,10 @@ const TEXT_COLOR = 15;
 const ACTION_COLOR = 18;
 
 export default class ThemeGenerator {
-  constructor({ theme = THEMES.DEFAULT, palette, themeGenerators = [] }) {
+  constructor(isEditor, { theme = THEMES.DEFAULT, palette, themeGenerators = [] }) {
     this.setTheme(theme, palette);
     this.themeGenerators = themeGenerators;
+    this.isEditor = isEditor;
   }
 
   setTheme(theme, palette) {
