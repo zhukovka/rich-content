@@ -79,7 +79,7 @@ const ViewerWrapper = ({ contentState, palette }) => {
 
 ViewerWrapper.propTypes = {
   contentState: PropTypes.object,
-  palette: PropTypes.arrayOf(PropTypes.string),
+  palette: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default ViewerWrapper;
