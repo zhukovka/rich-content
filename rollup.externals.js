@@ -1,5 +1,5 @@
 export const externals = [
-  'draft-js',
+  '@wix/draft-js',
   'assert',
   'classnames',
   'draft-js',
@@ -16,14 +16,15 @@ export const excludedExternals = [
   /draft-js-plugins-editor/,
   /draft-js-.*?-plugin/,
   /react-click-outside/,
-  'draft-js/lib/DraftOffsetKey',
+  '@wix/draft-js/lib/DraftOffsetKey',
+  '@wix/draft-js/lib/isSoftNewlineEvent',
   /wix-rich-content-editor-common\/.*?\.scss/,
   /wix-rich-content-common\/.*?\.scss/,
 ];
 
 export const globals = {
   classnames: 'classNames',
-  'draft-js': 'Draft',
+  '@wix/draft-js': 'Draft',
   'draft-js-code': 'CodeUtils',
   lodash: '_',
   'prop-types': 'PropTypes',
@@ -45,7 +46,8 @@ export const excludedGlobals = [
   'draft-js-plugins-editor',
   /draft-js-.*?-plugin/,
   'react-click-outside',
-  'draft-js/lib/DraftOffsetKey',
+  '@wix/draft-js/lib/DraftOffsetKey',
+  '@wix/draft-js/lib/isSoftNewlineEvent',
 ];
 
 export const isExternal = id =>
