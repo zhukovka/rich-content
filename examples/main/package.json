@@ -9,12 +9,12 @@
   "dependencies": {
     "@babel/core": "7.2.2",
     "@babel/runtime": "7.2.0",
+    "@wix/draft-js": "0.0.6",
     "babel-eslint": "10.0.3",
     "babel-jest": "^25.1.0",
     "casual-browserify": "1.5.19-2",
     "chalk": "^2.4.1",
     "classnames": "^2.0.0",
-    "@wix/draft-js": "0.0.6",
     "draft-js-drag-n-drop-plugin": "~2.0.4",
     "jest": "^25.1.0",
     "local-storage": "1.4.2",
