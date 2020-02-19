@@ -11,7 +11,7 @@ const DividerEditor = ({ editorState }) => (
 );
 
 DividerEditor.propTypes = {
-  editorState: PropTypes.obj,
+  editorState: PropTypes.object,
 };
 
 export default DividerEditor;
