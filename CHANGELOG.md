@@ -13,12 +13,15 @@
     Click to see more.
   </summary>
 
+
+</details>
+<hr/>
+
+## 6.8.6 (Feb 19, 2020)
 ### :bug: Bug Fix
 - `image`
   - [#696](https://github.com/wix-incubator/rich-content/pull/696) fix images with transparency show shadow outline
   - [#706](https://github.com/wix-incubator/rich-content/pull/706) old image client data support
-</details>
-<hr/>
 
 ## 6.8.5 (Feb 17, 2020)
 ### :bug: Bug Fix
