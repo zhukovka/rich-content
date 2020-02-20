@@ -13,9 +13,15 @@
     Click to see more.
   </summary>
 
+### :rocket: New Feature
+- `viewer`
+  - [#702](https://github.com/wix-incubator/rich-content/pull/702) seo mode prop for viewer render images in high resolution
+- `wrapper`
+  - [#714](https://github.com/wix-incubator/rich-content/pull/714) locale strategy added
 ### :bug: Bug Fix
 - `image`
   - [#712](https://github.com/wix-incubator/rich-content/pull/712) old image client data support #2
+
 </details>
 <hr/>
 
@@ -31,7 +37,7 @@
   - [#680](https://github.com/wix-incubator/rich-content/pull/680) dragging plugins from editor to address bar pastes media url
 - `gallery`
   - [#690](https://github.com/wix-incubator/rich-content/pull/690) fix title and altText
-  
+
 
 ## 6.8.4 (Feb 12, 2020)
 ### :bug: Bug Fix
