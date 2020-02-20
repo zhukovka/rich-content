@@ -22,6 +22,7 @@ import { pluginSoundCloud } from 'wix-rich-content-plugin-sound-cloud';
 import { pluginUndoRedo } from 'wix-rich-content-plugin-undo-redo';
 import { pluginVideo } from 'wix-rich-content-plugin-video';
 import { pluginLinkPreview } from 'wix-rich-content-plugin-link-preview';
+import '../styles.global.scss';
 
 const configs = {
   fileUpload: {
@@ -82,7 +83,7 @@ const EditorWrapper = ({ contentState, palette }) => {
 
 EditorWrapper.propTypes = {
   contentState: PropTypes.object,
-  palette: PropTypes.arrayOf(PropTypes.string),
+  palette: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default EditorWrapper;
