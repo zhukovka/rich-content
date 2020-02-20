@@ -9,6 +9,8 @@ export const fixtures = [
   'gif',
   'giphy',
   'html',
+  'gallery-layouts',
+  'old-image-format',
 ];
 
 export const DEFAULT_DESKTOP_BROWSERS = [
