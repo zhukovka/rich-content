@@ -23,7 +23,7 @@
   - [#712](https://github.com/wix-incubator/rich-content/pull/712) old image client data support #2
 ### :house: Internal
 - `html`
-  - [#681](https://github.com/wix-incubator/rich-content/pull/681) htmlIframeSrc setting can be removed from html plugin config
+  - [#681](https://github.com/wix-incubator/rich-content/pull/681) removed htmlIframeSrc from config. Loads iframe html from bundle instead of the static file served by the consumer
 
 </details>
 <hr/>
