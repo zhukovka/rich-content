@@ -16,6 +16,9 @@
 ### :bug: Bug Fix
 - `image`
   - [#712](https://github.com/wix-incubator/rich-content/pull/712) old image client data support #2
+### :house: Internal
+- `html`
+  - [#681](https://github.com/wix-incubator/rich-content/pull/681) htmlIframeSrc setting can be removed from html plugin config
 </details>
 <hr/>
 
@@ -31,7 +34,7 @@
   - [#680](https://github.com/wix-incubator/rich-content/pull/680) dragging plugins from editor to address bar pastes media url
 - `gallery`
   - [#690](https://github.com/wix-incubator/rich-content/pull/690) fix title and altText
-  
+
 
 ## 6.8.4 (Feb 12, 2020)
 ### :bug: Bug Fix
@@ -47,8 +50,6 @@
 ### :house: Internal
 - `general`
   - [#666](https://github.com/wix-incubator/rich-content/pull/666) ES5 syntax validation in `dist/statics` on postbuild
-- `html`
-  - [#681](https://github.com/wix-incubator/rich-content/pull/681) htmlIframeSrc setting can be removed from html plugin config
 
 ## 6.8.2 (Feb 9, 2020)
 ### :bug: Bug Fix
