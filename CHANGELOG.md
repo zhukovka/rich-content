@@ -17,6 +17,9 @@
 </details>
 <hr/>
 
+## 6.8.6-alpha.2 (Feb 19, 2020)
+bump @wix/draft-js version and pro gallery version
+
 ## 6.8.6-alpha.1 (Feb 19, 2020)
 migrate to @wix/draft-js
 
