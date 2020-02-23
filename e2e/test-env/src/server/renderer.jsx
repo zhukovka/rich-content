@@ -1,6 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import RichContentApp from '../../../../examples/main/shared/RichContentApp';
+import StyleContext from 'isomorphic-style-loader/StyleContext';
 
 export default function renderer() {
   return (req, res) => {
@@ -21,8 +22,18 @@ export default function renderer() {
       return res.status(404).send(`Fixture ${fixtureName} not found`);
     }
 
+    const css = new Set();
+    const insertCss = (...styles) =>
+      styles.forEach(style => {
+        css.add(style._getCss());
+      });
+
     res.render('index', {
-      html: renderToString(<RichContentApp mode={'test'} {...props} />),
+      html: renderToString(
+        <StyleContext.Provider value={{ insertCss }}>
+          <RichContentApp mode={'test'} {...props} />
+        </StyleContext.Provider>
+      ),
       initialState: props.initialState,
       bundleName: 'index',
       isMobile,

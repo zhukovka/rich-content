@@ -53,5 +53,8 @@
     "wix-rich-content-plugin-video": "6.8.6",
     "wix-rich-content-viewer": "6.8.6"
   },
+  "devDependencies": {
+    "isomorphic-style-loader": "^5.1.0"
+  },
   "private": true
 }
