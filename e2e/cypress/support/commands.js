@@ -434,7 +434,10 @@ Cypress.Commands.add('waitForVideoToLoad', { prevSubject: 'optional' }, () => {
 });
 
 Cypress.Commands.add('waitForHtmlToLoad', () => {
-  cy.wait(1000);
+  cy.get('iframe[data-cy="htmlIframe"]:first', { timeout: 15000 })
+    .its('0.contentDocument.body')
+    .should('not.be.undefined')
+    .wait(500);
 });
 
 // disable screenshots in debug mode. So there is no diffrence to ci.

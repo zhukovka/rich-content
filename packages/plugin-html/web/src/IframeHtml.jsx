@@ -67,6 +67,7 @@ class IframeHtml extends Component {
         title="remote content"
         style={{ backgroundColor: 'transparent' }}
         onLoad={this.handleIframeLoad}
+        data-cy="htmlIframe"
       />
     ) : null;
   }
