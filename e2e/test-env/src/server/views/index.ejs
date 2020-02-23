@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Rich Content Test Env</title>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no"
-    />
-  </head>
 
-  <body>
-    <div id="root"><%- html %></div>
+<head>
+  <title>Rich Content Test Env</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+</head>
 
-    <script>
-      window.__CONTENT_STATE__ = '<%- escape(JSON.stringify(initialState || {})) %>';
-      window.isMobile = <%- isMobile %>;
-      window.locale = <%- '"' + locale + '"' %>;
-    </script>
-    <script src="/<%- bundleName %>.bundle.js"></script>
-  </body>
+<body>
+  <div id="root"><%- html %></div>
+
+  <script>
+    window.__CONTENT_STATE__ = <% - serialize(initialState) %>;
+    window.isMobile = <% - isMobile %>;
+    window.locale = <% - '"' + locale + '"' %>;
+  </script>
+  <script src="/<%- bundleName %>.bundle.js"></script>
+</body>
+
 </html>

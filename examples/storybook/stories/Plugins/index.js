@@ -1,5 +1,8 @@
 import { storiesOf } from '@storybook/react';
+import GalleryPlugin from './GalleryPlugin.js';
+import DividerPluginStory from './DividerPluginStory.js';
 
-import LinkPreview from './LinkPreview';
-
-storiesOf('Plugins', module).add('Link Preview', LinkPreview);
+storiesOf('Plugins')
+  .add('Divider Plugin', DividerPluginStory)
+  .add('Gallery Plugin', GalleryPlugin)
+  .add('Link Preview', LinkPreview);

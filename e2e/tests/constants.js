@@ -9,7 +9,11 @@ export const fixtures = [
   'gif',
   'giphy',
   'html',
+  'gallery-layouts',
+  'old-image-format',
 ];
+
+export const fixturesToTestOnSeo = ['images'];
 
 export const DEFAULT_DESKTOP_BROWSERS = [
   { width: 1440, height: 900, name: 'chrome' },

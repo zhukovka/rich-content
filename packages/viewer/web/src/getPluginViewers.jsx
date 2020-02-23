@@ -127,7 +127,7 @@ PluginViewer.propTypes = {
     t: PropTypes.func.isRequired,
     locale: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
-    shouldRenderOptimizedImages: PropTypes.bool,
+    seoMode: PropTypes.bool,
     siteDomain: PropTypes.string,
     disableRightClick: PropTypes.bool,
   }).isRequired,
