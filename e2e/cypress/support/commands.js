@@ -433,6 +433,10 @@ Cypress.Commands.add('waitForVideoToLoad', { prevSubject: 'optional' }, () => {
   cy.get('[data-loaded=true]', { timeout: 15000 }).should('have.length', 2);
 });
 
+Cypress.Commands.add('waitForHtmlToLoad', () => {
+  cy.wait(1000);
+});
+
 // disable screenshots in debug mode. So there is no diffrence to ci.
 if (Cypress.browser.isHeaded) {
   const noop = () => {};
