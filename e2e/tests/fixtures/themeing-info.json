@@ -11,13 +11,13 @@
     },
     {
       "key": "fksqt",
-      "text": "Themeing is done by https://github.com/wix-incubator/rich-content/tree/master/packages/wrapper/web ",
+      "text": "Theming is done by https://github.com/wix-incubator/rich-content/tree/master/packages/wrapper/web ",
       "type": "unstyled",
       "depth": 0,
       "inlineStyleRanges": [],
       "entityRanges": [
         {
-          "offset": 20,
+          "offset": 19,
           "length": 78,
           "key": 0
         }
@@ -25,37 +25,22 @@
       "data": {}
     },
     {
-      "key": "3rq0r",
-      "text": " ",
-      "type": "atomic",
+      "key": "3biuv",
+      "text": "This is a quote example - look at the color!",
+      "type": "blockquote",
       "depth": 0,
       "inlineStyleRanges": [],
-      "entityRanges": [
-        {
-          "offset": 0,
-          "length": 1,
-          "key": 1
+      "entityRanges": [],
+      "data": {
+        "dynamicStyles": {
+          "line-height": "1.5",
+          "padding-top": "2px",
+          "padding-bottom": "3px"
         }
-      ],
-      "data": {}
+      }
     },
     {
-      "key": "b7q51",
-      "text": "No #documentation yet though 😲",
-      "type": "unstyled",
-      "depth": 0,
-      "inlineStyleRanges": [],
-      "entityRanges": [
-        {
-          "offset": 29,
-          "length": 1,
-          "key": 2
-        }
-      ],
-      "data": {}
-    },
-    {
-      "key": "daj28",
+      "key": "5n8nc",
       "text": "",
       "type": "unstyled",
       "depth": 0,
@@ -64,7 +49,196 @@
       "data": {}
     },
     {
-      "key": "6p912",
+      "key": "f56i",
+      "text": "No #documentation yet though 😲",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 29,
+          "length": 1,
+          "key": 1
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "5c7va",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "fjspc",
+      "text": " ",
+      "type": "atomic",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 2
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "3notl",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "dynamicStyles": {
+          "line-height": "1.5",
+          "padding-top": "2px",
+          "padding-bottom": "3px"
+        }
+      }
+    },
+    {
+      "key": "4ac0i",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "dynamicStyles": {
+          "line-height": "1.5",
+          "padding-top": "2px",
+          "padding-bottom": "3px"
+        }
+      }
+    },
+    {
+      "key": "9v55p",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "dynamicStyles": {
+          "line-height": "1.5",
+          "padding-top": "2px",
+          "padding-bottom": "3px"
+        }
+      }
+    },
+    {
+      "key": "9h21o",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "dynamicStyles": {
+          "line-height": "1.5",
+          "padding-top": "2px",
+          "padding-bottom": "3px"
+        }
+      }
+    },
+    {
+      "key": "2hh7q",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "dynamicStyles": {
+          "line-height": "1.5",
+          "padding-top": "2px",
+          "padding-bottom": "3px"
+        }
+      }
+    },
+    {
+      "key": "acjju",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "dynamicStyles": {
+          "line-height": "1.5",
+          "padding-top": "2px",
+          "padding-bottom": "3px"
+        }
+      }
+    },
+    {
+      "key": "145in",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "dynamicStyles": {
+          "line-height": "1.5",
+          "padding-top": "2px",
+          "padding-bottom": "3px"
+        }
+      }
+    },
+    {
+      "key": "9foc6",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "dynamicStyles": {
+          "line-height": "1.5",
+          "padding-top": "2px",
+          "padding-bottom": "3px"
+        }
+      }
+    },
+    {
+      "key": "915fa",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "dynamicStyles": {
+          "line-height": "1.5",
+          "padding-top": "2px",
+          "padding-bottom": "3px"
+        }
+      }
+    },
+    {
+      "key": "cpn08",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "dynamicStyles": {
+          "line-height": "1.5",
+          "padding-top": "2px",
+          "padding-bottom": "3px"
+        }
+      }
+    },
+    {
+      "key": "15gmi",
       "text": " ",
       "type": "atomic",
       "depth": 0,
@@ -79,37 +253,35 @@
       "data": {}
     },
     {
-      "key": "5vqh8",
-      "text": "",
+      "key": "9a6ri",
+      "text": "@Cool @Mention @Tags ",
       "type": "unstyled",
-      "depth": 0,
-      "inlineStyleRanges": [],
-      "entityRanges": [],
-      "data": {}
-    },
-    {
-      "key": "f3fa1",
-      "text": " ",
-      "type": "atomic",
       "depth": 0,
       "inlineStyleRanges": [],
       "entityRanges": [
         {
           "offset": 0,
-          "length": 1,
+          "length": 5,
           "key": 4
+        },
+        {
+          "offset": 6,
+          "length": 8,
+          "key": 5
+        },
+        {
+          "offset": 15,
+          "length": 5,
+          "key": 6
         }
       ],
-      "data": {}
-    },
-    {
-      "key": "e8svo",
-      "text": "",
-      "type": "unstyled",
-      "depth": 0,
-      "inlineStyleRanges": [],
-      "entityRanges": [],
-      "data": {}
+      "data": {
+        "dynamicStyles": {
+          "line-height": "1.5",
+          "padding-top": "2px",
+          "padding-bottom": "3px"
+        }
+      }
     }
   ],
   "entityMap": {
@@ -123,43 +295,13 @@
       }
     },
     "1": {
-      "type": "wix-draft-plugin-divider",
-      "mutability": "IMMUTABLE",
-      "data": {
-        "type": "single",
-        "config": {
-          "size": "large",
-          "alignment": "center",
-          "textWrap": "nowrap"
-        }
-      }
-    },
-    "2": {
       "type": "EMOJI_TYPE",
       "mutability": "IMMUTABLE",
       "data": {
         "emojiUnicode": "😲"
       }
     },
-    "3": {
-      "type": "LINK_PREVIEW",
-      "mutability": "IMMUTABLE",
-      "data": {
-        "config": {
-          "size": "content",
-          "alignment": "center",
-          "link": {
-            "url": "wix.com"
-          }
-        },
-        "thumbnail_url": "https://static.wixstatic.com/media/5305c5_5f112df56dcd40a29e855baae08f19ce~mv2.jpg/v1/fill/w_600,h_315,al_c/5305c5_5f112df56dcd40a29e855baae08f19ce~mv2.jpg",
-        "title": "Free Website Builder | Create a Free Website | Wix.com",
-        "description": "Create a free website with Wix.com. Choose a stunning template and customize anything with the Wix website builder—no coding skills needed. Create yours today!",
-        "html": "<div>{\"url\":\"https://www.wix.com\",\"title\":\"Free Website Builder | Create a Free Website | Wix.com\",\"description\":\"Create a free website with Wix.com. Choose a stunning template and customize anything with the Wix website builder\\u2014no coding skills needed. Create yours today!\",\"image\":\"https://static.wixstatic.com/media/5305c5_5f112df56dcd40a29e855baae08f19ce~mv2.jpg/v1/fill/w_600,h_315,al_c/5305c5_5f112df56dcd40a29e855baae08f19ce~mv2.jpg\"}</div>",
-        "provider_url": "http://wix.com"
-      }
-    },
-    "4": {
+    "2": {
       "type": "wix-draft-plugin-gallery",
       "mutability": "IMMUTABLE",
       "data": {
@@ -218,6 +360,48 @@
           "size": "small",
           "layout": "small",
           "spacing": 0
+        }
+      }
+    },
+    "3": {
+      "type": "wix-draft-plugin-divider",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "type": "single",
+        "config": {
+          "size": "large",
+          "alignment": "center",
+          "textWrap": "nowrap"
+        }
+      }
+    },
+    "4": {
+      "type": "mention",
+      "mutability": "SEGMENTED",
+      "data": {
+        "mention": {
+          "name": "Cool",
+          "slug": "Cool"
+        }
+      }
+    },
+    "5": {
+      "type": "mention",
+      "mutability": "SEGMENTED",
+      "data": {
+        "mention": {
+          "name": "Mention",
+          "slug": "Mention"
+        }
+      }
+    },
+    "6": {
+      "type": "mention",
+      "mutability": "SEGMENTED",
+      "data": {
+        "mention": {
+          "name": "Tags",
+          "slug": "Tags"
         }
       }
     }

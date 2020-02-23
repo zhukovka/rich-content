@@ -5,3 +5,9 @@ export const DEFAULTS = {
     },
   },
 };
+export const THEME = colors => ({
+  link: {
+    color: colors.actionColor,
+    textDecoration: 'none',
+  },
+});

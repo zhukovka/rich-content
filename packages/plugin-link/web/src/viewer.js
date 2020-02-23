@@ -1,9 +1,8 @@
 import { LINK_TYPE } from './types';
 import { typeMapper } from './typeMapper';
-import { DEFAULTS } from './defaults';
-
-export { default as LinkViewer } from './LinkViewer';
+import { DEFAULTS, THEME as theme } from './defaults';
 export { typeMapper as linkTypeMapper, LINK_TYPE };
+export { default as LinkViewer } from './LinkViewer';
 
 export const pluginLink = (config = {}) => {
   return {
@@ -11,5 +10,6 @@ export const pluginLink = (config = {}) => {
     type: LINK_TYPE,
     typeMapper,
     decorator: {},
+    theme,
   };
 };
