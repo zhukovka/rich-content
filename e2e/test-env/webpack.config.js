@@ -95,10 +95,7 @@ const config = [
         urlRule,
         {
           test: /\.css$/,
-          use: [
-            'isomorphic-style-loader',
-            { loader: 'css-loader', options: { exportOnlyLocals: true } },
-          ],
+          use: ['isomorphic-style-loader', 'css-loader'],
         },
       ],
     },

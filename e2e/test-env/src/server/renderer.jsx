@@ -38,6 +38,7 @@ export default function renderer() {
       bundleName: 'index',
       isMobile,
       locale,
+      cssStyle: Array.from(css).join(''),
     });
   };
 }
