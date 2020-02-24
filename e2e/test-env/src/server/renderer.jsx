@@ -2,6 +2,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import RichContentApp from '../../../../examples/main/shared/RichContentApp';
 import StyleContext from 'isomorphic-style-loader/StyleContext';
+import serialize from 'serialize-javascript';
 
 export default function renderer() {
   return (req, res) => {
@@ -39,6 +40,7 @@ export default function renderer() {
       isMobile,
       locale,
       cssStyle: Array.from(css).join(''),
+      serialize,
     });
   };
 }
