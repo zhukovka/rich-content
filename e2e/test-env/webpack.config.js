@@ -33,6 +33,9 @@ const scssRule = {
   test: /\.scss$/,
   use: [
     {
+      loader: 'style-loader',
+    },
+    {
       loader: 'isomorphic-style-loader',
     },
     {
@@ -48,6 +51,9 @@ const scssRule = {
     },
   ],
 };
+
+const scssServerRule = { ...scssRule, use: [...scssRule.use] };
+scssServerRule.use.shift();
 
 const urlRule = {
   test: /\.(woff|eot|ttf|svg|woff2)$/,
@@ -91,7 +97,7 @@ const config = [
     module: {
       rules: [
         babelRule,
-        scssRule,
+        scssServerRule,
         urlRule,
         {
           test: /\.css$/,
