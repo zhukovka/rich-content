@@ -6,6 +6,7 @@ import {
 import { InsertPluginIcon } from '../icons';
 import PostSelectionInputModal from './postSelectionInputModal';
 import { DEFAULTS } from '../constants';
+import customStyles from './ModalCustomStyles';
 
 export default ({ helpers, t, settings, isMobile }) => {
   // TODO: Change icon
@@ -23,6 +24,7 @@ export default ({ helpers, t, settings, isMobile }) => {
       t,
       modalElement: decorateComponentWithProps(PostSelectionInputModal, settings),
       modalStyles: getModalStyles({
+        customStyles,
         fullScreen: false,
         isMobile,
       }),
