@@ -1,6 +1,6 @@
 import mockLinkEditorState from '../../../../../e2e/tests/fixtures/headers.json';
 import mockAlignmentEditorState from '../../../../../e2e/tests/fixtures/text-alignment.json';
-import mockGifEditorState from '../../../../../e2e/tests/fixtures/gif.json';
+import mockGiphyEditorState from '../../../../../e2e/tests/fixtures/giphy.json';
 
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import {
@@ -38,7 +38,7 @@ const linkData = {
   targetBlank: true,
   nofollow: false,
   anchorTarget: '_blank',
-  relValue: 'nofollow',
+  relValue: 'noopener',
 };
 const BLOCK_KEY1 = '50k2j';
 const BLOCK_KEY2 = '1u5r4';
@@ -147,7 +147,7 @@ describe('Test draftUtils functions', () => {
   });
 
   describe('Test draftUtils Blocks functions', () => {
-    const editorState = getEditorStateFromJson(mockGifEditorState);
+    const editorState = getEditorStateFromJson(mockGiphyEditorState);
     const editorStateWithSelectionOnAtomic = getEditorStateWithSelectionAt(editorState, BLOCK_KEY2);
     const editorStateWithSelectionOnNotAtomic = getEditorStateWithSelectionAt(
       editorState,

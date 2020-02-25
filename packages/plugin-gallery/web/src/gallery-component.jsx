@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { isEqual } from 'lodash';
-import { Context } from 'wix-rich-content-common';
 import GalleryViewer from './gallery-viewer';
 import { DEFAULTS } from './constants';
 
@@ -10,12 +9,17 @@ class GalleryComponent extends PureComponent {
     super(props);
     this.state = this.stateFromProps(props);
 
-    const { block, store } = this.props;
+    const { block, store, commonPubsub } = this.props;
+    const blockKey = block.getKey();
     if (store) {
-      const blockKey = block.getKey();
       store.setBlockHandler('handleFilesSelected', blockKey, this.handleFilesSelected.bind(this));
       store.setBlockHandler('handleFilesAdded', blockKey, this.handleFilesAdded.bind(this));
     }
+    commonPubsub?.setBlockHandler(
+      'galleryHandleFilesAdded',
+      blockKey,
+      this.handleFilesAdded.bind(this)
+    );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -109,7 +113,8 @@ class GalleryComponent extends PureComponent {
     };
     const excludeFromUndoStack = true;
     const itemIdx = this.setItemInGallery(item, itemPos, excludeFromUndoStack);
-    const { helpers } = this.context;
+    const { helpers } = this.props;
+
     const hasFileChangeHelper = helpers && helpers.onFilesChange;
 
     if (hasFileChangeHelper) {
@@ -127,7 +132,6 @@ class GalleryComponent extends PureComponent {
         metadata: {
           height: item.height,
           width: item.width,
-          processedByConsumer: true,
         },
         itemId: String(item.id),
         url: item.file_name,
@@ -160,6 +164,12 @@ class GalleryComponent extends PureComponent {
         onClick={this.props.onClick}
         className={this.props.className}
         settings={this.props.settings}
+        theme={this.props.theme}
+        helpers={this.props.helpers}
+        disableRightClick={this.props.disableRightClick}
+        isMobile={this.props.isMobile}
+        anchorTarget={this.props.anchorTarget}
+        relValue={this.props.relValue}
       />
     );
   }
@@ -169,14 +179,19 @@ GalleryComponent.propTypes = {
   componentData: PropTypes.object.isRequired,
   componentState: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
+  commonPubsub: PropTypes.object,
   blockProps: PropTypes.object.isRequired,
   block: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string.isRequired,
   settings: PropTypes.object,
   excludeDataChangesFromUndoStack: PropTypes.func,
+  helpers: PropTypes.object.isRequired,
+  disableRightClick: PropTypes.bool,
+  theme: PropTypes.object.isRequired,
+  isMobile: PropTypes.bool.isRequired,
+  anchorTarget: PropTypes.string.isRequired,
+  relValue: PropTypes.string.isRequired,
 };
-
-GalleryComponent.contextType = Context.type;
 
 export { GalleryComponent as Component, DEFAULTS };

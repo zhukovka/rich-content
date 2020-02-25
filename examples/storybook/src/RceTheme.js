@@ -12,7 +12,9 @@ export default class RceTheme {
 
   setTheme(theme, palette) {
     if (SUPPORTED_THEMES.indexOf(theme) === -1) {
+      // eslint-disable-next-line no-console
       console.log(theme);
+      // eslint-disable-next-line no-console
       console.error('Unknown theme: ', theme);
       this._theme = Themes.DEFAULT;
     } else {
@@ -55,6 +57,22 @@ export default class RceTheme {
         divider: {
           strokeWidth: '12px',
           color: this.getColorValue(28),
+        },
+        linkPreview: {
+          borderColor: textColor,
+          backgroundColor: bgColor,
+        },
+        linkPreview_title: {
+          color: textColor,
+        },
+        linkPreview_image: {
+          borderColor: textColor,
+        },
+        linkPreview_description: {
+          color: textColor,
+        },
+        linkPreview_url: {
+          color: actionColor,
         },
       };
     }
