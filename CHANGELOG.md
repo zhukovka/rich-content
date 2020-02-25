@@ -13,6 +13,11 @@
     Click to see more.
   </summary>
 
+
+</details>
+<hr/>
+
+## 6.9.0 (Feb 25, 2020)
 ### :rocket: New Feature
 - `viewer`
   - [#702](https://github.com/wix-incubator/rich-content/pull/702) seo mode prop for viewer render images in high resolution
@@ -28,9 +33,6 @@
 ### :house: Internal
 - `html`
   - [#681](https://github.com/wix-incubator/rich-content/pull/681) removed htmlIframeSrc from config. Loads iframe html from bundle instead of the static file served by the consumer
-
-</details>
-<hr/>
 
 ## 6.8.6 (Feb 19, 2020)
 ### :bug: Bug Fix
