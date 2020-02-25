@@ -36,9 +36,6 @@ const scssRule = {
       loader: 'style-loader',
     },
     {
-      loader: 'isomorphic-style-loader',
-    },
-    {
       loader: 'css-loader',
       options: {
         modules: true,
@@ -54,6 +51,7 @@ const scssRule = {
 
 const scssServerRule = { ...scssRule, use: [...scssRule.use] };
 scssServerRule.use.shift();
+scssServerRule.use = ['isomorphic-style-loader', ...scssServerRule.use];
 
 const urlRule = {
   test: /\.(woff|eot|ttf|svg|woff2)$/,
