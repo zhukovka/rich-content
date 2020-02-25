@@ -7,7 +7,24 @@
         "type": "object",
         "title": "configuration",
         "properties": {}
+      },
+      "selectedProduct": {
+        "$id": "/properties/selectedProduct",
+        "type": "object",
+        "title": "selectedProduct",
+        "properties": {
+          "selectedProduct": {
+            "$id": "/properties/selectedProduct",
+            "type": "string",
+            "title": "selectedProduct"
+          },
+          "html": {
+            "$id": "/properties/html",
+            "type": "string",
+            "title": "html"
+          }
+        }
       }
     },
-    "required": []
-  }
+    "required": ["selectedProduct"]
+}
