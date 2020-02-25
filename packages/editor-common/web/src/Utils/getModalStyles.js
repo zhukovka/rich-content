@@ -82,7 +82,7 @@ const desktopSideBarStyles = {
     WebkitOverflowScrolling: 'touch',
     borderRadius: 0,
     padding: 0,
-    maxHeight: '100%',
+    height: '100%',
     width: '100%',
     maxWidth: '420px',
     direction: 'ltr',
