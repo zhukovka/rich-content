@@ -7,10 +7,12 @@ export const INIT_WIDTH = 350;
 
 export const INIT_HEIGHT = 550;
 
-export const DEFAULTS = {
+export const DEFAULTS = Object.freeze({
   srcType: SRC_TYPE_HTML,
   src: '',
   config: {
     alignment: 'center',
   },
-};
+});
+
+export const DEFAULTS_VIEWER = {};
