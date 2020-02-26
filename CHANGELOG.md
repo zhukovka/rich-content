@@ -16,6 +16,11 @@
 ### :bug: Bug Fix
 - `editor-common`
   - [#647](https://github.com/wix-incubator/rich-content/pull/647) block selection is removed when losing focus
+- `video`
+  - [#727](https://github.com/wix-incubator/rich-content/pull/727) loader is consistent throughout inital file upload
+### :house: Internal
+- `gallery`
+  - [#724](https://github.com/wix-incubator/rich-content/pull/724) bump pro-gallery version to 1.7.23
   
 </details>
 <hr/>
@@ -38,6 +43,7 @@
   - [#712](https://github.com/wix-incubator/rich-content/pull/712) old image client data support #2
 - `video`
   - [#648](https://github.com/wix-incubator/rich-content/pull/648) loader disappears before video is fully loaded
+
 ### :house: Internal
 - `html`
   - [#681](https://github.com/wix-incubator/rich-content/pull/681) removed htmlIframeSrc from config. Loads iframe html from bundle instead of the static file served by the consumer
