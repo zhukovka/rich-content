@@ -17,6 +17,12 @@
 </details>
 <hr/>
 
+
+## 6.9.1 (Feb 25, 2020)
+### :bug: Bug Fix
+- `image`
+  - [#729](https://github.com/wix-incubator/rich-content/pull/729) image with no config
+
 ## 6.9.0-alpha.1 (Feb 25, 2020)
 6.9.0 with wix-draft
 
