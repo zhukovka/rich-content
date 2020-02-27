@@ -12,7 +12,11 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+  
+</details>
+<hr/>
 
+## 6.9.2 (Feb 27, 2020)
 ### :bug: Bug Fix
 - `video`
   - [#727](https://github.com/wix-incubator/rich-content/pull/727) loader is consistent throughout inital file upload
@@ -21,9 +25,6 @@
 ### :house: Internal
 - `gallery`
   - [#724](https://github.com/wix-incubator/rich-content/pull/724) bump pro-gallery version to 1.7.23
-  
-</details>
-<hr/>
 
 ## 6.9.1 (Feb 25, 2020)
 ### :bug: Bug Fix
