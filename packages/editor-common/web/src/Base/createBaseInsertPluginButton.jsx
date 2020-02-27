@@ -106,13 +106,14 @@ export default ({
       (pluginDefaults[galleryType] && settings.createGalleryForMultipleImages && files.length > 1);
 
     handleFileChange = (files, updateEntity) => {
+      const { setEditorState } = this.props;
       if (files.length > 0) {
         const galleryData = pluginDefaults[galleryType];
         const { newEditorState, newSelection } = this.shouldCreateGallery(files)
           ? this.createBlocksFromFiles([files], galleryData, galleryType, updateEntity)
           : this.createBlocksFromFiles(files, button.componentData, blockType, updateEntity);
 
-        this.props.setEditorState(EditorState.forceSelection(newEditorState, newSelection));
+        setEditorState(EditorState.forceSelection(newEditorState, newSelection));
       }
     };
 
