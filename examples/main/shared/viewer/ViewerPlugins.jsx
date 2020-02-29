@@ -13,9 +13,7 @@ import { mapTypeMapper } from 'wix-rich-content-plugin-map/dist/module.viewer';
 import { giphyTypeMapper, GIPHY_TYPE } from 'wix-rich-content-plugin-giphy/dist/module.viewer';
 import { buttonTypeMapper } from 'wix-rich-content-plugin-button/dist/module.viewer';
 import { HashtagDecorator } from 'wix-rich-content-plugin-hashtag/dist/module.viewer';
-import {
-  verticalEmbedTypeMapper,
-} from 'wix-rich-content-plugin-vertical-embed/dist/module.viewer';
+import { verticalEmbedTypeMapper } from 'wix-rich-content-plugin-vertical-embed/dist/module.viewer';
 import {
   createHeadersMarkdownDecorator,
   HEADERS_MARKDOWN_TYPE,
@@ -60,6 +58,7 @@ import 'wix-rich-content-plugin-map/dist/styles.min.css';
 import 'wix-rich-content-plugin-file-upload/dist/styles.min.css';
 import 'wix-rich-content-plugin-giphy/dist/styles.min.css';
 import 'wix-rich-content-plugin-vertical-embed/dist/styles.min.css';
+import 'wix-rich-content-text-selection-toolbar/dist/styles.min.css';
 
 import { getBaseUrl } from '../../src/utils';
 
