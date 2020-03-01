@@ -23,7 +23,9 @@ const eyesOpen = ({
 
 describe('plugins', () => {
   beforeEach(function() {
-    cy.switchToDesktop();
+    // cy.switchToDesktop();
+    // const dest = `span[data-offset-key="9tj9c-0-0"]`;
+    // cy.get(dest).click();
   });
 
   afterEach(() => cy.matchContentSnapshot());
@@ -31,6 +33,7 @@ describe('plugins', () => {
   context('image', () => {
     before(function() {
       eyesOpen(this);
+      cy.switchToDesktop();
     });
 
     beforeEach('load editor', () => cy.loadEditorAndViewer('images'));
@@ -57,6 +60,7 @@ describe('plugins', () => {
   context('full screen', () => {
     before(function() {
       eyesOpen(this);
+      cy.switchToDesktop();
     });
 
     after(() => cy.eyesClose());
@@ -73,13 +77,13 @@ describe('plugins', () => {
     });
 
     context('gallery full screen', () => {
-      beforeEach('load editor', () =>
-        cy
-          .loadEditorAndViewer('gallery')
+      beforeEach('load editor', () => {
+        cy.switchToDesktop();
+        cy.loadEditorAndViewer('gallery')
           .get(`[data-hook=${'image-item'}]:first`)
           .get(`[data-hook=${'image-item'}]`)
-          .eq(1)
-      );
+          .eq(1);
+      });
 
       it('expand gallery image on full screen', function() {
         cy.get(`[data-hook=${'image-item'}]:last`)
@@ -93,6 +97,7 @@ describe('plugins', () => {
   context('gallery', () => {
     before(function() {
       eyesOpen(this);
+      cy.switchToDesktop();
     });
 
     after(() => cy.eyesClose());
@@ -116,6 +121,9 @@ describe('plugins', () => {
     });
 
     context('organize media', () => {
+      before(function() {
+        cy.switchToDesktop();
+      });
       it('allow to manipulate the media items', function() {
         const firstImage = `[data-hook=${GALLERY_SETTINGS.IMAGE}]:first`;
         const anyImage = `[data-hook=${GALLERY_SETTINGS.IMAGE}]`;
@@ -150,6 +158,9 @@ describe('plugins', () => {
     });
 
     context('media settings', () => {
+      before(function() {
+        cy.switchToDesktop();
+      });
       it('allow to update media content', function() {
         cy.loadEditorAndViewer('gallery')
           .openPluginToolbar(PLUGIN_COMPONENT.GALLERY)
@@ -191,7 +202,10 @@ describe('plugins', () => {
       eyesOpen(this);
     });
 
-    beforeEach('load editor', () => cy.loadEditorAndViewer('empty'));
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
+      cy.loadEditorAndViewer('empty');
+    });
 
     after(() => cy.eyesClose());
 
@@ -223,7 +237,10 @@ describe('plugins', () => {
       eyesOpen(this);
     });
 
-    beforeEach('load editor', () => cy.loadEditorAndViewer('empty'));
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
+      cy.loadEditorAndViewer('empty');
+    });
 
     after(() => cy.eyesClose());
 
@@ -244,6 +261,7 @@ describe('plugins', () => {
   context('html', () => {
     before(function() {
       eyesOpen(this);
+      cy.switchToDesktop();
     });
 
     after(() => cy.eyesClose());
@@ -260,6 +278,7 @@ describe('plugins', () => {
   context('divider', () => {
     before(function() {
       eyesOpen(this);
+      cy.switchToDesktop();
     });
 
     after(() => cy.eyesClose());
@@ -294,6 +313,7 @@ describe('plugins', () => {
   context('giphy', () => {
     before('load editor', function() {
       eyesOpen(this);
+      cy.switchToDesktop();
     });
 
     after(() => cy.eyesClose());
@@ -312,6 +332,7 @@ describe('plugins', () => {
   context('map', () => {
     before('load editor', function() {
       eyesOpen(this);
+      cy.switchToDesktop();
       cy.loadEditorAndViewer('map');
     });
 
@@ -329,6 +350,7 @@ describe('plugins', () => {
   context('file-upload', () => {
     before('load editor', function() {
       eyesOpen(this);
+      cy.switchToDesktop();
       cy.loadEditorAndViewer('file-upload');
     });
 
@@ -343,6 +365,7 @@ describe('plugins', () => {
   context('drag and drop', () => {
     before('load editor', function() {
       eyesOpen(this);
+      cy.switchToDesktop();
       cy.loadEditorAndViewer('dragAndDrop');
     });
 
@@ -362,6 +385,7 @@ describe('plugins', () => {
   context('alignment', () => {
     before(function() {
       eyesOpen(this);
+      cy.switchToDesktop();
     });
 
     after(() => cy.eyesClose());
