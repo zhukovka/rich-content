@@ -251,9 +251,10 @@ describe('plugins', () => {
   context('html', () => {
     before(function() {
       eyesOpen(this);
+    });
+    beforeEach('load editor', () => {
       cy.switchToDesktop();
     });
-
     after(() => cy.eyesClose());
 
     it('render html plugin toolbar', function() {
@@ -268,9 +269,10 @@ describe('plugins', () => {
   context('divider', () => {
     before(function() {
       eyesOpen(this);
+    });
+    beforeEach('load editor', () => {
       cy.switchToDesktop();
     });
-
     after(() => cy.eyesClose());
 
     it('render plugin toolbar and change styling', function() {
@@ -303,9 +305,10 @@ describe('plugins', () => {
   context('giphy', () => {
     before('load editor', function() {
       eyesOpen(this);
+    });
+    beforeEach('load editor', () => {
       cy.switchToDesktop();
     });
-
     after(() => cy.eyesClose());
 
     it('render giphy plugin toolbar', function() {
@@ -375,9 +378,11 @@ describe('plugins', () => {
   context('alignment', () => {
     before(function() {
       eyesOpen(this);
-      cy.switchToDesktop();
     });
 
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
+    });
     after(() => cy.eyesClose());
 
     function testAtomicBlockAlignment(align) {
