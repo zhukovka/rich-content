@@ -15,7 +15,10 @@
   
 ### :bug: Bug Fix
 - `editor-common`
-  - [#647](https://github.com/wix-incubator/rich-content/pull/647) block selection is removed when losing focus
+  - [#733](https://github.com/wix-incubator/rich-content/pull/733) block selection is removed when losing focus
+### :boom: New Feature
+- `text-selection-toolbar`
+  - [#523](https://github.com/wix-incubator/rich-content/pull/523) create viewer toolbar with tweet option
   
 </details>
 <hr/>
