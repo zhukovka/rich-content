@@ -22,21 +22,17 @@ const eyesOpen = ({
   });
 
 describe('plugins', () => {
-  beforeEach(function() {
-    // cy.switchToDesktop();
-    // const dest = `span[data-offset-key="9tj9c-0-0"]`;
-    // cy.get(dest).click();
-  });
-
   afterEach(() => cy.matchContentSnapshot());
 
   context('image', () => {
     before(function() {
       eyesOpen(this);
-      cy.switchToDesktop();
     });
 
-    beforeEach('load editor', () => cy.loadEditorAndViewer('images'));
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
+      cy.loadEditorAndViewer('images');
+    });
 
     after(() => cy.eyesClose());
 
@@ -60,8 +56,8 @@ describe('plugins', () => {
   context('full screen', () => {
     before(function() {
       eyesOpen(this);
-      cy.switchToDesktop();
     });
+    beforeEach('load editor', () => cy.switchToDesktop());
 
     after(() => cy.eyesClose());
 
@@ -78,7 +74,6 @@ describe('plugins', () => {
 
     context('gallery full screen', () => {
       beforeEach('load editor', () => {
-        cy.switchToDesktop();
         cy.loadEditorAndViewer('gallery')
           .get(`[data-hook=${'image-item'}]:first`)
           .get(`[data-hook=${'image-item'}]`)
@@ -97,9 +92,10 @@ describe('plugins', () => {
   context('gallery', () => {
     before(function() {
       eyesOpen(this);
+    });
+    beforeEach('load editor', () => {
       cy.switchToDesktop();
     });
-
     after(() => cy.eyesClose());
 
     it('render gallery plugin', function() {
@@ -121,9 +117,6 @@ describe('plugins', () => {
     });
 
     context('organize media', () => {
-      before(function() {
-        cy.switchToDesktop();
-      });
       it('allow to manipulate the media items', function() {
         const firstImage = `[data-hook=${GALLERY_SETTINGS.IMAGE}]:first`;
         const anyImage = `[data-hook=${GALLERY_SETTINGS.IMAGE}]`;
@@ -158,9 +151,6 @@ describe('plugins', () => {
     });
 
     context('media settings', () => {
-      before(function() {
-        cy.switchToDesktop();
-      });
       it('allow to update media content', function() {
         cy.loadEditorAndViewer('gallery')
           .openPluginToolbar(PLUGIN_COMPONENT.GALLERY)
