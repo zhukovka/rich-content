@@ -2,7 +2,6 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import {
-  insertLinkAtCurrentSelection,
   getLinkDataInSelection,
   removeLinksInSelection,
   LinkPanelContainer,
@@ -40,10 +39,10 @@ export default class TextLinkPanel extends Component {
   }
 
   createLinkEntity = ({ url, targetBlank, nofollow }) => {
-    const { anchorTarget, relValue } = this.props;
+    const { anchorTarget, relValue, insertLinkFn } = this.props;
     if (!isEmpty(url)) {
       const { getEditorState, setEditorState } = this.props;
-      const newEditorState = insertLinkAtCurrentSelection(getEditorState(), {
+      const newEditorState = insertLinkFn(getEditorState(), {
         url,
         targetBlank,
         nofollow,
@@ -82,4 +81,5 @@ TextLinkPanel.propTypes = {
   relValue: PropTypes.string,
   t: PropTypes.func,
   uiSettings: PropTypes.object,
+  insertLinkFn: PropTypes.func,
 };

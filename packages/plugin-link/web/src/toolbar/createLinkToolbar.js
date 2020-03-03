@@ -5,10 +5,13 @@ import {
   removeLinksInSelection,
   EditorModals,
   getModalStyles,
+  insertLinkAtCurrentSelection,
+  updateLinkAtCurrentSelection,
 } from 'wix-rich-content-editor-common';
 import TextLinkButton from './TextLinkButton';
 import RemoveLinkButton from './RemoveLinkButton';
 import UrlLinkButton from './UrlLinkButton';
+import { EditIcon } from '../icons';
 
 const openLinkModal = ({
   helpers,
@@ -49,7 +52,13 @@ const openLinkModal = ({
 export default config => ({
   TextButtonMapper: () => ({
     Link: {
-      component: TextLinkButton,
+      component: props => (
+        <TextLinkButton
+          insertLinkFn={insertLinkAtCurrentSelection}
+          isActive={hasLinksInSelection(config.getEditorState())}
+          {...props}
+        />
+      ),
       isMobile: true,
       position: { mobile: 5 },
       keyBindings: [
@@ -77,7 +86,9 @@ export default config => ({
       position: { mobile: 5 },
     },
     Link: {
-      component: props => <TextLinkButton asUpdateButton {...props} />,
+      component: props => (
+        <TextLinkButton insertLinkFn={updateLinkAtCurrentSelection} icon={EditIcon} {...props} />
+      ),
       isMobile: true,
       position: { mobile: 5 },
     },

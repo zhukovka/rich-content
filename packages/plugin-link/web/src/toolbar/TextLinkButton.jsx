@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  hasLinksInSelection,
   getModalStyles,
   LinkButton,
   EditorModals,
@@ -25,6 +24,7 @@ export default class TextLinkButton extends Component {
       relValue,
       t,
       uiSettings,
+      insertLinkFn,
     } = this.props;
     const modalStyles = getModalStyles({ fullScreen: false, isMobile });
     if (isMobile || linkModal) {
@@ -42,6 +42,7 @@ export default class TextLinkButton extends Component {
           modalName: EditorModals.MOBILE_TEXT_LINK_MODAL,
           hidePopup: helpers.closeModal,
           uiSettings,
+          insertLinkFn,
         };
         helpers.openModal(modalProps);
       } else {
@@ -59,18 +60,15 @@ export default class TextLinkButton extends Component {
         theme,
         t,
         uiSettings,
+        insertLinkFn,
       };
       const TextLinkPanelWithProps = decorateComponentWithProps(TextLinkPanel, linkPanelProps);
       onOverrideContent(TextLinkPanelWithProps);
     }
   };
 
-  get isActive() {
-    return hasLinksInSelection(this.props.getEditorState());
-  }
-
   render() {
-    const { theme, isMobile, t, tabIndex, config, asUpdateButton } = this.props;
+    const { theme, isMobile, t, tabIndex, config, isActive, icon: _icon } = this.props;
     const linkButtonTooltip = t('TextLinkButton_Tooltip');
     const buttonStyles = {
       button: theme.inlineToolbarButton,
@@ -78,17 +76,16 @@ export default class TextLinkButton extends Component {
       icon: theme.inlineToolbarButton_icon,
       active: theme.inlineToolbarButton_active,
     };
-    const icon = config?.LINK?.toolbar?.icons?.InsertPluginButtonIcon;
+    const icon = config?.LINK?.toolbar?.icons?.InsertPluginButtonIcon || _icon;
     return (
       <LinkButton
         onClick={this.showLinkPanel}
-        isActive={!asUpdateButton && this.isActive}
+        isActive={isActive}
         theme={{ ...theme, ...buttonStyles }}
         isMobile={isMobile}
         tooltipText={linkButtonTooltip}
         tabIndex={tabIndex}
         icon={icon}
-        asUpdateButton={asUpdateButton}
       />
     );
   }
@@ -110,5 +107,7 @@ TextLinkButton.propTypes = {
   tabIndex: PropTypes.number,
   uiSettings: PropTypes.object,
   config: PropTypes.object,
-  asUpdateButton: PropTypes.bool,
+  insertLinkFn: PropTypes.func,
+  isActive: PropTypes.bool,
+  icon: PropTypes.func,
 };

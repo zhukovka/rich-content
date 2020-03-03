@@ -60,6 +60,7 @@ export { getModalStyles, getBottomToolbarModalStyles } from './Utils/getModalSty
 
 export {
   insertLinkAtCurrentSelection,
+  updateLinkAtCurrentSelection,
   insertLinkInPosition,
   hasLinksInBlock,
   fixPastedLinks,
