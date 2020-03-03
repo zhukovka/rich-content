@@ -6,6 +6,8 @@ import {
   getModalStyles,
 } from 'wix-rich-content-editor-common';
 import TextLinkButton from './TextLinkButton';
+import RemoveLinkButton from './RemoveLinkButton';
+import UrlLinkButton from './UrlLinkButton';
 
 const openLinkModal = ({
   helpers,
@@ -67,4 +69,22 @@ export default config => ({
       ],
     },
   }),
+  InlinePluginButtons: () => ({
+    UrlLinkButton: {
+      component: UrlLinkButton,
+      isMobile: true,
+      position: { mobile: 5 },
+    },
+    Link: {
+      component: TextLinkButton,
+      isMobile: true,
+      position: { mobile: 5 },
+    },
+    RemoveLink: {
+      component: RemoveLinkButton,
+      isMobile: true,
+      position: { mobile: 5 },
+    },
+  }),
+  name: 'link',
 });

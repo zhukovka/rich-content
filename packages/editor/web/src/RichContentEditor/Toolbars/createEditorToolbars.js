@@ -27,9 +27,23 @@ const appendSeparator = ({ mergedList, sourceList, buttonData, formFactor }) => 
   return mergedList;
 };
 
+const appendSeparatorBetweenAllButtons = buttons => {
+  buttons.mobile = [].concat(
+    ...buttons.mobile.map((button, i) =>
+      i < buttons.mobile.length - 1 ? [button, 'Separator'] : [button]
+    )
+  );
+  buttons.desktop = [].concat(
+    ...buttons.desktop.map((button, i) =>
+      i < buttons.desktop.length - 1 ? [button, 'Separator'] : [button]
+    )
+  );
+  return buttons;
+};
+
 const createEditorToolbars = ({ buttons, textAlignment, refId, context }) => {
   const { uiSettings, getToolbarSettings = () => [] } = context.config;
-  const { pluginButtons, pluginTextButtons } = buttons;
+  const { pluginButtons, pluginTextButtons, inlinePluginButtons } = buttons;
 
   const { isMobile, theme = {} } = context;
 
@@ -50,20 +64,39 @@ const createEditorToolbars = ({ buttons, textAlignment, refId, context }) => {
     ),
   };
 
+  let inlineButtons = {
+    mobile: mergeButtonLists(
+      [],
+      reducePluginTextButtonNames(inlinePluginButtons, ({ isMobile }) => isMobile !== false),
+      'mobile'
+    ),
+    desktop: mergeButtonLists([], reducePluginTextButtonNames(inlinePluginButtons), 'desktop'),
+  };
+
+  inlineButtons = appendSeparatorBetweenAllButtons(inlineButtons);
+
   const pluginTextButtonsByFormFactor = {
     mobile: reducePluginTextButtons(pluginTextButtons, ({ isMobile }) => isMobile !== false),
     desktop: reducePluginTextButtons(pluginTextButtons),
+  };
+
+  const inlinePluginButtonsByFormFactor = {
+    mobile: reducePluginTextButtons(inlinePluginButtons, ({ isMobile }) => isMobile !== false),
+    desktop: reducePluginTextButtons(inlinePluginButtons),
   };
 
   const defaultSettings = getDefaultToolbarSettings({
     pluginButtons,
     textButtons,
     pluginTextButtons: pluginTextButtonsByFormFactor,
+    inlineButtons,
+    inlinePluginButtons: inlinePluginButtonsByFormFactor,
   });
   const customSettings = getToolbarSettings({
     pluginButtons,
     textButtons,
     pluginTextButtons: pluginTextButtonsByFormFactor,
+    inlinePluginButtons: inlinePluginButtonsByFormFactor,
   });
   const toolbarSettings = mergeToolbarSettings({ defaultSettings, customSettings });
   const toolbars = {};

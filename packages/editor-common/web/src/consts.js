@@ -28,6 +28,7 @@ export const TOOLBARS = Object.freeze({
   INLINE: 'INLINE', //Text Toolbar
   PLUGIN: 'PLUGIN',
   TEXT: 'ALL-TEXT-TOOLBARS',
+  INLINE_PLUGIN: 'INLINE_PLUGIN',
 });
 
 export const DISPLAY_MODE = Object.freeze({

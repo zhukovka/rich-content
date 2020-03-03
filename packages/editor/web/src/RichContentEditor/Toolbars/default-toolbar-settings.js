@@ -1,4 +1,4 @@
-import { TOOLBARS, DISPLAY_MODE } from 'wix-rich-content-editor-common';
+import { TOOLBARS, DISPLAY_MODE, hasLinksInSelection } from 'wix-rich-content-editor-common';
 import { createSideToolbar } from './SideToolbar';
 import { createMobileToolbar, createFooterToolbar, createStaticTextToolbar } from './StaticToolbar';
 import { createInlineTextToolbar } from './InlineToolbar';
@@ -6,6 +6,12 @@ import { createInlineTextToolbar } from './InlineToolbar';
 const defaultInlineToolbarVisibilityFn = editorState => {
   const selection = editorState.getSelection();
   return !selection.isCollapsed() && selection.getHasFocus();
+};
+const defaultInlinePluginToolbarVisibilityFn = editorState => {
+  if (hasLinksInSelection(editorState)) {
+    const selection = editorState.getSelection();
+    return selection.isCollapsed() && selection.getHasFocus();
+  }
 };
 
 const defaultSideToolbarVisibilityFn = editorState => {
@@ -48,7 +54,13 @@ const defaultTextPluginButtons = {
   },
 };
 
-export const getDefaultToolbarSettings = ({ pluginButtons, textButtons, pluginTextButtons }) => {
+export const getDefaultToolbarSettings = ({
+  pluginButtons,
+  textButtons,
+  pluginTextButtons,
+  inlineButtons,
+  inlinePluginButtons,
+}) => {
   return [
     {
       name: TOOLBARS.SIDE,
@@ -236,6 +248,41 @@ export const getDefaultToolbarSettings = ({ pluginButtons, textButtons, pluginTe
         mobile: {
           ios: defaultInlineToolbarVisibilityFn,
           android: defaultInlineToolbarVisibilityFn,
+        },
+      }),
+      getInstance: createInlineTextToolbar,
+    },
+    {
+      name: TOOLBARS.INLINE_PLUGIN,
+      shouldCreate: () => ({
+        desktop: true,
+        mobile: {
+          ios: false,
+          android: false,
+        },
+      }),
+      getPositionOffset: () => defaultOffset,
+      getDisplayOptions: () => defaultDisplayOptions,
+      getToolbarDecorationFn: () => defaultToolbarDecorationFn,
+      getButtons: () => ({
+        desktop: inlineButtons.desktop,
+        mobile: {
+          ios: inlineButtons.mobile,
+          android: [],
+        },
+      }),
+      getTextPluginButtons: () => ({
+        desktop: inlinePluginButtons.desktop,
+        mobile: {
+          ios: inlinePluginButtons.mobile,
+          android: {},
+        },
+      }),
+      getVisibilityFn: () => ({
+        desktop: defaultInlinePluginToolbarVisibilityFn,
+        mobile: {
+          ios: defaultInlinePluginToolbarVisibilityFn,
+          android: defaultInlinePluginToolbarVisibilityFn,
         },
       }),
       getInstance: createInlineTextToolbar,
