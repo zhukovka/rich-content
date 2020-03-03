@@ -26,10 +26,14 @@ export default class UrlLinkButton extends Component {
       href,
       target: anchorTarget || '_self',
       rel: relValue || 'noopener',
-      className: this.state.styles.link,
+      className: this.state.styles.toolbarUrl,
       onMouseDown: this.preventDefault,
     };
-    return <a {...anchorProps}>{href}</a>;
+    return (
+      <div className={this.state.styles.toolbarUrlContainer}>
+        <a {...anchorProps}>{href}</a>
+      </div>
+    );
   }
 }
 

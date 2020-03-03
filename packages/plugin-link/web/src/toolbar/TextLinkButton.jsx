@@ -70,7 +70,7 @@ export default class TextLinkButton extends Component {
   }
 
   render() {
-    const { theme, isMobile, t, tabIndex, config } = this.props;
+    const { theme, isMobile, t, tabIndex, config, asUpdateButton } = this.props;
     const linkButtonTooltip = t('TextLinkButton_Tooltip');
     const buttonStyles = {
       button: theme.inlineToolbarButton,
@@ -82,12 +82,13 @@ export default class TextLinkButton extends Component {
     return (
       <LinkButton
         onClick={this.showLinkPanel}
-        isActive={this.isActive}
+        isActive={!asUpdateButton && this.isActive}
         theme={{ ...theme, ...buttonStyles }}
         isMobile={isMobile}
         tooltipText={linkButtonTooltip}
         tabIndex={tabIndex}
         icon={icon}
+        asUpdateButton={asUpdateButton}
       />
     );
   }
@@ -109,4 +110,5 @@ TextLinkButton.propTypes = {
   tabIndex: PropTypes.number,
   uiSettings: PropTypes.object,
   config: PropTypes.object,
+  asUpdateButton: PropTypes.bool,
 };

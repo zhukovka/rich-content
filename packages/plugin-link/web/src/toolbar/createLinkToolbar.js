@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   MODIFIERS,
   hasLinksInSelection,
@@ -76,7 +77,7 @@ export default config => ({
       position: { mobile: 5 },
     },
     Link: {
-      component: TextLinkButton,
+      component: props => <TextLinkButton asUpdateButton {...props} />,
       isMobile: true,
       position: { mobile: 5 },
     },

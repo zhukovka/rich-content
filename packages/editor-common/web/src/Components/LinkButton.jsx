@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InlineToolbarButton from './InlineToolbarButton';
-import { LinkIcon } from '../Icons';
+import { LinkIcon, EditIcon } from '../Icons';
 
-const LinkButton = ({ icon, ...otherProps }) => (
-  <InlineToolbarButton icon={icon || LinkIcon} dataHook={'LinkButton'} {...otherProps} />
+const LinkButton = ({ icon, asUpdateButton, ...otherProps }) => (
+  <InlineToolbarButton
+    icon={icon || (asUpdateButton ? EditIcon : LinkIcon)}
+    dataHook={'LinkButton'}
+    {...otherProps}
+  />
 );
 
 LinkButton.propTypes = {
@@ -15,6 +19,7 @@ LinkButton.propTypes = {
   tooltipText: PropTypes.string,
   tabIndex: PropTypes.number,
   icon: PropTypes.func,
+  asUpdateButton: PropTypes.bool,
 };
 
 export default LinkButton;

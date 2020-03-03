@@ -218,7 +218,7 @@ export const getDefaultToolbarSettings = ({
       getInstance: createStaticTextToolbar,
     },
     {
-      name: TOOLBARS.INLINE,
+      name: TOOLBARS.INLINE, //inlineTextToolbar === Formatting Toolbar
       shouldCreate: () => ({
         desktop: true,
         mobile: {
