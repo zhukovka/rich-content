@@ -12,7 +12,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+</details>
+<hr/>
 
+## 6.9.4 (Mar 4, 2020)
 ### :bug: Bug Fix
 - `html`
   - [#732](https://github.com/wix-incubator/rich-content/pull/732) reload issue in ios
@@ -22,9 +25,6 @@
 ### :house: Internal
 - `gallery`
   - [#742](https://github.com/wix-incubator/rich-content/pull/742) bump pro-gallery version to 1.7.25
-
-</details>
-<hr/>
 
 ## 6.9.3 (Mar 4, 2020)
 ### :bug: Bug Fix
