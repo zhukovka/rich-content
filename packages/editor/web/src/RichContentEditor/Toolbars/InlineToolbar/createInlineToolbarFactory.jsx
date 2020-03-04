@@ -20,6 +20,8 @@ export default data => {
     toolbarDecorationFn,
     config,
     locale,
+    name,
+    plugin,
   } = data;
 
   const structure = getTextButtonsFromList({
@@ -34,7 +36,8 @@ export default data => {
   });
 
   return createInlineToolbar({
-    name: 'InlineTextToolbar',
+    name,
+    plugin,
     structure,
     defaultTextAlignment,
     pubsub,

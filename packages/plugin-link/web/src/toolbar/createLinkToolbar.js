@@ -7,11 +7,11 @@ import {
   getModalStyles,
   insertLinkAtCurrentSelection,
   updateLinkAtCurrentSelection,
+  EditIcon,
 } from 'wix-rich-content-editor-common';
 import TextLinkButton from './TextLinkButton';
 import RemoveLinkButton from './RemoveLinkButton';
 import UrlLinkButton from './UrlLinkButton';
-import { EditIcon } from '../icons';
 
 const openLinkModal = ({
   helpers,

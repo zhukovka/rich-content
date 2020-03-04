@@ -1,7 +1,7 @@
 import { TOOLBARS, DISPLAY_MODE, hasLinksInSelection } from 'wix-rich-content-editor-common';
 import { createSideToolbar } from './SideToolbar';
 import { createMobileToolbar, createFooterToolbar, createStaticTextToolbar } from './StaticToolbar';
-import { createInlineTextToolbar } from './InlineToolbar';
+import { createInlineToolbarFactory } from './InlineToolbar';
 
 const defaultInlineToolbarVisibilityFn = editorState => {
   const selection = editorState.getSelection();
@@ -250,7 +250,7 @@ export const getDefaultToolbarSettings = ({
           android: defaultInlineToolbarVisibilityFn,
         },
       }),
-      getInstance: createInlineTextToolbar,
+      getInstance: args => createInlineToolbarFactory({ ...args, name: 'InlineTextToolbar' }),
     },
     {
       name: TOOLBARS.INLINE_PLUGIN,
@@ -285,7 +285,7 @@ export const getDefaultToolbarSettings = ({
           android: defaultInlinePluginToolbarVisibilityFn,
         },
       }),
-      getInstance: createInlineTextToolbar,
+      getInstance: args => createInlineToolbarFactory({ ...args, name: 'InlinePluginToolbar' }),
     },
   ];
 };

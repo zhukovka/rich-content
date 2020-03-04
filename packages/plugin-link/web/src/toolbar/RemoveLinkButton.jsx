@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { RemoveLinkToolbarButton, removeLinksInSelection } from 'wix-rich-content-editor-common';
+import { removeLinksInSelection, InlineToolbarButton } from 'wix-rich-content-editor-common';
 import { RemoveLinkIcon } from '../icons';
 
 export default class RemoveLinkButton extends Component {
@@ -22,13 +22,14 @@ export default class RemoveLinkButton extends Component {
     };
     const icon = config?.LINK?.toolbar?.icons?.InsertPluginButtonIcon || RemoveLinkIcon;
     return (
-      <RemoveLinkToolbarButton
+      <InlineToolbarButton
         onClick={this.deleteLink}
         theme={{ ...theme, ...buttonStyles }}
         isMobile={isMobile}
         tooltipText={linkButtonTooltip}
         tabIndex={tabIndex}
         icon={icon}
+        dataHook={'RemoveLinkButton'}
       />
     );
   }
