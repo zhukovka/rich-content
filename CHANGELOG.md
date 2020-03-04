@@ -27,6 +27,9 @@
 ### :house: Internal
 - `e2e`
   - [#737](https://github.com/wix-incubator/rich-content/pull/737) fix rendering and plugins tests
+### :rocket: New Feature
+- `bi-events`
+  - [#675](https://github.com/wix-incubator/rich-content/pull/514) supports `onPluginAdd` (toolbar only) and `onPluginDelete` callbacks via props
 
 ## 6.9.2 (Feb 27, 2020)
 ### :bug: Bug Fix
