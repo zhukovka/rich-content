@@ -6,6 +6,11 @@ export const linkPreviewUtil = authStr => {
   const getAbsoluteUrl = url =>
     url.substring(0, 7) === 'http://' || url.substring(0, 8) === 'https://' ? url : 'http://' + url;
 
+  const domainArray = window.location.href.split('/')[2].split('.');
+  const isOnSurge = domainArray[1] === 'surge' && domainArray[2] === 'sh';
+  const relativePath = '/rich-content/oembed?url=';
+  const path = isOnSurge ? `www.wix.com${relativePath}` : relativePath;
+
   return async url => {
     const { title, url: oldUrl } = state;
     if (oldUrl === url && title) {
@@ -13,9 +18,7 @@ export const linkPreviewUtil = authStr => {
     }
     let oEmbedRes;
     try {
-      oEmbedRes = await _axios
-        .get(`/rich-content/oembed?url=${getAbsoluteUrl(url)}`)
-        .then(res => res.data);
+      oEmbedRes = await _axios.get(`${path}${getAbsoluteUrl(url)}`).then(res => res.data);
       state = oEmbedRes;
     } catch (e) {
       console.error('caught', e); //eslint-disable-line no-console
