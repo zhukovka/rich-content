@@ -12,11 +12,13 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-  
-### :bug: Bug Fix
-- `video`
-  - [#746](https://github.com/wix-incubator/rich-content/pull/746) controls not showing  
-  
+
+  ### :bug: Bug Fix
+  - `editor`
+    - [#747](https://github.com/wix-incubator/rich-content/pull/747) unable to build - draftUtils Bi consumption
+  - `video`
+    - [#746](https://github.com/wix-incubator/rich-content/pull/746) controls not showing  
+
 </details>
 <hr/>
 
