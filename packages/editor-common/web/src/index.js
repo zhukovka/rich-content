@@ -81,6 +81,8 @@ export {
   createBlock,
   getBlockInfo,
   getFocusedBlockKey,
+  calculateDiff,
+  getPostContentSummary,
 } from './Utils/draftUtils';
 export { isiOS } from './Utils/isiOS';
 export { getSelectionStyles } from './Utils/inlineStyleUtils';
