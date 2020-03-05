@@ -13,14 +13,15 @@
     Click to see more.
   </summary>
 
-  ### :bug: Bug Fix
-  - `editor`
-    - [#747](https://github.com/wix-incubator/rich-content/pull/747) unable to build - draftUtils Bi consumption
-  - `video`
-    - [#746](https://github.com/wix-incubator/rich-content/pull/746) controls not showing  
-
 </details>
 <hr/>
+
+## 6.9.6 (Mar 5, 2020)
+### :bug: Bug Fix
+- `editor`
+  - [#747](https://github.com/wix-incubator/rich-content/pull/747) unable to build - draftUtils Bi consumption
+- `video`
+  - [#746](https://github.com/wix-incubator/rich-content/pull/746) controls not showing
 
 ## 6.9.5 (Mar 4, 2020)
 ### :bug: Bug Fix
