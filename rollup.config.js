@@ -46,11 +46,11 @@ const editorEntry = {
   watch,
 };
 
-let libEntries;
+const libEntries = [];
 try {
   let libEntriesPath = 'src/lib/';
   fs.readdirSync(`./${libEntriesPath}`).forEach(file => {
-    libEntries = {
+    libEntries.push({
       input: libEntriesPath + file,
       output: cloneDeep(output).map(o => ({
         ...o,
@@ -59,9 +59,9 @@ try {
       plugins,
       external,
       watch,
-    };
+    });
   });
-} catch (_) { }
+} catch (_) {}
 
 let viewerEntry;
 try {
@@ -77,15 +77,7 @@ try {
     external,
     watch,
   };
-} catch (_) { }
+} catch (_) {}
 
-let config = [editorEntry];
-
-if (viewerEntry) {
-  config.push(viewerEntry);
-}
-if (libEntries) {
-  config.push(libEntries);
-}
-
+const config = [editorEntry, viewerEntry, ...libEntries].filter(x => x);
 export default config;

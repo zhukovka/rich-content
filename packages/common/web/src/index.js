@@ -44,4 +44,3 @@ export { isHexColor } from './Utils/colorUtils';
 export { isRtl, getLangDir } from './Utils/rtlUtils';
 
 export { HEADER_BLOCK, BLOCK_TYPES } from './consts';
-export { linkPreviewUtil } from './Utils/linkPreviewUtil';
