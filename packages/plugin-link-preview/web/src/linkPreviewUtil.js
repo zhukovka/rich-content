@@ -9,7 +9,7 @@ export const linkPreviewUtil = authStr => {
   const domainArray = window.location.href.split('/')[2].split('.');
   const isOnSurge = domainArray[1] === 'surge' && domainArray[2] === 'sh';
   const relativePath = '/rich-content/oembed?url=';
-  const path = isOnSurge ? `https://www.wix.com${relativePath}` : relativePath;
+  const path = isOnSurge ? `https://www.wixsite.com${relativePath}` : relativePath;
 
   return async url => {
     const { title, url: oldUrl } = state;
