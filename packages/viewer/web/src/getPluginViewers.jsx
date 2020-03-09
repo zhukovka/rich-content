@@ -140,7 +140,7 @@ PluginViewer.defaultProps = {
 //return a list of types with a function that wraps the viewer
 const getPluginViewers = (typeMap, context, styles) => {
   const res = {};
-  Object.keys(typeMap).forEach(type => {
+  Object.keys(typeMap).forEach((type, i) => {
     res[type] = (children, entity, { key }) => {
       const pluginComponent = typeMap[type];
       const isInline = pluginComponent.elementType === 'inline';
@@ -151,11 +151,10 @@ const getPluginViewers = (typeMap, context, styles) => {
         : DefaultInteractionWrapper;
 
       return (
-        <ViewerWrapper>
+        <ViewerWrapper key={`${i}_${key}`}>
           <PluginViewer
             type={type}
             pluginComponent={pluginComponent}
-            key={key}
             componentData={entity}
             entityIndex={key}
             context={context}

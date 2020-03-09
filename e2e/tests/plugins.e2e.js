@@ -22,10 +22,6 @@ const eyesOpen = ({
   });
 
 describe('plugins', () => {
-  beforeEach(function() {
-    cy.switchToDesktop();
-  });
-
   afterEach(() => cy.matchContentSnapshot());
 
   context('image', () => {
@@ -33,7 +29,10 @@ describe('plugins', () => {
       eyesOpen(this);
     });
 
-    beforeEach('load editor', () => cy.loadEditorAndViewer('images'));
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
+      cy.loadEditorAndViewer('images');
+    });
 
     after(() => cy.eyesClose());
 
@@ -58,7 +57,7 @@ describe('plugins', () => {
     before(function() {
       eyesOpen(this);
     });
-
+    beforeEach('load editor', () => cy.switchToDesktop());
     after(() => cy.eyesClose());
 
     context('image full screen', () => {
@@ -93,6 +92,10 @@ describe('plugins', () => {
   context('gallery', () => {
     before(function() {
       eyesOpen(this);
+    });
+
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
     });
 
     after(() => cy.eyesClose());
@@ -191,7 +194,10 @@ describe('plugins', () => {
       eyesOpen(this);
     });
 
-    beforeEach('load editor', () => cy.loadEditorAndViewer('empty'));
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
+      cy.loadEditorAndViewer('empty');
+    });
 
     after(() => cy.eyesClose());
 
@@ -223,7 +229,10 @@ describe('plugins', () => {
       eyesOpen(this);
     });
 
-    beforeEach('load editor', () => cy.loadEditorAndViewer('empty'));
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
+      cy.loadEditorAndViewer('empty');
+    });
 
     after(() => cy.eyesClose());
 
@@ -246,6 +255,10 @@ describe('plugins', () => {
       eyesOpen(this);
     });
 
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
+    });
+
     after(() => cy.eyesClose());
 
     it('render html plugin toolbar', function() {
@@ -261,6 +274,10 @@ describe('plugins', () => {
   context('divider', () => {
     before(function() {
       eyesOpen(this);
+    });
+
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
     });
 
     after(() => cy.eyesClose());
@@ -297,6 +314,10 @@ describe('plugins', () => {
       eyesOpen(this);
     });
 
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
+    });
+
     after(() => cy.eyesClose());
 
     it('render giphy plugin toolbar', function() {
@@ -313,6 +334,7 @@ describe('plugins', () => {
   context('map', () => {
     before('load editor', function() {
       eyesOpen(this);
+      cy.switchToDesktop();
       cy.loadEditorAndViewer('map');
     });
 
@@ -330,6 +352,7 @@ describe('plugins', () => {
   context('file-upload', () => {
     before('load editor', function() {
       eyesOpen(this);
+      cy.switchToDesktop();
       cy.loadEditorAndViewer('file-upload');
     });
 
@@ -344,6 +367,7 @@ describe('plugins', () => {
   context('drag and drop', () => {
     before('load editor', function() {
       eyesOpen(this);
+      cy.switchToDesktop();
       cy.loadEditorAndViewer('dragAndDrop');
     });
 
@@ -363,6 +387,10 @@ describe('plugins', () => {
   context('alignment', () => {
     before(function() {
       eyesOpen(this);
+    });
+
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
     });
 
     after(() => cy.eyesClose());
