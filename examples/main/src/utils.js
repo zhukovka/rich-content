@@ -27,12 +27,11 @@ export const saveStateToStorage = debounce(state => {
   local.set(getStorageKey(), stateToStore);
 }, 1000);
 
-export const normalize = json => {
+export const getStateFromObject = obj => {
   const { anchorTarget, relValue } = CONSTS;
-  return normalizeInitialState(json, {
-    anchorTarget,
-    relValue,
-  });
+  const { convertState, normalizedState } = convertFromRaw(obj, anchorTarget, relValue);
+  const editorState = createWithContent(convertState);
+  return { editorState, viewerState: normalizedState };
 };
 
 export const getBaseUrl = () => {

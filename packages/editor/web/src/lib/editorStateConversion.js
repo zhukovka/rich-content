@@ -1,5 +1,6 @@
 import { convertFromRaw as fromRaw, convertToRaw as toRaw, EditorState } from '@wix/draft-js';
 import { version } from '../../package.json';
+import { normalizeInitialState } from 'wix-rich-content-common';
 
 const addVersion = (obj, version) => {
   obj.VERSION = version;
@@ -21,8 +22,13 @@ const fixBlockDataImmutableJS = contentState => {
 const convertToRaw = ContentState =>
   addVersion(fixBlockDataImmutableJS(toRaw(ContentState)), version);
 
-const convertFromRaw = rawState => addVersion(fromRaw(rawState), rawState.VERSION);
-
+const convertFromRaw = (rawState, { anchorTarget, relValue }) => {
+  const normalizedState = normalizeInitialState(rawState, {
+    anchorTarget,
+    relValue,
+  });
+  return addVersion(fromRaw(normalizedState), normalizedState.VERSION);
+};
 const createEmpty = () => addVersion(EditorState.createEmpty(), version);
 const createWithContent = contentState =>
   addVersion(EditorState.createWithContent(contentState), contentState.VERSION);
