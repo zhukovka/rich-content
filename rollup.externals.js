@@ -1,18 +1,17 @@
-export const externals = [
-  'draft-js',
+const externals = [
   'assert',
   'classnames',
-  'draft-js',
   'lodash',
   'prop-types',
   'react',
   'react-dom',
+  'draft-js',
   'wix-rich-content-editor-common',
   'wix-rich-content-common',
   'react-i18next',
 ];
 
-export const excludedExternals = [
+const excludedExternalsRegexArr = [
   /draft-js-plugins-editor/,
   /draft-js-.*?-plugin/,
   /react-click-outside/,
@@ -21,36 +20,13 @@ export const excludedExternals = [
   /wix-rich-content-common\/.*?\.scss/,
 ];
 
-export const globals = {
-  classnames: 'classNames',
-  'draft-js': 'Draft',
-  'draft-js-code': 'CodeUtils',
-  lodash: '_',
-  'prop-types': 'PropTypes',
-  react: 'React',
-  'react-custom-scrollbars': 'ReactCustomScrollbars',
-  'react-dom': 'ReactDOM',
-  'react-i18next': 'reactI18next',
-  'react-infinite-scroller': 'InfiniteScroll',
-  'react-md-spinner': 'MDSpinner',
-  'react-measure': 'Measure',
-  'react-player': 'ReactPlayer',
-  'react-sortable-hoc': 'reactSortableHoc',
-  'react-tooltip': 'ReactTooltip',
-  'wix-rich-content-editor-common': 'WixRichContentEditorCommon',
-  'wix-rich-content-common': 'WixRichContentCommon',
+const localPrefixes = ['\0', '.', '/'];
+const testRegex = (regex, id) => (typeof regex === 'string' ? regex === id : regex.test(id));
+
+export const isExternal = id => {
+  return (
+    !localPrefixes.find(prefix => id.startsWith(prefix)) &&
+    !excludedExternalsRegexArr.find(regex => testRegex(regex, id)) &&
+    !!externals.find(externalName => new RegExp(externalName).test(id))
+  );
 };
-
-export const excludedGlobals = [
-  'draft-js-plugins-editor',
-  /draft-js-.*?-plugin/,
-  'react-click-outside',
-  'draft-js/lib/DraftOffsetKey',
-];
-
-export const isExternal = id =>
-  !id.startsWith('\0') &&
-  !id.startsWith('.') &&
-  !id.startsWith('/') &&
-  !excludedExternals.find(regex => (typeof regex === 'string' ? regex === id : regex.test(id))) &&
-  !!externals.find(externalName => new RegExp(externalName).test(id));
