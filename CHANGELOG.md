@@ -18,6 +18,9 @@
 ### :rocket: New Feature
 - `viewer`
   - [#1005](https://github.com/wix-incubator/rich-content/pull/1005) add viewMode SEO to ProGallery
+### :house: Internal
+- `editor`
+  - [#754](https://github.com/wix-incubator/rich-content/pull/754) add Normalize to convertFromRaw
 
 </details>
 <hr/>
