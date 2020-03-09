@@ -28,6 +28,7 @@ import { createButtonPlugin, BUTTON_TYPE } from 'wix-rich-content-plugin-button'
 import { createTextHighlightPlugin, TEXT_HIGHLIGHT_TYPE } from 'wix-rich-content-plugin-text-color';
 import Highlighter from 'react-highlight-words';
 import casual from 'casual-browserify';
+import { linkPreviewUtil } from 'wix-rich-content-plugin-link-preview/dist/lib/linkPreviewUtil';
 
 import 'wix-rich-content-editor-common/dist/styles.min.css';
 import 'wix-rich-content-common/dist/styles.min.css';
@@ -56,7 +57,6 @@ import {
   colorScheme,
   customBackgroundStyleFn,
 } from '../../src/text-color-style-fn';
-import { linkPreviewUtil } from 'wix-rich-content-common';
 
 import { testWixVideos } from './mock';
 // import { MyCustomIcon, SizeSmallRightIcon, TOOLBARS } from 'wix-rich-content-editor-common';
@@ -108,7 +108,7 @@ let userButtonBorderColors = [...buttonDefaultPalette];
 
 const getLinkPanelDropDownConfig = () => {
   const getItems = () => {
-    casual.define('item', function () {
+    casual.define('item', function() {
       return {
         value: casual.url,
         label: casual.catch_phrase,

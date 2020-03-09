@@ -5,10 +5,11 @@ import {
   linkPreviewTypeMapper,
   LINK_PREVIEW_TYPE,
 } from 'wix-rich-content-plugin-link-preview/dist/module.viewer';
-import { linkTypeMapper, LINK_TYPE } from 'wix-rich-content-plugin-link/dist/module.viewer';
-import { createLinkPreviewPlugin } from 'wix-rich-content-plugin-link-preview';
-import { createLinkPlugin } from 'wix-rich-content-plugin-link';
+import { linkTypeMapper } from 'wix-rich-content-plugin-link/dist/module.viewer';
+import { pluginLinkPreview } from 'wix-rich-content-plugin-link-preview';
+import { pluginLink } from 'wix-rich-content-plugin-link';
 import LinkPreview from '../../../../e2e/tests/fixtures/linkPreview.json';
+import { RichContentWrapper } from 'wix-rich-content-wrapper';
 
 import {
   RichContentEditorBox,
@@ -17,8 +18,6 @@ import {
   Section,
   Page,
 } from '../Components/StoryParts';
-
-import ThemesExample from '../Components/ThemesExample';
 
 const mockOembedResults = [
   {
@@ -67,25 +66,20 @@ export default () => {
   const config = {
     [LINK_PREVIEW_TYPE]: {
       fetchMetadata: linkPreviewUtil(authorization),
-      disableEmbed: false,
-    },
-    [LINK_TYPE]: {
-      preview: {
-        enable: true,
-      },
     },
   };
-  const plugins = [createLinkPreviewPlugin, createLinkPlugin];
+  const plugins = [pluginLink(), pluginLinkPreview()];
 
   return (
     <Page title="Link Preview">
       <Section type={Section.Types.COMPARISON}>
         <RichContentEditorBox preset="blog-preset">
-          <RichContentEditor
-            config={config}
-            plugins={plugins}
-            editorState={createWithContent(convertFromRaw(LinkPreview))}
-          />
+          <RichContentWrapper plugins={plugins}>
+            <RichContentEditor
+              editorState={createWithContent(convertFromRaw(LinkPreview))}
+              config={config}
+            />
+          </RichContentWrapper>
         </RichContentEditorBox>
         <RichContentViewerBox preset="blog-preset">
           <RichContentViewer initialState={LinkPreview} typeMappers={typeMappers} />
@@ -94,12 +88,6 @@ export default () => {
 
       <Section title="Content State">
         <ContentState json={LinkPreview} />
-      </Section>
-
-      <Section title="themeing">
-        <ThemesExample>
-          <RichContentViewer initialState={LinkPreview} typeMappers={typeMappers} />
-        </ThemesExample>
       </Section>
     </Page>
   );

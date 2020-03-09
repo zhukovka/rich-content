@@ -16,7 +16,7 @@
 ### :bug: Bug Fix
 - `hashtag`
   - [#707](https://github.com/wix-incubator/rich-content/pull/707) allow hashtag and link in the same block
-  
+
 </details>
 <hr/>
 
@@ -2075,4 +2075,3 @@ _NOTE:_ From this version onwards all modules will have the same version number,
 - `editor`
   - [#58](https://github.com/wix-incubator/rich-content/pull/58) Default `locale` is `'en'`, English texts are imported statically
     Set the `locale` and `localeResource` props to use another language
-
