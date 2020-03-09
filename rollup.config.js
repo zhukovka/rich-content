@@ -79,5 +79,4 @@ try {
   };
 } catch (_) {}
 
-const config = [editorEntry, viewerEntry, ...libEntries].filter(x => x);
-export default config;
+export default [editorEntry, viewerEntry, ...libEntries].filter(x => x);
