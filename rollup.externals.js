@@ -5,17 +5,13 @@ const externals = [
   'prop-types',
   'react',
   'react-dom',
-  'draft-js',
   'wix-rich-content-editor-common',
   'wix-rich-content-common',
   'react-i18next',
 ];
 
 const excludedExternalsRegexArr = [
-  /draft-js-plugins-editor/,
-  /draft-js-.*?-plugin/,
   /react-click-outside/,
-  'draft-js/lib/DraftOffsetKey',
   /wix-rich-content-editor-common\/.*?\.scss/,
   /wix-rich-content-common\/.*?\.scss/,
 ];

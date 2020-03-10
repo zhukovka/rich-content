@@ -96,3 +96,21 @@ export {
   PLUGIN_DECORATION_PROPS,
   PLUGIN_DECORATIONS,
 } from './consts';
+
+export {
+  convertToRaw,
+  getVisibleSelectionRect,
+  convertFromRaw,
+  EditorState,
+  SelectionState,
+  DefaultDraftBlockRenderMap,
+  Modifier,
+  RichUtils,
+  KeyBindingUtil,
+  genKey,
+  ContentBlock,
+  BlockMapBuilder,
+} from 'draft-js';
+
+import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
+export { DraftOffsetKey };
