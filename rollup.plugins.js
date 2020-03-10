@@ -45,7 +45,7 @@ const commonjs = () => {
     },
     {
       path: 'node_modules/immutable/dist/immutable.js',
-      exportList: ['List'],
+      exportList: ['List', 'OrderedSet', 'Map'],
     },
     {
       path: 'node_modules/draft-js/lib/Draft.js',

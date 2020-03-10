@@ -22,6 +22,7 @@ import {
   getFocusedBlockKey,
   calculateDiff,
   getPostContentSummary,
+  Modifier,
 } from 'wix-rich-content-editor-common';
 
 import {
@@ -32,6 +33,8 @@ import {
 } from 'wix-rich-content-common';
 import styles from '../../statics/styles/rich-content-editor.scss';
 import draftStyles from '../../statics/styles/draft.rtlignore.scss';
+import { convertFromHTML as draftConvertFromHtml } from 'draft-convert';
+import pastedContentConfig from './utils/pastedContentConfig';
 
 class RichContentEditor extends Component {
   static getDerivedStateFromError(error) {
@@ -212,6 +215,29 @@ class RichContentEditor extends Component {
     this.props.onChange && this.props.onChange(editorState);
   };
 
+  handlePastedText = (text, html, editorState) => {
+    const { handlePastedText } = this.props;
+    if (handlePastedText) {
+      return handlePastedText(text, html, editorState);
+    }
+    const contentState = draftConvertFromHtml(pastedContentConfig)(html);
+
+    const updatedContentState = Modifier.replaceWithFragment(
+      editorState.getCurrentContent(),
+      editorState.getSelection(),
+      contentState.getBlockMap()
+    );
+
+    const newEditorState = EditorState.push(editorState, updatedContentState, 'insert-fragment');
+    const resultEditorState = EditorState.set(newEditorState, {
+      currentContent: updatedContentState,
+      selection: newEditorState.getSelection(),
+    });
+
+    this.updateEditorState(resultEditorState);
+    return 'handled';
+  };
+
   getCustomCommandHandlers = () => ({
     commands: [
       ...this.pluginKeyBindings.commands,
@@ -310,7 +336,6 @@ class RichContentEditor extends Component {
       onFocus,
       textAlignment,
       handleBeforeInput,
-      handlePastedText,
       handleReturn,
     } = this.props;
     const { editorState } = this.state;
@@ -327,7 +352,7 @@ class RichContentEditor extends Component {
         editorState={editorState}
         onChange={this.updateEditorState}
         handleBeforeInput={handleBeforeInput}
-        handlePastedText={handlePastedText}
+        handlePastedText={this.handlePastedText}
         plugins={this.plugins}
         blockStyleFn={blockStyleFn(theme, this.styleToClass)}
         blockRenderMap={getBlockRenderMap(theme)}

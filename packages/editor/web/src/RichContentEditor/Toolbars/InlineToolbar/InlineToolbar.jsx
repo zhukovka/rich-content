@@ -5,9 +5,10 @@ import Measure from 'react-measure';
 import ClickOutside from 'react-click-outside';
 import { debounce } from 'lodash';
 import { DISPLAY_MODE, getVisibleSelectionRect } from 'wix-rich-content-editor-common';
-import Styles from '../../../../statics/styles/inline-toolbar.rtlignore.scss';
+import stylesRtlIgnore from '../../../../statics/styles/inline-toolbar.rtlignore.scss';
+import styles from '../../../../statics/styles/inline-toolbar.scss';
 import { getLangDir } from 'wix-rich-content-common';
-
+const Styles = { ...stylesRtlIgnore, ...styles };
 const TOOLBAR_OFFSET = 5;
 
 const getRelativeParent = element => {
