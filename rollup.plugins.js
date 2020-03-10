@@ -63,6 +63,9 @@ const commonjs = () => {
         'genKey',
         'ContentBlock',
         'BlockMapBuilder',
+        'CharacterMetadata',
+        'ContentState',
+        'Entity',
       ],
     },
   ];
