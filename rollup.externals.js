@@ -21,8 +21,8 @@ const testRegex = (regex, id) => (typeof regex === 'string' ? regex === id : reg
 
 export const isExternal = id => {
   return (
-    !localPrefixes.find(prefix => id.startsWith(prefix)) &&
-    !excludedExternalsRegexArr.find(regex => testRegex(regex, id)) &&
-    !!externals.find(externalName => new RegExp(externalName).test(id))
+    !localPrefixes.some(prefix => id.startsWith(prefix)) &&
+    !excludedExternalsRegexArr.some(regex => testRegex(regex, id)) &&
+    externals.some(externalName => new RegExp(externalName).test(id))
   );
 };
