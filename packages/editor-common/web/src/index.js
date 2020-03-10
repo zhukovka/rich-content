@@ -110,6 +110,8 @@ export {
   genKey,
   ContentBlock,
   BlockMapBuilder,
+  AtomicBlockUtils,
+  ContentState,
 } from 'draft-js';
 
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
