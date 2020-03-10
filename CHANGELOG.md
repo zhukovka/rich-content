@@ -13,6 +13,9 @@
     Click to see more.
   </summary>
 
+### :rocket: New Feature
+- `editor-common`
+  - [#716](https://github.com/wix-incubator/rich-content/pull/716) progress loader
 ### :bug: Bug Fix
 - `hashtag`
   - [#707](https://github.com/wix-incubator/rich-content/pull/707) allow hashtag and link in the same block
