@@ -46,6 +46,7 @@ export { default as Tooltip } from './Components/Tooltip';
 export { default as TooltipHost } from './Components/TooltipHost';
 export { default as ColorPicker } from './Components/ColorPicker/ColorPicker';
 export { default as CustomColorPicker } from './Components/ColorPicker/CustomColorPicker';
+export { default as Loader } from './Components/Loader';
 
 //Modals
 export { default as EditorModals } from './Modals/EditorModals';
@@ -65,6 +66,7 @@ export {
   insertLinkAtCurrentSelection,
   insertLinkInPosition,
   hasLinksInBlock,
+  getLinkRangesInBlock,
   fixPastedLinks,
   hasLinksInSelection,
   getLinkDataInSelection,
@@ -82,6 +84,8 @@ export {
   createBlock,
   getBlockInfo,
   getFocusedBlockKey,
+  calculateDiff,
+  getPostContentSummary,
 } from './Utils/draftUtils';
 export { isiOS } from './Utils/isiOS';
 export { getSelectionStyles } from './Utils/inlineStyleUtils';
