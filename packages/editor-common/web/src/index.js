@@ -46,6 +46,7 @@ export { default as Tooltip } from './Components/Tooltip';
 export { default as TooltipHost } from './Components/TooltipHost';
 export { default as ColorPicker } from './Components/ColorPicker/ColorPicker';
 export { default as CustomColorPicker } from './Components/ColorPicker/CustomColorPicker';
+export { default as Loader } from './Components/Loader';
 
 //Modals
 export { default as EditorModals } from './Modals/EditorModals';
@@ -112,6 +113,8 @@ export {
   BlockMapBuilder,
   AtomicBlockUtils,
   ContentState,
+  RawDraftContentState,
+  EditorChangeType,
 } from 'draft-js';
 
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
