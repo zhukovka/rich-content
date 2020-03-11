@@ -12,7 +12,7 @@ import LayoutSelector from './gallery-controls/layouts-selector';
 import styles from '../../statics/styles/gallery-settings-modal.scss';
 import LayoutControlsSection from './layout-controls-section';
 import { SortableComponent } from './gallery-controls/gallery-items-sortable';
-import layoutData from '../helpers/layout-data-provider';
+import layoutData from '../lib/layout-data-provider';
 import GallerySettingsMobileHeader from './gallery-controls/gallery-settings-mobile-header';
 
 class ManageMediaSection extends Component {
@@ -47,9 +47,9 @@ class ManageMediaSection extends Component {
       isMobile,
       uiSettings,
       languageDir,
+      accept,
     } = this.props;
     const { handleFileSelection } = helpers;
-
     return (
       <div dir={languageDir}>
         <SortableComponent
@@ -65,6 +65,7 @@ class ManageMediaSection extends Component {
           anchorTarget={anchorTarget}
           isMobile={isMobile}
           uiSettings={uiSettings}
+          accept={accept}
         />
       </div>
     );
@@ -82,6 +83,7 @@ ManageMediaSection.propTypes = {
   relValue: PropTypes.string,
   uiSettings: PropTypes.object,
   languageDir: PropTypes.string,
+  accept: PropTypes.string,
 };
 
 class AdvancedSettingsSection extends Component {
@@ -221,6 +223,7 @@ export class GallerySettingsModal extends Component {
       relValue,
       uiSettings,
       languageDir,
+      accept,
     } = this.props;
     const { activeTab } = this.state;
     const componentData = pubsub.get('componentData');
@@ -250,6 +253,7 @@ export class GallerySettingsModal extends Component {
               anchorTarget={anchorTarget}
               relValue={relValue}
               uiSettings={uiSettings}
+              accept={accept}
             />
           ) : null}
           {activeTab === 'advanced_settings' ? (
@@ -289,6 +293,7 @@ export class GallerySettingsModal extends Component {
                   anchorTarget={anchorTarget}
                   relValue={relValue}
                   uiSettings={uiSettings}
+                  accept={accept}
                 />
               </Tab>
               <Tab
@@ -331,6 +336,7 @@ GallerySettingsModal.propTypes = {
   anchorTarget: PropTypes.string,
   uiSettings: PropTypes.object,
   languageDir: PropTypes.string,
+  accept: PropTypes.string,
 };
 
 export default GallerySettingsModal;

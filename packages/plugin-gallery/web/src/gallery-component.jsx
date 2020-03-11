@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Loader } from 'wix-rich-content-editor-common';
 import { isEqual } from 'lodash';
 import GalleryViewer from './gallery-viewer';
-import { DEFAULTS } from './constants';
+import { DEFAULTS, imageItem } from './constants';
 
 class GalleryComponent extends PureComponent {
   constructor(props) {
@@ -10,14 +11,18 @@ class GalleryComponent extends PureComponent {
     this.state = this.stateFromProps(props);
 
     const { block, store, commonPubsub } = this.props;
-    const blockKey = block.getKey();
+    this.blockKey = block.getKey();
     if (store) {
-      store.setBlockHandler('handleFilesSelected', blockKey, this.handleFilesSelected.bind(this));
-      store.setBlockHandler('handleFilesAdded', blockKey, this.handleFilesAdded.bind(this));
+      store.setBlockHandler(
+        'handleFilesSelected',
+        this.blockKey,
+        this.handleFilesSelected.bind(this)
+      );
+      store.setBlockHandler('handleFilesAdded', this.blockKey, this.handleFilesAdded.bind(this));
     }
     commonPubsub?.setBlockHandler(
       'galleryHandleFilesAdded',
-      blockKey,
+      this.blockKey,
       this.handleFilesAdded.bind(this)
     );
   }
@@ -29,26 +34,29 @@ class GalleryComponent extends PureComponent {
       !isEqual(componentState, nextProps.componentState)
     ) {
       this.setState(this.stateFromProps(nextProps));
+    } else if (componentData.items?.length > 0) {
+      this.onLoad(false);
     }
   }
 
   stateFromProps = props => {
     const items = props.componentData.items || []; // || DEFAULTS.items;
-    const styles = Object.assign(DEFAULTS.styles, props.componentData.styles || {});
-    const isLoading = props.componentState?.isLoading || 0;
+    const styles = { ...DEFAULTS.styles, ...(props.componentData.styles || {}) };
+    const itemsLeftToUpload = props.componentState?.isLoading || 0;
     const state = {
       items,
       styles,
-      isLoading,
+      itemsLeftToUpload,
     };
 
     if (props.componentState) {
       const { userSelectedFiles } = props.componentState;
-      if (isLoading <= 0 && userSelectedFiles) {
+      if (itemsLeftToUpload <= 0 && userSelectedFiles) {
         //lets continue the uploading process
         if (userSelectedFiles.files && userSelectedFiles.files.length > 0) {
-          state.isLoading = userSelectedFiles.files.length;
+          state.itemsLeftToUpload = userSelectedFiles.files.length;
           this.handleFilesSelected(userSelectedFiles.files);
+          state.isLoading = true;
         }
         if (this.props.store) {
           setTimeout(() => {
@@ -99,19 +107,14 @@ class GalleryComponent extends PureComponent {
       };
       reader.readAsDataURL(file);
     });
+    this.state && this.onLoad(true);
   };
 
   imageLoaded = (event, file, itemPos, totalItemsNumber) => {
     const img = event.target;
-    const item = {
-      metadata: {
-        height: img.height,
-        width: img.width,
-      },
-      itemId: String(event.timeStamp),
-      url: img.src,
-    };
+    const item = imageItem(img, String(event.timeStamp));
     const excludeFromUndoStack = true;
+
     const itemIdx = this.setItemInGallery(item, itemPos, excludeFromUndoStack);
     const { helpers } = this.props;
 
@@ -130,12 +133,16 @@ class GalleryComponent extends PureComponent {
     const handleFileAdded = (item, idx) => {
       const galleryItem = {
         metadata: {
+          type: item.type || 'image',
           height: item.height,
           width: item.width,
         },
         itemId: String(item.id),
         url: item.file_name,
       };
+      if (item.type === 'video') {
+        galleryItem.metadata.poster = item.poster || item.thumbnail_url;
+      }
       this.setItemInGallery(galleryItem, idx);
       if (itemIdx === totalItemsNumber - 1) {
         this.props.excludeDataChangesFromUndoStack(false);
@@ -151,26 +158,57 @@ class GalleryComponent extends PureComponent {
     }
   };
 
-  fileLoaded = (event, file, itemPos, totalItemsNumber) => {
-    const img = new Image();
-    img.onload = e => this.imageLoaded(e, file, itemPos, totalItemsNumber);
-    img.src = event.target.result;
+  videoLoaded = (event, file, itemPos) => {
+    const { helpers } = this.context;
+    const hasFileChangeHelper = helpers && helpers.onVideoSelected;
+
+    if (hasFileChangeHelper) {
+      helpers.onVideoSelected(file, video => {
+        // eslint-disable-next-line camelcase
+        const data = { ...video, id: String(event.timeStamp), file_name: video.video_url };
+        this.handleFilesAdded({ data, itemPos });
+      });
+    } else {
+      console.warn('Missing upload function'); //eslint-disable-line no-console
+    }
+  };
+
+  fileLoaded = (event, file, itemPos) => {
+    if (file.type.match('image/*')) {
+      const img = new Image();
+      img.onload = e => this.imageLoaded(e, file, itemPos);
+      img.src = event.target.result;
+    } else if (file.type.match('video/*')) {
+      this.videoLoaded(event, file, itemPos);
+    }
+  };
+
+  renderLoader = () => {
+    return <Loader type={'medium'} />;
+  };
+
+  onLoad = isLoading => {
+    this.setState({ isLoading });
   };
 
   render() {
     return (
-      <GalleryViewer
-        componentData={this.props.componentData}
-        onClick={this.props.onClick}
-        className={this.props.className}
-        settings={this.props.settings}
-        theme={this.props.theme}
-        helpers={this.props.helpers}
-        disableRightClick={this.props.disableRightClick}
-        isMobile={this.props.isMobile}
-        anchorTarget={this.props.anchorTarget}
-        relValue={this.props.relValue}
-      />
+      <>
+        <GalleryViewer
+          componentData={this.props.componentData}
+          onClick={this.props.onClick}
+          className={this.props.className}
+          settings={this.props.settings}
+          theme={this.props.theme}
+          helpers={this.props.helpers}
+          disableRightClick={this.props.disableRightClick}
+          isMobile={this.props.isMobile}
+          anchorTarget={this.props.anchorTarget}
+          relValue={this.props.relValue}
+          blockKey={this.blockKey}
+        />
+        {this.state.isLoading && this.renderLoader()}
+      </>
     );
   }
 }
