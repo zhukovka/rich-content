@@ -28,11 +28,14 @@
 }
 
 .linkPanel_content {
-  padding: 0 23px;
+  display: flex;
+  padding: 13px 0;
+  // padding: 0 23px;
 }
 
 .linkPanel_Content {
-  margin: 0px 1px;
+  // margin: 0px 1px;
+  margin-left: 13px;
   padding-bottom: 6px;
   font-size: 14px;
   font-weight: 300;
@@ -101,13 +104,13 @@
 }
 
 .linkPanel_actionsDivider {
-  margin: 0 4px;
   border-bottom: 1px solid rgba(51, 51, 51, 0.1);
 }
 
 .linkPanel_Footer {
   display: flex;
   justify-content: space-between;
+  padding: 12px 0 14px 0;
 }
 
 .linkPanel_FooterActions,
@@ -122,16 +125,15 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 12px 23px 14px 18px;
+  padding: 0 0 0 18px;
 }
 
 .linkPanel_Cancel {
-  padding: 12px 19px 14px 23px;
+  padding: 0 19px 0 0;
 }
 
 .linkPanel_VerticalDivider {
-  height: 22px;
-  margin: 13px 0;
+  height: auto;
   border-right: 1px solid rgba(51, 51, 51, 0.1);
 }
 
@@ -142,4 +144,25 @@
 
 .linkPanel_enabled {
   color: #0261ff;
+}
+
+.linkPanel_header {
+  font-size: 20px;
+  margin-bottom: 13px;
+}
+
+.linkPanel_radioButtons {
+  display: flex;
+  flex-direction: column;
+  margin-right: 13px;
+  height: fit-content;
+
+  label {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  span {
+    vertical-align: text-bottom;
+  }
 }

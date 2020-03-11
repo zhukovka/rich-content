@@ -5,6 +5,7 @@ import LinkPanel from './LinkPanel';
 import FocusManager from './FocusManager';
 import { mergeStyles } from 'wix-rich-content-common';
 import RadioGroupHorizontal from './RadioGroupHorizontal';
+import RadioGroup from './RadioGroup';
 import styles from '../../statics/styles/link-panel.scss';
 const LinkType = props => (
   <RadioGroupHorizontal
@@ -28,6 +29,7 @@ class LinkPanelContainer extends PureComponent {
     const { url, targetBlank, nofollow } = this.props;
     this.state = {
       linkPanelValues: { url, targetBlank, nofollow },
+      radioGroupValue: 'external-link',
     };
   }
 
@@ -46,6 +48,10 @@ class LinkPanelContainer extends PureComponent {
   };
 
   onCancel = () => this.props.onCancel();
+
+  changeRadioGroup = value => {
+    this.setState({ radioGroupValue: value });
+  };
 
   render() {
     const { styles } = this;
@@ -88,7 +94,20 @@ class LinkPanelContainer extends PureComponent {
         role="form"
         {...ariaProps}
       >
+        <div className={styles.linkPanel_header}>{t('LinkPanel_Header')}</div>
+        <div className={styles.linkPanel_actionsDivider} role="separator" />
         <div className={styles.linkPanel_content}>
+          <RadioGroup
+            className={styles.linkPanel_radioButtons}
+            dataSource={[
+              { value: 'external-link', labelText: t('LinkPanel_RadioGroup_ExternalLink') },
+              { value: 'anchor', labelText: t('LinkPanel_RadioGroup_Anchor') },
+            ]}
+            value={this.state.radioGroupValue}
+            onChange={this.changeRadioGroup}
+            {...this.props}
+          />
+          <div className={styles.linkPanel_VerticalDivider} />
           <LinkPanel
             onEnter={this.onDone}
             onEscape={this.onCancel}
@@ -101,8 +120,8 @@ class LinkPanelContainer extends PureComponent {
             ariaProps={linkPanelAriaProps}
             {...uiSettings.linkPanel}
           />
-          <div className={styles.linkPanel_actionsDivider} role="separator" />
         </div>
+        <div className={styles.linkPanel_actionsDivider} role="separator" />
         <div className={styles.linkPanel_Footer}>
           <div className={styles.linkPanel_FooterActions}>
             <button
