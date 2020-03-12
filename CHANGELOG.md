@@ -13,6 +13,8 @@
     Click to see more.
   </summary>
 
+- `gallery`
+  - [#762](https://github.com/wix-incubator/rich-content/pull/762) bump pro gallery to version 1.8.2
 
 </details>
 <hr/>
