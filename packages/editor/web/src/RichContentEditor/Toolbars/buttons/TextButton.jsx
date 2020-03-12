@@ -4,17 +4,10 @@ import classNames from 'classnames';
 import { isEmpty } from 'lodash';
 import ReactTooltip from 'react-tooltip';
 
-import { mergeStyles } from 'wix-rich-content-common';
 import { ToolbarButton } from 'wix-rich-content-editor-common';
 import styles from 'wix-rich-content-editor-common/dist/statics/styles/inline-toolbar-button.scss';
 
 export default class TextButton extends Component {
-  constructor(props) {
-    super(props);
-    const { buttonStyles } = props.theme || {};
-    this.styles = mergeStyles({ styles, theme: buttonStyles });
-  }
-
   static propTypes = {
     icon: PropTypes.func.isRequired,
     onClick: PropTypes.func.isRequired,
@@ -45,7 +38,6 @@ export default class TextButton extends Component {
   preventBubblingUp = event => event.preventDefault();
 
   render() {
-    const { styles } = this;
     const {
       icon: Icon,
       theme,
@@ -70,6 +62,7 @@ export default class TextButton extends Component {
           className={styles.inlineToolbarButton}
           data-hook={dataHook}
           onClick={this.handleClick}
+          // style={{ backgroundColor: 'pink' }}
         >
           <div className={iconClassNames}>
             <Icon />

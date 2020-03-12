@@ -38,7 +38,7 @@ $dropdown-font-size: 14px;
 }
 
 .Dropdown-control:hover {
-  color: $dropdown-highlight;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .Dropdown-arrow {
@@ -80,6 +80,7 @@ $dropdown-font-size: 14px;
 
 .Dropdown-option {
   border: none;
+  width: 100%;
   background-color: transparent;
   box-sizing: border-box;
   color: $dropdown-color;
@@ -87,6 +88,7 @@ $dropdown-font-size: 14px;
   display: block;
   padding: 0 12px;
   white-space: nowrap;
+  text-align: inherit;
 }
 
 .Dropdown-option:last-child {
@@ -95,11 +97,11 @@ $dropdown-font-size: 14px;
 }
 
 .Dropdown-option:hover {
-  color: $dropdown-highlight;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .Dropdown-option-selected {
-  color: $dropdown-highlight;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .Dropdown-noresults {

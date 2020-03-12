@@ -239,7 +239,14 @@ export default function createToolbar({
     }
 
     /*eslint-disable complexity*/
-    renderButton = (button, key, themedStyle, separatorClassNames, tabIndex) => {
+    renderButton = (
+      button,
+      key,
+      themedStyle,
+      separatorClassNames,
+      tabIndex,
+      dropdownClassNames
+    ) => {
       const { alignment, size } = this.state.componentData.config || {};
       const icons = settings?.toolbar?.icons || {};
       const buttonByKey = BUTTONS_BY_KEY[button.type];
@@ -344,7 +351,7 @@ export default function createToolbar({
           return (
             <Button
               tabIndex={tabIndex}
-              theme={themedStyle}
+              theme={button.type === BUTTONS.DROPDOWN ? dropdownClassNames : themedStyle}
               componentData={this.state.componentData}
               componentState={this.state.componentState}
               pubsub={pubsub}
@@ -513,6 +520,14 @@ export default function createToolbar({
         toolbarStyles.pluginToolbarSeparator,
         separatorTheme && separatorTheme.pluginToolbarSeparator
       );
+      const dropdownClassNames = {
+        ...themedButtonStyle,
+        button: classNames(
+          toolbarStyles.dropdownButton,
+          buttonTheme && buttonTheme.pluginToolbarButton
+        ),
+        ...theme,
+      };
       const overrideProps = { onOverrideContent: this.onOverrideContent };
 
       return (
@@ -540,7 +555,8 @@ export default function createToolbar({
                       index,
                       themedButtonStyle,
                       separatorClassNames,
-                      tabIndex
+                      tabIndex,
+                      dropdownClassNames
                     )
                   )
                 )}

@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import TextButton from '../TextButton';
 import { mergeStyles } from 'wix-rich-content-common';
 import { Tooltip } from 'wix-rich-content-editor-common';
@@ -28,30 +27,15 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
         selected: activeItem({ getEditorState, defaultValue: defaultTextAlignment }),
       };
 
-      const theme = props.theme || {};
-
       this.theme = {
-        ...theme,
         buttonStyles: {
           //eslint-disable-next-line camelcase
-          inlineToolbarButton_wrapper: classNames(
-            styles.inlineToolbarDropdownButton_wrapper,
-            theme && theme.inlineToolbarDropdownButton_wrapper
-          ),
-          inlineToolbarButton: classNames(
-            styles.inlineToolbarDropdownButton,
-            theme && theme.inlineToolbarDropdownButton
-          ),
+          inlineToolbarButton_wrapper: styles.inlineToolbarDropdownButton_wrapper,
+          inlineToolbarButton: styles.inlineToolbarDropdownButton,
           //eslint-disable-next-line camelcase
-          inlineToolbarButton_icon: classNames(
-            styles.inlineToolbarDropdownButton_icon,
-            theme && theme.inlineToolbarDropdownButton_icon
-          ),
+          inlineToolbarButton_icon: styles.inlineToolbarDropdownButton_icon,
           //eslint-disable-next-line camelcase
-          inlineToolbarButton_active: classNames(
-            styles.inlineToolbarButton_active,
-            theme && theme.inlineToolbarDropdownButton_active
-          ),
+          inlineToolbarButton_active: styles.inlineToolbarButton_active,
         },
       };
       this.styles = mergeStyles({ styles, theme: this.theme });

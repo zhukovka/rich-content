@@ -11,11 +11,14 @@
   }
 }
 
+.dropdownButton {
+  padding: 0px;
+}
+
 .pluginToolbarButton {
   display: inline-block;
   background: transparent;
   color: $toolbar-font-color;
-  padding: 5px;
   border: none;
   cursor: pointer;
   line-height: normal;
@@ -33,12 +36,16 @@
 
     @include svg-fill;
   }
-
+  &:not(.dropdownButton) {
+    padding: 5px;
+  }
   &:not(.pluginToolbarButton_disabled) {
     &:hover,
-    &:focus,
+    &:focus {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
     &.pluginToolbarButton_active {
-      color: $accent-color;
+      background-color: rgba(0, 0, 0, 0.1);
       @include svg-fill;
     }
   }
