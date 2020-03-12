@@ -16,7 +16,7 @@ const setBlockStyleByName = (getEditorState, setEditorState, value) =>
   setEditorState(RichUtils.toggleBlockType(getEditorState(), value));
 
 const createButtonsFromOptions = dropdownOptions => {
-  return dropdownOptions.map(option => fontStyleButton(option, getContentForButton(option)));
+  return dropdownOptions?.map(option => fontStyleButton(option, getContentForButton(option)));
 };
 
 const getContentForButton = option => {

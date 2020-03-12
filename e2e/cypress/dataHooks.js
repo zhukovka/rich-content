@@ -8,9 +8,9 @@ export const INLINE_TOOLBAR_BUTTONS = {
   ORDERED_LIST: 'textBlockStyleButton_Numbering',
   UNORDERED_LIST: 'textBlockStyleButton_Bullets',
   ALIGNMENT: 'textDropDownButton_Alignment',
-  TEXT_ALIGN_CENTER: 'textAlignmentButton_Center',
-  TEXT_ALIGN_LEFT: 'textAlignmentButton_AlignLeft',
-  TEXT_ALIGN_RIGHT: 'textAlignmentButton_AlignRight',
+  TEXT_ALIGN_CENTER: 'textAlignmentButton_center',
+  TEXT_ALIGN_LEFT: 'textAlignmentButton_left',
+  TEXT_ALIGN_RIGHT: 'textAlignmentButton_right',
   LINE_SPACING: 'LineSpacingButton',
   LINK: 'LinkButton',
   CODE_BLOCK: 'TextCodeBlockButton',
@@ -67,6 +67,11 @@ export const GALLERY_SETTINGS = {
 export const GALLERY_IMAGE_SETTINGS = {
   PREVIEW: 'galleryImageSettingsPreview',
   DELETE: 'galleryImageSettingsDeleteImage',
+  TITLE: 'galleryImageTitleInput',
+  LINK: 'linkPanelInput',
+  LINK_TARGET: 'linkPanelBlankCheckbox',
+  LINK_NOFOLLOW: 'linkPanelRelCheckbox',
+  DONE: 'settingPanelFooterDone',
 };
 
 export const VIDEO_PLUGIN = {
@@ -81,13 +86,18 @@ export const HTML_PLUGIN = {
   UPDATE: 'htmlEditPanel_Update',
 };
 
+export const GIPHY_PLUGIN = {
+  UPLOAD_MODAL: 'giphyUploadModal',
+  UPLOAD_MODAL_INPUT: 'giphyUploadModalInput',
+};
+
 export const PLUGIN_COMPONENT = {
   IMAGE: 'imageViewer',
   VIDEO: 'videoPlayer',
   GALLERY: 'galleryViewer',
   HTML: 'HtmlComponent',
   DIVIDER: 'divider',
-  GIF: 'giphyPlayer',
+  GIPHY: 'giphyPlayer',
   SOUND_CLOUD: 'soundCloudPlayer',
   MAP: 'mapViewer',
   FILE_UPLOAD: 'fileUploadViewer',

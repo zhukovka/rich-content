@@ -59,7 +59,7 @@ class LayoutControlsSection extends Component {
     if (cubeRatio && data.styles.galleryLayout === 4) {
       setting.gallerySliderImageRatio = cubeRatio;
     }
-    const componentData = { ...data, styles: Object.assign({}, data.styles, setting) };
+    const componentData = { ...data, styles: { ...data.styles, ...setting } };
     store.set('componentData', componentData);
   };
 
@@ -83,7 +83,6 @@ class LayoutControlsSection extends Component {
           label: this.getValueFromComponentStyles('isVertical')
             ? t('GallerySettings_LayoutControlSection_Column')
             : t('GallerySettings_LayoutControlSection_Row'),
-          readOnly: this.getValueFromComponentStyles('oneRow'),
         },
       },
     },
@@ -124,9 +123,6 @@ class LayoutControlsSection extends Component {
       props: {
         onChange: value => this.applyGallerySetting({ cubeRatio: value }),
         value: this.getValueFromComponentStyles('cubeRatio'),
-        options: {
-          readOnly: this.getValueFromComponentStyles('cubeType') === 'fit',
-        },
         t,
       },
     },
@@ -137,9 +133,6 @@ class LayoutControlsSection extends Component {
           this.applyGallerySetting({ isVertical: value === '1' });
         },
         value: this.getValueFromComponentStyles('isVertical') ? '1' : '0',
-        options: {
-          readOnly: this.getValueFromComponentStyles('oneRow'),
-        },
         t,
       },
     },

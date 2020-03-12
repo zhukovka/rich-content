@@ -47,6 +47,9 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
     .map(buttonName => buttonsMap[buttonName])
     .filter(x => x)
     .flat();
+  // const buttonMap = { ...buttonByName, ...textPluginButtons };
+
+  // const structure = buttons.map(buttonName => buttonMap[buttonName]).filter(b => b !== undefined);
 
   return buttonCompArray.map(b =>
     decorateComponentWithProps(b, { t, isMobile, uiSettings, config })

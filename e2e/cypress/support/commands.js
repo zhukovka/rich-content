@@ -27,16 +27,16 @@ const getUrl = (componentId, fixtureName = '') =>
   `/${componentId}${fixtureName ? '/' + fixtureName : ''}${buildQuery({
     mobile: isMobile,
     hebrew: isHebrew,
+    seoMode: isSeoMode,
   })}`;
 
 // Viewport size commands
 
-const run = (app, fixtureName) => {
-  cy.visit(getUrl(app, fixtureName));
-};
+const run = (app, fixtureName) => cy.visit(getUrl(app, fixtureName));
 
 let isMobile = false;
 let isHebrew = false;
+let isSeoMode = false;
 
 Cypress.Commands.add('switchToMobile', () => {
   isMobile = true;
@@ -48,6 +48,10 @@ Cypress.Commands.add('switchToDesktop', () => {
   resizeForDesktop();
 });
 
+Cypress.Commands.add('switchToSeoMode', () => {
+  isSeoMode = true;
+});
+
 Cypress.Commands.add('switchToHebrew', () => {
   isHebrew = true;
 });
@@ -56,8 +60,29 @@ Cypress.Commands.add('switchToEnglish', () => {
   isHebrew = false;
 });
 
+function disableTransitions() {
+  Cypress.$('head').append('<style> * {transition: none !important;}</style>');
+}
+
+function hideAllTooltips() {
+  cy.get('[data-id="tooltip"]').invoke('hide'); //uses jquery to set display: none
+}
+
 Cypress.Commands.add('loadEditorAndViewer', fixtureName => {
-  run('rce', fixtureName);
+  run('rce', fixtureName).then(() => {
+    disableTransitions();
+    hideAllTooltips();
+  });
+});
+
+Cypress.Commands.add('loadEditorAndViewerOnSsr', fixtureName => {
+  cy.request(getUrl('rce', fixtureName))
+    .its('body')
+    .then(html => {
+      // remove the application code bundle
+      const _html = html.replace('<script src="/index.bundle.js"></script>', '');
+      cy.state('document').write(_html);
+    });
 });
 
 Cypress.Commands.add('matchContentSnapshot', () => {
@@ -72,10 +97,9 @@ Cypress.Commands.add('matchSnapshots', options => {
 });
 
 // Editor commands
-const getEditor = () => cy.get('[contenteditable="true"]');
 
 Cypress.Commands.add('enterText', text => {
-  getEditor().type(text);
+  cy.getEditor().type(text);
 });
 
 Cypress.Commands.add('enterParagraphs', paragraphs => {
@@ -87,14 +111,18 @@ Cypress.Commands.add('newLine', () => {
 });
 
 Cypress.Commands.add('blurEditor', () => {
-  getEditor()
+  cy.getEditor()
     .blur()
     .get('[data-hook=inlineToolbar]')
     .should('not.visible');
 });
 
+Cypress.Commands.add('getEditor', () => {
+  cy.get('[contenteditable="true"]');
+});
+
 Cypress.Commands.add('focusEditor', () => {
-  getEditor().focus();
+  cy.getEditor().focus();
 });
 
 Cypress.on('window:before:load', win => {
@@ -263,6 +291,14 @@ Cypress.Commands.add('addImageTitle', () => {
     .click();
 });
 
+Cypress.Commands.add('editImageTitle', () => {
+  cy.get(`[data-hook=${PLUGIN_COMPONENT.IMAGE}]:first`)
+    .find('input')
+    .click()
+    .type(' - In Plugin Editing')
+    .blur();
+});
+
 Cypress.Commands.add('deleteImageTitle', () => {
   cy.get(`[data-hook=${IMAGE_SETTINGS.CAPTION}]`)
     .click()
@@ -294,7 +330,8 @@ Cypress.Commands.add('addImageLink', () => {
     .click()
     .type('www.wix.com')
     .get(`[data-hook=${SETTINGS_PANEL.DONE}]`)
-    .click();
+    .click()
+    .wait(200);
   // .get('href=www.wix.com');
 });
 
@@ -350,7 +387,7 @@ Cypress.Commands.add('addSoundCloud', () => {
     .click();
 });
 
-Cypress.Commands.add('addVideoFromURI', () => {
+Cypress.Commands.add('addVideoFromURL', () => {
   cy.get(`[data-hook*=${VIDEO_PLUGIN.INPUT}]`).type('https://youtu.be/BBu5codsO6Y');
   cy.get(`[data-hook*=${VIDEO_PLUGIN.ADD}]`).click();
   cy.get(`[data-hook=${PLUGIN_COMPONENT.VIDEO}]:first`)
@@ -399,12 +436,18 @@ Cypress.Commands.add('dragAndDropPlugin', (src, dest) => {
     .trigger('drop', { dataTransfer });
 });
 
-Cypress.Commands.add('hideTooltip', { prevSubject: 'optional' }, () => {
-  cy.get('.editor').trigger('mouseleave');
+Cypress.Commands.add('waitForVideoToLoad', { prevSubject: 'optional' }, () => {
+  cy.get('[data-loaded=true]', { timeout: 15000 }).should('have.length', 2);
 });
 
-Cypress.Commands.add('waitForVideoToLoad', { prevSubject: 'optional' }, () => {
-  cy.get('#rich-content-viewer [data-loaded=true]', { timeout: 15000 });
+Cypress.Commands.add('waitForHtmlToLoad', () => {
+  cy.get('iframe', { timeout: 15000 })
+    .each($el => {
+      cy.wrap($el)
+        .its('0.contentDocument.body')
+        .should('not.be.undefined');
+    })
+    .wait(4000);
 });
 
 // disable screenshots in debug mode. So there is no diffrence to ci.

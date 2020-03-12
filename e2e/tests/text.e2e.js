@@ -8,7 +8,6 @@ describe('text', () => {
       appName: 'Text',
       testName: this.test.parent.title,
       browser: DEFAULT_DESKTOP_BROWSERS,
-      dontCloseBatches: true,
     });
   });
 
@@ -63,6 +62,15 @@ describe('text', () => {
       .setLink([0, 10], 'https://www.wix.com/')
       .setTextStyle(INLINE_TOOLBAR_BUTTONS.CODE_BLOCK, [0, 10])
       .blurEditor();
+    cy.eyesCheckWindow(this.test.title);
+  });
+
+  it('allow to enter hashtag with link', function() {
+    cy.loadEditorAndViewer()
+      .enterParagraphs([
+        '#wix.com wix.com #this_is_not_a_link #will_be_a_link thisislink#youknow.com ',
+      ])
+      .setLink([37, 15], 'https://www.wix.com/');
     cy.eyesCheckWindow(this.test.title);
   });
 

@@ -15,17 +15,17 @@ const COMMAND_BY_SHORTCUT = [
   },
   {
     command: COMMANDS.ALIGN_LEFT,
-    modifiers: [MODIFIERS.COMMAND],
+    modifiers: [MODIFIERS.COMMAND, MODIFIERS.SHIFT],
     key: 'l',
   },
   {
     command: COMMANDS.ALIGN_RIGHT,
-    modifiers: [MODIFIERS.COMMAND],
+    modifiers: [MODIFIERS.COMMAND, MODIFIERS.SHIFT],
     key: 'r',
   },
   {
     command: COMMANDS.ALIGN_CENTER,
-    modifiers: [MODIFIERS.COMMAND],
+    modifiers: [MODIFIERS.COMMAND, MODIFIERS.SHIFT],
     key: 'e',
   },
   {
@@ -100,9 +100,8 @@ export const initPluginKeyBindings = pluginTextButtons =>
               // handlers per button
               const buttonCommandHandlers = {};
               buttonData[key].keyBindings.forEach(binding => {
-                Object.assign(buttonCommandHandlers, {
-                  [`${binding.keyCommand.command}_${i}`]: binding.commandHandler,
-                });
+                buttonCommandHandlers[`${binding.keyCommand.command}_${i}`] =
+                  binding.commandHandler;
               });
               // merge all button commands and handlers
               return {
