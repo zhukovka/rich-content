@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import LinkPanel from './LinkPanel';
+import LinkToAnchorPanel from './LinkToAnchorPanel';
 import FocusManager from './FocusManager';
 import { mergeStyles } from 'wix-rich-content-common';
 import RadioGroupHorizontal from './RadioGroupHorizontal';
@@ -55,6 +56,7 @@ class LinkPanelContainer extends PureComponent {
 
   render() {
     const { styles } = this;
+    const { radioGroupValue } = this.state;
     const {
       theme,
       isActive,
@@ -108,18 +110,35 @@ class LinkPanelContainer extends PureComponent {
             {...this.props}
           />
           <div className={styles.linkPanel_VerticalDivider} />
-          <LinkPanel
-            onEnter={this.onDone}
-            onEscape={this.onCancel}
-            linkValues={this.state.linkPanelValues}
-            onChange={linkPanelValues => this.setState({ linkPanelValues })}
-            theme={theme}
-            showTargetBlankCheckbox={showTargetBlankCheckbox}
-            showRelValueCheckbox={showRelValueCheckbox}
-            t={t}
-            ariaProps={linkPanelAriaProps}
-            {...uiSettings.linkPanel}
-          />
+          {radioGroupValue === 'external-link' && (
+            <LinkPanel
+              onEnter={this.onDone}
+              onEscape={this.onCancel}
+              linkValues={this.state.linkPanelValues}
+              onChange={linkPanelValues => this.setState({ linkPanelValues })}
+              theme={theme}
+              showTargetBlankCheckbox={showTargetBlankCheckbox}
+              showRelValueCheckbox={showRelValueCheckbox}
+              t={t}
+              ariaProps={linkPanelAriaProps}
+              {...uiSettings.linkPanel}
+            />
+          )}
+          {radioGroupValue === 'anchor' && (
+            <LinkToAnchorPanel
+              // anchorsEntities={this.props.anchorsEntities}
+              anchorsEntities={[{ data: { name: 'bla' } }]}
+              onEnter={this.onDone}
+              onEscape={this.onCancel}
+              // linkValues={this.state.anchorPanelValues}
+              linkValues={this.state.linkPanelValues}
+              onChange={anchorPanelValues => this.setState({ anchorPanelValues })}
+              theme={theme}
+              t={t}
+              ariaProps={linkPanelAriaProps}
+              {...uiSettings.linkPanel}
+            />
+          )}
         </div>
         <div className={styles.linkPanel_actionsDivider} role="separator" />
         <div className={styles.linkPanel_Footer}>

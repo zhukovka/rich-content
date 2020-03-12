@@ -33,6 +33,7 @@
 }
 
 .linkPanel_Content {
+  width: 100%;
   margin: 0px 1px;
   padding-bottom: 6px;
   font-size: 14px;
@@ -151,6 +152,7 @@
   height: fit-content;
 
   label {
+    width: max-content;
     display: inline-flex;
     align-items: center;
   }
@@ -159,3 +161,9 @@
     vertical-align: text-bottom;
   }
 }
+
+.linkPanelDropdown_dropdownArrowIcon{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+} 
