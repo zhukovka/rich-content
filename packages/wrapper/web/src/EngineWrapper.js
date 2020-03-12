@@ -71,14 +71,6 @@ class EngineWrapper extends React.Component {
         withModal === true
           ? React.lazy(() => import(/* webpackChunkName: "rce-ViewerModal"  */ './ViewerModal'))
           : withModal;
-      // if (!this.expandModeData) {
-      //   import(
-      //     // eslint-disable-next-line max-len
-      //     /* webpackChunkName: "rce-getImagesData"  */ 'wix-rich-content-fullscreen/dist/lib/getImagesData.js'
-      //   ).then(getImagesData => {
-      //     this.expandModeData = getImagesData.default(children.props.initialState);
-      //   });
-      // }
     }
     this.setState({ EditorModal, Fullscreen });
   }
