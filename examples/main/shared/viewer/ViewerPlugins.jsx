@@ -40,8 +40,6 @@ import {
   viewerCustomBackgroundStyleFn,
 } from '../../src/text-color-style-fn';
 
-import { pollTypeMapper, POLL_TYPE } from 'wix-rich-content-plugin-poll/dist/module.viewer';
-
 import 'wix-rich-content-editor-common/dist/styles.min.css';
 import 'wix-rich-content-common/dist/styles.min.css';
 import 'wix-rich-content-viewer/dist/styles.min.css';
@@ -60,7 +58,6 @@ import 'wix-rich-content-plugin-map/dist/styles.min.css';
 import 'wix-rich-content-plugin-file-upload/dist/styles.min.css';
 import 'wix-rich-content-plugin-giphy/dist/styles.min.css';
 import 'wix-rich-content-text-selection-toolbar/dist/styles.min.css';
-import 'wix-rich-content-plugin-poll/dist/styles.min.css';
 
 import { getBaseUrl } from '../../src/utils';
 
@@ -85,7 +82,6 @@ export const typeMappers = [
   mapTypeMapper,
   fileUploadTypeMapper,
   giphyTypeMapper,
-  pollTypeMapper,
 ];
 
 const uiSettings = {
@@ -93,7 +89,6 @@ const uiSettings = {
 };
 
 const config = {
-  [POLL_TYPE]: {},
   [GALLERY_TYPE]: {},
   [HEADERS_MARKDOWN_TYPE]: {
     hideMarkdown: true,
