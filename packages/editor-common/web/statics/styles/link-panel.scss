@@ -168,10 +168,15 @@
   right: 12px;
 } 
 
-.AnchorDropDownElement_container {
+.AnchorableElement_container {
   display: flex;
 
-  .AnchorDropDownElement_thumbnail {
+  &:hover {
+    cursor: pointer;
+    background-color: #ededed;
+  }
+
+  .AnchorableElement_thumbnail {
     width: 34px;
     height: 34px;
     background-color: white;
@@ -182,13 +187,22 @@
     margin: 2px;
   }
 
-  .AnchorDropDownElement_contentContainer {
+  .AnchorableElement_contentContainer {
     margin-left: 6px;
   }
 
-  .AnchorDropDownElement_contentType {
+  .AnchorableElement_contentType {
     color: gray;
   }
 
-  .AnchorDropDownElement_blockContent {}
+  .AnchorableElement_blockContent {}
+}
+
+.LinkToAnchorPanel_header {
+  display: flex;
+  justify-content: space-between;
+}
+.LinkToAnchorPanel_anchorsElementsContainer {
+  max-height: 295px;
+  overflow: auto;
 }

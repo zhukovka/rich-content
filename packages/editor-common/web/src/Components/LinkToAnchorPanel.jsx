@@ -4,9 +4,8 @@ import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { mergeStyles } from 'wix-rich-content-common';
 import styles from '../../statics/styles/link-panel.scss';
-import { LinkPanelDropdown } from './LinkPanelDropdown';
 
-class AnchorDropDownElement extends PureComponent {
+class AnchorableElement extends PureComponent {
   styles = mergeStyles({ styles, theme: this.props.theme });
   inlineBlocksTypes = {
     unstyled: { thumbnail: 'T', type: 'Text', content: this.props.block.text },
@@ -37,12 +36,12 @@ class AnchorDropDownElement extends PureComponent {
 
   render() {
     return (
-      <div className={this.styles.AnchorDropDownElement_container}>
-        <div className={this.styles.AnchorDropDownElement_thumbnail}>
+      <div className={this.styles.AnchorableElement_container}>
+        <div className={this.styles.AnchorableElement_thumbnail}>
           {this.getContentByField('thumbnail')}
         </div>
-        <div className={this.styles.AnchorDropDownElement_contentContainer}>
-          <div className={this.styles.AnchorDropDownElement_contentType}>
+        <div className={this.styles.AnchorableElement_contentContainer}>
+          <div className={this.styles.AnchorableElement_contentType}>
             {this.getContentByField('type')}
           </div>
           <div>{this.getContentByField('content')}</div>
@@ -108,30 +107,20 @@ class LinkToAnchorPanel extends Component {
     };
   }
 
-  getAnchorsNames = () => {
-    return this.props.anchorableBlocks.map(block => {
-      return { value: block.key, label: <AnchorDropDownElement block={block} /> };
-    });
-  };
-
   render() {
     const { styles } = this;
-    const { ariaProps, t } = this.props;
+    const { ariaProps, t, anchorableBlocks } = this.props;
 
     return (
       <div className={styles.linkPanel_Content} {...ariaProps} role="form">
-        <div>{t('LinkPanel_Anchor_Placeholder')}</div>
-        <div className={styles.linkPanel_Input} onKeyDown={this.handleKeyDown}>
-          <LinkPanelDropdown
-            key={'anchor'}
-            theme={this.props.theme}
-            initialValue={this.props.linkValues.url}
-            onChange={this.handleUrlChange}
-            textInputProps={this.getAnchorInputProps()}
-            {...this.props.dropDown}
-            getItems={this.getAnchorsNames}
-            withoutSearch
-          />
+        <div className={styles.LinkToAnchorPanel_header}>
+          <div>{t('LinkPanel_Anchor_Placeholder')}</div>
+          <div>filter</div>
+        </div>
+        <div className={styles.LinkToAnchorPanel_anchorsElementsContainer}>
+          {anchorableBlocks.map((block, i) => (
+            <AnchorableElement key={i} block={block} />
+          ))}
         </div>
       </div>
     );
