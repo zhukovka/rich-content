@@ -15,6 +15,11 @@
 </details>
 <hr/>
 
+## 6.10.2 (Mar 15, 2020)
+### :house: Internal
+- `wrapper`
+  - use cjs version of fullscreen lib, fix onChange call
+
 ## 6.10.1 (Mar 12, 2020)
 ### :rocket: New Feature
 - `gallery`
