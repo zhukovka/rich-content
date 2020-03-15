@@ -1,17 +1,67 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { mergeStyles } from 'wix-rich-content-common';
 import styles from '../../statics/styles/link-panel.scss';
 import { LinkPanelDropdown } from './LinkPanelDropdown';
+
+class AnchorDropDownElement extends PureComponent {
+  styles = mergeStyles({ styles, theme: this.props.theme });
+  inlineBlocksTypes = {
+    unstyled: { thumbnail: 'T', type: 'Text', content: this.props.block.text },
+    'header-two': { thumbnail: 'H', type: 'Header', content: this.props.block.text },
+    'header-three': { thumbnail: 'H', type: 'Header', content: this.props.block.text },
+  };
+  atomicBlocksTypes = {
+    'wix-draft-plugin-image': {
+      thumbnail: 'I',
+      type: 'Image',
+      content: `Image ${this.props.block.index}`,
+    },
+    'wix-draft-plugin-gallery': {
+      thumbnail: 'G',
+      type: 'Gallery',
+      content: `Gallery ${this.props.block.index}`,
+    },
+  };
+
+  getContentByField = field => {
+    const { block } = this.props;
+    if (block.type === 'atomic') {
+      return <div>{this.atomicBlocksTypes[block.contentEntity][field]}</div>;
+    } else {
+      return <div>{this.inlineBlocksTypes[block.type][field]}</div>;
+    }
+  };
+
+  render() {
+    return (
+      <div className={this.styles.AnchorDropDownElement_container}>
+        <div className={this.styles.AnchorDropDownElement_thumbnail}>
+          {this.getContentByField('thumbnail')}
+        </div>
+        <div className={this.styles.AnchorDropDownElement_contentContainer}>
+          <div className={this.styles.AnchorDropDownElement_contentType}>
+            {this.getContentByField('type')}
+          </div>
+          <div>{this.getContentByField('content')}</div>
+        </div>
+      </div>
+    );
+  }
+
+  static propTypes = {
+    block: PropTypes.object,
+    theme: PropTypes.object,
+  };
+}
 
 class LinkToAnchorPanel extends Component {
   state = { showValidation: false };
   styles = mergeStyles({ styles, theme: this.props.theme });
 
   componentDidMount() {
-    this.withAnchors = this.props.anchorsEntities ? this.props.anchorsEntities.length !== 0 : false;
     this.onChange({ isValid: this.isValidUrl(this.props.linkValues.url), isLinkToAnchor: true });
   }
 
@@ -40,9 +90,12 @@ class LinkToAnchorPanel extends Component {
     }
   };
 
-  isValidUrl = url => {
-    return !url || this.props.anchorsEntities.some(anchor => anchor.data.name === url);
+  isValidUrl = () => {
+    return true;
   };
+  // isValidUrl = url => {
+  //   return !url || this.props.anchorsEntities.some(anchor => anchor.data.name === url);
+  // };
 
   getAnchorInputProps() {
     const { styles } = this;
@@ -56,8 +109,8 @@ class LinkToAnchorPanel extends Component {
   }
 
   getAnchorsNames = () => {
-    return this.props.anchorsEntities.map(anchorEntity => {
-      return { value: anchorEntity.data.name, label: anchorEntity.data.name };
+    return this.props.anchorableBlocks.map(block => {
+      return { value: block.key, label: <AnchorDropDownElement block={block} /> };
     });
   };
 
@@ -86,7 +139,7 @@ class LinkToAnchorPanel extends Component {
 }
 
 LinkToAnchorPanel.propTypes = {
-  anchorsEntities: PropTypes.array.isRequired,
+  anchorableBlocks: PropTypes.array.isRequired,
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,

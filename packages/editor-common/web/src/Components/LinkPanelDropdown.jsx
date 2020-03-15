@@ -48,7 +48,7 @@ class ItemRenderer extends PureComponent {
           },
         })}
       >
-        {formatMenuItem(item, inputValue)}
+        {typeof item.label === 'string' ? formatMenuItem(item, inputValue) : item.label}
       </div>
     );
   }

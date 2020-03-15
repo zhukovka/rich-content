@@ -167,3 +167,28 @@
   top: 12px;
   right: 12px;
 } 
+
+.AnchorDropDownElement_container {
+  display: flex;
+
+  .AnchorDropDownElement_thumbnail {
+    width: 34px;
+    height: 34px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid lightgray;
+    margin: 2px;
+  }
+
+  .AnchorDropDownElement_contentContainer {
+    margin-left: 6px;
+  }
+
+  .AnchorDropDownElement_contentType {
+    color: gray;
+  }
+
+  .AnchorDropDownElement_blockContent {}
+}

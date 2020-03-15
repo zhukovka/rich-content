@@ -27,11 +27,13 @@ class LinkPanelContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
-    const { url, targetBlank, nofollow } = this.props;
+    const { url, targetBlank, nofollow, anchorableBlocks } = this.props;
     this.state = {
       linkPanelValues: { url, targetBlank, nofollow },
       radioGroupValue: 'external-link',
     };
+    // eslint-disable-next-line no-console
+    console.log({ anchorableBlocks });
   }
 
   onDone = () => {
@@ -126,8 +128,8 @@ class LinkPanelContainer extends PureComponent {
           )}
           {radioGroupValue === 'anchor' && (
             <LinkToAnchorPanel
-              // anchorsEntities={this.props.anchorsEntities}
-              anchorsEntities={[{ data: { name: 'bla' } }]}
+              anchorableBlocks={this.props.anchorableBlocks}
+              // anchorsEntities={[{ data: { name: 'blabla' } }]}
               onEnter={this.onDone}
               onEscape={this.onCancel}
               // linkValues={this.state.anchorPanelValues}
@@ -183,6 +185,7 @@ class LinkPanelContainer extends PureComponent {
 }
 
 LinkPanelContainer.propTypes = {
+  anchorableBlocks: PropTypes.array.isRequired,
   onDone: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,

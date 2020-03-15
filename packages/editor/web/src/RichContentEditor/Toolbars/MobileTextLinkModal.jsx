@@ -5,10 +5,17 @@ import {
   insertLinkAtCurrentSelection,
   getLinkDataInSelection,
   removeLinksInSelection,
+  getAnchorableBlocks,
 } from 'wix-rich-content-editor-common';
 import MobileLinkModal from './MobileLinkModal';
 
 export default class MobileTextLinkModal extends Component {
+  constructor(props) {
+    super(props);
+    const { getEditorState } = props;
+    this.anchorableBlocks = getAnchorableBlocks(getEditorState());
+  }
+
   hidePopup = () => this.props.hidePopup();
 
   createLinkEntity = ({ url, targetBlank, nofollow }) => {
@@ -41,6 +48,7 @@ export default class MobileTextLinkModal extends Component {
     const nofollow = rel ? rel === 'nofollow' : relValue === 'nofollow';
     return (
       <MobileLinkModal
+        anchorableBlocks={this.anchorableBlocks}
         url={url}
         targetBlank={targetBlank}
         nofollow={nofollow}

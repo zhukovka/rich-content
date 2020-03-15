@@ -20,6 +20,7 @@ export default class MobileLinkModal extends Component {
       onDelete,
       t,
       uiSettings,
+      anchorableBlocks,
     } = this.props;
     const mobileLinkModalTitle = t('MobileLinkModal_Title');
     return (
@@ -33,6 +34,7 @@ export default class MobileLinkModal extends Component {
           </h3>
         </div>
         <LinkPanelContainer
+          anchorableBlocks={anchorableBlocks}
           url={url}
           targetBlank={targetBlank}
           anchorTarget={anchorTarget}
@@ -54,6 +56,7 @@ export default class MobileLinkModal extends Component {
 }
 
 MobileLinkModal.propTypes = {
+  anchorableBlocks: PropTypes.array.isRequired,
   theme: PropTypes.object.isRequired,
   onDone: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,

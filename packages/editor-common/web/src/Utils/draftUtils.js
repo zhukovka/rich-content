@@ -482,3 +482,40 @@ export function getBlockInfo(editorState, blockKey) {
 export function setSelection(editorState, selection) {
   return EditorState.acceptSelection(editorState, selection);
 }
+
+export const getAnchorableBlocks = editorState => {
+  const contentState = editorState.getCurrentContent();
+  const anchorableBlocks = [];
+  const indexes = {};
+
+  const selection = getSelection(editorState);
+  const blockKey = selection.getStartKey();
+
+  contentState.getBlockMap().forEach(block => {
+    if (blockKey !== block.key) {
+      if (block.type === 'atomic') {
+        block.findEntityRanges(character => {
+          const charEntity = character.getEntity();
+          if (charEntity) {
+            const contentEntity = contentState.getEntity(charEntity).toJS();
+            if (contentEntity.type !== 'wix-draft-plugin-divider') {
+              if (!indexes[contentEntity.type]) {
+                indexes[contentEntity.type] = 1;
+              } else {
+                indexes[contentEntity.type]++;
+              }
+              anchorableBlocks.push({
+                ...block.toJS(),
+                contentEntity: contentEntity.type,
+                index: indexes[contentEntity.type],
+              });
+            }
+          }
+        });
+      } else if (block.text !== '') {
+        anchorableBlocks.push(block.toJS());
+      }
+    }
+  });
+  return anchorableBlocks;
+};
