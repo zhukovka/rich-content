@@ -66,6 +66,8 @@ const commonjs = () => {
         'CharacterMetadata',
         'ContentState',
         'Entity',
+        'RawDraftContentState',
+        'EditorChangeType',
       ],
     },
   ];
