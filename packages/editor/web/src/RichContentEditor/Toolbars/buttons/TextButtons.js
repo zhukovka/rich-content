@@ -1,3 +1,4 @@
+import { HEADER_BLOCK } from 'wix-rich-content-common';
 import {
   AlignLeftIcon,
   AlignTextCenterIcon,
@@ -12,6 +13,9 @@ import {
   BlockQuoteIcon,
   OrderedListIcon,
   UnorderedListIcon,
+  TitleIcon,
+  TitleOneIcon,
+  TitleTwoIcon,
 } from '../../Icons';
 import createTextInlineStyleButton from './utils/createTextInlineStyleButton';
 import createTextBlockStyleButton from './utils/createTextBlockStyleButton';
@@ -31,6 +35,13 @@ export const italicButton = icon =>
     tooltipTextKey: 'ItalicButton_Tooltip',
   });
 
+export const titleButton = (inactiveIconTitle, iconForTitleOne, iconForTitleTwo) =>
+  createTextBlockStyleButton({
+    blockTypes: [HEADER_BLOCK.TWO, HEADER_BLOCK.THREE],
+    Icons: [iconForTitleOne || TitleOneIcon, iconForTitleTwo || TitleTwoIcon],
+    InactiveIcon: inactiveIconTitle || TitleIcon,
+    tooltipTextKey: 'TitleButton_Tooltip',
+  });
 export const underlineButton = icon =>
   createTextInlineStyleButton({
     style: 'UNDERLINE',

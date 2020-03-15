@@ -527,6 +527,7 @@ const config = {
     {
       name: TOOLBARS.TEXT,
       fontStyles: ['P', 'H2', 'H3', 'H4', 'H5', 'H6'],
+      // showHeadingInDropdown: true,
     },
     // {
     //   name: TOOLBARS.TEXT,

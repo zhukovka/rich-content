@@ -26,6 +26,7 @@ export default class TextButton extends Component {
     shouldRefreshTooltips: PropTypes.func,
     textButtonKeyName: PropTypes.string,
     arrowIcon: PropTypes.object,
+    className: PropTypes.string,
   };
 
   static defaultProps = {
@@ -63,6 +64,11 @@ export default class TextButton extends Component {
       [styles.inlineToolbarButton_active]: this.isActive(),
     });
 
+    const buttonClassNames = classNames(
+      styles.inlineToolbarButton_buttonName,
+      this.props.className
+    );
+
     /* eslint-disable jsx-a11y/no-static-element-interactions */
     const textButton = (
       <div className={styles.inlineToolbarButton_wrapper} onMouseDown={this.preventBubblingUp}>
@@ -75,7 +81,7 @@ export default class TextButton extends Component {
           onClick={this.handleClick}
         >
           {arrowIcon ? (
-            <div className={styles.inlineToolbarButton_buttonName}>
+            <div className={buttonClassNames}>
               {textButtonKeyName || (
                 <div className={iconClassNames}>
                   <Icon />

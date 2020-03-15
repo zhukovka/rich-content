@@ -2,7 +2,7 @@ import { RichUtils } from 'draft-js';
 import createFontStyleButton from '../FontStyleButton';
 import createTextDropdownButton from './createTextDropdownButton';
 import { TITLE_FONT_STYLE, DEFAULT_FONTS_OPTIONS } from 'wix-rich-content-common';
-
+import { titleButton } from '../index';
 const fontStyleButton = (option, content = false) => {
   const font = TITLE_FONT_STYLE[option];
   return createFontStyleButton({
@@ -42,9 +42,11 @@ const createTextTitleButtonDropDown = dropdownOptions => {
   });
 };
 
-export const createFontStyleStructure = (customSettings, isMobile) => {
-  const customFontStyles = customSettings?.fontStyles || DEFAULT_FONTS_OPTIONS;
-  return isMobile
-    ? customFontStyles.map(option => fontStyleButton(option))
+export const createFontStyleStructure = (customSettings, isMobile, icons) => {
+  const { showHeadingInDropdown, fontStyles } = customSettings || {};
+  const customFontStyles = fontStyles || DEFAULT_FONTS_OPTIONS;
+
+  return isMobile || (!fontStyles && !showHeadingInDropdown)
+    ? titleButton(icons.inactiveIconTitle, icons.TitleOne, icons.TitleTwo)
     : createTextTitleButtonDropDown(customFontStyles);
 };

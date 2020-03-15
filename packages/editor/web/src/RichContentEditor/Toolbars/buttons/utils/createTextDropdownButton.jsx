@@ -95,14 +95,11 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
         shouldRefreshTooltips: () => isOpen,
       };
       return (
-        <ClickOutside
-          onClickOutside={() => this.setState({ isOpen: false })}
-          className={this.styles.inlineToolbarDropdown_options}
-        >
+        <div className={this.styles.inlineToolbarDropdown_options}>
           {buttons.map((Button, i) => (
             <Button key={i} tabIndex="0" {...buttonProps} />
           ))}
-        </ClickOutside>
+        </div>
       );
     };
 
@@ -127,8 +124,12 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
 
       return (
         <Tooltip content={tooltipText} moveBy={{ y: -20 }}>
-          <div className={this.styles.inlineToolbarDropdown_wrapper}>
+          <ClickOutside
+            onClickOutside={() => this.setState({ isOpen: false })}
+            className={this.styles.inlineToolbarDropdown_wrapper}
+          >
             <TextButton
+              className={this.styles.inlineToolBarDropDown_chosenOption}
               textButtonKeyName={textButtonKeyName}
               arrowIcon={arrowIcon}
               icon={Icon}
@@ -139,7 +140,7 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
               tabIndex={tabIndex}
             />
             {isOpen && this.renderOptions()}
-          </div>
+          </ClickOutside>
         </Tooltip>
       );
     }
