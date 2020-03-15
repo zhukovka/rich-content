@@ -212,7 +212,7 @@ class RichContentEditor extends Component {
       );
     }
     this.setEditorState(editorState);
-    this.props.onChange && this.props.onChange(editorState);
+    this.props.onChange?.(editorState);
   };
 
   handlePastedText = (text, html, editorState) => {

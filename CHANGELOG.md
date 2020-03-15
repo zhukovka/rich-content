@@ -12,14 +12,23 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-
-- `gallery`
-  - [#762](https://github.com/wix-incubator/rich-content/pull/762) bump pro gallery to version 1.8.2
-
 </details>
 <hr/>
 
+## 6.10.2 (Mar 15, 2020)
+### :house: Internal
+- `wrapper`
+  - use cjs version of fullscreen lib, fix onChange call
+
+## 6.10.1 (Mar 12, 2020)
+### :rocket: New Feature
+- `gallery`
+  - [#762](https://github.com/wix-incubator/rich-content/pull/762) bump pro gallery to version 1.8.2
+
 ## 6.10.0 (Mar 11, 2020)
+### :boom: Breaking Change
+- `fullscreen`
+  - fullscreen usage need to import styles `import 'wix-rich-content-fullscreen/dist/styles.min.css';`
 ### :rocket: New Feature
 - `gallery`
   - [#625](https://github.com/wix-incubator/rich-content/pull/625) gallery supports adding videos
