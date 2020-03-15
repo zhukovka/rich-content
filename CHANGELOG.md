@@ -14,6 +14,10 @@
   </summary>
 
 ### :rocket: New Feature
+- `poll-plugin`
+  - base ui version of poll plugin
+
+### :rocket: New Feature
 - `fullscreen`
   - [#776](https://github.com/wix-incubator/rich-content/pull/776) fullscreen closes on Esc key press
 
