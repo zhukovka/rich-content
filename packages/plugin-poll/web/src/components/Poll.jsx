@@ -23,10 +23,13 @@ class PollComponent extends Component {
   }
 
   render() {
-    const { poll, rce, addOption } = this.props;
+    const { poll, rce, addOption, design } = this.props;
+    const style = {
+      ...design,
+    };
 
     return (
-      <div className={styles.container}>
+      <div className={styles.container} style={style}>
         <PollHeader />
 
         <ul className={styles.list}>

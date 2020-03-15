@@ -31,6 +31,8 @@ export class PollEditor extends PureComponent {
         value={{
           isViewMode: componentState.isPreview || !this.isPluginFocused(),
           setInPluginEditingMode,
+          layout: componentData.layout,
+          design: componentData.design,
         }}
       >
         <PollContextProvider
@@ -52,6 +54,8 @@ PollEditor.propTypes = {
   componentData: PropTypes.shape({
     poll: PropTypes.object,
     pollId: PropTypes.string,
+    layout: PropTypes.object,
+    design: PropTypes.object,
   }).isRequired,
 
   block: PropTypes.object.isRequired,

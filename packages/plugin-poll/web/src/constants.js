@@ -1,5 +1,14 @@
 export const POLL_TYPE = 'wix-draft-plugin-poll';
 
+export const COLOR_PALETTE = ['#cba27d', '#D5D4D4', '#ebba4d', '#0091ff', '#134497', '#82cb7d'];
+
+export const MEMBER_ROLES = {
+  EVERYONE: 'everyone',
+  VOTERS: 'voters',
+  ME: 'me',
+  SITE_MEMBER: 'site_member',
+};
+
 export const DEFAULT_COMPONENT_DATA = {
   config: {
     alignment: 'center',
@@ -13,6 +22,8 @@ export const DEFAULT_COMPONENT_DATA = {
     settings: {
       multi: false,
       secret: false,
+      voteRole: MEMBER_ROLES.SITE_MEMBER,
+      viewRole: MEMBER_ROLES.VOTERS,
     },
     options: [
       {
@@ -28,5 +39,7 @@ export const DEFAULT_COMPONENT_DATA = {
     ],
   },
   layout: {},
-  design: {},
+  design: {
+    backgroundColor: COLOR_PALETTE[2],
+  },
 };

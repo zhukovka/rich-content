@@ -10,7 +10,9 @@ export class PollViewer extends PureComponent {
     const { componentData } = this.props;
 
     return (
-      <RCEHelpersContext.Provider value={{ isViewMode: true }}>
+      <RCEHelpersContext.Provider
+        value={{ isViewMode: true, layout: componentData.layout, design: componentData.design }}
+      >
         <PollContextProvider pollId={componentData.pollId} poll={componentData.poll}>
           <Poll />
         </PollContextProvider>
@@ -21,7 +23,9 @@ export class PollViewer extends PureComponent {
 
 PollViewer.propTypes = {
   componentData: PropTypes.shape({
-    poll: PropTypes.shape.isRequired,
+    poll: PropTypes.object.isRequired,
+    layout: PropTypes.object.isRequired,
+    design: PropTypes.object.isRequired,
     pollId: PropTypes.string,
   }).isRequired,
 };

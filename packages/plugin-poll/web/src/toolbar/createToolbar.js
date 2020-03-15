@@ -1,7 +1,13 @@
-import { BUTTONS, TOOLBARS } from 'wix-rich-content-editor-common';
+import {
+  BUTTONS,
+  TOOLBARS,
+  PluginSettingsIcon,
+  getModalStyles,
+} from 'wix-rich-content-editor-common';
 
 import { DEFAULT_COMPONENT_DATA } from '../constants';
 import { InsertPluginIcon } from '../assets/icons';
+import { Modals } from '../modals';
 
 function togglePreviewMode(pubsub) {
   const { activeButton } = pubsub.get('componentState');
@@ -30,6 +36,17 @@ export function createToolbar({ helpers, t, isMobile }) {
       { keyName: 'alignCenter', type: BUTTONS.SIZE_CONTENT_CENTER, mobile: false },
       { keyName: 'alignRight', type: BUTTONS.SIZE_SMALL_RIGHT, mobile: false },
       { keyName: 'separator', type: BUTTONS.SEPARATOR, mobile: false },
+
+      {
+        keyName: 'settings',
+        type: BUTTONS.EXTERNAL_MODAL,
+        modalName: Modals.POLL_SETTINGS,
+        icon: PluginSettingsIcon,
+        modalStyles: getModalStyles(),
+        t,
+        mobile: false,
+        tooltipTextKey: 'SettingsButton_Tooltip',
+      },
 
       { keyName: 'delete', type: BUTTONS.DELETE, mobile: isMobile },
     ],

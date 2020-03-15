@@ -1,0 +1,11 @@
+.colorPicker_button {
+  width: 36px;
+  height: 36px;
+}
+
+.colorPicker_button_selected::after {
+  width: 46px;
+  height: 46px;
+  top: -7px;
+  left: -7px;
+}
