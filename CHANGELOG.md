@@ -13,14 +13,26 @@
     Click to see more.
   </summary>
 
-  ### :rocket: New Feature
-  - `editor`
-    - [#571](https://github.com/wix-incubator/rich-content/pull/571) add headers dropdown menu option
-  - `gallery`
-    - [#762](https://github.com/wix-incubator/rich-content/pull/762) bump pro gallery to version 1.8.2
-
+ ### :rocket: New Feature
+ - `editor`
+   - [#571](https://github.com/wix-incubator/rich-content/pull/571) add headers dropdown menu option
+ - `gallery`
+   - [#762](https://github.com/wix-incubator/rich-content/pull/762) bump pro gallery to version 1.8.2
+### :bug: Bug Fix
+- `gallery`
+  - [#775](https://github.com/wix-incubator/rich-content/pull/775) adding videos to gallery
 </details>
 <hr/>
+
+## 6.10.2 (Mar 15, 2020)
+### :house: Internal
+- `wrapper`
+  - use cjs version of fullscreen lib, fix onChange call
+
+## 6.10.1 (Mar 12, 2020)
+### :rocket: New Feature
+- `gallery`
+  - [#762](https://github.com/wix-incubator/rich-content/pull/762) bump pro gallery to version 1.8.2
 
 ## 6.10.0 (Mar 11, 2020)
 ### :boom: Breaking Change

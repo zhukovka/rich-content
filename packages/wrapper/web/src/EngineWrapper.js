@@ -17,6 +17,7 @@ class EngineWrapper extends React.Component {
         /* webpackChunkName: "rce-editorStateConversion"  */ `wix-rich-content-editor/dist/lib/editorStateConversion.js`
       ).then(module => this.setState({ editorState: module.createEmpty() }));
     }
+    this.emptyInitialState = { entityMap: {} };
   }
 
   onModalOpen = data => {
@@ -71,14 +72,6 @@ class EngineWrapper extends React.Component {
         withModal === true
           ? React.lazy(() => import(/* webpackChunkName: "rce-ViewerModal"  */ './ViewerModal'))
           : withModal;
-      // if (!this.expandModeData) {
-      //   import(
-      //     // eslint-disable-next-line max-len
-      //     /* webpackChunkName: "rce-getImagesData"  */ 'wix-rich-content-fullscreen/dist/lib/getImagesData.js'
-      //   ).then(getImagesData => {
-      //     this.expandModeData = getImagesData.default(children.props.initialState);
-      //   });
-      // }
     }
     this.setState({ EditorModal, Fullscreen });
   }
@@ -103,14 +96,12 @@ class EngineWrapper extends React.Component {
       helpers.openModal = this.onModalOpen;
       helpers.closeModal = this.onModalClose;
     }
-    if (onChange)
-      modifiedProps.onChange = editorState => {
-        onChange(editorState);
-        this.handleChange(editorState);
-      };
+    modifiedProps.onChange = editorState => {
+      onChange?.(editorState);
+      this.handleChange(editorState);
+    };
 
     modifiedProps.helpers = helpers;
-    modifiedProps.onChange = this.onChange;
 
     const {
       expandModeData,
@@ -141,7 +132,7 @@ class EngineWrapper extends React.Component {
         {Fullscreen && (
           <Suspense fallback={<div />}>
             <Fullscreen
-              initialState={children.props.initialState}
+              initialState={children.props.initialState || this.emptyInitialState}
               isOpen={expandModeIsOpen}
               images={expandModeData?.images || []}
               onClose={() => this.setState({ expandModeIsOpen: false })}
