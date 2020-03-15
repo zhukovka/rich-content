@@ -85,7 +85,6 @@ export const editorPlugins = [
   createEmojiPlugin,
   createTextHighlightPlugin,
   createUndoRedoPlugin,
-  createPollPlugin,
 ];
 
 const themeColors = {
