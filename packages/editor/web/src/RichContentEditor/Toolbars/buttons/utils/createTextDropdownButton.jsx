@@ -8,7 +8,7 @@ import DropdownArrowIcon from 'wix-rich-content-editor-common/src/Icons/Dropdown
 import styles from '../../../../../statics/styles/inline-toolbar-dropdown-button.scss';
 import ClickOutside from 'react-click-outside';
 
-export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
+export default ({ buttons, activeItem, onChange, tooltipTextKey, showArrowIcon }) =>
   class TextDropdownButton extends PureComponent {
     static propTypes = {
       getEditorState: PropTypes.func.isRequired,
@@ -58,9 +58,9 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
             theme && theme.inlineToolbarDropdownButton_active
           ),
           //eslint-disable-next-line camelcase
-          inlineToolbarButton_buttonName: classNames(
-            styles.inlineToolbarButton_buttonName,
-            theme && theme.inlineToolbarButton_buttonName
+          inlineToolbarButton_menuButton: classNames(
+            styles.inlineToolbarButton_menuButton,
+            theme && theme.inlineToolbarButton_menuButton
           ),
         },
       };
@@ -105,7 +105,7 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
 
     render() {
       const {
-        selected: { Icon, textButtonKeyName },
+        selected: { Icon, buttonContent },
         isOpen,
       } = this.state;
       const { isMobile, tabIndex, t } = this.props;
@@ -129,9 +129,8 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
             className={this.styles.inlineToolbarDropdown_wrapper}
           >
             <TextButton
-              className={this.styles.inlineToolBarDropDown_chosenOption}
-              textButtonKeyName={textButtonKeyName}
-              arrowIcon={arrowIcon}
+              buttonContent={buttonContent}
+              arrowIcon={showArrowIcon && arrowIcon}
               icon={Icon}
               theme={this.theme}
               isMobile={isMobile}

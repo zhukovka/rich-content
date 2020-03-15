@@ -526,8 +526,7 @@ const config = {
   getToolbarSettings: ({ pluginButtons, textButtons }) => [
     {
       name: TOOLBARS.TEXT,
-      fontStyles: ['P', 'H2', 'H3', 'H4', 'H5', 'H6'],
-      // showHeadingInDropdown: true,
+      headersDropdown: true,
     },
     // {
     //   name: TOOLBARS.TEXT,

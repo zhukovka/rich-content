@@ -25,11 +25,11 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
   const fontStylesButton = createFontStyleStructure(customSettings, isMobile, icons);
 
   const buttonsMap = {
-    Title: fontStylesButton,
     Bold: boldButton(icons.Bold),
     Italic: italicButton(icons.Italic),
     Underline: underlineButton(icons.Underline),
     Indent: indentButton(icons.Indent),
+    Title: fontStylesButton,
     Blockquote: blockquoteButton(icons.Blockquote),
     Alignment: textAlignmentButton(icons),
     AlignLeft: alignTextLeftButton(icons.AlignLeft),

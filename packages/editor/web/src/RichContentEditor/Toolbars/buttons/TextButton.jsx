@@ -24,9 +24,8 @@ export default class TextButton extends Component {
     dataHook: PropTypes.string,
     tabIndex: PropTypes.number,
     shouldRefreshTooltips: PropTypes.func,
-    textButtonKeyName: PropTypes.string,
+    buttonContent: PropTypes.string,
     arrowIcon: PropTypes.object,
-    className: PropTypes.string,
   };
 
   static defaultProps = {
@@ -56,7 +55,7 @@ export default class TextButton extends Component {
       dataHook,
       tabIndex,
       shouldRefreshTooltips,
-      textButtonKeyName,
+      buttonContent,
       arrowIcon,
     } = this.props;
     const showTooltip = !isMobile && !isEmpty(tooltipText);
@@ -64,10 +63,13 @@ export default class TextButton extends Component {
       [styles.inlineToolbarButton_active]: this.isActive(),
     });
 
-    const buttonClassNames = classNames(
-      styles.inlineToolbarButton_buttonName,
-      this.props.className
+    const buttonTextContent = buttonContent || (
+      <div className={iconClassNames}>
+        <Icon />
+      </div>
     );
+
+    const isMenu = !!arrowIcon;
 
     /* eslint-disable jsx-a11y/no-static-element-interactions */
     const textButton = (
@@ -80,21 +82,13 @@ export default class TextButton extends Component {
           data-hook={dataHook}
           onClick={this.handleClick}
         >
-          {arrowIcon ? (
-            <div className={buttonClassNames}>
-              {textButtonKeyName || (
-                <div className={iconClassNames}>
-                  <Icon />
-                </div>
-              )}
+          {isMenu ? (
+            <div className={styles.inlineToolbarButton_menuButton}>
+              {buttonTextContent}
               {arrowIcon}
             </div>
           ) : (
-            textButtonKeyName || (
-              <div className={iconClassNames}>
-                <Icon />
-              </div>
-            )
+            buttonTextContent
           )}
         </button>
       </div>

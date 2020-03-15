@@ -1,21 +1,21 @@
-import { HEADER_BLOCK } from 'wix-rich-content-common';
 import {
   AlignLeftIcon,
   AlignTextCenterIcon,
   AlignRightIcon,
   AlignJustifyIcon,
-} from 'wix-rich-content-editor-common';
+  HEADER_BLOCK,
+} from 'wix-rich-content-common';
 import {
   BoldIcon,
   ItalicIcon,
   UnderlineIcon,
   IndentIcon,
   BlockQuoteIcon,
-  OrderedListIcon,
-  UnorderedListIcon,
   TitleIcon,
   TitleOneIcon,
   TitleTwoIcon,
+  OrderedListIcon,
+  UnorderedListIcon,
 } from '../../Icons';
 import createTextInlineStyleButton from './utils/createTextInlineStyleButton';
 import createTextBlockStyleButton from './utils/createTextBlockStyleButton';
@@ -35,13 +35,6 @@ export const italicButton = icon =>
     tooltipTextKey: 'ItalicButton_Tooltip',
   });
 
-export const titleButton = (inactiveIconTitle, iconForTitleOne, iconForTitleTwo) =>
-  createTextBlockStyleButton({
-    blockTypes: [HEADER_BLOCK.TWO, HEADER_BLOCK.THREE],
-    Icons: [iconForTitleOne || TitleOneIcon, iconForTitleTwo || TitleTwoIcon],
-    InactiveIcon: inactiveIconTitle || TitleIcon,
-    tooltipTextKey: 'TitleButton_Tooltip',
-  });
 export const underlineButton = icon =>
   createTextInlineStyleButton({
     style: 'UNDERLINE',
@@ -54,6 +47,14 @@ export const indentButton = icon =>
     blockTypes: ['indent'],
     Icons: [icon || IndentIcon],
     tooltipTextKey: 'IndentButton_Tooltip',
+  });
+
+export const titleButton = (inactiveIconTitle, iconForTitleOne, iconForTitleTwo) =>
+  createTextBlockStyleButton({
+    blockTypes: [HEADER_BLOCK.TWO, HEADER_BLOCK.THREE],
+    Icons: [iconForTitleOne || TitleOneIcon, iconForTitleTwo || TitleTwoIcon],
+    InactiveIcon: inactiveIconTitle || TitleIcon,
+    tooltipTextKey: 'TitleButton_Tooltip',
   });
 
 export const blockquoteButton = icon =>

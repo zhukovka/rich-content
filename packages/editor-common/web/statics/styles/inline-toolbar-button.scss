@@ -50,10 +50,10 @@
   @include svg-fill;
 }
 
-.inlineToolbarButton_buttonName{
+.inlineToolbarButton_menuButton {
   padding-right: 25px;
   display: flex;
   font-size: small;
-  font-weight: bolder;
+  font-weight: bold;
 }
 

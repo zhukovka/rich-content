@@ -1,8 +1,9 @@
 import { RichUtils } from 'draft-js';
 import createFontStyleButton from '../FontStyleButton';
 import createTextDropdownButton from './createTextDropdownButton';
-import { TITLE_FONT_STYLE, DEFAULT_FONTS_OPTIONS } from 'wix-rich-content-common';
+import { TITLE_FONT_STYLE, DEFAULT_FONTS_DROPDOWN_OPTIONS } from 'wix-rich-content-editor-common';
 import { titleButton } from '../index';
+
 const fontStyleButton = (option, content = false) => {
   const font = TITLE_FONT_STYLE[option];
   return createFontStyleButton({
@@ -26,7 +27,7 @@ const findActiveBlockType = (dropdownOptions, value) => {
   const activeBlockType =
     dropdownOptions.find(obj => TITLE_FONT_STYLE[obj] === value) || dropdownOptions[0];
   return {
-    textButtonKeyName: getContentForButton(activeBlockType),
+    buttonContent: getContentForButton(activeBlockType),
     value: TITLE_FONT_STYLE[activeBlockType],
   };
 };
@@ -39,14 +40,18 @@ const createTextTitleButtonDropDown = dropdownOptions => {
     },
     onChange: setBlockStyleByName,
     tooltipTextKey: 'TitleButton_Tooltip',
+    showArrowIcon: true,
   });
 };
 
 export const createFontStyleStructure = (customSettings, isMobile, icons) => {
-  const { showHeadingInDropdown, fontStyles } = customSettings || {};
-  const customFontStyles = fontStyles || DEFAULT_FONTS_OPTIONS;
-
-  return isMobile || (!fontStyles && !showHeadingInDropdown)
-    ? titleButton(icons.inactiveIconTitle, icons.TitleOne, icons.TitleTwo)
-    : createTextTitleButtonDropDown(customFontStyles);
+  const { headersDropdown } = customSettings;
+  if (isMobile || !headersDropdown) {
+    return titleButton(icons.inactiveIconTitle, icons.TitleOne, icons.TitleTwo);
+  } else {
+    const customFontStyles = Array.isArray(headersDropdown)
+      ? headersDropdown
+      : DEFAULT_FONTS_DROPDOWN_OPTIONS;
+    return createTextTitleButtonDropDown(customFontStyles);
+  }
 };

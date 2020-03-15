@@ -15,7 +15,7 @@
 
   ### :rocket: New Feature
   - `editor`
-    - [#571](https://github.com/wix-incubator/rich-content/pull/571) Change the 'TT' Font style into 'Heading X' Drop-down
+    - [#571](https://github.com/wix-incubator/rich-content/pull/571) add headers dropdown menu option
   - `gallery`
     - [#762](https://github.com/wix-incubator/rich-content/pull/762) bump pro gallery to version 1.8.2
 

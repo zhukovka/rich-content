@@ -1,5 +1,5 @@
 import { initial, includes, intersection, isEmpty, last, negate, sortBy } from 'lodash';
-import { HEADER_BLOCK } from '../../consts';
+import { HEADER_BLOCK } from 'wix-rich-content-common';
 
 const INLINE_HEADER = {
   ONE: 'inline-header-one',

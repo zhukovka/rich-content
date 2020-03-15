@@ -34,7 +34,7 @@ export default ({ value, keyName, tooltipTextKey }) =>
 
       return (
         <TextButton
-          textButtonKeyName={keyName}
+          buttonContent={keyName}
           theme={theme}
           isMobile={isMobile}
           isActive={this.isActive}
