@@ -6,20 +6,23 @@ import {
   KeyBindingUtil,
 } from 'wix-rich-content-editor-common';
 
+const HANDLED = 'handled';
+const NOT_HANDLED = 'not-handled';
+
 export default updateEditorState => (command, editorState) => {
   if (KeyBindingUtil.isSoftNewlineEvent(command)) {
     const newState = RichUtils.insertSoftNewline(editorState);
     updateEditorState(newState);
-    return 'handled';
+    return HANDLED;
   }
 
   const { dynamicStyles } = getAnchorBlockData(editorState);
   if (dynamicStyles) {
     const newState = splitState(editorState, dynamicStyles);
     updateEditorState(newState);
-    return 'handled';
+    return HANDLED;
   }
-  return 'not-handled';
+  return NOT_HANDLED;
 };
 
 const splitState = (editorState, styles) => {
