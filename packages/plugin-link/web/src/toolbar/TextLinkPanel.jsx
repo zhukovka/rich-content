@@ -51,8 +51,9 @@ export default class TextLinkPanel extends Component {
     this.props.onOverrideContent(LinkPanelContainerWithProps);
   }
 
-  createLinkEntity = ({ url, targetBlank, nofollow }) => {
-    const { anchorTarget, relValue } = this.props;
+  createLinkEntity = ({ url, targetBlank, nofollow, linkToAnchor }) => {
+    const { anchorTarget: _anchorTarget, relValue } = this.props;
+    const anchorTarget = linkToAnchor ? '_self' : _anchorTarget;
     if (!isEmpty(url)) {
       const { getEditorState, setEditorState } = this.props;
       const newEditorState = insertLinkAtCurrentSelection(getEditorState(), {

@@ -36,7 +36,8 @@ class LinkViewer extends Component {
   };
 
   getHref() {
-    return normalizeUrl(this.props.componentData.url);
+    const href = normalizeUrl(this.props.componentData.url) || `#${this.props.componentData.url}`;
+    return href;
   }
 
   render() {

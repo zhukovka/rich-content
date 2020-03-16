@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import LinkPanel from './LinkPanel';
 import LinkToAnchorPanel from './LinkToAnchorPanel';
 import FocusManager from './FocusManager';
-import { mergeStyles } from 'wix-rich-content-common';
+import { mergeStyles, isValidUrl } from 'wix-rich-content-common';
 import RadioGroupHorizontal from './RadioGroupHorizontal';
 import RadioGroup from './RadioGroup';
 import styles from '../../statics/styles/link-panel.scss';
@@ -29,12 +29,39 @@ class LinkPanelContainer extends PureComponent {
     this.styles = mergeStyles({ styles, theme: props.theme });
     const { url, targetBlank, nofollow } = this.props;
     this.state = {
-      linkPanelValues: { url, targetBlank, nofollow },
-      radioGroupValue: 'external-link',
+      linkPanelValues: { url: url && isValidUrl(url) ? url : undefined, targetBlank, nofollow },
+      anchorPanelValues: {
+        url: url && !isValidUrl(url) ? url : undefined,
+      },
+      radioGroupValue: !url || isValidUrl(url) ? 'external-link' : 'anchor',
     };
   }
 
   onDone = () => {
+    const { radioGroupValue } = this.state;
+    switch (radioGroupValue) {
+      case 'external-link':
+        this.onDoneLink();
+        break;
+      case 'anchor':
+        this.onDoneAnchor();
+        break;
+      default:
+        // eslint-disable-next-line no-console
+        console.error('Unknown radio');
+        break;
+    }
+  };
+
+  onDoneAnchor = () => {
+    const { anchorPanelValues } = this.state;
+    //TODO: add html <a name=`#${anchorPanelValues.url`}/> element before the block key
+    if (anchorPanelValues.url) {
+      this.props.onDone({ ...anchorPanelValues, linkToAnchor: true });
+    }
+  };
+
+  onDoneLink = () => {
     const { linkPanelValues } = this.state;
     if (linkPanelValues.isValid && linkPanelValues.url) {
       this.props.onDone(linkPanelValues);
@@ -114,7 +141,7 @@ class LinkPanelContainer extends PureComponent {
           <div className={styles.linkPanel_VerticalDivider} />
           {radioGroupValue === 'external-link' && (
             <LinkPanel
-              onEnter={this.onDone}
+              onEnter={this.onDoneLink}
               onEscape={this.onCancel}
               linkValues={this.state.linkPanelValues}
               onChange={linkPanelValues => this.setState({ linkPanelValues })}
@@ -132,8 +159,7 @@ class LinkPanelContainer extends PureComponent {
               setEditorState={setEditorState}
               onEnter={this.onDone}
               onEscape={this.onCancel}
-              // linkValues={this.state.anchorPanelValues}
-              linkValues={this.state.linkPanelValues}
+              anchorValues={this.state.anchorPanelValues}
               onChange={anchorPanelValues => this.setState({ anchorPanelValues })}
               theme={theme}
               t={t}

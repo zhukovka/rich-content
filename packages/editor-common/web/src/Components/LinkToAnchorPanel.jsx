@@ -3,6 +3,7 @@
 import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { mergeStyles } from 'wix-rich-content-common';
+import classNames from 'classnames';
 import styles from '../../statics/styles/link-panel.scss';
 import Dropdown from './Dropdown';
 import { getAnchorableBlocks, filterAnchorableBlocks } from '../Utils/draftUtils';
@@ -18,10 +19,6 @@ class LinkToAnchorPanel extends Component {
     },
   };
 
-  componentDidMount() {
-    this.onChange({ isValid: this.isValidUrl(this.props.linkValues.url), isLinkToAnchor: true });
-  }
-
   handleUrlChange = url => {
     this.setState({ showValidation: false });
     this.onChange({
@@ -32,7 +29,7 @@ class LinkToAnchorPanel extends Component {
   };
 
   onChange = changes => {
-    this.props.onChange({ ...this.props.linkValues, ...changes });
+    this.props.onChange({ ...this.props.anchorValues, url: changes.key });
   };
 
   handleKeyDown = e => {
@@ -90,7 +87,7 @@ class LinkToAnchorPanel extends Component {
   render() {
     const { styles } = this;
     const { filter } = this.state;
-    const { ariaProps, t, getEditorState } = this.props;
+    const { ariaProps, t, getEditorState, anchorValues } = this.props;
     const anchorableBlocksData = getAnchorableBlocks(getEditorState());
     const { anchorableBlocks, pluginsIncluded } = anchorableBlocksData;
     const filteredAnchorableBlocks =
@@ -120,7 +117,13 @@ class LinkToAnchorPanel extends Component {
         </div>
         <div className={styles.LinkToAnchorPanel_anchorsElementsContainer}>
           {filteredAnchorableBlocks.map((block, i) => (
-            <AnchorableElement key={i} block={block} theme={styles} />
+            <AnchorableElement
+              key={i}
+              block={block}
+              theme={styles}
+              onClick={() => this.onChange(block)}
+              isSelected={anchorValues.url === block.key}
+            />
           ))}
         </div>
       </div>
@@ -134,11 +137,8 @@ LinkToAnchorPanel.propTypes = {
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
-  linkValues: PropTypes.shape({
+  anchorValues: PropTypes.shape({
     url: PropTypes.string,
-    isValid: PropTypes.bool,
-    targetBlank: PropTypes.bool,
-    nofollow: PropTypes.bool,
   }).isRequired,
   ariaProps: PropTypes.object,
   dropDown: PropTypes.object,
@@ -166,13 +166,20 @@ class AnchorableElement extends PureComponent {
   };
 
   render() {
+    const { styles } = this;
+    const { onClick, isSelected } = this.props;
     return (
-      <div className={this.styles.AnchorableElement_container}>
-        <div className={this.styles.AnchorableElement_thumbnail}>
+      <div
+        className={classNames(styles.AnchorableElement_container, {
+          [styles.AnchorableElement_selected]: isSelected,
+        })}
+        onClick={onClick}
+      >
+        <div className={styles.AnchorableElement_thumbnail}>
           {this.getDataToDisplayByField('thumbnail')}
         </div>
-        <div className={this.styles.AnchorableElement_contentContainer}>
-          <div className={this.styles.AnchorableElement_contentType}>
+        <div className={styles.AnchorableElement_contentContainer}>
+          <div className={styles.AnchorableElement_contentType}>
             {this.getDataToDisplayByField('type')}
           </div>
           <div>{this.getContent()}</div>
@@ -182,8 +189,10 @@ class AnchorableElement extends PureComponent {
   }
 
   static propTypes = {
+    onClick: PropTypes.func.isRequired,
     block: PropTypes.object,
     theme: PropTypes.object,
+    isSelected: PropTypes.bool,
   };
 }
 
