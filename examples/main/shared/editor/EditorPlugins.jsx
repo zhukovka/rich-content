@@ -21,6 +21,7 @@ import {
   HEADERS_MARKDOWN_TYPE,
 } from 'wix-rich-content-plugin-headers-markdown';
 import { createMapPlugin, MAP_TYPE } from 'wix-rich-content-plugin-map';
+import { createPollPlugin, POLL_TYPE } from 'wix-rich-content-plugin-poll';
 import { createFileUploadPlugin, FILE_UPLOAD_TYPE } from 'wix-rich-content-plugin-file-upload';
 import { createTextColorPlugin, TEXT_COLOR_TYPE } from 'wix-rich-content-plugin-text-color';
 import { createButtonPlugin, BUTTON_TYPE } from 'wix-rich-content-plugin-button';
@@ -46,6 +47,7 @@ import 'wix-rich-content-plugin-video/dist/styles.min.css';
 import 'wix-rich-content-plugin-sound-cloud/dist/styles.min.css';
 import 'wix-rich-content-plugin-giphy/dist/styles.min.css';
 import 'wix-rich-content-plugin-map/dist/styles.min.css';
+import 'wix-rich-content-plugin-poll/dist/styles.min.css';
 import 'wix-rich-content-plugin-file-upload/dist/styles.min.css';
 import 'wix-rich-content-plugin-text-color/dist/styles.min.css';
 import {
@@ -83,6 +85,7 @@ export const editorPlugins = [
   createEmojiPlugin,
   createTextHighlightPlugin,
   createUndoRedoPlugin,
+  createPollPlugin,
 ];
 
 const themeColors = {
@@ -226,6 +229,7 @@ const videoHandlers = {
 };
 
 const config = {
+  [POLL_TYPE]: {},
   [EMOJI_TYPE]: {
     // toolbar: {
     //   icons: {
