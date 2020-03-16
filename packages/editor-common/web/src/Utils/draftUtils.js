@@ -506,16 +506,20 @@ export const getAnchorableBlocks = editorState => {
               }
               anchorableBlocks.push({
                 ...block.toJS(),
-                contentEntity: contentEntity.type,
                 index: indexes[contentEntity.type],
+                anchorType: contentEntity.type,
               });
             }
           }
         });
       } else if (block.text !== '') {
-        anchorableBlocks.push(block.toJS());
+        anchorableBlocks.push({ ...block.toJS(), anchorType: block.type });
       }
     }
   });
-  return anchorableBlocks;
+  return { anchorableBlocks, pluginsIncluded: Object.keys(indexes) };
+};
+
+export const filterAnchorableBlocks = (array, filter) => {
+  return array.filter(block => block.anchorType === filter);
 };

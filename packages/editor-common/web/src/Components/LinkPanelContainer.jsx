@@ -27,13 +27,11 @@ class LinkPanelContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
-    const { url, targetBlank, nofollow, anchorableBlocks } = this.props;
+    const { url, targetBlank, nofollow } = this.props;
     this.state = {
       linkPanelValues: { url, targetBlank, nofollow },
       radioGroupValue: 'external-link',
     };
-    // eslint-disable-next-line no-console
-    console.log({ anchorableBlocks });
   }
 
   onDone = () => {
@@ -60,6 +58,8 @@ class LinkPanelContainer extends PureComponent {
     const { styles } = this;
     const { radioGroupValue } = this.state;
     const {
+      getEditorState,
+      setEditorState,
       theme,
       isActive,
       anchorTarget,
@@ -128,8 +128,8 @@ class LinkPanelContainer extends PureComponent {
           )}
           {radioGroupValue === 'anchor' && (
             <LinkToAnchorPanel
-              anchorableBlocks={this.props.anchorableBlocks}
-              // anchorsEntities={[{ data: { name: 'blabla' } }]}
+              getEditorState={getEditorState}
+              setEditorState={setEditorState}
               onEnter={this.onDone}
               onEscape={this.onCancel}
               // linkValues={this.state.anchorPanelValues}
@@ -185,7 +185,8 @@ class LinkPanelContainer extends PureComponent {
 }
 
 LinkPanelContainer.propTypes = {
-  anchorableBlocks: PropTypes.array.isRequired,
+  getEditorState: PropTypes.func.isRequired,
+  setEditorState: PropTypes.func.isRequired,
   onDone: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,

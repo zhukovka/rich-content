@@ -4,61 +4,19 @@ import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { mergeStyles } from 'wix-rich-content-common';
 import styles from '../../statics/styles/link-panel.scss';
-
-class AnchorableElement extends PureComponent {
-  styles = mergeStyles({ styles, theme: this.props.theme });
-  inlineBlocksTypes = {
-    unstyled: { thumbnail: 'T', type: 'Text', content: this.props.block.text },
-    'header-two': { thumbnail: 'H', type: 'Header', content: this.props.block.text },
-    'header-three': { thumbnail: 'H', type: 'Header', content: this.props.block.text },
-  };
-  atomicBlocksTypes = {
-    'wix-draft-plugin-image': {
-      thumbnail: 'I',
-      type: 'Image',
-      content: `Image ${this.props.block.index}`,
-    },
-    'wix-draft-plugin-gallery': {
-      thumbnail: 'G',
-      type: 'Gallery',
-      content: `Gallery ${this.props.block.index}`,
-    },
-  };
-
-  getContentByField = field => {
-    const { block } = this.props;
-    if (block.type === 'atomic') {
-      return <div>{this.atomicBlocksTypes[block.contentEntity][field]}</div>;
-    } else {
-      return <div>{this.inlineBlocksTypes[block.type][field]}</div>;
-    }
-  };
-
-  render() {
-    return (
-      <div className={this.styles.AnchorableElement_container}>
-        <div className={this.styles.AnchorableElement_thumbnail}>
-          {this.getContentByField('thumbnail')}
-        </div>
-        <div className={this.styles.AnchorableElement_contentContainer}>
-          <div className={this.styles.AnchorableElement_contentType}>
-            {this.getContentByField('type')}
-          </div>
-          <div>{this.getContentByField('content')}</div>
-        </div>
-      </div>
-    );
-  }
-
-  static propTypes = {
-    block: PropTypes.object,
-    theme: PropTypes.object,
-  };
-}
+import Dropdown from './Dropdown';
+import { getAnchorableBlocks, filterAnchorableBlocks } from '../Utils/draftUtils';
+import { ANCHORABLE_BLOCKS } from '../consts';
 
 class LinkToAnchorPanel extends Component {
-  state = { showValidation: false };
   styles = mergeStyles({ styles, theme: this.props.theme });
+  state = {
+    showValidation: false,
+    filter: {
+      value: 'all',
+      component: () => <FilterDropdownElement label={'All'} theme={this.styles} />,
+    },
+  };
 
   componentDidMount() {
     this.onChange({ isValid: this.isValidUrl(this.props.linkValues.url), isLinkToAnchor: true });
@@ -107,19 +65,62 @@ class LinkToAnchorPanel extends Component {
     };
   }
 
+  filterChanged = newFilter => {
+    this.setState({ filter: newFilter });
+  };
+
+  dropdownOptions = options => {
+    const optionsArray = options.map(option => {
+      return {
+        value: option,
+        component: () => (
+          <FilterDropdownElement label={ANCHORABLE_BLOCKS[option].type} theme={this.styles} />
+        ),
+      };
+    });
+    return [
+      {
+        value: 'all',
+        component: () => <FilterDropdownElement label={'All'} theme={this.styles} />,
+      },
+      ...optionsArray,
+    ];
+  };
+
   render() {
     const { styles } = this;
-    const { ariaProps, t, anchorableBlocks } = this.props;
+    const { filter } = this.state;
+    const { ariaProps, t, getEditorState } = this.props;
+    const anchorableBlocksData = getAnchorableBlocks(getEditorState());
+    const { anchorableBlocks, pluginsIncluded } = anchorableBlocksData;
+    const filteredAnchorableBlocks =
+      filter.value === 'all'
+        ? anchorableBlocks
+        : filterAnchorableBlocks(anchorableBlocks, filter.value);
 
     return (
       <div className={styles.linkPanel_Content} {...ariaProps} role="form">
         <div className={styles.LinkToAnchorPanel_header}>
           <div>{t('LinkPanel_Anchor_Placeholder')}</div>
-          <div>filter</div>
+          <div className={styles.LinkToAnchorPanel_dropdownWrapper}>
+            <Dropdown
+              theme={styles}
+              value={filter}
+              options={this.dropdownOptions(pluginsIncluded)}
+              controlClassName={styles.LinkToAnchorPanel_dropdownControl}
+              menuClassName={styles.LinkToAnchorPanel_dropdownMenu}
+              onChange={this.filterChanged}
+              // className={buttonClassNames}
+              // tabIndex={tabIndex}
+              // dataHook={this.getDataHook()}
+              // getValue={decoratedGetValue}
+              // {...props}
+            />
+          </div>
         </div>
         <div className={styles.LinkToAnchorPanel_anchorsElementsContainer}>
-          {anchorableBlocks.map((block, i) => (
-            <AnchorableElement key={i} block={block} />
+          {filteredAnchorableBlocks.map((block, i) => (
+            <AnchorableElement key={i} block={block} theme={styles} />
           ))}
         </div>
       </div>
@@ -128,7 +129,8 @@ class LinkToAnchorPanel extends Component {
 }
 
 LinkToAnchorPanel.propTypes = {
-  anchorableBlocks: PropTypes.array.isRequired,
+  getEditorState: PropTypes.func.isRequired,
+  setEditorState: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -145,3 +147,55 @@ LinkToAnchorPanel.propTypes = {
   placeholder: PropTypes.string,
 };
 export default LinkToAnchorPanel;
+
+class AnchorableElement extends PureComponent {
+  styles = mergeStyles({ styles, theme: this.props.theme });
+
+  getDataToDisplayByField = field => {
+    const { block } = this.props;
+    return <div>{ANCHORABLE_BLOCKS[block.anchorType][field]}</div>;
+  };
+
+  getContent = () => {
+    const { block } = this.props;
+    if (block.type === 'atomic') {
+      return <div>{`${ANCHORABLE_BLOCKS[block.anchorType].type} ${block.index}`}</div>;
+    } else {
+      return <div>{block.text}</div>;
+    }
+  };
+
+  render() {
+    return (
+      <div className={this.styles.AnchorableElement_container}>
+        <div className={this.styles.AnchorableElement_thumbnail}>
+          {this.getDataToDisplayByField('thumbnail')}
+        </div>
+        <div className={this.styles.AnchorableElement_contentContainer}>
+          <div className={this.styles.AnchorableElement_contentType}>
+            {this.getDataToDisplayByField('type')}
+          </div>
+          <div>{this.getContent()}</div>
+        </div>
+      </div>
+    );
+  }
+
+  static propTypes = {
+    block: PropTypes.object,
+    theme: PropTypes.object,
+  };
+}
+
+class FilterDropdownElement extends PureComponent {
+  styles = mergeStyles({ styles, theme: this.props.theme });
+  render() {
+    const { label } = this.props;
+    return <div className={this.styles.FilterDropdownElement}>{label}</div>;
+  }
+
+  static propTypes = {
+    label: PropTypes.string,
+    theme: PropTypes.object,
+  };
+}

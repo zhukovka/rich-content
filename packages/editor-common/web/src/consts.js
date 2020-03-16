@@ -60,3 +60,17 @@ export const TOOLBAR_OFFSETS = Object.freeze({
   top: 12,
   left: 15,
 });
+
+export const ANCHORABLE_BLOCKS = Object.freeze({
+  unstyled: { thumbnail: 'T', type: 'Text' },
+  'header-two': { thumbnail: 'H', type: 'Header' },
+  'header-three': { thumbnail: 'H', type: 'Header' },
+  'wix-draft-plugin-image': {
+    thumbnail: 'I',
+    type: 'Image',
+  },
+  'wix-draft-plugin-gallery': {
+    thumbnail: 'G',
+    type: 'Gallery',
+  },
+});

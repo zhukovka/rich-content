@@ -8,19 +8,26 @@ import {
   removeLinksInSelection,
   LinkPanelContainer,
   decorateComponentWithProps,
-  getAnchorableBlocks,
 } from 'wix-rich-content-editor-common';
 
 export default class TextLinkPanel extends Component {
   componentDidMount() {
-    const { anchorTarget, relValue, getEditorState, theme, t, uiSettings } = this.props;
+    const {
+      anchorTarget,
+      relValue,
+      getEditorState,
+      setEditorState,
+      theme,
+      t,
+      uiSettings,
+    } = this.props;
     const linkData = getLinkDataInSelection(getEditorState());
     const { url, target, rel } = linkData || {};
     const targetBlank = target ? target === '_blank' : anchorTarget === '_blank';
     const nofollow = rel ? rel === 'nofollow' : relValue === 'nofollow';
-    const anchorableBlocks = getAnchorableBlocks(getEditorState());
     const linkContainerProps = {
-      anchorableBlocks,
+      getEditorState,
+      setEditorState,
       url,
       targetBlank,
       nofollow,
