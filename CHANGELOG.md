@@ -15,7 +15,7 @@
 
 ### :rocket: New Feature
 - `poll-plugin`
-  - base ui version of poll plugin
+  - [#782](https://github.com/wix-incubator/rich-content/pull/782) base ui version of poll plugin
 
 ### :rocket: New Feature
 - `fullscreen`
