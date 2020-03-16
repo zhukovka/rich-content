@@ -13,7 +13,7 @@ import { convertFromRaw, createWithContent } from 'wix-rich-content-editor';
 
 import dividerContentState from '../../../../e2e/tests/fixtures/divider.json';
 import DividerEditor from './WrapperBaiscUsage';
-import sourcecode from '!!raw-loader!./WrapperBaiscUsage.js';
+import sourcecode from '!!raw-loader!./WrapperBaiscUsage.js'; // eslint-disable-line
 
 const editorState = createWithContent(convertFromRaw(dividerContentState));
 export default () => {
