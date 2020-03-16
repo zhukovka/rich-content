@@ -84,9 +84,7 @@ export default class embedURLInputModal extends Component {
           onClick={() => this.onCloseRequested()}
         />
         <div className={classNames(styles.socialEmbed_urlInput_header)}>
-          <h3 className={styles.socialEmbed_urlInput_header_text}>
-            {`Add a ${socialType} embed url`}
-          </h3>
+          <h3 className={styles.socialEmbed_urlInput_header_text}>{`Add a ${socialType} post`}</h3>
         </div>
         <div className={styles.socialEmbedUrlInputModal_textInput}>
           <TextInput

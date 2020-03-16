@@ -20,7 +20,7 @@ export default ({ helpers, settings, isMobile }) => {
     return {
       type: 'modal',
       name: socialType,
-      tooltipText: `Add ${socialType} embed post`,
+      tooltipText: `Add a ${socialType} post`,
       Icon: icon,
       componentData: { ...DEFAULTS, socialType, fetchMetadata: settings.fetchMetadata },
       toolbars: [TOOLBARS.FOOTER, TOOLBARS.SIDE],
