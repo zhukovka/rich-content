@@ -8,6 +8,7 @@ import {
 
 const HANDLED = 'handled';
 const NOT_HANDLED = 'not-handled';
+const SPLIT_BLOCK = 'split-block';
 
 export default updateEditorState => (command, editorState) => {
   if (KeyBindingUtil.isSoftNewlineEvent(command)) {
@@ -35,5 +36,5 @@ const splitState = (editorState, styles) => {
     splitContentState.getSelectionAfter(),
     { dynamicStyles: styles }
   );
-  return EditorState.push(editorState, contentStateWithStyles, 'split-block');
+  return EditorState.push(editorState, contentStateWithStyles, SPLIT_BLOCK);
 };
