@@ -236,6 +236,7 @@ const config = {
   [LINK_PREVIEW_TYPE]: {
     disableEmbed: false,
     fetchMetadata: linkPreviewUtil(authorization),
+    exposeMultipleEmbedButtons: true,
   },
   [EMOJI_TYPE]: {
     // toolbar: {

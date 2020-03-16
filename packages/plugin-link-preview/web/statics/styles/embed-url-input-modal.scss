@@ -1,0 +1,71 @@
+@import '~wix-rich-content-common/dist/statics/styles/mixins';
+@import '~wix-rich-content-common/dist/statics/styles/palette';
+
+.socialEmbed_urlInput_container {
+  padding: 51px 60px 60px;
+  @include phone {
+    padding: 24px 18px 30px;
+  }
+}
+
+.socialEmbed_urlInput_closeIcon {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  cursor: pointer;
+  color: #333;
+}
+
+.socialEmbed_urlInput_cameraIcon {
+  width: 18px;
+}
+
+.socialEmbed_urlInput_errorIcon {
+  width: 13px;
+}
+
+.socialEmbed_urlInput_header {
+  display: flex;
+  align-items: center;
+}
+
+.socialEmbed_urlInput_header_text {
+  font-size: 16px;
+  margin: 8px 0 8px 0;
+}
+
+.socialEmbed_urlInput_header_icon {
+  margin-right: 12px;
+}
+
+.socialEmbedUrlInputModal_textInput {
+  margin: 8px 0 24px 0;
+}
+
+.socialEmbed_urlInput_modal_footer {
+  border: none !important;
+  padding: 0 !important;
+  height: 40px !important;
+}
+
+.socialEmbed_urlInput_textInput_input {
+  padding: 9px 21px 10px 12px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.socialEmbed_urlInput_textInput_input_invalid {
+  padding-right: 39px;
+}
+
+.settingsPanel_save {
+  @include phone {
+    padding: 9px 15px 10px 15px;
+  }
+}
+.settingsPanel_cancel {
+  @include phone {
+    padding: 9px 15px 10px 15px;
+  }
+}

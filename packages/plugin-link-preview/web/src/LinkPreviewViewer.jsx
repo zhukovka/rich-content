@@ -4,6 +4,7 @@ import { isEqual } from 'lodash';
 import { mergeStyles, validate, pluginLinkPreviewSchema } from 'wix-rich-content-common';
 import styles from '../statics/styles/link-preview.scss';
 import HtmlComponent from 'wix-rich-content-plugin-html/dist/lib/HtmlComponent';
+import { isValidHtml } from './linkPreviewUtil';
 
 class LinkPreviewViewer extends Component {
   static propTypes = {
@@ -55,8 +56,6 @@ class LinkPreviewViewer extends Component {
     return url.substring(numOfCharsToRemove);
   };
 
-  isValidHtml = html => html.substring(0, 12) !== '<div>{"url":';
-
   render() {
     const { componentData, theme, isMobile, settings } = this.props;
     const {
@@ -80,7 +79,7 @@ class LinkPreviewViewer extends Component {
       linkPreview_url,
     } = this.styles;
 
-    if (!settings.disableEmbed && html && this.isValidHtml(html)) {
+    if (!settings.disableEmbed && html && isValidHtml(html)) {
       const htmlCompProps = {
         componentData: {
           srcType: 'html',

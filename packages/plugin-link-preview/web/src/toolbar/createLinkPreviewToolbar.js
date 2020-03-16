@@ -1,8 +1,19 @@
 import createInlineButtons from './inline-buttons';
+import createInsertButtons from './insert-buttons';
 
-export default function createToolbar(settings, setEditorState, getEditorState) {
+export default function createToolbar({
+  settings,
+  setEditorState,
+  getEditorState,
+  helpers,
+  isMobile,
+}) {
+  const buttons = { InlineButtons: createInlineButtons(setEditorState, getEditorState) };
+  if (settings.exposeMultipleEmbedButtons) {
+    buttons.InsertButtons = createInsertButtons({ helpers, settings, isMobile });
+  }
   return {
-    InlineButtons: createInlineButtons(setEditorState, getEditorState),
+    ...buttons,
     name: 'link-preview',
   };
 }
