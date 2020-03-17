@@ -18,9 +18,12 @@
    - [#571](https://github.com/wix-incubator/rich-content/pull/571) add headers dropdown menu option
  - `gallery`
    - [#762](https://github.com/wix-incubator/rich-content/pull/762) bump pro gallery to version 1.8.2
+- `fullscreen`
+  - [#776](https://github.com/wix-incubator/rich-content/pull/776) fullscreen closes on Esc key press
 ### :bug: Bug Fix
 - `gallery`
   - [#775](https://github.com/wix-incubator/rich-content/pull/775) adding videos to gallery
+
 </details>
 <hr/>
 
