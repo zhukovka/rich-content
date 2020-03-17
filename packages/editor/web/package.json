@@ -40,6 +40,7 @@
     "draft-convert": "2.1.8",
     "draft-js-focus-plugin": "github:shaulgo/draft-js-plugins#focusPlugin",
     "draft-js-plugins-editor": "~3.0.0",
+    "draft-js-drag-n-drop-plugin": "~2.0.4",
     "react-click-outside": "github:tj/react-click-outside",
     "react-measure": "~2.3.0",
     "wix-rich-content-common": "6.10.2",
@@ -48,7 +49,6 @@
   "peerDependencies": {
     "@babel/runtime": "7.2.0",
     "classnames": "^2.0.0",
-    "draft-js": "0.11.2",
     "lodash": "^4.0.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
@@ -58,7 +58,6 @@
     "babel-jest": "^25.1.0",
     "classnames": "^2.0.0",
     "cross-env": "^5.2.0",
-    "draft-js": "0.11.2",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.1",
     "eslint": "^6.1.0",
