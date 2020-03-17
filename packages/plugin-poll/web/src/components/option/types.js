@@ -6,4 +6,9 @@ export const OptionPropTypes = {
   removeEnabled: PropTypes.bool,
   update: PropTypes.func,
   remove: PropTypes.func,
+  vote: PropTypes.func,
+  unvote: PropTypes.func,
+  poll: PropTypes.object,
+  voteEnabled: PropTypes.bool,
+  isViewMode: PropTypes.bool,
 };

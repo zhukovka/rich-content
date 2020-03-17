@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import { Poll } from './Poll';
-
 import { PollContextProvider } from './poll-context';
 import { RCEHelpersContext } from './rce-helpers-context';
 
@@ -24,7 +23,7 @@ export class PollEditor extends PureComponent {
   }
 
   render() {
-    const { componentData, componentState, setInPluginEditingMode } = this.props;
+    const { componentData, componentState, setInPluginEditingMode, settings } = this.props;
 
     return (
       <RCEHelpersContext.Provider
@@ -36,9 +35,9 @@ export class PollEditor extends PureComponent {
         }}
       >
         <PollContextProvider
-          setPoll={this.setPoll}
+          siteToken={settings.siteToken}
           poll={componentData.poll}
-          pollId={componentData.pollId}
+          setPoll={this.setPoll}
         >
           <Poll />
         </PollContextProvider>
@@ -62,7 +61,11 @@ PollEditor.propTypes = {
   selection: PropTypes.object.isRequired,
 
   setInPluginEditingMode: PropTypes.func.isRequired,
+  settings: PropTypes.shape({
+    siteToken: PropTypes.string,
+  }),
   store: PropTypes.shape({
     set: PropTypes.func.isRequired,
+    get: PropTypes.func.isRequired,
   }).isRequired,
 };

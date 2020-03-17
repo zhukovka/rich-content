@@ -14,6 +14,7 @@ class TextFieldComponent extends React.PureComponent {
   state = {
     placeholder: this.props.placeholder,
     rows: 1,
+    value: this.props.value,
   };
 
   componentDidMount() {
@@ -35,13 +36,23 @@ class TextFieldComponent extends React.PureComponent {
     this.props.rce.setInPluginEditingMode(true);
   };
 
+  handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+    }
+  }
+
   handleBlur = () => {
     this.showPlaceholder();
     this.props.rce.setInPluginEditingMode(false);
+
+    if (this.props.value !== this.state.value) {
+      this.props.onChange(this.state.value);
+    }
   };
 
   handleChange = event => {
-    this.props.onChange(event.target.value);
+    this.setState({ value: event.target.value });
     this.resize();
   };
 
@@ -65,12 +76,13 @@ class TextFieldComponent extends React.PureComponent {
   }
 
   render() {
-    const { value, textAutoResize, className, rce, ...props } = this.props;
-    const { placeholder, rows } = this.state;
+    const { textAutoResize, className, rce, ...props } = this.props;
+    const { value, placeholder, rows } = this.state;
 
     if (rce.isViewMode) {
       return (
         <p
+          {...props}
           ref={this.$el}
           className={cls(
             styles.text,
@@ -82,7 +94,7 @@ class TextFieldComponent extends React.PureComponent {
             }
           )}
         >
-          {value}
+          {this.props.value}
         </p>
       );
     }
@@ -97,6 +109,7 @@ class TextFieldComponent extends React.PureComponent {
         placeholder={placeholder}
         value={value}
         rows={rows}
+        onKeyDown={this.handleKeyDown}
         className={cls(
           styles.input,
           className,
@@ -106,6 +119,7 @@ class TextFieldComponent extends React.PureComponent {
             [styles.large]: value.length <= 60,
           }
         )}
+        onClick={undefined}
       />
     );
   }

@@ -1,6 +1,7 @@
 /* eslint-disable */
 const path = require('path');
 const merge = require('webpack-merge');
+const bodyparser = require('body-parser');
 const { HotModuleReplacementPlugin } = require('webpack');
 
 const PATHS = {
@@ -42,6 +43,13 @@ const devConfig = {
     publicPath: '/',
     stats: 'errors-only',
     disableHostCheck: true,
+    proxy: {
+      '/_serverless/*': {
+        target: 'https://www.wix.com/',
+        secure: false,
+        changeOrigin: true,
+      },
+    },
   },
 };
 

@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import { PollApiClient } from '../../api';
+
 import { PollPropTypes } from './types';
 
 export const PollContext = React.createContext({});
@@ -16,78 +18,108 @@ export const withPoll = WrappedComponent => props => {
 };
 
 export class PollContextProvider extends PureComponent {
-  componentDidMount() {
-    const { pollId } = this.props;
+  state = {
+    poll: this.props.poll,
+    changePollTitle: this.changePollTitle.bind(this),
+    updatePollOption: this.updatePollOption.bind(this),
+    addOption: this.addOption.bind(this),
+    removeOption: this.removeOption.bind(this),
+    changePollImage: this.changePollImage.bind(this),
+    vote: this.vote.bind(this),
+    unvote: this.unvote.bind(this),
+  };
 
-    if (pollId) {
+  componentDidMount() {
+    const { poll } = this.state;
+
+    this.pollApiClient = new PollApiClient(this.props.siteToken);
+
+    if (poll.id) {
       this.fetchPoll();
     }
   }
 
-  fetchPoll() {}
+  componentWillReceiveProps(props) {
+    if (this.props.poll.id !== props.poll.id) {
+      this.setState({ poll: props.poll });
+    }
+  }
 
-  changePollTitle = title =>
-    this.props.setPoll({
+  async fetchPoll() {
+    const { poll } = this.state;
+
+    const pollResponse = await this.pollApiClient.fetchPoll(poll.id);
+
+    this.setState({ poll: pollResponse });
+  }
+
+  async updatePoll(poll) {
+    const pollResponse = await this.pollApiClient.createPoll(poll);
+    this.props.setPoll(pollResponse);
+  }
+
+  async vote(optionId) {
+    const poll = await this.pollApiClient.vote(this.state.poll.id, optionId);
+
+    this.setState({ poll });
+  }
+
+  async unvote(optionId) {
+    const poll = await this.pollApiClient.unvote(this.state.poll.id, optionId);
+
+    this.setState({ poll });
+  }
+
+  changePollTitle(title) {
+    this.updatePoll({
       ...this.props.poll,
       title,
     });
+  }
 
-  changePollImage = imageUrl =>
-    this.props.setPoll({
+  changePollImage(imageUrl) {
+    this.updatePoll({
       ...this.props.poll,
       imageUrl,
     });
+  }
 
-  updatePollOption = (index, option) => {
+  updatePollOption(index, option) {
     const { poll } = this.props;
 
     poll.options[index] = option;
 
-    this.props.setPoll({ ...poll });
-  };
+    this.updatePoll({ ...poll });
+  }
 
-  addOption = () => {
+  addOption() {
     const { poll } = this.props;
 
     poll.options.push({
-      id: '',
       title: '',
       imageUrl: '',
     });
 
-    this.props.setPoll({ ...poll });
-  };
+    this.updatePoll({ ...poll });
+  }
 
-  removeOption = index => {
+  removeOption(index) {
     const { poll } = this.props;
 
     poll.options.splice(index, 1);
 
-    this.props.setPoll({ ...poll });
-  };
+    this.updatePoll({ ...poll });
+  }
 
   render() {
     const { children } = this.props;
 
-    return (
-      <PollContext.Provider
-        value={{
-          poll: this.props.poll,
-          changePollTitle: this.changePollTitle,
-          updatePollOption: this.updatePollOption,
-          addOption: this.addOption,
-          removeOption: this.removeOption,
-          changePollImage: this.changePollImage,
-        }}
-      >
-        {children}
-      </PollContext.Provider>
-    );
+    return <PollContext.Provider value={this.state}>{children}</PollContext.Provider>;
   }
 }
 
 PollContextProvider.propTypes = {
-  pollId: PropTypes.string,
+  siteToken: PropTypes.string,
   poll: PropTypes.shape(PollPropTypes),
   setPoll: PropTypes.func,
   children: PropTypes.any,

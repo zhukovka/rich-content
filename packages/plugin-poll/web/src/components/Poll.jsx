@@ -23,7 +23,7 @@ class PollComponent extends Component {
   }
 
   render() {
-    const { poll, rce, addOption, design } = this.props;
+    const { poll, rce, addOption, design, vote, unvote } = this.props;
     const style = {
       ...design,
     };
@@ -34,12 +34,16 @@ class PollComponent extends Component {
 
         <ul className={styles.list}>
           {poll.options.map((option, i) => (
-            <li key={i}>
+            <li key={option.id || i}>
               <ListOption
                 option={option}
                 update={this.handleOptionUpdate(i)}
                 remove={this.handleOptionRemove(i)}
                 removeEnabled={!rce.isViewMode && poll.options.length > 1}
+                vote={vote}
+                unvote={unvote}
+                poll={poll}
+                isViewMode={rce.isViewMode}
               />
             </li>
           ))}

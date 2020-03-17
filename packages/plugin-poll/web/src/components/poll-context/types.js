@@ -11,7 +11,7 @@ export const PollPropTypes = {
   title: PropTypes.string.isRequired,
   imageUrl: PropTypes.string,
   settings: PropTypes.shape({
-    multi: PropTypes.bool.isRequired,
+    multipleChoice: PropTypes.bool.isRequired,
     secret: PropTypes.bool.isRequired,
   }).isRequired,
   options: PropTypes.arrayOf(PollOptionPropTypes).isRequired,

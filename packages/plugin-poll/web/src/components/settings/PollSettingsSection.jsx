@@ -44,7 +44,7 @@ export class PollSettingsSection extends Component {
     });
   }
 
-  handleMultiChange = event => this.updateSettings({ multi: event.target.checked });
+  handleMultiChange = event => this.updateSettings({ multipleChoice: event.target.checked });
 
   handleSecretChange = event => this.updateSettings({ secret: event.target.checked });
 
@@ -94,7 +94,7 @@ export class PollSettingsSection extends Component {
 
         <Checkbox
           label="Allow multi-select"
-          checked={componentData.poll.settings.multi}
+          checked={componentData.poll.settings.multipleChoice}
           onChange={this.handleMultiChange}
         />
       </section>

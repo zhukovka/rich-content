@@ -15,24 +15,23 @@ export const DEFAULT_COMPONENT_DATA = {
     size: 'large',
     width: 'full-width',
   },
-  pollId: '',
   poll: {
+    id: '',
+    chosen: [],
     title: '',
     imageUrl: '',
     settings: {
-      multi: false,
+      multipleChoice: false,
       secret: false,
       voteRole: MEMBER_ROLES.SITE_MEMBER,
       viewRole: MEMBER_ROLES.VOTERS,
     },
     options: [
       {
-        id: '',
         title: '',
         imageUrl: '',
       },
       {
-        id: '',
         title: '',
         imageUrl: '',
       },

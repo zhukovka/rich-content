@@ -1,4 +1,5 @@
 .input {
+  line-height: 1;
   margin-top: 20px;
   padding: 15px 35px 15px 25px;
   background-color: rgba(0, 0, 0, 0.2);
@@ -18,6 +19,50 @@
       opacity: 1;
     }
   }
+}
+
+.progress {
+  display: none;
+  content: " ";
+  position: absolute;
+  background-color: rgba(0, 0, 0, .2);
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  border-radius: 6px;
+}
+
+.input.showResults.userChoice {
+  padding-left: 55px;
+}
+
+.votedIcon,
+.label {
+  position: relative;
+  z-index: 2;
+}
+
+.votedIcon {
+  position: absolute;
+  left: 25px;
+  top: 12px;
+}
+
+.showResults .progress {
+  display: block;
+}
+
+.userChoice .progress {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cta {
+  cursor: pointer;
+}
+
+.cta:hover {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .remove {
