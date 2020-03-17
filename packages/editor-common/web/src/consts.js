@@ -1,3 +1,13 @@
+import React from 'react';
+import {
+  ImageIcon,
+  VideoIcon,
+  GalleryIcon,
+  BlockQuoteIcon,
+  CodeBlockIcon,
+  TitleIcon,
+} from './Icons';
+
 export const COMMANDS = Object.freeze({
   TITLE: 'header-two',
   SUBTITLE: 'header-three',
@@ -62,15 +72,49 @@ export const TOOLBAR_OFFSETS = Object.freeze({
 });
 
 export const ANCHORABLE_BLOCKS = Object.freeze({
-  unstyled: { thumbnail: 'T', type: 'Text' },
-  'header-two': { thumbnail: 'H', type: 'Header' },
-  'header-three': { thumbnail: 'H', type: 'Header' },
+  unstyled: {
+    thumbnail: 'P',
+    type: 'LinkTo_Modal_Section_Item_Paragraph',
+    filter: 'LinkTo_Modal_Section_Filter_Paragraphs',
+  },
+  header: {
+    thumbnail: <TitleIcon style={{ width: 'fit-content' }} />,
+    type: 'LinkTo_Modal_Section_Item_Heading',
+    filter: 'LinkTo_Modal_Section_Filter_Headings',
+  },
+  // 'header-two': {
+  //   thumbnail: 'H',
+  //   type: 'LinkTo_Modal_Section_Item_Heading',
+  //   filter: 'LinkTo_Modal_Section_Filter_Headings',
+  // },
+  // 'header-three': {
+  //   thumbnail: 'H',
+  //   type: 'LinkTo_Modal_Section_Item_Heading',
+  //   filter: 'LinkTo_Modal_Section_Filter_Headings',
+  // },
+  'code-block': {
+    thumbnail: <CodeBlockIcon style={{ width: 'fit-content' }} />,
+    type: 'LinkTo_Modal_Section_Item_Codeblock',
+    filter: 'LinkTo_Modal_Section_Item_Codeblock',
+  },
+  blockquote: {
+    thumbnail: <BlockQuoteIcon style={{ width: 'fit-content' }} />,
+    type: 'LinkTo_Modal_Section_Item_Quote',
+    filter: 'LinkTo_Modal_Section_Filter_Quotes',
+  },
   'wix-draft-plugin-image': {
-    thumbnail: 'I',
-    type: 'Image',
+    thumbnail: <ImageIcon style={{ width: 'fit-content' }} />,
+    type: 'LinkTo_Modal_Section_Item_Image',
+    filter: 'LinkTo_Modal_Section_Filter_Images',
   },
   'wix-draft-plugin-gallery': {
-    thumbnail: 'G',
-    type: 'Gallery',
+    thumbnail: <GalleryIcon style={{ width: 'fit-content' }} />,
+    type: 'LinkTo_Modal_Section_Item_Gallery',
+    filter: 'LinkTo_Modal_Section_Filter_Galleries',
+  },
+  'wix-draft-plugin-video': {
+    thumbnail: <VideoIcon style={{ width: 'fit-content' }} />,
+    type: 'LinkTo_Modal_Section_Item_Video',
+    filter: 'LinkTo_Modal_Section_Filter_Videos',
   },
 });

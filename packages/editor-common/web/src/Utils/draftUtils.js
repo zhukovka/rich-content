@@ -513,7 +513,12 @@ export const getAnchorableBlocks = editorState => {
           }
         });
       } else if (block.text !== '') {
-        anchorableBlocks.push({ ...block.toJS(), anchorType: block.type });
+        let blockType = block.type;
+        if (blockType === 'header-two' || blockType === 'header-three') {
+          blockType = 'header';
+        }
+        indexes[blockType] = -1;
+        anchorableBlocks.push({ ...block.toJS(), anchorType: blockType });
       }
     }
   });

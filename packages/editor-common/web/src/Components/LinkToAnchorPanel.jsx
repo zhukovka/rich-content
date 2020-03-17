@@ -15,7 +15,12 @@ class LinkToAnchorPanel extends Component {
     showValidation: false,
     filter: {
       value: 'all',
-      component: () => <FilterDropdownElement label={'All'} theme={this.styles} />,
+      component: () => (
+        <FilterDropdownElement
+          label={this.props.t('LinkTo_Modal_Section_Filter_All')}
+          theme={this.styles}
+        />
+      ),
     },
   };
 
@@ -67,18 +72,24 @@ class LinkToAnchorPanel extends Component {
   };
 
   dropdownOptions = options => {
+    const { t } = this.props;
     const optionsArray = options.map(option => {
       return {
         value: option,
         component: () => (
-          <FilterDropdownElement label={ANCHORABLE_BLOCKS[option].type} theme={this.styles} />
+          <FilterDropdownElement label={t(ANCHORABLE_BLOCKS[option].filter)} theme={this.styles} />
         ),
       };
     });
     return [
       {
         value: 'all',
-        component: () => <FilterDropdownElement label={'All'} theme={this.styles} />,
+        component: () => (
+          <FilterDropdownElement
+            label={this.props.t('LinkTo_Modal_Section_Filter_All')}
+            theme={this.styles}
+          />
+        ),
       },
       ...optionsArray,
     ];
@@ -123,6 +134,7 @@ class LinkToAnchorPanel extends Component {
               theme={styles}
               onClick={() => this.onChange(block)}
               isSelected={anchorValues.url === block.key}
+              t={t}
             />
           ))}
         </div>
@@ -153,21 +165,21 @@ class AnchorableElement extends PureComponent {
 
   getDataToDisplayByField = field => {
     const { block } = this.props;
-    return <div>{ANCHORABLE_BLOCKS[block.anchorType][field]}</div>;
+    return ANCHORABLE_BLOCKS[block.anchorType][field];
   };
 
   getContent = () => {
-    const { block } = this.props;
+    const { block, t } = this.props;
     if (block.type === 'atomic') {
-      return <div>{`${ANCHORABLE_BLOCKS[block.anchorType].type} ${block.index}`}</div>;
+      return `${t(ANCHORABLE_BLOCKS[block.anchorType].type)} ${block.index}`;
     } else {
-      return <div>{block.text}</div>;
+      return block.text;
     }
   };
 
   render() {
     const { styles } = this;
-    const { onClick, isSelected } = this.props;
+    const { onClick, isSelected, t } = this.props;
     return (
       <div
         className={classNames(styles.AnchorableElement_container, {
@@ -180,7 +192,7 @@ class AnchorableElement extends PureComponent {
         </div>
         <div className={styles.AnchorableElement_contentContainer}>
           <div className={styles.AnchorableElement_contentType}>
-            {this.getDataToDisplayByField('type')}
+            {t(this.getDataToDisplayByField('type'))}
           </div>
           <div>{this.getContent()}</div>
         </div>
@@ -190,6 +202,7 @@ class AnchorableElement extends PureComponent {
 
   static propTypes = {
     onClick: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired,
     block: PropTypes.object,
     theme: PropTypes.object,
     isSelected: PropTypes.bool,
