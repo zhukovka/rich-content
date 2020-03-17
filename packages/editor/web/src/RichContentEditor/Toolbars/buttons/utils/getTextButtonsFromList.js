@@ -18,9 +18,8 @@ import { createFontStyleStructure } from './createFontStyleButton';
 
 export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSettings, config }) => {
   const themedSeparator = horizontal => createThemedSeparator({ theme, horizontal });
-  const customSettings = config
-    ?.getToolbarSettings?.({})
-    .find(setting => setting.name === TOOLBARS.TEXT);
+  const customSettings =
+    config?.getToolbarSettings?.({}).find(setting => setting.name === TOOLBARS.TEXT) || {};
   const icons = customSettings?.getIcons?.() || {};
   const fontStylesButton = createFontStyleStructure(customSettings, isMobile, icons);
   const buttonsMap = {
