@@ -23,7 +23,6 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
     .find(setting => setting.name === TOOLBARS.TEXT);
   const icons = customSettings?.getIcons?.() || {};
   const fontStylesButton = createFontStyleStructure(customSettings, isMobile, icons);
-
   const buttonsMap = {
     Bold: boldButton(icons.Bold),
     Italic: italicButton(icons.Italic),
@@ -43,10 +42,13 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
     ...textPluginButtons,
   };
 
-  const buttonCompArray = buttons
-    .map(buttonName => buttonsMap[buttonName])
-    .filter(x => x)
-    .flat();
+  const buttonCompArray = [];
+  const { headersDropdown } = customSettings;
+  if (!isMobile && headersDropdown) {
+    buttonCompArray.push(...[buttonsMap.Title, buttonsMap.Separator]);
+    buttons = buttons.filter(buttonName => buttonName !== 'Title');
+  }
+  buttonCompArray.push(...buttons.map(buttonName => buttonsMap[buttonName]).filter(x => x));
 
   return buttonCompArray.map(b =>
     decorateComponentWithProps(b, { t, isMobile, uiSettings, config })

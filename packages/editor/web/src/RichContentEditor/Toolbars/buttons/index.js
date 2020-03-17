@@ -1,9 +1,8 @@
 export const DesktopTextButtonList = [
-  'Title',
-  'Separator',
   'Bold',
   'Italic',
   'Underline',
+  'Title',
   'Blockquote',
   'Separator',
   'Alignment',

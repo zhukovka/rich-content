@@ -3,8 +3,7 @@ import {
   AlignTextCenterIcon,
   AlignRightIcon,
   AlignJustifyIcon,
-  HEADER_BLOCK,
-} from 'wix-rich-content-common';
+} from 'wix-rich-content-editor-common';
 import {
   BoldIcon,
   ItalicIcon,
@@ -17,6 +16,7 @@ import {
   OrderedListIcon,
   UnorderedListIcon,
 } from '../../Icons';
+import { HEADER_BLOCK } from 'wix-rich-content-common';
 import createTextInlineStyleButton from './utils/createTextInlineStyleButton';
 import createTextBlockStyleButton from './utils/createTextBlockStyleButton';
 import createTextAlignmentButton from './utils/createTextAlignmentButton';
