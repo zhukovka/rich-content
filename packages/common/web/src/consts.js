@@ -3,6 +3,22 @@ export const HEADER_BLOCK = Object.freeze({
   TWO: 'header-two',
   THREE: 'header-three',
 });
+
+export const BLOCK_TYPES = Object.freeze([
+  'header-one',
+  'header-two',
+  'header-three',
+  'header-four',
+  'header-five',
+  'header-six',
+  'unordered-list-item',
+  'ordered-list-item',
+  'blockquote',
+  'atomic',
+  'code-block',
+  'unstyled',
+]);
+
 export const BUTTON_TYPE = 'wix-draft-plugin-button';
 export const CODE_BLOCK_TYPE = 'code-block';
 export const DIVIDER_TYPE = 'wix-draft-plugin-divider';

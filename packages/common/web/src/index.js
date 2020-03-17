@@ -39,4 +39,4 @@ export { default as pluginVideoSchema } from '../statics/schemas/plugin-video.sc
 export { getImageSrc, WIX_MEDIA_DEFAULT } from './Utils/imageUtils';
 export { isHexColor } from './Utils/colorUtils';
 export { isRtl, getLangDir } from './Utils/rtlUtils';
-export { HEADER_BLOCK } from './consts';
+export { HEADER_BLOCK, BLOCK_TYPES } from './consts';

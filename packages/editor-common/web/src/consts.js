@@ -1,18 +1,3 @@
-export const BLOCK_TYPES = Object.freeze([
-  'header-one',
-  'header-two',
-  'header-three',
-  'header-four',
-  'header-five',
-  'header-six',
-  'unordered-list-item',
-  'ordered-list-item',
-  'blockquote',
-  'atomic',
-  'code-block',
-  'unstyled',
-]);
-
 export const TITLE_FONT_STYLE = {
   H1: 'header-one',
   H2: 'header-two',
