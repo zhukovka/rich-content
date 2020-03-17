@@ -9,7 +9,7 @@
 .inlineToolbarDropdown_options {
   position: absolute;
   overflow: scroll;
-  padding: 0 5px;
+  padding: 10px 10px;
   left: 3px;
 
   background: white;
@@ -21,7 +21,6 @@
   padding: 0 !important;
 
   &>*{
-    // margin-top: 2px;
     width: max-content;
     font-size: smaller;
     font-family: Helvetica;
@@ -40,7 +39,6 @@
 .inlineToolbarDropdownButton_arrowIcon {
   position: absolute;
   right: 10px;
-  top: 18px;    
   svg {
     width: 16px;
     height: 16px;
