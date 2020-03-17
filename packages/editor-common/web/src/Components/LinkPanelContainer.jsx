@@ -125,14 +125,14 @@ class LinkPanelContainer extends PureComponent {
         role="form"
         {...ariaProps}
       >
-        <div className={styles.linkPanel_header}>{t('LinkPanel_Header')}</div>
+        <div className={styles.linkPanel_header}>{t('LinkTo_Modal_Header')}</div>
         <div className={styles.linkPanel_actionsDivider} role="separator" />
         <div className={styles.linkPanel_content}>
           <RadioGroup
             className={styles.linkPanel_radioButtons}
             dataSource={[
-              { value: 'external-link', labelText: t('LinkPanel_RadioGroup_ExternalLink') },
-              { value: 'anchor', labelText: t('LinkPanel_RadioGroup_Anchor') },
+              { value: 'external-link', labelText: t('LinkTo_Modal_Sidebar_Website') },
+              { value: 'anchor', labelText: t('LinkTo_Modal_Sidebar_Section') },
             ]}
             value={this.state.radioGroupValue}
             onChange={this.changeRadioGroup}

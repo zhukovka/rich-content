@@ -93,7 +93,7 @@ class RichContentEditor extends Component {
       locale,
       anchorTarget,
       relValue,
-      helpers,
+      helpers = {},
       config,
       isMobile = false,
       shouldRenderOptimizedImages,
@@ -210,7 +210,7 @@ class RichContentEditor extends Component {
       );
     }
     this.setEditorState(editorState);
-    this.props.onChange && this.props.onChange(editorState);
+    this.props.onChange?.(editorState);
   };
 
   handlePastedText = (text, html, editorState) => {
