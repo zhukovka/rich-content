@@ -33,7 +33,7 @@ export default class PostSelectionInputModal extends Component {
     this.search();
   }
 
-  handleKeyPress = () => { };
+  handleKeyPress = () => {};
 
   searchProducts = query => {
     const abortController = new AbortController();
