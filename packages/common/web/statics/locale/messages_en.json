@@ -193,6 +193,8 @@
   "UnderlineButton_Tooltip": "Underline",
   "IndentButton_Tooltip": "Indent",
   "TitleButton_Tooltip": "Title",
+  "FormattingToolbar_TextStyle_Heading" : "Heading {{number}}",
+  "FormattingToolbar_TextStyle_Paragraph" : "Paragraph",
   "QuoteButton_Tooltip": "Quote",
   "AlignTextDropdownButton_Tooltip": "Alignment",
   "AlignTextLeftButton_Tooltip": "Align left",

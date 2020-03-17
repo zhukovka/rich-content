@@ -21,7 +21,7 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
   const customSettings =
     config?.getToolbarSettings?.({}).find(setting => setting.name === TOOLBARS.TEXT) || {};
   const icons = customSettings?.getIcons?.() || {};
-  const fontStylesButton = createFontStyleStructure(customSettings, isMobile, icons);
+  const fontStylesButton = createFontStyleStructure(customSettings, isMobile, icons, t);
   const buttonsMap = {
     Bold: boldButton(icons.Bold),
     Italic: italicButton(icons.Italic),

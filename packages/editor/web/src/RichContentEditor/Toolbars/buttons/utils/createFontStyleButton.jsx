@@ -16,27 +16,29 @@ const fontStyleButton = (option, content = false) => {
 const setBlockStyleByName = (getEditorState, setEditorState, value) =>
   setEditorState(RichUtils.toggleBlockType(getEditorState(), value));
 
-const createButtonsFromOptions = dropdownOptions => {
-  return dropdownOptions?.map(option => fontStyleButton(option, getContentForButton(option)));
+const createButtonsFromOptions = (dropdownOptions, t) => {
+  return dropdownOptions?.map(option => fontStyleButton(option, getContentForButton(option, t)));
 };
 
-const getContentForButton = option => {
-  return option.length === 1 ? 'Paragraph' : `Heading ${option.slice(-1)}`;
+const getContentForButton = (option, t) => {
+  return option.length === 1
+    ? t('FormattingToolbar_TextStyle_Paragraph')
+    : t('FormattingToolbar_TextStyle_Heading', { number: option.slice(-1) });
 };
-const findActiveBlockType = (dropdownOptions, value) => {
+const findActiveBlockType = (dropdownOptions, value, t) => {
   const activeBlockType =
     dropdownOptions.find(obj => TITLE_FONT_STYLE[obj] === value) || dropdownOptions[0];
   return {
-    buttonContent: getContentForButton(activeBlockType),
+    buttonContent: getContentForButton(activeBlockType, t),
     value: TITLE_FONT_STYLE[activeBlockType],
   };
 };
 
-const createTextTitleButtonDropDown = dropdownOptions => {
+const createTextTitleButtonDropDown = (dropdownOptions, t) => {
   return createTextDropdownButton({
-    buttons: createButtonsFromOptions(dropdownOptions),
+    buttons: createButtonsFromOptions(dropdownOptions, t),
     activeItem: ({ value }) => {
-      return findActiveBlockType(dropdownOptions, value);
+      return findActiveBlockType(dropdownOptions, value, t);
     },
     onChange: setBlockStyleByName,
     tooltipTextKey: 'TitleButton_Tooltip',
@@ -44,7 +46,7 @@ const createTextTitleButtonDropDown = dropdownOptions => {
   });
 };
 
-export const createFontStyleStructure = (customSettings, isMobile, icons) => {
+export const createFontStyleStructure = (customSettings, isMobile, icons, t) => {
   const { headersDropdown } = customSettings;
   if (isMobile || !headersDropdown) {
     return titleButton(icons.inactiveIconTitle, icons.TitleOne, icons.TitleTwo);
@@ -52,6 +54,6 @@ export const createFontStyleStructure = (customSettings, isMobile, icons) => {
     const customFontStyles = Array.isArray(headersDropdown)
       ? headersDropdown
       : DEFAULT_FONTS_DROPDOWN_OPTIONS;
-    return createTextTitleButtonDropDown(customFontStyles);
+    return createTextTitleButtonDropDown(customFontStyles, t);
   }
 };
