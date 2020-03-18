@@ -484,10 +484,10 @@ export function setSelection(editorState, selection) {
 }
 
 export const getAnchorableBlocks = editorState => {
-  const contentState = editorState.getCurrentContent();
   const anchorableBlocks = [];
   const indexes = {};
 
+  const contentState = editorState.getCurrentContent();
   const selection = getSelection(editorState);
   const blockKey = selection.getStartKey();
 
@@ -498,7 +498,7 @@ export const getAnchorableBlocks = editorState => {
           const charEntity = character.getEntity();
           if (charEntity) {
             const contentEntity = contentState.getEntity(charEntity).toJS();
-            if (contentEntity.type !== 'wix-draft-plugin-divider') {
+            if (anchorableAtomicPlugins(contentEntity.type)) {
               if (!indexes[contentEntity.type]) {
                 indexes[contentEntity.type] = 1;
               } else {
@@ -512,13 +512,15 @@ export const getAnchorableBlocks = editorState => {
             }
           }
         });
-      } else if (block.text !== '') {
-        let blockType = block.type;
-        if (blockType === 'header-two' || blockType === 'header-three') {
-          blockType = 'header';
+      } else if (anchorableInlineElement(block.type)) {
+        if (block.text !== '') {
+          let blockType = block.type;
+          if (blockType === 'header-two' || blockType === 'header-three') {
+            blockType = 'header';
+          }
+          indexes[blockType] = -1;
+          anchorableBlocks.push({ ...block.toJS(), anchorType: blockType });
         }
-        indexes[blockType] = -1;
-        anchorableBlocks.push({ ...block.toJS(), anchorType: blockType });
       }
     }
   });
@@ -528,3 +530,15 @@ export const getAnchorableBlocks = editorState => {
 export const filterAnchorableBlocks = (array, filter) => {
   return array.filter(block => block.anchorType === filter);
 };
+
+const anchorableAtomicPlugins = atomicPluginType =>
+  atomicPluginType === 'wix-draft-plugin-image' ||
+  atomicPluginType === 'wix-draft-plugin-gallery' ||
+  atomicPluginType === 'wix-draft-plugin-video';
+
+const anchorableInlineElement = blockType =>
+  blockType === 'unstyled' ||
+  blockType === 'header-two' ||
+  blockType === 'header-three' ||
+  blockType === 'code-block' ||
+  blockType === 'blockquote';
