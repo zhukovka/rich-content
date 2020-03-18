@@ -31,10 +31,11 @@ export class PollContextProvider extends PureComponent {
 
   componentDidMount() {
     const { poll } = this.state;
+    const { settings } = this.props;
 
-    this.pollApiClient = new PollApiClient(this.props.siteToken);
+    this.pollApiClient = new PollApiClient(settings.siteToken);
 
-    if (poll.id) {
+    if (poll.id && !settings.isWebView) {
       this.fetchPoll();
     }
   }
@@ -119,7 +120,10 @@ export class PollContextProvider extends PureComponent {
 }
 
 PollContextProvider.propTypes = {
-  siteToken: PropTypes.string,
+  settings: PropTypes.shape({
+    siteToken: PropTypes.string,
+    isWebView: PropTypes.bool,
+  }),
   poll: PropTypes.shape(PollPropTypes),
   setPoll: PropTypes.func,
   children: PropTypes.any,

@@ -28,17 +28,13 @@ export class PollEditor extends PureComponent {
     return (
       <RCEHelpersContext.Provider
         value={{
-          isViewMode: componentState.isPreview || !this.isPluginFocused(),
+          isViewMode: settings.isWebView || componentState.isPreview || !this.isPluginFocused(),
           setInPluginEditingMode,
           layout: componentData.layout,
           design: componentData.design,
         }}
       >
-        <PollContextProvider
-          siteToken={settings.siteToken}
-          poll={componentData.poll}
-          setPoll={this.setPoll}
-        >
+        <PollContextProvider settings={settings} poll={componentData.poll} setPoll={this.setPoll}>
           <Poll />
         </PollContextProvider>
       </RCEHelpersContext.Provider>
@@ -63,6 +59,7 @@ PollEditor.propTypes = {
   setInPluginEditingMode: PropTypes.func.isRequired,
   settings: PropTypes.shape({
     siteToken: PropTypes.string,
+    isWebView: PropTypes.bool,
   }),
   store: PropTypes.shape({
     set: PropTypes.func.isRequired,

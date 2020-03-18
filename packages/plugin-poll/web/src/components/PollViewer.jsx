@@ -13,7 +13,7 @@ export class PollViewer extends PureComponent {
       <RCEHelpersContext.Provider
         value={{ isViewMode: true, layout: componentData.layout, design: componentData.design }}
       >
-        <PollContextProvider poll={componentData.poll} siteToken={settings.siteToken}>
+        <PollContextProvider poll={componentData.poll} settings={settings}>
           <Poll />
         </PollContextProvider>
       </RCEHelpersContext.Provider>
