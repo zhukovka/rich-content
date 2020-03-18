@@ -13,6 +13,11 @@
     Click to see more.
   </summary>
 
+  ### :house: [Internal]
+  - `editor`
+    - [#801](https://github.com/wix-incubator/rich-content/pull/801) `editorStateConversion.js` consume `draft-js` directly to prevent bundle bloat of lib
+
+
 </details>
 <hr/>
 
