@@ -109,7 +109,7 @@ class LinkToAnchorPanel extends Component {
     return (
       <div className={styles.linkPanel_Content} {...ariaProps} role="form">
         <div className={styles.LinkToAnchorPanel_header}>
-          <div>{t('LinkPanel_Anchor_Placeholder')}</div>
+          <div className={styles.LinkToAnchorPanel_title}>{t('LinkPanel_Anchor_Placeholder')}</div>
           <div className={styles.LinkToAnchorPanel_dropdownWrapper}>
             <Dropdown
               theme={styles}
@@ -194,7 +194,7 @@ class AnchorableElement extends PureComponent {
           <div className={styles.AnchorableElement_contentType}>
             {t(this.getDataToDisplayByField('type'))}
           </div>
-          <div>{this.getContent()}</div>
+          <div className={styles.AnchorableElement_blockContent}>{this.getContent()}</div>
         </div>
       </div>
     );
