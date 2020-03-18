@@ -37,7 +37,7 @@ class ImageUploadComponent extends PureComponent {
   };
 
   render() {
-    const { className, value } = this.props;
+    const { className, value, rce } = this.props;
 
     if (value) {
       return (
@@ -46,6 +46,10 @@ class ImageUploadComponent extends PureComponent {
           style={{ backgroundImage: `url('${value}')` }}
         />
       );
+    }
+
+    if (rce.isViewMode) {
+      return null;
     }
 
     return (
