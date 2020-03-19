@@ -218,9 +218,11 @@
     .AnchorableElement_blockContent {
       font-size: 14px;
       line-height: 1.43;
-      // white-space: nowrap;
-      // overflow: hidden;
-      // text-overflow: ellipsis;
+      //TODO: fix the width
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
     }
   }
 }
