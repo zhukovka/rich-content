@@ -1,5 +1,5 @@
 import React from 'react';
-import EngineWrapper from './lib/EngineWrapper';
+import EngineWrapper from './EngineWrapper';
 import themeStrategyProvider from './themeStrategy/themeStrategyProvider';
 import pluginsStrategyProvider from './pluginsStrategy/pluginsStrategyProvider';
 import localeStrategyProvider from './localeStrategy/localeStrategyProvider';
@@ -15,12 +15,16 @@ export default function RichContentWrapper({
   editor = false,
   ...rest
 }) {
-  const themeGenerators = plugins.filter(plug => !!plug.theme).map(plug => plug.theme);
-  strategies.push(themeStrategyProvider(editor, { theme, palette, themeGenerators }));
-  strategies.push(pluginsStrategyProvider(editor, { plugins }));
-  strategies.push(localeStrategyProvider({ locale }));
+  const themeGenerators = plugins.filter(plugin => !!plugin.theme).map(plugin => plugin.theme);
+  const mergedStrategies = [
+    themeStrategyProvider(editor, { theme, palette, themeGenerators }),
+    pluginsStrategyProvider(editor, { plugins }),
+    localeStrategyProvider({ locale }),
+    ...strategies,
+  ];
+
   return (
-    <EngineWrapper strategies={strategies} {...rest} editor={editor}>
+    <EngineWrapper strategies={mergedStrategies} {...rest} editor={editor}>
       {children}
     </EngineWrapper>
   );
