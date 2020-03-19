@@ -99,3 +99,25 @@ export {
   TITLE_FONT_STYLE,
   DEFAULT_FONTS_DROPDOWN_OPTIONS,
 } from './consts';
+
+export {
+  convertToRaw,
+  getVisibleSelectionRect,
+  convertFromRaw,
+  EditorState,
+  SelectionState,
+  DefaultDraftBlockRenderMap,
+  Modifier,
+  RichUtils,
+  KeyBindingUtil,
+  genKey,
+  ContentBlock,
+  BlockMapBuilder,
+  AtomicBlockUtils,
+  ContentState,
+  RawDraftContentState,
+  EditorChangeType,
+} from 'draft-js';
+
+import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
+export { DraftOffsetKey };
