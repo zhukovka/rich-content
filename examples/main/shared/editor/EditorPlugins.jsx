@@ -10,6 +10,10 @@ import { createVideoPlugin, VIDEO_TYPE } from 'wix-rich-content-plugin-video';
 import { createHtmlPlugin, HTML_TYPE } from 'wix-rich-content-plugin-html';
 import { createDividerPlugin, DIVIDER_TYPE } from 'wix-rich-content-plugin-divider';
 import {
+  createVerticalEmbedPlugin,
+  VERTICAL_EMBED_TYPE,
+} from 'wix-rich-content-plugin-vertical-embed';
+import {
   createExternalMentionsPlugin,
   EXTERNAL_MENTIONS_TYPE,
 } from 'wix-rich-content-plugin-mentions';
@@ -48,6 +52,7 @@ import 'wix-rich-content-plugin-giphy/dist/styles.min.css';
 import 'wix-rich-content-plugin-map/dist/styles.min.css';
 import 'wix-rich-content-plugin-file-upload/dist/styles.min.css';
 import 'wix-rich-content-plugin-text-color/dist/styles.min.css';
+import 'wix-rich-content-plugin-vertical-embed/dist/styles.min.css';
 import {
   customForegroundStyleFn,
   styleSelectionPredicate,
@@ -68,21 +73,24 @@ export const editorPlugins = [
   createVideoPlugin,
   createHtmlPlugin,
   createDividerPlugin,
+  createCodeBlockPlugin,
+  createHeadersMarkdownPlugin,
+  createSoundCloudPlugin,
+  createGiphyPlugin,
+  createMapPlugin,
+  createFileUploadPlugin,
+  createVerticalEmbedPlugin,
+  createEmojiPlugin,
+  createButtonPlugin,
+  createUndoRedoPlugin,
+
+  //inline
   createLineSpacingPlugin,
   createLinkPlugin,
   createHashtagPlugin,
   createExternalMentionsPlugin,
-  createCodeBlockPlugin,
-  createSoundCloudPlugin,
-  createGiphyPlugin,
-  createHeadersMarkdownPlugin,
-  createMapPlugin,
-  createFileUploadPlugin,
-  createButtonPlugin,
   createTextColorPlugin,
-  createEmojiPlugin,
   createTextHighlightPlugin,
-  createUndoRedoPlugin,
 ];
 
 const themeColors = {
@@ -379,6 +387,14 @@ const config = {
     //     InsertPluginButtonIcon: MyCustomIcon,
     //   },
     // },
+  },
+
+
+  /*
+    In order to make fetch work, we'll need the get instance from somewhere
+  */
+  [VERTICAL_EMBED_TYPE]: {
+    instance: 'fakeInstance'
   },
   // [EXTERNAL_EMOJI_TYPE]: {},
   [VIDEO_TYPE]: {

@@ -238,6 +238,29 @@ class RichContentEditor extends Component {
     return 'handled';
   };
 
+  handlePastedText = (text, html, editorState) => {
+    const { handlePastedText } = this.props;
+    if (handlePastedText) {
+      return handlePastedText(text, html, editorState);
+    }
+    const contentState = draftConvertFromHtml(pastedContentConfig)(html);
+
+    const updatedContentState = Modifier.replaceWithFragment(
+      editorState.getCurrentContent(),
+      editorState.getSelection(),
+      contentState.getBlockMap()
+    );
+
+    const newEditorState = EditorState.push(editorState, updatedContentState, 'insert-fragment');
+    const resultEditorState = EditorState.set(newEditorState, {
+      currentContent: updatedContentState,
+      selection: newEditorState.getSelection(),
+    });
+
+    this.updateEditorState(resultEditorState);
+    return 'handled';
+  };
+
   getCustomCommandHandlers = () => ({
     commands: [
       ...this.pluginKeyBindings.commands,

@@ -185,6 +185,14 @@ class GalleryComponent extends PureComponent {
     this.setState({ isLoading });
   };
 
+  renderLoader = () => {
+    return <Loader type={'medium'} />;
+  };
+
+  onLoad = isLoading => {
+    this.setState({ isLoading });
+  };
+
   render() {
     return (
       <>

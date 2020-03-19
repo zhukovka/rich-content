@@ -287,7 +287,7 @@
   "Mobile_ButtonPlugin_InsertButton": "Button",
   "Mobile_UndoPlugin_InsertButton": "Undo",
   "Mobile_RedoPlugin_InsertButton": "Redo",
-  "Mobile_PollPlugin_InsertButton": "Poll", 
+  "Mobile_PollPlugin_InsertButton": "Poll",
   "Mobile_EmojiPlugin_InsertButton": "Emoji",
   "Mobile_HTMLCodePlugin_InsertButton": "HTML code",
   "Poll_InsertPoll_Tooltip": "Create a poll",
