@@ -13,9 +13,10 @@
     Click to see more.
   </summary>
 
-  ### :house: Internal
-  - `wrapper`
-    - [##804](https://github.com/wix-incubator/rich-content/pull/#804) engine-wrapper refactored
+### :house: Internal
+- `wrapper`
+  - [#804](https://github.com/wix-incubator/rich-content/pull/804) engine-wrapper refactored
+  - [#806](https://github.com/wix-incubator/rich-content/pull/806) locale dynamic import
 
 </details>
 <hr/>
