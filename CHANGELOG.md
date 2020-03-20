@@ -19,6 +19,10 @@
   - [#806](https://github.com/wix-incubator/rich-content/pull/806) locale dynamic import
   - [#807](https://github.com/wix-incubator/rich-content/pull/807) include common styles in styles.min.css
 
+- `editor-common`
+  - `convertFromHTML` exposed for Forum
+
+
 </details>
 <hr/>
 
