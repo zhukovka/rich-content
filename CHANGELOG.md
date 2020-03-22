@@ -12,7 +12,7 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-
+  
 ### :bug: Bug Fix
 - `text-color`
   - [#805](https://github.com/wix-incubator/rich-content/pull/805) adding a text color/highlight works on mobile
@@ -21,6 +21,8 @@
   - [#720](https://github.com/wix-incubator/rich-content/pull/720) mobile example app styles issues
 - `editor`
   - [#790](https://github.com/wix-incubator/rich-content/pull/790) convertToRaw - block.data converted correctly, Fixes line spacing
+- `common`
+  - [#814](https://github.com/wix-incubator/rich-content/pull/814) fix: adding support for H4, H5, H6 
 
 </details>
 <hr/>
