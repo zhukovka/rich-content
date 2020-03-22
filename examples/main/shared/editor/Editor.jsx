@@ -190,13 +190,12 @@ export default class Editor extends PureComponent {
       initialState,
       editorState,
     };
-
+    const TopToolbar = MobileToolbar || TextToolbar;
     return (
       <div className="editor">
-        {MobileToolbar && <MobileToolbar />}
-        {TextToolbar && (
+        {TopToolbar && (
           <div className="toolbar-wrapper">
-            <TextToolbar />
+            <TopToolbar />
           </div>
         )}
         <RichContentEditor
