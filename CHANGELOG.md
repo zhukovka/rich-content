@@ -12,13 +12,20 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-
-  ### :house: Internal
-  - `wrapper`
-    - [##804](https://github.com/wix-incubator/rich-content/pull/#804) engine-wrapper refactored
-
+  
 </details>
 <hr/>
+
+## 7.0.2 (Mar 20, 2020)
+### :house: Internal
+- `wrapper`
+  - [#804](https://github.com/wix-incubator/rich-content/pull/804) engine-wrapper refactored
+  - [#806](https://github.com/wix-incubator/rich-content/pull/806) locale dynamic import
+  - [#807](https://github.com/wix-incubator/rich-content/pull/807) include common styles in styles.min.css
+  - [#709](https://github.com/wix-incubator/rich-content/pull/709) support inlineStyleMappers
+
+- `editor-common`
+  - `convertFromHTML` exposed for Forum usage
 
 ## 7.0.1 (Mar 18, 2020)
 ### :house: [Internal]
