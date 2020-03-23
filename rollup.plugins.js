@@ -1,13 +1,23 @@
 import path from 'path';
 const svgr = require('@svgr/rollup').default;
-
 const IS_DEV_ENV = process.env.NODE_ENV === 'development';
 
-const resolve = () => {
-  const resolve = require('rollup-plugin-node-resolve');
+const resolve = require('rollup-plugin-node-resolve');
+
+const resolver = () => {
   return resolve({
     preferBuiltins: true,
     extensions: ['.js', '.jsx', '.json'],
+  });
+};
+
+const resolveAlias = () => {
+  const alias = require('@rollup/plugin-alias');
+  return alias({
+    entries: {
+      'draft-js': '@wix/draft-js',
+    },
+    resolve,
   });
 };
 
@@ -146,7 +156,7 @@ const visualizer = () => {
   });
 };
 
-let _plugins = [svgr(), resolve(), copy(), babel(), commonjs(), json()];
+let _plugins = [svgr(), resolveAlias(), resolver(), copy(), babel(), commonjs(), json()];
 
 if (!IS_DEV_ENV) {
   _plugins = [..._plugins, replace(), uglify()];
