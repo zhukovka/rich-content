@@ -6,7 +6,7 @@ export const pluginVerticalEmbed = (config = {}) => {
   return {
     config: { ...DEFAULTS, ...config },
     type: VERTICAL_EMBED_TYPE,
-    createPlugin: createVerticalEmbedPlugin(config),
+    createPlugin: createVerticalEmbedPlugin,
     ModalsMap,
     theme: () => ({}),
   };
