@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  ImageIcon,
+  // ImageIcon,
   VideoIcon,
-  GalleryIcon,
+  // GalleryIcon,
   BlockQuoteIcon,
   CodeBlockIcon,
   TitleIcon,
@@ -103,12 +103,12 @@ export const ANCHORABLE_BLOCKS = Object.freeze({
     filter: 'LinkTo_Modal_Section_Filter_Quotes',
   },
   'wix-draft-plugin-image': {
-    thumbnail: <ImageIcon style={{ width: 'fit-content' }} />,
+    // thumbnail: <ImageIcon style={{ width: 'fit-content' }} />,
     type: 'LinkTo_Modal_Section_Item_Image',
     filter: 'LinkTo_Modal_Section_Filter_Images',
   },
   'wix-draft-plugin-gallery': {
-    thumbnail: <GalleryIcon style={{ width: 'fit-content' }} />,
+    // thumbnail: <GalleryIcon style={{ width: 'fit-content' }} />,
     type: 'LinkTo_Modal_Section_Item_Gallery',
     filter: 'LinkTo_Modal_Section_Filter_Galleries',
   },

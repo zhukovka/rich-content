@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { mergeStyles } from 'wix-rich-content-common';
+import { mergeStyles, getImageSrc } from 'wix-rich-content-common';
 import classNames from 'classnames';
 import styles from '../../statics/styles/link-panel.scss';
 import Dropdown from './Dropdown';
@@ -176,7 +176,11 @@ class AnchorableElement extends PureComponent {
 
   getDataToDisplayByField = field => {
     const { block } = this.props;
-    return ANCHORABLE_BLOCKS[block.anchorType][field];
+    if (field === 'thumbnail' && !ANCHORABLE_BLOCKS[block.anchorType].thumbnail) {
+      return this.getVisualThumbnail();
+    } else {
+      return ANCHORABLE_BLOCKS[block.anchorType][field];
+    }
   };
 
   getContent = () => {
@@ -186,6 +190,43 @@ class AnchorableElement extends PureComponent {
     } else {
       return block.text;
     }
+  };
+
+  getVisualThumbnail = () => {
+    const { block } = this.props;
+    let src = {};
+    switch (block.anchorType) {
+      case 'wix-draft-plugin-image':
+        src = block.data.src;
+        break;
+      // case 'wix-draft-plugin-video':
+      //   if (block?.data?.src?.thumbnail?.pathname) {
+      //     src.file_name = block?.data?.src?.thumbnail?.pathname;
+      //   } else if (block?.data?.metadata?.thumbnail_url) {
+      //     return (
+      //       <img
+      //         src={block?.data?.metadata?.thumbnail_url}
+      //         alt={this.getContent()}
+      //         style={{ width: 'inherit', height: 'inherit' }}
+      //       />
+      //     );
+      //   }
+      //   break;
+      case 'wix-draft-plugin-gallery':
+        src.file_name = block.data.items[0].url;
+        break;
+      default:
+        // eslint-disable-next-line no-console
+        console.error('Mismatch plugins');
+        break;
+    }
+    const imgSrc = getImageSrc(src, null, {
+      requiredWidth: 50,
+      requiredHeight: 50,
+      requiredQuality: 90,
+      imageType: 'highRes',
+    });
+    return <img src={imgSrc} alt={this.getContent()} />;
   };
 
   render() {

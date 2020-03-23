@@ -508,6 +508,7 @@ export const getAnchorableBlocks = editorState => {
                 ...block.toJS(),
                 index: indexes[contentEntity.type],
                 anchorType: contentEntity.type,
+                data: contentEntity.data,
               });
             }
           }
@@ -524,6 +525,7 @@ export const getAnchorableBlocks = editorState => {
       }
     }
   });
+  // console.log({ anchorableBlocks });
   return { anchorableBlocks, pluginsIncluded: Object.keys(indexes) };
 };
 
