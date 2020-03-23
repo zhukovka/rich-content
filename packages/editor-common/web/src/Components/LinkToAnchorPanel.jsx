@@ -10,19 +10,29 @@ import { getAnchorableBlocks, filterAnchorableBlocks } from '../Utils/draftUtils
 import { ANCHORABLE_BLOCKS } from '../consts';
 
 class LinkToAnchorPanel extends Component {
-  styles = mergeStyles({ styles, theme: this.props.theme });
-  state = {
-    showValidation: false,
-    filter: {
-      value: 'all',
-      component: () => (
-        <FilterDropdownElement
-          label={this.props.t('LinkTo_Modal_Section_Filter_All')}
-          theme={this.styles}
-        />
-      ),
-    },
-  };
+  constructor(props) {
+    super(props);
+    const { theme, t } = props;
+    this.styles = mergeStyles({ styles, theme });
+    this.state = {
+      showValidation: false,
+      filter: {
+        value: 'all',
+        component: () => (
+          <FilterDropdownElement label={t('LinkTo_Modal_Section_Filter_All')} theme={this.styles} />
+        ),
+      },
+    };
+    this.scrollRef = React.createRef();
+  }
+
+  componentDidMount() {
+    const { anchorValues } = this.props;
+    if (anchorValues.url) {
+      const target = this.scrollRef.current;
+      target.parentNode.scrollTop = target.offsetTop - target.parentNode.offsetTop;
+    }
+  }
 
   handleUrlChange = url => {
     this.setState({ showValidation: false });
@@ -128,14 +138,15 @@ class LinkToAnchorPanel extends Component {
         </div>
         <div className={styles.LinkToAnchorPanel_anchorsElementsContainer}>
           {filteredAnchorableBlocks.map((block, i) => (
-            <AnchorableElement
-              key={i}
-              block={block}
-              theme={styles}
-              onClick={() => this.onChange(block)}
-              isSelected={anchorValues.url === block.key}
-              t={t}
-            />
+            <div key={i} ref={anchorValues.url === block.key ? this.scrollRef : undefined}>
+              <AnchorableElement
+                block={block}
+                theme={styles}
+                onClick={() => this.onChange(block)}
+                isSelected={anchorValues.url === block.key}
+                t={t}
+              />
+            </div>
           ))}
         </div>
       </div>
