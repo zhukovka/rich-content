@@ -66,6 +66,7 @@ import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common'
 // import StaticToolbarDecoration from './Components/StaticToolbarDecoration';
 // import SideToolbarDecoration from './Components/SideToolbarDecoration';
 // import PluginToolbarDecoration from './Components/PluginToolbarDecoration';
+import { mockFetchProductsFunc } from './Utils/verticalEmbedUtil';
 
 export const editorPlugins = [
   createImagePlugin,
@@ -388,13 +389,8 @@ const config = {
     //   },
     // },
   },
-
-
-  /*
-    In order to make fetch work, we'll need the get instance from somewhere
-  */
   [VERTICAL_EMBED_TYPE]: {
-    instance: 'fakeInstance'
+    fetchFunctions: { fetchProducts: mockFetchProductsFunc },
   },
   // [EXTERNAL_EMOJI_TYPE]: {},
   [VIDEO_TYPE]: {
