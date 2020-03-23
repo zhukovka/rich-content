@@ -18,7 +18,11 @@ const openLinkModal = ({
   setEditorState,
   uiSettings,
 }) => {
-  const modalStyles = getModalStyles({ fullScreen: false, isMobile });
+  const modalStyles = getModalStyles({
+    fullScreen: false,
+    isMobile,
+    customStyles: { content: { maxWidth: 'max-content', padding: '0 20px' } },
+  });
   if (helpers && helpers.openModal) {
     const modalProps = {
       helpers,
