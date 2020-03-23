@@ -37,6 +37,24 @@ class LinkPanelContainer extends PureComponent {
     };
   }
 
+  isDoneButtonEnable = () => {
+    const { radioGroupValue } = this.state;
+    switch (radioGroupValue) {
+      case 'external-link': {
+        const { linkPanelValues } = this.state;
+        return linkPanelValues.isValid && !!linkPanelValues.url;
+      }
+      case 'anchor': {
+        const { anchorPanelValues } = this.state;
+        return !!anchorPanelValues.url;
+      }
+      default:
+        // eslint-disable-next-line no-console
+        console.error('Unknown radio');
+        break;
+    }
+  };
+
   onDone = () => {
     const { radioGroupValue } = this.state;
     switch (radioGroupValue) {
@@ -100,7 +118,10 @@ class LinkPanelContainer extends PureComponent {
     const doneButtonText = t('LinkPanelContainer_DoneButton');
     const cancelButtonText = t('LinkPanelContainer_CancelButton');
     const removeButtonText = t('LinkPanelContainer_RemoveButton');
-    const doneButtonClassName = classNames(styles.linkPanel_FooterButton, styles.linkPanel_enabled);
+    const doneButtonClassName = classNames(
+      styles.linkPanel_FooterButton,
+      this.isDoneButtonEnable() ? styles.linkPanel_enabled : styles.linkPanel_disabled
+    );
     const cancelButtonClassName = classNames(
       styles.linkPanel_FooterButton,
       styles.linkPanel_Cancel
@@ -201,6 +222,7 @@ class LinkPanelContainer extends PureComponent {
             className={doneButtonClassName}
             data-hook="linkPanelContainerDone"
             onClick={this.onDone}
+            disabled={this.isDoneButtonEnable() ? undefined : true}
           >
             {doneButtonText}
           </button>
