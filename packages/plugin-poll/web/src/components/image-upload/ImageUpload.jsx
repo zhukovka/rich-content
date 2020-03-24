@@ -3,6 +3,8 @@
 import React, { PureComponent } from 'react';
 import cls from 'classnames';
 
+import { getImageSrc } from 'wix-rich-content-common';
+
 import { withRCEHelpers, RCEHelpersPropTypes } from '../rce-helpers-context';
 import { AddImageIcon } from '../../assets/icons';
 
@@ -17,6 +19,8 @@ class ImageUploadComponent extends PureComponent {
 
   $fileInput = React.createRef();
 
+  $container = React.createRef();
+
   handleFileUploadClick = () => {
     const { rce } = this.props;
 
@@ -25,26 +29,36 @@ class ImageUploadComponent extends PureComponent {
   };
 
   handleFileUpload = ({ data }) => {
-    // eslint-disable-next-line no-console
-    console.log('data: ', data);
-    this.props.onChange(data);
+    const { helpers } = this.props;
+    const { $container } = this;
+
+    const { width, height } = $container.current.getBoundingClientRect();
+
+    this.props.onChange(
+      getImageSrc(data, helpers, {
+        requiredWidth: width,
+        requiredHeight: height,
+        requiredQuality: 90,
+        imageType: 'highRes',
+      })
+    );
   };
 
-  handleFileReadLoad = result => {
+  handleFileReadLoad = (result, file) => {
     const { helpers } = this.props.rce;
 
     if (!helpers?.onFilesChange) {
       this.props.onChange(result);
     }
 
-    helpers?.onFilesChange?.(result, this.handleFileUpload);
+    helpers?.onFilesChange?.(file, this.handleFileUpload);
   };
 
   handleFileChange = () => {
     const [file] = this.$fileInput.current.files;
     const reader = new FileReader();
 
-    reader.onload = e => this.handleFileReadLoad(e.target.result);
+    reader.onload = e => this.handleFileReadLoad(e.target.result, file);
 
     reader.readAsDataURL(file);
 
@@ -69,7 +83,11 @@ class ImageUploadComponent extends PureComponent {
     }
 
     return (
-      <div className={cls(styles.container, className)} onClick={this.handleFileUploadClick}>
+      <div
+        ref={this.$container}
+        className={cls(styles.container, className)}
+        onClick={this.handleFileUploadClick}
+      >
         <AddImageIcon />
         <input
           type="file"
