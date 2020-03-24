@@ -97,8 +97,8 @@ export class PollContextProvider extends PureComponent {
     const { poll } = this.props;
 
     poll.options.push({
-      title: '',
-      imageUrl: '',
+      title: null,
+      imageUrl: null,
     });
 
     this.updatePoll({ ...poll });

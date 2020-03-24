@@ -60,7 +60,7 @@ export class PollOption extends PureComponent {
             [styles.withImage]: imageEnabled && option.imageUrl,
           })}
         >
-          <ImageUpload className={styles.image} value={option.imageUrl} />
+          {imageEnabled && <ImageUpload className={styles.image} value={option.imageUrl} />}
           <div className={styles.title}>
             <p
               className={cls(styles.input, {
