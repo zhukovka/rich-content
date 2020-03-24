@@ -24,7 +24,8 @@ class ImageUploadComponent extends PureComponent {
     this.$fileInput.current.click();
   };
 
-  handleFileUpload = ({ data, error }) => {
+  handleFileUpload = ({ data }) => {
+    // eslint-disable-next-line no-console
     console.log('data: ', data);
     this.props.onChange(data);
   };

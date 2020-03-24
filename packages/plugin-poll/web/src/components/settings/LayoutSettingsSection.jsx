@@ -18,7 +18,7 @@ export class LayoutSettingsSection extends Component {
 
   dataMapper = ({ name }) => ({ value: name });
 
-  renderOption = ({ item, selected }) => (
+  renderOption = ({ item }) => (
     <div>
       <span>{item.label}</span>
     </div>
