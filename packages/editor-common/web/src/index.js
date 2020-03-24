@@ -84,6 +84,7 @@ export {
   getPostContentSummary,
   getAnchorableBlocks,
   filterAnchorableBlocks,
+  createSelection,
 } from './Utils/draftUtils';
 export { isiOS } from './Utils/isiOS';
 export { getSelectionStyles } from './Utils/inlineStyleUtils';
