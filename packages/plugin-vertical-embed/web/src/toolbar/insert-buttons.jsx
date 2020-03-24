@@ -5,21 +5,21 @@ import {
 } from 'wix-rich-content-editor-common';
 import { InsertPluginIcon } from '../icons';
 import PostSelectionInputModal from './postSelectionInputModal';
-import { DEFAULTS } from '../constants';
+import { DEFAULTS, VERTICAL_EMBED_TYPES } from '../constants';
 import customStyles from './ModalCustomStyles';
 
 export default ({ helpers, t, settings, isMobile }) => {
   // TODO: Change icon
   const icon = InsertPluginIcon;
 
-  return [
-    {
+  const buttonCreator = (type, tooltipText) => {
+    return {
       type: 'modal',
-      name: 'VerticalEmbed',
-      tooltipText: t('Vertical_Embed_Toolbar_Tooltip'),
+      name: `VerticalEmbed-${type}`,
+      tooltipText,
       toolbars: [TOOLBARS.FOOTER, TOOLBARS.SIDE],
       Icon: icon,
-      componentData: DEFAULTS,
+      componentData: { ...DEFAULTS, type },
       helpers,
       t,
       modalElement: decorateComponentWithProps(PostSelectionInputModal, settings),
@@ -28,6 +28,12 @@ export default ({ helpers, t, settings, isMobile }) => {
         fullScreen: false,
         isMobile,
       }),
-    },
+    };
+  };
+
+  return [
+    buttonCreator(VERTICAL_EMBED_TYPES.PRODUCT, 'Add a product'),
+    buttonCreator(VERTICAL_EMBED_TYPES.EVENT, 'Add an event'),
+    buttonCreator(VERTICAL_EMBED_TYPES.BOOKING, 'Add a booking'),
   ];
 };

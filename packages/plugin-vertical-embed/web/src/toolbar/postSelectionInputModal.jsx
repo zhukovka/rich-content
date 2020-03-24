@@ -37,11 +37,12 @@ export default class PostSelectionInputModal extends Component {
 
   searchProducts = query => {
     const {
-      fetchFunctions: { fetchProducts },
+      fetchFunctions,
+      componentData: { type },
     } = this.props;
     const abortController = new AbortController();
 
-    const promise = fetchProducts(query, abortController.signal)
+    const promise = fetchFunctions[type](query, abortController.signal)
       .then(res => {
         if (res.ok) return res;
         else throw res.statusText;
@@ -95,7 +96,12 @@ export default class PostSelectionInputModal extends Component {
 
   render() {
     const { products } = this.state;
-    const { t, isMobile, languageDir } = this.props;
+    const {
+      t,
+      isMobile,
+      languageDir,
+      componentData: { type },
+    } = this.props;
     const { styles } = this;
 
     return (
@@ -107,7 +113,7 @@ export default class PostSelectionInputModal extends Component {
               onClick={() => this.onCloseRequested()}
             />
           )}
-          <h2 className={styles.verticalEmbedModalTitle}>{t('Select_Embed_Product')}</h2>
+          <h2 className={styles.verticalEmbedModalTitle}>{`Select embed ${type}`}</h2>
           <div className={styles.textInputWrapper}>
             <TextInput
               inputRef={ref => {
@@ -115,7 +121,7 @@ export default class PostSelectionInputModal extends Component {
               }}
               onKeyPress={this.handleKeyPress}
               onChange={this.onInputChange}
-              placeholder={t('Select_Products_Search_Placeholder')}
+              placeholder={`Enter ${type} name`}
               theme={styles}
               data-hook="blogPostSearchInput"
             />
