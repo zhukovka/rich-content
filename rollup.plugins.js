@@ -3,7 +3,7 @@ const svgr = require('@svgr/rollup').default;
 const IS_DEV_ENV = process.env.NODE_ENV === 'development';
 
 const resolve = () => {
-  const resolve = require('@rollup/plugin-node-resolve');
+  const resolve = require('rollup-plugin-node-resolve');
   return resolve({
     preferBuiltins: true,
     extensions: ['.js', '.jsx', '.json'],
