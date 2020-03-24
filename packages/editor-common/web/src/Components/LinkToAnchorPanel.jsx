@@ -105,6 +105,21 @@ class LinkToAnchorPanel extends Component {
     ];
   };
 
+  renderEmptyState = () => {
+    const { styles } = this;
+    const { t } = this.props;
+    return (
+      <div className={styles.linkPanel_emptyStateContainer}>
+        <div className={styles.linkPanel_emptyStateTitle}>
+          {t('LinkTo_Modal_Section_EmptyState_Title')}
+        </div>
+        <div className={styles.linkPanel_emptyStateText}>
+          {t('LinkTo_Modal_Section_EmptyState_Text')}
+        </div>
+      </div>
+    );
+  };
+
   render() {
     const { styles } = this;
     const { filter } = this.state;
@@ -116,7 +131,9 @@ class LinkToAnchorPanel extends Component {
         ? anchorableBlocks
         : filterAnchorableBlocks(anchorableBlocks, filter.value);
 
-    return (
+    return anchorableBlocks.length === 0 ? (
+      this.renderEmptyState()
+    ) : (
       <div className={styles.linkPanel_Content} {...ariaProps} role="form">
         <div className={styles.LinkToAnchorPanel_header}>
           <div className={styles.LinkToAnchorPanel_title}>{t('LinkPanel_Anchor_Placeholder')}</div>
@@ -128,11 +145,6 @@ class LinkToAnchorPanel extends Component {
               controlClassName={styles.LinkToAnchorPanel_dropdownControl}
               menuClassName={styles.LinkToAnchorPanel_dropdownMenu}
               onChange={this.filterChanged}
-              // className={buttonClassNames}
-              // tabIndex={tabIndex}
-              // dataHook={this.getDataHook()}
-              // getValue={decoratedGetValue}
-              // {...props}
             />
           </div>
         </div>

@@ -14,6 +14,7 @@
 }
 
 .linkPanel_container {
+  font-family: HelveticaNeue;
   color: black;
   position: relative;
   width: 502px;
@@ -262,4 +263,26 @@
 .FilterDropdownElement {
   font-size: 14px;
   margin: 6px;
+}
+
+.linkPanel_emptyStateContainer {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  margin: 0 60px;
+
+  .linkPanel_emptyStateTitle{
+    font-size: 16px;
+    line-height: 1.5;
+    align-self: center;
+    text-align: center;
+  }
+
+  .linkPanel_emptyStateText{
+    opacity: 0.4;
+    font-size: 16px;
+    line-height: 1.5;
+    align-self: center;
+    text-align: center;
+  }
 }
