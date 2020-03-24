@@ -5,6 +5,9 @@ export const RCEHelpersPropTypes = {
   rce: PropTypes.shape({
     isViewMode: PropTypes.bool.isRequired,
     setInPluginEditingMode: PropTypes.func,
+    helpers: PropTypes.shape({
+      onFilesChange: PropTypes.func,
+    }),
   }).isRequired,
   layout: PropTypes.object.isRequired,
   design: PropTypes.object.isRequired,

@@ -1,12 +1,17 @@
 export const POLL_TYPE = 'wix-draft-plugin-poll';
 
+export const LAYOUT = {
+  LIST: 'list',
+  GRID: 'grid',
+};
+
 export const COLOR_PALETTE = ['#cba27d', '#D5D4D4', '#ebba4d', '#0091ff', '#134497', '#82cb7d'];
 
 export const MEMBER_ROLES = {
-  EVERYONE: 'everyone',
-  VOTERS: 'voters',
-  ME: 'me',
-  SITE_MEMBER: 'site_member',
+  ALL: 'ALL',
+  VOTERS: 'VOTERS',
+  ME: 'ME',
+  SITE_MEMBERS: 'SITE_MEMBERS',
 };
 
 export const DEFAULT_COMPONENT_DATA = {
@@ -18,26 +23,30 @@ export const DEFAULT_COMPONENT_DATA = {
   poll: {
     id: '',
     chosen: [],
-    title: '',
-    imageUrl: '',
+    title: null,
+    imageUrl: null,
     settings: {
       multipleChoice: false,
       secret: false,
-      voteRole: MEMBER_ROLES.SITE_MEMBER,
-      viewRole: MEMBER_ROLES.VOTERS,
+      roleVote: MEMBER_ROLES.ALL,
+      roleView: MEMBER_ROLES.VOTERS,
+      type: 'CUSTOM',
     },
     options: [
       {
-        title: '',
-        imageUrl: '',
+        title: null,
+        imageUrl: null,
       },
       {
-        title: '',
-        imageUrl: '',
+        title: null,
+        imageUrl: null,
       },
     ],
   },
-  layout: {},
+  layout: {
+    type: LAYOUT.LIST,
+    enableImage: false,
+  },
   design: {
     backgroundColor: COLOR_PALETTE[2],
   },

@@ -12,18 +12,18 @@ export class PollSettingsSection extends Component {
 
   VOTE_ROLE_OPTIONS = [
     {
-      value: MEMBER_ROLES.SITE_MEMBER,
+      value: MEMBER_ROLES.SITE_MEMBERS,
       label: 'Site Member',
     },
     {
-      value: MEMBER_ROLES.EVERYONE,
+      value: MEMBER_ROLES.ALL,
       label: 'Everyone',
     },
   ];
 
   VIEW_ROLE_OPTIONS = [
     {
-      value: MEMBER_ROLES.EVERYONE,
+      value: MEMBER_ROLES.ALL,
       label: 'Everyone',
     },
     {
@@ -50,20 +50,20 @@ export class PollSettingsSection extends Component {
 
   handleVoteAllowedChange = () => this.updateSettings();
 
-  handleVoteRoleChange = option => this.updateSettings({ voteRole: option.value });
+  handleVoteRoleChange = option => this.updateSettings({ roleVote: option.value });
 
-  handleViewRoleChange = option => this.updateSettings({ viewRole: option.value });
+  handleViewRoleChange = option => this.updateSettings({ roleView: option.value });
 
   getVoteRoleValue = () => {
-    const { voteRole } = this.props.componentData.poll.settings;
+    const { roleVote } = this.props.componentData.poll.settings;
 
-    return this.VOTE_ROLE_OPTIONS.find(option => option.value === voteRole);
+    return this.VOTE_ROLE_OPTIONS.find(option => option.value === roleVote);
   };
 
   getViewRoleValue = () => {
-    const { viewRole } = this.props.componentData.poll.settings;
+    const { roleView } = this.props.componentData.poll.settings;
 
-    return this.VIEW_ROLE_OPTIONS.find(option => option.value === viewRole);
+    return this.VIEW_ROLE_OPTIONS.find(option => option.value === roleView);
   };
 
   render() {

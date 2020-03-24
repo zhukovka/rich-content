@@ -37,7 +37,12 @@ export class SettingsModal extends Component {
 
         <Tabs value={activeTab} theme={this.props.theme} onTabSelected={this.handleTabChange}>
           <Tab label="Layout" value={TABS.LAYOUT}>
-            <LayoutSettingsSection />
+            <LayoutSettingsSection
+              theme={theme}
+              store={pubsub.store}
+              componentData={componentData}
+              t={t}
+            />
           </Tab>
           <Tab label="Design" value={TABS.DESIGN}>
             <DesignSettingsSection

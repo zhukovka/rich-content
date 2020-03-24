@@ -8,7 +8,7 @@ export const PollOptionPropTypes = PropTypes.shape({
 
 export const PollPropTypes = {
   id: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   imageUrl: PropTypes.string,
   settings: PropTypes.shape({
     multipleChoice: PropTypes.bool.isRequired,

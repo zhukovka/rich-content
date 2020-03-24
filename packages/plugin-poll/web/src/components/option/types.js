@@ -9,6 +9,7 @@ export const OptionPropTypes = {
   vote: PropTypes.func,
   unvote: PropTypes.func,
   poll: PropTypes.object,
+  imageEnabled: PropTypes.bool,
   voteEnabled: PropTypes.bool,
   isViewMode: PropTypes.bool,
 };

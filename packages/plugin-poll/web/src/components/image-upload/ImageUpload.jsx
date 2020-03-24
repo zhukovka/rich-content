@@ -24,11 +24,26 @@ class ImageUploadComponent extends PureComponent {
     this.$fileInput.current.click();
   };
 
+  handleFileUpload = ({ data, error }) => {
+    console.log('data: ', data);
+    this.props.onChange(data);
+  };
+
+  handleFileReadLoad = result => {
+    const { helpers } = this.props.rce;
+
+    if (!helpers?.onFilesChange) {
+      this.props.onChange(result);
+    }
+
+    helpers?.onFilesChange?.(result, this.handleFileUpload);
+  };
+
   handleFileChange = () => {
     const [file] = this.$fileInput.current.files;
     const reader = new FileReader();
 
-    reader.onload = e => this.props.onChange(e.target.result);
+    reader.onload = e => this.handleFileReadLoad(e.target.result);
 
     reader.readAsDataURL(file);
 

@@ -23,7 +23,7 @@ export class PollEditor extends PureComponent {
   }
 
   render() {
-    const { componentData, componentState, setInPluginEditingMode, settings } = this.props;
+    const { componentData, componentState, setInPluginEditingMode, settings, helpers } = this.props;
 
     return (
       <RCEHelpersContext.Provider
@@ -32,6 +32,7 @@ export class PollEditor extends PureComponent {
           setInPluginEditingMode,
           layout: componentData.layout,
           design: componentData.design,
+          helpers,
         }}
       >
         <PollContextProvider settings={settings} poll={componentData.poll} setPoll={this.setPoll}>
@@ -61,6 +62,7 @@ PollEditor.propTypes = {
     siteToken: PropTypes.string,
     isWebView: PropTypes.bool,
   }),
+  helpers: PropTypes.object.isRequired,
   store: PropTypes.shape({
     set: PropTypes.func.isRequired,
     get: PropTypes.func.isRequired,

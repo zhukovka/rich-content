@@ -5,18 +5,25 @@ import cls from 'classnames';
 
 import { RemoveIcon, CheckIcon } from '../../assets/icons';
 import { TextField } from '../text-field';
+import { ImageUpload } from '../image-upload';
 
 import { OptionPropTypes } from './types';
 
 import styles from './option.scss';
 
-export class ListOption extends PureComponent {
+export class PollOption extends PureComponent {
   static propTypes = OptionPropTypes;
 
   handleTitleChange = title => {
     const { update, option } = this.props;
 
     update({ ...option, title });
+  };
+
+  handleImageChange = imageUrl => {
+    const { update, option } = this.props;
+
+    update({ ...option, imageUrl });
   };
 
   userVoted() {
@@ -44,11 +51,16 @@ export class ListOption extends PureComponent {
   };
 
   render() {
-    const { option, removeEnabled, isViewMode, poll } = this.props;
+    const { option, removeEnabled, isViewMode, imageEnabled, poll } = this.props;
 
     if (isViewMode) {
       return (
-        <div className={styles.option}>
+        <div
+          className={cls(styles.option, {
+            [styles.withImage]: imageEnabled && option.imageUrl,
+          })}
+        >
+          <ImageUpload className={styles.image} value={option.imageUrl} />
           <div className={styles.title}>
             <p
               className={cls(styles.input, {
@@ -71,7 +83,18 @@ export class ListOption extends PureComponent {
     }
 
     return (
-      <div className={styles.option}>
+      <div
+        className={cls(styles.option, {
+          [styles.withImage]: imageEnabled,
+        })}
+      >
+        {imageEnabled && (
+          <ImageUpload
+            className={styles.image}
+            value={option.imageUrl}
+            onChange={this.handleImageChange}
+          />
+        )}
         <div className={styles.title}>
           <TextField
             className={styles.input}

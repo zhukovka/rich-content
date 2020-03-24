@@ -14,7 +14,7 @@ class TextFieldComponent extends React.PureComponent {
   state = {
     placeholder: this.props.placeholder,
     rows: 1,
-    value: this.props.value,
+    value: this.props.value || '',
   };
 
   componentDidMount() {
@@ -130,7 +130,7 @@ export const TextField = withRCEHelpers(TextFieldComponent);
 TextFieldComponent.defaultProps = {};
 
 TextFieldComponent.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   className: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired,

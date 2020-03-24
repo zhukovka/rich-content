@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import cls from 'classnames';
 
 import { withPoll, PollContextPropTypes } from './poll-context';
 import { withRCEHelpers, RCEHelpersPropTypes } from './rce-helpers-context';
 
+import { LAYOUT } from '../constants';
 import { PollHeader } from './poll-header';
-import { ListOption } from './option';
+import { PollOption } from './option';
 
 import styles from './poll.scss';
 
@@ -23,7 +25,7 @@ class PollComponent extends Component {
   }
 
   render() {
-    const { poll, rce, addOption, design, vote, unvote } = this.props;
+    const { poll, rce, addOption, design, layout, vote, unvote } = this.props;
     const style = {
       ...design,
     };
@@ -32,10 +34,16 @@ class PollComponent extends Component {
       <div className={styles.container} style={style}>
         <PollHeader />
 
-        <ul className={styles.list}>
+        <ul
+          className={cls(styles.options, {
+            [styles.list]: layout.type === LAYOUT.LIST,
+            [styles.grid]: layout.type === LAYOUT.GRID,
+          })}
+        >
           {poll.options.map((option, i) => (
-            <li key={option.id || i}>
-              <ListOption
+            <li className={styles.option} key={option.id || i}>
+              <PollOption
+                imageEnabled={layout.type === LAYOUT.GRID}
                 option={option}
                 update={this.handleOptionUpdate(i)}
                 remove={this.handleOptionRemove(i)}
