@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { LinkPanelContainer } from 'wix-rich-content-editor-common';
-import { LinkIcon } from '../Icons';
-import styles from '../../../statics/styles/mobile-link-modal.scss';
 
 export default class MobileLinkModal extends Component {
   render() {
@@ -23,17 +21,8 @@ export default class MobileLinkModal extends Component {
       getEditorState,
       setEditorState,
     } = this.props;
-    const mobileLinkModalTitle = t('MobileLinkModal_Title');
     return (
       <div>
-        <div className={styles.mobileLinkModal_titleContainer}>
-          <div className={styles.mobileLinkModal_linkIconContainer}>
-            <LinkIcon />
-          </div>
-          <h3 id="mob_link_modal_hdr" className={styles.mobileLinkModal_title}>
-            {mobileLinkModalTitle}
-          </h3>
-        </div>
         <LinkPanelContainer
           getEditorState={getEditorState}
           setEditorState={setEditorState}

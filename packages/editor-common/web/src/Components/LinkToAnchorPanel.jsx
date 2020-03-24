@@ -123,7 +123,7 @@ class LinkToAnchorPanel extends Component {
   render() {
     const { styles } = this;
     const { filter } = this.state;
-    const { ariaProps, t, getEditorState, anchorValues } = this.props;
+    const { ariaProps, t, getEditorState, anchorValues, isMobile } = this.props;
     const anchorableBlocksData = getAnchorableBlocks(getEditorState());
     const { anchorableBlocks, pluginsIncluded } = anchorableBlocksData;
     const filteredAnchorableBlocks =
@@ -157,6 +157,7 @@ class LinkToAnchorPanel extends Component {
                 onClick={() => this.onChange(block)}
                 isSelected={anchorValues.url === block.key}
                 t={t}
+                isMobile={isMobile}
               />
             </div>
           ))}
@@ -180,6 +181,7 @@ LinkToAnchorPanel.propTypes = {
   onEnter: PropTypes.func,
   onEscape: PropTypes.func,
   placeholder: PropTypes.string,
+  isMobile: PropTypes.bool,
 };
 export default LinkToAnchorPanel;
 
@@ -205,7 +207,7 @@ class AnchorableElement extends PureComponent {
   };
 
   getVisualThumbnail = () => {
-    const { block } = this.props;
+    const { block, isMobile } = this.props;
     let src = {};
     switch (block.anchorType) {
       case 'wix-draft-plugin-image':
@@ -238,7 +240,13 @@ class AnchorableElement extends PureComponent {
       requiredQuality: 90,
       imageType: 'highRes',
     });
-    return <img src={imgSrc} alt={this.getContent()} />;
+    return (
+      <img
+        src={imgSrc}
+        alt={this.getContent()}
+        style={isMobile ? { width: 'inherit', height: 'inherit' } : undefined}
+      />
+    );
   };
 
   render() {
@@ -270,6 +278,7 @@ class AnchorableElement extends PureComponent {
     block: PropTypes.object,
     theme: PropTypes.object,
     isSelected: PropTypes.bool,
+    isMobile: PropTypes.bool,
   };
 }
 
