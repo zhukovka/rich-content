@@ -4,7 +4,8 @@
     "version": {
       "allowBranch": [
         "master",
-        "release*"
+        "release*",
+        "version-6"
       ],
       "message": "[*] chore(release): %s"
     }
@@ -19,5 +20,5 @@
   "npmClientArgs": [
     "--no-lockfile"
   ],
-  "version": "6.10.2"
+  "version": "6.10.3"
 }
