@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import cls from 'classnames';
 
+import { AddIcon } from '../assets/icons';
+import { LAYOUT } from '../constants';
+
 import { withPoll, PollContextPropTypes } from './poll-context';
 import { withRCEHelpers, RCEHelpersPropTypes } from './rce-helpers-context';
-
-import { LAYOUT } from '../constants';
 import { PollHeader } from './poll-header';
 import { PollOption } from './option';
 
@@ -59,7 +60,7 @@ class PollComponent extends Component {
           {!rce.isViewMode && (
             <li>
               <button onClick={addOption} className={styles.addOptionButton}>
-                Add answer
+                {layout.type === LAYOUT.GRID ? <AddIcon /> : 'Add answer'}
               </button>
             </li>
           )}

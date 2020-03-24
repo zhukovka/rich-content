@@ -67,6 +67,7 @@ export class PollOption extends PureComponent {
                 [styles.cta]: isViewMode,
                 [styles.showResults]: this.userVoted(),
                 [styles.userChoice]: this.isUserChoice(),
+                [styles.centered]: imageEnabled,
               })}
               onClick={this.handleClick}
             >
@@ -74,7 +75,7 @@ export class PollOption extends PureComponent {
                 className={styles.progress}
                 style={{ width: `${(option.count / poll.total) * 100}%` }}
               />
-              {this.isUserChoice() && <CheckIcon className={styles.votedIcon} />}
+              {!imageEnabled && this.isUserChoice() && <CheckIcon className={styles.votedIcon} />}
               <span className={styles.label}>{option.title}</span>
             </p>
           </div>
@@ -99,7 +100,7 @@ export class PollOption extends PureComponent {
           <TextField
             className={styles.input}
             value={option.title}
-            placeholder="Type an answer here"
+            placeholder="Type an answer"
             onChange={this.handleTitleChange}
           />
           {removeEnabled && <RemoveIcon onClick={this.handleRemove} className={styles.remove} />}

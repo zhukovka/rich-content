@@ -28,8 +28,8 @@ export const DEFAULT_COMPONENT_DATA = {
     settings: {
       multipleChoice: false,
       secret: false,
-      roleVote: MEMBER_ROLES.ALL,
-      roleView: MEMBER_ROLES.VOTERS,
+      voteRole: MEMBER_ROLES.ALL,
+      viewRole: MEMBER_ROLES.VOTERS,
       type: 'CUSTOM',
     },
     options: [
