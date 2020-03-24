@@ -15,7 +15,7 @@
 </details>
 <hr/>
 
-## 6.10.4 (Mar 15, 2020)
+## 6.10.4 (Mar 24, 2020)
 ### :bug: Bug Fix
 - `editor`
   - [d486af87](https://github.com/wix-incubator/rich-content/commit/d486af87) fix plain text paste
