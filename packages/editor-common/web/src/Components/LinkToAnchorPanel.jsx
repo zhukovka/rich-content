@@ -43,8 +43,12 @@ class LinkToAnchorPanel extends Component {
     });
   };
 
-  onChange = changes => {
-    this.props.onChange({ ...this.props.anchorValues, url: changes.key });
+  onChange = (changes, options = {}) => {
+    this.props.onChange({
+      ...this.props.anchorValues,
+      url: changes.key,
+      defaultName: options.defaultName,
+    });
   };
 
   handleKeyDown = e => {
@@ -154,7 +158,7 @@ class LinkToAnchorPanel extends Component {
               <AnchorableElement
                 block={block}
                 theme={styles}
-                onClick={() => this.onChange(block)}
+                onClick={args => this.onChange(block, { ...args })}
                 isSelected={anchorValues.url === block.key}
                 t={t}
               />
@@ -251,7 +255,7 @@ class AnchorableElement extends PureComponent {
         className={classNames(styles.AnchorableElement_container, {
           [styles.AnchorableElement_selected]: isSelected,
         })}
-        onClick={onClick}
+        onClick={() => onClick({ defaultName: this.getContent() })}
       >
         <div className={styles.AnchorableElement_thumbnail}>
           {this.getDataToDisplayByField('thumbnail')}

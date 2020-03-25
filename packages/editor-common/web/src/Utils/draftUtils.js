@@ -37,10 +37,17 @@ export const getBlockAtStartOfSelection = editorState => {
 export const insertLinkAtCurrentSelection = (editorState, data) => {
   let selection = getSelection(editorState);
   let newEditorState = editorState;
-  const { url } = data;
   if (selection.isCollapsed()) {
-    const contentState = Modifier.insertText(editorState.getCurrentContent(), selection, url);
-    selection = selection.merge({ focusOffset: selection.getFocusOffset() + url.length });
+    const { url, defaultName } = data;
+    const urlToInsertWhenCollapsed = defaultName || url;
+    const contentState = Modifier.insertText(
+      editorState.getCurrentContent(),
+      selection,
+      urlToInsertWhenCollapsed
+    );
+    selection = selection.merge({
+      focusOffset: selection.getFocusOffset() + urlToInsertWhenCollapsed.length,
+    });
     newEditorState = EditorState.push(editorState, contentState, 'insert-characters');
   }
   let editorStateWithLink;

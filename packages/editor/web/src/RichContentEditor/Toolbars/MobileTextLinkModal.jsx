@@ -11,15 +11,17 @@ import MobileLinkModal from './MobileLinkModal';
 export default class MobileTextLinkModal extends Component {
   hidePopup = () => this.props.hidePopup();
 
-  createLinkEntity = ({ url, targetBlank, nofollow }) => {
+  createLinkEntity = ({ url, targetBlank, nofollow, defaultName, linkToAnchor }) => {
     if (!isEmpty(url)) {
-      const { getEditorState, setEditorState, anchorTarget, relValue } = this.props;
+      const { getEditorState, setEditorState, anchorTarget: _anchorTarget, relValue } = this.props;
+      const anchorTarget = linkToAnchor ? '_self' : _anchorTarget;
       const newEditorState = insertLinkAtCurrentSelection(getEditorState(), {
         url,
         targetBlank,
         nofollow,
         anchorTarget,
         relValue,
+        defaultName,
       });
       setEditorState(newEditorState);
     }
