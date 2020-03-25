@@ -20,6 +20,7 @@ export default class MobileLinkModal extends Component {
       uiSettings,
       getEditorState,
       setEditorState,
+      unchangedUrl,
     } = this.props;
     return (
       <div>
@@ -40,6 +41,7 @@ export default class MobileLinkModal extends Component {
           t={t}
           ariaProps={{ 'aria-labelledby': 'mob_link_modal_hdr' }}
           uiSettings={uiSettings}
+          unchangedUrl={unchangedUrl}
         />
       </div>
     );
@@ -62,4 +64,5 @@ MobileLinkModal.propTypes = {
   nofollow: PropTypes.bool,
   t: PropTypes.func,
   uiSettings: PropTypes.object,
+  unchangedUrl: PropTypes.bool,
 };
