@@ -39,7 +39,7 @@ export const insertLinkAtCurrentSelection = (editorState, data) => {
   let newEditorState = editorState;
   if (selection.isCollapsed()) {
     const { url, defaultName } = data;
-    const urlToInsertWhenCollapsed = defaultName || url;
+    const urlToInsertWhenCollapsed = defaultName ? defaultName.slice(0, 25) : url;
     const contentState = Modifier.insertText(
       editorState.getCurrentContent(),
       selection,
