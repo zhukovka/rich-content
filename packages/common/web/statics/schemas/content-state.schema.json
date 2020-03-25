@@ -96,6 +96,7 @@
             "wix-draft-plugin-map",
             "wix-draft-plugin-file-upload",
             "wix-draft-plugin-vertical-embed"
+            "LINK_PREVIEW"
           ],
           "title": "entity type",
           "examples": ["wix-draft-plugin-image"]
