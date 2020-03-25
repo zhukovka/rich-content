@@ -69,15 +69,14 @@ class BlockLinkButton extends Component {
   };
 
   render() {
-    const { theme, isMobile, t, tabIndex, icons } = this.props;
-    const linkButtonTooltip = t('TextLinkButton_Tooltip');
+    const { theme, isMobile, tabIndex, icons, tooltipText } = this.props;
     return (
       <LinkButton
         onClick={this.showLinkPanel}
         isActive={this.isActive}
         theme={theme}
         isMobile={isMobile}
-        tooltipText={linkButtonTooltip}
+        tooltipText={tooltipText}
         tabIndex={tabIndex}
         icon={icons}
       />
@@ -100,6 +99,7 @@ BlockLinkButton.propTypes = {
   uiSettings: PropTypes.object,
   icons: PropTypes.object,
   unchangedUrl: PropTypes.bool,
+  tooltipText: PropTypes.string,
 };
 
 export default BlockLinkButton;

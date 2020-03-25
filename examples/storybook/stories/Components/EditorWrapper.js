@@ -21,6 +21,8 @@ import { pluginSoundCloud } from 'wix-rich-content-plugin-sound-cloud';
 import { pluginUndoRedo } from 'wix-rich-content-plugin-undo-redo';
 import { pluginVideo } from 'wix-rich-content-plugin-video';
 import { pluginLinkPreview } from 'wix-rich-content-plugin-link-preview';
+import { mockFetchUrlPreviewData } from '../Utils/linkPreviewUtil';
+import { pluginTextColor, pluginTextHighlight } from 'wix-rich-content-plugin-text-color';
 import '../styles.global.scss';
 
 const configs = {
@@ -48,6 +50,9 @@ const configs = {
     giphySdkApiKey: process.env.GIPHY_API_KEY || 'HXSsAGVNzjeUjhKfhhD9noF8sIbpYDsV',
     sizes: { desktop: 'original', mobile: 'original' }, // original or downsizedSmall are supported
   },
+  linkPreview: {
+    fetchData: mockFetchUrlPreviewData(),
+  },
 };
 
 const plugins = [
@@ -68,8 +73,10 @@ const plugins = [
   pluginMentions(),
   pluginSoundCloud(),
   pluginVideo(),
-  pluginLinkPreview(),
+  pluginLinkPreview(configs.linkPreview),
   pluginUndoRedo(),
+  pluginTextColor(),
+  pluginTextHighlight(),
 ];
 const EditorWrapper = ({ contentState, palette }) => {
   const editorState = createWithContent(convertFromRaw(contentState));

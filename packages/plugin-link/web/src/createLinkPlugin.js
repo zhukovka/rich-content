@@ -5,6 +5,7 @@ import {
 } from 'wix-rich-content-editor-common';
 import { addLinkPreview } from 'wix-rich-content-plugin-link-preview/dist/lib/utils';
 import { isValidUrl } from 'wix-rich-content-common';
+import React from 'react';
 import { LINK_TYPE } from './types';
 import { Component } from './LinkComponent';
 import { linkEntityStrategy } from './strategy';
@@ -17,13 +18,14 @@ const createLinkPlugin = (config = {}) => {
   const toolbar = createLinkToolbar(config);
   let alreadyDisplayedAsLinkPreview = {};
 
-  const decorators = [{ strategy: linkEntityStrategy, component: Component }];
+  const decorators = [
+    { strategy: linkEntityStrategy, component: props => <Component {...props} theme={theme} /> },
+  ];
   let linkifyData;
-  const { preview } = settings;
 
   const handleReturn = (event, editorState) => {
     linkifyData = getLinkifyData(editorState);
-    if (linkifyData && preview?.enable) {
+    if (shouldConvertToLinkPreview(settings, linkifyData)) {
       const url = getBlockLinkUrl(linkifyData);
       const blockKey = linkifyData.block.key;
       const blocBeforeUrl =
@@ -34,6 +36,9 @@ const createLinkPlugin = (config = {}) => {
       }
     }
   };
+
+  const shouldConvertToLinkPreview = (settings, linkifyData) =>
+    linkifyData && settings.preview?.enable;
 
   const getBlockLinkUrl = linkifyData => {
     const { string, block } = linkifyData;
@@ -69,14 +74,13 @@ const createLinkPlugin = (config = {}) => {
 
   const getLinkifyData = editorState => {
     const strData = findLastStringWithNoSpaces(editorState);
-    return shouldLinkify(strData, editorState) && strData;
+    return shouldLinkify(strData) && strData;
   };
 
-  const shouldLinkify = (consecutiveString, editorState) =>
+  const shouldLinkify = consecutiveString =>
     consecutiveString.string.length >= settings.minLinkifyLength &&
     isValidUrl(consecutiveString.string) &&
-    (!rangeContainsEntity(consecutiveString) ||
-      rangeContainsPreviewEntityAtEnd(editorState, consecutiveString));
+    !rangeContainsEntity(consecutiveString);
 
   const findLastStringWithNoSpaces = editorState => {
     const selection = editorState.getSelection();
@@ -95,14 +99,6 @@ const createLinkPlugin = (config = {}) => {
       if (block.getEntityAt(i) !== null) {
         return true;
       }
-    }
-    return false;
-  };
-
-  const rangeContainsPreviewEntityAtEnd = (editorState, { block, endIndex }) => {
-    const key = block.getEntityAt(endIndex - 1);
-    if (key && editorState.getCurrentContent().getEntity(key).type === 'LINK') {
-      return true;
     }
     return false;
   };

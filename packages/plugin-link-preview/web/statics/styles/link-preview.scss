@@ -12,12 +12,12 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  border: solid 1px #ededed;
+  border-right: solid 1px #ededed;
   flex: 0 0 auto;
 }
 
 .linkPreview_info {
-  padding: 20px 28px 20px 28px;
+  padding: 20px 28px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -69,7 +69,7 @@
   }
 
   .linkPreview_image {
-    width: 110;
+    width: 110px;
   }
 
   .linkPreview_info {
@@ -81,7 +81,6 @@
     line-height: 20px;
     padding-top: 8px;
     max-height: 40px;
-    min-height: 1.5;
   }
 
   .ellipsis {
