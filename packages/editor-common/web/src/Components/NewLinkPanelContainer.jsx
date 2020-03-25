@@ -77,7 +77,13 @@ class NewLinkPanelContainer extends PureComponent {
 
   onDoneAnchor = () => {
     const { anchorPanelValues } = this.state;
-    //TODO: add html <a name=`#${anchorPanelValues.url`}/> element before the block key
+    /*
+    //TODO: according to the block key, add to the html element id attribute with the block key
+    const blockElementToAnchor = document.querySelector(
+      `[data-offset-key=${anchorPanelValues.url}-0-0]`
+    );
+    blockElementToAnchor.setAttribute('id', anchorPanelValues.url);
+    */
     if (anchorPanelValues.url) {
       this.props.onDone({ ...anchorPanelValues, linkToAnchor: true });
     }

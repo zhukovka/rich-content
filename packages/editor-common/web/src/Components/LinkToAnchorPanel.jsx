@@ -44,6 +44,17 @@ class LinkToAnchorPanel extends Component {
   };
 
   onChange = (changes, options = {}) => {
+    /*
+    //TODO: scroll to the element
+    const listOfAlllocks = document.querySelectorAll(`[data-editor]`);
+    let blockElementToAnchor;
+    listOfAlllocks.forEach(e => {
+      if (e.dataset.offsetKey === `${changes.key}-0-0`) {
+        blockElementToAnchor = e;
+      }
+    });
+    blockElementToAnchor.scrollIntoView({ behavior: 'smooth' });
+    */
     this.props.onChange({
       ...this.props.anchorValues,
       url: changes.key,
