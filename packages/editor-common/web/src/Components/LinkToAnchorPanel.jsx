@@ -244,7 +244,11 @@ class AnchorableElement extends PureComponent {
       imageType: 'highRes',
     });
     return (
-      <img src={imgSrc} alt={this.getContent()} style={{ width: 'inherit', height: 'inherit' }} />
+      <img
+        src={imgSrc}
+        alt={this.getContent()}
+        style={{ width: 'inherit', height: 'inherit', objectFit: 'contain' }}
+      />
     );
   };
 
