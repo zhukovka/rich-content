@@ -30,6 +30,7 @@ export { default as InputWithLabel } from './Components/InputWithLabel';
 export { default as LinkButton } from './Components/LinkButton';
 export { default as LinkPanel } from './Components/LinkPanel';
 export { default as LinkPanelContainer } from './Components/LinkPanelContainer';
+export { default as NewLinkPanelContainer } from './Components/NewLinkPanelContainer';
 export { default as Panel } from './Components/Panel';
 export { default as RadioGroup } from './Components/RadioGroup';
 export { default as RadioGroupHorizontal } from './Components/RadioGroupHorizontal';

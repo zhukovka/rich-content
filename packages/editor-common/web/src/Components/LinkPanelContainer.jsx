@@ -1,17 +1,11 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import LinkPanel from './LinkPanel';
-import LinkToAnchorPanel from './LinkToAnchorPanel';
 import FocusManager from './FocusManager';
-import { mergeStyles, isValidUrl } from 'wix-rich-content-common';
+import { mergeStyles } from 'wix-rich-content-common';
 import RadioGroupHorizontal from './RadioGroupHorizontal';
-import RadioGroup from './RadioGroup';
 import styles from '../../statics/styles/link-panel.scss';
-import { LinkIcon } from '../Icons';
-
 const LinkType = props => (
   <RadioGroupHorizontal
     dataSource={[
@@ -33,59 +27,13 @@ class LinkPanelContainer extends PureComponent {
     this.styles = mergeStyles({ styles, theme: props.theme });
     const { url, targetBlank, nofollow } = this.props;
     this.state = {
-      linkPanelValues: { url: url && isValidUrl(url) ? url : undefined, targetBlank, nofollow },
-      anchorPanelValues: {
-        url: url && !isValidUrl(url) ? url : undefined,
-      },
-      radioGroupValue: !url || isValidUrl(url) ? 'external-link' : 'anchor',
+      linkPanelValues: { url, targetBlank, nofollow },
     };
   }
 
-  isDoneButtonEnable = () => {
-    const { radioGroupValue } = this.state;
-    switch (radioGroupValue) {
-      case 'external-link': {
-        const { linkPanelValues } = this.state;
-        return linkPanelValues.isValid && !!linkPanelValues.url;
-      }
-      case 'anchor': {
-        const { anchorPanelValues } = this.state;
-        return !!anchorPanelValues.url;
-      }
-      default:
-        // eslint-disable-next-line no-console
-        console.error('Unknown radio');
-        break;
-    }
-  };
-
   onDone = () => {
-    const { radioGroupValue } = this.state;
-    switch (radioGroupValue) {
-      case 'external-link':
-        this.onDoneLink();
-        break;
-      case 'anchor':
-        this.onDoneAnchor();
-        break;
-      default:
-        // eslint-disable-next-line no-console
-        console.error('Unknown radio');
-        break;
-    }
-  };
-
-  onDoneAnchor = () => {
-    const { anchorPanelValues } = this.state;
-    //TODO: add html <a name=`#${anchorPanelValues.url`}/> element before the block key
-    if (anchorPanelValues.url) {
-      this.props.onDone({ ...anchorPanelValues, linkToAnchor: true });
-    }
-  };
-
-  onDoneLink = () => {
     const { linkPanelValues } = this.state;
-    if (linkPanelValues.isValid && linkPanelValues.url) {
+    if ((linkPanelValues.isValid && linkPanelValues.url) || this.props.unchangedUrl) {
       this.props.onDone(linkPanelValues);
     } else if (linkPanelValues.url === '') {
       this.onDelete();
@@ -99,115 +47,32 @@ class LinkPanelContainer extends PureComponent {
 
   onCancel = () => this.props.onCancel();
 
-  changeRadioGroup = value => {
-    this.setState({ radioGroupValue: value });
-  };
-
-  renderButtons = () => {
-    const { styles } = this;
-    const { isActive, t, tabIndex } = this.props;
-    const doneButtonText = t('LinkPanelContainer_DoneButton');
-    const cancelButtonText = t('LinkPanelContainer_CancelButton');
-    const removeButtonText = t('LinkPanelContainer_RemoveButton');
-    const doneButtonClassName = classNames(
-      styles.linkPanel_FooterButton,
-      this.isDoneButtonEnable() ? styles.linkPanel_enabled : styles.linkPanel_disabled
-    );
-    const cancelButtonClassName = classNames(
-      styles.linkPanel_FooterButton,
-      styles.linkPanel_Cancel,
-      styles.linkPanel_enabled
-    );
-    const removeButtonClassName = classNames(
-      styles.linkPanel_FooterButton,
-      styles.linkPanel_enabled
-    );
-    return (
-      <div className={styles.linkPanel_Footer}>
-        <div className={styles.linkPanel_FooterActions}>
-          <button
-            tabIndex={tabIndex}
-            aria-label={cancelButtonText}
-            className={cancelButtonClassName}
-            data-hook="linkPanelContainerCancel"
-            onClick={this.onCancel}
-          >
-            {cancelButtonText}
-          </button>
-          {isActive && (
-            <div className={styles.linkPanel_RemoveContainer}>
-              <div className={styles.linkPanel_VerticalDivider} />
-              <button
-                tabIndex={tabIndex}
-                aria-label={removeButtonText}
-                className={removeButtonClassName}
-                data-hook="linkPanelContainerRemove"
-                onClick={this.onDelete}
-              >
-                {removeButtonText}
-              </button>
-            </div>
-          )}
-        </div>
-        <button
-          tabIndex={tabIndex}
-          aria-label={doneButtonText}
-          className={doneButtonClassName}
-          data-hook="linkPanelContainerDone"
-          onClick={this.onDone}
-          disabled={this.isDoneButtonEnable() ? undefined : true}
-        >
-          {doneButtonText}
-        </button>
-      </div>
-    );
-  };
-
-  renderMobileTabs = () => {
-    const { styles } = this;
-    const { t } = this.props;
-    const { radioGroupValue } = this.state; // 'external-link' || 'anchor'
-
-    return (
-      <div>
-        <div className={styles.linkPanel_tabsWrapper}>
-          <div
-            className={classNames(styles.linkPanel_tab, {
-              [styles.linkPanel_tabSelected]: radioGroupValue === 'external-link',
-            })}
-            onClick={() => this.changeRadioGroup('external-link')}
-            data-hook="linkPanelContainerLinkTab"
-          >
-            {t('LinkTo_Modal_Sidebar_Website')}
-          </div>
-          <div
-            className={classNames(styles.linkPanel_tab, {
-              [styles.linkPanel_tabSelected]: radioGroupValue === 'anchor',
-            })}
-            onClick={() => this.changeRadioGroup('anchor')}
-            data-hook="linkPanelContainerAnchorTab"
-          >
-            {t('LinkTo_Modal_Sidebar_Section')}
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   render() {
     const { styles } = this;
-    const { radioGroupValue } = this.state;
     const {
-      getEditorState,
-      setEditorState,
       theme,
+      isActive,
       anchorTarget,
       relValue,
       isMobile,
       t,
       ariaProps,
+      tabIndex,
       uiSettings,
+      unchangedUrl,
     } = this.props;
+    const doneButtonText = t('LinkPanelContainer_DoneButton');
+    const cancelButtonText = t('LinkPanelContainer_CancelButton');
+    const removeButtonText = t('LinkPanelContainer_RemoveButton');
+    const doneButtonClassName = classNames(styles.linkPanel_FooterButton, styles.linkPanel_enabled);
+    const cancelButtonClassName = classNames(
+      styles.linkPanel_FooterButton,
+      styles.linkPanel_Cancel
+    );
+    const removeButtonClassName = classNames(styles.linkPanel_FooterButton);
+    const linkPanelContainerClassName = classNames(styles.linkPanel_container, {
+      [styles.linkPanel_container_isMobile]: isMobile,
+    });
 
     const { linkPanel } = uiSettings || {};
     const { blankTargetToggleVisibilityFn, nofollowRelToggleVisibilityFn } = linkPanel || {};
@@ -219,72 +84,69 @@ class LinkPanelContainer extends PureComponent {
     const linkPanelAriaProps = { 'aria-label': 'Link management' };
     return (
       <FocusManager
-        className={styles.linkPanel_container}
+        className={linkPanelContainerClassName}
         data-hook="linkPanelContainer"
         role="form"
         {...ariaProps}
       >
-        {isMobile && this.renderButtons()}
-        <div className={styles.linkPanel_header}>
-          {isMobile && <LinkIcon style={{ width: '19px', height: '19px', marginRight: '11px' }} />}
-          <div>{t('LinkTo_Modal_Header')}</div>
-        </div>
-        {!isMobile && <div className={styles.linkPanel_actionsDivider} role="separator" />}
-        {isMobile && this.renderMobileTabs()}
         <div className={styles.linkPanel_content}>
-          {!isMobile && (
-            <RadioGroup
-              className={styles.linkPanel_radioButtons}
-              dataSource={[
-                { value: 'external-link', labelText: t('LinkTo_Modal_Sidebar_Website') },
-                { value: 'anchor', labelText: t('LinkTo_Modal_Sidebar_Section') },
-              ]}
-              value={this.state.radioGroupValue}
-              onChange={this.changeRadioGroup}
-              {...this.props}
-            />
-          )}
-          {!isMobile && <div className={styles.linkPanel_VerticalDivider} />}
-          {radioGroupValue === 'external-link' && (
-            <LinkPanel
-              onEnter={this.onDoneLink}
-              onEscape={this.onCancel}
-              linkValues={this.state.linkPanelValues}
-              onChange={linkPanelValues => this.setState({ linkPanelValues })}
-              theme={theme}
-              showTargetBlankCheckbox={showTargetBlankCheckbox}
-              showRelValueCheckbox={showRelValueCheckbox}
-              t={t}
-              ariaProps={linkPanelAriaProps}
-              {...uiSettings.linkPanel}
-            />
-          )}
-          {radioGroupValue === 'anchor' && (
-            <LinkToAnchorPanel
-              getEditorState={getEditorState}
-              setEditorState={setEditorState}
-              onEnter={this.onDone}
-              onEscape={this.onCancel}
-              anchorValues={this.state.anchorPanelValues}
-              onChange={anchorPanelValues => this.setState({ anchorPanelValues })}
-              theme={theme}
-              t={t}
-              ariaProps={linkPanelAriaProps}
-              isMobile={isMobile}
-              {...uiSettings.linkPanel}
-            />
-          )}
+          <LinkPanel
+            onEnter={this.onDone}
+            onEscape={this.onCancel}
+            linkValues={this.state.linkPanelValues}
+            onChange={linkPanelValues => this.setState({ linkPanelValues })}
+            theme={theme}
+            showTargetBlankCheckbox={showTargetBlankCheckbox}
+            showRelValueCheckbox={showRelValueCheckbox}
+            t={t}
+            ariaProps={linkPanelAriaProps}
+            unchangedUrl={unchangedUrl}
+            {...uiSettings.linkPanel}
+          />
+          <div className={styles.linkPanel_actionsDivider} role="separator" />
         </div>
-        {!isMobile && <div className={styles.linkPanel_actionsDivider} role="separator" />}
-        {!isMobile && this.renderButtons()}
+        <div className={styles.linkPanel_Footer}>
+          <div className={styles.linkPanel_FooterActions}>
+            <button
+              tabIndex={tabIndex}
+              aria-label={cancelButtonText}
+              className={cancelButtonClassName}
+              data-hook="linkPanelContainerCancel"
+              onClick={this.onCancel}
+            >
+              {cancelButtonText}
+            </button>
+            {isActive && (
+              <div className={styles.linkPanel_RemoveContainer}>
+                <div className={styles.linkPanel_VerticalDivider} />
+                <button
+                  tabIndex={tabIndex}
+                  aria-label={removeButtonText}
+                  className={removeButtonClassName}
+                  data-hook="linkPanelContainerRemove"
+                  onClick={this.onDelete}
+                >
+                  {removeButtonText}
+                </button>
+              </div>
+            )}
+          </div>
+          <button
+            tabIndex={tabIndex}
+            aria-label={doneButtonText}
+            className={doneButtonClassName}
+            data-hook="linkPanelContainerDone"
+            onClick={this.onDone}
+          >
+            {doneButtonText}
+          </button>
+        </div>
       </FocusManager>
     );
   }
 }
 
 LinkPanelContainer.propTypes = {
-  getEditorState: PropTypes.func.isRequired,
-  setEditorState: PropTypes.func.isRequired,
   onDone: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
@@ -302,6 +164,7 @@ LinkPanelContainer.propTypes = {
   ariaProps: PropTypes.object,
   tabIndex: PropTypes.number,
   uiSettings: PropTypes.object,
+  unchangedUrl: PropTypes.bool,
 };
 
 export default LinkPanelContainer;

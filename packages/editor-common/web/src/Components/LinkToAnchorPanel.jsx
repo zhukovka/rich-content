@@ -4,7 +4,7 @@ import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { mergeStyles, getImageSrc } from 'wix-rich-content-common';
 import classNames from 'classnames';
-import styles from '../../statics/styles/link-panel.scss';
+import styles from '../../statics/styles/new-link-panel.scss';
 import Dropdown from './Dropdown';
 import { getAnchorableBlocks, filterAnchorableBlocks } from '../Utils/draftUtils';
 import { ANCHORABLE_BLOCKS } from '../consts';
@@ -123,7 +123,7 @@ class LinkToAnchorPanel extends Component {
   render() {
     const { styles } = this;
     const { filter } = this.state;
-    const { ariaProps, t, getEditorState, anchorValues, isMobile } = this.props;
+    const { ariaProps, t, getEditorState, anchorValues } = this.props;
     const anchorableBlocksData = getAnchorableBlocks(getEditorState());
     const { anchorableBlocks, pluginsIncluded } = anchorableBlocksData;
     const filteredAnchorableBlocks =
@@ -157,7 +157,6 @@ class LinkToAnchorPanel extends Component {
                 onClick={() => this.onChange(block)}
                 isSelected={anchorValues.url === block.key}
                 t={t}
-                isMobile={isMobile}
               />
             </div>
           ))}
@@ -181,7 +180,6 @@ LinkToAnchorPanel.propTypes = {
   onEnter: PropTypes.func,
   onEscape: PropTypes.func,
   placeholder: PropTypes.string,
-  isMobile: PropTypes.bool,
 };
 export default LinkToAnchorPanel;
 
@@ -207,7 +205,7 @@ class AnchorableElement extends PureComponent {
   };
 
   getVisualThumbnail = () => {
-    const { block, isMobile } = this.props;
+    const { block } = this.props;
     let src = {};
     switch (block.anchorType) {
       case 'wix-draft-plugin-image':
@@ -241,11 +239,7 @@ class AnchorableElement extends PureComponent {
       imageType: 'highRes',
     });
     return (
-      <img
-        src={imgSrc}
-        alt={this.getContent()}
-        style={isMobile ? { width: 'inherit', height: 'inherit' } : undefined}
-      />
+      <img src={imgSrc} alt={this.getContent()} style={{ width: 'inherit', height: 'inherit' }} />
     );
   };
 
@@ -278,7 +272,6 @@ class AnchorableElement extends PureComponent {
     block: PropTypes.object,
     theme: PropTypes.object,
     isSelected: PropTypes.bool,
-    isMobile: PropTypes.bool,
   };
 }
 

@@ -21,7 +21,7 @@ const openLinkModal = ({
   const modalStyles = getModalStyles({
     fullScreen: false,
     isMobile,
-    customStyles: { content: { maxWidth: 'max-content', padding: '0 20px' } },
+    customStyles: { content: { maxWidth: 'max-content', padding: '1px 20px' } },
   });
   if (helpers && helpers.openModal) {
     const modalProps = {

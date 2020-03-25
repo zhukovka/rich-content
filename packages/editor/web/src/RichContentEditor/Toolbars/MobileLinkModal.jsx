@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { LinkPanelContainer } from 'wix-rich-content-editor-common';
+import { NewLinkPanelContainer } from 'wix-rich-content-editor-common';
 
 export default class MobileLinkModal extends Component {
   render() {
@@ -23,7 +23,7 @@ export default class MobileLinkModal extends Component {
     } = this.props;
     return (
       <div>
-        <LinkPanelContainer
+        <NewLinkPanelContainer
           getEditorState={getEditorState}
           setEditorState={setEditorState}
           url={url}

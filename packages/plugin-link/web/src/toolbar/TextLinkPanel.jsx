@@ -6,7 +6,7 @@ import {
   insertLinkAtCurrentSelection,
   getLinkDataInSelection,
   removeLinksInSelection,
-  LinkPanelContainer,
+  NewLinkPanelContainer,
   decorateComponentWithProps,
 } from 'wix-rich-content-editor-common';
 
@@ -45,7 +45,7 @@ export default class TextLinkPanel extends Component {
     };
 
     const LinkPanelContainerWithProps = decorateComponentWithProps(
-      LinkPanelContainer,
+      NewLinkPanelContainer,
       linkContainerProps
     );
     this.props.onOverrideContent(LinkPanelContainerWithProps);
