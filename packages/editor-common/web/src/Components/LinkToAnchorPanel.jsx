@@ -127,7 +127,7 @@ class LinkToAnchorPanel extends Component {
   render() {
     const { styles } = this;
     const { filter } = this.state;
-    const { ariaProps, t, getEditorState, anchorValues } = this.props;
+    const { ariaProps, t, getEditorState, anchorValues, onEnter } = this.props;
     const anchorableBlocksData = getAnchorableBlocks(getEditorState());
     const { anchorableBlocks, pluginsIncluded } = anchorableBlocksData;
     const filteredAnchorableBlocks =
@@ -161,6 +161,7 @@ class LinkToAnchorPanel extends Component {
                 onClick={args => this.onChange(block, { ...args })}
                 isSelected={anchorValues.url === block.key}
                 t={t}
+                onEnter={onEnter}
               />
             </div>
           ))}
@@ -249,13 +250,14 @@ class AnchorableElement extends PureComponent {
 
   render() {
     const { styles } = this;
-    const { onClick, isSelected, t } = this.props;
+    const { onClick, isSelected, t, onEnter } = this.props;
     return (
       <div
         className={classNames(styles.AnchorableElement_container, {
           [styles.AnchorableElement_selected]: isSelected,
         })}
         onClick={() => onClick({ defaultName: this.getContent() })}
+        onDoubleClick={() => onEnter && onEnter()}
       >
         <div className={styles.AnchorableElement_thumbnail}>
           {this.getDataToDisplayByField('thumbnail')}
@@ -276,6 +278,7 @@ class AnchorableElement extends PureComponent {
     block: PropTypes.object,
     theme: PropTypes.object,
     isSelected: PropTypes.bool,
+    onEnter: PropTypes.func,
   };
 }
 
