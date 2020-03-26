@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { mergeStyles, getImageSrc } from 'wix-rich-content-common';
-import classNames from 'classnames';
+import { mergeStyles } from 'wix-rich-content-common';
 import styles from '../../statics/styles/new-link-panel.scss';
 import Dropdown from './Dropdown';
 import { getAnchorableBlocks, filterAnchorableBlocks } from '../Utils/draftUtils';
 import { ANCHORABLE_BLOCKS } from '../consts';
+import FilterDropdownElement from './AnchorComponents/FilterDropdownElement';
+import AnchorableElement from './AnchorComponents/AnchorableElement';
 
 class LinkToAnchorPanel extends Component {
   constructor(props) {
@@ -164,8 +165,8 @@ class LinkToAnchorPanel extends Component {
           </div>
         </div>
         <div className={styles.LinkToAnchorPanel_anchorsElementsContainer}>
-          {filteredAnchorableBlocks.map((block, i) => (
-            <div key={i} ref={anchorValues.url === block.key ? this.scrollRef : undefined}>
+          {filteredAnchorableBlocks.map(block => (
+            <div key={block.key} ref={anchorValues.url === block.key ? this.scrollRef : undefined}>
               <AnchorableElement
                 block={block}
                 theme={styles}
@@ -198,114 +199,3 @@ LinkToAnchorPanel.propTypes = {
   placeholder: PropTypes.string,
 };
 export default LinkToAnchorPanel;
-
-class AnchorableElement extends PureComponent {
-  styles = mergeStyles({ styles, theme: this.props.theme });
-
-  getDataToDisplayByField = field => {
-    const { block } = this.props;
-    if (field === 'thumbnail' && !ANCHORABLE_BLOCKS[block.anchorType].thumbnail) {
-      return this.getVisualThumbnail();
-    } else {
-      return ANCHORABLE_BLOCKS[block.anchorType][field];
-    }
-  };
-
-  getContent = () => {
-    const { block, t } = this.props;
-    if (block.type === 'atomic') {
-      return `${t(ANCHORABLE_BLOCKS[block.anchorType].type)} ${block.index}`;
-    } else {
-      return block.text;
-    }
-  };
-
-  getVisualThumbnail = () => {
-    const { block } = this.props;
-    let src = {};
-    switch (block.anchorType) {
-      case 'wix-draft-plugin-image':
-        src = block.data.src;
-        break;
-      // case 'wix-draft-plugin-video':
-      //   if (block?.data?.src?.thumbnail?.pathname) {
-      //     src.file_name = block?.data?.src?.thumbnail?.pathname;
-      //   } else if (block?.data?.metadata?.thumbnail_url) {
-      //     return (
-      //       <img
-      //         src={block?.data?.metadata?.thumbnail_url}
-      //         alt={this.getContent()}
-      //         style={{ width: 'inherit', height: 'inherit' }}
-      //       />
-      //     );
-      //   }
-      //   break;
-      case 'wix-draft-plugin-gallery':
-        src.file_name = block.data.items[0].url;
-        break;
-      default:
-        // eslint-disable-next-line no-console
-        console.error('Mismatch plugins');
-        break;
-    }
-    const imgSrc = getImageSrc(src, null, {
-      requiredWidth: 50,
-      requiredHeight: 50,
-      requiredQuality: 90,
-      imageType: 'highRes',
-    });
-    return (
-      <img
-        src={imgSrc}
-        alt={this.getContent()}
-        style={{ width: 'inherit', height: 'inherit', objectFit: 'contain' }}
-      />
-    );
-  };
-
-  render() {
-    const { styles } = this;
-    const { onClick, isSelected, t, onEnter } = this.props;
-    return (
-      <div
-        className={classNames(styles.AnchorableElement_container, {
-          [styles.AnchorableElement_selected]: isSelected,
-        })}
-        onClick={() => onClick({ defaultName: this.getContent() })}
-        onDoubleClick={() => onEnter && onEnter()}
-      >
-        <div className={styles.AnchorableElement_thumbnail}>
-          {this.getDataToDisplayByField('thumbnail')}
-        </div>
-        <div className={styles.AnchorableElement_contentContainer}>
-          <div className={styles.AnchorableElement_contentType}>
-            {t(this.getDataToDisplayByField('type'))}
-          </div>
-          <div className={styles.AnchorableElement_blockContent}>{this.getContent()}</div>
-        </div>
-      </div>
-    );
-  }
-
-  static propTypes = {
-    onClick: PropTypes.func.isRequired,
-    t: PropTypes.func.isRequired,
-    block: PropTypes.object,
-    theme: PropTypes.object,
-    isSelected: PropTypes.bool,
-    onEnter: PropTypes.func,
-  };
-}
-
-class FilterDropdownElement extends PureComponent {
-  styles = mergeStyles({ styles, theme: this.props.theme });
-  render() {
-    const { label } = this.props;
-    return <div className={this.styles.FilterDropdownElement}>{label}</div>;
-  }
-
-  static propTypes = {
-    label: PropTypes.string,
-    theme: PropTypes.object,
-  };
-}
