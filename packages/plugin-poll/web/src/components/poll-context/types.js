@@ -12,7 +12,10 @@ export const PollPropTypes = {
   imageUrl: PropTypes.string,
   settings: PropTypes.shape({
     multipleChoice: PropTypes.bool.isRequired,
-    secret: PropTypes.bool.isRequired,
+    voteRole: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    secret: PropTypes.bool,
+    viewRole: PropTypes.string,
   }).isRequired,
   options: PropTypes.arrayOf(PollOptionPropTypes).isRequired,
 };

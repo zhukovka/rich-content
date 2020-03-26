@@ -1,1 +1,1 @@
-export * from './PollApiClient';
+export * from './SocialPollsService';

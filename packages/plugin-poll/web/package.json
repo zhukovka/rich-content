@@ -50,6 +50,7 @@
     "rollup": "1.31.1"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "wix-rich-content-common": "6.10.3-polls.7",
     "wix-rich-content-editor-common": "6.10.3-polls.7"
   },

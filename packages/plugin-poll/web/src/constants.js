@@ -23,8 +23,8 @@ export const DEFAULT_COMPONENT_DATA = {
   poll: {
     id: '',
     chosen: [],
-    title: null,
-    imageUrl: null,
+    title: '',
+    imageUrl: '',
     settings: {
       multipleChoice: false,
       secret: false,
@@ -34,12 +34,12 @@ export const DEFAULT_COMPONENT_DATA = {
     },
     options: [
       {
-        title: null,
-        imageUrl: null,
+        title: '',
+        imageUrl: '',
       },
       {
-        title: null,
-        imageUrl: null,
+        title: '',
+        imageUrl: '',
       },
     ],
   },

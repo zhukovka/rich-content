@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { merge } from 'lodash';
 
-import { PollApiClient } from '../../api';
+import { SocialPollsService } from '../../api';
+import { generateId } from '../../helpers';
 
 import { PollPropTypes } from './types';
 
@@ -19,7 +21,6 @@ export const withPoll = WrappedComponent => props => {
 
 export class PollContextProvider extends PureComponent {
   state = {
-    poll: this.props.poll,
     changePollTitle: this.changePollTitle.bind(this),
     updatePollOption: this.updatePollOption.bind(this),
     addOption: this.addOption.bind(this),
@@ -29,11 +30,19 @@ export class PollContextProvider extends PureComponent {
     unvote: this.unvote.bind(this),
   };
 
+  constructor(props) {
+    const { poll } = props;
+    super(props);
+
+    poll.options = poll.options.map(option => ({ ...option, localId: generateId() }));
+    this.state.poll = poll;
+  }
+
   componentDidMount() {
     const { poll } = this.state;
     const { settings } = this.props;
 
-    this.pollApiClient = new PollApiClient(settings.siteToken);
+    this.pollApiClient = new SocialPollsService(settings.siteToken);
 
     if (poll.id && !settings.isWebView) {
       this.fetchPoll();
@@ -51,12 +60,16 @@ export class PollContextProvider extends PureComponent {
 
     const pollResponse = await this.pollApiClient.fetchPoll(poll.id);
 
-    this.setState({ poll: pollResponse });
+    this.setState({ poll: merge(poll, pollResponse) });
   }
 
   async updatePoll(poll) {
+    this.setState({ poll });
+
+    this.pollApiClient.cancelTokens.createPoll?.cancel(SocialPollsService.CANCEL_MESSAGE);
     const pollResponse = await this.pollApiClient.createPoll(poll);
-    this.props.setPoll(pollResponse);
+
+    this.props.setPoll(merge(poll, pollResponse));
   }
 
   async vote(optionId) {
@@ -71,45 +84,52 @@ export class PollContextProvider extends PureComponent {
     this.setState({ poll });
   }
 
+  findOptionIndex(localId) {
+    return this.state.poll.options.findIndex(option => option.localId === localId);
+  }
+
   changePollTitle(title) {
-    this.updatePoll({
-      ...this.props.poll,
+    return this.updatePoll({
+      ...this.state.poll,
       title,
     });
   }
 
   changePollImage(imageUrl) {
-    this.updatePoll({
-      ...this.props.poll,
+    return this.updatePoll({
+      ...this.state.poll,
       imageUrl,
     });
   }
 
-  updatePollOption(index, option) {
-    const { poll } = this.props;
+  updatePollOption(localId, option) {
+    const { poll } = this.state;
+    const index = this.findOptionIndex(localId);
 
     poll.options[index] = option;
 
-    this.updatePoll({ ...poll });
+    return this.updatePoll({ ...poll });
   }
 
   addOption() {
-    const { poll } = this.props;
+    const { poll } = this.state;
 
     poll.options.push({
-      title: null,
-      imageUrl: null,
+      localId: generateId(),
+      title: '',
+      imageUrl: '',
     });
 
-    this.updatePoll({ ...poll });
+    return this.setState({ poll: { ...poll } });
   }
 
-  removeOption(index) {
-    const { poll } = this.props;
+  removeOption(localId) {
+    const { poll } = this.state;
+    const index = this.findOptionIndex(localId);
 
     poll.options.splice(index, 1);
 
-    this.updatePoll({ ...poll });
+    return this.updatePoll({ ...poll });
   }
 
   render() {

@@ -41,13 +41,13 @@ class PollComponent extends Component {
             [styles.grid]: layout.type === LAYOUT.GRID,
           })}
         >
-          {poll.options.map((option, i) => (
-            <li className={styles.option} key={option.id || i}>
+          {poll.options.map(option => (
+            <li className={styles.option} key={option.localId}>
               <PollOption
                 imageEnabled={layout.type === LAYOUT.GRID}
                 option={option}
-                update={this.handleOptionUpdate(i)}
-                remove={this.handleOptionRemove(i)}
+                update={this.handleOptionUpdate(option.localId)}
+                remove={this.handleOptionRemove(option.localId)}
                 removeEnabled={!rce.isViewMode && poll.options.length > 1}
                 vote={vote}
                 unvote={unvote}

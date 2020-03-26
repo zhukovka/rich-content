@@ -38,12 +38,6 @@
 
 .title {
   position: relative;
-
-  &:hover {
-    .remove {
-      opacity: 1;
-    }
-  }
 }
 
 .progress {
@@ -93,11 +87,4 @@
 
 .remove {
   cursor: pointer;
-  position: absolute;
-  z-index: 1;
-  right: 0;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 500ms;
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cls from 'classnames';
-
-import { clamp } from 'lodash';
+import { clamp, debounce } from 'lodash';
 
 import { RCEHelpersPropTypes, withRCEHelpers } from '../rce-helpers-context';
+import { LoaderIcon } from '../../assets/icons';
 
 import styles from './text-field.scss';
 
@@ -14,14 +14,13 @@ class TextFieldComponent extends React.PureComponent {
   state = {
     placeholder: this.props.placeholder,
     rows: 1,
-    value: this.props.value || '',
+    value: this.props.value,
+    syncing: false,
   };
 
   componentDidMount() {
     this.resize();
   }
-
-  componentDidUpdate() {}
 
   hidePlaceholder() {
     this.setState({ placeholder: '' });
@@ -46,13 +45,26 @@ class TextFieldComponent extends React.PureComponent {
     this.showPlaceholder();
     this.props.rce.setInPluginEditingMode(false);
 
-    if (this.props.value !== this.state.value) {
-      this.props.onChange(this.state.value);
+    if (this.state.value !== this.props.value) {
+      this.sync();
     }
   };
 
+  sync = debounce(this._sync, 500);
+
+  async _sync() {
+    this.setState({ syncing: true });
+    try {
+      await this.props.onChange(this.state.value);
+    } catch (error) {
+    } finally {
+      this.setState({ syncing: false });
+    }
+  }
+
   handleChange = event => {
-    this.setState({ value: event.target.value });
+    this.setState({ value: event.target.value }, () => this.sync());
+
     this.resize();
   };
 
@@ -76,8 +88,8 @@ class TextFieldComponent extends React.PureComponent {
   }
 
   render() {
-    const { textAutoResize, className, rce, ...props } = this.props;
-    const { value, placeholder, rows } = this.state;
+    const { textAutoResize, className, rce, endAdornment, ...props } = this.props;
+    const { value, placeholder, rows, syncing } = this.state;
 
     if (rce.isViewMode) {
       return (
@@ -100,27 +112,36 @@ class TextFieldComponent extends React.PureComponent {
     }
 
     return (
-      <textarea
-        {...props}
-        ref={this.$el}
-        onChange={this.handleChange}
-        onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
-        placeholder={placeholder}
-        value={value}
-        rows={rows}
-        onKeyDown={this.handleKeyDown}
-        className={cls(
-          styles.input,
-          className,
-          textAutoResize && {
-            [styles.small]: value.length > 90,
-            [styles.medium]: value.length <= 90,
-            [styles.large]: value.length <= 60,
-          }
-        )}
-        onClick={undefined}
-      />
+      <div className={styles.root}>
+        <textarea
+          {...props}
+          ref={this.$el}
+          onChange={this.handleChange}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
+          placeholder={placeholder}
+          value={value}
+          rows={rows}
+          onKeyDown={this.handleKeyDown}
+          className={cls(
+            styles.input,
+            className,
+            textAutoResize && {
+              [styles.small]: value.length > 90,
+              [styles.medium]: value.length <= 90,
+              [styles.large]: value.length <= 60,
+            }
+          )}
+          onClick={undefined}
+        />
+        <span
+          className={cls(styles.endAdornment, {
+            [styles.shown]: syncing,
+          })}
+        >
+          {syncing ? <LoaderIcon className={styles.spinner} /> : endAdornment}
+        </span>
+      </div>
     );
   }
 }
@@ -135,5 +156,6 @@ TextFieldComponent.propTypes = {
   onChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
   textAutoResize: PropTypes.bool,
+  endAdornment: PropTypes.node,
   ...RCEHelpersPropTypes,
 };

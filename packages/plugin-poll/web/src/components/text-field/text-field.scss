@@ -1,3 +1,9 @@
+.root {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .text,
 .input {
   box-sizing: border-box;
@@ -45,3 +51,35 @@
   line-height: 1.2;
 }
 
+.endAdornment.shown,
+.root:hover .endAdornment {
+  opacity: 1;
+}
+
+.endAdornment {
+  position: absolute;
+  right: 12px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 500ms;
+  display: flex;
+}
+
+
+/* rtl:ignore */
+.spinner {
+  animation-name: spin;
+  animation-duration: 1500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+/* rtl:ignore */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

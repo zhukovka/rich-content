@@ -1,6 +1,7 @@
 export const externals = [
   'draft-js',
   'assert',
+  'axios',
   'classnames',
   'draft-js',
   'lodash',

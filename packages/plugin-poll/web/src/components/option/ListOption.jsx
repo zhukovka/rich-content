@@ -17,13 +17,13 @@ export class PollOption extends PureComponent {
   handleTitleChange = title => {
     const { update, option } = this.props;
 
-    update({ ...option, title });
+    return update({ ...option, title });
   };
 
   handleImageChange = imageUrl => {
     const { update, option } = this.props;
 
-    update({ ...option, imageUrl });
+    return update({ ...option, imageUrl });
   };
 
   userVoted() {
@@ -102,8 +102,10 @@ export class PollOption extends PureComponent {
             value={option.title}
             placeholder="Type an answer"
             onChange={this.handleTitleChange}
+            endAdornment={
+              removeEnabled && <RemoveIcon onClick={this.handleRemove} className={styles.remove} />
+            }
           />
-          {removeEnabled && <RemoveIcon onClick={this.handleRemove} className={styles.remove} />}
         </div>
       </div>
     );
