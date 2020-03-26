@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { debounce } from 'lodash';
 import closeIcon from './icons/close.svg';
-import { convertItemData } from 'wix-rich-content-plugin-gallery/dist/lib/convert-item-data';
 import layouts from 'wix-rich-content-plugin-gallery/dist/lib/layout-data-provider';
 import resizeMediaUrl from 'wix-rich-content-plugin-gallery/dist/lib/resize-media-url';
 import PropTypes from 'prop-types';
@@ -13,7 +12,7 @@ const { ProGallery } = require('pro-gallery');
 export default class Fullscreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { width: window.innerWidth, height: window.innerHeight };
+    this.state = { width: window.innerWidth, height: window.innerHeight, index: -1 };
   }
   componentDidMount() {
     document.addEventListener('keydown', this.onEsc);
@@ -36,25 +35,29 @@ export default class Fullscreen extends Component {
   };
 
   onEsc = event => {
-    if (event.key === 'Escape') {
-      this.props.onClose();
+    if (event.key === 'Escape' && this.props.isOpen) {
+      this.onClose();
     }
   };
 
   onClose = () => {
     this.resizeObserver.unobserve(this.ref);
     this.ref = undefined;
-    this.props.onClose();
+    this.setState({ index: -1 }, () => this.props.onClose());
   };
 
-  getItems = () => {
-    const { images } = this.props;
-    return convertItemData({ items: images });
+  galleryEventsHandler = (name, data) => {
+    if (name === 'CURRENT_ITEM_CHANGED') {
+      const index = this.props.images.findIndex(image => image.itemId === data.itemId);
+      if (index > -1) {
+        this.setState({ index });
+      }
+    }
   };
 
   render() {
-    const { index, isOpen, target, backgroundColor, topMargin, foregroundColor } = this.props;
-    const items = this.getItems();
+    const { isOpen, target, backgroundColor, topMargin, foregroundColor, index } = this.props;
+    const items = this.props.images;
     let fullscreen = (
       <div
         data-hook={'rich-content-fullscreen'}
@@ -71,9 +74,10 @@ export default class Fullscreen extends Component {
         </button>
         <ProGallery
           items={items}
-          currentIdx={index}
+          currentIdx={this.state.index === -1 ? index : this.state.index}
           resizeMediaUrl={resizeMediaUrl}
           container={{ width: this.state.width, height: this.state.height }}
+          eventsListener={this.galleryEventsHandler}
           styles={{
             ...layouts[5],
             galleryLayout: 5,

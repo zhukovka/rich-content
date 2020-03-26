@@ -1,6 +1,7 @@
 const imageType = 'wix-draft-plugin-image';
 const imageTypeLegacy = 'IMAGE';
 const galleryType = 'wix-draft-plugin-gallery';
+import { convertItemData } from 'wix-rich-content-plugin-gallery/dist/lib/convert-item-data';
 
 function imageEntryToGallery(data, index) {
   const url = data.file_name;
@@ -38,5 +39,5 @@ export default function getImagesData({ entityMap }) {
       sum += entryUrls.length;
       return urls.concat(entryUrls);
     }, []);
-  return { images, imageMap };
+  return { images: convertItemData({ items: images }), imageMap };
 }
