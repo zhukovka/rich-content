@@ -5,8 +5,8 @@ import { SettingsPanelFooter, Tabs, Tab, FocusManager } from 'wix-rich-content-e
 
 import { TABS } from './constants';
 
-import { DesignSettingsSection } from './DesignSettingsSection';
-import { LayoutSettingsSection } from './LayoutSettingsSection';
+import { DesignSettingsSection } from './design-settings-section';
+import { LayoutSettingsSection } from './layout-settings-section';
 
 import styles from './poll-settings-modal.scss';
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { SettingsPanelFooter, FocusManager } from 'wix-rich-content-editor-common';
-import { PollSettingsSection } from './PollSettingsSection';
+import { PollSettingsSection } from './poll-settings-section';
 
 import styles from './poll-settings-modal.scss';
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Dropdown, Checkbox } from 'wix-rich-content-editor-common';
 import { mergeStyles } from 'wix-rich-content-common';
 
-import { MEMBER_ROLES } from '../../constants';
+import { MEMBER_ROLES } from '../../../constants';
 import styles from './poll-settings-section.scss';
 
 export class PollSettingsSection extends Component {

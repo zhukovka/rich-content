@@ -4,8 +4,8 @@ import cls from 'classnames';
 
 import { SelectionList } from 'wix-rich-content-editor-common';
 
-import { LAYOUT } from '../../constants';
-import { ListPollIcon, WithImagePollIcon, GridPollIcon } from '../../assets/icons';
+import { LAYOUT } from '../../../constants';
+import { ListPollIcon, WithImagePollIcon, GridPollIcon } from '../../../assets/icons';
 
 import styles from './layout-settings-section.scss';
 
