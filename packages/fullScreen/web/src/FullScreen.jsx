@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { debounce } from 'lodash';
 import closeIcon from './icons/close.svg';
 import { convertItemData } from 'wix-rich-content-plugin-gallery/dist/lib/convert-item-data';
 import layouts from 'wix-rich-content-plugin-gallery/dist/lib/layout-data-provider';
@@ -16,17 +17,15 @@ export default class Fullscreen extends Component {
   }
   componentDidMount() {
     document.addEventListener('keydown', this.onEsc);
+    this.resizeObserver = new ResizeObserver(this.updateDimensions);
   }
 
-  componentDidUpdate() {
-    if (!this.resizeObserver) {
-      const ref = document.querySelector('[data-hook=rich-content-fullscreen]');
-      if (ref) {
-        this.resizeObserver = new ResizeObserver(this.updateDimensions);
-        this.resizeObserver.observe(ref);
-      }
+  componentDidUpdate = debounce(() => {
+    if (this.props.isOpen && !this.ref) {
+      this.ref = document.querySelector('[data-hook=rich-content-fullscreen]');
+      this.resizeObserver.observe(this.ref);
     }
-  }
+  });
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.onEsc);
@@ -42,21 +41,19 @@ export default class Fullscreen extends Component {
     }
   };
 
+  onClose = () => {
+    this.resizeObserver.unobserve(this.ref);
+    this.ref = undefined;
+    this.props.onClose();
+  };
+
   getItems = () => {
     const { images } = this.props;
     return convertItemData({ items: images });
   };
 
   render() {
-    const {
-      index,
-      isOpen,
-      onClose,
-      target,
-      backgroundColor,
-      topMargin,
-      foregroundColor,
-    } = this.props;
+    const { index, isOpen, target, backgroundColor, topMargin, foregroundColor } = this.props;
     const items = this.getItems();
     let fullscreen = (
       <div
@@ -67,7 +64,7 @@ export default class Fullscreen extends Component {
         <button
           className={styles.close}
           style={foregroundColor}
-          onClick={() => onClose()}
+          onClick={() => this.onClose()}
           data-hook={'fullscreen-close-button'}
         >
           {closeIcon()}
