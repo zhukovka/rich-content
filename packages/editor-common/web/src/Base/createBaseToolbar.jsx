@@ -324,9 +324,16 @@ export default function createToolbar({
         case BUTTONS.HORIZONTAL_SEPARATOR:
           return <Separator className={separatorClassNames} horizontal key={key} />;
         case BUTTONS.LINK:
-          return <BlockLinkButton {...baseLinkProps} />;
+          return <BlockLinkButton {...baseLinkProps} tooltipText={t('TextLinkButton_Tooltip')} />;
         case BUTTONS.LINK_PREVIEW: {
-          return <BlockLinkButton {...baseLinkProps} unchangedUrl />;
+          return (
+            <BlockLinkButton
+              {...baseLinkProps}
+              unchangedUrl
+              tooltipText={t('LinkPreview_Settings_Tooltip')}
+              icons={button.icons}
+            />
+          );
         }
         case BUTTONS.DELETE: {
           const DeleteButtonComponent = deleteButton(icons.delete);

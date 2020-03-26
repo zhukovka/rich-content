@@ -1,7 +1,7 @@
-import { EditorState, Modifier, RichUtils, SelectionState, AtomicBlockUtils } from 'draft-js';
+import { EditorState, Modifier, RichUtils, SelectionState, AtomicBlockUtils } from '@wix/draft-js';
 import { cloneDeep, flatMap, findIndex, findLastIndex, countBy } from 'lodash';
 
-function createSelection({ blockKey, anchorOffset, focusOffset }) {
+export function createSelection({ blockKey, anchorOffset, focusOffset }) {
   return SelectionState.createEmpty(blockKey).merge({
     anchorOffset,
     focusOffset,
@@ -26,7 +26,7 @@ export const insertLinkInPosition = (
   });
 };
 
-export const getCurrentBlock = editorState => {
+export const getBlockAtStartOfSelection = editorState => {
   const selectionState = editorState.getSelection();
   const contentState = editorState.getCurrentContent();
   const block = contentState.getBlockForKey(selectionState.getStartKey());

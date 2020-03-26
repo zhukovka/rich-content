@@ -75,7 +75,7 @@ export {
   setEntityData,
   replaceWithEmptyBlock,
   deleteBlock,
-  getCurrentBlock,
+  getBlockAtStartOfSelection,
   getSelectedBlocks,
   createEntity,
   createBlockAndFocus,
@@ -84,6 +84,7 @@ export {
   getFocusedBlockKey,
   calculateDiff,
   getPostContentSummary,
+  createSelection,
 } from './Utils/draftUtils';
 export { isiOS } from './Utils/isiOS';
 export { getSelectionStyles } from './Utils/inlineStyleUtils';
@@ -99,3 +100,26 @@ export {
   PLUGIN_DECORATION_PROPS,
   PLUGIN_DECORATIONS,
 } from './consts';
+
+export {
+  convertToRaw,
+  getVisibleSelectionRect,
+  convertFromRaw,
+  EditorState,
+  SelectionState,
+  DefaultDraftBlockRenderMap,
+  Modifier,
+  RichUtils,
+  KeyBindingUtil,
+  genKey,
+  ContentBlock,
+  BlockMapBuilder,
+  AtomicBlockUtils,
+  ContentState,
+  RawDraftContentState,
+  EditorChangeType,
+  convertFromHTML,
+} from '@wix/draft-js';
+
+import DraftOffsetKey from '@wix/draft-js/lib/DraftOffsetKey';
+export { DraftOffsetKey };

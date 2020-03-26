@@ -4,7 +4,6 @@ import { isEqual } from 'lodash';
 import { mergeStyles, validate, pluginLinkPreviewSchema } from 'wix-rich-content-common';
 import styles from '../statics/styles/link-preview.scss';
 import HtmlComponent from 'wix-rich-content-plugin-html/dist/lib/HtmlComponent';
-import { isValidHtml } from './linkPreviewUtil';
 
 class LinkPreviewViewer extends Component {
   static propTypes = {
@@ -18,9 +17,10 @@ class LinkPreviewViewer extends Component {
 
   constructor(props) {
     super(props);
-    const { componentData } = props;
+    const { componentData, theme } = props;
     validate(componentData, pluginLinkPreviewSchema);
     this.state = {};
+    this.styles = this.styles || mergeStyles({ styles, theme });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -31,6 +31,7 @@ class LinkPreviewViewer extends Component {
 
   componentDidMount() {
     validate(pluginLinkPreviewSchema, this.props.componentData);
+    this.setState({ imageHeight: this.image?.offsetHeight });
     const { componentData } = this.props;
     const { html } = componentData;
     const iframeDocument = document.getElementById('myiframe')?.contentWindow?.document;
@@ -41,23 +42,17 @@ class LinkPreviewViewer extends Component {
     }
   }
 
+  getUrlForDisplay = url => url.replace(/^https?:\/\//, '');
+
   handleIframeLoad = () => {
     this.iframe.style.height = this.iframe.contentWindow.document.body.scrollHeight + 'px';
     this.iframe.style.width = this.iframe.contentWindow.document.body.scrollWidth + 'px';
   };
 
-  getUrlForDisplay = url => {
-    let numOfCharsToRemove = 0;
-    if (url.substring(0, 7) === 'http://') {
-      numOfCharsToRemove = 7;
-    } else if (url.substring(0, 8) === 'https://') {
-      numOfCharsToRemove = 8;
-    }
-    return url.substring(numOfCharsToRemove);
-  };
-
   render() {
     const { componentData, theme, isMobile, settings } = this.props;
+    const { imageHeight } = this.state;
+
     const {
       title,
       description,
@@ -69,7 +64,6 @@ class LinkPreviewViewer extends Component {
       },
     } = componentData;
 
-    this.styles = this.styles || mergeStyles({ styles, theme });
     const {
       linkPreview,
       linkPreview_info,
@@ -79,12 +73,16 @@ class LinkPreviewViewer extends Component {
       linkPreview_url,
     } = this.styles;
 
-    if (!settings.disableEmbed && html && isValidHtml(html)) {
+    if (!settings.disableEmbed && html) {
       const htmlCompProps = {
         componentData: {
+          ...componentData,
           srcType: 'html',
           src: unescape(html),
-          ...componentData,
+          config: {
+            height: this.iframe?.style.height,
+            width: this.iframe?.style.width,
+          },
         },
         settings,
         theme,
@@ -93,29 +91,21 @@ class LinkPreviewViewer extends Component {
 
       return <HtmlComponent {...htmlCompProps} />;
     } else {
-      const { imageRatio } = this.state;
-      if (!imageRatio) {
-        try {
-          const imageRatio = document.getElementById('linkPreviewSection')?.offsetHeight;
-          this.setState({ imageRatio }, () => this.forceUpdate());
-        } catch (e) {}
-      }
-
       return (
-        <figure className={linkPreview} id="linkPreviewSection" data-hook="linkPreviewViewer">
+        <figure className={linkPreview} data-hook="linkPreviewViewer">
           <div
             style={{
-              width: isMobile ? 110 : imageRatio || 0,
+              width: imageHeight,
+              height: imageHeight,
               backgroundImage: `url(${thumbnail_url})`,
             }}
             className={linkPreview_image}
             alt={title}
+            ref={ref => (this.image = ref)}
           />
           <section className={linkPreview_info}>
             <div className={linkPreview_url}>{this.getUrlForDisplay(provider_url || url)}</div>
-            <figcaption className={linkPreview_title} id="link-preview-title">
-              {title}
-            </figcaption>
+            <figcaption className={linkPreview_title}>{title}</figcaption>
             {description && <div className={linkPreview_description}>{description}</div>}
           </section>
         </figure>
