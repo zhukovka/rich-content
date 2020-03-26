@@ -34,7 +34,7 @@
 
 .linkPanel_Content {
   width: 100%;
-  margin: 12px 1px 0px 1px;
+  margin: 14px 1px 0px 1px;
   font-size: 14px;
   font-weight: 300;
   font-style: normal;
@@ -217,7 +217,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 200px;
+      max-width: 250px;
     }
   }
 }
@@ -251,7 +251,7 @@
 }
 
 .LinkToAnchorPanel_anchorsElementsContainer {
-  max-height: 229px;
+  max-height: 227px;
   overflow: auto;
 }
 ::-webkit-scrollbar {
@@ -356,7 +356,11 @@
   }
 
   .linkPanel_Content {
-    margin: 3px 1px 0;
+    margin: 10px 1px 0;
+  }
+
+  .linkPanel_Input {
+    margin: 5px 0 20px 0;  
   }
 
   .LinkToAnchorPanel_header {

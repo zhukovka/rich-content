@@ -152,7 +152,7 @@ class LinkToAnchorPanel extends Component {
     ) : (
       <div className={styles.linkPanel_Content} {...ariaProps} role="form">
         <div className={styles.LinkToAnchorPanel_header}>
-          <div className={styles.LinkToAnchorPanel_title}>{t('LinkPanel_Anchor_Placeholder')}</div>
+          <div className={styles.LinkToAnchorPanel_title}>{t('LinkTo_Modal_Section_Title')}</div>
           <div className={styles.LinkToAnchorPanel_dropdownWrapper}>
             <Dropdown
               theme={styles}

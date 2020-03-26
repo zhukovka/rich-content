@@ -111,8 +111,13 @@ class AnchorableElement extends PureComponent {
         className={classNames(styles.AnchorableElement_container, {
           [styles.AnchorableElement_selected]: isSelected,
         })}
-        onClick={() => onClick({ defaultName: this.getContent() })}
-        onDoubleClick={() => onEnter && onEnter()}
+        onClick={
+          isSelected
+            ? () => onEnter && onEnter()
+            : () => onClick({ defaultName: this.getContent() })
+        }
+        // onClick={() => onClick({ defaultName: this.getContent() })}
+        // onDoubleClick={() => onEnter && onEnter()}
       >
         <div className={styles.AnchorableElement_thumbnail}>
           {iconThumbnail && iconThumbnail}
@@ -120,7 +125,7 @@ class AnchorableElement extends PureComponent {
             <img
               src={visualThumbnail}
               alt={this.getContent()}
-              style={{ width: 'inherit', height: 'inherit', objectFit: 'contain', display: 'none' }}
+              style={{ width: 'inherit', height: 'inherit', objectFit: 'cover', display: 'none' }}
               onLoad={e => this.visualThumbnailLoaded(e)}
             />
           )}

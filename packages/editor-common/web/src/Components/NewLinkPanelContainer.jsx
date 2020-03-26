@@ -256,7 +256,7 @@ class NewLinkPanelContainer extends PureComponent {
               onEscape={this.onCancel}
               linkValues={this.state.linkPanelValues}
               onChange={linkPanelValues => this.setState({ linkPanelValues })}
-              theme={theme}
+              theme={styles}
               showTargetBlankCheckbox={showTargetBlankCheckbox}
               showRelValueCheckbox={showRelValueCheckbox}
               t={t}
