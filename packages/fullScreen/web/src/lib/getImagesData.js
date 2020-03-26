@@ -19,9 +19,11 @@ function convertEntryToGalleryItems(entry, index) {
   switch (entry.type) {
     case imageType:
     case imageTypeLegacy:
-      return entry.data.src ? [imageEntryToGallery(entry.data.src, index)] : [];
+      return entry.data.src
+        ? convertItemData({ items: [imageEntryToGallery(entry.data.src, index)] })
+        : [];
     case galleryType:
-      return entry.data.items;
+      return convertItemData({ items: entry.data.items });
     default:
       return [];
   }
@@ -39,5 +41,5 @@ export default function getImagesData({ entityMap }) {
       sum += entryUrls.length;
       return urls.concat(entryUrls);
     }, []);
-  return { images: convertItemData({ items: images }), imageMap };
+  return { images, imageMap };
 }
