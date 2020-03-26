@@ -10,13 +10,31 @@ import styles from './fullscreen.rtlignore.scss';
 const { ProGallery } = require('pro-gallery');
 
 export default class Fullscreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { width: window.innerWidth, height: window.innerHeight };
+  }
   componentDidMount() {
     document.addEventListener('keydown', this.onEsc);
+  }
+
+  componentDidUpdate() {
+    if (!this.resizeObserver) {
+      const ref = document.querySelector('[data-hook=rich-content-fullscreen]');
+      if (ref) {
+        this.resizeObserver = new ResizeObserver(this.updateDimensions);
+        this.resizeObserver.observe(ref);
+      }
+    }
   }
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.onEsc);
   }
+
+  updateDimensions = () => {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  };
 
   onEsc = event => {
     if (event.key === 'Escape') {
@@ -41,7 +59,11 @@ export default class Fullscreen extends Component {
     } = this.props;
     const items = this.getItems();
     let fullscreen = (
-      <div className={styles.fullscreen} style={{ ...backgroundColor, ...topMargin }}>
+      <div
+        data-hook={'rich-content-fullscreen'}
+        className={styles.fullscreen}
+        style={{ ...backgroundColor, ...topMargin }}
+      >
         <button
           className={styles.close}
           style={foregroundColor}
@@ -54,7 +76,7 @@ export default class Fullscreen extends Component {
           items={items}
           currentIdx={index}
           resizeMediaUrl={resizeMediaUrl}
-          container={{ width: window.innerWidth, height: window.innerHeight }}
+          container={{ width: this.state.width, height: this.state.height }}
           styles={{
             ...layouts[5],
             galleryLayout: 5,
@@ -85,5 +107,5 @@ Fullscreen.propTypes = {
   backgroundColor: PropTypes.object,
   foregroundColor: PropTypes.object,
   onClose: PropTypes.func,
-  target: PropTypes.instanceOf(Element),
+  target: PropTypes.instanceOf(PropTypes.element),
 };
