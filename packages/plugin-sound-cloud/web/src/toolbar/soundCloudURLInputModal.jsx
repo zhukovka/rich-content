@@ -85,11 +85,11 @@ export default class SoundCloudURLInputModal extends Component {
           className={classNames(styles.header)}
         >
           <SoundCloudIcon className={classNames(styles.header_icon)} />
-          <h3 id="sound_cloud_modal_hdr" className={styles.header_text}>
+          <div id="sound_cloud_modal_hdr" className={styles.header_text}>
             {!isMobile
               ? t('SoundCloudUploadModal_Header')
               : t('SoundCloudUploadModal_Header_Mobile')}
-          </h3>
+          </div>
         </div>
         <div className={styles.soundCloudUrlInputModal_textInput}>
           <TextInput

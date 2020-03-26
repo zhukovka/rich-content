@@ -5,8 +5,8 @@ import { InsertPluginIcon } from '../icons';
 
 const customStyles = {
   content: {
-    maxWidth: '460px',
-    minHeight: '262px',
+    maxWidth: '580px',
+    minHeight: '348px',
   },
 };
 
