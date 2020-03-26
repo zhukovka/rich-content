@@ -95,7 +95,8 @@ class LinkPreviewViewer extends Component {
         <figure className={linkPreview} data-hook="linkPreviewViewer">
           <div
             style={{
-              width: isMobile ? 110 : imageHeight,
+              width: imageHeight,
+              height: imageHeight,
               backgroundImage: `url(${thumbnail_url})`,
             }}
             className={linkPreview_image}

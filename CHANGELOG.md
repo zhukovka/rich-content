@@ -12,13 +12,28 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-
-### :rocket: New Feature
-- `html`
-  - [#826](https://github.com/wix-incubator/rich-content/pull/826) initial state for html plugin
+  
+### :bug: [Bug Fix]
+- `general`
+  - [#843](https://github.com/wix-incubator/rich-content/pull/843) fix: mouse up event on overlay triggered the closing the modals
 
 </details>
 <hr/>
+
+## 7.1.2 (Mar 25, 2020)
+### :rocket: New Feature
+- `html`
+  - [#826](https://github.com/wix-incubator/rich-content/pull/826) initial state for html plugin
+- `gallery`
+  - [#833](https://github.com/wix-incubator/rich-content/pull/833) elipsis for too long image titles
+### :house: Internal
+- `gallery`
+  - [#833](https://github.com/wix-incubator/rich-content/pull/833) using alt property instead of title for altText fixes mobile titles
+### :bug: [Bug Fix]
+- `link-preview`
+  - [#841](https://github.com/wix-incubator/rich-content/pull/841) link preview fixes
+- `fullscreen`
+  - [#842](https://github.com/wix-incubator/rich-content/pull/842) itemId for legacy image type
 
 ## 7.1.1 (Mar 25, 2020)
 ### :house: Internal
@@ -56,7 +71,7 @@
   - [#817](https://github.com/wix-incubator/rich-content/pull/817) bugfix: removed override of props
   - [#810](https://github.com/wix-incubator/rich-content/pull/810) added palettes & fixed toolbarButton color
   - [#818](https://github.com/wix-incubator/rich-content/pull/818) bugfix: inlineStyleMappers - removed empty typeMappers + improved storybook example
-  - [#819](https://github.com/wix-incubator/rich-content/pull/819) improve: replaced "aphrodite" with "jss" 
+  - [#819](https://github.com/wix-incubator/rich-content/pull/819) improve: replaced "aphrodite" with "jss"
   - [#822](https://github.com/wix-incubator/rich-content/pull/822) ssr fix - render suspense only after component is imported
   - [#816](https://github.com/wix-incubator/rich-content/pull/816) wrapper theme: gallery settings modal
 - `e2e`
