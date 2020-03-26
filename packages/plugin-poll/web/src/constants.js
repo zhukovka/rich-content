@@ -3,6 +3,7 @@ export const POLL_TYPE = 'wix-draft-plugin-poll';
 export const LAYOUT = {
   LIST: 'list',
   GRID: 'grid',
+  WITH_IMAGE: 'with_image',
 };
 
 export const COLOR_PALETTE = ['#cba27d', '#D5D4D4', '#ebba4d', '#0091ff', '#134497', '#82cb7d'];
@@ -45,7 +46,6 @@ export const DEFAULT_COMPONENT_DATA = {
   },
   layout: {
     type: LAYOUT.LIST,
-    enableImage: false,
   },
   design: {
     backgroundColor: COLOR_PALETTE[2],

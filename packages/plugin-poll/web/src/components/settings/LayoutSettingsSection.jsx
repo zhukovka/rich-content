@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import cls from 'classnames';
 
-import { Checkbox, SelectionList } from 'wix-rich-content-editor-common';
+import { SelectionList } from 'wix-rich-content-editor-common';
 
 import { LAYOUT } from '../../constants';
+import { ListPollIcon, WithImagePollIcon, GridPollIcon } from '../../assets/icons';
+
+import styles from './layout-settings-section.scss';
 
 export class LayoutSettingsSection extends Component {
   updateSettings(layout) {
@@ -12,14 +16,17 @@ export class LayoutSettingsSection extends Component {
     });
   }
 
-  handleEnableImageChange = event => this.updateSettings({ enableImage: event.target.checked });
-
   handleTypeChange = type => this.updateSettings({ type });
 
   dataMapper = ({ name }) => ({ value: name });
 
-  renderOption = ({ item }) => (
-    <div>
+  renderOption = ({ item, selected }) => (
+    <div
+      className={cls(styles.option, {
+        [styles.selected]: selected,
+      })}
+    >
+      <item.icon />
       <span>{item.label}</span>
     </div>
   );
@@ -36,23 +43,25 @@ export class LayoutSettingsSection extends Component {
           dataSource={[
             {
               name: LAYOUT.LIST,
-              label: 'List',
+              label: 'Textual',
+              icon: ListPollIcon,
             },
             {
               name: LAYOUT.GRID,
-              label: 'Grid',
+              label: 'Visual',
+              icon: GridPollIcon,
+            },
+            {
+              name: LAYOUT.WITH_IMAGE,
+              label: 'Question',
+              icon: WithImagePollIcon,
             },
           ]}
           dataMapper={this.dataMapper}
           renderItem={this.renderOption}
           value={componentData.layout.type}
           onChange={this.handleTypeChange}
-        />
-
-        <Checkbox
-          label="Show a feature image"
-          checked={componentData.layout.enableImage}
-          onChange={this.handleEnableImageChange}
+          className={styles.layout_selector}
         />
       </div>
     );

@@ -72,7 +72,7 @@ export class PollSettingsSection extends Component {
     const { componentData } = this.props;
 
     return (
-      <section>
+      <section className={styles.root}>
         <p>Who can vote?</p>
         <Dropdown
           theme={this.styles}

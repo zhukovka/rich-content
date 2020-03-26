@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { SettingsPanelFooter, FocusManager } from 'wix-rich-content-editor-common';
-import { PollSettingsSection } from './PollSettingsSection';
+import { SettingsPanelFooter, Tabs, Tab, FocusManager } from 'wix-rich-content-editor-common';
+
+import { TABS } from './constants';
+
+import { DesignSettingsSection } from './DesignSettingsSection';
+import { LayoutSettingsSection } from './LayoutSettingsSection';
 
 import styles from './poll-settings-modal.scss';
 
-export class SettingsModal extends Component {
+export class CustomizeModal extends Component {
   state = {
+    activeTab: TABS.DESIGN,
     componentData: this.props.componentData,
   };
+
+  handleTabChange = activeTab => this.setState({ activeTab });
 
   restoreChanges = () => {
     const { pubsub, helpers } = this.props;
@@ -21,21 +28,34 @@ export class SettingsModal extends Component {
   };
 
   render() {
+    const { activeTab } = this.state;
     const { pubsub, helpers, t, languageDir, theme } = this.props;
     const componentData = pubsub.store.get('componentData');
 
     return (
       <FocusManager dir={languageDir}>
         <div className={styles.header}>
-          <h3 className={styles.title}>Settings</h3>
+          <h3 className={styles.title}>Customization</h3>
         </div>
 
-        <PollSettingsSection
-          theme={theme}
-          store={pubsub.store}
-          componentData={componentData}
-          t={t}
-        />
+        <Tabs value={activeTab} theme={this.props.theme} onTabSelected={this.handleTabChange}>
+          <Tab label="Design" value={TABS.DESIGN}>
+            <DesignSettingsSection
+              theme={theme}
+              store={pubsub.store}
+              componentData={componentData}
+              t={t}
+            />
+          </Tab>
+          <Tab label="Layout" value={TABS.LAYOUT}>
+            <LayoutSettingsSection
+              theme={theme}
+              store={pubsub.store}
+              componentData={componentData}
+              t={t}
+            />
+          </Tab>
+        </Tabs>
 
         <SettingsPanelFooter
           fixed
@@ -49,7 +69,7 @@ export class SettingsModal extends Component {
   }
 }
 
-SettingsModal.propTypes = {
+CustomizeModal.propTypes = {
   componentData: PropTypes.object.isRequired,
   helpers: PropTypes.object.isRequired,
   pubsub: PropTypes.any.isRequired,
