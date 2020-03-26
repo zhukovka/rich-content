@@ -16,6 +16,8 @@
 ### :bug: [Bug Fix]
 - `general`
   - [#843](https://github.com/wix-incubator/rich-content/pull/843) fix: mouse up event on overlay triggered the closing the modals
+- `fullscreen`
+  - [#848](https://github.com/wix-incubator/rich-content/pull/848) fullscreen is responsive
 
 </details>
 <hr/>
