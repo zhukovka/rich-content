@@ -33,10 +33,6 @@ export default class Viewer extends PureComponent {
     const additionalConfig = { [GALLERY_TYPE]: { scrollingElement: scrollingElementFn } };
     this.pluginsConfig = Plugins.getConfig(additionalConfig);
   }
-  componentDidMount() {
-    window.addEventListener('resize', this.resized);
-  }
-  resized = () => console.log('wow');
 
   componentDidUpdate(prevProps) {
     if (prevProps.initialState !== this.props.initialState) {
