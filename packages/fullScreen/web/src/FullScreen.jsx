@@ -52,9 +52,13 @@ export default class Fullscreen extends Component {
         </button>
         <ProGallery
           items={items}
+          eventLitener={this.handleGalleryEvents}
           currentIdx={index}
           resizeMediaUrl={resizeMediaUrl}
-          container={{ width: window.innerWidth, height: window.innerHeight }}
+          container={{
+            width: window.innerWidth,
+            height: window.innerHeight - 100,
+          }}
           styles={{
             ...layouts[5],
             galleryLayout: 5,
@@ -64,6 +68,7 @@ export default class Fullscreen extends Component {
             allowSocial: false,
             loveButton: false,
             slideshowInfoSize: 0,
+            arrowsColor: 'white',
           }}
         />
       </div>
