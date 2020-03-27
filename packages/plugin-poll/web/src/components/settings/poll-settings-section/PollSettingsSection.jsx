@@ -13,26 +13,26 @@ export class PollSettingsSection extends Component {
   VOTE_ROLE_OPTIONS = [
     {
       value: MEMBER_ROLES.SITE_MEMBERS,
-      label: 'Site Member',
+      label: this.props.t('Poll_PollSettings_Tab_Settings_VotePermission_SiteMember'),
     },
     {
       value: MEMBER_ROLES.ALL,
-      label: 'Everyone',
+      label: this.props.t('Poll_PollSettings_Tab_Settings_VotePermission_All'),
     },
   ];
 
   VIEW_ROLE_OPTIONS = [
     {
       value: MEMBER_ROLES.ALL,
-      label: 'Everyone',
+      label: this.props.t('Poll_PollSettings_Tab_Settings_VotePermission_All'),
     },
     {
       value: MEMBER_ROLES.VOTERS,
-      label: 'Voters',
+      label: this.props.t('Poll_PollSettings_Tab_Settings_ResultsPermission_Voters'),
     },
     {
       value: MEMBER_ROLES.ME,
-      label: 'Only Me',
+      label: this.props.t('Poll_PollSettings_Tab_Settings_ResultsPermission_Owner'),
     },
   ];
 
@@ -69,18 +69,18 @@ export class PollSettingsSection extends Component {
   };
 
   render() {
-    const { componentData } = this.props;
+    const { componentData, t } = this.props;
 
     return (
       <section className={styles.root}>
-        <p>Who can vote?</p>
+        <p>{t('Poll_PollSettings_Tab_Settings_VotePermission_Title')}</p>
         <Dropdown
           theme={this.styles}
           options={this.VOTE_ROLE_OPTIONS}
           getValue={this.getVoteRoleValue}
           onChange={this.handleVoteRoleChange}
         />
-        <p>Who can see the results?</p>
+        <p>{t('Poll_PollSettings_Tab_Settings_ResultsPermission_Title')}</p>
         <Dropdown
           theme={this.styles}
           options={this.VIEW_ROLE_OPTIONS}
@@ -89,13 +89,14 @@ export class PollSettingsSection extends Component {
         />
 
         <Checkbox
-          label="Hide who voted"
+          label={t('Poll_PollSettings_Tab_Settings_VoterVisibility')}
           checked={componentData.poll.settings.secret}
           onChange={this.handleSecretChange}
+          contentForInfoIcon={t('Poll_PollSettings_Tab_Settings_VoterVisibility_Tooltip')}
         />
 
         <Checkbox
-          label="Allow multi-select"
+          label={t('Poll_PollSettings_Tab_Settings_Multiselect')}
           checked={componentData.poll.settings.multipleChoice}
           onChange={this.handleMultiChange}
         />
@@ -108,4 +109,5 @@ PollSettingsSection.propTypes = {
   theme: PropTypes.object.isRequired,
   componentData: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
 };

@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { PureComponent } from 'react';
 import cls from 'classnames';
+import { withRCEHelpers, RCEHelpersPropTypes } from '../rce-helpers-context';
 
 import { RemoveIcon, CheckIcon } from '../../assets/icons';
 import { TextField } from '../text-field';
@@ -11,8 +12,11 @@ import { OptionPropTypes } from './types';
 
 import styles from './option.scss';
 
-export class PollOption extends PureComponent {
-  static propTypes = OptionPropTypes;
+class PollOptionComponent extends PureComponent {
+  static propTypes = {
+    ...OptionPropTypes,
+    ...RCEHelpersPropTypes,
+  };
 
   handleTitleChange = title => {
     const { update, option } = this.props;
@@ -51,7 +55,7 @@ export class PollOption extends PureComponent {
   };
 
   render() {
-    const { option, removeEnabled, isViewMode, imageEnabled, poll } = this.props;
+    const { option, removeEnabled, isViewMode, imageEnabled, poll, t } = this.props;
 
     if (isViewMode) {
       return (
@@ -102,7 +106,7 @@ export class PollOption extends PureComponent {
           <TextField
             className={styles.input}
             value={option.title}
-            placeholder="Type an answer"
+            placeholder={t('Poll_Editor_Option_Placeholder')}
             onChange={this.handleTitleChange}
             endAdornment={
               removeEnabled && <RemoveIcon onClick={this.handleRemove} className={styles.remove} />
@@ -113,3 +117,5 @@ export class PollOption extends PureComponent {
     );
   }
 }
+
+export const PollOption = withRCEHelpers(PollOptionComponent);

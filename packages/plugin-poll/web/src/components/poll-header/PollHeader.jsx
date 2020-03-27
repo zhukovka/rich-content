@@ -10,7 +10,7 @@ import styles from './poll-header.scss';
 
 class PollHeaderComponent extends PureComponent {
   render() {
-    const { poll, changePollTitle, changePollImage, layout } = this.props;
+    const { poll, changePollTitle, changePollImage, layout, t } = this.props;
 
     return (
       <div className={styles.header}>
@@ -19,7 +19,7 @@ class PollHeaderComponent extends PureComponent {
           className={styles.title}
           value={poll.title}
           onChange={changePollTitle}
-          placeholder="Type your question here..."
+          placeholder={t('Poll_Editor_Question_Placeholder')}
         />
         {layout.type === LAYOUT.WITH_IMAGE && (
           <ImageUpload className={styles.image} value={poll.imageUrl} onChange={changePollImage} />

@@ -32,28 +32,28 @@ export class LayoutSettingsSection extends Component {
   );
 
   render() {
-    const { componentData, theme } = this.props;
+    const { componentData, theme, t } = this.props;
 
     return (
       <div>
-        <p>Choose a layout</p>
+        <p>{t('Poll_PollSettings_Tab_Layout_ChooseLayout_Title')}</p>
 
         <SelectionList
           theme={theme}
           dataSource={[
             {
               name: LAYOUT.LIST,
-              label: 'Textual',
+              label: t('Poll_PollSettings_Tab_Layout_ChooseLayout_List'),
               icon: ListPollIcon,
             },
             {
               name: LAYOUT.GRID,
-              label: 'Visual',
+              label: t('Poll_PollSettings_Tab_Layout_ChooseLayout_Grid'),
               icon: GridPollIcon,
             },
             {
               name: LAYOUT.WITH_IMAGE,
-              label: 'Question',
+              label: t('Poll_PollSettings_Tab_Layout_ChooseLayout_List'),
               icon: WithImagePollIcon,
             },
           ]}

@@ -26,7 +26,7 @@ class PollComponent extends Component {
   }
 
   render() {
-    const { poll, rce, addOption, design, layout, vote, unvote } = this.props;
+    const { poll, rce, addOption, design, layout, vote, unvote, t } = this.props;
     const style = {
       ...design,
     };
@@ -60,7 +60,7 @@ class PollComponent extends Component {
           {!rce.isViewMode && (
             <li>
               <button onClick={addOption} className={styles.addOptionButton}>
-                {layout.type === LAYOUT.GRID ? <AddIcon /> : 'Add answer'}
+                {layout.type === LAYOUT.GRID ? <AddIcon /> : t('Poll_Editor_Option_AddOption')}
               </button>
             </li>
           )}

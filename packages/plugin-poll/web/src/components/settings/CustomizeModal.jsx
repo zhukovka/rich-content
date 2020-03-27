@@ -39,7 +39,7 @@ export class CustomizeModal extends Component {
         </div>
 
         <Tabs value={activeTab} theme={theme} onTabSelected={this.handleTabChange}>
-          <Tab label="Design" value={TABS.DESIGN} theme={theme}>
+          <Tab label={t('Poll_PollSettings_Tab_Design_TabName')} value={TABS.DESIGN} theme={theme}>
             <DesignSettingsSection
               theme={theme}
               store={pubsub.store}
@@ -47,7 +47,7 @@ export class CustomizeModal extends Component {
               t={t}
             />
           </Tab>
-          <Tab label="Layout" value={TABS.LAYOUT} theme={theme}>
+          <Tab label={t('Poll_PollSettings_Tab_Layout_TabName')} value={TABS.LAYOUT} theme={theme}>
             <LayoutSettingsSection
               theme={theme}
               store={pubsub.store}

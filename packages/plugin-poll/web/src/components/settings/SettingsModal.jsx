@@ -27,7 +27,7 @@ export class SettingsModal extends Component {
     return (
       <FocusManager dir={languageDir}>
         <div className={styles.header}>
-          <h3 className={styles.title}>Settings</h3>
+          <h3 className={styles.title}>{t('Poll_PollSettings_Common_Header')}</h3>
         </div>
 
         <PollSettingsSection
