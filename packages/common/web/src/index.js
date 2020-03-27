@@ -12,13 +12,12 @@ export {
   getUrlMatches,
   startsWithHttps,
   hasProtocol,
-  isValidImgSrc,
 } from './Utils/urlValidators';
 export { mergeStyles } from './Utils/mergeStyles';
 export { default as normalizeInitialState } from './Utils/normalization/normalizeInitialState';
 export { default as getDisplayName } from './Utils/getDisplayName';
 export { default as Version } from './Utils/versioningUtils';
-export { hasLinksInBlock, getLinkRangesInBlock } from './Utils/blockUtils';
+export { hasLinksInBlock, getLinkRangesInBlock } from './Utils/draftUtils';
 export { validate, getContentStateSchema } from './Utils/data-schema-validator';
 export { isSSR } from './Utils/ssrUtils';
 
@@ -43,4 +42,3 @@ export { isHexColor } from './Utils/colorUtils';
 export { isRtl, getLangDir } from './Utils/rtlUtils';
 
 export { HEADER_BLOCK, BLOCK_TYPES } from './consts';
-export { linkPreviewUtil } from './Utils/linkPreviewUtil';
