@@ -295,7 +295,6 @@ describe('plugins', () => {
     });
   });
 
-  // eslint-disable-next-line mocha/no-skipped-tests
   context('divider', () => {
     before(function() {
       eyesOpen(this);
@@ -481,6 +480,7 @@ describe('plugins', () => {
     it('delete link preview', function() {
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
       cy.get(`[data-hook=blockButton_delete][tabindex!=-1]`).click();
+      cy.focusEditor();
     });
   });
 });
