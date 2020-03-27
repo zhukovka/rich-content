@@ -480,6 +480,7 @@ describe('plugins', () => {
     it('delete link preview', function() {
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
       cy.get(`[data-hook=blockButton_delete][tabindex!=-1]`).click();
+      cy.focusEditor();
     });
   });
 });
