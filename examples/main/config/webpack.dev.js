@@ -49,6 +49,7 @@ const devConfig = {
         secure: false,
         changeOrigin: true,
       },
+      '/rich-content/oembed': 'http://stehauho.wixsite.com/',
     },
   },
 };

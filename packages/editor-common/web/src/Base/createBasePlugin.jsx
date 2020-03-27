@@ -38,6 +38,7 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
     commonPubsub,
     defaultPluginData,
     pluginDefaults,
+    onComponentMount,
     initialIntent,
     languageDir,
     locale,
@@ -125,6 +126,7 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
       isMobile,
       getEditorBounds,
       disableRightClick,
+      onComponentMount,
       initialIntent,
       languageDir,
       locale,
@@ -177,17 +179,11 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
     customStyleFn,
   };
 
-  if (underlyingPlugin) {
-    return {
-      ...commonProps,
-      ...underlyingPlugin,
-    };
-  } else {
-    return {
-      ...commonProps,
-      blockRendererFn,
-    };
-  }
+  return {
+    ...commonProps,
+    blockRendererFn,
+    ...(underlyingPlugin || {}),
+  };
 };
 
 export default createBasePlugin;
