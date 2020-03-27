@@ -1,2 +1,2 @@
-export * from './ListOption';
+export * from './Option';
 export * from './types';

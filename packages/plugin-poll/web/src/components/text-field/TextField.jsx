@@ -19,7 +19,9 @@ class TextFieldComponent extends React.PureComponent {
   };
 
   componentDidMount() {
-    this.resize();
+    if (!this.props.rce.isViewMode) {
+      this.resize();
+    }
   }
 
   hidePlaceholder() {
@@ -63,7 +65,9 @@ class TextFieldComponent extends React.PureComponent {
   }
 
   handleChange = event => {
-    this.setState({ value: event.target.value }, () => this.sync());
+    this.setState({ value: event.target.value }, () => {
+      this.sync();
+    });
 
     this.resize();
   };
@@ -82,7 +86,7 @@ class TextFieldComponent extends React.PureComponent {
     this.$el.current.rows = this.state.rows;
 
     const contentHeight = scrollHeight - (paddingTop + paddingBottom);
-    const rows = clamp(contentHeight / lineHeight, 1, Infinity);
+    const rows = Math.ceil(clamp(contentHeight / lineHeight, 1, Infinity));
 
     this.setState({ rows });
   }
@@ -95,7 +99,6 @@ class TextFieldComponent extends React.PureComponent {
       return (
         <p
           {...props}
-          ref={this.$el}
           className={cls(
             styles.text,
             className,

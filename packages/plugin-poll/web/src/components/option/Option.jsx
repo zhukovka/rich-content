@@ -58,6 +58,7 @@ export class PollOption extends PureComponent {
         <div
           className={cls(styles.option, {
             [styles.withImage]: imageEnabled && option.imageUrl,
+            [styles.userChoice]: this.isUserChoice(),
           })}
         >
           {imageEnabled && <ImageUpload className={styles.image} value={option.imageUrl} />}
@@ -66,7 +67,6 @@ export class PollOption extends PureComponent {
               className={cls(styles.input, {
                 [styles.cta]: isViewMode,
                 [styles.showResults]: this.userVoted(),
-                [styles.userChoice]: this.isUserChoice(),
                 [styles.centered]: imageEnabled,
               })}
               onClick={this.handleClick}
@@ -75,9 +75,11 @@ export class PollOption extends PureComponent {
                 className={styles.progress}
                 style={{ width: `${(option.count / poll.total) * 100}%` }}
               />
-              {!imageEnabled && this.isUserChoice() && <CheckIcon className={styles.votedIcon} />}
               <span className={styles.label}>{option.title}</span>
             </p>
+          </div>
+          <div className={styles.check}>
+            <CheckIcon className={styles.icon} />
           </div>
         </div>
       );

@@ -1,4 +1,27 @@
 .option {
+  border-radius: 6px;
+  position: relative;
+
+  &.userChoice {
+    border: 2px solid #fff;
+
+    .check {
+      display: block;
+    }
+  }
+
+  .check {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    background: #fff;
+    z-index: 1;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+  }
 }
 
 .image {
@@ -50,10 +73,6 @@
   left: 0;
   z-index: 1;
   border-radius: 6px;
-}
-
-.input.showResults.userChoice {
-  padding-left: 55px;
 }
 
 .votedIcon,

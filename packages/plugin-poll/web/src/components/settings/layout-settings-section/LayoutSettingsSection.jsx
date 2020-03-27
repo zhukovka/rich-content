@@ -69,7 +69,7 @@ export class LayoutSettingsSection extends Component {
 }
 
 LayoutSettingsSection.propTypes = {
-  t: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   componentData: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,

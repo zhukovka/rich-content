@@ -38,6 +38,14 @@ export class PollContextProvider extends PureComponent {
     this.state.poll = poll;
   }
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.poll.id !== state.poll.id) {
+      return { poll: props.poll };
+    }
+
+    return null;
+  }
+
   componentDidMount() {
     const { poll } = this.state;
     const { settings } = this.props;
@@ -46,12 +54,6 @@ export class PollContextProvider extends PureComponent {
 
     if (poll.id && !settings.isWebView) {
       this.fetchPoll();
-    }
-  }
-
-  componentWillReceiveProps(props) {
-    if (this.props.poll.id !== props.poll.id) {
-      this.setState({ poll: props.poll });
     }
   }
 

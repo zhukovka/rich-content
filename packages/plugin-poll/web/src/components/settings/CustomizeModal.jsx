@@ -38,8 +38,8 @@ export class CustomizeModal extends Component {
           <h3 className={styles.title}>Customization</h3>
         </div>
 
-        <Tabs value={activeTab} theme={this.props.theme} onTabSelected={this.handleTabChange}>
-          <Tab label="Design" value={TABS.DESIGN}>
+        <Tabs value={activeTab} theme={theme} onTabSelected={this.handleTabChange}>
+          <Tab label="Design" value={TABS.DESIGN} theme={theme}>
             <DesignSettingsSection
               theme={theme}
               store={pubsub.store}
@@ -47,7 +47,7 @@ export class CustomizeModal extends Component {
               t={t}
             />
           </Tab>
-          <Tab label="Layout" value={TABS.LAYOUT}>
+          <Tab label="Layout" value={TABS.LAYOUT} theme={theme}>
             <LayoutSettingsSection
               theme={theme}
               store={pubsub.store}

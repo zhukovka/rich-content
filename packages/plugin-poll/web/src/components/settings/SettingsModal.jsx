@@ -41,7 +41,7 @@ export class SettingsModal extends Component {
           fixed
           cancel={this.restoreChanges}
           save={helpers.closeModal}
-          theme={this.props.theme}
+          theme={theme}
           t={t}
         />
       </FocusManager>
