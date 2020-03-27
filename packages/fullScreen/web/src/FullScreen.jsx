@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { debounce } from 'lodash';
 import closeIcon from './icons/close.svg';
 import layouts from 'wix-rich-content-plugin-gallery/dist/lib/layout-data-provider';
 import resizeMediaUrl from 'wix-rich-content-plugin-gallery/dist/lib/resize-media-url';
@@ -16,18 +15,12 @@ export default class Fullscreen extends Component {
   }
   componentDidMount() {
     document.addEventListener('keydown', this.onEsc);
-    this.resizeObserver = new ResizeObserver(this.updateDimensions);
+    window.addEventListener('resize', this.updateDimensions);
   }
-
-  componentDidUpdate = debounce(() => {
-    if (this.props.isOpen && !this.ref) {
-      this.ref = document.querySelector('[data-hook=rich-content-fullscreen]');
-      this.resizeObserver.observe(this.ref);
-    }
-  });
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.onEsc);
+    window.removeEventListener('resize', this.updateDimensions);
   }
 
   updateDimensions = () => {
@@ -41,8 +34,6 @@ export default class Fullscreen extends Component {
   };
 
   onClose = () => {
-    this.resizeObserver.unobserve(this.ref);
-    this.ref = undefined;
     this.setState({ index: -1 }, () => this.props.onClose());
   };
 
