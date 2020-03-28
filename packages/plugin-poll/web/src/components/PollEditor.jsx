@@ -23,19 +23,12 @@ export class PollEditor extends PureComponent {
   }
 
   render() {
-    const {
-      componentData,
-      componentState,
-      setInPluginEditingMode,
-      settings,
-      helpers,
-      t,
-    } = this.props;
+    const { setInPluginEditingMode, componentData, settings, helpers, t } = this.props;
 
     return (
       <RCEHelpersContext.Provider
         value={{
-          isViewMode: settings.isWebView || componentState.isPreview || !this.isPluginFocused(),
+          isViewMode: settings.isWebView || !this.isPluginFocused(),
           setInPluginEditingMode,
           layout: componentData.layout,
           design: componentData.design,
@@ -52,9 +45,6 @@ export class PollEditor extends PureComponent {
 }
 
 PollEditor.propTypes = {
-  componentState: PropTypes.shape({
-    isPreview: PropTypes.bool,
-  }).isRequired,
   componentData: PropTypes.shape({
     poll: PropTypes.object,
     pollId: PropTypes.string,

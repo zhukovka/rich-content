@@ -55,7 +55,21 @@ class PollOptionComponent extends PureComponent {
   };
 
   render() {
-    const { option, removeEnabled, isViewMode, imageEnabled, poll, t } = this.props;
+    const { design, option, removeEnabled, isViewMode, imageEnabled, poll, t } = this.props;
+
+    const borderRadius = parseInt(design.option?.borderRadius);
+
+    const style = {
+      input: {
+        borderRadius: `${borderRadius}px`,
+      },
+      image: {
+        borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
+      },
+      inputWithImage: {
+        borderRadius: `0 0 ${borderRadius}px ${borderRadius}px`,
+      },
+    };
 
     if (isViewMode) {
       return (
@@ -64,8 +78,11 @@ class PollOptionComponent extends PureComponent {
             [styles.withImage]: imageEnabled && option.imageUrl,
             [styles.userChoice]: this.isUserChoice(),
           })}
+          style={design.option}
         >
-          {imageEnabled && <ImageUpload className={styles.image} value={option.imageUrl} />}
+          {imageEnabled && (
+            <ImageUpload className={styles.image} value={option.imageUrl} style={style.image} />
+          )}
           <div className={styles.title}>
             <p
               className={cls(styles.input, {
@@ -74,6 +91,7 @@ class PollOptionComponent extends PureComponent {
                 [styles.centered]: imageEnabled,
               })}
               onClick={this.handleClick}
+              style={imageEnabled ? style.inputWithImage : style.input}
             >
               <span
                 className={styles.progress}
@@ -94,16 +112,19 @@ class PollOptionComponent extends PureComponent {
         className={cls(styles.option, {
           [styles.withImage]: imageEnabled,
         })}
+        style={design.option}
       >
         {imageEnabled && (
           <ImageUpload
             className={styles.image}
             value={option.imageUrl}
             onChange={this.handleImageChange}
+            style={style.image}
           />
         )}
         <div className={styles.title}>
           <TextField
+            style={imageEnabled ? style.inputWithImage : style.input}
             className={styles.input}
             value={option.title}
             placeholder={t('Poll_Editor_Option_Placeholder')}

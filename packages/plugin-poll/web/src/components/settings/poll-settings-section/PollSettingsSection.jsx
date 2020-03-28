@@ -72,7 +72,7 @@ export class PollSettingsSection extends Component {
     const { componentData, t } = this.props;
 
     return (
-      <section className={styles.root}>
+      <section className={styles.section}>
         <p>{t('Poll_PollSettings_Tab_Settings_VotePermission_Title')}</p>
         <Dropdown
           theme={this.styles}

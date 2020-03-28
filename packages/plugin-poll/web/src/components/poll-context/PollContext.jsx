@@ -43,7 +43,7 @@ export class PollContextProvider extends PureComponent {
       return { poll: props.poll };
     }
 
-    return null;
+    return { poll: merge(state.poll, { settings: props.poll.settings }) };
   }
 
   componentDidMount() {

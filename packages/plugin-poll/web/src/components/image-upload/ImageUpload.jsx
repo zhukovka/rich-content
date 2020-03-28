@@ -67,13 +67,13 @@ class ImageUploadComponent extends PureComponent {
   };
 
   render() {
-    const { className, value, rce } = this.props;
+    const { className, value, rce, style = {} } = this.props;
 
     if (value) {
       return (
         <div
           className={cls(styles.container, className)}
-          style={{ backgroundImage: `url('${value}')` }}
+          style={{ ...style, backgroundImage: `url('${value}')` }}
         />
       );
     }
@@ -87,6 +87,7 @@ class ImageUploadComponent extends PureComponent {
         ref={this.$container}
         className={cls(styles.container, className)}
         onClick={this.handleFileUploadClick}
+        style={style}
       >
         <AddImageIcon />
         <input

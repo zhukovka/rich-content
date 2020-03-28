@@ -27,7 +27,7 @@ export class LayoutSettingsSection extends Component {
       })}
     >
       <item.icon />
-      <span>{item.label}</span>
+      <p>{item.label}</p>
     </div>
   );
 
@@ -35,7 +35,7 @@ export class LayoutSettingsSection extends Component {
     const { componentData, theme, t } = this.props;
 
     return (
-      <div>
+      <section className={styles.section}>
         <p>{t('Poll_PollSettings_Tab_Layout_ChooseLayout_Title')}</p>
 
         <SelectionList
@@ -63,7 +63,7 @@ export class LayoutSettingsSection extends Component {
           onChange={this.handleTypeChange}
           className={styles.layout_selector}
         />
-      </div>
+      </section>
     );
   }
 }

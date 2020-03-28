@@ -92,13 +92,13 @@ class TextFieldComponent extends React.PureComponent {
   }
 
   render() {
-    const { textAutoResize, className, rce, endAdornment, ...props } = this.props;
+    const { textAutoResize, className, rce, endAdornment, style } = this.props;
     const { value, placeholder, rows, syncing } = this.state;
 
     if (rce.isViewMode) {
       return (
         <p
-          {...props}
+          style={style}
           className={cls(
             styles.text,
             className,
@@ -117,7 +117,7 @@ class TextFieldComponent extends React.PureComponent {
     return (
       <div className={styles.root}>
         <textarea
-          {...props}
+          style={style}
           ref={this.$el}
           onChange={this.handleChange}
           onFocus={this.handleFocus}

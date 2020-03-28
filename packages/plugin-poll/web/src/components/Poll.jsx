@@ -28,7 +28,7 @@ class PollComponent extends Component {
   render() {
     const { poll, rce, addOption, design, layout, vote, unvote, t } = this.props;
     const style = {
-      ...design,
+      ...design.poll,
     };
 
     return (
@@ -41,8 +41,8 @@ class PollComponent extends Component {
             [styles.grid]: layout.type === LAYOUT.GRID,
           })}
         >
-          {poll.options.map(option => (
-            <li className={styles.option} key={option.localId}>
+          {poll.options.map((option, i) => (
+            <li className={styles.option} key={option.localId || i}>
               <PollOption
                 imageEnabled={layout.type === LAYOUT.GRID}
                 option={option}
@@ -59,7 +59,7 @@ class PollComponent extends Component {
 
           {!rce.isViewMode && (
             <li>
-              <button onClick={addOption} className={styles.addOptionButton}>
+              <button onClick={addOption} className={styles.addOptionButton} style={design.option}>
                 {layout.type === LAYOUT.GRID ? <AddIcon /> : t('Poll_Editor_Option_AddOption')}
               </button>
             </li>
