@@ -7,12 +7,13 @@ import { Poll } from './Poll';
 
 export class PollViewer extends PureComponent {
   render() {
-    const { componentData, settings, t, theme } = this.props;
+    const { componentData, settings, t, theme, isMobile } = this.props;
 
     return (
       <RCEHelpersContext.Provider
         value={{
           isViewMode: true,
+          isMobile,
           layout: componentData.layout,
           design: componentData.design,
           t,
@@ -37,4 +38,5 @@ PollViewer.propTypes = {
   settings: PropTypes.object,
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
+  isMobile: PropTypes.bool.isRequired,
 };

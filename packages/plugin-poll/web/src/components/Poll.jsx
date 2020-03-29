@@ -57,7 +57,12 @@ class PollComponent extends Component {
     };
 
     return (
-      <div className={styles.container} style={style}>
+      <div
+        className={cls(styles.container, {
+          [styles.isMobile]: rce.isMobile,
+        })}
+        style={style}
+      >
         <PollHeader />
 
         <ul

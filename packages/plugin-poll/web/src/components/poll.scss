@@ -6,8 +6,17 @@
   transition: border-radius 500ms;
 }
 
+.isMobile {
+  padding: 12px;
+
+  .options {
+    grid-column-gap: 12px;
+    grid-row-gap: 12px;
+  }
+}
+
 .options {
-  margin-top: 20px;
+  margin: 20px 0 0;
   list-style: none;
   padding: 0;
   display: grid;
