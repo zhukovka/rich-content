@@ -16,6 +16,8 @@
 ### :bug: [Bug Fix]
 - `general`
   - [#843](https://github.com/wix-incubator/rich-content/pull/843) fix: mouse up event on overlay triggered the closing the modals
+- `editor-common`
+  - [#855](https://github.com/wix-incubator/rich-content/pull/855) fix: Manually Resized Image Appears Smaller in Post Editor
 ### :house: Internal
 - `examples`
   - [#850](https://github.com/wix-incubator/rich-content/pull/850) fix performance
