@@ -79,22 +79,19 @@ class PluginViewer extends PureComponent {
         }
 
         // TODO: more generic logic?
-        let customWidth;
-        if (config.size === 'inline') {
-          customWidth = config.width;
-        }
-        if (type === 'wix-draft-plugin-html') {
-          customWidth = config.width;
+        let customStyles;
+        if (config.size === 'inline' || type === 'wix-draft-plugin-html') {
+          customStyles = { width: config.width };
         }
         if (type === 'wix-draft-plugin-image') {
           const { src = {} } = componentData;
           const { size } = config;
           if (size === 'original' && src.width) {
-            customWidth = src.width;
+            customStyles = { width: src.width, maxWidth: '100%' };
           }
         }
-        if (customWidth) {
-          containerProps.style = { width: customWidth };
+        if (customStyles) {
+          containerProps.style = customStyles;
         }
 
         return (

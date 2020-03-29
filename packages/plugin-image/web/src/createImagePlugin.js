@@ -41,9 +41,10 @@ const createImagePlugin = (config = {}) => {
         calulatedProps
       );
 
-      const isDynamicStyle = size === 'inline' || size === 'original';
-      if (isDynamicStyle) {
+      if (size === 'inline') {
         return resizeableProps;
+      } else if (size === 'original') {
+        return { ...resizeableProps, style: { ...resizeableProps.style, maxWidth: '100%' } };
       } else {
         const { width, ...allButWidth } = resizeableProps.style; // eslint-disable-line no-unused-vars
         return { ...resizeableProps, style: { ...allButWidth } };
