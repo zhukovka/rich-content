@@ -65,6 +65,7 @@ export class LinkPanelDropdown extends Component {
 
   componentDidMount() {
     this.textInput.current.focus();
+    this.textInput.current.select();
   }
 
   handleDropDownStateChange = changes => {
