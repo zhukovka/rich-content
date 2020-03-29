@@ -16,7 +16,10 @@ export class LayoutSettingsSection extends Component {
     });
   }
 
-  handleTypeChange = type => this.updateSettings({ type });
+  handleTypeChange = type => {
+    this.updateSettings({ type });
+    window.dispatchEvent(new Event('resize'));
+  };
 
   dataMapper = ({ name }) => ({ value: name });
 

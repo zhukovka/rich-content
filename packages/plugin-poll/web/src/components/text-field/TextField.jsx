@@ -22,7 +22,15 @@ class TextFieldComponent extends React.PureComponent {
     if (!this.props.rce.isViewMode) {
       this.resize();
     }
+
+    window?.addEventListener('resize', this.handleWindowResizeEvent);
   }
+
+  componentWillUnmount() {
+    window?.removeEventListener('resize', this.handleWindowResizeEvent);
+  }
+
+  handleWindowResizeEvent = () => setTimeout(() => this.resize());
 
   hidePlaceholder() {
     this.setState({ placeholder: '' });
@@ -73,6 +81,10 @@ class TextFieldComponent extends React.PureComponent {
   };
 
   resize() {
+    if (!this.$el.current) {
+      return;
+    }
+
     const computedStyles = getComputedStyle(this.$el.current);
 
     const lineHeight = parseInt(computedStyles.lineHeight);

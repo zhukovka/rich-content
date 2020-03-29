@@ -119,7 +119,7 @@ class ImageUploadComponent extends PureComponent {
             {loading ? (
               <LoaderIcon width={48} height={48} className={styles.spinner} />
             ) : (
-              <p>Change Feature Image </p>
+              <p className={styles.text}>Change Feature Image</p>
             )}
           </div>
         </div>
