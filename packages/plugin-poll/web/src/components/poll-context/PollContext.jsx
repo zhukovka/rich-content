@@ -63,7 +63,7 @@ export class PollContextProvider extends PureComponent {
 
     const pollResponse = await this.pollApiClient.fetchPoll(poll.id);
 
-    this.setState({ poll: pollResponse });
+    this.setState({ poll: { ...merge(poll, pollResponse) } });
   }
 
   async updatePoll(poll) {

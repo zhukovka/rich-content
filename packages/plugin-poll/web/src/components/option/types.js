@@ -11,6 +11,5 @@ export const OptionPropTypes = {
   poll: PropTypes.object,
   imageEnabled: PropTypes.bool,
   voteEnabled: PropTypes.bool,
-  isViewMode: PropTypes.bool,
   showResults: PropTypes.bool,
 };

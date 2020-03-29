@@ -31,13 +31,13 @@ class PollComponent extends Component {
   }
 
   getOptionList() {
-    const { options } = this.props.poll;
+    const { poll, rce } = this.props;
 
-    if (!this.showResults()) {
-      return options;
+    if (!rce.isViewMode || !this.showResults()) {
+      return poll.options;
     }
 
-    return options.sort((prev, option) => {
+    return poll.options.sort((prev, option) => {
       if (option.count === prev.count) {
         return 0;
       }
@@ -82,7 +82,6 @@ class PollComponent extends Component {
                 vote={vote}
                 unvote={unvote}
                 poll={poll}
-                isViewMode={rce.isViewMode}
                 showResults={this.showResults()}
               />
               <VotedUsers

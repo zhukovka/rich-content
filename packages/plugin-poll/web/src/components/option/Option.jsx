@@ -74,7 +74,7 @@ class PollOptionComponent extends PureComponent {
   }
 
   render() {
-    const { design, option, removeEnabled, isViewMode, imageEnabled, t } = this.props;
+    const { rce, design, option, removeEnabled, imageEnabled, t } = this.props;
     const { loading } = this.state;
 
     const borderRadius = parseInt(design.option?.borderRadius);
@@ -90,12 +90,12 @@ class PollOptionComponent extends PureComponent {
       },
     };
 
-    if (isViewMode) {
+    if (rce.isViewMode) {
       return (
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
           className={cls(styles.option, {
-            [styles.cta]: isViewMode,
+            [styles.cta]: rce.isViewMode,
             [styles.withImage]: imageEnabled && option.imageUrl,
             [styles.userChoice]: this.isUserChoice(),
           })}
