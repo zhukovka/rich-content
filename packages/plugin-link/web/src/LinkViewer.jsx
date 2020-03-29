@@ -12,6 +12,7 @@ class LinkViewer extends Component {
     anchorTarget: PropTypes.string,
     relValue: PropTypes.string,
     settings: PropTypes.object,
+    renderInEditor: PropTypes.bool,
   };
 
   constructor(props) {
@@ -36,7 +37,11 @@ class LinkViewer extends Component {
   };
 
   getHref() {
-    const href = normalizeUrl(this.props.componentData.url) || `#${this.props.componentData.url}`;
+    const { renderInEditor } = this.props;
+    const renderedIn = renderInEditor ? 'editor' : 'viewer';
+    const href =
+      normalizeUrl(this.props.componentData.url) ||
+      `#${renderedIn}-${this.props.componentData.url}`;
     return href;
   }
 
