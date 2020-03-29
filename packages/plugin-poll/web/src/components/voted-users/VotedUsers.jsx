@@ -23,6 +23,20 @@ class VotedUsersComponent extends PureComponent {
     return this.props.option.latest.map(this.getSiteMember.bind(this));
   }
 
+  renderMember(member) {
+    if (!member) {
+      return null;
+    }
+
+    return (
+      <li
+        key={member.siteMemberId}
+        className={styles.avatar}
+        style={{ backgroundImage: `url('${member.imageUrl}')` }}
+      />
+    );
+  }
+
   render() {
     const { option, t, showResults } = this.props;
 
@@ -32,15 +46,7 @@ class VotedUsersComponent extends PureComponent {
 
     return (
       <div className={styles.container}>
-        <ul className={styles.avatar_list}>
-          {this.getSiteMembers().map(member => (
-            <li
-              key={member.siteMemberId}
-              className={styles.avatar}
-              style={{ backgroundImage: `url('${member.imageUrl}')` }}
-            />
-          ))}
-        </ul>
+        <ul className={styles.avatar_list}>{this.getSiteMembers().map(this.renderMember)}</ul>
         <span>{t('Poll_Viewer_VoteCount', { number: option.count })}</span>
       </div>
     );
