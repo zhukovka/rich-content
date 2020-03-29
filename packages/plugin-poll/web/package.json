@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "react-flip-move": "^3.0.4",
     "wix-rich-content-common": "7.1.3-polls.10",
     "wix-rich-content-editor-common": "7.1.3-polls.10"
   },

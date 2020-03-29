@@ -74,7 +74,7 @@ class PollOptionComponent extends PureComponent {
   }
 
   render() {
-    const { rce, design, option, removeEnabled, imageEnabled, t } = this.props;
+    const { rce, design, option, removeEnabled, imageEnabled, showResults, t } = this.props;
     const { loading } = this.state;
 
     const borderRadius = parseInt(design.option?.borderRadius);
@@ -117,6 +117,7 @@ class PollOptionComponent extends PureComponent {
             <p
               className={cls(styles.input, {
                 [styles.centered]: imageEnabled,
+                [styles.with_result]: showResults,
               })}
               style={style.input}
             >
@@ -128,6 +129,9 @@ class PollOptionComponent extends PureComponent {
                 }}
               />
               <span className={styles.label}>{option.title}</span>
+              {showResults && (
+                <span className={styles.progress_value}>{this.getVotePercentage()}%</span>
+              )}
             </p>
           </div>
           <div className={styles.check}>

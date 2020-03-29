@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import cls from 'classnames';
+import FlipMove from 'react-flip-move';
 
 import { AddIcon } from '../assets/icons';
 import { LAYOUT } from '../constants';
@@ -65,14 +66,15 @@ class PollComponent extends Component {
       >
         <PollHeader />
 
-        <ul
+        <FlipMove
+          disableAllAnimations={!rce.isViewMode}
           className={cls(styles.options, {
             [styles.list]: layout.type === LAYOUT.LIST,
             [styles.grid]: layout.type === LAYOUT.GRID,
           })}
         >
           {this.getOptionList().map((option, i) => (
-            <li className={styles.option} key={rce.isViewMode ? option.id : option.localId || i}>
+            <div className={styles.option} key={rce.isViewMode ? option.id : option.localId || i}>
               <PollOption
                 imageEnabled={layout.type === LAYOUT.GRID}
                 option={option}
@@ -90,17 +92,17 @@ class PollComponent extends Component {
                 showResults={this.showResults()}
                 showVoters={poll.settings.votersDisplay}
               />
-            </li>
+            </div>
           ))}
 
           {!rce.isViewMode && (
-            <li>
+            <div>
               <button onClick={addOption} className={styles.addOptionButton} style={design.option}>
                 {layout.type === LAYOUT.GRID ? <AddIcon /> : t('Poll_Editor_Option_AddOption')}
               </button>
-            </li>
+            </div>
           )}
-        </ul>
+        </FlipMove>
       </div>
     );
   }

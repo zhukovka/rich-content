@@ -50,6 +50,10 @@
   &.centered {
     text-align: center;
   }
+
+  &.with_result {
+    padding-right: 60px;
+  }
 }
 
 .title {
@@ -66,6 +70,16 @@
   z-index: 1;
   border-radius: 6px;
   transition: width 500ms;
+}
+
+.progress_value {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  opacity: 0.7;
+  z-index: 2;
 }
 
 .votedIcon,
