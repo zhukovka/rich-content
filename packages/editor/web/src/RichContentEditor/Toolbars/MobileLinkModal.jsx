@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NewLinkPanelContainer } from 'wix-rich-content-editor-common';
+import { LinkPanelContainer, NewLinkPanelContainer } from 'wix-rich-content-editor-common';
 
 export default class MobileLinkModal extends Component {
   render() {
@@ -22,27 +22,31 @@ export default class MobileLinkModal extends Component {
       setEditorState,
       unchangedUrl,
     } = this.props;
-    return (
+    const baseLinkProps = {
+      getEditorState,
+      setEditorState,
+      url,
+      targetBlank,
+      anchorTarget,
+      relValue,
+      nofollow,
+      theme,
+      isActive,
+      isMobile,
+      onDone,
+      onCancel,
+      onDelete,
+      t,
+      ariaProps: { 'aria-labelledby': 'mob_link_modal_hdr' },
+      uiSettings,
+    };
+    return unchangedUrl ? (
       <div>
-        <NewLinkPanelContainer
-          getEditorState={getEditorState}
-          setEditorState={setEditorState}
-          url={url}
-          targetBlank={targetBlank}
-          anchorTarget={anchorTarget}
-          relValue={relValue}
-          nofollow={nofollow}
-          theme={theme}
-          isActive={isActive}
-          isMobile={isMobile}
-          onDone={onDone}
-          onCancel={onCancel}
-          onDelete={onDelete}
-          t={t}
-          ariaProps={{ 'aria-labelledby': 'mob_link_modal_hdr' }}
-          uiSettings={uiSettings}
-          unchangedUrl={unchangedUrl}
-        />
+        <LinkPanelContainer {...baseLinkProps} unchangedUrl={unchangedUrl} />
+      </div>
+    ) : (
+      <div>
+        <NewLinkPanelContainer {...baseLinkProps} />
       </div>
     );
   }
