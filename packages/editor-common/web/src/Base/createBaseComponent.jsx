@@ -63,8 +63,16 @@ const createBaseComponent = ({
         //reset the initial state
         commonPubsub.set('initialState_' + props.block.getKey(), undefined);
       }
+      const componentData = this.getData(props);
+      let decorationProps = pluginDecorationProps(props, componentData);
+      // eslint-disable-next-line no-unused-vars
+      const { width, style, ...otherDecorationProps } = decorationProps;
+      const newStyle = { ...style, width: componentData.config.width };
+
+      decorationProps = { ...otherDecorationProps, style: newStyle };
       return {
-        componentData: this.getData(props),
+        decorationProps,
+        componentData,
         componentState: initialState || {},
       };
     }
@@ -122,7 +130,8 @@ const createBaseComponent = ({
 
     onComponentDataChange = (componentData, blockKey) => {
       if (this.isMeAndIdle(blockKey)) {
-        this.setState({ componentData: componentData || {} }, () => {
+        const decorationProps = pluginDecorationProps(this.props, componentData);
+        this.setState({ decorationProps, componentData: componentData || {} }, () => {
           const {
             blockProps: { setData },
           } = this.props;
@@ -229,11 +238,8 @@ const createBaseComponent = ({
 
     render = () => {
       const { blockProps, className, selection } = this.props;
-      const { componentData } = this.state;
-      const { containerClassName, ...decorationProps } = pluginDecorationProps(
-        this.props,
-        componentData
-      );
+      const { componentData, decorationProps } = this.state;
+      const { containerClassName, ...otherDecorationProps } = decorationProps;
       const { width: currentWidth, height: currentHeight } = componentData.config || {};
       const { width: initialWidth, height: initialHeight } = settings || {};
       const isEditorFocused = selection.getHasFocus();
@@ -304,7 +310,7 @@ const createBaseComponent = ({
           data-focus={isActive}
           onDragStart={this.onDragStart}
           onContextMenu={this.handleContextMenu}
-          {...decorationProps}
+          {...otherDecorationProps}
         >
           {component}
           <div
