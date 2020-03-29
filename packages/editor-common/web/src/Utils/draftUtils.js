@@ -530,7 +530,7 @@ export const getAnchorableBlocks = editorState => {
           }
         });
       } else if (anchorableInlineElement(block.type)) {
-        if (block.text !== '') {
+        if (block.text !== '' && /\S/.test(block.text)) {
           let blockType = block.type;
           if (blockType === 'header-two' || blockType === 'header-three') {
             blockType = 'header';
