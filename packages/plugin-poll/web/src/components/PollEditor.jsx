@@ -23,7 +23,15 @@ export class PollEditor extends PureComponent {
   }
 
   render() {
-    const { setInPluginEditingMode, componentData, settings, helpers, t, theme } = this.props;
+    const {
+      setInPluginEditingMode,
+      componentData,
+      settings,
+      helpers,
+      t,
+      theme,
+      isMobile,
+    } = this.props;
 
     return (
       <RCEHelpersContext.Provider
@@ -35,6 +43,7 @@ export class PollEditor extends PureComponent {
           helpers,
           theme,
           t,
+          isMobile,
         }}
       >
         <PollContextProvider settings={settings} poll={componentData.poll} setPoll={this.setPoll}>
@@ -64,6 +73,7 @@ PollEditor.propTypes = {
   helpers: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  isMobile: PropTypes.bool.isRequired,
   store: PropTypes.shape({
     set: PropTypes.func.isRequired,
     get: PropTypes.func.isRequired,

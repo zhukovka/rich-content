@@ -2,9 +2,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { PureComponent } from 'react';
 import cls from 'classnames';
+
 import { withRCEHelpers, RCEHelpersPropTypes } from '../rce-helpers-context';
 
-import { RemoveIcon, CheckIcon } from '../../assets/icons';
+import { RemoveIcon, CheckIcon, LoaderIcon } from '../../assets/icons';
 import { TextField } from '../text-field';
 import { ImageUpload } from '../image-upload';
 import { OPTION_IMAGES_POOL } from '../../constants';
@@ -17,6 +18,10 @@ class PollOptionComponent extends PureComponent {
   static propTypes = {
     ...OptionPropTypes,
     ...RCEHelpersPropTypes,
+  };
+
+  state = {
+    loading: false,
   };
 
   handleTitleChange = title => {
@@ -43,11 +48,18 @@ class PollOptionComponent extends PureComponent {
     this.props.remove();
   };
 
-  handleClick = () => {
-    if (this.isUserChoice()) {
-      this.props.unvote(this.props.option.id);
-    } else {
-      this.props.vote(this.props.option.id);
+  handleClick = async () => {
+    this.setState({ loading: true });
+
+    try {
+      if (this.isUserChoice()) {
+        await this.props.unvote(this.props.option.id);
+      } else {
+        await this.props.vote(this.props.option.id);
+      }
+    } catch (error) {
+    } finally {
+      this.setState({ loading: false });
     }
   };
 
@@ -63,6 +75,7 @@ class PollOptionComponent extends PureComponent {
 
   render() {
     const { design, option, removeEnabled, isViewMode, imageEnabled, t } = this.props;
+    const { loading } = this.state;
 
     const borderRadius = parseInt(design.option?.borderRadius);
 
@@ -89,6 +102,14 @@ class PollOptionComponent extends PureComponent {
           style={design.option}
           onClick={this.handleClick}
         >
+          <div
+            className={cls(styles.overlay, {
+              [styles.shown]: loading,
+            })}
+            style={design.option}
+          >
+            <LoaderIcon className={styles.spinner} width={36} height={36} />
+          </div>
           {imageEnabled && option.imageUrl && (
             <ImageUpload className={styles.image} value={option.imageUrl} style={style.image} />
           )}
