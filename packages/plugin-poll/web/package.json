@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-poll",
-  "version": "7.1.3-polls.12",
+  "version": "7.1.3-polls.13",
   "author": {
     "name": "Maksym Butsykin",
     "email": "maksymb@wix.com"
@@ -52,8 +52,8 @@
   "dependencies": {
     "axios": "^0.19.2",
     "react-flip-move": "^3.0.4",
-    "wix-rich-content-common": "7.1.3-polls.12",
-    "wix-rich-content-editor-common": "7.1.3-polls.12"
+    "wix-rich-content-common": "7.1.3-polls.13",
+    "wix-rich-content-editor-common": "7.1.3-polls.13"
   },
   "unpkg": true,
   "publishConfig": {
