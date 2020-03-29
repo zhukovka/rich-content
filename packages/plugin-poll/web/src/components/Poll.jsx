@@ -42,7 +42,7 @@ class PollComponent extends Component {
           })}
         >
           {poll.options.map((option, i) => (
-            <li className={styles.option} key={option.localId || i}>
+            <li className={styles.option} key={rce.isViewMode ? option.id : option.localId || i}>
               <PollOption
                 imageEnabled={layout.type === LAYOUT.GRID}
                 option={option}

@@ -4,4 +4,5 @@ export const ImageUploadPropTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
   className: PropTypes.string,
+  imagesPool: PropTypes.array,
 };

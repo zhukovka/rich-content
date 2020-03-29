@@ -1,22 +1,52 @@
 .container {
   width: 100%;
   height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
+  overflow: hidden;
+  position: relative;
+  
+  &.clickable {
+    cursor: pointer
+  }
+
+  &:hover .overlay {
+    opacity: 1;
+  }
+}
+
+.overlay {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
 
   position: relative;
-  z-index: 1;
-  cursor: pointer;
+  transition: opacity 500ms;
 }
 
-.container {
-  background-size: cover;
-  background-repeat: no-repeat;
+.shown {
+  opacity: 1;
 }
 
-.hidden {
-  display: none;
+/* rtl:ignore */
+.spinner {
+  animation-name: spin;
+  animation-duration: 1500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+/* rtl:ignore */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

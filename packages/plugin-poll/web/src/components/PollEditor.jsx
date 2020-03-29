@@ -23,7 +23,7 @@ export class PollEditor extends PureComponent {
   }
 
   render() {
-    const { setInPluginEditingMode, componentData, settings, helpers, t } = this.props;
+    const { setInPluginEditingMode, componentData, settings, helpers, t, theme } = this.props;
 
     return (
       <RCEHelpersContext.Provider
@@ -33,6 +33,7 @@ export class PollEditor extends PureComponent {
           layout: componentData.layout,
           design: componentData.design,
           helpers,
+          theme,
           t,
         }}
       >
@@ -61,6 +62,7 @@ PollEditor.propTypes = {
     isWebView: PropTypes.bool,
   }),
   helpers: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.shape({
     set: PropTypes.func.isRequired,

@@ -8,6 +8,7 @@ export const RCEHelpersPropTypes = {
     helpers: PropTypes.shape({
       onFilesChange: PropTypes.func,
     }),
+    theme: PropTypes.object.isRequired,
   }).isRequired,
   t: PropTypes.func.isRequired,
   layout: PropTypes.object.isRequired,

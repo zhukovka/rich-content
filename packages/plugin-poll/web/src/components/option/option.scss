@@ -21,24 +21,19 @@
     width: 24px;
     border-radius: 50%;
   }
+
+  .image,
+  .title {
+    transition: border-radius 500ms;
+  }
 }
 
 .image {
   height: 140px;
 }
 
-.option .input {
-}
-
 .option.withImage .input {
   text-align: center;
-}
-
-.option.withImage {
-  .input,
-  .progress {
-    border-radius: 0 0 6px 6px;
-  }
 }
 
 .input {
@@ -46,6 +41,7 @@
   padding: 15px 35px 15px 25px;
   background-color: rgba(0, 0, 0, 0.2);
   font-size: 18px;
+  margin: 0;
 
   &:focus {
     border: 1px solid #fff;
@@ -61,7 +57,6 @@
 }
 
 .progress {
-  display: none;
   content: " ";
   position: absolute;
   background-color: rgba(0, 0, 0, .2);
@@ -70,6 +65,7 @@
   left: 0;
   z-index: 1;
   border-radius: 6px;
+  transition: width 500ms;
 }
 
 .votedIcon,
@@ -82,10 +78,6 @@
   position: absolute;
   left: 25px;
   top: 12px;
-}
-
-.showResults .progress {
-  display: block;
 }
 
 .userChoice .progress {

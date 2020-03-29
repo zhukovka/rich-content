@@ -7,6 +7,7 @@ import { withRCEHelpers, RCEHelpersPropTypes } from '../rce-helpers-context';
 import { RemoveIcon, CheckIcon } from '../../assets/icons';
 import { TextField } from '../text-field';
 import { ImageUpload } from '../image-upload';
+import { OPTION_IMAGES_POOL } from '../../constants';
 
 import { OptionPropTypes } from './types';
 
@@ -54,48 +55,60 @@ class PollOptionComponent extends PureComponent {
     }
   };
 
+  getVotePercentage() {
+    const { option, poll } = this.props;
+
+    if (!this.userVoted) {
+      return 0;
+    }
+
+    return (option.count / poll.total) * 100;
+  }
+
   render() {
-    const { design, option, removeEnabled, isViewMode, imageEnabled, poll, t } = this.props;
+    const { design, option, removeEnabled, isViewMode, imageEnabled, t } = this.props;
 
     const borderRadius = parseInt(design.option?.borderRadius);
 
     const style = {
       input: {
-        borderRadius: `${borderRadius}px`,
+        borderRadius: imageEnabled
+          ? `0 0 ${borderRadius}px ${borderRadius}px`
+          : `${borderRadius}px`,
       },
       image: {
         borderRadius: `${borderRadius}px ${borderRadius}px 0 0`,
-      },
-      inputWithImage: {
-        borderRadius: `0 0 ${borderRadius}px ${borderRadius}px`,
       },
     };
 
     if (isViewMode) {
       return (
+        // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
           className={cls(styles.option, {
+            [styles.cta]: isViewMode,
             [styles.withImage]: imageEnabled && option.imageUrl,
             [styles.userChoice]: this.isUserChoice(),
           })}
           style={design.option}
+          onClick={this.handleClick}
         >
-          {imageEnabled && (
+          {imageEnabled && option.imageUrl && (
             <ImageUpload className={styles.image} value={option.imageUrl} style={style.image} />
           )}
           <div className={styles.title}>
             <p
               className={cls(styles.input, {
-                [styles.cta]: isViewMode,
-                [styles.showResults]: this.userVoted(),
                 [styles.centered]: imageEnabled,
               })}
-              onClick={this.handleClick}
-              style={imageEnabled ? style.inputWithImage : style.input}
+              style={style.input}
             >
               <span
                 className={styles.progress}
-                style={{ width: `${(option.count / poll.total) * 100}%` }}
+                style={{
+                  width: `${this.getVotePercentage()}%`,
+                  ...style.input,
+                }}
               />
               <span className={styles.label}>{option.title}</span>
             </p>
@@ -120,11 +133,12 @@ class PollOptionComponent extends PureComponent {
             value={option.imageUrl}
             onChange={this.handleImageChange}
             style={style.image}
+            imagesPool={OPTION_IMAGES_POOL}
           />
         )}
         <div className={styles.title}>
           <TextField
-            style={imageEnabled ? style.inputWithImage : style.input}
+            style={style.input}
             className={styles.input}
             value={option.title}
             placeholder={t('Poll_Editor_Option_Placeholder')}
