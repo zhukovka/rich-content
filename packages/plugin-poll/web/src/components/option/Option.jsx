@@ -31,10 +31,6 @@ class PollOptionComponent extends PureComponent {
     return update({ ...option, imageUrl });
   };
 
-  userVoted() {
-    return !!this.props.poll.chosen.length;
-  }
-
   isUserChoice() {
     const { poll, option } = this.props;
 
@@ -56,9 +52,9 @@ class PollOptionComponent extends PureComponent {
   };
 
   getVotePercentage() {
-    const { option, poll } = this.props;
+    const { option, poll, showResults } = this.props;
 
-    if (!this.userVoted) {
+    if (!showResults) {
       return 0;
     }
 

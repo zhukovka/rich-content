@@ -7,6 +7,7 @@ import { LAYOUT } from '../constants';
 import { withPoll, PollContextPropTypes } from './poll-context';
 import { withRCEHelpers, RCEHelpersPropTypes } from './rce-helpers-context';
 import { PollHeader } from './poll-header';
+import { VotedUsers } from './voted-users';
 import { PollOption } from './option';
 
 import styles from './poll.scss';
@@ -25,8 +26,32 @@ class PollComponent extends Component {
     return () => this.props.removeOption(index);
   }
 
+  showResults() {
+    return !!this.props.poll.chosen.length;
+  }
+
+  getOptionList() {
+    const { options } = this.props.poll;
+
+    if (!this.showResults()) {
+      return options;
+    }
+
+    return options.sort((prev, option) => {
+      if (option.count === prev.count) {
+        return 0;
+      }
+
+      if (option.count > prev.count) {
+        return 1;
+      }
+
+      return -1;
+    });
+  }
+
   render() {
-    const { poll, rce, addOption, design, layout, vote, unvote, t } = this.props;
+    const { poll, rce, addOption, design, layout, vote, unvote, t, siteMembers } = this.props;
     const style = {
       ...design.poll,
     };
@@ -41,7 +66,7 @@ class PollComponent extends Component {
             [styles.grid]: layout.type === LAYOUT.GRID,
           })}
         >
-          {poll.options.map((option, i) => (
+          {this.getOptionList().map((option, i) => (
             <li className={styles.option} key={rce.isViewMode ? option.id : option.localId || i}>
               <PollOption
                 imageEnabled={layout.type === LAYOUT.GRID}
@@ -53,6 +78,13 @@ class PollComponent extends Component {
                 unvote={unvote}
                 poll={poll}
                 isViewMode={rce.isViewMode}
+                showResults={this.showResults()}
+              />
+              <VotedUsers
+                option={option}
+                siteMembers={siteMembers}
+                showResults={this.showResults()}
+                showVoters={poll.settings.votersDisplay}
               />
             </li>
           ))}

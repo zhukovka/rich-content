@@ -12,4 +12,5 @@ export const OptionPropTypes = {
   imageEnabled: PropTypes.bool,
   voteEnabled: PropTypes.bool,
   isViewMode: PropTypes.bool,
+  showResults: PropTypes.bool,
 };

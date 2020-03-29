@@ -73,7 +73,7 @@ export const DEFAULT_COMPONENT_DATA = {
     imageUrl: '',
     settings: {
       multipleChoice: false,
-      secret: false,
+      votersDisplay: true,
       voteRole: MEMBER_ROLES.ALL,
       viewRole: MEMBER_ROLES.VOTERS,
       type: 'CUSTOM',

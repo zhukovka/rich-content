@@ -46,7 +46,7 @@ export class PollSettingsSection extends Component {
 
   handleMultiChange = event => this.updateSettings({ multipleChoice: event.target.checked });
 
-  handleSecretChange = event => this.updateSettings({ secret: event.target.checked });
+  handleSecretChange = event => this.updateSettings({ votersDisplay: event.target.checked });
 
   handleVoteAllowedChange = () => this.updateSettings();
 
@@ -90,7 +90,7 @@ export class PollSettingsSection extends Component {
 
         <Checkbox
           label={t('Poll_PollSettings_Tab_Settings_VoterVisibility')}
-          checked={componentData.poll.settings.secret}
+          checked={componentData.poll.settings.votersDisplay}
           onChange={this.handleSecretChange}
           contentForInfoIcon={t('Poll_PollSettings_Tab_Settings_VoterVisibility_Tooltip')}
         />
