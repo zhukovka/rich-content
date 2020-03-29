@@ -130,7 +130,7 @@ class PollOptionComponent extends PureComponent {
               />
               <span className={styles.label}>{option.title}</span>
               {showResults && (
-                <span className={styles.progress_value}>{this.getVotePercentage()}%</span>
+                <span className={styles.progress_value}>{this.getVotePercentage().toFixed()}%</span>
               )}
             </p>
           </div>
