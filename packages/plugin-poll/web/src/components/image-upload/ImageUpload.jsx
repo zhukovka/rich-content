@@ -65,6 +65,7 @@ class ImageUploadComponent extends PureComponent {
           requiredQuality: 90,
           imageType: 'highRes',
         }),
+        loading: false,
       },
       () => this.sync()
     );
@@ -73,19 +74,21 @@ class ImageUploadComponent extends PureComponent {
   handleFileReadLoad = (value, file) => {
     const { helpers } = this.props.rce;
 
-    this.setState({ value });
+    this.setState({ value, loading: false });
 
-    helpers?.onFilesChange?.(file, this.handleFileUpload);
+    if (helpers?.onFilesChange) {
+      this.setState({ loading: true });
+      helpers.onFilesChange(file, this.handleFileUpload);
+    }
   };
 
   handleFileChange = ([file]) => {
     const reader = new FileReader();
 
+    this.setState({ loading: true });
+
     reader.onload = e => this.handleFileReadLoad(e.target.result, file);
-
     reader.readAsDataURL(file);
-
-    this.props.rce.setInPluginEditingMode(false);
   };
 
   render() {
