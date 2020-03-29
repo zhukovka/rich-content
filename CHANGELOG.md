@@ -115,6 +115,11 @@
 
 #### xxxxxxxxxxxx   v6 hotfixes below   xxxxxxxxxxxx
 
+## 6.10.5 (Mar 29, 2020)
+### :bug: Bug Fix
+- `image`
+  - [#853](https://github.com/wix-incubator/rich-content/pull/853) Image Original Size for images of width 350px and above
+
 ## 6.10.4 (Mar 24, 2020)
 ### :bug: Bug Fix
 - `editor`
