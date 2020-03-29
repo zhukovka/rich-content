@@ -35,7 +35,7 @@ class NewLinkPanelContainer extends PureComponent {
     this.state = {
       linkPanelValues: { url: url && isValidUrl(url) ? url : undefined, targetBlank, nofollow },
       anchorPanelValues: {
-        url: url && !isValidUrl(url) ? url : undefined,
+        url: url && !isValidUrl(url) ? url.slice(0, 5) : undefined, // slice to remove the unique id from the anchor
       },
       radioGroupValue: !url || isValidUrl(url) ? 'external-link' : 'anchor',
     };
