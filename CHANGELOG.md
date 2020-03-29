@@ -16,6 +16,8 @@
 ### :bug: [Bug Fix]
 - `general`
   - [#843](https://github.com/wix-incubator/rich-content/pull/843) fix: mouse up event on overlay triggered the closing the modals
+- `image`
+  - [#853](https://github.com/wix-incubator/rich-content/pull/853) Image Original Size for images of width 350px and above
 
 </details>
 <hr/>
