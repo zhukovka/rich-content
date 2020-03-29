@@ -151,7 +151,12 @@ class NewLinkPanelContainer extends PureComponent {
           </button>
           {isActive && (
             <div className={styles.linkPanel_RemoveContainer}>
-              <div className={styles.linkPanel_VerticalDivider} />
+              <div
+                className={classNames(
+                  styles.linkPanel_VerticalDivider,
+                  styles.linkPanel_VerticalDividerNarrowMargin
+                )}
+              />
               <button
                 tabIndex={tabIndex}
                 aria-label={removeButtonText}
