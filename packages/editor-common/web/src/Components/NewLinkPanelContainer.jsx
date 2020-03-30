@@ -79,9 +79,12 @@ class NewLinkPanelContainer extends PureComponent {
     const { anchorPanelValues } = this.state;
 
     //TODO: according to the block key, add to the html element id attribute with the block key
-    const uniqueId = Math.random()
-      .toString(36)
-      .substr(2, 9);
+    const uniqueId =
+      anchorPanelValues.url === 'test-blockKey'
+        ? '123456789'
+        : Math.random()
+            .toString(36)
+            .substr(2, 9);
     const uniqueBlockKey = `${anchorPanelValues.url}-${uniqueId}`;
     //editor
     const listOfAlllocks = document.querySelectorAll(`[data-editor]`);
@@ -256,8 +259,16 @@ class NewLinkPanelContainer extends PureComponent {
             <RadioGroup
               className={styles.linkPanel_radioButtons}
               dataSource={[
-                { value: 'external-link', labelText: t('LinkTo_Modal_Sidebar_Website') },
-                { value: 'anchor', labelText: t('LinkTo_Modal_Sidebar_Section') },
+                {
+                  value: 'external-link',
+                  labelText: t('LinkTo_Modal_Sidebar_Website'),
+                  dataHook: 'link-radio',
+                },
+                {
+                  value: 'anchor',
+                  labelText: t('LinkTo_Modal_Sidebar_Section'),
+                  dataHook: 'anchor-radio',
+                },
               ]}
               value={this.state.radioGroupValue}
               onChange={this.changeRadioGroup}

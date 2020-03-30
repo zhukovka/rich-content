@@ -168,6 +168,7 @@ class LinkToAnchorPanel extends Component {
           {filteredAnchorableBlocks.map(block => (
             <div key={block.key} ref={anchorValues.url === block.key ? this.scrollRef : undefined}>
               <AnchorableElement
+                dataHook={block.key}
                 block={block}
                 theme={styles}
                 onClick={args => this.onChange(block, { ...args })}

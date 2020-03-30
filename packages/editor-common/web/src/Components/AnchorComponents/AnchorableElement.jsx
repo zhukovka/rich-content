@@ -105,9 +105,10 @@ class AnchorableElement extends PureComponent {
   render() {
     const { styles } = this;
     const { iconThumbnail, visualThumbnail } = this.state;
-    const { onClick, isSelected, t, onEnter } = this.props;
+    const { dataHook, onClick, isSelected, t, onEnter } = this.props;
     return (
       <div
+        data-hook={dataHook}
         className={classNames(styles.AnchorableElement_container, {
           [styles.AnchorableElement_selected]: isSelected,
         })}
@@ -141,6 +142,7 @@ class AnchorableElement extends PureComponent {
   }
 
   static propTypes = {
+    dataHook: PropTypes.string,
     onClick: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     block: PropTypes.object,

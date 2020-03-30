@@ -80,4 +80,14 @@ describe('text', () => {
       .setTextStyle(INLINE_TOOLBAR_BUTTONS.UNORDERED_LIST, [550, 1]);
     cy.eyesCheckWindow(this.test.title);
   });
+
+  it('allow to create anchors', function() {
+    cy.loadEditorAndViewer('plugins-for-anchors');
+    cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.LINK, [0, 6]);
+    cy.get(`[data-hook=linkPanelContainer] [data-hook=anchor-radio]`).click();
+    cy.wait(1000);
+    cy.eyesCheckWindow(this.test.title);
+    cy.get(`[data-hook=test-blockKey`).click({ force: true });
+    cy.get(`[data-hook=linkPanelContainerDone]`).click();
+  });
 });
