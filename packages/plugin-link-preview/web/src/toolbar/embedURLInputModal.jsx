@@ -67,8 +67,6 @@ export default class embedURLInputModal extends Component {
   render() {
     const { url, submittedInvalidUrl } = this.state;
     const {
-      doneLabel,
-      cancelLabel,
       t,
       languageDir,
       componentData: { socialType },
@@ -85,7 +83,7 @@ export default class embedURLInputModal extends Component {
         />
         <div className={classNames(styles.socialEmbed_urlInput_header)}>
           <div className={styles.socialEmbed_urlInput_header_text}>
-            {`Add a ${socialType} post`}
+            {t(`EmbedURL_Social_${socialType}_Title`)}
           </div>
         </div>
         <div className={styles.socialEmbedUrlInputModal_textInput}>
@@ -97,7 +95,7 @@ export default class embedURLInputModal extends Component {
             onKeyPress={this.handleKeyPress}
             onChange={this.onUrlChange}
             value={url}
-            placeholder={`e.g., https://https://www.${socialType.toLowerCase()}.com/example`}
+            placeholder={t(`EmbedURL_Social_${socialType}_Placeholder`)}
             theme={styles}
             data-hook="socialEmbedUploadModalInput"
             error={submittedInvalidUrl ? 'This Url has no embed' : null}
@@ -107,8 +105,8 @@ export default class embedURLInputModal extends Component {
           className={styles.socialEmbed_urlInput_modal_footer}
           save={() => this.onConfirm()}
           cancel={() => this.onCloseRequested()}
-          saveLabel={doneLabel}
-          cancelLabel={cancelLabel}
+          saveLabel={t('EmbedURL_Common_CTA_Primary')}
+          cancelLabel={t('EmbedURL_Common_CTA_Secondary')}
           theme={styles}
           t={t}
         />
