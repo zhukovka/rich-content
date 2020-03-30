@@ -15,28 +15,34 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-  
-  ### :bug: [Bug Fix]
-  - `general`
-    - [#843](https://github.com/wix-incubator/rich-content/pull/843) fix: mouse up event on overlay triggered the closing the modals
-  - `editor`
-    - [#862](https://github.com/wix-incubator/rich-content/pull/862) fix inline resize reset on reload of editor
-  - `image`
-    - [#853](https://github.com/wix-incubator/rich-content/pull/853) Image Original Size for images of width 350px and above
-  ### :house: Internal
-  - `examples`
-    - [#850](https://github.com/wix-incubator/rich-content/pull/850) fix performance
-    - [#850](https://github.com/wix-incubator/rich-content/pull/850) save content to local storage
-  - `wrapper`
-    - [#852](https://github.com/wix-incubator/rich-content/pull/852) strategies create configs & not functions
-  - `viewer`
-    - [#861](https://github.com/wix-incubator/rich-content/pull/#861) text direction util improved; tests added
-    - [#846](https://github.com/wix-incubator/rich-content/pull/846) switch to forked redraft (`wix-redraft`)
-  - `e2e`
-    - [#860](https://github.com/wix-incubator/rich-content/pull/860) Images original size test
 
 </details>
 <hr/>
+
+## 7.1.3 (Mar 30, 2020)
+
+### :bug: Bug Fix
+
+- `general`
+  - [#843](https://github.com/wix-incubator/rich-content/pull/843) fix: mouse up event on overlay triggered the closing the modals
+- `editor`
+  - [#862](https://github.com/wix-incubator/rich-content/pull/862) fix inline resize reset on reload of editor
+- `image`
+  - [#853](https://github.com/wix-incubator/rich-content/pull/853) Image Original Size for images of width 350px and above
+
+### :house: Internal
+
+- `examples`
+  - [#850](https://github.com/wix-incubator/rich-content/pull/850) fix performance
+  - [#850](https://github.com/wix-incubator/rich-content/pull/850) save content to local storage
+- `wrapper`
+  - [#852](https://github.com/wix-incubator/rich-content/pull/852) strategies create configs & not functions
+- `viewer`
+  - [#861](https://github.com/wix-incubator/rich-content/pull/#861) text direction util improved; tests added
+  - [#846](https://github.com/wix-incubator/rich-content/pull/846) switch to forked redraft (`wix-redraft`)
+- `e2e`
+  - [#860](https://github.com/wix-incubator/rich-content/pull/860) Images original size test
+
 
 ## 7.1.2 (Mar 25, 2020)
 
@@ -52,7 +58,7 @@
 - `gallery`
   - [#833](https://github.com/wix-incubator/rich-content/pull/833) using alt property instead of title for altText fixes mobile titles
 
-### :bug: [Bug Fix]
+### :bug: Bug Fix
 
 - `link-preview`
   - [#841](https://github.com/wix-incubator/rich-content/pull/841) link preview fixes
@@ -126,7 +132,7 @@
 
 ## 7.0.1 (Mar 18, 2020)
 
-### :house: [Internal]
+### :house: Internal
 
 - `editor`
   - [#801](https://github.com/wix-incubator/rich-content/pull/801) `editorStateConversion.js` consume `draft-js` directly to prevent bundle bloat of lib
