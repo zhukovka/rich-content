@@ -57,7 +57,7 @@ export default class Fullscreen extends Component {
           resizeMediaUrl={resizeMediaUrl}
           container={{
             width: window.innerWidth,
-            height: window.innerHeight - 100,
+            height: window.innerHeight,
           }}
           styles={{
             ...layouts[5],
@@ -67,8 +67,8 @@ export default class Fullscreen extends Component {
             videoPlay: 'auto',
             allowSocial: false,
             loveButton: false,
-            slideshowInfoSize: 0,
-            arrowsColor: 'white',
+            slideshowInfoSize: 100,
+            allowTitle: true,
           }}
         />
       </div>
