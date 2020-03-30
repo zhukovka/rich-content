@@ -51,7 +51,7 @@ const shouldAddLinkPreview = (title, thumbnail_url) => {
   if (title && thumbnail_url) {
     return isValidImgSrc(thumbnail_url);
   }
-  return new Promise(resolve => resolve(false));
+  return false;
 };
 
 export const convertLinkPreviewToLink = editorState => {
