@@ -9,6 +9,7 @@ export const RCEHelpersPropTypes = {
       onFilesChange: PropTypes.func,
     }),
     theme: PropTypes.object.isRequired,
+    getSiteMembers: PropTypes.func,
   }).isRequired,
   t: PropTypes.func.isRequired,
   layout: PropTypes.object.isRequired,

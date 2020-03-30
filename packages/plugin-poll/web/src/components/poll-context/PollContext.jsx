@@ -28,7 +28,6 @@ export class PollContextProvider extends PureComponent {
     changePollImage: this.changePollImage.bind(this),
     vote: this.vote.bind(this),
     unvote: this.unvote.bind(this),
-    siteMembers: this.props.settings.siteMembers,
   };
 
   constructor(props) {
@@ -148,7 +147,7 @@ PollContextProvider.propTypes = {
   settings: PropTypes.shape({
     siteToken: PropTypes.string,
     isWebView: PropTypes.bool,
-    siteMembers: PropTypes.array,
+    getSiteMembers: PropTypes.func,
   }),
   poll: PropTypes.shape(PollPropTypes),
   setPoll: PropTypes.func,

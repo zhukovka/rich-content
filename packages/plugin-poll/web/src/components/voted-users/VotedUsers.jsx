@@ -12,12 +12,12 @@ class VotedUsersComponent extends PureComponent {
   };
 
   getSiteMember(id) {
-    const { siteMembers } = this.props.rce;
+    const siteMembers = this.props.rce.getSiteMembers?.() || [];
     return siteMembers.find(siteMember => siteMember.siteMemberId === id);
   }
 
   getSiteMembers() {
-    const { siteMembers } = this.props.rce;
+    const siteMembers = this.props.rce.getSiteMembers?.() || [];
 
     if (!this.props.showVoters || !siteMembers) {
       return [];

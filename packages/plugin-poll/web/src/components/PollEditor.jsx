@@ -44,7 +44,7 @@ export class PollEditor extends PureComponent {
           theme,
           t,
           isMobile,
-          siteMembers: settings.siteMembers,
+          getSiteMembers: settings.getSiteMembers,
         }}
       >
         <PollContextProvider settings={settings} poll={componentData.poll} setPoll={this.setPoll}>
@@ -70,7 +70,7 @@ PollEditor.propTypes = {
   settings: PropTypes.shape({
     siteToken: PropTypes.string,
     isWebView: PropTypes.bool,
-    siteMembers: PropTypes.array,
+    getSiteMembers: PropTypes.func,
   }),
   helpers: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
