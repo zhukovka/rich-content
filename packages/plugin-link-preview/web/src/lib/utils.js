@@ -45,7 +45,7 @@ const isValidImgSrc = url => {
   });
 };
 
-const isValidHtml = html => html.substring(0, 12) !== '<div>{"url":';
+const isValidHtml = html => html && html.substring(0, 12) !== '<div>{"url":';
 
 const shouldAddLinkPreview = (title, thumbnail_url) => {
   if (title && thumbnail_url) {
