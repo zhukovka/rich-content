@@ -15,7 +15,7 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-
+  
   ### :bug: [Bug Fix]
   - `general`
     - [#843](https://github.com/wix-incubator/rich-content/pull/843) fix: mouse up event on overlay triggered the closing the modals
@@ -30,6 +30,8 @@
   - `viewer`
     - [#861](https://github.com/wix-incubator/rich-content/pull/#861) text direction util improved; tests added
     - [#846](https://github.com/wix-incubator/rich-content/pull/846) switch to forked redraft (`wix-redraft`)
+  - `e2e`
+    - [#860](https://github.com/wix-incubator/rich-content/pull/860) Images original size test
 
 </details>
 <hr/>
