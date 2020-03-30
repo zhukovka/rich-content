@@ -18,6 +18,7 @@ export class PollViewer extends PureComponent {
           design: componentData.design,
           t,
           theme,
+          siteMembers: settings.siteMembers,
         }}
       >
         <PollContextProvider poll={componentData.poll} settings={settings}>

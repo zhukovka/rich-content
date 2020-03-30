@@ -44,11 +44,9 @@ export class PollContextProvider extends PureComponent {
       return { poll: props.poll };
     }
 
-    if (props.settings.siteMembers.length !== state.siteMembers.length) {
-      return { siteMembers: props.settings.siteMembers };
-    }
-
-    return { poll: merge(state.poll, { settings: props.poll.settings }) };
+    return {
+      poll: merge(state.poll, { settings: props.poll.settings }),
+    };
   }
 
   componentDidMount() {
