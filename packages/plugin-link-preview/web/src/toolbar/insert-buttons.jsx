@@ -21,7 +21,11 @@ export default ({ helpers, settings, isMobile }) => {
   if (isMobile) {
     customStyles.content.minHeight = '202px';
   }
-  const socialTypes = ['Instagram', 'Twitter', 'Facebook', 'TikTok', 'Pinterest', 'Youtube'];
+  const { exposeEmbedButtons = {} } = settings;
+  const socialTypes = [];
+  Object.keys(exposeEmbedButtons).forEach(key => {
+    exposeEmbedButtons[key] && socialTypes.push(key);
+  });
   const socialIconsMap = {
     Instagram: InstagramIcon,
     Twitter: TwitterIcon,

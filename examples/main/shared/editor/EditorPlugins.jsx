@@ -234,7 +234,14 @@ const config = {
   [LINK_PREVIEW_TYPE]: {
     disableEmbed: false,
     fetchData: mockFetchUrlPreviewData(),
-    exposeMultipleEmbedButtons: true,
+    exposeEmbedButtons: {
+      Instagram: true,
+      Twitter: true,
+      Facebook: true,
+      TikTok: true,
+      Pinterest: true,
+      Youtube: true,
+    },
   },
   [EMOJI_TYPE]: {
     // toolbar: {

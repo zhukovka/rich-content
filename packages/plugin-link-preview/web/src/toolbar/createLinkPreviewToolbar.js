@@ -8,10 +8,11 @@ export default function createToolbar({
   helpers,
   isMobile,
 }) {
-  const buttons = { InlineButtons: createInlineButtons(setEditorState, getEditorState) };
-  if (settings.exposeMultipleEmbedButtons) {
-    buttons.InsertButtons = createInsertButtons({ helpers, settings, isMobile });
-  }
+  const buttons = {
+    InlineButtons: createInlineButtons(setEditorState, getEditorState),
+    InsertButtons: createInsertButtons({ helpers, settings, isMobile }),
+  };
+
   return {
     ...buttons,
     name: 'link-preview',
