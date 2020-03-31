@@ -9,6 +9,7 @@ cache:
     - ~/.cache
 before_install:
   - npm i -g npm@latest
+  - npm --version
 install: npm install
 script:
   - npm run build || travis_terminate 1;
