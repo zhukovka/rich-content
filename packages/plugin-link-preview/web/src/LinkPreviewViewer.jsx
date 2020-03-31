@@ -9,7 +9,7 @@ class LinkPreviewViewer extends Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
     settings: PropTypes.shape({
-      disableEmbed: PropTypes.bool,
+      enableEmbed: PropTypes.bool,
     }).isRequired,
     theme: PropTypes.object,
     isMobile: PropTypes.bool.isRequired,
@@ -32,14 +32,6 @@ class LinkPreviewViewer extends Component {
   componentDidMount() {
     validate(pluginLinkPreviewSchema, this.props.componentData);
     this.setState({ imageHeight: this.image?.offsetHeight });
-    const { componentData } = this.props;
-    const { html } = componentData;
-    const iframeDocument = document.getElementById('myiframe')?.contentWindow?.document;
-    if (iframeDocument) {
-      iframeDocument.open('text/html', 'replace');
-      iframeDocument.write(unescape(html));
-      iframeDocument.close();
-    }
   }
 
   getUrlForDisplay = url => url.replace(/^https?:\/\//, '');
@@ -73,7 +65,7 @@ class LinkPreviewViewer extends Component {
       linkPreview_url,
     } = this.styles;
 
-    if (!settings.disableEmbed && html) {
+    if (settings.enableEmbed && html) {
       const htmlCompProps = {
         componentData: {
           ...componentData,
