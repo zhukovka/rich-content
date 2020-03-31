@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { RichContentEditor } from 'wix-rich-content-editor';
 import { RichContentViewer } from 'wix-rich-content-viewer';
-
-import PropTypes from 'prop-types';
-
+import windowContentStateHoc from './WindowContentStateHoc';
 class IsolatedTestApp extends PureComponent {
   renderEditor = () => {
     const { editorState, onEditorChange, locale, localeResource, isMobile } = this.props;
@@ -61,4 +60,4 @@ IsolatedTestApp.propTypes = {
   seoMode: PropTypes.bool,
 };
 
-export default IsolatedTestApp;
+export default windowContentStateHoc(IsolatedTestApp);
