@@ -1,10 +1,14 @@
 import React from 'react';
 import { RichContentViewer } from 'wix-rich-content-viewer';
 import { RichContentEditor, convertFromRaw, createWithContent } from 'wix-rich-content-editor';
-import { linkPreviewTypeMapper } from 'wix-rich-content-plugin-link-preview/dist/module.viewer';
+import {
+  linkPreviewTypeMapper,
+  LINK_PREVIEW_TYPE,
+} from 'wix-rich-content-plugin-link-preview/dist/module.viewer';
 import { linkTypeMapper } from 'wix-rich-content-plugin-link/dist/module.viewer';
 import { pluginLinkPreview } from 'wix-rich-content-plugin-link-preview';
 import { pluginLink } from 'wix-rich-content-plugin-link';
+import { pluginHtml } from 'wix-rich-content-plugin-html';
 import fixtrue from '../../../../e2e/tests/fixtures/linkPreview.json';
 import { RichContentWrapper } from 'wix-rich-content-wrapper';
 import { mockFetchUrlPreviewData } from '../../../main/shared/utils/linkPreviewUtil';
@@ -21,7 +25,15 @@ const typeMappers = [linkPreviewTypeMapper, linkTypeMapper];
 const editorState = createWithContent(convertFromRaw(fixtrue));
 
 export default () => {
-  const plugins = [pluginLink(), pluginLinkPreview({ fetchData: mockFetchUrlPreviewData() })];
+  const plugins = [
+    pluginLink(),
+    pluginLinkPreview({ fetchData: mockFetchUrlPreviewData(), enableEmbed: true }),
+    pluginHtml(),
+  ];
+
+  const viewerConfig = {
+    [LINK_PREVIEW_TYPE]: { enableEmbed: true },
+  };
 
   return (
     <Page title="Link Preview">
@@ -32,7 +44,11 @@ export default () => {
           </RichContentWrapper>
         </RichContentEditorBox>
         <RichContentViewerBox preset="blog-preset">
-          <RichContentViewer initialState={fixtrue} typeMappers={typeMappers} />
+          <RichContentViewer
+            initialState={fixtrue}
+            typeMappers={typeMappers}
+            config={viewerConfig}
+          />
         </RichContentViewerBox>
       </Section>
 
