@@ -21,6 +21,7 @@
   "module": "dist/es/index.js",
   "style": "dist/styles.min.css",
   "scripts": {
+    "preinstall": "npm access grant read-write wix:rich-content-publishers wix-rich-content-wrapper",
     "clean": "rm -rf dist/",
     "prebuild": "npm run clean",
     "build": "rollup --environment MODULE_NAME:wrapper -c ../../../rollup.config.wrapper.js",

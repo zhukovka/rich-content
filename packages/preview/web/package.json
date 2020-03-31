@@ -12,6 +12,7 @@
     "dist"
   ],
   "scripts": {
+    "preinstall": "npm access grant read-write wix:rich-content-publishers wix-rich-content-preview",
     "clean": "rm -rf dist/",
     "prebuild": "npm run clean",
     "build": "rollup --environment MODULE_NAME:preview -c ../../../rollup.config.js",

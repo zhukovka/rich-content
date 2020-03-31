@@ -21,6 +21,7 @@
   "module": "dist/module.js",
   "style": "dist/styles.min.scss",
   "scripts": {
+    "preinstall": "npm access grant read-write wix:rich-content-publishers wix-rich-content-editor-common",
     "clean": "rm -rf dist/",
     "build": "rollup --environment MODULE_NAME:editor-common -c ../../../rollup.config.js",
     "build:dev": "cross-env NODE_ENV=development npm run build",

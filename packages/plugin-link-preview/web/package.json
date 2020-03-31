@@ -21,6 +21,7 @@
   "module": "dist/module.js",
   "style": "dist/styles.min.scss",
   "scripts": {
+    "preinstall": "npm access grant read-write wix:rich-content-publishers wix-rich-content-plugin-link-preview",
     "clean": "rm -rf dist/",
     "prebuild": "npm run clean",
     "build": "rollup --environment MODULE_NAME:plugin-link-preview -c ../../../rollup.config.js",
