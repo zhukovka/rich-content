@@ -2,9 +2,9 @@
 import { fixturesToTestOnSeo } from './constants';
 import { DEFAULT_DESKTOP_BROWSERS } from '../tests/constants';
 
-const testFixtureOnSsr = (fixture, compName = 'rce') =>
+const testFixtureOnSsr = fixture =>
   it(`render ${fixture} in ssr`, function() {
-    cy.loadEditorAndViewerOnSsr(fixture, compName);
+    cy.loadEditorAndViewerOnSsr(fixture, 'rce');
     cy.eyesCheckWindow(this.test.title);
   });
 

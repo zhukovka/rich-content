@@ -14,6 +14,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+  
+### :bug: Bug Fix
+- `editor-common`
+  - [#547](https://github.com/wix-incubator/rich-content/pull/547) accessibility issue fixed: focus on hidden elements when tab-clicking
 
 ### :house: Internal
 - `emoji`
@@ -21,9 +25,12 @@
 ### :rocket: New Feature
 - `html`
   - [#868](https://github.com/wix-incubator/rich-content/pull/868) save on click outside in html plugin
-### :bug: Bug Fix
-- `viewer`
-  - contextual props are passed to interactions
+- `embed`
+  - [#689](https://github.com/wix-incubator/rich-content/pull/689) embed for supported links
+
+  ### :bug: Bug Fix
+  - `viewer`
+    - contextual props are passed to interactions
 
 </details>
 <hr/>

@@ -474,6 +474,15 @@ Cypress.Commands.add('waitForHtmlToLoad', () => {
     .wait(4000);
 });
 
+Cypress.Commands.add('insertLinkAndEnter', url => {
+  cy.focusEditor();
+  cy.moveCursorToEnd()
+    .type(url)
+    .type('{enter}')
+    .wait(100);
+  cy.moveCursorToEnd();
+});
+
 // disable screenshots in debug mode. So there is no diffrence to ci.
 if (Cypress.browser.isHeaded) {
   const noop = () => {};
