@@ -15,6 +15,9 @@
     Click to see more.
   </summary>
 
+### :rocket: [New Feature]
+- `embed`
+  - [#689](https://github.com/wix-incubator/rich-content/pull/689) embed for supported links
 </details>
 <hr/>
 
