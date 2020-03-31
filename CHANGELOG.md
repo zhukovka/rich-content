@@ -15,13 +15,15 @@
     Click to see more.
   </summary>
 
-  ### :rocket: New Feature
-  - `html`
-    - [#868](https://github.com/wix-incubator/rich-content/pull/868) save on click outside in html plugin
-  
-  ### :bug: Bug Fix
-  - `viewer`
-    - [#867](https://github.com/wix-incubator/rich-content/pull/867) contextual props are passed to interactions
+### :house: Internal
+- `emoji`
+  - [#870](https://github.com/wix-incubator/rich-content/pull/870) reduce the bundle size of plugin emoji
+### :rocket: New Feature
+- `html`
+  - [#868](https://github.com/wix-incubator/rich-content/pull/868) save on click outside in html plugin
+### :bug: Bug Fix
+- `viewer`
+  - contextual props are passed to interactions
 
 </details>
 <hr/>
