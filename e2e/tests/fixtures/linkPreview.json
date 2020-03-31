@@ -10,6 +10,105 @@
       "data": {}
     },
     {
+      "key": "5n3bg",
+      "text": "Hi!  😊 here is a brief guid on how to use link preview plugin:",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 62,
+          "style": "BOLD"
+        }
+      ],
+      "entityRanges": [
+        {
+          "offset": 5,
+          "length": 1,
+          "key": 0
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "e0sg3",
+      "text": "Enter a link and then {enter} to see link preview ",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 50,
+          "style": "{\"FG\":\"#24292e\"}"
+        },
+        {
+          "offset": 0,
+          "length": 50,
+          "style": "{\"BG\":\"#ffffff\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "6nauo",
+      "text": "Enter instagram/twitter/youtube link to see embed",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 49,
+          "style": "{\"FG\":\"#24292e\"}"
+        },
+        {
+          "offset": 0,
+          "length": 49,
+          "style": "{\"BG\":\"#ffffff\"}"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "dt9a2",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "1lmse",
+      "text": "NOTE - Mock only (use @wix/rich-content to consume link metadata fetcher service) ",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "offset": 0,
+          "length": 4,
+          "style": "BOLD"
+        },
+        {
+          "offset": 0,
+          "length": 4,
+          "style": "UNDERLINE"
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "7k1i6",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
       "key": "1osk2",
       "text": " ",
       "type": "atomic",
@@ -19,7 +118,7 @@
         {
           "offset": 0,
           "length": 1,
-          "key": 0
+          "key": 1
         }
       ],
       "data": {}
@@ -43,7 +142,7 @@
         {
           "offset": 0,
           "length": 1,
-          "key": 1
+          "key": 2
         }
       ],
       "data": {}
@@ -67,7 +166,7 @@
         {
           "offset": 0,
           "length": 1,
-          "key": 2
+          "key": 3
         }
       ],
       "data": {}
@@ -91,7 +190,7 @@
         {
           "offset": 0,
           "length": 1,
-          "key": 3
+          "key": 4
         }
       ],
       "data": {}
@@ -106,7 +205,7 @@
         {
           "offset": 0,
           "length": 1,
-          "key": 4
+          "key": 5
         }
       ],
       "data": {}
@@ -136,7 +235,7 @@
         {
           "offset": 0,
           "length": 7,
-          "key": 5
+          "key": 6
         }
       ],
       "data": {}
@@ -144,6 +243,13 @@
   ],
   "entityMap": {
     "0": {
+      "type": "EMOJI_TYPE",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "emojiUnicode": "😊"
+      }
+    },
+    "1": {
       "type": "LINK_PREVIEW",
       "mutability": "IMMUTABLE",
       "data": {
@@ -160,7 +266,7 @@
         "provider_url": "www.wix.com"
       }
     },
-    "1": {
+    "2": {
       "type": "LINK_PREVIEW",
       "mutability": "IMMUTABLE",
       "data": {
@@ -177,7 +283,7 @@
         "provider_url": "https://www.worldofbuzz.com/"
       }
     },
-    "2": {
+    "3": {
       "type": "LINK_PREVIEW",
       "mutability": "IMMUTABLE",
       "data": {
@@ -193,7 +299,7 @@
         "provider_url": "https://www.youtube.com"
       }
     },
-    "3": {
+    "4": {
       "type": "LINK_PREVIEW",
       "mutability": "IMMUTABLE",
       "data": {
@@ -209,7 +315,7 @@
         "provider_url": "https://www.instagram.com"
       }
     },
-    "4": {
+    "5": {
       "type": "LINK_PREVIEW",
       "mutability": "IMMUTABLE",
       "data": {
@@ -224,7 +330,7 @@
         "provider_url": "https://twitter.com"
       }
     },
-    "5": {
+    "6": {
       "type": "LINK",
       "mutability": "MUTABLE",
       "data": {
