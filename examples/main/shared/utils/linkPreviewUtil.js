@@ -16,6 +16,14 @@ const mockOembedResults = [
     provider_url: 'www.mockUrl.com',
   },
   {
+    title:
+      'Fiesta Latina 2019 - Maluma, Luis Fonsi, Ozuna, J Balvin, CNCO, J Balvin - Latin Hits Mix 2019',
+    thumbnail_url: 'https://i.ytimg.com/vi/W9aEdHf6cA0/maxresdefault.jpg',
+    provider_url: 'https://www.youtube.com/',
+    html:
+      '<iframe width="480" height="270" src="//www.youtube.com/embed/W9aEdHf6cA0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+  },
+  {
     title: 'Free Website Builder | Create a Free Website | Wix.com',
     description:
       '	Create a free website with Wix.com. Choose a stunning template and customize anything with the Wix website builder—no coding skills needed. Create yours today!', //eslint-disable-line

@@ -9,7 +9,7 @@ class LinkPreviewViewer extends Component {
   static propTypes = {
     componentData: PropTypes.object.isRequired,
     settings: PropTypes.shape({
-      disableEmbed: PropTypes.bool,
+      enableEmbed: PropTypes.bool,
     }).isRequired,
     theme: PropTypes.object,
     isMobile: PropTypes.bool.isRequired,
@@ -73,7 +73,7 @@ class LinkPreviewViewer extends Component {
       linkPreview_url,
     } = this.styles;
 
-    if (!settings.disableEmbed && html) {
+    if (settings.enableEmbed && html) {
       const htmlCompProps = {
         componentData: {
           ...componentData,
