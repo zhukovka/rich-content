@@ -15,9 +15,16 @@
     Click to see more.
   </summary>
 
-### :rocket: [New Feature]
+### :rocket: New Feature
+- `html`
+  - [#868](https://github.com/wix-incubator/rich-content/pull/868) save on click outside in html plugin
 - `embed`
   - [#689](https://github.com/wix-incubator/rich-content/pull/689) embed for supported links
+
+  ### :bug: Bug Fix
+  - `viewer`
+    - contextual props are passed to interactions
+
 </details>
 <hr/>
 
