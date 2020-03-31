@@ -465,23 +465,26 @@ describe('plugins', () => {
     it('change link preview settings', function() {
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
       cy.setLinkSettings();
-      cy.focusEditor();
+      cy.triggerLinkPreviewViewerUpdate();
+      cy.eyesCheckWindow(this.test.title);
     });
     it('convert link preview to regular link', function() {
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
       cy.get(`[data-hook=baseToolbarButton_replaceToLink][tabindex!=-1]`).click();
-      cy.moveCursorToEnd();
-      cy.focusEditor();
+      cy.triggerLinkPreviewViewerUpdate();
+      cy.eyesCheckWindow(this.test.title);
     });
     it('backspace key should convert link preview to regular link', function() {
       cy.moveCursorToEnd().type('{backspace}');
-      cy.focusEditor();
+      cy.triggerLinkPreviewViewerUpdate();
+      cy.eyesCheckWindow(this.test.title);
     });
     it('delete link preview', function() {
       cy.moveCursorToStart();
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
       cy.get(`[data-hook=blockButton_delete][tabindex!=-1]`).click();
-      cy.moveCursorToEnd();
+      cy.triggerLinkPreviewViewerUpdate();
+      cy.eyesCheckWindow(this.test.title);
     });
   });
 
@@ -494,10 +497,12 @@ describe('plugins', () => {
 
     it('should create link preview from link after enter key', function() {
       cy.insertLinkAndEnter('www.wix.com');
+      cy.eyesCheckWindow(this.test.title);
     });
 
     it('should embed link that supports embed', function() {
       cy.insertLinkAndEnter('www.instagram.com');
+      cy.eyesCheckWindow(this.test.title);
     });
   });
 });
