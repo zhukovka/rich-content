@@ -40,7 +40,7 @@ export default ({ helpers, settings, isMobile }) => {
       name: socialType,
       tooltipText: `Add a ${socialType} post`,
       Icon: socialIconsMap[socialType],
-      componentData: { ...DEFAULTS, socialType, fetchMetadata: settings.fetchMetadata },
+      componentData: { ...DEFAULTS, socialType, fetchData: settings.fetchData },
       toolbars: [TOOLBARS.FOOTER, TOOLBARS.SIDE],
       helpers,
       modalElement: embedURLInputModal,

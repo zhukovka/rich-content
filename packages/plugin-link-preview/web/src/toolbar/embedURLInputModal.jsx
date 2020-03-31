@@ -23,8 +23,8 @@ export default class embedURLInputModal extends Component {
     const { url } = this.state;
     if (url) {
       const { componentData, pubsub, onConfirm } = this.props;
-      const { fetchMetadata } = componentData;
-      fetchMetadata(url).then(({ html }) => {
+      const { fetchData } = componentData;
+      fetchData(url).then(({ html }) => {
         if (!isValidHtml(html)) {
           this.setState({ submittedInvalidUrl: true });
         } else {
