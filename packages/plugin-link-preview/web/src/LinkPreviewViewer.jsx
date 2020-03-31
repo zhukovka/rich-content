@@ -66,10 +66,7 @@ class LinkPreviewViewer extends Component {
           ...componentData,
           srcType: 'html',
           src: unescape(html),
-          config: {
-            height: this.iframe?.style.height,
-            width: this.iframe?.style.width,
-          },
+          config: {},
         },
         settings,
         theme,
