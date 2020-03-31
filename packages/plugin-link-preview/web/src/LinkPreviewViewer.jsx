@@ -32,14 +32,17 @@ class LinkPreviewViewer extends Component {
   componentDidMount() {
     validate(pluginLinkPreviewSchema, this.props.componentData);
     this.setState({ imageHeight: this.image?.offsetHeight });
+    const { componentData } = this.props;
+    const { html } = componentData;
+    const iframeDocument = document.getElementById('myiframe')?.contentWindow?.document;
+    if (iframeDocument) {
+      iframeDocument.open('text/html', 'replace');
+      iframeDocument.write(unescape(html));
+      iframeDocument.close();
+    }
   }
 
   getUrlForDisplay = url => url.replace(/^https?:\/\//, '');
-
-  handleIframeLoad = () => {
-    this.iframe.style.height = this.iframe.contentWindow.document.body.scrollHeight + 'px';
-    this.iframe.style.width = this.iframe.contentWindow.document.body.scrollWidth + 'px';
-  };
 
   render() {
     const { componentData, theme, isMobile, settings } = this.props;
