@@ -21,7 +21,7 @@
   
   ### :bug: Bug Fix
   - `viewer`
-    - contextual props are passed to interactions
+    - [#867](https://github.com/wix-incubator/rich-content/pull/867) contextual props are passed to interactions
 
 </details>
 <hr/>
