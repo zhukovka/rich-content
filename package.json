@@ -19,6 +19,7 @@
     "watch": "lerna run --parallel --ignore ${LERNA_IGNORE:-'wix-rich-content-@(test-env|example|storybook)'} watch",
     "watch:core": "LERNA_IGNORE='wix-rich-content-@(plugin-*|fullscreen)' npm run watch",
     "release": "node scripts/publishPackages",
+    "publish": "echo 'We Are Good, Thank You' && exit 0",
     "deploy": "node scripts/deployExamples",
     "createVersion": "node scripts/createVersion",
     "storybook": "npm run start --prefix examples/storybook",
