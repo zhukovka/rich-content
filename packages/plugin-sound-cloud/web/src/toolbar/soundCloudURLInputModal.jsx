@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { SoundCloudIcon } from '../icons';
 import classNames from 'classnames';
 import { SettingsPanelFooter, TextInput, CloseIcon } from 'wix-rich-content-editor-common';
 import { mergeStyles } from 'wix-rich-content-common';
@@ -84,7 +83,6 @@ export default class SoundCloudURLInputModal extends Component {
           aria-labelledby="sound_cloud_modal_hdr"
           className={classNames(styles.header)}
         >
-          <SoundCloudIcon className={classNames(styles.header_icon)} />
           <div id="sound_cloud_modal_hdr" className={styles.header_text}>
             {!isMobile
               ? t('SoundCloudUploadModal_Header')
