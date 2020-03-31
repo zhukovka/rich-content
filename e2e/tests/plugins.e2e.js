@@ -493,11 +493,11 @@ describe('plugins', () => {
     beforeEach('load editor', () => cy.loadEditorAndViewer('empty'));
 
     it('should create link preview from link after enter key', function() {
-      cy.convertLinkToPreview('www.wix.com');
+      cy.insertLinkAndEnter('www.wix.com');
     });
 
     it('should embed link that supports embed', function() {
-      cy.convertLinkToPreview('www.instagram.com');
+      cy.insertLinkAndEnter('www.instagram.com');
     });
   });
 });

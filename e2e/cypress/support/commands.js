@@ -472,7 +472,7 @@ Cypress.Commands.add('waitForHtmlToLoad', () => {
     .wait(4000);
 });
 
-Cypress.Commands.add('convertLinkToPreview', url => {
+Cypress.Commands.add('insertLinkAndEnter', url => {
   cy.focusEditor();
   cy.moveCursorToEnd()
     .type(url)
