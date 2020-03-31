@@ -10,7 +10,7 @@ class LinkPreviewViewer extends Component {
     componentData: PropTypes.object.isRequired,
     settings: PropTypes.shape({
       enableEmbed: PropTypes.bool,
-    }).isRequired,
+    }),
     theme: PropTypes.object,
     isMobile: PropTypes.bool.isRequired,
   };
