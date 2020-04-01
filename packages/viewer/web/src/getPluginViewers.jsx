@@ -11,7 +11,7 @@ import {
 import { getInteractionWrapper, DefaultInteractionWrapper } from './utils/getInteractionWrapper';
 
 class PluginViewer extends PureComponent {
-  getContainerClassNames = hasLink => {
+  getContainerClassNames = (hasLink, isEmbed) => {
     const {
       pluginComponent,
       componentData,
@@ -25,6 +25,7 @@ class PluginViewer extends PureComponent {
         [styles.pluginContainerMobile]: isMobile,
         [styles.anchor]: hasLink,
         [theme.anchor]: hasLink && theme.anchor,
+        [styles.embed]: isEmbed,
       },
       isFunction(alignment)
         ? alignment(componentData, theme, styles, isMobile)
@@ -66,8 +67,10 @@ class PluginViewer extends PureComponent {
       if (elementType !== 'inline') {
         const { config = {} } = componentData;
         const hasLink = config.link;
+        const hasHtml = componentData.html;
+        const isEmbed = hasLink && hasHtml;
         const ContainerElement = !hasLink ? 'div' : 'a';
-        const containerClassNames = this.getContainerClassNames(hasLink);
+        const containerClassNames = this.getContainerClassNames(hasLink, isEmbed);
         let containerProps = {};
         if (hasLink) {
           const { url, target, rel } = config.link;
