@@ -72,7 +72,6 @@ class HtmlComponent extends Component {
   setHeight = iframeHeight => {
     if (iframeHeight !== this.state.iframeHeight) {
       this.setState({ iframeHeight });
-      this.props.onHeightChange && this.props.onHeightChange(iframeHeight);
       this.props.store?.update('componentData', { config: { height: iframeHeight } });
     }
   };
@@ -85,13 +84,13 @@ class HtmlComponent extends Component {
     validate(props.componentData, pluginHtmlSchema);
 
     const {
-      componentData: { src, srcType, config: { width: currentWidth, height: currentHeight } = {} },
+      componentData: { src, srcType, config: { width: currentWidth } = {} },
       settings: { width, height } = {},
     } = props;
 
     const style = {
       width: this.props.isMobile ? 'auto' : currentWidth || width || INIT_WIDTH,
-      height: currentHeight || height || INIT_HEIGHT,
+      height: this.state.iframeHeight || height || INIT_HEIGHT,
       maxHeight: this.state.iframeHeight,
     };
 
@@ -139,7 +138,6 @@ HtmlComponent.propTypes = {
   siteDomain: PropTypes.string,
   theme: PropTypes.object.isRequired,
   isMobile: PropTypes.bool.isRequired,
-  onHeightChange: PropTypes.func,
 };
 
 export { HtmlComponent as Component, defaults };
