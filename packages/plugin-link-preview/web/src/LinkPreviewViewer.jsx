@@ -67,11 +67,14 @@ class LinkPreviewViewer extends Component {
           ...componentData,
           srcType: 'html',
           src: unescape(html),
-          config: {},
+          config: {
+            height: this.state.iframeHeight,
+          },
         },
         settings,
         theme,
         isMobile,
+        onHeightChange: iframeHeight => this.setState({ iframeHeight }),
       };
 
       return <HtmlComponent {...htmlCompProps} />;

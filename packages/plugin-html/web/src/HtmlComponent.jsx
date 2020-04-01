@@ -72,6 +72,7 @@ class HtmlComponent extends Component {
   setHeight = iframeHeight => {
     if (iframeHeight !== this.state.iframeHeight) {
       this.setState({ iframeHeight });
+      this.props.onHeightChange && this.props.onHeightChange(iframeHeight);
       this.props.store?.update('componentData', { config: { height: iframeHeight } });
     }
   };
@@ -138,6 +139,7 @@ HtmlComponent.propTypes = {
   siteDomain: PropTypes.string,
   theme: PropTypes.object.isRequired,
   isMobile: PropTypes.bool.isRequired,
+  onHeightChange: PropTypes.func,
 };
 
 export { HtmlComponent as Component, defaults };
