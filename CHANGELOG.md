@@ -15,25 +15,26 @@
     Click to see more.
   </summary>
   
+
+</details>
+<hr/>
+
+## 7.1.4 (Apr 1, 2020)
 ### :bug: Bug Fix
 - `editor-common`
   - [#547](https://github.com/wix-incubator/rich-content/pull/547) accessibility issue fixed: focus on hidden elements when tab-clicking
-
-### :house: Internal
-- `emoji`
-  - [#870](https://github.com/wix-incubator/rich-content/pull/870) reduce the bundle size of plugin emoji
+- `viewer`
+    - contextual props are passed to interactions
+  
 ### :rocket: New Feature
 - `html`
   - [#868](https://github.com/wix-incubator/rich-content/pull/868) save on click outside in html plugin
 - `embed`
   - [#689](https://github.com/wix-incubator/rich-content/pull/689) embed for supported links
 
-  ### :bug: Bug Fix
-  - `viewer`
-    - contextual props are passed to interactions
-
-</details>
-<hr/>
+### :house: Internal
+- `emoji`
+  - [#870](https://github.com/wix-incubator/rich-content/pull/870) reduce the bundle size of plugin emoji
 
 ## 7.1.3 (Mar 30, 2020)
 ### :bug: Bug Fix
