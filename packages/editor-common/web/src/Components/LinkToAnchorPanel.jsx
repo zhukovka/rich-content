@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { mergeStyles } from 'wix-rich-content-common';
 import styles from '../../statics/styles/new-link-panel.scss';
 import Dropdown from './Dropdown';
-import { getAnchorableBlocks, filterAnchorableBlocks } from '../Utils/draftUtils';
+import { filterAnchorableBlocks } from '../Utils/draftUtils';
 import { ANCHORABLE_BLOCKS } from '../consts';
 import FilterDropdownElement from './AnchorComponents/FilterDropdownElement';
 import AnchorableElement from './AnchorComponents/AnchorableElement';
@@ -139,8 +139,7 @@ class LinkToAnchorPanel extends Component {
   render() {
     const { styles } = this;
     const { filter } = this.state;
-    const { ariaProps, t, getEditorState, anchorValues, onEnter } = this.props;
-    const anchorableBlocksData = getAnchorableBlocks(getEditorState());
+    const { ariaProps, t, anchorValues, onEnter, anchorableBlocksData } = this.props;
     const { anchorableBlocks, pluginsIncluded } = anchorableBlocksData;
     const filteredAnchorableBlocks =
       filter.value === 'all'
@@ -185,6 +184,7 @@ class LinkToAnchorPanel extends Component {
 }
 
 LinkToAnchorPanel.propTypes = {
+  anchorableBlocksData: PropTypes.array.isRequired,
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,

@@ -11,6 +11,7 @@ import RadioGroupHorizontal from './RadioGroupHorizontal';
 import RadioGroup from './RadioGroup';
 import styles from '../../statics/styles/new-link-panel.scss';
 import { LinkIcon } from '../Icons';
+import { getAnchorableBlocks } from '../Utils/draftUtils';
 
 const LinkType = props => (
   <RadioGroupHorizontal
@@ -31,15 +32,22 @@ class NewLinkPanelContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.styles = mergeStyles({ styles, theme: props.theme });
-    const { url, targetBlank, nofollow } = this.props;
+    const { url, targetBlank, nofollow, getEditorState } = this.props;
+    this.anchorableBlocksData = getAnchorableBlocks(getEditorState());
     this.state = {
       linkPanelValues: { url: url && isValidUrl(url) ? url : undefined, targetBlank, nofollow },
       anchorPanelValues: {
-        url: url && !isValidUrl(url) ? url.slice(0, 5) : undefined, // slice to remove the unique id from the anchor
+        url:
+          url && !isValidUrl(url) && !this.isAnchorDeleted(url.slice(0, 5))
+            ? url.slice(0, 5)
+            : undefined, // slice to remove the unique id from the anchor
       },
       radioGroupValue: !url || isValidUrl(url) ? 'external-link' : 'anchor',
     };
   }
+
+  isAnchorDeleted = url =>
+    !this.anchorableBlocksData.anchorableBlocks.some(block => url === block.key);
 
   isDoneButtonEnable = () => {
     const { radioGroupValue } = this.state;
@@ -78,7 +86,8 @@ class NewLinkPanelContainer extends PureComponent {
   onDoneAnchor = () => {
     const { anchorPanelValues } = this.state;
 
-    //TODO: according to the block key, add to the html element id attribute with the block key
+    //add to the html element id attribute with the block key + uniqueId
+    /*
     const uniqueId =
       anchorPanelValues.url === 'test-blockKey'
         ? '123456789'
@@ -86,16 +95,23 @@ class NewLinkPanelContainer extends PureComponent {
             .toString(36)
             .substr(2, 9);
     const uniqueBlockKey = `${anchorPanelValues.url}-${uniqueId}`;
+    */
+    const uniqueBlockKey = `${anchorPanelValues.url}`;
     //editor
-    const listOfAlllocks = document.querySelectorAll(`[data-editor]`);
-    let blockElementToAnchor;
-    listOfAlllocks.forEach(e => {
+    const listOfAllEditorBlocks = document.querySelectorAll(`[data-editor]`);
+    let editorBlockElementToAnchor;
+    listOfAllEditorBlocks.forEach(e => {
       if (e.dataset.offsetKey === `${anchorPanelValues.url}-0-0`) {
-        blockElementToAnchor = e;
+        editorBlockElementToAnchor = e;
       }
     });
-    blockElementToAnchor.setAttribute('id', `editor-${uniqueBlockKey}`);
+    editorBlockElementToAnchor.setAttribute('id', `editor-${uniqueBlockKey}`);
     //viewer
+    const viewerBlockElementToAnchor = document.querySelector(
+      `[id=viewer-${anchorPanelValues.url}]`
+    );
+    viewerBlockElementToAnchor.setAttribute('id', `viewer-${uniqueBlockKey}`);
+    //
 
     if (anchorPanelValues.url) {
       this.props.onDone({ ...anchorPanelValues, url: uniqueBlockKey, linkToAnchor: true });
@@ -292,6 +308,7 @@ class NewLinkPanelContainer extends PureComponent {
           )}
           {radioGroupValue === 'anchor' && (
             <LinkToAnchorPanel
+              anchorableBlocksData={this.anchorableBlocksData}
               getEditorState={getEditorState}
               setEditorState={setEditorState}
               onEnter={this.onDone}

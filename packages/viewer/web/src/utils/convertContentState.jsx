@@ -63,6 +63,7 @@ const getBlocks = (mergedStyles, textDirection, { config }) => {
         const _child = isEmptyBlock(child) ? <br /> : withDiv ? <div>{child}</div> : child;
         const inner = (
           <Type
+            id={`viewer-${blockProps.keys[i]}`}
             className={getBlockStyleClasses(
               blockProps.data[i],
               mergedStyles,

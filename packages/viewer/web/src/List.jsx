@@ -41,6 +41,7 @@ const List = ({
 
         return (
           <li
+            id={`viewer-${blockProps.keys[i]}`}
             className={getBlockStyleClasses(
               dataEntry,
               mergedStyles,

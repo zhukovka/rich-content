@@ -42,6 +42,7 @@ class PluginViewer extends PureComponent {
   /* eslint-disable complexity */
   render() {
     const {
+      id,
       type,
       pluginComponent,
       componentData,
@@ -95,7 +96,7 @@ class PluginViewer extends PureComponent {
         }
 
         return (
-          <div className={styles.atomic}>
+          <div id={id} className={styles.atomic}>
             <ContainerElement className={containerClassNames} {...containerProps}>
               {isFunction(container) ? (
                 <div className={container(theme)}>
@@ -117,6 +118,7 @@ class PluginViewer extends PureComponent {
 }
 
 PluginViewer.propTypes = {
+  id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   componentData: PropTypes.object.isRequired,
   pluginComponent: PropTypes.object.isRequired,
@@ -147,7 +149,7 @@ PluginViewer.defaultProps = {
 const getPluginViewers = (typeMap, context, styles) => {
   const res = {};
   Object.keys(typeMap).forEach((type, i) => {
-    res[type] = (children, entity, { key }) => {
+    res[type] = (children, entity, { key, block }) => {
       const pluginComponent = typeMap[type];
       const isInline = pluginComponent.elementType === 'inline';
       const { interactions } = entity;
@@ -159,6 +161,7 @@ const getPluginViewers = (typeMap, context, styles) => {
       return (
         <ViewerWrapper key={`${i}_${key}`}>
           <PluginViewer
+            id={`viewer-${block.key}`}
             type={type}
             pluginComponent={pluginComponent}
             componentData={entity}
