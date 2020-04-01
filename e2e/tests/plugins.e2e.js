@@ -478,13 +478,14 @@ describe('plugins', () => {
       cy.focusEditor();
     });
     it('delete link preview', function() {
+      cy.moveCursorToStart();
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
       cy.get(`[data-hook=blockButton_delete][tabindex!=-1]`).click();
       cy.moveCursorToEnd();
     });
   });
 
-  context('convert link to link preview', () => {
+  context('convert link to preview', () => {
     before(function() {
       eyesOpen(this);
     });
@@ -492,12 +493,11 @@ describe('plugins', () => {
     beforeEach('load editor', () => cy.loadEditorAndViewer('empty'));
 
     it('should create link preview from link after enter key', function() {
-      cy.focusEditor();
-      cy.moveCursorToEnd()
-        .type('www.wix.com')
-        .type('{enter}')
-        .wait(100);
-      cy.moveCursorToEnd();
+      cy.insertLinkAndEnter('www.wix.com');
+    });
+
+    it('should embed link that supports embed', function() {
+      cy.insertLinkAndEnter('www.instagram.com');
     });
   });
 });

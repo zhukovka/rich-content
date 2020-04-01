@@ -10,7 +10,7 @@ class LinkPreviewViewer extends Component {
     componentData: PropTypes.object.isRequired,
     settings: PropTypes.shape({
       enableEmbed: PropTypes.bool,
-    }).isRequired,
+    }),
     theme: PropTypes.object,
     isMobile: PropTypes.bool.isRequired,
   };
@@ -71,10 +71,7 @@ class LinkPreviewViewer extends Component {
           ...componentData,
           srcType: 'html',
           src: unescape(html),
-          config: {
-            height: this.iframe?.style.height,
-            width: this.iframe?.style.width,
-          },
+          config: {},
         },
         settings,
         theme,
