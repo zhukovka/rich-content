@@ -95,28 +95,26 @@ class HtmlComponent extends Component {
     };
 
     return (
-      <div style={style}>
-        <div
-          className={this.styles.htmlComponent}
-          ref={ref => (this.element = ref)}
-          style={style}
-          data-hook="HtmlComponent"
-        >
-          {srcType === SRC_TYPE_HTML && src && (
-            <IframeHtml
-              key={SRC_TYPE_HTML}
-              tabIndex={0}
-              html={html}
-              onHeightChange={this.setHeight}
-            />
-          )}
+      <div
+        className={this.styles.htmlComponent}
+        ref={ref => (this.element = ref)}
+        style={style}
+        data-hook="HtmlComponent"
+      >
+        {srcType === SRC_TYPE_HTML && src && (
+          <IframeHtml
+            key={SRC_TYPE_HTML}
+            tabIndex={0}
+            html={html}
+            onHeightChange={this.setHeight}
+          />
+        )}
 
-          {srcType === SRC_TYPE_URL && isValidUrl(src) && (
-            <IframeUrl key={SRC_TYPE_URL} tabIndex={0} src={normalizeUrl(src)} />
-          )}
+        {srcType === SRC_TYPE_URL && isValidUrl(src) && (
+          <IframeUrl key={SRC_TYPE_URL} tabIndex={0} src={normalizeUrl(src)} />
+        )}
 
-          {!src && !isValidUrl(src) && <div className={this.styles.htmlComponent_placeholder} />}
-        </div>
+        {!src && !isValidUrl(src) && <div className={this.styles.htmlComponent_placeholder} />}
       </div>
     );
   }
