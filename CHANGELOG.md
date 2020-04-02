@@ -14,7 +14,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-
+  
+### :bug: Bug Fix
+- `gallery`
+  - [#877](https://github.com/wix-incubator/rich-content/pull/877) fix gallery plugin blurry pictures
 
 </details>
 <hr/>
