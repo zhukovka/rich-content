@@ -27,7 +27,6 @@ export const COMMANDS = Object.freeze({
 
 export const MODIFIERS = Object.freeze({
   COMMAND: 'command',
-  CTRL: 'ctrl',
   OPTION: 'option',
   SHIFT: 'shift',
 });
