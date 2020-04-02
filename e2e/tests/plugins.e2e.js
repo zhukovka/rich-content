@@ -482,7 +482,7 @@ describe('plugins', () => {
     });
     it('delete link preview', function() {
       cy.moveCursorToStart();
-      cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
+      cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW).wait(100);
       cy.get(`[data-hook=blockButton_delete][tabindex!=-1]`).click();
       cy.triggerLinkPreviewViewerUpdate();
       cy.eyesCheckWindow(this.test.title);
