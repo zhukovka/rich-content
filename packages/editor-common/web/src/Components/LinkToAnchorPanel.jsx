@@ -6,7 +6,7 @@ import { mergeStyles } from 'wix-rich-content-common';
 import styles from '../../statics/styles/new-link-panel.scss';
 import Dropdown from './Dropdown';
 import { filterAnchorableBlocks } from '../Utils/draftUtils';
-import { ANCHORABLE_BLOCKS } from '../consts';
+import { ANCHORABLE_BLOCKS } from './AnchorComponents/consts';
 import FilterDropdownElement from './AnchorComponents/FilterDropdownElement';
 import AnchorableElement from './AnchorComponents/AnchorableElement';
 
@@ -39,7 +39,7 @@ class LinkToAnchorPanel extends Component {
     this.setState({ showValidation: false });
     this.onChange({
       url,
-      isValid: this.isValidUrl(url),
+      isValid: true,
       isLinkToAnchor: true,
     });
   };
@@ -62,36 +62,6 @@ class LinkToAnchorPanel extends Component {
       defaultName: options.defaultName,
     });
   };
-
-  handleKeyDown = e => {
-    const { onEnter, onEscape } = this.props;
-    if (e.key === 'Enter') {
-      this.setState({ showValidation: true });
-      e.preventDefault();
-      onEnter && onEnter(e);
-    } else if (e.key === 'Escape') {
-      e.preventDefault();
-      onEscape && onEscape(e);
-    }
-  };
-
-  isValidUrl = () => {
-    return true;
-  };
-  // isValidUrl = url => {
-  //   return !url || this.props.anchorsEntities.some(anchor => anchor.data.name === url);
-  // };
-
-  getAnchorInputProps() {
-    const { styles } = this;
-    return {
-      type: 'string',
-      className: styles.linkPanel_textInput,
-      placeholder: this.props.placeholder || this.props.t('LinkPanel_Anchor_Placeholder'),
-      'data-hook': 'anchorLinkPanelInput',
-      onBlur: () => this.setState({ showValidation: true }),
-    };
-  }
 
   filterChanged = newFilter => {
     this.setState({ filter: newFilter });

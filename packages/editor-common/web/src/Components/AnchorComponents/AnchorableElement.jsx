@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { mergeStyles, getImageSrc, isValidUrl } from 'wix-rich-content-common';
 import styles from '../../../statics/styles/new-link-panel.scss';
-import { ANCHORABLE_BLOCKS } from '../../consts';
+import { ANCHORABLE_BLOCKS } from './consts';
 import classNames from 'classnames';
 
 class AnchorableElement extends PureComponent {
