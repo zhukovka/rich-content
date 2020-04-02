@@ -9,6 +9,4 @@ export {
   convertFromRaw,
 } from './lib/editorStateConversion';
 
-export { TextSearchInput } from './RichContentEditor/TextSearchInput';
-
 export { RichContentEditorModal, RichContentEditor };
