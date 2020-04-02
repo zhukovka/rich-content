@@ -473,12 +473,12 @@ describe('plugins', () => {
       cy.triggerLinkPreviewViewerUpdate();
       cy.eyesCheckWindow(this.test.title);
     });
-    it('backspace key should convert link preview to regular link', function() {
-      cy.moveCursorToStart()
+    it.only('backspace key should convert link preview to regular link', function() {
+      cy.focusEditor()
         .type('{downarrow}{downarrow}')
-        .type('{backspace}')
-        .triggerLinkPreviewViewerUpdate()
-        .eyesCheckWindow(this.test.title);
+        .type('{backspace}');
+      cy.triggerLinkPreviewViewerUpdate();
+      cy.eyesCheckWindow(this.test.title);
     });
     it('delete link preview', function() {
       cy.moveCursorToStart();
