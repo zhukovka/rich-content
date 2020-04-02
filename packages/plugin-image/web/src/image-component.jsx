@@ -108,6 +108,24 @@ class ImageComponent extends React.Component {
     return { isLoading: true, dataUrl: EMPTY_SMALL_PLACEHOLDER };
   };
 
+  handleError = error => {
+    this.resetLoadingState(error);
+    let handled = false;
+    if (typeof error === 'object') {
+      const { displayMessage, msg } = error;
+
+      const displayError = typeof displayMessage === 'undefined' || displayError;
+      if (displayError) {
+        this.setState({ errorMsg: msg });
+        setTimeout(() => this.props.store.get('deleteBlock')(), 5000);
+        handled = true;
+      }
+    }
+    if (!handled) {
+      this.props.store.get('deleteBlock')();
+    }
+  };
+
   handleFilesAdded = ({ data, error }) => {
     const imageData = data.length ? data[0] : data;
     const config = { ...this.props.componentData.config };
@@ -118,8 +136,12 @@ class ImageComponent extends React.Component {
       config,
       src: imageData,
     };
-    this.props.store.update('componentData', componentData, this.props.block.getKey());
-    this.resetLoadingState(error);
+    if (error) {
+      this.handleError(error);
+    } else {
+      this.props.store.update('componentData', componentData, this.props.block.getKey());
+      this.resetLoadingState(error);
+    }
   };
 
   handleMetadataChange = newMetadata => {
@@ -161,6 +183,7 @@ class ImageComponent extends React.Component {
       setComponentUrl,
     } = this.props;
 
+    const { errorMsg } = this.state;
     return (
       <>
         <ImageViewer
@@ -184,6 +207,7 @@ class ImageComponent extends React.Component {
         />
 
         {this.state.isLoading && this.renderLoader()}
+        {errorMsg && <div style={{ background: 'red' }}>ERROR! {errorMsg}</div>}
       </>
     );
   }
