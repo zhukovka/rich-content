@@ -160,6 +160,7 @@ class LinkToAnchorPanel extends Component {
               controlClassName={styles.LinkToAnchorPanel_dropdownControl}
               menuClassName={styles.LinkToAnchorPanel_dropdownMenu}
               onChange={this.filterChanged}
+              tabIndex={0}
             />
           </div>
         </div>
