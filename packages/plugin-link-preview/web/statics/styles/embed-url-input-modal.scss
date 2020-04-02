@@ -64,3 +64,25 @@
     padding: 9px 15px 10px 15px;
   }
 }
+
+.textInput_input {
+  font-size: 12px;
+  line-height: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  &:focus,
+  &:hover {
+    border-color: black;
+  }
+}
+
+.textInput_input_invalid {
+  border-color: #ee5951;
+  &:focus,
+  &:hover {
+    border-color: #ee5951;
+  }
+}

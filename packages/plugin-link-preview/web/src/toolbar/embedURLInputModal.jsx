@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { SettingsPanelFooter, TextInput, CloseIcon } from 'wix-rich-content-editor-common';
 import styles from '../../statics/styles/embed-url-input-modal.scss';
-import { isValidHtml } from '../linkPreviewUtil';
+import { isValidUrl } from 'wix-rich-content-common';
 
 export default class embedURLInputModal extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ export default class embedURLInputModal extends Component {
       const { componentData, pubsub, onConfirm } = this.props;
       const { fetchData } = componentData;
       fetchData(url).then(({ html }) => {
-        if (!isValidHtml(html)) {
+        if (!isValidUrl(url)) {
           this.setState({ submittedInvalidUrl: true });
         } else {
           if (onConfirm) {
@@ -95,10 +95,10 @@ export default class embedURLInputModal extends Component {
             onKeyPress={this.handleKeyPress}
             onChange={this.onUrlChange}
             value={url}
+            error={submittedInvalidUrl && t('SoundCloudUploadModal_Input_InvalidUrl')}
             placeholder={t(`EmbedURL_Social_${socialType}_Placeholder`)}
             theme={styles}
             data-hook="socialEmbedUploadModalInput"
-            error={submittedInvalidUrl ? 'This Url has no embed' : null}
           />
         </div>
         <SettingsPanelFooter
