@@ -6,11 +6,12 @@ import {
   BlockQuoteIcon,
   CodeBlockIcon,
   TitleIcon,
+  ParagraphIcon,
 } from '../../Icons';
 
 export const ANCHORABLE_BLOCKS = Object.freeze({
   unstyled: {
-    thumbnail: 'P',
+    thumbnail: <ParagraphIcon style={{ width: 'fit-content' }} />,
     type: 'LinkTo_Modal_Section_Item_Paragraph',
     filter: 'LinkTo_Modal_Section_Filter_Paragraphs',
   },

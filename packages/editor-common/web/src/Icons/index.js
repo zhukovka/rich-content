@@ -30,4 +30,5 @@ export { default as GalleryIcon } from './AnchorsThumbnails/GalleryIcon';
 export { default as BlockQuoteIcon } from './AnchorsThumbnails/BlockQuoteIcon';
 export { default as CodeBlockIcon } from './AnchorsThumbnails/CodeBlockIcon';
 export { default as TitleIcon } from './AnchorsThumbnails/TitleIcon';
+export { default as ParagraphIcon } from './AnchorsThumbnails/ParagraphIcon';
 // export { default as InfoIcon } from './InfoIcon';
