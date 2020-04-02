@@ -469,7 +469,7 @@ describe('plugins', () => {
     });
     it('convert link preview to regular link', function() {
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
-      cy.get(`[data-hook=baseToolbarButton_replaceToLink][tabindex!=-1]`).click();
+      cy.clickToolbarButton('baseToolbarButton_replaceToLink');
       cy.triggerLinkPreviewViewerUpdate();
       cy.eyesCheckWindow(this.test.title);
     });
@@ -483,7 +483,7 @@ describe('plugins', () => {
     it('delete link preview', function() {
       cy.moveCursorToStart();
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW).wait(100);
-      cy.get(`[data-hook=blockButton_delete][tabindex!=-1]`).click();
+      cy.clickToolbarButton('blockButton_delete');
       cy.triggerLinkPreviewViewerUpdate();
       cy.eyesCheckWindow(this.test.title);
     });
