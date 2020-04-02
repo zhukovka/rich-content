@@ -476,9 +476,9 @@ describe('plugins', () => {
     it('backspace key should convert link preview to regular link', function() {
       cy.moveCursorToStart()
         .type('{downarrow}{downarrow}')
-        .type('{backspace}');
-      cy.focusEditor();
-      cy.eyesCheckWindow(this.test.title);
+        .type('{backspace}')
+        .triggerLinkPreviewViewerUpdate()
+        .eyesCheckWindow(this.test.title);
     });
     it('delete link preview', function() {
       cy.moveCursorToStart();
