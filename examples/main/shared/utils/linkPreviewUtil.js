@@ -75,5 +75,6 @@ const mockOembedResults = {
 
 const mockHtml = {
   title: 'I am a mock html',
-  html: '<p>Hello World!</p>',
+  html:
+    '<div style="background-color: black; border: 10px solid pink; height: 400px; text-align: center; color: white;">This is a mock embed</div>',
 };

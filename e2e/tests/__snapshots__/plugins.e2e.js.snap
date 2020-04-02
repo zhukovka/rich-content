@@ -2855,7 +2855,7 @@ exports[`plugins > link preview > change link preview settings #0`] =
           "size": "content",
           "width": 350
         },
-        "html": "<p>Hello World!</p>",
+        "html": "<div style=\"background-color: black; border: 10px solid pink; height: 400px; text-align: center; color: white;\">This is a mock embed</div>",
         "title": "I am a mock html"
       },
       "mutability": "IMMUTABLE",
@@ -3021,7 +3021,7 @@ exports[`plugins > link preview > convert link preview to regular link #0`] =
           "size": "content",
           "width": 350
         },
-        "html": "<p>Hello World!</p>",
+        "html": "<div style=\"background-color: black; border: 10px solid pink; height: 400px; text-align: center; color: white;\">This is a mock embed</div>",
         "title": "I am a mock html"
       },
       "mutability": "IMMUTABLE",
@@ -3358,7 +3358,7 @@ exports[`plugins > link preview > backspace key should convert link preview to r
           "size": "content",
           "width": 350
         },
-        "html": "<p>Hello World!</p>",
+        "html": "<div style=\"background-color: black; border: 10px solid pink; height: 400px; text-align: center; color: white;\">This is a mock embed</div>",
         "title": "I am a mock html"
       },
       "mutability": "IMMUTABLE",
@@ -3573,7 +3573,7 @@ exports[`plugins > link preview > delete link preview #0`] =
           "size": "content",
           "width": 350
         },
-        "html": "<p>Hello World!</p>",
+        "html": "<div style=\"background-color: black; border: 10px solid pink; height: 400px; text-align: center; color: white;\">This is a mock embed</div>",
         "title": "I am a mock html"
       },
       "mutability": "IMMUTABLE",
@@ -3755,7 +3755,7 @@ exports[`plugins > convert link to preview > should embed link that supports emb
           "size": "content",
           "width": 350
         },
-        "html": "<p>Hello World!</p>",
+        "html": "<div style=\"background-color: black; border: 10px solid pink; height: 400px; text-align: center; color: white;\">This is a mock embed</div>",
         "title": "I am a mock html"
       },
       "mutability": "IMMUTABLE",
