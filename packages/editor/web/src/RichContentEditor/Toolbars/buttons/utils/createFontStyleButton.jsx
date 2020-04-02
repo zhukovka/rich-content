@@ -43,6 +43,7 @@ const createTextTitleButtonDropDown = (dropdownOptions, t) => {
     onChange: setBlockStyleByName,
     tooltipTextKey: 'TitleButton_Tooltip',
     showArrowIcon: true,
+    dataHookTextWrapper: 'textBlockStyleButton_Title',
   });
 };
 

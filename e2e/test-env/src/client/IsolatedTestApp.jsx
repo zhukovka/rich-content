@@ -1,17 +1,26 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { RichContentEditor } from 'wix-rich-content-editor';
+import { TOOLBARS } from 'wix-rich-content-editor-common';
 import { RichContentViewer } from 'wix-rich-content-viewer';
 import windowContentStateHoc from './WindowContentStateHoc';
 class IsolatedTestApp extends PureComponent {
   renderEditor = () => {
-    const { editorState, onEditorChange, locale, localeResource, isMobile } = this.props;
+    const { editorState, onEditorChange, locale, localeResource, isMobile, config } = this.props;
+    const getToolbarSettings = () => [
+      {
+        name: TOOLBARS.TEXT,
+        headersDropdown: true,
+      },
+    ];
+    const newConfig = config ? { ...config, getToolbarSettings } : { getToolbarSettings };
     return (
       <RichContentEditor
         onChange={onEditorChange}
         editorState={editorState}
         isMobile={isMobile}
         locale={locale}
+        config={newConfig}
         localeResource={localeResource}
       />
     );
@@ -58,6 +67,7 @@ IsolatedTestApp.propTypes = {
   localeResource: PropTypes.object,
   onEditorChange: PropTypes.func,
   seoMode: PropTypes.bool,
+  config: PropTypes.object,
 };
 
 export default windowContentStateHoc(IsolatedTestApp);

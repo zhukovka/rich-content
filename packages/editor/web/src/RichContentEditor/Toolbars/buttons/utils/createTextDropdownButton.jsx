@@ -8,7 +8,14 @@ import DropdownArrowIcon from 'wix-rich-content-editor-common/src/Icons/Dropdown
 import styles from '../../../../../statics/styles/inline-toolbar-dropdown-button.scss';
 import ClickOutside from 'react-click-outside';
 
-export default ({ buttons, activeItem, onChange, tooltipTextKey, showArrowIcon }) =>
+export default ({
+  buttons,
+  activeItem,
+  onChange,
+  tooltipTextKey,
+  showArrowIcon,
+  dataHookTextWrapper,
+}) =>
   class TextDropdownButton extends PureComponent {
     static propTypes = {
       getEditorState: PropTypes.func.isRequired,
@@ -127,6 +134,7 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey, showArrowIcon }
           <ClickOutside
             onClickOutside={() => this.setState({ isOpen: false })}
             className={this.styles.inlineToolbarDropdown_wrapper}
+            data-hook={dataHookTextWrapper}
           >
             <TextButton
               buttonContent={buttonContent}

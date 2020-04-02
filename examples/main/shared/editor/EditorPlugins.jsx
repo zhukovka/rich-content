@@ -534,7 +534,7 @@ const config = {
   getToolbarSettings: ({ pluginButtons, textButtons }) => [
     {
       name: TOOLBARS.TEXT,
-      headersDropdown: true,
+      // headersDropdown: true,
     },
     // {
     //   name: TOOLBARS.TEXT,
