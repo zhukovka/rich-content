@@ -3,5 +3,5 @@ export { default as TwitterIcon } from './TwitterIcon.svg';
 export { default as InstagramIcon } from './InstagramIcon.svg';
 export { default as PinterestIcon } from './PinterestIcon.svg';
 export { default as TikTokIcon } from './TikTokIcon.svg';
-export { default as YoutubeIcon } from './YoutubeIcon.svg';
+export { default as YouTubeIcon } from './YouTubeIcon.svg';
 export { default as FacebookIcon } from './FacebookIcon.svg';

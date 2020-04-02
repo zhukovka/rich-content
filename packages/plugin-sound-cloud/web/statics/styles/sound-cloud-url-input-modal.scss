@@ -5,7 +5,7 @@
 .container {
   padding: 80px 120px;
   @include phone {
-    padding: 24px 18px 30px;
+    padding: 160px 33px;
   }
 }
 
@@ -45,6 +45,10 @@
 .soundCloudUrlInputModal_textInput {
   margin-top: 36px;
   margin-bottom: 42px;
+  @include phone {
+    margin-top: 32px;
+    margin-bottom: 33px;
+  }
 }
 
 .modal_footer {
@@ -52,6 +56,12 @@
   border: none !important;
   padding: 0 !important;
   height: 40px !important;
+  @include phone {
+    display: grid;
+    grid-template-areas: 'save' 'cancel';
+    grid-row-gap: 9px;
+    grid-auto-columns: 100%;
+  }
 }
 
 .textInput_input {
@@ -69,13 +79,20 @@
 .settingsPanel_cancel {
   width: 132px;
   height: 40px;
+  @include phone {
+    font-size: 16px;
+    width: 100%;
+    height: 46px;
+    margin-left: 0px !important;
+  }
 }
 
 .settingsPanel_save {
   background-color: black;
   margin-left: 12px !important;
   @include phone {
-    padding: 9px 15px 10px 15px;
+    grid-area: save;
+    margin-left: 0px !important;
   }
 }
 .settingsPanel_cancel {
@@ -85,6 +102,7 @@
     color: black;
   }
   @include phone {
-    padding: 9px 15px 10px 15px;
+    grid-area: cancel;
+    border: none;
   }
 }

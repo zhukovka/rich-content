@@ -6,21 +6,23 @@ import {
   FacebookIcon,
   TikTokIcon,
   PinterestIcon,
-  YoutubeIcon,
+  YouTubeIcon,
 } from '../icons';
 import embedURLInputModal from './embedURLInputModal';
 
-const customStyles = {
-  content: {
-    maxWidth: '580px',
-    minHeight: '348px',
-  },
-};
+let content = { maxWidth: '580px', minHeight: '348px' };
 
 export default ({ helpers, settings, isMobile }) => {
   if (isMobile) {
-    customStyles.content.minHeight = '202px';
+    content = {
+      ...content,
+      minHeight: '100%',
+      minWidth: '100%',
+      margin: 0,
+      alignContent: 'center',
+    };
   }
+  const customStyles = { content };
   const { exposeEmbedButtons = {} } = settings;
   const socialTypes = [];
   Object.keys(exposeEmbedButtons).forEach(key => {
@@ -32,7 +34,7 @@ export default ({ helpers, settings, isMobile }) => {
     Facebook: FacebookIcon,
     TikTok: TikTokIcon,
     Pinterest: PinterestIcon,
-    Youtube: YoutubeIcon,
+    YouTube: YouTubeIcon,
   };
   return socialTypes.map(socialType => {
     return {

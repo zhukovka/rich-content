@@ -240,7 +240,7 @@ const config = {
       Facebook: true,
       TikTok: true,
       Pinterest: true,
-      Youtube: true,
+      YouTube: true,
     },
   },
   [EMOJI_TYPE]: {

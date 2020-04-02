@@ -72,12 +72,10 @@ export default class SoundCloudURLInputModal extends Component {
 
     return (
       <div className={styles.container} data-hook="soundCloudUploadModal" dir={languageDir}>
-        {!isMobile && (
-          <CloseIcon
-            className={classNames(styles.closeIcon)}
-            onClick={() => this.onCloseRequested()}
-          />
-        )}
+        <CloseIcon
+          className={classNames(styles.closeIcon)}
+          onClick={() => this.onCloseRequested()}
+        />
         <div
           role="heading"
           aria-labelledby="sound_cloud_modal_hdr"
