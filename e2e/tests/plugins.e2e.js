@@ -473,7 +473,7 @@ describe('plugins', () => {
       cy.triggerLinkPreviewViewerUpdate();
       cy.eyesCheckWindow(this.test.title);
     });
-    it.only('backspace key should convert link preview to regular link', function() {
+    it('backspace key should convert link preview to regular link', function() {
       cy.focusEditor()
         .type('{downarrow}{downarrow}')
         .type('{backspace}');
