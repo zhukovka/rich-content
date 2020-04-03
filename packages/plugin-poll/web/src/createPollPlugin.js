@@ -21,6 +21,7 @@ export const createPollPlugin = (config = {}) => {
     }),
     helpers,
     t,
+    isMobile,
     ...rest,
   });
 };
