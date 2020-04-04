@@ -61,6 +61,7 @@ class ImageViewer extends React.Component {
     }
     return { width: w, height: h };
   };
+
   getImageUrl(src) {
     const { helpers } = this.props || {};
     if (!src && helpers?.handleFileSelection) {
@@ -226,7 +227,7 @@ class ImageViewer extends React.Component {
 
   render() {
     this.styles = this.styles || mergeStyles({ styles, theme: this.props.theme });
-    const { componentData, className, settings, setComponentUrl, seoMode, isMobile } = this.props;
+    const { componentData, className, settings, setComponentUrl, seoMode } = this.props;
     const { fallbackImageSrc, ssrDone } = this.state;
     const data = componentData || DEFAULTS;
     const { metadata = {} } = componentData;
@@ -249,18 +250,6 @@ class ImageViewer extends React.Component {
     setComponentUrl?.(imageSrc?.highres);
     const shouldRenderPreloadImage = !seoMode && imageSrc && !isGif;
     const shouldRenderImage = (imageSrc && (seoMode || ssrDone)) || isGif;
-
-    let preloadImage;
-    if (shouldRenderPreloadImage) {
-      const preloadProps = isMobile //mobile has viewport scaling which breaks this CSS - needs to refactor
-        ? imageProps
-        : {
-            ...imageProps,
-            ...this.getRequiredDimensions(data.src),
-          };
-      preloadImage = this.renderPreloadImage(imageClassName, imageSrc, metadata.alt, preloadProps);
-    }
-
     /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
       <div
@@ -272,7 +261,8 @@ class ImageViewer extends React.Component {
         onContextMenu={this.handleContextMenu}
       >
         <div className={this.styles.imageWrapper} role="img" aria-label={metadata.alt}>
-          {preloadImage}
+          {shouldRenderPreloadImage &&
+            this.renderPreloadImage(imageClassName, imageSrc, metadata.alt, imageProps)}
           {shouldRenderImage &&
             this.renderImage(imageClassName, imageSrc, metadata.alt, imageProps, isGif, seoMode)}
           {hasExpand && (
