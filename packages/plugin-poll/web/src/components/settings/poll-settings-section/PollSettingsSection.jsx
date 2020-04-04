@@ -44,7 +44,7 @@ export class PollSettingsSection extends Component {
     });
   }
 
-  handleMultiChange = event => this.updateSettings({ multipleChoice: event.target.checked });
+  handleMultiChange = event => this.updateSettings({ multipleVotes: event.target.checked });
 
   handleSecretChange = event => this.updateSettings({ votersDisplay: event.target.checked });
 
@@ -97,7 +97,7 @@ export class PollSettingsSection extends Component {
 
         <Checkbox
           label={t('Poll_PollSettings_Tab_Settings_Multiselect')}
-          checked={componentData.poll.settings.multipleChoice}
+          checked={componentData.poll.settings.multipleVotes}
           onChange={this.handleMultiChange}
         />
       </section>

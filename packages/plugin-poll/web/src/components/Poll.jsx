@@ -68,15 +68,14 @@ class PollComponent extends Component {
 
         <ul
           className={cls(styles.options, {
-            [styles.list]: layout.type === LAYOUT.LIST,
-            [styles.grid]: layout.type === LAYOUT.GRID,
+            [styles.list]: layout.poll?.type === LAYOUT.LIST,
+            [styles.grid]: layout.poll?.type === LAYOUT.GRID,
           })}
         >
           <FlipMove typeName={null} disableAllAnimations={!rce.isViewMode}>
             {this.getOptionList().map((option, i) => (
               <li className={styles.option} key={rce.isViewMode ? option.id : option.localId || i}>
                 <PollOption
-                  imageEnabled={layout.type === LAYOUT.GRID}
                   option={option}
                   update={this.handleOptionUpdate(option.localId)}
                   remove={this.handleOptionRemove(option.localId)}
@@ -99,7 +98,11 @@ class PollComponent extends Component {
           {!rce.isViewMode && (
             <li>
               <button onClick={addOption} className={styles.addOptionButton} style={design.option}>
-                {layout.type === LAYOUT.GRID ? <AddIcon /> : t('Poll_Editor_Option_AddOption')}
+                {layout.poll?.type === LAYOUT.GRID ? (
+                  <AddIcon />
+                ) : (
+                  t('Poll_Editor_Option_AddOption')
+                )}
               </button>
             </li>
           )}

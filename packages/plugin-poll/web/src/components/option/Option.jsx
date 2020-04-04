@@ -74,8 +74,10 @@ class PollOptionComponent extends PureComponent {
   }
 
   render() {
-    const { rce, design, option, removeEnabled, imageEnabled, showResults, t } = this.props;
+    const { rce, layout, design, option, removeEnabled, showResults, t } = this.props;
     const { loading } = this.state;
+
+    const imageEnabled = layout.option?.enableImage;
 
     const borderRadius = parseInt(design.option?.borderRadius);
 

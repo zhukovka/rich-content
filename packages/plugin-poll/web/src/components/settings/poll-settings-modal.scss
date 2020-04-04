@@ -1,4 +1,63 @@
 .header {
   padding: 0 20px;
   border-bottom: 1px solid #ededed;
+
+  .title {
+    margin: 25px 0 20px;
+    font-size: 20px;
+    line-height: 1.4;
+  }
+}
+
+.section {
+  margin: 0 -10px;
+}
+
+.title {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 5px;
+}
+
+.subtitle {
+  font-size: 14px;
+  line-height: 1.43;
+  opacity: 0.6;
+  margin: 0 0 5px;
+}
+
+.label {
+  font-size: 14px;
+  line-height: 1.43;
+  margin: 0 0 5px;
+}
+
+.checkbox_label {
+  @extend .label;
+  margin-left: 12px;
+}
+
+.layout_selector {
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  grid-column-gap: 5px;
+  margin: 20px 0;
+}
+
+.selectionListOption {
+  margin: 0;
+  color: #000;
+  padding-top: 10px;
+}
+
+.selectionListOption:hover:not(.selectionListOption_selected) {
+  background-color: rgba(2, 97, 255, 0.05);
+}
+
+.selectionListOption_selected {
+  background-color: rgba(2, 97, 255, 0.2);
+}
+
+.separator {
+  margin: 20px 0;
 }

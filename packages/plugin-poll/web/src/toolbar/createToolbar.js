@@ -1,5 +1,6 @@
 import { BUTTONS, TOOLBARS, getModalStyles } from 'wix-rich-content-editor-common';
 
+import { TABS } from '../components/settings';
 import { DEFAULT_COMPONENT_DATA } from '../constants';
 import { InsertPluginIcon } from '../assets/icons';
 import { Modals } from '../modals';
@@ -20,13 +21,27 @@ export function createToolbar({ helpers, t }) {
   return {
     InlineButtons: [
       {
-        keyName: 'customize',
+        keyName: 'layout',
         type: BUTTONS.EXTERNAL_MODAL,
-        modalName: Modals.POLL_CUSTOMIZE,
-        children: 'Customize',
+        modalName: Modals.POLL_SETTINGS,
+        children: t('Poll_PollSettings_Tab_Layout_TabName'),
         modalStyles: getModalStyles(modalStyles),
         t,
-        tooltipTextKey: 'Poll_FormatToolbar_Customize_Tooltip',
+        tooltipTextKey: 'Poll_PollSettings_Common_Header',
+        activeTab: TABS.LAYOUT,
+      },
+
+      { keyName: 'separator', type: BUTTONS.SEPARATOR },
+
+      {
+        keyName: 'design',
+        type: BUTTONS.EXTERNAL_MODAL,
+        modalName: Modals.POLL_SETTINGS,
+        children: t('Poll_PollSettings_Tab_Design_TabName'),
+        modalStyles: getModalStyles(modalStyles),
+        t,
+        tooltipTextKey: 'Poll_PollSettings_Common_Header',
+        activeTab: TABS.DESIGN,
       },
 
       { keyName: 'separator', type: BUTTONS.SEPARATOR },
@@ -39,6 +54,7 @@ export function createToolbar({ helpers, t }) {
         modalStyles: getModalStyles(modalStyles),
         t,
         tooltipTextKey: 'Poll_FormatToolbar_Settings_Tooltip',
+        activeTab: TABS.SETTINGS,
       },
 
       { keyName: 'separator', type: BUTTONS.SEPARATOR },

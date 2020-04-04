@@ -3,7 +3,6 @@ export const POLL_TYPE = 'wix-draft-plugin-poll';
 export const LAYOUT = {
   LIST: 'list',
   GRID: 'grid',
-  WITH_IMAGE: 'with_image',
 };
 
 export const BACKGROUND_TYPE = {
@@ -76,7 +75,7 @@ export const DEFAULT_COMPONENT_DATA = {
     ownVotes: [],
     title: '',
     settings: {
-      multipleChoice: false,
+      multipleVotes: false,
       votersDisplay: true,
       voteRole: MEMBER_ROLES.ALL,
       viewRole: MEMBER_ROLES.VOTERS,
@@ -92,7 +91,13 @@ export const DEFAULT_COMPONENT_DATA = {
     ],
   },
   layout: {
-    type: LAYOUT.LIST,
+    poll: {
+      type: LAYOUT.LIST,
+      enableImage: false,
+    },
+    option: {
+      enableImage: false,
+    },
   },
   design: {
     poll: {
