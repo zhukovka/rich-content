@@ -70,6 +70,7 @@ class PollComponent extends Component {
           className={cls(styles.options, {
             [styles.list]: layout.poll?.type === LAYOUT.LIST,
             [styles.grid]: layout.poll?.type === LAYOUT.GRID,
+            [styles.withImage]: layout.option?.enableImage,
           })}
         >
           <FlipMove typeName={null} disableAllAnimations={!rce.isViewMode}>

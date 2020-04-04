@@ -104,25 +104,28 @@ class TextFieldComponent extends React.PureComponent {
   }
 
   render() {
-    const { textAutoResize, className, rce, endAdornment, style } = this.props;
+    const { textAutoResize, className, rce, endAdornment, style, children } = this.props;
     const { value, placeholder, rows, syncing } = this.state;
 
     if (rce.isViewMode) {
       return (
-        <p
-          style={style}
-          className={cls(
-            styles.text,
-            className,
-            textAutoResize && {
-              [styles.small]: value.length > 90,
-              [styles.medium]: value.length <= 90,
-              [styles.large]: value.length <= 60,
-            }
-          )}
-        >
-          {this.props.value}
-        </p>
+        <>
+          <p
+            style={style}
+            className={cls(
+              styles.text,
+              className,
+              textAutoResize && {
+                [styles.small]: value.length > 90,
+                [styles.medium]: value.length <= 90,
+                [styles.large]: value.length <= 60,
+              }
+            )}
+          >
+            {children}
+            <span className={styles.value}>{this.props.value || ' '}</span>
+          </p>
+        </>
       );
     }
 

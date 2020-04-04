@@ -8,7 +8,7 @@ import { withRCEHelpers, RCEHelpersPropTypes } from '../rce-helpers-context';
 import { RemoveIcon, CheckIcon, LoaderIcon } from '../../assets/icons';
 import { TextField } from '../text-field';
 import { ImageUpload } from '../image-upload';
-import { OPTION_IMAGES_POOL } from '../../constants';
+import { OPTION_IMAGES_POOL, LAYOUT } from '../../constants';
 
 import { OptionPropTypes } from './types';
 
@@ -40,6 +40,14 @@ class PollOptionComponent extends PureComponent {
     const { poll, option } = this.props;
 
     return !!poll.ownVotes.includes(option.id);
+  }
+
+  isGridLayout() {
+    return this.props.layout.poll?.type === LAYOUT.GRID;
+  }
+
+  isListLayout() {
+    return this.props.layout.poll?.type === LAYOUT.LIST;
   }
 
   handleRemove = e => {
@@ -100,6 +108,8 @@ class PollOptionComponent extends PureComponent {
             [styles.cta]: rce.isViewMode,
             [styles.withImage]: imageEnabled && option.mediaId,
             [styles.userChoice]: this.isUserChoice(),
+            [styles.list]: this.isListLayout(),
+            [styles.grid]: this.isGridLayout(),
           })}
           style={design.option}
           onClick={this.handleClick}
@@ -116,12 +126,13 @@ class PollOptionComponent extends PureComponent {
             <ImageUpload className={styles.image} value={option.mediaId} style={style.image} />
           )}
           <div className={styles.title}>
-            <p
+            <TextField
+              style={style.input}
               className={cls(styles.input, {
                 [styles.centered]: imageEnabled,
                 [styles.with_result]: showResults,
               })}
-              style={style.input}
+              value={option.title}
             >
               <span
                 className={styles.progress}
@@ -130,11 +141,10 @@ class PollOptionComponent extends PureComponent {
                   ...style.input,
                 }}
               />
-              <span className={styles.label}>{option.title || ' '}</span>
               {showResults && (
                 <span className={styles.progress_value}>{this.getVotePercentage().toFixed()}%</span>
               )}
-            </p>
+            </TextField>
           </div>
           <div className={styles.check}>
             <CheckIcon className={styles.icon} />

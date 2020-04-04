@@ -26,6 +26,9 @@
 
 .options.grid {
   grid-template-columns: repeat(2, 1fr);
+}
+
+.options.grid.withImage {
   grid-auto-rows: 1fr;
 }
 
