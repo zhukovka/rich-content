@@ -15,6 +15,7 @@ class PollHeaderComponent extends PureComponent {
     return (
       <div className={styles.header}>
         <TextField
+          maxLength={65}
           textAutoResize
           className={styles.title}
           value={poll.title}

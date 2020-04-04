@@ -9,7 +9,7 @@ import { withPoll, PollContextPropTypes } from './poll-context';
 import { withRCEHelpers, RCEHelpersPropTypes } from './rce-helpers-context';
 import { PollHeader } from './poll-header';
 import { VotedUsers } from './voted-users';
-import { PollOption } from './option';
+import { PollOption } from './poll-option';
 
 import styles from './poll.scss';
 
@@ -70,7 +70,7 @@ class PollComponent extends Component {
           className={cls(styles.options, {
             [styles.list]: layout.poll?.type === LAYOUT.LIST,
             [styles.grid]: layout.poll?.type === LAYOUT.GRID,
-            [styles.withImage]: layout.option?.enableImage,
+            [styles.with_image]: layout.option?.enableImage,
           })}
         >
           <FlipMove typeName={null} disableAllAnimations={!rce.isViewMode}>
@@ -98,8 +98,8 @@ class PollComponent extends Component {
 
           {!rce.isViewMode && (
             <li>
-              <button onClick={addOption} className={styles.addOptionButton} style={design.option}>
-                {layout.poll?.type === LAYOUT.GRID ? (
+              <button onClick={addOption} className={styles.add_option} style={design.option}>
+                {layout.poll?.type === LAYOUT.GRID && layout.option?.enableImage ? (
                   <AddIcon />
                 ) : (
                   t('Poll_Editor_Option_AddOption')

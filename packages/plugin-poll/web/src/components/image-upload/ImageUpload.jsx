@@ -7,7 +7,7 @@ import { getImageSrc } from 'wix-rich-content-common';
 import { FileInput } from 'wix-rich-content-editor-common';
 
 import { withRCEHelpers, RCEHelpersPropTypes } from '../rce-helpers-context';
-import { LoaderIcon } from '../../assets/icons';
+import { LoaderIcon, ReplaceIcon } from '../../assets/icons';
 
 import { ImageUploadPropTypes } from './types';
 import styles from './image-upload.scss';
@@ -16,6 +16,10 @@ class ImageUploadComponent extends PureComponent {
   static propTypes = {
     ...ImageUploadPropTypes,
     ...RCEHelpersPropTypes,
+  };
+
+  static defaultProps = {
+    imagesPool: [],
   };
 
   state = {
@@ -92,7 +96,7 @@ class ImageUploadComponent extends PureComponent {
   };
 
   render() {
-    const { className, rce, style = {} } = this.props;
+    const { className, rce, small, style = {} } = this.props;
     const { value, loading } = this.state;
 
     if (rce.isViewMode) {
@@ -117,9 +121,22 @@ class ImageUploadComponent extends PureComponent {
             })}
           >
             {loading ? (
-              <LoaderIcon width={48} height={48} className={styles.spinner} />
+              <LoaderIcon
+                width={small ? 24 : 48}
+                height={small ? 24 : 48}
+                className={styles.spinner}
+              />
             ) : (
-              <p className={styles.text}>Change Feature Image</p>
+              <>
+                <ReplaceIcon />
+                <p
+                  className={cls(styles.text, {
+                    [styles.hide]: small,
+                  })}
+                >
+                  Change Feature Image
+                </p>
+              </>
             )}
           </div>
         </div>

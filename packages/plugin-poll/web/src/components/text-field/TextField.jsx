@@ -104,7 +104,17 @@ class TextFieldComponent extends React.PureComponent {
   }
 
   render() {
-    const { textAutoResize, className, rce, endAdornment, style, children } = this.props;
+    const {
+      textAutoResize,
+      className,
+      rce,
+      endAdornment,
+      style,
+      children,
+      startAdornment,
+      maxLength,
+    } = this.props;
+
     const { value, placeholder, rows, syncing } = this.state;
 
     if (rce.isViewMode) {
@@ -122,6 +132,7 @@ class TextFieldComponent extends React.PureComponent {
               }
             )}
           >
+            {startAdornment}
             {children}
             <span className={styles.value}>{this.props.value || ' '}</span>
           </p>
@@ -131,7 +142,9 @@ class TextFieldComponent extends React.PureComponent {
 
     return (
       <div className={styles.root}>
+        {startAdornment}
         <textarea
+          maxLength={maxLength}
           style={style}
           ref={this.$el}
           onChange={this.handleChange}
@@ -166,14 +179,18 @@ class TextFieldComponent extends React.PureComponent {
 
 export const TextField = withRCEHelpers(TextFieldComponent);
 
-TextFieldComponent.defaultProps = {};
+TextFieldComponent.defaultProps = {
+  maxLength: 500,
+};
 
 TextFieldComponent.propTypes = {
+  maxLength: PropTypes.number,
   value: PropTypes.string,
   className: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
   textAutoResize: PropTypes.bool,
+  startAdornment: PropTypes.node,
   endAdornment: PropTypes.node,
   ...RCEHelpersPropTypes,
 };

@@ -5,4 +5,5 @@ export const ImageUploadPropTypes = {
   onChange: PropTypes.func,
   className: PropTypes.string,
   imagesPool: PropTypes.array,
+  small: PropTypes.bool,
 };

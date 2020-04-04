@@ -1,7 +1,7 @@
 .option {
   position: relative;
 
-  &.userChoice {
+  &.user_choice {
     border: 2px solid #fff;
 
     .check {
@@ -22,7 +22,9 @@
     border-radius: 50%;
   }
 
+  &,
   .image,
+  .input,
   .title {
     transition: border-radius 500ms;
   }
@@ -30,10 +32,6 @@
 
 .image {
   height: 140px;
-}
-
-.option.withImage .input {
-  text-align: center;
 }
 
 .input {
@@ -53,6 +51,23 @@
 
   &.with_result {
     padding-right: 60px;
+  }
+}
+
+.option.list.with_image {
+  .input {
+    padding-left: 50px;
+  }
+  
+  .image {
+    position: absolute;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    overflow: hidden;
+    left: 5px;
+    top: 50%;
+    margin-top: -18px;
   }
 }
 
@@ -81,19 +96,12 @@
   z-index: 2;
 }
 
-.votedIcon,
 .label {
   position: relative;
   z-index: 2;
 }
 
-.votedIcon {
-  position: absolute;
-  left: 25px;
-  top: 12px;
-}
-
-.userChoice .progress {
+.user_choice .progress {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -123,7 +131,7 @@
   justify-content: center;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 3;
 }
 
 .shown {
