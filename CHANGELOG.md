@@ -15,6 +15,10 @@
     Click to see more.
   </summary>
   
+</details>
+<hr/>
+
+## 7.1.5 (Apr 4, 2020)
 ### :bug: Bug Fix
 - `gallery`
   - [#879](https://github.com/wix-incubator/rich-content/pull/879) blurry pictures & not rendering
@@ -25,9 +29,6 @@
 ### :house: Internal
 - `general`
   - [#878](https://github.com/wix-incubator/rich-content/pull/878) added git comment to pr's containing surge-examples url's
-
-</details>
-<hr/>
 
 ## 7.1.4 (Apr 2, 2020)
 ### :rocket: New Feature
