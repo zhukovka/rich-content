@@ -29,7 +29,7 @@ import { createButtonPlugin, BUTTON_TYPE } from 'wix-rich-content-plugin-button'
 import { createTextHighlightPlugin, TEXT_HIGHLIGHT_TYPE } from 'wix-rich-content-plugin-text-color';
 import Highlighter from 'react-highlight-words';
 import casual from 'casual-browserify';
-import { createFetchLinkPreviewData } from 'wix-rich-content-plugin-link-preview/dist/lib/fetchLinkPreviewData';
+import { mockFetchUrlPreviewData } from '../utils/linkPreviewUtil';
 
 import 'wix-rich-content-editor-common/dist/styles.min.css';
 import 'wix-rich-content-common/dist/styles.min.css';
@@ -180,8 +180,6 @@ const uiSettings = {
   // disableRightClick: true,
 };
 
-const linkPreviewAuthorizationToken = `D0nawxcVUD5MtaQ8yKCNagHIWvpDGTRGqUfKfaqtKok.eyJpbnN0YW5jZUlkIjoiZDM0MDgzYTItNTlhYi00MTJjLWI0NjItNzk1NTk0MWMxOWQwIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiYmM0ZjIzODEtMzY1Mi00MTE4LWIxOGItY2NmNDE2MmZkZTA3Iiwic2lnbkRhdGUiOiIyMDIwLTAxLTE0VDE2OjMwOjEyLjY2OVoiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiI2N2RkZDA5ZS00YWU5LTQ5NWMtOWE4OS0wZGZiZGY4MTQ4ZTYiLCJhaWQiOiIyMWY2NzFiZS05OGZlLTQxMTctYjg4ZC02YzI2ZTJjN2YxNzkiLCJiaVRva2VuIjoiNmYwZmEwMjMtNmZmOS0wMDM0LTA1ZTktYjVhMTgyMzNjN2Q3Iiwic2l0ZU93bmVySWQiOiI4MTk2ZGM1Ni1kNDVjLTRkZWYtYTc2Ny0zMDAyNDZhYjBiN2EifQ`;
-
 const videoHandlers = {
   //media manager - Here you can call your custom video upload functionality (comment function to disable custom upload)
   handleFileSelection: (updateEntity, removeEntity) => {
@@ -241,8 +239,8 @@ const config = {
       'qeBntAvAphOaK7uYbF3kn3nl89F2OYyqBH-v_6BpDcY.eyJpbnN0YW5jZUlkIjoiYzYyNjE1NzQtMDI1Yi00YzEwLTg3N2MtMTkyYmFkZjVlOTBmIiwiYXBwRGVmSWQiOiIxNDhjMjI4Ny1jNjY5LWQ4NDktZDE1My00NjNjNzQ4NmE2OTQiLCJtZXRhU2l0ZUlkIjoiZTgzY2U3YTUtZTBhYi00MzgyLThjOTMtNWJhZGU0ODZlZjBhIiwic2lnbkRhdGUiOiIyMDIwLTAzLTIzVDE5OjUyOjMxLjU1N1oiLCJ1aWQiOiIyZGZkZDNlYi1jOTE5LTQwNzUtOGJiOC00ZjRlZmMxNmExZWMiLCJwZXJtaXNzaW9ucyI6Ik9XTkVSIiwiZGVtb01vZGUiOmZhbHNlLCJhaWQiOiIzNWNlOWU0OC00NGRiLTRkYTgtOThiZi0zMzEwMDlkNDUyY2EiLCJiaVRva2VuIjoiMmUxYWYyZDEtZTJmMC0wZjkyLTBiZWYtNDI4NjQ5NzMwNjA1Iiwic2l0ZU93bmVySWQiOiIyZGZkZDNlYi1jOTE5LTQwNzUtOGJiOC00ZjRlZmMxNmExZWMiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDMtMjNUMjM6NTI6MzEuNTU3WiIsImhhc1VzZXJSb2xlIjp0cnVlfQ',
   },
   [LINK_PREVIEW_TYPE]: {
-    disableEmbed: false,
-    fetchData: createFetchLinkPreviewData(linkPreviewAuthorizationToken),
+    enableEmbed: true,
+    fetchData: mockFetchUrlPreviewData(),
   },
   [EMOJI_TYPE]: {
     // toolbar: {

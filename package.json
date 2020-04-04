@@ -19,7 +19,8 @@
     "watch": "lerna run --parallel --ignore ${LERNA_IGNORE:-'wix-rich-content-@(test-env|example|storybook)'} watch",
     "watch:core": "LERNA_IGNORE='wix-rich-content-@(plugin-*|fullscreen)' npm run watch",
     "release": "node scripts/publishPackages",
-    "deploy": "node scripts/deployExamples",
+    "deploy": "node scripts/deployment/deployExamples",
+    "deployPRComment": "node scripts/deployment/deployPRComment",
     "createVersion": "node scripts/createVersion",
     "storybook": "npm run start --prefix examples/storybook",
     "exampleApp": "npm run start --prefix examples/main",
@@ -48,6 +49,7 @@
     }
   },
   "devDependencies": {
+    "@actions/github": "^2.1.1",
     "@applitools/eyes-cypress": "3.9.16",
     "@babel/cli": "7.2.3",
     "@babel/core": "7.2.2",
@@ -74,6 +76,7 @@
     "create-index": "^2.3.0",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
+    "cypress": "^4.2.0",
     "cypress-image-snapshot": "^3.1.1",
     "cypress-plugin-snapshots": "^1.2.9",
     "es-check": "^5.1.0",
@@ -128,8 +131,5 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
-  },
-  "dependencies": {
-    "cypress": "4.1.0"
   }
 }
