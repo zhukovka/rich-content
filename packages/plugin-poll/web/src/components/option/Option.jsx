@@ -30,16 +30,16 @@ class PollOptionComponent extends PureComponent {
     return update({ ...option, title });
   };
 
-  handleImageChange = imageUrl => {
+  handleImageChange = mediaId => {
     const { update, option } = this.props;
 
-    return update({ ...option, imageUrl });
+    return update({ ...option, mediaId });
   };
 
   isUserChoice() {
     const { poll, option } = this.props;
 
-    return !!poll.chosen.includes(option.id);
+    return !!poll.ownVotes.includes(option.id);
   }
 
   handleRemove = e => {
@@ -70,7 +70,7 @@ class PollOptionComponent extends PureComponent {
       return 0;
     }
 
-    return (option.count / poll.total) * 100;
+    return (option.count / poll.count) * 100;
   }
 
   render() {
@@ -96,7 +96,7 @@ class PollOptionComponent extends PureComponent {
         <div
           className={cls(styles.option, {
             [styles.cta]: rce.isViewMode,
-            [styles.withImage]: imageEnabled && option.imageUrl,
+            [styles.withImage]: imageEnabled && option.mediaId,
             [styles.userChoice]: this.isUserChoice(),
           })}
           style={design.option}
@@ -110,8 +110,8 @@ class PollOptionComponent extends PureComponent {
           >
             <LoaderIcon className={styles.spinner} width={36} height={36} />
           </div>
-          {imageEnabled && option.imageUrl && (
-            <ImageUpload className={styles.image} value={option.imageUrl} style={style.image} />
+          {imageEnabled && option.mediaId && (
+            <ImageUpload className={styles.image} value={option.mediaId} style={style.image} />
           )}
           <div className={styles.title}>
             <p
@@ -128,7 +128,7 @@ class PollOptionComponent extends PureComponent {
                   ...style.input,
                 }}
               />
-              <span className={styles.label}>{option.title}</span>
+              <span className={styles.label}>{option.title || ' '}</span>
               {showResults && (
                 <span className={styles.progress_value}>{this.getVotePercentage().toFixed()}%</span>
               )}
@@ -151,7 +151,7 @@ class PollOptionComponent extends PureComponent {
         {imageEnabled && (
           <ImageUpload
             className={styles.image}
-            value={option.imageUrl}
+            value={option.mediaId}
             onChange={this.handleImageChange}
             style={style.image}
             imagesPool={OPTION_IMAGES_POOL}

@@ -24,7 +24,7 @@ class PollHeaderComponent extends PureComponent {
         {layout.type === LAYOUT.WITH_IMAGE && (
           <ImageUpload
             className={styles.image}
-            value={poll.imageUrl}
+            value={poll.mediaId}
             onChange={changePollImage}
             imagesPool={POLL_IMAGES_POOL}
           />

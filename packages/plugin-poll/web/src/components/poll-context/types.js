@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 export const PollOptionPropTypes = PropTypes.shape({
   id: PropTypes.string,
   title: PropTypes.string,
-  imageUrl: PropTypes.string,
+  mediaId: PropTypes.string,
 });
 
 export const PollPropTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
-  imageUrl: PropTypes.string,
+  mediaId: PropTypes.string,
   settings: PropTypes.shape({
     multipleChoice: PropTypes.bool.isRequired,
     voteRole: PropTypes.string.isRequired,

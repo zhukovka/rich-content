@@ -23,7 +23,7 @@ class VotedUsersComponent extends PureComponent {
       return [];
     }
 
-    return this.props.option.latest.map(this.getSiteMember.bind(this));
+    return this.props.option.latestVoters.map(this.getSiteMember.bind(this));
   }
 
   renderMember(member) {
@@ -43,7 +43,7 @@ class VotedUsersComponent extends PureComponent {
   render() {
     const { option, t, showResults } = this.props;
 
-    if (!showResults || !option.latest?.length) {
+    if (!showResults || !option.latestVoters?.length) {
       return null;
     }
 

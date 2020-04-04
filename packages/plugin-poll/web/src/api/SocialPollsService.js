@@ -11,7 +11,7 @@ export class SocialPollsService {
 
   constructor(siteToken) {
     this.client = axios.create({
-      baseURL: '/_serverless/social-polls',
+      baseURL: '/_serverless/polls-client/v1',
       headers: {
         Authorization: siteToken,
       },
@@ -21,7 +21,7 @@ export class SocialPollsService {
   }
 
   successResponseInterceptor(response) {
-    return response.data;
+    return response.data?.question;
   }
 
   failResponseInterceptor(error) {
@@ -29,18 +29,22 @@ export class SocialPollsService {
   }
 
   fetchPoll(pollId) {
-    return this.client.get(`/poll/${pollId}`);
+    return this.client.get(`/questions/${pollId}`);
   }
 
-  createPoll(poll) {
+  createPoll(question) {
     const source = axios.CancelToken.source();
 
     this.cancelTokens.createPoll = source;
 
     return this.client
-      .post('/poll', poll, {
-        cancelToken: source.token,
-      })
+      .post(
+        '/questions',
+        { question },
+        {
+          cancelToken: source.token,
+        }
+      )
       .then(response => {
         this.cancelTokens.createPoll = null;
         return response;
@@ -48,10 +52,14 @@ export class SocialPollsService {
   }
 
   vote(pollId, optionId) {
-    return this.client.post(`/poll/${pollId}/option/${optionId}`);
+    return this.client.post(`/questions/${pollId}/vote`, {
+      optionId,
+    });
   }
 
   unvote(pollId, optionId) {
-    return this.client.delete(`/poll/${pollId}/option/${optionId}`);
+    return this.client.post(`/questions/${pollId}/unvote`, {
+      optionId,
+    });
   }
 }

@@ -25,8 +25,14 @@ export const BACKGROUND_PRESETS = {
     '#82cb7d',
   ],
   [BACKGROUND_TYPE.IMAGE]: [
-    'url("https://cdn.wallpaperhub.app/cloudcache/1/b/5/8/e/f/1b58ef6e3d36a42e01992accf5c52d6eea244353.jpg") center / cover',
-    'url("https://cdn.wallpaperhub.app/cloudcache/3/5/a/5/3/e/35a53e37301cf17d574230812c9a6e0d659d33d0.jpg") center / cover',
+    'url("https://static.wixstatic.com/media/4f5c904bb9f4405bbbd900e8e43fb96d.jpg") center / cover',
+    'url("https://static.wixstatic.com/media/ab97ccc955d74873998c0cc57a71859a.jpg") center / cover',
+    'url("https://static.wixstatic.com/media/aa231f4eb7434370b337d1f66d1492a3.jpg") center / cover',
+    'url("https://static.wixstatic.com/media/a952ed370d8e44ee9e01073bd746dc51.jpg") center / cover',
+    'url("https://static.wixstatic.com/media/11062b_9aa7994fbb42451d869b8fa97538a695~mv2_d_3000_1800_s_2.jpg") center / cover',
+    'url("https://static.wixstatic.com/media/40b04c9917f54b079fee33890219e1b6.jpg") center / cover',
+    'url("https://static.wixstatic.com/media/8b1e14f8085c4644bf8afcb0c7cf9ffa.jpg") center / cover',
+    'url("https://static.wixstatic.com/media/e04c5fcf6b684fd18511a17e74b1bde1.jpg") center / cover',
   ],
   [BACKGROUND_TYPE.GRADIENT]: [
     'linear-gradient(226deg, #890c78, #f7b500)',
@@ -67,10 +73,8 @@ export const DEFAULT_COMPONENT_DATA = {
     width: 'full-width',
   },
   poll: {
-    id: '',
-    chosen: [],
+    ownVotes: [],
     title: '',
-    imageUrl: '',
     settings: {
       multipleChoice: false,
       votersDisplay: true,
@@ -81,11 +85,9 @@ export const DEFAULT_COMPONENT_DATA = {
     options: [
       {
         title: '',
-        imageUrl: '',
       },
       {
         title: '',
-        imageUrl: '',
       },
     ],
   },

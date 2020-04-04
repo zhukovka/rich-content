@@ -99,10 +99,10 @@ export class PollContextProvider extends PureComponent {
     });
   }
 
-  changePollImage(imageUrl) {
+  changePollImage(mediaId) {
     return this.updatePoll({
       ...this.state.poll,
-      imageUrl,
+      mediaId,
     });
   }
 
@@ -121,7 +121,7 @@ export class PollContextProvider extends PureComponent {
     poll.options.push({
       localId: generateId(),
       title: '',
-      imageUrl: '',
+      mediaId: '',
     });
 
     return this.setState({ poll: { ...poll } });
