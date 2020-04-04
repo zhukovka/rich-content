@@ -36,7 +36,7 @@ describe('plugins', () => {
 
     after(() => cy.eyesClose());
 
-    it.only('render image toolbar and settings', function() {
+    it('render image toolbar and settings', function() {
       cy.openImageSettings();
       cy.get(`[data-hook=${IMAGE_SETTINGS.PREVIEW}]:first`);
       cy.eyesCheckWindow(this.test.title + ' - settings');
