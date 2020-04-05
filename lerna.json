@@ -19,5 +19,5 @@
   "npmClientArgs": [
     "--no-lockfile"
   ],
-  "version": "7.1.5-poll.0"
+  "version": "7.1.5-social-polls.0"
 }
