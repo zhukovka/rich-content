@@ -5,7 +5,7 @@ import { ModalsMap as ImageModalsMap } from 'wix-rich-content-plugin-image';
 import { ModalsMap as GalleryModalsMap } from 'wix-rich-content-plugin-gallery';
 import { ModalsMap as TextColorModalsMap } from 'wix-rich-content-plugin-text-color';
 import { ModalsMap as LineSpacingModalsMap } from 'wix-rich-content-plugin-line-spacing';
-import { ModalsMap as PollModalsMap } from 'wix-rich-content-plugin-poll';
+import { ModalsMap as PollModalsMap } from 'wix-rich-content-plugin-social-polls';
 
 export default {
   ...VideoModalsMap,

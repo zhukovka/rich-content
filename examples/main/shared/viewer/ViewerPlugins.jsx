@@ -44,7 +44,7 @@ import {
   viewerCustomBackgroundStyleFn,
 } from '../../src/text-color-style-fn';
 
-import { pollTypeMapper, POLL_TYPE } from 'wix-rich-content-plugin-poll/dist/module.viewer';
+import { pollTypeMapper, POLL_TYPE } from 'wix-rich-content-plugin-social-polls/dist/module.viewer';
 
 import 'wix-rich-content-editor-common/dist/styles.min.css';
 import 'wix-rich-content-common/dist/styles.min.css';
@@ -65,7 +65,7 @@ import 'wix-rich-content-plugin-map/dist/styles.min.css';
 import 'wix-rich-content-plugin-file-upload/dist/styles.min.css';
 import 'wix-rich-content-plugin-giphy/dist/styles.min.css';
 import 'wix-rich-content-text-selection-toolbar/dist/styles.min.css';
-import 'wix-rich-content-plugin-poll/dist/styles.min.css';
+import 'wix-rich-content-plugin-social-polls/dist/styles.min.css';
 
 import { getBaseUrl } from '../../src/utils';
 

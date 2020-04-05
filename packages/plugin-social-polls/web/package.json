@@ -1,5 +1,5 @@
 {
-  "name": "wix-rich-content-plugin-poll",
+  "name": "wix-rich-content-plugin-social-polls",
   "version": "7.1.5-poll.0",
   "author": {
     "name": "Maksym Butsykin",
@@ -23,7 +23,7 @@
   "scripts": {
     "clean": "rm -rf dist/",
     "prebuild": "npm run clean",
-    "build": "rollup --environment MODULE_NAME:plugin-poll -c ../../../rollup.config.js",
+    "build": "rollup --environment MODULE_NAME:plugin-social-polls -c ../../../rollup.config.js",
     "build:dev": "cross-env NODE_ENV=development npm run build",
     "build:analyze": "npm run build -- --environment MODULE_ANALYZE && open stats.html",
     "postbuild": "node ../../../scripts/esCheck.js",
