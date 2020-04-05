@@ -46,23 +46,24 @@ export const BACKGROUND_PRESETS = {
 };
 
 export const OPTION_IMAGES_POOL = [
-  'https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-  'https://images2.minutemediacdn.com/image/upload/c_crop,h_1188,w_2120,x_0,y_227/f_auto,q_auto,w_1100/v1554729678/shape/mentalfloss/58331-istock-479586616.jpg',
-  'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-baby-animals-1558535060.jpg',
-  'https://static01.nyt.com/images/2020/03/13/science/13VIRUS-LABANIMALS1/13VIRUS-LABANIMALS1-mediumSquareAt3X.jpg',
+  'https://static.wixstatic.com/media/fb62d9f8e7824b2e90b13b971e700b92.jpg',
+  'https://static.wixstatic.com/media/3a27828e768344158489df4f2c03cfb2.jpg',
 ];
 
 export const POLL_IMAGES_POOL = [
-  'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg',
-  'https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+  'https://static.wixstatic.com/media/436483e6ed9e41fe91b9f286d2ea4efb.jpg',
 ];
 /* eslint-enable max-len */
 
 export const MEMBER_ROLES = {
   ALL: 'ALL',
-  VOTERS: 'VOTERS',
-  ME: 'ME',
   SITE_MEMBERS: 'SITE_MEMBERS',
+};
+
+export const VISIBILITY = {
+  ALWAYS: 'ALWAYS',
+  VOTERS: 'VOTERS_ONLY',
+  ME: 'ONLY_ME',
 };
 
 export const DEFAULT_COMPONENT_DATA = {
@@ -76,10 +77,10 @@ export const DEFAULT_COMPONENT_DATA = {
     title: '',
     settings: {
       multipleVotes: false,
+      anonymous: false,
       votersDisplay: true,
       voteRole: MEMBER_ROLES.ALL,
-      viewRole: MEMBER_ROLES.VOTERS,
-      type: 'CUSTOM',
+      resultsVisibility: VISIBILITY.VOTERS,
     },
     options: [
       {

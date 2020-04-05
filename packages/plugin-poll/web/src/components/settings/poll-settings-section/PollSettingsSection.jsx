@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Dropdown, Checkbox } from 'wix-rich-content-editor-common';
+import { Checkbox, Separator, RadioGroup } from 'wix-rich-content-editor-common';
 import { mergeStyles } from 'wix-rich-content-common';
 
-import { MEMBER_ROLES } from '../../../constants';
+import { MEMBER_ROLES, VISIBILITY } from '../../../constants';
 import styles from './poll-settings-section.scss';
 
 export class PollSettingsSection extends Component {
@@ -13,26 +13,28 @@ export class PollSettingsSection extends Component {
   VOTE_ROLE_OPTIONS = [
     {
       value: MEMBER_ROLES.SITE_MEMBERS,
-      label: this.props.t('Poll_PollSettings_Tab_Settings_VotePermission_SiteMember'),
+      labelText: this.props.t(
+        'Poll_PollSettings_Tab_Settings_Section_Voting_Permission_SiteMember'
+      ),
     },
     {
       value: MEMBER_ROLES.ALL,
-      label: this.props.t('Poll_PollSettings_Tab_Settings_VotePermission_All'),
+      labelText: this.props.t('Poll_PollSettings_Tab_Settings_Section_Voting_Permission_All'),
     },
   ];
 
   VIEW_ROLE_OPTIONS = [
     {
-      value: MEMBER_ROLES.ALL,
-      label: this.props.t('Poll_PollSettings_Tab_Settings_VotePermission_All'),
+      value: VISIBILITY.ALWAYS,
+      labelText: this.props.t('Poll_PollSettings_Tab_Settings_Section_Results_Permission_All'),
     },
     {
-      value: MEMBER_ROLES.VOTERS,
-      label: this.props.t('Poll_PollSettings_Tab_Settings_ResultsPermission_Voters'),
+      value: VISIBILITY.VOTERS,
+      labelText: this.props.t('Poll_PollSettings_Tab_Settings_Section_Results_Permission_Voters'),
     },
     {
-      value: MEMBER_ROLES.ME,
-      label: this.props.t('Poll_PollSettings_Tab_Settings_ResultsPermission_Owner'),
+      value: VISIBILITY.ME,
+      labelText: this.props.t('Poll_PollSettings_Tab_Settings_Section_Results_Permission_Owner'),
     },
   ];
 
@@ -48,57 +50,71 @@ export class PollSettingsSection extends Component {
 
   handleSecretChange = event => this.updateSettings({ votersDisplay: event.target.checked });
 
-  handleVoteAllowedChange = () => this.updateSettings();
+  handleAnonymousChange = event => this.updateSettings({ anonymous: !event.target.checked });
 
-  handleVoteRoleChange = option => this.updateSettings({ voteRole: option.value });
+  handleVoteRoleChange = voteRole => this.updateSettings({ voteRole });
 
-  handleViewRoleChange = option => this.updateSettings({ viewRole: option.value });
-
-  getVoteRoleValue = () => {
-    const { voteRole } = this.props.componentData.poll.settings;
-
-    return this.VOTE_ROLE_OPTIONS.find(option => option.value === voteRole);
-  };
-
-  getViewRoleValue = () => {
-    const { viewRole } = this.props.componentData.poll.settings;
-
-    return (
-      this.VIEW_ROLE_OPTIONS.find(option => option.value === viewRole) || this.VIEW_ROLE_OPTIONS[0]
-    );
-  };
+  handleViewRoleChange = resultsVisibility => this.updateSettings({ resultsVisibility });
 
   render() {
     const { componentData, t } = this.props;
 
     return (
       <section className={styles.section}>
-        <p>{t('Poll_PollSettings_Tab_Settings_VotePermission_Title')}</p>
-        <Dropdown
+        <h3 className={styles.title}>
+          {t('Poll_PollSettings_Tab_Settings_Section_Voting_Header')}
+        </h3>
+        <p className={styles.label}>
+          {t('Poll_PollSettings_Tab_Settings_Section_Voting_Permission_Title')}
+        </p>
+
+        <RadioGroup
+          name="voteRole"
           theme={this.styles}
-          options={this.VOTE_ROLE_OPTIONS}
-          getValue={this.getVoteRoleValue}
+          value={componentData.poll.settings.voteRole}
           onChange={this.handleVoteRoleChange}
-        />
-        <p>{t('Poll_PollSettings_Tab_Settings_ResultsPermission_Title')}</p>
-        <Dropdown
-          theme={this.styles}
-          options={this.VIEW_ROLE_OPTIONS}
-          getValue={this.getViewRoleValue}
-          onChange={this.handleViewRoleChange}
+          dataSource={this.VOTE_ROLE_OPTIONS}
+          className={styles.radioPanel}
         />
 
         <Checkbox
-          label={t('Poll_PollSettings_Tab_Settings_VoterVisibility')}
-          checked={componentData.poll.settings.votersDisplay}
-          onChange={this.handleSecretChange}
-          contentForInfoIcon={t('Poll_PollSettings_Tab_Settings_VoterVisibility_Tooltip')}
-        />
-
-        <Checkbox
-          label={t('Poll_PollSettings_Tab_Settings_Multiselect')}
+          label={t('Poll_PollSettings_Tab_Settings_Section_Voting_Multiselect')}
           checked={componentData.poll.settings.multipleVotes}
           onChange={this.handleMultiChange}
+          theme={this.styles}
+        />
+
+        <Separator horizontal className={styles.separator} />
+
+        <h3 className={styles.title}>
+          {t('Poll_PollSettings_Tab_Settings_Section_Results_Header')}
+        </h3>
+
+        <p className={styles.label}>
+          {t('Poll_PollSettings_Tab_Settings_Section_Results_Permission_Title')}
+        </p>
+
+        <RadioGroup
+          name="resultsVisibility"
+          theme={this.styles}
+          value={componentData.poll.settings.resultsVisibility}
+          onChange={this.handleViewRoleChange}
+          dataSource={this.VIEW_ROLE_OPTIONS}
+          className={styles.radioPanel}
+        />
+
+        <Checkbox
+          label={t('Poll_PollSettings_Tab_Settings_Section_Results_VoteVisibility')}
+          theme={this.styles}
+          checked={componentData.poll.settings.votersDisplay}
+          onChange={this.handleSecretChange}
+        />
+
+        <Checkbox
+          label={t('Poll_PollSettings_Tab_Settings_Section_Results_VoterAnonymous')}
+          theme={this.styles}
+          checked={!componentData.poll.settings.anonymous}
+          onChange={this.handleAnonymousChange}
         />
       </section>
     );

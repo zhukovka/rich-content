@@ -36,7 +36,7 @@ export class DesignSettingsSection extends Component {
   renderOption = ({ item }) => (
     <>
       <item.icon />
-      <p>{item.label}</p>
+      <p className={styles.selectionListOptionLabel}>{item.label}</p>
     </>
   );
 

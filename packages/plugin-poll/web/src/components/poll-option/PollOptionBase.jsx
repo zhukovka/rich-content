@@ -78,7 +78,7 @@ export class PollOptionBase extends React.PureComponent {
       return 0;
     }
 
-    return (option.count / poll.count) * 100;
+    return (option.count / poll.count) * 100 || 0;
   }
 
   render() {

@@ -43,7 +43,11 @@ class VotedUsersComponent extends PureComponent {
   render() {
     const { option, t, showResults, rce } = this.props;
 
-    if (!showResults || !rce.isViewMode || !option.latestVoters?.length) {
+    if (!option.count || !rce.isViewMode) {
+      return null;
+    }
+
+    if (!showResults || !option.latestVoters?.length) {
       return null;
     }
 

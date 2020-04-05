@@ -5,7 +5,7 @@ import { SelectionList, Checkbox, Separator } from 'wix-rich-content-editor-comm
 import { mergeStyles } from 'wix-rich-content-common';
 
 import { LAYOUT } from '../../../constants';
-import { ListPollIcon, GridPollIcon } from '../../../assets/icons';
+import { LayoutGridIcon, LayoutListIcon } from '../../../assets/icons';
 
 import styles from './layout-settings-section.scss';
 
@@ -38,7 +38,7 @@ export class LayoutSettingsSection extends Component {
   renderOption = ({ item }) => (
     <>
       <item.icon />
-      <p>{item.label}</p>
+      <p className={styles.selectionListOptionLabel}>{item.label}</p>
     </>
   );
 
@@ -69,12 +69,12 @@ export class LayoutSettingsSection extends Component {
             {
               name: LAYOUT.LIST,
               label: t('Poll_PollSettings_Tab_Layout_Section_Answers_Layout_List'),
-              icon: ListPollIcon,
+              icon: LayoutListIcon,
             },
             {
               name: LAYOUT.GRID,
               label: t('Poll_PollSettings_Tab_Layout_Section_Answers_Layout_Grid'),
-              icon: GridPollIcon,
+              icon: LayoutGridIcon,
             },
           ]}
           dataMapper={this.dataMapper}

@@ -13,3 +13,6 @@ export * from './WithImagePollIcon';
 export * from './ColorIcon';
 export * from './ImageIcon';
 export * from './GradientIcon';
+
+export * from './LayoutGridIcon';
+export * from './LayoutListIcon';
