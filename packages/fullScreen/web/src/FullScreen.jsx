@@ -29,6 +29,15 @@ export default class Fullscreen extends Component {
     return convertItemData({ items: images });
   };
 
+  // renderTitle = itemProps => {
+  //   console.log('yo');
+  //   return (
+  //     <div className={styles.imageTitleContainer}>
+  //       <div className={styles.imageTitle}> {itemProps.title}</div>
+  //     </div>
+  //   );
+  // };
+
   render() {
     const {
       index,
@@ -52,7 +61,7 @@ export default class Fullscreen extends Component {
         </button>
         <ProGallery
           items={items}
-          eventLitener={this.handleGalleryEvents}
+          // customInfoRenderer={this.renderTitle}
           currentIdx={index}
           resizeMediaUrl={resizeMediaUrl}
           container={{
@@ -67,8 +76,9 @@ export default class Fullscreen extends Component {
             videoPlay: 'auto',
             allowSocial: false,
             loveButton: false,
-            slideshowInfoSize: 100,
+            slideshowInfoSize: 110,
             allowTitle: true,
+            arrowsPosition: 1,
           }}
         />
       </div>
