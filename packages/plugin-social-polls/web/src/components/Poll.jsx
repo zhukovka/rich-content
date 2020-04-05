@@ -28,7 +28,7 @@ class PollComponent extends Component {
   }
 
   showResults() {
-    return !!this.props.poll.ownVotes.length;
+    return !!this.props.poll.ownVotes?.length;
   }
 
   getOptionList() {

@@ -19,7 +19,7 @@ export class PollOptionBase extends React.PureComponent {
   isUserChoice() {
     const { poll, option } = this.props;
 
-    return !!poll.ownVotes.includes(option.id);
+    return !!poll.ownVotes?.includes(option.id);
   }
 
   isViewMode() {

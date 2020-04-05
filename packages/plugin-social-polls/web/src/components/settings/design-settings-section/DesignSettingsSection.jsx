@@ -41,7 +41,7 @@ export class DesignSettingsSection extends Component {
   );
 
   render() {
-    const { t, componentData, theme } = this.props;
+    const { t, componentData } = this.props;
     const { design } = componentData;
 
     return (
@@ -77,7 +77,9 @@ export class DesignSettingsSection extends Component {
           value={design.poll?.backgroundType}
           className={styles.layout_selector}
         />
-        <p>{t('Poll_PollSettings_Tab_Design_Section_Background_Color_Pick')}</p>
+        <p className={styles.title}>
+          {t('Poll_PollSettings_Tab_Design_Section_Background_Color_Pick')}
+        </p>
         <ColorPicker
           color={design.poll?.background}
           palette={BACKGROUND_PRESETS[design.poll?.backgroundType]}
@@ -88,14 +90,16 @@ export class DesignSettingsSection extends Component {
           {({ renderPalette }) => <div>{renderPalette()}</div>}
         </ColorPicker>
         <Separator horizontal className={styles.separator} />
-        <p>{t('Poll_PollSettings_Tab_Design_Section_CornerRadius_Header')}</p>
+        <p className={styles.title}>
+          {t('Poll_PollSettings_Tab_Design_Section_CornerRadius_Header')}
+        </p>
         <SliderWithInput
           min={0}
           max={20}
           label={t('Poll_PollSettings_Tab_Design_Section_CornerRadius_Poll')}
           onChange={this.handlePollBorderRadiusChange}
           value={parseInt(design.poll?.borderRadius)}
-          theme={theme}
+          theme={this.styles}
         />
         <SliderWithInput
           min={0}
@@ -103,7 +107,7 @@ export class DesignSettingsSection extends Component {
           label={t('Poll_PollSettings_Tab_Design_Section_CornerRadius_Answers')}
           onChange={this.handleOptionBorderRadiusChange}
           value={parseInt(design.option?.borderRadius)}
-          theme={theme}
+          theme={this.styles}
         />
       </section>
     );
