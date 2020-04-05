@@ -131,7 +131,7 @@
     },
     {
       "key": "afkbr",
-      "text": "install \"wix-rich-content-plugin-link-preview\", \"wix-rich-content-plugin-html\" and import this plugins styles.",
+      "text": "install \"wix-rich-content-plugin-link-preview\", \"wix-rich-content-plugin-html\" and import this plugins styles. In link preview plugin config add {enableEmbed: true}",
       "type": "ordered-list-item",
       "depth": 0,
       "inlineStyleRanges": [
