@@ -1,4 +1,7 @@
 .fullscreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -7,6 +10,7 @@
   z-index: 1000;
   background: white;
   padding-top: 32px;
+  padding-left: 20px;
 }
 
 .close {
@@ -21,12 +25,8 @@
   width: 25px;
   height: 25px;
   color: black;
-  opacity: 0.6;
   border: hidden;
   cursor: pointer;
-  &:hover {
-    opacity: 1;
-  }
 }
 
 // .title {

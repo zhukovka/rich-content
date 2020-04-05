@@ -65,7 +65,7 @@ export default class Fullscreen extends Component {
           currentIdx={index}
           resizeMediaUrl={resizeMediaUrl}
           container={{
-            width: window.innerWidth,
+            width: window.innerWidth - 40,
             height: window.innerHeight,
           }}
           styles={{
@@ -79,6 +79,7 @@ export default class Fullscreen extends Component {
             slideshowInfoSize: 110,
             allowTitle: true,
             arrowsPosition: 1,
+            arrowsSize: 30,
           }}
         />
       </div>
