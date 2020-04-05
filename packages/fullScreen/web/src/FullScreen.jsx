@@ -37,14 +37,14 @@ export default class Fullscreen extends Component {
     this.setState({ index: -1 }, () => this.props.onClose());
   };
 
-  galleryEventsHandler = (name, data) => {
-    if (name === 'CURRENT_ITEM_CHANGED') {
-      const index = this.props.images.findIndex(image => image.itemId === data.itemId);
-      if (index > -1) {
-        this.setState({ index });
-      }
-    }
-  };
+  // galleryEventsHandler = (name, data) => {
+  //   if (name === 'CURRENT_ITEM_CHANGED') {
+  //     const index = this.props.images.findIndex(image => image.itemId === data.itemId);
+  //     if (index > -1) {
+  //       this.setState({ index });
+  //     }
+  //   }
+  // };
 
   render() {
     const { isOpen, target, backgroundColor, topMargin, foregroundColor, index } = this.props;
@@ -68,7 +68,7 @@ export default class Fullscreen extends Component {
           currentIdx={this.state.index === -1 ? index : this.state.index}
           resizeMediaUrl={resizeMediaUrl}
           container={{ width: this.state.width, height: this.state.height }}
-          eventsListener={this.galleryEventsHandler}
+          // eventsListener={this.galleryEventsHandler}
           styles={{
             ...layouts[5],
             galleryLayout: 5,
