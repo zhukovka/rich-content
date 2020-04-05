@@ -91,14 +91,14 @@ describe('plugins', () => {
           .eq(2)
           .parent()
           .click();
-        cy.get(
-          '#pgi65a6266ba23a8a55da3f469157f15237_0 > div > div > div > a > div > canvas'
-        ).should('be.visible');
+        cy.get('#pgi65a6266ba23a8a55da3f469157f15237_0 > div > div > div > a > div > canvas', {
+          timeout: 10000,
+        }).should('be.visible');
         cy.eyesCheckWindow({ tag: this.test.title, target: 'window', fully: false });
         cy.get(`[data-hook=${'nav-arrow-next'}]`).click({ force: true });
-        cy.get(
-          '#pgiea8ec1609e052b7f196935318316299d_1 > div > div > div > a > div > canvas'
-        ).should('be.visible');
+        cy.get('#pgiea8ec1609e052b7f196935318316299d_1 > div > div > div > a > div > canvas', {
+          timeout: 10000,
+        }).should('be.visible');
         cy.get(`[data-hook=${'fullscreen-close-button'}]`).click();
         // cy.eyesCheckWindow({ tag: 'closed fullscreen', target: 'window', fully: false });
       });
@@ -225,23 +225,22 @@ describe('plugins', () => {
     it('add a video from URL', function() {
       cy.openVideoUploadModal().addVideoFromURL();
       cy.shrinkPlugin();
-      cy.waitForVideoToLoad();
       cy.focusEditor()
         .type('{uparrow}') //try to fix bug where sometimes it doesn't type
         .type('{uparrow}')
         .type('Will this fix the flakiness?');
+      cy.waitForVideoToLoad();
       cy.eyesCheckWindow(this.test.title);
     });
 
     it('add a custom video', function() {
       cy.openVideoUploadModal().addCustomVideo();
       cy.shrinkPlugin();
-      cy.waitForVideoToLoad();
       cy.focusEditor()
         .type('{uparrow}') //try to fix bug where sometimes it doesn't type
         .type('{uparrow}')
         .type('Will this fix the flakiness?');
-
+      cy.waitForVideoToLoad();
       cy.eyesCheckWindow(this.test.title);
     });
   });
@@ -266,11 +265,11 @@ describe('plugins', () => {
     it('add a soundcloud URL', function() {
       cy.openSoundCloudModal().addSoundCloud();
       cy.shrinkPlugin();
-      cy.waitForVideoToLoad();
       cy.focusEditor()
         .type('{uparrow}') //try to fix bug where sometimes it doesn't type
         .type('{uparrow}')
         .type('Will this fix the flakiness?');
+      cy.waitForVideoToLoad();
       cy.eyesCheckWindow(this.test.title);
     });
   });
@@ -355,6 +354,29 @@ describe('plugins', () => {
     });
   });
 
+  context('emoji', () => {
+    before('load editor', function() {
+      eyesOpen(this);
+    });
+
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
+    });
+
+    after(() => cy.eyesClose());
+
+    it('render some emojies', function() {
+      cy.loadEditorAndViewer('empty');
+      cy.get(`button[data-hook=${PLUGIN_COMPONENT.EMOJI}]`).click();
+      cy.eyesCheckWindow('render emoji modal');
+      cy.get(`[data-hook=emoji-5]`).click();
+      cy.get(`[data-hook=emoji-group-5]`).click();
+      cy.get(`[data-hook=emoji-95]`).click();
+      cy.get(`[data-hook=emoji-121]`).click();
+      cy.eyesCheckWindow(this.test.title);
+    });
+  });
+
   context('map', () => {
     before('load editor', function() {
       eyesOpen(this);
@@ -435,28 +457,53 @@ describe('plugins', () => {
     before(function() {
       eyesOpen(this);
     });
-
-    beforeEach('load editor', () => cy.loadEditorAndViewer('linkPreview'));
-
     after(() => cy.eyesClose());
+
+    beforeEach('load editor', () => cy.loadEditorAndViewer('link-preview'));
 
     it('change link preview settings', function() {
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
       cy.setLinkSettings();
-      cy.focusEditor();
+      cy.triggerLinkPreviewViewerUpdate();
+      cy.eyesCheckWindow(this.test.title);
     });
     it('convert link preview to regular link', function() {
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
-      cy.get(`[data-hook=baseToolbarButton_replaceToLink][tabindex!=-1]`).click();
-      cy.focusEditor();
+      cy.clickToolbarButton('baseToolbarButton_replaceToLink');
+      cy.triggerLinkPreviewViewerUpdate();
+      cy.eyesCheckWindow(this.test.title);
     });
     it('backspace key should convert link preview to regular link', function() {
-      cy.moveCursorToEnd().type('{backspace}');
-      cy.focusEditor();
+      cy.focusEditor()
+        .type('{downarrow}{downarrow}')
+        .type('{backspace}');
+      cy.triggerLinkPreviewViewerUpdate();
+      cy.eyesCheckWindow(this.test.title);
     });
     it('delete link preview', function() {
-      cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
-      cy.get(`[data-hook=blockButton_delete][tabindex!=-1]`).click();
+      cy.moveCursorToStart();
+      cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW).wait(100);
+      cy.clickToolbarButton('blockButton_delete');
+      cy.triggerLinkPreviewViewerUpdate();
+      cy.eyesCheckWindow(this.test.title);
+    });
+  });
+
+  context('convert link to preview', () => {
+    before(function() {
+      eyesOpen(this);
+    });
+    after(() => cy.eyesClose());
+    beforeEach('load editor', () => cy.loadEditorAndViewer('empty'));
+
+    it('should create link preview from link after enter key', function() {
+      cy.insertLinkAndEnter('www.wix.com');
+      cy.eyesCheckWindow(this.test.title);
+    });
+
+    it('should embed link that supports embed', function() {
+      cy.insertLinkAndEnter('www.mockUrl.com');
+      cy.eyesCheckWindow(this.test.title);
     });
   });
 });
