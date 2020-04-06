@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { normalizeUrl, mergeStyles, validate, pluginLinkSchema } from 'wix-rich-content-common';
+import {
+  normalizeUrl,
+  mergeStyles,
+  validate,
+  pluginLinkSchema,
+  // isValidUrl,
+} from 'wix-rich-content-common';
 import { invoke, isEqual } from 'lodash';
 import styles from '../statics/link-viewer.scss';
 
@@ -34,6 +40,11 @@ class LinkViewer extends Component {
 
   handleClick = event => {
     invoke(this, 'props.settings.onClick', event, this.getHref());
+    // if (!isValidUrl(this.props.componentData.url)) {
+    //   console.log('this.getHref() - ', this.getHref().substr(1));
+    //   const element = document.getElementById(this.getHref().substr(1));
+    //   element.scrollIntoView({ behavior: 'smooth' });
+    // }
   };
 
   getHref() {
@@ -49,6 +60,7 @@ class LinkViewer extends Component {
     const { componentData, anchorTarget, relValue, children } = this.props;
     const { target, rel } = componentData;
     const anchorProps = {
+      // href: isValidUrl(this.props.componentData.url) ? this.getHref() : undefined,
       href: this.getHref(),
       target: target ? target : anchorTarget || '_self',
       rel: rel ? rel : relValue || 'noopener',
