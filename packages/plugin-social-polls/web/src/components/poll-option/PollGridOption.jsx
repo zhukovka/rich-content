@@ -60,7 +60,7 @@ export class PollGridOption extends PollOptionBase {
             style={style.input}
             className={cls(styles.input, styles.centered)}
             value={option.title}
-            placeholder={t('Poll_Editor_Option_Placeholder')}
+            placeholder={t('Poll_Editor_Answer_Placeholder')}
             onChange={this.handleTitleChange}
             endAdornment={
               removeEnabled && <RemoveIcon onClick={this.handleRemove} className={styles.remove} />
