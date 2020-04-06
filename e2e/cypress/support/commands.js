@@ -494,6 +494,13 @@ Cypress.Commands.add('waitForDocumentMutations', () => {
   });
 });
 
+Cypress.Commands.add('getPluginByIndex', (plugin, index) => {
+  cy.get(`[data-hook*=${plugin}]`)
+    .eq(index)
+    .parent()
+    .click();
+});
+
 function waitForMutations(container, { timeToWaitForMutation = 300 } = {}) {
   return new Promise(resolve => {
     let timeoutId = setTimeout(onDone, timeToWaitForMutation);
