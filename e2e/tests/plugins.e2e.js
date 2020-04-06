@@ -293,19 +293,6 @@ describe('plugins', () => {
         .click();
       cy.eyesCheckWindow(this.test.title);
     });
-
-    it('should set suitable html height', function() {
-      cy.loadEditorAndViewer('simple-html');
-
-      cy.getPluginByIndex(PLUGIN_COMPONENT.HTML, 0);
-      cy.eyesCheckWindow(this.test.title);
-
-      cy.getPluginByIndex(PLUGIN_COMPONENT.HTML, 1);
-      cy.eyesCheckWindow(this.test.title);
-
-      cy.getPluginByIndex(PLUGIN_COMPONENT.HTML, 2);
-      cy.eyesCheckWindow(this.test.title);
-    });
   });
 
   context('divider', () => {
