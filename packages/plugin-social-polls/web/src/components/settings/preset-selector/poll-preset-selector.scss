@@ -1,0 +1,26 @@
+@import "../poll-settings-modal.scss";
+
+.title {
+  margin: 0;
+}
+
+.subtitle {
+  margin: 0;
+}
+
+.selectionListOption {
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.1);
+}
+
+.selectionListOptionLabel {
+  margin: 5px 0;
+  color: #000;
+}
+
+.selectionListOption:hover:not(.selectionListOption_selected),
+.selectionListOption:hover {
+  background-color: unset;
+  color: #000;
+}

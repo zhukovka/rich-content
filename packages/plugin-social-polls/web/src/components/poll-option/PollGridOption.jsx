@@ -56,7 +56,7 @@ export class PollGridOption extends PollOptionBase {
         )}
         <div className={styles.title}>
           <TextField
-            maxLength={30}
+            maxLength={60}
             style={style.input}
             className={cls(styles.input, styles.centered)}
             value={option.title}
@@ -99,7 +99,7 @@ export class PollGridOption extends PollOptionBase {
         )}
         <div className={styles.title}>
           <TextField
-            maxLength={30}
+            maxLength={60}
             style={style.input}
             className={cls(styles.input, styles.centered, {
               [styles.with_result]: showResults,

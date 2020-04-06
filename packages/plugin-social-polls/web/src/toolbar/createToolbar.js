@@ -1,9 +1,38 @@
-import { BUTTONS, TOOLBARS, getModalStyles } from 'wix-rich-content-editor-common';
+import {
+  BUTTONS,
+  TOOLBARS,
+  getModalStyles,
+  DECORATION_MODE,
+  decorateComponentWithProps,
+  getBottomToolbarModalStyles,
+} from 'wix-rich-content-editor-common';
 
 import { TABS } from '../components/settings';
 import { DEFAULT_COMPONENT_DATA } from '../constants';
 import { InsertPluginIcon } from '../assets/icons';
 import { Modals } from '../modals';
+import { PollPresetSelector, Arrow } from '../components/settings/preset-selector';
+
+export const DesktopFlyOutModalStyles = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    zIndex: 5,
+  },
+  content: {
+    width: '410px',
+    boxSizing: 'border-box',
+    height: '180px',
+    overflow: 'visible',
+    border: '1px solid #ccc',
+    paddingRight: '10px',
+    paddingLeft: '18px',
+    display: 'block',
+    borderRadius: '2px',
+    position: 'absolute',
+    zIndex: 6,
+    paddingTop: '9px',
+  },
+};
 
 const modalStyles = {
   customStyles: {
@@ -63,12 +92,25 @@ export function createToolbar({ helpers, t }) {
     ],
     InsertButtons: [
       {
+        type: 'modal',
         name: 'Poll',
         tooltipText: t('Poll_InsertPoll_Tooltip'),
-        toolbars: [TOOLBARS.FOOTER, TOOLBARS.SIDE],
         Icon: InsertPluginIcon,
-        helpers,
         componentData: DEFAULT_COMPONENT_DATA,
+        toolbars: [TOOLBARS.FOOTER, TOOLBARS.SIDE],
+        modalElement: decorateComponentWithProps(PollPresetSelector),
+        modalStylesFn: ({ buttonRef }) => {
+          return getBottomToolbarModalStyles(buttonRef, {
+            customStyles: DesktopFlyOutModalStyles,
+          });
+        },
+        modalDecorations: [
+          {
+            decorationMode: DECORATION_MODE.APPEND,
+            decorator: Arrow,
+          },
+        ],
+        helpers,
         t,
       },
     ],

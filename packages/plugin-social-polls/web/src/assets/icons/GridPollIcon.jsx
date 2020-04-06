@@ -2,9 +2,9 @@
 import React from 'react';
 
 export const GridPollIcon = props => (
-  <svg width="92px" height="54px" viewBox="0 0 92 54" version="1.1" {...props}>
+  <svg width="120px" height="75px" viewBox="0 0 92 54" version="1.1" {...props}>
     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-      <g transform="translate(1.000000, 1.000000)" stroke="#000000">
+      <g transform="translate(1.000000, 1.000000)" stroke="rgba(0, 0, 0, 0.1)">
         <g>
           <rect x="7.5" y="20.5" width="34" height="24" />
           <path
@@ -24,7 +24,7 @@ export const GridPollIcon = props => (
             fillRule="nonzero"
           />
           <rect x="47.5" y="20.5" width="34" height="24" />
-          <rect x="0" y="0" width="90" height="52" />
+          <rect x="0" y="0" width="90" height="52" stroke="currentColor" />
           <rect x="20.5" y="7.5" width="50" height="6" />
         </g>
       </g>

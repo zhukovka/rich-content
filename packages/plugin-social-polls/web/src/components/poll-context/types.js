@@ -11,11 +11,11 @@ export const PollPropTypes = {
   title: PropTypes.string,
   mediaId: PropTypes.string,
   settings: PropTypes.shape({
-    multipleChoice: PropTypes.bool.isRequired,
+    multipleVotes: PropTypes.bool.isRequired,
+    anonymous: PropTypes.bool.isRequired,
+    votersDisplay: PropTypes.bool.isRequired,
     voteRole: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    secret: PropTypes.bool,
-    viewRole: PropTypes.string,
+    resultsVisibility: PropTypes.string.isRequired,
   }).isRequired,
   options: PropTypes.arrayOf(PollOptionPropTypes).isRequired,
 };
