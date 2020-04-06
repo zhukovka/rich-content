@@ -6,7 +6,7 @@ import { merge } from 'lodash';
 import { SelectionList } from 'wix-rich-content-editor-common';
 import { mergeStyles } from 'wix-rich-content-common';
 
-import { LAYOUT } from '../../../constants';
+import { LAYOUT, BACKGROUND_PRESETS, BACKGROUND_TYPE } from '../../../constants';
 import { ListPollIcon, GridPollIcon, WithImagePollIcon } from '../../../assets/icons';
 
 import styles from './poll-preset-selector.scss';
@@ -20,10 +20,22 @@ export class PollPresetSelector extends PureComponent {
     onConfirm(
       merge({}, componentData, {
         layout: preset,
+        design: {
+          poll: {
+            backgroundType: BACKGROUND_TYPE.IMAGE,
+            background: this.getBackgroundImage(),
+          },
+        },
       })
     );
     helpers.closeModal();
   };
+
+  getBackgroundImage() {
+    const pool = BACKGROUND_PRESETS[BACKGROUND_TYPE.IMAGE];
+
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
 
   renderOption = ({ item }) => (
     <>

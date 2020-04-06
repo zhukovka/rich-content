@@ -4,4 +4,5 @@ export const VotedUsersProps = {
   siteMembers: PropTypes.array,
   option: PropTypes.object,
   showVoters: PropTypes.bool,
+  showVotes: PropTypes.bool,
 };

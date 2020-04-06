@@ -17,11 +17,16 @@ import styles from './design-settings-section.scss';
 export class DesignSettingsSection extends Component {
   styles = mergeStyles({ styles, theme: this.props.theme });
 
+  state = {
+    backgroundType: this.props.componentData.design.poll?.backgroundType || BACKGROUND_TYPE.COLOR,
+  };
+
   updateDesign(design) {
     this.props.store.update('componentData', { design });
   }
 
-  handleBackgroundChange = background => this.updateDesign({ poll: { background } });
+  handleBackgroundChange = background =>
+    this.updateDesign({ poll: { background, backgroundType: this.state.backgroundType } });
 
   handlePollBorderRadiusChange = borderRadius =>
     this.updateDesign({ poll: { borderRadius: `${borderRadius}px` } });
@@ -29,7 +34,7 @@ export class DesignSettingsSection extends Component {
   handleOptionBorderRadiusChange = borderRadius =>
     this.updateDesign({ option: { borderRadius: `${borderRadius}px` } });
 
-  handleTypeChange = backgroundType => this.updateDesign({ poll: { backgroundType } });
+  handleTypeChange = backgroundType => this.setState({ backgroundType });
 
   dataMapper = ({ name }) => ({ value: name });
 
@@ -42,6 +47,8 @@ export class DesignSettingsSection extends Component {
 
   render() {
     const { t, componentData } = this.props;
+    const { backgroundType } = this.state;
+
     const { design } = componentData;
 
     return (
@@ -74,7 +81,7 @@ export class DesignSettingsSection extends Component {
           dataMapper={this.dataMapper}
           renderItem={this.renderOption}
           onChange={this.handleTypeChange}
-          value={design.poll?.backgroundType}
+          value={backgroundType}
           className={styles.layout_selector}
         />
         <p className={styles.title}>
@@ -82,7 +89,7 @@ export class DesignSettingsSection extends Component {
         </p>
         <ColorPicker
           color={design.poll?.background}
-          palette={BACKGROUND_PRESETS[design.poll?.backgroundType]}
+          palette={BACKGROUND_PRESETS[backgroundType]}
           onChange={this.handleBackgroundChange}
           theme={this.styles}
           t={t}

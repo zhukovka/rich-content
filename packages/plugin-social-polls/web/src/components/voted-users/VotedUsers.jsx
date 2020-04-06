@@ -17,13 +17,14 @@ class VotedUsersComponent extends PureComponent {
   }
 
   getSiteMembers() {
-    const siteMembers = this.props.rce.getSiteMembers?.() || [];
+    const { rce, option, showVoters } = this.props;
+    const siteMembers = rce.getSiteMembers?.() || [];
 
-    if (!this.props.showVoters || !siteMembers) {
+    if (!showVoters || !siteMembers) {
       return [];
     }
 
-    return this.props.option.latestVoters.map(this.getSiteMember.bind(this));
+    return option.latestVoters?.map(this.getSiteMember.bind(this)) || [];
   }
 
   renderMember(member) {
@@ -41,20 +42,20 @@ class VotedUsersComponent extends PureComponent {
   }
 
   render() {
-    const { option, t, showResults, rce } = this.props;
+    const { option, t, showResults, showVotes, rce } = this.props;
 
-    if (!option.count || !rce.isViewMode) {
+    if (!rce.isViewMode) {
       return null;
     }
 
-    if (!showResults || !option.latestVoters?.length) {
+    if (!showResults || !showVotes) {
       return null;
     }
 
     return (
       <div className={styles.container}>
         <ul className={styles.avatar_list}>{this.getSiteMembers().map(this.renderMember)}</ul>
-        <span>{t('Poll_Viewer_VoteCount', { number: option.count })}</span>
+        <span>{t('Poll_Viewer_VoteCount', { number: option.count || 0 })}</span>
       </div>
     );
   }

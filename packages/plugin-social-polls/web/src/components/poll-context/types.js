@@ -12,7 +12,7 @@ export const PollPropTypes = {
   mediaId: PropTypes.string,
   settings: PropTypes.shape({
     multipleVotes: PropTypes.bool.isRequired,
-    anonymous: PropTypes.bool.isRequired,
+    votesDisplay: PropTypes.bool.isRequired,
     votersDisplay: PropTypes.bool.isRequired,
     voteRole: PropTypes.string.isRequired,
     resultsVisibility: PropTypes.string.isRequired,

@@ -48,9 +48,9 @@ export class PollSettingsSection extends Component {
 
   handleMultiChange = event => this.updateSettings({ multipleVotes: event.target.checked });
 
-  handleSecretChange = event => this.updateSettings({ votersDisplay: event.target.checked });
+  handleVotesDisplayChange = event => this.updateSettings({ votesDisplay: event.target.checked });
 
-  handleAnonymousChange = event => this.updateSettings({ anonymous: !event.target.checked });
+  handleVotersDisplayChange = event => this.updateSettings({ votersDisplay: event.target.checked });
 
   handleVoteRoleChange = voteRole => this.updateSettings({ voteRole });
 
@@ -106,15 +106,15 @@ export class PollSettingsSection extends Component {
         <Checkbox
           label={t('Poll_PollSettings_Tab_Settings_Section_Results_VoteVisibility')}
           theme={this.styles}
-          checked={componentData.poll.settings.votersDisplay}
-          onChange={this.handleSecretChange}
+          checked={componentData.poll.settings.votesDisplay}
+          onChange={this.handleVotesDisplayChange}
         />
 
         <Checkbox
           label={t('Poll_PollSettings_Tab_Settings_Section_Results_VoterAnonymous')}
           theme={this.styles}
-          checked={!componentData.poll.settings.anonymous}
-          onChange={this.handleAnonymousChange}
+          checked={componentData.poll.settings.votersDisplay}
+          onChange={this.handleVotersDisplayChange}
         />
       </section>
     );

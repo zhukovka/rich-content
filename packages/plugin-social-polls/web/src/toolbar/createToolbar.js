@@ -15,8 +15,7 @@ import { PollPresetSelector, Arrow } from '../components/settings/preset-selecto
 
 export const DesktopFlyOutModalStyles = {
   overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0)',
-    zIndex: 5,
+    backgroundColor: 'transparent',
   },
   content: {
     width: '410px',
@@ -24,8 +23,7 @@ export const DesktopFlyOutModalStyles = {
     height: '180px',
     overflow: 'visible',
     border: '1px solid #ccc',
-    paddingRight: '10px',
-    paddingLeft: '18px',
+    padding: '10px',
     display: 'block',
     borderRadius: '2px',
     position: 'absolute',

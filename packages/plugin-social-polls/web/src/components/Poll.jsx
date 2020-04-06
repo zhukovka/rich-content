@@ -3,7 +3,7 @@ import cls from 'classnames';
 import FlipMove from 'react-flip-move';
 
 import { AddIcon } from '../assets/icons';
-import { LAYOUT } from '../constants';
+import { LAYOUT, VISIBILITY, BACKGROUND_TYPE } from '../constants';
 
 import { withPoll, PollContextPropTypes } from './poll-context';
 import { withRCEHelpers, RCEHelpersPropTypes } from './rce-helpers-context';
@@ -28,7 +28,25 @@ class PollComponent extends Component {
   }
 
   showResults() {
-    return !!this.props.poll.ownVotes?.length;
+    const { resultsVisibility } = this.props.poll.settings;
+
+    switch (resultsVisibility) {
+      case VISIBILITY.ALWAYS:
+        return true;
+
+      case VISIBILITY.VOTERS:
+        return !!this.props.poll.ownVotes?.length;
+
+      case VISIBILITY.ME:
+        return this.props.poll.creatorFlag;
+
+      default:
+        return false;
+    }
+  }
+
+  hasImageBackground() {
+    return this.props.design.poll.backgroundType === BACKGROUND_TYPE.IMAGE;
   }
 
   getOptionList() {
@@ -53,17 +71,19 @@ class PollComponent extends Component {
 
   render() {
     const { poll, rce, addOption, design, layout, vote, unvote, t, siteMembers } = this.props;
-    const style = {
-      ...design.poll,
-    };
 
     return (
       <div
         className={cls(styles.container, {
           [styles.isMobile]: rce.isMobile,
         })}
-        style={style}
       >
+        <div
+          className={cls(styles.background_overlay, {
+            [styles.with_image]: this.hasImageBackground(),
+          })}
+          style={design.poll}
+        />
         <PollHeader />
 
         <ul
@@ -91,6 +111,7 @@ class PollComponent extends Component {
                   siteMembers={siteMembers}
                   showResults={this.showResults()}
                   showVoters={poll.settings.votersDisplay}
+                  showVotes={poll.settings.votesDisplay}
                 />
               </li>
             ))}

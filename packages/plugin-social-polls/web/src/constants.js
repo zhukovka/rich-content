@@ -14,14 +14,14 @@ export const BACKGROUND_TYPE = {
 /* eslint-disable max-len */
 export const BACKGROUND_PRESETS = {
   [BACKGROUND_TYPE.COLOR]: [
-    '#cba27d',
-    'rgba(250, 100, 0, 0.78)',
-    '#ebba4d',
-    '#0091ff',
-    'rgba(232, 54, 255, 0.94)',
-    '#134497',
-    'rgba(0, 0, 0, 0.85)',
-    '#82cb7d',
+    '#EF4538',
+    '#F96132',
+    '#FAAD4D',
+    '#31B778',
+    '#488FFE',
+    '#11428D',
+    '#6C49EF',
+    '#8C0F7A',
   ],
   [BACKGROUND_TYPE.IMAGE]: [
     'url("https://static.wixstatic.com/media/4f5c904bb9f4405bbbd900e8e43fb96d.jpg") center / cover',
@@ -34,14 +34,14 @@ export const BACKGROUND_PRESETS = {
     'url("https://static.wixstatic.com/media/e04c5fcf6b684fd18511a17e74b1bde1.jpg") center / cover',
   ],
   [BACKGROUND_TYPE.GRADIENT]: [
-    'linear-gradient(226deg, #890c78, #f7b500)',
-    'linear-gradient(43deg, #0b4ad1, #b6fb64)',
-    'linear-gradient(225deg, #c400ff, #27d9d6)',
-    'linear-gradient(225deg, #1c0ea7, #e3bdee)',
-    'linear-gradient(45deg, #a2eb4d, #34852a)',
-    'linear-gradient(225deg, #ff9400, #d6b88f)',
-    'linear-gradient(45deg, #d3d3d3, #36403c)',
-    'linear-gradient(225deg, #f53f3b, #ffa19a)',
+    'linear-gradient(45deg, #EF4538, #488FFE)',
+    'linear-gradient(45deg, #F96132, #FAAD4D)',
+    'linear-gradient(45deg, #31B778, #FAAD4D)',
+    'linear-gradient(45deg, #0D6546, #31B778)',
+    'linear-gradient(45deg, #488FFE, #8C0F7A)',
+    'linear-gradient(45deg, #11428D, #488FFE)',
+    'linear-gradient(45deg, #6C49EF, #31B778)',
+    'linear-gradient(45deg, #8C0F7A, #FAAD4D)',
   ],
 };
 
@@ -77,7 +77,7 @@ export const DEFAULT_COMPONENT_DATA = {
     title: '',
     settings: {
       multipleVotes: false,
-      anonymous: false,
+      votesDisplay: true,
       votersDisplay: true,
       voteRole: MEMBER_ROLES.ALL,
       resultsVisibility: VISIBILITY.VOTERS,
