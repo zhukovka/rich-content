@@ -1,6 +1,6 @@
 {
   "name": "wix-rich-content-plugin-social-polls",
-  "version": "7.1.5-social-polls.2",
+  "version": "7.1.5-social-polls.3",
   "author": {
     "name": "Maksym Butsykin",
     "email": "maksymb@wix.com"
@@ -52,8 +52,8 @@
   "dependencies": {
     "axios": "^0.19.2",
     "react-flip-move": "^3.0.4",
-    "wix-rich-content-common": "7.1.5-social-polls.2",
-    "wix-rich-content-editor-common": "7.1.5-social-polls.2"
+    "wix-rich-content-common": "7.1.5-social-polls.3",
+    "wix-rich-content-editor-common": "7.1.5-social-polls.3"
   },
   "unpkg": true,
   "publishConfig": {
