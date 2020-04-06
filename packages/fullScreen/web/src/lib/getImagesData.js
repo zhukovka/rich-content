@@ -9,7 +9,7 @@ function imageEntryToGallery(data, index) {
     metadata: {
       height: src.height,
       width: src.width,
-      title: data.metadata.caption,
+      title: data?.metadata?.caption || '',
     },
     itemId: src.id || url + index,
     url,
