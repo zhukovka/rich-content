@@ -31,4 +31,5 @@ export { default as BlockQuoteIcon } from './AnchorsThumbnails/BlockQuoteIcon';
 export { default as CodeBlockIcon } from './AnchorsThumbnails/CodeBlockIcon';
 export { default as TitleIcon } from './AnchorsThumbnails/TitleIcon';
 export { default as ParagraphIcon } from './AnchorsThumbnails/ParagraphIcon';
+export { default as EditIcon } from './EditIcon.svg';
 // export { default as InfoIcon } from './InfoIcon';

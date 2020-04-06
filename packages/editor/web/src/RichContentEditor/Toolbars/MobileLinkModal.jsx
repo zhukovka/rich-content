@@ -39,6 +39,7 @@ export default class MobileLinkModal extends Component {
       t,
       ariaProps: { 'aria-labelledby': 'mob_link_modal_hdr' },
       uiSettings,
+      hidePanel: { onCancel },
     };
     return unchangedUrl ? (
       <div>

@@ -104,6 +104,14 @@ describe('text', () => {
     cy.eyesCheckWindow(this.test.title);
   });
 
+  it('allow to create link and open link toolbar (InlinePluginToolbar)', function() {
+    cy.loadEditorAndViewer('plain')
+      .setLink([0, 10], 'https://www.wix.com/')
+      .setSelection(5, 0)
+      .wait(200);
+    cy.eyesCheckWindow(this.test.title);
+  });
+
   it('allow to create anchors', function() {
     cy.loadEditorAndViewer('plugins-for-anchors');
     cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.LINK, [0, 6]);

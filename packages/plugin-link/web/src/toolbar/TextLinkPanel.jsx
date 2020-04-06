@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { EditorState } from '@wix/draft-js';
 import { isEmpty } from 'lodash';
 import {
-  insertLinkAtCurrentSelection,
   getLinkDataInSelection,
   removeLinksInSelection,
   NewLinkPanelContainer,
@@ -52,11 +51,11 @@ export default class TextLinkPanel extends Component {
   }
 
   createLinkEntity = ({ url, targetBlank, nofollow, linkToAnchor, defaultName }) => {
-    const { anchorTarget: _anchorTarget, relValue } = this.props;
+    const { anchorTarget: _anchorTarget, relValue, insertLinkFn } = this.props;
     const anchorTarget = linkToAnchor ? '_self' : _anchorTarget;
     if (!isEmpty(url)) {
       const { getEditorState, setEditorState } = this.props;
-      const newEditorState = insertLinkAtCurrentSelection(getEditorState(), {
+      const newEditorState = insertLinkFn(getEditorState(), {
         url,
         targetBlank,
         nofollow,
@@ -70,10 +69,11 @@ export default class TextLinkPanel extends Component {
   };
 
   deleteLink = () => {
-    const { getEditorState, setEditorState } = this.props;
+    const { getEditorState, setEditorState, closeInlinePluginToolbar } = this.props;
     const editorState = getEditorState();
     const newEditorState = removeLinksInSelection(editorState, setEditorState);
     setEditorState(newEditorState);
+    closeInlinePluginToolbar && closeInlinePluginToolbar();
   };
 
   onCancel = () => {
@@ -89,7 +89,7 @@ export default class TextLinkPanel extends Component {
   };
 
   hideLinkPanel = () => {
-    this.props.onExtendContent(undefined);
+    this.props.onExtendContent?.(undefined);
     this.props.onOverrideContent(undefined);
   };
 
@@ -101,11 +101,13 @@ export default class TextLinkPanel extends Component {
 TextLinkPanel.propTypes = {
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
-  onExtendContent: PropTypes.func.isRequired,
+  onExtendContent: PropTypes.func,
   onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   anchorTarget: PropTypes.string,
   relValue: PropTypes.string,
   t: PropTypes.func,
   uiSettings: PropTypes.object,
+  insertLinkFn: PropTypes.func,
+  closeInlinePluginToolbar: PropTypes.func,
 };

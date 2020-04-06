@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
-import {
-  insertLinkAtCurrentSelection,
-  getLinkDataInSelection,
-  removeLinksInSelection,
-} from 'wix-rich-content-editor-common';
+import { getLinkDataInSelection, removeLinksInSelection } from 'wix-rich-content-editor-common';
 import MobileLinkModal from './MobileLinkModal';
 
 export default class MobileTextLinkModal extends Component {
-  hidePopup = () => this.props.hidePopup();
+  hidePopup = () => {
+    const { hidePopup } = this.props;
+    hidePopup();
+  };
 
   createLinkEntity = ({ url, targetBlank, nofollow, defaultName, linkToAnchor }) => {
     if (!isEmpty(url)) {
-      const { getEditorState, setEditorState, anchorTarget: _anchorTarget, relValue } = this.props;
+      const {
+        getEditorState,
+        setEditorState,
+        anchorTarget: _anchorTarget,
+        relValue,
+        insertLinkFn,
+      } = this.props;
       const anchorTarget = linkToAnchor ? '_self' : _anchorTarget;
-      const newEditorState = insertLinkAtCurrentSelection(getEditorState(), {
+      const newEditorState = insertLinkFn(getEditorState(), {
         url,
         targetBlank,
         nofollow,
@@ -29,10 +34,11 @@ export default class MobileTextLinkModal extends Component {
   };
 
   deleteLink = () => {
-    const { getEditorState, setEditorState } = this.props;
+    const { getEditorState, setEditorState, closeInlinePluginToolbar } = this.props;
     const editorState = getEditorState();
     const newEditorState = removeLinksInSelection(editorState, setEditorState);
     setEditorState(newEditorState);
+    closeInlinePluginToolbar();
   };
 
   render() {
@@ -85,4 +91,6 @@ MobileTextLinkModal.propTypes = {
   relValue: PropTypes.string,
   t: PropTypes.func,
   uiSettings: PropTypes.object,
+  insertLinkFn: PropTypes.func,
+  closeInlinePluginToolbar: PropTypes.func,
 };
