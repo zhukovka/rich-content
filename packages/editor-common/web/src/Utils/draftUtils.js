@@ -118,12 +118,16 @@ function insertLink(editorState, selection, data) {
   );
 }
 
-function createLinkEntityData({ url, targetBlank, nofollow, anchorTarget, relValue }) {
-  return {
+function createLinkEntityData({ url, targetBlank, nofollow, anchorTarget, relValue, defaultName }) {
+  const linkEntityData = {
     url,
     target: targetBlank ? '_blank' : anchorTarget || '_self',
     rel: nofollow ? 'nofollow' : relValue || 'noopener noreferrer',
   };
+  if (defaultName) {
+    linkEntityData.defaultName = defaultName;
+  }
+  return linkEntityData;
 }
 
 function addEntity(editorState, targetSelection, entityData) {

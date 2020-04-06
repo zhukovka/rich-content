@@ -17,8 +17,8 @@ export default class UrlLinkButton extends Component {
     const { styles } = this;
     const { getEditorState } = this.props;
     const linkData = getLinkDataInSelection(getEditorState());
-    const { url = '', target, rel } = linkData || {};
-    const href = normalizeUrl(url);
+    const { url = '', target, rel, defaultName } = linkData || {};
+    const href = normalizeUrl(url) || `#editor-${url}`;
     const anchorProps = {
       href,
       target: target || '_self',
@@ -28,7 +28,7 @@ export default class UrlLinkButton extends Component {
     };
     return (
       <div className={styles.toolbarUrlContainer}>
-        <a {...anchorProps}>{href}</a>
+        <a {...anchorProps}>{defaultName || href}</a>
       </div>
     );
   }
