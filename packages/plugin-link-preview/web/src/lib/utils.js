@@ -20,7 +20,7 @@ export const addLinkPreview = async (editorState, config, blockKey, url) => {
     const withoutLinkBlock = deleteBlock(editorState, blockKey);
     const { size, alignment } = { ...DEFAULTS, ...(settings || {}) };
     const data = {
-      config: { size, alignment, link: { url }, width: embedLink && 350 },
+      config: { size, alignment, link: { url, ...DEFAULTS.link }, width: embedLink && 350 },
       thumbnail_url,
       title,
       description,
