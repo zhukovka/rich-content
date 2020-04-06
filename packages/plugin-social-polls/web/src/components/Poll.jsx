@@ -46,7 +46,7 @@ class PollComponent extends Component {
   }
 
   hasImageBackground() {
-    return this.props.design.poll.backgroundType === BACKGROUND_TYPE.IMAGE;
+    return this.props.design.poll?.backgroundType === BACKGROUND_TYPE.IMAGE;
   }
 
   getOptionList() {
@@ -118,7 +118,7 @@ class PollComponent extends Component {
           </FlipMove>
 
           {!rce.isViewMode && (
-            <li>
+            <li className={styles.column}>
               <button onClick={addOption} className={styles.add_option} style={design.option}>
                 {layout.poll?.type === LAYOUT.GRID && layout.option?.enableImage ? (
                   <AddIcon />
