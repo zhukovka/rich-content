@@ -83,8 +83,14 @@ export const convertLinkPreviewToLink = editorState => {
   newState = EditorState.push(newState, contentState, 'change-block-type');
 
   const editorStateWithLink = changePlainTextUrlToLinkUrl(newState, blockKey, url);
+  const newLineSelection = new SelectionState({
+    anchorKey: nextBlock.key,
+    anchorOffset: 0,
+    focusKey: nextBlock.key,
+    focusOffset: 0,
+  });
 
-  return EditorState.forceSelection(editorStateWithLink, selectionRange);
+  return EditorState.forceSelection(editorStateWithLink, newLineSelection);
 };
 
 const getLinkPreviewUrl = (editorState, block) => {

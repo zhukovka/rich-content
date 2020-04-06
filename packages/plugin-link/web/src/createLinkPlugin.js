@@ -18,7 +18,6 @@ const createLinkPlugin = (config = {}) => {
   const { theme, anchorTarget, relValue, [type]: settings = {}, commonPubsub, ...rest } = config;
   settings.minLinkifyLength = settings.minLinkifyLength || 6;
   const toolbar = createLinkToolbar(config, closeInlinePluginToolbar);
-  let alreadyDisplayedAsLinkPreview = {};
 
   const decorators = [
     { strategy: linkEntityStrategy, component: props => <Component {...props} theme={theme} /> },
@@ -30,10 +29,7 @@ const createLinkPlugin = (config = {}) => {
     if (shouldConvertToLinkPreview(settings, linkifyData)) {
       const url = getBlockLinkUrl(linkifyData);
       const blockKey = linkifyData.block.key;
-      const blocBeforeUrl =
-        editorState.getCurrentContent().getBlockBefore(blockKey)?.key || blockKey; // if there is not block before this is the first block
-      if (url && alreadyDisplayedAsLinkPreview[url] !== blocBeforeUrl) {
-        alreadyDisplayedAsLinkPreview = { ...alreadyDisplayedAsLinkPreview, [url]: blocBeforeUrl };
+      if (url) {
         addLinkPreview(editorState, config, blockKey, url);
       }
     }
