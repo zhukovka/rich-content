@@ -6,7 +6,7 @@ import {
   FacebookIcon,
   TikTokIcon,
   PinterestIcon,
-  YouTubeIcon,
+  // YouTubeIcon,
 } from '../icons';
 import embedURLInputModal from './embedURLInputModal';
 
@@ -34,7 +34,7 @@ export default ({ helpers, settings, isMobile }) => {
     Facebook: FacebookIcon,
     TikTok: TikTokIcon,
     Pinterest: PinterestIcon,
-    YouTube: YouTubeIcon,
+    YouTube: PinterestIcon,
   };
   return socialTypes.map(socialType => {
     return {
