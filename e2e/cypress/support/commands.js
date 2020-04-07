@@ -399,6 +399,10 @@ Cypress.Commands.add('openSoundCloudModal', () => {
   cy.get(`[data-hook*=${STATIC_TOOLBAR_BUTTONS.SOUND_CLOUD}][tabindex!=-1]`).click();
 });
 
+Cypress.Commands.add('openSocialEmbedModal', modalType => {
+  cy.get(`[data-hook*=${modalType}][tabindex!=-1]`).click();
+});
+
 Cypress.Commands.add('addSoundCloud', () => {
   cy.get(`[data-hook*=${'soundCloudUploadModalInput'}]`).type(
     'https://soundcloud.com/nlechoppa/camelot'
@@ -407,6 +411,11 @@ Cypress.Commands.add('addSoundCloud', () => {
   cy.get(`[data-hook=${PLUGIN_COMPONENT.SOUND_CLOUD}]:first`)
     .parent()
     .click();
+});
+
+Cypress.Commands.add('addSocialEmbed', url => {
+  cy.get(`[data-hook*=${'socialEmbedUploadModalInput'}]`).type(url);
+  cy.get(`[data-hook*=${SETTINGS_PANEL.DONE}]`).click();
 });
 
 Cypress.Commands.add('addVideoFromURL', () => {

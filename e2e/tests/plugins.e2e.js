@@ -7,6 +7,7 @@ import {
   GALLERY_IMAGE_SETTINGS,
   IMAGE_SETTINGS,
   GIPHY_PLUGIN,
+  STATIC_TOOLBAR_BUTTONS,
 } from '../cypress/dataHooks';
 import { DEFAULT_DESKTOP_BROWSERS } from '../tests/constants';
 
@@ -510,6 +511,28 @@ describe('plugins', () => {
     it('should embed link that supports embed', function() {
       cy.insertLinkAndEnter('www.mockUrl.com');
       cy.eyesCheckWindow(this.test.title);
+    });
+  });
+
+  context.only('social embed', () => {
+    before(function() {
+      eyesOpen(this);
+    });
+
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
+      cy.loadEditorAndViewer('empty');
+    });
+
+    after(() => cy.eyesClose());
+    const embedTypes = ['TWITTER', 'FACEBOOK', 'TIKTOK', 'PINTEREST', 'YOUTUBE'];
+    it('render upload modals', function() {
+      embedTypes.forEach(embedType => {
+        cy.openSocialEmbedModal(STATIC_TOOLBAR_BUTTONS[embedType]);
+        cy.eyesCheckWindow(this.test.title);
+        cy.addSocialEmbed('www.mockUrl.com');
+        cy.eyesCheckWindow(this.test.title);
+      });
     });
   });
 });
