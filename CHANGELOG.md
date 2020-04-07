@@ -15,6 +15,9 @@
     Click to see more.
   </summary>
 
+### :rocket: New Feature
+- `list`
+  - [#815](https://github.com/wix-incubator/rich-content/pull/815) nested lists
 </details>
 <hr/>
 
