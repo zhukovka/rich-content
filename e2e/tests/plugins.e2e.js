@@ -368,12 +368,17 @@ describe('plugins', () => {
 
     it('render some emojies', function() {
       cy.loadEditorAndViewer('empty');
-      cy.get(`button[data-hook=${PLUGIN_COMPONENT.EMOJI}]`).click();
+      cy.get(`button[data-hook=toolbarArrow]`)
+        .click()
+        .wait(100)
+        .get(`button[data-hook=${PLUGIN_COMPONENT.EMOJI}]`)
+        .click();
       cy.eyesCheckWindow('render emoji modal');
       cy.get(`[data-hook=emoji-5]`).click();
       cy.get(`[data-hook=emoji-group-5]`).click();
       cy.get(`[data-hook=emoji-95]`).click();
       cy.get(`[data-hook=emoji-121]`).click();
+      cy.focusEditor();
       cy.eyesCheckWindow(this.test.title);
     });
   });
