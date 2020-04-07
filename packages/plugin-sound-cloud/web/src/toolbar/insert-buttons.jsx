@@ -13,6 +13,8 @@ export default ({ helpers, t, isMobile, settings }) => {
       minWidth: '100%',
       margin: 0,
       alignContent: 'center',
+      top: 0,
+      transform: 'none',
     };
   }
   const customStyles = { content };
