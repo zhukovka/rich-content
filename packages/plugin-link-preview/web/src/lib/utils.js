@@ -1,4 +1,4 @@
-import { DEFAULTS } from '../consts';
+import { DEFAULTS, AUTO_GENERATED_LINK_PREVIEW_PROVIDER } from '../consts';
 import { LINK_PREVIEW_TYPE } from '../types';
 import { SelectionState, EditorState, Modifier, RichUtils } from 'draft-js';
 import {
@@ -14,8 +14,8 @@ export const addLinkPreview = async (editorState, config, blockKey, url) => {
   const { fetchData } = settings;
   const { setEditorState } = config;
   const linkPreviewData = await fetchData(url);
-  const { thumbnail_url, title, description, html, provider_url } = linkPreviewData;
-  const embedLink = isValidHtml(html) && html;
+  const { thumbnail_url, title, description, html, provider_url, provider_name } = linkPreviewData;
+  const embedLink = provider_name !== AUTO_GENERATED_LINK_PREVIEW_PROVIDER && html;
   if (embedLink || shouldAddLinkPreview(title, thumbnail_url)) {
     const withoutLinkBlock = deleteBlock(editorState, blockKey);
     const { size, alignment } = { ...DEFAULTS, ...(settings || {}) };
@@ -44,8 +44,6 @@ const isValidImgSrc = url => {
     };
   });
 };
-
-const isValidHtml = html => html && html.substring(0, 12) !== '<div>{"url":';
 
 const shouldAddLinkPreview = (title, thumbnail_url) => {
   if (title && thumbnail_url) {
