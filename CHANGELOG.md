@@ -17,8 +17,8 @@
 
 
  ### :rocket: New Feature
- - `editor`
-   - [#788](https://github.com/wix-incubator/rich-content/pull/788) add headers dropdown menu option
+ - `plugin-headings`
+   - [#901](https://github.com/wix-incubator/rich-content/pull/901) adding new plugin with headers dropdown menu option
 </details>
 <hr/>
 
