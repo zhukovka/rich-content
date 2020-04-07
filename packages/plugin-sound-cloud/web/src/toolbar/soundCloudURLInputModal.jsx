@@ -5,7 +5,7 @@ import {
   SettingsPanelFooter,
   TextInput,
   CloseIcon,
-  GLOBAL_KEYS,
+  KEYS_CHARCODE,
 } from 'wix-rich-content-editor-common';
 import { mergeStyles } from 'wix-rich-content-common';
 import ReactPlayer from 'react-player';
@@ -56,10 +56,10 @@ export default class SoundCloudURLInputModal extends Component {
   };
 
   handleKeyPress = e => {
-    if (e.charCode === GLOBAL_KEYS.ENTER) {
+    if (e.charCode === KEYS_CHARCODE.ENTER) {
       this.onConfirm();
     }
-    if (e.charCode === GLOBAL_KEYS.ESCAPE) {
+    if (e.charCode === KEYS_CHARCODE.ESCAPE) {
       this.onCloseRequested();
     }
   };

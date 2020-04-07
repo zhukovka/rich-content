@@ -5,7 +5,7 @@ import {
   SettingsPanelFooter,
   TextInput,
   CloseIcon,
-  GLOBAL_KEYS,
+  KEYS_CHARCODE,
 } from 'wix-rich-content-editor-common';
 import styles from '../../statics/styles/embed-url-input-modal.scss';
 import { isValidUrl } from 'wix-rich-content-common';
@@ -56,10 +56,10 @@ export default class embedURLInputModal extends Component {
   };
 
   handleKeyPress = event => {
-    if (event.charCode === GLOBAL_KEYS.ENTER) {
+    if (event.charCode === KEYS_CHARCODE.ENTER) {
       this.onConfirm();
     }
-    if (event.charCode === GLOBAL_KEYS.ESCAPE) {
+    if (event.charCode === KEYS_CHARCODE.ESCAPE) {
       this.onCloseRequested();
     }
   };
