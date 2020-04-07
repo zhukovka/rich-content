@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import {
-  SettingsPanelFooter,
-  TextInput,
-  CloseIcon,
-  KEYS_CHARCODE,
-} from 'wix-rich-content-editor-common';
+import { CloseIcon } from '../Icons';
+import SettingsPanelFooter from '../Components/SettingsPanelFooter';
+import TextInput from '../Components/TextInput';
+import { KEYS_CHARCODE } from '../consts';
 import styles from '../../statics/styles/url-input-modal.scss';
 
 export default class UrlInputModal extends Component {
