@@ -1,14 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import classNames from 'classnames';
-import {
-  SettingsPanelFooter,
-  TextInput,
-  CloseIcon,
-  KEYS_CHARCODE,
-} from 'wix-rich-content-editor-common';
-import styles from '../../statics/styles/embed-url-input-modal.scss';
 import { isValidUrl } from 'wix-rich-content-common';
+import UrlInputModal from 'wix-rich-content-editor/dist/lib/UrlInputModal';
 
 export default class embedURLInputModal extends Component {
   constructor(props) {
@@ -16,18 +9,14 @@ export default class embedURLInputModal extends Component {
     const { componentData } = this.props;
     this.state = {
       url: componentData?.config?.link?.url || '',
+      submittedInvalidUrl: false,
     };
   }
-
-  onUrlChange = event => {
-    const url = event.target.value;
-    this.setState({ url });
-  };
 
   onConfirm = () => {
     const { url } = this.state;
     if (url) {
-      const { componentData, pubsub, onConfirm } = this.props;
+      const { componentData, pubsub, onConfirm, helpers } = this.props;
       const { fetchData } = componentData;
       fetchData(url).then(({ html }) => {
         if (!isValidUrl(url)) {
@@ -42,32 +31,11 @@ export default class embedURLInputModal extends Component {
           } else {
             pubsub.update('componentData', { url, html });
           }
-          this.onCloseRequested();
+          helpers.closeModal();
         }
       });
-    } else {
-      this.setState({ submitted: true });
     }
   };
-
-  onCloseRequested = () => {
-    this.setState({ isOpen: false });
-    this.props.helpers.closeModal();
-  };
-
-  handleKeyPress = event => {
-    if (event.charCode === KEYS_CHARCODE.ENTER) {
-      this.onConfirm();
-    }
-    if (event.charCode === KEYS_CHARCODE.ESCAPE) {
-      this.onCloseRequested();
-    }
-  };
-
-  componentDidMount() {
-    this.input.focus();
-    this.input.setSelectionRange(0, this.input.value.length);
-  }
 
   render() {
     const { url, submittedInvalidUrl } = this.state;
@@ -75,47 +43,26 @@ export default class embedURLInputModal extends Component {
       t,
       languageDir,
       componentData: { socialType },
+      helpers,
     } = this.props;
+
     return (
-      <div
-        className={styles.socialEmbed_urlInput_container}
-        data-hook="socialEmbedUploadModal"
-        dir={languageDir}
-      >
-        <CloseIcon
-          className={classNames(styles.socialEmbed_urlInput_closeIcon)}
-          onClick={() => this.onCloseRequested()}
-        />
-        <div className={classNames(styles.socialEmbed_urlInput_header)}>
-          <div className={styles.socialEmbed_urlInput_header_text}>
-            {t(`EmbedURL_Social_${socialType}_Title`)}
-          </div>
-        </div>
-        <div className={styles.socialEmbedUrlInputModal_textInput}>
-          <TextInput
-            inputRef={ref => {
-              this.input = ref;
-            }}
-            type="url"
-            onKeyPress={this.handleKeyPress}
-            onChange={this.onUrlChange}
-            value={url}
-            error={submittedInvalidUrl && t('SoundCloudUploadModal_Input_InvalidUrl')}
-            placeholder={t(`EmbedURL_Social_${socialType}_Placeholder`)}
-            theme={styles}
-            data-hook="socialEmbedUploadModalInput"
-          />
-        </div>
-        <SettingsPanelFooter
-          className={styles.socialEmbed_urlInput_modal_footer}
-          save={() => this.onConfirm()}
-          cancel={() => this.onCloseRequested()}
-          saveLabel={t('EmbedURL_Common_CTA_Primary')}
-          cancelLabel={t('EmbedURL_Common_CTA_Secondary')}
-          theme={styles}
-          t={t}
-        />
-      </div>
+      <UrlInputModal
+        onConfirm={this.onConfirm}
+        helpers={helpers}
+        url={url}
+        t={t}
+        languageDir={languageDir}
+        title={t(`EmbedURL_Social_${socialType}_Title`)}
+        submittedInvalidUrl={submittedInvalidUrl}
+        dataHook={'socialEmbedUploadModal'}
+        saveLabel={t('EmbedURL_Common_CTA_Primary')}
+        cancelLabel={t('EmbedURL_Common_CTA_Secondary')}
+        setUrl={url => this.setState({ url })}
+        errorMessage={t('SoundCloudUploadModal_Input_InvalidUrl')}
+        placeholder={t(`EmbedURL_Social_${socialType}_Placeholder`)}
+        onCloseRequested={helpers.closeModal}
+      />
     );
   }
 }
@@ -125,16 +72,6 @@ embedURLInputModal.propTypes = {
   pubsub: PropTypes.object,
   helpers: PropTypes.object.isRequired,
   componentData: PropTypes.object.isRequired,
-  url: PropTypes.string,
-  theme: PropTypes.object.isRequired,
-  doneLabel: PropTypes.string,
-  cancelLabel: PropTypes.string,
   t: PropTypes.func,
-  isMobile: PropTypes.bool,
   languageDir: PropTypes.string,
-};
-
-embedURLInputModal.defaultProps = {
-  doneLabel: 'Add Now',
-  cancelLabel: 'Cancel',
 };
