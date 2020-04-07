@@ -3710,6 +3710,8 @@ exports[`plugins > convert link to preview > should create link preview from lin
         "config": {
           "alignment": "center",
           "link": {
+            "rel": "noopener",
+            "target": "_blank",
             "url": "www.wix.com"
           },
           "size": "content"
