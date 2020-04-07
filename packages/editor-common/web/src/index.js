@@ -85,6 +85,7 @@ export {
   calculateDiff,
   getPostContentSummary,
   createSelection,
+  getBlockType,
   setForceSelection,
 } from './Utils/draftUtils';
 export { isiOS } from './Utils/isiOS';
