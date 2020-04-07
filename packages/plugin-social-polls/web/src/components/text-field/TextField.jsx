@@ -41,6 +41,7 @@ class TextFieldComponent extends React.PureComponent {
   }
 
   handleFocus = () => {
+    setTimeout(() => this.resize());
     this.hidePlaceholder();
     this.props.rce.setInPluginEditingMode(true);
   };
@@ -52,6 +53,7 @@ class TextFieldComponent extends React.PureComponent {
   }
 
   handleBlur = () => {
+    setTimeout(() => this.resize());
     this.showPlaceholder();
     this.props.rce.setInPluginEditingMode(false);
 
@@ -158,9 +160,9 @@ class TextFieldComponent extends React.PureComponent {
             styles.input,
             className,
             textAutoResize && {
-              [styles.small]: value.length > 90,
-              [styles.medium]: value.length <= 90,
-              [styles.large]: value.length <= 60,
+              [styles.small]: value.length > 160,
+              [styles.medium]: value.length <= 120,
+              [styles.large]: value.length <= 80,
             }
           )}
           onClick={undefined}
