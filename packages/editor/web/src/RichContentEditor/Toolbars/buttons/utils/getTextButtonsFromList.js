@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-delete */
 import { decorateComponentWithProps, TOOLBARS } from 'wix-rich-content-editor-common';
 import {
   boldButton,
@@ -14,20 +15,22 @@ import {
   textAlignmentButton,
 } from '../index';
 import createThemedSeparator from './createThemedSeparator';
-import { createFontStyleStructure } from './createFontStyleButton';
 
 export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSettings, config }) => {
   const themedSeparator = horizontal => createThemedSeparator({ theme, horizontal });
   const customSettings =
     config?.getToolbarSettings?.({}).find(setting => setting.name === TOOLBARS.TEXT) || {};
   const icons = customSettings?.getIcons?.() || {};
-  const fontStylesButton = createFontStyleStructure(customSettings, isMobile, icons, t);
+  const headingKeyName = Object.keys(textPluginButtons).find(buttonName =>
+    buttonName.includes('Heading')
+  );
+  const { [headingKeyName]: headingButton, ...otherPluginButtons } = textPluginButtons;
   const buttonsMap = {
     Bold: boldButton(icons.Bold),
     Italic: italicButton(icons.Italic),
     Underline: underlineButton(icons.Underline),
     Indent: indentButton(icons.Indent),
-    Title: fontStylesButton,
+    Title: headingButton,
     Blockquote: blockquoteButton(icons.Blockquote),
     Alignment: textAlignmentButton(icons),
     AlignLeft: alignTextLeftButton(icons.AlignLeft),
@@ -38,13 +41,13 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
     UnorderedList: unorderedListButton(icons.UnorderedList),
     Separator: themedSeparator(false),
     HorizontalSeparator: themedSeparator(true),
-    ...textPluginButtons,
+    ...otherPluginButtons,
   };
-
   const buttonCompArray = [];
-  const { headersDropdown } = customSettings;
-  if (!isMobile && headersDropdown) {
-    buttonCompArray.push(...[buttonsMap.Title, buttonsMap.Separator]);
+  const customHeadings = config?.Headings?.headersDropdown;
+
+  if (customHeadings) {
+    buttonCompArray.push(...[headingButton, buttonsMap.Separator]);
     buttons = buttons.filter(buttonName => buttonName !== 'Title');
   }
   buttonCompArray.push(...buttons.map(buttonName => buttonsMap[buttonName]).filter(x => x));

@@ -35,6 +35,7 @@ export const HTML_TYPE = 'wix-draft-plugin-html';
 export const IMAGE_TYPE = 'wix-draft-plugin-image';
 export const IMAGE_TYPE_LEGACY = 'IMAGE';
 export const LINE_SPACING_TYPE = 'line-spacing';
+export const HEADINGS_TYPE = 'Headings';
 export const EXTERNAL_LINK_TYPE = 'wix-draft-plugin-external-link';
 export const LINK_TYPE = 'LINK';
 export const LINK_PREVIEW_TYPE = 'LINK_PREVIEW';

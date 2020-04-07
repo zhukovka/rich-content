@@ -15,6 +15,7 @@ import {
   EXTERNAL_MENTIONS_TYPE,
 } from 'wix-rich-content-plugin-mentions';
 import { createCodeBlockPlugin, CODE_BLOCK_TYPE } from 'wix-rich-content-plugin-code-block';
+import { createHeadingsPlugin, HEADINGS_TYPE } from 'wix-rich-content-plugin-headings';
 import { createSoundCloudPlugin, SOUND_CLOUD_TYPE } from 'wix-rich-content-plugin-sound-cloud';
 import { createGiphyPlugin, GIPHY_TYPE } from 'wix-rich-content-plugin-giphy';
 import {
@@ -51,6 +52,7 @@ import 'wix-rich-content-plugin-giphy/dist/styles.min.css';
 import 'wix-rich-content-plugin-map/dist/styles.min.css';
 import 'wix-rich-content-plugin-file-upload/dist/styles.min.css';
 import 'wix-rich-content-plugin-text-color/dist/styles.min.css';
+import 'wix-rich-content-plugin-headings/dist/styles.min.css';
 import {
   customForegroundStyleFn,
   styleSelectionPredicate,
@@ -66,6 +68,7 @@ import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common'
 // import PluginToolbarDecoration from './Components/PluginToolbarDecoration';
 
 export const editorPlugins = [
+  createHeadingsPlugin,
   createImagePlugin,
   createGalleryPlugin,
   createVideoPlugin,
@@ -344,6 +347,22 @@ const config = {
         )
       ),
   },
+  [HEADINGS_TYPE]: {
+    headersDropdown: true,
+    // toolbar: {
+    //   icons: {
+    //     inactiveIconTitle: MyCustomIcon,
+    //     TitleOne: MyCustomIcon,
+    //     TitleTwo: MyCustomIcon,
+    //   },
+    // },
+    // defaultSpacing: {
+    //   'line-height': '1.5',
+    //   'padding-top': '2px',
+    //   'padding-bottom': '3px',
+    // },
+    // onUpdate: spacing => console.log(LINE_SPACING_TYPE, spacing),
+  },
   [LINE_SPACING_TYPE]: {
     // toolbar: {
     //   icons: {
@@ -532,10 +551,10 @@ const config = {
   },
   uiSettings,
   getToolbarSettings: ({ pluginButtons, textButtons }) => [
-    {
-      name: TOOLBARS.TEXT,
-      // headersDropdown: true,
-    },
+    // {
+    //   name: TOOLBARS.TEXT,
+    //   headersDropdown: true,
+    // },
     // {
     //   name: TOOLBARS.TEXT,
     //   getIcons: () => ({
@@ -543,9 +562,6 @@ const config = {
     //     Italic: MyCustomIcon,
     //     Underline: MyCustomIcon,
     //     Indent: MyCustomIcon,
-    //     inactiveIconTitle: SizeSmallRightIcon,
-    //     TitleOne: MyCustomIcon,
-    //     TitleTwo: SizeSmallRightIcon,
     //     Blockquote: MyCustomIcon,
     //     Alignment: MyCustomIcon,
     //     AlignLeft: MyCustomIcon,

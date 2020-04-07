@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { isEmpty } from 'lodash';
 import ToolbarButton from './ToolbarButton';
 import styles from '../../statics/styles/inline-toolbar-button.scss';
+import DropdownArrowIcon from '../Icons/DropdownArrowIcon';
 
 class InlineToolbarButton extends Component {
   constructor(props) {
@@ -27,6 +28,23 @@ class InlineToolbarButton extends Component {
         [buttonStyles.inlineToolbarButton_active]: !!buttonStyles.inlineToolbarButton_active,
         [buttonStyles.pluginToolbarButton_active]: !!buttonStyles.pluginToolbarButton_active,
       }),
+      menuButton: classNames(
+        styles.inlineToolbarButton_menuButton,
+        styles.inlineToolbarButton_icon,
+        {
+          [buttonStyles.inlineToolbarButton_icon]: !!buttonStyles.inlineToolbarButton_icon,
+          [buttonStyles.pluginToolbarButton_icon]: !!buttonStyles.pluginToolbarButton_icon,
+        }
+      ),
+      arrowIcon: classNames(
+        styles.inlineToolbarButton_icon,
+        styles.inlineToolbarDropdownButton_arrowIcon,
+        {
+          [buttonStyles.inlineToolbarButton_icon]: !!buttonStyles.inlineToolbarButton_icon,
+          [buttonStyles.pluginToolbarButton_icon]: !!buttonStyles.pluginToolbarButton_icon,
+        }
+      ),
+      arrowIconOpen: styles.inlineToolbarDropdownButton_arrowIcon_isOpen,
     };
   }
 
@@ -42,6 +60,8 @@ class InlineToolbarButton extends Component {
     children: PropTypes.node,
     forwardRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.func })]),
     disabled: PropTypes.bool,
+    buttonContent: PropTypes.string,
+    showArrowIcon: PropTypes.bool,
   };
 
   preventDefault = event => event.preventDefault();
@@ -57,14 +77,32 @@ class InlineToolbarButton extends Component {
       icon: Icon,
       forwardRef,
       disabled,
+      buttonContent,
+      showArrowIcon,
+      onClick,
     } = this.props;
     const { styles } = this;
     const showTooltip = !isMobile && !isEmpty(tooltipText);
-
+    const arrowIcon = (
+      <span
+        className={classNames(styles.arrowIcon, {
+          [styles.arrowIconOpen]: isActive,
+        })}
+      >
+        <DropdownArrowIcon />
+      </span>
+    );
     const iconClassNames = classNames(styles.icon, {
       [styles.active]: isActive,
     });
+    const buttonTextContent = buttonContent || (
+      <div className={iconClassNames}>
+        <Icon />
+      </div>
+    );
+    // const buttonTextContent = <div className={iconClassNames}>{buttonContent || <Icon />}</div>;
 
+    const isMenu = !!showArrowIcon;
     const codeBlockButton = (
       /* eslint-disable jsx-a11y/no-static-element-interactions */
       <div className={styles.buttonWrapper}>
@@ -74,14 +112,19 @@ class InlineToolbarButton extends Component {
           aria-label={tooltipText}
           aria-pressed={isActive}
           data-hook={dataHook}
-          onClick={this.props.onClick}
+          onClick={onClick}
           className={styles.button}
           ref={forwardRef}
           onMouseDown={this.preventDefault}
         >
-          <div className={iconClassNames}>
-            <Icon />
-          </div>
+          {isMenu ? (
+            <div className={styles.menuButton}>
+              {buttonTextContent}
+              {arrowIcon}
+            </div>
+          ) : (
+            buttonTextContent
+          )}
         </button>
         {this.props.children}
       </div>

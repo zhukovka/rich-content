@@ -1,0 +1,62 @@
+.headingsPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 0;
+    width: 140px;
+  
+    * {
+      height: 42px;
+      border: none;
+      font-size: 14px;
+      width: 100%;
+      text-align: left;
+      background-color: transparent;
+  
+      &:hover {
+        color: #236fff;
+        cursor: pointer;
+      }
+    }
+}
+
+.headingsPanel_selectedHeading {
+    color: #236fff;
+}
+
+.headingsMobilePanel {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 18px;
+
+    * {
+        font-family: Avenir, serif;
+        font-size: 16px;
+        background-color: transparent;
+        border: none;
+    }
+}
+
+.headingsMobilePanel_fonts {
+    display: grid;  
+    * {
+        height: 50px;
+        flex: 1;
+        text-align: left;
+    }
+}
+
+.headingsPanelContainer {
+    border: solid 1px #ededed;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.headingsPanelContainer_mobile {
+    border: solid 1px #ededed;
+    border-radius: unset;
+    box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.05);
+}
+.detailsOfHeading{
+    font-size: 10px;
+}

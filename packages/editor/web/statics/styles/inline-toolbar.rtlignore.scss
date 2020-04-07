@@ -24,7 +24,7 @@ $borderRadius: 6px;
 }
 
 .inlineToolbar_overrideContent {
-  height: 200px;
+  height: auto;
   padding: 0;
 }
 
@@ -33,15 +33,13 @@ $borderRadius: 6px;
   align-items: center;
   overflow: hidden;
   width: 100%;
-  padding: 115px 19px 210px 14px;
+  padding: 90px 19px;
   margin: -90px 0;
   pointer-events: none;
   scroll-behavior: smooth;
 
   & > * {
     pointer-events: initial;
-    padding: 20px 0px;
-
   }
 
   &.mobile {

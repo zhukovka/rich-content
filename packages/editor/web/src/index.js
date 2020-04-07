@@ -1,5 +1,6 @@
 import RichContentEditor from './RichContentEditor';
 import RichContentEditorModal from './RichContentEditor/RichContentEditorModal';
+import { titleButton } from './RichContentEditor/Toolbars/buttons/TextButtons';
 
 export {
   EditorState,
@@ -9,4 +10,4 @@ export {
   convertFromRaw,
 } from './lib/editorStateConversion';
 
-export { RichContentEditorModal, RichContentEditor };
+export { RichContentEditorModal, RichContentEditor, titleButton };

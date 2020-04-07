@@ -3,15 +3,16 @@
 @import '~wix-rich-content-common/dist/statics/styles/consts';
 .inlineToolbarDropdown_wrapper {
   position: relative;
-  padding: 10px 5px 10px 5px;
+  margin-right: 10px;
+  padding: 10px 0;
 }
 
 .inlineToolbarDropdown_options {
   position: absolute;
+  top: 10px;
   overflow: scroll;
-  padding: 10px 10px;
   left: -3px;
-
+  padding: 0 3px;
   background: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1);
 }
@@ -19,33 +20,12 @@
 .inlineToolbarDropdownButton_wrapper {
   margin-right: 0 !important;
   padding: 0 !important;
-
-  &>*{
-    width: max-content;
-    font-size: smaller;
-    font-family: Helvetica;
-
-  }
 }
 
 .inlineToolbarDropdownButton {
-  outline: none;  
+  outline: none;
 }
 
 .inlineToolbarDropdownButton_icon {
   outline: none;
-}
-
-.inlineToolbarDropdownButton_arrowIcon {
-  position: absolute;
-  right: 10px;
-  svg {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-.inlineToolbarDropdownButton_arrowIcon_isOpen {
-  transform: rotate(180deg);
-  top: 14px;
 }

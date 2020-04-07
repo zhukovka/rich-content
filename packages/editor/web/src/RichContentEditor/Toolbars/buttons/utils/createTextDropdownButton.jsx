@@ -4,18 +4,10 @@ import classNames from 'classnames';
 import TextButton from '../TextButton';
 import { mergeStyles } from 'wix-rich-content-common';
 import { Tooltip } from 'wix-rich-content-editor-common';
-import DropdownArrowIcon from 'wix-rich-content-editor-common/src/Icons/DropdownArrowIcon';
 import styles from '../../../../../statics/styles/inline-toolbar-dropdown-button.scss';
 import ClickOutside from 'react-click-outside';
 
-export default ({
-  buttons,
-  activeItem,
-  onChange,
-  tooltipTextKey,
-  showArrowIcon,
-  dataHookTextWrapper,
-}) =>
+export default ({ buttons, activeItem, onChange, tooltipTextKey, dataHookTextWrapper }) =>
   class TextDropdownButton extends PureComponent {
     static propTypes = {
       getEditorState: PropTypes.func.isRequired,
@@ -64,11 +56,6 @@ export default ({
             styles.inlineToolbarButton_active,
             theme && theme.inlineToolbarDropdownButton_active
           ),
-          //eslint-disable-next-line camelcase
-          inlineToolbarButton_menuButton: classNames(
-            styles.inlineToolbarButton_menuButton,
-            theme && theme.inlineToolbarButton_menuButton
-          ),
         },
       };
       this.styles = mergeStyles({ styles, theme: this.theme });
@@ -112,22 +99,13 @@ export default ({
 
     render() {
       const {
-        selected: { Icon, buttonContent },
+        selected: { Icon },
         isOpen,
       } = this.state;
       const { isMobile, tabIndex, t } = this.props;
       const tooltipText = t(tooltipTextKey);
       const textForHooks = tooltipText.replace(/\s+/, '');
       const dataHookText = `textDropDownButton_${textForHooks}`;
-      const arrowIcon = (
-        <span
-          className={classNames(this.styles.inlineToolbarDropdownButton_arrowIcon, {
-            [this.styles.inlineToolbarDropdownButton_arrowIcon_isOpen]: this.state.isOpen,
-          })}
-        >
-          <DropdownArrowIcon />
-        </span>
-      );
 
       return (
         <Tooltip content={tooltipText} moveBy={{ y: -20 }}>
@@ -137,8 +115,6 @@ export default ({
             data-hook={dataHookTextWrapper}
           >
             <TextButton
-              buttonContent={buttonContent}
-              arrowIcon={showArrowIcon && arrowIcon}
               icon={Icon}
               theme={this.theme}
               isMobile={isMobile}
