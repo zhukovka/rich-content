@@ -900,6 +900,7 @@ exports[`text > allow to create anchors #0`] =
   "entityMap": {
     "0": {
       "data": {
+        "defaultName": "title1",
         "rel": "noopener",
         "target": "_self",
         "url": "test-blockKey"
