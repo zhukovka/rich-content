@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { SettingsPanelFooter, TextInput, CloseIcon } from 'wix-rich-content-editor-common';
+import {
+  SettingsPanelFooter,
+  TextInput,
+  CloseIcon,
+  GLOBAL_KEYS,
+} from 'wix-rich-content-editor-common';
 import styles from '../../statics/styles/embed-url-input-modal.scss';
 import { isValidUrl } from 'wix-rich-content-common';
 
@@ -51,10 +56,10 @@ export default class embedURLInputModal extends Component {
   };
 
   handleKeyPress = event => {
-    if (event.charCode === 13) {
+    if (event.charCode === GLOBAL_KEYS.ENTER) {
       this.onConfirm();
     }
-    if (event.charCode === 27) {
+    if (event.charCode === GLOBAL_KEYS.ESCAPE) {
       this.onCloseRequested();
     }
   };

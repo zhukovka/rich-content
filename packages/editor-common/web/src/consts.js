@@ -59,3 +59,8 @@ export const TOOLBAR_OFFSETS = Object.freeze({
   top: 12,
   left: 15,
 });
+
+export const GLOBAL_KEYS = {
+  ENTER: 13,
+  ESCAPE: 27,
+};

@@ -1,6 +1,10 @@
 import React from 'react';
 import { createLinkPlugin, LINK_TYPE } from 'wix-rich-content-plugin-link';
-import { createLinkPreviewPlugin, LINK_PREVIEW_TYPE } from 'wix-rich-content-plugin-link-preview';
+import {
+  createLinkPreviewPlugin,
+  LINK_PREVIEW_TYPE,
+  LinkPreviewProviders,
+} from 'wix-rich-content-plugin-link-preview';
 import { createLineSpacingPlugin, LINE_SPACING_TYPE } from 'wix-rich-content-plugin-line-spacing';
 import { createHashtagPlugin, HASHTAG_TYPE } from 'wix-rich-content-plugin-hashtag';
 import { createEmojiPlugin, EMOJI_TYPE } from 'wix-rich-content-plugin-emoji';
@@ -230,18 +234,12 @@ const videoHandlers = {
   },
 };
 
+const { Instagram, Twitter, YouTube } = LinkPreviewProviders;
 const config = {
   [LINK_PREVIEW_TYPE]: {
     enableEmbed: true,
     fetchData: mockFetchUrlPreviewData(),
-    exposeEmbedButtons: {
-      Instagram: true,
-      Twitter: true,
-      Facebook: true,
-      TikTok: true,
-      Pinterest: true,
-      YouTube: true,
-    },
+    exposeEmbedButtons: [Instagram, Twitter, YouTube],
   },
   [EMOJI_TYPE]: {
     // toolbar: {

@@ -8,6 +8,7 @@ import {
   FocusManager,
   ErrorIcon,
   SettingsPanelFooter,
+  GLOBAL_KEYS,
 } from 'wix-rich-content-editor-common';
 import { mergeStyles, isValidUrl } from 'wix-rich-content-common';
 import DesignComponent from './../components/design-component';
@@ -16,6 +17,7 @@ import Navbar from './../components/navbar';
 import PreviewComponent from './../components/preview-component';
 import { settingsTabValue, designTabValue } from '../../src/constants';
 import styles from '../../statics/styles/button-input-modal.scss';
+
 export default class ButtonInputModal extends Component {
   constructor(props) {
     super(props);
@@ -84,10 +86,10 @@ export default class ButtonInputModal extends Component {
   };
 
   handleKeyPress = e => {
-    if (e.charCode === 13) {
+    if (e.charCode === GLOBAL_KEYS.ENTER) {
       this.onConfirm();
     }
-    if (e.charCode === 27) {
+    if (e.charCode === GLOBAL_KEYS.ESCAPE) {
       this.onCloseRequested();
     }
   };

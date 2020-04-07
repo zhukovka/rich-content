@@ -99,6 +99,7 @@ export {
   DECORATION_MODE,
   PLUGIN_DECORATION_PROPS,
   PLUGIN_DECORATIONS,
+  GLOBAL_KEYS,
 } from './consts';
 
 export {

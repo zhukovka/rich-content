@@ -25,11 +25,7 @@ export default ({ helpers, settings, isMobile }) => {
     };
   }
   const customStyles = { content };
-  const { exposeEmbedButtons = {} } = settings;
-  const socialTypes = [];
-  Object.keys(exposeEmbedButtons).forEach(key => {
-    exposeEmbedButtons[key] && socialTypes.push(key);
-  });
+  const { exposeEmbedButtons = [] } = settings;
   const socialIconsMap = {
     Instagram: InstagramIcon,
     Twitter: TwitterIcon,
@@ -38,7 +34,7 @@ export default ({ helpers, settings, isMobile }) => {
     Pinterest: PinterestIcon,
     YouTube: YoutubeIcon,
   };
-  return socialTypes.map(socialType => {
+  return exposeEmbedButtons.map(socialType => {
     return {
       type: 'modal',
       name: socialType,

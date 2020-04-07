@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { SettingsPanelFooter, TextInput, CloseIcon } from 'wix-rich-content-editor-common';
+import {
+  SettingsPanelFooter,
+  TextInput,
+  CloseIcon,
+  GLOBAL_KEYS,
+} from 'wix-rich-content-editor-common';
 import { mergeStyles } from 'wix-rich-content-common';
 import ReactPlayer from 'react-player';
 import styles from '../../statics/styles/sound-cloud-url-input-modal.scss';
@@ -51,10 +56,10 @@ export default class SoundCloudURLInputModal extends Component {
   };
 
   handleKeyPress = e => {
-    if (e.charCode === 13) {
+    if (e.charCode === GLOBAL_KEYS.ENTER) {
       this.onConfirm();
     }
-    if (e.charCode === 27) {
+    if (e.charCode === GLOBAL_KEYS.ESCAPE) {
       this.onCloseRequested();
     }
   };

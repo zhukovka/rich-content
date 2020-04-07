@@ -514,7 +514,7 @@ describe('plugins', () => {
     });
   });
 
-  context.only('social embed', () => {
+  context('social embed', () => {
     before(function() {
       eyesOpen(this);
     });
