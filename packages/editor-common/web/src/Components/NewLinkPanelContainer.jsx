@@ -85,17 +85,17 @@ class NewLinkPanelContainer extends PureComponent {
 
   onDoneAnchor = () => {
     const { anchorPanelValues } = this.state;
-
-    //add to the html element id attribute with the block key + uniqueId
     /*
-    const uniqueId =
-      anchorPanelValues.url === 'test-blockKey'
-        ? '123456789'
-        : Math.random()
-            .toString(36)
-            .substr(2, 9);
-    const uniqueBlockKey = `${anchorPanelValues.url}-${uniqueId}`;
-    */
+    //add to the html element id attribute with the block key + uniqueId
+
+    // const uniqueId =
+    //   anchorPanelValues.url === 'test-blockKey'
+    //     ? '123456789'
+    //     : Math.random()
+    //         .toString(36)
+    //         .substr(2, 9);
+    // const uniqueBlockKey = `${anchorPanelValues.url}-${uniqueId}`;
+
     const uniqueBlockKey = `${anchorPanelValues.url}`;
     //editor
     const listOfAllEditorBlocks = document.querySelectorAll(`[data-editor]`);
@@ -112,9 +112,9 @@ class NewLinkPanelContainer extends PureComponent {
     );
     viewerBlockElementToAnchor.setAttribute('id', `viewer-${uniqueBlockKey}`);
     //
-
+    */
     if (anchorPanelValues.url) {
-      this.props.onDone({ ...anchorPanelValues, url: uniqueBlockKey, linkToAnchor: true });
+      this.props.onDone({ ...anchorPanelValues, url: anchorPanelValues.url, linkToAnchor: true });
     }
   };
 

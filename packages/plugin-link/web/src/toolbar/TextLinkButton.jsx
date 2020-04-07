@@ -30,7 +30,7 @@ export default class TextLinkButton extends Component {
       insertLinkFn,
       closeInlinePluginToolbar,
     } = this.props;
-    const modalStyles = getModalStyles({ fullScreen: false, isMobile });
+    const modalStyles = getModalStyles({ fullScreen: true, isMobile });
     const commonPanelProps = {
       anchorTarget,
       relValue,
