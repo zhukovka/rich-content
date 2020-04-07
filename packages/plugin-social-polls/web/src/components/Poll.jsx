@@ -77,12 +77,12 @@ class PollComponent extends Component {
         className={cls(styles.container, {
           [styles.isMobile]: rce.isMobile,
         })}
+        style={design.poll}
       >
         <div
           className={cls(styles.background_overlay, {
             [styles.with_image]: this.hasImageBackground(),
           })}
-          style={design.poll}
         />
         <PollHeader />
 
@@ -105,6 +105,7 @@ class PollComponent extends Component {
                   unvote={unvote}
                   poll={poll}
                   showResults={this.showResults()}
+                  dark={this.hasImageBackground()}
                 />
                 <VotedUsers
                   option={option}

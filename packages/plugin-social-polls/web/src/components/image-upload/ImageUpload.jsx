@@ -134,7 +134,7 @@ class ImageUploadComponent extends PureComponent {
                     [styles.hide]: small,
                   })}
                 >
-                  Change Feature Image
+                  Change Image
                 </p>
               </>
             )}

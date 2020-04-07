@@ -34,14 +34,15 @@ export class PollGridOption extends PollOptionBase {
   }
 
   renderEditMode() {
-    const { design, option, removeEnabled, t } = this.props;
+    const { design, option, removeEnabled, dark, t } = this.props;
 
     const style = this.getCustomStyle();
 
     return (
       <div
         className={cls(styles.option, {
-          [styles.withImage]: this.isImageEnabled(),
+          [styles.with_image]: this.isImageEnabled(),
+          [styles.dark]: dark,
         })}
         style={design.option}
       >
@@ -72,7 +73,7 @@ export class PollGridOption extends PollOptionBase {
   }
 
   renderViewMode() {
-    const { design, option, showResults } = this.props;
+    const { design, option, showResults, dark } = this.props;
     const { loading } = this.state;
 
     const style = this.getCustomStyle();
@@ -80,8 +81,9 @@ export class PollGridOption extends PollOptionBase {
     return (
       <div
         className={cls(styles.option, styles.grid, styles.cta, {
-          [styles.withImage]: this.isImageEnabled(),
+          [styles.with_image]: this.isImageEnabled(),
           [styles.user_choice]: this.isUserChoice(),
+          [styles.dark]: dark,
         })}
         style={design.option}
         onClick={this.handleVoteClick}

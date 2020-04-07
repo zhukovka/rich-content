@@ -32,7 +32,7 @@ export class PollListOption extends PollOptionBase {
   }
 
   renderViewMode() {
-    const { design, option, showResults } = this.props;
+    const { design, option, showResults, dark } = this.props;
     const { loading } = this.state;
 
     const style = this.getCustomStyle();
@@ -42,6 +42,7 @@ export class PollListOption extends PollOptionBase {
         className={cls(styles.option, styles.list, styles.cta, {
           [styles.with_image]: this.isImageEnabled() && option.mediaId,
           [styles.user_choice]: this.isUserChoice(),
+          [styles.dark]: dark,
         })}
         style={design.option}
         onClick={this.handleVoteClick}
@@ -93,7 +94,7 @@ export class PollListOption extends PollOptionBase {
   }
 
   renderEditMode() {
-    const { design, option, removeEnabled, t } = this.props;
+    const { design, option, removeEnabled, t, dark } = this.props;
 
     const style = this.getCustomStyle();
 
@@ -101,6 +102,7 @@ export class PollListOption extends PollOptionBase {
       <div
         className={cls(styles.option, styles.list, {
           [styles.with_image]: this.isImageEnabled(),
+          [styles.dark]: dark,
         })}
         style={design.option}
       >
