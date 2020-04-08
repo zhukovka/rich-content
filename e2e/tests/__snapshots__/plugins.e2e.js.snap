@@ -3925,10 +3925,16 @@ exports[`plugins > social embed > render upload modals #0`] =
     {
       "data": {},
       "depth": 0,
-      "entityRanges": [],
+      "entityRanges": [
+        {
+          "key": 0,
+          "length": 1,
+          "offset": 0
+        }
+      ],
       "inlineStyleRanges": [],
       "key": 3,
-      "text": "",
+      "text": " ",
       "type": "atomic"
     },
     {
@@ -3938,22 +3944,16 @@ exports[`plugins > social embed > render upload modals #0`] =
       "inlineStyleRanges": [],
       "key": 4,
       "text": "",
-      "type": "atomic"
+      "type": "unstyled"
     },
     {
       "data": {},
       "depth": 0,
-      "entityRanges": [
-        {
-          "key": 0,
-          "length": 1,
-          "offset": 0
-        }
-      ],
+      "entityRanges": [],
       "inlineStyleRanges": [],
       "key": 5,
-      "text": " ",
-      "type": "atomic"
+      "text": "",
+      "type": "unstyled"
     },
     {
       "data": {},
@@ -3961,42 +3961,6 @@ exports[`plugins > social embed > render upload modals #0`] =
       "entityRanges": [],
       "inlineStyleRanges": [],
       "key": 6,
-      "text": "",
-      "type": "unstyled"
-    },
-    {
-      "data": {},
-      "depth": 0,
-      "entityRanges": [],
-      "inlineStyleRanges": [],
-      "key": 7,
-      "text": "",
-      "type": "unstyled"
-    },
-    {
-      "data": {},
-      "depth": 0,
-      "entityRanges": [],
-      "inlineStyleRanges": [],
-      "key": 8,
-      "text": "",
-      "type": "unstyled"
-    },
-    {
-      "data": {},
-      "depth": 0,
-      "entityRanges": [],
-      "inlineStyleRanges": [],
-      "key": 9,
-      "text": "",
-      "type": "unstyled"
-    },
-    {
-      "data": {},
-      "depth": 0,
-      "entityRanges": [],
-      "inlineStyleRanges": [],
-      "key": 10,
       "text": "",
       "type": "unstyled"
     }

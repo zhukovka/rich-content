@@ -525,7 +525,7 @@ describe('plugins', () => {
     });
 
     after(() => cy.eyesClose());
-    const embedTypes = ['TWITTER', 'FACEBOOK', 'TIKTOK', 'PINTEREST', 'YOUTUBE'];
+    const embedTypes = ['TWITTER', 'INSTAGRAM', 'YOUTUBE'];
     it('render upload modals', function() {
       embedTypes.forEach(embedType => {
         cy.openSocialEmbedModal(STATIC_TOOLBAR_BUTTONS[embedType]);

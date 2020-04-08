@@ -24,6 +24,7 @@ export const STATIC_TOOLBAR_BUTTONS = {
   TIKTOK: 'TikTok_insert_plugin_button',
   PINTEREST: 'Pinterest_insert_plugin_button',
   YOUTUBE: 'YouTube_insert_plugin_button',
+  INSTAGRAM: 'Instagram_insert_plugin_button',
 };
 
 export const SETTINGS_PANEL = {
