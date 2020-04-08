@@ -7,7 +7,7 @@ import { normalizeUrl } from 'wix-rich-content-common';
  * @param {string} anchorTarget - link target attribute
  * @param {string} relValue - link rel attribute
  */
-export const convertItemData = ({ items, anchorTarget, relValue }) =>
+export const convertItemData = ({ items, anchorTarget, relValue, isFullscreen }) =>
   items.map(item => {
     const { metadata, metaData } = item;
     if (metaData) {
@@ -41,6 +41,9 @@ export const convertItemData = ({ items, anchorTarget, relValue }) =>
       }
 
       convertedData.metaData.alt = metadata.altText;
+      if (isFullscreen) {
+        convertedData.metaData.description = metadata.title;
+      }
 
       if (item.metadata.link) {
         convertedData.metaData.link = {
