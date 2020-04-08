@@ -18,6 +18,8 @@
 ### :rocket: New Feature
 - `list`
   - [#815](https://github.com/wix-incubator/rich-content/pull/815) nested lists
+- `theme + wrapper: gallery, plugins & modals`
+  - [#828](https://github.com/wix-incubator/rich-content/pull/828) style update related to a lot of components + wrapper compatibility.
 ### :bug: Bug Fix
 - `preview`
   - [#903](https://github.com/wix-incubator/rich-content/pull/903) gallery fixed; resize flapping fixed
