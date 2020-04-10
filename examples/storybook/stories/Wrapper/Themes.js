@@ -3,9 +3,7 @@ import { RichContentEditorBox, Page } from '../Components/StoryParts';
 import exapmleState from '../../../../e2e/tests/fixtures/themeing-info.json';
 import Palette from '../Components/Palette';
 import { wixPalettes } from '../palettesExample';
-import SegmentedToggle from 'wix-style-react/SegmentedToggle';
-import FormField from 'wix-style-react/FormField';
-import { Layout } from 'wix-style-react/Layout';
+import { SegmentedToggle, FormField, Layout } from 'wix-style-react';
 import EditorWrapper from '../Components/EditorWrapper';
 import sourcecode from '!!raw-loader!../Components/EditorWrapper';
 

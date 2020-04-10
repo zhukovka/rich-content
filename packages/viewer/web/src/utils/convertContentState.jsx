@@ -28,6 +28,8 @@ const getBlockStyleClasses = (data, mergedStyles, textDirection, classes) => {
   );
 };
 
+let blockCount = 0;
+
 const blockDataToStyle = ({ dynamicStyles }) => kebabToCamelObjectKeys(dynamicStyles);
 
 const getInline = (inlineStyleMappers, mergedStyles) =>
@@ -53,7 +55,7 @@ const getBlocks = (contentState, mergedStyles, textDirection, context) => {
   const blockFactory = (type, style, withDiv) => {
     return (children, blockProps) =>
       children.map((child, i) => {
-        const Type = typeof type === 'string' ? type : type(child);
+        const ChildTag = typeof type === 'string' ? type : type(child);
 
         const { interactions } = blockProps.data[i];
         const BlockWrapper = Array.isArray(interactions)
@@ -62,7 +64,7 @@ const getBlocks = (contentState, mergedStyles, textDirection, context) => {
 
         const _child = isEmptyBlock(child) ? <br /> : withDiv ? <div>{child}</div> : child;
         const inner = (
-          <Type
+          <ChildTag
             className={getBlockStyleClasses(
               blockProps.data[i],
               mergedStyles,
@@ -73,10 +75,21 @@ const getBlocks = (contentState, mergedStyles, textDirection, context) => {
             key={blockProps.keys[i]}
           >
             {_child}
-          </Type>
+          </ChildTag>
         );
 
-        return <BlockWrapper key={`${blockProps.keys[i]}_wrap`}>{inner}</BlockWrapper>;
+        let anchorDiv;
+        if (!isEmptyBlock(child)) {
+          blockCount++;
+          anchorDiv = <div id={`rcv-block${blockCount}`} />;
+        }
+
+        return (
+          <>
+            <BlockWrapper key={`${blockProps.keys[i]}_wrap`}>{inner}</BlockWrapper>
+            {anchorDiv}
+          </>
+        );
       });
   };
 
@@ -164,6 +177,8 @@ const convertToReact = (
   if (isEmptyContentState(contentState)) {
     return null;
   }
+
+  blockCount = 0;
   return redraft(
     normalizeContentState(contentState),
     {
@@ -189,6 +204,7 @@ const convertToHTML = (
     return null;
   }
 
+  blockCount = 0;
   const reactOutput = convertToReact(
     contentState,
     mergedStyles,
