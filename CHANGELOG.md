@@ -40,6 +40,8 @@
 - `link`
   - [#904](https://github.com/wix-incubator/rich-content/pull/904) fix saving data of "target" and "rel" link(the checkboxes in Link Panel)
   - [#902](https://github.com/wix-incubator/rich-content/pull/902) mobile - cancel in link panel changed the cursor
+- 'editor'
+  - [#894](https://github.com/wix-incubator/rich-content/pull/894) text position after enter & disable paste text with style CODE
 ### :house: Internal
 - `storybook`
   - [#891](https://github.com/wix-incubator/rich-content/pull/891) fixed textHighlightPlugin color (intro.js)
