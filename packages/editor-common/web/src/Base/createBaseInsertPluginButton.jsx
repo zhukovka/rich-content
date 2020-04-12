@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { EditorState } from 'draft-js';
+import { EditorState } from '@wix/draft-js';
 import { isEmpty } from 'lodash';
 import { mergeStyles } from 'wix-rich-content-common';
 import { createBlock } from '../Utils/draftUtils.js';
@@ -139,7 +139,7 @@ export default ({
       }
     };
 
-    preventBubblingUp = event => event.preventDefault();
+    preventButtonGettingFocus = event => event.preventDefault();
 
     renderButton = () => {
       const { styles } = this;
@@ -163,6 +163,7 @@ export default ({
           className={classNames(styles.button, button.type === 'file' && styles.fileUploadButton)}
           data-hook={`${name.replace(' ', '_')}_insert_plugin_button`}
           onClick={this.onClick}
+          onMouseDown={this.preventButtonGettingFocus}
           ref={this.buttonRef}
           {...buttonCompProps}
         >

@@ -9,7 +9,8 @@
     "bootstrap": "lerna bootstrap --hoist",
     "postbootstrap": "touch .env",
     "postinstall": "npm run bootstrap",
-    "reinstall": "lerna clean --yes && rm -rf node_modules && rm -f package-lock.json && npm install",
+    "clean": "lerna clean --yes && rm -rf node_modules && rm -f package-lock.json",
+    "reinstall": "npm run clean && npm install",
     "rebuild": "npm run reinstall && npm run build",
     "build": "lerna run --stream --ignore 'wix-rich-content-@(test-env|example|storybook)' build",
     "build:dev": "lerna run --stream --ignore 'wix-rich-content-@(test-env|example|storybook)' build:dev",
@@ -18,7 +19,8 @@
     "watch": "lerna run --parallel --ignore ${LERNA_IGNORE:-'wix-rich-content-@(test-env|example|storybook)'} watch",
     "watch:core": "LERNA_IGNORE='wix-rich-content-@(plugin-*|fullscreen)' npm run watch",
     "release": "node scripts/publishPackages",
-    "deploy": "node scripts/deployExamples",
+    "deploy": "node scripts/deployment/deployExamples",
+    "deployPRComment": "node scripts/deployment/deployPRComment",
     "createVersion": "node scripts/createVersion",
     "storybook": "npm run start --prefix examples/storybook",
     "exampleApp": "npm run start --prefix examples/main",
@@ -47,7 +49,8 @@
     }
   },
   "devDependencies": {
-    "@applitools/eyes-cypress": "^3.8.7",
+    "@actions/github": "^2.1.1",
+    "@applitools/eyes-cypress": "3.9.16",
     "@babel/cli": "7.2.3",
     "@babel/core": "7.2.2",
     "@babel/plugin-external-helpers": "7.2.0",
@@ -61,6 +64,7 @@
     "@babel/runtime": "7.2.0",
     "@hot-loader/react-dom": "^16.11.0",
     "@lerna/project": "^3.18.0",
+    "@rollup/plugin-alias": "^3.0.1",
     "@svgr/rollup": "^4.3.3",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "10.0.3",
@@ -72,8 +76,10 @@
     "create-index": "^2.3.0",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
+    "cypress": "^4.2.0",
     "cypress-image-snapshot": "^3.1.1",
     "cypress-plugin-snapshots": "^1.2.9",
+    "cypress-plugin-tab": "^1.0.5",
     "es-check": "^5.1.0",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^4.0.0",
@@ -94,6 +100,7 @@
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.8.3",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "parse-git-config": "^2.0.2",
     "pascal-case": "2.0.1",
     "postcss-exclude-files": "^1.0.15",
     "postcss-rtl": "1.5.0",
@@ -121,13 +128,9 @@
     "webpack": "^4.38.0",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-dev-server": "^3.7.2",
-    "webpack-merge": "^4.2.1",
-    "parse-git-config": "^2.0.2"
+    "webpack-merge": "^4.2.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
-  },
-  "dependencies": {
-    "cypress": "^4.1.0"
   }
 }

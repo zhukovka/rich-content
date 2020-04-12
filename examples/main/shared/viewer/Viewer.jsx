@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import ReactModal from 'react-modal';
 import { RichContentViewer } from 'wix-rich-content-viewer';
 import { isSSR } from 'wix-rich-content-common';
 import * as PropTypes from 'prop-types';
@@ -20,9 +19,7 @@ const relValue = 'noreferrer';
 export default class Viewer extends PureComponent {
   constructor(props) {
     super(props);
-
     if (!isSSR()) {
-      ReactModal.setAppElement('#root');
       this.expandModeData = getImagesData(this.props.initialState);
     }
     this.state = {
@@ -32,6 +29,10 @@ export default class Viewer extends PureComponent {
     const { scrollingElementFn } = props;
     const additionalConfig = { [GALLERY_TYPE]: { scrollingElement: scrollingElementFn } };
     this.pluginsConfig = Plugins.getConfig(additionalConfig);
+  }
+
+  componentDidMount() {
+    this.shouldRenderFullscreen = true;
   }
 
   componentDidUpdate(prevProps) {
@@ -51,10 +52,13 @@ export default class Viewer extends PureComponent {
   };
 
   render() {
-    const { isMobile, initialState, seoMode } = this.props;
+    const { isMobile, initialState, locale, seoMode } = this.props;
     const { expandModeIsOpen, expandModeIndex, disabled } = this.state;
 
     const viewerProps = {
+      locale,
+      relValue,
+      anchorTarget,
       isMobile,
       theme,
       initialState,
@@ -74,7 +78,7 @@ export default class Viewer extends PureComponent {
             // siteDomain="https://www.wix.com"
             {...viewerProps}
           />
-          {!isSSR() && (
+          {this.shouldRenderFullscreen && (
             <Fullscreen
               images={this.expandModeData.images}
               onClose={() => this.setState({ expandModeIsOpen: false })}
@@ -82,10 +86,8 @@ export default class Viewer extends PureComponent {
               index={expandModeIndex}
             />
           )}
-        </div>
-        {!isSSR() && (
           <TextSelectionListener targetId={'rich-content-viewer'} ToolBar={ViewerInlineToolBar} />
-        )}
+        </div>
       </>
     );
   }

@@ -1,29 +1,60 @@
 import React from 'react';
-import EngineWrapper from './lib/EngineWrapper';
-import themeStrategyProvider from './themeStrategy/themeStrategyProvider';
-import pluginsStrategyProvider from './pluginsStrategy/pluginsStrategyProvider';
-import localeStrategyProvider from './localeStrategy/localeStrategyProvider';
+import EngineWrapper from './EngineWrapper';
+import themeStrategy from './themeStrategy/themeStrategy';
+import pluginsStrategy from './pluginsStrategy/pluginsStrategy';
+import localeStrategy from './localeStrategy/localeStrategy';
 import PropTypes from 'prop-types';
+import './styles.global.css';
+import { merge } from 'lodash';
 
-export default function RichContentWrapper({
-  strategies = [],
-  theme,
-  locale,
-  palette,
-  plugins = [],
-  children,
-  editor = false,
-  ...rest
-}) {
-  const themeGenerators = plugins.filter(plug => !!plug.theme).map(plug => plug.theme);
-  strategies.push(themeStrategyProvider(editor, { theme, palette, themeGenerators }));
-  strategies.push(pluginsStrategyProvider(editor, { plugins }));
-  strategies.push(localeStrategyProvider({ locale }));
-  return (
-    <EngineWrapper strategies={strategies} {...rest} editor={editor}>
-      {children}
-    </EngineWrapper>
-  );
+export default class RichContentWrapper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      localeStrategy: {},
+    };
+  }
+
+  updateLocale = async () => {
+    const { locale, children } = this.props;
+    await localeStrategy(children.props.locale || locale).then(localeData => {
+      this.setState({ localeStrategy: localeData });
+    });
+  };
+
+  componentDidMount() {
+    this.updateLocale();
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.locale !== this.props.locale) {
+      this.updateLocale();
+    }
+  }
+
+  render() {
+    const { theme, palette, plugins = [], children, editor = false, rcProps, ...rest } = this.props;
+    const { localeStrategy } = this.state;
+    const themeGenerators = plugins.filter(plugin => !!plugin.theme).map(plugin => plugin.theme);
+
+    const mergedRCProps = merge(
+      pluginsStrategy(editor, plugins, children.props),
+      themeStrategy(editor, { theme, palette, themeGenerators }),
+      localeStrategy,
+      rcProps
+    );
+
+    return (
+      <EngineWrapper
+        rcProps={mergedRCProps}
+        editor={editor}
+        key={editor ? 'editor' : 'viewer'}
+        {...rest}
+      >
+        {children}
+      </EngineWrapper>
+    );
+  }
 }
 RichContentWrapper.propTypes = {
   children: PropTypes.any,
@@ -33,6 +64,7 @@ RichContentWrapper.propTypes = {
   plugins: PropTypes.arrayOf(PropTypes.object),
   strategies: PropTypes.arrayOf(PropTypes.func),
   editor: PropTypes.bool,
+  rcProps: PropTypes.object,
 };
 
 RichContentWrapper.defaultProps = {

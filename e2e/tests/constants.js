@@ -4,6 +4,7 @@ export const fixtures = [
   'images',
   'inline-styles',
   'lists',
+  'nested-lists',
   'quote',
   'facebook-video',
   'gif',
@@ -12,6 +13,9 @@ export const fixtures = [
   'gallery-layouts',
   'old-image-format',
   'hashtag-and-link',
+  'images-sizes',
+  'images-original-size',
+  'link-preview',
 ];
 
 export const fixturesToTestOnSeo = ['images'];

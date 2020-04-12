@@ -7,6 +7,7 @@ import {
   normalizeInitialState,
   getLangDir,
 } from 'wix-rich-content-common';
+import 'wix-rich-content-common/dist/statics/styles/draftDefault.rtlignore.scss';
 import { convertToReact } from './utils/convertContentState';
 import viewerStyles from '../statics/rich-content-viewer.scss';
 import viewerAlignmentStyles from '../statics/rich-content-viewer-alignment.rtlignore.scss';
@@ -76,7 +77,6 @@ class RichContentViewer extends Component {
       }
       const { styles } = this;
       const { textDirection, typeMappers, decorators, inlineStyleMappers, locale } = this.props;
-
       const wrapperClassName = classNames(styles.wrapper, {
         [styles.desktop]: !this.props.platform || this.props.platform === 'desktop',
       });

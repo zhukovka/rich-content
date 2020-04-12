@@ -11,11 +11,12 @@ export const COMMANDS = Object.freeze({
   BLOCKQUOTE: 'blockquote',
   BACKSPACE: 'backspace',
   DELETE: 'delete',
+  TAB: 'tab',
+  SHIFT_TAB: 'shiftTab',
 });
 
 export const MODIFIERS = Object.freeze({
   COMMAND: 'command',
-  CTRL: 'ctrl',
   OPTION: 'option',
   SHIFT: 'shift',
 });

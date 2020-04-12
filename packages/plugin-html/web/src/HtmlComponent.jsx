@@ -8,7 +8,7 @@ import {
   pluginHtmlSchema,
 } from 'wix-rich-content-common';
 
-import { SRC_TYPE_HTML, SRC_TYPE_URL, DEFAULTS, INIT_HEIGHT, INIT_WIDTH } from './constants';
+import { SRC_TYPE_HTML, SRC_TYPE_URL, INIT_HEIGHT, INIT_WIDTH, defaults } from './constants';
 import IframeHtml from './IframeHtml';
 import IframeUrl from './IframeUrl';
 import htmlComponentStyles from '../statics/styles/HtmlComponent.scss';
@@ -90,32 +90,32 @@ class HtmlComponent extends Component {
 
     const style = {
       width: this.props.isMobile ? 'auto' : currentWidth || width || INIT_WIDTH,
-      height: currentHeight || height || INIT_HEIGHT,
+      height: currentHeight || this.state.iframeHeight || height || INIT_HEIGHT,
       maxHeight: this.state.iframeHeight,
+      maxWidth: '100%',
     };
 
     return (
-      <div style={style}>
-        <div
-          className={this.styles.htmlComponent}
-          ref={ref => (this.element = ref)}
-          data-hook="HtmlComponent"
-        >
-          {srcType === SRC_TYPE_HTML && src && (
-            <IframeHtml
-              key={SRC_TYPE_HTML}
-              tabIndex={0}
-              html={html}
-              onHeightChange={this.setHeight}
-            />
-          )}
+      <div
+        className={this.styles.htmlComponent}
+        ref={ref => (this.element = ref)}
+        style={style}
+        data-hook="HtmlComponent"
+      >
+        {srcType === SRC_TYPE_HTML && src && (
+          <IframeHtml
+            key={SRC_TYPE_HTML}
+            tabIndex={0}
+            html={html}
+            onHeightChange={this.setHeight}
+          />
+        )}
 
-          {srcType === SRC_TYPE_URL && isValidUrl(src) && (
-            <IframeUrl key={SRC_TYPE_URL} tabIndex={0} src={normalizeUrl(src)} />
-          )}
+        {srcType === SRC_TYPE_URL && isValidUrl(src) && (
+          <IframeUrl key={SRC_TYPE_URL} tabIndex={0} src={normalizeUrl(src)} />
+        )}
 
-          {!src && !isValidUrl(src) && <div className={this.styles.htmlComponent_placeholder} />}
-        </div>
+        {!src && !isValidUrl(src) && <div className={this.styles.htmlComponent_placeholder} />}
       </div>
     );
   }
@@ -140,4 +140,4 @@ HtmlComponent.propTypes = {
   isMobile: PropTypes.bool.isRequired,
 };
 
-export { HtmlComponent as Component, DEFAULTS };
+export { HtmlComponent as Component, defaults };
