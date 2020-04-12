@@ -18,6 +18,14 @@
 ### :rocket: New Feature
 - `list`
   - [#815](https://github.com/wix-incubator/rich-content/pull/815) nested lists
+- `theme + wrapper: gallery, plugins & modals`
+  - [#828](https://github.com/wix-incubator/rich-content/pull/828) style update related to a lot of components + wrapper compatibility.
+### :bug: Bug Fix
+- `preview`
+  - [#903](https://github.com/wix-incubator/rich-content/pull/903) gallery fixed; resize flapping fixed
+- `gallery`
+  - [#903](https://github.com/wix-incubator/rich-content/pull/903) gallery size
+
 </details>
 <hr/>
 
@@ -34,6 +42,8 @@
 - `link`
   - [#904](https://github.com/wix-incubator/rich-content/pull/904) fix saving data of "target" and "rel" link(the checkboxes in Link Panel)
   - [#902](https://github.com/wix-incubator/rich-content/pull/902) mobile - cancel in link panel changed the cursor
+- 'editor'
+  - [#894](https://github.com/wix-incubator/rich-content/pull/894) text position after enter & disable paste text with style CODE
 ### :house: Internal
 - `storybook`
   - [#891](https://github.com/wix-incubator/rich-content/pull/891) fixed textHighlightPlugin color (intro.js)
