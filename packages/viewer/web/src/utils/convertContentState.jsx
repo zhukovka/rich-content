@@ -81,7 +81,7 @@ const getBlocks = (contentState, mergedStyles, textDirection, context) => {
         let anchorDiv;
         if (!isEmptyBlock(child)) {
           blockCount++;
-          anchorDiv = <div id={`rcv-block${blockCount}`} />;
+          anchorDiv = <div data-hook={`rcv-block${blockCount}`} />;
         }
 
         return (

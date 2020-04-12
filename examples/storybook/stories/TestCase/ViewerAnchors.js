@@ -9,7 +9,7 @@ import { Button } from 'wix-style-react';
 class ViewerAnchors extends React.Component {
   addAfterParagraph = paragraphNumber => {
     try {
-      const el = document.querySelector(`#rcv-block${paragraphNumber}`);
+      const el = document.querySelector(`[data-hook=rcv-block${paragraphNumber}]`);
 
       const newEl = document.createElement('p');
       newEl.innerHTML = `<div style="background: cyan; width: 50%; margin: 0 auto; padding: 20px; text-align: center;"}>My Ad!</div>`;
@@ -20,8 +20,13 @@ class ViewerAnchors extends React.Component {
   };
 
   getLastAnchor = () => {
-    const allAnchors = document.querySelectorAll('[id^=rcv-block]');
-    const lastAnchor = allAnchors[allAnchors.length - 1].getAttribute('id').match(/rcv-block(\d*)/);
+    const allAnchors = document.querySelectorAll('[data-hook^=rcv-block]');
+    if (allAnchors.length === 0) {
+      return 0;
+    }
+    const lastAnchor = allAnchors[allAnchors.length - 1]
+      .getAttribute('data-hook')
+      .match(/rcv-block(\d*)/);
     return lastAnchor ? Number(lastAnchor[1]) : 0;
   };
 
