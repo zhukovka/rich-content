@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 import styles from '../../statics/styles/panelStyles.scss';
 import { mergeStyles } from 'wix-rich-content-common';
 import classNames from 'classnames';
-import { TITLE_FONT_STYLE, DEFAULT_PIXELS_HEADING } from 'wix-rich-content-editor-common';
+import { TITLE_FONT_STYLE } from 'wix-rich-content-editor-common';
 
 const headingElement = (heading, isSelected, onClick, getContentForButton) => {
   const content = getContentForButton(heading);
   const font = TITLE_FONT_STYLE[heading];
-  const pixelsOfFont = (
-    <div className={styles.detailsOfHeading}>{DEFAULT_PIXELS_HEADING[heading]}</div>
-  );
   return (
     <button
       className={isSelected ? styles.headingsPanel_selectedHeading : ''}
@@ -18,7 +15,6 @@ const headingElement = (heading, isSelected, onClick, getContentForButton) => {
       onClick={() => onClick(font, heading)}
     >
       {content}
-      {pixelsOfFont}
     </button>
   );
 };

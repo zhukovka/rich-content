@@ -12,11 +12,15 @@ import Modal from 'react-modal';
 import Panel from './HeadingPanel';
 import classNames from 'classnames';
 import styles from '../../statics/styles/headingButtonStyles.scss';
+import { HEADINGS_ICONS_MOBILE } from '../const';
 
 export default class HeadingButton extends Component {
   constructor(props) {
     super(props);
-    this.state = { showPanel: false, currentHeading: 'P' };
+    this.state = {
+      showPanel: false,
+      currentHeading: 'P',
+    };
     this.styles = mergeStyles({ styles, theme: props.theme });
     this.isFirstRender = true;
   }
@@ -91,7 +95,6 @@ export default class HeadingButton extends Component {
     const dataHookText = `textDropDownButton_${textForHooks}`;
     const { isPanelOpen, panelTop, panelLeft, currentHeading } = this.state;
     const { styles } = this;
-
     const customHeadingsOptions = Array.isArray(customHeadings)
       ? customHeadings
       : DEFAULT_FONTS_DROPDOWN_OPTIONS;
@@ -102,7 +105,8 @@ export default class HeadingButton extends Component {
           left: panelLeft,
         };
     const showArrowIcon = !isMobile;
-    const buttonContent = isMobile ? currentHeading : this.getContentForButton(currentHeading);
+    const buttonContent = !isMobile && this.getContentForButton(currentHeading);
+    const icon = isMobile && HEADINGS_ICONS_MOBILE[currentHeading];
     return (
       <InlineToolbarButton
         onClick={this.openPanel}
@@ -113,6 +117,7 @@ export default class HeadingButton extends Component {
         dataHook={dataHookText}
         tabIndex={tabIndex}
         buttonContent={buttonContent}
+        icon={icon}
         showArrowIcon={showArrowIcon}
         ref={ref => (this.buttonRef = ref)}
       >

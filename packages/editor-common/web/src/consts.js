@@ -8,16 +8,6 @@ export const TITLE_FONT_STYLE = {
   P: 'unstyled',
 };
 
-export const DEFAULT_PIXELS_HEADING = {
-  H1: '32px',
-  H2: '28px',
-  H3: '22px',
-  H4: '16px',
-  H5: '13.28px',
-  H6: '10.72px',
-  P: '16px',
-};
-
 export const DEFAULT_FONTS_DROPDOWN_OPTIONS = ['P', 'H2', 'H3', 'H4', 'H5', 'H6'];
 
 export const COMMANDS = Object.freeze({
