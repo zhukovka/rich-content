@@ -45,13 +45,11 @@ export default class UrlInputModal extends Component {
       placeholder,
       saveLabel,
       cancelLabel,
+      onCloseRequested,
     } = this.props;
     return (
       <div className={styles.urlInput_container} data-hook={dataHook} dir={languageDir}>
-        <CloseIcon
-          className={classNames(styles.urlInput_closeIcon)}
-          onClick={() => this.onCloseRequested()}
-        />
+        <CloseIcon className={classNames(styles.urlInput_closeIcon)} onClick={onCloseRequested} />
         <div className={classNames(styles.urlInput_header)}>
           <div className={styles.urlInput_header_text}>{title}</div>
         </div>
@@ -73,7 +71,7 @@ export default class UrlInputModal extends Component {
         <SettingsPanelFooter
           className={styles.urlInput_modal_footer}
           save={() => onConfirm()}
-          cancel={() => this.onCloseRequested()}
+          cancel={onCloseRequested}
           saveLabel={saveLabel}
           cancelLabel={cancelLabel}
           theme={styles}
