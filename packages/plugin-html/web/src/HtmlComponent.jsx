@@ -84,14 +84,15 @@ class HtmlComponent extends Component {
     validate(props.componentData, pluginHtmlSchema);
 
     const {
-      componentData: { src, srcType, config: { width: currentWidth } = {} },
+      componentData: { src, srcType, config: { width: currentWidth, height: currentHeight } = {} },
       settings: { width, height } = {},
     } = props;
 
     const style = {
       width: this.props.isMobile ? 'auto' : currentWidth || width || INIT_WIDTH,
-      height: this.state.iframeHeight || height || INIT_HEIGHT,
+      height: currentHeight || this.state.iframeHeight || height || INIT_HEIGHT,
       maxHeight: this.state.iframeHeight,
+      maxWidth: '100%',
     };
 
     return (
