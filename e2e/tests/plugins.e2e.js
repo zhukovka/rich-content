@@ -123,6 +123,7 @@ describe('plugins', () => {
         .get(`[data-hook=${'image-item'}]`)
         .eq(1);
       cy.openPluginToolbar(PLUGIN_COMPONENT.GALLERY).shrinkPlugin();
+      cy.waitForDocumentMutations();
       cy.eyesCheckWindow(this.test.title + ' toolbar');
       cy.openGalleryAdvancedSettings();
       cy.eyesCheckWindow(this.test.title + ' settings');
@@ -488,7 +489,6 @@ describe('plugins', () => {
       cy.eyesCheckWindow(this.test.title);
     });
     it('delete link preview', function() {
-      cy.moveCursorToStart();
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW).wait(100);
       cy.clickToolbarButton('blockButton_delete');
       cy.triggerLinkPreviewViewerUpdate();
@@ -535,4 +535,33 @@ describe('plugins', () => {
       });
     });
   });
+
+  context('list', () => {
+    before(function() {
+      eyesOpen(this);
+    });
+
+    beforeEach('load editor', () => cy.loadEditorAndViewer());
+
+    after(() => cy.eyesClose());
+    it('create nested lists using tab & shift-tab', function() {
+      cy.loadEditorAndViewer()
+        .enterParagraphs(['1. Hey I am an ordered list in depth 1.'])
+        .tab()
+        .enterParagraphs(['\n Hey I am an ordered list in depth 2.'])
+        .tab()
+        .enterParagraphs(['\n Hey I am an ordered list in depth 1.'])
+        .tab({ shift: true })
+        .enterParagraphs(['\n\n1. Hey I am an ordered list in depth 0.'])
+        .enterParagraphs(['\n\n- Hey I am an unordered list in depth 1.'])
+        .tab()
+        .enterParagraphs(['\n Hey I am an unordered list in depth 2.'])
+        .tab()
+        .enterParagraphs(['\n Hey I am an unordered list in depth 1.'])
+        .tab({ shift: true })
+        .enterParagraphs(['\n\n- Hey I am an unordered list in depth 0.']);
+      cy.eyesCheckWindow(this.test.title);
+    });
+  });
+});
 });
