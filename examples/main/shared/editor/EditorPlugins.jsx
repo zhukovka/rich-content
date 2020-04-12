@@ -94,6 +94,30 @@ export const editorPlugins = [
   createUndoRedoPlugin,
 ];
 
+export const editorPluginsMap = {
+  image: createImagePlugin,
+  gallery: createGalleryPlugin,
+  video: createVideoPlugin,
+  html: createHtmlPlugin,
+  divider: createDividerPlugin,
+  spacing: createLineSpacingPlugin,
+  link: createLinkPlugin,
+  linkPreview: createLinkPreviewPlugin,
+  hashtag: createHashtagPlugin,
+  mentions: createExternalMentionsPlugin,
+  codeBlock: createCodeBlockPlugin,
+  soundCloud: createSoundCloudPlugin,
+  giphy: createGiphyPlugin,
+  headers: createHeadersMarkdownPlugin,
+  map: createMapPlugin,
+  fileUpload: createFileUploadPlugin,
+  button: createButtonPlugin,
+  textColor: createTextColorPlugin,
+  emoji: createEmojiPlugin,
+  highlight: createTextHighlightPlugin,
+  undoRedo: createUndoRedoPlugin,
+};
+
 const themeColors = {
   color1: '#ffffff',
   color2: '#303030',

@@ -521,7 +521,7 @@ describe('plugins', () => {
 
     beforeEach('load editor', () => {
       cy.switchToDesktop();
-      cy.loadEditorAndViewer('empty');
+      cy.loadEditorAndViewer('empty', 'linkPreview');
     });
 
     after(() => cy.eyesClose());

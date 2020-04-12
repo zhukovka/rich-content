@@ -19,20 +19,27 @@ const resizeForDesktop = () => cy.viewport('macbook-15');
 const resizeForMobile = () => cy.viewport('iphone-6');
 
 const buildQuery = params => {
-  const parameters = Object.keys(params).filter(param => params[param]);
+  const parameters = [];
+  Object.entries(params).forEach(([key, value]) => {
+    if (value) {
+      const res = value === true ? key : `${key}=${value}`;
+      parameters.push(res);
+    }
+  });
   if (parameters.length === 0) return '';
   return '?' + parameters.join('&');
 };
 
-const getUrl = (componentId, fixtureName = '') =>
+const getUrl = (componentId, fixtureName = '', plugins) =>
   `/${componentId}${fixtureName ? '/' + fixtureName : ''}${buildQuery({
     mobile: isMobile,
     hebrew: isHebrew,
     seoMode: isSeoMode,
+    testAppPlugins: plugins,
   })}`;
 
-const run = (app, fixtureName) => {
-  cy.visit(getUrl(app, fixtureName)).then(() => {
+const run = (app, fixtureName, plugins) => {
+  cy.visit(getUrl(app, fixtureName, plugins)).then(() => {
     disableTransitions();
     hideAllTooltips();
   });
@@ -72,7 +79,9 @@ function hideAllTooltips() {
   cy.get('[data-id="tooltip"]').invoke('hide'); //uses jquery to set display: none
 }
 
-Cypress.Commands.add('loadEditorAndViewer', fixtureName => run('rce', fixtureName));
+Cypress.Commands.add('loadEditorAndViewer', (fixtureName, plugins) =>
+  run('rce', fixtureName, plugins)
+);
 Cypress.Commands.add('loadIsolatedEditorAndViewer', fixtureName =>
   run('rce-isolated', fixtureName)
 );
