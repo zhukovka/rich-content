@@ -30,7 +30,7 @@ const buildQuery = params => {
   return '?' + parameters.join('&');
 };
 
-const getUrl = (componentId, fixtureName = '', plugins) =>
+const getUrl = (componentId, fixtureName = '', plugins = 'partialPreset') =>
   `/${componentId}${fixtureName ? '/' + fixtureName : ''}${buildQuery({
     mobile: isMobile,
     hebrew: isHebrew,

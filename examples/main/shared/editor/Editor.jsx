@@ -33,7 +33,7 @@ export default class Editor extends PureComponent {
     const additionalConfig = { [GALLERY_TYPE]: { scrollingElement: scrollingElementFn } };
     this.pluginsConfig = Plugins.getConfig(additionalConfig);
     this.plugins = testAppPlugins
-      ? testAppPlugins.map(plugin => Plugins.editorPluginsMap[plugin])
+      ? testAppPlugins.map(plugin => Plugins.editorPluginsMap[plugin]).flat()
       : Plugins.editorPlugins;
   }
 

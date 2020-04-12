@@ -70,7 +70,7 @@ import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common'
 // import SideToolbarDecoration from './Components/SideToolbarDecoration';
 // import PluginToolbarDecoration from './Components/PluginToolbarDecoration';
 
-export const editorPlugins = [
+export const editorPluginsPartialPreset = [
   createImagePlugin,
   createGalleryPlugin,
   createVideoPlugin,
@@ -78,7 +78,6 @@ export const editorPlugins = [
   createDividerPlugin,
   createLineSpacingPlugin,
   createLinkPlugin,
-  createLinkPreviewPlugin,
   createHashtagPlugin,
   createExternalMentionsPlugin,
   createCodeBlockPlugin,
@@ -93,6 +92,8 @@ export const editorPlugins = [
   createTextHighlightPlugin,
   createUndoRedoPlugin,
 ];
+
+export const editorPlugins = [createLinkPreviewPlugin, ...editorPluginsPartialPreset];
 
 export const editorPluginsMap = {
   image: createImagePlugin,
@@ -116,6 +117,7 @@ export const editorPluginsMap = {
   emoji: createEmojiPlugin,
   highlight: createTextHighlightPlugin,
   undoRedo: createUndoRedoPlugin,
+  partialPreset: editorPluginsPartialPreset,
 };
 
 const themeColors = {
