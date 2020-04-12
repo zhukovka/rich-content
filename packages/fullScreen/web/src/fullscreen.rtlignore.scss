@@ -25,3 +25,10 @@
   border: hidden;
   cursor: pointer;
 }
+
+:global {
+  .gallery-item-title > span {
+    color: black;
+    font-size: 18px;
+  }
+}

@@ -26,7 +26,7 @@ export default class Fullscreen extends Component {
 
   getItems = () => {
     const { images } = this.props;
-    return convertItemData({ items: images, isFullscreen: true });
+    return convertItemData({ items: images });
   };
 
   render() {
@@ -67,8 +67,8 @@ export default class Fullscreen extends Component {
             allowSocial: false,
             loveButton: false,
             slideshowInfoSize: 110,
-            allowTitle: false,
-            allowDescription: true,
+            allowTitle: true,
+            // allowDescription: true,
             arrowsPosition: 1,
             arrowsSize: 30,
           }}
