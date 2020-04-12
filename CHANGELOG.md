@@ -30,9 +30,6 @@
 <hr/>
 
 ## 7.2.0 (Apr 8, 2020)
-### :rocket: New Feature
-- `plugin-headings`
-  - [#901](https://github.com/wix-incubator/rich-content/pull/901) adding new plugin with headers dropdown menu option
 ### :house: Internal
 - `storybook`
   - [#891](https://github.com/wix-incubator/rich-content/pull/891) fixed textHighlightPlugin color (intro.js)
