@@ -1,17 +1,24 @@
-import React, { Component, Fragment, Suspense, Children } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, Fragment, Suspense, Children, ReactElement } from 'react';
+import { RichContentProps } from './RichContentWrapperTypes';
 
-export default class FullscreenRenderer extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
+interface Props {
+  children: ReactElement;
+}
+
+interface State {
+  isExpanded: boolean;
+  index?: number;
+  data?: any;
+  Fullscreen?: any;
+}
+
+export default class FullscreenRenderer extends Component<Props, State> {
+  childProps: RichContentProps;
 
   constructor(props) {
     super(props);
     this.state = {
       isExpanded: false,
-      Fullscreen: () => undefined,
-      isMounted: false,
     };
     this.childProps = {
       ...props.children.props,
@@ -26,7 +33,7 @@ export default class FullscreenRenderer extends Component {
     const Fullscreen = React.lazy(() =>
       import(/* webpackChunkName: "rce-ViewerModal"  */ './ViewerModal')
     );
-    this.setState({ Fullscreen, isMounted: true });
+    this.setState({ Fullscreen });
   }
 
   onExpand = (entityIndex, innerIndex = 0) =>
@@ -40,12 +47,12 @@ export default class FullscreenRenderer extends Component {
   setData = data => this.setState({ data });
 
   render() {
-    const { isExpanded, index, data, Fullscreen, isMounted } = this.state;
+    const { isExpanded, index, data, Fullscreen } = this.state;
     const { children } = this.props;
     return (
       <Fragment>
         {Children.only(React.cloneElement(children, this.childProps))}
-        {isMounted && (
+        {Fullscreen && (
           <Suspense fallback={<div />}>
             <Fullscreen
               dataHook={'WrapperFullScreen'}

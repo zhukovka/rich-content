@@ -4,8 +4,4 @@ export const DEFAULTS = {
   config: {},
 };
 
-export const VERTICAL_EMBED_TYPES = {
-  PRODUCT: 'product',
-  EVENT: 'event',
-  BOOKING: 'booking',
-};
+export const verticalEmbedProviders = { event: 'event', booking: 'booking', product: 'product' };

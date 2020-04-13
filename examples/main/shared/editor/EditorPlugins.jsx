@@ -13,6 +13,7 @@ import { createDividerPlugin, DIVIDER_TYPE } from 'wix-rich-content-plugin-divid
 import {
   createVerticalEmbedPlugin,
   VERTICAL_EMBED_TYPE,
+  verticalEmbedProviders,
 } from 'wix-rich-content-plugin-vertical-embed';
 import {
   createExternalMentionsPlugin,
@@ -121,7 +122,7 @@ let userButtonBorderColors = [...buttonDefaultPalette];
 
 const getLinkPanelDropDownConfig = () => {
   const getItems = () => {
-    casual.define('item', function() {
+    casual.define('item', function () {
       return {
         value: casual.url,
         label: casual.catch_phrase,
@@ -242,6 +243,8 @@ const videoHandlers = {
     }, 1200000);
   },
 };
+
+const { event, booking, product } = verticalEmbedProviders;
 
 const config = {
   [LINK_PREVIEW_TYPE]: {
@@ -405,6 +408,7 @@ const config = {
   },
   [VERTICAL_EMBED_TYPE]: {
     fetchFunctions: { product: mockFetchProductsFunc },
+    exposeEmbedButtons: [event, booking, product],
   },
   // [EXTERNAL_EMOJI_TYPE]: {},
   [VIDEO_TYPE]: {
