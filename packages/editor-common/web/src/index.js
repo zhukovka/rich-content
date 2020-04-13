@@ -87,6 +87,8 @@ export {
   createSelection,
   getBlockType,
   setForceSelection,
+  deleteBlockText,
+  insertString,
 } from './Utils/draftUtils';
 export { isiOS } from './Utils/isiOS';
 export { getSelectionStyles } from './Utils/inlineStyleUtils';
@@ -101,8 +103,9 @@ export {
   PLUGIN_DECORATION_PROPS,
   PLUGIN_DECORATIONS,
   TITLE_FONT_STYLE,
-  // DEFAULT_PIXELS_HEADING,
   DEFAULT_FONTS_DROPDOWN_OPTIONS,
+  TEXT_TYPES,
+  CHARACTERS,
 } from './consts';
 
 export {
