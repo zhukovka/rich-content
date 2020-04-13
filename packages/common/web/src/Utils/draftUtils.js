@@ -1,4 +1,4 @@
-export const hasLinksInBlock = (block, contentState) => {
+export const hasLinksInBlockViewer = (block, contentState) => {
   return getLinkRangesInBlock(block, contentState).length > 0;
 };
 
