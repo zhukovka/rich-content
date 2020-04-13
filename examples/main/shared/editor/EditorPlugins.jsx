@@ -260,12 +260,12 @@ const videoHandlers = {
   },
 };
 
-const { Instagram, Twitter, YouTube } = LinkPreviewProviders;
+const { Instagram, Twitter, YouTube, TikTok } = LinkPreviewProviders;
 const config = {
   [LINK_PREVIEW_TYPE]: {
     enableEmbed: true,
     fetchData: mockFetchUrlPreviewData(),
-    exposeEmbedButtons: [Instagram, Twitter, YouTube],
+    exposeEmbedButtons: [Instagram, Twitter, YouTube, TikTok],
   },
   [EMOJI_TYPE]: {
     // toolbar: {

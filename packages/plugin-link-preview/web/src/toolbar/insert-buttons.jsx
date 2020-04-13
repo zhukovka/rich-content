@@ -8,7 +8,7 @@ import {
   PinterestIcon,
   YoutubeIcon,
 } from '../icons';
-import embedURLInputModal from './embedURLInputModal';
+import EmbedURLInputModal from './embedURLInputModal';
 
 let content = { maxWidth: '580px', minHeight: '348px' };
 
@@ -43,7 +43,7 @@ export default ({ helpers, settings, isMobile }) => {
       componentData: { ...DEFAULTS, socialType, fetchData: settings.fetchData },
       toolbars: [TOOLBARS.FOOTER, TOOLBARS.SIDE],
       helpers,
-      modalElement: embedURLInputModal,
+      modalElement: EmbedURLInputModal,
       modalStyles: getModalStyles({ customStyles, fullScreen: false, isMobile }),
     };
   });

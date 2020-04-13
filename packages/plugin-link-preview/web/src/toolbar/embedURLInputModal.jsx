@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { isValidUrl } from 'wix-rich-content-common';
 import UrlInputModal from 'wix-rich-content-editor-common/dist/lib/UrlInputModal';
+import { DEFAULTS } from '../consts';
 
-export default class embedURLInputModal extends Component {
+export default class EmbedURLInputModal extends Component {
   constructor(props) {
     super(props);
     const { componentData } = this.props;
@@ -23,10 +24,17 @@ export default class embedURLInputModal extends Component {
           this.setState({ submittedInvalidUrl: true });
         } else {
           if (onConfirm) {
+            const { size, alignment } = { ...DEFAULTS };
+
             onConfirm({
               ...componentData,
               html,
-              config: { ...componentData?.config, link: { ...componentData?.config?.link, url } },
+              config: {
+                size,
+                alignment,
+                width: 350,
+                link: { ...DEFAULTS.link, url },
+              },
             });
           } else {
             pubsub.update('componentData', { url, html });
@@ -67,7 +75,7 @@ export default class embedURLInputModal extends Component {
   }
 }
 
-embedURLInputModal.propTypes = {
+EmbedURLInputModal.propTypes = {
   onConfirm: PropTypes.func,
   pubsub: PropTypes.object,
   helpers: PropTypes.object.isRequired,
