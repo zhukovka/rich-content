@@ -465,7 +465,7 @@ describe('plugins', () => {
 
     beforeEach('load editor', () => cy.loadEditorAndViewer('link-preview', 'all'));
 
-    it('change link preview settings', () => {
+    it('change link preview settings', function() {
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
       cy.setLinkSettings();
       cy.triggerLinkPreviewViewerUpdate();
