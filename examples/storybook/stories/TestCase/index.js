@@ -8,10 +8,11 @@ import MaxHeight from './MaxHeight';
 import OneLiner from './OneLiner';
 import VeryBigPost from './VeryBigPost';
 import ViewerAnchors from './ViewerAnchors';
+import MobileView from './MobileView';
 
 storiesOf('Test Cases')
   .add('Viewer Anchors', () => <ViewerAnchors />)
-  .add('Very Big Post', VeryBigPost)
+  .add('Mobile view', MobileView)
   .add('Very Big Post', VeryBigPost)
   .add('One-Liner', OneLiner)
   .add('Image Float Spacing', ImageFloatSpacing)
