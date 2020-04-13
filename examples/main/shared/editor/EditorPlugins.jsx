@@ -118,6 +118,7 @@ export const editorPluginsMap = {
   highlight: createTextHighlightPlugin,
   undoRedo: createUndoRedoPlugin,
   partialPreset: editorPluginsPartialPreset,
+  all: editorPlugins,
 };
 
 const themeColors = {

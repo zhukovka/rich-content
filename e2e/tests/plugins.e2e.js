@@ -308,7 +308,7 @@ describe('plugins', () => {
 
     after(() => cy.eyesClose());
 
-    it('render plugin toolbar and change styling', function() {
+    it('render plugin toolbar and change styling', () => {
       cy.loadEditorAndViewer('divider')
         .openPluginToolbar(PLUGIN_COMPONENT.DIVIDER)
         .openDropdownMenu();
@@ -390,7 +390,7 @@ describe('plugins', () => {
 
     after(() => cy.eyesClose());
 
-    it('render map plugin toolbar and settings', function() {
+    it('render map plugin toolbar and settings', () => {
       cy.openPluginToolbar(PLUGIN_COMPONENT.MAP);
       cy.eyesCheckWindow('render map plugin toolbar');
       cy.openMapSettings();
@@ -463,9 +463,9 @@ describe('plugins', () => {
     });
     after(() => cy.eyesClose());
 
-    beforeEach('load editor', () => cy.loadEditorAndViewer('link-preview'));
+    beforeEach('load editor', () => cy.loadEditorAndViewer('link-preview', 'all'));
 
-    it('change link preview settings', function() {
+    it('change link preview settings', () => {
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
       cy.setLinkSettings();
       cy.triggerLinkPreviewViewerUpdate();
