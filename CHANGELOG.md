@@ -18,11 +18,21 @@
 ### :rocket: New Feature
 - `list`
   - [#815](https://github.com/wix-incubator/rich-content/pull/815) nested lists
+- `editor`
+  - [#906](https://github.com/wix-incubator/rich-content/pull/906) editor supports entering tab character ('\t') by clicking on tab
 - `theme + wrapper: gallery, plugins & modals`
   - [#828](https://github.com/wix-incubator/rich-content/pull/828) style update related to a lot of components + wrapper compatibility.
 ### :bug: Bug Fix
 - `preview`
   - [#903](https://github.com/wix-incubator/rich-content/pull/903) gallery fixed; resize flapping fixed
+- `gallery`
+  - [#903](https://github.com/wix-incubator/rich-content/pull/903) gallery size
+- `editor`
+  - [#914](https://github.com/wix-incubator/rich-content/pull/914) updating tooltips keys
+### :house: Internal
+- `wrapper`
+  - [#907](https://github.com/wix-incubator/rich-content/pull/907) converted `wix-rich-content-wrapper` to typescript
+
 
 </details>
 <hr/>
@@ -40,6 +50,8 @@
 - `link`
   - [#904](https://github.com/wix-incubator/rich-content/pull/904) fix saving data of "target" and "rel" link(the checkboxes in Link Panel)
   - [#902](https://github.com/wix-incubator/rich-content/pull/902) mobile - cancel in link panel changed the cursor
+- 'editor'
+  - [#894](https://github.com/wix-incubator/rich-content/pull/894) text position after enter & disable paste text with style CODE
 ### :house: Internal
 - `storybook`
   - [#891](https://github.com/wix-incubator/rich-content/pull/891) fixed textHighlightPlugin color (intro.js)
