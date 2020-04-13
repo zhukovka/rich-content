@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Modifier, EditorState } from 'draft-js';
-import { ColorPicker, getSelectionStyles } from 'wix-rich-content-editor-common';
+import {
+  ColorPicker,
+  getSelectionStyles,
+  Modifier,
+  EditorState,
+} from 'wix-rich-content-editor-common';
 import { DEFAULT_STYLE_SELECTION_PREDICATE } from '../constants';
 import { getColor } from '../text-decorations-utils';
 
@@ -15,19 +19,19 @@ import {
 export default class TextColorPanel extends Component {
   constructor(props) {
     super(props);
-    const styleSelectionPredicate = props.predicate(
+    this.styleSelectionPredicate = props.predicate(
       props.settings.styleSelectionPredicate || DEFAULT_STYLE_SELECTION_PREDICATE
     );
     if (props.settings.colorScheme && !validateColorScheme(props.settings.colorScheme)) {
       console.error('Error: colorScheme is not valid'); // eslint-disable-line no-console
     }
-    const currentColors = getSelectionStyles(styleSelectionPredicate, props.editorState);
+    this.currentColors = getSelectionStyles(this.styleSelectionPredicate, props.editorState);
     this.state = {
       currentColor:
-        currentColors.length > 0
-          ? extractColor(props.settings.colorScheme, getColor(currentColors[0]))
+        this.currentColors.length > 0
+          ? extractColor(props.settings.colorScheme, getColor(this.currentColors[0]))
           : this.props.defaultColor,
-      currentSchemeColor: currentColors[0] && getColor(currentColors[0]),
+      currentSchemeColor: this.currentColors[0] && getColor(this.currentColors[0]),
       userColors: props.settings.getUserColors() || [],
     };
     this.setColor = this.setColor.bind(this);
@@ -38,15 +42,16 @@ export default class TextColorPanel extends Component {
     this.props.setKeepToolbarOpen(false);
   }
 
-  setColor(color) {
-    let { editorState } = this.props;
-    if (color !== this.state.currentColor) {
-      editorState = this.getInlineColorState(color);
-      this.setState({
-        currentColor: extractColor(this.props.settings.colorScheme, color),
-        currentSchemeColor: color,
-      });
-    }
+  setColor(colorName) {
+    let { editorState, settings, defaultColor } = this.props;
+    const { currentColor } = this.state;
+    const newColorHex = colorName && extractColor(settings.colorScheme, colorName);
+    if (!newColorHex || newColorHex !== currentColor)
+      editorState = this.getInlineColorState(colorName);
+    this.setState({
+      currentColor: newColorHex || defaultColor,
+      currentSchemeColor: colorName || (this.currentColors[0] && getColor(this.currentColors[0])),
+    });
     this.props.closeModal(editorState);
   }
 
@@ -62,9 +67,11 @@ export default class TextColorPanel extends Component {
       const nextContentState = Modifier.removeInlineStyle(contentState, selection, prevColor);
       return EditorState.push(nextEditorState, nextContentState, 'change-inline-style');
     }, editorState);
-    const contentState = newEditorState.getCurrentContent();
-    const newContentState = Modifier.applyInlineStyle(contentState, selection, styleMapper(color));
-    return EditorState.push(newEditorState, newContentState, 'change-inline-style');
+    let contentState = newEditorState.getCurrentContent();
+    if (color) {
+      contentState = Modifier.applyInlineStyle(contentState, selection, styleMapper(color));
+    }
+    return EditorState.push(newEditorState, contentState, 'change-inline-style');
   }
 
   onColorAdded(color) {
@@ -90,6 +97,7 @@ export default class TextColorPanel extends Component {
         userColors={this.state.userColors.slice(0, 17)}
         onColorAdded={this.onColorAdded}
         onChange={this.setColor}
+        onResetColor={this.setColor}
         onCustomPickerToggle={onCustomPickerToggle}
         onCustomColorPicked={onCustomColorPicked}
         theme={theme}
@@ -105,11 +113,13 @@ export default class TextColorPanel extends Component {
           mergedStyles,
         }) => (
           <div className={mergedStyles.colorPicker_palette}>
-            <div className={mergedStyles.colorPicker_buttons_container}>{renderPalette()}</div>
+            <div className={mergedStyles.colorPicker_buttons_container}>
+              {renderPalette()}
+              {renderUserColors()}
+            </div>
             <hr className={mergedStyles.colorPicker_separator} />
             <div className={mergedStyles.colorPicker_buttons_container}>
               {renderResetColorButton()}
-              {renderUserColors()}
               {renderAddColorButton()}
             </div>
           </div>

@@ -3,27 +3,23 @@ import createFocusPlugin from 'draft-js-focus-plugin';
 import createResizeDecoration from './Decorators/Resize';
 import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
 import { simplePubsub } from 'wix-rich-content-editor-common';
+import createHandleDrop from './handleDrop';
+import createListPlugin from 'draft-js-list-plugin';
 
-const createPlugins = ({
-  plugins,
-  config,
-  helpers,
-  theme,
-  t,
-  isMobile,
-  anchorTarget,
-  relValue,
-  getEditorState,
-  setEditorState,
-  getEditorBounds,
-}) => {
+const createPlugins = ({ plugins, context }) => {
   const focusPlugin = createFocusPlugin();
   const resizePlugin = createResizeDecoration({
     horizontal: 'absolute',
     minWidth: 350,
+    theme: context.theme,
+    isMobile: context.isMobile,
   });
 
+  const listPlugin = createListPlugin({ olRegex: /1\./, allowNestedLists: false });
+
   const dndPlugin = createBlockDndPlugin();
+  const handleDrop = dndPlugin.handleDrop;
+  dndPlugin.handleDrop = createHandleDrop(handleDrop);
 
   const wixPluginsDecorators = composeDecorators(
     dndPlugin.decorator,
@@ -35,18 +31,10 @@ const createPlugins = ({
 
   const wixPluginConfig = {
     decorator: wixPluginsDecorators,
-    helpers,
-    theme,
-    t,
-    isMobile,
-    anchorTarget,
-    relValue,
-    getEditorState,
-    setEditorState,
-    getEditorBounds,
     commonPubsub: simplePubsub(),
     pluginDefaults,
-    ...config,
+    ...context,
+    ...context.config,
   };
 
   const wixPlugins = (plugins || []).map(createPlugin => createPlugin(wixPluginConfig));
@@ -68,7 +56,7 @@ const createPlugins = ({
     ];
   });
 
-  const pluginInstances = [resizePlugin, focusPlugin, dndPlugin, ...wixPlugins];
+  const pluginInstances = [resizePlugin, focusPlugin, dndPlugin, listPlugin, ...wixPlugins];
 
   return {
     pluginInstances,

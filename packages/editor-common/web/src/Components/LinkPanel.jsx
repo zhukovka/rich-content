@@ -109,28 +109,30 @@ class LinkPanel extends Component {
       showRelValueCheckbox,
       t,
       linkValues,
+      unchangedUrl,
     } = this.props;
 
     const { isValid, targetBlank, nofollow } = linkValues;
 
     return (
       <div className={styles.linkPanel_Content} {...ariaProps} role="form">
-        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-        <div className={styles.linkPanel_Input} onKeyDown={this.handleKeyDown}>
-          {this.getInput()}
-          {this.hasError() && (
-            <Tooltip
-              shouldRebuildOnUpdate={() => !isValid}
-              data-hook="linkPanelTooltip"
-              content={t('LinkPanel_ErrorTooltip')}
-              theme={theme}
-              moveBy={{ y: 0 }}
-              type={'error'}
-            >
-              <ErrorIcon data-hook="linkPanelError" className={styles.linkPanel_errorIcon} />
-            </Tooltip>
-          )}
-        </div>
+        {!unchangedUrl && (
+          /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
+          <div className={styles.linkPanel_Input} onKeyDown={this.handleKeyDown}>
+            {this.getInput()}
+            {this.hasError() && (
+              <Tooltip
+                shouldRebuildOnUpdate={() => !isValid}
+                content={t('LinkPanel_ErrorTooltip')}
+                theme={theme}
+                moveBy={{ y: 0 }}
+                type={'error'}
+              >
+                <ErrorIcon data-hook="linkPanelError" className={styles.linkPanel_errorIcon} />
+              </Tooltip>
+            )}
+          </div>
+        )}
         <div>
           {showTargetBlankCheckbox && (
             <Checkbox
@@ -148,6 +150,7 @@ class LinkPanel extends Component {
               checked={nofollow}
               dataHook="linkPanelRelCheckbox"
               onChange={this.handleNofollowChange}
+              contentForInfoIcon={t('LinkPanel_Nofollow_Checkbox_Tooltip')}
             />
           )}
         </div>
@@ -173,5 +176,6 @@ LinkPanel.propTypes = {
   onEnter: PropTypes.func,
   onEscape: PropTypes.func,
   placeholder: PropTypes.string,
+  unchangedUrl: PropTypes.bool,
 };
 export default LinkPanel;
