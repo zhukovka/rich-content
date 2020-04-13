@@ -13,7 +13,7 @@ import {
 import { DEFAULTS, SEO_IMAGE_WIDTH } from './consts';
 import styles from '../statics/styles/image-viewer.scss';
 import ExpandIcon from './icons/expand.svg';
-import InPluginInput from './InPluginInput';
+import { RichContentViewer } from 'wix-rich-content-viewer';
 
 class ImageViewer extends React.Component {
   constructor(props) {
@@ -163,17 +163,28 @@ class ImageViewer extends React.Component {
   }
 
   renderCaption(caption) {
-    const { onCaptionChange, setFocusToBlock, setInPluginEditingMode } = this.props;
+    const { onCaptionChange, renderEditorCaption } = this.props;
     return onCaptionChange ? (
-      <InPluginInput
-        setInPluginEditingMode={setInPluginEditingMode}
-        className={this.styles.imageCaption}
-        value={caption}
-        onChange={onCaptionChange}
-        setFocusToBlock={setFocusToBlock}
-      />
+      // <InPluginInput
+      //   setInPluginEditingMode={setInPluginEditingMode}
+      //   className={this.styles.imageCaption}
+      //   value={caption}
+      //   onChange={onCaptionChange}
+      //   setFocusToBlock={setFocusToBlock}
+      // />
+      // <InPluginInput
+      //   setInPluginEditingMode={setInPluginEditingMode}
+      //   className={this.styles.imageCaption}
+      //   editorState={this.props.editorState}
+      //   onChange={this.props.onEditorChange}
+      //   setFocusToBlock={setFocusToBlock}
+      // />
+      // renderEditorCaption({ className: this.styles.imageCaption })
+      renderEditorCaption()
     ) : (
-      <span className={this.styles.imageCaption}>{caption}</span>
+      // <span className={this.styles.imageCaption}>{caption}</span>
+      // <span className={this.styles.imageCaption}>{'blabla'}</span>
+      <RichContentViewer initialState={caption} />
     );
   }
 
@@ -290,6 +301,7 @@ ImageViewer.propTypes = {
   isMobile: PropTypes.bool.isRequired,
   setComponentUrl: PropTypes.func,
   seoMode: PropTypes.bool,
+  renderEditorCaption: PropTypes.func,
 };
 
 export default ImageViewer;

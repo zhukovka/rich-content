@@ -4,6 +4,13 @@ import { Loader } from 'wix-rich-content-editor-common';
 import ImageViewer from './image-viewer';
 import { DEFAULTS } from './consts';
 import { sizeClassName, alignmentClassName } from './classNameStrategies';
+import {
+  EditorState,
+  convertToRaw,
+  createWithContent,
+  convertFromRaw,
+} from 'wix-rich-content-editor';
+import InPluginInput from './InPluginInput';
 
 const EMPTY_SMALL_PLACEHOLDER =
   'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
@@ -17,7 +24,18 @@ class ImageComponent extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { isMounted: false, ...this.stateFromProps(props) };
+    const { componentData } = props;
+    const { metadata = {} } = componentData;
+    const editorState =
+      (metadata.caption && createWithContent(convertFromRaw(metadata.caption))) ||
+      EditorState.createEmpty();
+    this.state = {
+      isMounted: false,
+      ...this.stateFromProps(props),
+      editorState,
+      contentState: convertToRaw(editorState.getCurrentContent()),
+    };
+    this.handleCaptionChange(this.state.contentState);
 
     const { block, store } = this.props;
     if (store) {
@@ -28,8 +46,29 @@ class ImageComponent extends React.Component {
     }
   }
 
+  onEditorChange = editorState => {
+    this.setState({
+      editorState,
+    });
+
+    this.updateContentState(editorState);
+  };
+  updateContentState = editorState => {
+    const newContentState = convertToRaw(editorState.getCurrentContent());
+    this.setState({ contentState: newContentState }, this.handleCaptionChange(newContentState));
+  };
+
   componentDidMount() {
     this.state.isMounted = true; //eslint-disable-line react/no-direct-mutation-state
+    // const { componentData } = this.props;
+    // const { metadata = {} } = componentData;
+    // const editorState =
+    //   (metadata.caption && createWithContent(convertFromRaw(metadata.caption))) ||
+    //   EditorState.createEmpty();
+    // this.setState({
+    //   editorState,
+    //   contentState: convertToRaw(editorState.getCurrentContent()),
+    // });
   }
 
   componentWillUnmount() {
@@ -145,6 +184,23 @@ class ImageComponent extends React.Component {
     return <Loader type={'medium'} isFastFakeLoader />;
   };
 
+  renderEditorCaption = props => {
+    const { editorState } = this.state;
+    const {
+      setInPluginEditingMode,
+      blockProps: { setFocusToBlock },
+    } = this.props;
+    return (
+      <InPluginInput
+        setInPluginEditingMode={setInPluginEditingMode}
+        editorState={editorState}
+        onChange={this.onEditorChange}
+        setFocusToBlock={setFocusToBlock}
+        {...props}
+      />
+    );
+  };
+
   render() {
     const {
       settings,
@@ -181,6 +237,7 @@ class ImageComponent extends React.Component {
           onCaptionChange={this.handleCaptionChange}
           setFocusToBlock={blockProps.setFocusToBlock}
           setComponentUrl={setComponentUrl}
+          renderEditorCaption={this.renderEditorCaption}
         />
 
         {this.state.isLoading && this.renderLoader()}
