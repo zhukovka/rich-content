@@ -4066,10 +4066,14 @@ exports[`plugins > social embed > render upload modals #0`] =
     "0": {
       "data": {
         "config": {
-          "enableEmbed": true,
+          "alignment": "center",
           "link": {
+            "rel": "noopener",
+            "target": "_blank",
             "url": "www.mockUrl.com"
-          }
+          },
+          "size": "content",
+          "width": 350
         },
         "html": "<div style=\"background-color: black; border: 10px solid pink; height: 400px; text-align: center; color: white;\">This is a mock embed</div>",
         "socialType": "YouTube"
