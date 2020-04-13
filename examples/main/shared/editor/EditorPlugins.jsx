@@ -85,23 +85,17 @@ export const editorPlugins = [
   createHashtagPlugin,
   createExternalMentionsPlugin,
   createCodeBlockPlugin,
-  createHeadersMarkdownPlugin,
   createSoundCloudPlugin,
   createGiphyPlugin,
+  createHeadersMarkdownPlugin,
   createMapPlugin,
   createFileUploadPlugin,
-  createVerticalEmbedPlugin,
-  createEmojiPlugin,
   createButtonPlugin,
-  createUndoRedoPlugin,
-
-  //inline
-  createLineSpacingPlugin,
-  createLinkPlugin,
-  createHashtagPlugin,
-  createExternalMentionsPlugin,
   createTextColorPlugin,
+  createEmojiPlugin,
   createTextHighlightPlugin,
+  createUndoRedoPlugin,
+  createVerticalEmbedPlugin,
 ];
 
 const themeColors = {

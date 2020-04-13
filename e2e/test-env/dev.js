@@ -20,7 +20,7 @@ const start = () => {
   app.use(webpackHotServerMiddleware(multiCompiler, { chunkName: 'renderer' }));
 
   app.listen(3002, () => {
-    console.log(`[DEV] Test env server is listening on port 3002`); //eslint-disable-line
+    console.log(`[DEV] Test env server is listening on port 3002`);
   });
 };
 
