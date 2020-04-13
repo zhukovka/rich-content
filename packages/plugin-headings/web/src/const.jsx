@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { P2_icon, H2_icon, H3_icon, H4_icon, H5_icon, H6_icon } from './icons';
 
 export const HEADINGS_ICONS_MOBILE = {

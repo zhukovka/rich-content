@@ -16,13 +16,13 @@
   
       &:hover {
         cursor: pointer;
-        background-color: rgb(238, 235, 235)
+        background-color: rgba(0, 0, 0, .05);
       }
     }
 }
 
 .headingsPanel_selectedHeading {
-    background-color: rgb(202, 202, 206) !important;
+    background-color: rgba(0, 0, 0, .1) !important;
 }
 
 .headingsMobilePanel {

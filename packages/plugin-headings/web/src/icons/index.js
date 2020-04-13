@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 export { default as P2_icon } from './P2.svg';
 export { default as H2_icon } from './H2.svg';
 export { default as H3_icon } from './H3.svg';
