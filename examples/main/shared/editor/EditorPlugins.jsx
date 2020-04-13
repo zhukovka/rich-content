@@ -404,7 +404,7 @@ const config = {
     // },
   },
   [VERTICAL_EMBED_TYPE]: {
-    fetchFunctions: { fetchProducts: mockFetchProductsFunc },
+    fetchFunctions: { product: mockFetchProductsFunc },
   },
   // [EXTERNAL_EMOJI_TYPE]: {},
   [VIDEO_TYPE]: {

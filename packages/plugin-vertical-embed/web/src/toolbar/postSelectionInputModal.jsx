@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { CloseIcon, Button, TextInput } from 'wix-rich-content-editor-common';
 import { mergeStyles } from 'wix-rich-content-common';
 import styles from '../../statics/styles/post-selection-input-modal.scss';
-import ItemsListComponent from '../components/items-list-component';
+import UrlInputModal from 'wix-rich-content-editor-common/dist/lib/UrlInputModal';
 
 // TODO: You may want to make this component a generic item selection modal, rather than a post selection modal
 export default class PostSelectionInputModal extends Component {
@@ -14,26 +13,9 @@ export default class PostSelectionInputModal extends Component {
   };
   styles = mergeStyles({ styles, theme: this.props.theme });
 
-  afterOpenModal = () => this.input.focus();
-
-  onCloseRequested = () => {
-    this.setState({ isOpen: false });
-    this.props.helpers.closeModal();
-  };
-
-  handleKeyPress = e => {
-    if (e.charCode === 13) {
-      this.onConfirm();
-    }
-  };
-
   componentDidMount() {
-    this.input.focus();
-    this.input.setSelectionRange(0, this.input.value.length);
     this.search();
   }
-
-  handleKeyPress = () => {};
 
   searchProducts = query => {
     const {
@@ -41,13 +23,12 @@ export default class PostSelectionInputModal extends Component {
       componentData: { type },
     } = this.props;
     const abortController = new AbortController();
-
-    const promise = fetchFunctions[type](query, abortController.signal)
-      .then(res => {
-        if (res.ok) return res;
-        else throw res.statusText;
-      })
-      .then(res => res.json());
+    const promise = fetchFunctions[type](query, abortController.signal).then(res => {
+      // if (res.ok)
+      return res;
+      // else throw res.statusText;
+    });
+    // .then(res => res.json());
     return {
       abortController,
       promise,
@@ -66,87 +47,56 @@ export default class PostSelectionInputModal extends Component {
       const products = await promise;
       this.setState({ products });
     } catch (e) {
-      if (e.name === 'AbortError') {
+      if (e?.name === 'AbortError') {
         return;
       }
       throw e;
     }
   }
 
-  onInputChange = e => this.search(e.target.value);
+  onInputChange = inputString => {
+    this.search(inputString);
+    this.setState({ inputString });
+  };
 
-  onConfirm = () => {
-    const { onConfirm, componentData } = this.props;
+  onConfirm = item => {
+    const { onConfirm, componentData, helpers } = this.props;
     if (!onConfirm) {
       return;
     }
 
     onConfirm({
       ...componentData,
-      selectedProduct: this.state.selectedProduct || this.state.products[0],
+      selectedProduct: item, //this.state.selectedProduct || this.state.products[0],
     });
-    this.onCloseRequested();
-  };
-
-  handleKeyPress = e => {
-    if (e.charCode === 13) {
-      this.onConfirm();
-    }
+    helpers.closeModal();
   };
 
   render() {
-    const { products } = this.state;
+    const { products, inputString } = this.state;
     const {
       t,
-      isMobile,
       languageDir,
       componentData: { type },
+      helpers,
     } = this.props;
-    const { styles } = this;
-
     return (
-      <div dir={languageDir} style={{ display: 'flex', flexDirection: 'column' }}>
-        <div className={styles.verticalEmbedContainer} data-hook="verticalEmbedModal">
-          {!isMobile && (
-            <CloseIcon
-              className={styles.verticalEmbedModalCloseIcon}
-              onClick={() => this.onCloseRequested()}
-            />
-          )}
-          <h2 className={styles.verticalEmbedModalTitle}>{`Select embed ${type}`}</h2>
-          <div className={styles.textInputWrapper}>
-            <TextInput
-              inputRef={ref => {
-                this.input = ref;
-              }}
-              onKeyPress={this.handleKeyPress}
-              onChange={this.onInputChange}
-              placeholder={`Enter ${type} name`}
-              theme={styles}
-              data-hook="blogPostSearchInput"
-            />
-          </div>
-          {products && products.length > 0 && (
-            <ItemsListComponent
-              items={products}
-              onSelectionChange={selectedProduct => this.setState({ selectedProduct })}
-            />
-          )}
-        </div>
-
-        <div className={styles.actionButtonsContainer}>
-          <Button
-            type="secondary"
-            className={styles.actionButton}
-            onClick={() => this.onCloseRequested()}
-          >
-            {t('Select_Products_Modal_Cancel')}
-          </Button>
-          <Button className={styles.actionButton} onClick={() => this.onConfirm()}>
-            {t('Select_Products_Modal_Confirm')}
-          </Button>
-        </div>
-      </div>
+      <UrlInputModal
+        onConfirm={this.onConfirm}
+        helpers={helpers}
+        t={t}
+        languageDir={languageDir}
+        title={`Select embed ${type}`}
+        subtitle={`Choose a ${type} from your ${type} list`}
+        dataHook={`verticalEmbedModal`}
+        saveLabel={t('EmbedURL_Common_CTA_Primary')}
+        cancelLabel={t('EmbedURL_Common_CTA_Secondary')}
+        setSelection={selectedProduct => this.setState({ selectedProduct })}
+        onCloseRequested={helpers.closeModal}
+        dropdownItems={products}
+        onInputChange={this.onInputChange}
+        input={inputString}
+      />
     );
   }
 }

@@ -1,5 +1,6 @@
 export default {
   content: {
-    maxHeight: '80%',
+    minHeight: 348,
+    minWidth: 580,
   },
 };
