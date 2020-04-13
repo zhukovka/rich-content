@@ -5,6 +5,7 @@ import {
   italicButton,
   underlineButton,
   indentButton,
+  titleButton,
   blockquoteButton,
   alignTextLeftButton,
   alignTextCenterButton,
@@ -30,7 +31,7 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
     Italic: italicButton(icons.Italic),
     Underline: underlineButton(icons.Underline),
     Indent: indentButton(icons.Indent),
-    Title: headingButton,
+    Title: titleButton(icons.inactiveIconTitle, icons.TitleOne, icons.TitleTwo),
     Blockquote: blockquoteButton(icons.Blockquote),
     Alignment: textAlignmentButton(icons),
     AlignLeft: alignTextLeftButton(icons.AlignLeft),
@@ -47,7 +48,8 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
   const customHeadings = config?.Headings?.headersDropdown;
 
   if (customHeadings) {
-    buttonCompArray.push(...[headingButton, buttonsMap.Separator]);
+    buttonCompArray.push(headingButton);
+    !isMobile && buttonCompArray.push(buttonsMap.Separator);
     buttons = buttons.filter(buttonName => buttonName !== 'Title');
   }
   buttonCompArray.push(...buttons.map(buttonName => buttonsMap[buttonName]).filter(x => x));

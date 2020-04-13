@@ -99,7 +99,6 @@ const getMobileTheme = theme => {
     ...rest,
   };
 };
-
 const getMobileButtons = ({
   buttons,
   textPluginButtons,

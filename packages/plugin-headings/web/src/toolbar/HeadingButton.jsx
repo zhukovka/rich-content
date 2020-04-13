@@ -51,7 +51,7 @@ export default class HeadingButton extends Component {
     this.selection = this.oldEditorState.getSelection();
     const { bottom, left } = this.buttonRef.getBoundingClientRect();
     this.props.setKeepOpen(true);
-    this.setState({ isPanelOpen: true, panelLeft: left, panelTop: bottom });
+    this.setState({ isPanelOpen: true, panelLeft: left - 15, panelTop: bottom });
   };
 
   closePanel = () => {
