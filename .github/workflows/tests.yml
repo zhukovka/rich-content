@@ -8,7 +8,7 @@ env:
   APPLITOOLS_BATCH_ID: ${{ github.sha }}
 
 jobs:
-  e2e-visaul:
+  e2e-visual:
     runs-on: ubuntu-18.04
     strategy:
       fail-fast: false
@@ -56,11 +56,11 @@ jobs:
       - uses: actions/upload-artifact@v1
         if: failure()
         with:
-          name: cypress-videos-visaul-${{ job.status }}-${{ matrix.ci_node_index }}
+          name: cypress-videos-visual-${{ job.status }}-${{ matrix.ci_node_index }}
           path: e2e/cypress/videos
 
-  e2e-visaul-applitoolsSendComplition:
-    needs: e2e-visaul
+  e2e-visual-applitoolsSendComplition:
+    needs: e2e-visual
     if: always()
     runs-on: ubuntu-18.04
     steps:
