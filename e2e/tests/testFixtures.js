@@ -1,6 +1,7 @@
+/*global cy Cypress*/
 import { fixturesToTestOnSeo, fixtures } from './settings';
 
-const testFixture = (cy, fixtureObj) => {
+const testFixture = fixtureObj => {
   const { fixture, plugins, additionalCommands } =
     typeof fixtureObj === 'string' ? { fixture: fixtureObj } : fixtureObj;
 
