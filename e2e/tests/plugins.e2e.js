@@ -5,7 +5,7 @@ import {
   DIVIDER_DROPDOWN_OPTIONS,
   STATIC_TOOLBAR_BUTTONS,
 } from '../cypress/dataHooks';
-import { DEFAULT_DESKTOP_BROWSERS } from '../tests/constants';
+import { DEFAULT_DESKTOP_BROWSERS } from './settings';
 
 const eyesOpen = ({
   test: {
