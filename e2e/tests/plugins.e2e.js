@@ -497,7 +497,7 @@ describe('plugins', () => {
       eyesOpen(this);
     });
     after(() => cy.eyesClose());
-    beforeEach('load editor', () => cy.loadEditorAndViewer('empty'));
+    beforeEach('load editor', () => cy.loadEditorAndViewer('empty', 'all'));
 
     it('should create link preview from link after enter key', function() {
       cy.insertLinkAndEnter('www.wix.com');
