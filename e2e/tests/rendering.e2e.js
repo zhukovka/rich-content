@@ -1,16 +1,12 @@
 /*global cy Cypress*/
-import { DEFAULT_DESKTOP_BROWSERS, fixtures, fixturesToTestOnSeo } from './settings';
+import { DEFAULT_DESKTOP_BROWSERS } from './settings';
+import { testSeoFixtures, testFixtures } from './testFixture';
 
-const testFixture = fixtureObj => {
-  const { fixture, plugins, additionalCommands } =
-    typeof fixtureObj === 'string' ? { fixture: fixtureObj } : fixtureObj;
-
-  return it(`render ${fixture}`, function() {
-    cy.loadEditorAndViewer(fixture, plugins);
-    if (additionalCommands) {
-      additionalCommands(cy);
-    }
-    cy.eyesCheckWindow(this.test.title);
+const eyesOpener = testName => {
+  cy.eyesOpen({
+    appName: 'Rendering',
+    testName,
+    browser: DEFAULT_DESKTOP_BROWSERS,
   });
 };
 
@@ -21,27 +17,19 @@ describe('editor rendering', () => {
 
   context('desktop', () => {
     before(function() {
-      cy.eyesOpen({
-        appName: 'Rendering',
-        testName: this.test.parent.title,
-        browser: DEFAULT_DESKTOP_BROWSERS,
-      });
+      eyesOpener(this.test.parent.title);
     });
 
     beforeEach(() => cy.switchToDesktop());
 
     after(() => cy.eyesClose());
 
-    fixtures.forEach(testFixture);
+    testFixtures();
   });
 
   context('seo', () => {
     before(function() {
-      cy.eyesOpen({
-        appName: 'Rendering',
-        testName: this.test.parent.title,
-        browser: DEFAULT_DESKTOP_BROWSERS,
-      });
+      eyesOpener(this.test.parent.title);
     });
 
     beforeEach(() => {
@@ -51,6 +39,6 @@ describe('editor rendering', () => {
 
     after(() => cy.eyesClose());
 
-    fixturesToTestOnSeo.forEach(testFixture);
+    testSeoFixtures();
   });
 });
