@@ -56,9 +56,10 @@ export function createToolbar({ helpers, t }) {
         t,
         tooltipTextKey: 'Poll_PollSettings_Common_Header',
         activeTab: TABS.LAYOUT,
+        mobile: true,
       },
 
-      { keyName: 'separator', type: BUTTONS.SEPARATOR },
+      { keyName: 'separator', type: BUTTONS.SEPARATOR, mobile: true },
 
       {
         keyName: 'design',
@@ -69,9 +70,10 @@ export function createToolbar({ helpers, t }) {
         t,
         tooltipTextKey: 'Poll_PollSettings_Common_Header',
         activeTab: TABS.DESIGN,
+        mobile: true,
       },
 
-      { keyName: 'separator', type: BUTTONS.SEPARATOR },
+      { keyName: 'separator', type: BUTTONS.SEPARATOR, mobile: true },
 
       {
         keyName: 'settings',
@@ -82,11 +84,12 @@ export function createToolbar({ helpers, t }) {
         t,
         tooltipTextKey: 'Poll_FormatToolbar_Settings_Tooltip',
         activeTab: TABS.SETTINGS,
+        mobile: true,
       },
 
-      { keyName: 'separator', type: BUTTONS.SEPARATOR },
+      { keyName: 'separator', mobile: true, type: BUTTONS.SEPARATOR },
 
-      { keyName: 'delete', type: BUTTONS.DELETE },
+      { keyName: 'delete', mobile: true, type: BUTTONS.DELETE },
     ],
     InsertButtons: [
       {
@@ -95,7 +98,7 @@ export function createToolbar({ helpers, t }) {
         tooltipText: t('Poll_InsertPoll_Tooltip'),
         Icon: InsertPluginIcon,
         componentData: DEFAULT_COMPONENT_DATA,
-        toolbars: [TOOLBARS.FOOTER, TOOLBARS.SIDE],
+        toolbars: [TOOLBARS.FOOTER, TOOLBARS.SIDE, TOOLBARS.MOBILE],
         modalElement: decorateComponentWithProps(PollPresetSelector),
         modalStylesFn: ({ buttonRef }) => {
           return getBottomToolbarModalStyles(buttonRef, {

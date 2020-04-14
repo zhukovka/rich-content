@@ -4,6 +4,8 @@ export const PollOptionPropTypes = PropTypes.shape({
   id: PropTypes.string,
   title: PropTypes.string,
   mediaId: PropTypes.string,
+  count: PropTypes.number,
+  rating: PropTypes.number,
 });
 
 export const PollPropTypes = {

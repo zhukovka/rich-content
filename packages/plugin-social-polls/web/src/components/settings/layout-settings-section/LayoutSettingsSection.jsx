@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { SelectionList, Checkbox, Separator } from 'wix-rich-content-editor-common';
+import { SelectionList, LabeledToggle, Separator } from 'wix-rich-content-editor-common';
 import { mergeStyles } from 'wix-rich-content-common';
 
-import { LAYOUT } from '../../../constants';
+import { LAYOUT, DIRECTION } from '../../../constants';
 import { LayoutGridIcon, LayoutListIcon } from '../../../assets/icons';
 
 import styles from './layout-settings-section.scss';
@@ -27,13 +27,11 @@ export class LayoutSettingsSection extends Component {
     window.dispatchEvent(new Event('resize'));
   };
 
-  handlePollEnableImageChange = event =>
-    this.updateSettings({ poll: { enableImage: event.target.checked } });
-
-  handleOptionEnableImageChange = event =>
-    this.updateSettings({ option: { enableImage: event.target.checked } });
-
-  dataMapper = ({ name }) => ({ value: name });
+  handleDirectionChange = direction => {
+    this.updateSettings({
+      poll: { direction },
+    });
+  };
 
   renderOption = ({ item }) => (
     <>
@@ -43,17 +41,23 @@ export class LayoutSettingsSection extends Component {
   );
 
   render() {
-    const { componentData, t } = this.props;
+    const { uiSettings, componentData, t } = this.props;
+    const { color1, color2, color3 } = uiSettings.themeColors;
+
+    const { poll, option } = componentData.layout;
 
     return (
       <section className={styles.section}>
         <p className={styles.title}>{t('Poll_PollSettings_Tab_Layout_Section_Question_Header')}</p>
 
-        <Checkbox
+        <LabeledToggle
           label={t('Poll_PollSettings_Tab_Layout_Section_Question_Image')}
-          checked={componentData.layout.poll?.enableImage}
-          onChange={this.handlePollEnableImageChange}
+          checked={poll?.enableImage}
+          onChange={() => this.updateSettings({ poll: { enableImage: !poll?.enableImage } })}
           theme={this.styles}
+          sliderColor={color1}
+          toggleIsOffTrackColor={color2}
+          toggleIsOnTrackColor={color3}
         />
 
         <Separator horizontal className={styles.separator} />
@@ -67,28 +71,56 @@ export class LayoutSettingsSection extends Component {
           theme={this.styles}
           dataSource={[
             {
-              name: LAYOUT.LIST,
+              value: LAYOUT.LIST,
               label: t('Poll_PollSettings_Tab_Layout_Section_Answers_Layout_List'),
               icon: LayoutListIcon,
             },
             {
-              name: LAYOUT.GRID,
+              value: LAYOUT.GRID,
               label: t('Poll_PollSettings_Tab_Layout_Section_Answers_Layout_Grid'),
               icon: LayoutGridIcon,
             },
           ]}
-          dataMapper={this.dataMapper}
           renderItem={this.renderOption}
-          value={componentData.layout.poll?.type}
+          value={poll?.type}
           onChange={this.handlePollTypeChange}
           className={styles.layout_selector}
         />
 
-        <Checkbox
+        <LabeledToggle
           label={t('Poll_PollSettings_Tab_Layout_Section_Answers_Image')}
-          checked={componentData.layout.option?.enableImage}
-          onChange={this.handleOptionEnableImageChange}
+          checked={option?.enableImage}
+          onChange={() => this.updateSettings({ option: { enableImage: !option?.enableImage } })}
           theme={this.styles}
+          sliderColor={color1}
+          toggleIsOffTrackColor={color2}
+          toggleIsOnTrackColor={color3}
+        />
+
+        <Separator horizontal className={styles.separator} />
+
+        <p className={styles.title}>
+          {t('Poll_PollSettings_Tab_Layout_Section_TextDirection_Header')}
+        </p>
+
+        <SelectionList
+          theme={this.styles}
+          dataSource={[
+            {
+              value: DIRECTION.LTR,
+              label: t('Poll_PollSettings_Tab_Layout_Section_TextDirection_LTR'),
+              icon: () => <span />,
+            },
+            {
+              value: DIRECTION.RTL,
+              label: t('Poll_PollSettings_Tab_Layout_Section_TextDirection_RTL'),
+              icon: () => <span />,
+            },
+          ]}
+          renderItem={this.renderOption}
+          value={poll?.direction}
+          onChange={this.handleDirectionChange}
+          className={styles.layout_selector}
         />
       </section>
     );
@@ -98,6 +130,7 @@ export class LayoutSettingsSection extends Component {
 LayoutSettingsSection.propTypes = {
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
+  uiSettings: PropTypes.object.isRequired,
   componentData: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
 };

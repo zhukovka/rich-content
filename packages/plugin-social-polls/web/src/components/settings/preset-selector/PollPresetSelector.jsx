@@ -6,6 +6,7 @@ import { merge } from 'lodash';
 import { SelectionList } from 'wix-rich-content-editor-common';
 import { mergeStyles } from 'wix-rich-content-common';
 
+import { getRandomValue } from '../../../helpers';
 import { LAYOUT, BACKGROUND_PRESETS, BACKGROUND_TYPE } from '../../../constants';
 import { ListPollIcon, GridPollIcon, WithImagePollIcon } from '../../../assets/icons';
 
@@ -23,19 +24,13 @@ export class PollPresetSelector extends PureComponent {
         design: {
           poll: {
             backgroundType: BACKGROUND_TYPE.IMAGE,
-            background: this.getBackgroundImage(),
+            background: getRandomValue(BACKGROUND_PRESETS[BACKGROUND_TYPE.IMAGE]),
           },
         },
       })
     );
     helpers.closeModal();
   };
-
-  getBackgroundImage() {
-    const pool = BACKGROUND_PRESETS[BACKGROUND_TYPE.IMAGE];
-
-    return pool[Math.floor(Math.random() * pool.length)];
-  }
 
   renderOption = ({ item }) => (
     <>
@@ -95,7 +90,6 @@ export class PollPresetSelector extends PureComponent {
               icon: GridPollIcon,
             },
           ]}
-          dataMapper={this.dataMapper}
           renderItem={this.renderOption}
           onChange={this.handleTypeSelection}
           className={cls(styles.preset_selector)}

@@ -11,6 +11,7 @@ import { mergeStyles } from 'wix-rich-content-common';
 
 import { ColorIcon, ImageIcon, GradientIcon } from '../../../assets/icons';
 import { BACKGROUND_PRESETS, BACKGROUND_TYPE } from '../../../constants';
+import { getBackgroundString } from '../../../helpers';
 
 import styles from './design-settings-section.scss';
 
@@ -25,8 +26,17 @@ export class DesignSettingsSection extends Component {
     this.props.store.update('componentData', { design });
   }
 
-  handleBackgroundChange = background =>
-    this.updateDesign({ poll: { background, backgroundType: this.state.backgroundType } });
+  handleBackgroundChange = value => {
+    const { backgroundType } = this.state;
+
+    let background = value;
+
+    if (backgroundType === BACKGROUND_TYPE.GRADIENT) {
+      background = JSON.parse(value);
+    }
+
+    this.updateDesign({ poll: { background, backgroundType } });
+  };
 
   handlePollBorderRadiusChange = borderRadius =>
     this.updateDesign({ poll: { borderRadius: `${borderRadius}px` } });
@@ -44,6 +54,14 @@ export class DesignSettingsSection extends Component {
       <p className={styles.selectionListOptionLabel}>{item.label}</p>
     </>
   );
+
+  getColorPalettePreset() {
+    const { backgroundType } = this.state;
+
+    const preset = BACKGROUND_PRESETS[backgroundType];
+
+    return preset.map(value => getBackgroundString(value, backgroundType));
+  }
 
   render() {
     const { t, componentData } = this.props;
@@ -89,7 +107,8 @@ export class DesignSettingsSection extends Component {
         </p>
         <ColorPicker
           color={design.poll?.background}
-          palette={BACKGROUND_PRESETS[backgroundType]}
+          palette={this.getColorPalettePreset()}
+          schemeAttributes={BACKGROUND_PRESETS[backgroundType]}
           onChange={this.handleBackgroundChange}
           theme={this.styles}
           t={t}

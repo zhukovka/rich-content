@@ -1,3 +1,5 @@
+@import "~wix-rich-content-common/dist/statics/styles/mixins";
+
 .container { 
   position: relative;
   padding: 40px;
@@ -21,12 +23,14 @@
   visibility: visible;
 }
 
-.isMobile {
-  padding: 12px;
-
-  .options {
-    grid-column-gap: 12px;
-    grid-row-gap: 12px;
+.container {
+  @include phone {
+    padding: 12px;
+  
+    .options {
+      grid-column-gap: 12px;
+      grid-row-gap: 12px;
+    }
   }
 }
 
@@ -61,10 +65,9 @@
   height: 188px;
 }
 
-.add_option {
+.cta_button {
   background: transparent;
-  text-align: left;
-  border: 1px dashed #fff;
+  border: 1px solid #fff;
   width: 100%;
   color: inherit;
   opacity: 0.6;
@@ -75,11 +78,24 @@
   font-size: 18px;
   line-height: 1;
   transition: border-radius 500ms;
+  text-align: left;
   
   &:hover {
     outline: 0;
     opacity: 1;
   }
+}
+
+.see_more {
+  @extend .cta_button;
+  margin: 20px 0 0;
+  text-align: center;
+}
+
+.add_option {
+  @extend .cta_button;
+  
+  border: 1px dashed #fff;
 }
 
 .column {

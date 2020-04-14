@@ -60,6 +60,7 @@
 .endAdornment {
   position: absolute;
   right: 12px;
+  left: auto;
   z-index: 1;
   opacity: 0;
   transition: opacity 500ms;

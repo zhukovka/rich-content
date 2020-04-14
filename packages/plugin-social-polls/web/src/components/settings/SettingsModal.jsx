@@ -16,6 +16,7 @@ export class SettingsModal extends Component {
     activeTab: PropTypes.string.isRequired,
     componentData: PropTypes.object.isRequired,
     helpers: PropTypes.object.isRequired,
+    uiSettings: PropTypes.object.isRequired,
     pubsub: PropTypes.any.isRequired,
     isMobile: PropTypes.bool,
     theme: PropTypes.object.isRequired,
@@ -57,7 +58,7 @@ export class SettingsModal extends Component {
 
   render() {
     const { activeTab } = this.state;
-    const { pubsub, helpers, t, languageDir, theme } = this.props;
+    const { pubsub, helpers, t, languageDir, theme, uiSettings } = this.props;
 
     const componentData = pubsub.store.get('componentData');
 
@@ -73,6 +74,7 @@ export class SettingsModal extends Component {
               theme={theme}
               store={pubsub.store}
               componentData={componentData}
+              uiSettings={uiSettings}
               t={t}
             />
           </Tab>
@@ -81,6 +83,7 @@ export class SettingsModal extends Component {
               theme={theme}
               store={pubsub.store}
               componentData={componentData}
+              uiSettings={uiSettings}
               t={t}
             />
           </Tab>
@@ -93,6 +96,7 @@ export class SettingsModal extends Component {
               theme={theme}
               store={pubsub.store}
               componentData={componentData}
+              uiSettings={uiSettings}
               t={t}
             />
           </Tab>

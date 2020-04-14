@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Checkbox, Separator, RadioGroup } from 'wix-rich-content-editor-common';
+import { Separator, RadioGroup, LabeledToggle } from 'wix-rich-content-editor-common';
 import { mergeStyles } from 'wix-rich-content-common';
 
 import { MEMBER_ROLES, VISIBILITY } from '../../../constants';
@@ -46,18 +46,18 @@ export class PollSettingsSection extends Component {
     });
   }
 
-  handleMultiChange = event => this.updateSettings({ multipleVotes: event.target.checked });
-
-  handleVotesDisplayChange = event => this.updateSettings({ votesDisplay: event.target.checked });
-
-  handleVotersDisplayChange = event => this.updateSettings({ votersDisplay: event.target.checked });
-
-  handleVoteRoleChange = voteRole => this.updateSettings({ voteRole });
-
-  handleViewRoleChange = resultsVisibility => this.updateSettings({ resultsVisibility });
-
   render() {
-    const { componentData, t } = this.props;
+    const { uiSettings, componentData, t } = this.props;
+
+    const { color1, color2, color3 } = uiSettings.themeColors;
+
+    const {
+      votersDisplay,
+      votesDisplay,
+      multipleVotes,
+      voteRole,
+      resultsVisibility,
+    } = componentData.poll.settings;
 
     return (
       <section className={styles.section}>
@@ -71,17 +71,20 @@ export class PollSettingsSection extends Component {
         <RadioGroup
           name="voteRole"
           theme={this.styles}
-          value={componentData.poll.settings.voteRole}
-          onChange={this.handleVoteRoleChange}
+          value={voteRole}
+          onChange={voteRole => this.updateSettings({ voteRole })}
           dataSource={this.VOTE_ROLE_OPTIONS}
           className={styles.radioPanel}
         />
 
-        <Checkbox
+        <LabeledToggle
           label={t('Poll_PollSettings_Tab_Settings_Section_Voting_Multiselect')}
-          checked={componentData.poll.settings.multipleVotes}
-          onChange={this.handleMultiChange}
+          checked={multipleVotes}
+          onChange={() => this.updateSettings({ multipleVotes: !multipleVotes })}
           theme={this.styles}
+          sliderColor={color1}
+          toggleIsOffTrackColor={color2}
+          toggleIsOnTrackColor={color3}
         />
 
         <Separator horizontal className={styles.separator} />
@@ -97,24 +100,30 @@ export class PollSettingsSection extends Component {
         <RadioGroup
           name="resultsVisibility"
           theme={this.styles}
-          value={componentData.poll.settings.resultsVisibility}
-          onChange={this.handleViewRoleChange}
+          value={resultsVisibility}
+          onChange={resultsVisibility => this.updateSettings({ resultsVisibility })}
           dataSource={this.VIEW_ROLE_OPTIONS}
           className={styles.radioPanel}
         />
 
-        <Checkbox
+        <LabeledToggle
           label={t('Poll_PollSettings_Tab_Settings_Section_Results_VoteVisibility')}
           theme={this.styles}
-          checked={componentData.poll.settings.votesDisplay}
-          onChange={this.handleVotesDisplayChange}
+          checked={votesDisplay}
+          onChange={() => this.updateSettings({ votesDisplay: !votesDisplay })}
+          sliderColor={color1}
+          toggleIsOffTrackColor={color2}
+          toggleIsOnTrackColor={color3}
         />
 
-        <Checkbox
+        <LabeledToggle
           label={t('Poll_PollSettings_Tab_Settings_Section_Results_VoterAnonymous')}
           theme={this.styles}
-          checked={componentData.poll.settings.votersDisplay}
-          onChange={this.handleVotersDisplayChange}
+          checked={votersDisplay}
+          onChange={() => this.updateSettings({ votersDisplay: !votersDisplay })}
+          sliderColor={color1}
+          toggleIsOffTrackColor={color2}
+          toggleIsOnTrackColor={color3}
         />
       </section>
     );
@@ -124,6 +133,7 @@ export class PollSettingsSection extends Component {
 PollSettingsSection.propTypes = {
   theme: PropTypes.object.isRequired,
   componentData: PropTypes.object.isRequired,
+  uiSettings: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
 };

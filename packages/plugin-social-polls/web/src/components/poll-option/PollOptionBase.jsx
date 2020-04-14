@@ -72,13 +72,9 @@ export class PollOptionBase extends React.PureComponent {
   };
 
   getVotePercentage() {
-    const { option, poll, showResults } = this.props;
+    const { option } = this.props;
 
-    if (!showResults) {
-      return 0;
-    }
-
-    return (option.count / poll.count) * 100 || 0;
+    return option.rating || 0;
   }
 
   render() {

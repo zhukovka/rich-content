@@ -4,6 +4,7 @@ import FlipMove from 'react-flip-move';
 
 import { AddIcon } from '../assets/icons';
 import { LAYOUT, VISIBILITY, BACKGROUND_TYPE } from '../constants';
+import { getBackgroundString } from '../helpers';
 
 import { withPoll, PollContextPropTypes } from './poll-context';
 import { withRCEHelpers, RCEHelpersPropTypes } from './rce-helpers-context';
@@ -18,6 +19,22 @@ class PollComponent extends Component {
     ...PollContextPropTypes,
     ...RCEHelpersPropTypes,
   };
+
+  state = {
+    collapsed: this.isInitiallyCollapsed(),
+  };
+
+  isInitiallyCollapsed() {
+    const { poll, rce } = this.props;
+
+    if (!rce.isViewMode) {
+      return false;
+    }
+
+    return poll.options.length > 4;
+  }
+
+  seeAll = () => this.setState({ collapsed: false });
 
   handleOptionUpdate(index) {
     return option => this.props.updatePollOption(index, option);
@@ -51,33 +68,49 @@ class PollComponent extends Component {
 
   getOptionList() {
     const { poll, rce } = this.props;
+    const { collapsed } = this.state;
 
-    if (!rce.isViewMode || !this.showResults()) {
+    if (!rce.isViewMode) {
       return poll.options;
     }
 
-    return poll.options.sort((prev, option) => {
-      if (option.count === prev.count) {
-        return 0;
-      }
+    let list;
 
-      if (option.count > prev.count) {
-        return 1;
-      }
+    if (!this.showResults()) {
+      list = poll.options;
+    } else {
+      list = poll.options.sort((prev, option) => {
+        if (option.rating === prev.rating) {
+          return 0;
+        }
 
-      return -1;
-    });
+        if (option.rating > prev.rating) {
+          return 1;
+        }
+
+        return -1;
+      });
+    }
+
+    return collapsed ? list.slice(0, 4) : list;
   }
 
   render() {
     const { poll, rce, addOption, design, layout, vote, unvote, t, siteMembers } = this.props;
+    const { collapsed } = this.state;
+
+    const style = {
+      ...design.poll,
+      background: getBackgroundString(design.poll.background, design.poll.backgroundType),
+    };
 
     return (
       <div
         className={cls(styles.container, {
           [styles.isMobile]: rce.isMobile,
         })}
-        style={design.poll}
+        style={style}
+        dir={layout.poll?.direction}
       >
         <div
           className={cls(styles.background_overlay, {
@@ -130,6 +163,14 @@ class PollComponent extends Component {
             </li>
           )}
         </ul>
+
+        {collapsed && (
+          <button onClick={this.seeAll} className={styles.see_more} style={design.option}>
+            {this.showResults()
+              ? t('Poll_Viewer_ShowAllResults_CTA')
+              : t('Poll_Viewer_ShowAllOptions_CTA')}
+          </button>
+        )}
       </div>
     );
   }

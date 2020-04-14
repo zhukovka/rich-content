@@ -24,25 +24,57 @@ export const BACKGROUND_PRESETS = {
     '#8C0F7A',
   ],
   [BACKGROUND_TYPE.IMAGE]: [
-    'url("https://static.wixstatic.com/media/4f5c904bb9f4405bbbd900e8e43fb96d.jpg") center / cover',
-    'url("https://static.wixstatic.com/media/ab97ccc955d74873998c0cc57a71859a.jpg") center / cover',
-    'url("https://static.wixstatic.com/media/aa231f4eb7434370b337d1f66d1492a3.jpg") center / cover',
-    'url("https://static.wixstatic.com/media/a952ed370d8e44ee9e01073bd746dc51.jpg") center / cover',
-    'url("https://static.wixstatic.com/media/11062b_9aa7994fbb42451d869b8fa97538a695~mv2_d_3000_1800_s_2.jpg") center / cover',
-    'url("https://static.wixstatic.com/media/40b04c9917f54b079fee33890219e1b6.jpg") center / cover',
-    'url("https://static.wixstatic.com/media/8b1e14f8085c4644bf8afcb0c7cf9ffa.jpg") center / cover',
-    'url("https://static.wixstatic.com/media/e04c5fcf6b684fd18511a17e74b1bde1.jpg") center / cover',
+    'https://static.wixstatic.com/media/4f5c904bb9f4405bbbd900e8e43fb96d.jpg',
+    'https://static.wixstatic.com/media/ab97ccc955d74873998c0cc57a71859a.jpg',
+    'https://static.wixstatic.com/media/aa231f4eb7434370b337d1f66d1492a3.jpg',
+    'https://static.wixstatic.com/media/a952ed370d8e44ee9e01073bd746dc51.jpg',
+    'https://static.wixstatic.com/media/11062b_9aa7994fbb42451d869b8fa97538a695~mv2_d_3000_1800_s_2.jpg',
+    'https://static.wixstatic.com/media/40b04c9917f54b079fee33890219e1b6.jpg',
+    'https://static.wixstatic.com/media/8b1e14f8085c4644bf8afcb0c7cf9ffa.jpg',
+    'https://static.wixstatic.com/media/e04c5fcf6b684fd18511a17e74b1bde1.jpg',
   ],
   [BACKGROUND_TYPE.GRADIENT]: [
-    'linear-gradient(45deg, #EF4538, #488FFE)',
-    'linear-gradient(45deg, #F96132, #FAAD4D)',
-    'linear-gradient(45deg, #31B778, #FAAD4D)',
-    'linear-gradient(45deg, #0D6546, #31B778)',
-    'linear-gradient(45deg, #488FFE, #8C0F7A)',
-    'linear-gradient(45deg, #11428D, #488FFE)',
-    'linear-gradient(45deg, #6C49EF, #31B778)',
-    'linear-gradient(45deg, #8C0F7A, #FAAD4D)',
-  ],
+    {
+      angle: 45,
+      start: '#EF4538',
+      end: '#488FFE',
+    },
+    {
+      angle: 45,
+      start: '#F96132',
+      end: '#FAAD4D',
+    },
+    {
+      angle: 45,
+      start: '#31B778',
+      end: '#FAAD4D',
+    },
+    {
+      angle: 45,
+      start: '#0D6546',
+      end: '#31B778',
+    },
+    {
+      angle: 45,
+      start: '#488FFE',
+      end: '#8C0F7A',
+    },
+    {
+      angle: 45,
+      start: '#11428D',
+      end: '#488FFE',
+    },
+    {
+      angle: 45,
+      start: '#6C49EF',
+      end: '#31B778',
+    },
+    {
+      angle: 45,
+      start: '#8C0F7A',
+      end: '#FAAD4D',
+    },
+  ].map(JSON.stringify),
 };
 
 export const OPTION_IMAGES_POOL = [
@@ -58,6 +90,11 @@ export const POLL_IMAGES_POOL = [
 export const MEMBER_ROLES = {
   ALL: 'ALL',
   SITE_MEMBERS: 'SITE_MEMBERS',
+};
+
+export const DIRECTION = {
+  LTR: 'ltr',
+  RTL: 'rtl',
 };
 
 export const VISIBILITY = {
@@ -94,6 +131,7 @@ export const DEFAULT_COMPONENT_DATA = {
   layout: {
     poll: {
       type: LAYOUT.LIST,
+      direction: DIRECTION.LTR,
       enableImage: false,
     },
     option: {

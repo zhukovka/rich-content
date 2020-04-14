@@ -116,7 +116,7 @@ export class PollGridOption extends PollOptionBase {
               }}
             />
             {showResults && (
-              <span className={styles.progress_value}>{this.getVotePercentage().toFixed()}%</span>
+              <span className={styles.progress_value}>{this.getVotePercentage()}%</span>
             )}
           </TextField>
         </div>

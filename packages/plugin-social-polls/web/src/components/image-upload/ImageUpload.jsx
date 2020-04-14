@@ -8,6 +8,7 @@ import { FileInput } from 'wix-rich-content-editor-common';
 
 import { withRCEHelpers, RCEHelpersPropTypes } from '../rce-helpers-context';
 import { LoaderIcon, ReplaceIcon } from '../../assets/icons';
+import { getRandomValue } from '../../helpers';
 
 import { ImageUploadPropTypes } from './types';
 import styles from './image-upload.scss';
@@ -23,17 +24,11 @@ class ImageUploadComponent extends PureComponent {
   };
 
   state = {
-    value: this.props.value || this.getImageFromPool(),
+    value: this.props.value || getRandomValue(this.props.imagesPool),
     loading: false,
   };
 
   $container = React.createRef();
-
-  getImageFromPool() {
-    const { imagesPool } = this.props;
-
-    return imagesPool[Math.floor(Math.random() * imagesPool.length)];
-  }
 
   componentDidMount() {
     const { value, rce } = this.props;
