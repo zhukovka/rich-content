@@ -1,5 +1,5 @@
 import { EditorState, Modifier, RichUtils, SelectionState, AtomicBlockUtils } from '@wix/draft-js';
-import { cloneDeep, flatMap, findIndex, findLastIndex, countBy } from 'lodash';
+import { cloneDeep, flatMap, findIndex, findLastIndex, countBy, debounce, times } from 'lodash';
 
 export function createSelection({ blockKey, anchorOffset, focusOffset }) {
   return SelectionState.createEmpty(blockKey).merge({
@@ -112,10 +112,12 @@ function insertLink(editorState, selection, data) {
 }
 
 function createLinkEntityData({ url, targetBlank, nofollow, anchorTarget, relValue }) {
+  const target = targetBlank ? '_blank' : anchorTarget !== '_blank' ? anchorTarget : '_self';
+  const rel = nofollow ? 'nofollow' : relValue !== 'nofollow' ? relValue : 'noopener';
   return {
     url,
-    target: targetBlank ? '_blank' : anchorTarget || '_self',
-    rel: nofollow ? 'nofollow' : relValue || 'noopener noreferrer',
+    target,
+    rel,
   };
 }
 
@@ -294,6 +296,18 @@ export const deleteBlock = (editorState, blockKey) => {
   return EditorState.push(editorState, newContentState, 'remove-range');
 };
 
+export const deleteBlockText = (editorState, blockKey) => {
+  const contentState = editorState.getCurrentContent();
+  const block = contentState.getBlockForKey(blockKey);
+  const selectionRange = createSelection({
+    blockKey,
+    anchorOffset: 0,
+    focusOffset: block.text.length,
+  });
+  const newContentState = Modifier.replaceText(contentState, selectionRange, '');
+  return EditorState.push(editorState, newContentState, 'remove-range');
+};
+
 export const getSelectedBlocks = editorState => {
   const blocks = editorState.getCurrentContent().getBlocksAsArray();
   const selection = getSelection(editorState);
@@ -429,31 +443,34 @@ export function getPostContentSummary(editorState) {
 //ATM, looks for deleted plugins.
 //onChanges - for phase 2?
 //Added Plugins - checked elsewhere via toolbar clicks
-export const calculateDiff = async (prevState, newState, onPluginDelete) => {
-  const countByType = obj => countBy(obj, x => x.type);
-  const prevEntities = countByType(getEntities(prevState));
-  const currEntities = countByType(getEntities(newState));
-  const prevBlocks = prevState.getCurrentContent().getBlocksAsArray();
-  const currBlocks = newState.getCurrentContent().getBlocksAsArray();
-  const prevBlockPlugins = countByType(getBlockTypePlugins(prevBlocks));
-  const currBlockPlugins = countByType(getBlockTypePlugins(currBlocks));
+export const createCalcContentDiff = state => {
+  let prevState = state;
+  return debounce((newState, onPluginDelete) => {
+    const countByType = obj => countBy(obj, x => x.type);
+    const prevEntities = countByType(getEntities(prevState));
+    const currEntities = countByType(getEntities(newState));
+    const prevBlocks = prevState.getCurrentContent().getBlocksAsArray();
+    const currBlocks = newState.getCurrentContent().getBlocksAsArray();
+    const prevBlockPlugins = countByType(getBlockTypePlugins(prevBlocks));
+    const currBlockPlugins = countByType(getBlockTypePlugins(currBlocks));
 
-  const prevPluginsTotal = Object.assign(prevEntities, prevBlockPlugins);
-  const currPluginsTotal = Object.assign(currEntities, currBlockPlugins);
+    const prevPluginsTotal = Object.assign(prevEntities, prevBlockPlugins);
+    const currPluginsTotal = Object.assign(currEntities, currBlockPlugins);
 
-  Object.keys(prevPluginsTotal).forEach(type => {
-    if (!currPluginsTotal[type] || prevPluginsTotal[type] > currPluginsTotal[type]) {
-      onPluginDelete(type);
-    }
-  });
+    Object.keys(prevPluginsTotal).forEach(type => {
+      const timesDeleted = prevPluginsTotal[type] - (currPluginsTotal[type] || 0);
+      times(timesDeleted, () => onPluginDelete(type));
+    });
 
-  // onPluginChange -> for Phase 2
-  //else {
-  // const before = beforePlugins[key];
-  // const after = afterPlugins[key];
-  // if (JSON.stringify(before) !== JSON.stringify(after))
-  //   onPluginChange(type, { from: before, to: after });
-  //}
+    // onPluginChange -> for Phase 2
+    //else {
+    // const before = beforePlugins[key];
+    // const after = afterPlugins[key];
+    // if (JSON.stringify(before) !== JSON.stringify(after))
+    //   onPluginChange(type, { from: before, to: after });
+    //}
+    prevState = newState;
+  }, 300);
 };
 
 // a selection of the new content from the last change
@@ -502,6 +519,24 @@ export function getBlockInfo(editorState, blockKey) {
   return { type: type || 'text', entityData };
 }
 
+export function getBlockType(editorState) {
+  const contentState = editorState.getCurrentContent();
+  const blockKey = editorState.getSelection().getAnchorKey();
+  const block = contentState.getBlockForKey(blockKey);
+  return block.type;
+}
+
 export function setSelection(editorState, selection) {
   return EditorState.acceptSelection(editorState, selection);
+}
+
+export function setForceSelection(editorState, selection) {
+  return EditorState.forceSelection(editorState, selection);
+}
+
+export function insertString(editorState, string) {
+  const contentState = editorState.getCurrentContent();
+  const selection = editorState.getSelection();
+  const newContentState = Modifier.replaceText(contentState, selection, string);
+  return EditorState.push(editorState, newContentState, 'insert-string');
 }
