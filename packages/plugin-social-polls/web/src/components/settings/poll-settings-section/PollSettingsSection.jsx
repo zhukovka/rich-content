@@ -49,7 +49,11 @@ export class PollSettingsSection extends Component {
   render() {
     const { uiSettings, componentData, t } = this.props;
 
-    const { color1, color2, color3 } = uiSettings.themeColors;
+    const { color1, color2, color3 } = uiSettings.themeColors || {
+      color1: '#ffffff',
+      color2: '#303030',
+      color3: '#3a54b4',
+    };
 
     const {
       votersDisplay,

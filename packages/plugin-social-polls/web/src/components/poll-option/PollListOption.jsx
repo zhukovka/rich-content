@@ -64,14 +64,12 @@ export class PollListOption extends PollOptionBase {
             })}
             value={option.title}
             startAdornment={
-              this.isImageEnabled() && (
-                <ImageUpload
-                  className={styles.image}
-                  value={option.mediaId}
-                  style={style.image}
-                  small
-                />
-              )
+              <ImageUpload
+                className={styles.image}
+                value={option.mediaId}
+                style={style.image}
+                small
+              />
             }
           >
             <span
@@ -118,16 +116,14 @@ export class PollListOption extends PollOptionBase {
               removeEnabled && <RemoveIcon onClick={this.handleRemove} className={styles.remove} />
             }
             startAdornment={
-              this.isImageEnabled() && (
-                <ImageUpload
-                  className={styles.image}
-                  value={option.mediaId}
-                  onChange={this.handleImageChange}
-                  style={style.image}
-                  imagesPool={OPTION_IMAGES_POOL}
-                  small
-                />
-              )
+              <ImageUpload
+                className={styles.image}
+                value={option.mediaId}
+                onChange={this.handleImageChange}
+                style={style.image}
+                imagesPool={OPTION_IMAGES_POOL}
+                small
+              />
             }
           />
         </div>

@@ -24,7 +24,7 @@
   .image,
   .input,
   .title {
-    transition: border-radius 500ms;
+    transition: border-radius 500ms, padding-left 500ms;
   }
 }
 
@@ -53,12 +53,7 @@
   }
 }
 
-
-.option.list.with_image {
-  .input {
-    padding-left: 50px;
-  }
-  
+.option.list {
   .image {
     position: absolute;
     z-index: 2;
@@ -68,8 +63,22 @@
     left: 5px;
     top: 50%;
     margin-top: -18px;
+    opacity: 0;
+    transition: opacity 500ms;
+    visibility: hidden;
   }
-}
+
+  &.with_image {
+    .input {
+      padding-left: 50px;
+    }
+
+    .image {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+} 
 
 .title {
   position: relative;

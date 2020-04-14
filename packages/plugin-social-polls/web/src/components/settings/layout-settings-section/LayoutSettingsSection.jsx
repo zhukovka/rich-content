@@ -5,7 +5,7 @@ import { SelectionList, LabeledToggle, Separator } from 'wix-rich-content-editor
 import { mergeStyles } from 'wix-rich-content-common';
 
 import { LAYOUT, DIRECTION } from '../../../constants';
-import { LayoutGridIcon, LayoutListIcon } from '../../../assets/icons';
+import { LayoutGridIcon, LayoutListIcon, LTRIcon, RTLIcon } from '../../../assets/icons';
 
 import styles from './layout-settings-section.scss';
 
@@ -113,12 +113,12 @@ export class LayoutSettingsSection extends Component {
             {
               value: DIRECTION.LTR,
               label: t('Poll_PollSettings_Tab_Layout_Section_TextDirection_LTR'),
-              icon: () => <span />,
+              icon: LTRIcon,
             },
             {
               value: DIRECTION.RTL,
               label: t('Poll_PollSettings_Tab_Layout_Section_TextDirection_RTL'),
-              icon: () => <span />,
+              icon: RTLIcon,
             },
           ]}
           renderItem={this.renderOption}
