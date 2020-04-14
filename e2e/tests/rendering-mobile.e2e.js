@@ -1,6 +1,6 @@
 /*global cy Cypress*/
 import { DEFAULT_MOBILE_BROWSERS } from './settings';
-import { testFixtures } from './testFixture';
+import { testFixtures } from './testFixtures';
 
 describe('editor rendering', () => {
   before(function() {

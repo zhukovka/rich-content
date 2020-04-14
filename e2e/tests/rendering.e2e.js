@@ -1,6 +1,6 @@
 /*global cy Cypress*/
 import { DEFAULT_DESKTOP_BROWSERS } from './settings';
-import { testSeoFixtures, testFixtures } from './testFixture';
+import { testSeoFixtures, testFixtures } from './testFixtures';
 
 const eyesOpener = testName => {
   cy.eyesOpen({
