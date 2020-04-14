@@ -1,6 +1,5 @@
 /*global cy Cypress*/
-import { fixtures } from './constants';
-import { DEFAULT_MOBILE_BROWSERS } from '../tests/constants';
+import { fixtures, DEFAULT_MOBILE_BROWSERS } from './settings';
 
 const testFixture = fixture =>
   it(`render ${fixture}`, function() {

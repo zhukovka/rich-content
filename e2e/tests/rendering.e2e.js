@@ -1,22 +1,18 @@
 /*global cy Cypress*/
-import { fixtures, fixturesToTestOnSeo } from './constants';
-import { DEFAULT_DESKTOP_BROWSERS } from '../tests/constants';
+import { DEFAULT_DESKTOP_BROWSERS, fixtures, fixturesToTestOnSeo } from './settings';
 
-const testFixture = fixture =>
-  it(`render ${fixture}`, function() {
-    cy.loadEditorAndViewer(fixture);
-    if (fixture.includes('gallery')) {
-      cy.scrollTo(0, 100);
-      cy.waitForDocumentMutations();
-      cy.scrollTo(0, 0);
-    }
-    if (fixture.includes('video')) {
-      cy.waitForVideoToLoad();
-    } else if (fixture.includes('html')) {
-      cy.waitForHtmlToLoad();
+const testFixture = fixtureObj => {
+  const { fixture, plugins, additionalCommands } =
+    typeof fixtureObj === 'string' ? { fixture: fixtureObj } : fixtureObj;
+
+  return it(`render ${fixture}`, function() {
+    cy.loadEditorAndViewer(fixture, plugins);
+    if (additionalCommands) {
+      additionalCommands(cy);
     }
     cy.eyesCheckWindow(this.test.title);
   });
+};
 
 describe('editor rendering', () => {
   before(function() {
