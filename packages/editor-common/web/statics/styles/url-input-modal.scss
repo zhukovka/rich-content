@@ -68,7 +68,7 @@
 
 .settingsPanel_save,
 .settingsPanel_cancel {
-  width: 132px;
+  min-width: 132px;
   height: 40px;
   @include phone {
     max-width: none;

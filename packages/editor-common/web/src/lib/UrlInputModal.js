@@ -29,17 +29,19 @@ export default class UrlInputModal extends Component {
   };
 
   componentDidMount() {
+    const { dropdownItems } = this.props;
     this.input.focus();
     this.input.setSelectionRange(0, this.input.value.length);
-    document.addEventListener(
-      'click',
-      event => {
-        if (event.target !== document.getElementById('dropdown-text-input')) {
-          this.setState({ isDropdownOpen: false });
-        }
-      },
-      false
-    );
+    dropdownItems &&
+      document.addEventListener(
+        'click',
+        event => {
+          if (event.target !== document.getElementById('dropdown-text-input')) {
+            this.setState({ isDropdownOpen: false });
+          }
+        },
+        false
+      );
   }
 
   render() {
