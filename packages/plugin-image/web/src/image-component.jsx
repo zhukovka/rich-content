@@ -26,16 +26,16 @@ class ImageComponent extends React.Component {
     super(props);
     const { componentData } = props;
     const { metadata = {} } = componentData;
-    const editorState =
+    const captionEditorState =
       (metadata.caption && createWithContent(convertFromRaw(metadata.caption))) ||
       EditorState.createEmpty();
     this.state = {
       isMounted: false,
       ...this.stateFromProps(props),
-      editorState,
-      contentState: convertToRaw(editorState.getCurrentContent()),
+      captionEditorState,
+      captionContentState: convertToRaw(captionEditorState.getCurrentContent()),
     };
-    this.handleCaptionChange(this.state.contentState);
+    this.handleCaptionChange(this.state.captionContentState);
 
     const { block, store } = this.props;
     if (store) {
@@ -46,29 +46,23 @@ class ImageComponent extends React.Component {
     }
   }
 
-  onEditorChange = editorState => {
+  onEditorChange = captionEditorState => {
     this.setState({
-      editorState,
+      captionEditorState,
     });
 
-    this.updateContentState(editorState);
+    this.updateContentState(captionEditorState);
   };
-  updateContentState = editorState => {
-    const newContentState = convertToRaw(editorState.getCurrentContent());
-    this.setState({ contentState: newContentState }, this.handleCaptionChange(newContentState));
+  updateContentState = captionEditorState => {
+    const newContentState = convertToRaw(captionEditorState.getCurrentContent());
+    this.setState(
+      { captionContentState: newContentState },
+      this.handleCaptionChange(newContentState)
+    );
   };
 
   componentDidMount() {
     this.state.isMounted = true; //eslint-disable-line react/no-direct-mutation-state
-    // const { componentData } = this.props;
-    // const { metadata = {} } = componentData;
-    // const editorState =
-    //   (metadata.caption && createWithContent(convertFromRaw(metadata.caption))) ||
-    //   EditorState.createEmpty();
-    // this.setState({
-    //   editorState,
-    //   contentState: convertToRaw(editorState.getCurrentContent()),
-    // });
   }
 
   componentWillUnmount() {
@@ -185,7 +179,7 @@ class ImageComponent extends React.Component {
   };
 
   renderEditorCaption = props => {
-    const { editorState } = this.state;
+    const { captionEditorState } = this.state;
     const {
       setInPluginEditingMode,
       blockProps: { setFocusToBlock },
@@ -193,7 +187,7 @@ class ImageComponent extends React.Component {
     return (
       <InPluginInput
         setInPluginEditingMode={setInPluginEditingMode}
-        editorState={editorState}
+        editorState={captionEditorState}
         onChange={this.onEditorChange}
         setFocusToBlock={setFocusToBlock}
         {...props}

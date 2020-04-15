@@ -5,22 +5,13 @@ import styles from '../statics/styles/in-plugin-input.scss';
 import { RichContentEditor } from 'wix-rich-content-editor';
 
 class InPluginInput extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      readOnly: true,
-    };
-  }
-
   handleFocus = () => {
     this.props.setFocusToBlock();
     this.props.setInPluginEditingMode(true);
-    this.setState({ readOnly: false });
   };
 
   handleBlur = () => {
     this.props.setInPluginEditingMode(false);
-    this.setState({ readOnly: true });
   };
 
   handleKeyPress = e => {
@@ -52,8 +43,6 @@ class InPluginInput extends Component {
           editorState={this.props.editorState}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
-          readOnly
-          // readOnly={this.state.readOnly}
         />
       </div>
     );
