@@ -97,10 +97,13 @@ export const editorPluginsPartialPreset = [
   createEmojiPlugin,
   createTextHighlightPlugin,
   createUndoRedoPlugin,
-  createVerticalEmbedPlugin,
 ];
 
-export const editorPlugins = [createLinkPreviewPlugin, ...editorPluginsPartialPreset];
+export const editorPlugins = [
+  createLinkPreviewPlugin,
+  createVerticalEmbedPlugin,
+  ...editorPluginsPartialPreset,
+];
 
 export const editorPluginsMap = {
   image: createImagePlugin,
@@ -124,6 +127,7 @@ export const editorPluginsMap = {
   emoji: createEmojiPlugin,
   highlight: createTextHighlightPlugin,
   undoRedo: createUndoRedoPlugin,
+  verticalEmbed: createVerticalEmbedPlugin,
   partialPreset: editorPluginsPartialPreset,
   all: editorPlugins,
 };
