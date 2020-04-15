@@ -225,7 +225,7 @@ describe('plugins', () => {
     const embedTypes = ['TWITTER', 'INSTAGRAM', 'YOUTUBE'];
     it('render upload modals', function() {
       embedTypes.forEach(embedType => {
-        cy.openSocialEmbedModal(STATIC_TOOLBAR_BUTTONS[embedType]);
+        cy.openEmbedModal(STATIC_TOOLBAR_BUTTONS[embedType]);
         cy.eyesCheckWindow(this.test.title);
         cy.addSocialEmbed('www.mockUrl.com');
         cy.eyesCheckWindow(this.test.title);
@@ -258,6 +258,27 @@ describe('plugins', () => {
         .tab({ shift: true })
         .enterParagraphs(['\n\n- Hey I am an unordered list in depth 0.']);
       cy.eyesCheckWindow(this.test.title);
+    });
+  });
+
+  context('verticals embed', () => {
+    before(function() {
+      eyesOpen(this);
+    });
+
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
+      cy.loadEditorAndViewer('empty', 'verticalEmbed');
+    });
+
+    after(() => cy.eyesClose());
+    const embedTypes = ['EVENT', 'PRODUCT', 'BOOKING'];
+    it('render upload modals', function() {
+      embedTypes.forEach(embedType => {
+        cy.openEmbedModal(STATIC_TOOLBAR_BUTTONS[embedType]);
+        cy.eyesCheckWindow(this.test.title);
+        cy.get(`[data-hook*=settingPanelFooterCancel][tabindex!=-1]`).click();
+      });
     });
   });
 });
