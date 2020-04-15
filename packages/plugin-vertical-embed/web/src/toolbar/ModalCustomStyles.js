@@ -12,5 +12,5 @@ export default isMobile => {
       backgroundColor: 'white',
     };
   }
-  return content;
+  return { content };
 };

@@ -22,6 +22,11 @@
             "$id": "/properties/html",
             "type": "string",
             "title": "html"
+          },
+          "name": {
+            "$id": "/properties/name",
+            "type": "string",
+            "title": "name"
           }
         }
       }

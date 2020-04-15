@@ -3,7 +3,6 @@ import { ReplaceIcon } from '../icons';
 import { Modals } from '../modals';
 
 export default ({ t, isMobile }) => {
-  //TODO: this should use LinkPreview toolbar
   const customStyles = {
     content: {
       maxHeight: '80%',

@@ -60,11 +60,14 @@ export default class UrlInputModal extends Component {
       cancelLabel,
       onCloseRequested,
       dropdownItems,
+      isMobile,
     } = this.props;
     const { isDropdownOpen } = this.state;
     return (
       <div
-        className={classNames(styles.urlInput_container, { [styles.withSubtitle]: subtitle })}
+        className={classNames(styles.urlInput_container, {
+          [styles.withSubtitle]: subtitle && !isMobile,
+        })}
         data-hook={dataHook}
         dir={languageDir}
       >
@@ -127,4 +130,5 @@ UrlInputModal.propTypes = {
   onCloseRequested: PropTypes.func.isRequired,
   subtitle: PropTypes.string,
   dropdownItems: PropTypes.array,
+  isMobile: PropTypes.bool,
 };

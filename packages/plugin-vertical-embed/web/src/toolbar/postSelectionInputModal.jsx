@@ -1,17 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { mergeStyles } from 'wix-rich-content-common';
-import styles from '../../statics/styles/post-selection-input-modal.scss';
 import UrlInputModal from 'wix-rich-content-editor-common/dist/lib/UrlInputModal';
-
-// TODO: You may want to make this component a generic item selection modal, rather than a post selection modal
 export default class PostSelectionInputModal extends Component {
   state = {
     errorMsg: '',
     products: [],
     selectedProduct: null,
   };
-  styles = mergeStyles({ styles, theme: this.props.theme });
 
   componentDidMount() {
     this.search();
@@ -67,7 +62,7 @@ export default class PostSelectionInputModal extends Component {
 
     onConfirm({
       ...componentData,
-      selectedProduct: item, //this.state.selectedProduct || this.state.products[0],
+      selectedProduct: item,
     });
     helpers.closeModal();
   };
@@ -76,16 +71,15 @@ export default class PostSelectionInputModal extends Component {
     const { products, inputString } = this.state;
     const {
       t,
-      languageDir,
       componentData: { type },
       helpers,
+      isMobile,
     } = this.props;
     return (
       <UrlInputModal
         onConfirm={this.onConfirm}
         helpers={helpers}
         t={t}
-        languageDir={languageDir}
         title={`Select embed ${type}`}
         subtitle={`Choose a ${type} from your ${type} list`}
         dataHook={`verticalEmbedModal`}
@@ -96,6 +90,7 @@ export default class PostSelectionInputModal extends Component {
         dropdownItems={products}
         onInputChange={this.onInputChange}
         input={inputString}
+        isMobile={isMobile}
       />
     );
   }
@@ -105,13 +100,7 @@ PostSelectionInputModal.propTypes = {
   onConfirm: PropTypes.func,
   helpers: PropTypes.object.isRequired,
   componentData: PropTypes.object.isRequired,
-  url: PropTypes.string,
-  theme: PropTypes.object.isRequired,
-  doneLabel: PropTypes.string,
-  cancelLabel: PropTypes.string,
   t: PropTypes.func,
   isMobile: PropTypes.bool,
-  languageDir: PropTypes.string,
-  instance: PropTypes.string,
   fetchFunctions: PropTypes.object.isRequired,
 };
