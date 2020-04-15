@@ -16,7 +16,6 @@ const createVerticalEmbedPlugin = (config = {}) => {
     toolbar: createToolbar({
       settings,
       helpers,
-      theme,
       t,
       isMobile,
     }),
