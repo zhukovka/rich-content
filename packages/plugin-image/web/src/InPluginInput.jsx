@@ -43,6 +43,7 @@ class InPluginInput extends Component {
           editorState={this.props.editorState}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
+          readOnly
         />
       </div>
     );
