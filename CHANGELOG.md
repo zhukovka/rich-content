@@ -15,6 +15,11 @@
     Click to see more.
   </summary>
 
+
+</details>
+<hr/>
+
+## 7.3.1 (Apr 15, 2020)
 ### :bug: Bug Fix
 - `editor-common`
   - [#913](https://github.com/wix-incubator/rich-content/pull/913) onChange - calculateDiff is debounced, for better performance
@@ -24,9 +29,6 @@
 - `wrapper`
   - [#919](https://github.com/wix-incubator/rich-content/pull/919) added internal mobile support
   - [#920](https://github.com/wix-incubator/rich-content/pull/920) refactor: `FullscreenRenderer.tsx`, `ModalRenderer.tsx`
-
-</details>
-<hr/>
 
 ## 7.3.0 (Apr 13, 2020)
 ### :rocket: New Feature
