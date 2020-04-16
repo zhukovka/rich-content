@@ -272,7 +272,8 @@ describe('plugins', () => {
     });
 
     after(() => cy.eyesClose());
-    const embedTypes = ['EVENT', 'PRODUCT', 'BOOKING'];
+    // const embedTypes = ['EVENT', 'PRODUCT', 'BOOKING'];
+    const embedTypes = ['PRODUCT'];
     it('render upload modals', function() {
       embedTypes.forEach(embedType => {
         cy.openEmbedModal(STATIC_TOOLBAR_BUTTONS[embedType]);

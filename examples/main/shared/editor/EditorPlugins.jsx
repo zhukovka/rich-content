@@ -157,7 +157,7 @@ let userButtonBorderColors = [...buttonDefaultPalette];
 
 const getLinkPanelDropDownConfig = () => {
   const getItems = () => {
-    casual.define('item', function () {
+    casual.define('item', function() {
       return {
         value: casual.url,
         label: casual.catch_phrase,
@@ -445,7 +445,8 @@ const config = {
   },
   [VERTICAL_EMBED_TYPE]: {
     fetchFunctions: { product: mockFetchProductsFunc },
-    exposeEmbedButtons: [event, booking, product],
+    // exposeEmbedButtons: [event, booking, product],
+    exposeEmbedButtons: [product],
   },
   // [EXTERNAL_EMOJI_TYPE]: {},
   [VIDEO_TYPE]: {
