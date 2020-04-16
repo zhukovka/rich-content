@@ -11,8 +11,5 @@ const mockDataMap = {
 };
 
 export const mockFetchVerticalEmbedFunc = vertical => {
-  return () =>
-    new Promise(resolve => {
-      return resolve(mockDataMap[vertical]);
-    });
+  return () => Promise.resolve(mockDataMap[vertical]);
 };
