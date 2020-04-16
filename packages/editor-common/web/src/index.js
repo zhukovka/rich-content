@@ -82,7 +82,7 @@ export {
   createBlock,
   getBlockInfo,
   getFocusedBlockKey,
-  calculateDiff,
+  createCalcContentDiff,
   getPostContentSummary,
   createSelection,
   getBlockType,
@@ -104,6 +104,7 @@ export {
   PLUGIN_DECORATIONS,
   TITLE_FONT_STYLE,
   DEFAULT_FONTS_DROPDOWN_OPTIONS,
+  KEYS_CHARCODE,
   TEXT_TYPES,
   CHARACTERS,
 } from './consts';
