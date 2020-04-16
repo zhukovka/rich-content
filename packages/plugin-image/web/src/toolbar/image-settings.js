@@ -197,13 +197,12 @@ class ImageSettings extends Component {
             theme={theme}
             className={this.styles.imageSettingsSection}
             ariaProps={{ 'aria-label': 'image alt text', role: 'region' }}
-            tooltipText={this.altTooltip}
-            tooltipOffset={{ y: -30 }}
           >
             <InputWithLabel
               theme={theme}
               id="imageSettingsAltInput"
               label={this.altLabel}
+              contentForInfoIcon={this.altTooltip}
               placeholder={this.altInputPlaceholder}
               value={metadata.alt || ''}
               onChange={event => this.metadataUpdated(metadata, { alt: event.target.value })}

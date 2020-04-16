@@ -15,6 +15,9 @@
     Click to see more.
   </summary>
 
+### :rocket: New Feature
+- `editor`
+  - [#930](https://github.com/wix-incubator/rich-content/pull/930) add tooltips for settings panel
 
 </details>
 <hr/>
