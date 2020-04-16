@@ -1,8 +1,8 @@
 {
   "name": "wix-rich-content-plugin-vertical-embed",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "author": {
-    "name": "Tomas Kirklys ",
+    "name": "Tomas Kirklys",
     "email": "tomaski@wix.com"
   },
   "repository": {
