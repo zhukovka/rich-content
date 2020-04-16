@@ -280,20 +280,18 @@ Cypress.Commands.add('openImageSettings', (shouldOpenToolbar = true) => {
   cy.get('[data-hook="imageSettings"]');
 });
 
-Cypress.Commands.add('focusPlugin', plugin => {
-  cy.get(`[data-hook=${plugin}]:first`)
+Cypress.Commands.add('openMapSettings', () => {
+  cy.get(`[data-hook=${PLUGIN_COMPONENT.MAP}]:first`)
     .parent()
     .click();
-});
-
-Cypress.Commands.add('openMapSettings', () => {
-  cy.focusPlugin(PLUGIN_COMPONENT.MAP);
   cy.clickToolbarButton(PLUGIN_TOOLBAR_BUTTONS.SETTINGS);
   cy.get('[data-hook="mapSettings"]');
 });
 
 Cypress.Commands.add('openGalleryAdvancedSettings', () => {
-  cy.focusPlugin(PLUGIN_COMPONENT.GALLERY);
+  cy.get(`[data-hook=${PLUGIN_COMPONENT.GALLERY}]:first`)
+    .parent()
+    .click();
   cy.get(`[data-hook=${PLUGIN_TOOLBAR_BUTTONS.ADV_SETTINGS}]:first`).click();
 });
 
@@ -364,7 +362,9 @@ Cypress.Commands.add('addGalleryImageTitle', (pluginToClick = null) => {
 });
 
 Cypress.Commands.add('checkTitle', () => {
-  cy.focusPlugin(PLUGIN_COMPONENT.GALLERY);
+  cy.get('[data-hook=galleryViewer]:first')
+    .parent()
+    .click();
   cy.get(`[data-hook=${GALLERY_SETTINGS.VIEWER_IMAGE}]:first`);
 });
 
@@ -379,24 +379,29 @@ Cypress.Commands.add('addImageLink', () => {
 });
 
 Cypress.Commands.add('alignImage', alignment => {
-  let alignButton;
+  let button;
   switch (alignment) {
     case 'left':
-      alignButton = PLUGIN_TOOLBAR_BUTTONS.SMALL_LEFT;
+      button = PLUGIN_TOOLBAR_BUTTONS.SMALL_LEFT;
       break;
     case 'center':
-      alignButton = PLUGIN_TOOLBAR_BUTTONS.SMALL_CENTER;
+      button = PLUGIN_TOOLBAR_BUTTONS.SMALL_CENTER;
       break;
     case 'right':
     default:
-      alignButton = PLUGIN_TOOLBAR_BUTTONS.SMALL_RIGHT;
+      button = PLUGIN_TOOLBAR_BUTTONS.SMALL_RIGHT;
   }
-  cy.focusPlugin(PLUGIN_COMPONENT.IMAGE);
-  cy.clickToolbarButton(alignButton);
+  cy.get('[data-hook=imageViewer]:first')
+    .parent()
+    .click();
+  cy.clickToolbarButton(button);
 });
 
 Cypress.Commands.add('openPluginToolbar', plugin => {
-  cy.focusPlugin(plugin);
+  cy.get(`[data-hook*=${plugin}]`)
+    .first()
+    .parent()
+    .click();
   cy.get('[data-hook*="PluginToolbar"]:first');
 });
 
@@ -419,16 +424,14 @@ Cypress.Commands.add('openEmbedModal', modalType => {
   cy.get(`[data-hook*=${modalType}][tabindex!=-1]`).click();
 });
 
-Cypress.Commands.add('settingPanelCancel', () => {
-  cy.get(`[data-hook*=settingPanelFooterCancel][tabindex!=-1]`).click();
-});
-
 Cypress.Commands.add('addSoundCloud', () => {
   cy.get(`[data-hook*=${'soundCloudUploadModalInput'}]`).type(
     'https://soundcloud.com/nlechoppa/camelot'
   );
   cy.get(`[data-hook*=${SETTINGS_PANEL.DONE}]`).click();
-  cy.focusPlugin(PLUGIN_COMPONENT.SOUND_CLOUD);
+  cy.get(`[data-hook=${PLUGIN_COMPONENT.SOUND_CLOUD}]:first`)
+    .parent()
+    .click();
 });
 
 Cypress.Commands.add('addSocialEmbed', url => {
@@ -439,7 +442,9 @@ Cypress.Commands.add('addSocialEmbed', url => {
 Cypress.Commands.add('addVideoFromURL', () => {
   cy.get(`[data-hook*=${VIDEO_PLUGIN.INPUT}]`).type('https://youtu.be/BBu5codsO6Y');
   cy.get(`[data-hook*=${VIDEO_PLUGIN.ADD}]`).click();
-  cy.focusPlugin(PLUGIN_COMPONENT.VIDEO);
+  cy.get(`[data-hook=${PLUGIN_COMPONENT.VIDEO}]:first`)
+    .parent()
+    .click();
 });
 
 Cypress.Commands.add('addHtml', () => {
@@ -456,7 +461,9 @@ Cypress.Commands.add('addHtml', () => {
 
 Cypress.Commands.add('addCustomVideo', () => {
   cy.get(`[data-hook*=${VIDEO_PLUGIN.CUSTOM}]`).click();
-  cy.focusPlugin(PLUGIN_COMPONENT.VIDEO);
+  cy.get(`[data-hook=${PLUGIN_COMPONENT.VIDEO}]:first`)
+    .parent()
+    .click();
 });
 
 Cypress.Commands.add('dragAndDrop', (src, dest, elem = 0) => {
