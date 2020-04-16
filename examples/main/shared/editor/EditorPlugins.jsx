@@ -74,7 +74,7 @@ import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common'
 // import StaticToolbarDecoration from './Components/StaticToolbarDecoration';
 // import SideToolbarDecoration from './Components/SideToolbarDecoration';
 // import PluginToolbarDecoration from './Components/PluginToolbarDecoration';
-import { mockFetchProductsFunc } from './Utils/verticalEmbedUtil';
+import { mockFetchVerticalEmbedFunc } from './Utils/verticalEmbedUtil';
 
 export const editorPluginsPartialPreset = [
   createImagePlugin,
@@ -157,7 +157,7 @@ let userButtonBorderColors = [...buttonDefaultPalette];
 
 const getLinkPanelDropDownConfig = () => {
   const getItems = () => {
-    casual.define('item', function() {
+    casual.define('item', function () {
       return {
         value: casual.url,
         label: casual.catch_phrase,
@@ -444,8 +444,12 @@ const config = {
     // },
   },
   [VERTICAL_EMBED_TYPE]: {
-    fetchFunctions: { product: mockFetchProductsFunc },
-    // exposeEmbedButtons: [event, booking, product],
+    fetchFunctions: {
+      [product]: mockFetchVerticalEmbedFunc(product),
+      [event]: mockFetchVerticalEmbedFunc(event),
+      [booking]: mockFetchVerticalEmbedFunc(booking),
+    },
+    // exposeEmbedButtons: [product, event, booking],
     exposeEmbedButtons: [product],
   },
   // [EXTERNAL_EMOJI_TYPE]: {},
