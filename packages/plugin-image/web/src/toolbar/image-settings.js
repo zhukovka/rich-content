@@ -26,6 +26,7 @@ class ImageSettings extends Component {
     this.captionLabel = t('ImageSettings_Caption_Label');
     this.captionInputPlaceholder = t('ImageSettings_Caption_Input_Placeholder');
     this.altLabel = t('ImageSettings_Alt_Label');
+    this.altTooltip = t('ImageSettings_Alt_Label_Tooltip');
     this.altInputPlaceholder = t('ImageSettings_Alt_Input_Placeholder');
     this.linkLabel = t('ImageSettings_Link_Label');
   }
@@ -196,6 +197,8 @@ class ImageSettings extends Component {
             theme={theme}
             className={this.styles.imageSettingsSection}
             ariaProps={{ 'aria-label': 'image alt text', role: 'region' }}
+            tooltipText={this.altTooltip}
+            tooltipOffset={{ y: -30 }}
           >
             <InputWithLabel
               theme={theme}
