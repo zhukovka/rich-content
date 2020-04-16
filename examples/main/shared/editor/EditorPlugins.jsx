@@ -99,6 +99,12 @@ export const editorPluginsPartialPreset = [
   createUndoRedoPlugin,
 ];
 
+export const editorPluginsEmbedsPreset = [
+  createLinkPlugin,
+  createLinkPreviewPlugin,
+  createVerticalEmbedPlugin,
+];
+
 export const editorPlugins = [
   createLinkPreviewPlugin,
   createVerticalEmbedPlugin,
@@ -129,6 +135,7 @@ export const editorPluginsMap = {
   undoRedo: createUndoRedoPlugin,
   verticalEmbed: createVerticalEmbedPlugin,
   partialPreset: editorPluginsPartialPreset,
+  embedsPreset: editorPluginsEmbedsPreset,
   all: editorPlugins,
 };
 
