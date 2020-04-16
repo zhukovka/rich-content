@@ -96,12 +96,13 @@ const plugins = [
 
 const EditorWrapper = ({ contentState, palette, onChange }) => {
   const editorState = createWithContent(convertFromRaw(contentState));
+  const theme = palette ? { theme: 'Palette', palette } : { theme: 'Default' };
   return (
-    <RichContentWrapper plugins={plugins} theme={'Palette'} palette={palette} editor>
+    <RichContentWrapper plugins={plugins} {...theme} isEditor>
       <RichContentEditor
-        helpers={{ onFilesChange }}
-        onChange={onChange}
         editorState={editorState}
+        onChange={onChange}
+        helpers={{ onFilesChange }}
       />
     </RichContentWrapper>
   );

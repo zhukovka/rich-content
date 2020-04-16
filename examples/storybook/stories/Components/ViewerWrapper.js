@@ -53,7 +53,6 @@ const configs = {
 };
 
 const plugins = [
-  //dummy
   pluginButton(),
   pluginCodeBlock(),
   pluginDivider(),
@@ -75,10 +74,12 @@ const plugins = [
   pluginTextHighlight(),
   pluginLinkPreview(),
 ];
-const ViewerWrapper = ({ contentState, palette, isMobile, viewerIdx }) => {
+
+const ViewerWrapper = ({ contentState, palette, isMobile }) => {
+  const theme = palette ? { theme: 'Palette', palette } : { theme: 'Default' };
   return (
-    <RichContentWrapper plugins={plugins} theme={'Palette'} palette={palette}>
-      <RichContentViewer id={viewerIdx} isMobile={isMobile} initialState={contentState} />
+    <RichContentWrapper plugins={plugins} {...theme}>
+      <RichContentViewer initialState={contentState} isMobile={isMobile} />
     </RichContentWrapper>
   );
 };
