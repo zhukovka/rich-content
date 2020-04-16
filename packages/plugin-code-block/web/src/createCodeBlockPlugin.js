@@ -10,7 +10,7 @@ const handleShiftTab = editorState => {
   return CodeUtils.handleKeyCommand(editorState, 'backspace');
 };
 
-const createUnderlyingPlugin = (theme, decoratedCode) => ({
+const createUnderlyingPlugin = ({ theme, decoratedCode }) => ({
   handleKeyCommand: (command, editorState, timestamp, { setEditorState }) => {
     if (CodeUtils.hasSelectionInBlock(editorState)) {
       let newState;
