@@ -8,7 +8,7 @@ import MaxHeight from './MaxHeight';
 import OneLiner from './OneLiner';
 import VeryBigPost from './VeryBigPost';
 import ViewerAnchors from './ViewerAnchors';
-import MobileView from './MobileView';
+import MobileView from './MobileViewStory';
 
 storiesOf('Test Cases')
   .add('Viewer Anchors', () => <ViewerAnchors />)

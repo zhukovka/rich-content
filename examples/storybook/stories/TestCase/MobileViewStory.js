@@ -18,11 +18,9 @@ import {
 export default () => {
   const [editorState, setEditorState] = useState(createEmpty());
   const contentState = convertToRaw(editorState.getCurrentContent());
-
-  const [showViewer, toggleViewer] = useState(false);
   return (
-    <Page title="Mobile view">
-      <Section>
+    <Page title="Mobile Playground">
+      <Section title="Editor">
         <RichContentEditorBox preset="blog-preset">
           <EditorWrapper
             onChange={setEditorState}
@@ -30,12 +28,11 @@ export default () => {
             palette={wixPalettes.site1}
           />
         </RichContentEditorBox>
-        <div onClick={() => toggleViewer(!showViewer)}>Toggle Viewer</div>
-        {showViewer && (
-          <RichContentViewerBox preset="mobile">
-            <ViewerWrapper isMobile contentState={contentState} palette={wixPalettes.site1} />
-          </RichContentViewerBox>
-        )}
+      </Section>
+      <Section title="Viewer Mobile">
+        <RichContentViewerBox preset="mobile">
+          <ViewerWrapper isMobile contentState={contentState} palette={wixPalettes.site1} />
+        </RichContentViewerBox>
       </Section>
     </Page>
   );
