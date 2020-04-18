@@ -35,7 +35,7 @@ const blockDataToStyle = ({ dynamicStyles }) => kebabToCamelObjectKeys(dynamicSt
 const getInline = (inlineStyleMappers, mergedStyles) =>
   combineMappers([...inlineStyleMappers, staticInlineStyleMapper], mergedStyles);
 
-const getBlocks = (contentState, mergedStyles, textDirection, context) => {
+const getBlocks = (contentState, mergedStyles, textDirection, context, addAnchors) => {
   const getList = ordered => (items, blockProps) => {
     const fixedItems = items.map(item => (item.length ? item : [' ']));
 
@@ -78,18 +78,22 @@ const getBlocks = (contentState, mergedStyles, textDirection, context) => {
           </ChildTag>
         );
 
-        let anchorDiv;
-        if (!isEmptyBlock(child)) {
-          blockCount++;
-          anchorDiv = <div data-hook={`rcv-block${blockCount}`} />;
-        }
-
-        return (
-          <>
-            <BlockWrapper key={`${blockProps.keys[i]}_wrap`}>{inner}</BlockWrapper>
-            {anchorDiv}
-          </>
+        const blockWrapper = (
+          <BlockWrapper key={`${blockProps.keys[i]}_wrap`}>{inner}</BlockWrapper>
         );
+
+        if (addAnchors && !isEmptyBlock(child)) {
+          blockCount++;
+          const anchorKey = `${addAnchors}${blockCount}`;
+          return (
+            <>
+              {blockWrapper}
+              {<div key={anchorKey} data-hook={anchorKey} />}
+            </>
+          );
+        } else {
+          return blockWrapper;
+        }
       });
   };
 
@@ -109,8 +113,12 @@ const getBlocks = (contentState, mergedStyles, textDirection, context) => {
 };
 
 const getEntities = (typeMap, pluginProps, styles) => {
-  const emojiViewerFn = emojiUnicode => {
-    return <span style={{ fontFamily: 'cursive' }}>{emojiUnicode}</span>;
+  const emojiViewerFn = (emojiUnicode, data, { key }) => {
+    return (
+      <span key={key} style={{ fontFamily: 'cursive' }}>
+        {emojiUnicode}
+      </span>
+    );
   };
   return {
     EMOJI_TYPE: emojiViewerFn,
@@ -178,16 +186,19 @@ const convertToReact = (
     return null;
   }
 
+  const { addAnchors, ...restOptions } = options;
+
+  const parsedAddAnchors = addAnchors && (addAnchors === true ? 'rcv-block' : addAnchors);
   blockCount = 0;
   return redraft(
     normalizeContentState(contentState),
     {
       inline: getInline(inlineStyleMappers, mergedStyles),
-      blocks: getBlocks(contentState, mergedStyles, textDirection, entityProps),
+      blocks: getBlocks(contentState, mergedStyles, textDirection, entityProps, parsedAddAnchors),
       entities: getEntities(combineMappers(typeMap), entityProps, mergedStyles),
       decorators,
     },
-    { ...redraftOptions, ...options }
+    { ...redraftOptions, ...restOptions }
   );
 };
 

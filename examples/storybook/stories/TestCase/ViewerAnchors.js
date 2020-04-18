@@ -9,7 +9,7 @@ import { Button } from 'wix-style-react';
 class ViewerAnchors extends React.Component {
   addAfterParagraph = paragraphNumber => {
     try {
-      const el = document.querySelector(`[data-hook=rcv-block${paragraphNumber}]`);
+      const el = document.querySelector(`[data-hook=test-anchors${paragraphNumber}]`);
 
       const newEl = document.createElement('p');
       newEl.innerHTML = `<div style="background: cyan; width: 50%; margin: 0 auto; padding: 20px; text-align: center;"}>My Ad!</div>`;
@@ -20,13 +20,13 @@ class ViewerAnchors extends React.Component {
   };
 
   getLastAnchor = () => {
-    const allAnchors = document.querySelectorAll('[data-hook^=rcv-block]');
+    const allAnchors = document.querySelectorAll('[data-hook^=test-anchors]');
     if (allAnchors.length === 0) {
       return 0;
     }
     const lastAnchor = allAnchors[allAnchors.length - 1]
       .getAttribute('data-hook')
-      .match(/rcv-block(\d*)/);
+      .match(/test-anchors(\d*)/);
     return lastAnchor ? Number(lastAnchor[1]) : 0;
   };
 
@@ -51,7 +51,11 @@ class ViewerAnchors extends React.Component {
           </Button>
         </div>
         <RichContentViewerBox preset="blog-preset">
-          <ViewerWrapper contentState={fixture} palette={wixPalettes.site1} />
+          <ViewerWrapper
+            contentState={fixture}
+            palette={wixPalettes.site1}
+            addAnchors={'test-anchors'}
+          />
         </RichContentViewerBox>
       </Page>
     );

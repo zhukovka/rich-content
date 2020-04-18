@@ -75,11 +75,11 @@ const plugins = [
   pluginLinkPreview(),
 ];
 
-const ViewerWrapper = ({ contentState, palette, isMobile }) => {
+const ViewerWrapper = ({ contentState, palette, isMobile, addAnchors }) => {
   const theme = palette ? { theme: 'Palette', palette } : { theme: 'Default' };
   return (
     <RichContentWrapper plugins={plugins} {...theme}>
-      <RichContentViewer initialState={contentState} isMobile={isMobile} />
+      <RichContentViewer initialState={contentState} isMobile={isMobile} addAnchors={addAnchors} />
     </RichContentWrapper>
   );
 };
@@ -88,7 +88,7 @@ ViewerWrapper.propTypes = {
   contentState: PropTypes.object,
   palette: PropTypes.arrayOf(PropTypes.object),
   isMobile: PropTypes.bool,
-  viewerIdx: PropTypes.string,
+  addAnchors: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
 export default ViewerWrapper;
