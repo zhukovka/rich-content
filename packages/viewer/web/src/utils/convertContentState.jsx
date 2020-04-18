@@ -82,18 +82,21 @@ const getBlocks = (contentState, mergedStyles, textDirection, context, addAnchor
           <BlockWrapper key={`${blockProps.keys[i]}_wrap`}>{inner}</BlockWrapper>
         );
 
-        if (addAnchors && !isEmptyBlock(child)) {
+        const shouldAddAnchors = addAnchors && !isEmptyBlock(child);
+        let resultBlock = blockWrapper;
+
+        if (shouldAddAnchors) {
           blockCount++;
           const anchorKey = `${addAnchors}${blockCount}`;
-          return (
+          resultBlock = (
             <>
               {blockWrapper}
               {<div key={anchorKey} data-hook={anchorKey} />}
             </>
           );
-        } else {
-          return blockWrapper;
         }
+
+        return resultBlock;
       });
   };
 
