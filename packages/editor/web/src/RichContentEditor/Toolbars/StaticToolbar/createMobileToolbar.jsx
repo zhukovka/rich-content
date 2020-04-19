@@ -92,6 +92,7 @@ const getMobileTheme = theme => {
       inlineToolbarButton: buttonMergeStyles.mobileToolbarButton,
       //eslint-disable-next-line camelcase
       inlineToolbarButton_icon: buttonMergeStyles.mobileToolbarButton_icon,
+      inlineToolbarButton_menuButton: buttonMergeStyles.mobileToolbarButton_menuButton,
     },
     separatorStyles: {
       separator: separatorMergeStyles.mobileToolbarSeparator,

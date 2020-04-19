@@ -34,7 +34,6 @@
   width: $icon-width;
   height: $icon-width;
   vertical-align: middle;
-  color: $toolbar-font-color;
 
   svg {
     width: 100%;
@@ -51,7 +50,7 @@
 }
 
 .inlineToolbarButton_menuButton {
-  width: max-content;
+  width: max-content !important;
   display: flex;
   font-size: 14px;
   font-family: Helvetica;

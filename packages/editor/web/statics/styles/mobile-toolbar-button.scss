@@ -4,7 +4,6 @@
   flex: 0 0 12vw;
   text-align: center;
   padding: 0 !important;
-  margin-right: 0 !important;
 }
 
 .mobileToolbarButton {
@@ -13,7 +12,10 @@
   padding: 5px 0;
 }
 
+.mobileToolbarButton_menuButton {
+  padding-top: 5px;
+}
+
 .mobileToolbarButton_icon {
-  width: 50%;
   margin: 0 auto;
 }

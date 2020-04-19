@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -33,6 +34,7 @@ class InlineToolbarButton extends Component {
         styles.inlineToolbarButton_icon,
         {
           [buttonStyles.inlineToolbarButton_icon]: !!buttonStyles.inlineToolbarButton_icon,
+          [buttonStyles.inlineToolbarButton_menuButton]: !!buttonStyles.inlineToolbarButton_menuButton,
           [buttonStyles.pluginToolbarButton_icon]: !!buttonStyles.pluginToolbarButton_icon,
         }
       ),
@@ -87,6 +89,7 @@ class InlineToolbarButton extends Component {
       <span
         className={classNames(styles.arrowIcon, {
           [styles.arrowIconOpen]: isActive,
+          [styles.active]: isActive,
         })}
       >
         <DropdownArrowIcon />
@@ -100,7 +103,9 @@ class InlineToolbarButton extends Component {
         <Icon />
       </div>
     );
-    // const buttonTextContent = <div className={iconClassNames}>{buttonContent || <Icon />}</div>;
+    const menuButtonClassNames = classNames(styles.menuButton, {
+      [styles.active]: isActive,
+    });
 
     const isMenu = !!showArrowIcon;
     const codeBlockButton = (
@@ -118,7 +123,7 @@ class InlineToolbarButton extends Component {
           onMouseDown={this.preventDefault}
         >
           {isMenu ? (
-            <div className={styles.menuButton}>
+            <div className={menuButtonClassNames}>
               {buttonTextContent}
               {arrowIcon}
             </div>

@@ -12,7 +12,6 @@ import Modal from 'react-modal';
 import Panel from './HeadingPanel';
 import classNames from 'classnames';
 import styles from '../../statics/styles/headingButtonStyles.scss';
-import { HEADINGS_ICONS_MOBILE } from '../const';
 
 export default class HeadingButton extends Component {
   constructor(props) {
@@ -74,6 +73,15 @@ export default class HeadingButton extends Component {
       : t('FormattingToolbar_TextStyle_Heading', { number: option.slice(-1) });
   };
 
+  getContentForButtonWithEllipsis = option => {
+    const content = this.getContentForButton(option);
+    const number = option.length !== 1 ? option.slice(-1) : '';
+    if (content.length > 10) {
+      return content.slice(0, 5) + '...' + number;
+    }
+    return content;
+  };
+
   save = (font, heading) => {
     this.closePanel();
     font ? this.updateHeading(font, heading) : this.setEditorState(this.currentEditorState);
@@ -104,9 +112,8 @@ export default class HeadingButton extends Component {
           top: panelTop,
           left: panelLeft,
         };
-    const showArrowIcon = !isMobile;
-    const buttonContent = !isMobile && this.getContentForButton(currentHeading);
-    const icon = isMobile && HEADINGS_ICONS_MOBILE[currentHeading];
+    const showArrowIcon = true;
+    const buttonContent = this.getContentForButtonWithEllipsis(currentHeading);
     return (
       <InlineToolbarButton
         onClick={this.openPanel}
@@ -117,7 +124,6 @@ export default class HeadingButton extends Component {
         dataHook={dataHookText}
         tabIndex={tabIndex}
         buttonContent={buttonContent}
-        icon={icon}
         showArrowIcon={showArrowIcon}
         ref={ref => (this.buttonRef = ref)}
       >
