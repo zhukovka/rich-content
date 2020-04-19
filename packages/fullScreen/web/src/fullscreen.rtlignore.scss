@@ -30,6 +30,9 @@
 :global {
   .gallery-item-info {
     width: 1000px;
+    @include phone {
+      width: 600px;
+    }
   }
   .gallery-item-title > span {
     display: block;
