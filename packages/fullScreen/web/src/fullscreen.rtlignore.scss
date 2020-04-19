@@ -34,7 +34,7 @@
   .gallery-item-info {
     width: 1000px;
     @include phone {
-      width: 640px;
+      width: 320px;
     }
   }
   .gallery-item-title > span {
@@ -47,7 +47,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     @include phone {
-      width: 320px;
+      width: 280px;
       margin: auto;
     }
   }
