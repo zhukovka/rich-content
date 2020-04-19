@@ -3,11 +3,10 @@ import { HEADINGS_TYPE } from './types';
 import { createBasePlugin } from 'wix-rich-content-editor-common';
 
 const createHeadingsPlugin = (config = {}) => {
-  const { helpers, t, [HEADINGS_TYPE]: settings = {}, isMobile, Headings, ...rest } = config;
+  const { helpers, t, [HEADINGS_TYPE]: settings = {}, isMobile, Headings } = config;
   const icons = Headings?.toolbar?.icons || {};
   const customHeadings = Headings?.headersDropdown;
   return createBasePlugin({
-    type: HEADINGS_TYPE,
     toolbar: createToolbar({
       helpers,
       t,
@@ -20,7 +19,6 @@ const createHeadingsPlugin = (config = {}) => {
     settings,
     t,
     isMobile,
-    ...rest,
   });
 };
 

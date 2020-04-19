@@ -78,7 +78,6 @@ import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common'
 import { mockFetchVerticalEmbedFunc } from './Utils/verticalEmbedUtil';
 
 export const editorPluginsPartialPreset = [
-  createHeadingsPlugin,
   createImagePlugin,
   createGalleryPlugin,
   createVideoPlugin,
@@ -99,6 +98,7 @@ export const editorPluginsPartialPreset = [
   createEmojiPlugin,
   createTextHighlightPlugin,
   createUndoRedoPlugin,
+  createHeadingsPlugin,
 ];
 
 export const editorPluginsEmbedsPreset = [
@@ -159,7 +159,7 @@ let userButtonBorderColors = [...buttonDefaultPalette];
 
 const getLinkPanelDropDownConfig = () => {
   const getItems = () => {
-    casual.define('item', function () {
+    casual.define('item', function() {
       return {
         value: casual.url,
         label: casual.catch_phrase,
