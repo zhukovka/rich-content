@@ -40,6 +40,7 @@ export default class Fullscreen extends Component {
       foregroundColor,
     } = this.props;
     const items = this.getItems();
+    // This is for adjusting the image size properly for small screens.
     const width = window.innerWidth <= 640 ? window.innerWidth : window.innerWidth - 40;
     let fullscreen = (
       <div className={styles.fullscreen} style={{ ...backgroundColor, ...topMargin }}>
