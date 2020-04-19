@@ -68,9 +68,6 @@ export default class Fullscreen extends Component {
             loveButton: false,
             slideshowInfoSize: 110,
             allowTitle: true,
-            // allowDescription: true,
-            arrowsPosition: 1,
-            // arrowsSize: 30,
           }}
         />
       </div>
