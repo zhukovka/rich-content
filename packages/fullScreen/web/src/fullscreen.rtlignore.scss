@@ -33,9 +33,9 @@
 :global {
   .gallery-item-info {
     width: 1000px;
-    // @include phone {
-    //   width: 640px;
-    // }
+    @include phone {
+      width: 640px;
+    }
   }
   .gallery-item-title > span {
     display: block;
@@ -46,8 +46,9 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    // @include phone {
-    //   width: 400px;
-    // }
+    @include phone {
+      width: 320px;
+      margin: auto;
+    }
   }
 }
