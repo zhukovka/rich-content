@@ -20,7 +20,6 @@ export { default as Version } from './Utils/versioningUtils';
 export { hasLinksInBlock, getLinkRangesInBlock } from './Utils/draftUtils';
 export { validate, getContentStateSchema } from './Utils/data-schema-validator';
 export { isSSR } from './Utils/ssrUtils';
-export { truncateContentState } from './lib/contentStateServices';
 
 //Schemas
 /* eslint-disable max-len */
@@ -37,6 +36,7 @@ export { default as pluginMapSchema } from '../statics/schemas/plugin-map.schema
 export { default as pluginMentionsSchema } from '../statics/schemas/plugin-mentions.schema.json';
 export { default as pluginSoundCloudSchema } from '../statics/schemas/plugin-sound-cloud.schema.json';
 export { default as pluginVideoSchema } from '../statics/schemas/plugin-video.schema.json';
+export { default as verticalEmbedSchema } from '../statics/schemas/vertical-embed.schema.json';
 /* eslint-enable max-len */
 export { getImageSrc, WIX_MEDIA_DEFAULT } from './Utils/imageUtils';
 export { isHexColor } from './Utils/colorUtils';

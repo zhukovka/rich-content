@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import closeIcon from './icons/close.svg';
+import closeIcon from './icons/xl.svg';
 import { convertItemData } from 'wix-rich-content-plugin-gallery/dist/lib/convert-item-data';
 import layouts from 'wix-rich-content-plugin-gallery/dist/lib/layout-data-provider';
 import resizeMediaUrl from 'wix-rich-content-plugin-gallery/dist/lib/resize-media-url';
@@ -70,7 +70,7 @@ export default class Fullscreen extends Component {
             allowTitle: true,
             // allowDescription: true,
             arrowsPosition: 1,
-            arrowsSize: 30,
+            // arrowsSize: 30,
           }}
         />
       </div>

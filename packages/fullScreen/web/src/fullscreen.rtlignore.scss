@@ -30,5 +30,8 @@
   .gallery-item-title > span {
     color: black;
     font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
