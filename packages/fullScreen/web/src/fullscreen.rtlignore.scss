@@ -45,6 +45,7 @@
     text-overflow: ellipsis;
     @include phone {
       width: 400px;
+      margin: auto;
     }
   }
 }
