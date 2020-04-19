@@ -6,6 +6,7 @@ import { ModalsMap as ImageModalsMap } from 'wix-rich-content-plugin-image';
 import { ModalsMap as GalleryModalsMap } from 'wix-rich-content-plugin-gallery';
 import { ModalsMap as TextColorModalsMap } from 'wix-rich-content-plugin-text-color';
 import { ModalsMap as LineSpacingModalsMap } from 'wix-rich-content-plugin-line-spacing';
+import { ModalsMap as VerticalEmbedModalsMap } from 'wix-rich-content-plugin-vertical-embed';
 
 export default {
   ...VideoModalsMap,
@@ -16,4 +17,5 @@ export default {
   ...TextColorModalsMap,
   ...LineSpacingModalsMap,
   ...headingsModalsMap,
+  ...VerticalEmbedModalsMap,
 };
