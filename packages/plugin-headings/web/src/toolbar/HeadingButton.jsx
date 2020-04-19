@@ -66,14 +66,14 @@ export default class HeadingButton extends Component {
     this.setState({ currentHeading: heading });
   };
 
-  getContentForButton = option => {
+  getContentForButton = (option = '') => {
     const { t } = this.props;
     return option.length === 1
       ? t('FormattingToolbar_TextStyle_Paragraph')
       : t('FormattingToolbar_TextStyle_Heading', { number: option.slice(-1) });
   };
 
-  getContentForButtonWithEllipsis = option => {
+  getContentForButtonWithEllipsis = (option = '') => {
     const content = this.getContentForButton(option);
     const number = option.length !== 1 ? option.slice(-1) : '';
     if (content.length > 10) {
