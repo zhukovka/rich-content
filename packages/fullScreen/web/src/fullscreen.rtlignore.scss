@@ -9,6 +9,9 @@
   background: white;
   padding-top: 32px;
   padding-left: 20px;
+  @include phone {
+    padding-left: 0px;
+  }
 }
 
 .close {
@@ -31,7 +34,7 @@
   .gallery-item-info {
     width: 1000px;
     @include phone {
-      width: 600px;
+      width: 640px;
     }
   }
   .gallery-item-title > span {
@@ -45,7 +48,6 @@
     text-overflow: ellipsis;
     @include phone {
       width: 400px;
-      margin: auto;
     }
   }
 }

@@ -40,6 +40,7 @@ export default class Fullscreen extends Component {
       foregroundColor,
     } = this.props;
     const items = this.getItems();
+    const width = window.innerWidth <= 640 ? window.innerWidth : window.innerWidth - 40;
     let fullscreen = (
       <div className={styles.fullscreen} style={{ ...backgroundColor, ...topMargin }}>
         <button
@@ -55,7 +56,7 @@ export default class Fullscreen extends Component {
           currentIdx={index}
           resizeMediaUrl={resizeMediaUrl}
           container={{
-            width: window.innerWidth - 40,
+            width,
             height: window.innerHeight,
           }}
           styles={{
