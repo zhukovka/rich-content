@@ -12,6 +12,7 @@ import {
 } from 'wix-rich-content-editor-common';
 import ImageSettingsMobileHeader from './image-settings-mobile-header';
 import styles from '../../statics/styles/image-settings.scss';
+import { EditorState, convertToRaw } from 'wix-rich-content-editor';
 
 class ImageSettings extends Component {
   constructor(props) {
@@ -28,6 +29,9 @@ class ImageSettings extends Component {
     this.altLabel = t('ImageSettings_Alt_Label');
     this.altInputPlaceholder = t('ImageSettings_Alt_Input_Placeholder');
     this.linkLabel = t('ImageSettings_Link_Label');
+
+    this.emptyContentState = convertToRaw(EditorState.createEmpty().getCurrentContent());
+    this.emptyContentState.blocks[0].text = 'blabla';
   }
 
   propsToState(props) {
@@ -182,6 +186,14 @@ class ImageSettings extends Component {
             className={this.styles.imageSettingsSection}
             ariaProps={{ 'aria-label': 'image caption', role: 'region' }}
           >
+            <input
+              type="checkbox"
+              onChange={() =>
+                metadata.caption
+                  ? this.metadataUpdated(metadata, { caption: '' })
+                  : this.metadataUpdated(metadata, { caption: this.emptyContentState })
+              }
+            />
             <InputWithLabel
               theme={theme}
               id="imageSettingsCaptionInput"

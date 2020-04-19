@@ -358,7 +358,6 @@ class RichContentEditor extends Component {
       textAlignment,
       handleBeforeInput,
       handleReturn,
-      readOnly,
     } = this.props;
     const { editorState } = this.state;
     const { theme } = this.contextualData;
@@ -403,7 +402,6 @@ class RichContentEditor extends Component {
         onBlur={onBlur}
         onFocus={onFocus}
         textAlignment={textAlignment}
-        readOnly={readOnly}
       />
     );
   };
@@ -525,7 +523,6 @@ RichContentEditor.propTypes = {
   initialIntent: PropTypes.string,
   siteDomain: PropTypes.string,
   onError: PropTypes.func,
-  readOnly: PropTypes.bool,
 };
 
 RichContentEditor.defaultProps = {

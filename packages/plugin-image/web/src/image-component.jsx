@@ -165,6 +165,12 @@ class ImageComponent extends React.Component {
     );
   };
 
+  updateCaptionInMetadata = newMetadata => {
+    const { componentData } = this.props;
+    const metadata = { ...componentData.metadata, ...newMetadata };
+    this.props.store.simpleUpdate('componentData', { metadata }, this.props.block.getKey());
+  };
+
   getLoadingParams = componentState => {
     //check if the file upload is coming on the regular state
     const alreadyLoading = this.state && this.state.isLoading;
@@ -172,14 +178,14 @@ class ImageComponent extends React.Component {
     return { alreadyLoading, isLoading, userSelectedFiles };
   };
 
-  handleCaptionChange = caption => this.handleMetadataChange({ caption });
+  handleCaptionChange = caption => this.updateCaptionInMetadata({ caption });
 
   renderLoader = () => {
     return <Loader type={'medium'} isFastFakeLoader />;
   };
 
   renderEditorCaption = props => {
-    const { captionEditorState } = this.state;
+    const { captionEditorState, captionContentState } = this.state;
     const {
       setInPluginEditingMode,
       blockProps: { setFocusToBlock },
@@ -188,6 +194,7 @@ class ImageComponent extends React.Component {
       <InPluginInput
         setInPluginEditingMode={setInPluginEditingMode}
         editorState={captionEditorState}
+        contentState={captionContentState}
         onChange={this.onEditorChange}
         setFocusToBlock={setFocusToBlock}
         {...props}

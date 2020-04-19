@@ -32,6 +32,13 @@ export const simplePubsub = initialState => {
     blockKey ? _setSingle(key, newItem, blockKey) : set(key, newItem);
   };
 
+  const simpleUpdate = (key, newData, blockKey) => {
+    const data = get(key);
+    const newItem = merge({}, data, newData);
+    newItem.metadata.caption = newData.metadata.caption;
+    blockKey ? _setSingle(key, newItem, blockKey) : set(key, newItem);
+  };
+
   const _setSingle = (key, item, blockKey) => {
     state = {
       ...state,
@@ -90,6 +97,7 @@ export const simplePubsub = initialState => {
     update,
     set,
     setBlockHandler,
+    simpleUpdate,
   };
 
   return {
@@ -104,5 +112,6 @@ export const simplePubsub = initialState => {
     getBlockData,
     setBlockData,
     subscribeOnBlock,
+    simpleUpdate,
   };
 };

@@ -13,7 +13,7 @@ import {
 import { DEFAULTS, SEO_IMAGE_WIDTH } from './consts';
 import styles from '../statics/styles/image-viewer.scss';
 import ExpandIcon from './icons/expand.svg';
-// import { RichContentViewer } from 'wix-rich-content-viewer';
+import { RichContentViewer } from 'wix-rich-content-viewer';
 
 class ImageViewer extends React.Component {
   constructor(props) {
@@ -162,14 +162,14 @@ class ImageViewer extends React.Component {
     );
   }
 
-  renderCaption(/*caption*/) {
+  renderCaption(caption) {
     const { onCaptionChange, renderEditorCaption } = this.props;
     return onCaptionChange ? (
       renderEditorCaption()
     ) : (
       // <span className={this.styles.imageCaption}>{caption}</span>
-      <span className={this.styles.imageCaption}>{'blabla'}</span>
-      // <RichContentViewer initialState={caption} />
+      // <span className={this.styles.imageCaption}>{'blabla'}</span>
+      <RichContentViewer initialState={caption} />
     );
   }
 
