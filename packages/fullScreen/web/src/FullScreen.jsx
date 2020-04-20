@@ -41,7 +41,13 @@ export default class Fullscreen extends Component {
     } = this.props;
     const items = this.getItems();
     // This is for adjusting the image size properly for small screens.
-    const width = window.innerWidth <= 640 ? window.innerWidth : window.innerWidth - 40;
+    let width = window.innerWidth;
+    let slideshowInfoSize = 154;
+    if (window.innerWidth > 640) {
+      width -= 40;
+      slideshowInfoSize = 110;
+    }
+    // const width = window.innerWidth <= 640 ? window.innerWidth : window.innerWidth - 40;
     let fullscreen = (
       <div className={styles.fullscreen} style={{ ...backgroundColor, ...topMargin }}>
         <button
@@ -68,7 +74,7 @@ export default class Fullscreen extends Component {
             videoPlay: 'auto',
             allowSocial: false,
             loveButton: false,
-            slideshowInfoSize: 110,
+            slideshowInfoSize,
             allowTitle: true,
           }}
         />
