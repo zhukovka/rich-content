@@ -47,7 +47,6 @@ export default class Fullscreen extends Component {
       width -= 40;
       slideshowInfoSize = 110;
     }
-    // const width = window.innerWidth <= 640 ? window.innerWidth : window.innerWidth - 40;
     let fullscreen = (
       <div className={styles.fullscreen} style={{ ...backgroundColor, ...topMargin }}>
         <button
