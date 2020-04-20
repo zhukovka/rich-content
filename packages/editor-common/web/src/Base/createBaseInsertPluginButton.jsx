@@ -140,14 +140,8 @@ export default ({
     };
 
     preventButtonGettingFocus = event => {
-      switch (button.type) {
-        case 'file':
-        case 'modal':
-        case 'custom-block':
-          event.preventDefault();
-          break;
-        default:
-          break;
+      if (button.name !== 'GIF') {
+        event.preventDefault();
       }
     };
 
@@ -155,7 +149,6 @@ export default ({
       const { styles } = this;
       const { showName, tabIndex, setEditorState } = this.props;
       const { name, Icon, wrappingComponent } = button;
-
       const WrappingComponent = wrappingComponent || 'button';
 
       let buttonCompProps = {};
