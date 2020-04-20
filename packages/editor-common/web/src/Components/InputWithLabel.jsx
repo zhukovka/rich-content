@@ -43,7 +43,11 @@ class InputWithLabel extends Component {
           <label htmlFor={id} className={styles.infoContainer}>
             <span className={styles.inputWithLabel_label}>{label}</span>
             {contentForInfoIcon && (
-              <Tooltip shouldRebuildOnUpdate={() => true} content={contentForInfoIcon}>
+              <Tooltip
+                shouldRebuildOnUpdate={() => true}
+                content={contentForInfoIcon}
+                theme={styles.theme}
+              >
                 <InfoIcon className={styles.infoIcon} />
               </Tooltip>
             )}
