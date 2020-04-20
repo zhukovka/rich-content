@@ -139,7 +139,17 @@ export default ({
       }
     };
 
-    preventButtonGettingFocus = event => event.preventDefault();
+    preventButtonGettingFocus = event => {
+      switch (button.type) {
+        case 'file':
+        case 'modal':
+        case 'custom-block':
+          event.preventDefault();
+          break;
+        default:
+          break;
+      }
+    };
 
     renderButton = () => {
       const { styles } = this;
