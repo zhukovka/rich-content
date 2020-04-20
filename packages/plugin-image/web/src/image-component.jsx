@@ -4,12 +4,7 @@ import { Loader } from 'wix-rich-content-editor-common';
 import ImageViewer from './image-viewer';
 import { DEFAULTS } from './consts';
 import { sizeClassName, alignmentClassName } from './classNameStrategies';
-import {
-  EditorState,
-  convertToRaw,
-  createWithContent,
-  convertFromRaw,
-} from 'wix-rich-content-editor';
+import { convertToRaw, createWithContent, convertFromRaw } from 'wix-rich-content-editor';
 import InPluginInput from './InPluginInput';
 
 const EMPTY_SMALL_PLACEHOLDER =
@@ -24,18 +19,10 @@ class ImageComponent extends React.Component {
 
   constructor(props) {
     super(props);
-    const { componentData } = props;
-    const { metadata = {} } = componentData;
-    const captionEditorState =
-      (metadata.caption && createWithContent(convertFromRaw(metadata.caption))) ||
-      EditorState.createEmpty();
     this.state = {
       isMounted: false,
       ...this.stateFromProps(props),
-      captionEditorState,
-      captionContentState: convertToRaw(captionEditorState.getCurrentContent()),
     };
-    this.handleCaptionChange(this.state.captionContentState);
 
     const { block, store } = this.props;
     if (store) {
@@ -63,6 +50,11 @@ class ImageComponent extends React.Component {
 
   componentDidMount() {
     this.state.isMounted = true; //eslint-disable-line react/no-direct-mutation-state
+    if (this.props?.componentData?.metadata?.caption) {
+      this.onEditorChange(
+        createWithContent(convertFromRaw(this.props?.componentData?.metadata?.caption))
+      );
+    }
   }
 
   componentWillUnmount() {
@@ -71,6 +63,19 @@ class ImageComponent extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState(this.stateFromProps(nextProps));
+    if (
+      nextProps?.componentData?.metadata?.caption &&
+      !this.props?.componentData?.metadata?.caption
+    ) {
+      this.onEditorChange(
+        createWithContent(convertFromRaw(nextProps?.componentData?.metadata?.caption))
+      );
+    } else if (
+      !nextProps?.componentData?.metadata?.caption &&
+      this.props?.componentData?.metadata?.caption
+    ) {
+      this.setState({ captionEditorState: undefined, captionContentState: undefined });
+    }
   }
 
   stateFromProps = props => {
@@ -165,12 +170,6 @@ class ImageComponent extends React.Component {
     );
   };
 
-  updateCaptionInMetadata = newMetadata => {
-    const { componentData } = this.props;
-    const metadata = { ...componentData.metadata, ...newMetadata };
-    this.props.store.simpleUpdate('componentData', { metadata }, this.props.block.getKey());
-  };
-
   getLoadingParams = componentState => {
     //check if the file upload is coming on the regular state
     const alreadyLoading = this.state && this.state.isLoading;
@@ -178,7 +177,7 @@ class ImageComponent extends React.Component {
     return { alreadyLoading, isLoading, userSelectedFiles };
   };
 
-  handleCaptionChange = caption => this.updateCaptionInMetadata({ caption });
+  handleCaptionChange = caption => this.handleMetadataChange({ caption });
 
   renderLoader = () => {
     return <Loader type={'medium'} isFastFakeLoader />;
@@ -190,7 +189,7 @@ class ImageComponent extends React.Component {
       setInPluginEditingMode,
       blockProps: { setFocusToBlock },
     } = this.props;
-    return (
+    return captionEditorState ? (
       <InPluginInput
         setInPluginEditingMode={setInPluginEditingMode}
         editorState={captionEditorState}
@@ -199,7 +198,7 @@ class ImageComponent extends React.Component {
         setFocusToBlock={setFocusToBlock}
         {...props}
       />
-    );
+    ) : null;
   };
 
   render() {

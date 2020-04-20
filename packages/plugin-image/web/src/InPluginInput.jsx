@@ -54,7 +54,7 @@ class InPluginInput extends Component {
         className={classnames(this.className, {
           [styles.inPluginInput_disable]: !this.state.editorMode,
         })}
-        onClick={this.containerClick}
+        onMouseDown={this.containerClick}
       >
         {this.state.editorMode ? (
           <RichContentEditor

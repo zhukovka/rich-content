@@ -188,9 +188,11 @@ class ImageSettings extends Component {
           >
             <input
               type="checkbox"
+              checked={!!metadata.caption}
               onChange={() =>
                 metadata.caption
-                  ? this.metadataUpdated(metadata, { caption: '' })
+                  ? // eslint-disable-next-line fp/no-delete
+                    this.metadataUpdated(metadata, delete metadata.caption)
                   : this.metadataUpdated(metadata, { caption: this.emptyContentState })
               }
             />
