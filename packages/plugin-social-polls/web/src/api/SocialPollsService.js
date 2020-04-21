@@ -7,6 +7,7 @@ export class SocialPollsService {
 
   cancelTokens = {
     createPoll: null,
+    updatePoll: null,
   };
 
   constructor(siteToken) {
@@ -21,7 +22,7 @@ export class SocialPollsService {
   }
 
   successResponseInterceptor(response) {
-    return response.data?.question;
+    return response.data?.question || response.data;
   }
 
   failResponseInterceptor(error) {
@@ -51,6 +52,25 @@ export class SocialPollsService {
       });
   }
 
+  updatePoll(question) {
+    const source = axios.CancelToken.source();
+
+    this.cancelTokens.updatePoll = source;
+
+    return this.client
+      .patch(
+        `/questions/${question.id}`,
+        { question },
+        {
+          cancelToken: source.token,
+        }
+      )
+      .then(response => {
+        this.cancelTokens.updatePoll = null;
+        return response;
+      });
+  }
+
   vote(pollId, optionId) {
     return this.client.post(`/questions/${pollId}/vote`, {
       optionId,
@@ -61,5 +81,9 @@ export class SocialPollsService {
     return this.client.post(`/questions/${pollId}/unvote`, {
       optionId,
     });
+  }
+
+  getVoters(pollId, optionId, params) {
+    return this.client.get(`/questions/${pollId}/options/${optionId}/voters`, { params });
   }
 }

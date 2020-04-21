@@ -96,12 +96,23 @@ class PollComponent extends Component {
   }
 
   render() {
-    const { poll, rce, addOption, design, layout, vote, unvote, t, siteMembers } = this.props;
+    const {
+      poll,
+      rce,
+      getVoters,
+      addOption,
+      design,
+      layout,
+      vote,
+      unvote,
+      t,
+      siteMembers,
+    } = this.props;
     const { collapsed } = this.state;
 
     const style = {
       ...design.poll,
-      background: getBackgroundString(design.poll.background, design.poll.backgroundType),
+      background: getBackgroundString(design.poll?.background, design.poll?.backgroundType),
     };
 
     return (
@@ -146,6 +157,7 @@ class PollComponent extends Component {
                   showResults={this.showResults()}
                   showVoters={poll.settings.votersDisplay}
                   showVotes={poll.settings.votesDisplay}
+                  fetchVoters={params => getVoters(option.id, params)}
                 />
               </li>
             ))}

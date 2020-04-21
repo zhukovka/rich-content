@@ -28,6 +28,7 @@ export class PollContextProvider extends PureComponent {
     changePollImage: this.changePollImage.bind(this),
     vote: this.vote.bind(this),
     unvote: this.unvote.bind(this),
+    getVoters: this.getVoters.bind(this),
   };
 
   constructor(props) {
@@ -68,10 +69,16 @@ export class PollContextProvider extends PureComponent {
   }
 
   async updatePoll(poll) {
+    let pollResponse;
     this.setState({ poll });
 
-    this.pollApiClient.cancelTokens.createPoll?.cancel(SocialPollsService.CANCEL_MESSAGE);
-    const pollResponse = await this.pollApiClient.createPoll(poll);
+    if (poll.id) {
+      this.pollApiClient.cancelTokens.updatePoll?.cancel(SocialPollsService.CANCEL_MESSAGE);
+      pollResponse = await this.pollApiClient.updatePoll(poll);
+    } else {
+      this.pollApiClient.cancelTokens.createPoll?.cancel(SocialPollsService.CANCEL_MESSAGE);
+      pollResponse = await this.pollApiClient.createPoll(poll);
+    }
 
     this.props.setPoll(merge(poll, pollResponse));
   }
@@ -86,6 +93,10 @@ export class PollContextProvider extends PureComponent {
     const poll = await this.pollApiClient.unvote(this.state.poll.id, optionId);
 
     this.setState({ poll });
+  }
+
+  getVoters(optionId, params) {
+    return this.pollApiClient.getVoters(this.state.poll.id, optionId, params);
   }
 
   findOptionIndex(localId) {
