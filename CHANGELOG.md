@@ -25,6 +25,9 @@
 ### :bug: Bug Fix
 - `map`
   - [#939](https://github.com/wix-incubator/rich-content/pull/939) Map Settings: dynamic style replaced with theme
+- `editor`
+  - [#917](https://github.com/wix-incubator/rich-content/pull/917) add tooltips for drop down buttons
+
 
 </details>
 <hr/>
