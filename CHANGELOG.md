@@ -14,7 +14,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-
+  
+### :bug: Bug Fix
+- `plugin-emoji`
+  - [#948](https://github.com/wix-incubator/rich-content/pull/948) manually extract the icons we use from 'react-icons' in plugin emoji. react-icon has **const** in the node module.
 
 </details>
 <hr/>
@@ -36,8 +39,6 @@
 ### :house: Internal
 - `wrapper`
   - [#931](https://github.com/wix-incubator/rich-content/pull/931) added internal static toolbar support
-- `plugin-emoji`
-  - [#948](https://github.com/wix-incubator/rich-content/pull/948) manually extract the icons we use from 'react-icons' in plugin emoji. react-icon has **const** in the node module.
 
 ## 7.3.3 (Apr 20, 2020)
 ### :bug: Bug Fix
