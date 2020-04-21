@@ -40,9 +40,9 @@ export class VotedUsersModalComponent extends Component {
     return (
       <>
         <div className={styles.header}>
-          <h3 className={styles.title}>
+          <p className={styles.title}>
             {t('Poll_Viewer_VoteCount_Modal_Voters_Header', { number: option.count })}
-          </h3>
+          </p>
           <RemoveIcon onClick={onRequestClose} className={styles.cta} />
         </div>
         <InfiniteScroll
