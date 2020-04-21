@@ -15,6 +15,11 @@
     Click to see more.
   </summary>
 
+
+</details>
+<hr/>
+
+## 7.3.4 (Apr 21, 2020)
 ### :house: Internal
 - `editor`
   - [#912](https://github.com/wix-incubator/rich-content/pull/912) publish api
@@ -31,9 +36,6 @@
 ### :house: Internal
 - `wrapper`
   - [#931](https://github.com/wix-incubator/rich-content/pull/931) added internal static toolbar support
-
-</details>
-<hr/>
 
 ## 7.3.3 (Apr 20, 2020)
 ### :bug: Bug Fix
