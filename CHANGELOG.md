@@ -19,6 +19,10 @@
 - `plugin-emoji`
   - [#948](https://github.com/wix-incubator/rich-content/pull/948) manually extract the icons we use from 'react-icons' in plugin emoji. react-icon has **const** in the node module.
 
+### :bug: Bug Fix
+- `map`
+  - [#939](https://github.com/wix-incubator/rich-content/pull/939) Map Settings: dynamic style replaced with theme
+
 </details>
 <hr/>
 
