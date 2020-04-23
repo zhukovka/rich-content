@@ -467,7 +467,12 @@ class RichContentEditor extends Component {
               {this.renderStyleTag()}
               <div className={classNames(styles.editor, theme.editor)}>
                 {this.renderAccessibilityListener()}
-                <button onClick={this.toggleReadOnly}>{`readOnly = ${this.state.readOnly}`}</button>
+                <button
+                  style={{ position: 'absolute', right: 0, zIndex: 10 }}
+                  onClick={this.toggleReadOnly}
+                >
+                  {`readOnly = ${this.state.readOnly}`}
+                </button>
                 {this.renderEditor()}
                 {this.renderToolbars()}
                 {this.renderInlineModals()}
