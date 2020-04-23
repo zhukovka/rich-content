@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import styles from '../statics/styles/in-plugin-input.scss';
 import { RichContentEditor } from 'wix-rich-content-editor';
+import { createDividerPlugin } from 'wix-rich-content-plugin-divider';
+import { createLinkPlugin } from 'wix-rich-content-plugin-link';
+
+const PLUGINS = [createDividerPlugin, createLinkPlugin];
 
 class InPluginInput extends Component {
   handleFocus = () => {
@@ -38,6 +42,7 @@ class InPluginInput extends Component {
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
           placeholder="image title"
+          plugins={PLUGINS}
         />
       </div>
     );
