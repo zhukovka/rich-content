@@ -22,6 +22,8 @@
 - `editor`
   - [#951](https://github.com/wix-incubator/rich-content/pull/951) fix: tooltip opacity
   - [#957](https://github.com/wix-incubator/rich-content/pull/957) fix: command+ctrl+j creates code block on mac
+- `map`
+  - [#959](https://github.com/wix-incubator/rich-content/pull/959) modal settings fixed (convention) & made compatible with wrapper palette colors
 ### :house: Internal
 - `editor`
   - [#936](https://github.com/wix-incubator/rich-content/pull/936) arrangement of inline toolbar buttons
