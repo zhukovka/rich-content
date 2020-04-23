@@ -5,30 +5,14 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import styles from '../statics/styles/in-plugin-input.scss';
 import { RichContentEditor } from 'wix-rich-content-editor';
-import { RichContentViewer } from 'wix-rich-content-viewer';
 
 class InPluginInput extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editorMode: false,
-    };
-    this.rceRef = React.createRef();
-  }
-
-  componentDidUpdate() {
-    if (this.rceRef.current) {
-      this.rceRef.current.focus();
-    }
-  }
-
   handleFocus = () => {
     this.props.setFocusToBlock();
     this.props.setInPluginEditingMode(true);
   };
 
   handleBlur = () => {
-    this.setState({ editorMode: false });
     this.props.setInPluginEditingMode(false);
   };
 
@@ -42,32 +26,19 @@ class InPluginInput extends Component {
 
   onChange = e => this.props.onChange?.(e.target.value);
 
-  containerClick = () => {
-    this.setState({ editorMode: true });
-  };
-
   className = classnames(styles.inPluginInput, this.props.className);
 
   render() {
     return (
-      <div
-        className={classnames(this.className, {
-          [styles.inPluginInput_disable]: !this.state.editorMode,
-        })}
-        onMouseDown={this.containerClick}
-      >
-        {this.state.editorMode ? (
-          <RichContentEditor
-            ref={this.rceRef}
-            onChange={this.props.onChange}
-            editorState={this.props.editorState}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-            placeholder="image title"
-          />
-        ) : (
-          <RichContentViewer initialState={this.props.contentState} />
-        )}
+      <div className={this.className}>
+        <RichContentEditor
+          ref={this.rceRef}
+          onChange={this.props.onChange}
+          editorState={this.props.editorState}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
+          placeholder="image title"
+        />
       </div>
     );
   }

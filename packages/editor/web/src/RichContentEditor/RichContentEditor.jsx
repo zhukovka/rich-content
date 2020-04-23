@@ -49,6 +49,7 @@ class RichContentEditor extends Component {
     this.state = {
       editorState: this.getInitialEditorState(),
       editorBounds: {},
+      readOnly: false,
     };
     this.refId = Math.floor(Math.random() * 9999);
 
@@ -402,8 +403,14 @@ class RichContentEditor extends Component {
         onBlur={onBlur}
         onFocus={onFocus}
         textAlignment={textAlignment}
+        readOnly={this.state.readOnly}
       />
     );
+  };
+
+  toggleReadOnly = () => {
+    const { readOnly } = this.state;
+    this.setState({ readOnly: !readOnly });
   };
 
   renderAccessibilityListener = () => (
@@ -460,6 +467,7 @@ class RichContentEditor extends Component {
               {this.renderStyleTag()}
               <div className={classNames(styles.editor, theme.editor)}>
                 {this.renderAccessibilityListener()}
+                <button onClick={this.toggleReadOnly}>{`readOnly = ${this.state.readOnly}`}</button>
                 {this.renderEditor()}
                 {this.renderToolbars()}
                 {this.renderInlineModals()}
