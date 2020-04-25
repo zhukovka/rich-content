@@ -125,17 +125,56 @@ group requirement
     },
   };
 
+  const singleDividerState = {
+    blocks: [
+      {
+        key: '9fe2n',
+        text: ' ',
+        type: 'atomic',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [
+          {
+            offset: 0,
+            length: 1,
+            key: 0,
+          },
+        ],
+        data: {},
+      },
+    ],
+    entityMap: {
+      '0': {
+        type: 'wix-draft-plugin-divider',
+        mutability: 'IMMUTABLE',
+        data: {
+          type: 'single',
+          config: {
+            size: 'large',
+            alignment: 'center',
+            textWrap: 'nowrap',
+          },
+        },
+      },
+    },
+  };
+
   it('Should create empty content state', () => {
     const emptyContentState = new ContentStateBuilder().getContent();
     expect(emptyContentState).toMatchContentState(emptyState);
   });
 
-  it('Should generate image block', () => {
+  it('Should generate image block with default data', () => {
     const contentStateObject = new ContentStateBuilder();
-    const resultedState = contentStateObject
-      .addImage(imageSrc, imageConfig, imageMetadata)
-      .getContent();
+    const resultedState = contentStateObject.addImage(imageSrc).getContent();
     expect(resultedState).toMatchContentState(singleImageState);
+  });
+
+  it('Should generate divider block with default data', () => {
+    const contentStateObject = new ContentStateBuilder();
+    const myDiv = ContentStateBuilder.createDividerBlock();
+    const resultedState = contentStateObject.appendBlock(myDiv).getContent();
+    expect(resultedState).toMatchContentState(singleDividerState);
   });
 
   it('Should generate text and image', () => {

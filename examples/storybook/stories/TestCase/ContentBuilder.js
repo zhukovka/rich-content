@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { htmlTypeMapper } from 'wix-rich-content-plugin-html/dist/module.viewer';
 import { RichContentEditor, convertFromRaw, createWithContent } from 'wix-rich-content-editor';
-import { Input } from 'wix-style-react';
-
+import { Input, Button, Container, Row, FormField, Dropdown } from 'wix-style-react';
 import { RichContentEditorBox, ContentState, Section, Page } from '../Components/StoryParts';
 
 import ContentStateBuilder from 'wix-rich-content-common/dist/lib/ContentStateBuilder';
@@ -13,15 +11,17 @@ const { ORIGINAL, INLINE, SMALL, BEST_FIT, FULL_WIDTH } = Sizes;
 
 import EditorWrapper from '../Components/EditorWrapper';
 
-const contentStateObject = new ContentStateBuilder().addText('Initial Text');
+const contentStateObject = new ContentStateBuilder();
 import { wixPalettes } from '../palettesExample';
 import { createImagePlugin } from 'wix-rich-content-plugin-image';
+import { createDividerPlugin } from 'wix-rich-content-plugin-divider';
 
-const PLUGINS = [createImagePlugin];
+const PLUGINS = [createImagePlugin, createDividerPlugin];
 
 export default () => {
   const [contentState, setContentState] = useState(contentStateObject.getContent());
   const [textInput, setTextInput] = useState('');
+  const [dividerType, setDividerType] = useState('single');
 
   const updateContent = () => {
     setContentState(contentStateObject.getContent());
@@ -48,17 +48,44 @@ export default () => {
     contentStateObject.addImage(imageSrc, imageConfig);
     updateContent();
   };
+
+  const addDivider = () => {
+    contentStateObject.appendBlock(ContentStateBuilder.createDividerBlock(dividerType));
+    updateContent();
+  };
   const editorState = createWithContent(convertFromRaw(contentState));
 
   return (
     <Page title="Content Builder">
-      <Section>
-        <Input onChange={e => setTextInput(e.target.value)} value={textInput} />
-        <button onClick={() => addText(textInput)}>Add Text</button>
-
-        <button onClick={() => addImage()}>Add Image</button>
-      </Section>
-      <Section title={'RCE'}>
+      <Section type={Section.Types.COMPARISON}>
+        <Container fluid>
+          <Row>
+            <FormField label="Text">
+              <Input onChange={e => setTextInput(e.target.value)} value={textInput} />
+            </FormField>
+            <Button onClick={() => addText(textInput)}>Add</Button>
+          </Row>
+          <Row>
+            <FormField label="Divider">
+              <Dropdown
+                placeholder="Select an option"
+                onSelect={({ value }) => setDividerType(value)}
+                options={[
+                  { id: 0, value: 'single' },
+                  { id: 1, value: 'double' },
+                  { id: 2, value: 'dashed' },
+                  { id: 3, value: 'dotted' },
+                ]}
+              />
+              <Button onClick={() => addDivider()}>Add</Button>
+            </FormField>
+          </Row>
+          <Row>
+            <FormField label="Image">
+              <Button onClick={() => addImage()}>Add</Button>
+            </FormField>
+          </Row>
+        </Container>
         <RichContentEditorBox preset="blog-preset">
           <RichContentEditor editorState={editorState} plugins={PLUGINS} />
         </RichContentEditorBox>

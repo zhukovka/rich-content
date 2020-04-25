@@ -6,6 +6,14 @@ const BlockType = {
 };
 
 const IMAGE_PLUGIN = 'wix-draft-plugin-image';
+const DIVIDER_PLUGIN = 'wix-draft-plugin-divider';
+
+const DividerTypes = {
+  SINGLE: 'single',
+  DOUBLE: 'double',
+  DASHED: 'dashed',
+  DOTTED: 'dotted',
+};
 class ContentStateBuilder {
   static Alignments = {
     CENTER: 'center',
@@ -20,6 +28,8 @@ class ContentStateBuilder {
     BEST_FIT: 'content',
     FULL_WIDTH: 'fullWidth',
   };
+
+  static DividerTypes = DividerTypes;
 
   constructor() {
     this.blocks = [];
@@ -36,8 +46,15 @@ class ContentStateBuilder {
     };
   }
 
-  createImageBlock(src, config, metadata) {
+  createImageBlock(src, config = {}, metadata) {
     const { filename, height, width } = src;
+    const {
+      alignment = ContentStateBuilder.Alignments.CENTER,
+      size = ContentStateBuilder.Sizes.BEST_FIT,
+      showDescription = true,
+      showTitle = true,
+    } = config;
+
     return {
       type: BlockType.ATOMIC,
       entityData: {
@@ -45,7 +62,10 @@ class ContentStateBuilder {
         mutability: 'IMMUTABLE',
         data: {
           config: {
-            ...config,
+            alignment,
+            size,
+            showDescription,
+            showTitle,
           },
           src: {
             file_name: filename, //eslint-disable-line
@@ -59,8 +79,26 @@ class ContentStateBuilder {
     };
   }
 
+  static createDividerBlock(type = DividerTypes.SINGLE) {
+    return {
+      type: BlockType.ATOMIC,
+      entityData: {
+        type: DIVIDER_PLUGIN,
+        mutability: 'IMMUTABLE',
+        data: {
+          type,
+          config: {
+            size: 'large',
+            alignment: 'center',
+            textWrap: 'nowrap',
+          },
+        },
+      },
+    };
+  }
   appendBlock(block) {
     this.blocks.push(block);
+    return this;
   }
 
   addText(text) {
@@ -87,7 +125,7 @@ class ContentStateBuilder {
               {
                 offset: 0,
                 length: 1,
-                key: 0,
+                key: entityIdx,
               },
             ]
           : entityRanges;
