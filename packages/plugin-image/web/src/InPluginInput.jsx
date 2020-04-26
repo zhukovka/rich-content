@@ -43,6 +43,8 @@ class InPluginInput extends Component {
           onBlur={this.handleBlur}
           placeholder="image title"
           plugins={PLUGINS}
+          anchorTarget={'_blank'}
+          relValue={'noopener'}
         />
       </div>
     );
