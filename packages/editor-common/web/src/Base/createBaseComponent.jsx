@@ -42,6 +42,7 @@ const createBaseComponent = ({
   getInPluginEditingMode,
   anchorTarget,
   relValue,
+  innerRCE,
 }) => {
   class WrappedComponent extends Component {
     static displayName = createHocName('BaseComponent', PluginComponent);
@@ -293,6 +294,7 @@ const createBaseComponent = ({
           setInPluginEditingMode={setInPluginEditingMode}
           getInPluginEditingMode={getInPluginEditingMode}
           setComponentUrl={this.setComponentUrl}
+          innerRCE={innerRCE}
         />
       );
 

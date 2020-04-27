@@ -38,6 +38,7 @@ import draftStyles from '../../statics/styles/draft.rtlignore.scss';
 import 'wix-rich-content-common/dist/statics/styles/draftDefault.rtlignore.scss';
 import { convertFromHTML as draftConvertFromHtml } from 'draft-convert';
 import { pastedContentConfig, clearUnnecessaryInlineStyles } from './utils/pastedContentUtil';
+import { convertToRaw } from '../lib/editorStateConversion';
 
 class RichContentEditor extends Component {
   static getDerivedStateFromError(error) {
@@ -49,6 +50,8 @@ class RichContentEditor extends Component {
     this.state = {
       editorState: this.getInitialEditorState(),
       editorBounds: {},
+      innerRCE: false,
+      innerEditorState: null,
     };
     this.refId = Math.floor(Math.random() * 9999);
 
@@ -128,6 +131,7 @@ class RichContentEditor extends Component {
       siteDomain,
       setInPluginEditingMode: this.setInPluginEditingMode,
       getInPluginEditingMode: this.getInPluginEditingMode,
+      innerRCE: this.innerRCE,
     };
   };
 
@@ -413,6 +417,26 @@ class RichContentEditor extends Component {
     );
   };
 
+  onInnerEditorChange = innerEditorState => this.setState({ innerEditorState });
+
+  renderInnerEditor = () => {
+    const { innerEditorState } = this.state;
+    const { editorState, onChange, ...rest } = this.props;
+    return (
+      <RichContentEditor
+        editorState={innerEditorState}
+        onChange={this.onInnerEditorChange}
+        plugins={this.plugins}
+        {...rest}
+      />
+    );
+  };
+
+  innerRCE = (innerContentState, func) => {
+    const innerEditorState = EditorState.createWithContent(convertFromRaw(innerContentState));
+    this.setState({ innerRCE: true, innerEditorState, saveInnerRCE: func });
+  };
+
   renderAccessibilityListener = () => (
     <AccessibilityListener isMobile={this.contextualData.isMobile} />
   );
@@ -471,6 +495,43 @@ class RichContentEditor extends Component {
                 {this.renderToolbars()}
                 {this.renderInlineModals()}
                 {this.renderTooltipHost()}
+                {this.state.innerRCE && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      border: '2px solid orange',
+                      // height: '300px',
+                      width: '450px',
+                      backgroundColor: 'white',
+                      // overflow: 'auto',
+                      zIndex: 6,
+                    }}
+                  >
+                    <button
+                      style={{ position: 'absolute', right: 0, zIndex: 1 }}
+                      onClick={() => {
+                        this.setState({ innerRCE: false, innerEditorState: null });
+                        const newContentState = convertToRaw(
+                          this.state.innerEditorState.getCurrentContent()
+                        );
+                        this.state.saveInnerRCE(newContentState);
+                      }}
+                    >
+                      save
+                    </button>
+                    <button
+                      style={{ position: 'absolute', right: '40px', zIndex: 1 }}
+                      onClick={() => {
+                        this.setState({ innerRCE: false, innerEditorState: null });
+                      }}
+                    >
+                      cancel
+                    </button>
+                    <div className={classNames(styles.editor, theme.editor)}>
+                      {this.renderInnerEditor()}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}

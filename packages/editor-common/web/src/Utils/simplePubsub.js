@@ -29,6 +29,9 @@ export const simplePubsub = initialState => {
   const update = (key, newData, blockKey) => {
     const data = get(key);
     const newItem = merge({}, data, newData);
+    if (newData.metadata && newData.metadata.caption) {
+      newItem.metadata.caption = newData.metadata.caption;
+    }
     blockKey ? _setSingle(key, newItem, blockKey) : set(key, newItem);
   };
 

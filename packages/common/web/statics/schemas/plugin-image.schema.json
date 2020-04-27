@@ -113,7 +113,7 @@
           },
           "caption": {
             "$id": "/properties/metadata/properties/caption",
-            "type": "string",
+            "type": "object",
             "title": "Image caption",
             "examples": ["Wanted dead or alive"]
           }

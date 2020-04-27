@@ -159,6 +159,7 @@ class ImageComponent extends React.Component {
       getInPluginEditingMode,
       setInPluginEditingMode,
       setComponentUrl,
+      innerRCE,
     } = this.props;
 
     return (
@@ -181,6 +182,7 @@ class ImageComponent extends React.Component {
           onCaptionChange={this.handleCaptionChange}
           setFocusToBlock={blockProps.setFocusToBlock}
           setComponentUrl={setComponentUrl}
+          innerRCE={innerRCE}
         />
 
         {this.state.isLoading && this.renderLoader()}
@@ -206,6 +208,7 @@ ImageComponent.propTypes = {
   setInPluginEditingMode: PropTypes.func,
   isMobile: PropTypes.bool.isRequired,
   setComponentUrl: PropTypes.func,
+  innerRCE: PropTypes.func,
 };
 
 export { ImageComponent as Component, DEFAULTS };
