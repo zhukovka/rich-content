@@ -19,6 +19,10 @@
 </details>
 <hr/>
 
+## 7.4.2 (Apr 28, 2020)
+- `image` `video` 
+  - [9dc32d29](https://github.com/wix-incubator/rich-content/commit/9dc32d29) default error message if error=true
+
 ## 7.4.1 (Apr 28, 2020)
 ### :bug: Bug Fix
 - `video`
