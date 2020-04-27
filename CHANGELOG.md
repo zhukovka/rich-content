@@ -24,6 +24,8 @@
   - [#957](https://github.com/wix-incubator/rich-content/pull/957) fix: command+ctrl+j creates code block on mac
 - `map`
   - [#959](https://github.com/wix-incubator/rich-content/pull/959) modal settings fixed (convention) & made compatible with wrapper palette colors
+- `emoji`
+  - [#973](https://github.com/wix-incubator/rich-content/pull/973) was using old editor and editor-common dependencies
 ### :house: Internal
 - `editor`
   - [#936](https://github.com/wix-incubator/rich-content/pull/936) arrangement of inline toolbar buttons
