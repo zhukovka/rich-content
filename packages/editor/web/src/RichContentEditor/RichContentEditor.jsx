@@ -70,8 +70,12 @@ class RichContentEditor extends Component {
     this.initPlugins();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     this.handleBlockFocus(this.state.editorState);
+    if (prevState.innerRCE === false && this.state.innerRCE) {
+      const { setEditorToolbars } = this.props;
+      setEditorToolbars(this.innerEditor);
+    }
   }
 
   handleBlockFocus(editorState) {
@@ -423,7 +427,7 @@ class RichContentEditor extends Component {
 
   renderInnerEditor = () => {
     const { innerRCEEditorState, innerRCEPlugins } = this.state;
-    const { editorState, onChange, plugins, ...rest } = this.props;
+    const { isMobile, editorState, onChange, plugins, ...rest } = this.props;
     const { theme } = this.contextualData;
     return (
       <div
@@ -431,7 +435,7 @@ class RichContentEditor extends Component {
           position: 'absolute',
           border: '2px solid orange',
           // height: '300px',
-          width: '450px',
+          width: isMobile ? '100%' : '450px',
           backgroundColor: 'white',
           // overflow: 'auto',
           zIndex: 6,
@@ -450,6 +454,7 @@ class RichContentEditor extends Component {
               innerRCEcb: null,
               innerRCEPlugins: [],
             });
+            this.props.setEditorToolbars();
           }}
         >
           save
@@ -463,15 +468,18 @@ class RichContentEditor extends Component {
               innerRCEcb: null,
               innerRCEPlugins: [],
             });
+            this.props.setEditorToolbars();
           }}
         >
           cancel
         </button>
         <div className={classNames(styles.editor, theme.editor)}>
           <RichContentEditor
+            ref={innerEditor => (this.innerEditor = innerEditor)}
             editorState={innerRCEEditorState}
             onChange={this.onInnerEditorChange}
             plugins={innerRCEPlugins}
+            isMobile={isMobile}
             {...rest}
           />
         </div>
@@ -602,6 +610,7 @@ RichContentEditor.propTypes = {
   initialIntent: PropTypes.string,
   siteDomain: PropTypes.string,
   onError: PropTypes.func,
+  setEditorToolbars: PropTypes.func,
 };
 
 RichContentEditor.defaultProps = {

@@ -20,8 +20,9 @@ import { RichContentViewer } from 'wix-rich-content-viewer';
 import * as Plugins from './ViewerPlugins';
 import { createTextColorPlugin } from 'wix-rich-content-plugin-text-color';
 import { createLineSpacingPlugin } from 'wix-rich-content-plugin-line-spacing';
+import { createDividerPlugin } from 'wix-rich-content-plugin-divider';
 
-const PLUGINS = [createTextColorPlugin, createLineSpacingPlugin];
+const PLUGINS = [createTextColorPlugin, createLineSpacingPlugin, createDividerPlugin];
 
 class ImageViewer extends React.Component {
   constructor(props) {
