@@ -62,7 +62,7 @@ const VideoPluginStory = () => (
     <Section title="onFilesChange Error (with UI)">
       <div>With Error Message:</div>
       <SyntaxHighlighter
-        code={`onFilesChange = (files, updateEntity) => updateEntity({ data: [], error: { msg: 'file too large' } });`}
+        code={`handleFileUpload = (files, updateEntity) => updateEntity({ data: [], error: { msg: 'file too large' } });`}
       />
       <RichContentEditorBox>
         <VideoEditor editorState={createEmpty()} handleFileUpload={handleFileUpload.error} />

@@ -36,7 +36,7 @@ const onFilesChangeMap = {
   },
   error: (files, updateEntity) => {
     setTimeout(() => {
-      updateEntity({ error: { msg: 'file too large' } });
+      updateEntity({ error: true });
     }, 2000);
   },
 };
