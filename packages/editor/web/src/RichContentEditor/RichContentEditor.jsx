@@ -51,7 +51,9 @@ class RichContentEditor extends Component {
       editorState: this.getInitialEditorState(),
       editorBounds: {},
       innerRCE: false,
-      innerEditorState: null,
+      innerRCEEditorState: null,
+      innerRCEcb: null,
+      innerRCEPlugins: [],
     };
     this.refId = Math.floor(Math.random() * 9999);
 
@@ -417,24 +419,74 @@ class RichContentEditor extends Component {
     );
   };
 
-  onInnerEditorChange = innerEditorState => this.setState({ innerEditorState });
+  onInnerEditorChange = innerRCEEditorState => this.setState({ innerRCEEditorState });
 
   renderInnerEditor = () => {
-    const { innerEditorState } = this.state;
-    const { editorState, onChange, ...rest } = this.props;
+    const { innerRCEEditorState, innerRCEPlugins } = this.state;
+    const { editorState, onChange, plugins, ...rest } = this.props;
+    const { theme } = this.contextualData;
     return (
-      <RichContentEditor
-        editorState={innerEditorState}
-        onChange={this.onInnerEditorChange}
-        plugins={this.plugins}
-        {...rest}
-      />
+      <div
+        style={{
+          position: 'absolute',
+          border: '2px solid orange',
+          // height: '300px',
+          width: '450px',
+          backgroundColor: 'white',
+          // overflow: 'auto',
+          zIndex: 6,
+        }}
+      >
+        <button
+          style={{ position: 'absolute', right: 0, zIndex: 1 }}
+          onClick={() => {
+            const newContentState = convertToRaw(
+              this.state.innerRCEEditorState.getCurrentContent()
+            );
+            this.state.innerRCEcb(newContentState);
+            this.setState({
+              innerRCE: false,
+              innerRCEEditorState: null,
+              innerRCEcb: null,
+              innerRCEPlugins: [],
+            });
+          }}
+        >
+          save
+        </button>
+        <button
+          style={{ position: 'absolute', right: '40px', zIndex: 1 }}
+          onClick={() => {
+            this.setState({
+              innerRCE: false,
+              innerRCEEditorState: null,
+              innerRCEcb: null,
+              innerRCEPlugins: [],
+            });
+          }}
+        >
+          cancel
+        </button>
+        <div className={classNames(styles.editor, theme.editor)}>
+          <RichContentEditor
+            editorState={innerRCEEditorState}
+            onChange={this.onInnerEditorChange}
+            plugins={innerRCEPlugins}
+            {...rest}
+          />
+        </div>
+      </div>
     );
   };
 
-  innerRCE = (innerContentState, func) => {
-    const innerEditorState = EditorState.createWithContent(convertFromRaw(innerContentState));
-    this.setState({ innerRCE: true, innerEditorState, saveInnerRCE: func });
+  innerRCE = (innerContentState, callback, plugins) => {
+    const innerRCEEditorState = EditorState.createWithContent(convertFromRaw(innerContentState));
+    this.setState({
+      innerRCE: true,
+      innerRCEEditorState,
+      innerRCEcb: callback,
+      innerRCEPlugins: plugins,
+    });
   };
 
   renderAccessibilityListener = () => (
@@ -495,43 +547,7 @@ class RichContentEditor extends Component {
                 {this.renderToolbars()}
                 {this.renderInlineModals()}
                 {this.renderTooltipHost()}
-                {this.state.innerRCE && (
-                  <div
-                    style={{
-                      position: 'absolute',
-                      border: '2px solid orange',
-                      // height: '300px',
-                      width: '450px',
-                      backgroundColor: 'white',
-                      // overflow: 'auto',
-                      zIndex: 6,
-                    }}
-                  >
-                    <button
-                      style={{ position: 'absolute', right: 0, zIndex: 1 }}
-                      onClick={() => {
-                        this.setState({ innerRCE: false, innerEditorState: null });
-                        const newContentState = convertToRaw(
-                          this.state.innerEditorState.getCurrentContent()
-                        );
-                        this.state.saveInnerRCE(newContentState);
-                      }}
-                    >
-                      save
-                    </button>
-                    <button
-                      style={{ position: 'absolute', right: '40px', zIndex: 1 }}
-                      onClick={() => {
-                        this.setState({ innerRCE: false, innerEditorState: null });
-                      }}
-                    >
-                      cancel
-                    </button>
-                    <div className={classNames(styles.editor, theme.editor)}>
-                      {this.renderInnerEditor()}
-                    </div>
-                  </div>
-                )}
+                {this.state.innerRCE && this.renderInnerEditor()}
               </div>
             </div>
           )}

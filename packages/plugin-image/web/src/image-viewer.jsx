@@ -18,6 +18,10 @@ import ExpandIcon from './icons/expand.svg';
 // import InPluginInput from './InPluginInput';
 import { RichContentViewer } from 'wix-rich-content-viewer';
 import * as Plugins from './ViewerPlugins';
+import { createTextColorPlugin } from 'wix-rich-content-plugin-text-color';
+import { createLineSpacingPlugin } from 'wix-rich-content-plugin-line-spacing';
+
+const PLUGINS = [createTextColorPlugin, createLineSpacingPlugin];
 
 class ImageViewer extends React.Component {
   constructor(props) {
@@ -169,17 +173,12 @@ class ImageViewer extends React.Component {
   renderCaption(caption) {
     const { onCaptionChange, setFocusToBlock, setInPluginEditingMode, innerRCE } = this.props;
     return onCaptionChange ? (
-      // <InPluginInput
-      //   setInPluginEditingMode={setInPluginEditingMode}
-      //   className={this.styles.imageCaption}
-      //   value={caption}
-      //   onChange={onCaptionChange}
-      //   setFocusToBlock={setFocusToBlock}
-      // />
       <>
         <div
           style={{ position: 'inherit', zIndex: 1, cursor: 'pointer' }}
-          onClick={() => innerRCE(caption, newContentState => onCaptionChange(newContentState))}
+          onClick={() =>
+            innerRCE(caption, newContentState => onCaptionChange(newContentState), PLUGINS)
+          }
         >
           <RichContentViewer
             initialState={caption}
@@ -189,15 +188,8 @@ class ImageViewer extends React.Component {
             config={Plugins.getConfig()}
           />
         </div>
-        {/* <button
-          style={{ position: 'inherit', zIndex: 1 }}
-          onClick={() => innerRCE(caption, newContentState => onCaptionChange(newContentState))}
-        >
-          innerRCE
-        </button> */}
       </>
     ) : (
-      // <span className={this.styles.imageCaption}>{caption}</span>
       <RichContentViewer
         initialState={caption}
         typeMappers={Plugins.typeMappers}
