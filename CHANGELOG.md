@@ -15,9 +15,14 @@
     Click to see more.
   </summary>
 
+
+</details>
+<hr/>
+
+## 7.4.0 (Apr 27, 2020)
 ### :rocket: New Feature
 - `button`
-  - [#953](https://github.com/wix-incubator/rich-content/pull/953) action button: by passing onClick callback, on click triggers it
+  - [#953](https://github.com/wix-incubator/rich-content/pull/953) action button - button with onClick callback
 - `image` `video`
   - [#972](https://github.com/wix-incubator/rich-content/pull/972) handle upload error - show message on block
 ### :bug: Bug Fix
@@ -36,8 +41,6 @@
   - [#966](https://github.com/wix-incubator/rich-content/pull/966) passing RCE/RCV to wrapper is no longer required
 - `preview`
   - [#962](https://github.com/wix-incubator/rich-content/pull/962) interactions improved; read-more displays html
-</details>
-<hr/>
 
 ## 7.3.5 (Apr 21, 2020)
 ### :bug: Bug Fix
