@@ -22,6 +22,8 @@
 - `editor`
   - [#951](https://github.com/wix-incubator/rich-content/pull/951) fix: tooltip opacity
   - [#957](https://github.com/wix-incubator/rich-content/pull/957) fix: command+ctrl+j creates code block on mac
+- `map`
+  - [#959](https://github.com/wix-incubator/rich-content/pull/959) modal settings fixed (convention) & made compatible with wrapper palette colors
 - `code-block`
   - [#569](https://github.com/wix-incubator/rich-content/pull/569) add code block style, more information in: https://github.com/wix-incubator/rich-content/blob/master/docs/PluginCustomization.md
 ### :house: Internal
@@ -29,7 +31,8 @@
   - [#936](https://github.com/wix-incubator/rich-content/pull/936) arrangement of inline toolbar buttons
 - `wrapper`
   - [#956](https://github.com/wix-incubator/rich-content/pull/956) bi getData will now contain `forPublish` argument
-
+- `preview`
+  - [#962](https://github.com/wix-incubator/rich-content/pull/962) interactions improved; read-more displays html
 </details>
 <hr/>
 
@@ -76,7 +79,7 @@
 - `vertical-embed`
   - [#728](https://github.com/wix-incubator/rich-content/pull/728) Vertical Embed Plugin - alpha verison
 - `wrapper`
-  - [#935](https://github.com/wix-incubator/rich-content/pull/935) back-office theme will appear as default theme for now  
+  - [#935](https://github.com/wix-incubator/rich-content/pull/935) back-office theme will appear as default theme for now
 
 ## 7.3.2 (Apr 16, 2020)
 ### :bug: Bug Fix
