@@ -17,6 +17,7 @@ import styles from '../statics/styles/image-viewer.scss';
 import ExpandIcon from './icons/expand.svg';
 // import InPluginInput from './InPluginInput';
 import { RichContentViewer } from 'wix-rich-content-viewer';
+import * as Plugins from './ViewerPlugins';
 
 class ImageViewer extends React.Component {
   constructor(props) {
@@ -180,7 +181,13 @@ class ImageViewer extends React.Component {
           style={{ position: 'inherit', zIndex: 1, cursor: 'pointer' }}
           onClick={() => innerRCE(caption, newContentState => onCaptionChange(newContentState))}
         >
-          <RichContentViewer initialState={caption} />
+          <RichContentViewer
+            initialState={caption}
+            typeMappers={Plugins.typeMappers}
+            inlineStyleMappers={Plugins.getInlineStyleMappers(caption)}
+            decorators={Plugins.decorators}
+            config={Plugins.getConfig()}
+          />
         </div>
         {/* <button
           style={{ position: 'inherit', zIndex: 1 }}
@@ -191,7 +198,13 @@ class ImageViewer extends React.Component {
       </>
     ) : (
       // <span className={this.styles.imageCaption}>{caption}</span>
-      <RichContentViewer initialState={caption} />
+      <RichContentViewer
+        initialState={caption}
+        typeMappers={Plugins.typeMappers}
+        inlineStyleMappers={Plugins.getInlineStyleMappers(caption)}
+        decorators={Plugins.decorators}
+        config={Plugins.getConfig()}
+      />
     );
   }
 
