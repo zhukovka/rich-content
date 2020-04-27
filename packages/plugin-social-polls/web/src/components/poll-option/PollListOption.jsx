@@ -110,6 +110,7 @@ export class PollListOption extends PollOptionBase {
             style={style.input}
             className={styles.input}
             value={option.title}
+            disabled={option.count}
             placeholder={t('Poll_Editor_Answer_Placeholder')}
             onChange={this.handleTitleChange}
             endAdornment={

@@ -8,57 +8,15 @@ export const GradientIcon = props => (
         <g transform="translate(143.000000, 242.000000)">
           <g>
             <g>
+              <rect stroke="#333333" x="0.5" y="0.5" width="39" height="39" rx="1" />
               <g>
-                <rect stroke="#333333" x="0.5" y="0.5" width="39" height="39" rx="1" />
-                <line x1="8.5" y1="1" x2="8.5" y2="39" stroke="#333333" strokeLinecap="square" />
-                <line
-                  x1="15.5"
-                  y1="0.433333333"
-                  x2="15.5"
-                  y2="38.5666667"
-                  stroke="#333333"
-                  strokeLinecap="square"
-                />
-                <line
-                  x1="20.5"
-                  y1="0.433333333"
-                  x2="20.5"
-                  y2="38.5666667"
-                  stroke="#333333"
-                  strokeLinecap="square"
-                />
-                <line
-                  x1="25.5"
-                  y1="0.433333333"
-                  x2="25.5"
-                  y2="38.5666667"
-                  stroke="#333333"
-                  strokeLinecap="square"
-                />
-                <line
-                  x1="29.5"
-                  y1="0.433333333"
-                  x2="29.5"
-                  y2="38.5666667"
-                  stroke="#333333"
-                  strokeLinecap="square"
-                />
-                <line
-                  x1="33.5"
-                  y1="0.433333333"
-                  x2="33.5"
-                  y2="38.5666667"
-                  stroke="#333333"
-                  strokeLinecap="square"
-                />
-                <line
-                  x1="36.5"
-                  y1="1.43333333"
-                  x2="36.5"
-                  y2="39.5666667"
-                  stroke="#333333"
-                  strokeLinecap="square"
-                />
+                <g transform="translate(0.726273, 1.000000)">
+                  <path
+                    stroke="#000000"
+                    strokeWidth="1"
+                    d="M38.7737269,-1.20727103 L-1.20694257,38.7810917 L38.7737269,38.7810917 L38.7737269,-1.20727103 Z"
+                  />
+                </g>
               </g>
             </g>
           </g>

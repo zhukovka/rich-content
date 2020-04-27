@@ -115,6 +115,7 @@ class TextFieldComponent extends React.PureComponent {
       children,
       startAdornment,
       maxLength,
+      disabled,
     } = this.props;
 
     const { value, placeholder, rows, syncing } = this.state;
@@ -146,6 +147,7 @@ class TextFieldComponent extends React.PureComponent {
       <div className={styles.root}>
         {startAdornment}
         <textarea
+          disabled={disabled}
           maxLength={maxLength}
           style={style}
           ref={this.$el}
@@ -183,11 +185,13 @@ export const TextField = withRCEHelpers(TextFieldComponent);
 
 TextFieldComponent.defaultProps = {
   maxLength: 500,
+  disabled: false,
 };
 
 TextFieldComponent.propTypes = {
   maxLength: PropTypes.number,
   value: PropTypes.string,
+  disabled: PropTypes.string,
   className: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired,

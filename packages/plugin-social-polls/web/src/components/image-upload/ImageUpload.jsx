@@ -21,6 +21,7 @@ class ImageUploadComponent extends PureComponent {
 
   static defaultProps = {
     imagesPool: [],
+    disabled: false,
   };
 
   state = {

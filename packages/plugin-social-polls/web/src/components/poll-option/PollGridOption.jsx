@@ -57,6 +57,7 @@ export class PollGridOption extends PollOptionBase {
         )}
         <div className={styles.title}>
           <TextField
+            disabled={option.count}
             maxLength={60}
             style={style.input}
             className={cls(styles.input, styles.centered)}

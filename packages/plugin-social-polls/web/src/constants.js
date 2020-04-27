@@ -24,14 +24,14 @@ export const BACKGROUND_PRESETS = {
     '#8C0F7A',
   ],
   [BACKGROUND_TYPE.IMAGE]: [
-    'https://static.wixstatic.com/media/4f5c904bb9f4405bbbd900e8e43fb96d.jpg',
-    'https://static.wixstatic.com/media/ab97ccc955d74873998c0cc57a71859a.jpg',
-    'https://static.wixstatic.com/media/aa231f4eb7434370b337d1f66d1492a3.jpg',
-    'https://static.wixstatic.com/media/a952ed370d8e44ee9e01073bd746dc51.jpg',
-    'https://static.wixstatic.com/media/11062b_9aa7994fbb42451d869b8fa97538a695~mv2_d_3000_1800_s_2.jpg',
-    'https://static.wixstatic.com/media/40b04c9917f54b079fee33890219e1b6.jpg',
-    'https://static.wixstatic.com/media/8b1e14f8085c4644bf8afcb0c7cf9ffa.jpg',
-    'https://static.wixstatic.com/media/e04c5fcf6b684fd18511a17e74b1bde1.jpg',
+    'https://images.unsplash.com/photo-1500829243541-74b677fecc30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3310&q=80',
+    'https://images.unsplash.com/photo-1536431311719-398b6704d4cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3334&q=80',
+    'https://images.unsplash.com/photo-1515462277126-2dd0c162007a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3335&q=80',
+    'https://images.unsplash.com/photo-1534293507278-19b2539423f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
+    'https://images.unsplash.com/photo-1520943241034-7866c2b35cdf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80',
+    'https://images.unsplash.com/photo-1446149330071-2f5996cb1b5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=933&q=80',
+    'https://images.unsplash.com/photo-1507692744406-b171ab8feabd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1324&q=80',
+    'https://images.unsplash.com/photo-1492724724894-7464c27d0ceb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjk0Mzg0fQ&auto=format&fit=crop&w=3367&q=80',
   ],
   [BACKGROUND_TYPE.GRADIENT]: [
     {

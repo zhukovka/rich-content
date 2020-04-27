@@ -23,11 +23,11 @@ export class VotedUsersModalComponent extends Component {
     const { members, cursor } = this.state;
 
     try {
-      const { memberIds, moreItems } = await this.props.fetchVoters({ cursor, limit: 10 });
+      const { voters, moreItems } = await this.props.fetchVoters({ cursor, limit: 10 });
 
       this.setState({
-        members: members.concat(memberIds.map(getSiteMember)),
-        cursor: memberIds[memberIds.length - 1],
+        members: members.concat(voters.map(member => member.memberId).map(getSiteMember)),
+        cursor: voters[voters.length - 1].memberId,
         moreItems,
       });
     } catch (error) {}
@@ -70,6 +70,13 @@ export class VotedUsersModalComponent extends Component {
             ))}
           </ul>
         </InfiniteScroll>
+        {option.anonymousCount ? (
+          <p className={styles.anonymous_counter}>
+            {t('Poll_Viewer_VoteCount_Modal_Voters_Anonymous', {
+              anonNumber: option.anonymousCount,
+            })}
+          </p>
+        ) : null}
       </>
     );
   }

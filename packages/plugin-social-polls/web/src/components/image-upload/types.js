@@ -6,4 +6,5 @@ export const ImageUploadPropTypes = {
   className: PropTypes.string,
   imagesPool: PropTypes.array,
   small: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
