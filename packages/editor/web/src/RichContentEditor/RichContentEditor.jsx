@@ -443,33 +443,13 @@ class RichContentEditor extends Component {
       >
         <button
           style={{ position: 'absolute', right: 0, zIndex: 1 }}
-          onClick={() => {
-            const newContentState = convertToRaw(
-              this.state.innerRCEEditorState.getCurrentContent()
-            );
-            this.state.innerRCEcb(newContentState);
-            this.setState({
-              innerRCE: false,
-              innerRCEEditorState: null,
-              innerRCEcb: null,
-              innerRCEPlugins: [],
-            });
-            this.props.setEditorToolbars();
-          }}
+          onClick={() => this.closeInnerRCE(true)}
         >
           save
         </button>
         <button
           style={{ position: 'absolute', right: '40px', zIndex: 1 }}
-          onClick={() => {
-            this.setState({
-              innerRCE: false,
-              innerRCEEditorState: null,
-              innerRCEcb: null,
-              innerRCEPlugins: [],
-            });
-            this.props.setEditorToolbars();
-          }}
+          onClick={() => this.closeInnerRCE()}
         >
           cancel
         </button>
@@ -495,6 +475,22 @@ class RichContentEditor extends Component {
       innerRCEcb: callback,
       innerRCEPlugins: plugins,
     });
+  };
+
+  closeInnerRCE = closeAndSave => {
+    const { setEditorToolbars } = this.props;
+    if (closeAndSave) {
+      const { innerRCEEditorState, innerRCEcb } = this.state;
+      const newContentState = convertToRaw(innerRCEEditorState.getCurrentContent());
+      innerRCEcb(newContentState);
+    }
+    this.setState({
+      innerRCE: false,
+      innerRCEEditorState: null,
+      innerRCEcb: null,
+      innerRCEPlugins: [],
+    });
+    setEditorToolbars();
   };
 
   renderAccessibilityListener = () => (
