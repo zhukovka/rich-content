@@ -124,9 +124,13 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.remove {
-  cursor: pointer;
+.adornment_icon {
   fill: currentColor;
+}
+
+.remove {
+  @extend .adornment_icon;
+  cursor: pointer;
 }
 
 .overlay {

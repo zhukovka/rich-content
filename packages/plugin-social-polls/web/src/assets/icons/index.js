@@ -5,6 +5,7 @@ export * from './CheckIcon';
 export * from './AddIcon';
 export * from './LoaderIcon';
 export * from './ReplaceIcon';
+export * from './NonEditableIcon';
 
 export * from './ListPollIcon';
 export * from './GridPollIcon';

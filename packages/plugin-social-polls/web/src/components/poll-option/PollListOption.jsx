@@ -4,7 +4,9 @@
 import React from 'react';
 import cls from 'classnames';
 
-import { RemoveIcon, CheckIcon, LoaderIcon } from '../../assets/icons';
+import { Tooltip } from 'wix-rich-content-editor-common';
+
+import { RemoveIcon, NonEditableIcon, CheckIcon, LoaderIcon } from '../../assets/icons';
 import { TextField } from '../text-field';
 import { ImageUpload } from '../image-upload';
 import { OPTION_IMAGES_POOL } from '../../constants';
@@ -114,7 +116,16 @@ export class PollListOption extends PollOptionBase {
             placeholder={t('Poll_Editor_Answer_Placeholder')}
             onChange={this.handleTitleChange}
             endAdornment={
-              removeEnabled && <RemoveIcon onClick={this.handleRemove} className={styles.remove} />
+              <>
+                {option.count ? (
+                  <Tooltip content="You can’t edit answers that have votes">
+                    <NonEditableIcon className={styles.adornment_icon} />
+                  </Tooltip>
+                ) : null}
+                {removeEnabled && (
+                  <RemoveIcon onClick={this.handleRemove} className={styles.remove} />
+                )}
+              </>
             }
             startAdornment={
               <ImageUpload
