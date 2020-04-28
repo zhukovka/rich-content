@@ -35,6 +35,8 @@
   - [#973](https://github.com/wix-incubator/rich-content/pull/973) was using old editor and editor-common dependencies
 - `video`
   - [#974](https://github.com/wix-incubator/rich-content/pull/960) video file upload not working when block isn't selected
+- `gallery`
+  - [#963](https://github.com/wix-incubator/rich-content/pull/963) fix:Gallery doesn't show more then 3 images on load 
 ### :house: Internal
 - `editor`
   - [#936](https://github.com/wix-incubator/rich-content/pull/936) arrangement of inline toolbar buttons
