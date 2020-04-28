@@ -19,7 +19,7 @@
 </details>
 <hr/>
 
-## 7.4.4 (Apr 28, 2020)
+## 7.4.5 (Apr 28, 2020)
 ### :rocket: New Feature
 - `button`
   - [#953](https://github.com/wix-incubator/rich-content/pull/953) action button - button with onClick callback
