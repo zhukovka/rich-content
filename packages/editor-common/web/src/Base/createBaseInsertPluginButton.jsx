@@ -139,13 +139,16 @@ export default ({
       }
     };
 
-    preventButtonGettingFocus = event => event.preventDefault();
+    preventButtonGettingFocus = event => {
+      if (button.name !== 'GIF') {
+        event.preventDefault();
+      }
+    };
 
     renderButton = () => {
       const { styles } = this;
       const { showName, tabIndex, setEditorState } = this.props;
       const { name, Icon, wrappingComponent } = button;
-
       const WrappingComponent = wrappingComponent || 'button';
 
       let buttonCompProps = {};
@@ -196,11 +199,16 @@ export default ({
           modalStyles,
           theme: this.props.theme,
           componentData: button.componentData,
-          onConfirm: this.addBlock,
+          onConfirm: obj => {
+            const data = this.addBlock(obj);
+            this.blockKey = data.newBlock;
+            return data;
+          },
           pubsub,
           helpers,
           t,
           isMobile,
+          blockKey: this.blockKey,
         });
       }
     };

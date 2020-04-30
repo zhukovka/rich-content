@@ -141,17 +141,6 @@ export const editorPluginsMap = {
   all: editorPlugins,
 };
 
-const themeColors = {
-  color1: '#ffffff',
-  color2: '#303030',
-  color3: '#3a54b4',
-  color4: '#bfad80',
-  color5: '#bf695c',
-  color6: '#f7f7f7',
-  color7: '#000000',
-  color8: '#9a87ce',
-};
-
 const buttonDefaultPalette = ['#FEFDFD', '#D5D4D4', '#ABCAFF', '#81B0FF', '#0261FF', '#0141AA'];
 let userButtonTextColors = [...buttonDefaultPalette];
 let userButtonBackgroundColors = [...buttonDefaultPalette];
@@ -218,7 +207,6 @@ const getLinkPanelDropDownConfig = () => {
 let userColors = [];
 
 const uiSettings = {
-  themeColors,
   linkPanel: {
     blankTargetToggleVisibilityFn: () => true,
     nofollowRelToggleVisibilityFn: () => true,
@@ -249,7 +237,6 @@ const videoHandlers = {
     const videoToUpload = videoWithRelativeUrl;
     setTimeout(() => {
       updateEntity({ data: videoToUpload });
-      //updateEntity({ error: { msg: 'Upload Failed' } });
       console.log('consumer uploaded ', videoToUpload);
     }, 500);
   },
@@ -274,10 +261,9 @@ const videoHandlers = {
     // If relative URL is provided, a function 'getVideoUrl' will be invoked to form a full URL.
     const videoToUpload = videoWithRelativeUrl;
     setTimeout(() => {
-      updateEntity({ data: videoToUpload });
-      //updateEntity({ error: { msg: 'Upload Failed' } });
+      updateEntity({ data: videoToUpload /*, error: { msg: 'upload failed' }*/ });
       console.log('consumer uploaded ', videoToUpload);
-    }, 1200000);
+    }, 2000);
   },
 };
 
@@ -286,7 +272,8 @@ const { event, booking, product } = verticalEmbedProviders;
 const { Instagram, Twitter, YouTube, TikTok } = LinkPreviewProviders;
 const config = {
   [LINK_PREVIEW_TYPE]: {
-    enableEmbed: true,
+    enableEmbed: true, // [Twitter, YouTube]
+    enableLinkPreview: true,
     fetchData: mockFetchUrlPreviewData(),
     exposeEmbedButtons: [Instagram, Twitter, YouTube, TikTok],
   },
@@ -563,6 +550,8 @@ const config = {
     //     InsertPluginButtonIcon: MyCustomIcon,
     //   },
     // },
+
+    // onClick: true,
     palette: ['#FEFDFD', '#D5D4D4', '#ABCAFF', '#81B0FF', '#0261FF', '#0141AA'],
     selectionBackgroundColor: 'fuchsia',
     selectionBorderColor: '#FFF',

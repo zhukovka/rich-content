@@ -29,10 +29,10 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey, dataHookTextWra
       };
 
       const theme = props.theme || {};
+      /* eslint-disable @typescript-eslint/camelcase, camelcase*/
       this.theme = {
         ...theme,
         buttonStyles: {
-          //eslint-disable-next-line camelcase
           inlineToolbarButton_wrapper: classNames(
             styles.inlineToolbarDropdownButton_wrapper,
             theme && theme.inlineToolbarDropdownButton_wrapper
@@ -41,7 +41,6 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey, dataHookTextWra
             styles.inlineToolbarDropdownButton,
             theme && theme.inlineToolbarDropdownButton
           ),
-          //eslint-disable-next-line camelcase
           inlineToolbarButton_icon: classNames(
             styles.inlineToolbarDropdownButton_icon,
             theme && theme.inlineToolbarDropdownButton_icon
