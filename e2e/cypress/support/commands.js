@@ -19,20 +19,27 @@ const resizeForDesktop = () => cy.viewport('macbook-15');
 const resizeForMobile = () => cy.viewport('iphone-6');
 
 const buildQuery = params => {
-  const parameters = Object.keys(params).filter(param => params[param]);
+  const parameters = [];
+  Object.entries(params).forEach(([key, value]) => {
+    if (value) {
+      const res = value === true ? key : `${key}=${value}`;
+      parameters.push(res);
+    }
+  });
   if (parameters.length === 0) return '';
   return '?' + parameters.join('&');
 };
 
-const getUrl = (componentId, fixtureName = '') =>
+const getUrl = (componentId, fixtureName = '', plugins = 'partialPreset') =>
   `/${componentId}${fixtureName ? '/' + fixtureName : ''}${buildQuery({
     mobile: isMobile,
     hebrew: isHebrew,
     seoMode: isSeoMode,
+    testAppPlugins: plugins,
   })}`;
 
-const run = (app, fixtureName) => {
-  cy.visit(getUrl(app, fixtureName)).then(() => {
+const run = (app, fixtureName, plugins) => {
+  cy.visit(getUrl(app, fixtureName, plugins)).then(() => {
     disableTransitions();
     hideAllTooltips();
   });
@@ -69,10 +76,12 @@ function disableTransitions() {
 }
 
 function hideAllTooltips() {
-  cy.get('[data-id="tooltip"]').invoke('hide'); //uses jquery to set display: none
+  cy.get('[data-id="tooltip"]', { timeout: 90000 }).invoke('hide'); //uses jquery to set display: none
 }
 
-Cypress.Commands.add('loadEditorAndViewer', fixtureName => run('rce', fixtureName));
+Cypress.Commands.add('loadEditorAndViewer', (fixtureName, plugins) =>
+  run('rce', fixtureName, plugins)
+);
 Cypress.Commands.add('loadIsolatedEditorAndViewer', fixtureName =>
   run('rce-isolated', fixtureName)
 );
@@ -286,8 +295,10 @@ Cypress.Commands.add('openGalleryAdvancedSettings', () => {
   cy.get(`[data-hook=${PLUGIN_TOOLBAR_BUTTONS.ADV_SETTINGS}]:first`).click();
 });
 
-Cypress.Commands.add('shrinkPlugin', () => {
-  cy.clickToolbarButton(PLUGIN_TOOLBAR_BUTTONS.SMALL_CENTER);
+Cypress.Commands.add('shrinkPlugin', dataHook => {
+  cy.clickToolbarButton(PLUGIN_TOOLBAR_BUTTONS.SMALL_CENTER)
+    .get(`[data-hook=${dataHook}]:first`, { timeout: 15000 })
+    .should('have.css', 'width', '350px');
 });
 
 Cypress.Commands.add('pluginSizeBestFit', () => {
@@ -404,11 +415,19 @@ Cypress.Commands.add('openDropdownMenu', (selector = '') => {
 });
 
 Cypress.Commands.add('openVideoUploadModal', () => {
-  cy.get(`[data-hook*=${STATIC_TOOLBAR_BUTTONS.VIDEO}][tabindex!=-1]`).click();
+  cy.clickOnStaticButton(STATIC_TOOLBAR_BUTTONS.VIDEO);
 });
 
-Cypress.Commands.add('openSoundCloudModal', () => {
-  cy.get(`[data-hook*=${STATIC_TOOLBAR_BUTTONS.SOUND_CLOUD}][tabindex!=-1]`).click();
+Cypress.Commands.add('openSoundCloudModal', () =>
+  cy.clickOnStaticButton(STATIC_TOOLBAR_BUTTONS.SOUND_CLOUD)
+);
+Cypress.Commands.add('openEmbedModal', modalType => cy.clickOnStaticButton(modalType));
+
+Cypress.Commands.add('addGif', () => {
+  cy.clickOnStaticButton(STATIC_TOOLBAR_BUTTONS.GIPHY);
+  cy.get('[data-hook=giphyUploadModal] [role=button]')
+    .first()
+    .click();
 });
 
 Cypress.Commands.add('addSoundCloud', () => {
@@ -421,6 +440,11 @@ Cypress.Commands.add('addSoundCloud', () => {
     .click();
 });
 
+Cypress.Commands.add('addSocialEmbed', url => {
+  cy.get(`[data-hook*=${'socialEmbedUploadModalInput'}]`).type(url);
+  cy.get(`[data-hook*=${SETTINGS_PANEL.DONE}]`).click();
+});
+
 Cypress.Commands.add('addVideoFromURL', () => {
   cy.get(`[data-hook*=${VIDEO_PLUGIN.INPUT}]`).type('https://youtu.be/BBu5codsO6Y');
   cy.get(`[data-hook*=${VIDEO_PLUGIN.ADD}]`).click();
@@ -429,8 +453,12 @@ Cypress.Commands.add('addVideoFromURL', () => {
     .click();
 });
 
+Cypress.Commands.add('clickOnStaticButton', dataHook =>
+  cy.get(`[data-hook*=${dataHook}][tabindex!=-1]`).click()
+);
+
 Cypress.Commands.add('addHtml', () => {
-  cy.get(`[data-hook*=${HTML_PLUGIN.STATIC_TOOLBAR_BUTTON}][tabindex!=-1]`).click();
+  cy.clickOnStaticButton(HTML_PLUGIN.STATIC_TOOLBAR_BUTTON);
   cy.get(`[data-hook*=${HTML_PLUGIN.INPUT}]`)
     .click()
     .clear();
@@ -490,8 +518,8 @@ Cypress.Commands.add('insertLinkAndEnter', url => {
   cy.moveCursorToEnd()
     .type(url)
     .type('{enter}')
-    .wait(100);
-  cy.moveCursorToEnd();
+    .moveCursorToEnd()
+    .wait(200);
 });
 
 Cypress.Commands.add('triggerLinkPreviewViewerUpdate', () => {

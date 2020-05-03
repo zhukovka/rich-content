@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { getInteractionWrapper, DefaultInteractionWrapper } from './utils/getInteractionWrapper';
 const draftPublic = 'public-DraftStyleDefault';
 const draftClassNames = (listType, depth, textDirection) =>
   `${draftPublic}-${listType}ListItem
@@ -26,8 +26,10 @@ const List = ({
   mergedStyles,
   textDirection,
   blockProps,
+  getBlockStyleClasses,
   blockDataToStyle,
   contentState,
+  context,
 }) => {
   const Component = ordered ? 'ol' : 'ul';
   const listType = ordered ? 'ordered' : 'unordered';
@@ -39,23 +41,24 @@ const List = ({
         // NOTE: list block data is an array of data entries per list item
         const dataEntry = blockProps.data.length > childIndex ? blockProps.data[childIndex] : {};
 
+        const { interactions } = blockProps.data[childIndex];
+        const BlockWrapper = Array.isArray(interactions)
+          ? getInteractionWrapper({ interactions, context })
+          : DefaultInteractionWrapper;
+
         let paragraphGroup = [];
         const result = [];
         const elementProps = key => ({ className: mergedStyles.elementSpacing, key });
         React.Children.forEach(children, (child, i) => {
           if (child) {
-            if (typeof child.type === 'string') {
-              if (/h\d/.exec(child.type)) {
-                if (paragraphGroup.length) {
-                  result.push(<p {...elementProps(i)}>{paragraphGroup}</p>);
-                  paragraphGroup = [];
-                }
-                result.push(React.cloneElement(child, elementProps(i)));
-              } else {
-                paragraphGroup.push(child);
+            if (/h\d/.exec(child.type)) {
+              if (paragraphGroup.length) {
+                result.push(<p {...elementProps(i)}>{paragraphGroup}</p>);
+                paragraphGroup = [];
               }
+              result.push(React.cloneElement(child, elementProps(i)));
             } else {
-              result.push(child);
+              paragraphGroup.push(child);
             }
           }
         });
@@ -70,11 +73,11 @@ const List = ({
 
         return (
           <li
-            className={className}
+            className={getBlockStyleClasses(dataEntry, mergedStyles, textDirection, className)}
             key={blockProps.keys[childIndex]}
             style={blockDataToStyle(blockProps.data[childIndex])}
           >
-            {result}
+            <BlockWrapper>{result.length === 0 ? ' ' : result}</BlockWrapper>
           </li>
         );
       })}
@@ -91,6 +94,20 @@ List.propTypes = {
   ordered: PropTypes.bool,
   textDirection: PropTypes.oneOf(['rtl', 'ltr']),
   contentState: PropTypes.object,
+  context: PropTypes.shape({
+    theme: PropTypes.object.isRequired,
+    anchorTarget: PropTypes.string.isRequired,
+    relValue: PropTypes.string.isRequired,
+    config: PropTypes.object.isRequired,
+    isMobile: PropTypes.bool.isRequired,
+    helpers: PropTypes.object.isRequired,
+    t: PropTypes.func.isRequired,
+    locale: PropTypes.string.isRequired,
+    disabled: PropTypes.bool,
+    seoMode: PropTypes.bool,
+    siteDomain: PropTypes.string,
+    disableRightClick: PropTypes.bool,
+  }).isRequired,
 };
 
 export default List;

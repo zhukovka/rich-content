@@ -19,7 +19,7 @@ const createLinkPlugin = (config = {}) => {
   const targetBlank = anchorTarget === '_blank';
   const nofollow = relValue === 'nofollow';
   settings.minLinkifyLength = settings.minLinkifyLength || 6;
-  const toolbar = createLinkToolbar(config, closeInlinePluginToolbar);
+  const toolbar = createLinkToolbar({ ...config, closeInlinePluginToolbar });
 
   const decorators = [
     { strategy: linkEntityStrategy, component: props => <Component {...props} theme={theme} /> },
@@ -38,7 +38,7 @@ const createLinkPlugin = (config = {}) => {
   };
 
   const shouldConvertToLinkPreview = (settings, linkifyData) =>
-    linkifyData && settings.preview?.enable;
+    linkifyData && linkifyData.block?.type === 'unstyled' && settings.preview?.enable;
 
   const getBlockLinkUrl = linkifyData => {
     const { string, block } = linkifyData;

@@ -90,6 +90,7 @@ export {
   setForceSelection,
   deleteBlockText,
   insertString,
+  createLinkEntityData,
 } from './Utils/draftUtils';
 export { isiOS } from './Utils/isiOS';
 export { getSelectionStyles } from './Utils/inlineStyleUtils';
@@ -103,6 +104,7 @@ export {
   DECORATION_MODE,
   PLUGIN_DECORATION_PROPS,
   PLUGIN_DECORATIONS,
+  KEYS_CHARCODE,
   TEXT_TYPES,
   CHARACTERS,
 } from './consts';
