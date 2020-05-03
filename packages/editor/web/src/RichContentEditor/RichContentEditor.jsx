@@ -78,7 +78,7 @@ class RichContentEditor extends Component {
     this.setState({ ssrDone: true });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     this.handleBlockFocus(this.state.editorState);
   }
 
