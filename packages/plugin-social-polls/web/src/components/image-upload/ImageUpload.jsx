@@ -39,16 +39,8 @@ class ImageUploadComponent extends PureComponent {
     }
   }
 
-  async sync() {
-    this.setState({ loading: true });
-
-    try {
-      await this.props.onChange(this.state.value);
-      this.setState({ value: this.props.value });
-    } catch (error) {
-    } finally {
-      this.setState({ loading: false });
-    }
+  sync() {
+    this.props.onChange(this.state.value);
   }
 
   handleFileUpload = ({ data }) => {
@@ -76,9 +68,9 @@ class ImageUploadComponent extends PureComponent {
 
     this.setState({ value, loading: false });
 
-    if (helpers?.onFilesChange) {
+    if (helpers?.handleFileUpload) {
       this.setState({ loading: true });
-      helpers.onFilesChange(file, this.handleFileUpload);
+      helpers.handleFileUpload(file, this.handleFileUpload);
     }
   };
 

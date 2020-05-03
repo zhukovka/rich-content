@@ -40,7 +40,9 @@ export class EditorEventsProvider extends React.Component {
   events = {};
 
   dispatch(event, data) {
-    return Promise.all(this.events[event].map(cb => cb(data)));
+    const callbacks = this.events[event] || [];
+
+    return Promise.all(callbacks.map(cb => cb(data)));
   }
 
   subscribe(event, cb) {

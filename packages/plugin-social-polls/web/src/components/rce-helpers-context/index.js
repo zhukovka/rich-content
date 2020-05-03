@@ -6,7 +6,7 @@ export const RCEHelpersPropTypes = {
     isViewMode: PropTypes.bool.isRequired,
     setInPluginEditingMode: PropTypes.func,
     helpers: PropTypes.shape({
-      onFilesChange: PropTypes.func,
+      handleFileUpload: PropTypes.func,
     }),
     theme: PropTypes.object.isRequired,
     getSiteMembers: PropTypes.func,
