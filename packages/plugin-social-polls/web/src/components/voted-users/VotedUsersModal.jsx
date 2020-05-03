@@ -57,17 +57,21 @@ export class VotedUsersModalComponent extends Component {
           }
         >
           <ul className={styles.member_list}>
-            {members.map(member => (
-              <li key={member.siteMemberId}>
-                <div className={styles.user_card}>
-                  <span
-                    className={styles.user_avatar}
-                    style={{ backgroundImage: `url(${member.imageUrl})` }}
-                  />
-                  <span className={styles.user_name}>{member.name?.nick}</span>
-                </div>
-              </li>
-            ))}
+            {members.map(member =>
+              member ? (
+                <li key={member.siteMemberId}>
+                  <div className={styles.user_card}>
+                    <span
+                      className={styles.user_avatar}
+                      style={{ backgroundImage: `url(${member.imageUrl})` }}
+                    />
+                    <span className={styles.user_name}>{member.name?.nick}</span>
+                  </div>
+                </li>
+              ) : (
+                <span className={styles.user_name}>Error retrieving siteMembers</span>
+              )
+            )}
           </ul>
         </InfiniteScroll>
         {option.anonymousCount ? (

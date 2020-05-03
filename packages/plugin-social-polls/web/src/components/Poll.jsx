@@ -139,11 +139,11 @@ class PollComponent extends Component {
         >
           <FlipMove typeName={null} disableAllAnimations={!rce.isViewMode}>
             {this.getOptionList().map((option, i) => (
-              <li className={styles.option} key={rce.isViewMode ? option.id : option.localId || i}>
+              <li className={styles.option} key={option.id || i}>
                 <PollOption
                   option={option}
-                  update={this.handleOptionUpdate(option.localId)}
-                  remove={this.handleOptionRemove(option.localId)}
+                  update={this.handleOptionUpdate(i)}
+                  remove={this.handleOptionRemove(i)}
                   removeEnabled={!rce.isViewMode && poll.options.length > 1}
                   vote={vote}
                   unvote={unvote}

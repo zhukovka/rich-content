@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cls from 'classnames';
-import { clamp, debounce } from 'lodash';
+import { clamp } from 'lodash';
 
 import { RCEHelpersPropTypes, withRCEHelpers } from '../rce-helpers-context';
 import { LoaderIcon } from '../../assets/icons';
@@ -14,7 +14,6 @@ class TextFieldComponent extends React.PureComponent {
   state = {
     placeholder: this.props.placeholder,
     rows: 1,
-    value: this.props.value,
     syncing: false,
   };
 
@@ -56,28 +55,10 @@ class TextFieldComponent extends React.PureComponent {
     setTimeout(() => this.resize());
     this.showPlaceholder();
     this.props.rce.setInPluginEditingMode(false);
-
-    if (this.state.value !== this.props.value) {
-      this.sync();
-    }
   };
 
-  sync = debounce(this._sync, 500);
-
-  async _sync() {
-    this.setState({ syncing: true });
-    try {
-      await this.props.onChange(this.state.value);
-    } catch (error) {
-    } finally {
-      this.setState({ syncing: false });
-    }
-  }
-
   handleChange = event => {
-    this.setState({ value: event.target.value }, () => {
-      this.sync();
-    });
+    this.props.onChange(event.target.value);
 
     this.resize();
   };
@@ -116,9 +97,10 @@ class TextFieldComponent extends React.PureComponent {
       startAdornment,
       maxLength,
       disabled,
+      value,
     } = this.props;
 
-    const { value, placeholder, rows, syncing } = this.state;
+    const { placeholder, rows, syncing } = this.state;
 
     if (rce.isViewMode) {
       return (
