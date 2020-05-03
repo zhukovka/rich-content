@@ -15,20 +15,23 @@
     Click to see more.
   </summary>
 
+
+</details>
+<hr/>
+
+## 7.4.6 (May 3, 2020)
 ### :bug: Bug Fix
 - `editor-common`
-  - [#994](https://github.com/wix-incubator/rich-content/pull/994) fix:When a plugin is created, the selection is on the plugin but you still have the curser in the text
+  - [#994](https://github.com/wix-incubator/rich-content/pull/994) cursor doesn't disappear when adding plugin
 - `gallery`
   - [#990](https://github.com/wix-incubator/rich-content/pull/990) height not updating when changing width
 ### :house: Internal
 - `wrapper`
-  - [#980](https://github.com/wix-incubator/rich-content/pull/980) hotfix: createEmpty import
+  - [#980](https://github.com/wix-incubator/rich-content/pull/980) createEmpty import
 - `general`
   - [#965](https://github.com/wix-incubator/rich-content/pull/965) fix: gitPRComment overrides the content of the PR comment
   - [#985](https://github.com/wix-incubator/rich-content/pull/985) enable publishing with custom npm tag
   - [#988](https://github.com/wix-incubator/rich-content/pull/988) Adding 'build:analyze:viewer' and 'build:analyze:editor' scripts instead of 'build:analyze' script
-</details>
-<hr/>
 
 ## 7.4.5 (Apr 28, 2020)
 ### :rocket: New Feature
