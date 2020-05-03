@@ -223,12 +223,14 @@ describe('plugins', () => {
 
     after(() => cy.eyesClose());
     const embedTypes = ['TWITTER', 'INSTAGRAM', 'YOUTUBE'];
-    it('render upload modals', function() {
+    it.only('render upload modals', function() {
       embedTypes.forEach(embedType => {
+        const testKey = embedType + ': ' + this.test.title;
         cy.openEmbedModal(STATIC_TOOLBAR_BUTTONS[embedType]);
-        cy.eyesCheckWindow(this.test.title);
+        cy.eyesCheckWindow(testKey + ' modal');
         cy.addSocialEmbed('www.mockUrl.com');
-        cy.eyesCheckWindow(this.test.title);
+        cy.get(`#rich-content-viewer [data-hook=HtmlComponent]`);
+        cy.eyesCheckWindow(testKey + ' added');
       });
     });
   });
