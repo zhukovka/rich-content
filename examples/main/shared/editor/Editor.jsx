@@ -126,20 +126,20 @@ export default class Editor extends PureComponent {
 
   componentDidMount() {
     ReactModal.setAppElement('body');
-    this.setEditorToolbars(this.editor);
+    this.setEditorToolbars();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.staticToolbar !== this.props.staticToolbar) {
-      this.setEditorToolbars(this.editor);
+      this.setEditorToolbars();
     }
     if (prevProps.shouldMultiSelectImages !== this.props.shouldMultiSelectImages) {
       shouldMultiSelectImages = this.props.shouldMultiSelectImages;
     }
   }
 
-  setEditorToolbars = (editorRef = this.editor) => {
-    const { MobileToolbar, TextToolbar } = editorRef.getToolbars();
+  setEditorToolbars = () => {
+    const { MobileToolbar, TextToolbar } = this.editor.getToolbars();
     this.setState({ MobileToolbar, TextToolbar });
   };
 
@@ -196,7 +196,6 @@ export default class Editor extends PureComponent {
           config={this.pluginsConfig}
           editorKey="random-editorKey-ssr"
           // siteDomain="https://www.wix.com"
-          setEditorToolbars={this.setEditorToolbars}
           {...editorProps}
         />
 

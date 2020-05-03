@@ -25,6 +25,7 @@ import {
   getBlockType,
   COMMANDS,
   MODIFIERS,
+  getModalStyles,
 } from 'wix-rich-content-editor-common';
 
 import {
@@ -39,6 +40,8 @@ import 'wix-rich-content-common/dist/statics/styles/draftDefault.rtlignore.scss'
 import { convertFromHTML as draftConvertFromHtml } from 'draft-convert';
 import { pastedContentConfig, clearUnnecessaryInlineStyles } from './utils/pastedContentUtil';
 import { convertToRaw } from '../lib/editorStateConversion';
+import ReactModal from 'react-modal';
+import InnerRCEModal from './InnerRCEModal';
 
 class RichContentEditor extends Component {
   static getDerivedStateFromError(error) {
@@ -54,6 +57,7 @@ class RichContentEditor extends Component {
       innerRCEEditorState: null,
       innerRCEcb: null,
       innerRCEPlugins: [],
+      ssrDone: false,
     };
     this.refId = Math.floor(Math.random() * 9999);
 
@@ -70,12 +74,12 @@ class RichContentEditor extends Component {
     this.initPlugins();
   }
 
+  componentDidMount() {
+    this.setState({ ssrDone: true });
+  }
+
   componentDidUpdate(prevProps, prevState) {
     this.handleBlockFocus(this.state.editorState);
-    if (prevState.innerRCE === false && this.state.innerRCE) {
-      const { setEditorToolbars } = this.props;
-      setEditorToolbars(this.innerEditor);
-    }
   }
 
   handleBlockFocus(editorState) {
@@ -419,53 +423,12 @@ class RichContentEditor extends Component {
         onBlur={onBlur}
         onFocus={onFocus}
         textAlignment={textAlignment}
+        readOnly={this.state.innerRCE}
       />
     );
   };
 
   onInnerEditorChange = innerRCEEditorState => this.setState({ innerRCEEditorState });
-
-  renderInnerEditor = () => {
-    const { innerRCEEditorState, innerRCEPlugins } = this.state;
-    const { isMobile, editorState, onChange, plugins, ...rest } = this.props;
-    const { theme } = this.contextualData;
-    return (
-      <div
-        style={{
-          position: 'absolute',
-          border: '2px solid orange',
-          // height: '300px',
-          width: isMobile ? '100%' : '450px',
-          backgroundColor: 'white',
-          // overflow: 'auto',
-          zIndex: 6,
-        }}
-      >
-        <button
-          style={{ position: 'absolute', right: 0, zIndex: 1 }}
-          onClick={() => this.closeInnerRCE(true)}
-        >
-          save
-        </button>
-        <button
-          style={{ position: 'absolute', right: '40px', zIndex: 1 }}
-          onClick={() => this.closeInnerRCE()}
-        >
-          cancel
-        </button>
-        <div className={classNames(styles.editor, theme.editor)}>
-          <RichContentEditor
-            ref={innerEditor => (this.innerEditor = innerEditor)}
-            editorState={innerRCEEditorState}
-            onChange={this.onInnerEditorChange}
-            plugins={innerRCEPlugins}
-            isMobile={isMobile}
-            {...rest}
-          />
-        </div>
-      </div>
-    );
-  };
 
   innerRCE = (innerContentState, callback, plugins) => {
     const innerRCEEditorState = EditorState.createWithContent(convertFromRaw(innerContentState));
@@ -478,7 +441,6 @@ class RichContentEditor extends Component {
   };
 
   closeInnerRCE = closeAndSave => {
-    const { setEditorToolbars } = this.props;
     if (closeAndSave) {
       const { innerRCEEditorState, innerRCEcb } = this.state;
       const newContentState = convertToRaw(innerRCEEditorState.getCurrentContent());
@@ -486,11 +448,15 @@ class RichContentEditor extends Component {
     }
     this.setState({
       innerRCE: false,
+    });
+  };
+
+  resetInnerRCEState = () => {
+    this.setState({
       innerRCEEditorState: null,
       innerRCEcb: null,
       innerRCEPlugins: [],
     });
-    setEditorToolbars();
   };
 
   renderAccessibilityListener = () => (
@@ -551,7 +517,28 @@ class RichContentEditor extends Component {
                 {this.renderToolbars()}
                 {this.renderInlineModals()}
                 {this.renderTooltipHost()}
-                {this.state.innerRCE && this.renderInnerEditor()}
+                {this.state.ssrDone && (
+                  <ReactModal
+                    isOpen={this.state.innerRCE}
+                    contentLabel="External Modal Example"
+                    style={getModalStyles({
+                      customStyles: { content: { overflow: 'unset' } },
+                      fullScreen: false,
+                    })}
+                    onRequestClose={() => this.closeInnerRCE(true)}
+                    shouldCloseOnOverlayClick
+                  >
+                    <InnerRCEModal
+                      onInnerEditorChange={this.onInnerEditorChange}
+                      innerRCEEditorState={this.state.innerRCEEditorState}
+                      innerRCEPlugins={this.state.innerRCEPlugins}
+                      theme={this.contextualData.theme}
+                      closeInnerRCE={this.closeInnerRCE}
+                      resetInnerRCEState={this.resetInnerRCEState}
+                      {...this.props}
+                    />
+                  </ReactModal>
+                )}
               </div>
             </div>
           )}
@@ -606,7 +593,6 @@ RichContentEditor.propTypes = {
   initialIntent: PropTypes.string,
   siteDomain: PropTypes.string,
   onError: PropTypes.func,
-  setEditorToolbars: PropTypes.func,
 };
 
 RichContentEditor.defaultProps = {
