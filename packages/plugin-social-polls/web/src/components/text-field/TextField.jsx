@@ -111,15 +111,15 @@ class TextFieldComponent extends React.PureComponent {
               styles.text,
               className,
               textAutoResize && {
-                [styles.small]: value.length > 90,
-                [styles.medium]: value.length <= 90,
-                [styles.large]: value.length <= 60,
+                [styles.small]: value.length > 120,
+                [styles.medium]: value.length <= 120,
+                [styles.large]: value.length <= 80,
               }
             )}
           >
             {startAdornment}
             {children}
-            <span className={styles.value}>{this.props.value || ' '}</span>
+            <span className={styles.value}>{this.props.value || this.props.placeholder}</span>
           </p>
         </>
       );
@@ -144,7 +144,7 @@ class TextFieldComponent extends React.PureComponent {
             styles.input,
             className,
             textAutoResize && {
-              [styles.small]: value.length > 160,
+              [styles.small]: value.length > 120,
               [styles.medium]: value.length <= 120,
               [styles.large]: value.length <= 80,
             }

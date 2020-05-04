@@ -2,21 +2,57 @@
 import React from 'react';
 
 export const WithImagePollIcon = props => (
-  <svg width="120px" height="75px" viewBox="0 0 92 54" version="1.1" {...props}>
-    <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-      <g transform="translate(1.000000, 1.000000)" stroke="rgba(0, 0, 0, 0.1)">
+  <svg {...props} width="62" height="52" viewBox="0 0 62 52">
+    <g fill="none" fillRule="evenodd">
+      <path fill="#FFF" d="M0 0H1366V1044H0z" transform="translate(-535 -412)" />
+      <g>
+        <g>
+          <path fill="#FFF" d="M0 0H940V1H0z" transform="translate(-535 -412) translate(213 418)" />
+          <path
+            stroke="#000"
+            strokeOpacity=".2"
+            d="M0.5 0.5H939.5V1.5H0.5z"
+            transform="translate(-535 -412) translate(213 418)"
+          />
+        </g>
+      </g>
+      <path fill="#000" fillOpacity=".5" d="M0 0H1366V2042H0z" transform="translate(-535 -412)" />
+      <g transform="translate(-535 -412) translate(260 177)">
+        <rect width="652" height="497" x=".5" y=".5" fill="#FFF" stroke="#E6E6E6" rx="2" />
+      </g>
+      <g>
+        <path
+          fill="#FFF"
+          stroke="#B2B3B4"
+          strokeOpacity=".745"
+          d="M140.471 216.5l-6.052 6.81-6.74-6.81h12.792zM448 .5c.414 0 .79.168 1.06.44.272.27.44.646.44 1.06h0v212c0 .414-.168.79-.44 1.06-.27.272-.646.44-1.06.44h0-305.301l.441-.495h-18.227l.438.494L2 215.5c-.362 0-.695-.129-.954-.343l-.107-.096C.668 214.789.5 214.414.5 214h0V2c0-.414.168-.79.44-1.06C1.21.667 1.585.5 2 .5h0z"
+          transform="translate(-535 -412) translate(344 326)"
+        />
+        <path
+          fill="#000"
+          d="M162 66H288V192H162z"
+          opacity=".04"
+          transform="translate(-535 -412) translate(344 326)"
+        />
+      </g>
+      <g>
+        <path fill="#FFF" d="M0 0H62V52H0z" transform="translate(-535 -412) translate(535 412)" />
         <g>
           <path
-            d="M53,26 L39,26 L39,23.57 L41.5587692,21.642 L43.3400002,22.837 C43.5543078,22.973 43.9458463,22.948 44.1300001,22.778 L48.6093846,18.637 L53,23.722 L53,26 Z"
-            fillRule="nonzero"
+            fill="#C1C1C1"
+            d="M0 16H43V18H0zM0 20H43V22H0zM0 24H43V26H0z"
+            transform="translate(-535 -412) translate(535 412) translate(10 13)"
           />
           <path
-            d="M43,15.5 C42.5858287,15.5 42.2107123,15.6678058 41.939201,15.9393172 C41.6679203,16.2105978 41.5,16.5854216 41.5,17 C41.5,17.4145784 41.6679203,17.7894022 41.939201,18.0606828 C42.2107123,18.3321942 42.5858287,18.5 43,18.5 C43.4141713,18.5 43.7892877,18.3321942 44.060799,18.0606828 C44.3320797,17.7894022 44.5,17.4145784 44.5,17 C44.5,16.5854216 44.3320797,16.2105978 44.060799,15.9393172 C43.7892877,15.6678058 43.4141713,15.5 43,15.5 Z"
-            fillRule="nonzero"
+            fill="#EAEAEA"
+            d="M0 4H43V14H0z"
+            transform="translate(-535 -412) translate(535 412) translate(10 13)"
           />
-          <rect x="-1.42108547e-14" y="0" width="90" height="52" stroke="currentColor" />
-          <rect x="6.5" y="38.5" width="78" height="6" />
-          <rect x="7" y="8" width="77" height="25" />
+          <path
+            fill="#D9D9D9"
+            d="M13 0H32V2H13z"
+            transform="translate(-535 -412) translate(535 412) translate(10 13)"
+          />
         </g>
       </g>
     </g>

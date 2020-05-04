@@ -169,7 +169,11 @@ class PollComponent extends Component {
                 {layout.poll?.type === LAYOUT.GRID && layout.option?.enableImage ? (
                   <AddIcon />
                 ) : (
-                  t('Poll_Editor_Answer_AddAnswer')
+                  <>
+                    <AddIcon width={24} height={24} />
+                    &nbsp;
+                    {t('Poll_Editor_Answer_AddAnswer')}
+                  </>
                 )}
               </button>
             </li>

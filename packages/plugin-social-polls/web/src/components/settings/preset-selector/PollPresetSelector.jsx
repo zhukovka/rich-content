@@ -43,7 +43,7 @@ export class PollPresetSelector extends PureComponent {
     const { t } = this.props;
 
     return (
-      <div>
+      <div className={styles.root}>
         <p className={styles.title}>{t('Poll_Presets_Popup_Title')}</p>
         <p className={styles.subtitle}>{t('Poll_Presets_Popup_Subtitle')}</p>
 

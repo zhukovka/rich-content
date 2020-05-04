@@ -85,7 +85,7 @@ export class PollGridOption extends PollOptionBase {
   }
 
   renderViewMode() {
-    const { design, option, showResults, dark } = this.props;
+    const { design, option, showResults, dark, t } = this.props;
     const { loading } = this.state;
 
     const style = this.getCustomStyle();
@@ -119,6 +119,7 @@ export class PollGridOption extends PollOptionBase {
               [styles.with_result]: showResults,
             })}
             value={option.title}
+            placeholder={t('Poll_Editor_Answer_Placeholder')}
           >
             <span
               className={styles.progress}

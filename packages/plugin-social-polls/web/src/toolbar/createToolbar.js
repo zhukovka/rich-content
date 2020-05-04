@@ -18,17 +18,16 @@ export const DesktopFlyOutModalStyles = {
     backgroundColor: 'transparent',
   },
   content: {
-    width: '410px',
+    width: '450px',
     boxSizing: 'border-box',
-    height: '180px',
+    height: '200px',
     overflow: 'visible',
     border: '1px solid #ccc',
-    padding: '10px',
+    padding: '20px 25px',
     display: 'block',
     borderRadius: '2px',
     position: 'absolute',
     zIndex: 6,
-    paddingTop: '9px',
   },
 };
 
@@ -59,8 +58,6 @@ export function createToolbar({ helpers, t }) {
         mobile: true,
       },
 
-      { keyName: 'separator', type: BUTTONS.SEPARATOR, mobile: true },
-
       {
         keyName: 'design',
         type: BUTTONS.EXTERNAL_MODAL,
@@ -68,12 +65,9 @@ export function createToolbar({ helpers, t }) {
         children: t('Poll_PollSettings_Tab_Design_TabName'),
         modalStyles: getModalStyles(modalStyles),
         t,
-        tooltipTextKey: 'Poll_PollSettings_Common_Header',
         activeTab: TABS.DESIGN,
         mobile: true,
       },
-
-      { keyName: 'separator', type: BUTTONS.SEPARATOR, mobile: true },
 
       {
         keyName: 'settings',

@@ -44,7 +44,11 @@ export class DesignSettingsSection extends Component {
   handleOptionBorderRadiusChange = borderRadius =>
     this.updateDesign({ option: { borderRadius: `${borderRadius}px` } });
 
-  handleTypeChange = backgroundType => this.setState({ backgroundType });
+  handleTypeChange = backgroundType => {
+    this.setState({ backgroundType }, () =>
+      this.handleBackgroundChange(BACKGROUND_PRESETS[backgroundType][0])
+    );
+  };
 
   dataMapper = ({ name }) => ({ value: name });
 

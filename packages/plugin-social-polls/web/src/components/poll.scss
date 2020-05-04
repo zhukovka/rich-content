@@ -57,14 +57,6 @@
   break-inside: avoid-column;
 }
 
-.options.grid .add_option {
-  text-align: center;
-}
-
-.options.grid.with_image .add_option {
-  height: 188px;
-}
-
 .cta_button {
   background: transparent;
   border: 1px solid #fff;
@@ -96,6 +88,17 @@
   @extend .cta_button;
   
   border: 1px dashed #fff;
+}
+
+.options.grid.with_image .add_option {
+  height: 188px;
+  text-align: center;
+}
+
+.options.grid .add_option,
+.options.list .add_option {
+  display: flex;
+  align-items: center;
 }
 
 .column {

@@ -65,7 +65,7 @@ class VotedUsersComponent extends PureComponent {
       return null;
     }
 
-    if (!showResults || !showVotes) {
+    if (!showResults || !showVotes || !option.count) {
       return null;
     }
 

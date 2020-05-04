@@ -1,26 +1,35 @@
 @import "../poll-settings-modal.scss";
 
+.root {
+  color: #000;
+}
+
 .title {
   margin: 0;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .subtitle {
   margin: 0;
+  font-size: 12px;
+  line-height: 1.33;
 }
 
 .selectionListOption {
   margin: 0;
   padding: 0;
-  color: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.04) ;
+  height: 116px;
 }
 
 .selectionListOptionLabel {
   margin: 5px 0;
   color: #000;
+  white-space: nowrap;
 }
 
 .selectionListOption:hover:not(.selectionListOption_selected),
 .selectionListOption:hover {
-  background-color: unset;
-  color: #000;
+  background: rgba(0, 0, 0, 0.1) ;
 }
