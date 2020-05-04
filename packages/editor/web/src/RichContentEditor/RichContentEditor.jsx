@@ -534,7 +534,7 @@ class RichContentEditor extends Component {
                     isOpen={this.state.innerRCE}
                     contentLabel="External Modal Example"
                     style={getModalStyles({
-                      customStyles: { content: { overflow: 'unset' } },
+                      customStyles: { content: { overflow: 'unset' }, overlay: { zIndex: 4 } },
                       fullScreen: false,
                     })}
                     onRequestClose={() => this.closeInnerRCE(true)}

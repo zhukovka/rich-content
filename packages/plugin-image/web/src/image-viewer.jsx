@@ -21,8 +21,16 @@ import * as Plugins from './ViewerPlugins';
 import { createTextColorPlugin } from 'wix-rich-content-plugin-text-color';
 import { createLineSpacingPlugin } from 'wix-rich-content-plugin-line-spacing';
 import { createDividerPlugin } from 'wix-rich-content-plugin-divider';
+import { createEmojiPlugin } from 'wix-rich-content-plugin-emoji';
+import { createMapPlugin } from 'wix-rich-content-plugin-map';
 
-const PLUGINS = [createTextColorPlugin, createLineSpacingPlugin, createDividerPlugin];
+const PLUGINS = [
+  createTextColorPlugin,
+  createLineSpacingPlugin,
+  createDividerPlugin,
+  createEmojiPlugin,
+  createMapPlugin,
+];
 
 class ImageViewer extends React.Component {
   constructor(props) {
