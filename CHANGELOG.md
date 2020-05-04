@@ -14,7 +14,7 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-  
+
 ### :rocket: New Feature
 - `button`
   - [#958](https://github.com/wix-incubator/rich-content/pull/958) action button plugin - button with onClick callback
@@ -59,7 +59,7 @@
 - `video`
   - [#974](https://github.com/wix-incubator/rich-content/pull/960) video file upload not working when block isn't selected
 - `gallery`
-  - [#963](https://github.com/wix-incubator/rich-content/pull/963) fix:Gallery doesn't show more then 3 images on load 
+  - [#963](https://github.com/wix-incubator/rich-content/pull/963) fix:Gallery doesn't show more then 3 images on load
 ### :house: Internal
 - `editor`
   - [#936](https://github.com/wix-incubator/rich-content/pull/936) arrangement of inline toolbar buttons
