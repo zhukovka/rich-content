@@ -42,7 +42,8 @@ const createBaseComponent = ({
   getInPluginEditingMode,
   anchorTarget,
   relValue,
-  innerRCE,
+  innerRCEOpenModal,
+  innerRCEReadOnly,
 }) => {
   class WrappedComponent extends Component {
     static displayName = createHocName('BaseComponent', PluginComponent);
@@ -294,7 +295,8 @@ const createBaseComponent = ({
           setInPluginEditingMode={setInPluginEditingMode}
           getInPluginEditingMode={getInPluginEditingMode}
           setComponentUrl={this.setComponentUrl}
-          innerRCE={innerRCE}
+          innerRCEOpenModal={innerRCEOpenModal}
+          innerRCEReadOnly={innerRCEReadOnly}
         />
       );
 

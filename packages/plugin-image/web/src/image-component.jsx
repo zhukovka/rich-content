@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Loader } from 'wix-rich-content-editor-common';
@@ -127,6 +129,32 @@ class ImageComponent extends React.Component {
     return <Loader type={'medium'} isFastFakeLoader />;
   };
 
+  renderInnerRCECaption = () => {
+    const {
+      innerRCEOpenModal,
+      innerRCEReadOnly,
+      componentData: {
+        metadata: { caption },
+      },
+    } = this.props;
+    return (
+      <>
+        <div
+          style={{ position: 'inherit', zIndex: 1, cursor: 'pointer' }}
+          onClick={() =>
+            innerRCEOpenModal(
+              caption,
+              newContentState => this.handleCaptionChange(newContentState),
+              'wix-draft-plugin-image'
+            )
+          }
+        >
+          {innerRCEReadOnly(caption)}
+        </div>
+      </>
+    );
+  };
+
   render() {
     const {
       settings,
@@ -141,7 +169,6 @@ class ImageComponent extends React.Component {
       getInPluginEditingMode,
       setInPluginEditingMode,
       setComponentUrl,
-      innerRCE,
     } = this.props;
 
     const { errorMsg } = this.state;
@@ -165,7 +192,7 @@ class ImageComponent extends React.Component {
           onCaptionChange={this.handleCaptionChange}
           setFocusToBlock={blockProps.setFocusToBlock}
           setComponentUrl={setComponentUrl}
-          innerRCE={innerRCE}
+          renderInnerRCECaption={this.renderInnerRCECaption}
         />
 
         {this.state.isLoading && this.renderLoader()}
@@ -192,7 +219,8 @@ ImageComponent.propTypes = {
   setInPluginEditingMode: PropTypes.func,
   isMobile: PropTypes.bool.isRequired,
   setComponentUrl: PropTypes.func,
-  innerRCE: PropTypes.func,
+  innerRCEOpenModal: PropTypes.func,
+  innerRCEReadOnly: PropTypes.func,
 };
 
 export { ImageComponent as Component, DEFAULTS };

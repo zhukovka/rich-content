@@ -53,7 +53,7 @@ class RichContentEditor extends Component {
     this.state = {
       editorState: this.getInitialEditorState(),
       editorBounds: {},
-      innerRCE: false,
+      innerRCEOpenModal: false,
       innerRCEEditorState: null,
       innerRCEcb: null,
       innerRCERenderedIn: null,
@@ -143,7 +143,8 @@ class RichContentEditor extends Component {
       siteDomain,
       setInPluginEditingMode: this.setInPluginEditingMode,
       getInPluginEditingMode: this.getInPluginEditingMode,
-      innerRCE: this.innerRCE,
+      innerRCEOpenModal: this.innerRCEOpenModal,
+      innerRCEReadOnly: this.innerRCEReadOnly,
     };
   };
 
@@ -435,21 +436,44 @@ class RichContentEditor extends Component {
         onBlur={onBlur}
         onFocus={onFocus}
         textAlignment={textAlignment}
-        readOnly={this.state.innerRCE}
+        readOnly={this.state.innerRCEOpenModal}
       />
     );
   };
 
   onInnerEditorChange = innerRCEEditorState => this.setState({ innerRCEEditorState });
 
-  innerRCE = (innerContentState, callback, renderedIn) => {
+  innerRCEOpenModal = (innerContentState, callback, renderedIn) => {
     const innerRCEEditorState = EditorState.createWithContent(convertFromRaw(innerContentState));
     this.setState({
-      innerRCE: true,
+      innerRCEOpenModal: true,
       innerRCEEditorState,
       innerRCEcb: callback,
       innerRCERenderedIn: renderedIn,
     });
+  };
+
+  innerRCEReadOnly = innerContentState => {
+    const innerRCEEditorState = EditorState.createWithContent(convertFromRaw(innerContentState));
+    const { theme } = this.contextualData;
+    const innerEditor = (
+      <div
+        ref={innerEditorRef => (this.innerEditorRef = innerEditorRef)}
+        style={{ pointerEvents: 'none' }}
+      >
+        <Editor
+          plugins={this.plugins}
+          blockStyleFn={blockStyleFn(theme, this.styleToClass)}
+          editorState={innerRCEEditorState}
+          readOnly
+        />
+      </div>
+    );
+    if (this.innerEditorRef) {
+      const readOnlyBlocks = this.innerEditorRef.querySelectorAll('[data-offset-key]');
+      readOnlyBlocks.forEach(block => block.removeAttribute('data-offset-key'));
+    }
+    return innerEditor;
   };
 
   closeInnerRCE = closeAndSave => {
@@ -459,7 +483,7 @@ class RichContentEditor extends Component {
       innerRCEcb(newContentState);
     }
     this.setState({
-      innerRCE: false,
+      innerRCEOpenModal: false,
     });
   };
 
@@ -531,7 +555,7 @@ class RichContentEditor extends Component {
                 {this.renderTooltipHost()}
                 {this.state.ssrDone && (
                   <ReactModal
-                    isOpen={this.state.innerRCE}
+                    isOpen={this.state.innerRCEOpenModal}
                     contentLabel="External Modal Example"
                     style={getModalStyles({
                       customStyles: { content: { overflow: 'unset' }, overlay: { zIndex: 4 } },

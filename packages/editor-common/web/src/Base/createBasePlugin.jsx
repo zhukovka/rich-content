@@ -49,7 +49,8 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
     getInPluginEditingMode,
     getEditorState,
     setEditorState,
-    innerRCE,
+    innerRCEOpenModal,
+    innerRCEReadOnly,
   } = config;
   defaultPluginData && (pluginDefaults[config.type] = defaultPluginData);
   const toolbarTheme = { ...getToolbarTheme(config.theme, 'plugin'), ...config.theme };
@@ -153,7 +154,8 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
       getInPluginEditingMode,
       getEditorState,
       setEditorState,
-      innerRCE,
+      innerRCEOpenModal,
+      innerRCEReadOnly,
     });
 
   const DecoratedCompWithBase =

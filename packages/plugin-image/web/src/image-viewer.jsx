@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -167,28 +165,9 @@ class ImageViewer extends React.Component {
   }
 
   renderCaption(caption) {
-    const { onCaptionChange, innerRCE } = this.props;
-    return onCaptionChange ? (
-      <>
-        <div
-          style={{ position: 'inherit', zIndex: 1, cursor: 'pointer' }}
-          onClick={() =>
-            innerRCE(
-              caption,
-              newContentState => onCaptionChange(newContentState),
-              'wix-draft-plugin-image'
-            )
-          }
-        >
-          <RichContentViewer
-            initialState={caption}
-            typeMappers={Plugins.typeMappers}
-            inlineStyleMappers={Plugins.getInlineStyleMappers(caption)}
-            decorators={Plugins.decorators}
-            config={Plugins.getConfig()}
-          />
-        </div>
-      </>
+    const { renderInnerRCECaption } = this.props;
+    return renderInnerRCECaption ? (
+      renderInnerRCECaption()
     ) : (
       <RichContentViewer
         initialState={caption}
@@ -313,7 +292,7 @@ ImageViewer.propTypes = {
   isMobile: PropTypes.bool.isRequired,
   setComponentUrl: PropTypes.func,
   seoMode: PropTypes.bool,
-  innerRCE: PropTypes.func,
+  renderInnerRCECaption: PropTypes.func,
 };
 
 export default ImageViewer;
