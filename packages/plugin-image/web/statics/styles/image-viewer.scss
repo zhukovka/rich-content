@@ -9,17 +9,10 @@ $opacityTransition: opacity 0.8s ease;
   height: 40px;
   width: 40px;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
   z-index: 10;
-  color: white;
-  background-image: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 0.3),
-    rgba(0, 0, 0, 0.1),
-    rgba(0, 0, 0, 0.01),
-    transparent
-  );
+  border-radius: 20px;
 
   path {
     opacity: 0.8;

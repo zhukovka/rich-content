@@ -1,3 +1,14 @@
-<svg viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg">
-    <path d="M15.071 8.371V4.585l-4.355 4.356a.2.2 0 0 1-.283 0l-.374-.374a.2.2 0 0 1 0-.283l4.356-4.355h-3.786a.2.2 0 0 1-.2-.2V3.2c0-.11.09-.2.2-.2H16v5.371a.2.2 0 0 1-.2.2h-.529a.2.2 0 0 1-.2-.2zm-6.5 6.9v.529a.2.2 0 0 1-.2.2H3v-5.371c0-.11.09-.2.2-.2h.529c.11 0 .2.09.2.2v3.786l4.355-4.356a.2.2 0 0 1 .283 0l.374.374a.2.2 0 0 1 0 .283L4.585 15.07h3.786c.11 0 .2.09.2.2z" fill="#000" fill-rule="nonzero"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#E6E6E6" d="M0 0H23182V1875H0z" transform="translate(-20648 -895)"/>
+        <g transform="translate(-20648 -895) translate(20648 895)">
+            <circle cx="18" cy="18" r="18" fill="#000" opacity=".5"/>
+            <g fill="#FFF">
+                <path d="M3.5 9.25L4.375 9.25 4.375 18.875 3.5 18.875z" transform="translate(9 9) rotate(-135 3.938 14.063)"/>
+                <path d="M18 0v.875h-.001l.001 7h-.875l-.001-7h-6.999V0H18z" transform="translate(9 9)"/>
+                <path d="M13.625 -0.875L14.5 -0.875 14.5 8.75 13.625 8.75z" transform="translate(9 9) rotate(-135 14.063 3.938)"/>
+                <path d="M0 18v-.875h.001l-.001-7h.875v7h7V18H0z" transform="translate(9 9)"/>
+            </g>
+        </g>
+    </g>
 </svg>
