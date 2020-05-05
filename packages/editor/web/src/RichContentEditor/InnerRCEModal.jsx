@@ -6,11 +6,19 @@ import styles from '../../statics/styles/rich-content-editor.scss';
 import 'wix-rich-content-common/dist/statics/styles/draftDefault.rtlignore.scss';
 
 class InnerRCEModal extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {};
+    const { plugins, innerRCERenderedIn, config } = this.props;
+    const wantedPlugins = config[innerRCERenderedIn].innerRCEPlugins;
+    this.plugins = plugins.filter(plugin => wantedPlugins.includes(plugin.name));
+  }
+
   componentDidMount() {
     const { MobileToolbar, TextToolbar } = this.innerEditor.getToolbars();
     this.setState({ MobileToolbar, TextToolbar });
   }
+
   componentWillUnmount() {
     this.props.resetInnerRCEState();
   }
@@ -19,7 +27,6 @@ class InnerRCEModal extends Component {
     const {
       onInnerEditorChange,
       innerRCEEditorState,
-      innerRCEPlugins,
       theme,
       closeInnerRCE,
       isMobile,
@@ -62,7 +69,7 @@ class InnerRCEModal extends Component {
             ref={innerEditor => (this.innerEditor = innerEditor)}
             editorState={innerRCEEditorState}
             onChange={onInnerEditorChange}
-            plugins={innerRCEPlugins}
+            plugins={this.plugins}
             isMobile={isMobile}
             {...rest}
           />
@@ -83,6 +90,8 @@ InnerRCEModal.propTypes = {
   onChange: PropTypes.func,
   plugins: PropTypes.array,
   resetInnerRCEState: PropTypes.func,
+  innerRCERenderedIn: PropTypes.string,
+  config: PropTypes.object,
 };
 
 export default InnerRCEModal;

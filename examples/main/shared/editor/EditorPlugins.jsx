@@ -333,6 +333,13 @@ const config = {
     //   },
     // },
     // },
+    innerRCEPlugins: [
+      'createTextColorPlugin',
+      'createLineSpacingPlugin',
+      'createDividerPlugin',
+      'createEmojiPlugin',
+      'createMapPlugin',
+    ],
   },
   [HASHTAG_TYPE]: {
     createHref: decoratedText => `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`,

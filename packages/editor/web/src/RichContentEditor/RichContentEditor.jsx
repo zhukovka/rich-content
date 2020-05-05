@@ -56,7 +56,7 @@ class RichContentEditor extends Component {
       innerRCE: false,
       innerRCEEditorState: null,
       innerRCEcb: null,
-      innerRCEPlugins: [],
+      innerRCERenderedIn: null,
       ssrDone: false,
     };
     this.refId = Math.floor(Math.random() * 9999);
@@ -442,13 +442,13 @@ class RichContentEditor extends Component {
 
   onInnerEditorChange = innerRCEEditorState => this.setState({ innerRCEEditorState });
 
-  innerRCE = (innerContentState, callback, plugins) => {
+  innerRCE = (innerContentState, callback, renderedIn) => {
     const innerRCEEditorState = EditorState.createWithContent(convertFromRaw(innerContentState));
     this.setState({
       innerRCE: true,
       innerRCEEditorState,
       innerRCEcb: callback,
-      innerRCEPlugins: plugins,
+      innerRCERenderedIn: renderedIn,
     });
   };
 
@@ -467,7 +467,7 @@ class RichContentEditor extends Component {
     this.setState({
       innerRCEEditorState: null,
       innerRCEcb: null,
-      innerRCEPlugins: [],
+      innerRCERenderedIn: null,
     });
   };
 
@@ -543,10 +543,10 @@ class RichContentEditor extends Component {
                     <InnerRCEModal
                       onInnerEditorChange={this.onInnerEditorChange}
                       innerRCEEditorState={this.state.innerRCEEditorState}
-                      innerRCEPlugins={this.state.innerRCEPlugins}
                       theme={this.contextualData.theme}
                       closeInnerRCE={this.closeInnerRCE}
                       resetInnerRCEState={this.resetInnerRCEState}
+                      innerRCERenderedIn={this.state.innerRCERenderedIn}
                       {...this.props}
                     />
                   </ReactModal>

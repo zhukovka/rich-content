@@ -18,19 +18,6 @@ import ExpandIcon from './icons/expand.svg';
 // import InPluginInput from './InPluginInput';
 import { RichContentViewer } from 'wix-rich-content-viewer';
 import * as Plugins from './ViewerPlugins';
-import { createTextColorPlugin } from 'wix-rich-content-plugin-text-color';
-import { createLineSpacingPlugin } from 'wix-rich-content-plugin-line-spacing';
-import { createDividerPlugin } from 'wix-rich-content-plugin-divider';
-import { createEmojiPlugin } from 'wix-rich-content-plugin-emoji';
-import { createMapPlugin } from 'wix-rich-content-plugin-map';
-
-const PLUGINS = [
-  createTextColorPlugin,
-  createLineSpacingPlugin,
-  createDividerPlugin,
-  createEmojiPlugin,
-  createMapPlugin,
-];
 
 class ImageViewer extends React.Component {
   constructor(props) {
@@ -180,13 +167,17 @@ class ImageViewer extends React.Component {
   }
 
   renderCaption(caption) {
-    const { onCaptionChange, setFocusToBlock, setInPluginEditingMode, innerRCE } = this.props;
+    const { onCaptionChange, innerRCE } = this.props;
     return onCaptionChange ? (
       <>
         <div
           style={{ position: 'inherit', zIndex: 1, cursor: 'pointer' }}
           onClick={() =>
-            innerRCE(caption, newContentState => onCaptionChange(newContentState), PLUGINS)
+            innerRCE(
+              caption,
+              newContentState => onCaptionChange(newContentState),
+              'wix-draft-plugin-image'
+            )
           }
         >
           <RichContentViewer
