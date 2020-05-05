@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - run: echo " Step 2"
       - run: npm install
       - run: npm run analyzeBundles --silent
+      - run: git add . && git commit -m "comiit for testing" && git log
     env:
       REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
