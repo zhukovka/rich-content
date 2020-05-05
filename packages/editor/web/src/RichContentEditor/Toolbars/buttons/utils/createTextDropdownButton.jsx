@@ -45,12 +45,10 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey, dataHookTextWra
             styles.inlineToolbarDropdownButton_icon,
             theme && theme.inlineToolbarDropdownButton_icon
           ),
-          //eslint-disable-next-line camelcase
           inlineToolbarButton_arrowIcon: classNames(
             styles.inlineToolbarDropdownButton_arrowIcon,
             theme && theme.inlineToolbarButton_arrowIcon
           ),
-          //eslint-disable-next-line camelcase
           inlineToolbarButton_active: classNames(
             styles.inlineToolbarButton_active,
             theme && theme.inlineToolbarDropdownButton_active
