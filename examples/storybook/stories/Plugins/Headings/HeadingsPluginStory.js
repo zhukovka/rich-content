@@ -15,13 +15,13 @@ import HeadingsViewer from './HeadingsViewer';
 import viewerSourcecode from '!!raw-loader!./HeadingsViewer.js';
 
 const editorState = createWithContent(convertFromRaw(headingsContentState));
-const config = { Headings: { headersDropdown: ['P', 'H2', 'H3', 'H4', 'H5', 'H6'] } };
+// const config = { Headings: { headersDropdown: ['P', 'H2', 'H3', 'H4', 'H5', 'H6'] } };
 export default () => {
   return (
     <Page title="Headings Plugin">
       <Section type={Section.Types.COMPARISON}>
         <RichContentEditorBox sourcecode={editorSourcecode} contentState={headingsContentState}>
-          <HeadingsEditor editorState={editorState} config={config} />
+          <HeadingsEditor editorState={editorState} />
         </RichContentEditorBox>
         <RichContentViewerBox sourcecode={viewerSourcecode}>
           <HeadingsViewer initialState={headingsContentState} />
