@@ -338,10 +338,12 @@ class RichContentEditor extends Component {
   }
 
   renderToolbars = () => {
+    const { toolbarsToIgnore: toolbarsToIgnoreFromProps = [] } = this.props;
     const toolbarsToIgnore = [
       'MobileToolbar',
       'StaticTextToolbar',
       this.props.textToolbarType === 'static' ? 'InlineTextToolbar' : '',
+      ...toolbarsToIgnoreFromProps,
     ];
     //eslint-disable-next-line array-callback-return
     const toolbars = this.plugins.map((plugin, index) => {
@@ -455,17 +457,16 @@ class RichContentEditor extends Component {
 
   innerRCEReadOnly = innerContentState => {
     const innerRCEEditorState = EditorState.createWithContent(convertFromRaw(innerContentState));
-    const { theme } = this.contextualData;
     const innerEditor = (
       <div
         ref={innerEditorRef => (this.innerEditorRef = innerEditorRef)}
         style={{ pointerEvents: 'none' }}
       >
-        <Editor
-          plugins={this.plugins}
-          blockStyleFn={blockStyleFn(theme, this.styleToClass)}
+        <RichContentEditor
+          plugins={this.props.plugins}
           editorState={innerRCEEditorState}
-          readOnly
+          t={this.props.t}
+          toolbarsToIgnore={['FooterToolbar']}
         />
       </div>
     );
@@ -634,6 +635,7 @@ RichContentEditor.propTypes = {
   initialIntent: PropTypes.string,
   siteDomain: PropTypes.string,
   onError: PropTypes.func,
+  toolbarsToIgnore: PropTypes.array,
 };
 
 RichContentEditor.defaultProps = {
