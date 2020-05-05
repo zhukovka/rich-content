@@ -1,4 +1,5 @@
 export const configs = {
+  Headings: { headersDropdown: true },
   fileUpload: {
     accept: '*',
     handleFileSelection: updateEntity => {
