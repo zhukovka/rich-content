@@ -55,8 +55,9 @@ const updateMessage = (messageType, key, oldSize, newSize) => {
 
 async function updatePRCommentAndConsole() {
   const pr_comment = generatePRComment();
+  const shoulsPRComment = process.env.WITH_PR_COMMENT;
   console.log(pr_comment);
-  await gitPRComment(pr_comment, 'Comparison bundleSizes');
+  shoulsPRComment && (await gitPRComment(pr_comment, 'Comparison bundleSizes'));
 
   if (grewDownMessage !== '' || newBundles !== '') {
     fs.writeFileSync(`bundlesSizesBaseline.json`, JSON.stringify(savingBundles, null, 2), 'utf8');
