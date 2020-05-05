@@ -92,7 +92,7 @@
 
 .options.grid.with_image .add_option {
   height: 188px;
-  text-align: center;
+  justify-content: center;
 }
 
 .options.grid .add_option,
@@ -103,4 +103,19 @@
 
 .column {
   overflow: hidden;
+}
+
+.additional_note {
+  font-size: 14px;
+  margin: 20px 0 0;
+  opacity: 0.6;
+  color: #000;
+}
+
+.additional_note + .additional_note {
+  margin: 0;
+}
+
+.dark .additional_note {
+  color: #fff;
 }

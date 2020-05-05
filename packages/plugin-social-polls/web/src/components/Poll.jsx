@@ -44,6 +44,21 @@ class PollComponent extends Component {
     return () => this.props.removeOption(index);
   }
 
+  getNotes() {
+    const { poll, t } = this.props;
+
+    return [
+      {
+        condition: poll.settings.multipleVotes,
+        label: t('Poll_Viewer_Multiselect_Footer'),
+      },
+      {
+        condition: poll.settings.resultsVisibility === VISIBILITY.ME && poll.creatorFlag,
+        label: t('Poll_Viewer_Visibility_Owner_Footer'),
+      },
+    ].filter(note => !!note.condition);
+  }
+
   showResults() {
     const { resultsVisibility } = this.props.poll.settings;
 
@@ -119,6 +134,7 @@ class PollComponent extends Component {
       <div
         className={cls(styles.container, {
           [styles.isMobile]: rce.isMobile,
+          [styles.dark]: this.hasImageBackground(),
         })}
         style={style}
         dir={layout.poll?.direction}
@@ -187,6 +203,13 @@ class PollComponent extends Component {
               : t('Poll_Viewer_ShowAllOptions_CTA')}
           </button>
         )}
+
+        {rce.isViewMode &&
+          this.getNotes().map((note, i) => (
+            <p className={styles.additional_note} key={i}>
+              {note.label}
+            </p>
+          ))}
       </div>
     );
   }

@@ -20,13 +20,14 @@
   margin: 0;
   padding: 0;
   background: rgba(0, 0, 0, 0.04) ;
-  height: 116px;
+  height: 126px;
 }
 
 .selectionListOptionLabel {
   margin: 5px 0;
   color: #000;
   white-space: nowrap;
+  font-size: 12px;
 }
 
 .selectionListOption:hover:not(.selectionListOption_selected),
