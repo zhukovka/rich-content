@@ -61,7 +61,7 @@ export default class HeadingButton extends Component {
   updateHeading = (font, heading) => {
     const { setEditorState, getEditorState } = this.props;
     const newEditorState = RichUtils.toggleBlockType(getEditorState(), font);
-    setEditorState(newEditorState);
+    setEditorState(this.fixSelection(newEditorState, this.selection));
     this.currentEditorState = newEditorState;
     this.setState({ currentHeading: heading });
   };
