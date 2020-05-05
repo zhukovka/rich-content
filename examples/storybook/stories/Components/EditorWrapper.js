@@ -90,7 +90,7 @@ const plugins = [
   pluginActionButton(),
   pluginCodeBlock(),
   pluginDivider(),
-  pluginHeadings(configs),
+  pluginHeadings(),
   pluginEmoji(),
   pluginFileUpload(configs.fileUpload),
   pluginGallery(),
