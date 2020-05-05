@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
     <g fill="none" fill-rule="evenodd">
-        <path fill="#E6E6E6" d="M0 0H23182V1875H0z" transform="translate(-20648 -895)"/>
+        <path fill="#E6E6E6" d="M0 0H23182V1875H0z" transform="translate(-20648 -895)" opacity=".5"/>
         <g transform="translate(-20648 -895) translate(20648 895)">
             <circle cx="18" cy="18" r="18" fill="#000" opacity=".5"/>
             <g fill="#FFF">

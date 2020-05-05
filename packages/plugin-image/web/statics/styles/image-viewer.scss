@@ -13,10 +13,6 @@ $opacityTransition: opacity 0.8s ease;
   right: 10px;
   z-index: 10;
   border-radius: 20px;
-
-  path {
-    opacity: 0.8;
-  }
   &:hover path {
     opacity: 1;
   }
