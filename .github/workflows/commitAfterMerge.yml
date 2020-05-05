@@ -14,8 +14,6 @@ jobs:
       - name: pullRequest
         if: github.event.pull_request.merged == true
         run: |
-          npm install 
-          npm run analyzeBundles --silent
           git config user.email "barb@wix.com"
           git config user.name "Bar Boaron"
           git add .
