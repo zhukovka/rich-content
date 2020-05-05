@@ -56,6 +56,7 @@ export default ({
         data,
         blockType
       );
+      window.getSelection().removeAllRanges();
       setEditorState(EditorState.forceSelection(newEditorState, newSelection));
       return { newBlock, newSelection, newEditorState };
     };
@@ -118,6 +119,7 @@ export default ({
           ? this.createBlocksFromFiles([files], galleryData, galleryType, updateEntity)
           : this.createBlocksFromFiles(files, button.componentData, blockType, updateEntity);
 
+        window.getSelection().removeAllRanges();
         this.props.setEditorState(EditorState.forceSelection(newEditorState, newSelection));
       }
     };
@@ -139,13 +141,16 @@ export default ({
       }
     };
 
-    preventButtonGettingFocus = event => event.preventDefault();
+    preventButtonGettingFocus = event => {
+      if (button.name !== 'GIF') {
+        event.preventDefault();
+      }
+    };
 
     renderButton = () => {
       const { styles } = this;
       const { showName, tabIndex, setEditorState } = this.props;
       const { name, Icon, wrappingComponent } = button;
-
       const WrappingComponent = wrappingComponent || 'button';
 
       let buttonCompProps = {};
@@ -160,8 +165,11 @@ export default ({
         <WrappingComponent
           aria-label={`Add ${name}`}
           tabIndex={tabIndex}
-          className={classNames(styles.button, button.type === 'file' && styles.fileUploadButton)}
-          data-hook={`${name.replace(' ', '_')}_insert_plugin_button`}
+          className={classNames(
+            styles.button,
+            showName ? styles.sideToolbarButton : styles.footerToolbarButton
+          )}
+          data-hook={name}
           onClick={this.onClick}
           onMouseDown={this.preventButtonGettingFocus}
           ref={this.buttonRef}
@@ -172,7 +180,7 @@ export default ({
           </div>
           {showName && (
             <span key="1" className={styles.label}>
-              {name}
+              {t(name)}
             </span>
           )}
         </WrappingComponent>
@@ -196,11 +204,16 @@ export default ({
           modalStyles,
           theme: this.props.theme,
           componentData: button.componentData,
-          onConfirm: this.addBlock,
+          onConfirm: obj => {
+            const data = this.addBlock(obj);
+            this.blockKey = data.newBlock;
+            return data;
+          },
           pubsub,
           helpers,
           t,
           isMobile,
+          blockKey: this.blockKey,
         });
       }
     };
@@ -229,7 +242,10 @@ export default ({
       return (
         <FileInput
           dataHook={`${button.name}_file_input`}
-          className={classNames(styles.button, styles.fileUploadButton)}
+          className={classNames(
+            styles.button,
+            showName ? styles.sideToolbarButton : styles.footerToolbarButton
+          )}
           onChange={this.handleNativeFileChange}
           accept={accept}
           multiple={button.multi}
@@ -241,7 +257,7 @@ export default ({
           </div>
           {showName && (
             <span key="1" className={styles.label}>
-              {name}
+              {t(name)}
             </span>
           )}
         </FileInput>

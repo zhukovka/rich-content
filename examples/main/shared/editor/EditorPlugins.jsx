@@ -33,7 +33,12 @@ import {
 import { createMapPlugin, MAP_TYPE } from 'wix-rich-content-plugin-map';
 import { createFileUploadPlugin, FILE_UPLOAD_TYPE } from 'wix-rich-content-plugin-file-upload';
 import { createTextColorPlugin, TEXT_COLOR_TYPE } from 'wix-rich-content-plugin-text-color';
-import { createButtonPlugin, BUTTON_TYPE } from 'wix-rich-content-plugin-button';
+import {
+  createLinkButtonPlugin,
+  LINK_BUTTON_TYPE,
+  createActionButtonPlugin,
+  ACTION_BUTTON_TYPE,
+} from 'wix-rich-content-plugin-button';
 import { createTextHighlightPlugin, TEXT_HIGHLIGHT_TYPE } from 'wix-rich-content-plugin-text-color';
 import Highlighter from 'react-highlight-words';
 import casual from 'casual-browserify';
@@ -92,7 +97,7 @@ export const editorPluginsPartialPreset = [
   createHeadersMarkdownPlugin,
   createMapPlugin,
   createFileUploadPlugin,
-  createButtonPlugin,
+  createLinkButtonPlugin,
   createTextColorPlugin,
   createEmojiPlugin,
   createTextHighlightPlugin,
@@ -108,6 +113,7 @@ export const editorPluginsEmbedsPreset = [
 export const editorPlugins = [
   createLinkPreviewPlugin,
   createVerticalEmbedPlugin,
+  createActionButtonPlugin,
   ...editorPluginsPartialPreset,
 ];
 
@@ -128,7 +134,8 @@ export const editorPluginsMap = {
   headers: createHeadersMarkdownPlugin,
   map: createMapPlugin,
   fileUpload: createFileUploadPlugin,
-  button: createButtonPlugin,
+  linkButton: createLinkButtonPlugin,
+  actionButton: createActionButtonPlugin,
   textColor: createTextColorPlugin,
   emoji: createEmojiPlugin,
   highlight: createTextHighlightPlugin,
@@ -139,17 +146,6 @@ export const editorPluginsMap = {
   all: editorPlugins,
 };
 
-const themeColors = {
-  color1: '#ffffff',
-  color2: '#303030',
-  color3: '#3a54b4',
-  color4: '#bfad80',
-  color5: '#bf695c',
-  color6: '#f7f7f7',
-  color7: '#000000',
-  color8: '#9a87ce',
-};
-
 const buttonDefaultPalette = ['#FEFDFD', '#D5D4D4', '#ABCAFF', '#81B0FF', '#0261FF', '#0141AA'];
 let userButtonTextColors = [...buttonDefaultPalette];
 let userButtonBackgroundColors = [...buttonDefaultPalette];
@@ -157,7 +153,7 @@ let userButtonBorderColors = [...buttonDefaultPalette];
 
 const getLinkPanelDropDownConfig = () => {
   const getItems = () => {
-    casual.define('item', function () {
+    casual.define('item', function() {
       return {
         value: casual.url,
         label: casual.catch_phrase,
@@ -216,7 +212,6 @@ const getLinkPanelDropDownConfig = () => {
 let userColors = [];
 
 const uiSettings = {
-  themeColors,
   linkPanel: {
     blankTargetToggleVisibilityFn: () => true,
     nofollowRelToggleVisibilityFn: () => true,
@@ -247,7 +242,6 @@ const videoHandlers = {
     const videoToUpload = videoWithRelativeUrl;
     setTimeout(() => {
       updateEntity({ data: videoToUpload });
-      //updateEntity({ error: { msg: 'Upload Failed' } });
       console.log('consumer uploaded ', videoToUpload);
     }, 500);
   },
@@ -272,19 +266,49 @@ const videoHandlers = {
     // If relative URL is provided, a function 'getVideoUrl' will be invoked to form a full URL.
     const videoToUpload = videoWithRelativeUrl;
     setTimeout(() => {
-      updateEntity({ data: videoToUpload });
-      //updateEntity({ error: { msg: 'Upload Failed' } });
+      updateEntity({ data: videoToUpload /*, error: { msg: 'upload failed' }*/ });
       console.log('consumer uploaded ', videoToUpload);
-    }, 1200000);
+    }, 2000);
   },
 };
 
 const { event, booking, product } = verticalEmbedProviders;
-
+const buttonConfig = {
+  // toolbar: {
+  //   icons: {
+  //     InsertPluginButtonIcon: MyCustomIcon,
+  //   },
+  // },
+  // insertButtonTooltip: 'Custom tooltip',
+  palette: ['#FEFDFD', '#D5D4D4', '#ABCAFF', '#81B0FF', '#0261FF', '#0141AA'],
+  selectionBackgroundColor: 'fuchsia',
+  selectionBorderColor: '#FFF',
+  selectionTextColor: '#FFF',
+  colors: {
+    color1: '#FEFDFD',
+    color2: '#D5D4D4',
+    color3: '#000000',
+    color4: '#000000',
+    color5: '#000000',
+    color6: '#ABCAFF',
+    color7: '#81B0FF',
+    color8: '#0261FF',
+    color9: '#0141AA',
+    color10: '#012055',
+  },
+  onTextColorAdded: color => (userButtonTextColors = [color, ...userButtonTextColors]),
+  onBackgroundColorAdded: color =>
+    (userButtonBackgroundColors = [color, ...userButtonBackgroundColors]),
+  onBorderColorAdded: color => (userButtonBorderColors = [color, ...userButtonBorderColors]),
+  getTextColors: () => userButtonTextColors,
+  getBorderColors: () => userButtonBorderColors,
+  getBackgroundColors: () => userButtonBackgroundColors,
+};
 const { Instagram, Twitter, YouTube, TikTok } = LinkPreviewProviders;
 const config = {
   [LINK_PREVIEW_TYPE]: {
-    enableEmbed: true,
+    enableEmbed: true, // [Twitter, YouTube]
+    enableLinkPreview: true,
     fetchData: mockFetchUrlPreviewData(),
     exposeEmbedButtons: [Instagram, Twitter, YouTube, TikTok],
   },
@@ -539,35 +563,10 @@ const config = {
       setTimeout(() => updateEntity({ data }), 500);
     },
   },
-  [BUTTON_TYPE]: {
-    // toolbar: {
-    //   icons: {
-    //     InsertPluginButtonIcon: MyCustomIcon,
-    //   },
-    // },
-    palette: ['#FEFDFD', '#D5D4D4', '#ABCAFF', '#81B0FF', '#0261FF', '#0141AA'],
-    selectionBackgroundColor: 'fuchsia',
-    selectionBorderColor: '#FFF',
-    selectionTextColor: '#FFF',
-    colors: {
-      color1: '#FEFDFD',
-      color2: '#D5D4D4',
-      color3: '#000000',
-      color4: '#000000',
-      color5: '#000000',
-      color6: '#ABCAFF',
-      color7: '#81B0FF',
-      color8: '#0261FF',
-      color9: '#0141AA',
-      color10: '#012055',
-    },
-    onTextColorAdded: color => (userButtonTextColors = [color, ...userButtonTextColors]),
-    onBackgroundColorAdded: color =>
-      (userButtonBackgroundColors = [color, ...userButtonBackgroundColors]),
-    onBorderColorAdded: color => (userButtonBorderColors = [color, ...userButtonBorderColors]),
-    getTextColors: () => userButtonTextColors,
-    getBorderColors: () => userButtonBorderColors,
-    getBackgroundColors: () => userButtonBackgroundColors,
+  [LINK_BUTTON_TYPE]: { ...buttonConfig },
+  [ACTION_BUTTON_TYPE]: {
+    insertButtonTooltip: 'Add an action button',
+    ...buttonConfig,
   },
   [TEXT_HIGHLIGHT_TYPE]: {
     // toolbar: {

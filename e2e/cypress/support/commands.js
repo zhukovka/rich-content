@@ -76,7 +76,7 @@ function disableTransitions() {
 }
 
 function hideAllTooltips() {
-  cy.get('[data-id="tooltip"]').invoke('hide'); //uses jquery to set display: none
+  cy.get('[data-id="tooltip"]', { timeout: 90000 }).invoke('hide'); //uses jquery to set display: none
 }
 
 Cypress.Commands.add('loadEditorAndViewer', (fixtureName, plugins) =>
@@ -266,12 +266,12 @@ Cypress.Commands.add('setLineSpacing', (buttonIndex = 3, selection) => {
 
 Cypress.Commands.add('openSideToolbar', () => {
   cy.get('[aria-label="Plugin Toolbar"]').click();
-  cy.get('#side_bar');
+  cy.get('[data-hook="floatingAddPluginMenu"]');
 });
 
 Cypress.Commands.add('openAddPluginModal', () => {
-  cy.get('[data-hook="addPluginFloatingToolbar"]').click();
-  cy.get('[aria-label="Add Plugin"]');
+  cy.get('[data-hook="addPluginButton"]').click();
+  cy.get('[data-hook="addPluginMenu"]');
 });
 
 Cypress.Commands.add('openImageSettings', (shouldOpenToolbar = true) => {
@@ -295,8 +295,10 @@ Cypress.Commands.add('openGalleryAdvancedSettings', () => {
   cy.get(`[data-hook=${PLUGIN_TOOLBAR_BUTTONS.ADV_SETTINGS}]:first`).click();
 });
 
-Cypress.Commands.add('shrinkPlugin', () => {
-  cy.clickToolbarButton(PLUGIN_TOOLBAR_BUTTONS.SMALL_CENTER);
+Cypress.Commands.add('shrinkPlugin', dataHook => {
+  cy.clickToolbarButton(PLUGIN_TOOLBAR_BUTTONS.SMALL_CENTER)
+    .get(`[data-hook=${dataHook}]:first`, { timeout: 15000 })
+    .should('have.css', 'width', '350px');
 });
 
 Cypress.Commands.add('pluginSizeBestFit', () => {
@@ -413,15 +415,19 @@ Cypress.Commands.add('openDropdownMenu', (selector = '') => {
 });
 
 Cypress.Commands.add('openVideoUploadModal', () => {
-  cy.get(`[data-hook*=${STATIC_TOOLBAR_BUTTONS.VIDEO}][tabindex!=-1]`).click();
+  cy.clickOnStaticButton(STATIC_TOOLBAR_BUTTONS.VIDEO);
 });
 
-Cypress.Commands.add('openSoundCloudModal', () => {
-  cy.get(`[data-hook*=${STATIC_TOOLBAR_BUTTONS.SOUND_CLOUD}][tabindex!=-1]`).click();
-});
+Cypress.Commands.add('openSoundCloudModal', () =>
+  cy.clickOnStaticButton(STATIC_TOOLBAR_BUTTONS.SOUND_CLOUD)
+);
+Cypress.Commands.add('openEmbedModal', modalType => cy.clickOnStaticButton(modalType));
 
-Cypress.Commands.add('openEmbedModal', modalType => {
-  cy.get(`[data-hook*=${modalType}][tabindex!=-1]`).click();
+Cypress.Commands.add('addGif', () => {
+  cy.clickOnStaticButton(STATIC_TOOLBAR_BUTTONS.GIPHY);
+  cy.get('[data-hook=giphyUploadModal] [role=button]')
+    .first()
+    .click();
 });
 
 Cypress.Commands.add('addSoundCloud', () => {
@@ -447,8 +453,12 @@ Cypress.Commands.add('addVideoFromURL', () => {
     .click();
 });
 
+Cypress.Commands.add('clickOnStaticButton', dataHook =>
+  cy.get(`[data-hook*=footerToolbar] [data-hook*=${dataHook}]`).click()
+);
+
 Cypress.Commands.add('addHtml', () => {
-  cy.get(`[data-hook*=${HTML_PLUGIN.STATIC_TOOLBAR_BUTTON}][tabindex!=-1]`).click();
+  cy.clickOnStaticButton(HTML_PLUGIN.STATIC_TOOLBAR_BUTTON);
   cy.get(`[data-hook*=${HTML_PLUGIN.INPUT}]`)
     .click()
     .clear();
@@ -508,8 +518,8 @@ Cypress.Commands.add('insertLinkAndEnter', url => {
   cy.moveCursorToEnd()
     .type(url)
     .type('{enter}')
-    .wait(100);
-  cy.moveCursorToEnd();
+    .moveCursorToEnd()
+    .wait(200);
 });
 
 Cypress.Commands.add('triggerLinkPreviewViewerUpdate', () => {
@@ -545,6 +555,19 @@ function waitForMutations(container, { timeToWaitForMutation = 300 } = {}) {
     }
   });
 }
+
+Cypress.Commands.add('paste', (pastePayload, pasteType = 'text') => {
+  cy.getEditor().then($destination => {
+    const pasteEvent = Object.assign(new Event('paste', { bubbles: true, cancelable: true }), {
+      clipboardData: {
+        getData: (type = pasteType) => {
+          return pastePayload;
+        },
+      },
+    });
+    $destination[0].dispatchEvent(pasteEvent);
+  });
+});
 
 // disable screenshots in debug mode. So there is no diffrence to ci.
 if (Cypress.browser.isHeaded) {

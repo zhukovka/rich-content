@@ -1,3 +1,4 @@
+//@flow
 import { TOOLBARS, DISPLAY_MODE } from 'wix-rich-content-editor-common';
 import { createSideToolbar } from './SideToolbar';
 import { createMobileToolbar, createFooterToolbar, createStaticTextToolbar } from './StaticToolbar';
@@ -48,7 +49,11 @@ const defaultTextPluginButtons = {
   },
 };
 
-export const getDefaultToolbarSettings = ({ pluginButtons, textButtons, pluginTextButtons }) => {
+export const getDefaultToolbarSettings /*: GetToolbarSettings*/ = ({
+  pluginButtons,
+  textButtons,
+  pluginTextButtons,
+}) => {
   return [
     {
       name: TOOLBARS.SIDE,
@@ -77,7 +82,9 @@ export const getDefaultToolbarSettings = ({ pluginButtons, textButtons, pluginTe
       getButtons: () => {
         const buttons = pluginButtons
           .filter(({ buttonSettings }) => buttonSettings.toolbars.includes(TOOLBARS.SIDE))
-          .map(({ component }) => component);
+          .map(({ component, buttonSettings: { name, section } }) => {
+            return { component, name, section: section || 'BlockToolbar_Section_Basic' };
+          });
         return {
           desktop: buttons,
           mobile: {
@@ -118,7 +125,7 @@ export const getDefaultToolbarSettings = ({ pluginButtons, textButtons, pluginTe
         };
       },
       getTextPluginButtons: () => ({
-        desktop: [],
+        desktop: {},
         mobile: {
           ios: pluginTextButtons.mobile,
           android: pluginTextButtons.mobile,

@@ -15,21 +15,8 @@ import {
 } from './buttons/utils';
 import { get } from 'lodash';
 
-const appendSeparator = ({ mergedList, sourceList, buttonData, formFactor }) => {
-  if (
-    mergedList.length === sourceList.length &&
-    (!buttonData.position ||
-      buttonData.position[formFactor] === undefined ||
-      buttonData.position[formFactor] < 0 ||
-      buttonData.position[formFactor] > mergedList.length)
-  ) {
-    return [...mergedList, 'Separator'];
-  }
-  return mergedList;
-};
-
 const createEditorToolbars = ({ buttons, textAlignment, refId, context }) => {
-  const { uiSettings, getToolbarSettings = () => [] } = context.config;
+  const { uiSettings = {}, getToolbarSettings = () => [] } = context.config;
   const { pluginButtons, pluginTextButtons } = buttons;
 
   const { isMobile, theme = {} } = context;
@@ -40,14 +27,12 @@ const createEditorToolbars = ({ buttons, textAlignment, refId, context }) => {
     mobile: mergeButtonLists(
       MobileTextButtonList,
       reducePluginTextButtonNames(pluginTextButtons, ({ isMobile }) => isMobile !== false),
-      'mobile',
-      appendSeparator
+      'mobile'
     ),
     desktop: mergeButtonLists(
       DesktopTextButtonList,
       reducePluginTextButtonNames(pluginTextButtons),
-      'desktop',
-      appendSeparator
+      'desktop'
     ),
   };
 
@@ -83,6 +68,7 @@ const createEditorToolbars = ({ buttons, textAlignment, refId, context }) => {
         getInstance,
         getDisplayOptions,
         getToolbarDecorationFn,
+        addPluginMenuConfig,
       }) => {
         toolbars[name] = getInstance({
           ...context,
@@ -100,6 +86,7 @@ const createEditorToolbars = ({ buttons, textAlignment, refId, context }) => {
           uiSettings,
           pubsub,
           refId,
+          addPluginMenuConfig,
         });
       }
     );

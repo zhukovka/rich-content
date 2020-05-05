@@ -1,7 +1,8 @@
 import theme from '../theme/theme';
+import { ACTION_BUTTON_TYPE } from 'wix-rich-content-plugin-button/dist/module.viewer';
 import { VIDEO_TYPE, videoTypeMapper } from 'wix-rich-content-plugin-video/dist/module.viewer';
 import { dividerTypeMapper } from 'wix-rich-content-plugin-divider/dist/module.viewer';
-import { HTML_TYPE, htmlTypeMapper } from 'wix-rich-content-plugin-html/dist/module.viewer';
+import { htmlTypeMapper } from 'wix-rich-content-plugin-html/dist/module.viewer';
 import { soundCloudTypeMapper } from 'wix-rich-content-plugin-sound-cloud/dist/module.viewer';
 import { LINK_TYPE, linkTypeMapper } from 'wix-rich-content-plugin-link/dist/module.viewer';
 import {
@@ -133,6 +134,11 @@ const config = {
     getVideoUrl: src => `https://video.wixstatic.com/${src.pathname}`,
   },
   uiSettings,
+  [ACTION_BUTTON_TYPE]: {
+    onClick: () => {
+      window.alert('onClick event..');
+    },
+  },
 };
 
 export const getConfig = (additionalConfig = {}) => {
