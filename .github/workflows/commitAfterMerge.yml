@@ -14,6 +14,5 @@ jobs:
       - name: pullRequest
         if: github.event.pull_request.merged == true
         run: npm install && npm run analyzeBundles --silent && git add . && git commit -m "commit for testing" && git log
-
     env:
       REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
