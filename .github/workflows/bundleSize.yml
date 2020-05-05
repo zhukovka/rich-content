@@ -10,3 +10,4 @@ jobs:
       - run: npm run analyzeBundles --silent
     env:
       REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      WITH_PR_COMMENT: 'true'

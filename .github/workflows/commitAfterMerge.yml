@@ -13,6 +13,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: pullRequest
         if: github.event.pull_request.merged == true
-        run: git config user.email "barb@wix.com" && git config user.name "Bar Boaron" && git add . && git commit -m "commit for testing" && git log
+        run: npm install && npm run analyzeBundles && git config user.email "barb@wix.com" && git config user.name "Bar Boaron" && git add . && git status && git commit -m "commit for testing" && git log
     env:
       REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
