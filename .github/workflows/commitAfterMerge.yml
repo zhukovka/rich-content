@@ -1,15 +1,20 @@
 name: commitAfterMerge
 on:
-  push:
-    branches:
-      - githubActionOnMergePR
+  pull_request:
+    types: [closed]
+# on:
+#   push:
+#     branches:
+#       - githubActionOnMergePR
 jobs:
   analyze-bundles:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - run: npm install
-      - run: npm run analyzeBundles --silent
-      - run: git add . && git commit -m "comiit for testing" && git log
+      - name: pullRequest
+        if: github.event.pull_request.merged == true
+        run: npm install && npm run analyzeBundles --silent && git add . && git commit -m "commit for testing"
+      # - run: npm run analyzeBundles --silent
+      # - run: git add . && git commit -m "comiit for testing" && git log
     env:
       REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
