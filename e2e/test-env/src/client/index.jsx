@@ -14,6 +14,7 @@ const props = {
   isMobile: window.isMobile,
   locale: window.locale,
   testAppPlugins: window.testAppPlugins,
+  testApptoolbarConfig: window.testApptoolbarConfig,
 };
 
 hydrate(

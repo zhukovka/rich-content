@@ -36,6 +36,7 @@ const getUrl = (componentId, fixtureName = '', plugins = 'partialPreset') =>
     hebrew: isHebrew,
     seoMode: isSeoMode,
     testAppPlugins: plugins,
+    testApptoolbarConfig,
   })}`;
 
 const run = (app, fixtureName, plugins) => {
@@ -48,6 +49,27 @@ const run = (app, fixtureName, plugins) => {
 let isMobile = false;
 let isHebrew = false;
 let isSeoMode = false;
+let testApptoolbarConfig = [];
+
+Cypress.Commands.add('setHorizontalPluginMenu', () => {
+  testApptoolbarConfig = ['horizontal'];
+});
+
+Cypress.Commands.add('setAdvancedPluginMenu', () => {
+  testApptoolbarConfig = ['advanced'];
+});
+
+Cypress.Commands.add('clearTestApptoolbarConfig', () => {
+  testApptoolbarConfig = [];
+});
+
+Cypress.Commands.add('setPluginMenuSearch', () => {
+  testApptoolbarConfig = [...testApptoolbarConfig, 'showSearch'];
+});
+
+Cypress.Commands.add('setPluginMenuSectionSplited', () => {
+  testApptoolbarConfig = [...testApptoolbarConfig, 'splitToSections'];
+});
 
 Cypress.Commands.add('switchToMobile', () => {
   isMobile = true;

@@ -30,18 +30,33 @@ export default class Editor extends PureComponent {
     this.initEditorProps();
     const { scrollingElementFn, testAppPlugins } = props;
     const additionalConfig = { [GALLERY_TYPE]: { scrollingElement: scrollingElementFn } };
-    const toolbarsConfig = {
-      addPluginMenuConfig: {
-        showSearch: true,
-        splitToSections: true,
-      },
-    };
     const pluginsConfig = Plugins.getConfig(additionalConfig);
     this.plugins = testAppPlugins
       ? testAppPlugins.map(plugin => Plugins.editorPluginsMap[plugin]).flat()
       : Plugins.editorPlugins;
     this.config = pluginsConfig;
-    this.toolbarsConfig = toolbarsConfig;
+    this.toolbarsConfig = this.getToolbarConfig();
+  }
+
+  getToolbarConfig() {
+    const { testApptoolbarConfig } = this.props;
+    console.log('4343434434', this.props);
+    if (testApptoolbarConfig) {
+      if (testApptoolbarConfig.includes('horizontal')) {
+        return {};
+      } else {
+        let addPluginMenuConfig = {};
+        testApptoolbarConfig.forEach(config => (addPluginMenuConfig[config] = true));
+        return { addPluginMenuConfig };
+      }
+    } else {
+      return {
+        addPluginMenuConfig: {
+          showSearch: true,
+          splitToSections: true,
+        },
+      };
+    }
   }
 
   initEditorProps() {

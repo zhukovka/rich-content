@@ -18,7 +18,8 @@ export default function renderer() {
     const locale = req.query.hebrew === '' ? 'he' : 'en';
     const seoMode = req.query.seoMode === '';
     const testAppPlugins = req.query.testAppPlugins || 'partialPreset';
-    const props = { isMobile, locale, seoMode, testAppPlugins };
+    const testApptoolbarConfig = req.query.testApptoolbarConfig;
+    const props = { isMobile, locale, seoMode, testAppPlugins, testApptoolbarConfig };
 
     try {
       props.initialState = require(`../../../tests/fixtures/${fixtureName}.json`);
@@ -36,6 +37,7 @@ export default function renderer() {
       isMobile,
       locale,
       testAppPlugins,
+      testApptoolbarConfig,
       serialize,
     });
   };
