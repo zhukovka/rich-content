@@ -37,6 +37,10 @@ export class PollContextProviderComponent extends PureComponent {
   };
 
   static getDerivedStateFromProps(props, state) {
+    if (props.poll.id !== state.poll.id) {
+      return { poll: props.poll };
+    }
+
     return {
       poll: merge(state.poll, { settings: props.poll.settings }),
     };
