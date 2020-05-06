@@ -9,6 +9,7 @@ import {
   normalizeUrl,
 } from 'wix-rich-content-common';
 import { getInteractionWrapper, DefaultInteractionWrapper } from './utils/getInteractionWrapper';
+import RichContentViewer from './RichContentViewer';
 
 class PluginViewer extends PureComponent {
   getContainerClassNames = () => {
@@ -46,6 +47,11 @@ class PluginViewer extends PureComponent {
     return this.props?.componentData?.config?.link;
   };
 
+  viewerForInnerRCE = contentState => {
+    const { innerRCEViewerProps } = this.props;
+    return <RichContentViewer initialState={contentState} {...innerRCEViewerProps} />;
+  };
+
   /* eslint-disable complexity */
   render() {
     const {
@@ -67,6 +73,7 @@ class PluginViewer extends PureComponent {
       children,
       entityIndex,
       ...context,
+      viewerForInnerRCE: this.viewerForInnerRCE,
     };
 
     if (Component) {
@@ -143,6 +150,7 @@ PluginViewer.propTypes = {
     siteDomain: PropTypes.string,
     disableRightClick: PropTypes.bool,
   }).isRequired,
+  innerRCEViewerProps: PropTypes.object,
 };
 
 PluginViewer.defaultProps = {
@@ -150,7 +158,7 @@ PluginViewer.defaultProps = {
 };
 
 //return a list of types with a function that wraps the viewer
-const getPluginViewers = (typeMap, context, styles) => {
+const getPluginViewers = (typeMap, context, styles, innerRCEViewerProps) => {
   const res = {};
   Object.keys(typeMap).forEach((type, i) => {
     res[type] = (children, entity, { key }) => {
@@ -171,6 +179,8 @@ const getPluginViewers = (typeMap, context, styles) => {
             entityIndex={key}
             context={context}
             styles={styles}
+            typeMap={typeMap}
+            innerRCEViewerProps={innerRCEViewerProps}
           >
             {isInline ? children : null}
           </PluginViewer>

@@ -119,7 +119,7 @@ const getBlocks = (contentState, mergedStyles, textDirection, context, addAnchor
   };
 };
 
-const getEntities = (typeMap, pluginProps, styles) => {
+const getEntities = (typeMap, pluginProps, styles, innerRCEViewerProps) => {
   const emojiViewerFn = (emojiUnicode, data, { key }) => {
     return (
       <span key={key} style={{ fontFamily: 'cursive' }}>
@@ -129,7 +129,7 @@ const getEntities = (typeMap, pluginProps, styles) => {
   };
   return {
     EMOJI_TYPE: emojiViewerFn,
-    ...getPluginViewers(typeMap, pluginProps, styles),
+    ...getPluginViewers(typeMap, pluginProps, styles, innerRCEViewerProps),
   };
 };
 
@@ -187,7 +187,8 @@ const convertToReact = (
   entityProps,
   decorators,
   inlineStyleMappers,
-  options = {}
+  options = {},
+  innerRCEViewerProps
 ) => {
   if (isEmptyContentState(contentState)) {
     return null;
@@ -202,7 +203,12 @@ const convertToReact = (
     {
       inline: getInline(inlineStyleMappers, mergedStyles),
       blocks: getBlocks(contentState, mergedStyles, textDirection, entityProps, parsedAddAnchors),
-      entities: getEntities(combineMappers(typeMap), entityProps, mergedStyles),
+      entities: getEntities(
+        combineMappers(typeMap),
+        entityProps,
+        mergedStyles,
+        innerRCEViewerProps
+      ),
       decorators,
     },
     { ...redraftOptions, ...restOptions }

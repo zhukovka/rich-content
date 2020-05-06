@@ -14,8 +14,6 @@ import { DEFAULTS, SEO_IMAGE_WIDTH } from './consts';
 import styles from '../statics/styles/image-viewer.scss';
 import ExpandIcon from './icons/expand.svg';
 // import InPluginInput from './InPluginInput';
-import { RichContentViewer } from 'wix-rich-content-viewer';
-import * as Plugins from './ViewerPlugins';
 
 class ImageViewer extends React.Component {
   constructor(props) {
@@ -165,18 +163,8 @@ class ImageViewer extends React.Component {
   }
 
   renderCaption(caption) {
-    const { renderInnerRCECaption } = this.props;
-    return renderInnerRCECaption ? (
-      renderInnerRCECaption()
-    ) : (
-      <RichContentViewer
-        initialState={caption}
-        typeMappers={Plugins.typeMappers}
-        inlineStyleMappers={Plugins.getInlineStyleMappers(caption)}
-        decorators={Plugins.decorators}
-        config={Plugins.getConfig()}
-      />
-    );
+    const { renderInnerRCECaption, viewerForInnerRCE } = this.props;
+    return renderInnerRCECaption ? renderInnerRCECaption() : viewerForInnerRCE(caption);
   }
 
   onKeyDown = (e, handler) => {
@@ -293,6 +281,7 @@ ImageViewer.propTypes = {
   setComponentUrl: PropTypes.func,
   seoMode: PropTypes.bool,
   renderInnerRCECaption: PropTypes.func,
+  viewerForInnerRCE: PropTypes.func,
 };
 
 export default ImageViewer;

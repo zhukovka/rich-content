@@ -92,6 +92,12 @@ class RichContentViewer extends Component {
       });
 
       const contextualData = this.getContextualData(this.props);
+      const innerRCEViewerProps = {
+        typeMappers: this.props.typeMappers,
+        inlineStyleMappers: this.props.inlineStyleMappers,
+        decorators: this.props.decorators,
+        config: this.props.config,
+      };
 
       const output = convertToReact(
         this.state.raw,
@@ -101,7 +107,8 @@ class RichContentViewer extends Component {
         contextualData,
         decorators,
         inlineStyleMappers,
-        { addAnchors }
+        { addAnchors },
+        innerRCEViewerProps
       );
       return (
         <div className={wrapperClassName} dir={getLangDir(locale)}>
