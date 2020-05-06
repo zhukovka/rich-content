@@ -443,7 +443,14 @@ class RichContentEditor extends Component {
     );
   };
 
-  onInnerEditorChange = innerRCEEditorState => this.setState({ innerRCEEditorState });
+  onInnerEditorChange = innerRCEEditorState =>
+    this.setState({ innerRCEEditorState }, this.saveInnerRCE);
+
+  saveInnerRCE = () => {
+    const { innerRCEEditorState, innerRCEcb } = this.state;
+    const newContentState = convertToRaw(innerRCEEditorState.getCurrentContent());
+    innerRCEcb(newContentState);
+  };
 
   innerRCEOpenModal = (innerContentState, callback, renderedIn) => {
     const innerRCEEditorState = EditorState.createWithContent(convertFromRaw(innerContentState));
@@ -477,12 +484,7 @@ class RichContentEditor extends Component {
     return innerEditor;
   };
 
-  closeInnerRCE = closeAndSave => {
-    if (closeAndSave) {
-      const { innerRCEEditorState, innerRCEcb } = this.state;
-      const newContentState = convertToRaw(innerRCEEditorState.getCurrentContent());
-      innerRCEcb(newContentState);
-    }
+  closeInnerRCE = () => {
     this.setState({
       innerRCEOpenModal: false,
     });
@@ -562,14 +564,13 @@ class RichContentEditor extends Component {
                       customStyles: { content: { overflow: 'unset' }, overlay: { zIndex: 4 } },
                       fullScreen: false,
                     })}
-                    onRequestClose={() => this.closeInnerRCE(true)}
+                    onRequestClose={this.closeInnerRCE}
                     shouldCloseOnOverlayClick
                   >
                     <InnerRCEModal
                       onInnerEditorChange={this.onInnerEditorChange}
                       innerRCEEditorState={this.state.innerRCEEditorState}
                       theme={this.contextualData.theme}
-                      closeInnerRCE={this.closeInnerRCE}
                       resetInnerRCEState={this.resetInnerRCEState}
                       innerRCERenderedIn={this.state.innerRCERenderedIn}
                       {...this.props}

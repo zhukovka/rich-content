@@ -28,7 +28,6 @@ class InnerRCEModal extends Component {
       onInnerEditorChange,
       innerRCEEditorState,
       theme,
-      closeInnerRCE,
       isMobile,
       editorState,
       onChange,
@@ -47,18 +46,6 @@ class InnerRCEModal extends Component {
           zIndex: 6,
         }}
       >
-        <button
-          style={{ position: 'absolute', right: 0, zIndex: 1 }}
-          onClick={() => closeInnerRCE(true)}
-        >
-          save
-        </button>
-        <button
-          style={{ position: 'absolute', right: '40px', zIndex: 1 }}
-          onClick={() => closeInnerRCE()}
-        >
-          cancel
-        </button>
         <div className={classNames(styles.editor, theme.editor)}>
           {TopToolbar && (
             <div className="toolbar-wrapper">
@@ -84,7 +71,6 @@ InnerRCEModal.propTypes = {
   innerRCEEditorState: PropTypes.object,
   innerRCEPlugins: PropTypes.array,
   theme: PropTypes.object,
-  closeInnerRCE: PropTypes.func,
   isMobile: PropTypes.bool,
   editorState: PropTypes.object,
   onChange: PropTypes.func,
