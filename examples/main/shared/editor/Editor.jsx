@@ -40,7 +40,6 @@ export default class Editor extends PureComponent {
 
   getToolbarConfig() {
     const { testApptoolbarConfig } = this.props;
-    console.log('4343434434', this.props);
     if (testApptoolbarConfig) {
       if (testApptoolbarConfig.includes('horizontal')) {
         return {};
