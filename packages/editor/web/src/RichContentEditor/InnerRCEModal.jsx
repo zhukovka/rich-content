@@ -40,7 +40,6 @@ class InnerRCEModal extends Component {
       <div
         style={{
           position: 'absolute',
-          border: '2px solid orange',
           width: '100%',
           // width: isMobile ? '100%' : '450px',
           backgroundColor: 'white',

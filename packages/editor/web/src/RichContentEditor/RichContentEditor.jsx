@@ -443,8 +443,9 @@ class RichContentEditor extends Component {
     );
   };
 
-  onInnerEditorChange = innerRCEEditorState =>
+  onInnerEditorChange = debounce(innerRCEEditorState => {
     this.setState({ innerRCEEditorState }, this.saveInnerRCE);
+  }, 200);
 
   saveInnerRCE = () => {
     const { innerRCEEditorState, innerRCEcb } = this.state;
@@ -495,11 +496,13 @@ class RichContentEditor extends Component {
   };
 
   resetInnerRCEState = () => {
-    this.setState({
-      innerRCEEditorState: null,
-      innerRCEcb: null,
-      innerRCERenderedIn: null,
-    });
+    setTimeout(() => {
+      this.setState({
+        innerRCEEditorState: null,
+        innerRCEcb: null,
+        innerRCERenderedIn: null,
+      });
+    }, 200);
   };
 
   renderAccessibilityListener = () => (
@@ -568,6 +571,7 @@ class RichContentEditor extends Component {
                       customStyles: {
                         content: {
                           overflow: 'unset',
+                          maxWidth: 'none',
                           top: `${this.innerRCEOffsetTop}px`,
                           bottom: 'auto',
                           left: `${this.innerRCEOffsetLeft}px`,
