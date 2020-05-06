@@ -13,6 +13,7 @@ import {
   STATIC_TOOLBAR_BUTTONS,
   SETTINGS_PANEL,
 } from '../dataHooks';
+import { defaultConfig } from '../testAppConfig';
 
 // Viewport size commands
 const resizeForDesktop = () => cy.viewport('macbook-15');
@@ -30,8 +31,11 @@ const buildQuery = params => {
   return '?' + parameters.join('&');
 };
 
-const getUrl = (componentId, fixtureName = '', plugins = ['partialPreset']) => {
-  const testAppConfig = JSON.stringify({ plugins, toolbarConfig });
+const getUrl = (componentId, fixtureName = '', config = {}) => {
+  const testAppConfig = JSON.stringify({
+    ...defaultConfig,
+    ...config,
+  });
   return `/${componentId}${fixtureName ? '/' + fixtureName : ''}${buildQuery({
     mobile: isMobile,
     hebrew: isHebrew,
@@ -50,27 +54,6 @@ const run = (app, fixtureName, plugins) => {
 let isMobile = false;
 let isHebrew = false;
 let isSeoMode = false;
-let toolbarConfig = [];
-
-Cypress.Commands.add('setHorizontalPluginMenu', () => {
-  toolbarConfig = ['horizontal'];
-});
-
-Cypress.Commands.add('setAdvancedPluginMenu', () => {
-  toolbarConfig = ['advanced'];
-});
-
-Cypress.Commands.add('clearTestApptoolbarConfig', () => {
-  toolbarConfig = [];
-});
-
-Cypress.Commands.add('setPluginMenuSearch', () => {
-  toolbarConfig = [...toolbarConfig, 'showSearch'];
-});
-
-Cypress.Commands.add('setPluginMenuSectionSplited', () => {
-  toolbarConfig = [...toolbarConfig, 'splitToSections'];
-});
 
 Cypress.Commands.add('switchToMobile', () => {
   isMobile = true;
@@ -102,8 +85,8 @@ function hideAllTooltips() {
   cy.get('[data-id="tooltip"]', { timeout: 90000 }).invoke('hide'); //uses jquery to set display: none
 }
 
-Cypress.Commands.add('loadEditorAndViewer', (fixtureName, plugins) =>
-  run('rce', fixtureName, plugins)
+Cypress.Commands.add('loadEditorAndViewer', (fixtureName, config) =>
+  run('rce', fixtureName, config)
 );
 Cypress.Commands.add('loadIsolatedEditorAndViewer', fixtureName =>
   run('rce-isolated', fixtureName)

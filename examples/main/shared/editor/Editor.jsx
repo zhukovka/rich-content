@@ -41,13 +41,7 @@ export default class Editor extends PureComponent {
   getToolbarConfig() {
     const { testAppConfig = {} } = this.props;
     if (testAppConfig.toolbarConfig) {
-      if (testAppConfig.toolbarConfig.includes('horizontal')) {
-        return {};
-      } else {
-        let addPluginMenuConfig = {};
-        testAppConfig.toolbarConfig.forEach(config => (addPluginMenuConfig[config] = true));
-        return { addPluginMenuConfig };
-      }
+      return testAppConfig.toolbarConfig;
     } else {
       return {
         addPluginMenuConfig: {
