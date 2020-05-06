@@ -145,11 +145,14 @@ class ImageComponent extends React.Component {
             innerRCEOpenModal(
               caption,
               newContentState => this.handleCaptionChange(newContentState),
-              'wix-draft-plugin-image'
+              'wix-draft-plugin-image',
+              this.innerRCECaptionRef
             )
           }
         >
-          {innerRCEReadOnly(caption)}
+          <div ref={innerRCECaptionRef => (this.innerRCECaptionRef = innerRCECaptionRef)}>
+            {innerRCEReadOnly(caption)}
+          </div>
         </div>
       </>
     );

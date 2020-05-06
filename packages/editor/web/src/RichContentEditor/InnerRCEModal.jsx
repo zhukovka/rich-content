@@ -41,7 +41,8 @@ class InnerRCEModal extends Component {
         style={{
           position: 'absolute',
           border: '2px solid orange',
-          width: isMobile ? '100%' : '450px',
+          width: '100%',
+          // width: isMobile ? '100%' : '450px',
           backgroundColor: 'white',
           zIndex: 6,
         }}
@@ -58,6 +59,7 @@ class InnerRCEModal extends Component {
             onChange={onInnerEditorChange}
             plugins={this.plugins}
             isMobile={isMobile}
+            toolbarsToIgnore={['FooterToolbar']}
             {...rest}
           />
         </div>

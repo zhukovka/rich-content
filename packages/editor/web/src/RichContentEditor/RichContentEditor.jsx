@@ -452,7 +452,11 @@ class RichContentEditor extends Component {
     innerRCEcb(newContentState);
   };
 
-  innerRCEOpenModal = (innerContentState, callback, renderedIn) => {
+  innerRCEOpenModal = (innerContentState, callback, renderedIn, innerRCECaptionRef) => {
+    // this.innerRCEHeight = innerRCECaptionRef.offsetHeight;
+    this.innerRCEWidth = innerRCECaptionRef.offsetWidth;
+    this.innerRCEOffsetTop = innerRCECaptionRef.getBoundingClientRect().top;
+    this.innerRCEOffsetLeft = innerRCECaptionRef.getBoundingClientRect().left;
     const innerRCEEditorState = EditorState.createWithContent(convertFromRaw(innerContentState));
     this.setState({
       innerRCEOpenModal: true,
@@ -561,7 +565,17 @@ class RichContentEditor extends Component {
                     isOpen={this.state.innerRCEOpenModal}
                     contentLabel="External Modal Example"
                     style={getModalStyles({
-                      customStyles: { content: { overflow: 'unset' }, overlay: { zIndex: 4 } },
+                      customStyles: {
+                        content: {
+                          overflow: 'unset',
+                          top: `${this.innerRCEOffsetTop}px`,
+                          bottom: 'auto',
+                          left: `${this.innerRCEOffsetLeft}px`,
+                          right: 'auto',
+                          width: `${this.innerRCEWidth}px`,
+                        },
+                        overlay: { zIndex: 4 },
+                      },
                       fullScreen: false,
                     })}
                     onRequestClose={this.closeInnerRCE}
