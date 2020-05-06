@@ -30,14 +30,15 @@ const buildQuery = params => {
   return '?' + parameters.join('&');
 };
 
-const getUrl = (componentId, fixtureName = '', plugins = 'partialPreset') =>
-  `/${componentId}${fixtureName ? '/' + fixtureName : ''}${buildQuery({
+const getUrl = (componentId, fixtureName = '', plugins = ['partialPreset']) => {
+  const testAppConfig = JSON.stringify({ plugins, toolbarConfig });
+  return `/${componentId}${fixtureName ? '/' + fixtureName : ''}${buildQuery({
     mobile: isMobile,
     hebrew: isHebrew,
     seoMode: isSeoMode,
-    testAppPlugins: plugins,
-    testApptoolbarConfig,
+    testAppConfig,
   })}`;
+};
 
 const run = (app, fixtureName, plugins) => {
   cy.visit(getUrl(app, fixtureName, plugins)).then(() => {
@@ -49,26 +50,26 @@ const run = (app, fixtureName, plugins) => {
 let isMobile = false;
 let isHebrew = false;
 let isSeoMode = false;
-let testApptoolbarConfig = [];
+let toolbarConfig = [];
 
 Cypress.Commands.add('setHorizontalPluginMenu', () => {
-  testApptoolbarConfig = ['horizontal'];
+  toolbarConfig = ['horizontal'];
 });
 
 Cypress.Commands.add('setAdvancedPluginMenu', () => {
-  testApptoolbarConfig = ['advanced'];
+  toolbarConfig = ['advanced'];
 });
 
 Cypress.Commands.add('clearTestApptoolbarConfig', () => {
-  testApptoolbarConfig = [];
+  toolbarConfig = [];
 });
 
 Cypress.Commands.add('setPluginMenuSearch', () => {
-  testApptoolbarConfig = [...testApptoolbarConfig, 'showSearch'];
+  toolbarConfig = [...toolbarConfig, 'showSearch'];
 });
 
 Cypress.Commands.add('setPluginMenuSectionSplited', () => {
-  testApptoolbarConfig = [...testApptoolbarConfig, 'splitToSections'];
+  toolbarConfig = [...toolbarConfig, 'splitToSections'];
 });
 
 Cypress.Commands.add('switchToMobile', () => {

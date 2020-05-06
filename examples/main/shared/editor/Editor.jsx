@@ -28,24 +28,24 @@ export default class Editor extends PureComponent {
     super(props);
     // ReactModal.setAppElement('#root');
     this.initEditorProps();
-    const { scrollingElementFn, testAppPlugins } = props;
+    const { scrollingElementFn, testAppConfig = {} } = props;
     const additionalConfig = { [GALLERY_TYPE]: { scrollingElement: scrollingElementFn } };
     const pluginsConfig = Plugins.getConfig(additionalConfig);
-    this.plugins = testAppPlugins
-      ? testAppPlugins.map(plugin => Plugins.editorPluginsMap[plugin]).flat()
+    this.plugins = testAppConfig.plugins
+      ? testAppConfig.plugins.map(plugin => Plugins.editorPluginsMap[plugin]).flat()
       : Plugins.editorPlugins;
     this.config = pluginsConfig;
     this.toolbarsConfig = this.getToolbarConfig();
   }
 
   getToolbarConfig() {
-    const { testApptoolbarConfig } = this.props;
-    if (testApptoolbarConfig) {
-      if (testApptoolbarConfig.includes('horizontal')) {
+    const { testAppConfig = {} } = this.props;
+    if (testAppConfig.toolbarConfig) {
+      if (testAppConfig.toolbarConfig.includes('horizontal')) {
         return {};
       } else {
         let addPluginMenuConfig = {};
-        testApptoolbarConfig.forEach(config => (addPluginMenuConfig[config] = true));
+        testAppConfig.toolbarConfig.forEach(config => (addPluginMenuConfig[config] = true));
         return { addPluginMenuConfig };
       }
     } else {

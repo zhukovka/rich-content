@@ -165,7 +165,7 @@ describe('plugins', () => {
     });
     after(() => cy.eyesClose());
 
-    beforeEach('load editor', () => cy.loadEditorAndViewer('link-preview', 'embedsPreset'));
+    beforeEach('load editor', () => cy.loadEditorAndViewer('link-preview', ['embedsPreset']));
 
     it('change link preview settings', function() {
       cy.openPluginToolbar(PLUGIN_COMPONENT.LINK_PREVIEW);
@@ -199,7 +199,7 @@ describe('plugins', () => {
       eyesOpen(this);
     });
     after(() => cy.eyesClose());
-    beforeEach('load editor', () => cy.loadEditorAndViewer('empty', 'embedsPreset'));
+    beforeEach('load editor', () => cy.loadEditorAndViewer('empty', ['embedsPreset']));
 
     it('should create link preview from link after enter key', function() {
       cy.insertLinkAndEnter('www.wix.com');
@@ -219,7 +219,7 @@ describe('plugins', () => {
 
     beforeEach('load editor', () => {
       cy.switchToDesktop();
-      cy.loadEditorAndViewer('empty', 'linkPreview');
+      cy.loadEditorAndViewer('empty', ['linkPreview']);
     });
 
     after(() => cy.eyesClose());
@@ -316,7 +316,7 @@ describe('plugins', () => {
       eyesOpen(this);
     });
 
-    beforeEach('load editor', () => cy.loadEditorAndViewer('action-button', 'actionButton'));
+    beforeEach('load editor', () => cy.loadEditorAndViewer('action-button', ['actionButton']));
 
     after(() => cy.eyesClose());
     it('create action button & customize it', function() {
