@@ -29,10 +29,10 @@ export default class TextSelectionListener extends React.Component {
       text = selection.toString();
     }
     if (selectedText !== text) {
-      const selectionRect = selection.getRangeAt(0).getBoundingClientRect();
+      const selectionRect = selection?.getRangeAt(0).getBoundingClientRect();
       this.setState({ selectedText: text, selectionRect });
     } else {
-      this.setState({ selectedText: '' });
+      // this.setState({ selectedText: '' });
     }
   };
 
