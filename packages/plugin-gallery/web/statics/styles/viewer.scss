@@ -6,11 +6,11 @@
   height: 32px;
   width: 32px;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 12px;
+  right: 12px;
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.5);
-
+  background-color: white;
+  border-radius: 30px;
   display: none;
   .gallery_container:hover & {
     display: block;
@@ -20,13 +20,12 @@
 .expandIcon {
   height: 18px;
   width: 18px;
-  position: relative;
+  position: absolute;
   margin: auto;
   z-index: 11;
   top: 7px;
-  right: 0;
+  right: 7px;
   display: none;
- 
   .gallery_container:hover & {
     display: block;
   }
