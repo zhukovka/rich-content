@@ -20,10 +20,6 @@ class InnerRCEModal extends Component {
     this.innerEditor.focus();
   }
 
-  componentWillUnmount() {
-    this.props.resetInnerRCEState();
-  }
-
   render() {
     const {
       onInnerEditorChange,
@@ -38,31 +34,21 @@ class InnerRCEModal extends Component {
     const { MobileToolbar, TextToolbar } = this.state;
     const TopToolbar = MobileToolbar || TextToolbar;
     return (
-      <div
-        style={{
-          position: 'absolute',
-          width: '100%',
-          // width: isMobile ? '100%' : '450px',
-          backgroundColor: 'white',
-          zIndex: 6,
-        }}
-      >
-        <div className={classNames(styles.editor, theme.editor)}>
-          {TopToolbar && (
-            <div className="toolbar-wrapper">
-              <TopToolbar />
-            </div>
-          )}
-          <RichContentEditor
-            ref={innerEditor => (this.innerEditor = innerEditor)}
-            editorState={innerRCEEditorState}
-            onChange={onInnerEditorChange}
-            plugins={this.plugins}
-            isMobile={isMobile}
-            toolbarsToIgnore={['FooterToolbar']}
-            {...rest}
-          />
-        </div>
+      <div className={classNames(styles.editor, theme.editor)}>
+        {TopToolbar && (
+          <div className="toolbar-wrapper">
+            <TopToolbar />
+          </div>
+        )}
+        <RichContentEditor
+          ref={innerEditor => (this.innerEditor = innerEditor)}
+          editorState={innerRCEEditorState}
+          onChange={onInnerEditorChange}
+          plugins={this.plugins}
+          isMobile={isMobile}
+          toolbarsToIgnore={['FooterToolbar']}
+          {...rest}
+        />
       </div>
     );
   }
@@ -77,7 +63,6 @@ InnerRCEModal.propTypes = {
   editorState: PropTypes.object,
   onChange: PropTypes.func,
   plugins: PropTypes.array,
-  resetInnerRCEState: PropTypes.func,
   innerRCERenderedIn: PropTypes.string,
   config: PropTypes.object,
 };

@@ -25,7 +25,6 @@ import {
   getBlockType,
   COMMANDS,
   MODIFIERS,
-  getModalStyles,
 } from 'wix-rich-content-editor-common';
 
 import {
@@ -40,8 +39,8 @@ import 'wix-rich-content-common/dist/statics/styles/draftDefault.rtlignore.scss'
 import { convertFromHTML as draftConvertFromHtml } from 'draft-convert';
 import { pastedContentConfig, clearUnnecessaryInlineStyles } from './utils/pastedContentUtil';
 import { convertToRaw } from '../lib/editorStateConversion';
-import ReactModal from 'react-modal';
 import InnerRCEModal from './InnerRCEModal';
+import ClickOutside from 'react-click-outside';
 
 class RichContentEditor extends Component {
   static getDerivedStateFromError(error) {
@@ -454,10 +453,14 @@ class RichContentEditor extends Component {
   };
 
   innerRCEOpenModal = (innerContentState, callback, renderedIn, innerRCECaptionRef) => {
-    // this.innerRCEHeight = innerRCECaptionRef.offsetHeight;
+    this.innerRCEHeight = innerRCECaptionRef.offsetHeight;
     this.innerRCEWidth = innerRCECaptionRef.offsetWidth;
-    this.innerRCEOffsetTop = innerRCECaptionRef.getBoundingClientRect().top;
-    this.innerRCEOffsetLeft = innerRCECaptionRef.getBoundingClientRect().left;
+    this.innerRCEOffsetTop =
+      innerRCECaptionRef.getBoundingClientRect().top -
+      this.editor.editor.getBoundingClientRect().top;
+    this.innerRCEOffsetLeft =
+      innerRCECaptionRef.getBoundingClientRect().left -
+      this.editor.editor.getBoundingClientRect().left;
     const innerRCEEditorState = EditorState.createWithContent(convertFromRaw(innerContentState));
     this.setState({
       innerRCEOpenModal: true,
@@ -492,17 +495,10 @@ class RichContentEditor extends Component {
   closeInnerRCE = () => {
     this.setState({
       innerRCEOpenModal: false,
+      innerRCEEditorState: null,
+      innerRCEcb: null,
+      innerRCERenderedIn: null,
     });
-  };
-
-  resetInnerRCEState = () => {
-    setTimeout(() => {
-      this.setState({
-        innerRCEEditorState: null,
-        innerRCEcb: null,
-        innerRCERenderedIn: null,
-      });
-    }, 200);
   };
 
   renderAccessibilityListener = () => (
@@ -563,37 +559,24 @@ class RichContentEditor extends Component {
                 {this.renderToolbars()}
                 {this.renderInlineModals()}
                 {this.renderTooltipHost()}
-                {this.state.ssrDone && (
-                  <ReactModal
-                    isOpen={this.state.innerRCEOpenModal}
-                    contentLabel="External Modal Example"
-                    style={getModalStyles({
-                      customStyles: {
-                        content: {
-                          overflow: 'unset',
-                          maxWidth: 'none',
-                          top: `${this.innerRCEOffsetTop}px`,
-                          bottom: 'auto',
-                          left: `${this.innerRCEOffsetLeft}px`,
-                          right: 'auto',
-                          width: `${this.innerRCEWidth}px`,
-                        },
-                        overlay: { zIndex: 4 },
-                      },
-                      fullScreen: false,
-                    })}
-                    onRequestClose={this.closeInnerRCE}
-                    shouldCloseOnOverlayClick
-                  >
+                {this.state.innerRCEOpenModal && (
+                  <ClickOutside onClickOutside={this.closeInnerRCE}>
                     <InnerRCEModal
+                      style={{
+                        position: 'absolute',
+                        top: `${this.innerRCEOffsetTop}px`,
+                        left: `${this.innerRCEOffsetLeft}px`,
+                        width: `${this.innerRCEWidth}px`,
+                        height: `${this.innerRCEHeight}px`,
+                        zIndex: 5,
+                      }}
                       onInnerEditorChange={this.onInnerEditorChange}
                       innerRCEEditorState={this.state.innerRCEEditorState}
                       theme={this.contextualData.theme}
-                      resetInnerRCEState={this.resetInnerRCEState}
                       innerRCERenderedIn={this.state.innerRCERenderedIn}
                       {...this.props}
                     />
-                  </ReactModal>
+                  </ClickOutside>
                 )}
               </div>
             </div>
