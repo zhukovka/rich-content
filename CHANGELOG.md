@@ -24,6 +24,8 @@
   - [#845](https://github.com/wix-incubator/rich-content/pull/845) fullscreen image titles and design changes
 
 ### :bug: Bug Fix
+- `social-modals`
+  - [#1037](https://github.com/wix-incubator/rich-content/pull/1037) disable text input autocomplete
 - `vertical embed`
   - [#1036](https://github.com/wix-incubator/rich-content/pull/1036) dropdown for search opens automaticly when typing text for search
 - `gallery`
