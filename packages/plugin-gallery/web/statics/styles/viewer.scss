@@ -3,8 +3,8 @@
 }
 
 .expandContainer {
-  height: 32px;
-  width: 32px;
+  height: 28px;
+  width: 28px;
   position: absolute;
   top: 12px;
   right: 12px;
@@ -18,13 +18,11 @@
 }
 
 .expandIcon {
-  height: 18px;
-  width: 18px;
+  height: 12px;
+  width: 12px;
   position: absolute;
-  margin: auto;
+  padding: 8px;
   z-index: 11;
-  top: 7px;
-  right: 7px;
   display: none;
   .gallery_container:hover & {
     display: block;
