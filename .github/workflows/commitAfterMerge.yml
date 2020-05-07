@@ -11,8 +11,13 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - name: pullRequest
-        if: github.event.pull_request.merged == true
-        run: npm install && npm run analyzeBundles && git config user.email "barb@wix.com" && git config user.name "Bar Boaron" && git add . && git status && git commit -m "commit for testing" && git log
+      # - name: pullRequest
+      #   if: github.event.pull_request.merged == true
+      # run: npm install && npm run analyzeBundles && git config user.email "barb@wix.com" && git config user.name "Bar Boaron" && git add . && git status && git commit -m "commit for testing" && git log && git push origin master
+      - run: npm install && npm run analyzeBundles
+      - run: git config user.email "barb@wix.com" && git config user.name "Bar Boaron"
+      - run: git add . && git commit -m "Updating the baseline bundlesSizes"
+      - run: git log && git push githubActionOnMergePR githubActionOnMergePR_new
+      # - run: git log && git push origin master
     env:
       REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
