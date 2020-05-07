@@ -13,7 +13,6 @@ $opacityTransition: opacity 0.8s ease;
   right: 0;
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.5);
-
   display: none;
   .imageContainer:hover & {
     display: block;
@@ -29,7 +28,6 @@ $opacityTransition: opacity 0.8s ease;
   top: 7px;
   right: 0;
   display: none;
- 
   .imageContainer:hover & {
     display: block;
   }
