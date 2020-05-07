@@ -56,7 +56,6 @@ class RichContentEditor extends Component {
       innerRCEEditorState: null,
       innerRCEcb: null,
       innerRCERenderedIn: null,
-      ssrDone: false,
     };
     this.refId = Math.floor(Math.random() * 9999);
 
@@ -71,10 +70,6 @@ class RichContentEditor extends Component {
     this.calculateDiff = createCalcContentDiff(this.state.editorState);
     this.initContext();
     this.initPlugins();
-  }
-
-  componentDidMount() {
-    this.setState({ ssrDone: true });
   }
 
   componentDidUpdate() {
