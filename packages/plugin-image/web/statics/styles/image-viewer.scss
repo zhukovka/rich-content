@@ -5,19 +5,31 @@ $opacityTransition: opacity 0.8s ease;
   overflow: hidden;
 }
 
-.expandIcon {
-  height: 36px;
-  width: 36px;
+.expandContainer {
+  height: 32px;
+  width: 32px;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0;
+  right: 0;
   z-index: 10;
-  border-radius: 20px;
-  &:hover path {
-    opacity: 1;
-  }
+  background-color: rgba(0, 0, 0, 0.5);
 
   display: none;
+  .imageContainer:hover & {
+    display: block;
+  }
+}
+
+.expandIcon {
+  height: 18px;
+  width: 18px;
+  position: relative;
+  margin: auto;
+  z-index: 11;
+  top: 7px;
+  right: 0;
+  display: none;
+ 
   .imageContainer:hover & {
     display: block;
   }

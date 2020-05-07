@@ -7,7 +7,7 @@ import { DEFAULTS, isHorizontalLayout, sampleItems } from './constants';
 import resizeMediaUrl from './lib/resize-media-url';
 import styles from '../statics/styles/viewer.scss';
 import 'pro-gallery/dist/statics/main.min.css';
-import ExpandIcon from './icons/expand.svg';
+import ExpandIcon from './icons/Expand.svg';
 // import { GALLERY_CONSTS } from 'pro-gallery'; will work on version 1.10.1
 import VIEW_MODE from 'pro-gallery/dist/es/src/common/constants/viewMode';
 
@@ -173,13 +173,15 @@ class GalleryViewer extends React.Component {
 
   renderExpandIcon = itemProps => {
     return itemProps.type !== 'video' ? (
-      <ExpandIcon
-        className={this.styles.expandIcon}
-        onClick={e => {
-          e.preventDefault();
-          this.handleExpand(itemProps);
-        }}
-      />
+      <div className={this.styles.expandContainer}>
+        <ExpandIcon
+          className={this.styles.expandIcon}
+          onClick={e => {
+            e.preventDefault();
+            this.handleExpand(itemProps);
+          }}
+        />
+      </div>
     ) : null;
   };
 
