@@ -12,9 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install && npm run analyzeBundles
-      - run: git config user.email "barb@wix.com" && git config user.name "Bar Boaron"
-      - run: git add . && git commit -m "Updating the baseline bundlesSizes"
-      - run: git log && git push origin/githubActionOnMergePR githubActionOnMergePR_new
+      - uses: stefanzweifel/git-auto-commit-action@v4.1.6
+        with:
+        commit_message: Apply automatic changes
+        branch: githubActionOnMergePR
+      # - run: git config user.email "barb@wix.com" && git config user.name "Bar Boaron"
+      # - run: git add . && git commit -m "Updating the baseline bundlesSizes"
+      # - run: git log && git push origin/githubActionOnMergePR githubActionOnMergePR_new
       # - run: git log && git push origin master
     env:
       REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
