@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Separator, RadioGroup, LabeledToggle } from 'wix-rich-content-editor-common';
+import { Separator, RadioGroup, LabeledToggle, InfoIcon } from 'wix-rich-content-editor-common';
 import { mergeStyles } from 'wix-rich-content-common';
 
 import { MEMBER_ROLES, VISIBILITY } from '../../../constants';
@@ -26,15 +26,45 @@ export class PollSettingsSection extends Component {
   VIEW_ROLE_OPTIONS = [
     {
       value: VISIBILITY.ALWAYS,
-      labelText: this.props.t('Poll_PollSettings_Tab_Settings_Section_Results_Permission_All'),
+      labelText: (
+        <>
+          {this.props.t('Poll_PollSettings_Tab_Settings_Section_Results_Permission_All')}
+          &nbsp;
+          <InfoIcon
+            tooltipText={this.props.t(
+              'Poll_PollSettings_Tab_Settings_Section_Results_Permission_All_Tooltip'
+            )}
+          />
+        </>
+      ),
     },
     {
       value: VISIBILITY.VOTERS,
-      labelText: this.props.t('Poll_PollSettings_Tab_Settings_Section_Results_Permission_Voters'),
+      labelText: (
+        <>
+          {this.props.t('Poll_PollSettings_Tab_Settings_Section_Results_Permission_Voters')}
+          &nbsp;
+          <InfoIcon
+            tooltipText={this.props.t(
+              'Poll_PollSettings_Tab_Settings_Section_Results_Permission_Voters_Tooltip'
+            )}
+          />
+        </>
+      ),
     },
     {
       value: VISIBILITY.ME,
-      labelText: this.props.t('Poll_PollSettings_Tab_Settings_Section_Results_Permission_Owner'),
+      labelText: (
+        <>
+          {this.props.t('Poll_PollSettings_Tab_Settings_Section_Results_Permission_Owner')}
+          &nbsp;
+          <InfoIcon
+            tooltipText={this.props.t(
+              'Poll_PollSettings_Tab_Settings_Section_Results_Permission_Owner_Tooltip'
+            )}
+          />
+        </>
+      ),
     },
   ];
 

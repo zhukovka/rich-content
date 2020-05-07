@@ -15,12 +15,16 @@
 
 .arrow_down {
   @extend %arrow;
-  transform: rotate(45deg);
+  transform: translateX(-50%) rotate(45deg);
+  left: 50%;
+  margin-left: -20px;
   bottom: -7px;
 }
 
 .arrow_up {
   @extend %arrow;
-  transform: rotate(-135deg);
-  bottom: 349px;
+  transform: translateX(-50%) rotate(-135deg);
+  left: 50%;
+  margin-left: -20px;
+  bottom: 220px;
 }

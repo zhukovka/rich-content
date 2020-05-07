@@ -28,6 +28,7 @@ export const DesktopFlyOutModalStyles = {
     display: 'block',
     borderRadius: '2px',
     position: 'absolute',
+    margin: '0 0 0 20px',
     zIndex: 6,
   },
 };
@@ -98,6 +99,7 @@ export function createToolbar({ helpers, t }) {
         modalStylesFn: ({ buttonRef }) => {
           return getBottomToolbarModalStyles(buttonRef, {
             customStyles: DesktopFlyOutModalStyles,
+            centered: true,
           });
         },
         modalDecorations: [

@@ -16,6 +16,12 @@ import { getBackgroundString } from '../../../helpers';
 import styles from './design-settings-section.scss';
 
 export class DesignSettingsSection extends Component {
+  static PICK_BACKGROUND_LABELS = {
+    [BACKGROUND_TYPE.COLOR]: 'Poll_PollSettings_Tab_Design_Section_Background_Color_Pick',
+    [BACKGROUND_TYPE.IMAGE]: 'Poll_PollSettings_Tab_Design_Section_Background_Pattern_Pick',
+    [BACKGROUND_TYPE.GRADIENT]: 'Poll_PollSettings_Tab_Design_Section_Background_Gradient_Pick',
+  };
+
   styles = mergeStyles({ styles, theme: this.props.theme });
 
   state = {
@@ -107,7 +113,7 @@ export class DesignSettingsSection extends Component {
           className={styles.layout_selector}
         />
         <p className={styles.title}>
-          {t('Poll_PollSettings_Tab_Design_Section_Background_Color_Pick')}
+          {t(DesignSettingsSection.PICK_BACKGROUND_LABELS[backgroundType])}
         </p>
         <ColorPicker
           color={design.poll?.background}

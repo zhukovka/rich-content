@@ -9,10 +9,14 @@ export class PollEditor extends PureComponent {
   setPoll = poll => {
     const { componentData, store } = this.props;
 
-    store.set('componentData', {
-      ...componentData,
-      poll,
-    });
+    store.set(
+      'componentData',
+      {
+        ...componentData,
+        poll,
+      },
+      this.props.block.getKey()
+    );
   };
 
   isPluginFocused() {
@@ -76,6 +80,7 @@ PollEditor.propTypes = {
   theme: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired,
+  commonPubsub: PropTypes.object,
   store: PropTypes.shape({
     set: PropTypes.func.isRequired,
     get: PropTypes.func.isRequired,

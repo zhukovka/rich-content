@@ -26,6 +26,7 @@ export {
 
 // Components
 export { default as Button } from './Components/Button';
+export { default as InfoIcon } from './Components/InfoIcon';
 export { default as Checkbox } from './Components/Checkbox';
 export { default as InlineToolbarButton } from './Components/InlineToolbarButton';
 export { default as Dropdown } from './Components/Dropdown';

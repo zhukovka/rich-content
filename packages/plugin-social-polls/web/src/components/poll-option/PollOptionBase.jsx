@@ -44,7 +44,11 @@ export class PollOptionBase extends React.PureComponent {
     this.props.remove();
   };
 
-  handleVoteClick = async () => {
+  handleVoteClick = async e => {
+    if (e.keyCode) {
+      return;
+    }
+
     this.setState({ loading: true });
 
     try {

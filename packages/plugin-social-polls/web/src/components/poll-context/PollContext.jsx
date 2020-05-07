@@ -30,6 +30,7 @@ export class PollContextProviderComponent extends PureComponent {
     addOption: this.addOption.bind(this),
     removeOption: this.removeOption.bind(this),
     changePollImage: this.changePollImage.bind(this),
+    fetchPoll: this.fetchPoll.bind(this),
     vote: this.vote.bind(this),
     unvote: this.unvote.bind(this),
     getVoters: this.getVoters.bind(this),
@@ -46,15 +47,19 @@ export class PollContextProviderComponent extends PureComponent {
     };
   }
 
-  componentDidMount() {
-    const { poll } = this.state;
-    const { settings, editorEvents } = this.props;
+  constructor(props) {
+    super(props);
+    this.pollApiClient = new SocialPollsService(props.settings.siteToken);
+  }
 
-    this.pollApiClient = new SocialPollsService(settings.siteToken);
-
-    if (poll.id && !settings.isWebView) {
-      this.fetchPoll();
+  componentWillReceiveProps(props) {
+    if (props.settings.siteToken !== this.props.siteToken) {
+      this.pollApiClient = new SocialPollsService(props.settings.siteToken);
     }
+  }
+
+  componentDidMount() {
+    const { editorEvents } = this.props;
 
     editorEvents.subscribe(EditorEvents.PUBLISH, this.syncPoll);
   }
@@ -81,7 +86,6 @@ export class PollContextProviderComponent extends PureComponent {
       dto = await this.pollApiClient.createPoll(poll);
     }
 
-    this.updatePoll(dto);
     this.props.setPoll(dto);
   };
 

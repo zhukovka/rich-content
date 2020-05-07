@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import cls from 'classnames';
 import FlipMove from 'react-flip-move';
 
-import { AddIcon } from '../assets/icons';
+import { AddIcon, LoaderIcon } from '../assets/icons';
 import { LAYOUT, VISIBILITY, BACKGROUND_TYPE } from '../constants';
 import { getBackgroundString } from '../helpers';
 
@@ -22,14 +22,29 @@ class PollComponent extends Component {
 
   state = {
     collapsed: this.isInitiallyCollapsed(),
+    loading: false,
   };
 
-  isInitiallyCollapsed() {
-    const { poll, rce } = this.props;
+  async componentDidMount() {
+    const { poll } = this.props;
 
-    if (!rce.isViewMode) {
-      return false;
+    if (poll.id) {
+      this.fetchPoll();
     }
+  }
+
+  async fetchPoll() {
+    if (this.props.rce.isWebView) {
+      return;
+    }
+
+    this.setState({ loading: true });
+    await this.props.fetchPoll();
+    this.setState({ loading: false });
+  }
+
+  isInitiallyCollapsed() {
+    const { poll } = this.props;
 
     return poll.options.length > 4;
   }
@@ -123,7 +138,7 @@ class PollComponent extends Component {
       t,
       siteMembers,
     } = this.props;
-    const { collapsed } = this.state;
+    const { collapsed, loading } = this.state;
 
     const style = {
       ...design.poll,
@@ -196,7 +211,7 @@ class PollComponent extends Component {
           )}
         </ul>
 
-        {collapsed && (
+        {collapsed && rce.isViewMode && (
           <button onClick={this.seeAll} className={styles.see_more} style={design.option}>
             {this.showResults()
               ? t('Poll_Viewer_ShowAllResults_CTA')
@@ -210,6 +225,14 @@ class PollComponent extends Component {
               {note.label}
             </p>
           ))}
+
+        <LoaderIcon
+          className={cls(styles.spinner, {
+            [styles.shown]: loading,
+          })}
+          width={24}
+          height={24}
+        />
       </div>
     );
   }

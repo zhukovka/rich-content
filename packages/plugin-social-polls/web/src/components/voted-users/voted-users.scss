@@ -71,10 +71,16 @@
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .cta {
   cursor: pointer;
+}
+
+.close_icon {
+  @extend .cta;
+  margin-right: -5px;
 }
 
 .header .title {

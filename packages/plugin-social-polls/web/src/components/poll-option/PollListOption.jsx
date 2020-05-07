@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import cls from 'classnames';
 
@@ -48,6 +45,9 @@ export class PollListOption extends PollOptionBase {
         })}
         style={design.option}
         onClick={this.handleVoteClick}
+        onKeyPress={this.handleVoteClick}
+        tabIndex={0}
+        role="button"
       >
         <div
           className={cls(styles.overlay, {

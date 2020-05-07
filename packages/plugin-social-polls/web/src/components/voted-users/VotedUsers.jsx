@@ -58,12 +58,8 @@ class VotedUsersComponent extends PureComponent {
   openModal = () => this.setState({ isOpen: this.props.rce.isViewMode });
 
   render() {
-    const { option, t, showResults, showVotes, rce, fetchVoters } = this.props;
+    const { option, t, showResults, showVotes, fetchVoters } = this.props;
     const { isOpen, $container } = this.state;
-
-    if (!rce.isViewMode) {
-      return null;
-    }
 
     if (!showResults || !showVotes || !option.count) {
       return null;

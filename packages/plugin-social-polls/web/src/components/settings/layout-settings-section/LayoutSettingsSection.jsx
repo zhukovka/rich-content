@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { SelectionList, LabeledToggle, Separator } from 'wix-rich-content-editor-common';
+import { SelectionList, LabeledToggle, Separator, InfoIcon } from 'wix-rich-content-editor-common';
 import { mergeStyles } from 'wix-rich-content-common';
 
 import { LAYOUT, DIRECTION } from '../../../constants';
@@ -105,6 +105,10 @@ export class LayoutSettingsSection extends Component {
 
         <p className={styles.title}>
           {t('Poll_PollSettings_Tab_Layout_Section_TextDirection_Header')}
+          &nbsp;
+          <InfoIcon
+            tooltipText={t('Poll_PollSettings_Tab_Layout_Section_TextDirection_Header_Tooltip')}
+          />
         </p>
 
         <SelectionList

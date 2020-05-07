@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroller';
 
 import { LoaderIcon, RemoveIcon } from '../../assets/icons';
@@ -43,7 +42,7 @@ export class VotedUsersModalComponent extends Component {
           <p className={styles.title}>
             {t('Poll_Viewer_VoteCount_Modal_Voters_Header', { number: option.count })}
           </p>
-          <RemoveIcon onClick={onRequestClose} className={styles.cta} />
+          <RemoveIcon onClick={onRequestClose} className={styles.close_icon} />
         </div>
         <InfiniteScroll
           className={styles.member_list_container}
