@@ -5,7 +5,8 @@ async function gitPRComment(message, header) {
   const { REPO_TOKEN } = process.env;
   if (REPO_TOKEN) {
     const context = github.context;
-    const issue_number = context.payload.number;
+    const issue_number = context.payload.pull_request.number;
+
     const octokit = new github.GitHub(REPO_TOKEN);
     const response = await octokit.issues.listComments({
       owner: github.context.repo.owner,
