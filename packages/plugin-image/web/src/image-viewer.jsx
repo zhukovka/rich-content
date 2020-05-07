@@ -12,7 +12,7 @@ import {
 } from 'wix-rich-content-common';
 import { DEFAULTS, SEO_IMAGE_WIDTH } from './consts';
 import styles from '../statics/styles/image-viewer.scss';
-import ExpandIcon from './icons/Expand.svg';
+import ExpandIcon from './icons/expand.svg';
 import InPluginInput from './InPluginInput';
 
 class ImageViewer extends React.Component {
