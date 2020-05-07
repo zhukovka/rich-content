@@ -1,4 +1,8 @@
 const isSSR = typeof window === 'undefined';
+
+if (typeof require.context === 'undefined') {
+  require.context = () => ({ keys: () => [] });
+}
 const requireAllScssFiles = require.context('./', true, /\.scss$/);
 const resolvedThemes = requireAllScssFiles
   .keys()

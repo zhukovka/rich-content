@@ -28,6 +28,7 @@ export default ({ Icon, tooltipTextKey, getValue, onChange, keyName }) =>
           tooltipTextKey={tooltipTextKey}
           {...this.props}
           type={BUTTONS.PANEL}
+          theme={{ a: 1 }}
         />
       );
     }

@@ -33,7 +33,10 @@ const SideToolbarPluginsSection = ({
       ? plugins.filter(({ section: pluginSection }) => pluginSection === section)
       : plugins;
     return (
-      <div className={classNames(Styles.section, horizontalMenu && Styles.horizontalMenu)}>
+      <div
+        key={section || 'section'}
+        className={classNames(Styles.section, horizontalMenu && Styles.horizontalMenu)}
+      >
         {section && <div className={Styles.pluginsSection}>{t(section)}</div>}
         <div className={classNames(Styles.buttonsWrapper, horizontalMenu && Styles.horizontalMenu)}>
           {pluginsToRender.map(({ component: Component }, index) => (
