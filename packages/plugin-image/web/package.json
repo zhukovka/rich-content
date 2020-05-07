@@ -56,7 +56,8 @@
   "dependencies": {
     "image-client-api": "1.2218.0",
     "wix-rich-content-common": "7.5.0",
-    "wix-rich-content-editor-common": "7.5.0"
+    "wix-rich-content-editor-common": "7.5.0",
+    "wix-rich-content-editor": "7.5.0"
   },
   "unpkg": true,
   "publishConfig": {
