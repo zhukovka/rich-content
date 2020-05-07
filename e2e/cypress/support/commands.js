@@ -228,6 +228,14 @@ Cypress.Commands.add('setTextStyle', (buttonSelector, selection) => {
   cy.get(`[data-hook=inlineToolbar] [data-hook=${buttonSelector}]`).click();
 });
 
+Cypress.Commands.add('increaseIndent', selection => {
+  cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.INCREASE_INDENT, selection);
+});
+
+Cypress.Commands.add('decreaseIndent', selection => {
+  cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.DECREASE_INDENT, selection);
+});
+
 Cypress.Commands.add('setLink', (selection, link) => {
   cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.LINK, selection)
     .get(`[data-hook=linkPanelContainer] [data-hook=linkPanelInput]`)
@@ -266,12 +274,12 @@ Cypress.Commands.add('setLineSpacing', (buttonIndex = 3, selection) => {
 
 Cypress.Commands.add('openSideToolbar', () => {
   cy.get('[aria-label="Plugin Toolbar"]').click();
-  cy.get('#side_bar');
+  cy.get('[data-hook="floatingAddPluginMenu"]');
 });
 
 Cypress.Commands.add('openAddPluginModal', () => {
-  cy.get('[data-hook="addPluginFloatingToolbar"]').click();
-  cy.get('[aria-label="Add Plugin"]');
+  cy.get('[data-hook="addPluginButton"]').click();
+  cy.get('[data-hook="addPluginMenu"]');
 });
 
 Cypress.Commands.add('openImageSettings', (shouldOpenToolbar = true) => {
@@ -454,7 +462,7 @@ Cypress.Commands.add('addVideoFromURL', () => {
 });
 
 Cypress.Commands.add('clickOnStaticButton', dataHook =>
-  cy.get(`[data-hook*=${dataHook}][tabindex!=-1]`).click()
+  cy.get(`[data-hook*=footerToolbar] [data-hook*=${dataHook}]`).click()
 );
 
 Cypress.Commands.add('addHtml', () => {
@@ -555,6 +563,19 @@ function waitForMutations(container, { timeToWaitForMutation = 300 } = {}) {
     }
   });
 }
+
+Cypress.Commands.add('paste', (pastePayload, pasteType = 'text') => {
+  cy.getEditor().then($destination => {
+    const pasteEvent = Object.assign(new Event('paste', { bubbles: true, cancelable: true }), {
+      clipboardData: {
+        getData: (type = pasteType) => {
+          return pastePayload;
+        },
+      },
+    });
+    $destination[0].dispatchEvent(pasteEvent);
+  });
+});
 
 // disable screenshots in debug mode. So there is no diffrence to ci.
 if (Cypress.browser.isHeaded) {

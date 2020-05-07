@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Editor from 'draft-js-plugins-editor';
-import { get, includes, merge, debounce, throttle } from 'lodash';
+import { get, includes, debounce, throttle } from 'lodash';
 import Measure from 'react-measure';
 import createEditorToolbars from './Toolbars';
 import createPlugins from './createPlugins';
@@ -58,14 +58,13 @@ class RichContentEditor extends Component {
       innerRCERenderedIn: null,
     };
     this.refId = Math.floor(Math.random() * 9999);
-
-    props.config.uiSettings = merge(
-      {
-        blankTargetToggleVisibilityFn: anchorTarget => anchorTarget !== '_blank',
-        nofollowRelToggleVisibilityFn: relValue => relValue !== 'nofollow',
-      },
-      props.config.uiSettings || {}
-    );
+    const {
+      config: { uiSettings = {} },
+    } = props;
+    uiSettings.blankTargetToggleVisibilityFn =
+      uiSettings.blankTargetToggleVisibilityFn || (anchorTarget => anchorTarget !== '_blank');
+    uiSettings.nofollowRelToggleVisibilityFn =
+      uiSettings.nofollowRelToggleVisibilityFn || (relValue => relValue !== 'nofollow');
 
     this.calculateDiff = createCalcContentDiff(this.state.editorState);
     this.initContext();
@@ -108,12 +107,19 @@ class RichContentEditor extends Component {
       relValue,
       helpers = {},
       config,
+      toolbarsConfig = {},
       isMobile = false,
       shouldRenderOptimizedImages,
       initialIntent,
       siteDomain,
     } = this.props;
 
+    const { addPluginMenuConfig } = toolbarsConfig;
+
+    const getToolbarSettings = () => [
+      { name: 'SIDE', addPluginMenuConfig },
+      { name: 'MOBILE', addPluginMenuConfig },
+    ];
     this.fixFileHandlersName(helpers);
 
     this.contextualData = {
@@ -126,7 +132,7 @@ class RichContentEditor extends Component {
         ...helpers,
         onPluginAdd: (...args) => helpers.onPluginAdd?.(...args, Version.currentVersion),
       },
-      config,
+      config: { ...config, getToolbarSettings },
       isMobile,
       setEditorState: this.setEditorState,
       getEditorState: this.getEditorState,
@@ -601,6 +607,7 @@ RichContentEditor.propTypes = {
   textToolbarType: PropTypes.oneOf(['inline', 'static']),
   plugins: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.func])),
   config: PropTypes.object,
+  toolbarsConfig: PropTypes.object,
   anchorTarget: PropTypes.string,
   relValue: PropTypes.string,
   style: PropTypes.object,
@@ -633,6 +640,7 @@ RichContentEditor.propTypes = {
   siteDomain: PropTypes.string,
   onError: PropTypes.func,
   toolbarsToIgnore: PropTypes.array,
+  isSSR: PropTypes.bool,
 };
 
 RichContentEditor.defaultProps = {
