@@ -17,6 +17,7 @@ class InnerRCEModal extends Component {
   componentDidMount() {
     const { MobileToolbar, TextToolbar } = this.innerEditor.getToolbars();
     this.setState({ MobileToolbar, TextToolbar });
+    this.innerEditor.focus();
   }
 
   componentWillUnmount() {

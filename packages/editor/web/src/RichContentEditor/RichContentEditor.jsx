@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Editor from 'draft-js-plugins-editor';
-import { get, includes, merge, debounce } from 'lodash';
+import { get, includes, merge, debounce, throttle } from 'lodash';
 import Measure from 'react-measure';
 import createEditorToolbars from './Toolbars';
 import createPlugins from './createPlugins';
@@ -443,12 +443,12 @@ class RichContentEditor extends Component {
     );
   };
 
-  onInnerEditorChange = debounce(innerRCEEditorState => {
-    this.setState({ innerRCEEditorState }, this.saveInnerRCE);
-  }, 200);
+  onInnerEditorChange = throttle(innerRCEEditorState => {
+    this.saveInnerRCE(innerRCEEditorState);
+  }, 400);
 
-  saveInnerRCE = () => {
-    const { innerRCEEditorState, innerRCEcb } = this.state;
+  saveInnerRCE = innerRCEEditorState => {
+    const { innerRCEcb } = this.state;
     const newContentState = convertToRaw(innerRCEEditorState.getCurrentContent());
     innerRCEcb(newContentState);
   };
