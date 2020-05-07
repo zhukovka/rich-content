@@ -14,8 +14,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-
-
+  
+### :bug: Bug Fix
+- `editor-common`
+  - [#1046](https://github.com/wix-incubator/rich-content/pull/1046) fix: cursor jumps to start of editor on close modal
 </details>
 <hr/>
 
