@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
+      - run: npm install && npm run analyzeBundles
       - run: git config user.email "barb@wix.com" && git config user.name "Bar Boaron"
       - run: git add . && git commit -m "Updating the baseline bundlesSizes"
       - run: git log && git push origin/githubActionOnMergePR githubActionOnMergePR_new
