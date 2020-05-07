@@ -16,8 +16,9 @@ jobs:
       # run: npm install && npm run analyzeBundles && git config user.email "barb@wix.com" && git config user.name "Bar Boaron" && git add . && git status && git commit -m "commit for testing" && git log && git push origin master
       - run: npm install && npm run analyzeBundles
       - run: git config user.email "barb@wix.com" && git config user.name "Bar Boaron"
+      - run: git remote set-url origin https://x-access-token:${secrets.GITHUB_TOKEN}@github.com/wix-incubator/rich-content.git
       - run: git add . && git commit -m "Updating the baseline bundlesSizes"
-      - run: git log && git push --set-upstream origin/githubActionOnMergePR githubActionOnMergePR_new
+      - run: git log && git push origin/githubActionOnMergePR githubActionOnMergePR_new
       # - run: git log && git push origin master
     env:
       REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
