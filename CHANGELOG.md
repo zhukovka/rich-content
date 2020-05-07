@@ -16,25 +16,39 @@
   </summary>
 
 ### :rocket: New Feature
-- `button`
-  - [#958](https://github.com/wix-incubator/rich-content/pull/958) action button plugin - button with onClick callback
+- `indent`
+  - [#898](https://github.com/wix-incubator/rich-content/pull/898) text indentation
+- `viewer`
+  - [#1005](https://github.com/wix-incubator/rich-content/pull/1005) add viewMode SEO to ProGallery
 - `fullscreen`
   - [#845](https://github.com/wix-incubator/rich-content/pull/845) fullscreen image titles and design changes
+
+</details>
+<hr/>
+
+## 7.5.0 (May 5, 2020)
+### :rocket: New Feature
+- `button`
+  - [#958](https://github.com/wix-incubator/rich-content/pull/958) action button plugin - button with onClick callback
 - `plugin menu`
-  - [#739](https://github.com/wix-incubator/rich-content/pull/739) plugin menu configuration for advanced menu - search plugins and divide to sections options
+  - [#739](https://github.com/wix-incubator/rich-content/pull/739) new plugin menu (side menu) with much better UX/UI for many plugins
 ### :bug: Bug Fix
+- `video`
+  - [#1004](https://github.com/wix-incubator/rich-content/pull/1004) fix external video metadata
 - `editor`
   - [#941](https://github.com/wix-incubator/rich-content/pull/941) add tooltips for settings panels
 - `preview`
   - [#999](https://github.com/wix-incubator/rich-content/pull/999) giphy metadata is handled correctly by image and gallery data mergers
+- `gallery`
+  - [#1006](https://github.com/wix-incubator/rich-content/pull/1006) expand icon appears only on hovered image
 ### :house: Internal
+- `wrapper`
+  - [#980](https://github.com/wix-incubator/rich-content/pull/980) createEmpty import
+  - [#983](https://github.com/wix-incubator/rich-content/pull/983) fix custom inlineStyleMappers (viewer)
 - `general`
   - [#982](https://github.com/wix-incubator/rich-content/pull/982) `npm run watch` fixed to work concurrently with `flow` + `npm run e2e:debug` fixed to wait on serve ready
 - `storybook`
   - [#958](https://github.com/wix-incubator/rich-content/pull/958) Buttons story added (Action & Link buttons)
-
-</details>
-<hr/>
 
 ## 7.4.6 (May 3, 2020)
 ### :bug: Bug Fix
