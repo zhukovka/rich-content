@@ -9,7 +9,7 @@
     "start": "node ./analyzeBundles.js",
     "analyze": "node ./analyzePlugin.js",
     "analyzeAndCompare": "node ./compareBundles.js"
-   },
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
