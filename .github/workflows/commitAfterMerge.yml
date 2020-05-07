@@ -17,6 +17,6 @@ jobs:
           commit_message: Updating the baseline bundlesSizes
           branch: githubActionOnMergePR
           # branch: ${{ github.head_ref }}
-          file_pattern: bundlesSizesBaseline.json
+          file_pattern: \*/bundlesSizesBaseline.json
     env:
       REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
