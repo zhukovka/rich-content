@@ -77,13 +77,7 @@ export class PollSettingsSection extends Component {
   }
 
   render() {
-    const { uiSettings, componentData, t } = this.props;
-
-    const { color1, color2, color3 } = uiSettings.themeColors || {
-      color1: '#ffffff',
-      color2: '#303030',
-      color3: '#3a54b4',
-    };
+    const { componentData, t } = this.props;
 
     const {
       votersDisplay,
@@ -116,9 +110,6 @@ export class PollSettingsSection extends Component {
           checked={multipleVotes}
           onChange={() => this.updateSettings({ multipleVotes: !multipleVotes })}
           theme={this.styles}
-          sliderColor={color1}
-          toggleIsOffTrackColor={color2}
-          toggleIsOnTrackColor={color3}
         />
 
         <Separator horizontal className={styles.separator} />
@@ -145,9 +136,6 @@ export class PollSettingsSection extends Component {
           theme={this.styles}
           checked={votesDisplay}
           onChange={() => this.updateSettings({ votesDisplay: !votesDisplay })}
-          sliderColor={color1}
-          toggleIsOffTrackColor={color2}
-          toggleIsOnTrackColor={color3}
         />
 
         <LabeledToggle
@@ -155,9 +143,6 @@ export class PollSettingsSection extends Component {
           theme={this.styles}
           checked={votersDisplay}
           onChange={() => this.updateSettings({ votersDisplay: !votersDisplay })}
-          sliderColor={color1}
-          toggleIsOffTrackColor={color2}
-          toggleIsOnTrackColor={color3}
         />
       </section>
     );
@@ -167,7 +152,6 @@ export class PollSettingsSection extends Component {
 PollSettingsSection.propTypes = {
   theme: PropTypes.object.isRequired,
   componentData: PropTypes.object.isRequired,
-  uiSettings: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
 };

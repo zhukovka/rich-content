@@ -41,12 +41,7 @@ export class LayoutSettingsSection extends Component {
   );
 
   render() {
-    const { uiSettings, componentData, t } = this.props;
-    const { color1, color2, color3 } = uiSettings.themeColors || {
-      color1: '#ffffff',
-      color2: '#303030',
-      color3: '#3a54b4',
-    };
+    const { componentData, t } = this.props;
 
     const { poll, option } = componentData.layout;
 
@@ -59,9 +54,6 @@ export class LayoutSettingsSection extends Component {
           checked={poll?.enableImage}
           onChange={() => this.updateSettings({ poll: { enableImage: !poll?.enableImage } })}
           theme={this.styles}
-          sliderColor={color1}
-          toggleIsOffTrackColor={color2}
-          toggleIsOnTrackColor={color3}
         />
 
         <Separator horizontal className={styles.separator} />
@@ -96,9 +88,6 @@ export class LayoutSettingsSection extends Component {
           checked={option?.enableImage}
           onChange={() => this.updateSettings({ option: { enableImage: !option?.enableImage } })}
           theme={this.styles}
-          sliderColor={color1}
-          toggleIsOffTrackColor={color2}
-          toggleIsOnTrackColor={color3}
         />
 
         <Separator horizontal className={styles.separator} />
@@ -138,7 +127,6 @@ export class LayoutSettingsSection extends Component {
 LayoutSettingsSection.propTypes = {
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
-  uiSettings: PropTypes.object.isRequired,
   componentData: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
 };
