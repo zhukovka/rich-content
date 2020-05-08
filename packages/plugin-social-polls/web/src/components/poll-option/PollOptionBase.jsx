@@ -45,6 +45,8 @@ export class PollOptionBase extends React.PureComponent {
   };
 
   handleVoteClick = async e => {
+    e.preventDefault();
+
     if (e.keyCode) {
       return;
     }

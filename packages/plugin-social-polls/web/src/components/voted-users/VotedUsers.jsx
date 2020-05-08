@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { PureComponent } from 'react';
 import ReactModal from 'react-modal';
 import classnames from 'classnames';
@@ -55,7 +53,15 @@ class VotedUsersComponent extends PureComponent {
 
   closeModal = () => this.setState({ isOpen: false });
 
-  openModal = () => this.setState({ isOpen: this.props.rce.isViewMode });
+  openModal = e => {
+    e.preventDefault();
+
+    if (e.keyCode) {
+      return;
+    }
+
+    this.setState({ isOpen: this.props.rce.isViewMode });
+  };
 
   render() {
     const { option, t, showResults, showVotes, fetchVoters } = this.props;
@@ -73,12 +79,15 @@ class VotedUsersComponent extends PureComponent {
           })}
           ref={$container => this.setState({ $container })}
           onClick={this.openModal}
+          onKeyPress={this.openModal}
+          role="button"
+          tabIndex={-1}
         >
           <ul className={styles.avatar_list}>{this.getSiteMembers().map(this.renderMember)}</ul>
           <span>{t('Poll_Viewer_VoteCount', { number: option.count || 0 })}</span>
         </div>
 
-        {$container && option.count ? (
+        {$container && option.latestVoters?.length ? (
           <ReactModal
             isOpen={isOpen}
             onRequestClose={this.closeModal}

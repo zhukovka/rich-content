@@ -22,6 +22,7 @@ class PollComponent extends Component {
 
   state = {
     collapsed: this.isInitiallyCollapsed(),
+    error: null,
     loading: false,
   };
 
@@ -33,15 +34,51 @@ class PollComponent extends Component {
     }
   }
 
+  componentDidCatch(error) {
+    this.setState({ error: error.message });
+  }
+
   async fetchPoll() {
     if (this.props.rce.isWebView) {
       return;
     }
+    this.setState({
+      loading: true,
+      error: null,
+    });
 
-    this.setState({ loading: true });
-    await this.props.fetchPoll();
-    this.setState({ loading: false });
+    try {
+      await this.props.fetchPoll();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('[rce-social-polls] fetchPoll: ', error.response);
+      this.setState({ error: this.props.t('Poll_Viewer_Toast_Error_ServerDown') });
+    } finally {
+      this.setState({ loading: false });
+    }
   }
+
+  vote = async optionId => {
+    this.setState({ error: null });
+    try {
+      await this.props.vote(optionId);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('[rce-social-polls] vote: ', error.response);
+      this.setState({ error: error.message });
+    }
+  };
+
+  unvote = async optionId => {
+    this.setState({ error: null });
+    try {
+      await this.props.unvote(optionId);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('[rce-social-polls] unvote: ', error.response);
+      this.setState({ error: error.message });
+    }
+  };
 
   isInitiallyCollapsed() {
     const { poll } = this.props;
@@ -126,19 +163,8 @@ class PollComponent extends Component {
   }
 
   render() {
-    const {
-      poll,
-      rce,
-      getVoters,
-      addOption,
-      design,
-      layout,
-      vote,
-      unvote,
-      t,
-      siteMembers,
-    } = this.props;
-    const { collapsed, loading } = this.state;
+    const { poll, rce, getVoters, addOption, design, layout, t, siteMembers } = this.props;
+    const { collapsed, loading, error } = this.state;
 
     const style = {
       ...design.poll,
@@ -176,8 +202,8 @@ class PollComponent extends Component {
                   update={this.handleOptionUpdate(i)}
                   remove={this.handleOptionRemove(i)}
                   removeEnabled={!rce.isViewMode && poll.options.length > 1}
-                  vote={vote}
-                  unvote={unvote}
+                  vote={this.vote}
+                  unvote={this.unvote}
                   poll={poll}
                   showResults={this.showResults()}
                   dark={this.hasImageBackground()}

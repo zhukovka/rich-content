@@ -137,6 +137,14 @@
   }
 }
 
+.error {
+  color: #df3131;
+  font-size: 14px;
+  line-height: 1.43;
+  margin: 10px 0 0;
+  position: relative;
+}
+
 /* rtl:ignore */
 @keyframes spin {
   from {
