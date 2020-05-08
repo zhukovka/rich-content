@@ -44,6 +44,7 @@ import { createTextHighlightPlugin, TEXT_HIGHLIGHT_TYPE } from 'wix-rich-content
 import Highlighter from 'react-highlight-words';
 import casual from 'casual-browserify';
 import { mockFetchUrlPreviewData } from '../utils/linkPreviewUtil';
+import { createIndentPlugin } from 'wix-rich-content-plugin-indent';
 
 import 'wix-rich-content-editor-common/dist/styles.min.css';
 import 'wix-rich-content-common/dist/styles.min.css';
@@ -81,7 +82,7 @@ import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common'
 // import StaticToolbarDecoration from './Components/StaticToolbarDecoration';
 // import SideToolbarDecoration from './Components/SideToolbarDecoration';
 // import PluginToolbarDecoration from './Components/PluginToolbarDecoration';
-import { mockFetchVerticalEmbedFunc } from './Utils/verticalEmbedUtil';
+import MockVerticalSearchModule from './Utils/verticalEmbedUtil';
 
 export const editorPluginsPartialPreset = [
   createImagePlugin,
@@ -116,6 +117,7 @@ export const editorPluginsEmbedsPreset = [
 export const editorPlugins = [
   createLinkPreviewPlugin,
   createVerticalEmbedPlugin,
+  createIndentPlugin,
   createActionButtonPlugin,
   ...editorPluginsPartialPreset,
 ];
@@ -129,6 +131,7 @@ export const editorPluginsMap = {
   spacing: createLineSpacingPlugin,
   link: createLinkPlugin,
   linkPreview: createLinkPreviewPlugin,
+  indent: createIndentPlugin,
   hashtag: createHashtagPlugin,
   mentions: createExternalMentionsPlugin,
   codeBlock: createCodeBlockPlugin,
@@ -475,10 +478,10 @@ const config = {
     // },
   },
   [VERTICAL_EMBED_TYPE]: {
-    fetchFunctions: {
-      [product]: mockFetchVerticalEmbedFunc(product),
-      [event]: mockFetchVerticalEmbedFunc(event),
-      [booking]: mockFetchVerticalEmbedFunc(booking),
+    verticalsApi: {
+      [product]: new MockVerticalSearchModule(product),
+      [event]: new MockVerticalSearchModule(event),
+      [booking]: new MockVerticalSearchModule(booking),
     },
     // exposeEmbedButtons: [product, event, booking],
     exposeEmbedButtons: [product],
