@@ -76,7 +76,9 @@ export default class Editor extends PureComponent {
       //
       // onFilesChange: (files, updateEntity) => mockUpload(files, updateEntity),
       handleFileSelection: (index, multiple, updateEntity, removeEntity, componentData) => {
-        const count = componentData.items || shouldMultiSelectImages ? [1, 2, 3] : [1];
+        console.log('adding files!!!');
+        const count = componentData.items || shouldMultiSelectImages ? [1, 2, 3, 4, 5] : [1];
+        console.log('adding files!!!', count);
         const data = [];
         count.forEach(_ => {
           const testItem = testImages[Math.floor(Math.random() * testImages.length)];
