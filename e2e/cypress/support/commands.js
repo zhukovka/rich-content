@@ -82,7 +82,7 @@ function disableTransitions() {
 }
 
 function hideAllTooltips() {
-  cy.get('[data-id="tooltip"]', { timeout: 90000 }).invoke('hide'); //uses jquery to set display: none
+  cy.get('[data-id="tooltip"]', { timeout: 300000 }).invoke('hide'); //uses jquery to set display: none
 }
 
 Cypress.Commands.add('loadEditorAndViewer', (fixtureName, config) =>
@@ -91,8 +91,9 @@ Cypress.Commands.add('loadEditorAndViewer', (fixtureName, config) =>
 Cypress.Commands.add('loadIsolatedEditorAndViewer', fixtureName =>
   run('rce-isolated', fixtureName)
 );
+Cypress.Commands.add('loadWrapperEditorAndViewer', fixtureName => run('wrapper', fixtureName));
 
-Cypress.Commands.add('loadEditorAndViewerOnSsr', (fixtureName, compName) => {
+Cypress.Commands.add('loadTestAppOnSsr', (fixtureName, compName) => {
   cy.request(getUrl(compName, fixtureName))
     .its('body')
     .then(html => {
