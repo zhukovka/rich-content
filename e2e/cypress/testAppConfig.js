@@ -3,16 +3,19 @@ export const defaultConfig = {
   toolbarConfig: {},
 };
 
-export const getPluginMenuConfig = (options = []) => {
-  const addPluginMenuConfig = options.reduce((acc, option) => {
-    acc[option] = true;
-    return acc;
-  }, {});
+export const getPluginMenuConfig = (addPluginMenuConfig = {}) => {
   return {
     toolbarConfig: { addPluginMenuConfig },
   };
 };
 
-export const getPluginsToConsumeConfig = plugin => {
+export const usePlugins = plugin => {
   return { plugins: [plugin] };
+};
+
+export const plugins = {
+  embedsPreset: 'embedsPreset',
+  linkPreview: 'linkPreview',
+  verticalEmbed: 'verticalEmbed',
+  actionButton: 'actionButton',
 };

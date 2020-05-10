@@ -7,7 +7,7 @@ import {
   BUTTON_PLUGIN_MODAL,
 } from '../cypress/dataHooks';
 import { DEFAULT_DESKTOP_BROWSERS } from './settings';
-import { getPluginsToConsumeConfig } from '../cypress/testAppConfig';
+import { usePlugins, plugins } from '../cypress/testAppConfig';
 
 const eyesOpen = ({
   test: {
@@ -167,7 +167,7 @@ describe('plugins', () => {
     after(() => cy.eyesClose());
 
     beforeEach('load editor', () =>
-      cy.loadEditorAndViewer('link-preview', getPluginsToConsumeConfig('embedsPreset'))
+      cy.loadEditorAndViewer('link-preview', usePlugins(plugins.embedsPreset))
     );
 
     it('change link preview settings', function() {
@@ -203,7 +203,7 @@ describe('plugins', () => {
     });
     after(() => cy.eyesClose());
     beforeEach('load editor', () =>
-      cy.loadEditorAndViewer('empty', getPluginsToConsumeConfig('embedsPreset'))
+      cy.loadEditorAndViewer('empty', usePlugins(plugins.embedsPreset))
     );
 
     it('should create link preview from link after enter key', function() {
@@ -224,7 +224,7 @@ describe('plugins', () => {
 
     beforeEach('load editor', () => {
       cy.switchToDesktop();
-      cy.loadEditorAndViewer('empty', getPluginsToConsumeConfig('linkPreview'));
+      cy.loadEditorAndViewer('empty', usePlugins(plugins.linkPreview));
     });
 
     after(() => cy.eyesClose());
@@ -276,7 +276,7 @@ describe('plugins', () => {
 
     beforeEach('load editor', () => {
       cy.switchToDesktop();
-      cy.loadEditorAndViewer('empty', getPluginsToConsumeConfig('verticalEmbed'));
+      cy.loadEditorAndViewer('empty', usePlugins(plugins.verticalEmbed));
     });
 
     after(() => cy.eyesClose());
@@ -322,7 +322,7 @@ describe('plugins', () => {
     });
 
     beforeEach('load editor', () =>
-      cy.loadEditorAndViewer('action-button', getPluginsToConsumeConfig('actionButton'))
+      cy.loadEditorAndViewer('action-button', usePlugins(plugins.actionButton))
     );
 
     after(() => cy.eyesClose());

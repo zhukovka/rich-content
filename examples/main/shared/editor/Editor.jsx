@@ -35,21 +35,15 @@ export default class Editor extends PureComponent {
       ? testAppConfig.plugins.map(plugin => Plugins.editorPluginsMap[plugin]).flat()
       : Plugins.editorPlugins;
     this.config = pluginsConfig;
-    this.toolbarsConfig = this.getToolbarConfig();
-  }
-
-  getToolbarConfig() {
-    const { testAppConfig = {} } = this.props;
-    if (testAppConfig.toolbarConfig) {
-      return testAppConfig.toolbarConfig;
-    } else {
-      return {
-        addPluginMenuConfig: {
-          showSearch: true,
-          splitToSections: true,
-        },
-      };
-    }
+    const toolbarsConfig = {
+      addPluginMenuConfig: {
+        showSearch: true,
+        splitToSections: true,
+      },
+    };
+    this.toolbarsConfig = testAppConfig.toolbarConfig
+      ? testAppConfig.toolbarConfig
+      : toolbarsConfig;
   }
 
   initEditorProps() {

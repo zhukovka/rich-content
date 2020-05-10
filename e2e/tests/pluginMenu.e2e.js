@@ -8,6 +8,7 @@ const pluginMenuRenderer = (title, config) => {
     .openSideToolbar();
   cy.eyesCheckWindow(title);
 };
+
 describe('plugin menu test', () => {
   context('plugin menu', () => {
     before(function() {
@@ -27,13 +28,16 @@ describe('plugin menu test', () => {
       pluginMenuRenderer(this.test.title, getPluginMenuConfig());
     });
     it('should render plugin menu with search', function() {
-      pluginMenuRenderer(this.test.title, getPluginMenuConfig(['showSearch']));
+      pluginMenuRenderer(this.test.title, getPluginMenuConfig({ showSearch: true }));
     });
     it('should render plugin menu with sections', function() {
-      pluginMenuRenderer(this.test.title, getPluginMenuConfig(['splitToSections']));
+      pluginMenuRenderer(this.test.title, getPluginMenuConfig({ splitToSections: true }));
     });
     it('should render plugin menu with sections & search', function() {
-      pluginMenuRenderer(this.test.title, getPluginMenuConfig(['splitToSections', 'showSearch']));
+      pluginMenuRenderer(
+        this.test.title,
+        getPluginMenuConfig({ splitToSections: true, showSearch: true })
+      );
     });
   });
 });
