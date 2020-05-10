@@ -13,4 +13,4 @@ let output = [
   },
 ];
 
-export default commonConfig(output, true);
+export default commonConfig(output, false);

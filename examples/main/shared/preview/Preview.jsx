@@ -4,11 +4,8 @@ import * as PropTypes from 'prop-types';
 import * as Plugins from './PreviewPlugins';
 import { isSSR } from 'wix-rich-content-common';
 import theme from '../theme/theme'; // must import after custom styles
-import 'wix-rich-content-preview/dist/styles.min.css';
 import getImagesData from 'wix-rich-content-fullscreen/dist/lib/getImagesData';
 import Fullscreen from 'wix-rich-content-fullscreen';
-
-import 'wix-rich-content-fullscreen/dist/styles.min.css';
 
 const anchorTarget = '_top';
 const relValue = 'noreferrer';
@@ -25,8 +22,7 @@ export default class Preview extends PureComponent {
     this.transformations = [
       new ContentStateTransformation({
         _if: metadata => metadata.plain.length > 0,
-        _then: (metadata, preview) =>
-          preview.plain(metadata.plain[0]).readMore({ lines: 3 }),
+        _then: (metadata, preview) => preview.plain(metadata.plain[0]).readMore({ lines: 3 }),
       }),
       new ContentStateTransformation({
         _if: metadata => metadata.images.length > 0,
@@ -35,8 +31,7 @@ export default class Preview extends PureComponent {
       }),
       new ContentStateTransformation({
         _if: metadata => metadata.plain.length > 0,
-        _then: (metadata, preview) =>
-          preview.plain(metadata.plain[0]).readMore({ lines: 1 }),
+        _then: (metadata, preview) => preview.plain(metadata.plain[0]).readMore({ lines: 1 }),
       }).rule({
         _if: metadata => metadata.images.length > 3,
         _then: (metadata, preview) =>
@@ -46,7 +41,6 @@ export default class Preview extends PureComponent {
       }),
     ];
   }
-
 
   componentDidUpdate(prevProps) {
     if (prevProps.initialState !== this.props.initialState) {
@@ -72,7 +66,7 @@ export default class Preview extends PureComponent {
         expandModeIsOpen: true,
         expandModeIndex: this.expandModeData.imageMap[entityIndex] + innerIndex,
       });
-    }
+    },
   };
 
   render() {
