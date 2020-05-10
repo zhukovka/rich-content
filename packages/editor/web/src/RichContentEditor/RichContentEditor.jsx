@@ -454,7 +454,7 @@ class RichContentEditor extends Component {
   };
 
   innerRCEOpenModal = (innerContentState, callback, renderedIn, innerRCECaptionRef) => {
-    this.innerRCEHeight = innerRCECaptionRef.offsetHeight;
+    // this.innerRCEHeight = innerRCECaptionRef.offsetHeight;
     this.innerRCEWidth = innerRCECaptionRef.offsetWidth;
     this.innerRCEOffsetTop =
       innerRCECaptionRef.getBoundingClientRect().top -
@@ -569,7 +569,7 @@ class RichContentEditor extends Component {
                         top: `${this.innerRCEOffsetTop}px`,
                         left: `${this.innerRCEOffsetLeft}px`,
                         width: `${this.innerRCEWidth}px`,
-                        height: `${this.innerRCEHeight}px`,
+                        height: `auto`,
                         zIndex: 5,
                       }}
                       onInnerEditorChange={this.onInnerEditorChange}

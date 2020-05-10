@@ -374,11 +374,11 @@ const config = {
     // },
     // },
     innerRCEPlugins: [
-      'createTextColorPlugin',
-      'createLineSpacingPlugin',
-      'createDividerPlugin',
-      'createEmojiPlugin',
-      'createMapPlugin',
+      createTextColorPlugin,
+      createLineSpacingPlugin,
+      createDividerPlugin,
+      createEmojiPlugin,
+      createMapPlugin,
     ],
   },
   [HASHTAG_TYPE]: {
