@@ -27,6 +27,10 @@
 ### :house: Internal
 - `wrapper`
   - [#993](https://github.com/wix-incubator/rich-content/pull/993) remove `!important` usage + deep merge jss styles
+
+### :rocket: New Feature
+- `headings`
+  - [#901](https://github.com/wix-incubator/rich-content/pull/901) adding plugin headings with dropdown option
 </details>
 <hr/>
 
@@ -198,11 +202,9 @@
   - [#907](https://github.com/wix-incubator/rich-content/pull/907) converted `wix-rich-content-wrapper` to typescript
 
 ## 7.2.0 (Apr 8, 2020)
-### :house: Internal
-- `storybook`
-  - [#891](https://github.com/wix-incubator/rich-content/pull/891) fixed textHighlightPlugin color (intro.js)
-- `general`
-  - [#905](https://github.com/wix-incubator/rich-content/pull/905) refactor - remove getConfigByFormFactor.js
+### :rocket: New Feature
+- `link`
+  - [#750](https://github.com/wix-incubator/rich-content/pull/750) link toolbar
 ### :bug: Bug Fix
 - `gallery`
   - [#879](https://github.com/wix-incubator/rich-content/pull/879) gallery size - regression from #879
@@ -214,8 +216,11 @@
   - [#902](https://github.com/wix-incubator/rich-content/pull/902) mobile - cancel in link panel changed the cursor
 - 'editor'
   - [#894](https://github.com/wix-incubator/rich-content/pull/894) text position after enter & disable paste text with style CODE
-</details>
-<hr/>
+### :house: Internal
+- `storybook`
+  - [#891](https://github.com/wix-incubator/rich-content/pull/891) fixed textHighlightPlugin color (intro.js)
+- `general`
+  - [#905](https://github.com/wix-incubator/rich-content/pull/905) refactor - remove getConfigByFormFactor.js
 
 ## 7.1.5 (Apr 4, 2020)
 ### :bug: Bug Fix

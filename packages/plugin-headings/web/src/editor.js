@@ -5,7 +5,11 @@ import { DEFAULTS } from './defaults';
 
 export const pluginHeadings = (config = {}) => {
   return {
-    config: { ...DEFAULTS.config, ...config },
+    config: {
+      headersDropdown: true,
+      ...DEFAULTS.config,
+      ...config,
+    },
     type: HEADINGS_TYPE,
     createPlugin: createHeadingsPlugin,
     ModalsMap,

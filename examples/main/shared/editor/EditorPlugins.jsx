@@ -436,12 +436,6 @@ const config = {
     //     TitleTwo: MyCustomIcon,
     //   },
     // },
-    // defaultSpacing: {
-    //   'line-height': '1.5',
-    //   'padding-top': '2px',
-    //   'padding-bottom': '3px',
-    // },
-    // onUpdate: spacing => console.log(LINE_SPACING_TYPE, spacing),
   },
   [LINE_SPACING_TYPE]: {
     // toolbar: {
@@ -615,10 +609,6 @@ const config = {
   },
   uiSettings,
   getToolbarSettings: ({ pluginButtons, textButtons }) => [
-    // {
-    //   name: TOOLBARS.TEXT,
-    //   headersDropdown: true,
-    // },
     // {
     //   name: TOOLBARS.TEXT,
     //   getIcons: () => ({

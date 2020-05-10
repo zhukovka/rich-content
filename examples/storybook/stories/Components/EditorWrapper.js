@@ -81,9 +81,6 @@ const configs = {
   verticalEmbed: {
     exposeEmbedButtons: [product, event, booking],
   },
-  Headings: {
-    headersDropdown: true,
-  },
 };
 
 const plugins = [
