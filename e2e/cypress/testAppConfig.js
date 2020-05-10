@@ -18,4 +18,5 @@ export const plugins = {
   linkPreview: 'linkPreview',
   verticalEmbed: 'verticalEmbed',
   actionButton: 'actionButton',
+  all: 'all',
 };
