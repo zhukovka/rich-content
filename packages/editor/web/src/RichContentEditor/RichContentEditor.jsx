@@ -564,6 +564,7 @@ class RichContentEditor extends Component {
                   <ClickOutside onClickOutside={this.closeInnerRCE}>
                     <InnerRCEModal
                       style={{
+                        backgroundColor: 'white',
                         position: 'absolute',
                         top: `${this.innerRCEOffsetTop}px`,
                         left: `${this.innerRCEOffsetLeft}px`,

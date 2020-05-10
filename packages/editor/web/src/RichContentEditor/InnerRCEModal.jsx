@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -10,8 +11,13 @@ class InnerRCEModal extends Component {
     super(props);
     this.state = {};
     const { plugins, innerRCERenderedIn, config } = this.props;
+    console.log({ plugins });
+    console.log({ innerRCERenderedIn });
+    console.log({ config });
     const wantedPlugins = config[innerRCERenderedIn].innerRCEPlugins;
+    console.log({ wantedPlugins });
     this.plugins = plugins.filter(plugin => wantedPlugins.includes(plugin.name));
+    console.log('this.plugins = ', this.plugins);
   }
 
   componentDidMount() {
