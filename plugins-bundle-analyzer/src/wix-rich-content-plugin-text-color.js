@@ -1,4 +1,3 @@
-import 'wix-rich-content-plugin-text-color/dist/styles.min.css';
 import {
   textHighlightInlineStyleMapper,
   textColorInlineStyleMapper,
