@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import { pick } from 'lodash';
 import { mergeStyles } from 'wix-rich-content-common';
@@ -10,7 +10,6 @@ import {
 } from 'wix-rich-content-editor-common';
 
 import { LineSpacingIcon } from '../icons';
-import Modal from 'react-modal';
 import Panel from './LineSpacingPanel';
 import classNames from 'classnames';
 import styles from '../../statics/styles/styles.scss';
@@ -22,7 +21,7 @@ const spaceAfter = 'padding-bottom';
 export default class LineSpacingButton extends Component {
   constructor(props) {
     super(props);
-    this.state = { showPanel: false };
+    this.state = { showPanel: false, Modal: undefined };
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
@@ -32,13 +31,21 @@ export default class LineSpacingButton extends Component {
   }
 
   openPanel = () => {
+    const { Modal } = this.state;
+    const modal =
+      Modal ||
+      lazy(() =>
+        import('react-modal').then(value => ({
+          default: value.default,
+        }))
+      );
     this.currentEditorState = this.oldEditorState = this.props.getEditorState();
     this.selection = this.oldEditorState.getSelection();
     const spacing = LineSpacingButton.getBlockSpacing(this.oldEditorState);
     this.oldSpacing = spacing;
     const { bottom, left } = this.buttonRef.getBoundingClientRect();
     this.props.setKeepOpen(true);
-    this.setState({ isPanelOpen: true, panelLeft: left, panelTop: bottom, spacing });
+    this.setState({ isPanelOpen: true, panelLeft: left, panelTop: bottom, spacing, Modal: modal });
   };
 
   closePanel = () => {
@@ -82,7 +89,7 @@ export default class LineSpacingButton extends Component {
 
   render() {
     const { theme, isMobile, t, tabIndex, defaultSpacing, toolbar } = this.props;
-    const { isPanelOpen, spacing, panelTop, panelLeft } = this.state;
+    const { isPanelOpen, spacing, panelTop, panelLeft, Modal } = this.state;
     const { styles } = this;
     const icon = toolbar?.icons?.InsertPluginButtonIcon || LineSpacingIcon;
     const modalStyle = isMobile
@@ -104,32 +111,36 @@ export default class LineSpacingButton extends Component {
         icon={icon}
         ref={ref => (this.buttonRef = ref)}
       >
-        <Modal
-          isOpen={isPanelOpen}
-          onRequestClose={() => this.save()}
-          className={classNames(styles.lineSpacingModal, {
-            [styles.lineSpacingModal_mobile]: isMobile,
-          })}
-          overlayClassName={classNames(styles.lineSpacingModalOverlay, {
-            [styles.lineSpacingModalOverlay_mobile]: isMobile,
-          })}
-          parentSelector={LineSpacingButton.getModalParent}
-          style={{
-            content: modalStyle,
-          }}
-          ariaHideApp={false}
-        >
-          <Panel
-            spacing={{ ...defaultSpacing, ...spacing }}
-            onChange={this.updateSpacing}
-            onSave={this.save}
-            onCancel={this.cancel}
-            styles={this.styles}
-            t={t}
-            isMobile={isMobile}
-            theme={theme}
-          />
-        </Modal>
+        {Modal && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Modal
+              isOpen={isPanelOpen}
+              onRequestClose={() => this.save()}
+              className={classNames(styles.lineSpacingModal, {
+                [styles.lineSpacingModal_mobile]: isMobile,
+              })}
+              overlayClassName={classNames(styles.lineSpacingModalOverlay, {
+                [styles.lineSpacingModalOverlay_mobile]: isMobile,
+              })}
+              parentSelector={LineSpacingButton.getModalParent}
+              style={{
+                content: modalStyle,
+              }}
+              ariaHideApp={false}
+            >
+              <Panel
+                spacing={{ ...defaultSpacing, ...spacing }}
+                onChange={this.updateSpacing}
+                onSave={this.save}
+                onCancel={this.cancel}
+                styles={this.styles}
+                t={t}
+                isMobile={isMobile}
+                theme={theme}
+              />
+            </Modal>
+          </Suspense>
+        )}
       </InlineToolbarButton>
     );
   }

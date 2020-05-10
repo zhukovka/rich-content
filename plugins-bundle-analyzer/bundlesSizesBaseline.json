@@ -19,11 +19,11 @@
   "wix-rich-content-plugin-sound-cloud": 296,
   "wix-rich-content-plugin-text-color": 212,
   "wix-rich-content-plugin-undo-redo": 181,
-  "wix-rich-content-plugin-vertical-embed": 780,
+  "wix-rich-content-plugin-vertical-embed": 643,
   "wix-rich-content-plugin-video": 301,
   "viewer-without-wrapper": 201,
-  "viewer-with-wrapper": 782,
-  "editor-with-emoji": 939,
-  "editor-without-plugins": 849,
-  "editor-with-basic-plugins": 1304
+  "viewer-with-wrapper": 644,
+  "editor-with-emoji": 801,
+  "editor-without-plugins": 712,
+  "editor-with-basic-plugins": 1148
 }
