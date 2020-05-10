@@ -1,3 +1,4 @@
+import { HEADER_BLOCK } from 'wix-rich-content-common';
 import {
   AlignLeftIcon,
   AlignTextCenterIcon,
@@ -15,7 +16,6 @@ import {
   OrderedListIcon,
   UnorderedListIcon,
 } from '../../Icons';
-import { HEADER_BLOCK } from 'wix-rich-content-common';
 import createTextInlineStyleButton from './utils/createTextInlineStyleButton';
 import createTextBlockStyleButton from './utils/createTextBlockStyleButton';
 import createTextAlignmentButton from './utils/createTextAlignmentButton';
