@@ -28,7 +28,6 @@ import {
 } from 'wix-rich-content-plugin-vertical-embed';
 import { mockFetchUrlPreviewData } from '../../../main/shared/utils/linkPreviewUtil';
 import { pluginTextColor, pluginTextHighlight } from 'wix-rich-content-plugin-text-color';
-import '../styles.global.scss';
 
 const { Instagram, Twitter, YouTube, TikTok } = LinkPreviewProviders;
 const { event, booking, product } = verticalEmbedProviders;

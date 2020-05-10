@@ -3,7 +3,6 @@ import EngineWrapper from './EngineWrapper';
 import themeStrategy from './themeStrategy/themeStrategy';
 import pluginsStrategy from './pluginsStrategy/pluginsStrategy';
 import localeStrategy from './localeStrategy/localeStrategy';
-import './styles.global.css';
 import { merge } from 'lodash';
 import { isDefined } from 'ts-is-present';
 
