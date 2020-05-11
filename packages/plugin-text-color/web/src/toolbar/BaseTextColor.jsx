@@ -70,6 +70,7 @@ export default class BaseTextColor extends Component {
       config,
       uiSettings,
       pluginParams,
+      helpers,
     } = this.props;
     const settings = config[pluginParams.type];
     const { isPanelOpen, panelTop, panelLeft } = this.state;
@@ -120,6 +121,7 @@ export default class BaseTextColor extends Component {
             editorState={getEditorState()}
             setEditorState={setEditorState}
             settings={settings}
+            helpers={helpers}
             uiSettings={uiSettings}
             setKeepToolbarOpen={setKeepOpen}
             styleMapper={this.styleMapper}

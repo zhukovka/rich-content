@@ -8,6 +8,7 @@ import {
 } from 'wix-rich-content-editor-common';
 import { DEFAULT_STYLE_SELECTION_PREDICATE } from '../constants';
 import { getColor } from '../text-decorations-utils';
+import { merge } from 'lodash';
 
 import {
   extractColor,
@@ -25,6 +26,10 @@ export default class TextColorPanel extends Component {
     if (props.settings.colorScheme && !validateColorScheme(props.settings.colorScheme)) {
       console.error('Error: colorScheme is not valid'); // eslint-disable-line no-console
     }
+    const colorsFromDB = this.props.helpers?.getColors?.();
+    const userColors = colorsFromDB
+      ? merge(props.settings.getUserColors(), colorsFromDB)
+      : props.settings.getUserColors();
     this.currentColors = getSelectionStyles(this.styleSelectionPredicate, props.editorState);
     this.state = {
       currentColor:
@@ -32,7 +37,7 @@ export default class TextColorPanel extends Component {
           ? extractColor(props.settings.colorScheme, getColor(this.currentColors[0]))
           : this.props.defaultColor,
       currentSchemeColor: this.currentColors[0] && getColor(this.currentColors[0]),
-      userColors: props.settings.getUserColors() || [],
+      userColors: userColors || [],
     };
     this.setColor = this.setColor.bind(this);
     this.onColorAdded = this.onColorAdded.bind(this);
@@ -76,9 +81,12 @@ export default class TextColorPanel extends Component {
 
   onColorAdded(color) {
     this.props.settings.onColorAdded(color);
-    this.setState({
-      userColors: this.props.settings.getUserColors() || [],
-    });
+    this.setState(
+      {
+        userColors: this.props.settings.getUserColors() || [],
+      },
+      () => this.props.helpers?.updateColors?.(this.state.userColors)
+    );
   }
 
   render() {
@@ -149,4 +157,5 @@ TextColorPanel.propTypes = {
   styleMapper: PropTypes.func.isRequired,
   predicate: PropTypes.func,
   defaultColor: PropTypes.string.isRequired,
+  helpers: PropTypes.object,
 };
