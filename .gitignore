@@ -34,3 +34,8 @@ e2e/cypress/snapshots/All\sSpecs
 e2e/test-env/report.*.json
 tags
 applitools.config.js
+
+#Flow types for CSS
+**/statics/styles/*.flow
+**/.docusaurus
+**/docs/build/

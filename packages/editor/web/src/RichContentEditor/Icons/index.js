@@ -1,6 +1,5 @@
 export { default as BlockQuoteIcon } from './BlockQuoteIcon';
 export { default as BoldIcon } from './BoldIcon';
-export { default as IndentIcon } from './IndentIcon';
 export { default as ItalicIcon } from './ItalicIcon';
 export { default as LinkIcon } from './LinkIcon';
 export { default as OrderedListIcon } from './OrderedListIcon';
@@ -11,3 +10,5 @@ export { default as TitleOneIcon } from './TitleOneIcon';
 export { default as TitleTwoIcon } from './TitleTwoIcon';
 export { default as UnderlineIcon } from './UnderlineIcon';
 export { default as UnorderedListIcon } from './UnorderedListIcon';
+export { default as SearchIcon } from './SearchIcon.svg';
+export { default as ClearIcon } from './ClearIcon.svg';

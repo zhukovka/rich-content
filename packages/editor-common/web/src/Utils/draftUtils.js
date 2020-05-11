@@ -1,5 +1,6 @@
 import { EditorState, Modifier, RichUtils, SelectionState, AtomicBlockUtils } from '@wix/draft-js';
-import { cloneDeep, flatMap, findIndex, findLastIndex, countBy } from 'lodash';
+import { cloneDeep, flatMap, findIndex, findLastIndex, countBy, debounce, times } from 'lodash';
+import { TEXT_TYPES } from '../consts';
 
 export function createSelection({ blockKey, anchorOffset, focusOffset }) {
   return SelectionState.createEmpty(blockKey).merge({
@@ -118,11 +119,20 @@ function insertLink(editorState, selection, data) {
   );
 }
 
-function createLinkEntityData({ url, targetBlank, nofollow, anchorTarget, relValue, defaultName }) {
+export function createLinkEntityData({
+  url,
+  targetBlank,
+  nofollow,
+  anchorTarget,
+  relValue,
+  defaultName,
+}) {
+  const target = targetBlank ? '_blank' : anchorTarget !== '_blank' ? anchorTarget : '_self';
+  const rel = nofollow ? 'nofollow' : relValue !== 'nofollow' ? relValue : 'noopener';
   const linkEntityData = {
     url,
-    target: targetBlank ? '_blank' : anchorTarget || '_self',
-    rel: nofollow ? 'nofollow' : relValue || 'noopener noreferrer',
+    target,
+    rel,
   };
   if (defaultName) {
     linkEntityData.defaultName = defaultName;
@@ -299,8 +309,21 @@ export const deleteBlock = (editorState, blockKey) => {
     anchorOffset,
     focusKey: blockKey,
     focusOffset: block.text.length,
+    hasFocus: true,
   });
   const newContentState = Modifier.removeRange(contentState, selectionRange, 'forward');
+  return EditorState.push(editorState, newContentState, 'remove-range');
+};
+
+export const deleteBlockText = (editorState, blockKey) => {
+  const contentState = editorState.getCurrentContent();
+  const block = contentState.getBlockForKey(blockKey);
+  const selectionRange = createSelection({
+    blockKey,
+    anchorOffset: 0,
+    focusOffset: block.text.length,
+  });
+  const newContentState = Modifier.replaceText(contentState, selectionRange, '');
   return EditorState.push(editorState, newContentState, 'remove-range');
 };
 
@@ -410,7 +433,10 @@ export const getEntities = (editorState, entityType = null) => {
     block.findEntityRanges(character => {
       const char = character.getEntity();
       const entity = !!char && currentContent.getEntity(char);
-      if (!entityType || entity.getType() === entityType) {
+      // regular text block
+      if (entity === false) {
+        entities.push({ type: 'text' });
+      } else if (!entityType || entity.getType() === entityType) {
         entities.push(entity);
       }
     });
@@ -428,42 +454,49 @@ export function getPostContentSummary(editorState) {
   const blocks = editorState.getCurrentContent().getBlocksAsArray();
   const entries = getEntities(editorState);
   const blockPlugins = getBlockTypePlugins(blocks);
+  const pluginsDetails = entries
+    .filter(entry => entry.type !== 'text')
+    .map(entry => ({ type: entry.type, data: entry.data }));
   return {
-    postContent: {
+    pluginsCount: {
       ...countByType(blockPlugins),
       ...countByType(entries),
     },
+    pluginsDetails,
   };
 }
 
 //ATM, looks for deleted plugins.
 //onChanges - for phase 2?
 //Added Plugins - checked elsewhere via toolbar clicks
-export const calculateDiff = async (prevState, newState, onPluginDelete) => {
-  const countByType = obj => countBy(obj, x => x.type);
-  const prevEntities = countByType(getEntities(prevState));
-  const currEntities = countByType(getEntities(newState));
-  const prevBlocks = prevState.getCurrentContent().getBlocksAsArray();
-  const currBlocks = newState.getCurrentContent().getBlocksAsArray();
-  const prevBlockPlugins = countByType(getBlockTypePlugins(prevBlocks));
-  const currBlockPlugins = countByType(getBlockTypePlugins(currBlocks));
+export const createCalcContentDiff = editorState => {
+  let prevState = editorState;
+  return debounce((newState, onPluginDelete) => {
+    const countByType = obj => countBy(obj, x => x.type);
+    const prevEntities = countByType(getEntities(prevState));
+    const currEntities = countByType(getEntities(newState));
+    const prevBlocks = prevState.getCurrentContent().getBlocksAsArray();
+    const currBlocks = newState.getCurrentContent().getBlocksAsArray();
+    const prevBlockPlugins = countByType(getBlockTypePlugins(prevBlocks));
+    const currBlockPlugins = countByType(getBlockTypePlugins(currBlocks));
 
-  const prevPluginsTotal = Object.assign(prevEntities, prevBlockPlugins);
-  const currPluginsTotal = Object.assign(currEntities, currBlockPlugins);
+    const prevPluginsTotal = Object.assign(prevEntities, prevBlockPlugins);
+    const currPluginsTotal = Object.assign(currEntities, currBlockPlugins);
 
-  Object.keys(prevPluginsTotal).forEach(type => {
-    if (!currPluginsTotal[type] || prevPluginsTotal[type] > currPluginsTotal[type]) {
-      onPluginDelete(type);
-    }
-  });
+    Object.keys(prevPluginsTotal).forEach(type => {
+      const timesDeleted = prevPluginsTotal[type] - (currPluginsTotal[type] || 0);
+      times(timesDeleted, () => onPluginDelete(type));
+    });
 
-  // onPluginChange -> for Phase 2
-  //else {
-  // const before = beforePlugins[key];
-  // const after = afterPlugins[key];
-  // if (JSON.stringify(before) !== JSON.stringify(after))
-  //   onPluginChange(type, { from: before, to: after });
-  //}
+    // onPluginChange -> for Phase 2
+    //else {
+    // const before = beforePlugins[key];
+    // const after = afterPlugins[key];
+    // if (JSON.stringify(before) !== JSON.stringify(after))
+    //   onPluginChange(type, { from: before, to: after });
+    //}
+    prevState = newState;
+  }, 300);
 };
 
 // a selection of the new content from the last change
@@ -510,6 +543,13 @@ export function getBlockInfo(editorState, blockKey) {
   const type = entity.type;
 
   return { type: type || 'text', entityData };
+}
+
+export function getBlockType(editorState) {
+  const contentState = editorState.getCurrentContent();
+  const blockKey = editorState.getSelection().getAnchorKey();
+  const block = contentState.getBlockForKey(blockKey);
+  return block.type;
 }
 
 export function setSelection(editorState, selection) {
@@ -577,3 +617,51 @@ const anchorableInlineElement = blockType =>
   blockType === 'header-three' ||
   blockType === 'code-block' ||
   blockType === 'blockquote';
+
+export const isTypeText = blockType => {
+  return TEXT_TYPES.some(type => type === blockType);
+};
+
+export function indentSelectedBlocks(editorState, adjustment) {
+  const maxDepth = 4;
+  const selection = editorState.getSelection();
+  const contentState = editorState.getCurrentContent();
+  const startKey = selection.getStartKey();
+  const endKey = selection.getEndKey();
+  const blockMap = contentState.getBlockMap();
+
+  const adjustBlockDepth = (block, adjustment) => {
+    let depth = block.getDepth() + adjustment;
+    depth = Math.max(0, Math.min(depth, maxDepth));
+    return block.set('depth', depth);
+  };
+
+  const getBlocks = () =>
+    blockMap
+      .toSeq()
+      .skipUntil((_, k) => k === startKey)
+      .takeUntil((_, k) => k === endKey)
+      .concat([[endKey, blockMap.get(endKey)]]);
+
+  const blocks = getBlocks(blockMap, startKey, endKey)
+    .filter(block => isTypeText(block.getType()))
+    .map(block => adjustBlockDepth(block, adjustment));
+
+  const withAdjustment = contentState.merge({
+    blockMap: blockMap.merge(blocks),
+    selectionBefore: selection,
+    selectionAfter: selection,
+  });
+  return EditorState.push(editorState, withAdjustment, 'adjust-depth');
+}
+
+export function setForceSelection(editorState, selection) {
+  return EditorState.forceSelection(editorState, selection);
+}
+
+export function insertString(editorState, string) {
+  const contentState = editorState.getCurrentContent();
+  const selection = editorState.getSelection();
+  const newContentState = Modifier.replaceText(contentState, selection, string);
+  return EditorState.push(editorState, newContentState, 'insert-string');
+}

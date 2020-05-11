@@ -15,21 +15,214 @@
     Click to see more.
   </summary>
 
+### :bug: Bug Fix
+- `link-preview`
+  - [#1048](https://github.com/wix-incubator/rich-content/pull/1048) fix: enable link preview and link embed by default
+### :house: Internal
+- `exampleApp`
+  - [0f849222](https://github.com/wix-incubator/rich-content/commit/0f849222) fix translations
+  
+</details>
+<hr/>
+
+## 7.6.1 (May 11, 2020)
+### :bug: Bug Fix
+- `editor-common`
+  - [#1046](https://github.com/wix-incubator/rich-content/pull/1046) cursor jumps to start of editor on close modal
+- `editor`
+  - [#1059](https://github.com/wix-incubator/rich-content/pull/1059) fix getToolbarSettings Api to work
+### :house: Internal
+- `wrapper`
+  - [#993](https://github.com/wix-incubator/rich-content/pull/993) remove `!important` usage + deep merge jss styles
+  - [#1031](https://github.com/wix-incubator/rich-content/pull/1031) fixed build warning - "punycode" library
+
+## 7.6.0 (May 5, 2020)
+### :rocket: New Feature
+- `indent`
+  - [#898](https://github.com/wix-incubator/rich-content/pull/898) text indentation
+- `viewer`
+  - [#1005](https://github.com/wix-incubator/rich-content/pull/1005) add viewMode SEO to ProGallery
+
+### :bug: Bug Fix
+- `social-modals`
+  - [#1037](https://github.com/wix-incubator/rich-content/pull/1037) disable text input autocomplete
+- `vertical embed`
+  - [#1036](https://github.com/wix-incubator/rich-content/pull/1036) dropdown for search opens automatically when typing text for search
+- `gallery`
+  - [#1020](https://github.com/wix-incubator/rich-content/pull/1020) gallery accepts window as scrollingElement
+
+## 7.5.0 (May 5, 2020)
+### :rocket: New Feature
+- `button`
+  - [#958](https://github.com/wix-incubator/rich-content/pull/958) action button plugin - button with onClick callback
+- `plugin menu`
+  - [#739](https://github.com/wix-incubator/rich-content/pull/739) new plugin menu (side menu) with much better UX/UI for many plugins
+### :bug: Bug Fix
+- `video`
+  - [#1004](https://github.com/wix-incubator/rich-content/pull/1004) fix external video metadata
+- `editor`
+  - [#941](https://github.com/wix-incubator/rich-content/pull/941) add tooltips for settings panels
+- `preview`
+  - [#999](https://github.com/wix-incubator/rich-content/pull/999) giphy metadata is handled correctly by image and gallery data mergers
+- `gallery`
+  - [#1006](https://github.com/wix-incubator/rich-content/pull/1006) expand icon appears only on hovered image
+### :house: Internal
+- `wrapper`
+  - [#980](https://github.com/wix-incubator/rich-content/pull/980) createEmpty import
+  - [#983](https://github.com/wix-incubator/rich-content/pull/983) fix custom inlineStyleMappers (viewer)
+- `general`
+  - [#982](https://github.com/wix-incubator/rich-content/pull/982) `npm run watch` fixed to work concurrently with `flow` + `npm run e2e:debug` fixed to wait on serve ready
+- `storybook`
+  - [#958](https://github.com/wix-incubator/rich-content/pull/958) Buttons story added (Action & Link buttons)
+
+## 7.4.6 (May 3, 2020)
+### :bug: Bug Fix
+- `editor-common`
+  - [#994](https://github.com/wix-incubator/rich-content/pull/994) cursor doesn't disappear when adding plugin
+- `gallery`
+  - [#990](https://github.com/wix-incubator/rich-content/pull/990) height not updating when changing width
+### :house: Internal
+- `wrapper`
+  - [#980](https://github.com/wix-incubator/rich-content/pull/980) createEmpty import
+- `general`
+  - [#965](https://github.com/wix-incubator/rich-content/pull/965) fix: gitPRComment overrides the content of the PR comment
+  - [#985](https://github.com/wix-incubator/rich-content/pull/985) enable publishing with custom npm tag
+  - [#988](https://github.com/wix-incubator/rich-content/pull/988) Adding 'build:analyze:viewer' and 'build:analyze:editor' scripts instead of 'build:analyze' script
+
+## 7.4.5 (Apr 28, 2020)
+### :rocket: New Feature
+- `image` `video`
+  - [#972](https://github.com/wix-incubator/rich-content/pull/972) handle upload error - show message on block
+### :bug: Bug Fix
+- `editor`
+  - [#951](https://github.com/wix-incubator/rich-content/pull/951) fix: tooltip opacity
+  - [#957](https://github.com/wix-incubator/rich-content/pull/957) fix: command+ctrl+j creates code block on mac
+- `map`
+  - [#959](https://github.com/wix-incubator/rich-content/pull/959) modal settings fixed (convention) & made compatible with wrapper palette colors
+- `emoji`
+  - [#973](https://github.com/wix-incubator/rich-content/pull/973) was using old editor and editor-common dependencies
+- `video`
+  - [#974](https://github.com/wix-incubator/rich-content/pull/960) video file upload not working when block isn't selected
+- `gallery`
+  - [#963](https://github.com/wix-incubator/rich-content/pull/963) fix:Gallery doesn't show more then 3 images on load
+### :house: Internal
+- `editor`
+  - [#936](https://github.com/wix-incubator/rich-content/pull/936) arrangement of inline toolbar buttons
+- `wrapper`
+  - [#956](https://github.com/wix-incubator/rich-content/pull/956) bi getData will now contain `forPublish` argument
+  - [#966](https://github.com/wix-incubator/rich-content/pull/966) passing RCE/RCV to wrapper is no longer required
+  - [#975](https://github.com/wix-incubator/rich-content/pull/975) ssr fix - render suspense after mount
+  - [#977](https://github.com/wix-incubator/rich-content/pull/977) wrapper exports its type declarations
+- `preview`
+  - [#962](https://github.com/wix-incubator/rich-content/pull/962) interactions improved; read-more displays html
+
+## 7.3.5 (Apr 21, 2020)
+### :bug: Bug Fix
+- `plugin-emoji`
+  - [#948](https://github.com/wix-incubator/rich-content/pull/948) es5 `const` in react-icons node module. Extract the needed icons and removed the dependency on 'react-icons'
+- `map`
+  - [#939](https://github.com/wix-incubator/rich-content/pull/939) Map Settings: dynamic style replaced with theme
+- `editor`
+  - [#917](https://github.com/wix-incubator/rich-content/pull/917) add tooltips for drop down buttons
+### :house: Internal
+- `general`
+  - [#927](https://github.com/wix-incubator/rich-content/pull/927) Adding GitHub action that compares and fails if one of the current bundle sizes grows more then 5KB
+
+## 7.3.4 (Apr 21, 2020)
+### :house: Internal
+- `editor`
+  - [#912](https://github.com/wix-incubator/rich-content/pull/912) publish api
+- `wrapper`
+  - [#912](https://github.com/wix-incubator/rich-content/pull/912) onChange handle inside wrapper
+- `editor-common`
+  - [#912](https://github.com/wix-incubator/rich-content/pull/912) getPostContentSummary updated
+
+### :bug: Bug Fix
+- `code-block`
+  - [#943](https://github.com/wix-incubator/rich-content/pull/943) Adding code block with backward direction of selection
+- `giphy`
+  - [#945](https://github.com/wix-incubator/rich-content/pull/945) Restore auto-focus after add giphy
+### :house: Internal
+- `wrapper`
+  - [#931](https://github.com/wix-incubator/rich-content/pull/931) added internal static toolbar support
+
+## 7.3.3 (Apr 20, 2020)
+### :bug: Bug Fix
+- `viewer`
+  - [#929](https://github.com/wix-incubator/rich-content/pull/929) fix: empty lists viewer issues
+
+### :rocket: New Feature
+- `viewer`
+  - [#908](https://github.com/wix-incubator/rich-content/pull/908) Support Viewer predefined anchors
+
+### :house: Internal
+- `vertical-embed`
+  - [#728](https://github.com/wix-incubator/rich-content/pull/728) Vertical Embed Plugin - alpha verison
+- `wrapper`
+  - [#935](https://github.com/wix-incubator/rich-content/pull/935) back-office theme will appear as default theme for now
+
+## 7.3.2 (Apr 16, 2020)
+### :bug: Bug Fix
+- `link-preview`
+  - [#924](https://github.com/wix-incubator/rich-content/pull/924) disable link preview/embed when entered inside a list
+
+## 7.3.1 (Apr 15, 2020)
+### :bug: Bug Fix
+- `editor-common`
+  - [#913](https://github.com/wix-incubator/rich-content/pull/913) onChange - calculateDiff is debounced, for better performance
+- `viewer`
+  - [#923](https://github.com/wix-incubator/rich-content/pull/923) fix: inline styles in lists breaking viewer
+### :house: Internal
+- `wrapper`
+  - [#919](https://github.com/wix-incubator/rich-content/pull/919) added internal mobile support
+  - [#920](https://github.com/wix-incubator/rich-content/pull/920) refactor: `FullscreenRenderer.tsx`, `ModalRenderer.tsx`
+  - [#918](https://github.com/wix-incubator/rich-content/pull/918)
+    - viewer is now re-rendered for new initialState prop (fix)
+- `storybook`
+  - [#918](https://github.com/wix-incubator/rich-content/pull/918)
+    - hotfix (`editor` prop replaced with `isEditor`)
+    - live example app (viewer + editor side by side)
+    - live example app in palettes page
+
+## 7.3.0 (Apr 13, 2020)
+### :rocket: New Feature
+- `list`
+  - [#815](https://github.com/wix-incubator/rich-content/pull/815) nested lists
+- `editor`
+  - [#906](https://github.com/wix-incubator/rich-content/pull/906) editor supports entering tab character ('\t') by clicking on tab
+- `theme + wrapper: gallery, plugins & modals`
+  - [#828](https://github.com/wix-incubator/rich-content/pull/828) style update related to a lot of components + wrapper compatibility.
+### :bug: Bug Fix
+- `preview`
+  - [#903](https://github.com/wix-incubator/rich-content/pull/903) gallery fixed; resize flapping fixed
+- `gallery`
+  - [#909](https://github.com/wix-incubator/rich-content/pull/909) gallery size
+- `editor`
+  - [#914](https://github.com/wix-incubator/rich-content/pull/914) updating tooltips keys
+### :house: Internal
+- `wrapper`
+  - [#907](https://github.com/wix-incubator/rich-content/pull/907) converted `wix-rich-content-wrapper` to typescript
+
+## 7.2.0 (Apr 8, 2020)
 ### :rocket: New Feature
 - `link`
   - [#750](https://github.com/wix-incubator/rich-content/pull/750) link toolbar
-  
-### :house: Internal
-- `storybook`
-  - [#891](https://github.com/wix-incubator/rich-content/pull/891) fixed textHighlightPlugin color (intro.js)
-  
 ### :bug: Bug Fix
 - `gallery`
   - [#879](https://github.com/wix-incubator/rich-content/pull/879) gallery size - regression from #879
   - [#872](https://github.com/wix-incubator/rich-content/pull/872) fix: gallery sliders css in mozilla firefox
-
-</details>
-<hr/>
+- `plugins`
+  - [#778](https://github.com/wix-incubator/rich-content/pull/880) fix focus on plugins insert buttons click
+- `link`
+  - [#904](https://github.com/wix-incubator/rich-content/pull/904) fix saving data of "target" and "rel" link(the checkboxes in Link Panel)
+  - [#902](https://github.com/wix-incubator/rich-content/pull/902) mobile - cancel in link panel changed the cursor
+- 'editor'
+  - [#894](https://github.com/wix-incubator/rich-content/pull/894) text position after enter & disable paste text with style CODE
+### :house: Internal
+- `storybook`
+  - [#891](https://github.com/wix-incubator/rich-content/pull/891) fixed textHighlightPlugin color (intro.js)
+- `general`
+  - [#905](https://github.com/wix-incubator/rich-content/pull/905) refactor - remove getConfigByFormFactor.js
 
 ## 7.1.5 (Apr 4, 2020)
 ### :bug: Bug Fix

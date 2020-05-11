@@ -2,7 +2,7 @@
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Build Status](https://travis-ci.org/wix-incubator/rich-content.svg?branch=master)](https://travis-ci.org/wix-incubator/rich-content)
 
-## A React based, super charged rich text editor with an extensible plugin system
+## A React based, super charged rich content editor with an extensible plugin system
 
 ![Demo](https://media.giphy.com/media/2rAwp4zLCrtGn2Tlbq/giphy.gif)
 
@@ -10,36 +10,16 @@ You can try it here: [https://wix-rich-content.herokuapp.com/](https://wix-rich-
 
 ## Installation
 
-To install this package as editor, use the following command ([draft-js version](https://github.com/wix-incubator/rich-content/blob/master/packages/editor/web/package.json#L49)):
+To install this package as editor, use the following command
 
 ```bash
-npm install --save wix-rich-content-editor draft-js
+npm install --save wix-rich-content-editor 
 ```
 
 To install this package as viewer, use the following command:
 
 ```bash
 npm install --save wix-rich-content-viewer
-```
-
-To use the editor with `<script>` tag, consume the following JS file: `dist/EditorCommon.js` and `dist/Editor.js` from the bundle, and load the matching CSS files:
-
-```html
-<html>
-  <head>
-    <script src="https://unpkg.com/wix-rich-content-editor-common/dist/EditorCommon.js"></script>
-    <script src="https://unpkg.com/wix-rich-content-editor/dist/Editor.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/wix-rich-content-editor-common/dist/styles.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/wix-rich-content-editor/dist/styles.min.css" />
-  </head>
-  <body>
-    <script>
-      const { RichContentEditor, EditorState } = window.WixRichContentEditor;
-    </script>
-
-    <!-- ...rest of your app code... -->
-  </body>
-</html>
 ```
 
 ## Getting Started

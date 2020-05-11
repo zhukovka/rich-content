@@ -5,7 +5,12 @@ export { default as ViewportRenderer } from './Components/ViewportRenderer';
 // Utils
 export { default as withI18n } from './Utils/withI18n';
 export { default as createHocName } from './Utils/createHocName';
-export { sizeClassName, alignmentClassName, textWrapClassName } from './Utils/classNameStrategies';
+export {
+  sizeClassName,
+  alignmentClassName,
+  textWrapClassName,
+  depthClassName,
+} from './Utils/classNameStrategies';
 export {
   isValidUrl,
   normalizeUrl,
@@ -36,6 +41,7 @@ export { default as pluginMapSchema } from '../statics/schemas/plugin-map.schema
 export { default as pluginMentionsSchema } from '../statics/schemas/plugin-mentions.schema.json';
 export { default as pluginSoundCloudSchema } from '../statics/schemas/plugin-sound-cloud.schema.json';
 export { default as pluginVideoSchema } from '../statics/schemas/plugin-video.schema.json';
+export { default as verticalEmbedSchema } from '../statics/schemas/vertical-embed.schema.json';
 /* eslint-enable max-len */
 export { getImageSrc, WIX_MEDIA_DEFAULT } from './Utils/imageUtils';
 export { isHexColor } from './Utils/colorUtils';

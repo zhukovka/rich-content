@@ -27,6 +27,7 @@ const createMobileToolbar = ({
   toolbarDecorationFn,
   config,
   locale,
+  addPluginMenuConfig,
 }) => {
   const mobileTheme = getMobileTheme(theme);
   return createStaticToolbar({
@@ -46,6 +47,7 @@ const createMobileToolbar = ({
       t,
       uiSettings,
       config,
+      addPluginMenuConfig,
     }),
     anchorTarget,
     relValue,
@@ -71,6 +73,7 @@ const getMobileTheme = theme => {
   const buttonMergeStyles = mergeStyles({ styles: buttonStyles, theme: buttonTheme });
   const separatorMergeStyles = mergeStyles({ styles: separatorStyles, theme: separatorTheme });
 
+  /* eslint-disable @typescript-eslint/camelcase, camelcase*/
   return {
     toolbarStyles: {
       toolbar: classNames(toolbarMergeStyles.mobileToolbar, toolbarMergeStyles.mobileToolbar_fixed),
@@ -81,16 +84,12 @@ const getMobileTheme = theme => {
       responsiveArrow: toolbarMergeStyles.mobileToolbar_responsiveArrow,
       responsiveArrowStart: toolbarMergeStyles.mobileToolbar_responsiveArrowStart,
       responsiveArrowEnd: toolbarMergeStyles.mobileToolbar_responsiveArrowEnd,
-      //eslint-disable-next-line camelcase
       responsiveArrowStart_icon: toolbarMergeStyles.mobileToolbar_responsiveArrowStart_icon,
-      //eslint-disable-next-line camelcase
       responsiveArrowEnd_icon: toolbarMergeStyles.mobileToolbar_responsiveArrowEnd_icon,
     },
     buttonStyles: {
-      //eslint-disable-next-line camelcase
       inlineToolbarButton_wrapper: buttonMergeStyles.mobileToolbarButton_wrapper,
       inlineToolbarButton: buttonMergeStyles.mobileToolbarButton,
-      //eslint-disable-next-line camelcase
       inlineToolbarButton_icon: buttonMergeStyles.mobileToolbarButton_icon,
     },
     separatorStyles: {
@@ -112,6 +111,7 @@ const getMobileButtons = ({
   t,
   uiSettings,
   config,
+  addPluginMenuConfig,
 }) => {
   const addPluginIndex = buttons.findIndex(b => b === 'AddPlugin');
   if (addPluginIndex !== -1) {
@@ -137,12 +137,17 @@ const getMobileButtons = ({
         decorateComponentWithProps(AddPluginButton, {
           openModal: helpers.openModal,
           closeModal: helpers.closeModal,
-          pluginButtons,
+          structure: pluginButtons.filter(
+            ({ buttonSettings }) =>
+              buttonSettings.name !== 'UndoPlugin_InsertButton' &&
+              buttonSettings.name !== 'RedoPlugin_InsertButton'
+          ),
           getEditorState,
           setEditorState,
           pubsub,
           t,
           theme: mobileTheme,
+          addPluginMenuConfig,
         })
       );
     }

@@ -1,6 +1,10 @@
 import React from 'react';
 import { createLinkPlugin, LINK_TYPE } from 'wix-rich-content-plugin-link';
-import { createLinkPreviewPlugin, LINK_PREVIEW_TYPE } from 'wix-rich-content-plugin-link-preview';
+import {
+  createLinkPreviewPlugin,
+  LINK_PREVIEW_TYPE,
+  LinkPreviewProviders,
+} from 'wix-rich-content-plugin-link-preview';
 import { createLineSpacingPlugin, LINE_SPACING_TYPE } from 'wix-rich-content-plugin-line-spacing';
 import { createHashtagPlugin, HASHTAG_TYPE } from 'wix-rich-content-plugin-hashtag';
 import { createEmojiPlugin, EMOJI_TYPE } from 'wix-rich-content-plugin-emoji';
@@ -10,6 +14,11 @@ import { createGalleryPlugin, GALLERY_TYPE } from 'wix-rich-content-plugin-galle
 import { createVideoPlugin, VIDEO_TYPE } from 'wix-rich-content-plugin-video';
 import { createHtmlPlugin, HTML_TYPE } from 'wix-rich-content-plugin-html';
 import { createDividerPlugin, DIVIDER_TYPE } from 'wix-rich-content-plugin-divider';
+import {
+  createVerticalEmbedPlugin,
+  VERTICAL_EMBED_TYPE,
+  verticalEmbedProviders,
+} from 'wix-rich-content-plugin-vertical-embed';
 import {
   createExternalMentionsPlugin,
   EXTERNAL_MENTIONS_TYPE,
@@ -24,11 +33,17 @@ import {
 import { createMapPlugin, MAP_TYPE } from 'wix-rich-content-plugin-map';
 import { createFileUploadPlugin, FILE_UPLOAD_TYPE } from 'wix-rich-content-plugin-file-upload';
 import { createTextColorPlugin, TEXT_COLOR_TYPE } from 'wix-rich-content-plugin-text-color';
-import { createButtonPlugin, BUTTON_TYPE } from 'wix-rich-content-plugin-button';
+import {
+  createLinkButtonPlugin,
+  LINK_BUTTON_TYPE,
+  createActionButtonPlugin,
+  ACTION_BUTTON_TYPE,
+} from 'wix-rich-content-plugin-button';
 import { createTextHighlightPlugin, TEXT_HIGHLIGHT_TYPE } from 'wix-rich-content-plugin-text-color';
 import Highlighter from 'react-highlight-words';
 import casual from 'casual-browserify';
 import { mockFetchUrlPreviewData } from '../utils/linkPreviewUtil';
+import { createIndentPlugin } from 'wix-rich-content-plugin-indent';
 
 import 'wix-rich-content-editor-common/dist/styles.min.css';
 import 'wix-rich-content-common/dist/styles.min.css';
@@ -65,8 +80,9 @@ import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common'
 // import StaticToolbarDecoration from './Components/StaticToolbarDecoration';
 // import SideToolbarDecoration from './Components/SideToolbarDecoration';
 // import PluginToolbarDecoration from './Components/PluginToolbarDecoration';
+import MockVerticalSearchModule from './Utils/verticalEmbedUtil';
 
-export const editorPlugins = [
+export const editorPluginsPartialPreset = [
   createImagePlugin,
   createGalleryPlugin,
   createVideoPlugin,
@@ -74,7 +90,6 @@ export const editorPlugins = [
   createDividerPlugin,
   createLineSpacingPlugin,
   createLinkPlugin,
-  createLinkPreviewPlugin,
   createHashtagPlugin,
   createExternalMentionsPlugin,
   createCodeBlockPlugin,
@@ -83,22 +98,55 @@ export const editorPlugins = [
   createHeadersMarkdownPlugin,
   createMapPlugin,
   createFileUploadPlugin,
-  createButtonPlugin,
+  createLinkButtonPlugin,
   createTextColorPlugin,
   createEmojiPlugin,
   createTextHighlightPlugin,
   createUndoRedoPlugin,
 ];
 
-const themeColors = {
-  color1: '#ffffff',
-  color2: '#303030',
-  color3: '#3a54b4',
-  color4: '#bfad80',
-  color5: '#bf695c',
-  color6: '#f7f7f7',
-  color7: '#000000',
-  color8: '#9a87ce',
+export const editorPluginsEmbedsPreset = [
+  createLinkPlugin,
+  createLinkPreviewPlugin,
+  createVerticalEmbedPlugin,
+];
+
+export const editorPlugins = [
+  createLinkPreviewPlugin,
+  createVerticalEmbedPlugin,
+  createIndentPlugin,
+  createActionButtonPlugin,
+  ...editorPluginsPartialPreset,
+];
+
+export const editorPluginsMap = {
+  image: createImagePlugin,
+  gallery: createGalleryPlugin,
+  video: createVideoPlugin,
+  html: createHtmlPlugin,
+  divider: createDividerPlugin,
+  spacing: createLineSpacingPlugin,
+  link: createLinkPlugin,
+  linkPreview: createLinkPreviewPlugin,
+  indent: createIndentPlugin,
+  hashtag: createHashtagPlugin,
+  mentions: createExternalMentionsPlugin,
+  codeBlock: createCodeBlockPlugin,
+  soundCloud: createSoundCloudPlugin,
+  giphy: createGiphyPlugin,
+  headers: createHeadersMarkdownPlugin,
+  map: createMapPlugin,
+  fileUpload: createFileUploadPlugin,
+  linkButton: createLinkButtonPlugin,
+  actionButton: createActionButtonPlugin,
+  textColor: createTextColorPlugin,
+  emoji: createEmojiPlugin,
+  highlight: createTextHighlightPlugin,
+  undoRedo: createUndoRedoPlugin,
+  verticalEmbed: createVerticalEmbedPlugin,
+  partialPreset: editorPluginsPartialPreset,
+  embedsPreset: editorPluginsEmbedsPreset,
+  all: editorPlugins,
 };
 
 const buttonDefaultPalette = ['#FEFDFD', '#D5D4D4', '#ABCAFF', '#81B0FF', '#0261FF', '#0141AA'];
@@ -167,7 +215,6 @@ const getLinkPanelDropDownConfig = () => {
 let userColors = [];
 
 const uiSettings = {
-  themeColors,
   linkPanel: {
     blankTargetToggleVisibilityFn: () => true,
     nofollowRelToggleVisibilityFn: () => true,
@@ -198,7 +245,6 @@ const videoHandlers = {
     const videoToUpload = videoWithRelativeUrl;
     setTimeout(() => {
       updateEntity({ data: videoToUpload });
-      //updateEntity({ error: { msg: 'Upload Failed' } });
       console.log('consumer uploaded ', videoToUpload);
     }, 500);
   },
@@ -223,17 +269,55 @@ const videoHandlers = {
     // If relative URL is provided, a function 'getVideoUrl' will be invoked to form a full URL.
     const videoToUpload = videoWithRelativeUrl;
     setTimeout(() => {
-      updateEntity({ data: videoToUpload });
-      //updateEntity({ error: { msg: 'Upload Failed' } });
+      updateEntity({ data: videoToUpload /*, error: { msg: 'upload failed' }*/ });
       console.log('consumer uploaded ', videoToUpload);
-    }, 1200000);
+    }, 2000);
   },
 };
 
+const addPluginMenuConfig = {
+  showSearch: true,
+  splitToSections: true,
+};
+const { event, booking, product } = verticalEmbedProviders;
+const buttonConfig = {
+  // toolbar: {
+  //   icons: {
+  //     InsertPluginButtonIcon: MyCustomIcon,
+  //   },
+  // },
+  // insertButtonTooltip: 'Custom tooltip',
+  palette: ['#FEFDFD', '#D5D4D4', '#ABCAFF', '#81B0FF', '#0261FF', '#0141AA'],
+  selectionBackgroundColor: 'fuchsia',
+  selectionBorderColor: '#FFF',
+  selectionTextColor: '#FFF',
+  colors: {
+    color1: '#FEFDFD',
+    color2: '#D5D4D4',
+    color3: '#000000',
+    color4: '#000000',
+    color5: '#000000',
+    color6: '#ABCAFF',
+    color7: '#81B0FF',
+    color8: '#0261FF',
+    color9: '#0141AA',
+    color10: '#012055',
+  },
+  onTextColorAdded: color => (userButtonTextColors = [color, ...userButtonTextColors]),
+  onBackgroundColorAdded: color =>
+    (userButtonBackgroundColors = [color, ...userButtonBackgroundColors]),
+  onBorderColorAdded: color => (userButtonBorderColors = [color, ...userButtonBorderColors]),
+  getTextColors: () => userButtonTextColors,
+  getBorderColors: () => userButtonBorderColors,
+  getBackgroundColors: () => userButtonBackgroundColors,
+};
+const { Instagram, Twitter, YouTube, TikTok } = LinkPreviewProviders;
 const config = {
   [LINK_PREVIEW_TYPE]: {
-    enableEmbed: true,
+    enableEmbed: true, // [Twitter, YouTube]
+    enableLinkPreview: true,
     fetchData: mockFetchUrlPreviewData(),
+    exposeEmbedButtons: [Instagram, Twitter, YouTube, TikTok],
   },
   [EMOJI_TYPE]: {
     // toolbar: {
@@ -390,6 +474,15 @@ const config = {
     //   },
     // },
   },
+  [VERTICAL_EMBED_TYPE]: {
+    verticalsApi: {
+      [product]: new MockVerticalSearchModule(product),
+      [event]: new MockVerticalSearchModule(event),
+      [booking]: new MockVerticalSearchModule(booking),
+    },
+    // exposeEmbedButtons: [product, event, booking],
+    exposeEmbedButtons: [product],
+  },
   // [EXTERNAL_EMOJI_TYPE]: {},
   [VIDEO_TYPE]: {
     toolbar: {
@@ -477,35 +570,10 @@ const config = {
       setTimeout(() => updateEntity({ data }), 500);
     },
   },
-  [BUTTON_TYPE]: {
-    // toolbar: {
-    //   icons: {
-    //     InsertPluginButtonIcon: MyCustomIcon,
-    //   },
-    // },
-    palette: ['#FEFDFD', '#D5D4D4', '#ABCAFF', '#81B0FF', '#0261FF', '#0141AA'],
-    selectionBackgroundColor: 'fuchsia',
-    selectionBorderColor: '#FFF',
-    selectionTextColor: '#FFF',
-    colors: {
-      color1: '#FEFDFD',
-      color2: '#D5D4D4',
-      color3: '#000000',
-      color4: '#000000',
-      color5: '#000000',
-      color6: '#ABCAFF',
-      color7: '#81B0FF',
-      color8: '#0261FF',
-      color9: '#0141AA',
-      color10: '#012055',
-    },
-    onTextColorAdded: color => (userButtonTextColors = [color, ...userButtonTextColors]),
-    onBackgroundColorAdded: color =>
-      (userButtonBackgroundColors = [color, ...userButtonBackgroundColors]),
-    onBorderColorAdded: color => (userButtonBorderColors = [color, ...userButtonBorderColors]),
-    getTextColors: () => userButtonTextColors,
-    getBorderColors: () => userButtonBorderColors,
-    getBackgroundColors: () => userButtonBackgroundColors,
+  [LINK_BUTTON_TYPE]: { ...buttonConfig },
+  [ACTION_BUTTON_TYPE]: {
+    insertButtonTooltip: 'Add an action button',
+    ...buttonConfig,
   },
   [TEXT_HIGHLIGHT_TYPE]: {
     // toolbar: {
@@ -533,6 +601,8 @@ const config = {
   },
   uiSettings,
   getToolbarSettings: ({ pluginButtons, textButtons }) => [
+    { name: 'SIDE', addPluginMenuConfig },
+    { name: 'MOBILE', addPluginMenuConfig },
     // {
     //   name: TOOLBARS.TEXT,
     //   getIcons: () => ({

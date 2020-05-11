@@ -20,6 +20,7 @@ const commonPlugins = [
   '@babel/plugin-transform-runtime',
   '@babel/plugin-syntax-dynamic-import',
   '@babel/plugin-proposal-optional-chaining',
+  ['@babel/plugin-proposal-nullish-coalescing-operator', { loose: true }],
 ];
 
 if (process.env.NODE_ENV !== 'development') {
@@ -32,7 +33,11 @@ if (process.env.NODE_ENV !== 'development') {
   ]);
 }
 
-const testPlugins = ['@babel/plugin-transform-modules-commonjs', 'dynamic-import-node'];
+const testPlugins = [
+  '@babel/plugin-transform-modules-commonjs',
+  '@babel/plugin-syntax-dynamic-import',
+  'dynamic-import-node',
+];
 
 module.exports = {
   babelrcRoots: ['.', 'packages/**/*', 'examples/*'],

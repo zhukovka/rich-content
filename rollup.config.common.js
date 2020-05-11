@@ -35,6 +35,10 @@ export default (output, shouldExtractCss) => {
     watch,
   };
 
+  if (process.env.MODULE_NAME === 'wrapper') {
+    editorEntry.input = 'src/index.ts';
+  }
+
   const libEntries = [];
   try {
     let libEntriesPath = 'src/lib/';
@@ -70,5 +74,11 @@ export default (output, shouldExtractCss) => {
     };
   } catch (_) {}
 
-  return [editorEntry, viewerEntry, ...libEntries].filter(x => x);
+  if (process.env.MODULE_ANALYZE_EDITOR) {
+    return [editorEntry, ...libEntries].filter(x => x);
+  } else if (process.env.MODULE_ANALYZE_VIEWER) {
+    return [viewerEntry, ...libEntries].filter(x => x);
+  } else {
+    return [editorEntry, viewerEntry, ...libEntries].filter(x => x);
+  }
 };

@@ -6,9 +6,11 @@ const getFooterTheme = theme => {
   const { toolbarStyles: toolbarTheme, buttonStyles, separatorStyles: separatorTheme, ...rest } =
     theme || {};
 
+  /* eslint-disable @typescript-eslint/camelcase, camelcase*/
   return {
     toolbarStyles: {
       toolbar: classNames(toolbarStyles.footerToolbar, toolbarTheme && toolbarTheme.footerToolbar),
+      staticToolbar: theme.staticToolbar,
       scrollableContainer: classNames(
         toolbarStyles.footerToolbar_scrollableContainer,
         toolbarTheme && toolbarTheme.footerToolbar_scrollableContainer
@@ -33,12 +35,10 @@ const getFooterTheme = theme => {
         toolbarStyles.footerToolbar_responsiveArrowEnd,
         toolbarTheme && toolbarTheme.footerToolbar_responsiveArrowEnd
       ),
-      //eslint-disable-next-line camelcase
       responsiveArrowStart_icon: classNames(
         toolbarStyles.footerToolbar_responsiveArrowStart_icon,
         toolbarTheme && toolbarTheme.footerToolbar_responsiveArrowStart_icon
       ),
-      //eslint-disable-next-line camelcase
       responsiveArrowEnd_icon: classNames(
         toolbarStyles.footerToolbar_responsiveArrowEnd_icon,
         toolbarTheme && toolbarTheme.footerToolbar_responsiveArrowEnd_icon

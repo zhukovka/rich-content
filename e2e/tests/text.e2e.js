@@ -1,6 +1,7 @@
 /*global cy*/
 import { INLINE_TOOLBAR_BUTTONS } from '../cypress/dataHooks';
-import { DEFAULT_DESKTOP_BROWSERS } from './constants';
+import { DEFAULT_DESKTOP_BROWSERS } from './settings';
+import { usePlugins, plugins } from '../cypress/testAppConfig';
 
 describe('text', () => {
   before(function() {
@@ -100,16 +101,89 @@ describe('text', () => {
   it('allow to create lists', function() {
     cy.loadEditorAndViewer('plain')
       .setTextStyle(INLINE_TOOLBAR_BUTTONS.ORDERED_LIST, [300, 100])
-      .setTextStyle(INLINE_TOOLBAR_BUTTONS.UNORDERED_LIST, [550, 1]);
+      .setTextStyle(INLINE_TOOLBAR_BUTTONS.UNORDERED_LIST, [550, 1])
+      .blurEditor();
     cy.eyesCheckWindow(this.test.title);
   });
 
   it('open link toolbar (InlinePluginToolbar)', function() {
+    // set link
     cy.loadEditorAndViewer('plain')
       .setLink([0, 10], 'https://www.wix.com/')
+      // set cursor on link
       .setSelection(5, 0)
       .wait(200);
+    // take snapshot of the toolbar
     cy.eyesCheckWindow(this.test.title);
+    // edit link
+    cy.get(`[data-hook=linkPluginToolbar] [data-hook=LinkButton]`)
+      .click()
+      .get(`[data-hook=linkPanelContainer] [data-hook=linkPanelInput]`)
+      .type('https://www.google.com/')
+      .get(`[data-hook=linkPanelContainerDone]`)
+      .click();
+    // check url button
+    cy.get(`[data-hook=linkPluginToolbar] a`).should(
+      'have.attr',
+      'href',
+      'https://www.google.com/'
+    );
+    // remove link
+    cy.get(`[data-hook=linkPluginToolbar] [data-hook=RemoveLinkButton]`).click();
+  });
+
+  it('allow to enter tab character', function() {
+    cy.loadEditorAndViewer()
+      .focusEditor()
+      .tab()
+      .enterParagraphs(['How to eat healthy is a good question.'])
+      .blurEditor();
+    cy.eyesCheckWindow(this.test.title);
+  });
+
+  it('allow to apply indent on a single block with inline styling', function() {
+    cy.loadEditorAndViewer('plain', usePlugins(plugins.all))
+      .setTextStyle(INLINE_TOOLBAR_BUTTONS.BOLD, [40, 10])
+      .setTextStyle(INLINE_TOOLBAR_BUTTONS.UNDERLINE, [10, 5])
+      .setTextStyle(INLINE_TOOLBAR_BUTTONS.ITALIC, [20, 5])
+      .setTextStyle(INLINE_TOOLBAR_BUTTONS.BOLD, [30, 5])
+      .increaseIndent([0, 100])
+      .increaseIndent([0, 100])
+      .increaseIndent([0, 100])
+      .increaseIndent([0, 100])
+      .increaseIndent([200, 100])
+      .increaseIndent([200, 100])
+      .decreaseIndent([200, 100])
+      .decreaseIndent([200, 100])
+      .blurEditor();
+    cy.eyesCheckWindow(this.test.title);
+  });
+
+  it('allow to apply indent on multiple text blocks', function() {
+    cy.loadEditorAndViewer('text-blocks', usePlugins(plugins.all))
+      .increaseIndent([0, 550])
+      .increaseIndent([0, 550])
+      .increaseIndent([0, 550])
+      .decreaseIndent([0, 550])
+      .moveCursorToStart()
+      .blurEditor();
+    cy.eyesCheckWindow(this.test.title);
+  });
+
+  it('allow to apply indent only on text blocks', function() {
+    cy.loadEditorAndViewer('non-text-only-blocks', usePlugins(plugins.all))
+      .increaseIndent([0, 550])
+      .increaseIndent([0, 550])
+      .increaseIndent([0, 550])
+      .moveCursorToStart()
+      .blurEditor();
+    cy.eyesCheckWindow(this.test.title);
+  });
+
+  it('should paste plain text', () => {
+    cy.loadEditorAndViewer()
+      .focusEditor()
+      .paste('This is pasted text');
   });
 
   it('allow to create anchors', function() {

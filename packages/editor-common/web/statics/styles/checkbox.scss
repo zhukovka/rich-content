@@ -1,4 +1,5 @@
 .checkbox_input {
+  cursor: pointer;
   position: absolute;
   opacity: 0;
 }
@@ -8,8 +9,9 @@
   display: flex;
   margin-bottom: 12px;
 }
-
-
+.checkbox_wrapper {
+  display: flex;
+}
 .checkbox_inputLabel:hover .checkbox_icon_unchecked{
   background-color: rgba(2, 97, 255, 0.2);
 }

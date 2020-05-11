@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { RichContentEditor, convertFromRaw, createWithContent } from 'wix-rich-content-editor';
 import { RichContentWrapper } from 'wix-rich-content-wrapper';
-import { pluginButton } from 'wix-rich-content-plugin-button';
+import { pluginLinkButton, pluginActionButton } from 'wix-rich-content-plugin-button';
 import { pluginCodeBlock } from 'wix-rich-content-plugin-code-block';
 import { pluginDivider } from 'wix-rich-content-plugin-divider';
 import { pluginEmoji } from 'wix-rich-content-plugin-emoji';
@@ -13,6 +13,7 @@ import { pluginHashtag } from 'wix-rich-content-plugin-hashtag';
 import { pluginHeadersMarkdown } from 'wix-rich-content-plugin-headers-markdown';
 import { pluginHtml } from 'wix-rich-content-plugin-html';
 import { pluginImage } from 'wix-rich-content-plugin-image';
+import { pluginIndent } from 'wix-rich-content-plugin-indent';
 import { pluginLineSpacing } from 'wix-rich-content-plugin-line-spacing';
 import { pluginLink } from 'wix-rich-content-plugin-link';
 import { pluginMap } from 'wix-rich-content-plugin-map';
@@ -20,11 +21,33 @@ import { pluginMentions } from 'wix-rich-content-plugin-mentions';
 import { pluginSoundCloud } from 'wix-rich-content-plugin-sound-cloud';
 import { pluginUndoRedo } from 'wix-rich-content-plugin-undo-redo';
 import { pluginVideo } from 'wix-rich-content-plugin-video';
-import { pluginLinkPreview } from 'wix-rich-content-plugin-link-preview';
+import { pluginLinkPreview, LinkPreviewProviders } from 'wix-rich-content-plugin-link-preview';
+import {
+  pluginVerticalEmbed,
+  verticalEmbedProviders,
+} from 'wix-rich-content-plugin-vertical-embed';
 import { mockFetchUrlPreviewData } from '../../../main/shared/utils/linkPreviewUtil';
 import { pluginTextColor, pluginTextHighlight } from 'wix-rich-content-plugin-text-color';
 import '../styles.global.scss';
 
+const { Instagram, Twitter, YouTube, TikTok } = LinkPreviewProviders;
+const { event, booking, product } = verticalEmbedProviders;
+
+const mockData = {
+  id: '8b72558253b2502b401bb46e5599f22a',
+  original_file_name: '8bb438_1b73a6b067b24175bd087e86613bd00c.jpg', //eslint-disable-line
+  file_name: '8bb438_1b73a6b067b24175bd087e86613bd00c.jpg', //eslint-disable-line
+  width: 1920,
+  height: 1000,
+};
+const onFilesChange = (files, updateEntity) => {
+  setTimeout(() => {
+    updateEntity({
+      data: mockData,
+      files,
+    });
+  }, 500);
+};
 const configs = {
   fileUpload: {
     accept: '*',
@@ -52,11 +75,16 @@ const configs = {
   },
   linkPreview: {
     fetchData: mockFetchUrlPreviewData(),
+    exposeEmbedButtons: [Instagram, Twitter, YouTube, TikTok],
+  },
+  verticalEmbed: {
+    exposeEmbedButtons: [product, event, booking],
   },
 };
 
 const plugins = [
-  pluginButton(),
+  pluginLinkButton(),
+  pluginActionButton(),
   pluginCodeBlock(),
   pluginDivider(),
   pluginEmoji(),
@@ -66,6 +94,7 @@ const plugins = [
   pluginHashtag(),
   pluginHtml(),
   pluginImage(),
+  pluginIndent(),
   pluginHeadersMarkdown(),
   pluginLineSpacing(),
   pluginLink(),
@@ -77,12 +106,50 @@ const plugins = [
   pluginUndoRedo(),
   pluginTextColor(),
   pluginTextHighlight(),
+  pluginVerticalEmbed(configs.verticalEmbed),
 ];
-const EditorWrapper = ({ contentState, palette }) => {
+
+const pluginsMap = {
+  button: pluginLinkButton(),
+  codeBlock: pluginCodeBlock(),
+  divider: pluginDivider(),
+  emoji: pluginEmoji(),
+  fileUpload: pluginFileUpload(configs.fileUpload),
+  gallery: pluginGallery(),
+  gif: pluginGiphy(configs.giphy),
+  hashtag: pluginHashtag(),
+  html: pluginHtml(),
+  image: pluginImage(),
+  indent: pluginIndent(),
+  headers: pluginHeadersMarkdown(),
+  lineSpacing: pluginLineSpacing(),
+  link: pluginLink(),
+  map: pluginMap({ googleMapApiKey: process.env.GOOGLE_MAPS_API_KEY }),
+  mentions: pluginMentions(),
+  soundCloud: pluginSoundCloud(),
+  video: pluginVideo(),
+  socialEmbed: pluginLinkPreview(configs.linkPreview),
+  undoRedo: pluginUndoRedo(),
+  textColor: pluginTextColor(),
+  highlight: pluginTextHighlight(),
+  verticalEmbed: pluginVerticalEmbed(configs.verticalEmbed),
+};
+
+const EditorWrapper = ({ contentState, palette, onChange, rcProps = {}, isMobile = false }) => {
+  const { pluginsToDisplay } = rcProps;
+  const editorPlugins = pluginsToDisplay
+    ? pluginsToDisplay.map(plugin => pluginsMap[plugin])
+    : plugins;
   const editorState = createWithContent(convertFromRaw(contentState));
+  const theme = palette ? { theme: 'Palette', palette } : { theme: 'Default' };
   return (
-    <RichContentWrapper plugins={plugins} theme={'Palette'} palette={palette} editor>
-      <RichContentEditor editorState={editorState} />
+    <RichContentWrapper plugins={editorPlugins} {...theme} isEditor rcProps={rcProps}>
+      <RichContentEditor
+        editorState={editorState}
+        onChange={onChange}
+        helpers={{ onFilesChange }}
+        isMobile={isMobile}
+      />
     </RichContentWrapper>
   );
 };
@@ -90,6 +157,9 @@ const EditorWrapper = ({ contentState, palette }) => {
 EditorWrapper.propTypes = {
   contentState: PropTypes.object,
   palette: PropTypes.arrayOf(PropTypes.object),
+  onChange: PropTypes.func,
+  rcProps: PropTypes.object,
+  isMobile: PropTypes.bool,
 };
 
 export default EditorWrapper;

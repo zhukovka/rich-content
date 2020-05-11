@@ -6,25 +6,28 @@ import {
   replaceWithEmptyBlock,
   insertLinkInPosition,
   createBlock,
-  deleteBlock,
+  deleteBlockText,
 } from 'wix-rich-content-editor-common';
 
-export const addLinkPreview = async (editorState, config, blockKey, url) => {
+const addLinkPreview = async (editorState, config, blockKey, url) => {
+  const fixedUrl = url.split('\u21b5').join(''); //remove {enter} char
   const settings = config[LINK_PREVIEW_TYPE];
-  const { fetchData } = settings;
+  const { fetchData, enableEmbed = true, enableLinkPreview = true } = settings;
   const { setEditorState } = config;
-  const linkPreviewData = await fetchData(url);
+  const linkPreviewData = await fetchData(fixedUrl);
   const { thumbnail_url, title, description, html, provider_url } = linkPreviewData;
-  const embedLink = isValidHtml(html) && html;
-  if (embedLink || shouldAddLinkPreview(title, thumbnail_url)) {
-    const withoutLinkBlock = deleteBlock(editorState, blockKey);
+  if (
+    shouldAddEmbed(html, enableEmbed, fixedUrl) ||
+    shouldAddLinkPreview(title, thumbnail_url, enableLinkPreview)
+  ) {
+    const withoutLinkBlock = deleteBlockText(editorState, blockKey);
     const { size, alignment } = { ...DEFAULTS, ...(settings || {}) };
     const data = {
-      config: { size, alignment, link: { url }, width: embedLink && 350 },
+      config: { size, alignment, link: { url: fixedUrl, ...DEFAULTS.link }, width: html && 350 },
       thumbnail_url,
       title,
       description,
-      html: embedLink,
+      html,
       provider_url,
     };
     const { newEditorState } = createBlock(withoutLinkBlock, data, LINK_PREVIEW_TYPE);
@@ -45,13 +48,21 @@ const isValidImgSrc = url => {
   });
 };
 
-const isValidHtml = html => html && html.substring(0, 12) !== '<div>{"url":';
-
-const shouldAddLinkPreview = (title, thumbnail_url) => {
-  if (title && thumbnail_url) {
+const shouldAddLinkPreview = (title, thumbnail_url, enableLinkPreview) => {
+  if (enableLinkPreview && title && thumbnail_url) {
     return isValidImgSrc(thumbnail_url);
   }
   return false;
+};
+
+const shouldAddEmbed = (html, enableEmbed, url) => {
+  if (Array.isArray(enableEmbed)) {
+    return (
+      enableEmbed.filter(whiteListType => url.toLowerCase().includes(whiteListType.toLowerCase()))
+        .length > 0
+    );
+  }
+  return html && enableEmbed;
 };
 
 export const convertLinkPreviewToLink = editorState => {
@@ -62,7 +73,7 @@ export const convertLinkPreviewToLink = editorState => {
 
   // replace preview block with text block containing url
   let newState = replaceWithEmptyBlock(editorState, currentBlock.key);
-  let contentState = Modifier.insertText(
+  const contentState = Modifier.insertText(
     newState.getCurrentContent(),
     newState.getSelection(),
     url
@@ -70,21 +81,17 @@ export const convertLinkPreviewToLink = editorState => {
   // reread block after insertText
   currentBlock = contentState.getBlockForKey(currentBlock.key);
   const nextBlock = contentState.getBlockAfter(currentBlock.key);
-  // delte empty block after preview
-  const selectionRange = new SelectionState({
-    anchorKey: currentBlock.key,
-    anchorOffset: currentBlock.text.length,
-    focusKey: nextBlock.key,
-    focusOffset: 1,
-  });
-  if (nextBlock && nextBlock.text.length === 0) {
-    contentState = Modifier.removeRange(contentState, selectionRange, 'forward');
-  }
   newState = EditorState.push(newState, contentState, 'change-block-type');
 
   const editorStateWithLink = changePlainTextUrlToLinkUrl(newState, blockKey, url);
+  const newLineSelection = new SelectionState({
+    anchorKey: nextBlock.key,
+    anchorOffset: 0,
+    focusKey: nextBlock.key,
+    focusOffset: 0,
+  });
 
-  return EditorState.forceSelection(editorStateWithLink, selectionRange);
+  return EditorState.forceSelection(editorStateWithLink, newLineSelection);
 };
 
 const getLinkPreviewUrl = (editorState, block) => {
@@ -107,3 +114,5 @@ const changePlainTextUrlToLinkUrl = (editorState, blockKey, url) => {
     }
   );
 };
+
+export { LINK_PREVIEW_TYPE, addLinkPreview };

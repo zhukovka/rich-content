@@ -131,8 +131,8 @@ const createBaseComponent = ({
       }
     };
 
-    onComponentStateChange = componentState => {
-      if (this.isMeAndIdle()) {
+    onComponentStateChange = (componentState, blockKey) => {
+      if (this.isMeAndIdle(blockKey)) {
         this.setState({ componentState: componentState || {} });
       }
     };
@@ -250,6 +250,7 @@ const createBaseComponent = ({
       const ContainerClassNames = classNames(
         this.styles.pluginContainer,
         theme.pluginContainer,
+        theme.pluginContainerWrapper,
         {
           [this.styles.pluginContainerMobile]: isMobile,
           [theme.pluginContainerMobile]: isMobile,

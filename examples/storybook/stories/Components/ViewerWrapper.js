@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { RichContentWrapper } from 'wix-rich-content-wrapper';
 import { RichContentViewer } from 'wix-rich-content-viewer';
-import { pluginButton } from 'wix-rich-content-plugin-button/dist/module.viewer';
+import {
+  pluginLinkButton,
+  pluginActionButton,
+} from 'wix-rich-content-plugin-button/dist/module.viewer';
 import { pluginCodeBlock } from 'wix-rich-content-plugin-code-block/dist/module.viewer';
 import { pluginDivider } from 'wix-rich-content-plugin-divider/dist/module.viewer';
 import { pluginEmoji } from 'wix-rich-content-plugin-emoji/dist/module.viewer';
@@ -19,6 +22,7 @@ import { pluginMap } from 'wix-rich-content-plugin-map/dist/module.viewer';
 import { pluginMentions } from 'wix-rich-content-plugin-mentions/dist/module.viewer';
 import { pluginSoundCloud } from 'wix-rich-content-plugin-sound-cloud/dist/module.viewer';
 import { pluginVideo } from 'wix-rich-content-plugin-video/dist/module.viewer';
+import { pluginLinkPreview } from 'wix-rich-content-plugin-link-preview/dist/module.viewer';
 import {
   pluginTextColor,
   pluginTextHighlight,
@@ -52,8 +56,8 @@ const configs = {
 };
 
 const plugins = [
-  //dummy
-  pluginButton(),
+  pluginLinkButton(),
+  pluginActionButton(),
   pluginCodeBlock(),
   pluginDivider(),
   pluginEmoji(),
@@ -72,11 +76,14 @@ const plugins = [
   pluginVideo(),
   pluginTextColor(),
   pluginTextHighlight(),
+  pluginLinkPreview(),
 ];
-const ViewerWrapper = ({ contentState, palette }) => {
+
+const ViewerWrapper = ({ contentState, palette, isMobile, addAnchors }) => {
+  const theme = palette ? { theme: 'Palette', palette } : { theme: 'Default' };
   return (
-    <RichContentWrapper plugins={plugins} theme={'Palette'} palette={palette}>
-      <RichContentViewer initialState={contentState} />
+    <RichContentWrapper plugins={plugins} {...theme}>
+      <RichContentViewer initialState={contentState} isMobile={isMobile} addAnchors={addAnchors} />
     </RichContentWrapper>
   );
 };
@@ -84,6 +91,8 @@ const ViewerWrapper = ({ contentState, palette }) => {
 ViewerWrapper.propTypes = {
   contentState: PropTypes.object,
   palette: PropTypes.arrayOf(PropTypes.object),
+  isMobile: PropTypes.bool,
+  addAnchors: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
 export default ViewerWrapper;

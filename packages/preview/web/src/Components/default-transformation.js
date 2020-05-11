@@ -1,8 +1,8 @@
 import ContentStateTransformation from '../RuleEngine/ContentStateTransformation';
 
 export const defaultTransformation = new ContentStateTransformation({
-  _if: metadata => metadata.plain.length > 0,
-  _then: (metadata, preview) => preview.plain(metadata.plain[0].join('')).readMore({ lines: 3 }),
+  _if: metadata => metadata.allText.length > 0,
+  _then: (metadata, preview) => preview.plain(metadata.allText[0]).readMore({ lines: 3 }),
 })
   .rule({
     _if: metadata => metadata.images.length > 0 && metadata.images.length < 5,
@@ -17,12 +17,14 @@ export const defaultTransformation = new ContentStateTransformation({
           overrides: {
             styles: {
               galleryLayout: 2,
+              gallerySizeType: 'px',
+              gallerySizePx: 300,
               galleryMargin: 0,
               oneRow: false,
               cubeRatio: 1,
-              cubeImages: true,
+              galleryThumbnailsAlignment: 'bottom',
               isVertical: false,
-              imageMargin: 10,
+              imageMargin: 20,
               thumbnailSpacings: 0,
               cubeType: 'fill',
               enableInfiniteScroll: true,
@@ -36,7 +38,10 @@ export const defaultTransformation = new ContentStateTransformation({
               allowSocial: false,
               allowDownload: false,
               mobileSwipeAnimation: 'NO_EFFECT',
+              thumbnailSize: 120,
               gotStyleParams: true,
+              showVideoPlayButton: true,
+              videoPlay: 'auto',
               numberOfImagesPerRow: 2,
             },
           },

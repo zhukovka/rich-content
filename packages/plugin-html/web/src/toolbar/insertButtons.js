@@ -1,12 +1,13 @@
+// @flow
 import { TOOLBARS } from 'wix-rich-content-editor-common';
 import { defaults } from '../HtmlComponent';
 import { InsertPluginIcon } from '../icons';
 
-export default ({ helpers, t, settings }) => {
+const createInsertButtons /*: CreateInsertButtons */ = ({ helpers, t, settings }) => {
   const icon = settings?.toolbar?.icons?.InsertPluginButtonIcon || InsertPluginIcon;
   return [
     {
-      name: 'HTML',
+      name: 'HTMLCodePlugin_InsertButton',
       tooltipText: t('HtmlPlugin_InsertButton_Tooltip'),
       Icon: icon,
       componentData: defaults(t),
@@ -15,3 +16,5 @@ export default ({ helpers, t, settings }) => {
     },
   ];
 };
+
+export default createInsertButtons;

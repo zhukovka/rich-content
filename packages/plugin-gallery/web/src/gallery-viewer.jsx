@@ -8,14 +8,10 @@ import resizeMediaUrl from './lib/resize-media-url';
 import styles from '../statics/styles/viewer.scss';
 import 'pro-gallery/dist/statics/main.min.css';
 import ExpandIcon from './icons/expand.svg';
+// import { GALLERY_CONSTS } from 'pro-gallery'; will work on version 1.10.1
+import VIEW_MODE from 'pro-gallery/dist/es/src/common/constants/viewMode';
 
 const { ProGallery } = process.env.SANTA ? {} : require('pro-gallery');
-
-function getClosestParanet(elem, selector) {
-  if (selector.some(selector => elem.matches(selector))) return elem;
-  if (elem === document) return null;
-  return getClosestParanet(elem.parentNode, selector);
-}
 
 class GalleryViewer extends React.Component {
   constructor(props) {
@@ -40,14 +36,32 @@ class GalleryViewer extends React.Component {
   }
 
   initUpdateDimensionsForDomChanges() {
-    const contentElement = getClosestParanet(this.container, ['.DraftEditor-root', '.viewer']);
-    this.observer = new MutationObserver(() => {
-      if (contentElement.clientHeight !== this.oldContentElementHeight) {
-        this.oldContentElementHeight = contentElement.clientHeight;
-        this.updateDimensions();
-      }
-    });
-    this.observer.observe(contentElement, { attributes: true, childList: true, subtree: true });
+    let { scrollingElement } = this.props?.settings;
+    if (!scrollingElement) {
+      // eslint-disable-next-line no-console
+      console.error(
+        `Please fix the gallery config of Rich Content Editor. 
+        A scrollingElement needs to be provided. Without it the gallery will not work correctly`
+      );
+      scrollingElement = document.body;
+    }
+    let contentElement =
+      typeof scrollingElement === 'function' ? scrollingElement() : scrollingElement;
+    if (contentElement?.nodeType !== 1) {
+      contentElement = document.body;
+    }
+    if (contentElement) {
+      this.observer = new MutationObserver(() => {
+        if (contentElement.clientHeight !== this.oldContentElementHeight) {
+          this.oldContentElementHeight = contentElement.clientHeight;
+          this.updateDimensions();
+        }
+      });
+      this.observer.observe(contentElement, { attributes: true, childList: true, subtree: true });
+    } else {
+      // eslint-disable-next-line no-console
+      console.warn(`can't find content container to listen for changes to update gallery`);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -194,6 +208,9 @@ class GalleryViewer extends React.Component {
     const { scrollingElement, ...settings } = this.props.settings;
     const { styleParams, size = { width: 300 } } = this.state;
     const items = this.getItems();
+    // const viewMode = this.props.seoMode === true ? GALLERY_CONSTS.viewMode.SEO : undefined; will work on version 1.10.1
+    const viewMode = this.props.seoMode === true ? VIEW_MODE.SEO : undefined;
+
     return (
       <div
         ref={elem => (this.container = elem)}
@@ -212,6 +229,7 @@ class GalleryViewer extends React.Component {
           eventsListener={this.handleGalleryEvents}
           resizeMediaUrl={resizeMediaUrl}
           customHoverRenderer={this.hoverElement}
+          viewMode={viewMode}
         />
       </div>
     );
@@ -231,6 +249,7 @@ GalleryViewer.propTypes = {
   helpers: PropTypes.object.isRequired,
   anchorTarget: PropTypes.string.isRequired,
   relValue: PropTypes.string.isRequired,
+  seoMode: PropTypes.bool,
 };
 
 export default GalleryViewer;
