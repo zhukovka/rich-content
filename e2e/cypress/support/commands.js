@@ -13,6 +13,7 @@ import {
   STATIC_TOOLBAR_BUTTONS,
   SETTINGS_PANEL,
 } from '../dataHooks';
+import { defaultConfig } from '../testAppConfig';
 
 // Viewport size commands
 const resizeForDesktop = () => cy.viewport('macbook-15');
@@ -30,13 +31,18 @@ const buildQuery = params => {
   return '?' + parameters.join('&');
 };
 
-const getUrl = (componentId, fixtureName = '', plugins = 'partialPreset') =>
-  `/${componentId}${fixtureName ? '/' + fixtureName : ''}${buildQuery({
+const getUrl = (componentId, fixtureName = '', config = {}) => {
+  const testAppConfig = JSON.stringify({
+    ...defaultConfig,
+    ...config,
+  });
+  return `/${componentId}${fixtureName ? '/' + fixtureName : ''}${buildQuery({
     mobile: isMobile,
     hebrew: isHebrew,
     seoMode: isSeoMode,
-    testAppPlugins: plugins,
+    testAppConfig,
   })}`;
+};
 
 const run = (app, fixtureName, plugins) => {
   cy.visit(getUrl(app, fixtureName, plugins)).then(() => {
@@ -76,17 +82,18 @@ function disableTransitions() {
 }
 
 function hideAllTooltips() {
-  cy.get('[data-id="tooltip"]', { timeout: 90000 }).invoke('hide'); //uses jquery to set display: none
+  cy.get('[data-id="tooltip"]', { timeout: 300000 }).invoke('hide'); //uses jquery to set display: none
 }
 
-Cypress.Commands.add('loadEditorAndViewer', (fixtureName, plugins) =>
-  run('rce', fixtureName, plugins)
+Cypress.Commands.add('loadEditorAndViewer', (fixtureName, config) =>
+  run('rce', fixtureName, config)
 );
 Cypress.Commands.add('loadIsolatedEditorAndViewer', fixtureName =>
   run('rce-isolated', fixtureName)
 );
+Cypress.Commands.add('loadWrapperEditorAndViewer', fixtureName => run('wrapper', fixtureName));
 
-Cypress.Commands.add('loadEditorAndViewerOnSsr', (fixtureName, compName) => {
+Cypress.Commands.add('loadTestAppOnSsr', (fixtureName, compName) => {
   cy.request(getUrl(compName, fixtureName))
     .its('body')
     .then(html => {
@@ -226,6 +233,14 @@ Cypress.Commands.add('setTextStyle', (buttonSelector, selection) => {
     cy.setSelection(selection[0], selection[1]);
   }
   cy.get(`[data-hook=inlineToolbar] [data-hook=${buttonSelector}]`).click();
+});
+
+Cypress.Commands.add('increaseIndent', selection => {
+  cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.INCREASE_INDENT, selection);
+});
+
+Cypress.Commands.add('decreaseIndent', selection => {
+  cy.setTextStyle(INLINE_TOOLBAR_BUTTONS.DECREASE_INDENT, selection);
 });
 
 Cypress.Commands.add('setLink', (selection, link) => {

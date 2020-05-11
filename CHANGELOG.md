@@ -15,12 +15,37 @@
     Click to see more.
   </summary>
 
+### :bug: Bug Fix
+- `link-preview`
+  - [#1048](https://github.com/wix-incubator/rich-content/pull/1048) fix: enable link preview and link embed by default
+</details>
+<hr/>
+
+## 7.6.1 (May 11, 2020)
+### :bug: Bug Fix
+- `editor-common`
+  - [#1046](https://github.com/wix-incubator/rich-content/pull/1046) cursor jumps to start of editor on close modal
+- `editor`
+  - [#1059](https://github.com/wix-incubator/rich-content/pull/1059) fix getToolbarSettings Api to work
+### :house: Internal
+- `wrapper`
+  - [#993](https://github.com/wix-incubator/rich-content/pull/993) remove `!important` usage + deep merge jss styles
+  - [#1031](https://github.com/wix-incubator/rich-content/pull/1031) fixed build warning - "punycode" library
+
+## 7.6.0 (May 5, 2020)
 ### :rocket: New Feature
+- `indent`
+  - [#898](https://github.com/wix-incubator/rich-content/pull/898) text indentation
 - `viewer`
   - [#1005](https://github.com/wix-incubator/rich-content/pull/1005) add viewMode SEO to ProGallery
 
-</details>
-<hr/>
+### :bug: Bug Fix
+- `social-modals`
+  - [#1037](https://github.com/wix-incubator/rich-content/pull/1037) disable text input autocomplete
+- `vertical embed`
+  - [#1036](https://github.com/wix-incubator/rich-content/pull/1036) dropdown for search opens automatically when typing text for search
+- `gallery`
+  - [#1020](https://github.com/wix-incubator/rich-content/pull/1020) gallery accepts window as scrollingElement
 
 ## 7.5.0 (May 5, 2020)
 ### :rocket: New Feature

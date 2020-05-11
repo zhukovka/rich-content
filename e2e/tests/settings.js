@@ -1,3 +1,5 @@
+import { usePlugins, plugins } from '../cypress/testAppConfig';
+
 // eslint-disable-next-line prettier/prettier
 export const fixtures = [
   'headers',
@@ -34,7 +36,7 @@ export const fixtures = [
   'images-original-size',
   {
     fixture: 'link-preview',
-    plugins: 'all',
+    config: usePlugins(plugins.all),
     additionalCommands: cy => {
       cy.waitForHtmlToLoad();
     },
@@ -43,9 +45,6 @@ export const fixtures = [
 
 export const fixturesToTestOnSeo = ['images'];
 
-export const DEFAULT_DESKTOP_BROWSERS = [
-  { width: 1440, height: 900, name: 'chrome' },
-  { width: 1440, height: 900, name: 'firefox' },
-];
+export const DEFAULT_DESKTOP_BROWSERS = [{ width: 1440, height: 900, name: 'chrome' }];
 
 export const DEFAULT_MOBILE_BROWSERS = [{ deviceName: 'iPhone X' }, { deviceName: 'iPad' }];

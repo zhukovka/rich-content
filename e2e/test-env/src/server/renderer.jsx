@@ -5,11 +5,17 @@ import serialize from 'serialize-javascript';
 import TestApp from '../client/TestApp';
 import PreviewTestApp from '../client/PreviewTestApp';
 import IsolatedTestApp from '../client/IsolatedTestApp';
+import WrapperTestApp from '../client/WrapperTestApp';
 
 export default function renderer() {
   return (req, res) => {
     const [componentId, fixtureName = 'empty'] = req.path.replace(/^\/|\/$/g, '').split('/');
-    const compMap = { rce: TestApp, 'rce-isolated': IsolatedTestApp, rcp: PreviewTestApp };
+    const compMap = {
+      rce: TestApp,
+      'rce-isolated': IsolatedTestApp,
+      rcp: PreviewTestApp,
+      wrapper: WrapperTestApp,
+    };
     if (Object.keys(compMap).indexOf(componentId) === -1) {
       return res.status(404).send(`Component for ${componentId} not found`);
     }
@@ -17,8 +23,8 @@ export default function renderer() {
     const isMobile = req.query.mobile === '';
     const locale = req.query.hebrew === '' ? 'he' : 'en';
     const seoMode = req.query.seoMode === '';
-    const testAppPlugins = req.query.testAppPlugins || 'partialPreset';
-    const props = { isMobile, locale, seoMode, testAppPlugins };
+    const testAppConfig = JSON.parse(req.query.testAppConfig || '');
+    const props = { isMobile, locale, seoMode, testAppConfig };
 
     try {
       props.initialState = require(`../../../tests/fixtures/${fixtureName}.json`);
@@ -35,7 +41,7 @@ export default function renderer() {
       bundleName: 'index',
       isMobile,
       locale,
-      testAppPlugins,
+      testAppConfig,
       serialize,
     });
   };
