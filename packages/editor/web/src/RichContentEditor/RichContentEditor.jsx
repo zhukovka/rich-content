@@ -443,16 +443,6 @@ class RichContentEditor extends Component {
     );
   };
 
-  onInnerEditorChange = throttle(innerRCEEditorState => {
-    this.saveInnerRCE(innerRCEEditorState);
-  }, 400);
-
-  saveInnerRCE = innerRCEEditorState => {
-    const { innerRCEcb } = this.state;
-    const newContentState = convertToRaw(innerRCEEditorState.getCurrentContent());
-    innerRCEcb(newContentState);
-  };
-
   innerRCEOpenModal = (innerContentState, callback, renderedIn, innerRCECaptionRef) => {
     // this.innerRCEHeight = innerRCECaptionRef.offsetHeight;
     this.innerRCEWidth = innerRCECaptionRef.offsetWidth;
@@ -572,7 +562,7 @@ class RichContentEditor extends Component {
                         height: `auto`,
                         zIndex: 5,
                       }}
-                      onInnerEditorChange={this.onInnerEditorChange}
+                      innerRCEcb={this.state.innerRCEcb}
                       innerRCEEditorState={this.state.innerRCEEditorState}
                       theme={this.contextualData.theme}
                       innerRCERenderedIn={this.state.innerRCERenderedIn}

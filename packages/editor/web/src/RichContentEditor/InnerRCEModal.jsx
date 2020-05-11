@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import RichContentEditor from './RichContentEditor';
 import styles from '../../statics/styles/rich-content-editor.scss';
 import 'wix-rich-content-common/dist/statics/styles/draftDefault.rtlignore.scss';
+import { convertToRaw } from '../lib/editorStateConversion';
+import { debounce } from 'lodash';
 
 class InnerRCEModal extends Component {
   constructor(props) {
@@ -19,9 +21,14 @@ class InnerRCEModal extends Component {
     this.innerEditor.focus();
   }
 
+  saveInnerRCE = debounce(innerRCEEditorState => {
+    const { innerRCEcb } = this.props;
+    const newContentState = convertToRaw(innerRCEEditorState.getCurrentContent());
+    innerRCEcb(newContentState);
+  }, 200);
+
   render() {
     const {
-      onInnerEditorChange,
       innerRCEEditorState,
       theme,
       isMobile,
@@ -42,7 +49,7 @@ class InnerRCEModal extends Component {
         <RichContentEditor
           ref={innerEditor => (this.innerEditor = innerEditor)}
           editorState={innerRCEEditorState}
-          onChange={onInnerEditorChange}
+          onChange={this.saveInnerRCE}
           plugins={this.plugins}
           isMobile={isMobile}
           toolbarsToIgnore={['FooterToolbar']}
@@ -54,7 +61,6 @@ class InnerRCEModal extends Component {
 }
 
 InnerRCEModal.propTypes = {
-  onInnerEditorChange: PropTypes.func,
   innerRCEEditorState: PropTypes.object,
   innerRCEPlugins: PropTypes.array,
   theme: PropTypes.object,
@@ -64,6 +70,7 @@ InnerRCEModal.propTypes = {
   plugins: PropTypes.array,
   innerRCERenderedIn: PropTypes.string,
   config: PropTypes.object,
+  innerRCEcb: PropTypes.func,
 };
 
 export default InnerRCEModal;
