@@ -20,7 +20,7 @@
   - [#1048](https://github.com/wix-incubator/rich-content/pull/1048) fix: enable link preview and link embed by default
 ### :house: Internal
 - `exampleApp`
-  - fix translations
+  - [0f849222](https://github.com/wix-incubator/rich-content/commit/0f849222) fix translations
   
 </details>
 <hr/>
