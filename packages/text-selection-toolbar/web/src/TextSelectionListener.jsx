@@ -10,8 +10,10 @@ export default class TextSelectionListener extends React.Component {
   componentDidMount() {
     const { targetId } = this.props;
     const specifiedElement = document.getElementById(targetId);
-    specifiedElement.addEventListener('mouseup', () => {
-      this.getSelectionText();
+    specifiedElement.addEventListener('mouseup', e => {
+      if (e.target.tagName !== 'BUTTON') {
+        this.getSelectionText();
+      }
     });
     document.addEventListener('click', e => {
       if (!specifiedElement.contains(e.target)) {
@@ -32,7 +34,7 @@ export default class TextSelectionListener extends React.Component {
       const selectionRect = selection?.getRangeAt(0).getBoundingClientRect();
       this.setState({ selectedText: text, selectionRect });
     } else {
-      // this.setState({ selectedText: '' });
+      this.setState({ selectedText: '' });
     }
   };
 
