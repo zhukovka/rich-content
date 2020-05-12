@@ -26,6 +26,8 @@
 ### :house: Internal
 - `exampleApp`
   - [0f849222](https://github.com/wix-incubator/rich-content/commit/0f849222) fix translations
+- `general`
+  - [#1073](https://github.com/wix-incubator/rich-content/pull/1073) Reduce editor bundle size (internal dynamic loading)
   
 </details>
 <hr/>
