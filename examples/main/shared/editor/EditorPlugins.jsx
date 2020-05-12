@@ -24,7 +24,7 @@ import {
   EXTERNAL_MENTIONS_TYPE,
 } from 'wix-rich-content-plugin-mentions';
 import { createCodeBlockPlugin, CODE_BLOCK_TYPE } from 'wix-rich-content-plugin-code-block';
-import { createHeadingsPlugin, HEADINGS_TYPE } from 'wix-rich-content-plugin-headings';
+import { createHeadingsPlugin, HEADINGS_DROPDOWN_TYPE } from 'wix-rich-content-plugin-headings';
 import { createSoundCloudPlugin, SOUND_CLOUD_TYPE } from 'wix-rich-content-plugin-sound-cloud';
 import { createGiphyPlugin, GIPHY_TYPE } from 'wix-rich-content-plugin-giphy';
 import {
@@ -431,8 +431,8 @@ const config = {
         )
       ),
   },
-  [HEADINGS_TYPE]: {
-    useDropdownMenu: true,
+  [HEADINGS_DROPDOWN_TYPE]: {
+    // dropDownOptions: ['H2','H3']
     // toolbar: {
     //   icons: {
     //     inactiveIconTitle: MyCustomIcon,

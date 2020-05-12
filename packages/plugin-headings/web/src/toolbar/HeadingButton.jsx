@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-boolean-value */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { mergeStyles } from 'wix-rich-content-common';
@@ -21,29 +22,37 @@ export default class HeadingButton extends Component {
       currentHeading: 'P',
     };
     this.styles = mergeStyles({ styles, theme: props.theme });
-    this.isFirstRender = true;
+    this.HEADING_TYPE_TO_ELEMENT = {
+      'header-two': 'H2',
+      'header-three': 'H3',
+      'header-four': 'H4',
+      'header-five': 'H5',
+      'header-six': 'H6',
+      unstyled: 'P',
+    };
+    // this.isFirstRender = true;
   }
 
   componentWillReceiveProps() {
-    const { isMobile } = this.props;
-    if (this.isFirstRender && isMobile) {
-      this.isFirstRender = false;
-    } else {
-      this.findCurrentHeading();
-    }
+    // debugger;
+    // const { isMobile } = this.props;
+    // if (this.isFirstRender && isMobile) {
+    //   this.isFirstRender = false;
+    // } else {
+    this.findCurrentHeading();
+    // }
   }
 
   findCurrentHeading = () => {
     const currentEditorState = this.props.getEditorState();
     const selection = currentEditorState.getSelection();
-    const currentHeading = this.convertFontToHeadingName(
-      currentEditorState.getCurrentContent().blockMap.toJS()[selection.focusKey].type
-    );
+    const headingType = currentEditorState
+      .getCurrentContent()
+      .blockMap.get(selection.focusKey)
+      .getType();
+    const currentHeading = this.HEADING_TYPE_TO_ELEMENT[headingType];
     this.setState({ currentHeading });
   };
-
-  convertFontToHeadingName = font =>
-    Object.keys(HEADER_TYPE_MAP).find(key => HEADER_TYPE_MAP[key] === font);
 
   openPanel = () => {
     this.currentEditorState = this.oldEditorState = this.props.getEditorState();
@@ -58,33 +67,32 @@ export default class HeadingButton extends Component {
     this.props.setKeepOpen(false);
   };
 
-  updateHeading = (font, heading) => {
+  updateHeading = (type, element) => {
     const { setEditorState, getEditorState } = this.props;
-    const newEditorState = RichUtils.toggleBlockType(getEditorState(), font);
+    const newEditorState = RichUtils.toggleBlockType(getEditorState(), type);
     setEditorState(this.fixSelection(newEditorState, this.selection));
     this.currentEditorState = newEditorState;
-    this.setState({ currentHeading: heading });
+    this.setState({ currentHeading: element });
   };
 
-  getContentForButton = (option = '') => {
+  translateHeading = (option = '') => {
     const { t } = this.props;
     return option.length === 1
       ? t('FormattingToolbar_TextStyle_Paragraph')
       : t('FormattingToolbar_TextStyle_Heading', { number: option.slice(-1) });
   };
 
-  getContentForButtonWithEllipsis = (option = '') => {
-    const content = this.getContentForButton(option);
-    const number = option.length !== 1 ? option.slice(-1) : '';
+  fixEllipsis = (content = '') => {
     if (content.length > 10) {
+      const number = content !== 'Paragraph' ? content.slice(-1) : '';
       return content.slice(0, 5) + '...' + number;
     }
     return content;
   };
 
-  save = (font, heading) => {
+  save = (type, element) => {
     this.closePanel();
-    font ? this.updateHeading(font, heading) : this.setEditorState(this.currentEditorState);
+    type ? this.updateHeading(type, element) : this.setEditorState(this.currentEditorState);
   };
 
   setEditorState = editorState =>
@@ -99,21 +107,18 @@ export default class HeadingButton extends Component {
   render() {
     const { theme, isMobile, t, tabIndex, customHeadings } = this.props;
     const tooltipText = t('TitleButton_Tooltip');
-    const textForHooks = tooltipText.replace(/\s+/, '');
-    const dataHookText = `textDropDownButton_${textForHooks}`;
+    const dataHookText = 'headingsDropdownButton';
     const { isPanelOpen, panelTop, panelLeft, currentHeading } = this.state;
     const { styles } = this;
-    const customHeadingsOptions = Array.isArray(customHeadings)
-      ? customHeadings
-      : DEFAULT_HEADERS_DROPDOWN_OPTIONS;
+    const customHeadingsOptions = customHeadings || DEFAULT_HEADERS_DROPDOWN_OPTIONS;
     const modalStyle = isMobile
       ? { left: 0, bottom: 0, right: 0 }
       : {
           top: panelTop,
           left: panelLeft,
         };
-    const showArrowIcon = true;
-    const buttonContent = this.getContentForButtonWithEllipsis(currentHeading);
+    // const buttonContent = this.getContentForButtonWithEllipsis(currentHeading);
+    const buttonContent = this.fixEllipsis(this.translateHeading(currentHeading));
     return (
       <InlineToolbarButton
         onClick={this.openPanel}
@@ -124,7 +129,7 @@ export default class HeadingButton extends Component {
         dataHook={dataHookText}
         tabIndex={tabIndex}
         buttonContent={buttonContent}
-        showArrowIcon={showArrowIcon}
+        showArrowIcon={true}
         ref={ref => (this.buttonRef = ref)}
       >
         <Modal
@@ -150,7 +155,7 @@ export default class HeadingButton extends Component {
             t={t}
             isMobile={isMobile}
             theme={theme}
-            getContentForButton={this.getContentForButton}
+            translateHeading={this.translateHeading}
             {...this.props}
           />
         </Modal>

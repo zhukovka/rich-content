@@ -45,11 +45,11 @@ export const RichContentEditorBox = ({
   preset = '',
   sourcecode,
   contentState,
-  subTitle,
+  title,
 }) => {
   return (
     <div className={styles[preset]}>
-      <h3>{subTitle}</h3>
+      <h3>{title}</h3>
       <div className={styles.rceWrapper}>{children}</div>
       {sourcecode && <SourceCode code={sourcecode} />}
       {contentState && (

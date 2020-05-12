@@ -14,7 +14,7 @@ export default () => {
         <RichContentEditorBox
           sourcecode={editorSourcecode}
           contentState={headingsContentState}
-          subTitle="With Headings Menu"
+          title="With Headings Menu"
         >
           <HeadingsEditor
             editorState={editorState}
@@ -22,7 +22,7 @@ export default () => {
             pluginHeadings={pluginHeadings}
           />
         </RichContentEditorBox>
-        <RichContentEditorBox subTitle="With Headings Button">
+        <RichContentEditorBox title="With Headings Button">
           <HeadingsEditor editorState={editorState} contentState={headingsContentState} />
         </RichContentEditorBox>
       </Section>

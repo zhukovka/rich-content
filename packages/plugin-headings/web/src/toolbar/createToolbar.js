@@ -3,12 +3,11 @@ import { decorateComponentWithProps } from 'wix-rich-content-editor-common';
 
 export default settings => ({
   TextButtonMapper: () => ({
-    Headings: {
+    HeadingsDropdown: {
       component: decorateComponentWithProps(HeadingButton, settings),
       isMobile: true,
-      position: {
-        mobile: 1,
-      },
+      position: { desktop: 0, mobile: 0 },
+      group: { desktop: 0, mobile: 0 },
     },
   }),
 });

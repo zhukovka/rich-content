@@ -1,4 +1,5 @@
 export const DesktopTextButtonList = [
+  [''],
   ['Bold', 'Italic', 'Underline', 'Title', 'Blockquote'],
   ['Alignment', 'OrderedList', 'UnorderedList'],
 ];

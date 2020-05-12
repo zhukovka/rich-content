@@ -5,16 +5,13 @@ import { RichContentViewer } from 'wix-rich-content-viewer';
 import windowContentStateHoc from './WindowContentStateHoc';
 class IsolatedTestApp extends PureComponent {
   renderEditor = () => {
-    const { editorState, onEditorChange, locale, localeResource, isMobile, config } = this.props;
-    const Headings = { useDropdownMenu: true };
-    const newConfig = config ? { ...config, Headings } : { Headings };
+    const { editorState, onEditorChange, locale, localeResource, isMobile } = this.props;
     return (
       <RichContentEditor
         onChange={onEditorChange}
         editorState={editorState}
         isMobile={isMobile}
         locale={locale}
-        config={newConfig}
         localeResource={localeResource}
       />
     );

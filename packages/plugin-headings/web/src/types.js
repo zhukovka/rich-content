@@ -1,1 +1,1 @@
-export const HEADINGS_TYPE = 'Headings';
+export const HEADINGS_DROPDOWN_TYPE = 'HeadingsDropdown';

@@ -5,8 +5,8 @@ import { mergeStyles } from 'wix-rich-content-common';
 import classNames from 'classnames';
 import { HEADER_TYPE_MAP } from 'wix-rich-content-editor-common';
 
-const headingElement = (heading, isSelected, onClick, getContentForButton) => {
-  const content = getContentForButton(heading);
+const headingElement = (heading, isSelected, onClick, translateHeading) => {
+  const content = translateHeading(heading);
   const font = HEADER_TYPE_MAP[heading];
   return (
     <button
@@ -19,19 +19,19 @@ const headingElement = (heading, isSelected, onClick, getContentForButton) => {
   );
 };
 
-const desktopPanel = ({ customHeadingsOptions, selected, onSave, styles, getContentForButton }) => (
+const desktopPanel = ({ customHeadingsOptions, selected, onSave, styles, translateHeading }) => (
   <div className={styles.headingsPanel}>
     {customHeadingsOptions.map(heading => {
-      return headingElement(heading, selected === heading, onSave, getContentForButton);
+      return headingElement(heading, selected === heading, onSave, translateHeading);
     })}
   </div>
 );
 
-const mobilePanel = ({ customHeadingsOptions, selected, styles, onSave, getContentForButton }) => (
+const mobilePanel = ({ customHeadingsOptions, selected, styles, onSave, translateHeading }) => (
   <div className={styles.headingsMobilePanel}>
     <div className={styles.headingsMobilePanel_fonts}>
       {customHeadingsOptions.map(heading =>
-        headingElement(heading, selected === heading, onSave, getContentForButton)
+        headingElement(heading, selected === heading, onSave, translateHeading)
       )}
     </div>
   </div>
@@ -54,7 +54,7 @@ export default class Panel extends Component {
     return this.props.onSave(font, headingName);
   };
   render() {
-    const { t, isMobile, getContentForButton, customHeadingsOptions } = this.props;
+    const { t, isMobile, translateHeading, customHeadingsOptions } = this.props;
     const { heading } = this.state;
     const { styles } = this;
     const selected = heading;
@@ -65,7 +65,7 @@ export default class Panel extends Component {
           selected,
           t,
           onSave: this.onSaveHeading,
-          getContentForButton,
+          translateHeading,
           customHeadingsOptions,
         })
       : desktopPanel({
@@ -73,7 +73,7 @@ export default class Panel extends Component {
           selected,
           t,
           onSave: this.onSaveHeading,
-          getContentForButton,
+          translateHeading,
           customHeadingsOptions,
         });
 
@@ -98,7 +98,7 @@ Panel.propTypes = {
   theme: PropTypes.object.isRequired,
   customSettings: PropTypes.object,
   heading: PropTypes.string,
-  getContentForButton: PropTypes.func,
+  translateHeading: PropTypes.func,
   customHeadingsOptions: PropTypes.array,
 };
 
@@ -110,7 +110,7 @@ desktopPanel.propTypes = {
   styles: PropTypes.object,
   t: PropTypes.func.isRequired,
   customHeadingsOptions: PropTypes.array,
-  getContentForButton: PropTypes.func,
+  translateHeading: PropTypes.func,
 };
 
 mobilePanel.propTypes = {
@@ -119,5 +119,5 @@ mobilePanel.propTypes = {
   styles: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   customHeadingsOptions: PropTypes.array,
-  getContentForButton: PropTypes.func,
+  translateHeading: PropTypes.func,
 };

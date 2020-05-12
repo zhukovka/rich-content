@@ -23,16 +23,12 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
   const headingKeyName = Object.keys(textPluginButtons).find(buttonName =>
     buttonName.includes('Headings')
   );
-  const { [headingKeyName]: headingsDropdownButton, ...otherPluginButtons } = textPluginButtons;
-  const useHeadersDropdownButton = config?.Headings?.useDropdownMenu;
 
   const buttonsMap = {
     Bold: boldButton(icons.Bold),
     Italic: italicButton(icons.Italic),
     Underline: underlineButton(icons.Underline),
-    Title:
-      !useHeadersDropdownButton &&
-      titleButton(icons.inactiveIconTitle, icons.TitleOne, icons.TitleTwo),
+    Title: !headingKeyName && titleButton(icons.inactiveIconTitle, icons.TitleOne, icons.TitleTwo),
     Blockquote: blockquoteButton(icons.Blockquote),
     Alignment: textAlignmentButton(icons),
     AlignLeft: alignTextLeftButton(icons.AlignLeft),
@@ -43,14 +39,9 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
     UnorderedList: unorderedListButton(icons.UnorderedList),
     Separator: themedSeparator(false),
     HorizontalSeparator: themedSeparator(true),
-    ...otherPluginButtons,
+    ...textPluginButtons,
   };
   const buttonCompArray = [];
-
-  if (useHeadersDropdownButton) {
-    buttonCompArray.push(headingsDropdownButton);
-    !isMobile && buttonCompArray.push(buttonsMap.Separator);
-  }
   buttonCompArray.push(...buttons.map(buttonName => buttonsMap[buttonName]).filter(x => x));
 
   return buttonCompArray.map(b =>
