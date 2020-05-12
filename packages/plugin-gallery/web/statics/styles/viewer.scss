@@ -59,6 +59,12 @@
   }
 }
 
+.pointer {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
 :global {
   .gallery-item-hover {
     &::before { //removes the background we get from the gallery
@@ -87,3 +93,4 @@
     outline: none;
   }
 }
+
