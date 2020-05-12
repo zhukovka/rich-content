@@ -1,7 +1,7 @@
 @import '../option.scss';
 
 .image {
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .grid .input {
@@ -16,7 +16,8 @@
 .grid .input {
   font-size: 16px;
   line-height: 1.5;
-  border-radius: 4px;
+  font-weight: bold;
+  border-radius: 8px;
 }
 
 .option.grid.with_image {

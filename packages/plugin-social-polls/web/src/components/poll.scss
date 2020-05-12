@@ -32,6 +32,15 @@
       grid-row-gap: 12px;
     }
   }
+
+  &.webview {
+    padding: 20px;
+  
+    .options {
+      grid-column-gap: 20px;
+      grid-row-gap: 20px;
+    }
+  }
 }
 
 .options {
@@ -76,6 +85,12 @@
     outline: 0;
     opacity: 1;
   }
+}
+
+.webview .cta_button {
+  font-size: 16px;
+  font-weight: bold;
+  border-width: 2px;
 }
 
 .see_more {

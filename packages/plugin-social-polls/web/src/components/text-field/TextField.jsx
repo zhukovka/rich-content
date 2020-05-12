@@ -114,6 +114,9 @@ class TextFieldComponent extends React.PureComponent {
                 [styles.small]: value.length > 120,
                 [styles.medium]: value.length <= 120,
                 [styles.large]: value.length <= 80,
+              },
+              {
+                [styles.webview]: rce.isWebView,
               }
             )}
           >

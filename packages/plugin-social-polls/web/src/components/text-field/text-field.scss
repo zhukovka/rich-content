@@ -56,6 +56,22 @@
   line-height: 1.2;
 }
 
+.webview {
+  font-weight: bold;
+
+  &.small {
+    font-size: 14px;
+  }
+
+  &.medium {
+    font-size: 18px;
+  }
+
+  &.large {
+    font-size: 22px;
+  }
+}
+
 .endAdornment.shown,
 .root:hover .endAdornment {
   opacity: 1;
