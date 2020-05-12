@@ -26,6 +26,8 @@
 ### :house: Internal
 - `exampleApp`
   - [0f849222](https://github.com/wix-incubator/rich-content/commit/0f849222) fix translations
+- `general`
+  - [#1075](https://github.com/wix-incubator/rich-content/pull/1075) version upgrade to v2.0.1 of 'react-player'
   
 </details>
 <hr/>
