@@ -3,7 +3,6 @@ import Editor from '../../../../examples/main/shared/editor/Editor';
 import Viewer from '../../../../examples/main/shared/viewer/Viewer';
 import PropTypes from 'prop-types';
 import windowContentStateHoc from './WindowContentStateHoc';
-import theme from '../../../../examples/main/shared/theme/theme';
 class TestApp extends PureComponent {
   renderEditor = () => {
     const {
@@ -21,7 +20,6 @@ class TestApp extends PureComponent {
         isMobile={isMobile}
         shouldMockUpload
         locale={locale}
-        theme={theme}
         localeResource={localeResource}
         mockImageIndex={1}
         testAppConfig={testAppConfig}
@@ -32,13 +30,7 @@ class TestApp extends PureComponent {
   renderViewer = () => {
     const { isMobile, contentState, locale, seoMode } = this.props;
     return (
-      <Viewer
-        initialState={contentState}
-        isMobile={isMobile}
-        locale={locale}
-        seoMode={seoMode}
-        theme={theme}
-      />
+      <Viewer initialState={contentState} isMobile={isMobile} locale={locale} seoMode={seoMode} />
     );
   };
 
