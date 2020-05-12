@@ -277,6 +277,10 @@ const videoHandlers = {
   },
 };
 
+const addPluginMenuConfig = {
+  showSearch: true,
+  splitToSections: true,
+};
 const { event, booking, product } = verticalEmbedProviders;
 const buttonConfig = {
   // toolbar: {
@@ -609,6 +613,8 @@ const config = {
   },
   uiSettings,
   getToolbarSettings: ({ pluginButtons, textButtons }) => [
+    { name: 'SIDE', addPluginMenuConfig },
+    { name: 'MOBILE', addPluginMenuConfig },
     // {
     //   name: TOOLBARS.TEXT,
     //   getIcons: () => ({

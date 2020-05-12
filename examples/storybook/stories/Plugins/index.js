@@ -7,6 +7,7 @@ import HeadingsPluginStory from './Headings';
 import ButtonsPluginStory from './Buttons';
 import Image from './Image';
 import Video from './Video';
+import VerticalEmbedStory from './VerticalEmbed';
 
 storiesOf('Plugins')
   .add('Divider', DividerPluginStory)
@@ -15,4 +16,5 @@ storiesOf('Plugins')
   .add('Video', Video)
   .add('Gallery', GalleryPlugin)
   .add('Link Preview', LinkPreviewStory)
-  .add('Buttons', ButtonsPluginStory);
+  .add('Buttons', ButtonsPluginStory)
+  .add('Vertical Embed', VerticalEmbedStory);
