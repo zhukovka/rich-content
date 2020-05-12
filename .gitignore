@@ -37,3 +37,5 @@ applitools.config.js
 
 #Flow types for CSS
 **/statics/styles/*.flow
+**/.docusaurus
+**/docs/build/

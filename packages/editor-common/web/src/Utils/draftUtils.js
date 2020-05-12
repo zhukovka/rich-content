@@ -1,5 +1,6 @@
 import { EditorState, Modifier, RichUtils, SelectionState, AtomicBlockUtils } from '@wix/draft-js';
 import { cloneDeep, flatMap, findIndex, findLastIndex, countBy, debounce, times } from 'lodash';
+import { TEXT_TYPES } from '../consts';
 
 export function createSelection({ blockKey, anchorOffset, focusOffset }) {
   return SelectionState.createEmpty(blockKey).merge({
@@ -537,48 +538,40 @@ export function setSelection(editorState, selection) {
   return EditorState.acceptSelection(editorState, selection);
 }
 
-function adjustBlockDepthForContentState(contentState, selectionState, adjustment, maxDepth) {
-  const startKey = selectionState.getStartKey();
-  const endKey = selectionState.getEndKey();
-  let blockMap = contentState.getBlockMap();
-  const blocks = blockMap
-    .toSeq()
-    .skipUntil((_, k) => k === startKey)
-    .takeUntil((_, k) => k === endKey)
-    .concat([[endKey, blockMap.get(endKey)]])
-    .map(block => {
-      let depth = block.getDepth() + adjustment;
-      depth = Math.max(0, Math.min(depth, maxDepth));
-      return block.set('depth', depth);
-    });
+export const isTypeText = blockType => {
+  return TEXT_TYPES.some(type => type === blockType);
+};
 
-  blockMap = blockMap.merge(blocks);
-
-  return contentState.merge({
-    blockMap,
-    selectionBefore: selectionState,
-    selectionAfter: selectionState,
-  });
-}
-
-export function indentSelectedBlock(editorState, direction) {
+export function indentSelectedBlocks(editorState, adjustment) {
   const maxDepth = 4;
   const selection = editorState.getSelection();
-  const key = selection.getAnchorKey();
+  const contentState = editorState.getCurrentContent();
+  const startKey = selection.getStartKey();
+  const endKey = selection.getEndKey();
+  const blockMap = contentState.getBlockMap();
 
-  if (key !== selection.getFocusKey()) {
-    return editorState;
-  }
+  const adjustBlockDepth = (block, adjustment) => {
+    let depth = block.getDepth() + adjustment;
+    depth = Math.max(0, Math.min(depth, maxDepth));
+    return block.set('depth', depth);
+  };
 
-  const content = editorState.getCurrentContent();
-  const block = content.getBlockForKey(key);
-  const depth = block.getDepth();
+  const getBlocks = () =>
+    blockMap
+      .toSeq()
+      .skipUntil((_, k) => k === startKey)
+      .takeUntil((_, k) => k === endKey)
+      .concat([[endKey, blockMap.get(endKey)]]);
 
-  if (direction === 1 && depth === maxDepth) {
-    return editorState;
-  }
+  const blocks = getBlocks(blockMap, startKey, endKey)
+    .filter(block => isTypeText(block.getType()))
+    .map(block => adjustBlockDepth(block, adjustment));
 
-  const withAdjustment = adjustBlockDepthForContentState(content, selection, direction, maxDepth);
+  const withAdjustment = contentState.merge({
+    blockMap: blockMap.merge(blocks),
+    selectionBefore: selection,
+    selectionAfter: selection,
+  });
   return EditorState.push(editorState, withAdjustment, 'adjust-depth');
 }
 
@@ -588,7 +581,35 @@ export function setForceSelection(editorState, selection) {
 
 export function insertString(editorState, string) {
   const contentState = editorState.getCurrentContent();
-  const selection = editorState.getSelection();
-  const newContentState = Modifier.replaceText(contentState, selection, string);
+  const selectionState = editorState.getSelection();
+  const newContentState = Modifier.replaceText(contentState, selectionState, string);
   return EditorState.push(editorState, newContentState, 'insert-string');
+}
+
+export function getCharacterBeforeSelection(editorState) {
+  let character;
+  const selectionState = editorState.getSelection();
+  const start = selectionState.getStartOffset() - 1;
+
+  if (start >= 0) {
+    const anchorKey = selectionState.getAnchorKey();
+    const contentState = editorState.getCurrentContent();
+    const currentContentBlock = contentState.getBlockForKey(anchorKey);
+    character = currentContentBlock.getText().slice(start, start + 1);
+  }
+  return character;
+}
+
+export function deleteCharacterBeforeCursor(editorState) {
+  let newState;
+  const contentState = editorState.getCurrentContent();
+  const selectionState = editorState.getSelection();
+
+  if (selectionState.isCollapsed()) {
+    const start = selectionState.getStartOffset() - 1;
+    const newSelection = selectionState.set('anchorOffset', start);
+    const newContentState = Modifier.replaceText(contentState, newSelection, '');
+    newState = EditorState.push(editorState, newContentState, 'delete-string');
+  }
+  return newState;
 }
