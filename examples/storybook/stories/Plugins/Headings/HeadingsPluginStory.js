@@ -11,14 +11,18 @@ export default () => {
   return (
     <Page title="Headings Plugin">
       <Section type={Section.Types.COMPARISON}>
-        <RichContentEditorBox sourcecode={editorSourcecode} contentState={headingsContentState}>
+        <RichContentEditorBox
+          sourcecode={editorSourcecode}
+          contentState={headingsContentState}
+          subTitle="With Headings Menu"
+        >
           <HeadingsEditor
             editorState={editorState}
             contentState={headingsContentState}
             pluginHeadings={pluginHeadings}
           />
         </RichContentEditorBox>
-        <RichContentEditorBox sourcecode={editorSourcecode} contentState={headingsContentState}>
+        <RichContentEditorBox subTitle="With Headings Button">
           <HeadingsEditor editorState={editorState} contentState={headingsContentState} />
         </RichContentEditorBox>
       </Section>

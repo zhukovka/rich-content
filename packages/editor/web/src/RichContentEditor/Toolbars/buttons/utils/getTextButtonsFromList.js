@@ -1,4 +1,3 @@
-/* eslint-disable fp/no-delete */
 import { decorateComponentWithProps, TOOLBARS } from 'wix-rich-content-editor-common';
 import {
   boldButton,
@@ -22,14 +21,18 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
     config?.getToolbarSettings?.({}).find(setting => setting.name === TOOLBARS.TEXT) || {};
   const icons = customSettings?.getIcons?.() || {};
   const headingKeyName = Object.keys(textPluginButtons).find(buttonName =>
-    buttonName.includes('Heading')
+    buttonName.includes('Headings')
   );
-  const { [headingKeyName]: headingButton, ...otherPluginButtons } = textPluginButtons;
+  const { [headingKeyName]: headingsDropdownButton, ...otherPluginButtons } = textPluginButtons;
+  const useHeadersDropdownButton = config?.Headings?.useDropdownMenu;
+
   const buttonsMap = {
     Bold: boldButton(icons.Bold),
     Italic: italicButton(icons.Italic),
     Underline: underlineButton(icons.Underline),
-    Title: titleButton(icons.inactiveIconTitle, icons.TitleOne, icons.TitleTwo),
+    Title:
+      !useHeadersDropdownButton &&
+      titleButton(icons.inactiveIconTitle, icons.TitleOne, icons.TitleTwo),
     Blockquote: blockquoteButton(icons.Blockquote),
     Alignment: textAlignmentButton(icons),
     AlignLeft: alignTextLeftButton(icons.AlignLeft),
@@ -43,12 +46,10 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
     ...otherPluginButtons,
   };
   const buttonCompArray = [];
-  const customHeadings = config?.Headings?.headersDropdown;
 
-  if (customHeadings) {
-    buttonCompArray.push(headingButton);
+  if (useHeadersDropdownButton) {
+    buttonCompArray.push(headingsDropdownButton);
     !isMobile && buttonCompArray.push(buttonsMap.Separator);
-    buttons = buttons.filter(buttonName => buttonName !== 'Title');
   }
   buttonCompArray.push(...buttons.map(buttonName => buttonsMap[buttonName]).filter(x => x));
 

@@ -4,8 +4,8 @@ import { mergeStyles } from 'wix-rich-content-common';
 import {
   InlineToolbarButton,
   EditorState,
-  TITLE_FONT_STYLE,
-  DEFAULT_FONTS_DROPDOWN_OPTIONS,
+  HEADER_TYPE_MAP,
+  DEFAULT_HEADERS_DROPDOWN_OPTIONS,
 } from 'wix-rich-content-editor-common';
 import { RichUtils } from 'draft-js';
 import Modal from 'react-modal';
@@ -43,7 +43,7 @@ export default class HeadingButton extends Component {
   };
 
   convertFontToHeadingName = font =>
-    Object.keys(TITLE_FONT_STYLE).find(key => TITLE_FONT_STYLE[key] === font);
+    Object.keys(HEADER_TYPE_MAP).find(key => HEADER_TYPE_MAP[key] === font);
 
   openPanel = () => {
     this.currentEditorState = this.oldEditorState = this.props.getEditorState();
@@ -105,7 +105,7 @@ export default class HeadingButton extends Component {
     const { styles } = this;
     const customHeadingsOptions = Array.isArray(customHeadings)
       ? customHeadings
-      : DEFAULT_FONTS_DROPDOWN_OPTIONS;
+      : DEFAULT_HEADERS_DROPDOWN_OPTIONS;
     const modalStyle = isMobile
       ? { left: 0, bottom: 0, right: 0 }
       : {

@@ -6,7 +6,7 @@ import windowContentStateHoc from './WindowContentStateHoc';
 class IsolatedTestApp extends PureComponent {
   renderEditor = () => {
     const { editorState, onEditorChange, locale, localeResource, isMobile, config } = this.props;
-    const Headings = { headersDropdown: true };
+    const Headings = { useDropdownMenu: true };
     const newConfig = config ? { ...config, Headings } : { Headings };
     return (
       <RichContentEditor

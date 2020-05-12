@@ -3,7 +3,7 @@ import { decorateComponentWithProps } from 'wix-rich-content-editor-common';
 
 export default settings => ({
   TextButtonMapper: () => ({
-    Heading: {
+    Headings: {
       component: decorateComponentWithProps(HeadingButton, settings),
       isMobile: true,
       position: {

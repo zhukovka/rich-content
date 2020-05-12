@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import styles from '../../statics/styles/panelStyles.scss';
 import { mergeStyles } from 'wix-rich-content-common';
 import classNames from 'classnames';
-import { TITLE_FONT_STYLE } from 'wix-rich-content-editor-common';
+import { HEADER_TYPE_MAP } from 'wix-rich-content-editor-common';
 
 const headingElement = (heading, isSelected, onClick, getContentForButton) => {
   const content = getContentForButton(heading);
-  const font = TITLE_FONT_STYLE[heading];
+  const font = HEADER_TYPE_MAP[heading];
   return (
     <button
       className={isSelected ? styles.headingsPanel_selectedHeading : ''}

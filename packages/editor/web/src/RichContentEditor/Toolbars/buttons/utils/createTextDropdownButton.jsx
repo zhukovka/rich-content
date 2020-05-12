@@ -7,7 +7,7 @@ import { Tooltip } from 'wix-rich-content-editor-common';
 import styles from '../../../../../statics/styles/inline-toolbar-dropdown-button.scss';
 import ClickOutside from 'react-click-outside';
 
-export default ({ buttons, activeItem, onChange, tooltipTextKey, dataHookTextWrapper }) =>
+export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
   class TextDropdownButton extends PureComponent {
     static propTypes = {
       getEditorState: PropTypes.func.isRequired,
@@ -45,10 +45,6 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey, dataHookTextWra
             styles.inlineToolbarDropdownButton_icon,
             theme && theme.inlineToolbarDropdownButton_icon
           ),
-          inlineToolbarButton_arrowIcon: classNames(
-            styles.inlineToolbarDropdownButton_arrowIcon,
-            theme && theme.inlineToolbarButton_arrowIcon
-          ),
           inlineToolbarButton_active: classNames(
             styles.inlineToolbarButton_active,
             theme && theme.inlineToolbarDropdownButton_active
@@ -64,10 +60,7 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey, dataHookTextWra
       }
     }
 
-    showOptions = () => {
-      const { isOpen } = this.state;
-      this.setState({ isOpen: !isOpen });
-    };
+    showOptions = () => this.setState({ isOpen: true });
 
     renderOptions = () => {
       const { getEditorState, setEditorState } = this.props;
@@ -86,11 +79,14 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey, dataHookTextWra
         shouldRefreshTooltips: () => isOpen,
       };
       return (
-        <div className={this.styles.inlineToolbarDropdown_options}>
+        <ClickOutside
+          onClickOutside={() => this.setState({ isOpen: false })}
+          className={this.styles.inlineToolbarDropdown_options}
+        >
           {buttons.map((Button, i) => (
             <Button key={i} tabIndex="0" {...buttonProps} />
           ))}
-        </div>
+        </ClickOutside>
       );
     };
 
@@ -106,11 +102,7 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey, dataHookTextWra
 
       return (
         <Tooltip content={tooltipText} moveBy={{ y: -20 }}>
-          <ClickOutside
-            onClickOutside={() => this.setState({ isOpen: false })}
-            className={this.styles.inlineToolbarDropdown_wrapper}
-            data-hook={dataHookTextWrapper}
-          >
+          <div className={this.styles.inlineToolbarDropdown_wrapper}>
             <TextButton
               icon={Icon}
               theme={this.theme}
@@ -120,7 +112,7 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey, dataHookTextWra
               tabIndex={tabIndex}
             />
             {isOpen && this.renderOptions()}
-          </ClickOutside>
+          </div>
         </Tooltip>
       );
     }

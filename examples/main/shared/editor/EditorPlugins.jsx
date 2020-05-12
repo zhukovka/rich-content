@@ -432,7 +432,7 @@ const config = {
       ),
   },
   [HEADINGS_TYPE]: {
-    headersDropdown: true,
+    useDropdownMenu: true,
     // toolbar: {
     //   icons: {
     //     inactiveIconTitle: MyCustomIcon,

@@ -1,4 +1,4 @@
-export const TITLE_FONT_STYLE = {
+export const HEADER_TYPE_MAP = {
   H1: 'header-one',
   H2: 'header-two',
   H3: 'header-three',
@@ -8,7 +8,7 @@ export const TITLE_FONT_STYLE = {
   P: 'unstyled',
 };
 
-export const DEFAULT_FONTS_DROPDOWN_OPTIONS = ['P', 'H2', 'H3', 'H4', 'H5', 'H6'];
+export const DEFAULT_HEADERS_DROPDOWN_OPTIONS = ['P', 'H2', 'H3', 'H4', 'H5', 'H6'];
 
 export const COMMANDS = Object.freeze({
   TITLE: 'header-two',

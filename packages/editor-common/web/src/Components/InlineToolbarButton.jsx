@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isEmpty } from 'lodash';
 import ToolbarButton from './ToolbarButton';
-import DropdownArrowIcon from '../Icons/DropdownArrowIcon';
+import DropdownArrowIcon from '../Icons/DropdownArrowIcon.svg';
 import Styles from '../../statics/styles/inline-toolbar-button.scss';
 import { mergeStyles } from 'wix-rich-content-common';
 
@@ -15,38 +15,38 @@ class InlineToolbarButton extends Component {
     const styles = mergeStyles({ styles: Styles, theme: props.theme });
 
     this.styles = {
-      button: classNames(styles.inlineToolbarButton, {
-        [buttonStyles.inlineToolbarButton]: !!buttonStyles.inlineToolbarButton,
-        [buttonStyles.pluginToolbarButton]: !!buttonStyles.pluginToolbarButton,
-      }),
-      buttonWrapper: classNames(styles.inlineToolbarButton_wrapper, {
-        [buttonStyles.inlineToolbarButton_wrapper]: !!buttonStyles.inlineToolbarButton_wrapper,
-        [buttonStyles.pluginToolbarButton_wrapper]: !!buttonStyles.pluginToolbarButton_wrapper,
-      }),
-      icon: classNames(styles.inlineToolbarButton_icon, {
-        [buttonStyles.inlineToolbarButton_icon]: !!buttonStyles.inlineToolbarButton_icon,
-        [buttonStyles.pluginToolbarButton_icon]: !!buttonStyles.pluginToolbarButton_icon,
-      }),
-      active: classNames(styles.inlineToolbarButton_active, {
-        [buttonStyles.inlineToolbarButton_active]: !!buttonStyles.inlineToolbarButton_active,
-        [buttonStyles.pluginToolbarButton_active]: !!buttonStyles.pluginToolbarButton_active,
-      }),
+      button: classNames(
+        styles.inlineToolbarButton,
+        buttonStyles.inlineToolbarButton,
+        buttonStyles.pluginToolbarButton
+      ),
+      buttonWrapper: classNames(
+        styles.inlineToolbarButton_wrapper,
+        buttonStyles.inlineToolbarButton_wrapper,
+        buttonStyles.pluginToolbarButton_wrapper
+      ),
+      icon: classNames(
+        styles.inlineToolbarButton_icon,
+        buttonStyles.inlineToolbarButton_icon,
+        buttonStyles.pluginToolbarButton_icon
+      ),
+      active: classNames(
+        styles.inlineToolbarButton_active,
+        buttonStyles.inlineToolbarButton_active,
+        buttonStyles.pluginToolbarButton_active
+      ),
       menuButton: classNames(
         styles.inlineToolbarButton_menuButton,
         styles.inlineToolbarButton_icon,
-        {
-          [buttonStyles.inlineToolbarButton_icon]: !!buttonStyles.inlineToolbarButton_icon,
-          [buttonStyles.inlineToolbarButton_menuButton]: !!buttonStyles.inlineToolbarButton_menuButton,
-          [buttonStyles.pluginToolbarButton_icon]: !!buttonStyles.pluginToolbarButton_icon,
-        }
+        buttonStyles.inlineToolbarButton_icon,
+        buttonStyles.inlineToolbarButton_menuButton,
+        buttonStyles.pluginToolbarButton_icon
       ),
       arrowIcon: classNames(
         styles.inlineToolbarButton_icon,
         styles.inlineToolbarDropdownButton_arrowIcon,
-        {
-          [buttonStyles.inlineToolbarButton_icon]: !!buttonStyles.inlineToolbarButton_icon,
-          [buttonStyles.pluginToolbarButton_icon]: !!buttonStyles.pluginToolbarButton_icon,
-        }
+        buttonStyles.inlineToolbarButton_icon,
+        buttonStyles.pluginToolbarButton_icon
       ),
       arrowIconOpen: styles.inlineToolbarDropdownButton_arrowIcon_isOpen,
     };
