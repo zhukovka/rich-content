@@ -46,6 +46,7 @@
     "test:flow": "echo 'flow: type checking...' && flow",
     "lint": "lerna run --parallel --stream lint",
     "build:test": "npm run build && npm run build --prefix e2e/test-env",
+    "build:testOnly": "npm run build --prefix e2e/test-env",
     "generatePlugin": "node scripts/generatePlugin",
     "link": "lerna link"
   },
