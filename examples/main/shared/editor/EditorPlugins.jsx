@@ -159,7 +159,7 @@ let userButtonBorderColors = [...buttonDefaultPalette];
 
 const getLinkPanelDropDownConfig = () => {
   const getItems = () => {
-    casual.define('item', function () {
+    casual.define('item', function() {
       return {
         value: casual.url,
         label: casual.catch_phrase,
@@ -313,8 +313,7 @@ const buttonConfig = {
 const { Instagram, Twitter, YouTube, TikTok } = LinkPreviewProviders;
 const config = {
   [POLL_TYPE]: {
-    siteToken:
-      'qeBntAvAphOaK7uYbF3kn3nl89F2OYyqBH-v_6BpDcY.eyJpbnN0YW5jZUlkIjoiYzYyNjE1NzQtMDI1Yi00YzEwLTg3N2MtMTkyYmFkZjVlOTBmIiwiYXBwRGVmSWQiOiIxNDhjMjI4Ny1jNjY5LWQ4NDktZDE1My00NjNjNzQ4NmE2OTQiLCJtZXRhU2l0ZUlkIjoiZTgzY2U3YTUtZTBhYi00MzgyLThjOTMtNWJhZGU0ODZlZjBhIiwic2lnbkRhdGUiOiIyMDIwLTAzLTIzVDE5OjUyOjMxLjU1N1oiLCJ1aWQiOiIyZGZkZDNlYi1jOTE5LTQwNzUtOGJiOC00ZjRlZmMxNmExZWMiLCJwZXJtaXNzaW9ucyI6Ik9XTkVSIiwiZGVtb01vZGUiOmZhbHNlLCJhaWQiOiIzNWNlOWU0OC00NGRiLTRkYTgtOThiZi0zMzEwMDlkNDUyY2EiLCJiaVRva2VuIjoiMmUxYWYyZDEtZTJmMC0wZjkyLTBiZWYtNDI4NjQ5NzMwNjA1Iiwic2l0ZU93bmVySWQiOiIyZGZkZDNlYi1jOTE5LTQwNzUtOGJiOC00ZjRlZmMxNmExZWMiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDMtMjNUMjM6NTI6MzEuNTU3WiIsImhhc1VzZXJSb2xlIjp0cnVlfQ',
+    siteToken: process.env.POLLS_API_KEY,
   },
   [LINK_PREVIEW_TYPE]: {
     enableEmbed: true, // [Twitter, YouTube]

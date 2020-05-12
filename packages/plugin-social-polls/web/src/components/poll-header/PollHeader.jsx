@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import cls from 'classnames';
 
 import { TextField } from '../text-field';
 import { withPoll, PollContextPropTypes } from '../poll-context';
@@ -10,10 +11,14 @@ import styles from './poll-header.scss';
 
 class PollHeaderComponent extends PureComponent {
   render() {
-    const { poll, changePollTitle, changePollImage, layout, t } = this.props;
+    const { poll, changePollTitle, changePollImage, layout, t, rce } = this.props;
 
     return (
-      <div className={styles.header}>
+      <div
+        className={cls(styles.header, {
+          [styles.webview]: rce.isWebView,
+        })}
+      >
         <TextField
           textAutoResize
           maxLength={160}

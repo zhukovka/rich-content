@@ -175,6 +175,7 @@ class PollComponent extends Component {
       <div
         className={cls(styles.container, {
           [styles.isMobile]: rce.isMobile,
+          [styles.webview]: rce.isWebView,
           [styles.dark]: this.hasImageBackground(),
         })}
         style={style}

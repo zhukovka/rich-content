@@ -37,7 +37,7 @@ const modalStyles = {
   customStyles: {
     overlay: {
       backgroundColor: 'transparent',
-      zIndex: '998!important',
+      zIndex: 10,
     },
     content: {
       border: '1px solid rgba(255, 255, 255, 0.25)',

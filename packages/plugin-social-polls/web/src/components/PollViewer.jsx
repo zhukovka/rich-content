@@ -19,6 +19,7 @@ export class PollViewer extends PureComponent {
           t,
           theme,
           isViewMode: true,
+          isWebView: settings.isWebView,
           getSiteMembers: settings.getSiteMembers,
         }}
       >

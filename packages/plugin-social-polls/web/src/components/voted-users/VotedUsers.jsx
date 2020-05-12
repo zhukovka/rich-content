@@ -64,7 +64,7 @@ class VotedUsersComponent extends PureComponent {
   };
 
   render() {
-    const { option, t, showResults, showVotes, fetchVoters } = this.props;
+    const { option, t, showResults, showVotes, fetchVoters, rce } = this.props;
     const { isOpen, $container } = this.state;
 
     if (!showResults || !showVotes || !option.count) {
@@ -76,6 +76,7 @@ class VotedUsersComponent extends PureComponent {
         <div
           className={classnames(styles.container, {
             [styles.cta]: option.count,
+            [styles.webview]: rce.isWebView,
           })}
           ref={$container => this.setState({ $container })}
           onClick={this.openModal}

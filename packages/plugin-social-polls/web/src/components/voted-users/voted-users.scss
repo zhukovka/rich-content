@@ -4,6 +4,10 @@
   display: flex;
 }
 
+.container.webview {
+  display: none;
+}
+
 .avatar_list {
   list-style: none;
   padding: 0;
