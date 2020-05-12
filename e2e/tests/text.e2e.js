@@ -129,7 +129,9 @@ describe('text', () => {
       'https://www.google.com/'
     );
     // remove link
-    cy.get(`[data-hook=linkPluginToolbar] [data-hook=RemoveLinkButton]`).click();
+    cy.get(`[data-hook=linkPluginToolbar] [data-hook=RemoveLinkButton]`)
+      .click()
+      .blurEditor();
   });
 
   it('allow to enter tab character', function() {
