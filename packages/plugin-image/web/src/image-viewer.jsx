@@ -13,7 +13,7 @@ import {
 import { DEFAULTS, SEO_IMAGE_WIDTH } from './consts';
 import styles from '../statics/styles/image-viewer.scss';
 import ExpandIcon from './icons/expand.svg';
-// import InPluginInput from './InPluginInput';
+import InPluginInput from './InPluginInput';
 
 class ImageViewer extends React.Component {
   constructor(props) {
@@ -163,8 +163,18 @@ class ImageViewer extends React.Component {
   }
 
   renderCaption(caption) {
-    const { renderInnerRCECaption, viewerForInnerRCE } = this.props;
-    return renderInnerRCECaption ? renderInnerRCECaption() : viewerForInnerRCE(caption);
+    const { onCaptionChange, setFocusToBlock, setInPluginEditingMode } = this.props;
+    return onCaptionChange ? (
+      <InPluginInput
+        setInPluginEditingMode={setInPluginEditingMode}
+        className={this.styles.imageCaption}
+        value={caption}
+        onChange={onCaptionChange}
+        setFocusToBlock={setFocusToBlock}
+      />
+    ) : (
+      <span className={this.styles.imageCaption}>{caption}</span>
+    );
   }
 
   onKeyDown = (e, handler) => {
@@ -286,8 +296,6 @@ ImageViewer.propTypes = {
   isMobile: PropTypes.bool.isRequired,
   setComponentUrl: PropTypes.func,
   seoMode: PropTypes.bool,
-  renderInnerRCECaption: PropTypes.func,
-  viewerForInnerRCE: PropTypes.func,
 };
 
 export default ImageViewer;
