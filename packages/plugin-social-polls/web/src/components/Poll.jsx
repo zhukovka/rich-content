@@ -166,6 +166,10 @@ class PollComponent extends Component {
     return collapsed ? list.slice(0, 4) : list;
   }
 
+  handleCTAFocus = () => this.props.rce.setInPluginEditingMode(true);
+
+  handleCTABlur = () => this.props.rce.setInPluginEditingMode(false);
+
   render() {
     const { poll, rce, getVoters, addOption, design, layout, t, siteMembers } = this.props;
     const { collapsed, loading, error } = this.state;
@@ -227,7 +231,13 @@ class PollComponent extends Component {
 
           {!rce.isViewMode && (
             <li className={styles.column}>
-              <button onClick={addOption} className={styles.add_option} style={design.option}>
+              <button
+                onClick={addOption}
+                onFocus={this.handleCTAFocus}
+                onBlur={this.handleCTABlur}
+                className={styles.add_option}
+                style={design.option}
+              >
                 {layout.poll?.type === LAYOUT.GRID && layout.option?.enableImage ? (
                   <AddIcon />
                 ) : (

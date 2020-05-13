@@ -46,7 +46,7 @@ const modalStyles = {
   },
 };
 
-export function createToolbar({ helpers, t }) {
+export function createToolbar({ isMobile, helpers, t }) {
   return {
     InlineButtons: [
       {
@@ -58,7 +58,7 @@ export function createToolbar({ helpers, t }) {
         t,
         tooltipTextKey: 'Poll_PollSettings_Common_Header',
         activeTab: TABS.LAYOUT,
-        mobile: true,
+        mobile: false,
       },
 
       {
@@ -69,7 +69,7 @@ export function createToolbar({ helpers, t }) {
         modalStyles: getModalStyles(modalStyles),
         t,
         activeTab: TABS.DESIGN,
-        mobile: true,
+        mobile: false,
       },
 
       {
@@ -81,38 +81,40 @@ export function createToolbar({ helpers, t }) {
         t,
         tooltipTextKey: 'Poll_FormatToolbar_Settings_Tooltip',
         activeTab: TABS.SETTINGS,
-        mobile: true,
+        mobile: false,
       },
 
-      { keyName: 'separator', mobile: true, type: BUTTONS.SEPARATOR },
+      { keyName: 'separator', mobile: false, type: BUTTONS.SEPARATOR },
 
       { keyName: 'delete', mobile: true, type: BUTTONS.DELETE },
     ],
-    InsertButtons: [
-      {
-        type: 'modal',
-        name: 'Poll',
-        tooltipText: t('Poll_InsertPoll_Tooltip'),
-        Icon: InsertPluginIcon,
-        componentData: DEFAULT_COMPONENT_DATA,
-        toolbars: [TOOLBARS.FOOTER],
-        modalElement: decorateComponentWithProps(PollPresetSelector),
-        modalStylesFn: ({ buttonRef }) => {
-          return getBottomToolbarModalStyles(buttonRef, {
-            customStyles: DesktopFlyOutModalStyles,
-            centered: true,
-          });
-        },
-        modalDecorations: [
+    InsertButtons: isMobile
+      ? []
+      : [
           {
-            decorationMode: DECORATION_MODE.APPEND,
-            decorator: Arrow,
+            type: 'modal',
+            name: 'Poll',
+            tooltipText: t('Poll_InsertPoll_Tooltip'),
+            Icon: InsertPluginIcon,
+            componentData: DEFAULT_COMPONENT_DATA,
+            toolbars: [TOOLBARS.FOOTER],
+            modalElement: decorateComponentWithProps(PollPresetSelector),
+            modalStylesFn: ({ buttonRef }) => {
+              return getBottomToolbarModalStyles(buttonRef, {
+                customStyles: DesktopFlyOutModalStyles,
+                centered: true,
+              });
+            },
+            modalDecorations: [
+              {
+                decorationMode: DECORATION_MODE.APPEND,
+                decorator: Arrow,
+              },
+            ],
+            helpers,
+            t,
           },
         ],
-        helpers,
-        t,
-      },
-    ],
     name: 'poll',
   };
 }
