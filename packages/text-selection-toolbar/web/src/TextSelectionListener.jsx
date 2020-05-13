@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { debounce } from 'lodash';
 import { TWITTER } from './toolbarOptions';
 
 export default class TextSelectionListener extends React.Component {
@@ -8,35 +9,21 @@ export default class TextSelectionListener extends React.Component {
     this.state = { selectedText: '' };
   }
   componentDidMount() {
-    const { targetId } = this.props;
-    const specifiedElement = document.getElementById(targetId);
-    specifiedElement.addEventListener('mouseup', e => {
-      if (e.target.tagName !== 'BUTTON') {
-        this.getSelectionText();
-      }
-    });
-    document.addEventListener('click', e => {
-      if (!specifiedElement.contains(e.target)) {
-        this.setState({ selectedText: '' });
-      }
-    });
+    document.addEventListener(
+      'selectionchange',
+      debounce(() => {
+        const selection = document.getSelection();
+        let text, selectionRect;
+        if (selection.rangeCount > 0) {
+          text = selection.toString();
+          selectionRect = selection?.getRangeAt(0)?.getBoundingClientRect();
+        } else {
+          text = '';
+        }
+        this.setState({ selectedText: text, selectionRect });
+      }, 100)
+    );
   }
-
-  getSelectionText = () => {
-    let text = '';
-    const { selectedText } = this.state;
-    let selection;
-    if (window.getSelection) {
-      selection = window.getSelection();
-      text = selection.toString();
-    }
-    if (selectedText !== text) {
-      const selectionRect = selection?.getRangeAt(0).getBoundingClientRect();
-      this.setState({ selectedText: text, selectionRect });
-    } else {
-      this.setState({ selectedText: '' });
-    }
-  };
 
   render() {
     const { ToolBar, targetId } = this.props;
