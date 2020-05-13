@@ -46,9 +46,8 @@ export class EditorEventsProvider extends React.Component {
   }
 
   subscribe(event, cb) {
-    this.events = merge(this.events, {
-      [event]: [cb],
-    });
+    this.events[event] = this.events[event] || [];
+    this.events[event].push(cb);
 
     return () => this.unsubscribe(event, cb);
   }

@@ -66,6 +66,8 @@ class PollComponent extends Component {
       // eslint-disable-next-line no-console
       console.error('[rce-social-polls] vote: ', error.response);
       this.setState({ error: error.message });
+
+      return Promise.reject(error);
     }
   };
 
@@ -77,6 +79,8 @@ class PollComponent extends Component {
       // eslint-disable-next-line no-console
       console.error('[rce-social-polls] unvote: ', error.response);
       this.setState({ error: error.message });
+
+      return Promise.reject(error);
     }
   };
 

@@ -67,9 +67,7 @@ export class VotedUsersModalComponent extends Component {
                     <span className={styles.user_name}>{member.name?.nick}</span>
                   </div>
                 </li>
-              ) : (
-                <span className={styles.user_name}>Error retrieving siteMembers</span>
-              )
+              ) : null
             )}
           </ul>
         </InfiniteScroll>

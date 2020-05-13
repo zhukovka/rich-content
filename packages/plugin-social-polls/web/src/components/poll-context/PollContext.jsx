@@ -62,6 +62,7 @@ export class PollContextProviderComponent extends PureComponent {
     const { editorEvents } = this.props;
 
     editorEvents.subscribe(EditorEvents.PUBLISH, this.syncPoll);
+    window.editorEvents = window.editorEvents || editorEvents;
   }
 
   componentWillUnmount() {
@@ -74,15 +75,25 @@ export class PollContextProviderComponent extends PureComponent {
     this.setState({ poll });
   }
 
+  populateWithData(poll) {
+    const { t } = this.props;
+    poll.title = poll.title || t('Poll_Editor_Question_Placeholder');
+
+    poll.options = poll.options.map(option => ({
+      ...option,
+      title: option.title || t('Poll_Editor_Answer_Placeholder'),
+    }));
+
+    return poll;
+  }
+
   syncPoll = async () => {
-    const { poll } = this.state;
     let dto;
+    const poll = this.populateWithData(this.state.poll);
 
     if (poll.id) {
-      this.pollApiClient.cancelTokens.updatePoll?.cancel(SocialPollsService.CANCEL_MESSAGE);
       dto = await this.pollApiClient.updatePoll(poll);
     } else {
-      this.pollApiClient.cancelTokens.createPoll?.cancel(SocialPollsService.CANCEL_MESSAGE);
       dto = await this.pollApiClient.createPoll(poll);
     }
 

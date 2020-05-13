@@ -52,7 +52,12 @@ export class PollEditor extends PureComponent {
           getSiteMembers: settings.getSiteMembers,
         }}
       >
-        <PollContextProvider settings={settings} poll={componentData.poll} setPoll={this.setPoll}>
+        <PollContextProvider
+          settings={settings}
+          poll={componentData.poll}
+          setPoll={this.setPoll}
+          t={t}
+        >
           <Poll />
         </PollContextProvider>
       </RCEHelpersContext.Provider>

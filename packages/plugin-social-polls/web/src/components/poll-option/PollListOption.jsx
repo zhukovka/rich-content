@@ -119,7 +119,7 @@ export class PollListOption extends PollOptionBase {
             endAdornment={
               <>
                 {option.count ? (
-                  <Tooltip content="You can’t edit answers that have votes">
+                  <Tooltip content={t('Poll_Editor_Answer_Error_NoEdit_Tooltip')}>
                     <NonEditableIcon className={styles.adornment_icon} />
                   </Tooltip>
                 ) : null}

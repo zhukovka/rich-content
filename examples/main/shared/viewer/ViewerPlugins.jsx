@@ -103,7 +103,7 @@ const uiSettings = {
 const config = {
   [POLL_TYPE]: {
     siteToken: process.env.POLLS_API_KEY,
-    isWebView: true,
+    isWebView: false,
   },
   [GALLERY_TYPE]: {},
   [HEADERS_MARKDOWN_TYPE]: {

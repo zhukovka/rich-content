@@ -8,6 +8,8 @@ export class SocialPollsService {
   cancelTokens = {
     createPoll: null,
     updatePoll: null,
+    vote: null,
+    unvote: null,
   };
 
   constructor(siteToken) {
@@ -34,8 +36,9 @@ export class SocialPollsService {
   }
 
   createPoll(question) {
-    const source = axios.CancelToken.source();
+    this.cancelTokens.createPoll?.cancel(SocialPollsService.CANCEL_MESSAGE);
 
+    const source = axios.CancelToken.source();
     this.cancelTokens.createPoll = source;
 
     return this.client
@@ -53,8 +56,9 @@ export class SocialPollsService {
   }
 
   updatePoll(question) {
-    const source = axios.CancelToken.source();
+    this.cancelTokens.updatePoll?.cancel(SocialPollsService.CANCEL_MESSAGE);
 
+    const source = axios.CancelToken.source();
     this.cancelTokens.updatePoll = source;
 
     return this.client
@@ -72,15 +76,47 @@ export class SocialPollsService {
   }
 
   vote(pollId, optionId) {
-    return this.client.post(`/questions/${pollId}/vote`, {
-      optionId,
-    });
+    this.cancelTokens.vote?.cancel(SocialPollsService.CANCEL_MESSAGE);
+
+    const source = axios.CancelToken.source();
+    this.cancelTokens.vote = source;
+
+    return this.client
+      .post(
+        `/questions/${pollId}/vote`,
+        {
+          optionId,
+        },
+        {
+          cancelToken: source.token,
+        }
+      )
+      .then(response => {
+        this.cancelTokens.vote = null;
+        return response;
+      });
   }
 
   unvote(pollId, optionId) {
-    return this.client.post(`/questions/${pollId}/unvote`, {
-      optionId,
-    });
+    this.cancelTokens.unvote?.cancel(SocialPollsService.CANCEL_MESSAGE);
+
+    const source = axios.CancelToken.source();
+    this.cancelTokens.unvote = source;
+
+    return this.client
+      .post(
+        `/questions/${pollId}/unvote`,
+        {
+          optionId,
+        },
+        {
+          cancelToken: source.token,
+        }
+      )
+      .then(response => {
+        this.cancelTokens.unvote = null;
+        return response;
+      });
   }
 
   getVoters(pollId, optionId, params) {

@@ -97,7 +97,12 @@ class ImageUploadComponent extends PureComponent {
     }
 
     return (
-      <FileInput onChange={this.handleFileChange} theme={rce.theme} tabIndex={-1}>
+      <FileInput
+        accept="image/gif, image/jpeg, image/jpg, image/png"
+        onChange={this.handleFileChange}
+        theme={rce.theme}
+        tabIndex={-1}
+      >
         <div
           ref={this.$container}
           className={cls(styles.container, styles.clickable, className)}

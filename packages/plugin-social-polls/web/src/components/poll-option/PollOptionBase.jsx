@@ -59,10 +59,8 @@ export class PollOptionBase extends React.PureComponent {
       } else {
         await this.props.vote(this.props.option.id);
       }
-    } catch (error) {
-    } finally {
       this.setState({ loading: false });
-    }
+    } catch (error) {}
   };
 
   handleTitleChange = title => {
