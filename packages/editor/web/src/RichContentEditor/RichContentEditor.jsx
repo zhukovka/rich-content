@@ -436,6 +436,30 @@ class RichContentEditor extends Component {
     );
   };
 
+  renderInnerRCEModal = () => {
+    const { innerRCEcb, innerRCEEditorState, innerRCERenderedIn } = this.state;
+    return (
+      <ClickOutside onClickOutside={this.closeInnerRCE}>
+        <InnerRCEModal
+          style={{
+            backgroundColor: 'white',
+            position: 'absolute',
+            top: `${this.innerRCEOffsetTop}px`,
+            left: `${this.innerRCEOffsetLeft}px`,
+            width: `${this.innerRCEWidth}px`,
+            height: `auto`,
+            zIndex: 5,
+          }}
+          innerRCEcb={innerRCEcb}
+          innerRCEEditorState={innerRCEEditorState}
+          theme={this.contextualData.theme}
+          innerRCERenderedIn={innerRCERenderedIn}
+          {...this.props}
+        />
+      </ClickOutside>
+    );
+  };
+
   innerRCEOpenModal = (innerContentState, callback, renderedIn, innerRCECaptionRef) => {
     // this.innerRCEHeight = innerRCECaptionRef.offsetHeight;
     this.innerRCEWidth = innerRCECaptionRef.offsetWidth;
@@ -543,26 +567,7 @@ class RichContentEditor extends Component {
                 {this.renderToolbars()}
                 {this.renderInlineModals()}
                 {this.renderTooltipHost()}
-                {this.state.innerRCEOpenModal && (
-                  <ClickOutside onClickOutside={this.closeInnerRCE}>
-                    <InnerRCEModal
-                      style={{
-                        backgroundColor: 'white',
-                        position: 'absolute',
-                        top: `${this.innerRCEOffsetTop}px`,
-                        left: `${this.innerRCEOffsetLeft}px`,
-                        width: `${this.innerRCEWidth}px`,
-                        height: `auto`,
-                        zIndex: 5,
-                      }}
-                      innerRCEcb={this.state.innerRCEcb}
-                      innerRCEEditorState={this.state.innerRCEEditorState}
-                      theme={this.contextualData.theme}
-                      innerRCERenderedIn={this.state.innerRCERenderedIn}
-                      {...this.props}
-                    />
-                  </ClickOutside>
-                )}
+                {this.state.innerRCEOpenModal && this.renderInnerRCEModal()}
               </div>
             </div>
           )}
