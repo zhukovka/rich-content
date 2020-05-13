@@ -62,7 +62,6 @@ export class PollContextProviderComponent extends PureComponent {
     const { editorEvents } = this.props;
 
     editorEvents.subscribe(EditorEvents.PUBLISH, this.syncPoll);
-    window.editorEvents = window.editorEvents || editorEvents;
   }
 
   componentWillUnmount() {
