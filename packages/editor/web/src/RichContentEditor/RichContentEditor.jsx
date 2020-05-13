@@ -58,6 +58,9 @@ class RichContentEditor extends Component {
       uiSettings.blankTargetToggleVisibilityFn || (anchorTarget => anchorTarget !== '_blank');
     uiSettings.nofollowRelToggleVisibilityFn =
       uiSettings.nofollowRelToggleVisibilityFn || (relValue => relValue !== 'nofollow');
+    if (!props.config.uiSettings) {
+      props.config.uiSettings = uiSettings;
+    }
 
     this.calculateDiff = createCalcContentDiff(this.state.editorState);
     this.initContext();
@@ -541,7 +544,6 @@ RichContentEditor.propTypes = {
   initialIntent: PropTypes.string,
   siteDomain: PropTypes.string,
   onError: PropTypes.func,
-  isSSR: PropTypes.bool,
 };
 
 RichContentEditor.defaultProps = {
