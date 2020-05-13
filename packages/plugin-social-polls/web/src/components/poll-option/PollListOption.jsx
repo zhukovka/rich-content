@@ -113,12 +113,12 @@ export class PollListOption extends PollOptionBase {
             style={style.input}
             className={styles.input}
             value={option.title}
-            disabled={option.count}
+            disabled={!this.isEditAllowed()}
             placeholder={t('Poll_Editor_Answer_Placeholder')}
             onChange={this.handleTitleChange}
             endAdornment={
               <>
-                {option.count ? (
+                {!this.isEditAllowed() ? (
                   <Tooltip content={t('Poll_Editor_Answer_Error_NoEdit_Tooltip')}>
                     <NonEditableIcon className={styles.adornment_icon} />
                   </Tooltip>
@@ -130,6 +130,7 @@ export class PollListOption extends PollOptionBase {
             }
             startAdornment={
               <ImageUpload
+                disabled={!this.isEditAllowed()}
                 className={styles.image}
                 value={option.mediaId}
                 onChange={this.handleImageChange}

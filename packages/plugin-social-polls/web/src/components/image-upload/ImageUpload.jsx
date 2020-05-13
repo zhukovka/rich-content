@@ -84,7 +84,7 @@ class ImageUploadComponent extends PureComponent {
   };
 
   render() {
-    const { className, rce, small, style = {} } = this.props;
+    const { className, rce, small, disabled, style = {} } = this.props;
     const { value, loading } = this.state;
 
     if (rce.isViewMode) {
@@ -99,6 +99,7 @@ class ImageUploadComponent extends PureComponent {
 
     return (
       <FileInput
+        disabled={disabled}
         accept="image/gif, image/jpeg, image/jpg, image/png"
         onChange={this.handleFileChange}
         theme={rce.theme}
@@ -106,7 +107,10 @@ class ImageUploadComponent extends PureComponent {
       >
         <div
           ref={this.$container}
-          className={cls(styles.container, styles.clickable, className)}
+          className={cls(styles.container, className, {
+            [styles.disabled]: disabled,
+            [styles.clickable]: !disabled,
+          })}
           style={{ ...style, backgroundImage: `url('${value}')` }}
         >
           <div

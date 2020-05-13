@@ -16,6 +16,10 @@ export class PollOptionBase extends React.PureComponent {
     loading: false,
   };
 
+  isEditAllowed() {
+    return !this.props.option.count;
+  }
+
   isUserChoice() {
     const { poll, option } = this.props;
 
@@ -59,8 +63,10 @@ export class PollOptionBase extends React.PureComponent {
       } else {
         await this.props.vote(this.props.option.id);
       }
+    } catch (error) {
+    } finally {
       this.setState({ loading: false });
-    } catch (error) {}
+    }
   };
 
   handleTitleChange = title => {

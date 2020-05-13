@@ -95,7 +95,7 @@ export function createToolbar({ helpers, t }) {
         tooltipText: t('Poll_InsertPoll_Tooltip'),
         Icon: InsertPluginIcon,
         componentData: DEFAULT_COMPONENT_DATA,
-        toolbars: [TOOLBARS.FOOTER, TOOLBARS.SIDE, TOOLBARS.MOBILE],
+        toolbars: [TOOLBARS.FOOTER],
         modalElement: decorateComponentWithProps(PollPresetSelector),
         modalStylesFn: ({ buttonRef }) => {
           return getBottomToolbarModalStyles(buttonRef, {

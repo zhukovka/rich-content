@@ -11,7 +11,7 @@
     cursor: pointer
   }
 
-  &:hover .overlay {
+  &:not(.disabled):hover .overlay {
     opacity: 1;
   }
 }

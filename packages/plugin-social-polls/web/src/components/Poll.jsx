@@ -123,7 +123,7 @@ class PollComponent extends Component {
         return true;
 
       case VISIBILITY.VOTERS:
-        return !!this.props.poll.ownVotes?.length;
+        return this.props.poll.creatorFlag || !!this.props.poll.ownVotes?.length;
 
       case VISIBILITY.ME:
         return this.props.poll.creatorFlag;

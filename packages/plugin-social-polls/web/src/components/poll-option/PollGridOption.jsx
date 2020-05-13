@@ -51,12 +51,13 @@ export class PollGridOption extends PollOptionBase {
             value={option.mediaId}
             onChange={this.handleImageChange}
             style={style.image}
+            disabled={!this.isEditAllowed()}
             imagesPool={OPTION_IMAGES_POOL}
           />
         )}
         <div className={styles.title}>
           <TextField
-            disabled={option.count}
+            disabled={!this.isEditAllowed()}
             maxLength={60}
             style={style.input}
             className={cls(styles.input, styles.centered)}
@@ -65,7 +66,7 @@ export class PollGridOption extends PollOptionBase {
             onChange={this.handleTitleChange}
             endAdornment={
               <>
-                {option.count ? (
+                {!this.isEditAllowed() ? (
                   <Tooltip content={t('Poll_Editor_Answer_Error_NoEdit_Tooltip')}>
                     <NonEditableIcon className={styles.adornment_icon} />
                   </Tooltip>
