@@ -90,6 +90,7 @@ class ImageUploadComponent extends PureComponent {
     if (rce.isViewMode) {
       return (
         <div
+          ref={this.$container}
           className={cls(styles.container, className)}
           style={{ ...style, backgroundImage: `url('${value}')` }}
         />
