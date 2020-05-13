@@ -108,12 +108,9 @@ export class PollContextProviderComponent extends PureComponent {
   };
 
   updatePoll(poll) {
-    this.setState({
-      poll: {
-        ...this.state.poll,
-        ...poll,
-      },
-    });
+    this.setState(state => ({
+      poll: Object.assign({}, state.poll, poll),
+    }));
   }
 
   async vote(optionId) {
