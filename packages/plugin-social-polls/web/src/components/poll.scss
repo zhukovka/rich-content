@@ -91,6 +91,7 @@
   font-size: 16px;
   font-weight: bold;
   border-width: 2px;
+  opacity: 1;
 }
 
 .see_more {
@@ -124,15 +125,11 @@
   font-size: 14px;
   margin: 20px 0 0;
   opacity: 0.6;
-  color: #000;
+  color: #fff;
 }
 
 .additional_note + .additional_note {
   margin: 0;
-}
-
-.dark .additional_note {
-  color: #fff;
 }
 
 /* rtl:ignore */
