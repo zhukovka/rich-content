@@ -44,7 +44,7 @@ export class VotedUsersModalComponent extends Component {
 
     return (
       <div className={styles.voted_users_modal}>
-        <div className={styles.header}>
+        <div className={styles.voted_users_modal_header}>
           <p className={styles.title}>
             {t('Poll_Viewer_VoteCount_Modal_Voters_Header', { number: option.count })}
           </p>
