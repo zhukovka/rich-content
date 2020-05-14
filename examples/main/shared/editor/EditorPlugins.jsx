@@ -104,7 +104,6 @@ export const editorPluginsPartialPreset = [
   createEmojiPlugin,
   createTextHighlightPlugin,
   createUndoRedoPlugin,
-  createIndentPlugin,
 ];
 
 export const editorPluginsEmbedsPreset = [
@@ -113,10 +112,19 @@ export const editorPluginsEmbedsPreset = [
   createVerticalEmbedPlugin,
 ];
 
+export const textPlugins = [
+  createLinkPreviewPlugin,
+  createVerticalEmbedPlugin,
+  createIndentPlugin,
+  createActionButtonPlugin,
+  ...editorPluginsPartialPreset,
+];
+
 export const editorPlugins = [
   createLinkPreviewPlugin,
   createVerticalEmbedPlugin,
   createHeadingsPlugin,
+  createIndentPlugin,
   createActionButtonPlugin,
   ...editorPluginsPartialPreset,
 ];
@@ -149,6 +157,7 @@ export const editorPluginsMap = {
   verticalEmbed: createVerticalEmbedPlugin,
   partialPreset: editorPluginsPartialPreset,
   embedsPreset: editorPluginsEmbedsPreset,
+  textPlugins: textPlugins,
   all: editorPlugins,
 };
 

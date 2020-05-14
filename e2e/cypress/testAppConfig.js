@@ -25,6 +25,7 @@ export const plugins = {
   verticalEmbed: 'verticalEmbed',
   actionButton: 'actionButton',
   headings: 'headings',
+  textPlugins: 'textPlugins',
   all: 'all',
 };
 
