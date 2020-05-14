@@ -6,7 +6,7 @@ import { RichContentViewer } from 'wix-rich-content-viewer';
 import { RichContentWrapper } from 'wix-rich-content-wrapper';
 import { default as editorPlugins } from './editorPlugins';
 import { default as viewerPlugins } from './viewerPlugins';
-import theme from '../../../../examples/main/shared/theme/theme';
+import theme from '../../../../../examples/main/shared/theme/theme';
 
 class WrapperTestApp extends PureComponent {
   renderEditor = () => {
