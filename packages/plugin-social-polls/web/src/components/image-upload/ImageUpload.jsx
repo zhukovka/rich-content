@@ -39,6 +39,12 @@ class ImageUploadComponent extends PureComponent {
     }
   }
 
+  componentWillReceiveProps(props) {
+    if (this.props.value !== props.value) {
+      this.setState({ value: props.value });
+    }
+  }
+
   sync() {
     this.props.onChange(this.state.value);
   }
