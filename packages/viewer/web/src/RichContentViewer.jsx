@@ -23,13 +23,16 @@ class RichContentViewer extends Component {
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-  static getInitialState = props =>
-    props.initialState
-      ? normalizeInitialState(props.initialState, {
-          anchorTarget: props.anchorTarget,
-          relValue: props.relValue,
+  static getInitialState = props => {
+    const { initialState, anchorTarget, relValue, normalize = {} } = props;
+    return initialState
+      ? normalizeInitialState(initialState, {
+          anchorTarget,
+          relValue,
+          ...normalize,
         })
       : {};
+  };
 
   getContextualData = ({
     t,
@@ -148,6 +151,7 @@ RichContentViewer.propTypes = {
   siteDomain: PropTypes.string,
   onError: PropTypes.func,
   addAnchors: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  normalize: PropTypes.object,
 };
 
 RichContentViewer.defaultProps = {

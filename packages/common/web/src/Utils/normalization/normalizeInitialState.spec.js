@@ -1,7 +1,172 @@
 import deepFreeze from 'deep-freeze';
-import uut from './normalizeInitialState';
+import normalizeInitialState from './normalizeInitialState';
 import Version from '../versioningUtils';
 
+const bad1 = {
+  blocks: [
+    {
+      key: 'foo',
+      text: '',
+      type: 'unstyled',
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [],
+      data: {},
+    },
+    {
+      key: '3rgtb',
+      text: '📷 #FALSO: Por la alerta amarilla decretada en el suroccidente de Bogotá, NO.',
+      type: 'blockquote',
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [
+        {
+          offset: 0,
+          length: 1,
+          key: 0,
+        },
+        {
+          offset: 2,
+          length: 6,
+          key: 1,
+        },
+      ],
+      data: {
+        textAlignment: 'justify',
+      },
+    },
+  ],
+  entityMap: {
+    '0': {
+      type: 'IMAGE',
+      mutability: 'MUTABLE',
+      data: {
+        alt: '⚠️',
+        src: 'https://s.w.org/images/core/emoji/12.0.0-1/svg/26a0.svg',
+        config: {
+          size: 'content',
+          alignment: 'center',
+        },
+      },
+    },
+    '1': {
+      type: 'LINK',
+      mutability: 'MUTABLE',
+      data: {
+        href: 'https://twitter.com/hashtag/FALSO?src=hash&ref_src=twsrc%5Etfw',
+        url: 'https://twitter.com/hashtag/FALSO?src=hash&ref_src=twsrc%5Etfw',
+        target: '_top',
+        rel: 'noreferrer',
+      },
+    },
+  },
+  VERSION: '7.6.1',
+};
+
+const bad2 = {
+  blocks: [
+    {
+      key: 'foo',
+      text: '',
+      type: 'unstyled',
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [],
+      data: {},
+    },
+    {
+      key: '3rgtb',
+      text: '📷 #FALSO: Por la alerta amarilla decretada en el suroccidente de Bogotá, NO.',
+      type: 'blockquote',
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [
+        {
+          offset: 0,
+          length: 1,
+          key: 0,
+        },
+        {
+          offset: 2,
+          length: 6,
+          key: 1,
+        },
+      ],
+      data: {
+        textAlignment: 'justify',
+      },
+    },
+  ],
+  entityMap: {
+    '0': {
+      type: 'wix-draft-plugin-image',
+      mutability: 'MUTABLE',
+      data: {
+        alt: '⚠️',
+        src: 'https://s.w.org/images/core/emoji/12.0.0-1/svg/26a0.svg',
+        config: {
+          size: 'content',
+          alignment: 'center',
+        },
+      },
+    },
+    '1': {
+      type: 'LINK',
+      mutability: 'MUTABLE',
+      data: {
+        href: 'https://twitter.com/hashtag/FALSO?src=hash&ref_src=twsrc%5Etfw',
+        url: 'https://twitter.com/hashtag/FALSO?src=hash&ref_src=twsrc%5Etfw',
+        target: '_top',
+        rel: 'noreferrer',
+      },
+    },
+  },
+  VERSION: '7.6.1',
+};
+
+const good = {
+  blocks: [
+    {
+      key: 'foo',
+      text: '',
+      type: 'unstyled',
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [],
+      data: {},
+    },
+    {
+      key: '3rgtb',
+      text: '📷 #FALSO: Por la alerta amarilla decretada en el suroccidente de Bogotá, NO.',
+      type: 'blockquote',
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [
+        {
+          offset: 2,
+          length: 6,
+          key: 1,
+        },
+      ],
+      data: {
+        textAlignment: 'justify',
+      },
+    },
+  ],
+  entityMap: {
+    '1': {
+      type: 'LINK',
+      mutability: 'MUTABLE',
+      data: {
+        href: 'https://twitter.com/hashtag/FALSO?src=hash&ref_src=twsrc%5Etfw',
+        url: 'https://twitter.com/hashtag/FALSO?src=hash&ref_src=twsrc%5Etfw',
+        target: '_top',
+        rel: 'noreferrer',
+      },
+    },
+  },
+  VERSION: '7.6.1',
+};
 const createState = ({
   text = 'bla bla bla  bla   ',
   type = 'unstyled',
@@ -23,7 +188,7 @@ describe('normalizeInitialState', () => {
 
     describe('for unstyled block', () => {
       it('should leave type unchanged if it contains plain text', () => {
-        const actual = uut(
+        const actual = normalizeInitialState(
           createState({
             inlineStyleRanges: [
               { offset: 8, length: 3, style: 'inline-header-one' },
@@ -90,7 +255,7 @@ describe('normalizeInitialState', () => {
         ],
       ])('conversation to %s', (expectedType, initialRanges) => {
         it('should remove inline header ranges and convert block', () => {
-          const actual = uut(
+          const actual = normalizeInitialState(
             createState({
               type: 'unstyled',
               inlineStyleRanges: initialRanges,
@@ -123,7 +288,7 @@ describe('normalizeInitialState', () => {
         };
 
         it('should ignore spaces', () => {
-          const actual = uut(
+          const actual = normalizeInitialState(
             createState({
               type: 'unstyled',
               inlineStyleRanges: setRangeStyles([
@@ -155,7 +320,7 @@ describe('normalizeInitialState', () => {
       'header-three',
     ])('for %s block', type => {
       it('should remove inline header ranges without changing block type', () => {
-        const actual = uut(
+        const actual = normalizeInitialState(
           createState({
             type,
             inlineStyleRanges: [
@@ -197,7 +362,7 @@ describe('normalizeInitialState', () => {
         text: 'google.com some other text wix.com',
       };
 
-      const actual = uut(createState(initialState), config);
+      const actual = normalizeInitialState(createState(initialState), config);
       const expected = createState({
         ...initialState,
         VERSION: Version.currentVersion,
@@ -263,7 +428,7 @@ describe('normalizeInitialState', () => {
         },
       };
 
-      const actual = uut(createState(initialState), config);
+      const actual = normalizeInitialState(createState(initialState), config);
       const expected = createState({
         ...initialState,
         VERSION: Version.currentVersion,
@@ -369,7 +534,7 @@ describe('normalizeInitialState', () => {
         },
       };
 
-      const actual = uut(createState(initialState), config);
+      const actual = normalizeInitialState(createState(initialState), config);
       const expected = createState({
         ...initialState,
         VERSION: Version.currentVersion,
@@ -426,7 +591,7 @@ describe('normalizeInitialState', () => {
         },
       };
 
-      const actual = uut(createState(initialState), config);
+      const actual = normalizeInitialState(createState(initialState), config);
       const expected = createState({
         ...initialState,
         VERSION: Version.currentVersion,
@@ -488,7 +653,7 @@ describe('normalizeInitialState', () => {
         ],
       };
 
-      const actual = uut(createState(initialState), config);
+      const actual = normalizeInitialState(createState(initialState), config);
       const expected = createState({
         ...initialState,
         VERSION: Version.currentVersion,
@@ -532,7 +697,7 @@ describe('normalizeInitialState', () => {
         VERSION: Version.currentVersion,
       };
 
-      const actual = uut(createState(initialState), config);
+      const actual = normalizeInitialState(createState(initialState), config);
       const expected = createState({
         ...initialState,
         VERSION: Version.currentVersion,
@@ -612,7 +777,7 @@ describe('normalizeInitialState', () => {
         },
       });
 
-      const actual = uut(initialState(badData), {});
+      const actual = normalizeInitialState(initialState(badData), {});
       const goodDataWithVersion = {
         ...initialState(goodData),
         VERSION: Version.currentVersion,
@@ -672,7 +837,7 @@ describe('normalizeInitialState', () => {
     it('should change title to altText when version < 6', () => {
       const oldContentState = initialState('5.9999.9', 'title');
       const newContentState = initialState(Version.currentVersion, 'altText');
-      const normalizedState = uut(oldContentState);
+      const normalizedState = normalizeInitialState(oldContentState);
 
       expect(normalizedState).toEqual(newContentState);
     });
@@ -680,7 +845,19 @@ describe('normalizeInitialState', () => {
       const contentState = initialState('6.0.0', 'title');
       const newContentState = initialState(Version.currentVersion, 'title');
 
-      expect(uut(contentState)).toEqual(newContentState);
+      expect(normalizeInitialState(contentState)).toEqual(newContentState);
+    });
+  });
+
+  describe('inline images removals', () => {
+    it('should remove legacy image plugin', () => {
+      const actual = normalizeInitialState(bad1, { disableInlineImages: true });
+      expect(actual).toEqual({ ...good, entityMap: bad2.entityMap });
+    });
+
+    it('should remove wix-draft-plugin-image image plugin', () => {
+      const actual = normalizeInitialState(bad2, { disableInlineImages: true });
+      expect(actual).toEqual({ ...good, entityMap: bad2.entityMap });
     });
   });
 });
