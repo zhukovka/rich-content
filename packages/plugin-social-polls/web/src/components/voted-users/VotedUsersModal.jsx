@@ -46,7 +46,10 @@ export class VotedUsersModalComponent extends Component {
       <div className={styles.voted_users_modal}>
         <div className={styles.voted_users_modal_header}>
           <p className={styles.title}>
-            {t('Poll_Viewer_VoteCount_Modal_Voters_Header', { number: option.count })}
+            {t('Poll_Viewer_VoteCount_Modal_Voters_Header', {
+              count: option.count,
+              number: option.count,
+            })}
           </p>
           <RemoveIcon onClick={onRequestClose} className={styles.close_icon} />
         </div>

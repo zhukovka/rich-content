@@ -260,12 +260,11 @@ class PollComponent extends Component {
           </button>
         )}
 
-        {rce.isViewMode &&
-          this.getNotes().map((note, i) => (
-            <p className={styles.additional_note} key={i}>
-              {note.label}
-            </p>
-          ))}
+        {this.getNotes().map((note, i) => (
+          <p className={styles.additional_note} key={i}>
+            {note.label}
+          </p>
+        ))}
 
         <LoaderIcon
           className={cls(styles.spinner, {

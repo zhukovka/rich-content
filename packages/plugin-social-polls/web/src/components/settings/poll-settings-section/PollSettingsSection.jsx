@@ -134,15 +134,22 @@ export class PollSettingsSection extends Component {
           label={t('Poll_PollSettings_Tab_Settings_Section_Results_VoteVisibility')}
           theme={this.styles}
           checked={votesDisplay}
-          onChange={() => this.updateSettings({ votesDisplay: !votesDisplay })}
+          onChange={() =>
+            this.updateSettings({
+              votesDisplay: !votesDisplay,
+              votersDisplay: !votesDisplay,
+            })
+          }
         />
 
-        <LabeledToggle
-          label={t('Poll_PollSettings_Tab_Settings_Section_Results_VoterAnonymous')}
-          theme={this.styles}
-          checked={votersDisplay}
-          onChange={() => this.updateSettings({ votersDisplay: !votersDisplay })}
-        />
+        {votesDisplay && (
+          <LabeledToggle
+            label={t('Poll_PollSettings_Tab_Settings_Section_Results_VoterAnonymous')}
+            theme={this.styles}
+            checked={votersDisplay}
+            onChange={() => this.updateSettings({ votersDisplay: !votersDisplay })}
+          />
+        )}
       </section>
     );
   }

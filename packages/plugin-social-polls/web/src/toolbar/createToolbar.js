@@ -61,6 +61,8 @@ export function createToolbar({ isMobile, helpers, t }) {
         mobile: false,
       },
 
+      { keyName: 'separator', mobile: false, type: BUTTONS.SEPARATOR },
+
       {
         keyName: 'design',
         type: BUTTONS.EXTERNAL_MODAL,
@@ -68,9 +70,12 @@ export function createToolbar({ isMobile, helpers, t }) {
         children: t('Poll_PollSettings_Tab_Design_TabName'),
         modalStyles: getModalStyles(modalStyles),
         t,
+        tooltipTextKey: 'Poll_PollSettings_Common_Header',
         activeTab: TABS.DESIGN,
         mobile: false,
       },
+
+      { keyName: 'separator', mobile: false, type: BUTTONS.SEPARATOR },
 
       {
         keyName: 'settings',

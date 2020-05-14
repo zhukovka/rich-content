@@ -65,6 +65,14 @@ export class DesignSettingsSection extends Component {
     </>
   );
 
+  getBackgroundColorValue() {
+    const { componentData } = this.props;
+    const { backgroundType } = this.state;
+
+    const { design } = componentData;
+    return getBackgroundString(design.poll?.background, backgroundType);
+  }
+
   getColorPalettePreset() {
     const { backgroundType } = this.state;
 
@@ -116,7 +124,7 @@ export class DesignSettingsSection extends Component {
           {t(DesignSettingsSection.PICK_BACKGROUND_LABELS[backgroundType])}
         </p>
         <ColorPicker
-          color={design.poll?.background}
+          color={this.getBackgroundColorValue()}
           palette={this.getColorPalettePreset()}
           schemeAttributes={BACKGROUND_PRESETS[backgroundType]}
           onChange={this.handleBackgroundChange}
