@@ -17,6 +17,8 @@
 
 
 ### :rocket: New Feature
+- `headings`
+  - [#901](https://github.com/wix-incubator/rich-content/pull/901) adding plugin headings with dropdown option
 - `editor`
   - [#1041](https://github.com/wix-incubator/rich-content/pull/1041) shift+tab click deletes tab character ('\t')
   - [#1065](https://github.com/wix-incubator/rich-content/pull/1065) backspace click at start of block decrease indentation
@@ -41,11 +43,6 @@
   - [#993](https://github.com/wix-incubator/rich-content/pull/993) remove `!important` usage + deep merge jss styles
   - [#1031](https://github.com/wix-incubator/rich-content/pull/1031) fixed build warning - "punycode" library
   
-### :rocket: New Feature
-- `headings`
-  - [#901](https://github.com/wix-incubator/rich-content/pull/901) adding plugin headings with dropdown option
-</details>
-<hr/>
 
 ## 7.6.0 (May 5, 2020)
 ### :rocket: New Feature

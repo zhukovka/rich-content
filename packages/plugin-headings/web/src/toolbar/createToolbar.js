@@ -7,7 +7,7 @@ export default settings => ({
       component: decorateComponentWithProps(HeadingButton, settings),
       isMobile: true,
       position: { desktop: 0, mobile: 0 },
-      group: { desktop: 0, mobile: 0 },
+      group: { desktop: 0, mobile: 1 },
     },
   }),
 });

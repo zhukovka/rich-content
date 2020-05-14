@@ -5,7 +5,6 @@ import { mergeStyles } from 'wix-rich-content-common';
 import {
   InlineToolbarButton,
   EditorState,
-  HEADER_TYPE_MAP,
   DEFAULT_HEADERS_DROPDOWN_OPTIONS,
 } from 'wix-rich-content-editor-common';
 import { RichUtils } from 'draft-js';
@@ -30,17 +29,10 @@ export default class HeadingButton extends Component {
       'header-six': 'H6',
       unstyled: 'P',
     };
-    // this.isFirstRender = true;
   }
 
   componentWillReceiveProps() {
-    // debugger;
-    // const { isMobile } = this.props;
-    // if (this.isFirstRender && isMobile) {
-    //   this.isFirstRender = false;
-    // } else {
     this.findCurrentHeading();
-    // }
   }
 
   findCurrentHeading = () => {
@@ -50,7 +42,7 @@ export default class HeadingButton extends Component {
       .getCurrentContent()
       .blockMap.get(selection.focusKey)
       .getType();
-    const currentHeading = this.HEADING_TYPE_TO_ELEMENT[headingType];
+    const currentHeading = this.HEADING_TYPE_TO_ELEMENT[headingType] || 'P';
     this.setState({ currentHeading });
   };
 
@@ -117,7 +109,6 @@ export default class HeadingButton extends Component {
           top: panelTop,
           left: panelLeft,
         };
-    // const buttonContent = this.getContentForButtonWithEllipsis(currentHeading);
     const buttonContent = this.fixEllipsis(this.translateHeading(currentHeading));
     return (
       <InlineToolbarButton

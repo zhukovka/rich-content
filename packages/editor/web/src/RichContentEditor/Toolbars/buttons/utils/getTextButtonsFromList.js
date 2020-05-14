@@ -20,7 +20,7 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
   const customSettings =
     config?.getToolbarSettings?.({}).find(setting => setting.name === TOOLBARS.TEXT) || {};
   const icons = customSettings?.getIcons?.() || {};
-  const headingKeyName = Object.keys(textPluginButtons).find(buttonName =>
+  const isHeadingsPluginCreated = Object.keys(textPluginButtons).find(buttonName =>
     buttonName.includes('Headings')
   );
 
@@ -28,7 +28,9 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
     Bold: boldButton(icons.Bold),
     Italic: italicButton(icons.Italic),
     Underline: underlineButton(icons.Underline),
-    Title: !headingKeyName && titleButton(icons.inactiveIconTitle, icons.TitleOne, icons.TitleTwo),
+    Title:
+      !isHeadingsPluginCreated &&
+      titleButton(icons.inactiveIconTitle, icons.TitleOne, icons.TitleTwo),
     Blockquote: blockquoteButton(icons.Blockquote),
     Alignment: textAlignmentButton(icons),
     AlignLeft: alignTextLeftButton(icons.AlignLeft),

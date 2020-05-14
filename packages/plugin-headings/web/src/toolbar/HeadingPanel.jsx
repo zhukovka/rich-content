@@ -7,12 +7,12 @@ import { HEADER_TYPE_MAP } from 'wix-rich-content-editor-common';
 
 const headingElement = (heading, isSelected, onClick, translateHeading) => {
   const content = translateHeading(heading);
-  const font = HEADER_TYPE_MAP[heading];
+  const type = HEADER_TYPE_MAP[heading];
   return (
     <button
       className={isSelected ? styles.headingsPanel_selectedHeading : ''}
       key={heading}
-      onClick={() => onClick(font, heading)}
+      onClick={() => onClick(type, heading)}
     >
       {content}
     </button>
@@ -29,7 +29,7 @@ const desktopPanel = ({ customHeadingsOptions, selected, onSave, styles, transla
 
 const mobilePanel = ({ customHeadingsOptions, selected, styles, onSave, translateHeading }) => (
   <div className={styles.headingsMobilePanel}>
-    <div className={styles.headingsMobilePanel_fonts}>
+    <div className={styles.headingsMobilePanel_types}>
       {customHeadingsOptions.map(heading =>
         headingElement(heading, selected === heading, onSave, translateHeading)
       )}
@@ -50,8 +50,8 @@ export default class Panel extends Component {
       setTimeout(() => target.focus());
     }
   };
-  onSaveHeading = (font, headingName) => {
-    return this.props.onSave(font, headingName);
+  onSaveHeading = (type, headingName) => {
+    return this.props.onSave(type, headingName);
   };
   render() {
     const { t, isMobile, translateHeading, customHeadingsOptions } = this.props;
