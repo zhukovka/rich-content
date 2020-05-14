@@ -14,7 +14,7 @@ export default function editor(colors: PaletteColors, utils: ThemeUtils) {
     },
     footerToolbar: {
       '&$staticToolbar': {
-        background: bgColor,
+        background: `${bgColor} !important`,
       },
     },
     staticToolbar: {},

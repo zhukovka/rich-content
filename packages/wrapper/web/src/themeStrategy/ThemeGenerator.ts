@@ -69,7 +69,7 @@ export default class ThemeGenerator {
 
       const pluginThemes = this.themeGenerators.map(themeGen => themeGen(colors, utils));
       const appStyles = this.isEditor
-        ? merge(getEditorCommonTheme(colors), getEditorTheme(colors, utils))
+        ? merge(getEditorCommonTheme(colors, utils), getEditorTheme(colors, utils))
         : getViewerTheme(colors);
 
       return merge(getCommonStyles(colors), appStyles, ...pluginThemes);

@@ -4,7 +4,7 @@ export default function commonStyles(colors: PaletteColors) {
   return {
     editor: {
       background: bgColor,
-      color: textColor,
+      color: `${textColor} !important`,
     },
   };
 }

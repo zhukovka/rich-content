@@ -37,7 +37,7 @@ describe('ThemeGenerator', () => {
       const styleObj: any = themeGenerator.getStylesObject();
 
       //expect(styleObj).toBe('#414141');
-      expect(styleObj.editor.color).toBe('#414141');
+      expect(styleObj.editor.color).toContain('#414141');
       expect(styleObj.editor.background).toBe('#FFFFFF');
     });
     it('should not render editor styles if isEditor=false', () => {

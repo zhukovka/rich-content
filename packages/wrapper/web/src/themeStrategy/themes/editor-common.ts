@@ -2,8 +2,9 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { adaptForeground, hexToRgbA } from './utils';
 
-export default function editorCommon(colors: PaletteColors) {
+export default function editorCommon(colors: PaletteColors, utils: ThemeUtils) {
   const actionColor = adaptForeground(colors.actionColor);
+  const actionColorReversed = adaptForeground(colors.bgColor);
   const blockActionColorSettings = {
     cursor: 'default',
     boxShadow: `0 0 0 3px ${colors.actionColor}`,
@@ -68,7 +69,7 @@ export default function editorCommon(colors: PaletteColors) {
         border: `solid 1px ${actionColor}`,
       },
       '& $checkbox_icon:hover': {
-        color: hexToRgbA(actionColor, 0.1),
+        backgroundColor: hexToRgbA(actionColor, 0.7),
       },
       '& $checkbox_infoIcon:hover': {
         color: actionColor,
@@ -80,7 +81,9 @@ export default function editorCommon(colors: PaletteColors) {
         backgroundColor: actionColor,
       },
     },
-    checkbox_icon: {},
+    checkbox_icon: {
+      color: utils.fallbackColorBright,
+    },
     checkbox_infoIcon: {},
     checkbox_icon_checked: {},
     checkbox_inputLabel: {},
