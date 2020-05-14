@@ -53,7 +53,7 @@ export class PollContextProviderComponent extends PureComponent {
   }
 
   componentWillReceiveProps(props) {
-    if (props.settings.siteToken !== this.props.siteToken) {
+    if (props.settings.siteToken !== this.props.settings.siteToken) {
       this.pollApiClient = new SocialPollsService(props.settings.siteToken);
       this.fetchPoll();
     }
@@ -78,6 +78,10 @@ export class PollContextProviderComponent extends PureComponent {
   }
 
   async fetchPoll() {
+    if (!this.state.poll.id) {
+      return;
+    }
+
     const poll = await this.pollApiClient.fetchPoll(this.state.poll.id);
 
     this.setState({ poll });
