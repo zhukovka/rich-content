@@ -24,7 +24,7 @@ class RichContentViewer extends Component {
   }
 
   static getInitialState = props => {
-    const { initialState, anchorTarget, relValue, normalize = {} } = props;
+    const { initialState, anchorTarget, relValue, normalize } = props;
     return initialState
       ? normalizeInitialState(initialState, {
           anchorTarget,
@@ -163,6 +163,7 @@ RichContentViewer.defaultProps = {
   onError: err => {
     throw err;
   },
+  normalize: {},
 };
 
 export default RichContentViewer;
