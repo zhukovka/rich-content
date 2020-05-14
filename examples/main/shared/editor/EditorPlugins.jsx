@@ -104,7 +104,7 @@ export const editorPluginsPartialPreset = [
   createEmojiPlugin,
   createTextHighlightPlugin,
   createUndoRedoPlugin,
-  createHeadingsPlugin,
+  createIndentPlugin,
 ];
 
 export const editorPluginsEmbedsPreset = [
@@ -116,7 +116,7 @@ export const editorPluginsEmbedsPreset = [
 export const editorPlugins = [
   createLinkPreviewPlugin,
   createVerticalEmbedPlugin,
-  createIndentPlugin,
+  createHeadingsPlugin,
   createActionButtonPlugin,
   ...editorPluginsPartialPreset,
 ];
@@ -136,6 +136,7 @@ export const editorPluginsMap = {
   codeBlock: createCodeBlockPlugin,
   soundCloud: createSoundCloudPlugin,
   giphy: createGiphyPlugin,
+  headings: createHeadingsPlugin,
   headers: createHeadersMarkdownPlugin,
   map: createMapPlugin,
   fileUpload: createFileUploadPlugin,

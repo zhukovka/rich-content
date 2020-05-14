@@ -304,6 +304,34 @@ describe('plugins', () => {
     });
   });
 
+  context('headings', () => {
+    before(function() {
+      eyesOpen(this);
+    });
+
+    beforeEach('load editor', () => {
+      cy.switchToDesktop();
+    });
+
+    after(() => cy.eyesClose());
+
+    it('open dropdown and change the type of the text - with dropDownOptions', () => {
+      const testAppConfig = {
+        ...usePlugins(plugins.headings),
+        ...usePluginsConfig({
+          HeadingsDropdown: {
+            dropDownOptions: ['P', 'H2', 'H3'],
+          },
+        }),
+      };
+      cy.loadEditorAndViewer('empty', testAppConfig).changeTypeByHeadingsPlugin();
+    });
+
+    it('open dropdown and change the type of the text - with default dropdown options', () => {
+      cy.loadEditorAndViewer('empty', usePlugins(plugins.headings)).changeTypeByHeadingsPlugin();
+    });
+  });
+
   context('verticals embed', () => {
     before(function() {
       eyesOpen(this);

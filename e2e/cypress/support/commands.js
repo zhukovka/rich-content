@@ -228,6 +228,16 @@ Cypress.Commands.add('moveCursorToEnd', () => {
   cy.focusEditor().type('{selectall}{downarrow}');
 });
 
+Cypress.Commands.add('changeTypeByHeadingsPlugin', () => {
+  cy.enterParagraphs([
+    'Leverage agile frameworks',
+    'to provide a robust synopsis for high level overviews.',
+  ])
+    .setTextStyle('headingsDropdownButton', [0, 24])
+    .get('.VmFwe > :nth-child(3)')
+    .click();
+});
+
 Cypress.Commands.add('setTextStyle', (buttonSelector, selection) => {
   if (selection) {
     cy.setSelection(selection[0], selection[1]);

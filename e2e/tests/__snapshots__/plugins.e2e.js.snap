@@ -4681,3 +4681,78 @@ exports[`plugins > convert link to preview > with custom config > should not emb
     }
   }
 };
+
+exports[`plugins > headings > open dropdown and change the type of the text #0`] =
+{
+  "blocks": [
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
+      "key": 0,
+      "text": "Leverage agile frameworks",
+      "type": "unstyled"
+    },
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
+      "key": 1,
+      "text": "to provide a robust synopsis for high level overviews.",
+      "type": "unstyled"
+    }
+  ],
+  "entityMap": {}
+};
+
+exports[`plugins > headings > open dropdown and change the type of the text - with dropDownOptions #0`] =
+{
+  "blocks": [
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
+      "key": 0,
+      "text": "Leverage agile frameworks",
+      "type": "header-three"
+    },
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
+      "key": 1,
+      "text": "to provide a robust synopsis for high level overviews.",
+      "type": "unstyled"
+    }
+  ],
+  "entityMap": {}
+};
+
+exports[`plugins > headings > open dropdown and change the type of the text - with default dropdown options #0`] =
+{
+  "blocks": [
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
+      "key": 0,
+      "text": "Leverage agile frameworks",
+      "type": "header-three"
+    },
+    {
+      "data": {},
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
+      "key": 1,
+      "text": "to provide a robust synopsis for high level overviews.",
+      "type": "unstyled"
+    }
+  ],
+  "entityMap": {}
+};
