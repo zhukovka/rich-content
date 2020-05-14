@@ -6,7 +6,7 @@ import { RichContentViewer } from 'wix-rich-content-viewer';
 import { RichContentWrapper } from 'wix-rich-content-wrapper';
 import { default as editorPlugins } from './editorPlugins';
 import { default as viewerPlugins } from './viewerPlugins';
-import theme from '../../../../../examples/main/shared/theme/theme';
+import '../../../../../examples/main/shared/theme/theme';
 
 class WrapperTestApp extends PureComponent {
   renderEditor = () => {
@@ -18,7 +18,7 @@ class WrapperTestApp extends PureComponent {
     };
     const { editorState, onEditorChange, locale, localeResource, isMobile } = this.props;
     return (
-      <RichContentWrapper plugins={editorPlugins} isEditor theme={theme}>
+      <RichContentWrapper plugins={editorPlugins} isEditor>
         <RichContentEditor
           placeholder={'Add some text!'}
           onChange={onEditorChange}
@@ -36,7 +36,7 @@ class WrapperTestApp extends PureComponent {
     const { isMobile, contentState, locale, seoMode } = this.props;
 
     return (
-      <RichContentWrapper plugins={viewerPlugins} theme={theme}>
+      <RichContentWrapper plugins={viewerPlugins}>
         <RichContentViewer
           initialState={contentState}
           isMobile={isMobile}
