@@ -308,27 +308,25 @@ describe('plugins', () => {
     before(function() {
       eyesOpen(this);
     });
-
-    beforeEach('load editor', () => {
-      cy.switchToDesktop();
-    });
-
+    const testAppConfig = {
+      ...usePlugins(plugins.headings),
+      ...usePluginsConfig({
+        HeadingsDropdown: {
+          dropDownOptions: ['P', 'H2', 'H3'],
+        },
+      }),
+    };
     after(() => cy.eyesClose());
+    // beforeEach('load editor', () => cy.loadEditorAndViewer('empty', testAppConfig));
 
-    it('open dropdown and change the type of the text - with dropDownOptions', () => {
-      const testAppConfig = {
-        ...usePlugins(plugins.headings),
-        ...usePluginsConfig({
-          HeadingsDropdown: {
-            dropDownOptions: ['P', 'H2', 'H3'],
-          },
-        }),
-      };
+    it('open dropdown and change the type of the text - with dropDownOptions', function() {
       cy.loadEditorAndViewer('empty', testAppConfig).changeTypeByHeadingsPlugin();
+      cy.eyesCheckWindow(this.test.title);
     });
 
-    it('open dropdown and change the type of the text - with default dropdown options', () => {
+    it('open dropdown and change the type of the text - with default dropdown options', function() {
       cy.loadEditorAndViewer('empty', usePlugins(plugins.headings)).changeTypeByHeadingsPlugin();
+      cy.eyesCheckWindow(this.test.title);
     });
   });
 
