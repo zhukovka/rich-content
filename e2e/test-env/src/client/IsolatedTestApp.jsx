@@ -58,7 +58,6 @@ IsolatedTestApp.propTypes = {
   localeResource: PropTypes.object,
   onEditorChange: PropTypes.func,
   seoMode: PropTypes.bool,
-  config: PropTypes.object,
 };
 
 export default windowContentStateHoc(IsolatedTestApp);
