@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 
+import { mergeStyles } from 'wix-rich-content-common';
+
 import { LoaderIcon, RemoveIcon } from '../../assets/icons';
 import { withRCEHelpers, RCEHelpersPropTypes } from '../rce-helpers-context';
 
@@ -10,6 +12,8 @@ export class VotedUsersModalComponent extends Component {
   static propTypes = {
     ...RCEHelpersPropTypes,
   };
+
+  styles = mergeStyles({ styles, theme: this.props.rce.theme });
 
   state = {
     members: [],
@@ -36,8 +40,10 @@ export class VotedUsersModalComponent extends Component {
     const { t, option, onRequestClose } = this.props;
     const { members, moreItems } = this.state;
 
+    const { styles } = this;
+
     return (
-      <>
+      <div className={styles.voted_users_modal}>
         <div className={styles.header}>
           <p className={styles.title}>
             {t('Poll_Viewer_VoteCount_Modal_Voters_Header', { number: option.count })}
@@ -78,7 +84,7 @@ export class VotedUsersModalComponent extends Component {
             })}
           </p>
         ) : null}
-      </>
+      </div>
     );
   }
 }
