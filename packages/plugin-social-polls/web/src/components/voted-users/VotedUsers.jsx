@@ -76,7 +76,7 @@ class VotedUsersComponent extends PureComponent {
       <>
         <div
           className={classnames(styles.container, {
-            [styles.cta]: option.count && showVoters,
+            [styles.cta]: showVoters && option.latestVoters?.length,
             [styles.webview]: rce.isWebView,
           })}
           ref={$container => this.setState({ $container })}

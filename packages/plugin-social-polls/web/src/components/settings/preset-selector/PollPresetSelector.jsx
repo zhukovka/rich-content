@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { PureComponent } from 'react';
-import cls from 'classnames';
 import { merge } from 'lodash';
 
 import { SelectionList } from 'wix-rich-content-editor-common';
@@ -35,7 +34,7 @@ export class PollPresetSelector extends PureComponent {
   renderOption = ({ item }) => (
     <>
       <item.icon />
-      <p className={styles.selectionListOptionLabel}>{item.label}</p>
+      <p className={this.styles.selectionListOptionLabel}>{item.label}</p>
     </>
   );
 
@@ -43,9 +42,9 @@ export class PollPresetSelector extends PureComponent {
     const { t } = this.props;
 
     return (
-      <div className={styles.root}>
-        <p className={styles.title}>{t('Poll_Presets_Popup_Title')}</p>
-        <p className={styles.subtitle}>{t('Poll_Presets_Popup_Subtitle')}</p>
+      <div className={this.styles.root}>
+        <p className={this.styles.title}>{t('Poll_Presets_Popup_Title')}</p>
+        <p className={this.styles.subtitle}>{t('Poll_Presets_Popup_Subtitle')}</p>
 
         <SelectionList
           theme={this.styles}
@@ -92,7 +91,7 @@ export class PollPresetSelector extends PureComponent {
           ]}
           renderItem={this.renderOption}
           onChange={this.handleTypeSelection}
-          className={cls(styles.preset_selector)}
+          className={this.styles.preset_selector}
         />
       </div>
     );

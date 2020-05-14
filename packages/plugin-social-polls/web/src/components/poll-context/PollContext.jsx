@@ -55,6 +55,7 @@ export class PollContextProviderComponent extends PureComponent {
   componentWillReceiveProps(props) {
     if (props.settings.siteToken !== this.props.siteToken) {
       this.pollApiClient = new SocialPollsService(props.settings.siteToken);
+      this.fetchPoll();
     }
 
     if (props.poll.id !== this.state.poll.id) {

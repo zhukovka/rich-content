@@ -126,7 +126,6 @@ export class PollGridOption extends PollOptionBase {
               className={styles.progress}
               style={{
                 width: `${this.getVotePercentage()}%`,
-                ...style.input,
               }}
             />
             {showResults && (

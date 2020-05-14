@@ -83,7 +83,6 @@ export class PollSettingsSection extends Component {
       votersDisplay,
       votesDisplay,
       multipleVotes,
-      voteRole,
       resultsVisibility,
     } = componentData.poll.settings;
 
@@ -92,7 +91,7 @@ export class PollSettingsSection extends Component {
         <h3 className={styles.title}>
           {t('Poll_PollSettings_Tab_Settings_Section_Voting_Header')}
         </h3>
-        <p className={styles.label}>
+        {/* <p className={styles.label}>
           {t('Poll_PollSettings_Tab_Settings_Section_Voting_Permission_Title')}
         </p>
 
@@ -103,7 +102,7 @@ export class PollSettingsSection extends Component {
           onChange={voteRole => this.updateSettings({ voteRole })}
           dataSource={this.VOTE_ROLE_OPTIONS}
           className={styles.radioPanel}
-        />
+        /> */}
 
         <LabeledToggle
           label={t('Poll_PollSettings_Tab_Settings_Section_Voting_Multiselect')}
