@@ -84,7 +84,7 @@ export default ({
           type
         );
         editorState = newEditorState;
-        selection = selection || newSelection;
+        selection = newSelection;
         updateEntity(newBlock.getKey(), file);
       });
 

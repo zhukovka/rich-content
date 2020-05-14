@@ -540,15 +540,17 @@ const config = {
     //   },
     // },
     accept: '*',
-    // onFileSelected: (file, updateEntity) => {
-    //   const name = file.name;
+    // onFileSelected: (files, updateEntity) => {
+    //   const filenames = ['image.jpg', 'document.pdf', 'music.mp3'];
+    //   const name = filenames[Math.floor(Math.random() * filenames.length)];
+    //   console.log(name);
     //   const filenameParts = name.split('.');
     //   const type = filenameParts[filenameParts.length - 1];
 
     //   const data = {
     //     name,
     //     type,
-    //     url: '',
+    //     url: 'http://file-examples.com/wp-content/uploads/2017/10/file-sample_150kB.pdf',
     //   };
     //   setTimeout(() => updateEntity({ data }), 1000);
     // },
