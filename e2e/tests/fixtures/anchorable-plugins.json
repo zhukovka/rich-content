@@ -1,0 +1,258 @@
+{
+  "blocks": [
+    {
+      "key": "1jlo1",
+      "text": "link me to section",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "4qcgg",
+      "text": "paragraph (regular text)",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "de6ht",
+      "text": "header 1",
+      "type": "header-two",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "48iod",
+      "text": "header 2",
+      "type": "header-three",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "73gfg",
+      "text": "code block",
+      "type": "code-block",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "c3k46",
+      "text": "quote",
+      "type": "blockquote",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "26it0",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "dljp2",
+      "text": " ",
+      "type": "atomic",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 0
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "9k387",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "64atc",
+      "text": " ",
+      "type": "atomic",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 1
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "fp23l",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "2chnt",
+      "text": " ",
+      "type": "atomic",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 2
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "e4v04",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    }
+  ],
+  "entityMap": {
+    "0": {
+      "type": "wix-draft-plugin-image",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "config": {
+          "alignment": "center",
+          "size": "small",
+          "showTitle": true,
+          "showDescription": true
+        },
+        "src": {
+          "id": "a466b258c6b5e2096fa546c86aae8fa2",
+          "original_file_name": "8bb438_eeef61d83253480ab7bbdb07692b4c90.jpg",
+          "file_name": "8bb438_eeef61d83253480ab7bbdb07692b4c90.jpg",
+          "width": 5494,
+          "height": 3840
+        }
+      }
+    },
+    "1": {
+      "type": "wix-draft-plugin-gallery",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "items": [
+          {
+            "metadata": {
+              "type": "image",
+              "height": 4645,
+              "width": 3484
+            },
+            "itemId": "3337a427b2e877ab39bf116fcb3f01ea",
+            "url": "8bb438_a74f09cd4425418296d417ce91f589cd.jpg"
+          },
+          {
+            "metadata": {
+              "type": "image",
+              "height": 1280,
+              "width": 1920
+            },
+            "itemId": "15f407e0947a3680a2261a41cb6abbb6",
+            "url": "8bb438_b2d862605f684658926e6ee05e954880.jpg"
+          },
+          {
+            "metadata": {
+              "type": "image",
+              "height": 1922,
+              "width": 1920
+            },
+            "itemId": "a327950f89cc4994f34a0cd0d4a71473",
+            "url": "8bb438_6a7159be0f944dde9098fe566bf22831.jpg"
+          }
+        ],
+        "styles": {
+          "galleryLayout": 2,
+          "gallerySizeType": "px",
+          "gallerySizePx": 300,
+          "galleryMargin": 0,
+          "oneRow": false,
+          "cubeRatio": 1,
+          "galleryThumbnailsAlignment": "bottom",
+          "isVertical": false,
+          "imageMargin": 20,
+          "thumbnailSpacings": 0,
+          "cubeType": "fill",
+          "enableInfiniteScroll": true,
+          "titlePlacement": "SHOW_ON_HOVER",
+          "allowHover": false,
+          "itemClick": "link",
+          "fullscreen": false,
+          "showArrows": false,
+          "gridStyle": 1,
+          "loveButton": false,
+          "allowSocial": false,
+          "allowDownload": false,
+          "mobileSwipeAnimation": "NO_EFFECT",
+          "thumbnailSize": 120,
+          "gotStyleParams": true,
+          "showVideoPlayButton": true,
+          "videoPlay": "onClick"
+        },
+        "config": {
+          "alignment": "center",
+          "size": "content",
+          "layout": "small",
+          "spacing": 0
+        }
+      }
+    },
+    "2": {
+      "type": "wix-draft-plugin-video",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "config": {
+          "size": "small",
+          "alignment": "center"
+        },
+        "tempData": false,
+        "src": "https://www.youtube.com/watch?v=u3ltZmI5LQw",
+        "metadata": {
+          "author_name": "Wix.com",
+          "width": 480,
+          "thumbnail_url": "https://i.ytimg.com/vi/_zuIxexRrtk/hqdefault.jpg",
+          "thumbnail_width": 480,
+          "provider_url": "https://www.youtube.com/",
+          "type": "video",
+          "height": 270,
+          "author_url": "https://www.youtube.com/user/Wix",
+          "version": "1.0",
+          "provider_name": "YouTube",
+          "thumbnail_height": 360,
+          "title": "How to Build a Wix Website for Your Business | James Veitch",
+          "html": "<iframe width=\"480\" height=\"270\" src=\"https://www.youtube.com/embed/_zuIxexRrtk?feature=oembed\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>",
+          "video_url": "https://youtu.be/_zuIxexRrtk"
+        }
+      }
+    }
+  },
+  "VERSION": "7.6.1"
+}
