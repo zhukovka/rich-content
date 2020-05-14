@@ -9,7 +9,7 @@ export const LTRIcon = props => (
           <g>
             <g>
               <rect x="0" y="0" width="40" height="40" />
-              <g transform="translate(8.000000, 7.000000)" fill="#000000">
+              <g transform="translate(8.000000, 7.000000)" fill="currentColor">
                 <polygon
                   transform="translate(0.857143, 12.857143) scale(-1, 1) translate(-0.857143, -12.857143) "
                   points="0 25.7142857 1.07142857 25.7142857 1.07142857 0 0 0"
