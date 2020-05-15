@@ -48,8 +48,7 @@ export class PollEditor extends PureComponent {
           theme,
           t,
           isMobile,
-          isWebView: settings.isWebView,
-          getSiteMembers: settings.getSiteMembers,
+          ...settings,
         }}
       >
         <PollContextProvider

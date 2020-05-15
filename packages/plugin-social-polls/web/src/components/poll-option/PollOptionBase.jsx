@@ -48,13 +48,7 @@ export class PollOptionBase extends React.PureComponent {
     this.props.remove();
   };
 
-  handleVoteClick = async e => {
-    e.preventDefault();
-
-    if (e.keyCode) {
-      return;
-    }
-
+  async toggleVote() {
     this.setState({ loading: true });
 
     try {
@@ -66,6 +60,22 @@ export class PollOptionBase extends React.PureComponent {
     } catch (error) {
     } finally {
       this.setState({ loading: false });
+    }
+  }
+
+  handleVoteClick = async e => {
+    const { validateUser } = this.props.rce;
+
+    e.preventDefault();
+
+    if (e.keyCode) {
+      return;
+    }
+
+    if (validateUser) {
+      validateUser().then(this.toggleVote.bind(this), () => {});
+    } else {
+      this.toggleVote();
     }
   };
 
