@@ -107,6 +107,7 @@ class RichContentEditor extends Component {
       shouldRenderOptimizedImages,
       initialIntent,
       siteDomain,
+      iframeDomain,
     } = this.props;
 
     this.fixFileHandlersName(helpers);
@@ -130,6 +131,7 @@ class RichContentEditor extends Component {
       shouldRenderOptimizedImages,
       initialIntent,
       siteDomain,
+      iframeDomain,
       setInPluginEditingMode: this.setInPluginEditingMode,
       getInPluginEditingMode: this.getInPluginEditingMode,
     };
@@ -543,6 +545,7 @@ RichContentEditor.propTypes = {
   onAtomicBlockFocus: PropTypes.func,
   initialIntent: PropTypes.string,
   siteDomain: PropTypes.string,
+  iframeDomain: PropTypes.string,
   onError: PropTypes.func,
 };
 

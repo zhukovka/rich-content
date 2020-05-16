@@ -60,13 +60,19 @@ class IframeHtml extends Component {
   };
 
   render() {
+    const { iframeDomain } = this.props;
+
+    //remove trailing '/'
+    const src = `${iframeDomain}/html/db9376e69cfa487ea0fa0b912ae51a4f_v1.html`;
+    const iframeProps = iframeDomain ? { src, ref: this.setIframe } : { ref: this.writeToIframe };
+
     return this.state.shouldRender ? (
       <iframe
         className={styles.iframe}
-        ref={this.writeToIframe}
         title="remote content"
         style={{ backgroundColor: 'transparent' }}
         onLoad={this.handleIframeLoad}
+        {...iframeProps}
       />
     ) : null;
   }
@@ -75,6 +81,7 @@ class IframeHtml extends Component {
 IframeHtml.propTypes = {
   html: PropTypes.string.isRequired,
   onHeightChange: PropTypes.any,
+  iframeDomain: PropTypes.string,
 };
 
 export default IframeHtml;

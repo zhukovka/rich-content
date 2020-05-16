@@ -141,6 +141,7 @@ PluginViewer.propTypes = {
     disabled: PropTypes.bool,
     seoMode: PropTypes.bool,
     siteDomain: PropTypes.string,
+    iframeDomain: PropTypes.string,
     disableRightClick: PropTypes.bool,
   }).isRequired,
 };

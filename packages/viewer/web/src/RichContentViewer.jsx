@@ -43,6 +43,7 @@ class RichContentViewer extends Component {
     disabled,
     seoMode,
     siteDomain,
+    iframeDomain,
   }) => ({
     t,
     theme,
@@ -55,6 +56,7 @@ class RichContentViewer extends Component {
     disabled,
     seoMode,
     siteDomain,
+    iframeDomain,
     disableRightClick: config?.uiSettings?.disableRightClick,
   });
 
@@ -146,6 +148,7 @@ RichContentViewer.propTypes = {
   disabled: PropTypes.bool,
   seoMode: PropTypes.bool,
   siteDomain: PropTypes.string,
+  iframeDomain: PropTypes.string,
   onError: PropTypes.func,
   addAnchors: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
