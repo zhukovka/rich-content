@@ -18,7 +18,7 @@ const headingElement = (heading, isSelected, onClick, translateHeading) => {
   );
 };
 
-export default class Panel extends Component {
+class Panel extends Component {
   render() {
     const {
       customHeadingsOptions,
