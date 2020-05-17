@@ -4,7 +4,7 @@
   "wix-rich-content-plugin-divider": 213,
   "wix-rich-content-plugin-emoji": 183,
   "wix-rich-content-plugin-file-upload": 215,
-  "wix-rich-content-plugin-gallery": 820,
+  "wix-rich-content-plugin-gallery": 821,
   "wix-rich-content-plugin-giphy": 216,
   "wix-rich-content-plugin-hashtag": 218,
   "wix-rich-content-plugin-headers-markdown": 181,
@@ -19,11 +19,11 @@
   "wix-rich-content-plugin-sound-cloud": 296,
   "wix-rich-content-plugin-text-color": 212,
   "wix-rich-content-plugin-undo-redo": 181,
-  "wix-rich-content-plugin-vertical-embed": 780,
+  "wix-rich-content-plugin-vertical-embed": 775,
   "wix-rich-content-plugin-video": 301,
   "viewer-without-wrapper": 201,
-  "viewer-with-wrapper": 783,
-  "editor-with-emoji": 939,
-  "editor-without-plugins": 850,
-  "editor-with-basic-plugins": 1293
+  "viewer-with-wrapper": 181,
+  "editor-with-emoji": 942,
+  "editor-without-plugins": 852,
+  "editor-with-basic-plugins": 1295
 }

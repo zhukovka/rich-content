@@ -30,6 +30,8 @@
   - [0f849222](https://github.com/wix-incubator/rich-content/commit/0f849222) fix translations
 - `general`
   - [#1073](https://github.com/wix-incubator/rich-content/pull/1073) Reduce editor bundle size (internal dynamic loading)
+- `editor`
+  - [#1078](https://github.com/wix-incubator/rich-content/pull/1078) insert buttons at the beginning of the inline toolbar
   
 </details>
 <hr/>
