@@ -26,10 +26,7 @@ export default class TextColorPanel extends Component {
     if (props.settings.colorScheme && !validateColorScheme(props.settings.colorScheme)) {
       console.error('Error: colorScheme is not valid'); // eslint-disable-line no-console
     }
-    const colorsFromDB = this.props.helpers?.getColors?.();
-    const userColors = colorsFromDB
-      ? merge(props.settings.getUserColors(), colorsFromDB)
-      : props.settings.getUserColors();
+    const userColors = props.settings.getUserColors();
     this.currentColors = getSelectionStyles(this.styleSelectionPredicate, props.editorState);
     this.state = {
       currentColor:
@@ -41,6 +38,16 @@ export default class TextColorPanel extends Component {
     };
     this.setColor = this.setColor.bind(this);
     this.onColorAdded = this.onColorAdded.bind(this);
+  }
+
+  async componentDidMount() {
+    const colorsFromStorage = await this.props.helpers?.getColors?.();
+    const userColors = colorsFromStorage
+      ? merge(this.props.settings.getUserColors(), colorsFromStorage)
+      : this.props.settings.getUserColors();
+    this.setState({
+      userColors,
+    });
   }
 
   componentWillUnmount() {
