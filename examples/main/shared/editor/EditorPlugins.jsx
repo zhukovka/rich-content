@@ -616,6 +616,7 @@ const config = {
   },
   uiSettings,
   getToolbarSettings: ({ pluginButtons, textButtons }) => [
+    {name: 'EXTERNAL', shouldCreate: () => ({ desktop: true })},
     { name: 'SIDE', addPluginMenuConfig },
     { name: 'MOBILE', addPluginMenuConfig },
     // {
