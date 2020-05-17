@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-boolean-value */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { mergeStyles } from 'wix-rich-content-common';
@@ -9,7 +8,7 @@ import {
 } from 'wix-rich-content-editor-common';
 import { RichUtils } from 'draft-js';
 import Modal from 'react-modal';
-import Panel from './HeadingPanel';
+import HeadingsDropDownPanel from './HeadingPanel';
 import classNames from 'classnames';
 import styles from '../../statics/styles/headingButtonStyles.scss';
 
@@ -74,12 +73,16 @@ export default class HeadingButton extends Component {
       : t('FormattingToolbar_TextStyle_Heading', { number: option.slice(-1) });
   };
 
-  fixEllipsis = (content = '') => {
-    if (content.length > 10) {
-      const number = content !== 'Paragraph' ? content.slice(-1) : '';
-      return content.slice(0, 5) + '...' + number;
+  fixEllipsis = (text = '') => {
+    if (text.length > 10) {
+      const number = text.slice(-1);
+      if (typeof number === 'number') {
+        return text.slice(0, 5) + '...' + number;
+      } else {
+        return text.slice(0, 6) + '...';
+      }
     }
-    return content;
+    return text;
   };
 
   save = (type, element) => {
@@ -120,7 +123,7 @@ export default class HeadingButton extends Component {
         dataHook={dataHookText}
         tabIndex={tabIndex}
         buttonContent={buttonContent}
-        showArrowIcon={true}
+        showArrowIcon
         ref={ref => (this.buttonRef = ref)}
       >
         <Modal
@@ -138,12 +141,11 @@ export default class HeadingButton extends Component {
           }}
           ariaHideApp={false}
         >
-          <Panel
+          <HeadingsDropDownPanel
             customHeadingsOptions={customHeadingsOptions}
             heading={currentHeading}
             onSave={this.save}
             styles={this.styles}
-            t={t}
             isMobile={isMobile}
             theme={theme}
             translateHeading={this.translateHeading}

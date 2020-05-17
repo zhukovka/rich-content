@@ -43,10 +43,9 @@ export default ({ buttons, theme, t, isMobile, textPluginButtons = {}, uiSetting
     HorizontalSeparator: themedSeparator(true),
     ...textPluginButtons,
   };
-  const buttonCompArray = [];
-  buttonCompArray.push(...buttons.map(buttonName => buttonsMap[buttonName]).filter(x => x));
 
-  return buttonCompArray.map(b =>
-    decorateComponentWithProps(b, { t, isMobile, uiSettings, config })
-  );
+  return buttons
+    .map(buttonName => buttonsMap[buttonName])
+    .filter(x => x)
+    .map(b => decorateComponentWithProps(b, { t, isMobile, uiSettings, config }));
 };

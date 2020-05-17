@@ -11,7 +11,6 @@ const headingElement = (heading, isSelected, onClick, translateHeading) => {
   return (
     <button
       className={isSelected ? styles.headingsPanel_selectedHeading : ''}
-      key={heading}
       onClick={() => onClick(type, heading)}
     >
       {content}
@@ -19,82 +18,68 @@ const headingElement = (heading, isSelected, onClick, translateHeading) => {
   );
 };
 
-const desktopPanel = ({ customHeadingsOptions, selected, onSave, styles, translateHeading }) => (
-  <div className={styles.headingsPanel}>
-    {customHeadingsOptions.map(heading => {
-      return headingElement(heading, selected === heading, onSave, translateHeading);
-    })}
-  </div>
-);
-
-const mobilePanel = ({ customHeadingsOptions, selected, styles, onSave, translateHeading }) => (
-  <div className={styles.headingsMobilePanel}>
-    <div className={styles.headingsMobilePanel_types}>
-      {customHeadingsOptions.map(heading =>
-        headingElement(heading, selected === heading, onSave, translateHeading)
-      )}
-    </div>
-  </div>
-);
-
 export default class Panel extends Component {
+  render() {
+    const {
+      customHeadingsOptions,
+      selected,
+      onSave,
+      styles,
+      translateHeading,
+      isMobile,
+    } = this.props;
+    return (
+      <div
+        className={isMobile ? styles.headingsMobilePanel : styles.headingsPanel}
+        data-hook="headingsDropdownPanel"
+      >
+        {customHeadingsOptions.map(heading => {
+          return headingElement(heading, selected === heading, onSave, translateHeading);
+        })}
+      </div>
+    );
+  }
+}
+
+export default class HeadingsDropDownPanel extends Component {
   constructor(props) {
     super(props);
     this.state = { heading: props.heading };
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
 
-  onBlur = e => {
-    const { target, relatedTarget, currentTarget } = e;
-    if (!currentTarget.contains(relatedTarget)) {
-      setTimeout(() => target.focus());
-    }
-  };
   onSaveHeading = (type, headingName) => {
     return this.props.onSave(type, headingName);
   };
+
   render() {
-    const { t, isMobile, translateHeading, customHeadingsOptions } = this.props;
+    const { isMobile, translateHeading, customHeadingsOptions } = this.props;
     const { heading } = this.state;
     const { styles } = this;
     const selected = heading;
 
-    const panel = isMobile
-      ? mobilePanel({
-          styles,
-          selected,
-          t,
-          onSave: this.onSaveHeading,
-          translateHeading,
-          customHeadingsOptions,
-        })
-      : desktopPanel({
-          styles,
-          selected,
-          t,
-          onSave: this.onSaveHeading,
-          translateHeading,
-          customHeadingsOptions,
-        });
-
     return (
-      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div
-        onBlur={this.onBlur}
         className={classNames(styles.headingsPanelContainer, {
           [styles.headingsPanelContainer_mobile]: isMobile,
         })}
       >
-        {panel}
+        <Panel
+          styles={styles}
+          selected={selected}
+          onSave={this.onSaveHeading}
+          isMobile={isMobile}
+          translateHeading={translateHeading}
+          customHeadingsOptions={customHeadingsOptions}
+        />
       </div>
     );
   }
 }
 
-Panel.propTypes = {
+HeadingsDropDownPanel.propTypes = {
   isMobile: PropTypes.bool,
   onSave: PropTypes.func,
-  t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   customSettings: PropTypes.object,
   heading: PropTypes.string,
@@ -102,22 +87,13 @@ Panel.propTypes = {
   customHeadingsOptions: PropTypes.array,
 };
 
-Panel.defaultProps = { heading: 'P' };
+HeadingsDropDownPanel.defaultProps = { heading: 'P' };
 
-desktopPanel.propTypes = {
+Panel.propTypes = {
   onSave: PropTypes.func,
   selected: PropTypes.any,
   styles: PropTypes.object,
-  t: PropTypes.func.isRequired,
   customHeadingsOptions: PropTypes.array,
   translateHeading: PropTypes.func,
-};
-
-mobilePanel.propTypes = {
-  onSave: PropTypes.func.isRequired,
-  selected: PropTypes.string.isRequired,
-  styles: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
-  customHeadingsOptions: PropTypes.array,
-  translateHeading: PropTypes.func,
+  isMobile: PropTypes.bool,
 };

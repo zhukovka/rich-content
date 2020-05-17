@@ -443,13 +443,6 @@ const config = {
   },
   [HEADINGS_DROPDOWN_TYPE]: {
     // dropDownOptions: ['H2','H3']
-    // toolbar: {
-    //   icons: {
-    //     inactiveIconTitle: MyCustomIcon,
-    //     TitleOne: MyCustomIcon,
-    //     TitleTwo: MyCustomIcon,
-    //   },
-    // },
   },
   [LINE_SPACING_TYPE]: {
     // toolbar: {
@@ -632,6 +625,9 @@ const config = {
     //     Italic: MyCustomIcon,
     //     Underline: MyCustomIcon,
     //     Indent: MyCustomIcon,
+    //     inactiveIconTitle: MyCustomIcon,
+    //     TitleOne: MyCustomIcon,
+    //     TitleTwo: MyCustomIcon,
     //     Blockquote: MyCustomIcon,
     //     Alignment: MyCustomIcon,
     //     AlignLeft: MyCustomIcon,

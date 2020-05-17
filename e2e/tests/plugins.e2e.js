@@ -304,32 +304,6 @@ describe('plugins', () => {
     });
   });
 
-  context('headings', () => {
-    before(function() {
-      eyesOpen(this);
-    });
-    const testAppConfig = {
-      ...usePlugins(plugins.headings),
-      ...usePluginsConfig({
-        HeadingsDropdown: {
-          dropDownOptions: ['P', 'H2', 'H3'],
-        },
-      }),
-    };
-    after(() => cy.eyesClose());
-    // beforeEach('load editor', () => cy.loadEditorAndViewer('empty', testAppConfig));
-
-    it('open dropdown and change the type of the text - with dropDownOptions', function() {
-      cy.loadEditorAndViewer('empty', testAppConfig).changeTypeByHeadingsPlugin();
-      cy.eyesCheckWindow(this.test.title);
-    });
-
-    it('open dropdown and change the type of the text - with default dropdown options', function() {
-      cy.loadEditorAndViewer('empty', usePlugins(plugins.headings)).changeTypeByHeadingsPlugin();
-      cy.eyesCheckWindow(this.test.title);
-    });
-  });
-
   context('verticals embed', () => {
     before(function() {
       eyesOpen(this);
@@ -410,6 +384,49 @@ describe('plugins', () => {
           expect(stub.getCall(0)).to.be.calledWith('onClick event..');
         });
       cy.eyesCheckWindow(this.test.title);
+    });
+  });
+
+  context('headings', () => {
+    before(function() {
+      eyesOpen(this);
+    });
+
+    const testAppConfig = {
+      ...usePlugins(plugins.headings),
+      ...usePluginsConfig({
+        HeadingsDropdown: {
+          dropDownOptions: ['P', 'H2', 'H3'],
+        },
+      }),
+    };
+
+    function setHeader(number, selection) {
+      cy.setTextStyle('headingsDropdownButton', selection)
+        .get(`[data-hook=headingsDropdownPanel] > :nth-child(${number})`)
+        .click();
+    }
+
+    function testHeaders(config) {
+      cy.loadEditorAndViewer('empty', config).enterParagraphs([
+        'Leverage agile frameworks',
+        'to provide a robust synopsis for high level overviews.',
+      ]);
+      setHeader(3, [0, 24]);
+      cy.eyesCheckWindow('change heading type');
+      setHeader(2, [28, 40]);
+      cy.setTextStyle('headingsDropdownButton', [28, 40]);
+      cy.eyesCheckWindow('change heading type');
+    }
+
+    after(() => cy.eyesClose());
+
+    it('Change headers - with dropDownOptions config', () => {
+      testHeaders(testAppConfig);
+    });
+
+    it('Change headers - without dropDownOptions config', () => {
+      testHeaders(usePlugins(plugins.headings));
     });
   });
 });
