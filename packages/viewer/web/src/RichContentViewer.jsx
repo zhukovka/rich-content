@@ -16,9 +16,6 @@ import rtlStyle from '../statics/rich-content-viewer-rtl.rtlignore.scss';
 class RichContentViewer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      raw: RichContentViewer.getInitialState(props.initialState),
-    };
     const styles = { ...viewerStyles, ...viewerAlignmentStyles, ...rtlStyle };
     this.styles = mergeStyles({ styles, theme: props.theme });
   }
