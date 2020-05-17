@@ -54,11 +54,11 @@ class LinkPreviewViewer extends Component {
 
     const {
       linkPreview,
+      linkPreviewUrl,
       linkPreviewInfo,
       linkPreviewTitle,
       linkPreviewImage,
       linkPreviewDescription,
-      linkPreviewUrl,
     } = this.styles;
 
     if (settings.enableEmbed && html) {
@@ -80,7 +80,7 @@ class LinkPreviewViewer extends Component {
         <figure className={linkPreview} data-hook="linkPreviewViewer">
           <div
             style={{
-              width: imageHeight,
+              width: isMobile ? '110px' : imageHeight,
               height: imageHeight,
               backgroundImage: `url(${thumbnail_url})`,
             }}

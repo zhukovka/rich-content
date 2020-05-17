@@ -45,8 +45,11 @@ class GalleryViewer extends React.Component {
       );
       scrollingElement = document.body;
     }
-    const contentElement =
+    let contentElement =
       typeof scrollingElement === 'function' ? scrollingElement() : scrollingElement;
+    if (contentElement?.nodeType !== 1) {
+      contentElement = document.body;
+    }
     if (contentElement) {
       this.observer = new MutationObserver(() => {
         if (contentElement.clientHeight !== this.oldContentElementHeight) {
@@ -173,13 +176,15 @@ class GalleryViewer extends React.Component {
 
   renderExpandIcon = itemProps => {
     return itemProps.type !== 'video' ? (
-      <ExpandIcon
-        className={this.styles.expandIcon}
-        onClick={e => {
-          e.preventDefault();
-          this.handleExpand(itemProps);
-        }}
-      />
+      <div className={this.styles.expandContainer}>
+        <ExpandIcon
+          className={this.styles.expandIcon}
+          onClick={e => {
+            e.preventDefault();
+            this.handleExpand(itemProps);
+          }}
+        />
+      </div>
     ) : null;
   };
 
@@ -191,12 +196,17 @@ class GalleryViewer extends React.Component {
     ) : null;
   };
 
-  hoverElement = itemProps => (
-    <Fragment>
-      {this.renderExpandIcon(itemProps)}
-      {this.renderTitle(itemProps.title)}
-    </Fragment>
-  );
+  hoverElement = itemProps => {
+    const hasExpand = this.props.helpers?.onExpand;
+    return hasExpand ? (
+      <div className={this.styles.pointer}>
+        {this.renderExpandIcon(itemProps)}
+        {this.renderTitle(itemProps.title)}
+      </div>
+    ) : (
+      <Fragment>{this.renderTitle(itemProps.title)}</Fragment>
+    );
+  };
 
   handleContextMenu = e => this.props.disableRightClick && e.preventDefault();
 
