@@ -95,6 +95,7 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
       getInPluginEditingMode,
       getEditorState,
       setEditorState,
+      linkPanelAddons: config.LINK.linkPanelAddons,
     });
   const InsertPluginButtons =
     settings.showInsertButtons &&

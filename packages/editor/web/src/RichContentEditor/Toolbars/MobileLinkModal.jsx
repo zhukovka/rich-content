@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { LinkPanelContainer, NewLinkPanelContainer } from 'wix-rich-content-editor-common';
+import { LinkRouter } from 'wix-rich-content-editor-common';
 
 export default class MobileLinkModal extends Component {
   render() {
@@ -21,6 +21,7 @@ export default class MobileLinkModal extends Component {
       getEditorState,
       setEditorState,
       unchangedUrl,
+      linkPanelAddons,
     } = this.props;
     const baseLinkProps = {
       getEditorState,
@@ -40,14 +41,12 @@ export default class MobileLinkModal extends Component {
       ariaProps: { 'aria-labelledby': 'mob_link_modal_hdr' },
       uiSettings,
       hidePanel: { onCancel },
+      unchangedUrl,
+      linkPanelAddons,
     };
-    return unchangedUrl ? (
+    return (
       <div>
-        <LinkPanelContainer {...baseLinkProps} unchangedUrl={unchangedUrl} />
-      </div>
-    ) : (
-      <div>
-        <NewLinkPanelContainer {...baseLinkProps} />
+        <LinkRouter {...baseLinkProps} />
       </div>
     );
   }
@@ -70,4 +69,5 @@ MobileLinkModal.propTypes = {
   t: PropTypes.func,
   uiSettings: PropTypes.object,
   unchangedUrl: PropTypes.bool,
+  linkPanelAddons: PropTypes.array,
 };

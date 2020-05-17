@@ -4,7 +4,7 @@ import { isEmpty } from 'lodash';
 import {
   getLinkDataInSelection,
   removeLinksInSelection,
-  NewLinkPanelContainer,
+  LinkRouter,
   decorateComponentWithProps,
   setForceSelection,
 } from 'wix-rich-content-editor-common';
@@ -19,6 +19,7 @@ export default class TextLinkPanel extends Component {
       theme,
       t,
       uiSettings,
+      linkPanelAddons,
     } = this.props;
     const linkData = getLinkDataInSelection(getEditorState());
     const { url, target, rel } = linkData || {};
@@ -41,12 +42,10 @@ export default class TextLinkPanel extends Component {
       onDelete: this.deleteLink,
       onOverrideContent: this.props.onOverrideContent,
       uiSettings,
+      linkPanelAddons,
     };
 
-    const LinkPanelContainerWithProps = decorateComponentWithProps(
-      NewLinkPanelContainer,
-      linkContainerProps
-    );
+    const LinkPanelContainerWithProps = decorateComponentWithProps(LinkRouter, linkContainerProps);
     this.props.onOverrideContent(LinkPanelContainerWithProps);
   }
 
@@ -105,4 +104,5 @@ TextLinkPanel.propTypes = {
   uiSettings: PropTypes.object,
   insertLinkFn: PropTypes.func,
   closeInlinePluginToolbar: PropTypes.func,
+  linkPanelAddons: PropTypes.array,
 };

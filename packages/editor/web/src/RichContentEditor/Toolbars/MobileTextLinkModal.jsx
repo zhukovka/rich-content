@@ -62,6 +62,7 @@ export default class MobileTextLinkModal extends Component {
       relValue,
       t,
       uiSettings,
+      linkPanelAddons,
     } = this.props;
     const linkData = getLinkDataInSelection(getEditorState());
     const { url, target, rel } = linkData || {};
@@ -84,6 +85,7 @@ export default class MobileTextLinkModal extends Component {
         onDelete={this.deleteLink}
         uiSettings={uiSettings}
         t={t}
+        linkPanelAddons={linkPanelAddons}
       />
     );
   }
@@ -104,4 +106,5 @@ MobileTextLinkModal.propTypes = {
   uiSettings: PropTypes.object,
   insertLinkFn: PropTypes.func,
   closeInlinePluginToolbar: PropTypes.func,
+  linkPanelAddons: PropTypes.array,
 };

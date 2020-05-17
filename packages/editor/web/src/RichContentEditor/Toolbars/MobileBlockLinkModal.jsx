@@ -38,6 +38,7 @@ export default class MobileBlockLinkModal extends Component {
       t,
       uiSettings,
       unchangedUrl,
+      linkPanelAddons,
     } = this.props;
     const componentLink = pubsub.getBlockData({ key: 'componentLink' });
     const { url, target, rel } = componentLink || {};
@@ -59,6 +60,7 @@ export default class MobileBlockLinkModal extends Component {
         uiSettings={uiSettings}
         t={t}
         unchangedUrl={unchangedUrl}
+        linkPanelAddons={linkPanelAddons}
       />
     );
   }
@@ -77,4 +79,5 @@ MobileBlockLinkModal.propTypes = {
   t: PropTypes.func,
   uiSettings: PropTypes.object,
   unchangedUrl: PropTypes.bool,
+  linkPanelAddons: PropTypes.array,
 };

@@ -22,6 +22,7 @@ const openLinkModal = ({
   setEditorState,
   uiSettings,
   closeInlinePluginToolbar,
+  LINK,
 }) => {
   const modalStyles = getModalStyles({
     fullScreen: false,
@@ -44,6 +45,7 @@ const openLinkModal = ({
       uiSettings,
       insertLinkFn: insertLinkAtCurrentSelection,
       closeInlinePluginToolbar,
+      linkPanelAddons: LINK.linkPanelAddons,
     };
     helpers.openModal(modalProps);
   } else {
