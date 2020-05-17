@@ -45,7 +45,7 @@ const openLinkModal = ({
       uiSettings,
       insertLinkFn: insertLinkAtCurrentSelection,
       closeInlinePluginToolbar,
-      linkPanelAddons: LINK.linkPanelAddons,
+      linkPanelAddons: LINK?.linkPanelAddons,
     };
     helpers.openModal(modalProps);
   } else {

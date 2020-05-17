@@ -82,6 +82,9 @@ const configs = {
   verticalEmbed: {
     exposeEmbedButtons: [product, event, booking],
   },
+  link: {
+    linkPanelAddons: ['anchor'],
+  },
 };
 
 const plugins = [
@@ -99,7 +102,7 @@ const plugins = [
   pluginIndent(),
   pluginHeadersMarkdown(),
   pluginLineSpacing(),
-  pluginLink(),
+  pluginLink(configs.link),
   pluginMap({ googleMapApiKey: process.env.GOOGLE_MAPS_API_KEY }),
   pluginMentions(),
   pluginSoundCloud(),

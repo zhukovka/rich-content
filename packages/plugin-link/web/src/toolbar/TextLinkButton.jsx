@@ -33,7 +33,7 @@ export default class TextLinkButton extends Component {
       config,
     } = this.props;
     const OriginalLinkPanel =
-      !config[LINK_TYPE].linkPanelAddons || config[LINK_TYPE].linkPanelAddons.length === 0;
+      !config[LINK_TYPE]?.linkPanelAddons || config[LINK_TYPE]?.linkPanelAddons.length === 0;
     const modalStyles = getModalStyles({ fullScreen: !OriginalLinkPanel, isMobile });
     const commonPanelProps = {
       anchorTarget,
@@ -45,7 +45,7 @@ export default class TextLinkButton extends Component {
       setEditorState,
       insertLinkFn,
       closeInlinePluginToolbar,
-      linkPanelAddons: config[LINK_TYPE].linkPanelAddons,
+      linkPanelAddons: config[LINK_TYPE]?.linkPanelAddons,
     };
     if (isMobile || linkModal) {
       if (helpers && helpers.openModal) {
