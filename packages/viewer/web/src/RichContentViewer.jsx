@@ -24,12 +24,17 @@ class RichContentViewer extends Component {
   }
 
   static getInitialState = props => {
-    const { initialState, anchorTarget, relValue, normalize } = props;
+    const {
+      initialState,
+      anchorTarget,
+      relValue,
+      normalize: { disableInlineImages = false },
+    } = props;
     return initialState
       ? normalizeInitialState(initialState, {
           anchorTarget,
           relValue,
-          ...normalize,
+          disableInlineImages,
         })
       : {};
   };

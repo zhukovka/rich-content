@@ -204,7 +204,13 @@ class RichContentEditor extends Component {
   });
 
   getInitialEditorState() {
-    const { editorState, initialState, anchorTarget, relValue, normalize } = this.props;
+    const {
+      editorState,
+      initialState,
+      anchorTarget,
+      relValue,
+      normalize: { disableInlineImages = false },
+    } = this.props;
     if (editorState) {
       return editorState;
     }
@@ -212,7 +218,7 @@ class RichContentEditor extends Component {
       const rawContentState = normalizeInitialState(initialState, {
         anchorTarget,
         relValue,
-        ...normalize,
+        disableInlineImages,
       });
       return EditorState.createWithContent(convertFromRaw(rawContentState));
     } else {
