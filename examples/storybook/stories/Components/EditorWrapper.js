@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { RichContentEditor, convertFromRaw, createWithContent } from 'wix-rich-content-editor';
-import { createEmpty } from 'wix-rich-content-editor/dist/lib/editorStateConversion';
-
-import { RichContentWrapper } from 'wix-rich-content-wrapper';
+import { RichContentEditor } from 'wix-rich-content-editor';
+import { RicosEditor } from 'ricos-editor';
 import { pluginLinkButton, pluginActionButton } from 'wix-rich-content-plugin-button';
 import { pluginCodeBlock } from 'wix-rich-content-plugin-code-block';
 import { pluginDivider } from 'wix-rich-content-plugin-divider';
@@ -85,6 +83,10 @@ const configs = {
   link: {
     linkPanelAddons: ['anchor'],
   },
+  hashtag: {
+    createHref: decoratedText => `/search/posts?query=${encodeURIComponent('#')}${decoratedText}`,
+    onClick: e => e.preventDefault(),
+  },
 };
 
 const plugins = [
@@ -96,7 +98,7 @@ const plugins = [
   pluginFileUpload(configs.fileUpload),
   pluginGallery(),
   pluginGiphy(configs.giphy),
-  pluginHashtag(),
+  pluginHashtag(configs.hashtag),
   pluginHtml(),
   pluginImage(),
   pluginIndent(),
@@ -141,41 +143,38 @@ const pluginsMap = {
 };
 
 const EditorWrapper = ({
-  contentState,
+  content,
   palette,
   onChange,
-  pluginsToDisplay,
-  rcProps = {},
   isMobile = false,
+  pluginsToDisplay,
+  getToolbarSettings,
 }) => {
   const editorPlugins = pluginsToDisplay
     ? pluginsToDisplay.map(plugin => pluginsMap[plugin])
     : plugins;
-  const editorState = contentState
-    ? createWithContent(convertFromRaw(contentState))
-    : createEmpty();
-
   const theme = palette ? { theme: 'Palette', palette } : { theme: 'Default' };
   return (
-    <RichContentWrapper plugins={editorPlugins} {...theme} isEditor rcProps={rcProps}>
-      <RichContentEditor
-        editorState={editorState}
-        placeholder={'Share something...'}
-        onChange={onChange}
-        helpers={{ onFilesChange }}
-        isMobile={isMobile}
-      />
-    </RichContentWrapper>
+    <RicosEditor
+      plugins={editorPlugins}
+      {...theme}
+      content={content}
+      isMobile={isMobile}
+      placeholder={'Share something...'}
+      getToolbarSettings={getToolbarSettings}
+    >
+      <RichContentEditor helpers={{ onFilesChange }} onChange={onChange} />
+    </RicosEditor>
   );
 };
 
 EditorWrapper.propTypes = {
-  contentState: PropTypes.object,
+  content: PropTypes.object,
   palette: PropTypes.arrayOf(PropTypes.object),
   onChange: PropTypes.func,
-  rcProps: PropTypes.object,
   isMobile: PropTypes.bool,
-  pluginsToDisplay: PropTypes.array,
+  pluginsToDisplay: PropTypes.arrayOf(PropTypes.string),
+  getToolbarSettings: PropTypes.object,
 };
 
 export default EditorWrapper;
