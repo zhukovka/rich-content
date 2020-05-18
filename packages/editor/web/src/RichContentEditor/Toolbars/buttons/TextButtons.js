@@ -16,84 +16,92 @@ import {
   OrderedListIcon,
   UnorderedListIcon,
 } from '../../Icons';
-import createTextInlineStyleButton from './utils/createTextInlineStyleButton';
-import createTextBlockStyleButton from './utils/createTextBlockStyleButton';
-import createTextAlignmentButton from './utils/createTextAlignmentButton';
-
+import createTextToolbarButton from './utils/createTextToolbarButton';
+import { BUTTON_STYLES } from './consts';
 export const boldButton = icon =>
-  createTextInlineStyleButton({
-    style: 'BOLD',
-    Icon: icon || BoldIcon,
+  createTextToolbarButton({
+    styles: ['BOLD'],
+    type: BUTTON_STYLES.INLINE,
+    icons: [icon || BoldIcon],
     tooltipTextKey: 'BoldButton_Tooltip',
   });
 
 export const italicButton = icon =>
-  createTextInlineStyleButton({
-    style: 'ITALIC',
-    Icon: icon || ItalicIcon,
+  createTextToolbarButton({
+    styles: ['ITALIC'],
+    type: BUTTON_STYLES.INLINE,
+    icons: [icon || ItalicIcon],
     tooltipTextKey: 'ItalicButton_Tooltip',
   });
 
 export const underlineButton = icon =>
-  createTextInlineStyleButton({
-    style: 'UNDERLINE',
-    Icon: icon || UnderlineIcon,
+  createTextToolbarButton({
+    styles: ['UNDERLINE'],
+    type: BUTTON_STYLES.INLINE,
+    icons: [icon || UnderlineIcon],
     tooltipTextKey: 'UnderlineButton_Tooltip',
   });
 
 export const titleButton = (inactiveIconTitle, iconForTitleOne, iconForTitleTwo) =>
-  createTextBlockStyleButton({
-    blockTypes: [HEADER_BLOCK.TWO, HEADER_BLOCK.THREE],
-    Icons: [iconForTitleOne || TitleOneIcon, iconForTitleTwo || TitleTwoIcon],
-    InactiveIcon: inactiveIconTitle || TitleIcon,
+  createTextToolbarButton({
+    styles: [HEADER_BLOCK.TWO, HEADER_BLOCK.THREE],
+    type: BUTTON_STYLES.BLOCK,
+    icons: [iconForTitleOne || TitleOneIcon, iconForTitleTwo || TitleTwoIcon],
+    inactiveIcon: inactiveIconTitle || TitleIcon,
     tooltipTextKey: 'TitleButton_Tooltip',
   });
 
 export const blockquoteButton = icon =>
-  createTextBlockStyleButton({
-    blockTypes: ['blockquote'],
-    Icons: [icon || BlockQuoteIcon],
+  createTextToolbarButton({
+    styles: ['blockquote'],
+    type: BUTTON_STYLES.BLOCK,
+    icons: [icon || BlockQuoteIcon],
     tooltipTextKey: 'QuoteButton_Tooltip',
   });
 
 export const alignTextLeftButton = icon =>
-  createTextAlignmentButton({
-    alignment: 'left',
-    Icon: icon || AlignLeftIcon,
+  createTextToolbarButton({
+    type: BUTTON_STYLES.ALIGNMENT,
+    styles: ['left'],
+    icons: [icon || AlignLeftIcon],
     tooltipTextKey: 'AlignTextLeftButton_Tooltip',
   });
 
 export const alignTextCenterButton = icon =>
-  createTextAlignmentButton({
-    alignment: 'center',
-    Icon: icon || AlignTextCenterIcon,
+  createTextToolbarButton({
+    type: BUTTON_STYLES.ALIGNMENT,
+    styles: ['center'],
+    icons: [icon || AlignTextCenterIcon],
     tooltipTextKey: 'AlignTextCenterButton_Tooltip',
   });
 
 export const alignTextRightButton = icon =>
-  createTextAlignmentButton({
-    alignment: 'right',
-    Icon: icon || AlignRightIcon,
+  createTextToolbarButton({
+    type: BUTTON_STYLES.ALIGNMENT,
+    styles: ['right'],
+    icons: [icon || AlignRightIcon],
     tooltipTextKey: 'AlignTextRightButton_Tooltip',
   });
 
 export const alignTextJustifyButton = icon =>
-  createTextAlignmentButton({
-    alignment: 'justify',
-    Icon: icon || AlignJustifyIcon,
+  createTextToolbarButton({
+    styles: ['justify'],
+    icons: [icon || AlignJustifyIcon],
     tooltipTextKey: 'AlignTextJustifyButton_Tooltip',
   });
 
 export const orderedListButton = icon =>
-  createTextBlockStyleButton({
-    blockTypes: ['ordered-list-item'],
-    Icons: [icon || OrderedListIcon],
+  createTextToolbarButton({
+    styles: ['ordered-list-item'],
+    type: BUTTON_STYLES.BLOCK,
+    icons: [icon || OrderedListIcon],
     tooltipTextKey: 'OrderedListButton_Tooltip',
   });
 
 export const unorderedListButton = icon =>
-  createTextBlockStyleButton({
-    blockTypes: ['unordered-list-item'],
-    Icons: [icon || UnorderedListIcon],
+  createTextToolbarButton({
+    styles: ['unordered-list-item'],
+    type: BUTTON_STYLES.BLOCK,
+    icons: [icon || UnorderedListIcon],
     tooltipTextKey: 'UnorderedListButton_Tooltip',
   });
