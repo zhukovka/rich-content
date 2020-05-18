@@ -14,9 +14,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
 
-### :rocket: New Feature
-- `editor`
+### :house: Internal
+- `editor` `viewer`
   - [#1090](https://github.com/wix-incubator/rich-content/pull/1090) support normalize config with {disableInlineImages: false/true}
+
 
   </summary>
 
