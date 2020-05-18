@@ -122,17 +122,17 @@ export default ({ type, styles, icons, inactiveIcon = null, tooltipTextKey }) =>
 
     isActive = () =>
       ({
-        [BUTTON_STYLES.BLOCK]: this.isActiveBlockType(),
-        [BUTTON_STYLES.INLINE]: this.isActiveInlineStyle(),
-        [BUTTON_STYLES.ALIGNMENT]: this.isActiveAlignment(),
-      }[type]);
+        [BUTTON_STYLES.BLOCK]: this.isActiveBlockType,
+        [BUTTON_STYLES.INLINE]: this.isActiveInlineStyle,
+        [BUTTON_STYLES.ALIGNMENT]: this.isActiveAlignment,
+      }[type]());
 
     onClick = e =>
       ({
-        [BUTTON_STYLES.BLOCK]: this.onBlockStyleClick(e),
-        [BUTTON_STYLES.INLINE]: this.onInlineStyleClick(e),
-        [BUTTON_STYLES.ALIGNMENT]: this.onAlignmentClick(e),
-      }[type]);
+        [BUTTON_STYLES.BLOCK]: this.onBlockStyleClick,
+        [BUTTON_STYLES.INLINE]: this.onInlineStyleClick,
+        [BUTTON_STYLES.ALIGNMENT]: this.onAlignmentClick,
+      }[type](e));
 
     getDataHook = () =>
       ({
@@ -162,7 +162,7 @@ export default ({ type, styles, icons, inactiveIcon = null, tooltipTextKey }) =>
           tooltipText={tooltipText}
           dataHook={this.getDataHook()}
           tabIndex={tabIndex}
-          shouldRefreshTooltips={!!this.props.shouldRefreshTooltips}
+          shouldRefreshTooltips={this.props.shouldRefreshTooltips}
         />
       );
     }
