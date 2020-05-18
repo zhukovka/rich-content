@@ -36,7 +36,6 @@ class HtmlComponent extends Component {
       componentData: { config },
       settings,
       siteDomain,
-      iframeDomain,
     } = this.props;
     if (!config.width) {
       if (settings && settings.width) {

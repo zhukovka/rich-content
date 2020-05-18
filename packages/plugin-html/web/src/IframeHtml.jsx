@@ -62,7 +62,8 @@ class IframeHtml extends Component {
   render() {
     const { iframeDomain } = this.props;
 
-    const src = `${iframeDomain.replace(/\/$/, '')}/html/db9376e69cfa487ea0fa0b912ae51a4f_v1.html`;
+    const strippedUrl = iframeDomain.replace(/\/$/, '');
+    const src = `${strippedUrl}/html/db9376e69cfa487ea0fa0b912ae51a4f_v1.html`;
 
     const iframeProps = iframeDomain ? { src, ref: this.setIframe } : { ref: this.writeToIframe };
 
