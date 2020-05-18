@@ -5,6 +5,7 @@ import styles from '../statics/styles/Iframe.scss';
 
 const isSSR = typeof window === 'undefined';
 
+const HtmlSrcPath = '/html/db9376e69cfa487ea0fa0b912ae51a4f_v1.html';
 class IframeHtml extends Component {
   state = { shouldRender: false };
   id = Math.random()
@@ -62,20 +63,20 @@ class IframeHtml extends Component {
   render() {
     const { iframeDomain } = this.props;
 
-    const strippedUrl = iframeDomain.replace(/\/$/, '');
-    const src = `${strippedUrl}/html/db9376e69cfa487ea0fa0b912ae51a4f_v1.html`;
+    const iframeProps = {
+      className: styles.iframe,
+      style: { backgroundColor: 'transparent' },
+      onLoad: this.handleIframeLoad,
+    };
+    if (iframeDomain) {
+      const strippedUrl = iframeDomain.replace(/\/$/, '');
+      iframeProps.src = strippedUrl + HtmlSrcPath;
+      iframeProps.ref = this.setIframe;
+    } else {
+      iframeProps.ref = this.writeToIframe;
+    }
 
-    const iframeProps = iframeDomain ? { src, ref: this.setIframe } : { ref: this.writeToIframe };
-
-    return this.state.shouldRender ? (
-      <iframe
-        className={styles.iframe}
-        title="remote content"
-        style={{ backgroundColor: 'transparent' }}
-        onLoad={this.handleIframeLoad}
-        {...iframeProps}
-      />
-    ) : null;
+    return this.state.shouldRender ? <iframe title={'remote content'} {...iframeProps} /> : null;
   }
 }
 
