@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FileInput, Tooltip, TooltipHost } from 'wix-rich-content-editor-common';
+import { FileInput, Tooltip } from 'wix-rich-content-editor-common';
 import { withPluginButtons } from 'wix-rich-content-editor';
 import styles from './ExternalToolbar.scss';
 
@@ -40,6 +40,7 @@ class ExternalToolbar extends Component {
                 </FileInput>
               );
             }
+            return null;
           }
         )}
       </div>
