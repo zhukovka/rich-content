@@ -41,8 +41,8 @@ export default icons => {
     activeItem: ({ getEditorState, value, defaultValue }) => {
       const alignment = value || getTextAlignment(getEditorState(), defaultValue);
       return {
-        alignment,
-        Icon: activeIcon(alignment, icons),
+        styles: [alignment],
+        icons: [activeIcon(alignment, icons)],
       };
     },
     onChange: (getEditorState, setEditorState, textAlignment) => {

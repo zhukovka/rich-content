@@ -104,8 +104,9 @@ export default ({ type, styles, icons, inactiveIcon = null, tooltipTextKey }) =>
       setEditorState(RichUtils.toggleInlineStyle(getEditorState(), styles[0]));
     };
 
-    isActiveBlockType = () =>
-      typeof this.blockType !== 'undefined' && this.blockType === this.activeBlockType;
+    isActiveBlockType() {
+      return typeof this.blockType !== 'undefined' && this.blockType === this.activeBlockType;
+    }
 
     isActiveAlignment = () => this.props.alignment === styles[0];
 

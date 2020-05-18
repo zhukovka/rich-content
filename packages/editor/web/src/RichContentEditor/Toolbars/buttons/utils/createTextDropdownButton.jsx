@@ -92,13 +92,14 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
 
     render() {
       const {
-        selected: { Icon },
+        selected: { icons, type },
         isOpen,
       } = this.state;
       const { isMobile, tabIndex, t } = this.props;
       const tooltipText = t(tooltipTextKey);
       const textForHooks = tooltipText.replace(/\s+/, '');
       const dataHookText = `textDropDownButton_${textForHooks}`;
+      const Icon = icons[0];
 
       return (
         <Tooltip content={tooltipText} moveBy={{ y: -20 }}>

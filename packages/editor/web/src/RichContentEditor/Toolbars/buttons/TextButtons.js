@@ -86,6 +86,7 @@ export const alignTextRightButton = icon =>
 export const alignTextJustifyButton = icon =>
   createTextToolbarButton({
     styles: ['justify'],
+    type: BUTTON_STYLES.ALIGNMENT,
     icons: [icon || AlignJustifyIcon],
     tooltipTextKey: 'AlignTextJustifyButton_Tooltip',
   });
