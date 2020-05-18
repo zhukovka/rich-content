@@ -42,7 +42,6 @@ class ExternalToolbar extends Component {
             }
           }
         )}
-        <TooltipHost theme={{}} />
       </div>
     );
   }
