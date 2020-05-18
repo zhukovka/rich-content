@@ -18,6 +18,9 @@ class RichContentViewer extends Component {
     super(props);
     const styles = { ...viewerStyles, ...viewerAlignmentStyles, ...rtlStyle };
     this.styles = mergeStyles({ styles, theme: props.theme });
+    this.state = {
+      raw: {},
+    };
   }
 
   static getInitialState = props => {
