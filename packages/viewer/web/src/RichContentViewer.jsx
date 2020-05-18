@@ -153,7 +153,9 @@ RichContentViewer.propTypes = {
   siteDomain: PropTypes.string,
   onError: PropTypes.func,
   addAnchors: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  normalize: PropTypes.object,
+  normalize: PropTypes.shape({
+    disableInlineImages: PropTypes.bool,
+  }),
 };
 
 RichContentViewer.defaultProps = {

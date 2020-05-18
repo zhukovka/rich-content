@@ -578,7 +578,9 @@ RichContentEditor.propTypes = {
   onAtomicBlockFocus: PropTypes.func,
   siteDomain: PropTypes.string,
   onError: PropTypes.func,
-  normalize: PropTypes.object,
+  normalize: PropTypes.shape({
+    disableInlineImages: PropTypes.bool,
+  }),
 };
 
 RichContentEditor.defaultProps = {
