@@ -62,8 +62,8 @@ class IframeHtml extends Component {
   render() {
     const { iframeDomain } = this.props;
 
-    //remove trailing '/'
-    const src = `${iframeDomain}/html/db9376e69cfa487ea0fa0b912ae51a4f_v1.html`;
+    const src = `${iframeDomain.replace(/\/$/, '')}/html/db9376e69cfa487ea0fa0b912ae51a4f_v1.html`;
+
     const iframeProps = iframeDomain ? { src, ref: this.setIframe } : { ref: this.writeToIframe };
 
     return this.state.shouldRender ? (
