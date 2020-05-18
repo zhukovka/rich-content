@@ -39,6 +39,8 @@ export default class MobileBlockLinkModal extends Component {
       uiSettings,
       unchangedUrl,
       linkPanelAddons,
+      getEditorState,
+      setEditorState,
     } = this.props;
     const componentLink = pubsub.getBlockData({ key: 'componentLink' });
     const { url, target, rel } = componentLink || {};
@@ -61,6 +63,8 @@ export default class MobileBlockLinkModal extends Component {
         t={t}
         unchangedUrl={unchangedUrl}
         linkPanelAddons={linkPanelAddons}
+        getEditorState={getEditorState}
+        setEditorState={setEditorState}
       />
     );
   }
@@ -80,4 +84,6 @@ MobileBlockLinkModal.propTypes = {
   uiSettings: PropTypes.object,
   unchangedUrl: PropTypes.bool,
   linkPanelAddons: PropTypes.array,
+  getEditorState: PropTypes.func,
+  setEditorState: PropTypes.func,
 };

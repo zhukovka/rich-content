@@ -13,6 +13,8 @@ class BlockLinkPanel extends Component {
       uiSettings,
       pubsub,
       unchangedUrl,
+      getEditorState,
+      setEditorState,
       linkPanelAddons,
     } = this.props;
     const componentLink = pubsub.getBlockData({ key: 'componentLink' });
@@ -34,8 +36,9 @@ class BlockLinkPanel extends Component {
       onOverrideContent: this.props.onOverrideContent,
       uiSettings,
       unchangedUrl,
+      getEditorState,
+      setEditorState,
       linkPanelAddons,
-      originalLinkPanel: true,
     };
 
     const LinkPanelContainerWithProps = decorateComponentWithProps(LinkRouter, linkContainerProps);
@@ -85,6 +88,8 @@ BlockLinkPanel.propTypes = {
   t: PropTypes.func,
   uiSettings: PropTypes.object,
   unchangedUrl: PropTypes.bool,
+  getEditorState: PropTypes.func,
+  setEditorState: PropTypes.func,
   linkPanelAddons: PropTypes.array,
 };
 

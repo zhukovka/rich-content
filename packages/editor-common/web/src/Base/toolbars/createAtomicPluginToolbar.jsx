@@ -25,6 +25,8 @@ export default function createAtomicPluginToolbar({
   getToolbarSettings = () => [],
   getEditorBounds,
   languageDir,
+  getEditorState,
+  setEditorState,
   linkPanelAddons,
 }) {
   class BaseToolbar extends Component {
@@ -195,6 +197,8 @@ export default function createAtomicPluginToolbar({
         t,
         uiSettings,
         icons: icons.link,
+        getEditorState,
+        setEditorState,
         linkPanelAddons,
       };
       switch (button.type) {

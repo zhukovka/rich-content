@@ -9,6 +9,7 @@ import {
   getImageSrc,
   WIX_MEDIA_DEFAULT,
   pluginImageSchema,
+  isValidUrl,
 } from 'wix-rich-content-common';
 import { DEFAULTS, SEO_IMAGE_WIDTH } from './consts';
 import styles from '../statics/styles/image-viewer.scss';
@@ -216,6 +217,18 @@ class ImageViewer extends React.Component {
     onExpand && onExpand(this.props.entityIndex);
   };
 
+  linkToAnchor = () => {
+    const {
+      componentData: {
+        config: {
+          link: { url },
+        },
+      },
+    } = this.props;
+    const element = document.getElementById(`viewer-${url}`);
+    element.scrollIntoView({ behavior: 'smooth' });
+  };
+
   handleContextMenu = e => this.props.disableRightClick && e.preventDefault();
 
   renderExpandIcon = () => {
@@ -226,6 +239,7 @@ class ImageViewer extends React.Component {
     );
   };
 
+  // eslint-disable-next-line complexity
   render() {
     this.styles = this.styles || mergeStyles({ styles, theme: this.props.theme });
     const { componentData, className, settings, setComponentUrl, seoMode } = this.props;
@@ -233,7 +247,8 @@ class ImageViewer extends React.Component {
     const data = componentData || DEFAULTS;
     const { metadata = {} } = componentData;
 
-    const hasLink = data.config && data.config.link;
+    const hasLink = data.config && data.config.link && isValidUrl(data.config.link.url);
+    const hasAnchor = data.config && data.config.link && !isValidUrl(data.config.link.url);
     const hasExpand = this.props.helpers && this.props.helpers.onExpand;
 
     const itemClassName = classNames(this.styles.imageContainer, className, {
@@ -255,7 +270,7 @@ class ImageViewer extends React.Component {
     return (
       <div
         data-hook="imageViewer"
-        onClick={!hasLink && this.handleExpand}
+        onClick={!hasLink && !hasAnchor ? this.handleExpand : this.linkToAnchor}
         className={itemClassName}
         onKeyDown={e => this.onKeyDown(e, this.onClick)}
         ref={e => this.handleRef(e)}
