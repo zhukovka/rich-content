@@ -7,6 +7,10 @@ import {
   CodeBlockIcon,
   TitleIcon,
   ParagraphIcon,
+  MapIcon,
+  ButtonIcon,
+  GiphyIcon,
+  FileIcon,
 } from '../../Icons';
 
 export const ANCHORABLE_BLOCKS = Object.freeze({
@@ -57,5 +61,31 @@ export const ANCHORABLE_BLOCKS = Object.freeze({
     visualThumbnail: true,
     type: 'LinkTo_Modal_Section_Item_Video',
     filter: 'LinkTo_Modal_Section_Filter_Videos',
+  },
+  'wix-draft-plugin-map': {
+    thumbnail: <MapIcon style={{ width: 'fit-content' }} />,
+    type: 'Map',
+    filter: 'Maps',
+  },
+  'wix-draft-plugin-link-button': {
+    thumbnail: <ButtonIcon style={{ width: 'fit-content' }} />,
+    type: 'Link Button',
+    filter: 'Link Buttons',
+  },
+  'wix-draft-plugin-action-button': {
+    thumbnail: <ButtonIcon style={{ width: 'fit-content' }} />,
+    type: 'Action Button',
+    filter: 'Action Buttons',
+  },
+  'wix-draft-plugin-giphy': {
+    thumbnail: <GiphyIcon style={{ width: 'fit-content' }} />,
+    visualThumbnail: true,
+    type: 'GIF',
+    filter: 'GIFs',
+  },
+  'wix-draft-plugin-file-upload': {
+    thumbnail: <FileIcon style={{ width: 'fit-content' }} />,
+    type: 'File',
+    filter: 'Files',
   },
 });

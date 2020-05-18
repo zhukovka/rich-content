@@ -609,7 +609,12 @@ export const filterAnchorableBlocks = (array, filter) => {
 const anchorableAtomicPlugins = atomicPluginType =>
   atomicPluginType === 'wix-draft-plugin-image' ||
   atomicPluginType === 'wix-draft-plugin-gallery' ||
-  atomicPluginType === 'wix-draft-plugin-video';
+  atomicPluginType === 'wix-draft-plugin-video' ||
+  atomicPluginType === 'wix-draft-plugin-map' ||
+  atomicPluginType === 'wix-draft-plugin-link-button' ||
+  atomicPluginType === 'wix-draft-plugin-action-button' ||
+  atomicPluginType === 'wix-draft-plugin-giphy' ||
+  atomicPluginType === 'wix-draft-plugin-file-upload';
 
 const anchorableInlineElement = blockType =>
   blockType === 'unstyled' ||

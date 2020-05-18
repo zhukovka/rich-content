@@ -134,6 +134,126 @@
       "inlineStyleRanges": [],
       "entityRanges": [],
       "data": {}
+    },
+    {
+      "key": "fhlg8",
+      "text": " ",
+      "type": "atomic",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 3
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "60e1p",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "4r71j",
+      "text": " ",
+      "type": "atomic",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 4
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "8iav5",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "463qi",
+      "text": " ",
+      "type": "atomic",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 5
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "15shb",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "d8ipj",
+      "text": " ",
+      "type": "atomic",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 6
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "eonr4",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "54mm0",
+      "text": " ",
+      "type": "atomic",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 0,
+          "length": 1,
+          "key": 7
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "fhsng",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
     }
   ],
   "entityMap": {
@@ -251,6 +371,125 @@
           "html": "<iframe width=\"480\" height=\"270\" src=\"https://www.youtube.com/embed/_zuIxexRrtk?feature=oembed\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>",
           "video_url": "https://youtu.be/_zuIxexRrtk"
         }
+      }
+    },
+    "3": {
+      "type": "wix-draft-plugin-map",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "config": {
+          "size": "content",
+          "alignment": "center",
+          "width": 400,
+          "height": 400
+        },
+        "mapSettings": {
+          "address": "Wix HQ, Nemal Tel Aviv Street, Tel Aviv-Yafo, Israel",
+          "locationDisplayName": "Wix HQ, Nemal Tel Aviv Street, Tel Aviv-Yafo, Israel",
+          "lat": 32.097235,
+          "lng": 34.77427,
+          "zoom": 18,
+          "mode": "roadmap",
+          "isMarkerShown": true,
+          "isZoomControlShown": true,
+          "isStreetViewControlShown": true,
+          "isDraggingAllowed": true
+        }
+      }
+    },
+    "4": {
+      "type": "wix-draft-plugin-action-button",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "config": {
+          "alignment": "center",
+          "size": "small",
+          "width": "fit-content"
+        },
+        "button": {
+          "settings": {
+            "buttonText": "Click Me",
+            "url": "",
+            "rel": false,
+            "target": true
+          },
+          "design": {
+            "activeButton": 0,
+            "borderRadius": 0,
+            "borderWidth": 0,
+            "padding": 12,
+            "background": "#0261FF",
+            "color": "#FFFFFF",
+            "borderColor": "#0261FF"
+          }
+        }
+      }
+    },
+    "5": {
+      "type": "wix-draft-plugin-link-button",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "config": {
+          "alignment": "center",
+          "size": "small",
+          "width": "fit-content"
+        },
+        "button": {
+          "settings": {
+            "buttonText": "Click Me",
+            "url": "",
+            "rel": false,
+            "target": true
+          },
+          "design": {
+            "activeButton": 0,
+            "borderRadius": 0,
+            "borderWidth": 0,
+            "padding": 12,
+            "background": "#0261FF",
+            "color": "#FFFFFF",
+            "borderColor": "#0261FF"
+          }
+        }
+      }
+    },
+    "6": {
+      "type": "wix-draft-plugin-giphy",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "config": {
+          "size": "small",
+          "alignment": "center"
+        },
+        "configViewer": {
+          "sizes": {
+            "desktop": "original",
+            "mobile": "original"
+          }
+        },
+        "gif": {
+          "originalUrl": "https://media3.giphy.com/media/10oPpB4ACQ9xlK/giphy.gif?cid=558f2fbe66c764f92df1de582f09240ce3be87e72c8845d0&rid=giphy.gif",
+          "originalMp4": "https://media3.giphy.com/media/10oPpB4ACQ9xlK/giphy.mp4?cid=558f2fbe66c764f92df1de582f09240ce3be87e72c8845d0&rid=giphy.mp4",
+          "stillUrl": "https://media3.giphy.com/media/10oPpB4ACQ9xlK/giphy_s.gif?cid=558f2fbe66c764f92df1de582f09240ce3be87e72c8845d0&rid=giphy_s.gif",
+          "downsizedUrl": "https://media3.giphy.com/media/10oPpB4ACQ9xlK/giphy.gif?cid=558f2fbe66c764f92df1de582f09240ce3be87e72c8845d0&rid=giphy.gif",
+          "downsizedStillUrl": "https://media3.giphy.com/media/10oPpB4ACQ9xlK/giphy_s.gif?cid=558f2fbe66c764f92df1de582f09240ce3be87e72c8845d0&rid=giphy_s.gif",
+          "downsizedSmallMp4": "https://media3.giphy.com/media/10oPpB4ACQ9xlK/giphy-downsized-small.mp4?cid=558f2fbe66c764f92df1de582f09240ce3be87e72c8845d0&rid=giphy-downsized-small.mp4",
+          "height": 245,
+          "width": 245
+        }
+      }
+    },
+    "7": {
+      "type": "wix-draft-plugin-file-upload",
+      "mutability": "IMMUTABLE",
+      "data": {
+        "config": {
+          "alignment": "center",
+          "size": "small"
+        },
+        "name": "image.jpg",
+        "type": "jpg",
+        "url": "http://file-examples.com/wp-content/uploads/2017/10/file-sample_150kB.pdf"
       }
     }
   },

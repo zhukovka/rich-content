@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { PureComponent } from 'react';
@@ -51,7 +52,6 @@ class AnchorableElement extends PureComponent {
         break;
       case 'wix-draft-plugin-video':
         if (block?.data?.src?.thumbnail?.pathname) {
-          // eslint-disable-next-line camelcase
           src.file_name = block?.data?.src?.thumbnail?.pathname;
         } else if (isValidUrl(block?.data?.src)) {
           const noEmbedBasePath = 'https://noembed.com/embed?url=';
@@ -76,9 +76,13 @@ class AnchorableElement extends PureComponent {
         }
         break;
       case 'wix-draft-plugin-gallery':
-        // eslint-disable-next-line camelcase
         src.file_name = block.data.items[0].url;
         break;
+      case 'wix-draft-plugin-giphy':
+        this.setState({
+          visualThumbnail: block.data.gif.downsizedUrl,
+        });
+        return;
       default:
         // eslint-disable-next-line no-console
         console.error('Mismatch plugins');

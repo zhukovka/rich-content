@@ -15,7 +15,10 @@ export default () => {
     <Page title="Anchor Plugin">
       <h4>link config is needed: linkPanelAddons: [`anchor`]</h4>
       <h5>As of today, anchor can be linked to one of the following:</h5>
-      <h5>regular text (paragraphs), headers, code blocks, quotes, images, galleries and videos</h5>
+      <h5>
+        regular text (paragraphs), headers, code blocks, quotes, images, galleries, videos, maps,
+        buttons, gifs and files
+      </h5>
       <Section type={Section.Types.COMPARISON}>
         <RichContentEditorBox contentState={AnchorContentState}>
           <EditorWrapper contentState={AnchorContentState} />
