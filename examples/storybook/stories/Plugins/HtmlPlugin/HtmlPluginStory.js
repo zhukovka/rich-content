@@ -13,9 +13,9 @@ export default () => (
   <Page title={'HTML Plugin'}>
     <p>HTML plugin enables users to embed content in an iframe (either source code or by URL)</p>
     <p>
-      In order for the source code to be rendered in an isolated environment, `iframeDomain` conifg
-      on viewer & editor must be supplied, and be easily changed by consumer incase of DDOS on
-      domain or subdomain
+      In order for the source code to be rendered in an isolated environment, `sandboxedDomain`
+      conifg on viewer & editor must be supplied, and be easily changed by consumer incase of DDOS
+      on domain or subdomain
     </p>
     <p>
       Format is:
@@ -33,7 +33,7 @@ export default () => (
       </div>
 
       <div>
-        <h2>With iframeDomain config</h2>
+        <h2>With sandboxedDomain config</h2>
         <RichContentViewerBox sourcecode={HtmlWithDomainSourceCode}>
           <HtmlWithDomainStory contentState={contentState} />
         </RichContentViewerBox>
