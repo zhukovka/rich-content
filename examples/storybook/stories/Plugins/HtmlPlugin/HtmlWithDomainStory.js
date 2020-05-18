@@ -1,23 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { RichContentWrapper } from 'wix-rich-content-wrapper';
+import { RicosEditor } from 'ricos-editor';
 import { RichContentEditor } from 'wix-rich-content-editor';
 import { pluginHtml } from 'wix-rich-content-plugin-html';
 import { pluginLinkPreview } from 'wix-rich-content-plugin-link-preview';
 
 const HtmlWithDomainStory = ({ contentState }) => {
   return (
-    <RichContentWrapper
-      plugins={[pluginHtml(), pluginLinkPreview()]}
-      contentState={contentState}
-      isEditor
-    >
+    <RicosEditor plugins={[pluginHtml(), pluginLinkPreview()]} contentState={contentState}>
       <RichContentEditor
         initialState={contentState}
         iframeDomain="https://richcontent-sttorybook.filesusr.com"
       />
-    </RichContentWrapper>
+    </RicosEditor>
   );
 };
 

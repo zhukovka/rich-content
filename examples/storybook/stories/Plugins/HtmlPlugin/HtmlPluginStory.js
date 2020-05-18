@@ -1,6 +1,7 @@
 import React from 'react';
 import { Section, Page, ContentState, RichContentViewerBox } from '../../Components/StoryParts';
-import { RichContentWrapper } from 'wix-rich-content-wrapper';
+import { RicosViewer } from 'ricos-viewer';
+
 import { RichContentViewer } from 'wix-rich-content-viewer';
 import { pluginHtml } from 'wix-rich-content-plugin-html/dist/module.viewer';
 import { pluginLinkPreview } from 'wix-rich-content-plugin-link-preview/dist/module.viewer';
@@ -26,12 +27,9 @@ export default () => (
     <Section type={Section.Types.COMPARISON}>
       <div>
         <h2>Default behavior</h2>
-        <RichContentWrapper
-          plugins={[pluginHtml(), pluginLinkPreview()]}
-          contentState={contentState}
-        >
+        <RicosViewer plugins={[pluginHtml(), pluginLinkPreview()]} contentState={contentState}>
           <RichContentViewer initialState={contentState} />
-        </RichContentWrapper>
+        </RicosViewer>
       </div>
 
       <div>
