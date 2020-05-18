@@ -92,7 +92,7 @@ export default ({ buttons, activeItem, onChange, tooltipTextKey }) =>
 
     render() {
       const {
-        selected: { icons, type },
+        selected: { icons },
         isOpen,
       } = this.state;
       const { isMobile, tabIndex, t } = this.props;
