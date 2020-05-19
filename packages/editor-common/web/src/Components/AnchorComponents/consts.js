@@ -64,28 +64,28 @@ export const ANCHORABLE_BLOCKS = Object.freeze({
   },
   'wix-draft-plugin-map': {
     thumbnail: <MapIcon style={{ width: 'fit-content' }} />,
-    type: 'Map',
-    filter: 'Maps',
+    type: 'LinkTo_Modal_Section_Item_Map',
+    filter: 'LinkTo_Modal_Section_Filter_Maps',
   },
   'wix-draft-plugin-link-button': {
     thumbnail: <ButtonIcon style={{ width: 'fit-content' }} />,
-    type: 'Link Button',
-    filter: 'Link Buttons',
+    type: 'LinkTo_Modal_Section_Item_Button',
+    filter: 'LinkTo_Modal_Section_Filter_Buttons',
   },
   'wix-draft-plugin-action-button': {
     thumbnail: <ButtonIcon style={{ width: 'fit-content' }} />,
-    type: 'Action Button',
-    filter: 'Action Buttons',
+    type: 'LinkTo_Modal_Section_Item_Button',
+    filter: 'LinkTo_Modal_Section_Filter_Buttons',
   },
   'wix-draft-plugin-giphy': {
     thumbnail: <GiphyIcon style={{ width: 'fit-content' }} />,
     visualThumbnail: true,
-    type: 'GIF',
-    filter: 'GIFs',
+    type: 'LinkTo_Modal_Section_Item_GIF',
+    filter: 'LinkTo_Modal_Section_Filter_GIFs',
   },
   'wix-draft-plugin-file-upload': {
     thumbnail: <FileIcon style={{ width: 'fit-content' }} />,
-    type: 'File',
-    filter: 'Files',
+    type: 'LinkTo_Modal_Section_Item_File',
+    filter: 'LinkTo_Modal_Section_Filter_Files',
   },
 });
