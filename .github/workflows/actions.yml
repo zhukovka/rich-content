@@ -2,7 +2,7 @@ name: deploySurge
 on:
   push:
     tags-ignore:
-      - 'v1.*'
+      - 'commitAfterMerge'
       # - master
 jobs:
   deploy-examples:

@@ -14,7 +14,7 @@ jobs:
         with:
           commit_message: Updating the baseline bundlesSizes
           branch: githubActionOnMergePR
-          tagging_message: 'v1.0'
+          tagging_message: 'commitAfterMerge'
           # branch: ${{ github.head_ref }}
           file_pattern: plugins-bundle-analyzer/bundlesSizesBaseline.json
     env:

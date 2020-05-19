@@ -3,7 +3,7 @@ name: tests
 on:
   push:
     tags-ignore:
-      - 'v1.*'
+      - 'commitAfterMerge'
 env:
   captureVideos: 'true'
   captureImages: 'true'
