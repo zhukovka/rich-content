@@ -11,7 +11,7 @@
     },
     {
       "key": "4qcgg",
-      "text": "paragraph (regular text)",
+      "text": "my paragraph (regular text)",
       "type": "unstyled",
       "depth": 0,
       "inlineStyleRanges": [],
@@ -20,7 +20,7 @@
     },
     {
       "key": "de6ht",
-      "text": "header 1",
+      "text": "my header 1",
       "type": "header-two",
       "depth": 0,
       "inlineStyleRanges": [],
@@ -29,7 +29,7 @@
     },
     {
       "key": "48iod",
-      "text": "header 2",
+      "text": "my header 2",
       "type": "header-three",
       "depth": 0,
       "inlineStyleRanges": [],
@@ -38,7 +38,7 @@
     },
     {
       "key": "73gfg",
-      "text": "code block",
+      "text": "my code block",
       "type": "code-block",
       "depth": 0,
       "inlineStyleRanges": [],
@@ -47,7 +47,7 @@
     },
     {
       "key": "c3k46",
-      "text": "quote",
+      "text": "my quote",
       "type": "blockquote",
       "depth": 0,
       "inlineStyleRanges": [],
@@ -408,7 +408,7 @@
         },
         "button": {
           "settings": {
-            "buttonText": "Click Me",
+            "buttonText": "my action button",
             "url": "",
             "rel": false,
             "target": true
@@ -436,10 +436,10 @@
         },
         "button": {
           "settings": {
-            "buttonText": "Click Me",
-            "url": "",
+            "buttonText": "my link button",
+            "url": "google.com",
             "rel": false,
-            "target": true
+            "target": false
           },
           "design": {
             "activeButton": 0,

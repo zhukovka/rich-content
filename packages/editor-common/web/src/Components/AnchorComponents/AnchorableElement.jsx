@@ -7,6 +7,7 @@ import { mergeStyles, getImageSrc, isValidUrl } from 'wix-rich-content-common';
 import styles from '../../../statics/styles/new-link-panel.scss';
 import { ANCHORABLE_BLOCKS } from './consts';
 import classNames from 'classnames';
+import { get } from 'lodash';
 
 class AnchorableElement extends PureComponent {
   constructor(props) {
@@ -35,7 +36,11 @@ class AnchorableElement extends PureComponent {
   getContent = () => {
     const { block, t } = this.props;
     if (block.type === 'atomic') {
-      return `${t(ANCHORABLE_BLOCKS[block.anchorType].type)} ${block.index}`;
+      if (ANCHORABLE_BLOCKS[block.anchorType].visualThumbnail) {
+        return `${t(ANCHORABLE_BLOCKS[block.anchorType].type)} ${block.index}`;
+      } else {
+        return get(block, ANCHORABLE_BLOCKS[block.anchorType].textPath);
+      }
     } else {
       return block.text;
     }

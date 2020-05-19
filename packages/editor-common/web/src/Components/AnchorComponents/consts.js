@@ -66,11 +66,13 @@ export const ANCHORABLE_BLOCKS = Object.freeze({
     thumbnail: <MapIcon style={{ width: 'fit-content' }} />,
     type: 'LinkTo_Modal_Section_Item_Map',
     filter: 'LinkTo_Modal_Section_Filter_Maps',
+    textPath: 'data.mapSettings.address',
   },
   buttons: {
     thumbnail: <ButtonIcon style={{ width: 'fit-content' }} />,
     type: 'LinkTo_Modal_Section_Item_Button',
     filter: 'LinkTo_Modal_Section_Filter_Buttons',
+    textPath: 'data.button.settings.buttonText',
   },
   // 'wix-draft-plugin-link-button': {
   //   thumbnail: <ButtonIcon style={{ width: 'fit-content' }} />,
@@ -92,5 +94,6 @@ export const ANCHORABLE_BLOCKS = Object.freeze({
     thumbnail: <FileIcon style={{ width: 'fit-content' }} />,
     type: 'LinkTo_Modal_Section_Item_File',
     filter: 'LinkTo_Modal_Section_Filter_Files',
+    textPath: 'data.name',
   },
 });
