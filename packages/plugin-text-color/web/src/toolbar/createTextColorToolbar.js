@@ -23,7 +23,8 @@ export const createTextColorToolbar = config => ({
       modalElement: props => <TextColorPanel {...props} {...config} />,
       isActive: () => {
         const predicate = textForegroundPredicate(
-          config[TEXT_COLOR_TYPE]?.styleSelectionPredicate || DEFAULT_STYLE_SELECTION_PREDICATE);
+          config[TEXT_COLOR_TYPE]?.styleSelectionPredicate || DEFAULT_STYLE_SELECTION_PREDICATE
+        );
         return getSelectionStyles(predicate, config.getEditorState()).length > 0;
       },
       icon: config[TEXT_COLOR_TYPE]?.toolbar?.icons?.InsertPluginButtonIcon || TextColorIcon,
