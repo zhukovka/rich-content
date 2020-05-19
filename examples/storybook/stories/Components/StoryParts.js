@@ -40,10 +40,10 @@ Section.propTypes = {
   children: PropTypes.node,
 };
 
-export const RichContentEditorBox = ({ children, preset = '', sourcecode, content, title }) => {
+export const RichContentEditorBox = ({ children, preset = '', sourcecode, content, header }) => {
   return (
     <div className={styles[preset]}>
-      <h3>{title}</h3>
+      <h3>{header}</h3>
       <div className={styles.rceWrapper}>{children}</div>
       {sourcecode && <SourceCode code={sourcecode} />}
       {content && (
@@ -58,6 +58,7 @@ export const RichContentEditorBox = ({ children, preset = '', sourcecode, conten
 
 RichContentEditorBox.propTypes = {
   children: PropTypes.node,
+  title: PropTypes.string,
 };
 
 export const RichContentViewerBox = ({ children, preset, sourcecode }) => (

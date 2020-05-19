@@ -10,13 +10,13 @@ export default () => {
     <Page title="Headings Plugin">
       <Section type={Section.Types.COMPARISON}>
         <RichContentEditorBox
+          header="With Headings Menu"
           sourcecode={editorSourcecode}
           content={headingsContentState}
-          title="With Headings Menu"
         >
           <HeadingsEditor content={headingsContentState} pluginHeadings={pluginHeadings} />
         </RichContentEditorBox>
-        <RichContentEditorBox title="With Headings Button">
+        <RichContentEditorBox header="With Headings Button">
           <HeadingsEditor content={headingsContentState} />
         </RichContentEditorBox>
       </Section>
