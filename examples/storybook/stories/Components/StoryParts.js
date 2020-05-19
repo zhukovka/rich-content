@@ -19,14 +19,10 @@ Page.propTypes = {
 };
 
 export const Section = ({ type, title, children }) => {
-  let _children = children;
-  if (type === Section.Types.COMPARISON) {
-    _children = React.Children.map(children, child => React.cloneElement(child, { title: true }));
-  }
   return (
     <div className={styles.section}>
       <h2>{title}</h2>
-      <div className={styles[type]}>{_children}</div>
+      <div className={styles[type]}>{children}</div>
     </div>
   );
 };
@@ -40,10 +36,10 @@ Section.propTypes = {
   children: PropTypes.node,
 };
 
-export const RichContentEditorBox = ({ children, preset = '', sourcecode, content, header }) => {
+export const RichContentEditorBox = ({ children, preset = '', sourcecode, content, title }) => {
   return (
     <div className={styles[preset]}>
-      <h3>{header}</h3>
+      <h3>{title}</h3>
       <div className={styles.rceWrapper}>{children}</div>
       {sourcecode && <SourceCode code={sourcecode} />}
       {content && (
