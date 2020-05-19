@@ -94,6 +94,7 @@ const linkTextButtonMapper /*: TextButtonMapper */ = config => ({
         e.preventDefault();
         openLinkModal(config);
       },
+      isActive: () => hasLinksInSelection(config.getEditorState()),
       icon: config[LINK_TYPE]?.toolbar?.icons?.InsertPluginButtonIcon || LinkIcon,
       tooltip: config.t('TextLinkButton_Tooltip'),
       name: LINK_TYPE,
