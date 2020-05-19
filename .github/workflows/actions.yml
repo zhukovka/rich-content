@@ -1,10 +1,6 @@
 name: deploySurge
 on: push
-# on:
-#   push:
-#     tags-ignore:
-#       - 'commitAfterMerge'
-#       # - master
+
 jobs:
   deploy-examples:
     runs-on: ubuntu-18.04

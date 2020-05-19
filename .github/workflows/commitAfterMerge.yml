@@ -1,11 +1,13 @@
 name: commitAfterMerge
 on:
-  push:
-    branches:
-      - githubActionOnMergePR
-      # - master
+  pull_request:
+    types: [closed]
+# on:
+#   push:
+#     branches:
+#       - master
 jobs:
-  save-BundlesSizes-Baseline:
+  analyze-bundles:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -14,8 +16,5 @@ jobs:
         with:
           commit_message: Updating the baseline bundlesSizes
           branch: githubActionOnMergePR
-          tagging_message: 'commitAfterMerge'
-          # branch: ${{ github.head_ref }}
-          file_pattern: plugins-bundle-analyzer/bundlesSizesBaseline.json
     env:
       REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
