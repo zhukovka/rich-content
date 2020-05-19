@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { BUTTON_STYLES } from '../consts';
 import { RichUtils, setTextAlignment } from 'wix-rich-content-editor-common';
 
