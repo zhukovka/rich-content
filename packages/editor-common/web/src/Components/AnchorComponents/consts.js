@@ -67,16 +67,21 @@ export const ANCHORABLE_BLOCKS = Object.freeze({
     type: 'LinkTo_Modal_Section_Item_Map',
     filter: 'LinkTo_Modal_Section_Filter_Maps',
   },
-  'wix-draft-plugin-link-button': {
+  buttons: {
     thumbnail: <ButtonIcon style={{ width: 'fit-content' }} />,
     type: 'LinkTo_Modal_Section_Item_Button',
     filter: 'LinkTo_Modal_Section_Filter_Buttons',
   },
-  'wix-draft-plugin-action-button': {
-    thumbnail: <ButtonIcon style={{ width: 'fit-content' }} />,
-    type: 'LinkTo_Modal_Section_Item_Button',
-    filter: 'LinkTo_Modal_Section_Filter_Buttons',
-  },
+  // 'wix-draft-plugin-link-button': {
+  //   thumbnail: <ButtonIcon style={{ width: 'fit-content' }} />,
+  //   type: 'LinkTo_Modal_Section_Item_Button',
+  //   filter: 'LinkTo_Modal_Section_Filter_Buttons',
+  // },
+  // 'wix-draft-plugin-action-button': {
+  //   thumbnail: <ButtonIcon style={{ width: 'fit-content' }} />,
+  //   type: 'LinkTo_Modal_Section_Item_Button',
+  //   filter: 'LinkTo_Modal_Section_Filter_Buttons',
+  // },
   'wix-draft-plugin-giphy': {
     thumbnail: <GiphyIcon style={{ width: 'fit-content' }} />,
     visualThumbnail: true,

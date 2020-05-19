@@ -572,15 +572,22 @@ export const getAnchorableBlocks = editorState => {
           if (charEntity) {
             const contentEntity = contentState.getEntity(charEntity).toJS();
             if (anchorableAtomicPlugins(contentEntity.type)) {
-              if (!indexes[contentEntity.type]) {
-                indexes[contentEntity.type] = 1;
+              let contentEntityType = contentEntity.type;
+              if (
+                contentEntityType === 'wix-draft-plugin-link-button' ||
+                contentEntityType === 'wix-draft-plugin-action-button'
+              ) {
+                contentEntityType = 'buttons';
+              }
+              if (!indexes[contentEntityType]) {
+                indexes[contentEntityType] = 1;
               } else {
-                indexes[contentEntity.type]++;
+                indexes[contentEntityType]++;
               }
               anchorableBlocks.push({
                 ...block.toJS(),
-                index: indexes[contentEntity.type],
-                anchorType: contentEntity.type,
+                index: indexes[contentEntityType],
+                anchorType: contentEntityType,
                 data: contentEntity.data,
               });
             }
