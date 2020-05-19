@@ -8,31 +8,48 @@ export default class TextSelectionListener extends React.Component {
     super(props);
     this.state = { selectedText: '' };
   }
+
+  getSelectedText = selection => {
+    let text = '';
+    if (selection.rangeCount > 0) {
+      text = selection.toString();
+    }
+    this.setState({ selectedText: text });
+  };
+
+  getSelectedPosition = selection => {
+    if (selection.rangeCount > 0) {
+      const selectionRect = selection.getRangeAt(0).getBoundingClientRect();
+      const { x, y, width, height } = selectionRect;
+      this.setState({
+        position: {
+          x,
+          y,
+          width,
+          height,
+        },
+      });
+    }
+  };
+
+  debounceSelection = debounce(() => {
+    const selection = document.getSelection();
+    this.getSelectedText(selection);
+    this.getSelectedPosition(selection);
+  }, 100);
+
   componentDidMount() {
-    document.addEventListener(
-      'selectionchange',
-      debounce(() => {
-        const selection = document.getSelection();
-        let text, selectionRect;
-        if (selection.rangeCount > 0) {
-          text = selection.toString();
-          selectionRect = selection?.getRangeAt(0)?.getBoundingClientRect();
-        } else {
-          text = '';
-        }
-        this.setState({ selectedText: text, selectionRect });
-      }, 100)
-    );
+    document.addEventListener('selectionchange', this.debounceSelection);
   }
 
   render() {
     const { ToolBar, targetId } = this.props;
-    const { selectedText, selectionRect } = this.state;
+    const { selectedText, position } = this.state;
     return selectedText !== '' ? (
       <ToolBar
         selectedText={selectedText}
         options={[TWITTER]}
-        selectionRect={selectionRect}
+        position={position}
         targetId={targetId}
       />
     ) : (

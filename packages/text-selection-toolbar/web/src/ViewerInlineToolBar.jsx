@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { TWITTER } from './toolbarOptions';
+import OptionButton from './OptionButton';
 import styles from '../statics/styles/viewer-inline-toolbar.rtlignore.scss';
 import Twitter from './icons/twitter.svg';
 
@@ -14,7 +15,7 @@ const toolbarOptionsActions = {
   [TWITTER]: {
     action: selectedText => handleTweetClick(selectedText),
     buttonText: 'Tweet',
-    Comp: <Twitter />,
+    icon: <Twitter />,
   },
 };
 
@@ -27,37 +28,33 @@ export default class ViewerInlineToolBar extends React.Component {
         document.getElementById(targetId).getBoundingClientRect()) ||
       {};
   }
-  getOptionButton = (currentOption, selectedText) => {
-    const action = () => currentOption.action(selectedText);
-    const option = currentOption.buttonText;
-    const Comp = currentOption.Comp;
-    return (
-      <button key={option} className={styles.option} onClick={action}>
-        {Comp}
-      </button>
-    );
-  };
 
   getToolbarOptions = () => {
     const { options, selectedText } = this.props;
     const buttons = [];
     options.map(option => {
       const currentOption = toolbarOptionsActions[option];
-      return buttons.push(this.getOptionButton(currentOption, selectedText));
+      return buttons.push(
+        <OptionButton
+          key={currentOption.buttonText}
+          currentOption={currentOption}
+          selectedText={selectedText}
+        />
+      );
     });
     return buttons;
   };
 
   render() {
-    const { selectionRect = {} } = this.props;
-    const { x, y, width, height } = selectionRect;
+    const { position = {} } = this.props;
+    const { x, y, width, height } = position;
     const { top, left } = this.viewerRect;
     return (
       <div
         className={styles.container}
         style={{
-          top: y - height * 3 - top,
-          left: x - left + width * 0.4,
+          top: y - top * 2.3,
+          left: x - left + width * 0.5,
         }}
       >
         {this.getToolbarOptions()}
@@ -69,6 +66,6 @@ export default class ViewerInlineToolBar extends React.Component {
 ViewerInlineToolBar.propTypes = {
   options: PropTypes.array.isRequired,
   selectedText: PropTypes.string.isRequired,
-  selectionRect: PropTypes.object.isRequired,
+  position: PropTypes.object.isRequired,
   targetId: PropTypes.string.isRequired,
 };
