@@ -4,13 +4,11 @@ import TextCodeBlockButton from './TextCodeBlockButton';
 import { CODE_BLOCK_TYPE } from '../types';
 import { toggleBlockTypeAndEnsureSpaces } from './blockTypeModifiers';
 import createInsertButtons from './codeBlockInsertButtons';
+import CodeBlockIcon from '../icons/CodeBlockIcon';
 
-const codeBlockTexButtontMapper /*: TextButtonMapper */ = ({
-  setEditorState,
-  helpers,
-  t,
-  icon,
-}) => {
+const codeBlockTexButtontMapper /*: TextButtonMapper */ = config => {
+  const { setEditorState, helpers, t } = config;
+  const icon = config[CODE_BLOCK_TYPE]?.toolbar?.icons?.InsertPluginButtonIcon || CodeBlockIcon;
   const commandHandler = editorState => {
     setEditorState(toggleBlockTypeAndEnsureSpaces(CODE_BLOCK_TYPE, editorState));
   };
@@ -33,7 +31,19 @@ const codeBlockTexButtontMapper /*: TextButtonMapper */ = ({
       },
     }),
     InsertButtons: createInsertButtons({ helpers, t, addBlockHandler: commandHandler, icon }),
-    name: 'code-block',
+    name: CODE_BLOCK_TYPE,
+    externalizedButtonProps: [
+      {
+        onClick: e => {
+          e.preventDefault();
+        },
+        icon,
+        tooltip: config.t('TextCodeBlockButton_Tooltip'),
+        name: CODE_BLOCK_TYPE,
+        label: '', // new key needed?
+        buttonType: 'button',
+      },
+    ],
   };
 };
 

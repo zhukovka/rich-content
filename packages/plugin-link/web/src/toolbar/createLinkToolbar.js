@@ -7,9 +7,11 @@ import {
   EditorModals,
   getModalStyles,
   insertLinkAtCurrentSelection,
+  LinkIcon,
 } from 'wix-rich-content-editor-common';
 import createInlineButtons from './inline-buttons';
 import TextLinkButton from './TextLinkButton';
+import { LINK_TYPE } from '../types';
 
 const openLinkModal = ({
   helpers,
@@ -85,7 +87,20 @@ const linkTextButtonMapper /*: TextButtonMapper */ = config => ({
     },
   }),
   InlinePluginToolbarButtons: createInlineButtons(config),
-  name: 'link',
+  name: 'link', // TODO: use type instead string
+  externalizedButtonProps: [
+    {
+      onClick: e => {
+        e.preventDefault();
+        openLinkModal(config);
+      },
+      icon: config[LINK_TYPE]?.toolbar?.icons?.InsertPluginButtonIcon || LinkIcon,
+      tooltip: config.t('TextLinkButton_Tooltip'),
+      name: LINK_TYPE,
+      label: '', // new key needed?
+      buttonType: 'button',
+    },
+  ],
 });
 
 export default linkTextButtonMapper;
