@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - run: npm install && npm run saveBundlesSizesBaseline
+      - run: npm install && npm run analyzeBundles
       - uses: stefanzweifel/git-auto-commit-action@v4.1.6
         with:
           commit_message: Updating the baseline bundlesSizes
