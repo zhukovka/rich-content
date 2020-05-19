@@ -25,9 +25,7 @@
 - `editor`
   - [#1041](https://github.com/wix-incubator/rich-content/pull/1041) shift+tab click deletes tab character ('\t')
   - [#1065](https://github.com/wix-incubator/rich-content/pull/1065) backspace click at start of block decrease indentation
-  - [#1084](https://github.com/wix-incubator/rich-content/pull/1084) external toolbar API added   
-- `fullscreen`
-  - [#845](https://github.com/wix-incubator/rich-content/pull/845) fullscreen image titles and design changes
+  - [#1084](https://github.com/wix-incubator/rich-content/pull/1084) external toolbar API added
 - `wrapper`
   - [#1003](https://github.com/wix-incubator/rich-content/pull/1003) RichContentWrapper was split into RicosEditor & RicosViewer
 - `viewer`
@@ -37,6 +35,8 @@
   - [#1101](https://github.com/wix-incubator/rich-content/pull/1101) fix hashtag decorator in viewer
 - `plugins`
   - [#1084](https://github.com/wix-incubator/rich-content/pull/1084) svg icon id conflicts fixed
+- `giphy`
+  - [#1084](https://github.com/wix-incubator/rich-content/pull/1084) giphy toolbar not showing after giphy is added 
 - `link-preview`
   - [#1048](https://github.com/wix-incubator/rich-content/pull/1048) fix: enable link preview and link embed by default
 - `common`
