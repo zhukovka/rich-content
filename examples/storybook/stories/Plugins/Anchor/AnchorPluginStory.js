@@ -20,11 +20,11 @@ export default () => {
         buttons, gifs and files
       </h5>
       <Section type={Section.Types.COMPARISON}>
-        <RichContentEditorBox contentState={AnchorContentState}>
-          <EditorWrapper contentState={AnchorContentState} />
+        <RichContentEditorBox content={AnchorContentState}>
+          <EditorWrapper content={AnchorContentState} />
         </RichContentEditorBox>
         <RichContentViewerBox>
-          <ViewerWrapper contentState={AnchorContentState} />
+          <ViewerWrapper content={AnchorContentState} />
         </RichContentViewerBox>
       </Section>
     </Page>

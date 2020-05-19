@@ -303,7 +303,7 @@ class NewLinkPanelContainer extends PureComponent {
               showRelValueCheckbox={showRelValueCheckbox}
               t={t}
               ariaProps={linkPanelAriaProps}
-              {...uiSettings.linkPanel}
+              {...uiSettings?.linkPanel}
             />
           )}
           {radioGroupValue === 'anchor' && (
@@ -318,7 +318,7 @@ class NewLinkPanelContainer extends PureComponent {
               theme={theme}
               t={t}
               ariaProps={linkPanelAriaProps}
-              {...uiSettings.linkPanel}
+              {...uiSettings?.linkPanel}
             />
           )}
         </div>
