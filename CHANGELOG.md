@@ -42,6 +42,7 @@
 ### :house: Internal
 - `exampleApp`
   - [0f849222](https://github.com/wix-incubator/rich-content/commit/0f849222) fix translations
+  - [1113](https://github.com/wix-incubator/rich-content/pull/1113) fix: Tooltips don't render in the correct translations
 - `storybook`
   - [#1003](https://github.com/wix-incubator/rich-content/pull/1003) added story for wrapper handling of static text toolbar
   - [#1084](https://github.com/wix-incubator/rich-content/pull/1084) external plugin sidebar added
