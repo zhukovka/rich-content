@@ -13,7 +13,10 @@
   border-radius: 30px;
   display: none;
   .gallery_container:hover & {
-    display: block;
+    // display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -43,7 +46,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  
 }
 
 .imageTitleContainer {
