@@ -1,16 +1,14 @@
 import React from 'react';
-import { RichContentWrapper } from 'wix-rich-content-wrapper';
-import { RichContentEditor } from 'wix-rich-content-editor';
+import { RicosEditor } from 'ricos-editor';
+
 import PropTypes from 'prop-types';
 
-const HeadingsEditor = ({ editorState, pluginHeadings }) => (
-  <RichContentWrapper plugins={pluginHeadings ? [pluginHeadings()] : []} isEditor>
-    <RichContentEditor editorState={editorState} />
-  </RichContentWrapper>
+const HeadingsEditor = ({ content, pluginHeadings }) => (
+  <RicosEditor plugins={pluginHeadings ? [pluginHeadings()] : []} content={content} />
 );
 
 HeadingsEditor.propTypes = {
-  editorState: PropTypes.object,
+  content: PropTypes.object,
   pluginHeadings: PropTypes.func,
 };
 

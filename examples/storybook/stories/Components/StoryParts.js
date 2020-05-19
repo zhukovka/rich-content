@@ -40,22 +40,16 @@ Section.propTypes = {
   children: PropTypes.node,
 };
 
-export const RichContentEditorBox = ({
-  children,
-  preset = '',
-  sourcecode,
-  contentState,
-  title,
-}) => {
+export const RichContentEditorBox = ({ children, preset = '', sourcecode, content, title }) => {
   return (
     <div className={styles[preset]}>
       <h3>{title}</h3>
       <div className={styles.rceWrapper}>{children}</div>
       {sourcecode && <SourceCode code={sourcecode} />}
-      {contentState && (
+      {content && (
         <div>
           <p>Content State:</p>
-          <ContentState json={contentState} />
+          <ContentState json={content} />
         </div>
       )}
     </div>
