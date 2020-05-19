@@ -1,7 +1,15 @@
+import React from 'react';
+import { getSelectionStyles } from 'wix-rich-content-editor-common';
 import TextColorButton from './TextColorButton';
 import TextHighlightButton from './TextHighlightButton';
+import TextColorPanel from './TextColorPanel';
+import { TEXT_COLOR_TYPE, TEXT_HIGHLIGHT_TYPE } from '../types';
+import { textForegroundPredicate, textBackgroundPredicate } from '../text-decorations-utils';
+import TextColorIcon from './TextColorIcon';
+import TextHighlightIcon from './TextHighlightIcon';
+import { DEFAULT_STYLE_SELECTION_PREDICATE } from '../constants';
 
-export const createTextColorToolbar = () => ({
+export const createTextColorToolbar = config => ({
   TextButtonMapper: () => ({
     TextColor: {
       component: TextColorButton,
@@ -10,9 +18,24 @@ export const createTextColorToolbar = () => ({
       group: { desktop: 1, mobile: 1 },
     },
   }),
+  externalizedButtonProps: [
+    {
+      modalElement: props => <TextColorPanel {...props} {...config} />,
+      isActive: () => {
+        const predicate = textForegroundPredicate(
+          config[TEXT_COLOR_TYPE]?.styleSelectionPredicate || DEFAULT_STYLE_SELECTION_PREDICATE);
+        return getSelectionStyles(predicate, config.getEditorState()).length > 0;
+      },
+      icon: config[TEXT_COLOR_TYPE]?.toolbar?.icons?.InsertPluginButtonIcon || TextColorIcon,
+      tooltip: config.t('TextColorButton_Tooltip'),
+      label: '',
+      name: TEXT_COLOR_TYPE,
+      buttonType: 'modal',
+    },
+  ],
 });
 
-export const createTextHighlightToolbar = () => ({
+export const createTextHighlightToolbar = config => ({
   TextButtonMapper: () => ({
     TextHighlight: {
       component: TextHighlightButton,
@@ -21,4 +44,21 @@ export const createTextHighlightToolbar = () => ({
       group: { desktop: 1, mobile: 1 },
     },
   }),
+  externalizedButtonProps: [
+    {
+      modalElement: props => <TextColorPanel {...props} {...config} />,
+      isActive: () => {
+        const predicate = textBackgroundPredicate(
+          config[TEXT_HIGHLIGHT_TYPE]?.styleSelectionPredicate || DEFAULT_STYLE_SELECTION_PREDICATE
+        );
+        return getSelectionStyles(predicate, config.getEditorState()).length > 0;
+      },
+      icon:
+        config[TEXT_HIGHLIGHT_TYPE]?.toolbar?.icons?.InsertPluginButtonIcon || TextHighlightIcon,
+      tooltip: config.t('TextHighlightButton_Tooltip'),
+      label: '',
+      name: TEXT_HIGHLIGHT_TYPE,
+      buttonType: 'modal',
+    },
+  ],
 });
