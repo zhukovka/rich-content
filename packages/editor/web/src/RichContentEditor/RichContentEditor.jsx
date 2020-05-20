@@ -70,12 +70,9 @@ class RichContentEditor extends Component {
   }
 
   componentDidMount() {
-    this.dispatchButtonsPropsReady(this.pluginButtonProps, EVENTS.PLUGIN_BUTTONS_READY);
-    this.dispatchButtonsPropsReady(this.textButtonProps, EVENTS.TEXT_BUTTONS_READY);
-    this.dispatchButtonsPropsReady(
-      this.inlinePluginButtonProps,
-      EVENTS.INLINE_PLUGIN_BUTTONS_READY
-    );
+    this.dispatchButtonPropsReady(this.pluginButtonProps, EVENTS.PLUGIN_BUTTONS_READY);
+    this.dispatchButtonPropsReady(this.textButtonProps, EVENTS.TEXT_BUTTONS_READY);
+    this.dispatchButtonPropsReady(this.inlinePluginButtonProps, EVENTS.INLINE_PLUGIN_BUTTONS_READY);
   }
 
   componentWillMount() {
