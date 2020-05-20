@@ -47,6 +47,8 @@
   - [#1082](https://github.com/wix-incubator/rich-content/pull/1082) error handling fix
 - `common`
   - [#1092](https://github.com/wix-incubator/rich-content/pull/1092) text indentation not showing in rtl
+- `toolbars`
+  - [#1125](https://github.com/wix-incubator/rich-content/pull/1125) atomic toolbars position in mobile
 - `html plugin`
   - [#1126](https://github.com/wix-incubator/rich-content/pull/1126) fix html iframe src height and remove html initial state
 ### :house: Internal
