@@ -18,6 +18,7 @@ export default class TextButton extends Component {
     icon: PropTypes.func.isRequired,
     onClick: PropTypes.func.isRequired,
     isActive: PropTypes.func,
+    disabled: PropTypes.bool,
     theme: PropTypes.object.isRequired,
     isMobile: PropTypes.bool,
     tooltipText: PropTypes.string,
@@ -51,6 +52,7 @@ export default class TextButton extends Component {
       isMobile,
       tooltipText,
       dataHook,
+      disabled,
       tabIndex,
       shouldRefreshTooltips,
     } = this.props;
@@ -64,6 +66,7 @@ export default class TextButton extends Component {
       <div className={styles.inlineToolbarButton_wrapper} onMouseDown={this.preventBubblingUp}>
         <button
           tabIndex={tabIndex}
+          disabled={disabled}
           aria-label={tooltipText}
           aria-pressed={this.isActive()}
           className={styles.inlineToolbarButton}

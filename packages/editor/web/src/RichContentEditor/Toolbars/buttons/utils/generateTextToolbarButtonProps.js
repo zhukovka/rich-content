@@ -1,18 +1,22 @@
 import { BUTTON_STYLES } from '../consts';
 import { RichUtils, setTextAlignment } from 'wix-rich-content-editor-common';
 
+/*
+ * generateTextToolbarButtonProps
+ * */
 export default ({
   type,
   styles,
   icons,
-  tooltipKey,
+  tooltipTextKey,
   t,
   getEditorState,
   setEditorState,
   externalOnClick,
   alignment,
 }) => {
-  let blockTypeIndex;
+  const selectedBlockType = getSelectedBlockType();
+  let blockTypeIndex = styles.findIndex(b => b === selectedBlockType);
 
   const getActiveBlockType = () => styles[blockTypeIndex] || 'unstyled';
 
@@ -67,7 +71,6 @@ export default ({
       .getCurrentInlineStyle()
       .has(styles[0]);
   };
-
   const isActive = () =>
     ({
       [BUTTON_STYLES.BLOCK]: isActiveBlockType,
@@ -98,8 +101,16 @@ export default ({
       [BUTTON_STYLES.ALIGNMENT]: false,
     }[type]);
 
+  const getDataHook = () =>
+    ({
+      [BUTTON_STYLES.BLOCK]: `textBlockStyleButton_${getActiveBlockType()}`,
+      [BUTTON_STYLES.INLINE]: `textInlineStyleButton_${styles[0]}`,
+      [BUTTON_STYLES.ALIGNMENT]: `textAlignmentButton_${styles[0]}`,
+    }[type]);
+
   return {
-    tooltip: t(tooltipKey),
+    dataHook: getDataHook(),
+    tooltip: t(tooltipTextKey),
     getIcon,
     name,
     onClick,
