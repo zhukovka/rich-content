@@ -162,7 +162,6 @@ export default class InlineToolbar extends Component {
       isVisible = visibilityFn(editorState);
     }
 
-    // TODO: Test readonly mode and possibly set isVisible to false if the editor is readonly
     return isVisible || overrideContent || extendContent || keepOpen;
   };
 

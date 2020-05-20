@@ -84,21 +84,19 @@ export default ({ type, styles, icons, tooltipTextKey }) =>
       setEditorState(RichUtils.toggleInlineStyle(getEditorState(), styles[0]));
     };
 
-    isActiveBlockType() {
-      return typeof this.blockType !== 'undefined' && this.blockType === this.getActiveBlockType();
-    }
+    isActiveBlockType = () => {
+      const selectedBlockType = this.getSelectedBlockType();
+      const activeBlockType = this.getActiveBlockType();
+      return selectedBlockType !== 'unstyled' && selectedBlockType === activeBlockType;
+    };
 
     isActiveAlignment = () => this.props.alignment === styles[0];
 
     isActiveInlineStyle = () => {
-      const { getEditorState } = this.props;
-      if (getEditorState) {
-        return getEditorState()
-          .getCurrentInlineStyle()
-          .has(styles[0]);
-      } else {
-        return false;
-      }
+      return this.props
+        .getEditorState()
+        .getCurrentInlineStyle()
+        .has(styles[0]);
     };
 
     isActive = () =>
