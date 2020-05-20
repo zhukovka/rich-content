@@ -37,39 +37,37 @@ const createPlugins = ({ plugins, context }) => {
     ...context.config,
   };
 
-  const wixPlugins = (plugins || []).map(createPlugin => createPlugin(wixPluginConfig));
+  const ricosPlugins = (plugins || []).map(createPlugin => createPlugin(wixPluginConfig));
 
-  let pluginButtons = [];
-  let externalizedButtonProps = [];
-  let pluginTextButtons = [];
-  let pluginStyleFns = [];
-  wixPlugins.forEach(wixPlugin => {
-    externalizedButtonProps = [
-      ...externalizedButtonProps,
-      ...(wixPlugin.externalizedButtonProps || []),
-    ];
-    pluginButtons = [...pluginButtons, ...(wixPlugin.InsertPluginButtons || [])];
-    /* eslint-disable new-cap */
-    pluginTextButtons = [
-      ...pluginTextButtons,
-      ...(wixPlugin.TextButtonMapper ? [wixPlugin.TextButtonMapper(wixPlugin.pubsub)] : []),
-    ];
-    /* eslint-enable new-cap */
-    pluginStyleFns = [
-      ...pluginStyleFns,
-      ...(wixPlugin.customStyleFn ? [wixPlugin.customStyleFn] : []),
-    ];
-  });
+  const { buttons, textButtons, styleFns, pluginButtonProps } = ricosPlugins.reduce(
+    (
+      { buttons, textButtons, styleFns, pluginButtonProps },
+      {
+        InsertPluginButtons = [],
+        TextButtonMapper = () => [],
+        customStyleFn,
+        externalizedButtonProps = [],
+        pubsub,
+      }
+    ) => {
+      return {
+        buttons: [...buttons, ...InsertPluginButtons],
+        textButtons: [...textButtons, ...TextButtonMapper(pubsub)], // eslint-disable-line
+        styleFns: [...styleFns, customStyleFn],
+        pluginButtonProps: [...pluginButtonProps, ...externalizedButtonProps],
+      };
+    },
+    {
+      buttons: [],
+      textButtons: [],
+      styleFns: [],
+      pluginButtonProps: [],
+    }
+  );
 
-  const pluginInstances = [resizePlugin, focusPlugin, dndPlugin, listPlugin, ...wixPlugins];
+  const pluginInstances = [resizePlugin, focusPlugin, dndPlugin, listPlugin, ...ricosPlugins];
 
-  return {
-    pluginInstances,
-    pluginButtons,
-    pluginTextButtons,
-    pluginStyleFns,
-    externalizedButtonProps,
-  };
+  return { pluginInstances, buttons, textButtons, styleFns, pluginButtonProps };
 };
 
 export default createPlugins;

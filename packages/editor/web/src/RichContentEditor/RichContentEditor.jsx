@@ -150,23 +150,16 @@ class RichContentEditor extends Component {
   initPlugins() {
     const { plugins, customStyleFn } = this.props;
 
-    const {
-      pluginInstances,
-      pluginButtons,
-      pluginTextButtons,
-      pluginStyleFns,
-      externalizedButtonProps,
-    } = createPlugins({
+    const { pluginInstances, buttons, textButtons, styleFns, pluginButtonProps } = createPlugins({
       plugins,
       context: this.contextualData,
     });
 
-    this.pluginButtonProps = externalizedButtonProps;
-
-    this.initEditorToolbars(pluginButtons, pluginTextButtons);
-    this.pluginKeyBindings = initPluginKeyBindings(pluginTextButtons);
+    this.pluginButtonProps = pluginButtonProps;
+    this.initEditorToolbars(buttons, textButtons);
+    this.pluginKeyBindings = initPluginKeyBindings(textButtons);
     this.plugins = [...pluginInstances, ...Object.values(this.toolbars)];
-    this.customStyleFn = combineStyleFns([...pluginStyleFns, customStyleFn]);
+    this.customStyleFn = combineStyleFns([...styleFns, customStyleFn]);
   }
 
   dispatchPluginButtonsReady(pluginButtonProps) {
