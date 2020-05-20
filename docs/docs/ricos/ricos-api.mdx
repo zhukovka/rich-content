@@ -7,6 +7,7 @@ sidebar_label: Ricos API
 import { RicosEditor } from 'ricos-editor';
 import 'ricos-editor/dist/styles.min.css';
 
+
 ## `Ricos Common API`
 
 ### `children`: RichContentEditor | RichContentViewer
@@ -32,9 +33,14 @@ A react [Ref](https://reactjs.org/docs/refs-and-the-dom.html). Use this to acces
 | ------------------------------------------------------ | ------------------ |
 | `focus(): void`                                        | Focuses the editor |
 | `blur(): void`                                         | Blurs the editor   |
-| `getData(postId?: string, forPublish?: boolean): void` | TODO               |
+| `getContent(postId?: string, forPublish?: boolean): void` | Retrieves the content data  |
 
-TODO
+:::note
+- `forPublish` is used for triggering the `onPublish` BI event, set it to `true` when `getContent` is called before publishing a an editor's content in your app.
+:::
+
+#### Examples
+##### Focus:
 
 ```jsx
 class MyComponent extends React.Component {
@@ -56,10 +62,6 @@ Will render in mobile optimized mode
 ### `locale`: string
 
 Any two letter string represing a [supported](https://github.com/wix-incubator/rich-content/tree/master/packages/common/web/statics/locale) locale. Determines the language and text direction.
-
-### `palette`: Palette
-
-Defines the palette of colors that will be used. More info in [Theming](theming)
 
 ### `placeholder`: string
 
@@ -135,9 +137,19 @@ import content from '../../infra/editor/content/intro.json';
 
 TODO
 
-### `theme`: string | object
+### `cssOverride`: object
 
-TODO
+CSS class overriding that will be passed to `RichContentEditor` or `RichContentViewer`.
+
+:::note
+Works similarly to the `theme` property of `RichContentEditor` and `RichContentViewer`.
+:::
+
+### `theme`: RicosTheme
+
+#### `palette`: Palette
+
+Defines the palette of colors that will be used. More info in [Theming](theming)
 
 ### `onError`: OnErrorFunction
 
