@@ -20,13 +20,12 @@ export default class TextSelectionListener extends React.Component {
   getSelectedPosition = selection => {
     if (selection.rangeCount > 0) {
       const selectionRect = selection.getRangeAt(0).getBoundingClientRect();
-      const { x, y, width, height } = selectionRect;
+      const { x, y, width } = selectionRect;
       this.setState({
         position: {
           x,
           y,
           width,
-          height,
         },
       });
     }
