@@ -548,9 +548,9 @@ const config = {
     //   const data = {
     //     name,
     //     type,
-    //     url: 'http://file-examples.com/wp-content/uploads/2017/10/file-sample_150kB.pdf',
+    //     url: '',
     //   };
-    //   setTimeout(() => updateEntity({ data }), 3000);
+    //   setTimeout(() => updateEntity({ data }), 1000);
     // },
     handleFileSelection: updateEntity => {
       const filenames = ['image.jpg', 'document.pdf', 'music.mp3'];
