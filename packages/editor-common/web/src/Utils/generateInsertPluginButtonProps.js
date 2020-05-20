@@ -49,7 +49,7 @@ export function generateInsertPluginButtonProps({
     files.forEach(file => {
       const { newBlock, newSelection, newEditorState } = createPluginBlock(editorState, data, type);
       editorState = newEditorState;
-      selection = newSelection;
+      selection = selection || newSelection;
       updateEntity(newBlock.getKey(), file);
     });
 
