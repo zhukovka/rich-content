@@ -44,10 +44,13 @@ export const underlineButton = icon =>
 
 export const titleButton = (inactiveIconTitle, iconForTitleOne, iconForTitleTwo) =>
   createTextToolbarButton({
-    styles: [HEADER_BLOCK.TWO, HEADER_BLOCK.THREE],
+    styles: ['unstyled', HEADER_BLOCK.TWO, HEADER_BLOCK.THREE],
     type: BUTTON_STYLES.BLOCK,
-    icons: [iconForTitleOne || TitleOneIcon, iconForTitleTwo || TitleTwoIcon],
-    inactiveIcon: inactiveIconTitle || TitleIcon,
+    icons: [
+      inactiveIconTitle || TitleIcon,
+      iconForTitleOne || TitleOneIcon,
+      iconForTitleTwo || TitleTwoIcon,
+    ],
     tooltipTextKey: 'TitleButton_Tooltip',
   });
 

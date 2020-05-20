@@ -7,7 +7,7 @@ import { BUTTON_STYLES } from '../consts';
 /*
   createTextToolbarButton
 */
-export default ({ type, styles, icons, inactiveIcon = null, tooltipTextKey }) =>
+export default ({ type, styles, icons, tooltipTextKey }) =>
   class TextToolbarButton extends Component {
     static propTypes = {
       getEditorState: PropTypes.func.isRequired,
@@ -24,66 +24,46 @@ export default ({ type, styles, icons, inactiveIcon = null, tooltipTextKey }) =>
 
     constructor(props) {
       super(props);
-      this.state = this.propsToState();
+      this.state = { blockTypeIndex: -1 };
     }
 
     componentWillReceiveProps(nextProps) {
-      if (this.props.isVisible === false && nextProps.isVisible === true) {
-        const { selectionBlockType } = this;
-        const blockTypeFoundIndex = styles.findIndex(b => b === selectionBlockType);
-        const blockTypeIndex = blockTypeFoundIndex > -1 ? blockTypeFoundIndex : undefined;
+      if (
+        type === BUTTON_STYLES.BLOCK &&
+        this.props.isVisible === false &&
+        nextProps.isVisible === true
+      ) {
+        const selectedBlockType = this.getSelectedBlockType();
+        const blockTypeIndex = styles.findIndex(b => b === selectedBlockType);
         this.setState({ blockTypeIndex });
       }
     }
 
-    propsToState = () => (type === BUTTON_STYLES.BLOCK ? { blockTypeIndex: undefined } : {});
+    getActiveBlockType = () => styles[this.state.blockTypeIndex] || 'unstyled';
 
-    get activeBlockType() {
-      const { blockTypeIndex } = this.state;
-      return blockTypeIndex !== undefined ? styles[blockTypeIndex] : 'unstyled';
-    }
-
-    get selectionBlockType() {
-      const { getEditorState } = this.props;
-      if (!getEditorState) {
-        return false;
-      }
-      const editorState = getEditorState();
+    getSelectedBlockType() {
+      const editorState = this.props.getEditorState();
+      const blockKey = editorState.getSelection().getStartKey();
       return editorState
         .getCurrentContent()
-        .getBlockForKey(editorState.getSelection().getStartKey())
+        .getBlockForKey(blockKey)
         .getType();
     }
 
-    get icon() {
-      const { blockTypeIndex } = this.state;
-      if (blockTypeIndex !== undefined) {
-        return icons[blockTypeIndex];
-      } else {
-        return inactiveIcon ? inactiveIcon : icons[0];
-      }
-    }
+    getCurrentIcon = () => icons[this.state.blockTypeIndex] || icons[0];
 
-    nextBlockTypeIndex = () => {
-      const blockType = this.activeBlockType;
-      let nextBlockTypeIndex = 0;
-      if (blockType) {
-        const blockTypeIndex = styles.findIndex(t => t === blockType);
-        if (blockTypeIndex + 1 < styles.length) {
-          nextBlockTypeIndex = blockTypeIndex + 1;
-        } else {
-          nextBlockTypeIndex = -1;
-        }
-      }
-      return nextBlockTypeIndex > -1 ? nextBlockTypeIndex : undefined;
+    getNextBlockTypeIndex = () => {
+      const blockType = this.getActiveBlockType();
+      const styleIndex = styles.findIndex(t => t === blockType);
+      return styleIndex !== -1 ? (styleIndex + 1) % styles.length : 0;
     };
 
     onBlockStyleClick = event => {
       event.preventDefault();
       const { getEditorState, setEditorState } = this.props;
-      const blockTypeIndex = this.nextBlockTypeIndex();
+      const blockTypeIndex = this.getNextBlockTypeIndex();
       this.setState({ blockTypeIndex }, () => {
-        const blockType = this.activeBlockType;
+        const blockType = this.getActiveBlockType();
         setEditorState(RichUtils.toggleBlockType(getEditorState(), blockType));
       });
     };
@@ -99,13 +79,13 @@ export default ({ type, styles, icons, inactiveIcon = null, tooltipTextKey }) =>
     };
 
     onInlineStyleClick = event => {
-      const { getEditorState, setEditorState } = this.props;
       event.preventDefault();
+      const { getEditorState, setEditorState } = this.props;
       setEditorState(RichUtils.toggleInlineStyle(getEditorState(), styles[0]));
     };
 
     isActiveBlockType() {
-      return typeof this.blockType !== 'undefined' && this.blockType === this.activeBlockType;
+      return typeof this.blockType !== 'undefined' && this.blockType === this.getActiveBlockType();
     }
 
     isActiveAlignment = () => this.props.alignment === styles[0];
@@ -137,14 +117,14 @@ export default ({ type, styles, icons, inactiveIcon = null, tooltipTextKey }) =>
 
     getDataHook = () =>
       ({
-        [BUTTON_STYLES.BLOCK]: `textBlockStyleButton_${this.activeBlockType}`,
+        [BUTTON_STYLES.BLOCK]: `textBlockStyleButton_${this.getActiveBlockType()}`,
         [BUTTON_STYLES.INLINE]: `textInlineStyleButton_${styles[0]}`,
         [BUTTON_STYLES.ALIGNMENT]: `textAlignmentButton_${styles[0]}`,
       }[type]);
 
     getIcon = () =>
       ({
-        [BUTTON_STYLES.BLOCK]: this.icon,
+        [BUTTON_STYLES.BLOCK]: this.getCurrentIcon(),
         [BUTTON_STYLES.INLINE]: icons[0],
         [BUTTON_STYLES.ALIGNMENT]: icons[0],
       }[type]);
