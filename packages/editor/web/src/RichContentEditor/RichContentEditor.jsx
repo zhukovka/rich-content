@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Editor from 'draft-js-plugins-editor';
 import { get, includes, debounce } from 'lodash';
 import Measure from 'react-measure';
+import { EVENTS } from '../consts';
 import createEditorToolbars from './Toolbars';
 import createPlugins from './createPlugins';
 import { createKeyBindingFn, initPluginKeyBindings } from './keyBindings';
@@ -69,7 +70,12 @@ class RichContentEditor extends Component {
   }
 
   componentDidMount() {
-    this.dispatchPluginButtonsReady(this.pluginButtonProps);
+    this.dispatchButtonsPropsReady(this.pluginButtonProps, EVENTS.PLUGIN_BUTTONS_READY);
+    this.dispatchButtonsPropsReady(this.textButtonProps, EVENTS.TEXT_BUTTONS_READY);
+    this.dispatchButtonsPropsReady(
+      this.inlinePluginButtonProps,
+      EVENTS.INLINE_PLUGIN_BUTTONS_READY
+    );
   }
 
   componentWillMount() {
@@ -150,31 +156,43 @@ class RichContentEditor extends Component {
   initPlugins() {
     const { plugins, customStyleFn } = this.props;
 
-    const { pluginInstances, buttons, textButtons, styleFns, pluginButtonProps } = createPlugins({
+    const {
+      pluginInstances,
+      buttons,
+      textButtons,
+      styleFns,
+      pluginButtonProps,
+      textPluginButtonProps,
+    } = createPlugins({
       plugins,
       context: this.contextualData,
     });
 
     this.pluginButtonProps = pluginButtonProps;
+    this.textPluginButtonProps = textPluginButtonProps;
     this.initEditorToolbars(buttons, textButtons);
     this.pluginKeyBindings = initPluginKeyBindings(textButtons);
     this.plugins = [...pluginInstances, ...Object.values(this.toolbars)];
     this.customStyleFn = combineStyleFns([...styleFns, customStyleFn]);
   }
 
-  dispatchPluginButtonsReady(pluginButtonProps) {
+  dispatchButtonPropsReady(props, event) {
     if (this.toolbars[TOOLBARS.EXTERNAL].shouldCreate) {
-      import(/* webpackChunkName: "rce-event-emitter" */ `../emitter`).then(({ emit, EVENTS }) =>
-        emit(EVENTS.PLUGIN_BUTTONS_READY, pluginButtonProps)
+      import(/* webpackChunkName: "rce-event-emitter" */ `../emitter`).then(({ emit }) =>
+        emit(event, props)
       );
     }
   }
 
   removeEventListeners = () => {
     if (this.toolbars[TOOLBARS.EXTERNAL].shouldCreate) {
-      import(
-        /* webpackChunkName: "rce-event-emitter" */ `../emitter`
-      ).then(({ removeAllListeners, EVENTS }) => removeAllListeners(EVENTS.PLUGIN_BUTTONS_READY));
+      import(/* webpackChunkName: "rce-event-emitter" */ `../emitter`).then(
+        ({ removeAllListeners }) => {
+          removeAllListeners(EVENTS.PLUGIN_BUTTONS_READY);
+          removeAllListeners(EVENTS.TEXT_BUTTONS_READY);
+          removeAllListeners(EVENTS.INLINE_PLUGIN_BUTTONS_READY);
+        }
+      );
     }
   };
 

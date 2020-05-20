@@ -41,7 +41,3 @@ export const removeAllListeners = event => {
   console.debug(`eventEmitter: removing all listeners for ${event}`);
   eventEmitter.removeAllListeners(event);
 };
-
-export const EVENTS = Object.freeze({
-  PLUGIN_BUTTONS_READY: 'PLUGIN_BUTTONS_READY',
-});

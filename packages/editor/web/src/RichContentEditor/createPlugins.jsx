@@ -39,14 +39,21 @@ const createPlugins = ({ plugins, context }) => {
 
   const ricosPlugins = (plugins || []).map(createPlugin => createPlugin(wixPluginConfig));
 
-  const { buttons, textButtons, styleFns, pluginButtonProps } = ricosPlugins.reduce(
+  const {
+    buttons,
+    textButtons,
+    styleFns,
+    pluginButtonProps,
+    textPluginButtonProps,
+  } = ricosPlugins.reduce(
     (
-      { buttons, textButtons, styleFns, pluginButtonProps },
+      { buttons, textButtons, styleFns, pluginButtonProps, textPluginButtonProps },
       {
         InsertPluginButtons = [],
         TextButtonMapper = () => [],
         customStyleFn,
         insertButtonProps = [],
+        textButtonProps = [],
         pubsub,
       }
     ) => {
@@ -55,6 +62,7 @@ const createPlugins = ({ plugins, context }) => {
         textButtons: [...textButtons, ...TextButtonMapper(pubsub)], // eslint-disable-line
         styleFns: [...styleFns, customStyleFn],
         pluginButtonProps: [...pluginButtonProps, ...insertButtonProps],
+        textPluginButtonProps: [...textPluginButtonProps, ...textButtonProps],
       };
     },
     {
@@ -62,12 +70,20 @@ const createPlugins = ({ plugins, context }) => {
       textButtons: [],
       styleFns: [],
       pluginButtonProps: [],
+      textPluginButtonProps: [],
     }
   );
 
   const pluginInstances = [resizePlugin, focusPlugin, dndPlugin, listPlugin, ...ricosPlugins];
 
-  return { pluginInstances, buttons, textButtons, styleFns, pluginButtonProps };
+  return {
+    pluginInstances,
+    buttons,
+    textButtons,
+    styleFns,
+    pluginButtonProps,
+    textPluginButtonProps,
+  };
 };
 
 export default createPlugins;

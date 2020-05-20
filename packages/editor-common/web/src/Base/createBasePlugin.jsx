@@ -175,7 +175,8 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
 
   const InlineModals = config.inlineModals;
 
-  const TextButtonMapper = config.toolbar && config.toolbar.TextButtonMapper;
+  const TextButtonMapper = config.toolbar?.TextButtonMapper;
+  const textButtonProps = config.toolbar?.externalizedButtonProps;
 
   const blockRendererFn = (contentBlock, { getEditorState, setEditorState }) => {
     if (contentBlock.getType() === 'atomic') {
@@ -207,6 +208,7 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
     Toolbar,
     InsertPluginButtons,
     insertButtonProps,
+    textButtonProps,
     InlineModals,
     TextButtonMapper,
     pubsub,
