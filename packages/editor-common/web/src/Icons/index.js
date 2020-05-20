@@ -35,5 +35,7 @@ export { default as MapIcon } from './AnchorsThumbnails/MapIcon';
 export { default as ButtonIcon } from './AnchorsThumbnails/ButtonIcon';
 export { default as GiphyIcon } from './AnchorsThumbnails/GiphyIcon';
 export { default as FileIcon } from './AnchorsThumbnails/FileIcon';
+export { default as H2Icon } from './AnchorsThumbnails/H2Icon';
+export { default as H3Icon } from './AnchorsThumbnails/H3Icon';
 export { default as EditIcon } from './EditIcon.svg';
 // export { default as InfoIcon } from './InfoIcon';

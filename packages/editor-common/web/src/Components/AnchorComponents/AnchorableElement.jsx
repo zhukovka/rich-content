@@ -14,7 +14,7 @@ class AnchorableElement extends PureComponent {
     super(props);
     const { block, theme } = props;
     this.styles = mergeStyles({ styles, theme });
-    this.state = { iconThumbnail: ANCHORABLE_BLOCKS[block.anchorType].thumbnail };
+    this.state = { iconThumbnail: this.getIconThumbnail(block) };
   }
 
   componentDidMount() {
@@ -23,6 +23,14 @@ class AnchorableElement extends PureComponent {
       this.getVisualThumbnail();
     }
   }
+
+  getIconThumbnail = block => {
+    if (ANCHORABLE_BLOCKS[block.anchorType].thumbnail) {
+      return ANCHORABLE_BLOCKS[block.anchorType].thumbnail;
+    } else {
+      return ANCHORABLE_BLOCKS[block.anchorType][`thumbnail-${block.type}`];
+    }
+  };
 
   getDataToDisplayByField = field => {
     const { block } = this.props;
