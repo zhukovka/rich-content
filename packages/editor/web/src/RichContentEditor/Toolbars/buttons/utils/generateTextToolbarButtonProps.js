@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { BUTTON_STYLES } from '../consts';
 import { RichUtils, setTextAlignment } from 'wix-rich-content-editor-common';
 
@@ -6,7 +5,6 @@ export default ({
   type,
   styles,
   icons,
-  inactiveIcon,
   tooltipKey,
   t,
   getEditorState,
@@ -16,47 +14,29 @@ export default ({
 }) => {
   let blockTypeIndex;
 
-  function activeBlockType() {
-    return blockTypeIndex !== undefined ? styles[blockTypeIndex] : 'unstyled';
-  }
+  const getActiveBlockType = () => styles[blockTypeIndex] || 'unstyled';
 
-  function selectionBlockType() {
-    if (!getEditorState) {
-      return false;
-    }
+  function getSelectedBlockType() {
     const editorState = getEditorState();
+    const blockKey = editorState.getSelection().getStartKey();
     return editorState
       .getCurrentContent()
-      .getBlockForKey(editorState.getSelection().getStartKey())
+      .getBlockForKey(blockKey)
       .getType();
   }
 
-  function icon() {
-    if (blockTypeIndex !== undefined) {
-      return icons[blockTypeIndex];
-    } else {
-      return inactiveIcon ? inactiveIcon : icons[0];
-    }
-  }
+  const getCurrentIcon = () => icons[blockTypeIndex] || icons[0];
 
-  const nextBlockTypeIndex = () => {
-    const blockType = activeBlockType();
-    let nextBlockTypeIndex = 0;
-    if (blockType) {
-      const blockTypeIndex = styles.findIndex(t => t === blockType);
-      if (blockTypeIndex + 1 < styles.length) {
-        nextBlockTypeIndex = blockTypeIndex + 1;
-      } else {
-        nextBlockTypeIndex = -1;
-      }
-    }
-    return nextBlockTypeIndex > -1 ? nextBlockTypeIndex : undefined;
+  const getNextBlockTypeIndex = () => {
+    const blockType = getActiveBlockType();
+    const styleIndex = styles.findIndex(t => t === blockType);
+    return styleIndex !== -1 ? (styleIndex + 1) % styles.length : 0;
   };
 
   const onBlockStyleClick = event => {
     event.preventDefault();
-    blockTypeIndex = nextBlockTypeIndex();
-    const blockType = activeBlockType();
+    blockTypeIndex = getNextBlockTypeIndex();
+    const blockType = getActiveBlockType();
     setEditorState(RichUtils.toggleBlockType(getEditorState(), blockType));
   };
 
@@ -74,20 +54,18 @@ export default ({
     setEditorState(RichUtils.toggleInlineStyle(getEditorState(), styles[0]));
   };
 
-  function isActiveBlockType() {
-    return typeof this.blockType !== 'undefined' && this.blockType === this.activeBlockType;
-  }
+  const isActiveBlockType = () => {
+    const selectedBlockType = getSelectedBlockType();
+    const activeBlockType = getActiveBlockType();
+    return selectedBlockType !== 'unstyled' && selectedBlockType === activeBlockType;
+  };
 
   const isActiveAlignment = () => alignment === styles[0];
 
   const isActiveInlineStyle = () => {
-    if (getEditorState) {
-      return getEditorState()
-        .getCurrentInlineStyle()
-        .has(styles[0]);
-    } else {
-      return false;
-    }
+    return getEditorState()
+      .getCurrentInlineStyle()
+      .has(styles[0]);
   };
 
   const isActive = () =>
@@ -106,18 +84,28 @@ export default ({
 
   const getIcon = () =>
     ({
-      [BUTTON_STYLES.BLOCK]: icon(),
+      [BUTTON_STYLES.BLOCK]: getCurrentIcon(),
       [BUTTON_STYLES.INLINE]: icons[0],
       [BUTTON_STYLES.ALIGNMENT]: icons[0],
     }[type]);
 
+  const isDisabled = () =>
+    ({
+      [BUTTON_STYLES.BLOCK]: false,
+      [BUTTON_STYLES.INLINE]: getEditorState()
+        .getSelection()
+        .isCollapsed(),
+      [BUTTON_STYLES.ALIGNMENT]: false,
+    }[type]);
+
   return {
     tooltip: t(tooltipKey),
+    getIcon,
     name,
     onClick,
     isActive,
     isDisabled,
-    label,
+    label: '',
     buttonType: 'button',
   };
 };
