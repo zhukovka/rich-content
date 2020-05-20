@@ -46,8 +46,11 @@
 
 .linkPanel_Input {
   // margin: 16px 0 14px 0; // this is the right margin - once radio buttons would be added back
-  margin: 5px 0 13px 0;
+  margin: 5px 0 13px 20px;
   position: relative;
+}
+.checkboxesContainer {
+  margin-left: 20px;
 }
 
 .linkPanel_textInput,
@@ -128,7 +131,7 @@
 }
 
 .linkPanel_VerticalDivider {
-  margin: 0 20px;
+  margin: 0 0 0 20px;
   height: auto;
   border-right: 1px solid rgba(51, 51, 51, 0.1);
   &.linkPanel_VerticalDividerNarrowMargin{
@@ -180,7 +183,7 @@
 
 .AnchorableElement_container {
   display: flex;
-  padding: 4px;
+  padding: 4px 4px 4px 20px;
 
   &:hover {
     cursor: pointer;
@@ -220,12 +223,13 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 250px;
+      max-width: 210px;
     }
   }
 }
 
 .LinkToAnchorPanel_header {
+  margin-left: 20px;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -250,6 +254,7 @@
   .LinkToAnchorPanel_dropdownMenu {
     top: auto !important;
     right: 0;
+    height: 204px;
   }
 }
 
@@ -313,6 +318,7 @@
   }
 
   .linkPanel_VerticalDivider{
+    margin: 0 20px;
     border-right: 1px solid white;
   }
 
@@ -354,6 +360,10 @@
     }
   }
 
+  .AnchorableElement_container {
+    padding: 4px;
+  }
+
   .linkPanel_content {
     padding: 0 18px;
     height: calc(100% - 207px);
@@ -366,8 +376,12 @@
   .linkPanel_Input {
     margin: 5px 0 20px 0;  
   }
+  .checkboxesContainer {
+    margin-left: 0;
+  }
 
   .LinkToAnchorPanel_header {
+    margin-left: 0;
     margin-bottom: 7px;
   }
 
