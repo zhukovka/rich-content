@@ -13,11 +13,14 @@ export default class TextInput extends React.Component {
     theme: PropTypes.object.isRequired,
     error: PropTypes.string,
     showTooltip: PropTypes.bool,
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
     showTooltip: true,
   };
+
+  handleOnChange = event => this.props.onChange(event.target.value);
 
   render() {
     const { inputRef, error, theme, showTooltip, ...otherProps } = this.props;
@@ -30,6 +33,7 @@ export default class TextInput extends React.Component {
             [styles.textInput_input_invalid]: error,
           })}
           {...otherProps}
+          onChange={this.handleOnChange}
         />
         {error &&
           (showTooltip ? (

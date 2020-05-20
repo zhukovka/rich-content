@@ -14,8 +14,7 @@ export default class UrlInputModal extends Component {
     this.state = {};
   }
 
-  onUrlChange = event => {
-    const url = event.target.value;
+  onUrlChange = url => {
     this.props.onInputChange(url);
     this.setState({ isDropdownOpen: url !== '' });
   };
