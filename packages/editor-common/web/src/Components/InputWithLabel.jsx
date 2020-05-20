@@ -31,7 +31,7 @@ class InputWithLabel extends Component {
       t,
       ...otherProps
     } = this.props;
-    const inputProps = omit(otherProps, ['theme']);
+    const inputProps = omit(otherProps, ['theme', 'onChange']);
     const inputClassName = classNames(styles.inputWithLabel_input, {
       [styles.inputWithLabel_textArea]: isTextArea,
       [styles.inputWithLabel_fullHeight]: isFullHeight,
