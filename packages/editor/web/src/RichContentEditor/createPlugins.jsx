@@ -46,7 +46,7 @@ const createPlugins = ({ plugins, context }) => {
         InsertPluginButtons = [],
         TextButtonMapper = () => [],
         customStyleFn,
-        externalizedButtonProps = [],
+        insertButtonProps = [],
         pubsub,
       }
     ) => {
@@ -54,7 +54,7 @@ const createPlugins = ({ plugins, context }) => {
         buttons: [...buttons, ...InsertPluginButtons],
         textButtons: [...textButtons, ...TextButtonMapper(pubsub)], // eslint-disable-line
         styleFns: [...styleFns, customStyleFn],
-        pluginButtonProps: [...pluginButtonProps, ...externalizedButtonProps],
+        pluginButtonProps: [...pluginButtonProps, ...insertButtonProps],
       };
     },
     {

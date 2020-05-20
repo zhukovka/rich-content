@@ -97,7 +97,7 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
       setEditorState,
     });
 
-  const externalizedButtonProps = config?.toolbar?.InsertButtons?.map(button =>
+  const insertButtonProps = config?.toolbar?.InsertButtons?.map(button =>
     generateInsertPluginButtonProps({
       blockType: config.type,
       button,
@@ -206,7 +206,7 @@ const createBasePlugin = (config = {}, underlyingPlugin) => {
     InlinePluginToolbar,
     Toolbar,
     InsertPluginButtons,
-    externalizedButtonProps,
+    insertButtonProps,
     InlineModals,
     TextButtonMapper,
     pubsub,
