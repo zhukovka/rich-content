@@ -86,9 +86,11 @@ export default ({
   config,
   locale,
   setEditorState,
+  defaultTextAlignment,
 }) => {
   const staticTextTheme = getStaticTextTheme(theme);
   const structure = getTextButtonsFromList({
+    defaultTextAlignment,
     buttons,
     textPluginButtons,
     pubsub,
@@ -121,5 +123,6 @@ export default ({
     locale,
     setEditorState,
     config,
+    defaultTextAlignment,
   });
 };

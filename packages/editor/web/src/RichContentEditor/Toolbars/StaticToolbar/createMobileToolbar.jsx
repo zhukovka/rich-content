@@ -28,10 +28,12 @@ const createMobileToolbar = ({
   config,
   locale,
   addPluginMenuConfig,
+  defaultTextAlignment,
 }) => {
   const mobileTheme = getMobileTheme(theme);
   return createStaticToolbar({
     helpers,
+    defaultTextAlignment,
     t,
     name: 'MobileToolbar',
     theme: mobileTheme,
@@ -48,6 +50,7 @@ const createMobileToolbar = ({
       uiSettings,
       config,
       addPluginMenuConfig,
+      defaultTextAlignment,
     }),
     anchorTarget,
     relValue,
@@ -112,6 +115,7 @@ const getMobileButtons = ({
   uiSettings,
   config,
   addPluginMenuConfig,
+  defaultTextAlignment,
 }) => {
   const addPluginIndex = buttons.findIndex(b => b === 'AddPlugin');
   if (addPluginIndex !== -1) {
@@ -119,6 +123,7 @@ const getMobileButtons = ({
   }
 
   const structure = getTextButtonsFromList({
+    defaultTextAlignment,
     buttons,
     textPluginButtons,
     theme: mobileTheme,

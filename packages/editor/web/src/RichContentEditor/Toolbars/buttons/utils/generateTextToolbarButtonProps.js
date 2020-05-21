@@ -29,6 +29,16 @@ export default ({
       .getType();
   }
 
+  function getSelectedBlockTextAlignment() {
+    const editorState = getEditorState();
+    const blockKey = editorState.getSelection().getStartKey();
+    const data = editorState
+      .getCurrentContent()
+      .getBlockForKey(blockKey)
+      .getData();
+    return data.get('textAlignment') || alignment || 'left';
+  }
+
   const getCurrentIcon = () => icons[blockTypeIndex] || icons[0];
 
   const getNextBlockTypeIndex = () => {
@@ -64,7 +74,10 @@ export default ({
     return selectedBlockType !== 'unstyled' && selectedBlockType === activeBlockType;
   };
 
-  const isActiveAlignment = () => alignment === styles[0];
+  const isActiveAlignment = () => {
+    const alignment = getSelectedBlockTextAlignment();
+    return alignment === styles[0];
+  };
 
   const isActiveInlineStyle = () => {
     return getEditorState()

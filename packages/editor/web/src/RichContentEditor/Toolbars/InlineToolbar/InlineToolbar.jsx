@@ -274,7 +274,7 @@ export default class InlineToolbar extends Component {
       onOverrideContent: this.onOverrideContent,
       onExtendContent: this.onExtendContent,
       setKeepOpen: this.setKeepOpen,
-      defaultTextAlignment,
+      alignment: defaultTextAlignment,
       isVisible: toolbarStyle.visibility === 'visible',
       isMobile,
       helpers,
