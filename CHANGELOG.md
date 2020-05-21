@@ -16,13 +16,16 @@
 
   </summary>
 
+### :house: Internal
+- `editor-common`
+  - [1054](https://github.com/wix-incubator/rich-content/pull/1054) refactor calculateDiff
+- `wrapper`
+  - [#1133](https://github.com/wix-incubator/rich-content/pull/1133) performance: strategies won't run without props
+
 ### :bug: Bug Fix
 - `wrapper`
   - [#1132](https://github.com/wix-incubator/rich-content/pull/1132) palettes not working
 
-### :house: Internal
-- `wrapper`
-  - [#1133](https://github.com/wix-incubator/rich-content/pull/1133) performance: strategies won't run without props
 </details>
 <hr/>
 
