@@ -1690,3 +1690,38 @@ exports[`text > indentation > allow to apply indent when clicking tab/shift+tab 
   ],
   "entityMap": {}
 };
+
+exports[`text > Enter click should create new block with the same alignment #0`] =
+{
+  "blocks": [
+    {
+      "data": {
+        "textAlignment": "center"
+      },
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [
+        {
+          "length": 33,
+          "offset": 0,
+          "style": "BOLD"
+        }
+      ],
+      "key": 0,
+      "text": "Hey, next line should be centered",
+      "type": "unstyled"
+    },
+    {
+      "data": {
+        "textAlignment": "center"
+      },
+      "depth": 0,
+      "entityRanges": [],
+      "inlineStyleRanges": [],
+      "key": 1,
+      "text": "I am centered!!",
+      "type": "unstyled"
+    }
+  ],
+  "entityMap": {}
+};
