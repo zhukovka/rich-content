@@ -68,6 +68,7 @@ import 'wix-rich-content-plugin-map/dist/styles.min.css';
 import 'wix-rich-content-plugin-social-polls/dist/styles.min.css';
 import 'wix-rich-content-plugin-file-upload/dist/styles.min.css';
 import 'wix-rich-content-plugin-text-color/dist/styles.min.css';
+import 'wix-rich-content-plugin-vertical-embed/dist/styles.min.css';
 import {
   customForegroundStyleFn,
   styleSelectionPredicate,
@@ -278,6 +279,10 @@ const videoHandlers = {
   },
 };
 
+const addPluginMenuConfig = {
+  showSearch: true,
+  splitToSections: true,
+};
 const { event, booking, product } = verticalEmbedProviders;
 const buttonConfig = {
   // toolbar: {
@@ -603,6 +608,9 @@ const config = {
   },
   uiSettings,
   getToolbarSettings: ({ pluginButtons, textButtons }) => [
+    { name: 'EXTERNAL', shouldCreate: () => ({ desktop: true }) },
+    { name: 'SIDE', addPluginMenuConfig },
+    { name: 'MOBILE', addPluginMenuConfig },
     // {
     //   name: TOOLBARS.TEXT,
     //   getIcons: () => ({

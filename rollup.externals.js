@@ -10,6 +10,7 @@ const externals = [
   'wix-rich-content-common',
   'react-i18next',
   'react-flip-move',
+  /^punycode$/,
   /^@wix\/draft-js$/,
   /^jss$/, //issue with ESM in CJS
   /^jss-preset-default$/, //issue with ESM in CJS

@@ -284,6 +284,7 @@ class BaseToolbarButton extends React.Component {
           dataHook={this.getDataHook()}
           onChange={decoratedOnChange}
           getValue={decoratedGetValue}
+          theme={theme}
           {...props}
         />
       </div>

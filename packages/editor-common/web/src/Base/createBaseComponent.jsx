@@ -38,6 +38,7 @@ const createBaseComponent = ({
   locale,
   shouldRenderOptimizedImages,
   siteDomain,
+  iframeSandboxDomain,
   setInPluginEditingMode,
   getInPluginEditingMode,
   anchorTarget,
@@ -250,6 +251,7 @@ const createBaseComponent = ({
       const ContainerClassNames = classNames(
         this.styles.pluginContainer,
         theme.pluginContainer,
+        theme.pluginContainerWrapper,
         {
           [this.styles.pluginContainerMobile]: isMobile,
           [theme.pluginContainerMobile]: isMobile,
@@ -290,6 +292,7 @@ const createBaseComponent = ({
           locale={locale}
           shouldRenderOptimizedImages={shouldRenderOptimizedImages}
           siteDomain={siteDomain}
+          iframeSandboxDomain={iframeSandboxDomain}
           setInPluginEditingMode={setInPluginEditingMode}
           getInPluginEditingMode={getInPluginEditingMode}
           setComponentUrl={this.setComponentUrl}

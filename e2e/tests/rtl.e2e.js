@@ -20,14 +20,14 @@ describe('rtl', () => {
     after(() => cy.eyesClose());
 
     it('render plugin toolbar in rtl', function() {
-      cy.loadEditorAndViewer()
+      cy.loadWrapperEditorAndViewer()
         .focusEditor()
         .openSideToolbar();
       cy.eyesCheckWindow(this.test.title);
     });
 
     it('render text toolbar in rtl', function() {
-      cy.loadEditorAndViewer('plain')
+      cy.loadWrapperEditorAndViewer('plain')
         .setSelection(0, 8)
         .get('[data-hook=inlineToolbar]')
         .should('be.visible')
@@ -37,7 +37,7 @@ describe('rtl', () => {
     });
 
     it('render rtl and ltr text correctly', function() {
-      cy.loadEditorAndViewer('hebrew');
+      cy.loadWrapperEditorAndViewer('hebrew');
       cy.eyesCheckWindow(this.test.title);
     });
 
@@ -46,6 +46,11 @@ describe('rtl', () => {
         .openImageSettings()
         .get('[data-hook="imageSettingsCaptionInput"]')
         .blur();
+      cy.eyesCheckWindow(this.test.title);
+    });
+
+    it('render text with indentation in rtl', function() {
+      cy.loadEditorAndViewer('hebrew_with_indentation');
       cy.eyesCheckWindow(this.test.title);
     });
   });
@@ -81,6 +86,11 @@ describe('rtl', () => {
         .get('[aria-label="Cancel"]')
         .blur();
       cy.eyesCheckWindow({ tag: this.test.title, target: 'window', fully: false });
+    });
+
+    it('render text with indentation in rtl', function() {
+      cy.loadEditorAndViewer('hebrew_with_indentation');
+      cy.eyesCheckWindow(this.test.title);
     });
   });
 });
