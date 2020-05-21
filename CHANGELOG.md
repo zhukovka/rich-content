@@ -19,6 +19,10 @@
 ### :rocket: New Feature
 - `headings`
   - [#901](https://github.com/wix-incubator/rich-content/pull/901) adding plugin headings with dropdown option
+### :bug: Bug Fix
+- `wrapper`
+  - [#1132](https://github.com/wix-incubator/rich-content/pull/1132) palettes not working
+
 </details>
 <hr/>
 
