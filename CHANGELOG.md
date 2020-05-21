@@ -19,6 +19,8 @@
 ### :bug: Bug Fix
 - `wrapper`
   - [#1132](https://github.com/wix-incubator/rich-content/pull/1132) palettes not working
+- `video`
+  - [#1134](https://github.com/wix-incubator/rich-content/pull/1134) upload video from url updates metadata correctly
 
 </details>
 <hr/>
