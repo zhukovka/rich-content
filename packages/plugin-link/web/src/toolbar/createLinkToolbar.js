@@ -84,25 +84,22 @@ const linkTextButtonMapper /*: TextButtonMapper */ = config => ({
           },
         },
       ],
+      externalizedButtonProps: {
+        // NOTE: relies on openModal
+        onClick: e => {
+          e.preventDefault();
+          openLinkModal(config);
+        },
+        isActive: () => hasLinksInSelection(config.getEditorState()),
+        icon: config[LINK_TYPE]?.toolbar?.icons?.InsertPluginButtonIcon || LinkIcon,
+        tooltip: config.t('TextLinkButton_Tooltip'),
+        label: '', // new key needed?
+        buttonType: 'button',
+      },
     },
   }),
   InlinePluginToolbarButtons: createInlineButtons(config),
   name: 'link', // TODO: use type instead string
-  externalizedButtonProps: [
-    {
-      // NOTE: relies on openModal
-      onClick: e => {
-        e.preventDefault();
-        openLinkModal(config);
-      },
-      isActive: () => hasLinksInSelection(config.getEditorState()),
-      icon: config[LINK_TYPE]?.toolbar?.icons?.InsertPluginButtonIcon || LinkIcon,
-      tooltip: config.t('TextLinkButton_Tooltip'),
-      name: LINK_TYPE,
-      label: '', // new key needed?
-      buttonType: 'button',
-    },
-  ],
 });
 
 export default linkTextButtonMapper;

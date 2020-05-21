@@ -28,24 +28,21 @@ const codeBlockTexButtontMapper /*: TextButtonMapper */ = config => {
             commandHandler,
           },
         ],
+        externalizedButtonProps: {
+          onClick: e => {
+            e.preventDefault();
+            setEditorState(toggleBlockTypeAndEnsureSpaces(CODE_BLOCK_TYPE, getEditorState()));
+          },
+          isActive: () => hasBlockType(CODE_BLOCK_TYPE, getEditorState()),
+          icon,
+          tooltip: config.t('TextCodeBlockButton_Tooltip'),
+          label: '', // new key needed?
+          buttonType: 'button',
+        },
       },
     }),
     InsertButtons: createInsertButtons({ helpers, t, addBlockHandler: commandHandler, icon }),
     name: CODE_BLOCK_TYPE,
-    externalizedButtonProps: [
-      {
-        onClick: e => {
-          e.preventDefault();
-          setEditorState(toggleBlockTypeAndEnsureSpaces(CODE_BLOCK_TYPE, getEditorState()));
-        },
-        isActive: () => hasBlockType(CODE_BLOCK_TYPE, getEditorState()),
-        icon,
-        tooltip: config.t('TextCodeBlockButton_Tooltip'),
-        name: CODE_BLOCK_TYPE,
-        label: '', // new key needed?
-        buttonType: 'button',
-      },
-    ],
   };
 };
 

@@ -16,24 +16,21 @@ export const createTextColorToolbar = config => ({
       isMobile: true,
       position: { desktop: 2.1, mobile: 2.1 },
       group: { desktop: 1, mobile: 1 },
+      externalizedButtonProps: {
+        modalElement: props => <TextColorPanel {...props} {...config} />,
+        isActive: () => {
+          const predicate = textForegroundPredicate(
+            config[TEXT_COLOR_TYPE]?.styleSelectionPredicate || DEFAULT_STYLE_SELECTION_PREDICATE
+          );
+          return getSelectionStyles(predicate, config.getEditorState()).length > 0;
+        },
+        icon: config[TEXT_COLOR_TYPE]?.toolbar?.icons?.InsertPluginButtonIcon || TextColorIcon,
+        tooltip: config.t('TextColorButton_Tooltip'),
+        label: '',
+        buttonType: 'modal',
+      },
     },
   }),
-  externalizedButtonProps: [
-    {
-      modalElement: props => <TextColorPanel {...props} {...config} />,
-      isActive: () => {
-        const predicate = textForegroundPredicate(
-          config[TEXT_COLOR_TYPE]?.styleSelectionPredicate || DEFAULT_STYLE_SELECTION_PREDICATE
-        );
-        return getSelectionStyles(predicate, config.getEditorState()).length > 0;
-      },
-      icon: config[TEXT_COLOR_TYPE]?.toolbar?.icons?.InsertPluginButtonIcon || TextColorIcon,
-      tooltip: config.t('TextColorButton_Tooltip'),
-      label: '',
-      name: TEXT_COLOR_TYPE,
-      buttonType: 'modal',
-    },
-  ],
 });
 
 export const createTextHighlightToolbar = config => ({
@@ -43,23 +40,21 @@ export const createTextHighlightToolbar = config => ({
       isMobile: true,
       position: { desktop: 2.2, mobile: 2.2 },
       group: { desktop: 1, mobile: 1 },
+      externalizedButtonProps: {
+        modalElement: props => <TextColorPanel {...props} {...config} />,
+        isActive: () => {
+          const predicate = textBackgroundPredicate(
+            config[TEXT_HIGHLIGHT_TYPE]?.styleSelectionPredicate ||
+              DEFAULT_STYLE_SELECTION_PREDICATE
+          );
+          return getSelectionStyles(predicate, config.getEditorState()).length > 0;
+        },
+        icon:
+          config[TEXT_HIGHLIGHT_TYPE]?.toolbar?.icons?.InsertPluginButtonIcon || TextHighlightIcon,
+        tooltip: config.t('TextHighlightButton_Tooltip'),
+        label: '',
+        buttonType: 'modal',
+      },
     },
   }),
-  externalizedButtonProps: [
-    {
-      modalElement: props => <TextColorPanel {...props} {...config} />,
-      isActive: () => {
-        const predicate = textBackgroundPredicate(
-          config[TEXT_HIGHLIGHT_TYPE]?.styleSelectionPredicate || DEFAULT_STYLE_SELECTION_PREDICATE
-        );
-        return getSelectionStyles(predicate, config.getEditorState()).length > 0;
-      },
-      icon:
-        config[TEXT_HIGHLIGHT_TYPE]?.toolbar?.icons?.InsertPluginButtonIcon || TextHighlightIcon,
-      tooltip: config.t('TextHighlightButton_Tooltip'),
-      label: '',
-      name: TEXT_HIGHLIGHT_TYPE,
-      buttonType: 'modal',
-    },
-  ],
 });
