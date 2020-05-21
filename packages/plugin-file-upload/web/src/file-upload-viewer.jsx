@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { isEqual } from 'lodash';
 import { mergeStyles, validate, pluginFileUploadSchema } from 'wix-rich-content-common';
-import { DocumentIcon, LoaderIcon, getIcon } from './icons';
+import { LoaderIcon, getIcon } from './icons';
 import styles from '../statics/styles/file-upload-viewer.scss';
 
 const getNameWithoutType = fileName => {
