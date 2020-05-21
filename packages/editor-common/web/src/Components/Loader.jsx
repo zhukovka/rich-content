@@ -48,6 +48,11 @@ class Loader extends React.Component {
   state = { percent: 1 };
 
   componentDidMount() {
+    const { manualPercent } = this.props;
+    if (manualPercent) {
+      return;
+    }
+
     let approximateExpectedDuration;
     if (this.props.isFastFakeLoader) {
       approximateExpectedDuration = 5000;
@@ -63,7 +68,7 @@ class Loader extends React.Component {
   }
 
   componentWillUnmount() {
-    this.resetFakeLoader();
+    this.resetFakeLoader && this.resetFakeLoader();
   }
   initiateStyles() {
     if (!this.styles) {
@@ -73,6 +78,7 @@ class Loader extends React.Component {
   }
 
   renderProgress() {
+    const { manualPercent } = this.props;
     return (
       <div>
         <div
@@ -80,7 +86,7 @@ class Loader extends React.Component {
             [this.styles[this.props.type]]: this.props.type,
           })}
         >
-          {`${this.state.percent}%`}
+          {`${manualPercent ? manualPercent : this.state.percent}%`}
         </div>
       </div>
     );
@@ -109,6 +115,7 @@ Loader.propTypes = {
   theme: PropTypes.object.isRequired,
   isFastFakeLoader: PropTypes.bool,
   isVerySlowFakeLoader: PropTypes.bool,
+  manualPercent: PropTypes.number,
 };
 
 Loader.defaultProps = {

@@ -15,6 +15,7 @@ import { DEFAULTS, SEO_IMAGE_WIDTH } from './consts';
 import styles from '../statics/styles/image-viewer.scss';
 import ExpandIcon from './icons/expand.svg';
 import InPluginInput from './InPluginInput';
+import { Loader } from 'wix-rich-content-editor-common';
 
 class ImageViewer extends React.Component {
   constructor(props) {
@@ -225,7 +226,7 @@ class ImageViewer extends React.Component {
     const { componentData, className, settings, setComponentUrl, seoMode } = this.props;
     const { fallbackImageSrc, ssrDone } = this.state;
     const data = componentData || DEFAULTS;
-    const { metadata = {} } = componentData;
+    const { metadata = {}, loaderPercent } = componentData;
 
     const hasLink = data.config && data.config.link;
     const hasExpand = this.props.helpers && this.props.helpers.onExpand;
@@ -267,6 +268,7 @@ class ImageViewer extends React.Component {
         {this.renderTitle(data, this.styles)}
         {this.renderDescription(data, this.styles)}
         {this.shouldRenderCaption() && this.renderCaption(metadata.caption)}
+        {loaderPercent && <Loader type={'medium'} manualPercent={loaderPercent} />}
       </div>
     );
     /* eslint-enable jsx-a11y/no-static-element-interactions */
