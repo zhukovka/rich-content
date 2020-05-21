@@ -20,6 +20,9 @@
 - `wrapper`
   - [#1132](https://github.com/wix-incubator/rich-content/pull/1132) palettes not working
 
+### :house: Internal
+- `wrapper`
+  - [#1133](https://github.com/wix-incubator/rich-content/pull/1133) performance: strategies won't run without props
 </details>
 <hr/>
 
