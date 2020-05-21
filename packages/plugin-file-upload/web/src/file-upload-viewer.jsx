@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { isEqual } from 'lodash';
 import { mergeStyles, validate, pluginFileUploadSchema } from 'wix-rich-content-common';
-import { DocumentIcon, LoaderIcon } from './icons';
+import { DocumentIcon, LoaderIcon, getIcon } from './icons';
 import styles from '../statics/styles/file-upload-viewer.scss';
 
 const getNameWithoutType = fileName => {
@@ -46,12 +46,13 @@ class FileUploadViewer extends PureComponent {
   renderViewerBody({ type, name }) {
     const showLoader = this.props.isLoading || this.state.resolvingUrl;
     const nameWithoutType = getNameWithoutType(name);
+    const Icon = getIcon(type);
     return (
       <React.Fragment>
         {showLoader ? (
           <LoaderIcon className={this.styles.file_loader_icon} />
         ) : (
-          <DocumentIcon className={this.styles.file_upload_icon} />
+          <Icon className={this.styles.file_upload_icon} />
         )}
         <div className={this.styles.file_upload_name_container}>
           <span className={this.styles.file_upload_name}>{nameWithoutType}</span>
