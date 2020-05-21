@@ -8,6 +8,7 @@ import Image from './Image';
 import Video from './Video';
 import VerticalEmbedStory from './VerticalEmbed';
 import HtmlPluginStory from './HtmlPlugin';
+import FileUploadStory from './FileUpload';
 
 storiesOf('Plugins')
   .add('Divider', DividerPluginStory)
@@ -18,4 +19,5 @@ storiesOf('Plugins')
   .add('Link Preview', LinkPreviewStory)
   .add('Buttons', ButtonsPluginStory)
   .add('Vertical Embed', VerticalEmbedStory)
-  .add('HTML Plugin', HtmlPluginStory);
+  .add('HTML Plugin', HtmlPluginStory)
+  .add('File Upload', FileUploadStory);

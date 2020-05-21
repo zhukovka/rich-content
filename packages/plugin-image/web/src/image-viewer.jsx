@@ -214,8 +214,8 @@ class ImageViewer extends React.Component {
 
   handleExpand = e => {
     e.preventDefault();
-    const { onExpand, onViewerAction } = this.props.helpers;
-    onViewerAction?.(IMAGE_TYPE, 'expand_image');
+    const { onExpand, onAction } = this.props.helpers;
+    onAction?.('expand_image', IMAGE_TYPE);
     onExpand?.(this.props.entityIndex);
   };
 
@@ -232,14 +232,6 @@ class ImageViewer extends React.Component {
   };
 
   handleContextMenu = e => this.props.disableRightClick && e.preventDefault();
-
-  renderExpandIcon = () => {
-    return (
-      <div className={this.styles.expandContainer}>
-        <ExpandIcon className={this.styles.expandIcon} onClick={this.handleExpand} />
-      </div>
-    );
-  };
 
   // eslint-disable-next-line complexity
   render() {
@@ -283,7 +275,9 @@ class ImageViewer extends React.Component {
             this.renderPreloadImage(imageClassName, imageSrc, metadata.alt, imageProps)}
           {shouldRenderImage &&
             this.renderImage(imageClassName, imageSrc, metadata.alt, imageProps, isGif, seoMode)}
-          {hasExpand && this.renderExpandIcon()}
+          {hasExpand && (
+            <ExpandIcon className={this.styles.expandIcon} onClick={this.handleExpand} />
+          )}
         </div>
         {this.renderTitle(data, this.styles)}
         {this.renderDescription(data, this.styles)}

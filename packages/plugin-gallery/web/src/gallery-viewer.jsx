@@ -145,8 +145,8 @@ class GalleryViewer extends React.Component {
   };
 
   handleExpand = data => {
-    const { onExpand, onViewerAction } = this.props.helpers;
-    onViewerAction?.(GALLERY_TYPE, 'expand_image');
+    const { onExpand, onAction } = this.props.helpers;
+    onAction?.('expand_gallery', GALLERY_TYPE);
     onExpand?.(this.props.entityIndex, data.idx);
   };
 
@@ -178,15 +178,13 @@ class GalleryViewer extends React.Component {
 
   renderExpandIcon = itemProps => {
     return itemProps.type !== 'video' ? (
-      <div className={this.styles.expandContainer}>
-        <ExpandIcon
-          className={this.styles.expandIcon}
-          onClick={e => {
-            e.preventDefault();
-            this.handleExpand(itemProps);
-          }}
-        />
-      </div>
+      <ExpandIcon
+        className={this.styles.expandIcon}
+        onClick={e => {
+          e.preventDefault();
+          this.handleExpand(itemProps);
+        }}
+      />
     ) : null;
   };
 
@@ -198,17 +196,12 @@ class GalleryViewer extends React.Component {
     ) : null;
   };
 
-  hoverElement = itemProps => {
-    const hasExpand = this.props.helpers?.onExpand;
-    return hasExpand ? (
-      <div className={this.styles.pointer}>
-        {this.renderExpandIcon(itemProps)}
-        {this.renderTitle(itemProps.title)}
-      </div>
-    ) : (
-      <Fragment>{this.renderTitle(itemProps.title)}</Fragment>
-    );
-  };
+  hoverElement = itemProps => (
+    <Fragment>
+      {this.renderExpandIcon(itemProps)}
+      {this.renderTitle(itemProps.title)}
+    </Fragment>
+  );
 
   handleContextMenu = e => this.props.disableRightClick && e.preventDefault();
 
