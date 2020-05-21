@@ -38,13 +38,14 @@ export default class TextSelectionListener extends React.Component {
 
   render() {
     const { ToolBar, targetId } = this.props;
-    const { selectedText, selectionRect } = this.state;
+    const { selectedText, selectionRect, ref } = this.state;
     return selectedText !== '' ? (
       <ToolBar
         selectedText={selectedText}
         options={[TWITTER]}
         selectionRect={selectionRect}
         targetId={targetId}
+        viewerRect={ref}
       />
     ) : (
       <div />
@@ -55,4 +56,5 @@ export default class TextSelectionListener extends React.Component {
 TextSelectionListener.propTypes = {
   targetId: PropTypes.string.isRequired,
   ToolBar: PropTypes.any.isRequired,
+  ref: PropTypes.any,
 };

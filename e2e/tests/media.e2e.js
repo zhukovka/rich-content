@@ -23,6 +23,11 @@ const eyesOpen = ({
 describe('plugins', () => {
   afterEach(() => cy.matchContentSnapshot());
 
+  it('render viewer toolbar and tweet', function() {
+    cy.loadEditorAndViewer('plain').focusViewer();
+    cy.eyesCheckWindow(this.test.title);
+  });
+
   context('image', () => {
     before(function() {
       eyesOpen(this);

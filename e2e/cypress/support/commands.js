@@ -148,6 +148,14 @@ Cypress.Commands.add('focusEditor', () => {
   cy.getEditor().focus();
 });
 
+Cypress.Commands.add('getViewer', () => {
+  cy.get('');
+});
+
+Cypress.Commands.add('focusViewer', () => {
+  cy.getViewer().focus();
+});
+
 Cypress.Commands.add(
   'typeAllAtOnce',
   {

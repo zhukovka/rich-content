@@ -29,6 +29,7 @@ export default class Viewer extends PureComponent {
     const { scrollingElementFn } = props;
     const additionalConfig = { [GALLERY_TYPE]: { scrollingElement: scrollingElementFn } };
     this.pluginsConfig = Plugins.getConfig(additionalConfig);
+    this.viewerRef = React.createRef();
   }
 
   componentDidMount() {
@@ -69,7 +70,7 @@ export default class Viewer extends PureComponent {
 
     return (
       <>
-        <div id="rich-content-viewer" className="viewer">
+        <div id={'rich-content-viewer'} ref={this.viewerRef} className="viewer">
           <RichContentViewer
             helpers={this.helpers}
             typeMappers={Plugins.typeMappers}
@@ -87,7 +88,11 @@ export default class Viewer extends PureComponent {
               index={expandModeIndex}
             />
           )}
-          <TextSelectionListener targetId={'rich-content-viewer'} ToolBar={ViewerInlineToolBar} />
+          <TextSelectionListener
+            ref={this.viewerRef.current}
+            targetId={'rich-content-viewer'}
+            ToolBar={ViewerInlineToolBar}
+          />
         </div>
       </>
     );

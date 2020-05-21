@@ -19,11 +19,8 @@ const toolbarOptionsActions = {
 export default class ViewerInlineToolBar extends React.Component {
   constructor(props) {
     super(props);
-    const { targetId } = props;
-    this.viewerRect =
-      (document.getElementById(targetId) &&
-        document.getElementById(targetId).getBoundingClientRect()) ||
-      {};
+    const { targetId, viewerRect } = props;
+    this.viewerRect = (viewerRect && viewerRect.getBoundingClientRect()) || {};
   }
   getOptionButton = (action, option) => {
     return (
@@ -68,4 +65,5 @@ ViewerInlineToolBar.propTypes = {
   selectedText: PropTypes.string.isRequired,
   selectionRect: PropTypes.object.isRequired,
   targetId: PropTypes.string.isRequired,
+  viewerRect: PropTypes.any,
 };
