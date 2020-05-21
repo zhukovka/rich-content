@@ -3,6 +3,7 @@ import { TOOLBARS, DISPLAY_MODE } from 'wix-rich-content-editor-common';
 import { createSideToolbar } from './SideToolbar';
 import { createMobileToolbar, createFooterToolbar, createStaticTextToolbar } from './StaticToolbar';
 import { createInlineTextToolbar } from './InlineToolbar';
+import { createTextButtonProps } from './createButtonProps';
 
 const defaultInlineToolbarVisibilityFn = editorState => {
   const selection = editorState.getSelection();
@@ -56,12 +57,38 @@ export const getDefaultToolbarSettings /*: GetToolbarSettings*/ = ({
 }) => {
   return [
     {
+      // TODO: move plugin buttons processing here?
       name: TOOLBARS.EXTERNAL,
+      getInstance: createTextButtonProps,
       shouldCreate: () => ({
         desktop: false,
         mobile: {
           android: false,
           ios: false,
+        },
+      }),
+      getButtons: () => ({
+        desktop: textButtons.desktop,
+        mobile: {
+          ios: textButtons.mobile,
+          android: textButtons.mobile,
+        },
+      }),
+      getTextPluginButtons: () => ({
+        desktop: pluginTextButtons.desktop,
+        mobile: {
+          ios: pluginTextButtons.mobile,
+          android: pluginTextButtons.mobile,
+        },
+      }),
+      getPositionOffset: () => defaultOffset,
+      getDisplayOptions: () => defaultDisplayOptions,
+      getToolbarDecorationFn: () => defaultToolbarDecorationFn,
+      getVisibilityFn: () => ({
+        desktop: defaultInlineToolbarVisibilityFn,
+        mobile: {
+          ios: defaultInlineToolbarVisibilityFn,
+          android: defaultInlineToolbarVisibilityFn,
         },
       }),
     },

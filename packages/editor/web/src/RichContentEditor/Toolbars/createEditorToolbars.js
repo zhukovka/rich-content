@@ -56,7 +56,7 @@ const createEditorToolbars = ({ buttons, textAlignment, refId, context }) => {
   const deviceName = !isMobile ? 'desktop' : isiOS() ? 'mobile.ios' : 'mobile.android';
 
   toolbarSettings
-    .filter(({ name }) => name !== TOOLBARS.PLUGIN && name !== TOOLBARS.EXTERNAL)
+    .filter(({ name }) => name !== TOOLBARS.PLUGIN)
     .filter(({ shouldCreate }) => get(shouldCreate(), deviceName, true))
     .forEach(
       ({
