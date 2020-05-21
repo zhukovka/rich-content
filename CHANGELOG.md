@@ -20,6 +20,10 @@
 - `wrapper`
   - [#1132](https://github.com/wix-incubator/rich-content/pull/1132) palettes not working
 
+### :house: Internal
+- `image`
+  - [#1136](https://github.com/wix-incubator/rich-content/pull/1136) add image loader for mobile (oneApp)
+
 </details>
 <hr/>
 
