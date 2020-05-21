@@ -5,10 +5,12 @@ import OptionButton from './OptionButton';
 import styles from '../statics/styles/viewer-inline-toolbar.rtlignore.scss';
 import Twitter from './icons/twitter.svg';
 
-const TWEET_ON_TWITTER_URL = 'https://twitter.com/intent/tweet?text=';
-
 function handleTweetClick(selectedText) {
-  window.open(TWEET_ON_TWITTER_URL + encodeURI(selectedText));
+  const text = encodeURI(`“${selectedText}“`);
+  const url = window.location;
+  const TWEET_ON_TWITTER_URL = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+
+  window.open(TWEET_ON_TWITTER_URL);
 }
 
 const toolbarOptionsActions = {
