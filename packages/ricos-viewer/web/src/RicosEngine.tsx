@@ -5,6 +5,7 @@ import localeStrategy from './localeStrategy/localeStrategy';
 import { merge } from 'lodash';
 import { isDefined } from 'ts-is-present';
 import RicosModal from './modals/RicosModal';
+import { defaultTheme } from './themeStrategy/defaults';
 
 export interface EngineProps extends RicosEditorProps, RicosViewerProps {
   children: RichContentChild;
@@ -48,12 +49,10 @@ export class RicosEngine extends Component<EngineProps, EngineState> {
       .map(plugin => plugin.theme)
       .filter(isDefined);
 
-    const { theme: themeStrategyResult } = themeStrategy(
-      isViewer,
-      themeGeneratorFunctions,
-      theme?.palette,
-      cssOverride
-    );
+    const { theme: themeStrategyResult } =
+      theme || cssOverride
+        ? themeStrategy(isViewer, themeGeneratorFunctions, theme?.palette, cssOverride)
+        : { theme: defaultTheme };
 
     return merge(
       { theme: themeStrategyResult },

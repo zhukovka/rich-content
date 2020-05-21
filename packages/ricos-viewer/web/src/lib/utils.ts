@@ -1,6 +1,17 @@
 import { Children, ReactElement, ComponentClass } from 'react';
 
 export const emptyState: RicosContent = { blocks: [], entityMap: {} };
+export const emptyEditorPlugins: EditorPluginsStrategy = {
+  ModalsMap: {},
+  config: {},
+  plugins: [],
+};
+export const emptyViewerPlugins: ViewerPluginsStrategy = {
+  config: {},
+  decorators: [],
+  inlineStyleMappers: [],
+  typeMappers: [],
+};
 
 export const shouldRenderChild = (
   expectedChildName: 'RichContentViewer' | 'RichContentEditor',

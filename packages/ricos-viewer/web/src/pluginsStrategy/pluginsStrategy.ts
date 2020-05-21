@@ -1,3 +1,4 @@
+import { emptyViewerPlugins, emptyEditorPlugins } from './../lib/utils';
 import { merge } from 'lodash';
 
 const getPluginProps = (
@@ -56,13 +57,16 @@ function viewerStrategy(
 
 export default function pluginsStrategy(
   isViewer: boolean,
-  plugins: PluginConfig[] = [],
+  plugins: PluginConfig[],
   childProps: RichContentProps,
   cssOverride: CssOverride,
   content?: RicosContent
 ): PluginsStrategy {
   let strategy: EditorPluginsStrategy | ViewerPluginsStrategy;
 
+  if (plugins.length === 0) {
+    return (isViewer ? emptyViewerPlugins : emptyEditorPlugins) as PluginsStrategy;
+  }
   if (isViewer) {
     const emptyStrategy: ViewerPluginsStrategy = {
       config: {},
