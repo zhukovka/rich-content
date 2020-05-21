@@ -23,6 +23,8 @@
 ### :bug: Bug Fix
 - `wrapper`
   - [#1132](https://github.com/wix-incubator/rich-content/pull/1132) palettes not working
+- `file-upload`
+  - [#1087](https://github.com/wix-incubator/rich-content/pull/1087) fix multiple files upload
 
 </details>
 <hr/>
@@ -56,7 +58,6 @@
 - `link-preview`
   - [#1048](https://github.com/wix-incubator/rich-content/pull/1048) fix enable link preview and link embed by default
 - `file-upload`
-  - [#1087](https://github.com/wix-incubator/rich-content/pull/1087) fix multiple files upload
   - [#1082](https://github.com/wix-incubator/rich-content/pull/1082) error handling fix
 - `common`
   - [#1092](https://github.com/wix-incubator/rich-content/pull/1092) text indentation not showing in rtl
