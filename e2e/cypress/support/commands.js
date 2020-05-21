@@ -47,6 +47,7 @@ const getUrl = (componentId, fixtureName = '', config = {}) => {
 const run = (app, fixtureName, plugins) => {
   cy.visit(getUrl(app, fixtureName, plugins)).then(() => {
     disableTransitions();
+    findEditorElement();
     hideAllTooltips();
   });
 };
@@ -83,6 +84,10 @@ function disableTransitions() {
 
 function hideAllTooltips() {
   cy.get('[data-id="tooltip"]', { timeout: 300000 }).invoke('hide'); //uses jquery to set display: none
+}
+
+function findEditorElement() {
+  cy.get('.DraftEditor-root', { timeout: 300000 });
 }
 
 Cypress.Commands.add('loadEditorAndViewer', (fixtureName, config) =>
@@ -539,7 +544,9 @@ Cypress.Commands.add('insertLinkAndEnter', url => {
 
 Cypress.Commands.add('triggerLinkPreviewViewerUpdate', () => {
   cy.moveCursorToEnd();
-  cy.focusEditor();
+  cy.focusEditor()
+    .get('[data-hook=addPluginFloatingToolbar]')
+    .should('be.visible');
 });
 
 Cypress.Commands.add('waitForDocumentMutations', () => {
@@ -548,7 +555,7 @@ Cypress.Commands.add('waitForDocumentMutations', () => {
   });
 });
 
-function waitForMutations(container, { timeToWaitForMutation = 300 } = {}) {
+function waitForMutations(container, { timeToWaitForMutation = 400 } = {}) {
   return new Promise(resolve => {
     let timeoutId = setTimeout(onDone, timeToWaitForMutation);
 
