@@ -12,7 +12,7 @@ export default class TextSelectionListener extends React.Component {
   getSelectedText = selection => {
     let text = '';
     if (selection.rangeCount > 0) {
-      text = selection.toString();
+      text = selection.toString().replace('\n\n', '\n');
     }
     this.setState({ selectedText: text });
   };
