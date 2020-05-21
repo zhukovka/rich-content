@@ -123,8 +123,10 @@ class ImageComponent extends React.Component {
 
   handleCaptionChange = caption => this.handleMetadataChange({ caption });
 
-  renderLoader = () => {
-    return <Loader type={'medium'} isFastFakeLoader />;
+  renderLoader = (manualPercent = null) => {
+    return (
+      <Loader type={'medium'} manualPercent={manualPercent} isFastFakeLoader={!manualPercent} />
+    );
   };
 
   render() {
@@ -164,6 +166,7 @@ class ImageComponent extends React.Component {
           onCaptionChange={this.handleCaptionChange}
           setFocusToBlock={blockProps.setFocusToBlock}
           setComponentUrl={setComponentUrl}
+          renderLoader={this.renderLoader}
         />
 
         {this.state.isLoading && this.renderLoader()}

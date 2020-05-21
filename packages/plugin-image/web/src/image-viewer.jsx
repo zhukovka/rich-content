@@ -15,7 +15,6 @@ import { DEFAULTS, SEO_IMAGE_WIDTH } from './consts';
 import styles from '../statics/styles/image-viewer.scss';
 import ExpandIcon from './icons/expand.svg';
 import InPluginInput from './InPluginInput';
-import { Loader } from 'wix-rich-content-editor-common';
 
 class ImageViewer extends React.Component {
   constructor(props) {
@@ -221,9 +220,17 @@ class ImageViewer extends React.Component {
 
   handleContextMenu = e => this.props.disableRightClick && e.preventDefault();
 
+  // eslint-disable-next-line complexity
   render() {
     this.styles = this.styles || mergeStyles({ styles, theme: this.props.theme });
-    const { componentData, className, settings, setComponentUrl, seoMode } = this.props;
+    const {
+      componentData,
+      className,
+      settings,
+      setComponentUrl,
+      seoMode,
+      renderLoader,
+    } = this.props;
     const { fallbackImageSrc, ssrDone } = this.state;
     const data = componentData || DEFAULTS;
     const { metadata = {}, loaderPercent } = componentData;
@@ -268,7 +275,7 @@ class ImageViewer extends React.Component {
         {this.renderTitle(data, this.styles)}
         {this.renderDescription(data, this.styles)}
         {this.shouldRenderCaption() && this.renderCaption(metadata.caption)}
-        {loaderPercent && <Loader type={'medium'} manualPercent={loaderPercent} />}
+        {renderLoader && loaderPercent && renderLoader(loaderPercent)}
       </div>
     );
     /* eslint-enable jsx-a11y/no-static-element-interactions */
@@ -294,6 +301,7 @@ ImageViewer.propTypes = {
   isMobile: PropTypes.bool.isRequired,
   setComponentUrl: PropTypes.func,
   seoMode: PropTypes.bool,
+  renderLoader: PropTypes.func,
 };
 
 export default ImageViewer;
