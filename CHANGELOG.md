@@ -13,12 +13,58 @@
   <summary>
     Changes that have landed in master but are not yet released.
     Click to see more.
+
   </summary>
 
 
 </details>
 <hr/>
 
+## 7.7.0 (May 11, 2020)
+### :rocket: New Feature
+- `editor` `viewer`
+  - [#1091](https://github.com/wix-incubator/rich-content/pull/1091) add iframeSandboxDomain prop for iframe security
+- `editor`
+  - [#1041](https://github.com/wix-incubator/rich-content/pull/1041) shift+tab click deletes tab character ('\t')
+  - [#1065](https://github.com/wix-incubator/rich-content/pull/1065) backspace click at start of block decrease indentation
+  - [#1084](https://github.com/wix-incubator/rich-content/pull/1084) external toolbar API added
+- `wrapper`
+  - [#1003](https://github.com/wix-incubator/rich-content/pull/1003) RichContentWrapper was split into RicosEditor & RicosViewer
+  - [#1115](https://github.com/wix-incubator/rich-content/pull/1115) Improved RicosEditor API of getContent + onChange
+- `viewer`
+  - [#1093](https://github.com/wix-incubator/rich-content/pull/1093) viewerAction callback in helpers is now supported, triggered on image expand (gallery & viewer)
+  - [#1116](https://github.com/wix-incubator/rich-content/pull/1116) renamed onViewerAction to onAction + order of arguments
+### :bug: Bug Fix
+- `wrapper` `viewer`
+  - [#1101](https://github.com/wix-incubator/rich-content/pull/1101) fix hashtag decorator in viewer
+- `plugins`
+  - [#1084](https://github.com/wix-incubator/rich-content/pull/1084) svg icon id conflicts fixed
+- `giphy`
+  - [#1110](https://github.com/wix-incubator/rich-content/pull/1110) giphy toolbar not showing after giphy is added
+- `link-preview`
+  - [#1048](https://github.com/wix-incubator/rich-content/pull/1048) fix enable link preview and link embed by default
+- `file-upload`
+  - [#1082](https://github.com/wix-incubator/rich-content/pull/1082) error handling fix
+- `common`
+  - [#1092](https://github.com/wix-incubator/rich-content/pull/1092) text indentation not showing in rtl
+- `html plugin`
+  - [#1126](https://github.com/wix-incubator/rich-content/pull/1126) fix html iframe src height and remove html initial state
+### :house: Internal
+- `exampleApp`
+  - [0f849222](https://github.com/wix-incubator/rich-content/commit/0f849222) fix translations
+  - [#1113](https://github.com/wix-incubator/rich-content/pull/1113) fix: Tooltips don't render in the correct translations
+- `storybook`
+  - [#1003](https://github.com/wix-incubator/rich-content/pull/1003) story for wrapper handling of static text toolbar
+  - [#1084](https://github.com/wix-incubator/rich-content/pull/1084) external plugin sidebar added
+- `storybook`
+  - [#1084](https://github.com/wix-incubator/rich-content/pull/1084) initial intent example added
+- `editor`
+  - [#1078](https://github.com/wix-incubator/rich-content/pull/1078) insert buttons at the beginning of the inline toolbar
+- `editor` `viewer`
+  - [#1090](https://github.com/wix-incubator/rich-content/pull/1090) support normalize config with {disableInlineImages: false/true}
+- `general`
+  - [#1122](https://github.com/wix-incubator/rich-content/pull/1122) Adding github action that updates the baselineBundleSizes after merge
+  
 ## 7.6.1 (May 11, 2020)
 ### :bug: Bug Fix
 - `editor-common`
@@ -36,7 +82,6 @@
   - [#898](https://github.com/wix-incubator/rich-content/pull/898) text indentation
 - `viewer`
   - [#1005](https://github.com/wix-incubator/rich-content/pull/1005) add viewMode SEO to ProGallery
-
 ### :bug: Bug Fix
 - `social-modals`
   - [#1037](https://github.com/wix-incubator/rich-content/pull/1037) disable text input autocomplete

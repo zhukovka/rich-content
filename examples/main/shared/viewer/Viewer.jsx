@@ -49,13 +49,14 @@ export default class Viewer extends PureComponent {
         expandModeIndex: this.expandModeData.imageMap[entityIndex] + innerIndex,
       });
     },
+    onAction: async (actionName, pluginId) => console.log('Viewer Action', actionName, pluginId),
   };
 
   render() {
-    const { isMobile, initialState, locale, seoMode } = this.props;
+    const { isMobile, initialState, locale, seoMode, localeResource } = this.props;
     const { expandModeIsOpen, expandModeIndex, disabled } = this.state;
-
     const viewerProps = {
+      localeResource,
       locale,
       relValue,
       anchorTarget,

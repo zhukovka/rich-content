@@ -7,7 +7,7 @@ import {
   BUTTON_PLUGIN_MODAL,
 } from '../cypress/dataHooks';
 import { DEFAULT_DESKTOP_BROWSERS } from './settings';
-import { usePlugins, plugins } from '../cypress/testAppConfig';
+import { usePlugins, plugins, usePluginsConfig } from '../cypress/testAppConfig';
 
 const eyesOpen = ({
   test: {
@@ -198,22 +198,57 @@ describe('plugins', () => {
   });
 
   context('convert link to preview', () => {
-    before(function() {
-      eyesOpen(this);
-    });
-    after(() => cy.eyesClose());
-    beforeEach('load editor', () =>
-      cy.loadEditorAndViewer('empty', usePlugins(plugins.embedsPreset))
-    );
+    context('with default config', () => {
+      before(function() {
+        eyesOpen(this);
+      });
+      const testAppConfig = {
+        ...usePlugins(plugins.embedsPreset),
+        ...usePluginsConfig({
+          LINK_PREVIEW: {
+            enableEmbed: undefined,
+            enableLinkPreview: undefined,
+          },
+        }),
+      };
+      after(() => cy.eyesClose());
+      beforeEach('load editor', () => cy.loadEditorAndViewer('empty', testAppConfig));
 
-    it('should create link preview from link after enter key', function() {
-      cy.insertLinkAndEnter('www.wix.com');
-      cy.eyesCheckWindow(this.test.title);
-    });
+      it('should create link preview from link after enter key', function() {
+        cy.insertLinkAndEnter('www.wix.com');
+        cy.eyesCheckWindow(this.test.title);
+      });
 
-    it('should embed link that supports embed', function() {
-      cy.insertLinkAndEnter('www.mockUrl.com');
-      cy.eyesCheckWindow(this.test.title);
+      it('should embed link that supports embed', function() {
+        cy.insertLinkAndEnter('www.mockUrl.com');
+        cy.eyesCheckWindow(this.test.title);
+      });
+    });
+    context('with custom config', () => {
+      before(function() {
+        eyesOpen(this);
+      });
+      const testAppConfig = {
+        ...usePlugins(plugins.embedsPreset),
+        ...usePluginsConfig({
+          LINK_PREVIEW: {
+            enableEmbed: false,
+            enableLinkPreview: false,
+          },
+        }),
+      };
+      after(() => cy.eyesClose());
+      beforeEach('load editor', () => cy.loadEditorAndViewer('empty', testAppConfig));
+
+      it('should not create link preview when enableLinkPreview is off', function() {
+        cy.insertLinkAndEnter('www.wix.com');
+        cy.eyesCheckWindow(this.test.title);
+      });
+
+      it('should not embed link when enableEmbed is off', function() {
+        cy.insertLinkAndEnter('www.mockUrl.com');
+        cy.eyesCheckWindow(this.test.title);
+      });
     });
   });
 
@@ -234,8 +269,8 @@ describe('plugins', () => {
         const testKey = embedType + ': ' + this.test.title;
         cy.openEmbedModal(STATIC_TOOLBAR_BUTTONS[embedType]);
         cy.eyesCheckWindow(testKey + ' modal');
-        cy.addSocialEmbed('www.mockUrl.com');
-        cy.get(`#rich-content-viewer [data-hook=HtmlComponent]`).wait(200);
+        cy.addSocialEmbed('www.mockUrl.com').waitForHtmlToLoad();
+        cy.get(`#rich-content-viewer [data-hook=HtmlComponent]`);
         cy.eyesCheckWindow(testKey + ' added');
       });
     });
@@ -273,20 +308,37 @@ describe('plugins', () => {
     before(function() {
       eyesOpen(this);
     });
+    after(() => cy.eyesClose());
 
-    beforeEach('load editor', () => {
-      cy.switchToDesktop();
-      cy.loadEditorAndViewer('empty', usePlugins(plugins.verticalEmbed));
+    context('verticals embed modal', () => {
+      beforeEach('load editor', () => {
+        cy.switchToDesktop();
+        cy.loadEditorAndViewer('empty', usePlugins(plugins.verticalEmbed));
+      });
+      // const embedTypes = ['EVENT', 'PRODUCT', 'BOOKING'];
+      const embedTypes = ['PRODUCT'];
+      it('render upload modals', function() {
+        embedTypes.forEach(embedType => {
+          cy.openEmbedModal(STATIC_TOOLBAR_BUTTONS[embedType]);
+          cy.eyesCheckWindow(this.test.title);
+          cy.get(`[data-hook*=settingPanelFooterCancel][tabindex!=-1]`).click();
+        });
+      });
     });
 
-    after(() => cy.eyesClose());
-    // const embedTypes = ['EVENT', 'PRODUCT', 'BOOKING'];
-    const embedTypes = ['PRODUCT'];
-    it('render upload modals', function() {
-      embedTypes.forEach(embedType => {
-        cy.openEmbedModal(STATIC_TOOLBAR_BUTTONS[embedType]);
-        cy.eyesCheckWindow(this.test.title);
-        cy.get(`[data-hook*=settingPanelFooterCancel][tabindex!=-1]`).click();
+    context('verticals embed widget', () => {
+      beforeEach('load editor', () => {
+        cy.switchToDesktop();
+        cy.loadEditorAndViewer('vertical-embed', usePlugins(plugins.verticalEmbed));
+      });
+      it('should replace widget', () => {
+        cy.openPluginToolbar(PLUGIN_COMPONENT.VERTICAL_EMBED);
+        cy.clickToolbarButton('baseToolbarButton_replace');
+        cy.get(`[data-hook*=verticalsItemsList]`)
+          .children()
+          .first()
+          .click();
+        cy.get(`[data-hook=settingPanelFooterDone]`).click();
       });
     });
   });
