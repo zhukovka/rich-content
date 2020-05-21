@@ -162,7 +162,7 @@ class GalleryComponent extends PureComponent {
     if (hasFileChangeHelper) {
       helpers.onVideoSelected(file, video => {
         // eslint-disable-next-line camelcase
-        const data = { ...video, id: String(event.timeStamp), file_name: video.video_url };
+        const data = { ...video, id: Date.now().toString(), file_name: video.video_url };
         this.handleFilesAdded({ data, itemPos });
       });
     } else {
