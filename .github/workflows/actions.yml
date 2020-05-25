@@ -1,6 +1,8 @@
 name: deploySurge
 on:
   push:
+    branches:
+      - '**'
     tags-ignore:
       - '**'
 jobs:
