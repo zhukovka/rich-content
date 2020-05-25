@@ -1,5 +1,8 @@
 name: tests
-on: push
+on:
+  push:
+    tags-ignore:
+      - '**'
 env:
   captureVideos: 'true'
   captureImages: 'true'

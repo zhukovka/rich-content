@@ -1,5 +1,8 @@
 name: deploySurge
-on: push
+on:
+  push:
+    tags-ignore:
+      - '**'
 jobs:
   deploy-examples:
     runs-on: ubuntu-18.04
