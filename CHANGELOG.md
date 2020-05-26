@@ -21,6 +21,8 @@
   - [#1149](https://github.com/wix-incubator/rich-content/pull/1149) doesnt add internal ricos modal if child has modal
 - `gallery`
   - [#1151](https://github.com/wix-incubator/rich-content/pull/1151) item id had '.' in it. It's not handled well in the gallery
+- `file-upload`
+  - [#1087](https://github.com/wix-incubator/rich-content/pull/1087) fix multiple files uploa
 
 </details>
 <hr/>
