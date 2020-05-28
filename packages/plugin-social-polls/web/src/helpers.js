@@ -33,7 +33,7 @@ export function getBackgroundString(background, backgroundType) {
 
 export function getMediaId(src) {
   try {
-    const [, mediaId] = /media\/(.+)(?=\/v1)/.exec(src);
+    const [, mediaId] = /media\/(.+)(?=\/v1)?/.exec(src);
     return mediaId;
   } catch (error) {
     return src;
