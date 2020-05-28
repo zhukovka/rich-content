@@ -3,16 +3,21 @@
   height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   z-index: 1;
   overflow: hidden;
   position: relative;
-  
-  &.clickable {
-    cursor: pointer
+}
+
+.container:not(.disabled) {
+  .overlay {
+    cursor: pointer;
   }
 
-  &:not(.disabled):hover .overlay {
-    opacity: 1;
+  &:hover {
+    .overlay {
+      opacity: 1;
+    }
   }
 }
 

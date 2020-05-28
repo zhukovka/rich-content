@@ -78,13 +78,11 @@ export const BACKGROUND_PRESETS = {
 };
 
 export const OPTION_IMAGES_POOL = [
-  'https://static.wixstatic.com/media/fb62d9f8e7824b2e90b13b971e700b92.jpg',
-  'https://static.wixstatic.com/media/3a27828e768344158489df4f2c03cfb2.jpg',
+  'fb62d9f8e7824b2e90b13b971e700b92.jpg',
+  '3a27828e768344158489df4f2c03cfb2.jpg',
 ];
 
-export const POLL_IMAGES_POOL = [
-  'https://static.wixstatic.com/media/436483e6ed9e41fe91b9f286d2ea4efb.jpg',
-];
+export const POLL_IMAGES_POOL = ['436483e6ed9e41fe91b9f286d2ea4efb.jpg'];
 /* eslint-enable max-len */
 
 export const MEMBER_ROLES = {

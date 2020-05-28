@@ -3,12 +3,16 @@
 import React, { PureComponent } from 'react';
 import cls from 'classnames';
 
-import { getImageSrc } from 'wix-rich-content-common';
+import Measure from 'react-measure';
+import imageClientAPI from 'image-client-api';
+import { debounce } from 'lodash';
+
 import { FileInput } from 'wix-rich-content-editor-common';
 
 import { withRCEHelpers, RCEHelpersPropTypes } from '../rce-helpers-context';
 import { LoaderIcon, ReplaceIcon } from '../../assets/icons';
-import { getRandomValue } from '../../helpers';
+import { getRandomValue, getImageSrc, getBackgroundString } from '../../helpers';
+import { BACKGROUND_TYPE } from '../../constants';
 
 import { ImageUploadPropTypes } from './types';
 import styles from './image-upload.scss';
@@ -26,10 +30,10 @@ class ImageUploadComponent extends PureComponent {
 
   state = {
     value: this.props.value || getRandomValue(this.props.imagesPool),
+    backgroundImage: null,
     loading: false,
+    bounds: null,
   };
-
-  $container = React.createRef();
 
   componentDidMount() {
     const { value, rce } = this.props;
@@ -41,7 +45,12 @@ class ImageUploadComponent extends PureComponent {
 
   componentWillReceiveProps(props) {
     if (this.props.value !== props.value) {
-      this.setState({ value: props.value });
+      this.setState(
+        {
+          value: props.value,
+        },
+        () => this.updateBackgroundImage()
+      );
     }
   }
 
@@ -49,30 +58,48 @@ class ImageUploadComponent extends PureComponent {
     this.props.onChange(this.state.value);
   }
 
-  handleFileUpload = ({ data }) => {
-    const { helpers } = this.props;
-    const { $container } = this;
+  onResize = debounce(({ bounds }) => this.handleResize(bounds), 100);
 
-    const { width, height } = $container.current.getBoundingClientRect();
+  updateBackgroundImage() {
+    const { bounds, value } = this.state;
 
+    if (!bounds) {
+      return null;
+    }
+
+    const backgroundImage = `url(${getImageSrc(value, bounds.width, bounds.height)})`;
+
+    this.setState(() => ({
+      backgroundImage,
+    }));
+  }
+
+  handleResize({ width, height }) {
     this.setState(
       {
-        value: getImageSrc(data, helpers, {
-          requiredWidth: width,
-          requiredHeight: height,
-          requiredQuality: 90,
-          imageType: 'highRes',
-        }),
+        bounds: { width, height },
+      },
+      () => this.updateBackgroundImage()
+    );
+  }
+
+  handleFileUpload = ({ data }) => {
+    this.setState(
+      {
+        value: data.file_name,
         loading: false,
       },
-      () => this.sync()
+      () => {
+        this.updateBackgroundImage();
+        this.sync();
+      }
     );
   };
 
-  handleFileReadLoad = (value, file) => {
+  handleFileReadLoad = (backgroundImage, file) => {
     const { helpers } = this.props.rce;
 
-    this.setState({ value, loading: false });
+    this.setState({ backgroundImage: `url(${backgroundImage})`, loading: false });
 
     if (helpers?.handleFileUpload) {
       this.setState({ loading: true });
@@ -91,60 +118,53 @@ class ImageUploadComponent extends PureComponent {
 
   render() {
     const { className, rce, small, disabled, style = {} } = this.props;
-    const { value, loading } = this.state;
-
-    if (rce.isViewMode) {
-      return (
-        <div
-          ref={this.$container}
-          className={cls(styles.container, className)}
-          style={{ ...style, backgroundImage: `url('${value}')` }}
-        />
-      );
-    }
+    const { loading, backgroundImage } = this.state;
 
     return (
-      <FileInput
-        disabled={disabled}
-        accept="image/gif, image/jpeg, image/jpg, image/png"
-        onChange={this.handleFileChange}
-        theme={rce.theme}
-        tabIndex={-1}
-      >
-        <div
-          ref={this.$container}
-          className={cls(styles.container, className, {
-            [styles.disabled]: disabled,
-            [styles.clickable]: !disabled,
-          })}
-          style={{ ...style, backgroundImage: `url('${value}')` }}
-        >
+      <Measure bounds onResize={this.onResize}>
+        {({ measureRef }) => (
           <div
-            className={cls(styles.overlay, {
-              [styles.shown]: loading,
+            ref={measureRef}
+            className={cls(styles.container, className, {
+              [styles.disabled]: rce.isViewMode || disabled,
             })}
+            style={{ ...style, backgroundImage }}
           >
-            {loading ? (
-              <LoaderIcon
-                width={small ? 24 : 48}
-                height={small ? 24 : 48}
-                className={styles.spinner}
-              />
-            ) : (
-              <>
-                <ReplaceIcon />
-                <p
-                  className={cls(styles.text, {
-                    [styles.hide]: small,
-                  })}
-                >
-                  Change Image
-                </p>
-              </>
-            )}
+            <FileInput
+              disabled={rce.isViewMode || disabled}
+              accept="image/gif, image/jpeg, image/jpg, image/png"
+              onChange={this.handleFileChange}
+              theme={rce.theme}
+              tabIndex={-1}
+            >
+              <div
+                className={cls(styles.overlay, {
+                  [styles.shown]: loading,
+                })}
+              >
+                {loading ? (
+                  <LoaderIcon
+                    width={small ? 24 : 48}
+                    height={small ? 24 : 48}
+                    className={styles.spinner}
+                  />
+                ) : (
+                  <>
+                    <ReplaceIcon />
+                    <p
+                      className={cls(styles.text, {
+                        [styles.hide]: small,
+                      })}
+                    >
+                      Change Image
+                    </p>
+                  </>
+                )}
+              </div>
+            </FileInput>
           </div>
-        </div>
-      </FileInput>
+        )}
+      </Measure>
     );
   }
 }
