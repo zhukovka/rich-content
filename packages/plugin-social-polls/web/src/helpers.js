@@ -12,7 +12,7 @@ export function getRandomValue(pool) {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-export function getBackgroundString(background, backgroundType) {
+export function getBackgroundString(background, backgroundType, width, height) {
   switch (backgroundType) {
     case BACKGROUND_TYPE.GRADIENT:
       try {
@@ -23,7 +23,12 @@ export function getBackgroundString(background, backgroundType) {
       }
 
     case BACKGROUND_TYPE.IMAGE:
-      return `url('${background}') center / cover`;
+      if (!width || !height) {
+        return null;
+      }
+      // eslint-disable-next-line no-case-declarations
+      const imageSrc = getImageSrc(background, width, height);
+      return `url('${imageSrc}') center / cover`;
 
     case BACKGROUND_TYPE.COLOR:
     default:
@@ -43,7 +48,11 @@ export function getMediaId(src) {
 export function getImageSrc(src, width, height) {
   const mediaId = getMediaId(src);
 
-  return imageClientAPI.getScaleToFillImageURL(mediaId, null, null, width, height, {
-    quality: 90,
-  });
+  try {
+    return imageClientAPI.getScaleToFillImageURL(mediaId, null, null, width, height, {
+      quality: 90,
+    });
+  } catch (error) {
+    return src;
+  }
 }

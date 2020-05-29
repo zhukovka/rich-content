@@ -70,7 +70,7 @@ export class DesignSettingsSection extends Component {
     const { backgroundType } = this.state;
 
     const { design } = componentData;
-    return getBackgroundString(design.poll?.background, backgroundType);
+    return getBackgroundString(design.poll?.background, backgroundType, 48, 48);
   }
 
   getColorPalettePreset() {
@@ -78,7 +78,7 @@ export class DesignSettingsSection extends Component {
 
     const preset = BACKGROUND_PRESETS[backgroundType];
 
-    return preset.map(value => getBackgroundString(value, backgroundType));
+    return preset.map(value => getBackgroundString(value, backgroundType, 48, 48));
   }
 
   render() {

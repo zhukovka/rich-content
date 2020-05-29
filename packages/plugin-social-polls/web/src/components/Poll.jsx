@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import cls from 'classnames';
 import FlipMove from 'react-flip-move';
+import { withContentRect } from 'react-measure';
 
 import { AddIcon, LoaderIcon } from '../assets/icons';
 import { LAYOUT, VISIBILITY, BACKGROUND_TYPE } from '../constants';
@@ -171,12 +172,28 @@ class PollComponent extends Component {
   handleCTABlur = () => this.props.rce.setInPluginEditingMode(false);
 
   render() {
-    const { poll, rce, getVoters, addOption, design, layout, t, siteMembers } = this.props;
+    const {
+      poll,
+      rce,
+      getVoters,
+      addOption,
+      design,
+      layout,
+      t,
+      siteMembers,
+      measureRef,
+      contentRect,
+    } = this.props;
     const { collapsed, loading, error } = this.state;
 
     const style = {
       ...design.poll,
-      background: getBackgroundString(design.poll?.background, design.poll?.backgroundType),
+      background: getBackgroundString(
+        design.poll?.background,
+        design.poll?.backgroundType,
+        contentRect.bounds.width,
+        contentRect.bounds.height
+      ),
     };
 
     return (
@@ -188,6 +205,7 @@ class PollComponent extends Component {
         })}
         style={style}
         dir={layout.poll?.direction}
+        ref={measureRef}
       >
         <div
           className={cls(styles.background_overlay, {
@@ -278,4 +296,4 @@ class PollComponent extends Component {
   }
 }
 
-export const Poll = withRCEHelpers(withPoll(PollComponent));
+export const Poll = withContentRect('bounds')(withRCEHelpers(withPoll(PollComponent)));
