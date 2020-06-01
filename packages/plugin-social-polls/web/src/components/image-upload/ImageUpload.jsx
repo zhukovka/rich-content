@@ -59,7 +59,7 @@ class ImageUploadComponent extends PureComponent {
   updateBackgroundImage(bounds = this.props.contentRect.bounds) {
     const { value } = this.state;
 
-    if (!bounds) {
+    if (!bounds.width || !bounds.height) {
       return null;
     }
 

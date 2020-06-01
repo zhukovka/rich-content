@@ -46,7 +46,7 @@ const modalStyles = {
   },
 };
 
-export function createToolbar({ isMobile, helpers, t }) {
+export function createToolbar({ isMobile, helpers, settings, t }) {
   return {
     InlineButtons: [
       {
@@ -101,7 +101,7 @@ export function createToolbar({ isMobile, helpers, t }) {
             name: 'Poll',
             tooltipText: t('Poll_InsertPoll_Tooltip'),
             Icon: InsertPluginIcon,
-            componentData: DEFAULT_COMPONENT_DATA,
+            componentData: { ...DEFAULT_COMPONENT_DATA, ...settings },
             toolbars: [TOOLBARS.FOOTER],
             modalElement: decorateComponentWithProps(PollPresetSelector),
             modalStylesFn: ({ buttonRef }) => {

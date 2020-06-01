@@ -107,6 +107,9 @@ export const DEFAULT_COMPONENT_DATA = {
     size: 'large',
     width: 'full-width',
   },
+  settings: {
+    enableVoteRole: false,
+  },
   poll: {
     ownVotes: [],
     title: '',

@@ -14,7 +14,7 @@ export const CheckIcon = props => (
           <g transform="translate(496.000000, 0.000000)">
             <g>
               <circle fill="#FFFFFF" cx="12" cy="12" r="12" />
-              <g transform="translate(5.000000, 8.000000)" fill="#000000">
+              <g transform="translate(5.000000, 8.000000)" fill="currentColor">
                 <polygon points="12.2335029 0.239154296 13.4174702 1.3883133 5.59026761 9.73257326 0.586372643 5.73025155 1.59665912 4.42329121 5.43146554 7.49052765" />
               </g>
             </g>

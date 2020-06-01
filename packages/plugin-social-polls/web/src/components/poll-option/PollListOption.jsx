@@ -86,7 +86,12 @@ export class PollListOption extends PollOptionBase {
             )}
           </TextField>
         </div>
-        <div className={styles.check}>
+        <div
+          className={styles.check}
+          style={{
+            color: dark ? '#000' : design.poll.background,
+          }}
+        >
           <CheckIcon className={styles.icon} />
         </div>
       </div>

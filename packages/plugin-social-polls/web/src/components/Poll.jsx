@@ -91,7 +91,7 @@ class PollComponent extends Component {
     return poll.options.length > 4;
   }
 
-  seeAll = () => this.setState({ collapsed: false });
+  toggleCollapse = () => this.setState({ collapsed: !this.state.collapsed });
 
   handleOptionUpdate(index) {
     return option => this.props.updatePollOption(index, option);
@@ -221,7 +221,13 @@ class PollComponent extends Component {
             [styles.with_image]: layout.option?.enableImage,
           })}
         >
-          <FlipMove typeName={null} disableAllAnimations={!rce.isViewMode}>
+          <FlipMove
+            typeName={null}
+            disableAllAnimations={!rce.isViewMode}
+            enterAnimation="none"
+            leaveAnimation="none"
+            verticalAlignment="bottom"
+          >
             {this.getOptionList().map((option, i) => (
               <li className={styles.option} key={option.id || i}>
                 <PollOption
@@ -245,36 +251,38 @@ class PollComponent extends Component {
                 />
               </li>
             ))}
-          </FlipMove>
 
-          {!rce.isViewMode && (
-            <li className={styles.column}>
-              <button
-                onClick={addOption}
-                onFocus={this.handleCTAFocus}
-                onBlur={this.handleCTABlur}
-                className={styles.add_option}
-                style={design.option}
-              >
-                {layout.poll?.type === LAYOUT.GRID && layout.option?.enableImage ? (
-                  <AddIcon />
-                ) : (
-                  <>
-                    <AddIcon width={24} height={24} />
-                    &nbsp;
-                    {t('Poll_Editor_Answer_AddAnswer')}
-                  </>
-                )}
-              </button>
-            </li>
-          )}
+            {!rce.isViewMode && (
+              <li className={styles.column}>
+                <button
+                  onClick={addOption}
+                  onFocus={this.handleCTAFocus}
+                  onBlur={this.handleCTABlur}
+                  className={styles.add_option}
+                  style={design.option}
+                >
+                  {layout.poll?.type === LAYOUT.GRID && layout.option?.enableImage ? (
+                    <AddIcon />
+                  ) : (
+                    <>
+                      <AddIcon width={24} height={24} />
+                      &nbsp;
+                      {t('Poll_Editor_Answer_AddAnswer')}
+                    </>
+                  )}
+                </button>
+              </li>
+            )}
+          </FlipMove>
         </ul>
 
-        {collapsed && rce.isViewMode && (
-          <button onClick={this.seeAll} className={styles.see_more} style={design.option}>
-            {this.showResults()
-              ? t('Poll_Viewer_ShowAllResults_CTA')
-              : t('Poll_Viewer_ShowAllOptions_CTA')}
+        {poll.options.length > 4 && rce.isViewMode && (
+          <button onClick={this.toggleCollapse} className={styles.see_more} style={design.option}>
+            {collapsed
+              ? this.showResults()
+                ? t('Poll_Viewer_ShowAllResults_CTA')
+                : t('Poll_Viewer_ShowAllOptions_CTA')
+              : 'Show less options'}
           </button>
         )}
 

@@ -84,25 +84,31 @@ export class PollSettingsSection extends Component {
       votesDisplay,
       multipleVotes,
       resultsVisibility,
+      voteRole,
     } = componentData.poll.settings;
+
+    const { enableVoteRole } = componentData.settings || {};
 
     return (
       <section className={styles.section}>
         <h3 className={styles.title}>
           {t('Poll_PollSettings_Tab_Settings_Section_Voting_Header')}
         </h3>
-        {/* <p className={styles.label}>
-          {t('Poll_PollSettings_Tab_Settings_Section_Voting_Permission_Title')}
-        </p>
-
-        <RadioGroup
-          name="voteRole"
-          theme={this.styles}
-          value={voteRole}
-          onChange={voteRole => this.updateSettings({ voteRole })}
-          dataSource={this.VOTE_ROLE_OPTIONS}
-          className={styles.radioPanel}
-        /> */}
+        {enableVoteRole && (
+          <>
+            <p className={styles.label}>
+              {t('Poll_PollSettings_Tab_Settings_Section_Voting_Permission_Title')}
+            </p>
+            <RadioGroup
+              name="voteRole"
+              theme={this.styles}
+              value={voteRole}
+              onChange={voteRole => this.updateSettings({ voteRole })}
+              dataSource={this.VOTE_ROLE_OPTIONS}
+              className={styles.radioPanel}
+            />
+          </>
+        )}
 
         <LabeledToggle
           label={t('Poll_PollSettings_Tab_Settings_Section_Voting_Multiselect')}
@@ -130,25 +136,29 @@ export class PollSettingsSection extends Component {
           className={styles.radioPanel}
         />
 
-        <LabeledToggle
-          label={t('Poll_PollSettings_Tab_Settings_Section_Results_VoteVisibility')}
-          theme={this.styles}
-          checked={votesDisplay}
-          onChange={() =>
-            this.updateSettings({
-              votesDisplay: !votesDisplay,
-              votersDisplay: !votesDisplay,
-            })
-          }
-        />
+        {resultsVisibility !== VISIBILITY.ME && (
+          <>
+            <LabeledToggle
+              label={t('Poll_PollSettings_Tab_Settings_Section_Results_VoteVisibility')}
+              theme={this.styles}
+              checked={votesDisplay}
+              onChange={() =>
+                this.updateSettings({
+                  votesDisplay: !votesDisplay,
+                  votersDisplay: !votesDisplay,
+                })
+              }
+            />
 
-        {votesDisplay && (
-          <LabeledToggle
-            label={t('Poll_PollSettings_Tab_Settings_Section_Results_VoterAnonymous')}
-            theme={this.styles}
-            checked={votersDisplay}
-            onChange={() => this.updateSettings({ votersDisplay: !votersDisplay })}
-          />
+            {votesDisplay && (
+              <LabeledToggle
+                label={t('Poll_PollSettings_Tab_Settings_Section_Results_VoterAnonymous')}
+                theme={this.styles}
+                checked={votersDisplay}
+                onChange={() => this.updateSettings({ votersDisplay: !votersDisplay })}
+              />
+            )}
+          </>
         )}
       </section>
     );
