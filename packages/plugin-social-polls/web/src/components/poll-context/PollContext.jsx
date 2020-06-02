@@ -60,9 +60,7 @@ export class PollContextProviderComponent extends PureComponent {
       this.fetchPoll();
     }
 
-    this.setState(() => ({
-      poll: props.poll,
-    }));
+    this.setState(() => ({ poll: props.poll }));
   }
 
   componentDidMount() {
@@ -83,7 +81,7 @@ export class PollContextProviderComponent extends PureComponent {
     const poll = await this.pollApiClient.fetchPoll(this.state.poll.id);
 
     this.props.setPoll?.(poll);
-    this.setState({ poll });
+    this.setState(() => ({ poll }));
   }
 
   populateWithData(poll) {

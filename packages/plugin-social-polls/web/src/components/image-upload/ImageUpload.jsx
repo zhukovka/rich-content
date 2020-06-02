@@ -10,6 +10,7 @@ import { FileInput } from 'wix-rich-content-editor-common';
 import { withRCEHelpers, RCEHelpersPropTypes } from '../rce-helpers-context';
 import { LoaderIcon, ReplaceIcon } from '../../assets/icons';
 import { getRandomValue, getImageSrc } from '../../helpers';
+import { POLL_IMAGES_POOL } from '../../constants';
 
 import { ImageUploadPropTypes } from './types';
 import styles from './image-upload.scss';
@@ -26,7 +27,7 @@ class ImageUploadComponent extends PureComponent {
   };
 
   state = {
-    value: this.props.value,
+    value: this.props.value || getRandomValue(POLL_IMAGES_POOL),
     backgroundImage: null,
     loading: false,
   };
