@@ -66,7 +66,7 @@ class ImageUploadComponent extends PureComponent {
   handleFileUpload = ({ data }) => {
     this.setState(
       {
-        value: data.file_name,
+        value: `https://static.wixstatic.com/media/${data.file_name}`,
         loading: false,
       },
       () => {
