@@ -39,16 +39,6 @@ export class PollContextProviderComponent extends PureComponent {
     poll: this.props.poll,
   };
 
-  static _getDerivedStateFromProps(props, state) {
-    if (props.poll.id !== state.poll.id) {
-      return { poll: props.poll };
-    }
-
-    return {
-      poll: merge(state.poll, { settings: props.poll.settings }),
-    };
-  }
-
   constructor(props) {
     super(props);
     this.pollApiClient = new SocialPollsService(props.settings.siteToken);
@@ -60,7 +50,9 @@ export class PollContextProviderComponent extends PureComponent {
       this.fetchPoll();
     }
 
-    this.setState(() => ({ poll: props.poll }));
+    if (JSON.stringify(props.poll) !== JSON.stringify(this.props.poll)) {
+      this.setState(() => ({ poll: props.poll }));
+    }
   }
 
   componentDidMount() {
