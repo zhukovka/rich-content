@@ -5,7 +5,6 @@ import { TextField } from '../text-field';
 import { withPoll, PollContextPropTypes } from '../poll-context';
 import { withRCEHelpers, RCEHelpersPropTypes } from '../rce-helpers-context';
 import { ImageUpload } from '../image-upload';
-import { POLL_IMAGES_POOL } from '../../constants';
 
 import styles from './poll-header.scss';
 
@@ -29,10 +28,10 @@ class PollHeaderComponent extends PureComponent {
         />
         {layout.poll?.enableImage && (
           <ImageUpload
+            disabled={rce.isPreview}
             className={styles.image}
             value={poll.mediaId}
             onChange={changePollImage}
-            imagesPool={POLL_IMAGES_POOL}
           />
         )}
       </div>

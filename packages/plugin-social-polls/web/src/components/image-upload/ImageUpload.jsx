@@ -26,18 +26,10 @@ class ImageUploadComponent extends PureComponent {
   };
 
   state = {
-    value: this.props.value || getRandomValue(this.props.imagesPool),
+    value: this.props.value,
     backgroundImage: null,
     loading: false,
   };
-
-  componentDidMount() {
-    const { value, rce } = this.props;
-
-    if (!value && !rce.isViewMode) {
-      this.sync();
-    }
-  }
 
   componentWillReceiveProps(props) {
     const { value, contentRect } = props;

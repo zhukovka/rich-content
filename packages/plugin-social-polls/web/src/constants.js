@@ -120,14 +120,7 @@ export const DEFAULT_COMPONENT_DATA = {
       voteRole: MEMBER_ROLES.SITE_MEMBERS,
       resultsVisibility: VISIBILITY.VOTERS,
     },
-    options: [
-      {
-        title: '',
-      },
-      {
-        title: '',
-      },
-    ],
+    options: [],
   },
   layout: {
     poll: {

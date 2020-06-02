@@ -44,6 +44,8 @@ export class PollEditor extends PureComponent {
           setInPluginEditingMode,
           layout: componentData.layout,
           design: componentData.design,
+          preventVoting: true,
+          isPreview: isMobile,
           helpers,
           theme,
           t,

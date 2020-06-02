@@ -54,10 +54,10 @@ class VotedUsersComponent extends PureComponent {
   closeModal = () => this.setState({ isOpen: false });
 
   openModal = e => {
-    const { showVoters } = this.props;
+    const { showVoters, rce } = this.props;
     e.preventDefault();
 
-    if (e.keyCode || !showVoters) {
+    if (e.keyCode || !showVoters || rce.preventInteraction) {
       return;
     }
 

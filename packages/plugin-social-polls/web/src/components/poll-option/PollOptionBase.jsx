@@ -17,7 +17,7 @@ export class PollOptionBase extends React.PureComponent {
   };
 
   isEditAllowed() {
-    return !this.props.option.count;
+    return !this.props.option.count && !this.props.rce.isPreview;
   }
 
   isUserChoice() {
@@ -64,11 +64,11 @@ export class PollOptionBase extends React.PureComponent {
   }
 
   handleVoteClick = async e => {
-    const { validateUser } = this.props.rce;
+    const { validateUser, preventInteraction, preventVoting } = this.props.rce;
 
     e.preventDefault();
 
-    if (e.keyCode) {
+    if (e.keyCode || preventInteraction || preventVoting) {
       return;
     }
 

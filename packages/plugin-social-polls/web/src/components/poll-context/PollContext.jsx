@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { merge } from 'lodash';
+import { merge, cloneDeep } from 'lodash';
 import {
   WithEditorEventsProps,
   withEditorEvents,
@@ -10,6 +10,8 @@ import {
 import { SocialPollsService } from '../../api';
 
 import { PollPropTypes } from './types';
+import { getRandomValue } from '../../helpers';
+import { OPTION_IMAGES_POOL } from '../../constants';
 
 export const PollContext = React.createContext({});
 
@@ -58,13 +60,9 @@ export class PollContextProviderComponent extends PureComponent {
       this.fetchPoll();
     }
 
-    if (props.poll.id !== this.state.poll.id) {
-      this.setState({ poll: props.poll });
-    }
-
-    this.setState({
-      poll: merge(this.state.poll, { settings: props.poll.settings }),
-    });
+    this.setState(() => ({
+      poll: props.poll,
+    }));
   }
 
   componentDidMount() {
@@ -84,6 +82,7 @@ export class PollContextProviderComponent extends PureComponent {
 
     const poll = await this.pollApiClient.fetchPoll(this.state.poll.id);
 
+    this.props.setPoll?.(poll);
     this.setState({ poll });
   }
 
@@ -113,9 +112,7 @@ export class PollContextProviderComponent extends PureComponent {
   };
 
   updatePoll(poll) {
-    this.setState(state => ({
-      poll: Object.assign({}, state.poll, poll),
-    }));
+    this.props.setPoll(Object.assign({}, this.state.poll, poll));
   }
 
   async vote(optionId) {
@@ -143,7 +140,7 @@ export class PollContextProviderComponent extends PureComponent {
   }
 
   updatePollOption(index, option) {
-    const { poll } = this.state;
+    const poll = cloneDeep(this.state.poll);
 
     poll.options[index] = option;
 
@@ -151,18 +148,18 @@ export class PollContextProviderComponent extends PureComponent {
   }
 
   addOption() {
-    const { poll } = this.state;
+    const poll = cloneDeep(this.state.poll);
 
     poll.options.push({
       title: '',
-      mediaId: '',
+      mediaId: getRandomValue(OPTION_IMAGES_POOL),
     });
 
     return this.updatePoll(poll);
   }
 
   removeOption(index) {
-    const { poll } = this.state;
+    const poll = cloneDeep(this.state.poll);
 
     poll.options.splice(index, 1);
 

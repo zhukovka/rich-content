@@ -41,22 +41,28 @@ export class LayoutSettingsSection extends Component {
   );
 
   render() {
-    const { componentData, t } = this.props;
+    const { componentData, t, isMobile } = this.props;
 
     const { poll, option } = componentData.layout;
 
     return (
       <section className={styles.section}>
-        <p className={styles.title}>{t('Poll_PollSettings_Tab_Layout_Section_Question_Header')}</p>
+        {!isMobile && (
+          <>
+            <p className={styles.title}>
+              {t('Poll_PollSettings_Tab_Layout_Section_Question_Header')}
+            </p>
 
-        <LabeledToggle
-          label={t('Poll_PollSettings_Tab_Layout_Section_Question_Image')}
-          checked={poll?.enableImage}
-          onChange={() => this.updateSettings({ poll: { enableImage: !poll?.enableImage } })}
-          theme={this.styles}
-        />
+            <LabeledToggle
+              label={t('Poll_PollSettings_Tab_Layout_Section_Question_Image')}
+              checked={poll?.enableImage}
+              onChange={() => this.updateSettings({ poll: { enableImage: !poll?.enableImage } })}
+              theme={this.styles}
+            />
 
-        <Separator horizontal className={styles.separator} />
+            <Separator horizontal className={styles.separator} />
+          </>
+        )}
 
         <p className={styles.title}>{t('Poll_PollSettings_Tab_Layout_Section_Answers_Header')}</p>
         <p className={styles.subtitle}>
@@ -83,12 +89,14 @@ export class LayoutSettingsSection extends Component {
           className={styles.layout_selector}
         />
 
-        <LabeledToggle
-          label={t('Poll_PollSettings_Tab_Layout_Section_Answers_Image')}
-          checked={option?.enableImage}
-          onChange={() => this.updateSettings({ option: { enableImage: !option?.enableImage } })}
-          theme={this.styles}
-        />
+        {!isMobile && (
+          <LabeledToggle
+            label={t('Poll_PollSettings_Tab_Layout_Section_Answers_Image')}
+            checked={option?.enableImage}
+            onChange={() => this.updateSettings({ option: { enableImage: !option?.enableImage } })}
+            theme={this.styles}
+          />
+        )}
 
         <Separator horizontal className={styles.separator} />
 
@@ -127,6 +135,7 @@ export class LayoutSettingsSection extends Component {
 LayoutSettingsSection.propTypes = {
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
+  isMobile: PropTypes.bool.isRequired,
   componentData: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
 };

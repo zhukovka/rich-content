@@ -13,6 +13,17 @@ import { InsertPluginIcon } from '../assets/icons';
 import { Modals } from '../modals';
 import { PollPresetSelector, Arrow } from '../components/settings/preset-selector';
 
+export const MobileFullScreenCustomStyle = Object.freeze({
+  overlay: {
+    backgroundColor: 'transparent',
+  },
+  content: {
+    top: 0,
+    left: 0,
+    overflow: 'hidden',
+  },
+});
+
 export const DesktopFlyOutModalStyles = {
   overlay: {
     backgroundColor: 'transparent',
@@ -47,6 +58,10 @@ const modalStyles = {
 };
 
 export function createToolbar({ isMobile, helpers, settings, t }) {
+  const _modalStyles = isMobile
+    ? getModalStyles({ customStyles: MobileFullScreenCustomStyle, fullScreen: true, isMobile })
+    : null;
+
   return {
     InlineButtons: [
       {
@@ -89,37 +104,63 @@ export function createToolbar({ isMobile, helpers, settings, t }) {
         mobile: false,
       },
 
-      { keyName: 'separator', mobile: false, type: BUTTONS.SEPARATOR },
+      ...(isMobile
+        ? [
+            {
+              keyName: 'edit',
+              type: BUTTONS.EXTERNAL_MODAL,
+              modalName: Modals.POLL_SETTINGS,
+              children: 'Edit',
+              modalStyles: getModalStyles(modalStyles),
+              t,
+              activeTab: TABS.EDIT,
+              mobile: true,
+            },
+
+            {
+              keyName: 'customize',
+              type: BUTTONS.EXTERNAL_MODAL,
+              modalName: Modals.POLL_SETTINGS,
+              children: 'Customize',
+              modalStyles: getModalStyles(modalStyles),
+              t,
+              activeTab: TABS.DESIGN,
+              mobile: true,
+            },
+          ]
+        : []),
+
+      { keyName: 'separator', mobile: true, type: BUTTONS.SEPARATOR },
 
       { keyName: 'delete', mobile: true, type: BUTTONS.DELETE },
     ],
-    InsertButtons: isMobile
-      ? []
-      : [
+    InsertButtons: [
+      {
+        type: 'modal',
+        name: 'Poll',
+        tooltipText: t('Poll_InsertPoll_Tooltip'),
+        Icon: InsertPluginIcon,
+        componentData: { ...DEFAULT_COMPONENT_DATA, ...settings },
+        toolbars: [TOOLBARS.FOOTER, TOOLBARS.MOBILE],
+        modalElement: decorateComponentWithProps(PollPresetSelector),
+        modalStyles: _modalStyles,
+        modalStylesFn: ({ buttonRef }) => {
+          return getBottomToolbarModalStyles(buttonRef, {
+            customStyles: DesktopFlyOutModalStyles,
+            centered: true,
+            isMobile,
+          });
+        },
+        modalDecorations: [
           {
-            type: 'modal',
-            name: 'Poll',
-            tooltipText: t('Poll_InsertPoll_Tooltip'),
-            Icon: InsertPluginIcon,
-            componentData: { ...DEFAULT_COMPONENT_DATA, ...settings },
-            toolbars: [TOOLBARS.FOOTER],
-            modalElement: decorateComponentWithProps(PollPresetSelector),
-            modalStylesFn: ({ buttonRef }) => {
-              return getBottomToolbarModalStyles(buttonRef, {
-                customStyles: DesktopFlyOutModalStyles,
-                centered: true,
-              });
-            },
-            modalDecorations: [
-              {
-                decorationMode: DECORATION_MODE.APPEND,
-                decorator: Arrow,
-              },
-            ],
-            helpers,
-            t,
+            decorationMode: DECORATION_MODE.APPEND,
+            decorator: Arrow,
           },
         ],
+        helpers,
+        t,
+      },
+    ],
     name: 'poll',
   };
 }

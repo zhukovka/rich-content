@@ -1,3 +1,5 @@
+@import "~wix-rich-content-common/dist/statics/styles/mixins";
+
 .root {
   position: relative;
   display: flex;
@@ -70,6 +72,23 @@
 
   &.large {
     font-size: 22px;
+  }
+}
+
+.input,
+.text {
+  @include phone {
+    &.small {
+      font-size: 14px;
+    }
+
+    &.medium {
+      font-size: 18px;
+    }
+
+    &.large {
+      font-size: 22px;
+    }
   }
 }
 

@@ -4,7 +4,6 @@ import cls from 'classnames';
 import { Tooltip } from 'wix-rich-content-editor-common';
 
 import { RemoveIcon, NonEditableIcon, CheckIcon, LoaderIcon } from '../../assets/icons';
-import { OPTION_IMAGES_POOL } from '../../constants';
 import { TextField } from '../text-field';
 import { ImageUpload } from '../image-upload';
 
@@ -52,7 +51,6 @@ export class PollGridOption extends PollOptionBase {
             onChange={this.handleImageChange}
             style={style.image}
             disabled={!this.isEditAllowed()}
-            imagesPool={OPTION_IMAGES_POOL}
           />
         )}
         <div className={styles.title}>

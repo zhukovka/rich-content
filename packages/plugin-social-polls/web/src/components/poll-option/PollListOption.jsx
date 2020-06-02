@@ -6,7 +6,6 @@ import { Tooltip } from 'wix-rich-content-editor-common';
 import { RemoveIcon, NonEditableIcon, CheckIcon, LoaderIcon } from '../../assets/icons';
 import { TextField } from '../text-field';
 import { ImageUpload } from '../image-upload';
-import { OPTION_IMAGES_POOL } from '../../constants';
 
 import { PollOptionBase } from './PollOptionBase';
 
@@ -139,7 +138,6 @@ export class PollListOption extends PollOptionBase {
                 value={option.mediaId}
                 onChange={this.handleImageChange}
                 style={style.image}
-                imagesPool={OPTION_IMAGES_POOL}
                 small
               />
             }

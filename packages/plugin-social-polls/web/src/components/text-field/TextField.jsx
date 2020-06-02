@@ -102,7 +102,7 @@ class TextFieldComponent extends React.PureComponent {
 
     const { placeholder, rows, syncing } = this.state;
 
-    if (rce.isViewMode) {
+    if (rce.isViewMode || rce.isPreview) {
       return (
         <>
           <p

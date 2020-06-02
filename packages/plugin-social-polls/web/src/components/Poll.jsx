@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import cls from 'classnames';
 import FlipMove from 'react-flip-move';
-import { withContentRect } from 'react-measure';
+import Measure from 'react-measure';
 
 import { AddIcon, LoaderIcon } from '../assets/icons';
 import { LAYOUT, VISIBILITY, BACKGROUND_TYPE } from '../constants';
@@ -25,6 +25,7 @@ class PollComponent extends Component {
     collapsed: this.isInitiallyCollapsed(),
     error: null,
     loading: false,
+    bounds: null,
   };
 
   async componentDidMount() {
@@ -40,7 +41,7 @@ class PollComponent extends Component {
   }
 
   async fetchPoll() {
-    if (this.props.rce.isWebView) {
+    if (this.props.rce.isWebView || this.props.rce.preventInteraction) {
       return;
     }
     this.setState({
@@ -142,7 +143,7 @@ class PollComponent extends Component {
     const { poll, rce } = this.props;
     const { collapsed } = this.state;
 
-    if (!rce.isViewMode) {
+    if (!rce.isViewMode || this.showEditControls()) {
       return poll.options;
     }
 
@@ -151,7 +152,11 @@ class PollComponent extends Component {
     if (!this.showResults()) {
       list = poll.options;
     } else {
-      list = poll.options.sort((prev, option) => {
+      list = Array.from(poll.options).sort((prev, option) => {
+        if (!prev.rating) {
+          return 1;
+        }
+
         if (option.rating === prev.rating) {
           return 0;
         }
@@ -171,137 +176,143 @@ class PollComponent extends Component {
 
   handleCTABlur = () => this.props.rce.setInPluginEditingMode(false);
 
+  onResize = ({ bounds }) => this.setState({ bounds: this.state.bounds || bounds });
+
+  showEditControls() {
+    const { rce } = this.props;
+
+    return !rce.isViewMode && !rce.isPreview;
+  }
+
   render() {
-    const {
-      poll,
-      rce,
-      getVoters,
-      addOption,
-      design,
-      layout,
-      t,
-      siteMembers,
-      measureRef,
-      contentRect,
-    } = this.props;
-    const { collapsed, loading, error } = this.state;
+    const { poll, rce, getVoters, addOption, design, layout, t, siteMembers } = this.props;
+    const { collapsed, loading, bounds, error } = this.state;
 
     const style = {
       ...design.poll,
       background: getBackgroundString(
         design.poll?.background,
         design.poll?.backgroundType,
-        contentRect.bounds.width,
-        contentRect.bounds.height
+        bounds?.width,
+        bounds?.height
       ),
     };
 
     return (
-      <div
-        className={cls(styles.container, {
-          [styles.isMobile]: rce.isMobile,
-          [styles.webview]: rce.isWebView,
-          [styles.dark]: this.hasImageBackground(),
-        })}
-        style={style}
-        dir={layout.poll?.direction}
-        ref={measureRef}
-      >
-        <div
-          className={cls(styles.background_overlay, {
-            [styles.with_image]: this.hasImageBackground(),
-          })}
-        />
-        <PollHeader />
-
-        <ul
-          className={cls(styles.options, {
-            [styles.list]: layout.poll?.type === LAYOUT.LIST,
-            [styles.grid]: layout.poll?.type === LAYOUT.GRID,
-            [styles.with_image]: layout.option?.enableImage,
-          })}
-        >
-          <FlipMove
-            typeName={null}
-            disableAllAnimations={!rce.isViewMode}
-            enterAnimation="none"
-            leaveAnimation="none"
-            verticalAlignment="bottom"
+      <Measure bounds onResize={this.onResize}>
+        {({ measureRef }) => (
+          <div
+            className={cls(styles.container, {
+              [styles.isMobile]: rce.isMobile,
+              [styles.webview]: rce.isWebView,
+              [styles.fullscreen]: rce.isPreview,
+              [styles.dark]: this.hasImageBackground(),
+            })}
+            style={style}
+            dir={layout.poll?.direction}
+            ref={measureRef}
           >
-            {this.getOptionList().map((option, i) => (
-              <li className={styles.option} key={option.id || i}>
-                <PollOption
-                  option={option}
-                  update={this.handleOptionUpdate(i)}
-                  remove={this.handleOptionRemove(i)}
-                  removeEnabled={!rce.isViewMode && poll.options.length > 1}
-                  vote={this.vote}
-                  unvote={this.unvote}
-                  poll={poll}
-                  showResults={this.showResults()}
-                  dark={this.hasImageBackground()}
-                />
-                <VotedUsers
-                  option={option}
-                  siteMembers={siteMembers}
-                  showResults={this.showResults()}
-                  showVoters={poll.settings.votersDisplay}
-                  showVotes={poll.settings.votesDisplay}
-                  fetchVoters={params => getVoters(option.id, params)}
-                />
-              </li>
+            <div
+              className={cls(styles.background_overlay, {
+                [styles.with_image]: this.hasImageBackground(),
+              })}
+            />
+            <PollHeader />
+
+            <ul
+              className={cls(styles.options, {
+                [styles.list]: layout.poll?.type === LAYOUT.LIST,
+                [styles.grid]: layout.poll?.type === LAYOUT.GRID,
+                [styles.with_image]: layout.option?.enableImage,
+              })}
+            >
+              <FlipMove
+                typeName={null}
+                disableAllAnimations={this.showEditControls()}
+                enterAnimation="none"
+                leaveAnimation="none"
+                verticalAlignment="bottom"
+              >
+                {this.getOptionList().map((option, i) => (
+                  <li className={styles.option} key={option.id || i}>
+                    <PollOption
+                      option={option}
+                      update={this.handleOptionUpdate(i)}
+                      remove={this.handleOptionRemove(i)}
+                      removeEnabled={this.showEditControls() && poll.options.length > 1}
+                      vote={this.vote}
+                      unvote={this.unvote}
+                      poll={poll}
+                      showResults={this.showResults()}
+                      dark={this.hasImageBackground()}
+                    />
+                    <VotedUsers
+                      option={option}
+                      siteMembers={siteMembers}
+                      showResults={this.showResults()}
+                      showVoters={poll.settings.votersDisplay}
+                      showVotes={poll.settings.votesDisplay}
+                      fetchVoters={params => getVoters(option.id, params)}
+                    />
+                  </li>
+                ))}
+
+                {this.showEditControls() && (
+                  <li className={styles.column}>
+                    <button
+                      onClick={addOption}
+                      onFocus={this.handleCTAFocus}
+                      onBlur={this.handleCTABlur}
+                      className={styles.add_option}
+                      style={design.option}
+                    >
+                      {layout.poll?.type === LAYOUT.GRID && layout.option?.enableImage ? (
+                        <AddIcon />
+                      ) : (
+                        <>
+                          <AddIcon width={24} height={24} />
+                          &nbsp;
+                          {t('Poll_Editor_Answer_AddAnswer')}
+                        </>
+                      )}
+                    </button>
+                  </li>
+                )}
+              </FlipMove>
+            </ul>
+
+            {poll.options.length > 4 && !this.showEditControls() && (
+              <button
+                onClick={this.toggleCollapse}
+                className={styles.see_more}
+                style={design.option}
+              >
+                {collapsed
+                  ? this.showResults()
+                    ? t('Poll_Viewer_ShowAllResults_CTA')
+                    : t('Poll_Viewer_ShowAllOptions_CTA')
+                  : 'Show less options'}
+              </button>
+            )}
+
+            {this.getNotes().map((note, i) => (
+              <p className={styles.additional_note} key={i}>
+                {note.label}
+              </p>
             ))}
 
-            {!rce.isViewMode && (
-              <li className={styles.column}>
-                <button
-                  onClick={addOption}
-                  onFocus={this.handleCTAFocus}
-                  onBlur={this.handleCTABlur}
-                  className={styles.add_option}
-                  style={design.option}
-                >
-                  {layout.poll?.type === LAYOUT.GRID && layout.option?.enableImage ? (
-                    <AddIcon />
-                  ) : (
-                    <>
-                      <AddIcon width={24} height={24} />
-                      &nbsp;
-                      {t('Poll_Editor_Answer_AddAnswer')}
-                    </>
-                  )}
-                </button>
-              </li>
-            )}
-          </FlipMove>
-        </ul>
-
-        {poll.options.length > 4 && rce.isViewMode && (
-          <button onClick={this.toggleCollapse} className={styles.see_more} style={design.option}>
-            {collapsed
-              ? this.showResults()
-                ? t('Poll_Viewer_ShowAllResults_CTA')
-                : t('Poll_Viewer_ShowAllOptions_CTA')
-              : 'Show less options'}
-          </button>
+            <LoaderIcon
+              className={cls(styles.spinner, {
+                [styles.shown]: loading,
+              })}
+              width={24}
+              height={24}
+            />
+          </div>
         )}
-
-        {this.getNotes().map((note, i) => (
-          <p className={styles.additional_note} key={i}>
-            {note.label}
-          </p>
-        ))}
-
-        <LoaderIcon
-          className={cls(styles.spinner, {
-            [styles.shown]: loading,
-          })}
-          width={24}
-          height={24}
-        />
-      </div>
+      </Measure>
     );
   }
 }
 
-export const Poll = withContentRect('bounds')(withRCEHelpers(withPoll(PollComponent)));
+export const Poll = withRCEHelpers(withPoll(PollComponent));

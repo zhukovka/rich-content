@@ -8,6 +8,10 @@
   transition: border-radius 500ms;
 }
 
+.fullscreen {
+  width: 100%;
+}
+
 .background_overlay {
   position: absolute;
   top: 0;
@@ -50,6 +54,7 @@
   display: grid;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
+  position: relative;
 }
 
 .options.grid {
