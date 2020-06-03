@@ -24,6 +24,7 @@ import {
   EXTERNAL_MENTIONS_TYPE,
 } from 'wix-rich-content-plugin-mentions';
 import { createCodeBlockPlugin, CODE_BLOCK_TYPE } from 'wix-rich-content-plugin-code-block';
+import { createHeadingsPlugin, HEADINGS_DROPDOWN_TYPE } from 'wix-rich-content-plugin-headings';
 import { createSoundCloudPlugin, SOUND_CLOUD_TYPE } from 'wix-rich-content-plugin-sound-cloud';
 import { createGiphyPlugin, GIPHY_TYPE } from 'wix-rich-content-plugin-giphy';
 import {
@@ -68,6 +69,7 @@ import 'wix-rich-content-plugin-map/dist/styles.min.css';
 import 'wix-rich-content-plugin-social-polls/dist/styles.min.css';
 import 'wix-rich-content-plugin-file-upload/dist/styles.min.css';
 import 'wix-rich-content-plugin-text-color/dist/styles.min.css';
+import 'wix-rich-content-plugin-headings/dist/styles.min.css';
 import 'wix-rich-content-plugin-vertical-embed/dist/styles.min.css';
 import {
   customForegroundStyleFn,
@@ -75,7 +77,6 @@ import {
   colorScheme,
   customBackgroundStyleFn,
 } from '../../src/text-color-style-fn';
-
 import { testWixVideos } from './mock';
 // import { MyCustomIcon, SizeSmallRightIcon, TOOLBARS } from 'wix-rich-content-editor-common';
 import { TOOLBARS, BUTTONS, DISPLAY_MODE } from 'wix-rich-content-editor-common';
@@ -115,9 +116,18 @@ export const editorPluginsEmbedsPreset = [
   createVerticalEmbedPlugin,
 ];
 
+export const textPlugins = [
+  createLinkPreviewPlugin,
+  createVerticalEmbedPlugin,
+  createIndentPlugin,
+  createActionButtonPlugin,
+  ...editorPluginsPartialPreset,
+];
+
 export const editorPlugins = [
   createLinkPreviewPlugin,
   createVerticalEmbedPlugin,
+  createHeadingsPlugin,
   createIndentPlugin,
   createActionButtonPlugin,
   ...editorPluginsPartialPreset,
@@ -138,6 +148,7 @@ export const editorPluginsMap = {
   codeBlock: createCodeBlockPlugin,
   soundCloud: createSoundCloudPlugin,
   giphy: createGiphyPlugin,
+  headings: createHeadingsPlugin,
   headers: createHeadersMarkdownPlugin,
   map: createMapPlugin,
   fileUpload: createFileUploadPlugin,
@@ -150,6 +161,7 @@ export const editorPluginsMap = {
   verticalEmbed: createVerticalEmbedPlugin,
   partialPreset: editorPluginsPartialPreset,
   embedsPreset: editorPluginsEmbedsPreset,
+  textPlugins: textPlugins,
   all: editorPlugins,
 };
 
@@ -398,6 +410,7 @@ const config = {
     width: 350,
     minHeight: 50,
     maxHeight: 1200,
+    // siteDomain="https://www.wix.com"
     // toolbar: {
     //   icons: {
     //     InsertPluginButtonIcon: MyCustomIcon,
@@ -436,6 +449,9 @@ const config = {
         )
       ),
   },
+  [HEADINGS_DROPDOWN_TYPE]: {
+    // dropDownOptions: ['H2','H3']
+  },
   [LINE_SPACING_TYPE]: {
     // toolbar: {
     //   icons: {
@@ -450,9 +466,6 @@ const config = {
     onUpdate: spacing => console.log(LINE_SPACING_TYPE, spacing),
   },
   [LINK_TYPE]: {
-    preview: {
-      enable: true,
-    },
     // toolbar: {
     //   icons: {
     //     InsertPluginButtonIcon: MyCustomIcon,
@@ -482,11 +495,7 @@ const config = {
     // },
   },
   [VERTICAL_EMBED_TYPE]: {
-    verticalsApi: {
-      [product]: new MockVerticalSearchModule(product),
-      [event]: new MockVerticalSearchModule(event),
-      [booking]: new MockVerticalSearchModule(booking),
-    },
+    verticalsApi: type => new MockVerticalSearchModule(type),
     // exposeEmbedButtons: [product, event, booking],
     exposeEmbedButtons: [product],
   },
@@ -618,9 +627,9 @@ const config = {
     //     Italic: MyCustomIcon,
     //     Underline: MyCustomIcon,
     //     Indent: MyCustomIcon,
-    //     inactiveIconTitle: SizeSmallRightIcon,
+    //     inactiveIconTitle: MyCustomIcon,
     //     TitleOne: MyCustomIcon,
-    //     TitleTwo: SizeSmallRightIcon,
+    //     TitleTwo: MyCustomIcon,
     //     Blockquote: MyCustomIcon,
     //     Alignment: MyCustomIcon,
     //     AlignLeft: MyCustomIcon,

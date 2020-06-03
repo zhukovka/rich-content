@@ -10,6 +10,7 @@ import { pluginFileUpload } from 'wix-rich-content-plugin-file-upload';
 import { pluginGallery } from 'wix-rich-content-plugin-gallery';
 import { pluginGiphy } from 'wix-rich-content-plugin-giphy';
 import { pluginHashtag } from 'wix-rich-content-plugin-hashtag';
+import { pluginHeadings } from 'wix-rich-content-plugin-headings';
 import { pluginHeadersMarkdown } from 'wix-rich-content-plugin-headers-markdown';
 import { pluginHtml } from 'wix-rich-content-plugin-html';
 import { pluginImage } from 'wix-rich-content-plugin-image';
@@ -28,6 +29,7 @@ import {
 } from 'wix-rich-content-plugin-vertical-embed';
 import { mockFetchUrlPreviewData } from '../../../main/shared/utils/linkPreviewUtil';
 import { pluginTextColor, pluginTextHighlight } from 'wix-rich-content-plugin-text-color';
+import MobileDetect from 'mobile-detect';
 import '../styles.global.scss';
 
 const { Instagram, Twitter, YouTube, TikTok } = LinkPreviewProviders;
@@ -91,6 +93,7 @@ const plugins = [
   pluginActionButton(),
   pluginCodeBlock(),
   pluginDivider(),
+  pluginHeadings(),
   pluginEmoji(),
   pluginFileUpload(configs.fileUpload),
   pluginGallery(),
@@ -139,12 +142,14 @@ const pluginsMap = {
   verticalEmbed: pluginVerticalEmbed(configs.verticalEmbed),
 };
 
+const mobileDetect = new MobileDetect(window.navigator.userAgent);
+
 const EditorWrapper = ({
   content,
   palette,
   onChange,
   config,
-  isMobile = false,
+  isMobile = mobileDetect.mobile() !== null,
   pluginsToDisplay,
   toolbarSettings,
 }) => {

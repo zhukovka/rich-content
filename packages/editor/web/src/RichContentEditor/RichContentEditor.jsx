@@ -32,6 +32,7 @@ import {
   normalizeInitialState,
   getLangDir,
   Version,
+  HTML_TYPE,
 } from 'wix-rich-content-common';
 import styles from '../../statics/styles/rich-content-editor.scss';
 import draftStyles from '../../statics/styles/draft.rtlignore.scss';
@@ -59,7 +60,11 @@ class RichContentEditor extends Component {
     uiSettings.nofollowRelToggleVisibilityFn =
       uiSettings.nofollowRelToggleVisibilityFn || (relValue => relValue !== 'nofollow');
 
-    this.calculateDiff = createCalcContentDiff(this.state.editorState);
+    this.handleCallbacks = this.createContentMutationEvents(
+      this.state.editorState,
+      Version.currentVersion
+    );
+    this.deprecateSiteDomain();
     this.initContext();
     this.initPlugins();
   }
@@ -90,6 +95,13 @@ class RichContentEditor extends Component {
       this.onChangedFocusedBlock(focusedBlockKey);
     }
   }
+
+  deprecateSiteDomain = () => {
+    const { config, siteDomain } = this.props;
+    if (config[HTML_TYPE]) {
+      config[HTML_TYPE].siteDomain = siteDomain;
+    }
+  };
 
   onChangedFocusedBlock = blockKey => {
     const { onAtomicBlockFocus } = this.props;
@@ -269,11 +281,21 @@ class RichContentEditor extends Component {
     return element && element.querySelector('*[tabindex="0"]');
   }
 
+  createContentMutationEvents = (initialEditorState, version) => {
+    const calculate = createCalcContentDiff(initialEditorState);
+    return (newState, { onPluginDelete } = {}) =>
+      calculate(newState, {
+        shouldCalculate: !!onPluginDelete,
+        onCallbacks: ({ pluginsDeleted }) => {
+          pluginsDeleted.forEach(type => {
+            onPluginDelete?.(type, version);
+          });
+        },
+      });
+  };
+
   updateEditorState = editorState => {
-    const onPluginDelete = this.props.helpers?.onPluginDelete;
-    if (onPluginDelete) {
-      this.calculateDiff(editorState, (...args) => onPluginDelete(...args, Version.currentVersion));
-    }
+    this.handleCallbacks(editorState, this.props.helpers);
     this.setEditorState(editorState);
     this.props.onChange?.(editorState);
   };

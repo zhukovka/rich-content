@@ -1,4 +1,4 @@
-type CssOverride = {
+type RicosCssOverride = {
   modalTheme?: { content?: any; overlay?: any };
   [propName: string]: any;
 };
@@ -31,4 +31,4 @@ interface PaletteColors {
   color4: string;
 }
 
-type PalettePreset = 'backOffice' | 'darkTheme';
+type PalettePreset = 'darkTheme';
