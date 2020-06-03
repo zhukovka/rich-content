@@ -213,6 +213,10 @@ export class SettingsModal extends Component {
                 theme={theme}
                 t={t}
               />
+              &nbsp;
+              <button className={cls(styles.button, styles.primary)} onClick={this.closePreview}>
+                Close Preview
+              </button>
             </ReactModal>
           )}
         </FocusManager>

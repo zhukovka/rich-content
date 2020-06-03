@@ -32,6 +32,7 @@
     padding: 12px;
   
     .options {
+      margin-top: 12px;
       grid-column-gap: 12px;
       grid-row-gap: 12px;
     }
@@ -91,6 +92,10 @@
     outline: 0;
     opacity: 1;
   }
+
+  @include phone {
+    font-size: 14px;
+  }
 }
 
 .webview .cta_button {
@@ -104,6 +109,10 @@
   @extend .cta_button;
   margin: 20px 0 0;
   text-align: center;
+
+  @include phone {
+    margin-top: 12px;
+  }
 }
 
 .add_option {

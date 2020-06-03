@@ -1,5 +1,4 @@
 @import "~wix-rich-content-common/dist/statics/styles/mixins";
-@import "~wix-rich-content-common/dist/statics/styles/mixins";
 
 .header {}
 
@@ -13,7 +12,12 @@
 
 .image {
   margin-top: 35px;
-  height: 215px;
+  height: 0;
+  padding-top: 9 / 16 * 100%;
+
+  @include phone {
+    margin-top: 15px;
+  }
 }
 
 .webview .image {

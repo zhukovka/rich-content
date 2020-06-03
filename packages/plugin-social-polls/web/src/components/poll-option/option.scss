@@ -1,3 +1,5 @@
+@import "~wix-rich-content-common/dist/statics/styles/mixins";
+
 .option {
   position: relative;
 
@@ -30,7 +32,8 @@
 }
 
 .image {
-  height: 140px;
+  height: 0;
+  padding-top: 9 / 16 * 100%;
 }
 
 .input {
@@ -50,7 +53,15 @@
 
   &.with_result {
     padding-right: 60px;
-    padding-left: 25px;
+  }
+
+  @include phone {
+    font-size: 14px;
+    padding: 15px;
+    
+    &.with_result {
+      padding-right: 45px;
+    }
   }
 }
 
@@ -60,6 +71,7 @@
     z-index: 2;
     width: 36px;
     height: 36px;
+    padding-top: 0;
     overflow: hidden;
     left: 5px;
     top: 50%;
@@ -105,6 +117,10 @@
   font-size: 14px;
   opacity: 0.7;
   z-index: 2;
+
+  @include phone {
+    right: 15px;
+  }
 }
 
 .label {
