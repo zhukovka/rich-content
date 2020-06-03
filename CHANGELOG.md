@@ -17,6 +17,8 @@
   </summary>
 
 ### :bug: Bug Fix
+- `gallery`
+  - [#1168](https://github.com/wix-incubator/rich-content/pull/1168) bump pro gallery version to 1.10.17
 - `ricos-viewer`
   - [#1197](https://github.com/wix-incubator/rich-content/pull/1197) mobile not working with static text toolbar
 - `image`
