@@ -16,6 +16,11 @@
 
   </summary>
   
+
+</details>
+<hr/>
+
+## 7.10.0 (Jun 6, 2020)
 ### :rocket: New Feature
 - `editor-common`
   - [#1147](https://github.com/wix-incubator/rich-content/pull/1147) error message with icon
@@ -30,13 +35,10 @@
   - [#1197](https://github.com/wix-incubator/rich-content/pull/1197) mobile not working with static text toolbar
 - `image`
   - [#1136](https://github.com/wix-incubator/rich-content/pull/1136) loader for oneApp
-  
 ### :house: Internal
 - `test-env`
   - [#1195](https://github.com/wix-incubator/rich-content/pull/1195) ricos coverage of `plugin-link-preview` and `plugin-html`
-</details>
-<hr/>
-
+  
 ## 7.9.1 (Jun 6, 2020)
 ### :bug: Bug Fix
 - `fullscreen`
