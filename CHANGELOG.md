@@ -20,7 +20,7 @@
 </details>
 <hr/>
 
-## 7.10.0 (Jun 6, 2020)
+## 7.10.0 (Jun 4, 2020)
 ### :rocket: New Feature
 - `editor-common`
   - [#1147](https://github.com/wix-incubator/rich-content/pull/1147) error message with icon
@@ -39,12 +39,12 @@
 - `test-env`
   - [#1195](https://github.com/wix-incubator/rich-content/pull/1195) ricos coverage of `plugin-link-preview` and `plugin-html`
   
-## 7.9.1 (Jun 6, 2020)
+## 7.9.1 (Jun 2, 2020)
 ### :bug: Bug Fix
 - `fullscreen`
   - [#1189](https://github.com/wix-incubator/rich-content/pull/1189) image not centered when wrapped in rtl
 
-## 7.9.0 (Jun 6, 2020)
+## 7.9.0 (Jun 2, 2020)
 ### :rocket: New Feature
 - `general`
   - [#1143](https://github.com/wix-incubator/rich-content/pull/1143) Dynamic import to 'react-color'
