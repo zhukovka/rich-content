@@ -30,7 +30,7 @@ describe('plugins', () => {
 
     beforeEach('load editor', () => {
       cy.switchToDesktop();
-      cy.loadEditorAndViewer('images');
+      cy.loadRicosEditorAndViewer('images');
     });
 
     after(() => cy.eyesClose());
