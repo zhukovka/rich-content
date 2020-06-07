@@ -14,9 +14,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-  
-  
+
 ### :bug: Bug Fix
+- `common`
+  - [#1181](https://github.com/wix-incubator/rich-content/pull/1181) lists alignment
 - `gallery`
   - [#1217](https://github.com/wix-incubator/rich-content/pull/1217) some layouts missing css
 ### :house: Internal
