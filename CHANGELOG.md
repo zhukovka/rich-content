@@ -14,12 +14,18 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-
+  
+  
+### :bug: Bug Fix
+- `gallery`
+  - [#1217](https://github.com/wix-incubator/rich-content/pull/1217) some layouts missing css
 ### :house: Internal
 - `ricos`
   - [#1121](https://github.com/wix-incubator/rich-content/pull/1121) fix JSS big warning in console (classnames not found)
 - `test-env`
   - [#1210](https://github.com/wix-incubator/rich-content/pull/1210) ricos coverage of `rendering.e2e` and `renderingSsr.e2e`
+  
+  
 </details>
 <hr/>
 
