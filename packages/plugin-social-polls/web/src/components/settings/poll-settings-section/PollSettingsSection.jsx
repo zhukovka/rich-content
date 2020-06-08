@@ -101,7 +101,7 @@ export class PollSettingsSection extends Component {
             </p>
             <RadioGroup
               name="voteRole"
-              theme={this.styles}
+              theme={this.props.theme}
               value={voteRole}
               onChange={voteRole => this.updateSettings({ voteRole })}
               dataSource={this.VOTE_ROLE_OPTIONS}
@@ -129,7 +129,7 @@ export class PollSettingsSection extends Component {
 
         <RadioGroup
           name="resultsVisibility"
-          theme={this.styles}
+          theme={this.props.theme}
           value={resultsVisibility}
           onChange={resultsVisibility => this.updateSettings({ resultsVisibility })}
           dataSource={this.VIEW_ROLE_OPTIONS}

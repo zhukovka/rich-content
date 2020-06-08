@@ -57,7 +57,7 @@ export class LayoutSettingsSection extends Component {
               label={t('Poll_PollSettings_Tab_Layout_Section_Question_Image')}
               checked={poll?.enableImage}
               onChange={() => this.updateSettings({ poll: { enableImage: !poll?.enableImage } })}
-              theme={this.styles}
+              theme={this.props.theme}
             />
 
             <Separator horizontal className={styles.separator} />
@@ -94,7 +94,7 @@ export class LayoutSettingsSection extends Component {
             label={t('Poll_PollSettings_Tab_Layout_Section_Answers_Image')}
             checked={option?.enableImage}
             onChange={() => this.updateSettings({ option: { enableImage: !option?.enableImage } })}
-            theme={this.styles}
+            theme={this.props.theme}
           />
         )}
 

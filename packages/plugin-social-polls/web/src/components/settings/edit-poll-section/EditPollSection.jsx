@@ -122,7 +122,7 @@ class EditPollSectionComponent extends Component {
             onChange={() =>
               this.updateSettings({ poll: { enableImage: !layout.poll?.enableImage } })
             }
-            theme={this.styles}
+            theme={this.props.theme}
           />
 
           <LabeledToggle
@@ -131,7 +131,7 @@ class EditPollSectionComponent extends Component {
             onChange={() =>
               this.updateSettings({ option: { enableImage: !layout.option?.enableImage } })
             }
-            theme={this.styles}
+            theme={this.props.theme}
           />
         </div>
       </div>

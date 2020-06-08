@@ -104,14 +104,20 @@ export class SettingsModal extends Component {
           {isMobile ? (
             <div className={this.styles.header}>
               <button
-                className={cls(this.styles.button, this.styles.secondary)}
+                className={cls(
+                  this.styles.poll_header_button,
+                  this.styles.poll_header_button_secondary
+                )}
                 onClick={this.restoreChanges}
               >
                 {t('Poll_PollSettings_Common_CTA_Secondary')}
               </button>
               <div className={this.styles.header_button_list}>
                 <button
-                  className={cls(this.styles.button, this.styles.primary)}
+                  className={cls(
+                    this.styles.poll_header_button,
+                    this.styles.poll_header_button_primary
+                  )}
                   onClick={this.openPreview}
                 >
                   {t('Poll_FormatToolbar_Preview_Tooltip')}
@@ -224,7 +230,10 @@ export class SettingsModal extends Component {
               />
               &nbsp;
               <button
-                className={cls(this.styles.button, this.styles.primary)}
+                className={cls(
+                  this.styles.poll_header_button,
+                  this.styles.poll_header_button_primary
+                )}
                 onClick={this.closePreview}
               >
                 {t('Poll_Preview_Close_CTA')}
