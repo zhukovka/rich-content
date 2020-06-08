@@ -15,12 +15,14 @@
     Click to see more.
   </summary>
 
-  ### :bug: Bug Fix
-- `gallery`
-  - [#1221](https://github.com/wix-incubator/rich-content/pull/1221) some layouts missing css. Regression from 7.9.1
 
 </details>
 <hr/>
+
+## 7.10.4 (Jun 8, 2020)
+### :bug: Bug Fix
+- `gallery`
+  - [#1221](https://github.com/wix-incubator/rich-content/pull/1221) some layouts missing css. Regression from 7.9.1
 
 ## 7.10.3 (Jun 7, 2020)
 ### :bug: Bug Fix
