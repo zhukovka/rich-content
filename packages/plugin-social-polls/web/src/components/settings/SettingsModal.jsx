@@ -124,7 +124,10 @@ export class SettingsModal extends Component {
                 </button>
                 <Separator className={this.styles.separator_vertical} />
                 <button
-                  className={cls(this.styles.button, this.styles.primary)}
+                  className={cls(
+                    this.styles.poll_header_button,
+                    this.styles.poll_header_button_primary
+                  )}
                   onClick={helpers.closeModal}
                 >
                   {t('Poll_PollSettings_Common_CTA_Primary')}
