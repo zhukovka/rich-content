@@ -227,7 +227,7 @@ export class SettingsModal extends Component {
                 className={cls(this.styles.button, this.styles.primary)}
                 onClick={this.closePreview}
               >
-                Close Preview
+                {t('Poll_Preview_Close_CTA')}
               </button>
             </ReactModal>
           )}
