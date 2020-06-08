@@ -10,6 +10,7 @@ import {
   FocusManager,
   Separator,
 } from 'wix-rich-content-editor-common';
+import { mergeStyles } from 'wix-rich-content-common';
 
 import { PollContextProvider } from '../poll-context';
 import { RCEHelpersContext } from '../rce-helpers-context';
@@ -48,6 +49,8 @@ export class SettingsModal extends Component {
     $container: React.createRef(),
     isPreviewOpen: false,
   };
+
+  styles = mergeStyles({ styles, theme: this.props.theme });
 
   setPoll = poll => {
     const { pubsub } = this.props;
@@ -99,26 +102,32 @@ export class SettingsModal extends Component {
       <div ref={$container}>
         <FocusManager dir={languageDir}>
           {isMobile ? (
-            <div className={styles.header}>
+            <div className={this.styles.header}>
               <button
-                className={cls(styles.button, styles.secondary)}
+                className={cls(this.styles.button, this.styles.secondary)}
                 onClick={this.restoreChanges}
               >
                 {t('Poll_PollSettings_Common_CTA_Secondary')}
               </button>
-              <div className={styles.header_button_list}>
-                <button className={cls(styles.button, styles.primary)} onClick={this.openPreview}>
+              <div className={this.styles.header_button_list}>
+                <button
+                  className={cls(this.styles.button, this.styles.primary)}
+                  onClick={this.openPreview}
+                >
                   {t('Poll_FormatToolbar_Preview_Tooltip')}
                 </button>
-                <Separator className={styles.separator_vertical} />
-                <button className={cls(styles.button, styles.primary)} onClick={helpers.closeModal}>
+                <Separator className={this.styles.separator_vertical} />
+                <button
+                  className={cls(this.styles.button, this.styles.primary)}
+                  onClick={helpers.closeModal}
+                >
                   {t('Poll_PollSettings_Common_CTA_Primary')}
                 </button>
               </div>
             </div>
           ) : (
-            <div className={styles.header}>
-              <h3 className={styles.title}>{t('Poll_PollSettings_Common_Header')}</h3>
+            <div className={this.styles.header}>
+              <h3 className={this.styles.title}>{t('Poll_PollSettings_Common_Header')}</h3>
             </div>
           )}
 
@@ -199,8 +208,8 @@ export class SettingsModal extends Component {
               isOpen={isPreviewOpen}
               onRequestClose={this.closePreview}
               parentSelector={this.getContainer}
-              className={cls(styles.modal)}
-              overlayClassName={cls(styles.overlay)}
+              className={cls(this.styles.modal)}
+              overlayClassName={cls(this.styles.overlay)}
             >
               <PollViewer
                 isMobile
@@ -214,7 +223,10 @@ export class SettingsModal extends Component {
                 t={t}
               />
               &nbsp;
-              <button className={cls(styles.button, styles.primary)} onClick={this.closePreview}>
+              <button
+                className={cls(this.styles.button, this.styles.primary)}
+                onClick={this.closePreview}
+              >
                 Close Preview
               </button>
             </ReactModal>
