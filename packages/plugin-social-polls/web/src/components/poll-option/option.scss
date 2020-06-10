@@ -21,6 +21,13 @@
     z-index: 4;
     border-radius: 50%;
     color: #000;
+
+    svg {
+      @include phone {
+        width: 16px;
+        height: 16px;
+      }
+    }
   }
 
   &,
@@ -57,10 +64,10 @@
 
   @include phone {
     font-size: 14px;
-    padding: 15px;
+    padding: 10px;
     
     &.with_result {
-      padding-right: 45px;
+      padding-right: 35px;
     }
   }
 }
@@ -79,6 +86,14 @@
     opacity: 0;
     transition: opacity 500ms;
     visibility: hidden;
+
+    @include phone {
+      left: 0;
+      top: 0;
+      margin: 0;
+      width: 34px;
+      height: 34px;
+    }
   }
 
   &.with_image {
@@ -119,7 +134,8 @@
   z-index: 2;
 
   @include phone {
-    right: 15px;
+    right: 10px;
+    font-size: 12px;
   }
 }
 

@@ -109,7 +109,11 @@ class EditPollSectionComponent extends Component {
         <div className={this.styles.poll_controls}>
           <button
             onClick={addOption}
-            className={cls(this.styles.button, this.styles.primary, this.styles.poll_add_option)}
+            className={cls(
+              this.styles.poll_header_button,
+              this.styles.poll_header_button_primary,
+              this.styles.poll_add_option
+            )}
           >
             <AddIcon width={12} height={12} />
             &nbsp;
@@ -122,7 +126,7 @@ class EditPollSectionComponent extends Component {
             onChange={() =>
               this.updateSettings({ poll: { enableImage: !layout.poll?.enableImage } })
             }
-            theme={this.styles}
+            theme={this.props.theme}
           />
 
           <LabeledToggle
@@ -131,7 +135,7 @@ class EditPollSectionComponent extends Component {
             onChange={() =>
               this.updateSettings({ option: { enableImage: !layout.option?.enableImage } })
             }
-            theme={this.styles}
+            theme={this.props.theme}
           />
         </div>
       </div>

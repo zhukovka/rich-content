@@ -291,7 +291,7 @@ class PollComponent extends Component {
                   ? this.showResults()
                     ? t('Poll_Viewer_ShowAllResults_CTA')
                     : t('Poll_Viewer_ShowAllOptions_CTA')
-                  : 'Show less options'}
+                  : t('Poll_Viewer_ShowLess_CTA')}
               </button>
             )}
 

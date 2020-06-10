@@ -64,53 +64,13 @@ export function createToolbar({ isMobile, helpers, settings, t }) {
 
   return {
     InlineButtons: [
-      {
-        keyName: 'layout',
-        type: BUTTONS.EXTERNAL_MODAL,
-        modalName: Modals.POLL_SETTINGS,
-        children: t('Poll_PollSettings_Tab_Layout_TabName'),
-        modalStyles: getModalStyles(modalStyles),
-        t,
-        tooltipTextKey: 'Poll_PollSettings_Common_Header',
-        activeTab: TABS.LAYOUT,
-        mobile: false,
-      },
-
-      { keyName: 'separator', mobile: false, type: BUTTONS.SEPARATOR },
-
-      {
-        keyName: 'design',
-        type: BUTTONS.EXTERNAL_MODAL,
-        modalName: Modals.POLL_SETTINGS,
-        children: t('Poll_PollSettings_Tab_Design_TabName'),
-        modalStyles: getModalStyles(modalStyles),
-        t,
-        tooltipTextKey: 'Poll_PollSettings_Common_Header',
-        activeTab: TABS.DESIGN,
-        mobile: false,
-      },
-
-      { keyName: 'separator', mobile: false, type: BUTTONS.SEPARATOR },
-
-      {
-        keyName: 'settings',
-        type: BUTTONS.EXTERNAL_MODAL,
-        modalName: Modals.POLL_SETTINGS,
-        children: t('Poll_PollSettings_Tab_Settings_TabName'),
-        modalStyles: getModalStyles(modalStyles),
-        t,
-        tooltipTextKey: 'Poll_FormatToolbar_Settings_Tooltip',
-        activeTab: TABS.SETTINGS,
-        mobile: false,
-      },
-
       ...(isMobile
         ? [
             {
               keyName: 'edit',
               type: BUTTONS.EXTERNAL_MODAL,
               modalName: Modals.POLL_SETTINGS,
-              children: 'Edit',
+              children: t('Poll_Mobile_Editor_Toolbar_Edit'),
               modalStyles: getModalStyles(modalStyles),
               t,
               activeTab: TABS.EDIT,
@@ -121,14 +81,54 @@ export function createToolbar({ isMobile, helpers, settings, t }) {
               keyName: 'customize',
               type: BUTTONS.EXTERNAL_MODAL,
               modalName: Modals.POLL_SETTINGS,
-              children: 'Customize',
+              children: t('Poll_Mobile_Editor_Toolbar_Customize'),
               modalStyles: getModalStyles(modalStyles),
               t,
               activeTab: TABS.DESIGN,
               mobile: true,
             },
           ]
-        : []),
+        : [
+            {
+              keyName: 'layout',
+              type: BUTTONS.EXTERNAL_MODAL,
+              modalName: Modals.POLL_SETTINGS,
+              children: t('Poll_PollSettings_Tab_Layout_TabName'),
+              modalStyles: getModalStyles(modalStyles),
+              t,
+              tooltipTextKey: 'Poll_PollSettings_Common_Header',
+              activeTab: TABS.LAYOUT,
+              mobile: false,
+            },
+
+            { keyName: 'separator', mobile: false, type: BUTTONS.SEPARATOR },
+
+            {
+              keyName: 'design',
+              type: BUTTONS.EXTERNAL_MODAL,
+              modalName: Modals.POLL_SETTINGS,
+              children: t('Poll_PollSettings_Tab_Design_TabName'),
+              modalStyles: getModalStyles(modalStyles),
+              t,
+              tooltipTextKey: 'Poll_PollSettings_Common_Header',
+              activeTab: TABS.DESIGN,
+              mobile: false,
+            },
+
+            { keyName: 'separator', mobile: false, type: BUTTONS.SEPARATOR },
+
+            {
+              keyName: 'settings',
+              type: BUTTONS.EXTERNAL_MODAL,
+              modalName: Modals.POLL_SETTINGS,
+              children: t('Poll_PollSettings_Tab_Settings_TabName'),
+              modalStyles: getModalStyles(modalStyles),
+              t,
+              tooltipTextKey: 'Poll_FormatToolbar_Settings_Tooltip',
+              activeTab: TABS.SETTINGS,
+              mobile: false,
+            },
+          ]),
 
       { keyName: 'separator', mobile: true, type: BUTTONS.SEPARATOR },
 
