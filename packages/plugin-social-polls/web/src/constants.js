@@ -1,4 +1,6 @@
-export const POLL_TYPE = 'wix-draft-plugin-poll';
+export const THEME = () => {
+  return {};
+};
 
 export const LAYOUT = {
   LIST: 'list',

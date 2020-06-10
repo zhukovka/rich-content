@@ -1,13 +1,12 @@
-import { typeMapper } from './typeMapper';
-import { DEFAULT_COMPONENT_DATA } from './constants';
+import { createPollPlugin } from './createPollPlugin';
 import { POLL_TYPE } from './types';
-export { typeMapper as pollTypeMapper, POLL_TYPE };
+import { DEFAULT_COMPONENT_DATA, THEME as theme } from './constants';
 
 export const pluginPoll = (config = {}) => {
   return {
     config: { ...DEFAULT_COMPONENT_DATA.config, ...config },
     type: POLL_TYPE,
-    typeMapper,
-    decorator: {},
+    createPlugin: createPollPlugin,
+    theme,
   };
 };
