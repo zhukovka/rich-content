@@ -1,4 +1,5 @@
 const semver = require('semver');
+const execSync = require('child_process').execSync;
 const { get, memoize } = require('lodash');
 
 const LATEST_TAG = 'latest';
@@ -13,6 +14,7 @@ const getPackageDetails = memoize(pkg => {
     const npmShowCommand = `npm show ${pkg.name} --registry=${pkg.registry} --json`;
     return JSON.parse(execSync(npmShowCommand, { stdio: ['pipe', 'pipe', 'ignore'] }));
   } catch (error) {
+    console.log(error);
     if (error.stdout && !error.stdout.toString().includes('E404')) {
       console.error(chalk.red(`\nError: ${error}`));
     }
@@ -20,7 +22,8 @@ const getPackageDetails = memoize(pkg => {
 });
 
 function getLatestVersion(pkg) {
-  return get(getPackageDetails(pkg), 'dist-tags.latest');
+  const pgkDetails = getPackageDetails(pkg);
+  return get(pgkDetails, 'dist-tags.latest');
 }
 
 function getPublishedVersions(pkg) {
@@ -32,7 +35,8 @@ function getTag(pkg) {
   if (NPM_TAG) {
     return NPM_TAG;
   }
-  return calcTag(pkg.version, getLatestVersion(pkg));
+  const latestVersion = getLatestVersion(pkg);
+  return calcTag(pkg.version, latestVersion);
 }
 
 function calcTag(version, latestVersion) {
