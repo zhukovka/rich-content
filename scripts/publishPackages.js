@@ -18,7 +18,7 @@ function publish(pkg) {
   const { name, version } = pkg;
   const tag = pkgUtils.getTag(pkg);
   console.log(chalk.magenta(`Running: "${publishCommand}" for ${name}@${version}`));
-  execSync(publishCmd(pkg, tag), { stdio: 'inherit' });
+  execSync(publishCommand(pkg, tag), { stdio: 'inherit' });
   if (pkgUtils.isLatest(tag)) {
     console.log(chalk.magenta(`adding: adding next tag to latest...`));
     execSync(addNextTagCmd(pkg), { stdio: 'inherit' });
