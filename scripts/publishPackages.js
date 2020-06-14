@@ -4,7 +4,8 @@ const chalk = require('chalk');
 const pkgUtils = require('./pkgUtils');
 const { getPackages } = require('@lerna/project');
 
-const publishCmd = (pkg, tag) => `npm publish ${pkg.path} --tag=${tag} --registry=${pkg.registry}`;
+const publishCommand = (pkg, tag) =>
+  `npm publish ${pkg.path} --tag=${tag} --registry=${pkg.registry}`;
 const addNextTagCmd = pkg =>
   `npm dist-tag --registry=${pkg.registry} add ${pkg.path} ${pkgUtils.NEXT_TAG}`;
 
