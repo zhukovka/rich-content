@@ -16,6 +16,8 @@
   </summary>
 
 ### :bug: Bug Fix
+- `gallery`
+  - [#1227](https://github.com/wix-incubator/rich-content/pull/1227) gallery cursor is pointer when items are clickable
 - `image`
   - [#1241](https://github.com/wix-incubator/rich-content/pull/1241) insert link to image will not close the toolbar
 
