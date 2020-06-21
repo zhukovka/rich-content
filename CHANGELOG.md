@@ -19,6 +19,8 @@
 - `adsense`
   - [#1179](https://github.com/wix-incubator/rich-content/pull/1179) add adsense plugin
 ### :bug: Bug Fix
+- `link-toolbar`
+  - [#1238](https://github.com/wix-incubator/rich-content/pull/1238) hover on url behavior
 - `gallery`
   - [#1227](https://github.com/wix-incubator/rich-content/pull/1227) gallery cursor is pointer when items are clickable
   - [#1225](https://github.com/wix-incubator/rich-content/pull/1225) accepts only supported filetypes
