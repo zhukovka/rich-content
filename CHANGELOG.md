@@ -6,7 +6,7 @@
 > - :rocket: [New Feature]
 > - :bug: [Bug Fix]
 > - :book: [Documentation]
-> - :house: [Internal]****
+> - :house: [Internal]
 
 ## [Unreleased]
 <details>
@@ -14,7 +14,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-  
+  </details>
+<hr/>
+
+## 7.10.7 (Jun 21, 2020)
 ### :rocket: New Feature
 - `adsense`
   - [#1179](https://github.com/wix-incubator/rich-content/pull/1179) add adsense plugin
@@ -40,8 +43,7 @@
 - `image`
   - [#1264](https://github.com/wix-incubator/rich-content/pull/1264) loader for oneApp - 'loading' in component data
 
-</details>
-<hr/>
+
 
 ## 7.10.6 (Jun 14, 2020)
 ### :rocket: New Feature
@@ -50,7 +52,7 @@
 
 ### :bug: Bug Fix
 - `ricos`
-  - [#1229](https://github.com/wix-incubator/rich-content/pull/1229) fix(rollup): reduce bundlesize on legacy child **support**
+  - [#1229](https://github.com/wix-incubator/rich-content/pull/1229) fix(rollup): reduce bundlesize on legacy child support
 - `common`
   - [#1186](https://github.com/wix-incubator/rich-content/pull/1186) block alignment with indentation
 - `editor`
