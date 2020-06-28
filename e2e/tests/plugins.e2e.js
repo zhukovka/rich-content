@@ -462,9 +462,6 @@ describe('plugins', () => {
       cy.loadRicosEditorAndViewer()
         .enterParagraphs(['Color.'])
         .setTextColor([0, 5], 'color4');
-
-      cy.blurEditor();
-
       cy.eyesCheckWindow(this.test.title);
     });
 
@@ -472,8 +469,6 @@ describe('plugins', () => {
       cy.loadRicosEditorAndViewer()
         .enterParagraphs(['Highlight.'])
         .setHighlightColor([0, 9], 'color4');
-
-      cy.blurEditor();
       cy.eyesCheckWindow(this.test.title);
     });
   });
