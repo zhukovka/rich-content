@@ -1,10 +1,11 @@
 name: tests
 on:
   push:
+    branches:
+      - '**'
+      - '!release*'
     tags-ignore:
       - '**'
-    branches-ignore:
-      - 'release*'
 env:
   captureVideos: 'true'
   captureImages: 'true'
