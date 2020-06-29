@@ -25,6 +25,9 @@
   - [#1277](https://github.com/wix-incubator/rich-content/pull/1277) image with link in initial state
 - `viewer`
   - [#1285](https://github.com/wix-incubator/rich-content/pull/1285) text alignment with punctuation
+### :house: Internal
+- `test-env`
+  - [#1286](https://github.com/wix-incubator/rich-content/pull/1286) update setSelection for Editor and Viewer
 </details>
 <hr/>
 
