@@ -5,7 +5,7 @@ import { createDataConverter } from './editorUtils';
 import ReactDOM from 'react-dom';
 import { EditorState } from 'draft-js';
 import RicosModal from './modals/RicosModal';
-import './styles.scss';
+import './styles.css';
 import { RicosEditorProps, EditorDataInstance, RichContentChild } from './index';
 
 interface State {
