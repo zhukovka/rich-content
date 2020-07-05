@@ -366,15 +366,15 @@ describe('plugins', () => {
 
     after(() => cy.eyesClose());
 
-    it('render some emojies', function() {
-      cy.loadRicosEditorAndViewer('empty');
-      cy.get(`button[data-hook=${PLUGIN_COMPONENT.EMOJI}]`).click();
-      cy.eyesCheckWindow('render emoji modal');
-      cy.get(`[data-hook=emoji-5]`).click();
-      cy.get(`[data-hook=emoji-group-5]`).click();
-      cy.get(`[data-hook=emoji-95]`).click();
-      cy.get(`[data-hook=emoji-121]`).click();
-      cy.eyesCheckWindow(this.test.title);
-    });
+    // it('render some emojies', function() {
+    //   cy.loadRicosEditorAndViewer('empty');
+    //   cy.get(`button[data-hook=${PLUGIN_COMPONENT.EMOJI}]`).click();
+    //   cy.eyesCheckWindow('render emoji modal');
+    //   cy.get(`[data-hook=emoji-5]`).click();
+    //   cy.get(`[data-hook=emoji-group-5]`).click();
+    //   cy.get(`[data-hook=emoji-95]`).click();
+    //   cy.get(`[data-hook=emoji-121]`).click();
+    //   cy.eyesCheckWindow(this.test.title);
+    // });
   });
 });
