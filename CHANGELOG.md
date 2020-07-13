@@ -27,6 +27,8 @@
 - `gallery`
   - [#1322](https://github.com/wix-incubator/rich-content/pull/1322) gallery image title font size is fixed to 14px
   - [#1334](https://github.com/wix-incubator/rich-content/pull/1334) render SSR when in SEO view mode
+- `general`
+  - [#1336](https://github.com/wix-incubator/rich-content/pull/1336) solved type definition issues caused by JS files
 
 </details>
 <hr/>
