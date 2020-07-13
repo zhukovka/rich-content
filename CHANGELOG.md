@@ -15,7 +15,9 @@
     Click to see more.
   </summary>
 
-
+### :bug: Bug Fix
+- `preview`
+  - [#1341](https://github.com/wix-incubator/rich-content/pull/1341) inlineStyles - corrected offset of readMore
 </details>
 <hr/>
 
@@ -27,10 +29,9 @@
   - [#1308](https://github.com/wix-incubator/rich-content/pull/1308) theme - default font reverted to Helvetica
 - `preview`
   - [#1248](https://github.com/wix-incubator/rich-content/pull/1248) fix multi-block calculation (3 lines bug)
-  - [#1341](https://github.com/wix-incubator/rich-content/pull/1341) inlineStyles - corrected offset of readMore
 - `viewer`
   - [#1308](https://github.com/wix-incubator/rich-content/pull/1308) theme - default font reverted to Helvetica
-  - [#1342](https://github.com/wix-incubator/rich-content/pull/1342) breaks when there is a link in a list 
+  - [#1342](https://github.com/wix-incubator/rich-content/pull/1342) breaks when there is a link in a list
 - `gallery`
   - [#1322](https://github.com/wix-incubator/rich-content/pull/1322) gallery image title font size is fixed to 14px
   - [#1334](https://github.com/wix-incubator/rich-content/pull/1334) render SSR when in SEO view mode
