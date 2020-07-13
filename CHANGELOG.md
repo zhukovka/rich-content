@@ -15,11 +15,14 @@
     Click to see more.
   </summary>
 
+
+</details>
+<hr/>
+
+## 7.12.2 (Jul 13, 2020)
 ### :bug: Bug Fix
 - `preview`
   - [#1341](https://github.com/wix-incubator/rich-content/pull/1341) inlineStyles - corrected offset of readMore
-</details>
-<hr/>
 
 ## 7.12.1 (Jul 13, 2020)
 ### :bug: Bug Fix
