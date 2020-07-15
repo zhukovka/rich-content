@@ -15,6 +15,11 @@
     Click to see more.
   </summary>
 
+
+</details>
+<hr/>
+
+## 7.12.3 (Jul 15, 2020)
 ### :bug: Bug Fix
 - `fullscreen`
   - [#1359](https://github.com/wix-incubator/rich-content/pull/1359) fix when direction=RTL
@@ -23,10 +28,7 @@
   - [#1352](https://github.com/wix-incubator/rich-content/pull/1352) insertPlugins modals theme prop was broken (videoPlugin in particular)
 - `viewer`
   - [#1352](https://github.com/wix-incubator/rich-content/pull/1352) anchors fix: exclude inline plugins
-
-</details>
-<hr/>
-
+  
 ## 7.12.2 (Jul 13, 2020)
 ### :bug: Bug Fix
 - `preview`
