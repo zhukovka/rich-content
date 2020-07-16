@@ -15,6 +15,9 @@
     Click to see more.
   </summary>
 
+### :rocket: New Feature
+- `giphy`
+  - [#1358](https://github.com/wix-incubator/rich-content/pull/1358) giphy preview modal empty state
 ### :bug: Bug Fix
 - `preview`
   - [#1361](https://github.com/wix-incubator/rich-content/pull/1361) readMore - removed automatic scroll to top page
@@ -31,7 +34,7 @@
   - [#1352](https://github.com/wix-incubator/rich-content/pull/1352) insertPlugins modals theme prop was broken (videoPlugin in particular)
 - `viewer`
   - [#1352](https://github.com/wix-incubator/rich-content/pull/1352) anchors fix: exclude inline plugins
-  
+
 ## 7.12.2 (Jul 13, 2020)
 ### :bug: Bug Fix
 - `preview`
