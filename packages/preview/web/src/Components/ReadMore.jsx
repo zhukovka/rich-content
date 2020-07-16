@@ -71,7 +71,7 @@ class ReadMore extends PureComponent {
           onReflow={this.onReflow}
         />
         {clamped && (
-          <a href="#" role="button" onClick={this.onClick} className={this.styles.readMore_label}>
+          <a href="" role="button" onClick={this.onClick} className={this.styles.readMore_label}>
             {label}
           </a>
         )}
