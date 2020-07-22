@@ -106,12 +106,18 @@ For rendering a viewer, import the plugin from the viewer entry point <br/> `wix
 ```jsx
 theme?: {
   palette?: Palette | PalettePreset
+  parentClass?: string;
 }
 ```
 
 #### `palette`
 
 Defines the palette of colors that will be used. More info in [Theming](theming)
+
+#### `parentClass`
+
+A parent css className that wraps a ricos instance.
+With this defined, dynamic styles will be wrapped by `parentClass` for CSS specifity.
 
 ## RicosEditor API
 
