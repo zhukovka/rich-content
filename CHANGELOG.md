@@ -15,11 +15,16 @@
     Click to see more.
   </summary>
   
+
+</details>
+<hr/>
+
+## 7.13.2 (Jul 23, 2020)
 ### :bug: Bug Fix
 - `editor`
   - [#1379](https://github.com/wix-incubator/rich-content/pull/1379) prevent wix focus-ring (formatting toolbar corruption)
-</details>
-<hr/>
+- `fullscreen`
+  - [#1380](https://github.com/wix-incubator/rich-content/pull/1380) url not always corect
 
 ## 7.13.1 (Jul 22, 2020)
 ### :rocket: New Feature
