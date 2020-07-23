@@ -30,6 +30,8 @@
   - [#1375](https://github.com/wix-incubator/rich-content/pull/1375) theme fix for multiple instances of RicosEditor / RicosViewer
 - `editor-common`
   - [#1340](https://github.com/wix-incubator/rich-content/pull/1340) plugin toolbar fixed position after resize
+- `fullscreen`
+  - [#1380](https://github.com/wix-incubator/rich-content/pull/1380) hotfix - incorrect image url (`getAbsolutUrl()`) + unit tests
 
 ## 7.13.0 (Jul 20, 2020)
 ### :rocket: New Feature
