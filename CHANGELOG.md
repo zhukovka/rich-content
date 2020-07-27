@@ -16,11 +16,14 @@
     Click to see more.
   </summary>
 
+
+</details>
+<hr/>
+
+## 7.15.1 (Jul 27, 2020)
 ### :bug: Bug Fix
 - `plugin-link`
   - [#1393](https://github.com/wix-incubator/rich-content/pull/1393) fix position of anchors dropdown filter 
-</details>
-<hr/>
 
 ## 7.15.0 (Jul 27, 2020)
 ### :rocket: New Feature
