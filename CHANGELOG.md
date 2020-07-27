@@ -16,11 +16,14 @@
     Click to see more.
   </summary>
 
+
+</details>
+<hr/>
+
+## 7.15.0 (Jul 23, 2020)
 ### :rocket: New Feature
 - `plugin-link`
   - [#1142](https://github.com/wix-incubator/rich-content/pull/1142) anchors
-</details>
-<hr/>
 
 ## 7.14.0 (Jul 23, 2020)
 ### :rocket: New Feature
