@@ -15,16 +15,16 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+</details>
+<hr/>
 
+## 7.15.2 (Jul 28, 2020)
 ### :bug: Bug Fix
 - `ricos`
   - [#1391](https://github.com/wix-incubator/rich-content/pull/1391) provides the correct translations given a loacale
 ### :rocket: New Feature
 - `spoiler`
   - [#1194](https://github.com/wix-incubator/rich-content/pull/1194) Spoiler plugin for text
-
-</details>
-<hr/>
 
 ## 7.15.1 (Jul 27, 2020)
 ### :bug: Bug Fix
