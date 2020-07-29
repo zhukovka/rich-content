@@ -17,6 +17,8 @@
   </summary>
 
 ### :rocket: New Feature
+- `file-upload`
+  - [#1138](https://github.com/wix-incubator/rich-content/pull/1138) plugin design overhaul
 - `text-selection-toolbar`
   - [#1397](https://github.com/wix-incubator/rich-content/pull/1397) text selection toolbar
 
