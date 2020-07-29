@@ -16,6 +16,10 @@
     Click to see more.
   </summary>
 
+</details>
+<hr/>
+
+## 7.15.4 (Jul 29, 2020)
 ### :bug: Bug Fix
 - `image`
   - [#1399](https://github.com/wix-incubator/rich-content/pull/1399) link in image viewer
@@ -23,9 +27,9 @@
   - [#1395](https://github.com/wix-incubator/rich-content/pull/1395) remove react-dom/server from viewer dependencies (reduce bundle size)
   - [#1404](https://github.com/wix-incubator/rich-content/pull/1404) change viewer justify css
 - `ricos-editor`
-  - [#1405](https://github.com/wix-incubator/rich-content/pull/1405)  openModal crash when no modalStyles sent (giphy modal bug)
-</details>
-<hr/>
+  - [#1405](https://github.com/wix-incubator/rich-content/pull/1405) OpenModal crash when no modalStyles sent (giphy modal bug)
+- `adsense`
+  - [#1403](https://github.com/wix-incubator/rich-content/pull/1403) Edit Panel UI
 
 ## 7.15.3 (Jul 28, 2020)
 ### :bug: Bug Fix
