@@ -18,7 +18,10 @@
 
 ### :rocket: New Feature
 - `ricos-editor`
-  - [#1417](https://github.com/wix-incubator/rich-content/pull/1417) `mediaSettings.onUpload` notifies when editor is handling upload in media plugins
+  - [#1417](https://github.com/wix-incubator/rich-content/pull/1417) `mediaSettings.onUpload` notifies when editor is handling upload in 
+  media plugins
+- `video`
+  - [#1424](https://github.com/wix-incubator/rich-content/pull/1424) validate input url (#1424)
 
 </details>
 <hr/>
