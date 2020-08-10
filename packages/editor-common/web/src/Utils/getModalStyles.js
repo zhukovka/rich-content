@@ -82,7 +82,7 @@ const desktopSideBarStyles = {
     position: 'fixed',
     width: '100%',
     height: 'calc(100% + 85px)',
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
     zIndex: 5,
   },
   content: {
@@ -91,6 +91,7 @@ const desktopSideBarStyles = {
     left: 'auto',
     right: 0,
     bottom: 'auto',
+    border: 'none',
     background: '#fff',
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
@@ -101,9 +102,6 @@ const desktopSideBarStyles = {
     maxWidth: '420px',
     direction: 'ltr',
     zIndex: 6,
-    borderRadious: '2px',
-    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.1)',
-    border: 'solid 1px rgba(255, 255, 255, 0.25)',
   },
 };
 
