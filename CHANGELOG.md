@@ -15,7 +15,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-  
+</details>
+<hr/>
+
+## 7.16.6 (Aug 16, 2020)
 ### :rocket: New Feature
 - `common`
   - [#1452](https://github.com/wix-incubator/rich-content/pull/1452) debugging info reported to console if `ricosDebug=true` query param found
@@ -28,8 +31,7 @@
   - [#1456](https://github.com/wix-incubator/rich-content/pull/1456) modal `removeChild` issue
 - `editor`
   - [#1453](https://github.com/wix-incubator/rich-content/pull/1453) fix list theming editor & viewer
-</details>
-<hr/>
+
 
 
 ## 7.16.4 (Aug 13, 2020)
