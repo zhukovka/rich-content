@@ -21,7 +21,7 @@
 ## 7.16.6 (Aug 16, 2020)
 ### :rocket: New Feature
 - `common`
-  - [#1452](https://github.com/wix-incubator/rich-content/pull/1452) debugging info reported to console if `ricosDebug=true` query param found
+  - [#1452](https://github.com/wix-incubator/rich-content/pull/1452) debugging info reported to console if `debug` query param added
 ### :bug: Bug Fix
 - `editor`
   - [#1454](https://github.com/wix-incubator/rich-content/pull/1454) RichContentEditor: draft `handleBeforeInput` params passed to `props.handleBeforeInput`
