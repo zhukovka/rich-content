@@ -17,6 +17,8 @@
   </summary>
 
 ### :bug: Bug Fix
+- `editor`
+  - [#1463](https://github.com/wix-incubator/rich-content/pull/1463) external formatting toolbar: preserve selection on inline style change
 - `file-upload`
   - [#1465](https://github.com/wix-incubator/rich-content/pull/1465) remove dependency of file type, long extension clipping and otherIcon themeing fix
 
