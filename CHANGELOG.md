@@ -16,16 +16,17 @@
     Click to see more.
   </summary>
 
+
+</details>
+<hr/>
+
+## 7.16.11 (Aug 20, 2020)
 ### :bug: Bug Fix
 - `image`
   - [#1467](https://github.com/wix-incubator/rich-content/pull/1467) image caption aligned correctly in rtl
 - `fullscreen`
   - [##1468](https://github.com/wix-incubator/rich-content/pull/#1468) add pro gallery css to fullscreen css
   - [##1432](https://github.com/wix-incubator/rich-content/pull/#1468) fix resolution on mobile
-
-
-</details>
-<hr/>
 
 ## 7.16.10 (Aug 19, 2020)
 ### :bug: Bug Fix
