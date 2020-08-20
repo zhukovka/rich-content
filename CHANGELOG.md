@@ -27,6 +27,8 @@
 ### :bug: Bug Fix
 - `editor`
   - [#1466](https://github.com/wix-incubator/rich-content/pull/1466) default formatting toolbars change - remove first divider
+- `fullscreen`
+  - [##1468](https://github.com/wix-incubator/rich-content/pull/#1468) add pro gallery css to fullscreen css
 
 
 ## 7.16.9 (Aug 18, 2020)
