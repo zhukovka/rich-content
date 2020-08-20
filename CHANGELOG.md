@@ -15,12 +15,13 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+</details>
+<hr/>
 
+## 7.16.12 (Aug 20, 2020)
 ### :bug: Bug Fix
 - `ricos-editor`
   - [#1470](https://github.com/wix-incubator/rich-content/pull/1470/) multiple editors support (react-modal bug fix)
-</details>
-<hr/>
 
 ## 7.16.11 (Aug 20, 2020)
 ### :bug: Bug Fix
