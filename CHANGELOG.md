@@ -15,14 +15,16 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+</details>
+<hr/>
 
+## 7.16.14 (Aug 23, 2020)
 ### :bug: Bug Fix
 - `ricos-editor`
   - [#1471](https://github.com/wix-incubator/rich-content/pull/1471/) missing height in ricos editor wrapping div
 - `editor-common`
   - [#1473](https://github.com/wix-incubator/rich-content/pull/1473) fix RadioGroup button
-</details>
-<hr/>
+
 
 ## 7.16.12 (Aug 20, 2020)
 ### :bug: Bug Fix
