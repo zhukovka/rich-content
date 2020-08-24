@@ -15,8 +15,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+</details>
+<hr/>
   
-
+## 7.16.15 (Aug 24, 2020)
 ### :rocket: New Feature
 - `image`
   - [#1408](https://github.com/wix-incubator/rich-content/pull/1408) upload error displays in image settings
@@ -28,8 +30,6 @@
 - `general`
   - [#1408](https://github.com/wix-incubator/rich-content/pull/1408) media upload errors saved and handled from component data
 
-</details>
-<hr/>
 
 ## 7.16.14 (Aug 23, 2020)
 ### :bug: Bug Fix
