@@ -19,6 +19,8 @@
 ### :bug: Bug Fix
 - `ricos-viewer`
   - [#1501](https://github.com/wix-incubator/rich-content/pull/1501) fullscreen mobile awareness
+- `editor-common`
+  - [#1503](https://github.com/wix-incubator/rich-content/pull/1503) @wix/draft-js@0.0.10 -- bugfix for Chrome 85
 
 </details>
 <hr/>
