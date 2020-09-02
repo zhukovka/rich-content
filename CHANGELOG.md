@@ -16,6 +16,10 @@
     Click to see more.
   </summary>
 
+### :rocket: New Feature
+- `gallery`
+  - [#1406](https://github.com/wix-incubator/rich-content/pull/1406) override default plugin dataConfig object from config
+
 ### :bug: Bug Fix
 - `common`
   - [#1504](https://github.com/wix-incubator/rich-content/pull/1504) fix: lists alignment in rtl
