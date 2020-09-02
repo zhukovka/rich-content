@@ -16,14 +16,15 @@
     Click to see more.
   </summary>
 
+</details>
+<hr/>
+
+## 7.18.1 (Sep 2, 2020)
 ### :bug: Bug Fix
 - `preview`
   - [#1507](https://github.com/wix-incubator/rich-content/pull/1507) readMore wasn't shown when gallery-plugin was the only plugin in the content
 - `editor-common`
   - [#7a2902dd](https://github.com/wix-incubator/rich-content/commit/7a2902dd) fix error on ResizeObserver when inlineToolbar's getVisibilityFn = () => false
-
-</details>
-<hr/>
 
 ## 7.18.0 (Sep 2, 2020)
 ### :rocket: New Feature
