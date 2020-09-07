@@ -16,7 +16,17 @@
     Click to see more.
   </summary>
 
+### :boom: Breaking Change
+- `plugin-commons`
+  - [#1498](https://github.com/wix-incubator/rich-content/pull/1498) plugin related stuff moved from `editor-common` to a separate package
+
+### :rocket: New Feature
+- `ricos-theme`
+  - [#1500](https://github.com/wix-incubator/rich-content/pull/1500) extracting ricos theme to dedicated package, to allow opt-in (bundlesize concern)
+
 ### :bug: Bug Fix
+- `plugin-commons`
+  - [#1526](https://github.com/wix-incubator/rich-content/pull/1526) UrlInputModal theme/style override workaround
 - `editor`
   - [#1519](https://github.com/wix-incubator/rich-content/pull/1519) external toolbars: inline style toggling fixed
 - `plugin-link`
@@ -35,9 +45,6 @@
 
 </details>
 
-### :rocket: New Feature
-- `ricos-theme`
-  - [#1500](https://github.com/wix-incubator/rich-content/pull/1500) extracting ricos theme to dedicated package, to allow opt-in (bundlesize concern)
 
 <hr/>
 
