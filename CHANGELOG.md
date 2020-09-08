@@ -40,6 +40,8 @@
   - [#1524](https://github.com/wix-incubator/rich-content/pull/1524) text fragments edge case
 - `ricos-viewer`
   - [#1522](https://github.com/wix-incubator/rich-content/pull/1522) incorrect gallery image index in fullscreen
+- `emoji-plugin`
+  - [#1510](https://github.com/wix-incubator/rich-content/pull/1510) emoji preview modal anchor bug fix
 
 ### :home: Internal
 - `e2e`
