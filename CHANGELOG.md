@@ -19,6 +19,11 @@
 </details>
 <hr/>
 
+## 7.19.2 (Sep 9, 2020)
+### :bug: Bug Fix
+- `editor-common`
+  - [#1539](https://github.com/wix-incubator/rich-content/pull/1539) moved EditorEvents back to editor-common
+
 ## 7.19.1 (Sep 8, 2020)
 ### 🏠 Internal
 - `general`
