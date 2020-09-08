@@ -19,6 +19,11 @@
 </details>
 <hr/>
 
+## 7.19.1 (Sep 8, 2020)
+### 🏠 Internal
+- `general`
+  - [#1536](https://github.com/wix-incubator/rich-content/pull/1536) renamed onAction BI callback to onViewerAction
+
 ## 7.19.0 (Sep 8, 2020)
 ### :rocket: New Feature
 - `ricos-theme`
@@ -54,7 +59,6 @@
 - `general`
   - [#1525](https://github.com/wix-incubator/rich-content/pull/1525) typed theme functions for all plugins
   - [#1528](https://github.com/wix-incubator/rich-content/pull/1528) fixed `npm run watch` command for several packages
-  - [#1536](https://github.com/wix-incubator/rich-content/pull/1536) renamed onAction BI callback to onViewerAction
 - `storybook`
   - [#1533](https://github.com/wix-incubator/rich-content/pull/1533) ricos theme's palette examples are more realistic
 
