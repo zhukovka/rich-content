@@ -16,13 +16,16 @@
     Click to see more.
   </summary>
 
-### :boom: Breaking Change
-- `plugin-commons`
-  - [#1498](https://github.com/wix-incubator/rich-content/pull/1498) plugin related stuff moved from `editor-common` to a separate package
+</details>
+<hr/>
 
+## 7.19.0 (Sep 8, 2020)
 ### :rocket: New Feature
 - `ricos-theme`
   - [#1500](https://github.com/wix-incubator/rich-content/pull/1500) extracting ricos theme to dedicated package, to allow opt-in (bundlesize concern)
+- `plugin-commons`
+  - [#1498](https://github.com/wix-incubator/rich-content/pull/1498) plugin related stuff moved from `editor-common` to a separate package
+
 
 ### :bug: Bug Fix
 - `viewer`
@@ -43,7 +46,7 @@
 - `emoji-plugin`
   - [#1510](https://github.com/wix-incubator/rich-content/pull/1510) emoji preview modal anchor bug fix
 
-### :home: Internal
+### 🏠 Internal
 - `e2e`
   - [#1509](https://github.com/wix-incubator/rich-content/pull/1509) test html plugin change url
 - `ricos-theme`
@@ -53,11 +56,6 @@
   - [#1528](https://github.com/wix-incubator/rich-content/pull/1528) fixed `npm run watch` command for several packages
 - `storybook`
   - [#1533](https://github.com/wix-incubator/rich-content/pull/1533) ricos theme's palette examples are more realistic
-
-</details>
-
-
-<hr/>
 
 ## 7.18.3 (Sep 3, 2020)
 ### :bug: Bug Fix
