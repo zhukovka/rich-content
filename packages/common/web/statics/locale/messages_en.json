@@ -467,7 +467,7 @@
   "Poll_Viewer_Multiselect_Footer": "You can vote for more than one answer.",
   "Poll_Viewer_Toast_Error_Connection": "No internet. Check your connection.",
   "Poll_Viewer_Toast_Error_ServerDown": "Couldn't connect to server. Try again later.",
-  "Accordion_ShownText_Placeholder": "Write text to show",
+  "Accordion_ShownText_Placeholder": "Write text for the list title",
   "Accordion_CollapsedText_Placeholder": "Write text for this item",
   "Accordion_ShownText_Add_Placeholder": "Add text to show",
   "Accordion_CollapsedText_Add_Placeholder": "Add text to hide",
