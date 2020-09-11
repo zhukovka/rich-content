@@ -27,6 +27,9 @@
   - [#1541](https://github.com/wix-incubator/rich-content/pull/1541) file upload native\media manager toggle in gear icon
   - [#1537](https://github.com/wix-incubator/rich-content/pull/1537) bi callback `onViewerAction` outputs to console.log
 
+### :book: Documentation
+- [#1546](https://github.com/wix-incubator/rich-content/pull/1546) external toolbar customization docs
+
 </details>
 <hr/>
 
