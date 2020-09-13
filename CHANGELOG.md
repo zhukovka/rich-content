@@ -16,6 +16,10 @@
     Click to see more.
   </summary>
 
+</details>
+<hr/>
+
+## 7.19.3 (Sep 13, 2020)
 ### :bug: Bug Fix
 - `ricos-editor`
   - [#1542](https://github.com/wix-incubator/rich-content/pull/1542) fixed appearance of inlineToolbarButtons to the new design
@@ -34,10 +38,6 @@
 
 ### :book: Documentation
 - [#1546](https://github.com/wix-incubator/rich-content/pull/1546) external toolbar customization docs
-
-
-</details>
-<hr/>
 
 ## 7.19.2 (Sep 9, 2020)
 ### :bug: Bug Fix
