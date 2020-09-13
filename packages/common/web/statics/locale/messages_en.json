@@ -469,7 +469,7 @@
   "Poll_Viewer_Toast_Error_ServerDown": "Couldn't connect to server. Try again later.",
   "Accordion_ShownText_Placeholder": "Write a title for this item",
   "Accordion_CollapsedText_Placeholder": "Write text to collapse",
-  "Accordion_ShownText_Add_Placeholder": "Add another list",
+  "Accordion_ShownText_Add_Placeholder": "Add another item",
   "Accordion_CollapsedText_Add_Placeholder": "Add an item",
   "Accordion_AccordionSettings_Common_Header": "Customize Collapsible List",
   "Accordion_AccordionSettings_Tab_Design_TabName": "Design",
