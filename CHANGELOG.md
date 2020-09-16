@@ -20,7 +20,7 @@
 </details>
 <hr/>
 
-## 7.20.1 (Sep 16, 2020)
+## 7.20.2 (Sep 16, 2020)
 ### :rocket: New Feature
 - `storybook`
   - [#1495](https://github.com/wix-incubator/rich-content/pull/1495) added preview's default rules display under the `Preview` -> `Rules` page.
