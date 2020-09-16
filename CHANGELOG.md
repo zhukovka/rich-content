@@ -16,6 +16,15 @@
     Click to see more.
   </summary>
 
+### :rocket: New Feature
+- `storybook`
+  - [#1495](https://github.com/wix-incubator/rich-content/pull/1495) added preview's default rules display under the `Preview` -> `Rules` page.
+- `preview`
+  - [#1495](https://github.com/wix-incubator/rich-content/pull/1495) API Changes:
+    - `previewSettings()` (ricos export) was renamed to `createPreview()` to match ricos convention (similar to `createTheme()`)
+    - `PreviewSettings` interface was renamed to `PreviewConfig` to better represent its meaning
+    - `ellipsis` param in `ReadMore` is no longer overridable, as it is now implemented with `-webkit-line-clam` which doesn't support it
+
 ### :bug: Bug Fix
 - `ricos-theme`
   - [#1550](https://github.com/wix-incubator/rich-content/pull/1550) fixes:
@@ -24,6 +33,10 @@
     - brightness threshold to activate fallback color - raised
 
 ### 🏠 Internal
+- `preview`
+  - [#1495](https://github.com/wix-incubator/rich-content/pull/1495) converted from JS to TS. Also:
+    - removed comments
+    - removed redundant code from `Preview.jsx`
 - `text-selection-toolbar`
   - [#1412](https://github.com/wix-incubator/rich-content/pull/1412) text selection toolbar example in storybook
 - `storybook`
