@@ -18,6 +18,12 @@
   </details>
 <hr/>
 
+## 7.20.4 (Sep 21, 2020)
+
+### :bug: Bug Fix
+- `ricos-content`
+  - align versions mismatch
+
 ## 7.20.3 (Sep 21, 2020)
 
 ### :bug: Bug Fix
