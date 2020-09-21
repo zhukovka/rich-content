@@ -26,6 +26,8 @@
     - fixed buttons active state design
     - fixed heading button position (vertical alignment)
     - better specified ExternalToolbar's style as it was side-affected by the changes
+- `rollup`
+  - [#1564](https://github.com/wix-incubator/rich-content/pull/1564) Externalize react-player
 
 ### 🏠 Internal
 - `e2e`
