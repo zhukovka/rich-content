@@ -30,7 +30,7 @@
 
 ### :home: Internal
 - `ricos-content`
-  - [#1573](https://github.com/wix-incubator/rich-content/pull/1573) types: noImplicitAny applied
+  - [#1573](https://github.com/wix-incubator/rich-content/pull/1573) [#1574](https://github.com/wix-incubator/rich-content/pull/1574) types: noImplicitAny applied
 - `editor`
   - [#1556](https://github.com/wix-incubator/rich-content/pull/1556) fix editorStateConversion import size
   - [#1418](https://github.com/wix-incubator/rich-content/pull/1418) `Toast` and `ErrorToast` components
