@@ -16,12 +16,13 @@
     Click to see more.
   </summary>
 
+</details>
+<hr/>
+
+## 7.21.4 (Oct 8, 2020)
 ### :rocket: New Feature
 - `video`
   - [#1621](https://github.com/wix-incubator/rich-content/pull/1621) add `disableDownload` option
-
-</details>
-<hr/>
 
 ## 7.21.3 (Oct 7, 2020)
 ### :bug: Bug Fix
