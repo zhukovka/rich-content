@@ -43,6 +43,8 @@
   - [#1601](https://github.com/wix-incubator/rich-content/pull/1601) correct image is displayed on horizontal layouts
 - `editor`
   - [#1623](https://github.com/wix-incubator/rich-content/pull/1623) toast link font styles
+- `accordion`
+  - [#1595](https://github.com/wix-incubator/rich-content/pull/1595) Firefox bugs & css fixes
 
 ### :home: Internal
 - `e2e`
@@ -228,8 +230,6 @@
   - [#1522](https://github.com/wix-incubator/rich-content/pull/1522) incorrect gallery image index in fullscreen
 - `emoji-plugin`
   - [#1510](https://github.com/wix-incubator/rich-content/pull/1510) emoji preview modal anchor bug fix
-- `accordion`
-  - [#1595](https://github.com/wix-incubator/rich-content/pull/1595) Firefox bugs & css fixes
 ### 🏠 Internal
 - `e2e`
   - [#1509](https://github.com/wix-incubator/rich-content/pull/1509) test html plugin change url
