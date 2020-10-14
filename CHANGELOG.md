@@ -20,6 +20,10 @@
 - `quote`
   - [#1602](https://github.com/wix-incubator/rich-content/pull/1602) aligned quote - quote's position is based on alignment
 
+### :bug: Bug Fix
+- `list`
+  - [#1632](https://github.com/wix-incubator/rich-content/pull/1632) centered lists
+
   </details>
 <hr/>
 
