@@ -16,6 +16,10 @@
     Click to see more.
   </summary>
 
+### :rocket: New Feature
+- `quote`
+  - [#1602](https://github.com/wix-incubator/rich-content/pull/1602) aligned quote - quote's position is based on alignment
+
   </details>
 <hr/>
 
@@ -30,8 +34,6 @@
   - [#1627](https://github.com/wix-incubator/rich-content/pull/1627) added `ricos-editor-modal` class to the editor modal
 - `ricos-content`
   - [#1622](https://github.com/wix-incubator/rich-content/pull/1622) `isContentStateEmpty` util
-- `quote`
-  - [#1602](https://github.com/wix-incubator/rich-content/pull/1602) aligned quote - quote's position is based on alignment
 
 ### :bug: Bug Fix
 - `general`
