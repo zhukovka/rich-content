@@ -16,6 +16,10 @@
     Click to see more.
   </summary>
 
+  </details>
+<hr/>
+
+## 8.1.0 (Oct 15, 2020)
 ### :rocket: New Feature
 - `quote`
   - [#1602](https://github.com/wix-incubator/rich-content/pull/1602) aligned quote - quote's position is based on alignment
@@ -35,9 +39,6 @@
   - [#1641](https://github.com/wix-incubator/rich-content/pull/1641) Gallery Plugin Docs
 - `divider`
   - [#1634](https://github.com/wix-incubator/rich-content/pull/1634) Divider Plugin Docs
-
-  </details>
-<hr/>
 
 ## 8.0.1 (Oct 14, 2020)
 ### :rocket: New Feature
