@@ -19,6 +19,12 @@
 ### :book: Documentation
 - `map`
   - [#1638](https://github.com/wix-incubator/rich-content/pull/1638) Map Plugin Docs
+- `hashtag`
+  - [#1929fd3](https://github.com/wix-incubator/rich-content/commit/1929fd3) Hashtag Plugin Docs
+- `image`
+  - [#a8dc79c](https://github.com/wix-incubator/rich-content/commit/a8dc79c) Image Plugin Docs
+- `video`
+  - [#a8dc79c](https://github.com/wix-incubator/rich-content/commit/a8dc79c) Video Plugin Docs
 
   </details>
 <hr/>
