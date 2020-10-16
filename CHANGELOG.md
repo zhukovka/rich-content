@@ -15,7 +15,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+</details>
+<hr/>
 
+## 8.1.1 (Oct 16, 2020)
 ### 🏠 Internal
 - `gallery`
   - [#1649](https://github.com/wix-incubator/rich-content/pull/1649) bump pro gallery version to 2.1.4
@@ -29,9 +32,6 @@
   - [#a8dc79c](https://github.com/wix-incubator/rich-content/commit/a8dc79c) Image Plugin Docs
 - `video`
   - [#a8dc79c](https://github.com/wix-incubator/rich-content/commit/a8dc79c) Video Plugin Docs
-
-  </details>
-<hr/>
 
 ## 8.1.0 (Oct 15, 2020)
 ### :rocket: New Feature
