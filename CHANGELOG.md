@@ -16,6 +16,11 @@
     Click to see more.
   </summary>
 
+### :home: Internal
+- `docs`
+  - [#1645](https://github.com/wix-incubator/rich-content/pull/1645) upgrade to v8
+
+  </details>
 ### :bug: Bug Fix
 - `editor-common`
   - [#1650](https://github.com/wix-incubator/rich-content/pull/1650) fix modals text color issue on dark theme
