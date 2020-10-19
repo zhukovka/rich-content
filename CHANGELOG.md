@@ -17,11 +17,13 @@
   </summary>
 
 </details>
+<hr/>
 
+## 8.1.4 (Oct 20, 2020)
 ### :rocket: New Feature
 - `ricos-editor`
   - [#1674](https://github.com/wix-incubator/rich-content/pull/1674) support `container` in ModalSettings
-<hr/>
+
 
 ## 8.1.3 (Oct 19, 2020)
 ### :rocket: New Feature
