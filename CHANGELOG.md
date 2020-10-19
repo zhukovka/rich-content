@@ -19,7 +19,7 @@
 </details>
 <hr/>
 
-## 8.1.2 (Oct 19, 2020)
+## 8.1.3 (Oct 19, 2020)
 ### :rocket: New Feature
 - `vertical embed`
   - [#1585](https://github.com/wix-incubator/rich-content/pull/1585) vertical embed modal ui 
